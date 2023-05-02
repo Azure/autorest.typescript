@@ -80,10 +80,8 @@ export async function getComputeNodeExtensions(
           typeHandlerVersion: result.body.vmExtension?.["typeHandlerVersion"],
           autoUpgradeMinorVersion:
             result.body.vmExtension?.["autoUpgradeMinorVersion"],
-          settings: !result.body.vmExtension?.settings ? undefined : {},
-          protectedSettings: !result.body.vmExtension?.protectedSettings
-            ? undefined
-            : {},
+          settings: result.body.vmExtension?.["settings"],
+          protectedSettings: result.body.vmExtension?.["protectedSettings"],
           provisionAfterExtensions:
             result.body.vmExtension?.["provisionAfterExtensions"],
         },
@@ -186,10 +184,8 @@ export async function listComputeNodeExtensions(
             type: p.vmExtension?.["type"],
             typeHandlerVersion: p.vmExtension?.["typeHandlerVersion"],
             autoUpgradeMinorVersion: p.vmExtension?.["autoUpgradeMinorVersion"],
-            settings: !p.vmExtension?.settings ? undefined : {},
-            protectedSettings: !p.vmExtension?.protectedSettings
-              ? undefined
-              : {},
+            settings: p.vmExtension?.["settings"],
+            protectedSettings: p.vmExtension?.["protectedSettings"],
             provisionAfterExtensions:
               p.vmExtension?.["provisionAfterExtensions"],
           },

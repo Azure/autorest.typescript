@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** */
+/** The result of listing the applications available in an Account. */
 export interface ApplicationListResult {
   /** The list of applications available in the Account. */
   value?: Application[];
@@ -19,33 +19,7 @@ export interface Application {
   versions: string[];
 }
 
-/** Paged collection of PoolUsageMetrics items */
-export interface CustomPage {
-  /** The PoolUsageMetrics items on this page */
-  value: PoolUsageMetrics[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Usage metrics for a Pool across an aggregation interval. */
-export interface PoolUsageMetrics {
-  /** The ID of the Pool whose metrics are aggregated in this entry. */
-  readonly poolId: string;
-  /** The start time of the aggregation interval covered by this entry. */
-  startTime: Date;
-  /** The end time of the aggregation interval covered by this entry. */
-  endTime: Date;
-  /**
-   * For information about available sizes of virtual machines in Pools, see Choose
-   * a VM size for Compute Nodes in an Azure Batch Pool
-   * (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
-   */
-  vmSize: string;
-  /** The total core hours used in the Pool during this aggregation interval. */
-  totalCoreHours: number;
-}
-
-/** */
+/** Contains utilization and resource usage statistics for the lifetime of a Pool. */
 export interface PoolStatistics {
   /** The URL for the statistics. */
   readonly url: string;
@@ -582,12 +556,12 @@ export interface VMExtension {
    */
   autoUpgradeMinorVersion?: boolean;
   /** JSON formatted public settings for the extension. */
-  settings?: object;
+  settings?: Record<string, any>;
   /**
    * The extension can contain either protectedSettings or
    * protectedSettingsFromKeyVault or no protected settings at all.
    */
-  protectedSettings?: object;
+  protectedSettings?: Record<string, any>;
   /**
    * Collection of extension names after which this extension needs to be
    * provisioned.
@@ -1294,7 +1268,7 @@ export interface UserAssignedIdentity {
 /** "default", "classic", "simplified" */
 export type NodeCommunicationMode = string;
 
-/** */
+/** The result of listing the Pools in an Account. */
 export interface BatchPoolListResult {
   /** The list of Pools. */
   value?: BatchPool[];
@@ -1371,7 +1345,7 @@ export interface NodeRemoveParameters {
   nodeDeallocationOption?: ComputeNodeDeallocationOption;
 }
 
-/** */
+/** The result of listing the supported Virtual Machine Images. */
 export interface AccountListSupportedImagesResult {
   /** The list of supported Virtual Machine Images. */
   value?: ImageInformation[];
@@ -1419,7 +1393,7 @@ export type OSType = string;
 /** "verified", "unverified" */
 export type VerificationType = string;
 
-/** */
+/** The result of listing the Compute Node counts in the Account. */
 export interface PoolNodeCountsListResult {
   /** A list of Compute Node counts by Pool. */
   value?: PoolNodeCounts[];
@@ -1469,7 +1443,7 @@ export interface NodeCounts {
   total: number;
 }
 
-/** */
+/** Resource usage statistics for a Job. */
 export interface JobStatistics {
   /** The URL of the statistics. */
   readonly url: string;
@@ -1527,7 +1501,7 @@ export interface JobStatistics {
   waitTime: string;
 }
 
-/** */
+/** An Azure Batch Job. */
 export interface BatchJob {
   /**
    * The ID is case-preserving and case-insensitive (that is, you may not have two
@@ -2414,7 +2388,7 @@ export interface BatchJobTerminateParameters {
   terminateReason?: string;
 }
 
-/** */
+/** The result of listing the Jobs in an Account. */
 export interface BatchJobListResult {
   /** The list of Jobs. */
   value?: BatchJob[];
@@ -2422,7 +2396,10 @@ export interface BatchJobListResult {
   "odata.nextLink"?: string;
 }
 
-/** */
+/**
+ * The result of listing the status of the Job Preparation and Job Release Tasks
+ * for a Job.
+ */
 export interface BatchJobListPreparationAndReleaseTaskStatusResult {
   /** A list of Job Preparation and Job Release Task execution information. */
   value?: JobPreparationAndReleaseTaskExecutionInformation[];
@@ -2595,7 +2572,7 @@ export interface JobReleaseTaskExecutionInformation {
 /** "running", "completed" */
 export type JobReleaseTaskState = string;
 
-/** */
+/** The Task and TaskSlot counts for a Job. */
 export interface TaskCountsResult {
   /** The Task counts for a Job. */
   readonly taskCounts: TaskCounts;
@@ -2699,7 +2676,7 @@ export interface DeleteCertificateError {
 /** "pfx", "cer" */
 export type CertificateFormat = string;
 
-/** */
+/** The result of listing the Certificates in the Account. */
 export interface CertificateListResult {
   /** The list of Certificates. */
   value?: Certificate[];
@@ -2707,7 +2684,10 @@ export interface CertificateListResult {
   "odata.nextLink"?: string;
 }
 
-/** */
+/**
+ * The result of listing the files on a Compute Node, or the files associated with
+ * a Task on a Compute Node.
+ */
 export interface NodeFileListResult {
   /** The list of files. */
   value?: NodeFile[];
@@ -2741,7 +2721,10 @@ export interface FileProperties {
   fileMode?: string;
 }
 
-/** */
+/**
+ * A Job Schedule that allows recurring Jobs by specifying when to run Jobs and a
+ * specification used to create each Job.
+ */
 export interface BatchJobSchedule {
   /** A string that uniquely identifies the schedule within the Account. */
   readonly id?: string;
@@ -3030,7 +3013,7 @@ export interface JobScheduleStatistics {
   waitTime: string;
 }
 
-/** */
+/** The result of listing the Job Schedules in an Account. */
 export interface BatchJobScheduleListResult {
   /** The list of Job Schedules. */
   value?: BatchJobSchedule[];
@@ -3460,7 +3443,7 @@ export interface TaskIdRange {
   end: number;
 }
 
-/** */
+/** The result of listing the Tasks in a Job. */
 export interface BatchTaskListResult {
   /** The list of Tasks. */
   value?: BatchTask[];
@@ -3468,7 +3451,18 @@ export interface BatchTaskListResult {
   "odata.nextLink"?: string;
 }
 
-/** */
+/** A collection of Azure Batch Tasks to add. */
+export interface BatchTaskCollection {
+  /**
+   * The total serialized size of this collection must be less than 1MB. If it is
+   * greater than 1MB (for example if each Task has 100's of resource files or
+   * environment variables), the request will fail with code 'RequestBodyTooLarge'
+   * and should be retried again with fewer Tasks.
+   */
+  value: BatchTask[];
+}
+
+/** The result of adding a collection of Tasks to a Job. */
 export interface TaskAddCollectionResult {
   /** The results of the add Task collection operation. */
   value?: TaskAddResult[];
@@ -3528,18 +3522,7 @@ export interface BatchErrorDetail {
   value?: string;
 }
 
-/** A collection of Azure Batch Tasks to add. */
-export interface BatchTaskCollection {
-  /**
-   * The total serialized size of this collection must be less than 1MB. If it is
-   * greater than 1MB (for example if each Task has 100's of resource files or
-   * environment variables), the request will fail with code 'RequestBodyTooLarge'
-   * and should be retried again with fewer Tasks.
-   */
-  value: BatchTask[];
-}
-
-/** */
+/** The result of listing the subtasks of a Task. */
 export interface BatchTaskListSubtasksResult {
   /** The list of subtasks. */
   value?: SubtaskInformation[];
@@ -3648,7 +3631,7 @@ export interface NodeUpdateUserParameters {
   sshPublicKey?: string;
 }
 
-/** */
+/** A Compute Node in the Batch service. */
 export interface ComputeNode {
   /**
    * Every Compute Node that is added to a Pool is assigned a unique ID. Whenever a
@@ -3946,23 +3929,12 @@ export interface NodeDisableSchedulingParameters {
 /** "requeue", "terminate", "taskcompletion" */
 export type DisableComputeNodeSchedulingOption = string;
 
-/** */
+/** The remote login settings for a Compute Node. */
 export interface ComputeNodeGetRemoteLoginSettingsResult {
   /** The IP address used for remote login to the Compute Node. */
   readonly remoteLoginIPAddress: string;
   /** The port used for remote login to the Compute Node. */
   remoteLoginPort: number;
-}
-
-/** */
-export interface UploadBatchServiceLogsResult {
-  /**
-   * The virtual directory name is part of the blob name for each log file uploaded,
-   * and it is built based poolId, nodeId and a unique identifier.
-   */
-  readonly virtualDirectoryName: string;
-  /** The number of log files which will be uploaded. */
-  numberOfFilesUploaded: number;
 }
 
 /** The Azure Batch service log files upload configuration for a Compute Node. */
@@ -3993,7 +3965,18 @@ export interface UploadBatchServiceLogsConfiguration {
   identityReference?: ComputeNodeIdentityReference;
 }
 
-/** */
+/** The result of uploading Batch service log files from a specific Compute Node. */
+export interface UploadBatchServiceLogsResult {
+  /**
+   * The virtual directory name is part of the blob name for each log file uploaded,
+   * and it is built based poolId, nodeId and a unique identifier.
+   */
+  readonly virtualDirectoryName: string;
+  /** The number of log files which will be uploaded. */
+  numberOfFilesUploaded: number;
+}
+
+/** The result of listing the Compute Nodes in a Pool. */
 export interface ComputeNodeListResult {
   /** The list of Compute Nodes. */
   value?: ComputeNode[];
@@ -4001,7 +3984,7 @@ export interface ComputeNodeListResult {
   "odata.nextLink"?: string;
 }
 
-/** */
+/** The configuration for virtual machine extension instance view. */
 export interface NodeVMExtension {
   /** The provisioning state of the virtual machine extension. */
   provisioningState?: string;
@@ -4039,10 +4022,36 @@ export interface InstanceViewStatus {
 /** "Error", "Info", "Warning" */
 export type StatusLevelTypes = string;
 
-/** */
+/** The result of listing the Compute Node extensions in a Node. */
 export interface NodeVMExtensionList {
   /** The list of Compute Node extensions. */
   value?: NodeVMExtension[];
   /** The URL to get the next set of results. */
   "odata.nextLink"?: string;
+}
+
+/** Paged collection of PoolUsageMetrics items */
+export interface CustomPage {
+  /** The PoolUsageMetrics items on this page */
+  value: PoolUsageMetrics[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Usage metrics for a Pool across an aggregation interval. */
+export interface PoolUsageMetrics {
+  /** The ID of the Pool whose metrics are aggregated in this entry. */
+  readonly poolId: string;
+  /** The start time of the aggregation interval covered by this entry. */
+  startTime: Date;
+  /** The end time of the aggregation interval covered by this entry. */
+  endTime: Date;
+  /**
+   * For information about available sizes of virtual machines in Pools, see Choose
+   * a VM size for Compute Nodes in an Azure Batch Pool
+   * (https://docs.microsoft.com/azure/batch/batch-pool-vm-sizes).
+   */
+  vmSize: string;
+  /** The total core hours used in the Pool during this aggregation interval. */
+  totalCoreHours: number;
 }

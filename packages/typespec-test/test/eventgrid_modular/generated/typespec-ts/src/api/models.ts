@@ -8,7 +8,7 @@ export interface CloudEventEvent {
   /** Identifies the context in which an event happened. The combination of id and source must be unique for each distinct event. */
   source: string;
   /** Event data specific to the event type. */
-  data?: object;
+  data?: Record<string, any>;
   /** Event data specific to the event type, encoded as a base64 string. */
   dataBase64?: string;
   /** Type of event related to the originating occurrence. */
@@ -25,7 +25,7 @@ export interface CloudEventEvent {
   subject?: string;
 }
 
-/** */
+/** Details of the Receive operation response. */
 export interface ReceiveResponse {
   /** Array of receive responses, one per cloud event. */
   value: ReceiveDetails[];
@@ -67,10 +67,4 @@ export interface FailedLockToken {
   errorCode: number;
   /** Description of the error */
   errorDescription: string;
-}
-
-/** Lock token input formatting. */
-export interface LockTokenInput {
-  /** LockToken */
-  lockTokens: string[];
 }

@@ -11,9 +11,9 @@ export {
   ReceiveDetails,
   BrokerProperties,
   LockToken,
+  LockTokenInput,
   LockTokensResponse,
   FailedLockToken,
-  LockTokenInput,
 } from "./models.js";
 export {
   publishCloudEvent,

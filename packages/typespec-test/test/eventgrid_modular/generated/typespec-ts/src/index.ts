@@ -7,9 +7,9 @@ export {
   ReceiveDetails,
   BrokerProperties,
   LockToken,
+  LockTokenInput,
   LockTokensResponse,
   FailedLockToken,
-  LockTokenInput,
 } from "./api/models.js";
 export {
   PublishCloudEventOptions,

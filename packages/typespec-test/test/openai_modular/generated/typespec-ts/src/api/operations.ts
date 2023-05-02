@@ -6,8 +6,8 @@ import { OpenAIContext as Client, isUnexpected } from "../rest/index.js";
 import {
   Embeddings,
   Completions,
-  ChatCompletions,
   ChatMessage,
+  ChatCompletions,
 } from "./models.js";
 
 export interface GetEmbeddingsOptions extends RequestOptions {
@@ -66,11 +66,6 @@ export async function getEmbeddings(
 }
 
 export interface GetCompletionsOptions extends RequestOptions {
-  /**
-   * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
-   * otherwise specified.
-   */
-  prompt?: string[] | string;
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -166,6 +161,7 @@ export interface GetCompletionsOptions extends RequestOptions {
  */
 export async function getCompletions(
   context: Client,
+  prompt: string[],
   deploymentId: string,
   options: GetCompletionsOptions = { requestOptions: {} }
 ): Promise<Completions> {
@@ -178,7 +174,7 @@ export async function getCompletions(
         ...options.requestOptions?.headers,
       },
       body: {
-        ...(options.prompt && { prompt: options.prompt }),
+        prompt: prompt,
         ...(options.maxTokens && { max_tokens: options.maxTokens }),
         ...(options.temperature && { temperature: options.temperature }),
         ...(options.topP && { top_p: options.topP }),
@@ -209,14 +205,12 @@ export async function getCompletions(
     choices: (result.body["choices"] ?? []).map((p) => ({
       text: p["text"],
       index: p["index"],
-      logprobs: !p.logprobs
-        ? undefined
-        : {
-            tokens: p.logprobs?.["tokens"],
-            tokenLogprobs: p.logprobs?.["token_logprobs"],
-            topLogprobs: p.logprobs?.["top_logprobs"],
-            textOffset: p.logprobs?.["text_offset"],
-          },
+      logprobs: {
+        tokens: p.logprobs["tokens"],
+        tokenLogprobs: p.logprobs["token_logprobs"],
+        topLogprobs: p.logprobs["top_logprobs"],
+        textOffset: p.logprobs["text_offset"],
+      },
       finishReason: p["finish_reason"],
     })),
     usage: {
@@ -261,8 +255,8 @@ export interface GetChatCompletionsOptions extends RequestOptions {
    */
   user?: string;
   /**
-   * The number of completions choices that should be generated per provided prompt as part of an
-   * overall completions response.
+   * The number of chat completions choices that should be generated for a chat completions
+   * response.
    * Because this setting can generate many completions, it may quickly consume your token quota.
    * Use carefully and ensure reasonable settings for max_tokens and stop.
    */

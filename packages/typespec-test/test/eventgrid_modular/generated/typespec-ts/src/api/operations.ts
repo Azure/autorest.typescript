@@ -15,7 +15,7 @@ import {
 
 export interface PublishCloudEventOptions extends RequestOptions {
   /** Event data specific to the event type. */
-  data?: object;
+  data?: Record<string, any>;
   /** Event data specific to the event type, encoded as a base64 string. */
   dataBase64?: string;
   /** The time (in UTC) the event was generated, in RFC3339 format. */
@@ -139,7 +139,7 @@ export async function receiveBatchOfCloudEvents(
       event: {
         id: p.event["id"],
         source: p.event["source"],
-        data: !p.event.data ? undefined : {},
+        data: p.event["data"],
         dataBase64: p.event["data_base64"],
         type: p.event["type"],
         time: new Date(p.event["time"] ?? ""),

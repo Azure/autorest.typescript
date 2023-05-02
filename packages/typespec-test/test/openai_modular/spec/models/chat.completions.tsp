@@ -91,13 +91,13 @@ model ChatCompletionsOptions {
     user?: string;
 
     @doc("""
-    The number of completions choices that should be generated per provided prompt as part of an
-    overall completions response.
+    The number of chat completions choices that should be generated for a chat completions
+    response.
     Because this setting can generate many completions, it may quickly consume your token quota.
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
     @projectedName("json", "n")
-    @projectedName("csharp", "ChoicesPerPrompt")
+    @projectedName("csharp", "ChoiceCount")
     n?: int32;
 
     @doc("""
@@ -158,7 +158,7 @@ model ChatChoice {
 
     @doc("The reason that this chat completions choice completed its generated.")
     @projectedName("json", "finish_reason")
-    finishReason: CompletionsFinishReason;
+    finishReason: CompletionsFinishReason | null;
 
     @doc("The delta message content for a streaming response.")
     @projectedName("json", "delta")
@@ -190,7 +190,7 @@ model ChatCompletions {
     Token limits and other settings may limit the number of choices generated.
     """)
     @projectedName("json", "choices")
-    choices?: ChatChoice[];
+    choices: ChatChoice[];
 
     @doc("""
     Usage information for tokens processed and generated as part of this completions operation.

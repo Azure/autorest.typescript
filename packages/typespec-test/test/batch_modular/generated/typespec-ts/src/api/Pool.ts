@@ -4,7 +4,6 @@
 import { RequestOptions } from "../common/interfaces.js";
 import { BatchServiceContext as Client, isUnexpected } from "../rest/index.js";
 import {
-  CustomPage,
   PoolStatistics,
   BatchPool,
   PoolState,
@@ -25,6 +24,7 @@ import {
   NodeCommunicationMode,
   BatchPoolListResult,
   ComputeNodeDeallocationOption,
+  CustomPage,
 } from "./models.js";
 
 export interface PoolListUsageMetricsOptions extends RequestOptions {
@@ -562,8 +562,8 @@ export async function listPools(
               type: p["type"],
               typeHandlerVersion: p["typeHandlerVersion"],
               autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
-              settings: !p.settings ? undefined : {},
-              protectedSettings: !p.protectedSettings ? undefined : {},
+              settings: p["settings"],
+              protectedSettings: p["protectedSettings"],
               provisionAfterExtensions: p["provisionAfterExtensions"],
             })),
             osDisk: !p.virtualMachineConfiguration?.osDisk
@@ -1234,8 +1234,8 @@ export async function getPool(
             type: p["type"],
             typeHandlerVersion: p["typeHandlerVersion"],
             autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
-            settings: !p.settings ? undefined : {},
-            protectedSettings: !p.protectedSettings ? undefined : {},
+            settings: p["settings"],
+            protectedSettings: p["protectedSettings"],
             provisionAfterExtensions: p["provisionAfterExtensions"],
           })),
           osDisk: !result.body.virtualMachineConfiguration?.osDisk

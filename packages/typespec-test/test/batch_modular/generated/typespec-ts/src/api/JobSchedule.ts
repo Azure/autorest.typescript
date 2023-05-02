@@ -904,10 +904,8 @@ export async function getJobSchedule(
                                 typeHandlerVersion: p["typeHandlerVersion"],
                                 autoUpgradeMinorVersion:
                                   p["autoUpgradeMinorVersion"],
-                                settings: !p.settings ? undefined : {},
-                                protectedSettings: !p.protectedSettings
-                                  ? undefined
-                                  : {},
+                                settings: p["settings"],
+                                protectedSettings: p["protectedSettings"],
                                 provisionAfterExtensions:
                                   p["provisionAfterExtensions"],
                               })),
@@ -2694,10 +2692,8 @@ export async function listJobSchedules(
                                   typeHandlerVersion: p["typeHandlerVersion"],
                                   autoUpgradeMinorVersion:
                                     p["autoUpgradeMinorVersion"],
-                                  settings: !p.settings ? undefined : {},
-                                  protectedSettings: !p.protectedSettings
-                                    ? undefined
-                                    : {},
+                                  settings: p["settings"],
+                                  protectedSettings: p["protectedSettings"],
                                   provisionAfterExtensions:
                                     p["provisionAfterExtensions"],
                                 })),

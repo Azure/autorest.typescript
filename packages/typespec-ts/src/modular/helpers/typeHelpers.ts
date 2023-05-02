@@ -7,6 +7,14 @@ export interface TypeMetadata {
   modifier?: "Array";
 }
 
+function getNullableType(name: string, type: Type): string {
+  if (type.nullable) {
+    return `${name} | null`;
+  }
+
+  return name;
+}
+
 export function getType(type: Type): TypeMetadata {
   switch (type.type) {
     case "Key":
@@ -30,7 +38,10 @@ export function getType(type: Type): TypeMetadata {
       if (!type.name) {
         throw new Error("Unable to process enum without name");
       }
-      return { name: type.name, originModule: "models.js" };
+      return {
+        name: getNullableType(type.name, type),
+        originModule: "models.js"
+      };
     case "float":
     case "integer":
       return { name: "number" };
@@ -50,7 +61,10 @@ export function getType(type: Type): TypeMetadata {
       if (!type.name) {
         throw new Error("Unable to process model without name");
       }
-      return { name: type.name, originModule: "models.js" };
+      return {
+        name: getNullableType(type.name, type),
+        originModule: "models.js"
+      };
     case "string":
     case "duration":
       return { name: "string" };
@@ -72,6 +86,10 @@ export function getType(type: Type): TypeMetadata {
       }
       return {
         name: `Record<string, ${getTypeName(getType(type.elementType))}>`
+      };
+    case "any":
+      return {
+        name: `Record<string, any>`
       };
     default:
       throw new Error(`Unsupported type ${type.type}`);

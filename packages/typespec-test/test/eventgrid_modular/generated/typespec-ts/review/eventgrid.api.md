@@ -41,7 +41,7 @@ export interface ClientOptions extends ClientOptions_2 {
 
 // @public
 export interface CloudEventEvent {
-    data?: object;
+    data?: Record<string, any>;
     dataBase64?: string;
     datacontenttype?: string;
     dataschema?: string;
@@ -84,7 +84,7 @@ export interface PublishBatchOfCloudEventsOptions extends RequestOptions {
 // @public (undocumented)
 export interface PublishCloudEventOptions extends RequestOptions {
     contentType?: string;
-    data?: object;
+    data?: Record<string, any>;
     dataBase64?: string;
     datacontenttype?: string;
     dataschema?: string;
@@ -105,7 +105,7 @@ export interface ReceiveDetails {
     event: CloudEventEvent;
 }
 
-// @public (undocumented)
+// @public
 export interface ReceiveResponse {
     value: ReceiveDetails[];
 }

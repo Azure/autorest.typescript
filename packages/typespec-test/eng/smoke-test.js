@@ -55,4 +55,7 @@ async function main() {
   }
 }
 
-main();
+main().catch((e) => {
+  console.log(e.stdout.toString("utf8"));
+  process.exitCode = 1;
+});

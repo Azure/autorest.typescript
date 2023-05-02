@@ -775,10 +775,8 @@ export async function getJob(
                               typeHandlerVersion: p["typeHandlerVersion"],
                               autoUpgradeMinorVersion:
                                 p["autoUpgradeMinorVersion"],
-                              settings: !p.settings ? undefined : {},
-                              protectedSettings: !p.protectedSettings
-                                ? undefined
-                                : {},
+                              settings: p["settings"],
+                              protectedSettings: p["protectedSettings"],
                               provisionAfterExtensions:
                                 p["provisionAfterExtensions"],
                             })),
@@ -2709,10 +2707,8 @@ export async function listJobs(
                                 typeHandlerVersion: p["typeHandlerVersion"],
                                 autoUpgradeMinorVersion:
                                   p["autoUpgradeMinorVersion"],
-                                settings: !p.settings ? undefined : {},
-                                protectedSettings: !p.protectedSettings
-                                  ? undefined
-                                  : {},
+                                settings: p["settings"],
+                                protectedSettings: p["protectedSettings"],
                                 provisionAfterExtensions:
                                   p["provisionAfterExtensions"],
                               })),
@@ -3720,10 +3716,8 @@ export async function listFromJobSchedule(
                                 typeHandlerVersion: p["typeHandlerVersion"],
                                 autoUpgradeMinorVersion:
                                   p["autoUpgradeMinorVersion"],
-                                settings: !p.settings ? undefined : {},
-                                protectedSettings: !p.protectedSettings
-                                  ? undefined
-                                  : {},
+                                settings: p["settings"],
+                                protectedSettings: p["protectedSettings"],
                                 provisionAfterExtensions:
                                   p["provisionAfterExtensions"],
                               })),

@@ -56,7 +56,7 @@ export interface CompletionsOutput {
    * Generally, `n` choices are generated per provided prompt with a default value of 1.
    * Token limits and other settings may limit the number of choices generated.
    */
-  choices?: Array<ChoiceOutput>;
+  choices: Array<ChoiceOutput>;
   /** Usage information for tokens processed and generated as part of this completions operation. */
   usage: CompletionsUsageOutput;
 }
@@ -72,25 +72,21 @@ export interface ChoiceOutput {
   /** The ordered index associated with this completions choice. */
   index: number;
   /** The log probabilities model for tokens associated with this completions choice. */
-  logprobs?: CompletionsLogProbabilityModelOutput;
-  /**
-   * Reason for finishing
-   *
-   * Possible values: none, stopped, tokenLimitReached, contentFiltered
-   */
-  finish_reason: string;
+  logprobs: CompletionsLogProbabilityModelOutput | null;
+  /** Reason for finishing */
+  finish_reason: string | null;
 }
 
 /** Representation of a log probabilities model for a completions generation. */
 export interface CompletionsLogProbabilityModelOutput {
   /** The textual forms of tokens evaluated in this probability model. */
-  tokens?: string[];
+  tokens: string[];
   /** A collection of log probability values for the tokens in this completions data. */
-  token_logprobs?: number[];
+  token_logprobs: (number | null)[];
   /** A mapping of tokens to maximum log probability values in this completions data. */
-  top_logprobs?: Record<string, number>[];
+  top_logprobs: Record<string, number[] | null>[];
   /** The text offsets associated with tokens in this completions data. */
-  text_offset?: number[];
+  text_offset: number[];
 }
 
 /**
@@ -137,7 +133,7 @@ export interface ChatCompletionsOutput {
    * Generally, `n` choices are generated per provided prompt with a default value of 1.
    * Token limits and other settings may limit the number of choices generated.
    */
-  choices?: Array<ChatChoiceOutput>;
+  choices: Array<ChatChoiceOutput>;
   /** Usage information for tokens processed and generated as part of this completions operation. */
   usage: CompletionsUsageOutput;
 }
@@ -152,12 +148,8 @@ export interface ChatChoiceOutput {
   message?: ChatMessageOutput;
   /** The ordered index associated with this chat completions choice. */
   index: number;
-  /**
-   * The reason that this chat completions choice completed its generated.
-   *
-   * Possible values: none, stopped, tokenLimitReached, contentFiltered
-   */
-  finish_reason: string;
+  /** The reason that this chat completions choice completed its generated. */
+  finish_reason: string | null;
   /** The delta message content for a streaming response. */
   delta?: ChatMessageOutput;
 }

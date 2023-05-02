@@ -6,8 +6,8 @@ import { ClientOptions } from "./common/interfaces.js";
 import {
   Embeddings,
   Completions,
-  ChatCompletions,
   ChatMessage,
+  ChatCompletions,
   createOpenAI,
   OpenAIContext,
   getEmbeddings,
@@ -39,10 +39,11 @@ export class OpenAIClient {
   }
 
   getCompletions(
+    prompt: string[],
     deploymentId: string,
     options: GetCompletionsOptions = { requestOptions: {} }
   ): Promise<Completions> {
-    return getCompletions(this._client, deploymentId, options);
+    return getCompletions(this._client, prompt, deploymentId, options);
   }
 
   getChatCompletions(

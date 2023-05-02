@@ -52,6 +52,7 @@ export interface EnumValue {
   description: string;
 }
 export interface Type {
+  nullable?: boolean;
   name?: string;
   description?: string;
   type:
@@ -70,7 +71,8 @@ export interface Type {
     | "float"
     | "boolean"
     | "dict"
-    | "combined";
+    | "combined"
+    | "any";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;

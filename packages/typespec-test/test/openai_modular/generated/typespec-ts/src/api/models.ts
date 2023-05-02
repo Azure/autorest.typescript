@@ -1,7 +1,39 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** */
+/**
+ * The configuration information for an embeddings request.
+ * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
+ * recommendations, and other similar scenarios.
+ */
+export interface EmbeddingsOptions {
+  /**
+   * An identifier for the caller or end user of the operation. This may be used for tracking
+   * or rate-limiting purposes.
+   */
+  user?: string;
+  /**
+   * The model name to provide as part of this embeddings request.
+   * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
+   * resource URI that's connected to.
+   */
+  model?: string;
+  /**
+   * Input text to get embeddings for, encoded as a string.
+   * To get embeddings for multiple inputs in a single request, pass an array of strings.
+   * Each input must not exceed 2048 tokens in length.
+   *
+   * Unless you are embedding code, we suggest replacing newlines (\n) in your input with a single space,
+   * as we have observed inferior results when newlines are present.
+   */
+  input: string | string[];
+}
+
+/**
+ * Representation of the response data from an embeddings request.
+ * Embeddings measure the relatedness of text strings and are commonly used for search, clustering,
+ * recommendations, and other similar scenarios.
+ */
 export interface Embeddings {
   /** Embedding values for the prompts submitted in the request. */
   data: EmbeddingItem[];
@@ -28,102 +60,14 @@ export interface EmbeddingsUsage {
   totalTokens: number;
 }
 
-/** */
-export interface EmbeddingsOptions {
-  /**
-   * An identifier for the caller or end user of the operation. This may be used for tracking
-   * or rate-limiting purposes.
-   */
-  user?: string;
-  /**
-   * The model name to provide as part of this embeddings request.
-   * Not applicable to Azure OpenAI, where deployment information should be included in the Azure
-   * resource URI that's connected to.
-   */
-  model?: string;
-  /**
-   * Input text to get embeddings for, encoded as a string.
-   * To get embeddings for multiple inputs in a single request, pass an array of strings.
-   * Each input must not exceed 2048 tokens in length.
-   *
-   * Unless you are embedding code, we suggest replacing newlines (\n) in your input with a single space,
-   * as we have observed inferior results when newlines are present.
-   */
-  input: string | string[];
-}
-
-/** */
-export interface Completions {
-  /** A unique identifier associated with this completions response. */
-  id: string;
-  /**
-   * The first timestamp associated with generation activity for this completions response,
-   * represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
-   */
-  created: number;
-  /**
-   * The collection of completions choices associated with this completions response.
-   * Generally, `n` choices are generated per provided prompt with a default value of 1.
-   * Token limits and other settings may limit the number of choices generated.
-   */
-  choices?: Choice[];
-  /** Usage information for tokens processed and generated as part of this completions operation. */
-  usage: CompletionsUsage;
-}
-
 /**
- * The representation of a single prompt completion as part of an overall completions request.
- * Generally, `n` choices are generated per provided prompt with a default value of 1.
- * Token limits and other settings may limit the number of choices generated.
+ * The configuration information for a completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
  */
-export interface Choice {
-  /** The generated text for a given completions prompt. */
-  text: string;
-  /** The ordered index associated with this completions choice. */
-  index: number;
-  /** The log probabilities model for tokens associated with this completions choice. */
-  logprobs?: CompletionsLogProbabilityModel;
-  /** Reason for finishing */
-  finishReason: CompletionsFinishReason;
-}
-
-/** Representation of a log probabilities model for a completions generation. */
-export interface CompletionsLogProbabilityModel {
-  /** The textual forms of tokens evaluated in this probability model. */
-  tokens?: string[];
-  /** A collection of log probability values for the tokens in this completions data. */
-  tokenLogprobs?: number[];
-  /** A mapping of tokens to maximum log probability values in this completions data. */
-  topLogprobs?: Record<string, number>[];
-  /** The text offsets associated with tokens in this completions data. */
-  textOffset?: number[];
-}
-
-/** Representation of the manner in which a completions response concluded. */
-/** "none", "stopped", "tokenLimitReached", "contentFiltered" */
-export type CompletionsFinishReason = string;
-
-/**
- * Representation of the token counts processed for a completions request.
- * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
- * other consumers.
- */
-export interface CompletionsUsage {
-  /** The number of tokens generated across all completions emissions. */
-  completionTokens: number;
-  /** The number of tokens in the provided prompts for the completions request. */
-  promptTokens: number;
-  /** The total number of tokens processed for the completions request and response. */
-  totalTokens: number;
-}
-
-/** */
 export interface CompletionsOptions {
-  /**
-   * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
-   * otherwise specified.
-   */
-  prompt?: string[] | string;
+  /** The prompts to generate completions from. */
+  prompt: string[];
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -208,9 +152,13 @@ export interface CompletionsOptions {
   model?: string;
 }
 
-/** */
-export interface ChatCompletions {
-  /** A unique identifier associated with this chat completions response. */
+/**
+ * Representation of the response data from a completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export interface Completions {
+  /** A unique identifier associated with this completions response. */
   id: string;
   /**
    * The first timestamp associated with generation activity for this completions response,
@@ -222,40 +170,74 @@ export interface ChatCompletions {
    * Generally, `n` choices are generated per provided prompt with a default value of 1.
    * Token limits and other settings may limit the number of choices generated.
    */
-  choices?: ChatChoice[];
+  choices: Choice[];
   /** Usage information for tokens processed and generated as part of this completions operation. */
   usage: CompletionsUsage;
 }
 
 /**
- * The representation of a single prompt completion as part of an overall chat completions request.
+ * The representation of a single prompt completion as part of an overall completions request.
  * Generally, `n` choices are generated per provided prompt with a default value of 1.
  * Token limits and other settings may limit the number of choices generated.
  */
-export interface ChatChoice {
-  /** The chat message for a given chat completions prompt. */
-  message?: ChatMessage;
-  /** The ordered index associated with this chat completions choice. */
+export interface Choice {
+  /** The generated text for a given completions prompt. */
+  text: string;
+  /** The ordered index associated with this completions choice. */
   index: number;
-  /** The reason that this chat completions choice completed its generated. */
-  finishReason: CompletionsFinishReason;
-  /** The delta message content for a streaming response. */
-  delta?: ChatMessage;
+  /** The log probabilities model for tokens associated with this completions choice. */
+  logprobs: CompletionsLogProbabilityModel;
+  /** Reason for finishing */
+  finishReason: CompletionsFinishReason | null;
 }
 
-/** A single, role-attributed message within a chat completion interaction. */
-export interface ChatMessage {
-  /** The role associated with this message payload. */
-  role: ChatRole;
-  /** The text associated with this message payload. */
-  content?: string;
+/** Representation of a log probabilities model for a completions generation. */
+export interface CompletionsLogProbabilityModel {
+  /** The textual forms of tokens evaluated in this probability model. */
+  tokens: string[];
+  /** A collection of log probability values for the tokens in this completions data. */
+  tokenLogprobs: number[];
+  /** A mapping of tokens to maximum log probability values in this completions data. */
+  topLogprobs: Record<string, number>[];
+  /** The text offsets associated with tokens in this completions data. */
+  textOffset: number[];
 }
 
-/** A description of the intended purpose of a message within a chat completions interaction. */
-/** "system", "assistant", "user" */
-export type ChatRole = string;
+/** Representation of a log probabilities model for a completions generation. */
+export interface CompletionsLogProbabilityModel {
+  /** The textual forms of tokens evaluated in this probability model. */
+  tokens: string[];
+  /** A collection of log probability values for the tokens in this completions data. */
+  tokenLogprobs: number[];
+  /** A mapping of tokens to maximum log probability values in this completions data. */
+  topLogprobs: Record<string, number>[];
+  /** The text offsets associated with tokens in this completions data. */
+  textOffset: number[];
+}
 
-/** */
+/** Representation of the manner in which a completions response concluded. */
+/** "stopped", "tokenLimitReached", "contentFiltered" */
+export type CompletionsFinishReason = string;
+
+/**
+ * Representation of the token counts processed for a completions request.
+ * Counts consider all tokens across prompts, choices, choice alternates, best_of generations, and
+ * other consumers.
+ */
+export interface CompletionsUsage {
+  /** The number of tokens generated across all completions emissions. */
+  completionTokens: number;
+  /** The number of tokens in the provided prompts for the completions request. */
+  promptTokens: number;
+  /** The total number of tokens processed for the completions request and response. */
+  totalTokens: number;
+}
+
+/**
+ * The configuration information for a chat completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
 export interface ChatCompletionsOptions {
   /**
    * The collection of context messages associated with this chat completions request.
@@ -297,8 +279,8 @@ export interface ChatCompletionsOptions {
    */
   user?: string;
   /**
-   * The number of completions choices that should be generated per provided prompt as part of an
-   * overall completions response.
+   * The number of chat completions choices that should be generated for a chat completions
+   * response.
    * Because this setting can generate many completions, it may quickly consume your token quota.
    * Use carefully and ensure reasonable settings for max_tokens and stop.
    */
@@ -327,4 +309,55 @@ export interface ChatCompletionsOptions {
    * resource URI that's connected to.
    */
   model?: string;
+}
+
+/** A single, role-attributed message within a chat completion interaction. */
+export interface ChatMessage {
+  /** The role associated with this message payload. */
+  role: ChatRole;
+  /** The text associated with this message payload. */
+  content?: string;
+}
+
+/** A description of the intended purpose of a message within a chat completions interaction. */
+/** "system", "assistant", "user" */
+export type ChatRole = string;
+
+/**
+ * Representation of the response data from a chat completions request.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export interface ChatCompletions {
+  /** A unique identifier associated with this chat completions response. */
+  id: string;
+  /**
+   * The first timestamp associated with generation activity for this completions response,
+   * represented as seconds since the beginning of the Unix epoch of 00:00 on 1 Jan 1970.
+   */
+  created: number;
+  /**
+   * The collection of completions choices associated with this completions response.
+   * Generally, `n` choices are generated per provided prompt with a default value of 1.
+   * Token limits and other settings may limit the number of choices generated.
+   */
+  choices: ChatChoice[];
+  /** Usage information for tokens processed and generated as part of this completions operation. */
+  usage: CompletionsUsage;
+}
+
+/**
+ * The representation of a single prompt completion as part of an overall chat completions request.
+ * Generally, `n` choices are generated per provided prompt with a default value of 1.
+ * Token limits and other settings may limit the number of choices generated.
+ */
+export interface ChatChoice {
+  /** The chat message for a given chat completions prompt. */
+  message?: ChatMessage;
+  /** The ordered index associated with this chat completions choice. */
+  index: number;
+  /** The reason that this chat completions choice completed its generated. */
+  finishReason: CompletionsFinishReason | null;
+  /** The delta message content for a streaming response. */
+  delta?: ChatMessage;
 }

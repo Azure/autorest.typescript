@@ -33,7 +33,7 @@ export interface AccountListSupportedImagesOptions extends RequestOptions {
     timeOut?: number;
 }
 
-// @public (undocumented)
+// @public
 export interface AccountListSupportedImagesResult {
     "odata.nextLink"?: string;
     value?: ImageInformation[];
@@ -54,7 +54,7 @@ export interface Application {
     versions: string[];
 }
 
-// @public (undocumented)
+// @public
 export interface ApplicationListResult {
     "odata.nextLink"?: string;
     value?: Application[];
@@ -150,7 +150,7 @@ export interface BatchErrorDetail {
     value?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BatchJob {
     allowTaskPreemption?: boolean;
     readonly commonEnvironmentSettings?: EnvironmentSetting[];
@@ -185,19 +185,19 @@ export interface BatchJobDisableParameters {
     disableTasks: DisableJobOption;
 }
 
-// @public (undocumented)
+// @public
 export interface BatchJobListPreparationAndReleaseTaskStatusResult {
     "odata.nextLink"?: string;
     value?: JobPreparationAndReleaseTaskExecutionInformation[];
 }
 
-// @public (undocumented)
+// @public
 export interface BatchJobListResult {
     "odata.nextLink"?: string;
     value?: BatchJob[];
 }
 
-// @public (undocumented)
+// @public
 export interface BatchJobSchedule {
     readonly creationTime?: Date;
     readonly displayName?: string;
@@ -216,7 +216,7 @@ export interface BatchJobSchedule {
     readonly url?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface BatchJobScheduleListResult {
     "odata.nextLink"?: string;
     value?: BatchJobSchedule[];
@@ -286,7 +286,7 @@ export interface BatchPoolIdentity {
     userAssignedIdentities?: UserAssignedIdentity[];
 }
 
-// @public (undocumented)
+// @public
 export interface BatchPoolListResult {
     "odata.nextLink"?: string;
     value?: BatchPool[];
@@ -449,13 +449,13 @@ export interface BatchTaskCollection {
     value: BatchTask[];
 }
 
-// @public (undocumented)
+// @public
 export interface BatchTaskListResult {
     "odata.nextLink"?: string;
     value?: BatchTask[];
 }
 
-// @public (undocumented)
+// @public
 export interface BatchTaskListSubtasksResult {
     value?: SubtaskInformation[];
 }
@@ -482,7 +482,7 @@ export interface Certificate {
 // @public
 export type CertificateFormat = string;
 
-// @public (undocumented)
+// @public
 export interface CertificateListResult {
     "odata.nextLink"?: string;
     value?: Certificate[];
@@ -584,7 +584,7 @@ export interface CloudServiceConfiguration {
     osVersion?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ComputeNode {
     affinityId?: string;
     allocationTime?: Date;
@@ -650,7 +650,7 @@ export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions extends R
 // @public
 export type ComputeNodeFillType = string;
 
-// @public (undocumented)
+// @public
 export interface ComputeNodeGetRemoteLoginSettingsResult {
     readonly remoteLoginIPAddress: string;
     remoteLoginPort: number;
@@ -671,7 +671,7 @@ export interface ComputeNodeInformation {
     taskRootDirectoryUrl?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ComputeNodeListResult {
     "odata.nextLink"?: string;
     value?: ComputeNode[];
@@ -1608,7 +1608,7 @@ export interface JobSpecification {
 // @public
 export type JobState = string;
 
-// @public (undocumented)
+// @public
 export interface JobStatistics {
     kernelCPUTime: string;
     lastUpdateTime: Date;
@@ -1782,7 +1782,7 @@ export interface NodeFile {
     url?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface NodeFileListResult {
     "odata.nextLink"?: string;
     value?: NodeFile[];
@@ -1820,14 +1820,14 @@ export interface NodeUpdateUserParameters {
     sshPublicKey?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface NodeVMExtension {
     instanceView?: VMExtensionInstanceView;
     provisioningState?: string;
     vmExtension?: VMExtension;
 }
 
-// @public (undocumented)
+// @public
 export interface NodeVMExtensionList {
     "odata.nextLink"?: string;
     value?: NodeVMExtension[];
@@ -2045,7 +2045,7 @@ export interface PoolNodeCounts {
     readonly poolId: string;
 }
 
-// @public (undocumented)
+// @public
 export interface PoolNodeCountsListResult {
     "odata.nextLink"?: string;
     value?: PoolNodeCounts[];
@@ -2163,7 +2163,7 @@ export interface PoolSpecification {
 // @public
 export type PoolState = string;
 
-// @public (undocumented)
+// @public
 export interface PoolStatistics {
     lastUpdateTime: Date;
     resourceStats?: ResourceStatistics;
@@ -2362,7 +2362,7 @@ export interface SubtaskInformation {
 // @public
 export type SubtaskState = string;
 
-// @public (undocumented)
+// @public
 export interface TaskAddCollectionResult {
     value?: TaskAddResult[];
 }
@@ -2457,7 +2457,7 @@ export interface TaskCounts {
     succeeded: number;
 }
 
-// @public (undocumented)
+// @public
 export interface TaskCountsResult {
     readonly taskCounts: TaskCounts;
     taskSlotCounts: TaskSlotCounts;
@@ -2664,7 +2664,7 @@ export interface UploadBatchServiceLogsConfiguration {
     startTime: Date;
 }
 
-// @public (undocumented)
+// @public
 export interface UploadBatchServiceLogsResult {
     numberOfFilesUploaded: number;
     readonly virtualDirectoryName: string;
@@ -2725,10 +2725,10 @@ export interface VirtualMachineInfo {
 export interface VMExtension {
     autoUpgradeMinorVersion?: boolean;
     name: string;
-    protectedSettings?: object;
+    protectedSettings?: Record<string, any>;
     provisionAfterExtensions?: string[];
     publisher: string;
-    settings?: object;
+    settings?: Record<string, any>;
     type: string;
     typeHandlerVersion?: string;
 }
