@@ -8,10 +8,10 @@ using Azure.Core;
 using Azure.ClientGenerator;
 
 @service({
-  title: "Response",
+  title: "MultiClient",
   version: "1.0.0",
 })
-namespace Cadl.Response;
+namespace Cadl.MultiClient;
 
 model Resource {
   @visibility("read")
@@ -29,12 +29,12 @@ model ResourceArray is Resource[];
 
 // operation using Azure.Core
 @Azure.ClientGenerator.Core.client({
-  name: "CoreClient",
-  service: Cadl.Response,
+  name: "FooClient",
+  service: Cadl.MultiClient,
 })
-@route("/cadl-core")
-@doc("Cadl Core")
-interface CadlCoreOp {
+@route("/cadl-foo")
+@doc("Cadl Foo")
+interface FooOp {
   @doc("Creates a new resource or updates an existing one.")
   createOrUpdate is ResourceCreateOrReplace<Resource>;
 
@@ -49,12 +49,12 @@ interface CadlCoreOp {
 }
 
 @Azure.ClientGenerator.Core.client({
-  name: "ResponseClient",
-  service: Cadl.Response,
+  name: "BarClient",
+  service: Cadl.MultiClient,
 })
-@doc("Response")
-@route("/response")
-interface ResponseOp {
+@doc("Bar")
+@route("/cadl-bar")
+interface BarOp {
   // binary
   @route("/get-binary")
   @get

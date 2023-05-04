@@ -58,51 +58,6 @@
     "tslib": "^2.2.0",
     "@azure/core-paging": "^1.5.0"
   },
-  "exports": {
-
-     ".": {
-    
-          "types": "./types/src/index.d.ts",
-    
-          "require": "./dist/index.cjs",
-    
-          "import": "./dist-esm/src/index.js"
-    
-        },
-    
-        "./api/core": {
-    
-          "types": "./types/src/api/core/index.d.ts",
-    
-          "import": "./dist-esm/src/api/core/index.js"
-    
-        },
-    
-        "./api/requests": {
-    
-          "types": "./types/src/api/requests/index.d.ts",
-    
-          "import": "./dist-esm/src/api/requests/index.js"
-    
-        },
-    
-        "./rest/core": {
-    
-          "types": "./types/src/api/core/index.d.ts",
-    
-          "import": "./dist-esm/src/api/core/index.js"
-    
-        },
-    
-        "./rest/requests": {
-    
-          "types": "./types/src/rest/requests/index.d.ts",
-    
-          "import": "./dist-esm/src/rest/requests/index.js"
-    
-        }
-    
-      },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
     "autorest": "latest",

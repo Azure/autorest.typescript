@@ -36,16 +36,16 @@ export interface DeleteWithHeaders {
 }
 
 export interface Routes {
-  /** Resource for '/response/get-binary' has methods for the following verbs: get */
-  (path: "/response/get-binary"): GetBinary;
-  /** Resource for '/response' has methods for the following verbs: get */
-  (path: "/response"): GetArray;
-  /** Resource for '/response/create-with-headers' has methods for the following verbs: put */
-  (path: "/response/create-with-headers"): CreateWithHeaders;
-  /** Resource for '/response/delete-with-headers' has methods for the following verbs: delete */
-  (path: "/response/delete-with-headers"): DeleteWithHeaders;
+  /** Resource for '/cadl-bar/get-binary' has methods for the following verbs: get */
+  (path: "/cadl-bar/get-binary"): GetBinary;
+  /** Resource for '/cadl-bar' has methods for the following verbs: get */
+  (path: "/cadl-bar"): GetArray;
+  /** Resource for '/cadl-bar/create-with-headers' has methods for the following verbs: put */
+  (path: "/cadl-bar/create-with-headers"): CreateWithHeaders;
+  /** Resource for '/cadl-bar/delete-with-headers' has methods for the following verbs: delete */
+  (path: "/cadl-bar/delete-with-headers"): DeleteWithHeaders;
 }
 
-export type ResponseContext = Client & {
+export type BarContext = Client & {
   path: Routes;
 };

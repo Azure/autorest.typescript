@@ -14,10 +14,10 @@ import {
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "PUT /cadl-core/resources/{name}": ["200", "201"],
-  "GET /cadl-core/resources/{name}": ["200"],
-  "DELETE /cadl-core/resources/{name}": ["204"],
-  "GET /cadl-core/resources": ["200"],
+  "PUT /cadl-foo/resources/{name}": ["200", "201"],
+  "GET /cadl-foo/resources/{name}": ["200"],
+  "DELETE /cadl-foo/resources/{name}": ["204"],
+  "GET /cadl-foo/resources": ["200"],
 };
 
 export function isUnexpected(

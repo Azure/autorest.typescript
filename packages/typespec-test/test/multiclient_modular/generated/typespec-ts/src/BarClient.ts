@@ -7,18 +7,22 @@ import {
     createWithHeaders,
     CreateWithHeadersOptions,
     ResponseResource,
-} from './api/response/index.js';
-import { Client } from './rest/response/index.js';
+} from './api/bar/index.js';
+import { Client } from './rest/bar/index.js';
 
-export class ResponseClient {
-    private _client: Client.ResponseContext;
+export class BarClient {
+    private _client: Client.BarContext;
 
     /** Azure Messaging EventGrid Client */
     constructor(endpoint: string, options: ClientOptions = {}) {
         this._client = createResponse(endpoint, options);
     }
 
-    createWithHeaders(options: CreateWithHeadersOptions = {}): Promise<ResponseResource> {
-        return createWithHeaders(this._client, options);
+    createWithHeaders(
+        name: string,
+        type: string,
+        options: CreateWithHeadersOptions = {}
+    ): Promise<ResponseResource> {
+        return createWithHeaders(this._client, name, type, options);
     }
 }

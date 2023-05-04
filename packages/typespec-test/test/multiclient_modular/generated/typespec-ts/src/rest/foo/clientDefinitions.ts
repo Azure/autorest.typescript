@@ -47,12 +47,12 @@ export interface List {
 }
 
 export interface Routes {
-  /** Resource for '/cadl-core/resources/\{name\}' has methods for the following verbs: put, get, delete */
-  (path: "/cadl-core/resources/{name}", name: string): CreateOrUpdate;
-  /** Resource for '/cadl-core/resources' has methods for the following verbs: get */
-  (path: "/cadl-core/resources"): List;
+  /** Resource for '/cadl-foo/resources/\{name\}' has methods for the following verbs: put, get, delete */
+  (path: "/cadl-foo/resources/{name}", name: string): CreateOrUpdate;
+  /** Resource for '/cadl-foo/resources' has methods for the following verbs: get */
+  (path: "/cadl-foo/resources"): List;
 }
 
-export type CoreContext = Client & {
+export type FooContext = Client & {
   path: Routes;
 };
