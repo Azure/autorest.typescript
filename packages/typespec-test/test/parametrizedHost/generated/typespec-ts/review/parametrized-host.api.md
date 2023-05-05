@@ -8,7 +8,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
@@ -75,7 +74,7 @@ export type ParametrizedHostClient = Client & {
 };
 
 // @public (undocumented)
-export interface ParametrizedHostClientOptions extends ClientOptions, InternalPipelineOptions {
+export interface ParametrizedHostClientOptions extends ClientOptions {
     // (undocumented)
     apiVersion?: string;
     // (undocumented)

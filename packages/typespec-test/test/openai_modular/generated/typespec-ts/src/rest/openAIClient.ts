@@ -2,8 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
-import { logger } from "./../logger";
+import { logger } from "../logger";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 
@@ -12,12 +11,12 @@ import { OpenAIContext } from "./clientDefinitions.js";
  * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
  * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): OpenAIContext {
   const baseUrl = options.baseUrl ?? `${endpoint}/openai`;
   options.apiVersion = options.apiVersion ?? "2023-03-15-preview";

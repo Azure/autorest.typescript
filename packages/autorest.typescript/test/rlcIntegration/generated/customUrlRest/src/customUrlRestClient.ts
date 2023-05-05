@@ -2,18 +2,17 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { CustomUrlRestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `CustomUrlRestClient`
  * @param host type: string, A string value that is used as a global part of the parameterized host
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   host: string,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): CustomUrlRestClient {
   const baseUrl = options.baseUrl ?? `http://{accountName}${host}`;
   const userAgentInfo = `azsdk-js-custom-url-rest/1.0.0-preview1`;

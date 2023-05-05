@@ -2,16 +2,15 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { LRORestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `LRORestClient`
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): LRORestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-lro-rest/1.0.0-preview1`;

@@ -10,7 +10,6 @@ import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { OperationState } from '@azure/core-lro';
 import { Paged } from '@azure/core-paging';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
@@ -26,7 +25,7 @@ export type ContosoWidgetManagerClient = Client & {
 };
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions & InternalPipelineOptions): ContosoWidgetManagerClient;
+function createClient(endpoint: string, options?: ClientOptions): ContosoWidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)

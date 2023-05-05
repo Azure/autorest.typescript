@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "logger";
+import { logger } from "./logger";
 import { CollectionFormatClient } from "./clientDefinitions";
 
 /**

@@ -7,7 +7,6 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
@@ -20,7 +19,7 @@ export type CollectionFormatTestServiceClient = Client & {
 };
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions & InternalPipelineOptions): CollectionFormatTestServiceClient;
+function createClient(endpoint: string, options?: ClientOptions): CollectionFormatTestServiceClient;
 export default createClient;
 
 // @public (undocumented)

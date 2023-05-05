@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./clientDefinitions";
@@ -11,12 +10,12 @@ import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./c
  * Initialize a new instance of `MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient`
  * @param endpoint type: string, The endpoint to use.
  * @param credentials type: KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/language`;
   options.apiVersion = options.apiVersion ?? "202ß2-05-15-preview";

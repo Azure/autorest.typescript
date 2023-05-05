@@ -13,10 +13,10 @@ export function buildLogger(model: RLCModel) {
   const { srcPath } = model;
   const { packageDetails } = model.options;
   const filePath = path.join(
-    srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4),
+    srcPath.substring(0, srcPath.lastIndexOf("src") + 4),
     `logger.ts`
   );
-  const loggerFile = project.createSourceFile(filePath, undefined, {
+  const loggerFile = project.createSourceFile("logger.ts", undefined, {
     overwrite: true
   });
   loggerFile.addImportDeclaration({

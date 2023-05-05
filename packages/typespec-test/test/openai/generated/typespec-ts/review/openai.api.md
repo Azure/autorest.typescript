@@ -8,7 +8,6 @@ import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
@@ -74,7 +73,7 @@ export interface CompletionsUsageOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions & InternalPipelineOptions): AzureOpenAIApiClient;
+function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): AzureOpenAIApiClient;
 export default createClient;
 
 // @public

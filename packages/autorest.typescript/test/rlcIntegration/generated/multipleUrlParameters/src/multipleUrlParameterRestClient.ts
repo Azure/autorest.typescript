@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { TokenCredential } from "@azure/core-auth";
 import { MultipleUrlParameterRestClient } from "./clientDefinitions";
@@ -12,13 +11,13 @@ import { MultipleUrlParameterRestClient } from "./clientDefinitions";
  * @param endpoint type: string, The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com
  * @param serviceVersion type: "v2"|"v1", the version of api
  * @param credentials type: TokenCredential, uniquely identify client credential
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   serviceVersion: "v2" | "v1",
   credentials: TokenCredential,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): MultipleUrlParameterRestClient {
   const baseUrl =
     options.baseUrl ??

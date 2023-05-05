@@ -2,8 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
-import { logger } from "./../logger";
+import { logger } from "../logger";
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { AzureMessagingEventGridContext } from "./clientDefinitions.js";
 
@@ -11,12 +10,12 @@ import { AzureMessagingEventGridContext } from "./clientDefinitions.js";
  * Initialize a new instance of `AzureMessagingEventGridContext`
  * @param endpoint type: string, The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
  * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): AzureMessagingEventGridContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2023-06-01-preview";

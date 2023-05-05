@@ -10,7 +10,6 @@ import { CreateHttpPollerOptions } from '@azure/core-lro';
 import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
 import { Paged } from '@azure/core-paging';
@@ -22,7 +21,7 @@ import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions & InternalPipelineOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
 export default createClient;
 
 // @public (undocumented)

@@ -7,7 +7,6 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
-import { InternalPipelineOptions } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
@@ -305,7 +304,7 @@ export interface AuthenticateWithNintendoSwitchDeviceIDHeaders {
 export type AuthenticateWithNintendoSwitchDeviceIDParameters = AuthenticateWithNintendoSwitchDeviceIDHeaderParam & AuthenticateWithNintendoSwitchDeviceIDBodyParam & RequestParameters;
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions & InternalPipelineOptions): PlayFabClient;
+function createClient(endpoint: string, options?: ClientOptions): PlayFabClient;
 export default createClient;
 
 // @public (undocumented)

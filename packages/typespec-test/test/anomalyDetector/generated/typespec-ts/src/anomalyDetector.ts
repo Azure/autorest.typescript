@@ -2,14 +2,11 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorClient } from "./clientDefinitions";
 
-export interface AnomalyDetectorClientOptions
-  extends ClientOptions,
-    InternalPipelineOptions {
+export interface AnomalyDetectorClientOptions extends ClientOptions {
   apiVersion?: string;
 }
 

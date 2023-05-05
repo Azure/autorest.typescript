@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AnomalyDetectorRestClient } from "./clientDefinitions";
@@ -12,13 +11,13 @@ import { AnomalyDetectorRestClient } from "./clientDefinitions";
  * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
  * @param apiVersion type: string, Anomaly Detector API version (for example, v1.1).
  * @param credentials type: KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   apiVersion: string,
   credentials: KeyCredential,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): AnomalyDetectorRestClient {
   const baseUrl =
     options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;

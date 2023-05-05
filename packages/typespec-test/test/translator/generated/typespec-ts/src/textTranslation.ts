@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
 import { logger } from "./logger";
 import { TextTranslationClient } from "./clientDefinitions";
 
@@ -10,11 +9,11 @@ import { TextTranslationClient } from "./clientDefinitions";
  * Initialize a new instance of `TextTranslationClient`
  * @param endpoint type: string, Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
- * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+ * @param options type: ClientOptions, the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions & InternalPipelineOptions = {}
+  options: ClientOptions = {}
 ): TextTranslationClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "3.0";
