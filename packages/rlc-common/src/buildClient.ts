@@ -143,6 +143,9 @@ export function buildClient(model: RLCModel): File | undefined {
   clientFile.addFunction(functionStatement);
 
   const paths = srcPath.replace(/\//g, path.sep).split(path.sep);
+  while(paths.length > 0 && paths[paths.length - 1] === "") {
+    paths.pop();
+  }
   const parentPath =
     paths.lastIndexOf("src") > -1
       ? paths.length - 1 - paths.lastIndexOf("src")
