@@ -130,18 +130,17 @@ const buildDefaultReturn = (hasDefault: boolean) => {
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
   import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
    * Initialize a new instance of \`testClient\`
    * @param endpoint type: string, The endpoint to use.
-   * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+   * @param options type: ClientOptions, the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
-    options: ClientOptions & InternalPipelineOptions = {}
+    options: ClientOptions = {}
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
     ${defaultDef}
@@ -170,11 +169,10 @@ const buildDefaultReturn = (hasDefault: boolean) => {
 const buildPathReturn_WithDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
   import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
 
-  export interface testClientOptions extends ClientOptions, InternalPipelineOptions {
+  export interface testClientOptions extends ClientOptions {
     apiVersion?: string;
   }
   
@@ -214,7 +212,6 @@ const buildPathReturn_WithDefault = () => {
 const buildPathReturn_WithoutDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
-  import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
   import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
@@ -222,12 +219,12 @@ const buildPathReturn_WithoutDefault = () => {
    * Initialize a new instance of \`testClient\`
    * @param endpoint type: string, The endpoint to use.
    * @param apiVersion type: string, Api Version Possible values: 2022-05-15-preview
-   * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+   * @param options type: ClientOptions, the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
     apiVersion: string,
-    options: ClientOptions & InternalPipelineOptions = {}
+    options: ClientOptions = {}
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
 

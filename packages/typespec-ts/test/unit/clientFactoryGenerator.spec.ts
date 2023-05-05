@@ -18,15 +18,14 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
         import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
-        export default function createClient(options: ClientOptions & InternalPipelineOptions = {}): testClient {
+        export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
         
         const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
@@ -70,18 +69,17 @@ describe("Client Factory generation", () => {
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
-          import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
           import { logger } from "./logger";
           import { testClient } from "./clientDefinitions";
 
           /**
            * Initialize a new instance of \`testClient\`
            * @param endpoint type: string, The endpoint to use.
-           * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+           * @param options type: ClientOptions, the parameter for all optional parameters
            */
           export default function createClient(
             endpoint: string,
-            options: ClientOptions & InternalPipelineOptions = {}
+            options: ClientOptions = {}
           ): testClient {
             const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
           
@@ -139,7 +137,6 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
             import { logger } from "./logger";
             import { testClient } from "./clientDefinitions";
             
@@ -147,12 +144,12 @@ describe("Client Factory generation", () => {
              * Initialize a new instance of \`testClient\`
              * @param endpoint type: string, The endpoint to use.
              * @param version type: "V1"|"V2", The version to use
-             * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+             * @param options type: ClientOptions, the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
               version: "V1" | "V2",
-              options: ClientOptions & InternalPipelineOptions = {}
+              options: ClientOptions = {}
             ): testClient {
               const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
@@ -206,7 +203,6 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
-            import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
             import { logger } from "./logger";
             import { testClient } from "./clientDefinitions";
             
@@ -214,12 +210,12 @@ describe("Client Factory generation", () => {
              * Initialize a new instance of \`testClient\`
              * @param endpoint type: string, The endpoint to use.
              * @param version type: string, The version to use. Possible values: v1.1
-             * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+             * @param options type: ClientOptions, the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
               version: string,
-              options: ClientOptions & InternalPipelineOptions = {}
+              options: ClientOptions = {}
             ): testClient {
               const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
@@ -258,16 +254,15 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
         import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
          * Initialize a new instance of \`testClient\`
          * @param endpoint type: string, The parameter endpoint
-         * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, options: ClientOptions & InternalPipelineOptions = {}): testClient {
+        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
         
         const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
@@ -311,16 +306,15 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
         import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
          * Initialize a new instance of \`testClient\`
          * @param endpoint type: string, The parameter endpoint
-         * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, options: ClientOptions & InternalPipelineOptions = {}): testClient {
+        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
         
         const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
@@ -363,7 +357,6 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { InternalPipelineOptions } from "@azure/core-rest-pipeline";
         import { logger } from "./logger";
         import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { testClient } from "./clientDefinitions";
@@ -372,9 +365,9 @@ describe("Client Factory generation", () => {
          * Initialize a new instance of \`testClient\`
          * @param endpoint type: string, The parameter endpoint
          * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
-         * @param options type: ClientOptions&InternalPipelineOptions, the parameter for all optional parameters
+         * @param options type: ClientOptions, the parameter for all optional parameters
          */
-        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions & InternalPipelineOptions = {}): testClient {
+        export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
 
         options = {
