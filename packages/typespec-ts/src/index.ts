@@ -109,9 +109,8 @@ export async function $onEmit(context: EmitContext) {
     // TODO: Emit modular parts of the library
     const project = new Project();
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
-
+    buildSharedTypes(project, srcPath);
     for (const client of modularCodeModel.clients) {
-      buildSharedTypes(project, srcPath);
       buildClientContext(client, project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
       buildOperationFiles(client, project, srcPath);

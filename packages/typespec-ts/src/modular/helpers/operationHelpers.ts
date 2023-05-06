@@ -134,27 +134,27 @@ function getRequestParameters(operation: Operation): string {
     }
   }
 
-  let paramStr = "";
+  let paramStrArray: string[] = [];
 
   if (contentTypeParameter) {
-    paramStr = `${getContentTypeValue(contentTypeParameter)},`;
+    paramStrArray = [`${getContentTypeValue(contentTypeParameter)}`];
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
+    paramStrArray.push(`headers: {${parametersImplementation.header.join(
       ",\n"
-    )}, ...options.requestOptions?.headers},`;
+    )}, ...options.requestOptions?.headers}`);
   }
 
   if (parametersImplementation.query.length) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
+    paramStrArray.push(`queryParameters: {${parametersImplementation.query.join(
       ",\n"
-    )}},`;
+    )}}`);
   }
 
-  paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
+  paramStrArray.push(`${buildBodyParameter(operation.bodyParameter)}`);
 
-  return paramStr;
+  return paramStrArray.join(",\n");
 }
 
 function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
@@ -223,7 +223,7 @@ function getContentTypeValue(param: Parameter | Property) {
   }
 
   if (defaultValue) {
-    return `contentType: (options.${param.clientName} as any) ?? "${defaultValue}"`;
+    return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
   } else {
     return `contentType: options.${param.clientName}`;
   }
@@ -323,18 +323,17 @@ function getPathParameters(operation: Operation) {
   for (const param of operation.parameters) {
     if (param.location === "path") {
       if (!param.optional) {
-        pathParams = `${pathParams} ${param.clientName},`;
+        pathParams += `${pathParams !== ""? ",": ""} ${param.clientName}`;
         continue;
       }
 
       const defaultValue = getDefaultValue(param);
 
-      pathParams = `${pathParams}, options.${param.clientName}`;
+      pathParams += `${pathParams !== ""? ",": ""} options.${param.clientName}`;
 
       if (defaultValue) {
-        pathParams = ` ?? "${defaultValue}"`;
+        pathParams += ` ?? "${defaultValue}"`;
       }
-      pathParams = `${pathParams},`;
     }
   }
 

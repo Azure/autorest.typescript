@@ -32,7 +32,9 @@ export function buildSharedTypes(
   srcPath: string
 ): SourceFile {
   const path = `${srcPath}/src/common/interfaces.ts`;
-  const commonTypes = project.createSourceFile(path, content);
+  const commonTypes = project.createSourceFile(path, content, {
+    overwrite: true
+  });
 
   commonTypes.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
 

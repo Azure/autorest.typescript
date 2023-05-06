@@ -89,47 +89,34 @@ function buildClientOperationGroups(
         getOperationFunction(operation)
       );
 
-    const tempfile = new Project().createSourceFile("temp.ts");
-
-    operationDeclarations[3];
-    const declarations = tempfile.addFunctions(operationDeclarations);
-
-    if (operationGroupName) {
+    if (operationGroupName && operationGroupName !== "") {
       clientClass.addProperty({
         name: operationGroupName,
         initializer: `
       {
-        ${declarations.map((d) => {
-          return `${d.getName()}: (${d
-            .getParameters()
-            .filter((p) => p.getName() !== "context")
-            .map((p) => p.getText())
-            .join(",")}): ${d
-            .getReturnType()
-            .getText()} => {return ${d.getName()}(${[
+        ${operationDeclarations.map((d) => {
+          return `${d.name}: (${d.parameters
+            ?.filter((p) => p.name !== "context")
+            .map((p) => p.name + ": " + p.type)
+            .join(",")}): ${d.returnType} => {return ${d.name}(${[
             "this._client",
-            ...d.getParameters().map((p) => p.getName())
-          ]
-            .filter((p) => p !== "context")
-            .join(",")})}`;
+            ...[d.parameters?.map((p) => p.name).filter((p) => p !== "context")]
+          ].join(",")})}`;
         })}
       }
       `
       });
     } else {
       clientClass.addMethods(
-        declarations.map((d) => {
+        operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
-            name: d.getName() ?? "FIXME",
+            name: d.name ?? "FIXME",
             kind: StructureKind.Method,
-            returnType: d.getReturnType().getText(),
-            parameters: d
-              .getParameters()
-              .filter((p) => p.getName() !== "context")
-              .map((d) => d.getStructure()),
-            statements: `return ${d.getName()}(${[
+            returnType: d.returnType,
+            parameters: d.parameters?.filter((p) => p.name !== "context"),
+            statements: `return ${d.name}(${[
               "this._client",
-              ...d.getParameters().map((p) => p.getName())
+              ...[d.parameters?.map((p) => p.name)]
             ]
               .filter((p) => p !== "context")
               .join(",")})`
