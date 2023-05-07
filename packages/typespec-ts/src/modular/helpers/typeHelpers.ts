@@ -92,7 +92,10 @@ export function getType(type: Type): TypeMetadata {
         name: `Record<string, any>`
       };
     default:
-      throw new Error(`Unsupported type ${type.type}`);
+      // throw new Error(`Unsupported type ${type.type}`);
+      return {
+        name: `any`
+      };
   }
 }
 
