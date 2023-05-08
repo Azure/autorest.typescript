@@ -130,6 +130,7 @@ const buildDefaultReturn = (hasDefault: boolean) => {
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
@@ -154,6 +155,9 @@ const buildDefaultReturn = (hasDefault: boolean) => {
       userAgentOptions: {
         userAgentPrefix,
       },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
+      },
     };
   
     const client = getClient(baseUrl, options) as testClient;
@@ -165,6 +169,7 @@ const buildDefaultReturn = (hasDefault: boolean) => {
 const buildPathReturn_WithDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
 
   export interface testClientOptions extends ClientOptions {
@@ -193,6 +198,9 @@ const buildPathReturn_WithDefault = () => {
       userAgentOptions: {
         userAgentPrefix,
       },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
+      },
     };
   
     const client = getClient(baseUrl, options) as testClient;
@@ -204,6 +212,7 @@ const buildPathReturn_WithDefault = () => {
 const buildPathReturn_WithoutDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
@@ -228,6 +237,9 @@ const buildPathReturn_WithoutDefault = () => {
       ...options,
       userAgentOptions: {
         userAgentPrefix,
+      },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
       },
     };
   
