@@ -271,7 +271,7 @@ function getClientFactoryBody(
         userAgentPrefix
       },
       loggingOptions: {
-        logger: logger.info
+        logger: options.loggingOptions?.logger ?? logger.info
       }
     }`;
 

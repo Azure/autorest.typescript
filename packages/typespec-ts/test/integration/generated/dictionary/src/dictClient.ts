@@ -23,7 +23,7 @@ export default function createClient(options: ClientOptions = {}): DictClient {
       userAgentPrefix,
     },
     loggingOptions: {
-      logger: logger.info,
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

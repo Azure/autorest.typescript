@@ -40,7 +40,7 @@ export default function createClient(
       userAgentPrefix
     },
     loggingOptions: {
-      logger: logger.info
+      logger: options.loggingOptions?.logger ?? logger.info
     }
   };
 
