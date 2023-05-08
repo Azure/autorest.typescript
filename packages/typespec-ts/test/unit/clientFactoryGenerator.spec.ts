@@ -18,6 +18,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
@@ -36,6 +37,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -65,6 +69,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import { logger } from "./logger";
           import { testClient } from "./clientDefinitions";
 
           /**
@@ -87,6 +92,9 @@ describe("Client Factory generation", () => {
               ...options,
               userAgentOptions: {
                 userAgentPrefix,
+              },
+              loggingOptions: {
+                logger: options.loggingOptions?.logger ?? logger.info
               },
             };
           
@@ -129,6 +137,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { logger } from "./logger";
             import { testClient } from "./clientDefinitions";
             
             /**
@@ -153,6 +162,9 @@ describe("Client Factory generation", () => {
                 ...options,
                 userAgentOptions: {
                   userAgentPrefix,
+                },
+                loggingOptions: {
+                  logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
             
@@ -191,6 +203,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { logger } from "./logger";
             import { testClient } from "./clientDefinitions";
             
             /**
@@ -216,6 +229,9 @@ describe("Client Factory generation", () => {
                 userAgentOptions: {
                   userAgentPrefix,
                 },
+                loggingOptions: {
+                  logger: options.loggingOptions?.logger ?? logger.info
+                },
               };
             
               const client = getClient(baseUrl, options) as testClient;
@@ -238,6 +254,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
@@ -257,6 +274,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -286,6 +306,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
@@ -305,6 +326,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -333,6 +357,7 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { testClient } from "./clientDefinitions";
         
@@ -362,6 +387,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         

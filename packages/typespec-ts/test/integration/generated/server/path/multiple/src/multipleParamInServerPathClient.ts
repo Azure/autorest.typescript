@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { MultipleParamInServerPathClient } from "./clientDefinitions";
 
 export interface MultipleParamInServerPathClientOptions extends ClientOptions {
@@ -30,6 +31,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 
