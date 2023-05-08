@@ -10,34 +10,58 @@ import { Client, Parameter } from "./modularCodeModel.js";
 export function buildClientContext(
   client: Client,
   project: Project,
-  srcPath: string = "src"
+  srcPath: string = "src",
+  subfolder: string = ""
 ): SourceFile {
   const { description, parameters } = client;
   const name = getClientName(client);
   const clientContextFile = project.createSourceFile(
-    `${srcPath}/src/api/${name}Context.ts`
+    `${srcPath}/src/api/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }${name}Context.ts`
   );
 
-  clientContextFile.addImportDeclaration({
-    moduleSpecifier: "../rest/index.js",
-    namedImports: [`${client.name}Context`]
-  });
+  let factoryFunction;
+  if (subfolder && subfolder !== "") {
+    clientContextFile.addImportDeclaration({
+      moduleSpecifier: `../../rest/${subfolder}/index.js`,
+      namedImports: [`Client`]
+    });
+  
+    clientContextFile.addExportDeclaration({
+      moduleSpecifier: `../../rest/${subfolder}/index.js`,
+      namedExports: [`Client`]
+    });
+    factoryFunction = clientContextFile.addFunction({
+      docs: [description],
+      name: `create${name}`,
+      returnType: `Client.${client.name}Context`,
+      parameters: getClientParameters(client),
+      isExported: true
+    });
+  } else {
+    clientContextFile.addImportDeclaration({
+      moduleSpecifier: `../rest/index.js`,
+      namedImports: [`${client.name}Context`]
+    });
+  
+    clientContextFile.addExportDeclaration({
+      moduleSpecifier: `../rest/index.js`,
+      namedExports: [`${client.name}Context`]
+    });
+    factoryFunction = clientContextFile.addFunction({
+      docs: [description],
+      name: `create${name}`,
+      returnType: `${client.name}Context`,
+      parameters: getClientParameters(client),
+      isExported: true
+    });
+  }
 
-  clientContextFile.addExportDeclaration({
-    moduleSpecifier: "../rest/index.js",
-    namedExports: [`${client.name}Context`]
-  });
   // clientContextFile.addExportAssignment({
   //   expression: `${client.name}Context`
   // });
 
-  const factoryFunction = clientContextFile.addFunction({
-    docs: [description],
-    name: `create${name}`,
-    returnType: `${client.name}Context`,
-    parameters: getClientParameters(client),
-    isExported: true
-  });
 
   const credentialsParam = parameters.find(
     (p) => p.clientName === "credential"
@@ -67,12 +91,22 @@ export function buildClientContext(
 
   factoryFunction.addStatements([getClientStatement, "return clientContext;"]);
 
-  clientContextFile.addImportDeclarations([
-    {
-      moduleSpecifier: "../rest/index.js",
-      defaultImport: "getClient"
-    }
-  ]);
+  if (subfolder && subfolder !== "") {
+    clientContextFile.addImportDeclarations([
+      {
+        moduleSpecifier: `../../rest/${subfolder}/index.js`,
+        namedImports: ["createClient as getClient"]
+      }
+    ]);
+  } else {
+    clientContextFile.addImportDeclarations([
+      {
+        moduleSpecifier: `../rest/index.js`,
+        defaultImport: "getClient"
+      }
+    ]);
+  }
+
 
   clientContextFile.fixMissingImports(
     {},

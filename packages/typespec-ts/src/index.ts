@@ -26,7 +26,9 @@ import {
   buildReadmeFile,
   buildSerializeHelper,
   buildLogger,
-  RLCOptions
+  RLCOptions,
+  normalizeName,
+  NameType
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -113,10 +115,15 @@ export async function $onEmit(context: EmitContext) {
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
     buildSharedTypes(project, srcPath);
     for (const client of modularCodeModel.clients) {
-      buildClientContext(client, project, srcPath);
-      buildModels(modularCodeModel, project, srcPath);
-      buildOperationFiles(client, project, srcPath);
-      buildApiIndexFile(project, srcPath);
+      let subfolder = "";
+      if(modularCodeModel.clients.length > 1) {
+        subfolder = normalizeName(client.name.replace("Client", ""), NameType.File);
+      }
+
+      buildClientContext(client, project, srcPath, subfolder);
+      buildModels(modularCodeModel, project, srcPath, subfolder);
+      buildOperationFiles(client, project, srcPath, subfolder);
+      buildApiIndexFile(project, srcPath, subfolder);
       buildClassicalClient(client, project, srcPath);
       buildRootIndex(client, project, srcPath);
 

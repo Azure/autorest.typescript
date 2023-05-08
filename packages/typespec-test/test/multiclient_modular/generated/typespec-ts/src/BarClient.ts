@@ -1,28 +1,37 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ClientOptions } from './common/interfaces.js';
-import {
-    createResponse,
-    createWithHeaders,
-    CreateWithHeadersOptions,
-    ResponseResource,
-} from './api/bar/index.js';
-import { Client } from './rest/bar/index.js';
+import { ClientOptions } from "./common/interfaces.js";
 
 export class BarClient {
-    private _client: Client.BarContext;
+  private _client: BarContext;
 
-    /** Azure Messaging EventGrid Client */
-    constructor(endpoint: string, options: ClientOptions = {}) {
-        this._client = createResponse(endpoint, options);
-    }
+  /** Bar */
+  constructor(
+    endpoint: string,
+    apiVersion: string,
+    options: ClientOptions = {}
+  ) {
+    this._client = createBar(endpoint, apiVersion, options);
+  }
 
-    createWithHeaders(
-        name: string,
-        type: string,
-        options: CreateWithHeadersOptions = {}
-    ): Promise<ResponseResource> {
-        return createWithHeaders(this._client, name, type, options);
-    }
+  getBinary(options: GetBinaryOptions = { requestOptions: {} }): Promise<void> {
+    return getBinary(this._client, context, options);
+  }
+
+  getArray(options: GetArrayOptions = { requestOptions: {} }): Promise<void> {
+    return getArray(this._client, context, options);
+  }
+
+  createWithHeaders(
+    options: CreateWithHeadersOptions = { requestOptions: {} }
+  ): Promise<Resource> {
+    return createWithHeaders(this._client, context, options);
+  }
+
+  deleteWithHeaders(
+    options: DeleteWithHeadersOptions = { requestOptions: {} }
+  ): Promise<void> {
+    return deleteWithHeaders(this._client, context, options);
+  }
 }

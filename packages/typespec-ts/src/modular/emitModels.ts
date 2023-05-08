@@ -1,6 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
 import { ModularCodeModel } from "./modularCodeModel.js";
+import * as path from "path";
 
 /**
  * This function creates the file containing all the models defined in TypeSpec
@@ -8,9 +9,12 @@ import { ModularCodeModel } from "./modularCodeModel.js";
 export function buildModels(
   codeModel: ModularCodeModel,
   project: Project,
-  srcPath: string = "src"
+  srcPath: string = "src",
+  subfolder: string = ""
 ): SourceFile {
-  const modelsFile = project.createSourceFile(`${srcPath}/src/api/models.ts`);
+  const modelsFile = project.createSourceFile(
+    path.join(`${srcPath}/src/api`, subfolder, `models.ts`)
+  );
 
   // We are generating both models and enums here
   const models = codeModel.types.filter(

@@ -12,6 +12,7 @@ import {
   Type
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 /**
  * This operation builds and returns the function declaration for an operation.
@@ -65,7 +66,7 @@ export function getOperationFunction(
     docs: [operation.description],
     isAsync: true,
     isExported: true,
-    name: operation.name,
+    name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
     returnType: `Promise<${returnType.type}>`
   };

@@ -14,7 +14,8 @@ import { Client, Operation } from "./modularCodeModel.js";
 export function buildOperationFiles(
   client: Client,
   project: Project,
-  srcPath: string = "src"
+  srcPath: string = "src",
+  subfolder: string = ""
 ) {
   for (const operationGroup of client.operationGroups) {
     const fileName = operationGroup.className
@@ -24,7 +25,9 @@ export function buildOperationFiles(
         "operations";
 
     const operationGroupFile = project.createSourceFile(
-      `${srcPath}/src/api/${fileName}.ts`
+      `${srcPath}/src/api/${
+        subfolder && subfolder !== "" ? subfolder + "/" : ""
+      }${fileName}.ts`
     );
 
     operationGroup.operations.forEach((o) => {
@@ -35,7 +38,11 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "../rest/index.js",
+        moduleSpecifier: `../${
+          subfolder && subfolder !== "" ? "../" : ""
+        }rest/${
+          subfolder && subfolder !== "" ? subfolder + "/" : ""
+        }index.js`,
         namedImports: [`${client.name}Context as Client`, "isUnexpected"]
       }
     ]);
