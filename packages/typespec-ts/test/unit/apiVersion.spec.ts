@@ -156,7 +156,7 @@ const buildDefaultReturn = (hasDefault: boolean) => {
         userAgentPrefix,
       },
       loggingOptions: {
-        logger: logger.info,
+        logger: options.loggingOptions?.logger ?? logger.info
       },
     };
   
@@ -199,7 +199,7 @@ const buildPathReturn_WithDefault = () => {
         userAgentPrefix,
       },
       loggingOptions: {
-        logger: logger.info,
+        logger: options.loggingOptions?.logger ?? logger.info
       },
     };
   
@@ -239,7 +239,7 @@ const buildPathReturn_WithoutDefault = () => {
         userAgentPrefix,
       },
       loggingOptions: {
-        logger: logger.info,
+        logger: options.loggingOptions?.logger ?? logger.info
       },
     };
   

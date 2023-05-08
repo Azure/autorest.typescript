@@ -39,7 +39,7 @@ describe("Client Factory generation", () => {
             userAgentPrefix,
             },
             loggingOptions: {
-              logger: logger.info,
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -94,7 +94,7 @@ describe("Client Factory generation", () => {
                 userAgentPrefix,
               },
               loggingOptions: {
-                logger: logger.info,
+                logger: options.loggingOptions?.logger ?? logger.info
               },
             };
           
@@ -164,7 +164,7 @@ describe("Client Factory generation", () => {
                   userAgentPrefix,
                 },
                 loggingOptions: {
-                  logger: logger.info,
+                  logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
             
@@ -230,7 +230,7 @@ describe("Client Factory generation", () => {
                   userAgentPrefix,
                 },
                 loggingOptions: {
-                  logger: logger.info,
+                  logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
             
@@ -276,7 +276,7 @@ describe("Client Factory generation", () => {
             userAgentPrefix,
             },
             loggingOptions: {
-              logger: logger.info,
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -328,7 +328,7 @@ describe("Client Factory generation", () => {
             userAgentPrefix,
             },
             loggingOptions: {
-              logger: logger.info,
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -389,7 +389,7 @@ describe("Client Factory generation", () => {
             userAgentPrefix,
             },
             loggingOptions: {
-              logger: logger.info,
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
