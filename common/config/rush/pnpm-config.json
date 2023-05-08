@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/pnpm-config.schema.json",
+  "strictPeerDependencies": false,
+  "pnpmStore": "local",
+  "preventManualShrinkwrapChanges": true,
+  "globalOverrides": {
+    "@typespec/compiler": "0.44.0-dev.21",
+    "@typespec/rest": "0.44.0-dev.6",
+    "@typespec/http": "0.44.0-dev.6",
+    "@typespec/versioning": "0.44.0-dev.7",
+    "@azure-tools/typespec-azure-core": "0.30.0-dev.27"
+  }
+}
