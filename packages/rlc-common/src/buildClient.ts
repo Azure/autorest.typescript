@@ -142,10 +142,25 @@ export function buildClient(model: RLCModel): File | undefined {
   }
   clientFile.addFunction(functionStatement);
 
+  const paths = srcPath.replace(/\//g, path.sep).split(path.sep);
+  while(paths.length > 0 && paths[paths.length - 1] === "") {
+    paths.pop();
+  }
+  const parentPath =
+    paths.lastIndexOf("src") > -1
+      ? paths.length - 1 - paths.lastIndexOf("src")
+      : 0;
+
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
       moduleSpecifier: "@azure-rest/core-client"
+    },
+    {
+      namedImports: ["logger"],
+      moduleSpecifier: `${
+        parentPath > 0 ? "../".repeat(parentPath): "./" 
+      }logger`
     }
   ]);
 
@@ -254,6 +269,9 @@ function getClientFactoryBody(
       ...options,
       userAgentOptions: {
         userAgentPrefix
+      },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
       }
     }`;
 

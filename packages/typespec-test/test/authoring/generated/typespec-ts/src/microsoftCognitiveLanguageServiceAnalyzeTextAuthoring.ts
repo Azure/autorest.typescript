@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./clientDefinitions";
 
@@ -34,6 +35,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 
