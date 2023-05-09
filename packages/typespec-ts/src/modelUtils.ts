@@ -39,7 +39,8 @@ import {
   NumericLiteral,
   Service,
   listServices,
-  Program
+  Program,
+  getEncode
 } from "@typespec/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -82,6 +83,7 @@ export function getSchemaForType(
   reletiveProperty?: ModelProperty
 ) {
   const type = getEffectiveModelFromType(program, typeInput);
+
   const builtinType = mapCadlTypeToTypeScript(program, dpgContext, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
@@ -833,6 +835,12 @@ function getSchemaForStdScalar(
     return undefined;
   }
   const name = cadlType.name;
+  let encodeData;
+  if (reletiveProperty) {
+    encodeData = getEncode(program, reletiveProperty);
+  }
+  encodeData = encodeData;
+
   const description = getSummary(program, cadlType);
   switch (name) {
     case "bytes":

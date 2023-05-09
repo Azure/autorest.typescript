@@ -744,7 +744,7 @@ describe("Input/output model type", () => {
           `
         model SimpleModel {
           // @Azure.ClientGenerator.Core.clientFormat("seconds")
-          @encode("seconds")
+          @encode("seconds", float64)
           prop: duration;
         }
         @route("/duration/prop/seconds")
