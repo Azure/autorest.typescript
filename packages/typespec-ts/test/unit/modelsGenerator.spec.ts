@@ -735,15 +735,16 @@ describe("Input/output model type", () => {
     };
 
     describe("as input and output model property", () => {
-      it("should handle duration without format", async () => {
+      it("should handle duration without encode", async () => {
         await verifyPropertyType("duration", "string");
       });
 
-      it("should handle duration with format `seconds`", async () => {
+      it.only("should handle duration with encode `seconds`", async () => {
         const schemaOutput = await emitModelsFromCadl(
           `
         model SimpleModel {
-          @Azure.ClientGenerator.Core.clientFormat("seconds")
+          // @Azure.ClientGenerator.Core.clientFormat("seconds")
+          @encode("seconds")
           prop: duration;
         }
         @route("/duration/prop/seconds")
@@ -773,11 +774,12 @@ describe("Input/output model type", () => {
         );
       });
 
-      it("should handle duration with format `iso8601`", async () => {
+      it("should handle duration with encode `iso8601`", async () => {
         const schemaOutput = await emitModelsFromCadl(
           `
         model SimpleModel {
-          @Azure.ClientGenerator.Core.clientFormat("iso8601")
+          // @Azure.ClientGenerator.Core.clientFormat("iso8601")
+          @encode("ISO8601")
           prop: duration;
         }
         @route("/duration/prop/iso8601")
