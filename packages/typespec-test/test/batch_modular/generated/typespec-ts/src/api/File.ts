@@ -49,6 +49,8 @@ export async function deleteFromTask(
       filePath
     )
     .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -107,8 +109,6 @@ export interface FileGetFromTaskOptions extends RequestOptions {
    * format is bytes=startRange-endRange.
    */
   ocpRange?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Returns the content of the specified Task file. */
@@ -127,6 +127,8 @@ export async function getFromTask(
       filePath
     )
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -142,7 +144,6 @@ export async function getFromTask(
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
         ...(options.ocpRange && { "ocp-range": options.ocpRange }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -203,6 +204,8 @@ export async function getPropertiesFromTask(
       filePath
     )
     .head({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -272,6 +275,8 @@ export async function deleteFromComputeNode(
       filePath
     )
     .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -330,8 +335,6 @@ export interface FileGetFromComputeNodeOptions extends RequestOptions {
    * format is bytes=startRange-endRange.
    */
   ocpRange?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Returns the content of the specified Compute Node file. */
@@ -350,6 +353,8 @@ export async function getFromComputeNode(
       filePath
     )
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -365,7 +370,6 @@ export async function getFromComputeNode(
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
         ...(options.ocpRange && { "ocp-range": options.ocpRange }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -427,6 +431,8 @@ export async function getPropertiesFromComputeNode(
       filePath
     )
     .head({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -486,8 +492,6 @@ export interface FileListFromTaskOptions extends RequestOptions {
    * combination with the filter parameter to list specific type of files.
    */
   recursive?: boolean;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists the files in a Task's directory on its Compute Node. */
@@ -500,6 +504,8 @@ export async function listFromTask(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/files", jobId, taskId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         ...(options.clientRequestId && {
@@ -508,7 +514,6 @@ export async function listFromTask(
         ...(options.returnClientRequestId && {
           "return-client-request-id": options.returnClientRequestId,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -572,8 +577,6 @@ export interface FileListFromComputeNodeOptions extends RequestOptions {
   $filter?: string;
   /** Whether to list children of a directory. */
   recursive?: boolean;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists all of the files in Task directories on the specified Compute Node. */
@@ -586,6 +589,8 @@ export async function listFromComputeNode(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/files", poolId, nodeId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         ...(options.clientRequestId && {
@@ -594,7 +599,6 @@ export async function listFromComputeNode(
         ...(options.returnClientRequestId && {
           "return-client-request-id": options.returnClientRequestId,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {

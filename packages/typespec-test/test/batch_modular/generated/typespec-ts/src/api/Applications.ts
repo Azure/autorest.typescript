@@ -29,8 +29,6 @@ export interface ApplicationsListApplicationsOptions extends RequestOptions {
   clientRequestId?: string;
   /** Whether the server should return the client-request-id in the response. */
   returnClientRequestId?: boolean;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -44,23 +42,26 @@ export async function listApplications(
   context: Client,
   options: ApplicationsListApplicationsOptions = { requestOptions: {} }
 ): Promise<ApplicationListResult> {
-  const result = await context.path("/applications").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-    },
-  });
+  const result = await context
+    .path("/applications")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -75,10 +76,7 @@ export async function listApplications(
   };
 }
 
-export interface ApplicationsGetOptions extends RequestOptions {
-  /** Accept header. */
-  accept?: "application/json";
-}
+export interface ApplicationsGetOptions extends RequestOptions {}
 
 /**
  * This operation returns only Applications and versions that are available for
@@ -95,10 +93,9 @@ export async function get(
   const result = await context
     .path("/applications/{applicationId}", applicationId)
     .get({
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
   if (isUnexpected(result)) {
     throw result.body;

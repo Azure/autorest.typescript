@@ -84,7 +84,7 @@ export interface CompletionsLogProbabilityModelOutput {
   /** A collection of log probability values for the tokens in this completions data. */
   token_logprobs: (number | null)[];
   /** A mapping of tokens to maximum log probability values in this completions data. */
-  top_logprobs: Record<string, number[] | null>[];
+  top_logprobs: Record<string, number | null>[];
   /** The text offsets associated with tokens in this completions data. */
   text_offset: number[];
 }

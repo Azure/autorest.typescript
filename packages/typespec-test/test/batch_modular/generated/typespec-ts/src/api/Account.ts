@@ -37,8 +37,6 @@ export interface AccountListSupportedImagesOptions extends RequestOptions {
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
   $filter?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
@@ -46,24 +44,27 @@ export async function listSupportedImages(
   context: Client,
   options: AccountListSupportedImagesOptions = { requestOptions: {} }
 ): Promise<AccountListSupportedImagesResult> {
-  const result = await context.path("/supportedimages").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-    },
-  });
+  const result = await context
+    .path("/supportedimages")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -117,8 +118,6 @@ export interface AccountListPoolNodeCountsOptions extends RequestOptions {
    * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-support-images.
    */
   $filter?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -130,24 +129,27 @@ export async function listPoolNodeCounts(
   context: Client,
   options: AccountListPoolNodeCountsOptions = { requestOptions: {} }
 ): Promise<PoolNodeCountsListResult> {
-  const result = await context.path("/nodecounts").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-    },
-  });
+  const result = await context
+    .path("/nodecounts")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }

@@ -55,8 +55,6 @@ export interface ComputeNodesAddUserOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -73,7 +71,8 @@ export async function addUser(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/users", poolId, nodeId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -140,6 +139,8 @@ export async function deleteUser(
       userName
     )
     .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -199,8 +200,6 @@ export interface ComputeNodesUpdateUserOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -224,7 +223,8 @@ export async function updateUser(
       userName
     )
     .put({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -270,8 +270,6 @@ export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Gets information about the specified Compute Node. */
@@ -284,6 +282,8 @@ export async function getComputeNode(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}", poolId, nodeId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -292,7 +292,6 @@ export async function getComputeNode(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -553,8 +552,6 @@ export interface ComputeNodesRebootComputeNodeOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /** You can restart a Compute Node only if it is in an idle or running state. */
@@ -567,7 +564,8 @@ export async function rebootComputeNode(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/reboot", poolId, nodeId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -613,8 +611,6 @@ export interface ComputeNodesReimageComputeNodeOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -631,7 +627,8 @@ export async function reimageComputeNode(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/reimage", poolId, nodeId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -677,8 +674,6 @@ export interface ComputeNodesDisableSchedulingOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -694,7 +689,8 @@ export async function disableScheduling(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/disablescheduling", poolId, nodeId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -753,6 +749,8 @@ export async function enableScheduling(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/enablescheduling", poolId, nodeId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -792,8 +790,6 @@ export interface ComputeNodesGetRemoteLoginSettingsOptions
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -812,6 +808,8 @@ export async function getRemoteLoginSettings(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/remoteloginsettings", poolId, nodeId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -820,7 +818,6 @@ export async function getRemoteLoginSettings(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -854,8 +851,6 @@ export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -873,6 +868,8 @@ export async function getRemoteDesktop(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/rdp", poolId, nodeId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -881,7 +878,6 @@ export async function getRemoteDesktop(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -923,10 +919,6 @@ export interface ComputeNodesUploadBatchServiceLogsOptions
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -950,7 +942,8 @@ export async function uploadBatchServiceLogs(
       nodeId
     )
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -959,7 +952,6 @@ export async function uploadBatchServiceLogs(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -1013,8 +1005,6 @@ export interface ComputeNodesListOptions extends RequestOptions {
   $filter?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists the Compute Nodes in the specified Pool. */
@@ -1023,25 +1013,28 @@ export async function list(
   poolId: string,
   options: ComputeNodesListOptions = { requestOptions: {} }
 ): Promise<ComputeNodeListResult> {
-  const result = await context.path("/pools/{poolId}/nodes", poolId).get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-      ...(options.$select && { $select: options.$select }),
-    },
-  });
+  const result = await context
+    .path("/pools/{poolId}/nodes", poolId)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+        ...(options.$select && { $select: options.$select }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }

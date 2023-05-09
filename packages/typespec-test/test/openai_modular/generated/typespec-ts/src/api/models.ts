@@ -186,7 +186,7 @@ export interface Choice {
   /** The ordered index associated with this completions choice. */
   index: number;
   /** The log probabilities model for tokens associated with this completions choice. */
-  logprobs: CompletionsLogProbabilityModel;
+  logprobs: CompletionsLogProbabilityModel | null;
   /** Reason for finishing */
   finishReason: CompletionsFinishReason | null;
 }
@@ -196,9 +196,9 @@ export interface CompletionsLogProbabilityModel {
   /** The textual forms of tokens evaluated in this probability model. */
   tokens: string[];
   /** A collection of log probability values for the tokens in this completions data. */
-  tokenLogprobs: number[];
+  tokenLogprobs: (number | null)[];
   /** A mapping of tokens to maximum log probability values in this completions data. */
-  topLogprobs: Record<string, number>[];
+  topLogprobs: Record<string, number | null>[];
   /** The text offsets associated with tokens in this completions data. */
   textOffset: number[];
 }
@@ -208,9 +208,9 @@ export interface CompletionsLogProbabilityModel {
   /** The textual forms of tokens evaluated in this probability model. */
   tokens: string[];
   /** A collection of log probability values for the tokens in this completions data. */
-  tokenLogprobs: number[];
+  tokenLogprobs: (number | null)[];
   /** A mapping of tokens to maximum log probability values in this completions data. */
-  topLogprobs: Record<string, number>[];
+  topLogprobs: Record<string, number | null>[];
   /** The text offsets associated with tokens in this completions data. */
   textOffset: number[];
 }

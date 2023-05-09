@@ -27,10 +27,7 @@ import {
   CustomPage,
 } from "./models.js";
 
-export interface PoolListUsageMetricsOptions extends RequestOptions {
-  /** Accept header. */
-  accept?: "application/json";
-}
+export interface PoolListUsageMetricsOptions extends RequestOptions {}
 
 /**
  * If you do not specify a $filter clause including a poolId, the response
@@ -44,9 +41,13 @@ export async function listUsageMetrics(
   context: Client,
   options: PoolListUsageMetricsOptions = { requestOptions: {} }
 ): Promise<CustomPage> {
-  const result = await context.path("/poolusagemetrics").get({
-    headers: { Accept: "application/json", ...options.requestOptions?.headers },
-  });
+  const result = await context
+    .path("/poolusagemetrics")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -83,8 +84,6 @@ export interface PoolGetAllPoolLifetimeStatisticsOptions
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -97,20 +96,23 @@ export async function getAllPoolLifetimeStatistics(
   context: Client,
   options: PoolGetAllPoolLifetimeStatisticsOptions = { requestOptions: {} }
 ): Promise<PoolStatistics> {
-  const result = await context.path("/lifetimepoolstats").get({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/lifetimepoolstats")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -342,8 +344,6 @@ export interface PoolAddPoolOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -358,7 +358,8 @@ export async function addPool(
   const result = await context
     .path("/pools")
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -424,8 +425,6 @@ export interface PoolListPoolsOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists all of the Pools in the specified Account. */
@@ -433,26 +432,29 @@ export async function listPools(
   context: Client,
   options: PoolListPoolsOptions = { requestOptions: {} }
 ): Promise<BatchPoolListResult> {
-  const result = await context.path("/pools").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-      ...(options.$select && { $select: options.$select }),
-      ...(options.$expand && { $expand: options.$expand }),
-    },
-  });
+  const result = await context
+    .path("/pools")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+        ...(options.$select && { $select: options.$select }),
+        ...(options.$expand && { $expand: options.$expand }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -932,27 +934,31 @@ export async function deletePool(
   poolId: string,
   options: PoolDeletePoolOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/pools/{poolId}", poolId).delete({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/pools/{poolId}", poolId)
+    .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1011,27 +1017,31 @@ export async function exists(
   poolId: string,
   options: PoolExistsOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/pools/{poolId}", poolId).head({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/pools/{poolId}", poolId)
+    .head({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1086,8 +1096,6 @@ export interface PoolGetPoolOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Gets information about the specified Pool. */
@@ -1096,32 +1104,35 @@ export async function getPool(
   poolId: string,
   options: PoolGetPoolOptions = { requestOptions: {} }
 ): Promise<BatchPool> {
-  const result = await context.path("/pools/{poolId}", poolId).get({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$select && { $select: options.$select }),
-      ...(options.$expand && { $expand: options.$expand }),
-    },
-  });
+  const result = await context
+    .path("/pools/{poolId}", poolId)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$select && { $select: options.$select }),
+        ...(options.$expand && { $expand: options.$expand }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1773,8 +1784,6 @@ export interface PoolPatchPoolOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1790,7 +1799,8 @@ export async function patchPool(
   const result = await context
     .path("/pools/{poolId}", poolId)
     .patch({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1861,6 +1871,8 @@ export async function disableAutoScale(
   const result = await context
     .path("/pools/{poolId}/disableautoscale", poolId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1942,8 +1954,6 @@ export interface PoolEnableAutoScaleOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1962,7 +1972,8 @@ export async function enableAutoScale(
   const result = await context
     .path("/pools/{poolId}/enableautoscale", poolId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2017,10 +2028,6 @@ export interface PoolEvaluateAutoScaleOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -2037,7 +2044,8 @@ export async function evaluateAutoScale(
   const result = await context
     .path("/pools/{poolId}/evaluateautoscale", poolId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2046,7 +2054,6 @@ export async function evaluateAutoScale(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -2127,8 +2134,6 @@ export interface PoolResizeOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -2148,7 +2153,8 @@ export async function resize(
   const result = await context
     .path("/pools/{poolId}/resize", poolId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2247,27 +2253,31 @@ export async function stopResize(
   poolId: string,
   options: PoolStopResizeOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/pools/{poolId}/stopresize", poolId).post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/pools/{poolId}/stopresize", poolId)
+    .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -2467,8 +2477,6 @@ export interface PoolUpdatePropertiesOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -2484,7 +2492,8 @@ export async function updateProperties(
   const result = await context
     .path("/pools/{poolId}/updateproperties", poolId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2568,8 +2577,6 @@ export interface PoolRemoveNodesOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -2586,7 +2593,8 @@ export async function removeNodes(
   const result = await context
     .path("/pools/{poolId}/removenodes", poolId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,

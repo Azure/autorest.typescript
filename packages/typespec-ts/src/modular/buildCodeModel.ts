@@ -454,28 +454,6 @@ function emitParameter(
   return { clientDefaultValue, ...base, ...paramMap };
 }
 
-function emitContentTypeParameter(
-  bodyParameter: any,
-  inOverload: boolean,
-  inOverriden: boolean
-) {
-  return {
-    checkClientInput: false,
-    clientDefaultValue: bodyParameter.defaultContentType,
-    clientName: "content_type",
-    delimiter: null,
-    description: `Body parameter Content-Type. Known values are: ${bodyParameter.contentTypes}.`,
-    implementation: "Method",
-    inDocstring: true,
-    inOverload: inOverload,
-    inOverriden: inOverriden,
-    location: "header",
-    optional: true,
-    restApiName: "Content-Type",
-    type: { type: "string" }
-  };
-}
-
 function emitFlattenedParameter(
   bodyParameter: Record<string, any>,
   property: any
@@ -516,31 +494,6 @@ function getConstantType(key: string): HrlcType {
   };
   simpleTypesMap.set(key, type);
   return type;
-}
-
-function emitAcceptParameter(
-  _program: Program,
-  inOverload: boolean,
-  inOverriden: boolean
-): Record<string, any> {
-  return {
-    checkClientInput: false,
-    clientDefaultValue: "application/json",
-    clientName: "accept",
-    delimiter: null,
-    description: "Accept header.",
-    explode: false,
-    groupedBy: null,
-    implementation: "Method",
-    inDocstring: true,
-    inOverload: inOverload,
-    inOverriden: inOverriden,
-    location: "header",
-    optional: false,
-    restApiName: "Accept",
-    skipUrlEncoding: false,
-    type: getConstantType("application/json")
-  };
 }
 
 function emitResponseHeaders(
@@ -727,7 +680,6 @@ function emitBasicOperation(
   const responses: Response[] = [];
   const exceptions: Response[] = [];
   const isOverload: boolean = false;
-  const isOverriden: boolean = false;
   for (const response of httpOperation.responses) {
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
@@ -735,15 +687,6 @@ function emitBasicOperation(
         response,
         innerResponse
       );
-      if (
-        emittedResponse["type"] &&
-        parameters.filter((e) => e.restApiName.toLowerCase() === "accept")
-          .length === 0
-      ) {
-        parameters.push(
-          emitAcceptParameter(context.program, isOverload, isOverriden)
-        );
-      }
       if (isErrorModel(context.program, response.type)) {
         // * is valid status code in cadl but invalid for autorest.python
         if (response.statusCode === "*") {
@@ -760,14 +703,6 @@ function emitBasicOperation(
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
-    if (
-      parameters.filter((e) => e.restApiName.toLowerCase() === "content-type")
-        .length === 0
-    ) {
-      parameters.push(
-        emitContentTypeParameter(bodyParameter, isOverload, isOverriden)
-      );
-    }
     if (
       bodyParameter.type.type === "model" &&
       bodyParameter.type.base === "json"
@@ -1150,7 +1085,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else {
-    return emitType(context, sdkType.__raw);
+    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw) };
   }
 }
 

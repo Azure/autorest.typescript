@@ -27,8 +27,6 @@ export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Gets information about the specified Compute Node Extension. */
@@ -49,6 +47,8 @@ export async function getComputeNodeExtensions(
       extensionName
     )
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -57,7 +57,6 @@ export async function getComputeNodeExtensions(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -136,8 +135,6 @@ export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions
   returnClientRequestId?: boolean;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */
@@ -152,6 +149,8 @@ export async function listComputeNodeExtensions(
   const result = await context
     .path("/pools/{poolId}/nodes/{nodeId}/extensions", poolId, nodeId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         ...(options.clientRequestId && {
@@ -160,7 +159,6 @@ export async function listComputeNodeExtensions(
         ...(options.returnClientRequestId && {
           "return-client-request-id": options.returnClientRequestId,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {

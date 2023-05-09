@@ -77,7 +77,9 @@ export function getOperationFunction(
   statements.push(
     `const result = await context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({${getRequestParameters(operation)}});`
+    )}).${operationMethod}({allowInsecureConnection: options.requestOptions?.allowInsecureConnection, skipUrlEncoding: options.requestOptions?.skipUrlEncoding, ${getRequestParameters(
+      operation
+    )}});`
   );
 
   statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
@@ -140,11 +142,11 @@ function getRequestParameters(operation: Operation): string {
     paramStr = `${getContentTypeValue(contentTypeParameter)},`;
   }
 
-  if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      ",\n"
-    )}, ...options.requestOptions?.headers},`;
-  }
+  paramStr = `${paramStr}\nheaders: {${
+    parametersImplementation.header.length
+      ? parametersImplementation.header.join(",\n") + ","
+      : ""
+  } ...options.requestOptions?.headers},`;
 
   if (parametersImplementation.query.length) {
     paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
@@ -341,6 +343,13 @@ function getPathParameters(operation: Operation) {
   return pathParams;
 }
 
+function getNullableCheck(name: string, type: Type) {
+  if (!type.nullable) {
+    return "";
+  }
+
+  return `${name} === null ? null :`;
+}
 /**
  * This function helps translating an RLC response to an HLC response,
  * extracting properties from body and headers and building the HLC response object
@@ -352,19 +361,18 @@ function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
+    const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
-      props.push(
-        `"${property.restApiName}": ${
-          !property.optional
-            ? ""
-            : `!${propertyPath}.${property.clientName} ? undefined :`
-        } {${getResponseMapping(
-          property.type.properties ?? [],
-          `${propertyPath}.${property.restApiName}${
-            property.optional ? "?" : ""
-          }`
-        )}}`
-      );
+      const definition = `"${property.restApiName}": ${getNullableCheck(
+        propertyFullName,
+        property.type
+      )} ${
+        !property.optional ? "" : `!${propertyFullName} ? undefined :`
+      } {${getResponseMapping(
+        property.type.properties ?? [],
+        `${propertyPath}.${property.restApiName}${property.optional ? "?" : ""}`
+      )}}`;
+      props.push(definition);
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
       const restValue = `${

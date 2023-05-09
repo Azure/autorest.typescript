@@ -57,8 +57,6 @@ export interface CertificatesAddCertificateOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /** Adds a Certificate to the specified Account. */
@@ -69,7 +67,8 @@ export async function addCertificate(
   const result = await context
     .path("/certificates")
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -131,8 +130,6 @@ export interface CertificatesListCertificatesOptions extends RequestOptions {
   $filter?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists all of the Certificates that have been added to the specified Account. */
@@ -140,25 +137,28 @@ export async function listCertificates(
   context: Client,
   options: CertificatesListCertificatesOptions = { requestOptions: {} }
 ): Promise<CertificateListResult> {
-  const result = await context.path("/certificates").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-      ...(options.$select && { $select: options.$select }),
-    },
-  });
+  const result = await context
+    .path("/certificates")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+        ...(options.$select && { $select: options.$select }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -237,6 +237,8 @@ export async function cancelCertificateDeletion(
       thumbprint
     )
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -301,6 +303,8 @@ export async function deleteCertificate(
       thumbprint
     )
     .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -341,8 +345,6 @@ export interface CertificatesGetCertificateOptions extends RequestOptions {
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Gets information about the specified Certificate. */
@@ -359,6 +361,8 @@ export async function getCertificate(
       thumbprint
     )
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -367,7 +371,6 @@ export async function getCertificate(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {

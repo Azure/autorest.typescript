@@ -9,14 +9,6 @@ export interface RequestOptions {
      * Headers to send along with the request
      */
     headers?: RawHttpHeadersInput;
-    /**
-     * Body to send with the request
-     */
-    body?: unknown;
-    /**
-     * Query parameters to send with the request
-     */
-    queryParameters?: Record<string, unknown>;
     /** Set to true if the request is sent over HTTP instead of HTTPS */
     allowInsecureConnection?: boolean;
     /** Set to true if you want to skip encoding the path parameters */

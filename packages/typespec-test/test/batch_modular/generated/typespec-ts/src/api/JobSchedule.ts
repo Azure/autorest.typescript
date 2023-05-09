@@ -68,6 +68,8 @@ export async function jobScheduleExists(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .head({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -155,6 +157,8 @@ export async function deleteJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -229,8 +233,6 @@ export interface JobScheduleGetJobScheduleOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Gets information about the specified Job Schedule. */
@@ -242,6 +244,8 @@ export async function getJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -258,7 +262,6 @@ export async function getJobSchedule(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -1477,8 +1480,6 @@ export interface JobSchedulePatchJobScheduleOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1496,7 +1497,8 @@ export async function patchJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .patch({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1622,8 +1624,6 @@ export interface JobScheduleUpdateJobScheduleOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1641,7 +1641,8 @@ export async function updateJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}", jobScheduleId)
     .put({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1730,6 +1731,8 @@ export async function disableJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}/disable", jobScheduleId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1811,6 +1814,8 @@ export async function enableJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}/enable", jobScheduleId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1892,6 +1897,8 @@ export async function terminateJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}/terminate", jobScheduleId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1986,8 +1993,6 @@ export interface JobScheduleAddJobScheduleOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /** Adds a Job Schedule to the specified Account. */
@@ -1998,7 +2003,8 @@ export async function addJobSchedule(
   const result = await context
     .path("/jobschedules")
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2058,8 +2064,6 @@ export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists all of the Job Schedules in the specified Account. */
@@ -2067,26 +2071,29 @@ export async function listJobSchedules(
   context: Client,
   options: JobScheduleListJobSchedulesOptions = { requestOptions: {} }
 ): Promise<BatchJobScheduleListResult> {
-  const result = await context.path("/jobschedules").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-      ...(options.$select && { $select: options.$select }),
-      ...(options.$expand && { $expand: options.$expand }),
-    },
-  });
+  const result = await context
+    .path("/jobschedules")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+        ...(options.$select && { $select: options.$select }),
+        ...(options.$expand && { $expand: options.$expand }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }

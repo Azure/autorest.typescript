@@ -11,7 +11,6 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export interface AcknowledgeBatchOfCloudEventsOptions extends RequestOptions {
-    accept?: "application/json";
     contentType?: string;
 }
 
@@ -94,7 +93,6 @@ export interface PublishCloudEventOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ReceiveBatchOfCloudEventsOptions extends RequestOptions {
-    accept?: "application/json";
     maxEvents?: number;
     timeout?: number;
 }
@@ -112,7 +110,6 @@ export interface ReceiveResponse {
 
 // @public (undocumented)
 export interface ReleaseBatchOfCloudEventsOptions extends RequestOptions {
-    accept?: "application/json";
     contentType?: string;
 }
 
@@ -121,8 +118,6 @@ export interface RequestOptions {
     // (undocumented)
     requestOptions?: {
         headers?: RawHttpHeadersInput;
-        body?: unknown;
-        queryParameters?: Record<string, unknown>;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
     };

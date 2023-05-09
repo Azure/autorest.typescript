@@ -14,7 +14,6 @@ export type AccessScope = string;
 // @public (undocumented)
 export interface AccountListPoolNodeCountsOptions extends RequestOptions {
     $filter?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -25,7 +24,6 @@ export interface AccountListPoolNodeCountsOptions extends RequestOptions {
 // @public (undocumented)
 export interface AccountListSupportedImagesOptions extends RequestOptions {
     $filter?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -68,12 +66,10 @@ export interface ApplicationPackageReference {
 
 // @public (undocumented)
 export interface ApplicationsGetOptions extends RequestOptions {
-    accept?: "application/json";
 }
 
 // @public (undocumented)
 export interface ApplicationsListApplicationsOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -501,7 +497,6 @@ export interface CertificateReference {
 export interface CertificatesAddCertificateOptions extends RequestOptions {
     certificateFormat?: CertificateFormat;
     clientRequestId?: string;
-    content_type?: string;
     data?: string;
     deleteCertificateError?: DeleteCertificateError;
     ocpDate?: string;
@@ -537,7 +532,6 @@ export interface CertificatesDeleteCertificateOptions extends RequestOptions {
 // @public (undocumented)
 export interface CertificatesGetCertificateOptions extends RequestOptions {
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -548,7 +542,6 @@ export interface CertificatesGetCertificateOptions extends RequestOptions {
 export interface CertificatesListCertificatesOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -629,7 +622,6 @@ export interface ComputeNodeError {
 // @public (undocumented)
 export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions extends RequestOptions {
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -639,7 +631,6 @@ export interface ComputeNodeExtensionsGetComputeNodeExtensionsOptions extends Re
 // @public (undocumented)
 export interface ComputeNodeExtensionsListComputeNodeExtensionsOptions extends RequestOptions {
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -686,7 +677,6 @@ export type ComputeNodeReimageOption = string;
 // @public (undocumented)
 export interface ComputeNodesAddUserOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     expiryTime?: Date;
     isAdmin?: boolean;
     ocpDate?: string;
@@ -707,7 +697,6 @@ export interface ComputeNodesDeleteUserOptions extends RequestOptions {
 // @public (undocumented)
 export interface ComputeNodesDisableSchedulingOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     nodeDisableSchedulingOption?: DisableComputeNodeSchedulingOption;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -725,7 +714,6 @@ export interface ComputeNodesEnableSchedulingOptions extends RequestOptions {
 // @public (undocumented)
 export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -734,7 +722,6 @@ export interface ComputeNodesGetComputeNodeOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -743,7 +730,6 @@ export interface ComputeNodesGetRemoteDesktopOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesGetRemoteLoginSettingsOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -754,7 +740,6 @@ export interface ComputeNodesGetRemoteLoginSettingsOptions extends RequestOption
 export interface ComputeNodesListOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -765,7 +750,6 @@ export interface ComputeNodesListOptions extends RequestOptions {
 // @public (undocumented)
 export interface ComputeNodesRebootComputeNodeOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     nodeRebootOption?: ComputeNodeRebootOption;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -775,7 +759,6 @@ export interface ComputeNodesRebootComputeNodeOptions extends RequestOptions {
 // @public (undocumented)
 export interface ComputeNodesReimageComputeNodeOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     nodeReimageOption?: ComputeNodeReimageOption;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -788,7 +771,6 @@ export type ComputeNodeState = string;
 // @public (undocumented)
 export interface ComputeNodesUpdateUserOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     expiryTime?: Date;
     ocpDate?: string;
     password?: string;
@@ -799,9 +781,7 @@ export interface ComputeNodesUpdateUserOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface ComputeNodesUploadBatchServiceLogsOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
-    content_type?: string;
     endTime?: Date;
     identityReference?: ComputeNodeIdentityReference;
     ocpDate?: string;
@@ -954,7 +934,6 @@ export interface FileDeleteFromTaskOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface FileGetFromComputeNodeOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ifModifiedSince?: string;
     ifUnmodifiedSince?: string;
@@ -966,7 +945,6 @@ export interface FileGetFromComputeNodeOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface FileGetFromTaskOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ifModifiedSince?: string;
     ifUnmodifiedSince?: string;
@@ -999,7 +977,6 @@ export interface FileGetPropertiesFromTaskOptions extends RequestOptions {
 // @public (undocumented)
 export interface FileListFromComputeNodeOptions extends RequestOptions {
     $filter?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1011,7 +988,6 @@ export interface FileListFromComputeNodeOptions extends RequestOptions {
 // @public (undocumented)
 export interface FileListFromTaskOptions extends RequestOptions {
     $filter?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1099,7 +1075,6 @@ export interface JobAddJobOptions extends RequestOptions {
     clientRequestId?: string;
     commonEnvironmentSettings?: EnvironmentSetting[];
     constraints?: JobConstraints;
-    content_type?: string;
     creationTime?: Date;
     displayName?: string;
     eTag?: string;
@@ -1149,7 +1124,6 @@ export interface JobDeleteJobOptions extends RequestOptions {
 // @public (undocumented)
 export interface JobDisableJobOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
     ifNoneMatch?: string;
@@ -1182,7 +1156,6 @@ export interface JobExecutionInformation {
 
 // @public (undocumented)
 export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1193,7 +1166,6 @@ export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
 export interface JobGetJobOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -1206,7 +1178,6 @@ export interface JobGetJobOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface JobGetTaskCountsOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1218,7 +1189,6 @@ export interface JobListFromJobScheduleOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1231,7 +1201,6 @@ export interface JobListJobsOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1243,7 +1212,6 @@ export interface JobListJobsOptions extends RequestOptions {
 export interface JobListPreparationAndReleaseTaskStatusOptions extends RequestOptions {
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1281,7 +1249,6 @@ export interface JobPatchJobOptions extends RequestOptions {
     clientRequestId?: string;
     commonEnvironmentSettings?: EnvironmentSetting[];
     constraints?: JobConstraints;
-    content_type?: string;
     creationTime?: Date;
     displayName?: string;
     eTag?: string;
@@ -1385,7 +1352,6 @@ export type JobReleaseTaskState = string;
 // @public (undocumented)
 export interface JobScheduleAddJobScheduleOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     creationTime?: Date;
     displayName?: string;
     eTag?: string;
@@ -1453,7 +1419,6 @@ export interface JobScheduleExecutionInformation {
 export interface JobScheduleGetJobScheduleOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -1481,7 +1446,6 @@ export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -1492,7 +1456,6 @@ export interface JobScheduleListJobSchedulesOptions extends RequestOptions {
 // @public (undocumented)
 export interface JobSchedulePatchJobScheduleOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     creationTime?: Date;
     displayName?: string;
     eTag?: string;
@@ -1553,7 +1516,6 @@ export interface JobScheduleTerminateJobScheduleOptions extends RequestOptions {
 // @public (undocumented)
 export interface JobScheduleUpdateJobScheduleOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     creationTime?: Date;
     displayName?: string;
     eTag?: string;
@@ -1629,7 +1591,6 @@ export interface JobStatistics {
 // @public (undocumented)
 export interface JobTerminateJobOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
     ifNoneMatch?: string;
@@ -1646,7 +1607,6 @@ export interface JobUpdateJobOptions extends RequestOptions {
     clientRequestId?: string;
     commonEnvironmentSettings?: EnvironmentSetting[];
     constraints?: JobConstraints;
-    content_type?: string;
     creationTime?: Date;
     displayName?: string;
     eTag?: string;
@@ -1887,7 +1847,6 @@ export interface PoolAddPoolOptions extends RequestOptions {
     certificateReferences?: CertificateReference[];
     clientRequestId?: string;
     cloudServiceConfiguration?: CloudServiceConfiguration;
-    content_type?: string;
     creationTime?: Date;
     currentDedicatedNodes?: number;
     currentLowPriorityNodes?: number;
@@ -1947,7 +1906,6 @@ export interface PoolEnableAutoScaleOptions extends RequestOptions {
     autoScaleEvaluationInterval?: string;
     autoScaleFormula?: string;
     clientRequestId?: string;
-    content_type?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
     ifNoneMatch?: string;
@@ -1964,9 +1922,7 @@ export interface PoolEndpointConfiguration {
 
 // @public (undocumented)
 export interface PoolEvaluateAutoScaleOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
-    content_type?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
     timeOut?: number;
@@ -1986,7 +1942,6 @@ export interface PoolExistsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface PoolGetAllPoolLifetimeStatisticsOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -1997,7 +1952,6 @@ export interface PoolGetAllPoolLifetimeStatisticsOptions extends RequestOptions 
 export interface PoolGetPoolOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -2025,7 +1979,6 @@ export interface PoolListPoolsOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -2035,7 +1988,6 @@ export interface PoolListPoolsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface PoolListUsageMetricsOptions extends RequestOptions {
-    accept?: "application/json";
 }
 
 // @public
@@ -2063,7 +2015,6 @@ export interface PoolPatchPoolOptions extends RequestOptions {
     certificateReferences?: CertificateReference[];
     clientRequestId?: string;
     cloudServiceConfiguration?: CloudServiceConfiguration;
-    content_type?: string;
     creationTime?: Date;
     currentDedicatedNodes?: number;
     currentLowPriorityNodes?: number;
@@ -2105,7 +2056,6 @@ export interface PoolPatchPoolOptions extends RequestOptions {
 // @public (undocumented)
 export interface PoolRemoveNodesOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
     ifNoneMatch?: string;
@@ -2120,7 +2070,6 @@ export interface PoolRemoveNodesOptions extends RequestOptions {
 // @public (undocumented)
 export interface PoolResizeOptions extends RequestOptions {
     clientRequestId?: string;
-    content_type?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
     ifNoneMatch?: string;
@@ -2196,7 +2145,6 @@ export interface PoolUpdatePropertiesOptions extends RequestOptions {
     certificateReferences?: CertificateReference[];
     clientRequestId?: string;
     cloudServiceConfiguration?: CloudServiceConfiguration;
-    content_type?: string;
     creationTime?: Date;
     currentDedicatedNodes?: number;
     currentLowPriorityNodes?: number;
@@ -2257,8 +2205,6 @@ export interface RequestOptions {
     // (undocumented)
     requestOptions?: {
         headers?: RawHttpHeadersInput;
-        body?: unknown;
-        queryParameters?: Record<string, unknown>;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
     };
@@ -2382,9 +2328,7 @@ export type TaskAddStatus = string;
 
 // @public (undocumented)
 export interface TaskAddTaskCollectionOptions extends RequestOptions {
-    accept?: "application/json";
     clientRequestId?: string;
-    content_type?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
     timeOut?: number;
@@ -2399,7 +2343,6 @@ export interface TaskAddTaskOptions extends RequestOptions {
     commandLine?: string;
     constraints?: TaskConstraints;
     containerSettings?: TaskContainerSettings;
-    content_type?: string;
     creationTime?: Date;
     dependsOn?: TaskDependencies;
     displayName?: string;
@@ -2510,7 +2453,6 @@ export interface TaskFailureInformation {
 export interface TaskGetTaskCollectionOptions extends RequestOptions {
     $expand?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ifMatch?: string;
     ifModifiedSince?: string;
@@ -2540,7 +2482,6 @@ export interface TaskInformation {
 // @public (undocumented)
 export interface TaskListSubtasksOptions extends RequestOptions {
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     ocpDate?: string;
     returnClientRequestId?: boolean;
@@ -2552,7 +2493,6 @@ export interface TaskListTasksOptions extends RequestOptions {
     $expand?: string;
     $filter?: string;
     $select?: string;
-    accept?: "application/json";
     clientRequestId?: string;
     maxresults?: number;
     ocpDate?: string;
@@ -2625,7 +2565,6 @@ export interface TaskUpdateTaskCollectionOptions extends RequestOptions {
     commandLine?: string;
     constraints?: TaskConstraints;
     containerSettings?: TaskContainerSettings;
-    content_type?: string;
     creationTime?: Date;
     dependsOn?: TaskDependencies;
     displayName?: string;

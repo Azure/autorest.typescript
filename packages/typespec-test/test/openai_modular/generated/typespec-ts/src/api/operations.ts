@@ -22,10 +22,6 @@ export interface GetEmbeddingsOptions extends RequestOptions {
    * resource URI that's connected to.
    */
   model?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /** Return the embeddings for a given prompt. */
@@ -38,11 +34,9 @@ export async function getEmbeddings(
   const result = await context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
         ...(options.user && { user: options.user }),
         ...(options.model && { model: options.model }),
@@ -148,10 +142,6 @@ export interface GetCompletionsOptions extends RequestOptions {
    * resource URI that's connected to.
    */
   model?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -168,11 +158,9 @@ export async function getCompletions(
   const result = await context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
         prompt: prompt,
         ...(options.maxTokens && { max_tokens: options.maxTokens }),
@@ -205,12 +193,15 @@ export async function getCompletions(
     choices: (result.body["choices"] ?? []).map((p) => ({
       text: p["text"],
       index: p["index"],
-      logprobs: {
-        tokens: p.logprobs["tokens"],
-        tokenLogprobs: p.logprobs["token_logprobs"],
-        topLogprobs: p.logprobs["top_logprobs"],
-        textOffset: p.logprobs["text_offset"],
-      },
+      logprobs:
+        p.logprobs === null
+          ? null
+          : {
+              tokens: p.logprobs["tokens"],
+              tokenLogprobs: p.logprobs["token_logprobs"],
+              topLogprobs: p.logprobs["top_logprobs"],
+              textOffset: p.logprobs["text_offset"],
+            },
       finishReason: p["finish_reason"],
     })),
     usage: {
@@ -285,10 +276,6 @@ export interface GetChatCompletionsOptions extends RequestOptions {
    * resource URI that's connected to.
    */
   model?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -305,11 +292,9 @@ export async function getChatCompletions(
   const result = await context
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
         messages: messages,
         ...(options.maxTokens && { max_tokens: options.maxTokens }),

@@ -9,7 +9,7 @@ export interface TypeMetadata {
 
 function getNullableType(name: string, type: Type): string {
   if (type.nullable) {
-    return `${name} | null`;
+    return `(${name} | null)`;
   }
 
   return name;
@@ -24,16 +24,16 @@ export function getType(type: Type): TypeMetadata {
         isRelative: false
       };
     case "boolean":
-      return { name: "boolean" };
+      return { name: getNullableType(type.type, type) };
     case "constant": {
       let typeName: string = type.value ?? "undefined";
       if (type.valueType?.type === "string") {
         typeName = type.value ? `"${type.value}"` : "undefined";
       }
-      return { name: typeName };
+      return { name: getNullableType(typeName, type) };
     }
     case "datetime":
-      return { name: "Date" };
+      return { name: getNullableType("Date", type) };
     case "enum":
       if (!type.name) {
         throw new Error("Unable to process enum without name");
@@ -44,15 +44,15 @@ export function getType(type: Type): TypeMetadata {
       };
     case "float":
     case "integer":
-      return { name: "number" };
+      return { name: getNullableType("number", type) };
     case "byte-array":
-      return { name: "string" };
+      return { name: getNullableType("string", type) };
     case "list":
       if (!type.elementType) {
         throw new Error("Unable to process Array with no elementType");
       }
       return {
-        name: getType(type.elementType).name,
+        name: getNullableType(getType(type.elementType).name, type),
         modifier: "Array",
         originModule:
           type.elementType?.type === "model" ? "models.js" : undefined
@@ -67,7 +67,7 @@ export function getType(type: Type): TypeMetadata {
       };
     case "string":
     case "duration":
-      return { name: "string" };
+      return { name: getNullableType("string", type) };
     case "combined": {
       if (!type.types) {
         throw new Error("Unable to process combined without combinedTypes");
@@ -78,7 +78,7 @@ export function getType(type: Type): TypeMetadata {
           return `${sdkType}`;
         })
         .join(" | ");
-      return { name };
+      return { name: getNullableType(name, type) };
     }
     case "dict":
       if (!type.elementType) {

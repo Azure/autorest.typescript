@@ -43,8 +43,6 @@ export interface JobGetAllJobLifetimeStatisticsOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -57,20 +55,23 @@ export async function getAllJobLifetimeStatistics(
   context: Client,
   options: JobGetAllJobLifetimeStatisticsOptions = { requestOptions: {} }
 ): Promise<JobStatistics> {
-  const result = await context.path("/lifetimejobstats").get({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/lifetimejobstats")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -153,27 +154,31 @@ export async function deleteJob(
   jobId: string,
   options: JobDeleteJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}", jobId).delete({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/jobs/{jobId}", jobId)
+    .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -228,8 +233,6 @@ export interface JobGetJobOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Gets information about the specified Job. */
@@ -238,32 +241,35 @@ export async function getJob(
   jobId: string,
   options: JobGetJobOptions = { requestOptions: {} }
 ): Promise<BatchJob> {
-  const result = await context.path("/jobs/{jobId}", jobId).get({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$select && { $select: options.$select }),
-      ...(options.$expand && { $expand: options.$expand }),
-    },
-  });
+  const result = await context
+    .path("/jobs/{jobId}", jobId)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$select && { $select: options.$select }),
+        ...(options.$expand && { $expand: options.$expand }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1388,8 +1394,6 @@ export interface JobPatchJobOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1405,7 +1409,8 @@ export async function patchJob(
   const result = await context
     .path("/jobs/{jobId}", jobId)
     .patch({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1614,8 +1619,6 @@ export interface JobUpdateJobOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1631,7 +1634,8 @@ export async function updateJob(
   const result = await context
     .path("/jobs/{jobId}", jobId)
     .put({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1715,8 +1719,6 @@ export interface JobDisableJobOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1738,7 +1740,8 @@ export async function disableJob(
   const result = await context
     .path("/jobs/{jobId}/disable", jobId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1825,27 +1828,31 @@ export async function enableJob(
   jobId: string,
   options: JobEnableJobOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await context.path("/jobs/{jobId}/enable", jobId).post({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.ifMatch && { "if-match": options.ifMatch }),
-      ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
-      ...(options.ifModifiedSince && {
-        "if-modified-since": options.ifModifiedSince,
-      }),
-      ...(options.ifUnmodifiedSince && {
-        "if-unmodified-since": options.ifUnmodifiedSince,
-      }),
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/jobs/{jobId}/enable", jobId)
+    .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.ifMatch && { "if-match": options.ifMatch }),
+        ...(options.ifNoneMatch && { "if-none-match": options.ifNoneMatch }),
+        ...(options.ifModifiedSince && {
+          "if-modified-since": options.ifModifiedSince,
+        }),
+        ...(options.ifUnmodifiedSince && {
+          "if-unmodified-since": options.ifUnmodifiedSince,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1901,8 +1908,6 @@ export interface JobTerminateJobOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -1921,7 +1926,8 @@ export async function terminateJob(
   const result = await context
     .path("/jobs/{jobId}/terminate", jobId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2098,8 +2104,6 @@ export interface JobAddJobOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -2120,7 +2124,8 @@ export async function addJob(
   const result = await context
     .path("/jobs")
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -2186,8 +2191,6 @@ export interface JobListJobsOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists all of the Jobs in the specified Account. */
@@ -2195,26 +2198,29 @@ export async function listJobs(
   context: Client,
   options: JobListJobsOptions = { requestOptions: {} }
 ): Promise<BatchJobListResult> {
-  const result = await context.path("/jobs").get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-      ...(options.$select && { $select: options.$select }),
-      ...(options.$expand && { $expand: options.$expand }),
-    },
-  });
+  const result = await context
+    .path("/jobs")
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+        ...(options.$select && { $select: options.$select }),
+        ...(options.$expand && { $expand: options.$expand }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -3192,8 +3198,6 @@ export interface JobListFromJobScheduleOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Lists the Jobs that have been created under the specified Job Schedule. */
@@ -3205,6 +3209,8 @@ export async function listFromJobSchedule(
   const result = await context
     .path("/jobschedules/{jobScheduleId}/jobs", jobScheduleId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         ...(options.clientRequestId && {
@@ -3213,7 +3219,6 @@ export async function listFromJobSchedule(
         ...(options.returnClientRequestId && {
           "return-client-request-id": options.returnClientRequestId,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -4200,8 +4205,6 @@ export interface JobListPreparationAndReleaseTaskStatusOptions
   $filter?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -4222,6 +4225,8 @@ export async function listPreparationAndReleaseTaskStatus(
   const result = await context
     .path("/jobs/{jobId}/jobpreparationandreleasetaskstatus", jobId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
         ...(options.clientRequestId && {
@@ -4230,7 +4235,6 @@ export async function listPreparationAndReleaseTaskStatus(
         ...(options.returnClientRequestId && {
           "return-client-request-id": options.returnClientRequestId,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -4364,8 +4368,6 @@ export interface JobGetTaskCountsOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -4379,20 +4381,23 @@ export async function getTaskCounts(
   jobId: string,
   options: JobGetTaskCountsOptions = { requestOptions: {} }
 ): Promise<TaskCountsResult> {
-  const result = await context.path("/jobs/{jobId}/taskcounts", jobId).get({
-    headers: {
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
-  });
+  const result = await context
+    .path("/jobs/{jobId}/taskcounts", jobId)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }

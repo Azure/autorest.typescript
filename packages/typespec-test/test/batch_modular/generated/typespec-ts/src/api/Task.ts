@@ -172,8 +172,6 @@ export interface TaskAddTaskOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -189,7 +187,8 @@ export async function addTask(
   const result = await context
     .path("/jobs/{jobId}/tasks", jobId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -272,8 +271,6 @@ export interface TaskListTasksOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -286,26 +283,29 @@ export async function listTasks(
   jobId: string,
   options: TaskListTasksOptions = { requestOptions: {} }
 ): Promise<BatchTaskListResult> {
-  const result = await context.path("/jobs/{jobId}/tasks", jobId).get({
-    headers: {
-      ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-      ...(options.clientRequestId && {
-        "client-request-id": options.clientRequestId,
-      }),
-      ...(options.returnClientRequestId && {
-        "return-client-request-id": options.returnClientRequestId,
-      }),
-      Accept: "application/json",
-      ...options.requestOptions?.headers,
-    },
-    queryParameters: {
-      ...(options.maxresults && { maxresults: options.maxresults }),
-      ...(options.timeOut && { timeOut: options.timeOut }),
-      ...(options.$filter && { $filter: options.$filter }),
-      ...(options.$select && { $select: options.$select }),
-      ...(options.$expand && { $expand: options.$expand }),
-    },
-  });
+  const result = await context
+    .path("/jobs/{jobId}/tasks", jobId)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: {
+        ...(options.ocpDate && { "ocp-date": options.ocpDate }),
+        ...(options.clientRequestId && {
+          "client-request-id": options.clientRequestId,
+        }),
+        ...(options.returnClientRequestId && {
+          "return-client-request-id": options.returnClientRequestId,
+        }),
+        ...options.requestOptions?.headers,
+      },
+      queryParameters: {
+        ...(options.maxresults && { maxresults: options.maxresults }),
+        ...(options.timeOut && { timeOut: options.timeOut }),
+        ...(options.$filter && { $filter: options.$filter }),
+        ...(options.$select && { $select: options.$select }),
+        ...(options.$expand && { $expand: options.$expand }),
+      },
+    });
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -570,10 +570,6 @@ export interface TaskAddTaskCollectionOptions extends RequestOptions {
    * directly.
    */
   ocpDate?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /**
@@ -601,7 +597,8 @@ export async function addTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/addtaskcollection", jobId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -610,7 +607,6 @@ export async function addTaskCollection(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: { ...(options.timeOut && { timeOut: options.timeOut }) },
@@ -707,6 +703,8 @@ export async function deleteTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -781,8 +779,6 @@ export interface TaskGetTaskCollectionOptions extends RequestOptions {
   $select?: string;
   /** An OData $expand clause. */
   $expand?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /**
@@ -799,6 +795,8 @@ export async function getTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -815,7 +813,6 @@ export async function getTaskCollection(
         ...(options.ifUnmodifiedSince && {
           "if-unmodified-since": options.ifUnmodifiedSince,
         }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -1246,8 +1243,6 @@ export interface TaskUpdateTaskCollectionOptions extends RequestOptions {
    * not been modified since the specified time.
    */
   ifUnmodifiedSince?: string;
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
 /** Updates the properties of the specified Task. */
@@ -1260,7 +1255,8 @@ export async function updateTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}", jobId, taskId)
     .put({
-      contentType: (options.content_type as any) ?? "application/json",
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1339,8 +1335,6 @@ export interface TaskListSubtasksOptions extends RequestOptions {
   ocpDate?: string;
   /** An OData $select clause. */
   $select?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** If the Task is not a multi-instance Task then this returns an empty collection. */
@@ -1353,6 +1347,8 @@ export async function listSubtasks(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/subtasksinfo", jobId, taskId)
     .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1361,7 +1357,6 @@ export async function listSubtasks(
           "return-client-request-id": options.returnClientRequestId,
         }),
         ...(options.ocpDate && { "ocp-date": options.ocpDate }),
-        Accept: "application/json",
         ...options.requestOptions?.headers,
       },
       queryParameters: {
@@ -1477,6 +1472,8 @@ export async function terminateTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/terminate", jobId, taskId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,
@@ -1567,6 +1564,8 @@ export async function reactivateTaskCollection(
   const result = await context
     .path("/jobs/{jobId}/tasks/{taskId}/reactivate", jobId, taskId)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: {
         ...(options.clientRequestId && {
           "client-request-id": options.clientRequestId,

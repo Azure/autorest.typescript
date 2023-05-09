@@ -43,9 +43,12 @@ export async function publishCloudEvent(
   const result = await context
     .path("/topics/{topicName}:publish", topicName)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
+      headers: { ...options.requestOptions?.headers },
       body: {
         id: id,
         source: source,
@@ -83,9 +86,12 @@ export async function publishBatchOfCloudEvents(
   const result = await context
     .path("/topics/{topicName}:publish", topicName)
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ??
         "application/cloudevents-batch+json; charset=utf-8",
+      headers: { ...options.requestOptions?.headers },
       body: events,
     });
   if (isUnexpected(result)) {
@@ -100,8 +106,6 @@ export interface ReceiveBatchOfCloudEventsOptions extends RequestOptions {
   maxEvents?: number;
   /** Timeout value for receive operation in Seconds. Default is 60 seconds. */
   timeout?: number;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Receive Batch of Cloud Events from the Event Subscription. */
@@ -118,10 +122,9 @@ export async function receiveBatchOfCloudEvents(
       eventSubscriptionName
     )
     .post({
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       queryParameters: {
         ...(options.maxEvents && { maxEvents: options.maxEvents }),
         ...(options.timeout && { timeout: options.timeout }),
@@ -155,8 +158,6 @@ export async function receiveBatchOfCloudEvents(
 export interface AcknowledgeBatchOfCloudEventsOptions extends RequestOptions {
   /** content type */
   contentType?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Acknowledge Cloud Events. */
@@ -174,12 +175,11 @@ export async function acknowledgeBatchOfCloudEvents(
       eventSubscriptionName
     )
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
   if (isUnexpected(result)) {
@@ -199,8 +199,6 @@ export async function acknowledgeBatchOfCloudEvents(
 export interface ReleaseBatchOfCloudEventsOptions extends RequestOptions {
   /** content type */
   contentType?: string;
-  /** Accept header. */
-  accept?: "application/json";
 }
 
 /** Release Cloud Events. */
@@ -218,12 +216,11 @@ export async function releaseBatchOfCloudEvents(
       eventSubscriptionName
     )
     .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      headers: { ...options.requestOptions?.headers },
       body: tokens,
     });
   if (isUnexpected(result)) {
