@@ -25,6 +25,7 @@ import {
   buildSampleTest,
   buildReadmeFile,
   buildSerializeHelper,
+  buildLogger,
   RLCOptions
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
@@ -71,6 +72,7 @@ export async function $onEmit(context: EmitContext) {
     await emitContentByBuilder(program, buildParameterTypes, rlcModels);
     await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
     await emitContentByBuilder(program, buildIndexFile, rlcModels);
+    await emitContentByBuilder(program, buildLogger, rlcModels);
     await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
     await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
     await emitContentByBuilder(program, buildPollingHelper, rlcModels);
