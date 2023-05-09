@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "../logger";
 import { TokenCredential } from "@azure/core-auth";
 import { PurviewAccountClient } from "./clientDefinitions";
 
@@ -34,6 +35,9 @@ export function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info
     }
   };
 
