@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/pnpm-config.schema.json",
+  /**
+   * If true, then Rush will add the "--strict-peer-dependencies" option when invoking PNPM.
+   * This causes "rush install" to fail if there are unsatisfied peer dependencies, which is
+   * an invalid state that can cause build failures or incompatible dependency versions.
+   * (For historical reasons, JavaScript package managers generally do not treat this invalid
+   * state as an error.)
+   *
+   * The default value is false to avoid legacy compatibility issues.
+   * It is strongly recommended to set strictPeerDependencies=true.
+   */
+  "strictPeerDependencies": false,
+  /**
+   * The "globalOverrides" setting provides a simple mechanism for overriding version selections
+   * for all dependencies of all projects in the monorepo workspace.  The settings are copied
+   * into the `pnpm.overrides` field of the `common/temp/package.json` file that is generated
+   * by Rush during installation.
+   *
+   * Order of precedence: `.pnpmfile.cjs` has the highest precedence, followed by
+   * `unsupportedPackageJsonSettings`, `globalPeerDependencyRules`, `globalPackageExtensions`,
+   * and `globalOverrides` has lowest precedence.
+   *
+   * PNPM documentation: https://pnpm.io/package_json#pnpmoverrides
+   */
+  "globalOverrides": {
+    // "example1": "^1.0.0",
+    // "example2": "npm:@company/example2@^1.0.0"
+  }
+}
