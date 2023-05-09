@@ -2,10 +2,13 @@ import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client } from "./modularCodeModel.js";
 
+let buildIndexFirstTime = true;
 export function buildRootIndex(
   client: Client,
   project: Project,
-  srcPath: string
+  rootIndexFile: SourceFile,
+  srcPath: string,
+  subfolder: string
 ) {
   const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(`${srcPath}/src/${clientName}.ts`);
@@ -16,20 +19,19 @@ export function buildRootIndex(
     );
   }
 
-  const file = project.createSourceFile(`${srcPath}/src/index.ts`, "", {
-    overwrite: true
-  });
+  exportModels(rootIndexFile, srcPath, subfolder);
+  exportOptionsInterfaces(client, rootIndexFile, srcPath, subfolder);
+  exportClassicalClient(client, rootIndexFile);
 
-  exportModels(file, srcPath);
-  exportOptionsInterfaces(client, file, srcPath);
-  exportClassicalClient(client, file);
-
-  file.addExportDeclarations([
-    {
-      moduleSpecifier: `./common/interfaces.js`,
-      namedExports: [`ClientOptions`, `RequestOptions`]
-    }
-  ]);
+  if (buildIndexFirstTime) {
+    rootIndexFile.addExportDeclarations([
+      {
+        moduleSpecifier: `./common/interfaces.js`,
+        namedExports: [`ClientOptions`, `RequestOptions`]
+      }
+    ]);
+    buildIndexFirstTime = false;
+  }
 }
 
 function exportClassicalClient(client: Client, indexFile: SourceFile) {
@@ -43,11 +45,16 @@ function exportClassicalClient(client: Client, indexFile: SourceFile) {
 function exportOptionsInterfaces(
   client: Client,
   indexFile: SourceFile,
-  srcPath: string
+  srcPath: string,
+  subfolder: string
 ) {
   const clientContextName = `${getClientName(client)}Context`;
   const project = indexFile.getProject();
-  const files = project.getSourceFiles(`${srcPath}/src/api/**`);
+  let filesPath = `${srcPath}/src/api/**`;
+  if (subfolder && subfolder !== "") {
+    filesPath = `${srcPath}/src/api/${subfolder}/**`;
+  }
+  const files = project.getSourceFiles(filesPath);
 
   for (const file of files) {
     if (file.getBaseNameWithoutExtension() === clientContextName) {
@@ -73,22 +80,31 @@ function exportOptionsInterfaces(
     }
 
     if (namedExports.length > 0) {
-      const moduleSpecifier = `./api/${file.getBaseNameWithoutExtension()}.js`;
+      let moduleSpecifier = `./api/${file.getBaseNameWithoutExtension()}.js`;
+      if (subfolder && subfolder !== "") {
+        moduleSpecifier = `./api/${subfolder}/${file.getBaseNameWithoutExtension()}.js`;
+      }
+      
       indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
     }
   }
 }
 
-function exportModels(indexFile: SourceFile, srcPath: string) {
+function exportModels(indexFile: SourceFile, srcPath: string, subfolder: string) {
   const project = indexFile.getProject();
-  const modelsFile = project.getSourceFile(`${srcPath}/src/api/models.ts`);
+  let modelFilePath = `${srcPath}/src/api/models.ts`;
+  let moduleSpecifier = "./api/models.js";
+  if (subfolder && subfolder !== "") {
+    modelFilePath = `${srcPath}/src/api/${subfolder}/models.ts`;
+    moduleSpecifier = `./api/${subfolder}/models.js`;
+  }
+  const modelsFile = project.getSourceFile(modelFilePath);
 
   if (!modelsFile) {
     return;
   }
 
   const namedExports = [...modelsFile.getExportedDeclarations().keys()];
-  const moduleSpecifier = "./api/models.js";
 
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }

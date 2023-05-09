@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestOptions } from "../../common/interfaces.js";
-import { FooContext as Client, isUnexpected } from "../../rest/foo/index.js";
+import { isUnexpected, Client } from "../../rest/foo/index.js";
 import { Resource, CustomPage } from "./models.js";
 
 export interface CreateOrUpdateOptions extends RequestOptions {
@@ -16,7 +16,7 @@ export interface CreateOrUpdateOptions extends RequestOptions {
 
 /** Creates a new resource or updates an existing one. */
 export async function createOrUpdate(
-  context: Client,
+  context: Client.FooContext,
   name: string,
   type: string,
   name: string,
@@ -50,7 +50,7 @@ export interface GetOptions extends RequestOptions {
 
 /** Gets the details of a resource. */
 export async function getOperation(
-  context: Client,
+  context: Client.FooContext,
   name: string,
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
@@ -78,7 +78,7 @@ export interface DeleteOptions extends RequestOptions {}
 
 /** Deletes a resource. */
 export async function deleteOperation(
-  context: Client,
+  context: Client.FooContext,
   name: string,
   options: DeleteOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -99,7 +99,7 @@ export interface ListOptions extends RequestOptions {
 
 /** Lists the existing resources. */
 export async function list(
-  context: Client,
+  context: Client.FooContext,
   options: ListOptions = { requestOptions: {} }
 ): Promise<CustomPage> {
   const result = await context

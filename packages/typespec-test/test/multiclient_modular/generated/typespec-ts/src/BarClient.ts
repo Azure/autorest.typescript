@@ -2,9 +2,22 @@
 // Licensed under the MIT license.
 
 import { ClientOptions } from "./common/interfaces.js";
+import {
+  createBar,
+  Client,
+  Resource,
+  getBinary,
+  getArray,
+  createWithHeaders,
+  deleteWithHeaders,
+  GetBinaryOptions,
+  GetArrayOptions,
+  CreateWithHeadersOptions,
+  DeleteWithHeadersOptions,
+} from "./api/bar/index.js";
 
 export class BarClient {
-  private _client: BarContext;
+  private _client: Client.BarContext;
 
   /** Bar */
   constructor(
@@ -16,22 +29,22 @@ export class BarClient {
   }
 
   getBinary(options: GetBinaryOptions = { requestOptions: {} }): Promise<void> {
-    return getBinary(this._client, context, options);
+    return getBinary(this._client, options);
   }
 
   getArray(options: GetArrayOptions = { requestOptions: {} }): Promise<void> {
-    return getArray(this._client, context, options);
+    return getArray(this._client, options);
   }
 
   createWithHeaders(
     options: CreateWithHeadersOptions = { requestOptions: {} }
   ): Promise<Resource> {
-    return createWithHeaders(this._client, context, options);
+    return createWithHeaders(this._client, options);
   }
 
   deleteWithHeaders(
     options: DeleteWithHeadersOptions = { requestOptions: {} }
   ): Promise<void> {
-    return deleteWithHeaders(this._client, context, options);
+    return deleteWithHeaders(this._client, options);
   }
 }

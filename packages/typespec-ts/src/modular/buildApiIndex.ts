@@ -5,18 +5,24 @@ export function buildApiIndexFile(
   srcPath: string,
   subfolder: string
 ) {
-  const apiFiles = project.getSourceFiles(`**/src/api/${subfolder}**`);
-  const indexFile = project.createSourceFile(
-    `${srcPath}/src/api/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }index.ts`
-  );
+  let apiFiles;
+  let indexFile;
+  if (subfolder && subfolder !== "") {
+    apiFiles = project.getSourceFiles(`**/src/api/${subfolder}/**`);
+    indexFile = project.createSourceFile(
+      `${srcPath}/src/api/${subfolder}/index.ts`
+    );
+  } else {
+    apiFiles = project.getSourceFiles(`**/src/api/**`);
+    indexFile = project.createSourceFile(
+      `${srcPath}/src/api/index.ts`
+    );
+  }
+
   for (const file of apiFiles) {
     const exports = [...file.getExportedDeclarations().keys()];
     indexFile.addExportDeclaration({
-      moduleSpecifier: `./${
-        subfolder && subfolder !== "" ? subfolder + "/" : ""
-      }${file.getBaseNameWithoutExtension()}.js`,
+      moduleSpecifier: `./${file.getBaseNameWithoutExtension()}.js`,
       namedExports: exports
     });
   }

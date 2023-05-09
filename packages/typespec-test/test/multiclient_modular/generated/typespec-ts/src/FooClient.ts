@@ -2,9 +2,23 @@
 // Licensed under the MIT license.
 
 import { ClientOptions } from "./common/interfaces.js";
+import {
+  createFoo,
+  Client,
+  Resource,
+  CustomPage,
+  createOrUpdate,
+  getOperation,
+  deleteOperation,
+  list,
+  CreateOrUpdateOptions,
+  GetOptions,
+  DeleteOptions,
+  ListOptions,
+} from "./api/foo/index.js";
 
 export class FooClient {
-  private _client: FooContext;
+  private _client: Client.FooContext;
 
   /** Cadl Foo */
   constructor(
@@ -22,24 +36,24 @@ export class FooClient {
     name: string,
     options: CreateOrUpdateOptions = { requestOptions: {} }
   ): Promise<Resource> {
-    return createOrUpdate(this._client, context, id, name, type, name, options);
+    return createOrUpdate(this._client, id, name, type, name, options);
   }
 
   getOperation(
     name: string,
     options: GetOptions = { requestOptions: {} }
   ): Promise<Resource> {
-    return getOperation(this._client, context, name, options);
+    return getOperation(this._client, name, options);
   }
 
   deleteOperation(
     name: string,
     options: DeleteOptions = { requestOptions: {} }
   ): Promise<void> {
-    return deleteOperation(this._client, context, name, options);
+    return deleteOperation(this._client, name, options);
   }
 
   list(options: ListOptions = { requestOptions: {} }): Promise<CustomPage> {
-    return list(this._client, context, options);
+    return list(this._client, options);
   }
 }

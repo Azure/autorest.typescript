@@ -18,7 +18,9 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
  * This operation builds and returns the function declaration for an operation.
  */
 export function getOperationFunction(
-  operation: Operation
+  operation: Operation,
+  clientType: string,
+  needUnexpectedHelper: boolean = true
 ): OptionalKind<FunctionDeclarationStructure> {
   const optionsType = getOperationOptionsName(operation);
   // Extract required parameters
@@ -46,7 +48,7 @@ export function getOperationFunction(
   );
 
   // Add context as the first parameter
-  parameters.unshift({ name: "context", type: "Client" });
+  parameters.unshift({ name: "context", type: clientType });
 
   // Add the options parameter
   parameters.push({
@@ -81,7 +83,10 @@ export function getOperationFunction(
     )}).${operationMethod}({${getRequestParameters(operation)}});`
   );
 
-  statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+  if (needUnexpectedHelper) {
+    statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+  }
+
 
   if (!response?.type?.properties) {
     statements.push(`return;`);

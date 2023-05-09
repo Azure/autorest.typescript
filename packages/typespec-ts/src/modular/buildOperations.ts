@@ -15,7 +15,8 @@ export function buildOperationFiles(
   client: Client,
   project: Project,
   srcPath: string = "src",
-  subfolder: string = ""
+  subfolder: string = "",
+  needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
     const fileName = operationGroup.className
@@ -30,22 +31,34 @@ export function buildOperationFiles(
       }${fileName}.ts`
     );
 
+    const namedImports: string[] = [];
+    let clientType = "Client";
+    if (needUnexpectedHelper) {
+      namedImports.push("isUnexpected");
+    }
+    if (subfolder && subfolder !== "") {
+      namedImports.push(`Client`);
+      clientType = `Client.${client.name}Context`;
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: `../../rest/${subfolder}/index.js`,
+          namedImports
+        }
+      ]);   
+    } else {
+      namedImports.push(`${client.name}Context as Client`);
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: `../rest/index.js`,
+          namedImports
+        }
+      ]);
+    }
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, operationGroupFile);
-      const operationDeclaration = getOperationFunction(o);
+      const operationDeclaration = getOperationFunction(o, clientType, needUnexpectedHelper);
       operationGroupFile.addFunction(operationDeclaration);
     });
-
-    operationGroupFile.addImportDeclarations([
-      {
-        moduleSpecifier: `../${
-          subfolder && subfolder !== "" ? "../" : ""
-        }rest/${
-          subfolder && subfolder !== "" ? subfolder + "/" : ""
-        }index.js`,
-        namedImports: [`${client.name}Context as Client`, "isUnexpected"]
-      }
-    ]);
 
     // Import models used from ./models.ts
     importModels(operationGroupFile, project);

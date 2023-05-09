@@ -47,6 +47,7 @@ import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
+import { hasUnexpectedHelper } from "@azure-tools/rlc-common";
 // import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
@@ -56,6 +57,8 @@ export async function $onEmit(context: EmitContext) {
   const clients = listClients(dpgContext);
   const srcPath: string = context.emitterOutputDir;
   let count = -1;
+
+  const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   for (const client of clients) {
     count++;
     const rlcModels = await transformRLCModel(
@@ -66,6 +69,7 @@ export async function $onEmit(context: EmitContext) {
       dpgContext
     );
     const pathToClear = rlcModels.srcPath;
+    needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
     clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
@@ -114,6 +118,9 @@ export async function $onEmit(context: EmitContext) {
     const project = new Project();
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
     buildSharedTypes(project, srcPath);
+    const rootIndexFile = project.createSourceFile(`${srcPath}/src/index.ts`, "", {
+      overwrite: true
+    });
     for (const client of modularCodeModel.clients) {
       let subfolder = "";
       if(modularCodeModel.clients.length > 1) {
@@ -122,10 +129,10 @@ export async function $onEmit(context: EmitContext) {
 
       buildClientContext(client, project, srcPath, subfolder);
       buildModels(modularCodeModel, project, srcPath, subfolder);
-      buildOperationFiles(client, project, srcPath, subfolder);
+      buildOperationFiles(client, project, srcPath, subfolder, needUnexpectedHelper.get(client.name));
       buildApiIndexFile(project, srcPath, subfolder);
-      buildClassicalClient(client, project, srcPath);
-      buildRootIndex(client, project, srcPath);
+      buildClassicalClient(client, project, srcPath, subfolder);
+      buildRootIndex(client, project, rootIndexFile, srcPath, subfolder);
 
       emitPackage(project, srcPath, modularCodeModel);
       emitTsConfig(project, srcPath, modularCodeModel);

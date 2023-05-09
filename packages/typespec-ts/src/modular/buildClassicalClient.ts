@@ -17,7 +17,8 @@ import { Client } from "./modularCodeModel.js";
 export function buildClassicalClient(
   client: Client,
   project: Project,
-  srcPath: string
+  srcPath: string,
+  subfolder: string
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
@@ -33,11 +34,20 @@ export function buildClassicalClient(
   });
 
   // Add the private client member. This will be the client context from /api
-  clientClass.addProperty({
-    name: "_client",
-    type: `${modularClientName}Context`,
-    scope: Scope.Private
-  });
+  if (subfolder && subfolder !== "") {
+    clientClass.addProperty({
+      name: "_client",
+      type: `Client.${modularClientName}Context`,
+      scope: Scope.Private
+    });
+  } else {
+    clientClass.addProperty({
+      name: "_client",
+      type: `${modularClientName}Context`,
+      scope: Scope.Private
+    });
+  }
+
 
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
@@ -50,14 +60,19 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   importCredential(clientFile);
-  buildClientOperationGroups(client, clientClass);
-  importAllModels(clientFile, srcPath);
+  buildClientOperationGroups(client, clientClass, subfolder);
+  importAllModels(clientFile, srcPath, subfolder);
   clientFile.fixUnusedIdentifiers();
 }
 
-function importAllModels(clientFile: SourceFile, srcPath: string) {
+function importAllModels(clientFile: SourceFile, srcPath: string, subfolder: string) {
   const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
+  let apiModels;
+  if (subfolder && subfolder !== "") {
+    apiModels = project.getSourceFile(`${srcPath}/src/api/${subfolder}/index.ts`);
+  } else {
+    apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
+  }
 
   if (!apiModels) {
     return;
@@ -65,10 +80,18 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
 
   const exported = [...apiModels.getExportedDeclarations().keys()];
 
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `./api/index.js`,
-    namedImports: exported
-  });
+  if (subfolder && subfolder !== "") {
+    clientFile.addImportDeclaration({
+      moduleSpecifier: `./api/${subfolder}/index.js`,
+      namedImports: exported
+    });
+  } else {
+    clientFile.addImportDeclaration({
+      moduleSpecifier: `./api/index.js`,
+      namedImports: exported
+    });
+  }
+
 }
 
 function importCredential(clientSourceFile: SourceFile): void {
@@ -80,13 +103,18 @@ function importCredential(clientSourceFile: SourceFile): void {
 
 function buildClientOperationGroups(
   client: Client,
-  clientClass: ClassDeclaration
+  clientClass: ClassDeclaration,
+  subfolder: string
 ) {
   for (const operationGroup of client.operationGroups) {
     const operationGroupName = toCamelCase(operationGroup.propertyName);
+    let clientType = "Client";
+    if (subfolder && subfolder !== "") {
+      clientType =  `Client.${clientClass.getName()}`;
+    }
     const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
       operationGroup.operations.map((operation) =>
-        getOperationFunction(operation)
+        getOperationFunction(operation,  clientType)
       );
 
     if (operationGroupName && operationGroupName !== "") {
@@ -116,9 +144,8 @@ function buildClientOperationGroups(
             parameters: d.parameters?.filter((p) => p.name !== "context"),
             statements: `return ${d.name}(${[
               "this._client",
-              ...[d.parameters?.map((p) => p.name)]
-            ]
-              .filter((p) => p !== "context")
+              ...[d.parameters?.map((p) => p.name)
+              .filter((p) => p !== "context")]]
               .join(",")})`
           };
 

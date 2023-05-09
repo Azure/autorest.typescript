@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestOptions } from "../../common/interfaces.js";
-import { BarContext as Client, isUnexpected } from "../../rest/bar/index.js";
+import { isUnexpected, Client } from "../../rest/bar/index.js";
 import { Resource } from "./models.js";
 
 export interface GetBinaryOptions extends RequestOptions {
@@ -12,7 +12,7 @@ export interface GetBinaryOptions extends RequestOptions {
 
 /** */
 export async function getBinary(
-  context: Client,
+  context: Client.BarContext,
   options: GetBinaryOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
@@ -37,7 +37,7 @@ export interface GetArrayOptions extends RequestOptions {
 
 /** */
 export async function getArray(
-  context: Client,
+  context: Client.BarContext,
   options: GetArrayOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context
@@ -62,7 +62,7 @@ export interface CreateWithHeadersOptions extends RequestOptions {
 
 /** */
 export async function createWithHeaders(
-  context: Client,
+  context: Client.BarContext,
   options: CreateWithHeadersOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await context
@@ -89,7 +89,7 @@ export interface DeleteWithHeadersOptions extends RequestOptions {}
 
 /** */
 export async function deleteWithHeaders(
-  context: Client,
+  context: Client.BarContext,
   options: DeleteWithHeadersOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await context.path("/cadl-bar/delete-with-headers").delete({});
