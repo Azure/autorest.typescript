@@ -12,7 +12,9 @@ steps:
   - script: npm run override-dev-version
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Override tsp version to latest dev"
-  - template: build.yml
+  - script: rush update --full && rush build
+    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+    displayName: "Re-build after update the config"
   - script: npm list
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "List current install version"
