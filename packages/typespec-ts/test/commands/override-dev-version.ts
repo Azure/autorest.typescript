@@ -44,6 +44,7 @@ async function main() {
         }
       }
     }
+    console.log(`New content type: ${content.toString()}`);
     // eslint-disable-next-line no-console
     console.log(`Updated ${packageJsonPath}`);
     await writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
