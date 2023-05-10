@@ -15,9 +15,6 @@ steps:
   - script: rush update --full && rush build
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Re-build after update the config"
-  - script: npm list
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "List current install version"
   - script: npm run test
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Generate RLC Test Clients from Cadl-ranch"
