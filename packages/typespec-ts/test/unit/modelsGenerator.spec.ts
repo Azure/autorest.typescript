@@ -739,11 +739,10 @@ describe("Input/output model type", () => {
         await verifyPropertyType("duration", "string");
       });
 
-      it.only("should handle duration with encode `seconds`", async () => {
+      it("should handle duration with encode `seconds`", async () => {
         const schemaOutput = await emitModelsFromCadl(
           `
         model SimpleModel {
-          // @Azure.ClientGenerator.Core.clientFormat("seconds")
           @encode("seconds", float64)
           prop: duration;
         }
@@ -778,7 +777,6 @@ describe("Input/output model type", () => {
         const schemaOutput = await emitModelsFromCadl(
           `
         model SimpleModel {
-          // @Azure.ClientGenerator.Core.clientFormat("iso8601")
           @encode("ISO8601")
           prop: duration;
         }
@@ -791,7 +789,6 @@ describe("Input/output model type", () => {
         );
         assert.ok(schemaOutput);
         const { inputModelFile, outputModelFile } = schemaOutput!;
-        console.log(inputModelFile, outputModelFile);
         assertEqualContent(
           inputModelFile?.content!,
           `
@@ -812,7 +809,7 @@ describe("Input/output model type", () => {
     });
 
     describe("as query parameter", () => {
-      it("should handle duration without format", async () => {
+      it("should handle duration without encode", async () => {
         const schemaOutput = await emitParameterFromCadl(`
         @route("/duration/query/default")
         @get
@@ -822,14 +819,14 @@ describe("Input/output model type", () => {
         assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
       });
 
-      it("should handle duration with format `seconds`", async () => {
+      it("should handle duration with encode `seconds`", async () => {
         const schemaOutput = await emitParameterFromCadl(
           `
         @route("/duration/query/seconds")
         @get
         op getModel(
           @query
-          @Azure.ClientGenerator.Core.clientFormat("seconds")
+          @encode("seconds", float64)
           input: duration): NoContentResponse;
         `,
           false,
@@ -840,14 +837,14 @@ describe("Input/output model type", () => {
         assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
       });
 
-      it("should handle duration with format `iso8601`", async () => {
+      it("should handle duration with encode `iso8601`", async () => {
         const schemaOutput = await emitParameterFromCadl(
           `
         @route("/duration/query/iso8601")
         @get
         op getModel(
           @query
-          @Azure.ClientGenerator.Core.clientFormat("iso8601")
+          @encode("iso8601")
           input: duration): NoContentResponse;
         `,
           false,

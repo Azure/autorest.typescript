@@ -40,7 +40,8 @@ import {
   Service,
   listServices,
   Program,
-  getEncode
+  getEncode,
+  EncodeData
 } from "@typespec/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -63,7 +64,6 @@ import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
   SdkContext,
-  getClientFormat,
   getDefaultApiVersion,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
@@ -80,7 +80,7 @@ export function getSchemaForType(
   typeInput: Type,
   usage?: SchemaContext[],
   needRef: boolean = false,
-  reletiveProperty?: ModelProperty
+  relevantProperty?: ModelProperty
 ) {
   const type = getEffectiveModelFromType(program, typeInput);
 
@@ -114,7 +114,7 @@ export function getSchemaForType(
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
-    return getSchemaForScalar(program, dpgContext, type, reletiveProperty);
+    return getSchemaForScalar(program, dpgContext, type, relevantProperty);
   }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
@@ -167,14 +167,9 @@ function getSchemaForScalar(
   program: Program,
   dpgContext: SdkContext,
   scalar: Scalar,
-  reletiveProperty?: ModelProperty
+  relevantProperty?: ModelProperty
 ) {
-  let result = getSchemaForStdScalar(
-    program,
-    dpgContext,
-    scalar,
-    reletiveProperty
-  );
+  let result = getSchemaForStdScalar(program, scalar, relevantProperty);
   if (!result && scalar.baseScalar) {
     result = getSchemaForScalar(program, dpgContext, scalar.baseScalar);
   }
@@ -827,20 +822,26 @@ function isUnionType(type: Type) {
 
 function getSchemaForStdScalar(
   program: Program,
-  dpgContext: SdkContext,
   cadlType: Scalar,
-  reletiveProperty?: ModelProperty
+  relevantProperty?: ModelProperty
 ) {
   if (!program.checker.isStdType(cadlType)) {
     return undefined;
   }
-  const name = cadlType.name;
-  let encodeData;
-  if (reletiveProperty) {
-    encodeData = getEncode(program, reletiveProperty);
-  }
-  encodeData = encodeData;
 
+  /**
+   * lookup for @encode decorator
+   *  if absent use typespec type (or default way of serializing that type)
+   *  if present respect type provided in @encode
+   */
+  let encodeData: EncodeData | undefined;
+  if (relevantProperty) {
+    encodeData = getEncode(program, relevantProperty);
+  }
+  if (encodeData) {
+    cadlType = encodeData.type;
+  }
+  const name = cadlType.name;
   const description = getSummary(program, cadlType);
   switch (name) {
     case "bytes":
@@ -935,23 +936,8 @@ function getSchemaForStdScalar(
         outputTypeName: "string"
       };
     case "duration":
-      return getSchemaForDuration(dpgContext, description, reletiveProperty);
+      return { type: "string", format: "duration", description };
   }
-}
-
-function getSchemaForDuration(
-  dpgContext: SdkContext,
-  description?: string,
-  reletiveProperty?: ModelProperty
-) {
-  const defaultSchema = { type: "string", format: "duration", description };
-  if (!reletiveProperty) {
-    return defaultSchema;
-  }
-  if (getClientFormat(dpgContext, reletiveProperty) === "seconds") {
-    return { type: "number", format: "float", description };
-  }
-  return defaultSchema;
 }
 
 export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
