@@ -32,6 +32,14 @@ import {
   DictionaryStringPutParameters,
   NeverGetParameters,
   NeverPutParameters,
+  UnknownStringGetParameters,
+  UnknownStringPutParameters,
+  UnknownIntGetParameters,
+  UnknownIntPutParameters,
+  UnknownDictGetParameters,
+  UnknownDictPutParameters,
+  UnknownArrayGetParameters,
+  UnknownArrayPutParameters,
 } from "./parameters";
 import {
   BooleanModelGet200Response,
@@ -64,6 +72,14 @@ import {
   DictionaryStringPut204Response,
   NeverGet200Response,
   NeverPut204Response,
+  UnknownStringGet200Response,
+  UnknownStringPut204Response,
+  UnknownIntGet200Response,
+  UnknownIntPut204Response,
+  UnknownDictGet200Response,
+  UnknownDictPut204Response,
+  UnknownArrayGet200Response,
+  UnknownArrayPut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -204,6 +220,50 @@ export interface NeverGet {
   put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
 }
 
+export interface UnknownStringGet {
+  /** Get call */
+  get(
+    options?: UnknownStringGetParameters
+  ): StreamableMethod<UnknownStringGet200Response>;
+  /** Put operation */
+  put(
+    options: UnknownStringPutParameters
+  ): StreamableMethod<UnknownStringPut204Response>;
+}
+
+export interface UnknownIntGet {
+  /** Get call */
+  get(
+    options?: UnknownIntGetParameters
+  ): StreamableMethod<UnknownIntGet200Response>;
+  /** Put operation */
+  put(
+    options: UnknownIntPutParameters
+  ): StreamableMethod<UnknownIntPut204Response>;
+}
+
+export interface UnknownDictGet {
+  /** Get call */
+  get(
+    options?: UnknownDictGetParameters
+  ): StreamableMethod<UnknownDictGet200Response>;
+  /** Put operation */
+  put(
+    options: UnknownDictPutParameters
+  ): StreamableMethod<UnknownDictPut204Response>;
+}
+
+export interface UnknownArrayGet {
+  /** Get call */
+  get(
+    options?: UnknownArrayGetParameters
+  ): StreamableMethod<UnknownArrayGet200Response>;
+  /** Put operation */
+  put(
+    options: UnknownArrayPutParameters
+  ): StreamableMethod<UnknownArrayPut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/type/property/value-types/boolean' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/boolean"): BooleanModelGet;
@@ -235,6 +295,14 @@ export interface Routes {
   (path: "/type/property/value-types/dictionary/string"): DictionaryStringGet;
   /** Resource for '/type/property/value-types/never' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/never"): NeverGet;
+  /** Resource for '/type/property/value-types/unknown/string' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/unknown/string"): UnknownStringGet;
+  /** Resource for '/type/property/value-types/unknown/int' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/unknown/int"): UnknownIntGet;
+  /** Resource for '/type/property/value-types/unknown/dict' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/unknown/dict"): UnknownDictGet;
+  /** Resource for '/type/property/value-types/unknown/array' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/unknown/array"): UnknownArrayGet;
 }
 
 export type TypePropertyValueTypesClient = Client & {
