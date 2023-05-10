@@ -7,23 +7,16 @@ schedules:
         - main
 pr: none
 
-variables:
-  PythonVersion: "3.10"
-
 steps:
   - script: npm install -g @typespec/compiler@next
     displayName: Install @typespec/compiler@next
-
+  - script: npm run override-dev-version
+    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+    displayName: "Override tsp version to latest dev"
   - template: build.yml
-  - script: npm run check-format
-    workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
-    displayName: "Lint check for rlc common lib"
-  - script: npm run lint
+  - script: npm list
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Lint check for Cadl emitter"
-  - script: npm run check-format
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Format check for Cadl emitter"
+    displayName: "List current install version"
   - script: npm run test
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Generate RLC Test Clients from Cadl-ranch"
