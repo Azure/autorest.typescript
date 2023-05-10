@@ -7,13 +7,6 @@ schedules:
         - main
 pr: none
 
-resources:
-  repositories:
-    - repository: azure-sdk-tools
-      type: github
-      endpoint: Azure
-      name: Azure/azure-sdk-tools
-
 variables:
   PythonVersion: "3.10"
 
