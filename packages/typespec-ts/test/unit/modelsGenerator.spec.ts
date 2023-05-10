@@ -878,6 +878,82 @@ describe("Input/output model type", () => {
         outputType
       });
     });
+
+    it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
+      const inputType = "Date | string";
+      const outputType = "string";
+      await verifyPropertyType("offsetDateTime ", inputType, {
+        outputType
+      });
+    });
+
+    it("should handle datetime with encode `unixTimestamp`", async () => {
+      const schemaOutput = await emitModelsFromCadl(
+        `
+      model SimpleModel {
+        @encode("unixTimestamp", int32)
+        createdAt: utcDateTime;
+      }
+      @route("/datetime/prop/unixTimestamp")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": number;
+      }
+      `
+      );
+    });
+
+    it("should handle datetime with encode `rfc3339`", async () => {
+      const schemaOutput = await emitModelsFromCadl(
+        `
+        model SimpleModel {
+          @encode("rfc3339")
+          createdAt: offsetDateTime;
+        }
+        @route("/datetime/prop/rfc3339")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": Date | string;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": string;
+      }
+      `
+      );
+    });
   });
   describe("record generation", () => {
     it("should handle Record<int32> -> Record<string, number>", async () => {

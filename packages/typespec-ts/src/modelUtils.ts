@@ -834,12 +834,11 @@ function getSchemaForStdScalar(
    *  if absent use typespec type (or default way of serializing that type)
    *  if present respect type provided in @encode
    */
-  let encodeData: EncodeData | undefined;
   if (relevantProperty) {
-    encodeData = getEncode(program, relevantProperty);
-  }
-  if (encodeData) {
-    cadlType = encodeData.type;
+    const encodeData = getEncode(program, relevantProperty);
+    if (encodeData && isEncodeTypeEffective(cadlType, encodeData)) {
+      cadlType = encodeData.type;
+    }
   }
   const name = cadlType.name;
   const description = getSummary(program, cadlType);
@@ -927,6 +926,14 @@ function getSchemaForStdScalar(
         typeName: "Date | string",
         outputTypeName: "string"
       };
+    case "offsetDateTime":
+      return {
+        type: "string",
+        format: "date-time",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "plainTime":
       return {
         type: "string",
@@ -938,6 +945,28 @@ function getSchemaForStdScalar(
     case "duration":
       return { type: "string", format: "duration", description };
   }
+}
+
+function isEncodeTypeEffective(
+  type: Scalar,
+  encodeData: EncodeData | undefined
+) {
+  if (!encodeData) {
+    return false;
+  }
+  const datetimeTypes = [
+    "plaindate",
+    "utcdatetime",
+    "offsetdatetime",
+    "plaintime"
+  ];
+  if (
+    datetimeTypes.includes(type.name.toLowerCase()) &&
+    encodeData.type.name === "string"
+  ) {
+    return false;
+  }
+  return true;
 }
 
 export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
