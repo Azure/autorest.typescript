@@ -1,11 +1,9 @@
-trigger: none
 schedules:
   - cron: "0 0 * * *"
     displayName: Daily midnight build
     branches:
       include:
         - main
-pr: none
 
 steps:
   - script: npm install -g @typespec/compiler@next
