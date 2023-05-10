@@ -18,6 +18,10 @@ import {
   CollectionsModelPropertyOutput,
   DictionaryStringPropertyOutput,
   NeverPropertyOutput,
+  UnknownStringPropertyOutput,
+  UnknownIntPropertyOutput,
+  UnknownDictPropertyOutput,
+  UnknownArrayPropertyOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -182,5 +186,49 @@ export interface NeverGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface NeverPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnknownStringGet200Response extends HttpResponse {
+  status: "200";
+  body: UnknownStringPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnknownStringPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnknownIntGet200Response extends HttpResponse {
+  status: "200";
+  body: UnknownIntPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnknownIntPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnknownDictGet200Response extends HttpResponse {
+  status: "200";
+  body: UnknownDictPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnknownDictPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface UnknownArrayGet200Response extends HttpResponse {
+  status: "200";
+  body: UnknownArrayPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface UnknownArrayPut204Response extends HttpResponse {
   status: "204";
 }

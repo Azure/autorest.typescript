@@ -84,19 +84,6 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-tools/cadl-ranch-expect/0.2.5_iaqsnjlmblwjtzjnlq5lqg6yfu:
-    resolution: {integrity: sha512-BKTXkYAZGqgwsnx/5zUyTWAS+agkDJUiibvzXs017bTAPj1Qk/tv0/AcC3PgRKY5V+Uzsc2sycSs2qr4vlmnoA==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.43.0
-      '@typespec/http': ~0.43.1
-      '@typespec/rest': ~0.43.0
-    dependencies:
-      '@typespec/compiler': 0.43.0
-      '@typespec/http': 0.43.1_@typespec+compiler@0.43.0
-      '@typespec/rest': 0.43.0_@typespec+compiler@0.43.0
-    dev: false
-
   /@azure-tools/cadl-ranch-expect/0.3.0_mzljbbhbesufkmbhu4nneggrsm:
     resolution: {integrity: sha512-+kqMvlAHChvz4+h9FYsZfPp5KigFYdwH+FzdUWlB5NN3WjK+X8A5CuXh2MLCVd53tiQr3qv2Ji5NlGMlhyH4Qw==}
     engines: {node: '>=16.0.0'}
@@ -112,7 +99,7 @@ packages:
       '@typespec/versioning': 0.43.0
     dev: false
 
-  /@azure-tools/cadl-ranch-specs/0.14.10_27exdqpk7jqplr6q2ag5gd2r3m:
+  /@azure-tools/cadl-ranch-specs/0.14.10_3mq2y42xicopn7ggtffz6ulioi:
     resolution: {integrity: sha512-BkBRnh6pI/vWoycYPxOaKNlgob1pdZPZdv5LoUovsInShS4X6YHJ58GWYSxSaAGDWMwjd2YJ9EwBY9mc9cwzfQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -125,7 +112,7 @@ packages:
     dependencies:
       '@azure-tools/cadl-ranch': 0.4.13_v2ouiyhogteggkficaon344hv4
       '@azure-tools/cadl-ranch-api': 0.2.5
-      '@azure-tools/cadl-ranch-expect': 0.2.5_iaqsnjlmblwjtzjnlq5lqg6yfu
+      '@azure-tools/cadl-ranch-expect': 0.3.0_mzljbbhbesufkmbhu4nneggrsm
       '@azure-tools/typespec-azure-core': 0.29.0_iaqsnjlmblwjtzjnlq5lqg6yfu
       '@typespec/compiler': 0.43.0
       '@typespec/http': 0.43.1_@typespec+compiler@0.43.0
@@ -5975,14 +5962,14 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-ISNDKaWYL3xjYhJGFezAK+3ASn/gtoJqMmak5QkHuV/AZu6jSnH/CpvheV9O53/Dq9XU4FwS2L0OyWnoFjuOMQ==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-bFwFNIZuiqlYdT6ORGBelCuxCFKuBXjlnMGyq5hCIEdhgnS3+TvV1eo+QRh+GwqYLrC4kvhkCZAcOKzxO2v9hg==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
       '@azure-rest/core-client': 1.1.3
       '@azure-tools/cadl-ranch': 0.4.13_v2ouiyhogteggkficaon344hv4
-      '@azure-tools/cadl-ranch-expect': 0.2.5_iaqsnjlmblwjtzjnlq5lqg6yfu
-      '@azure-tools/cadl-ranch-specs': 0.14.10_27exdqpk7jqplr6q2ag5gd2r3m
+      '@azure-tools/cadl-ranch-expect': 0.3.0_mzljbbhbesufkmbhu4nneggrsm
+      '@azure-tools/cadl-ranch-specs': 0.14.10_3mq2y42xicopn7ggtffz6ulioi
       '@azure-tools/typespec-autorest': 0.29.0_3qd6vjcxydiptupyirxyadoxky
       '@azure-tools/typespec-azure-core': 0.29.0_iaqsnjlmblwjtzjnlq5lqg6yfu
       '@azure-tools/typespec-client-generator-core': 0.29.0_iaqsnjlmblwjtzjnlq5lqg6yfu
