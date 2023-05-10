@@ -15,6 +15,9 @@ steps:
   - script: rush update --full && rush build
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Re-build after update the config"
-  - script: npm run test
+  - script: npm run unit-test
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Run Cadl-ranch test cases"
+    displayName: "Run all unit test cases"
+  - script: npm run integration-test-ci
+    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+    displayName: "Run all Cadl-ranch test cases"
