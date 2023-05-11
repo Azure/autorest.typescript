@@ -5565,7 +5565,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /source-map-loader/1.1.3_webpack@5.82.1:
+  /socks-proxy-agent/7.0.0:
     resolution: {integrity: sha512-Fgl0YPZ902wEsAyiQ+idGd1A7rSFx/ayC1CQVMw5P+EQx2V0SgpGtf6OKFhVjPflPUl9YMmEOnmfjCdMUsygww==}
     engines: {node: '>= 10'}
     dependencies:
@@ -5835,7 +5835,7 @@ packages:
       readable-stream: 3.6.2
     dev: false
 
-  /terser-webpack-plugin/5.3.8_webpack@5.82.1:
+  /tar/6.1.14:
     resolution: {integrity: sha512-piERznXu0U7/pW7cdSn7hjqySIVTYT6F76icmFk7ptU7dDYlXTm5r9A6K04R2vU3olYgoKeo1Cg3eeu5nhftAw==}
     engines: {node: '>=10'}
     dependencies:
@@ -6819,7 +6819,7 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-tmbOedLCvpid5VKbc+jheY04bjOQ9PnWa8a9+882szpFpyylYeICv3xtlhhVH8/mNyJGndcAXlbWOhVFq01G6w==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-51Sh4iHEVEauoFBwA/6Y3k9kwfXXqSDuYuMSpPQZN/0mi6zEBDJ0fgmLKcfsjgngH4M6duQGE4iJ0keiCXX07w==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
