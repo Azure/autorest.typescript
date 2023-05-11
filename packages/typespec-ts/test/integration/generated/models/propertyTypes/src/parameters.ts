@@ -18,6 +18,10 @@ import {
   CollectionsModelProperty,
   DictionaryStringProperty,
   NeverProperty,
+  UnknownStringProperty,
+  UnknownIntProperty,
+  UnknownDictProperty,
+  UnknownArrayProperty,
 } from "./models";
 
 export type BooleanModelGetParameters = RequestParameters;
@@ -147,3 +151,39 @@ export interface NeverPutBodyParam {
 }
 
 export type NeverPutParameters = NeverPutBodyParam & RequestParameters;
+export type UnknownStringGetParameters = RequestParameters;
+
+export interface UnknownStringPutBodyParam {
+  /** body */
+  body: UnknownStringProperty;
+}
+
+export type UnknownStringPutParameters = UnknownStringPutBodyParam &
+  RequestParameters;
+export type UnknownIntGetParameters = RequestParameters;
+
+export interface UnknownIntPutBodyParam {
+  /** body */
+  body: UnknownIntProperty;
+}
+
+export type UnknownIntPutParameters = UnknownIntPutBodyParam &
+  RequestParameters;
+export type UnknownDictGetParameters = RequestParameters;
+
+export interface UnknownDictPutBodyParam {
+  /** body */
+  body: UnknownDictProperty;
+}
+
+export type UnknownDictPutParameters = UnknownDictPutBodyParam &
+  RequestParameters;
+export type UnknownArrayGetParameters = RequestParameters;
+
+export interface UnknownArrayPutBodyParam {
+  /** body */
+  body: UnknownArrayProperty;
+}
+
+export type UnknownArrayPutParameters = UnknownArrayPutBodyParam &
+  RequestParameters;

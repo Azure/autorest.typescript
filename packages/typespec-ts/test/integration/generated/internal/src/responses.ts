@@ -3,18 +3,31 @@
 
 import { HttpResponse } from "@azure-rest/core-client";
 import {
+  SharedModelOutput,
+  PublicModelOutput,
   InternalModelOutput,
-  ModelOnlyUsedByInternalOperationOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface GetInternal200Response extends HttpResponse {
+export interface SharedPublic200Response extends HttpResponse {
   status: "200";
-  body: InternalModelOutput;
+  body: SharedModelOutput;
 }
 
 /** The request has succeeded. */
-export interface PostInternal200Response extends HttpResponse {
+export interface SharedInternal200Response extends HttpResponse {
   status: "200";
-  body: ModelOnlyUsedByInternalOperationOutput;
+  body: SharedModelOutput;
+}
+
+/** The request has succeeded. */
+export interface PublicOnly200Response extends HttpResponse {
+  status: "200";
+  body: PublicModelOutput;
+}
+
+/** The request has succeeded. */
+export interface InternalOnly200Response extends HttpResponse {
+  status: "200";
+  body: InternalModelOutput;
 }
