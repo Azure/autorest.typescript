@@ -11,10 +11,16 @@ steps:
   - template: build.yml
   - script: npm run override-dev-version
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Override tsp version to latest dev"
+    displayName: "Override pnpm-config version to latest dev"
+  - script: npx @azure-tools/typespec-bump-deps package.json
+    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+    displayName: "Override package.json version to latest dev"
   - script: rush update --full && rush build
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Re-build after update the config"
+  - script: npm list
+    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+    displayName: "List the current dependency"
   - script: npm run unit-test
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Run all unit test cases"
