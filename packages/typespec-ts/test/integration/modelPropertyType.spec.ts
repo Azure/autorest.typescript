@@ -71,6 +71,22 @@ const testedTypes: TypeDetail[] = [
   {
     type: "never",
     defaultValue: undefined
+  },
+  {
+    type: "unknown/string",
+    defaultValue: "hello"
+  },
+  {
+    type: "unknown/int",
+    defaultValue: 42
+  },
+  {
+    type: "unknown/dict",
+    defaultValue: { k1: "hello", k2: 42 }
+  },
+  {
+    type: "unknown/array",
+    defaultValue: ["hello", "world"]
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {
