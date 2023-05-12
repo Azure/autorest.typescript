@@ -53,6 +53,12 @@ export interface LockTokenOutput {
   lockToken: string;
 }
 
+/** Lock token input formatting. */
+export interface LockTokenInputOutput {
+  /** LockToken */
+  lockTokens: string[];
+}
+
 /** Details of the LockTokens information. This is used for both Acknowledge and Release operation response. */
 export interface LockTokensResponseOutput {
   /** Array of LockToken values for failed cloud events. */

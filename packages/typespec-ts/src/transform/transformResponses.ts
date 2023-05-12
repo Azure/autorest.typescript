@@ -79,9 +79,9 @@ export function transformToResponseTypes(
         description: resp.description
       };
       // transform header
-      const headers = transformHeaders(program, resp);
+      const headers = transformHeaders(program, dpgContext, resp);
       // transform body
-      const body = transformBody(program, resp, inputImportedSet);
+      const body = transformBody(program, dpgContext, resp, inputImportedSet);
       rlcOperationUnit.responses.push({
         ...rlcResponseUnit,
         headers,
@@ -110,6 +110,7 @@ export function transformToResponseTypes(
  */
 function transformHeaders(
   program: Program,
+  dpgContext: SdkContext,
   response: HttpOperationResponse
 ): ResponseHeaderSchema[] | undefined {
   if (!response.responses.length) {
@@ -131,7 +132,7 @@ function transformHeaders(
       if (!value) {
         continue;
       }
-      const typeSchema = getSchemaForType(program, value!.type, [
+      const typeSchema = getSchemaForType(program, dpgContext, value!.type, [
         SchemaContext.Output
       ]) as Schema;
       const type = getTypeName(typeSchema);
@@ -150,6 +151,7 @@ function transformHeaders(
 
 function transformBody(
   program: Program,
+  dpgContext: SdkContext,
   response: HttpOperationResponse,
   importedModels: Set<string>
 ) {
@@ -174,7 +176,7 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    const bodySchema = getSchemaForType(program, body!.type, [
+    const bodySchema = getSchemaForType(program, dpgContext, body!.type, [
       SchemaContext.Output
     ]) as Schema;
     if (bodySchema.fromCore) {

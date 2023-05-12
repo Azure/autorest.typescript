@@ -48,13 +48,13 @@ export function transformPaths(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformOperation(program, route, paths, dpgContext, operationGroup);
+      transformOperation(program, dpgContext, route, paths, operationGroup);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    transformOperation(program, route, paths, dpgContext);
+    transformOperation(program, dpgContext, route, paths);
   }
   return paths;
 }
@@ -97,9 +97,10 @@ function getResponseTypes(
 
 function transformOperation(
   program: Program,
+  dpgContext: SdkContext,
   route: HttpOperation,
   paths: Paths,
-  dpgContext: SdkContext,
+
   operationGroup?: SdkOperationGroup
 ) {
   const respNames = [];
@@ -148,8 +149,12 @@ function transformOperation(
           return {
             name: p.name,
             type: p.param.sourceProperty
-              ? getSchemaForType(program, p.param.sourceProperty?.type).type
-              : getSchemaForType(program, p.param.type).type,
+              ? getSchemaForType(
+                  program,
+                  dpgContext,
+                  p.param.sourceProperty?.type
+                ).type
+              : getSchemaForType(program, dpgContext, p.param.type).type,
             description: getDoc(program, p.param)
           };
         }),

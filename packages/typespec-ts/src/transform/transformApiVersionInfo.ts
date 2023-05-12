@@ -10,7 +10,8 @@ import {
   ApiVersionInfo,
   UrlInfo,
   extractPathApiVersion,
-  extractDefinedPosition
+  extractDefinedPosition,
+  SchemaContext
 } from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
@@ -71,7 +72,14 @@ function getOperationQueryApiVersion(
         (p) => p.type === "query" && isApiVersion(dpgContext, p)
       );
       params.map((p) => {
-        const type = getSchemaForType(program, p.param.type);
+        const type = getSchemaForType(
+          program,
+          dpgContext,
+          p.param.type,
+          [SchemaContext.Exception, SchemaContext.Input],
+          false,
+          p.param
+        );
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
@@ -87,7 +95,14 @@ function getOperationQueryApiVersion(
       (p) => p.type === "query" && isApiVersion(dpgContext, p)
     );
     params.map((p) => {
-      const type = getSchemaForType(program, p.param.type);
+      const type = getSchemaForType(
+        program,
+        dpgContext,
+        p.param.type,
+        [SchemaContext.Exception, SchemaContext.Input],
+        false,
+        p.param
+      );
       const typeString = JSON.stringify(trimUsage(type));
       apiVersionTypes.add(typeString);
     });

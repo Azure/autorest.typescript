@@ -3,13 +3,17 @@ import { join, dirname } from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
+const MAX_BUFFER = 10 * 1024 * 1024;
 function generate(path) {
   const command = `cd ${path} && npx tsp compile ./spec`;
   console.log(command);
-  const result = execSync(command);
-  console.log("TypeSpec output:", result.toString());
-  if (result.stderr) {
-    console.log(Error(result.stderr));
+  try {
+    const result = execSync(command, {
+      maxBuffer: MAX_BUFFER
+    });
+    console.log("Generated output:", result.toString());
+  } catch (e) {
+    console.error(Error(e.stdout.toString()));
     process.exitCode = 1;
   }
 }
@@ -18,7 +22,9 @@ function build(path) {
   const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
   console.log(command);
   try {
-    const result = execSync(command);
+    const result = execSync(command, {
+      maxBuffer: MAX_BUFFER
+    });
     console.log("build output:", result.toString());
   } catch (e) {
     console.log(Error(e.stdout.toString()));

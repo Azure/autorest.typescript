@@ -4,9 +4,8 @@ import "@typespec/versioning";
 import "@azure-tools/typespec-autorest";
 import "@azure-tools/typespec-azure-core";
 
-enum ServiceApiVersions {
-  v2023_06_01_preview: "2023-06-01-preview"
-}
+
+
 
 @useAuth(
   ApiKeyAuth<ApiKeyLocation.header, "SharedAccessKey"> | OAuth2Auth<[{
@@ -17,8 +16,7 @@ enum ServiceApiVersions {
 )
 
 @service({
-  title: "AzureMessagingEventGridClient",
-  version: "2023-06-01-preview"
+  title: "AzureMessagingEventGridClient"
 })
 
 //
@@ -47,6 +45,11 @@ namespace AzureMessagingEventGrid {
   using TypeSpec.Versioning;
   using Azure.Core;
   using Azure.Core.Foundations;
+
+  enum ServiceApiVersions {
+    @useDependency(Azure.Core.Versions.v1_0_Preview_1)
+    v2023_06_01_preview: "2023-06-01-preview"
+  }
 
   @doc("Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema.")
   model CloudEventEvent {
@@ -138,7 +141,8 @@ namespace AzureMessagingEventGrid {
   // POST https://{namespaceName}.{region}.eventgrid.azure.net/topics/{topicName}:publish?api-version={apiVersion}}
 
   @doc("Publish Single Cloud Event to namespace topic.")
-  @route("/topics/{topicName}:publish", {shared: true})
+  @route("/topics/{topicName}:publish")
+  @sharedRoute
   @post op PublishCloudEvent is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")
@@ -155,7 +159,8 @@ namespace AzureMessagingEventGrid {
 
 
   @doc("Publish Batch of Cloud Events to namespace topic.")
-  @route("/topics/{topicName}:publish", {shared: true})
+  @route("/topics/{topicName}:publish")
+  @sharedRoute
   @post op PublishBatchOfCloudEvents is Azure.Core.RpcOperation<{
     @doc("content type")
     @header("content-type")

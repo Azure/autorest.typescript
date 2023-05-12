@@ -84,13 +84,18 @@ export function transformToParameterTypes(
     // transform path param
     const pathParams = transformPathParameters();
     // transform header param includeing content-type
-    const headerParams = transformHeaderParameters(program, parameters);
+    const headerParams = transformHeaderParameters(
+      program,
+      dpgContext,
+      parameters
+    );
     // transform body
     const bodyType = getBodyType(program, route);
     let bodyParameter = undefined;
     if (bodyType) {
       bodyParameter = transformBodyParameters(
         program,
+        dpgContext,
         parameters,
         headerParams,
         outputImportedSet,
@@ -108,13 +113,18 @@ export function transformToParameterTypes(
 
 function getParameterMetadata(
   program: Program,
+  dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter
 ): ParameterMetadata {
-  const schema = getSchemaForType(program, parameter.param.type, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]) as Schema;
+  const schema = getSchemaForType(
+    program,
+    dpgContext,
+    parameter.param.type,
+    [SchemaContext.Exception, SchemaContext.Input],
+    false,
+    parameter.param
+  ) as Schema;
   let type = getTypeName(schema);
   const name = getParameterName(parameter.name);
   let description =
@@ -175,7 +185,7 @@ function transformQueryParameters(
     return [];
   }
   return queryParameters.map((qp) =>
-    getParameterMetadata(program, "query", qp)
+    getParameterMetadata(program, dpgContext, "query", qp)
   );
 }
 
@@ -191,6 +201,7 @@ function transformPathParameters() {
 
 function transformHeaderParameters(
   program: Program,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
@@ -200,12 +211,13 @@ function transformHeaderParameters(
     return [];
   }
   return headerParameters.map((qp) =>
-    getParameterMetadata(program, "header", qp)
+    getParameterMetadata(program, dpgContext, "header", qp)
   );
 }
 
 function transformBodyParameters(
   program: Program,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
   importedModels: Set<string>,
@@ -224,6 +236,7 @@ function transformBodyParameters(
     // Case 1: Handle the normal case without binary or form data
     return transformNormalBody(
       program,
+      dpgContext,
       bodyType,
       parameters,
       importedModels,
@@ -236,6 +249,7 @@ function transformBodyParameters(
     // Case 3: Handle the form data
     return transformMultiFormBody(
       program,
+      dpgContext,
       bodyType,
       parameters,
       importedModels
@@ -245,6 +259,7 @@ function transformBodyParameters(
 
 function transformNormalBody(
   program: Program,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
@@ -252,16 +267,18 @@ function transformNormalBody(
 ) {
   const description = extractDescriptionsFromBody(
     program,
+    dpgContext,
     bodyType,
     parameters
   ).join("\n\n");
   const type = extractNameFromCadlType(
     program,
+    dpgContext,
     bodyType,
     importedModels,
     headers
   );
-  const schema = getSchemaForType(program, bodyType);
+  const schema = getSchemaForType(program, dpgContext, bodyType);
   return {
     isPartialBody: false,
     body: [
@@ -304,6 +321,7 @@ function transformBinaryBody(
 
 function transformMultiFormBody(
   program: Program,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>
@@ -311,9 +329,15 @@ function transformMultiFormBody(
   const isModelBody = bodyType.kind === "Model";
 
   if (!isModelBody) {
-    const type = extractNameFromCadlType(program, bodyType, importedModels);
+    const type = extractNameFromCadlType(
+      program,
+      dpgContext,
+      bodyType,
+      importedModels
+    );
     const description = extractDescriptionsFromBody(
       program,
+      dpgContext,
       bodyType,
       parameters
     ).join("\n\n");
@@ -338,10 +362,14 @@ function transformMultiFormBody(
 
   for (const [paramName, paramType] of bodyType.properties) {
     let type: string;
-    const bodySchema = getSchemaForType(program, paramType.type, [
-      SchemaContext.Input,
-      SchemaContext.Exception
-    ]) as any;
+    const bodySchema = getSchemaForType(
+      program,
+      dpgContext,
+      paramType.type,
+      [SchemaContext.Exception, SchemaContext.Input],
+      false,
+      paramType
+    ) as any;
     if (bodySchema?.format === "byte") {
       type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
     } else if (bodySchema?.items?.format === "byte") {
@@ -350,7 +378,12 @@ function transformMultiFormBody(
         SchemaContext.Exception
       ])}>`;
     } else {
-      type = extractNameFromCadlType(program, paramType.type, importedModels);
+      type = extractNameFromCadlType(
+        program,
+        dpgContext,
+        paramType.type,
+        importedModels
+      );
     }
     bodyParameters.body!.push({
       name: paramName,
@@ -375,11 +408,12 @@ function getBodyDetail(bodyType: Type, headers: ParameterMetadata[]) {
 
 function extractNameFromCadlType(
   program: Program,
+  dpgContext: SdkContext,
   cadlType: Type,
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(program, cadlType, [
+  const bodySchema = getSchemaForType(program, dpgContext, cadlType, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
@@ -437,6 +471,7 @@ function generateAnomymousModelSigniture(
 
 function extractDescriptionsFromBody(
   program: Program,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters
 ) {
@@ -445,7 +480,7 @@ function extractDescriptionsFromBody(
     getFormattedPropertyDoc(
       program,
       parameters.bodyParameter,
-      getSchemaForType(program, bodyType, [
+      getSchemaForType(program, dpgContext, bodyType, [
         SchemaContext.Input,
         SchemaContext.Exception
       ])
