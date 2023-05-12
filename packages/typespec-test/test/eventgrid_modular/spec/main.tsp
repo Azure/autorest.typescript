@@ -4,7 +4,10 @@ import "@typespec/versioning";
 import "@azure-tools/typespec-autorest";
 import "@azure-tools/typespec-azure-core";
 
+using Azure.Core;
+
 enum ServiceApiVersions {
+  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   v2023_06_01_preview: "2023-06-01-preview"
 }
 
