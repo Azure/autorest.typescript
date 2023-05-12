@@ -34,7 +34,7 @@
     "@types/fs-extra": "^9.0.13",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "@typespec/http": "~0.43.1",
+    "@typespec/http": "~0.44.0",
     "chai": "^4.3.6",
     "mkdirp": "^2.1.2",
     "eslint": "^8.9.0",
@@ -44,7 +44,7 @@
     "typescript": "~5.0.0",
     "prettier": "~2.7.1",
     "@azure-tools/cadl-ranch-specs": "~0.14.10",
-    "@typespec/versioning": "~0.43.0",
+    "@typespec/versioning": "~0.44.0",
     "@azure-tools/cadl-ranch-expect": "^0.3.0",
     "@azure-tools/cadl-ranch": "~0.4.13",
     "chalk": "^4.0.0",
@@ -59,18 +59,18 @@
     "@types/pacote": "11.1.5"
   },
   "dependencies": {
-    "@typespec/compiler": "~0.43.0",
-    "@azure-tools/typespec-azure-core": "~0.29.0",
-    "@typespec/rest": "~0.43.0",
+    "@typespec/compiler": "~0.44.0",
+    "@azure-tools/typespec-azure-core": "~0.30.0",
+    "@typespec/rest": "~0.44.0",
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
     "@azure-tools/rlc-common": "^0.12.0",
     "ts-morph": "^15.1.0",
-    "@azure-tools/typespec-client-generator-core": "~0.29.0",
+    "@azure-tools/typespec-client-generator-core": "~0.30.0",
     "fs-extra": "^11.1.0",
-    "@typespec/openapi": "0.43.0",
-    "@typespec/openapi3": "0.43.0",
-    "@azure-tools/typespec-autorest": "~0.29.0"
+    "@typespec/openapi": "0.44.0",
+    "@typespec/openapi3": "0.44.0",
+    "@azure-tools/typespec-autorest": "~0.30.0"
   },
   "mocha": {
     "extension": [

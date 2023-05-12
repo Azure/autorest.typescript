@@ -6,11 +6,13 @@ using TypeSpec.Http;
 using TypeSpec.Rest;
 using Azure.Core;
 using Azure.ClientGenerator;
+using TypeSpec.Versioning;
 
 @service({
   title: "Response",
   version: "1.0.0",
 })
+@useDependency(Azure.Core.Versions.v1_0_Preview_1)
 namespace Cadl.Response;
 
 model Resource {

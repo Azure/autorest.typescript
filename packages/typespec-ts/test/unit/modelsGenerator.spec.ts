@@ -718,8 +718,142 @@ describe("Input/output model type", () => {
     });
   });
   describe("duration generation", () => {
-    it("should handle duration -> string", async () => {
-      await verifyPropertyType("duration", "string");
+    const buildParameterDef = (type: string) => {
+      return `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface GetModelQueryParamProperties {
+        "input": ${type};
+      }
+
+      export interface GetModelQueryParam {
+        queryParameters: GetModelQueryParamProperties;
+      }
+      
+      export type GetModelParameters = GetModelQueryParam & RequestParameters;
+      `;
+    };
+
+    describe("as input and output model property", () => {
+      it("should handle duration without encode", async () => {
+        await verifyPropertyType("duration", "string");
+      });
+
+      it("should handle duration with encode `seconds`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        model SimpleModel {
+          @encode("seconds", float64)
+          prop: duration;
+        }
+        @route("/duration/prop/seconds")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": number;
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": number;
+        }
+        `
+        );
+      });
+
+      it("should handle duration with encode `iso8601`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        model SimpleModel {
+          @encode("ISO8601")
+          prop: duration;
+        }
+        @route("/duration/prop/iso8601")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": string;
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": string;
+        }
+        `
+        );
+      });
+    });
+
+    describe("as query parameter", () => {
+      it("should handle duration without encode", async () => {
+        const schemaOutput = await emitParameterFromCadl(`
+        @route("/duration/query/default")
+        @get
+        op getModel(@query input: duration): NoContentResponse;
+        `);
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+      });
+
+      it("should handle duration with encode `seconds`", async () => {
+        const schemaOutput = await emitParameterFromCadl(
+          `
+        @route("/duration/query/seconds")
+        @get
+        op getModel(
+          @query
+          @encode("seconds", float64)
+          input: duration): NoContentResponse;
+        `,
+          false,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
+      });
+
+      it("should handle duration with encode `iso8601`", async () => {
+        const schemaOutput = await emitParameterFromCadl(
+          `
+        @route("/duration/query/iso8601")
+        @get
+        op getModel(
+          @query
+          @encode("iso8601")
+          input: duration): NoContentResponse;
+        `,
+          false,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+      });
     });
   });
   describe("datetime generation", () => {
@@ -743,6 +877,82 @@ describe("Input/output model type", () => {
       await verifyPropertyType("utcDateTime", inputType, {
         outputType
       });
+    });
+
+    it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
+      const inputType = "Date | string";
+      const outputType = "string";
+      await verifyPropertyType("offsetDateTime ", inputType, {
+        outputType
+      });
+    });
+
+    it("should handle datetime with encode `unixTimestamp`", async () => {
+      const schemaOutput = await emitModelsFromCadl(
+        `
+      model SimpleModel {
+        @encode("unixTimestamp", int32)
+        createdAt: utcDateTime;
+      }
+      @route("/datetime/prop/unixTimestamp")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": number;
+      }
+      `
+      );
+    });
+
+    it("should handle datetime with encode `rfc3339`", async () => {
+      const schemaOutput = await emitModelsFromCadl(
+        `
+        model SimpleModel {
+          @encode("rfc3339")
+          createdAt: offsetDateTime;
+        }
+        @route("/datetime/prop/rfc3339")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": Date | string;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": string;
+      }
+      `
+      );
     });
   });
   describe("record generation", () => {

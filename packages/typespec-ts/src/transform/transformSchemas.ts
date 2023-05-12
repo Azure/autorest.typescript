@@ -68,7 +68,7 @@ export function transformSchemas(
     }
   }
   program.stateMap(modelKey).forEach((context, cadlModel) => {
-    const model = getSchemaForType(program, cadlModel, context);
+    const model = getSchemaForType(program, dpgContext, cadlModel, context);
     if (model) {
       model.usage = context;
     }
