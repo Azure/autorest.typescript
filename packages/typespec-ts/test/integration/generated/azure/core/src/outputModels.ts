@@ -25,8 +25,14 @@ export interface UserOrderOutput {
   detail: string;
 }
 
+export interface UserListResultsOutput {
+  /** List of items. */
+  items: Array<UserOutput>;
+  /** Link to fetch more items. */
+  nextLink?: string;
+}
+
 /** Paged collection of User items */
 export type UserListOutput = Paged<UserOutput>;
 /** Paged collection of User items */
 export type PagedUserOutput = Paged<UserOutput>;
-export type UserListResultsOutput = Paged<UserOutput>;
