@@ -415,8 +415,13 @@ function getSchemaForModel(
             }
           })
           .join("");
-        modelSchema.alias = `Paged<${templateName}>`;
-        modelSchema.outputAlias = `Paged<${templateName}Output>`;
+        if (
+          paged.itemsProperty.name === "value" &&
+          paged.nextLinkProperty?.name === "nextLink"
+        ) {
+          modelSchema.alias = `Paged<${templateName}>`;
+          modelSchema.outputAlias = `Paged<${templateName}Output>`;
+        }
       }
     }
   }

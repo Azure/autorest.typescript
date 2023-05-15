@@ -1,7 +1,8 @@
 import { assert } from "chai";
 import AzureCoreClientFactory, {
   AzureCoreClient,
-  buildMultiCollection
+  buildMultiCollection,
+  isUnexpected
 } from "./generated/azure/core/src/index.js";
 import AzureCoreTraitsClientFactory, {
   AzureCoreTraitsClient
@@ -95,6 +96,19 @@ describe("Azure Core Rest Client", () => {
     try {
       const result = await client.path("/azure/core/basic/page").get();
       assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should list with custom pages", async () => {
+    try {
+      const result = await client.path("/azure/core/basic/custom-page").get();
+      if (isUnexpected(result)) {
+        assert.fail("Unexpected status " + result.status);
+      }
+      assert.strictEqual(result.status, "200");
+      assert.isNotEmpty(result.body.items);
     } catch (err) {
       assert.fail(err as string);
     }
