@@ -18,9 +18,6 @@ steps:
   - script: rush update --full && rush build
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Re-build after update the config"
-  - script: npm list
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "List the current dependency"
   - script: npm run unit-test
     workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
     displayName: "Run all unit test cases"
