@@ -97,3 +97,27 @@ export interface DictionaryStringPropertyOutput {
 
 /** Model with a property never. (This property should not be included). */
 export interface NeverPropertyOutput {}
+
+/** Model with a property unknown, and the data is a string. */
+export interface UnknownStringPropertyOutput {
+  /** Property */
+  property: any;
+}
+
+/** Model with a property unknown, and the data is a int32. */
+export interface UnknownIntPropertyOutput {
+  /** Property */
+  property: any;
+}
+
+/** Model with a property unknown, and the data is a dictionnary. */
+export interface UnknownDictPropertyOutput {
+  /** Property */
+  property: any;
+}
+
+/** Model with a property unknown, and the data is an array. */
+export interface UnknownArrayPropertyOutput {
+  /** Property */
+  property: any;
+}

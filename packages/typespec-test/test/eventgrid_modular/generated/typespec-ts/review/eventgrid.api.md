@@ -70,7 +70,7 @@ export interface LockTokenInput {
     lockTokens: string[];
 }
 
-// @public
+// @public (undocumented)
 export interface LockTokensResponse {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];

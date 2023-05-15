@@ -39,7 +39,9 @@ import {
   NumericLiteral,
   Service,
   listServices,
-  Program
+  Program,
+  getEncode,
+  EncodeData
 } from "@typespec/compiler";
 import { reportDiagnostic } from "./lib.js";
 import {
@@ -74,12 +76,15 @@ export function getBinaryType(usage: SchemaContext[]) {
 
 export function getSchemaForType(
   program: Program,
+  dpgContext: SdkContext,
   typeInput: Type,
   usage?: SchemaContext[],
-  needRef?: boolean
+  needRef: boolean = false,
+  relevantProperty?: ModelProperty
 ) {
   const type = getEffectiveModelFromType(program, typeInput);
-  const builtinType = mapCadlTypeToTypeScript(program, type, usage);
+
+  const builtinType = mapCadlTypeToTypeScript(program, dpgContext, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(program, type);
@@ -89,7 +94,13 @@ export function getSchemaForType(
     return builtinType;
   }
   if (type.kind === "Model") {
-    const schema = getSchemaForModel(program, type, usage, needRef) as any;
+    const schema = getSchemaForModel(
+      program,
+      dpgContext,
+      type,
+      usage,
+      needRef
+    ) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
       schema.outputTypeName = `${schema.name}Output`;
       schema.typeName = `${schema.name}`;
@@ -97,13 +108,13 @@ export function getSchemaForType(
     schema.usage = usage;
     return schema;
   } else if (type.kind === "Union") {
-    return getSchemaForUnion(program, type, usage);
+    return getSchemaForUnion(program, dpgContext, type, usage);
   } else if (type.kind === "UnionVariant") {
-    return getSchemaForUnionVariant(program, type, usage);
+    return getSchemaForUnionVariant(program, dpgContext, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
-    return getSchemaForScalar(program, type);
+    return getSchemaForScalar(program, dpgContext, type, relevantProperty);
   }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
@@ -152,16 +163,22 @@ export function includeDerivedModel(model: Model): boolean {
   );
 }
 
-function getSchemaForScalar(program: Program, scalar: Scalar) {
-  let result = getSchemaForStdScalar(program, scalar);
+function getSchemaForScalar(
+  program: Program,
+  dpgContext: SdkContext,
+  scalar: Scalar,
+  relevantProperty?: ModelProperty
+) {
+  let result = getSchemaForStdScalar(program, scalar, relevantProperty);
   if (!result && scalar.baseScalar) {
-    result = getSchemaForScalar(program, scalar.baseScalar);
+    result = getSchemaForScalar(program, dpgContext, scalar.baseScalar);
   }
   return applyIntrinsicDecorators(program, scalar, result);
 }
 
 function getSchemaForUnion(
   program: Program,
+  dpgContext: SdkContext,
   union: Union,
   usage?: SchemaContext[]
 ) {
@@ -170,7 +187,7 @@ function getSchemaForUnion(
 
   for (const variant of variants) {
     // We already know it's not a model type
-    values.push(getSchemaForType(program, variant.type, usage));
+    values.push(getSchemaForType(program, dpgContext, variant.type, usage));
   }
 
   const schema: any = {};
@@ -202,10 +219,11 @@ function getSchemaForUnion(
 
 function getSchemaForUnionVariant(
   program: Program,
+  dpgContext: SdkContext,
   variant: UnionVariant,
   usage?: SchemaContext[]
 ): Schema {
-  return getSchemaForType(program, variant, usage);
+  return getSchemaForType(program, dpgContext, variant, usage);
 }
 
 // An openapi "string" can be defined in several different ways in Cadl
@@ -323,26 +341,10 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
   const statusCodeinfo = isStatusCode(program, property);
   return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
 }
-// function getDefaultValue(program: Program, type: Type): any {
-//   switch (type.kind) {
-//     case "String":
-//       return type.value;
-//     case "Number":
-//       return type.value;
-//     case "Boolean":
-//       return type.value;
-//     case "Tuple":
-//       return type.values.map(item => getDefaultValue(program, item));
-//     default:
-//       reportDiagnostic(program, {
-//         code: "invalid-default",
-//         format: { type: type.kind },
-//         target: type,
-//       });
-//   }
-// }
+
 function getSchemaForModel(
   program: Program,
+  dpgContext: SdkContext,
   model: Model,
   usage?: SchemaContext[],
   needRef?: boolean
@@ -413,8 +415,13 @@ function getSchemaForModel(
             }
           })
           .join("");
-        modelSchema.alias = `Paged<${templateName}>`;
-        modelSchema.outputAlias = `Paged<${templateName}Output>`;
+        if (
+          paged.itemsProperty.name === "value" &&
+          paged.nextLinkProperty?.name === "nextLink"
+        ) {
+          modelSchema.alias = `Paged<${templateName}>`;
+          modelSchema.outputAlias = `Paged<${templateName}Output>`;
+        }
       }
     }
   }
@@ -430,10 +437,23 @@ function getSchemaForModel(
     };
   }
   for (const child of derivedModels) {
-    const childSchema = getSchemaForType(program, child, usage, true);
+    const childSchema = getSchemaForType(
+      program,
+      dpgContext,
+      child,
+      usage,
+      true
+    );
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
-        const propSchema = getSchemaForType(program, prop.type, usage, true);
+        const propSchema = getSchemaForType(
+          program,
+          dpgContext,
+          prop.type,
+          usage,
+          true,
+          prop
+        );
         childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
         break;
       }
@@ -476,7 +496,14 @@ function getSchemaForModel(
       continue;
     }
 
-    const propSchema = getSchemaForType(program, prop.type, usage, true);
+    const propSchema = getSchemaForType(
+      program,
+      dpgContext,
+      prop.type,
+      usage,
+      true,
+      prop
+    );
     if (propSchema === undefined) {
       continue;
     }
@@ -501,16 +528,17 @@ function getSchemaForModel(
     }
 
     // Apply decorators on the property to the type's schema
-    const newPropSchema = applyIntrinsicDecorators(program, prop, propSchema);
+    const newPropSchema = applyIntrinsicDecorators(
+      program,
+
+      prop,
+      propSchema
+    );
     if (newPropSchema === undefined) {
       continue;
     }
     // Use the description from ModelProperty not devired from Model Type
     newPropSchema.description = propertyDescription;
-
-    if (prop.default) {
-      // modelSchema.properties[name]['default'] = getDefaultValue(program, prop.default);
-    }
 
     // Should the property be marked as readOnly?
     const vis = getVisibility(program, prop);
@@ -549,15 +577,24 @@ function getSchemaForModel(
   ) {
     // Take the base model schema but carry across the documentation property
     // that we set before
-    const baseSchema = getSchemaForType(program, model.baseModel, usage);
+    const baseSchema = getSchemaForType(
+      program,
+      dpgContext,
+      model.baseModel,
+      usage
+    );
     modelSchema = {
       ...baseSchema,
       description: modelSchema.description
     };
   } else if (model.baseModel) {
     modelSchema.parents = {
-      all: [getSchemaForType(program, model.baseModel, usage, true)],
-      immediate: [getSchemaForType(program, model.baseModel, usage, true)]
+      all: [
+        getSchemaForType(program, dpgContext, model.baseModel, usage, true)
+      ],
+      immediate: [
+        getSchemaForType(program, dpgContext, model.baseModel, usage, true)
+      ]
     };
   }
   return modelSchema;
@@ -566,6 +603,7 @@ function getSchemaForModel(
 // OA schema is just a regular object schema.
 function mapCadlTypeToTypeScript(
   program: Program,
+  dpgContext: SdkContext,
   cadlType: Type,
   usage?: SchemaContext[]
 ): any {
@@ -577,7 +615,7 @@ function mapCadlTypeToTypeScript(
     case "Boolean":
       return { type: `${cadlType.value}` };
     case "Model":
-      return mapCadlStdTypeToTypeScript(program, cadlType, usage);
+      return mapCadlStdTypeToTypeScript(program, dpgContext, cadlType, usage);
   }
   if (cadlType.kind === undefined) {
     if (typeof cadlType === "string") {
@@ -685,6 +723,7 @@ function getSchemaForEnum(program: Program, e: Enum) {
  */
 function mapCadlStdTypeToTypeScript(
   program: Program,
+  dpgContext: SdkContext,
   cadlType: Model,
   usage?: SchemaContext[]
 ): any | undefined {
@@ -696,6 +735,7 @@ function mapCadlStdTypeToTypeScript(
       if (name === "string") {
         const valueType = getSchemaForType(
           program,
+          dpgContext,
           indexer.value!,
           usage,
           true
@@ -727,7 +767,13 @@ function mapCadlStdTypeToTypeScript(
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(program, indexer.value!, usage, true),
+          items: getSchemaForType(
+            program,
+            dpgContext,
+            indexer.value!,
+            usage,
+            true
+          ),
           description: getDoc(program, cadlType)
         };
         if (
@@ -779,9 +825,25 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
-function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
+function getSchemaForStdScalar(
+  program: Program,
+  cadlType: Scalar,
+  relevantProperty?: ModelProperty
+) {
   if (!program.checker.isStdType(cadlType)) {
     return undefined;
+  }
+
+  /**
+   * lookup for @encode decorator
+   *  if absent use typespec type (or default way of serializing that type)
+   *  if present respect type provided in @encode
+   */
+  if (relevantProperty) {
+    const encodeData = getEncode(program, relevantProperty);
+    if (encodeData && isEncodeTypeEffective(cadlType, encodeData)) {
+      cadlType = encodeData.type;
+    }
   }
   const name = cadlType.name;
   const description = getSummary(program, cadlType);
@@ -848,7 +910,9 @@ function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
         format: "float"
       });
     case "string":
-      return applyIntrinsicDecorators(program, cadlType, { type: "string" });
+      return applyIntrinsicDecorators(program, cadlType, {
+        type: "string"
+      });
     case "boolean":
       return { type: "boolean", description };
     case "plainDate":
@@ -867,6 +931,14 @@ function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
         typeName: "Date | string",
         outputTypeName: "string"
       };
+    case "offsetDateTime":
+      return {
+        type: "string",
+        format: "date-time",
+        description,
+        typeName: "Date | string",
+        outputTypeName: "string"
+      };
     case "plainTime":
       return {
         type: "string",
@@ -878,6 +950,28 @@ function getSchemaForStdScalar(program: Program, cadlType: Scalar) {
     case "duration":
       return { type: "string", format: "duration", description };
   }
+}
+
+function isEncodeTypeEffective(
+  type: Scalar,
+  encodeData: EncodeData | undefined
+) {
+  if (!encodeData) {
+    return false;
+  }
+  const datetimeTypes = [
+    "plaindate",
+    "utcdatetime",
+    "offsetdatetime",
+    "plaintime"
+  ];
+  if (
+    datetimeTypes.includes(type.name.toLowerCase()) &&
+    encodeData.type.name === "string"
+  ) {
+    return false;
+  }
+  return true;
 }
 
 export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
@@ -935,6 +1029,7 @@ export function getFormattedPropertyDoc(
 
 export function getBodyType(
   program: Program,
+
   route: HttpOperation
 ): Type | undefined {
   let bodyModel = route.parameters.bodyType;
@@ -950,6 +1045,7 @@ export function getBodyType(
         if (responseBody) {
           const bodyTypeInResponse = getEffectiveModelFromType(
             program,
+
             responseBody.type
           );
           // response body type is reosurce type, and request body type (if templated) contains resource type

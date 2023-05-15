@@ -19,9 +19,16 @@ import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js
 
 export async function emitModelsFromCadl(
   cadlContent: string,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  needTCGC: boolean = false
 ) {
-  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    needAzureCore,
+    false,
+    needTCGC
+  );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = listClients(dpgContext);
@@ -40,13 +47,15 @@ export async function emitModelsFromCadl(
 export async function emitParameterFromCadl(
   cadlContent: string,
   needAzureCore: boolean = false,
-  ignoreClientApiVersion: boolean = false
+  ignoreClientApiVersion: boolean = false,
+  needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
     cadlContent,
     true,
     needAzureCore,
-    ignoreClientApiVersion
+    ignoreClientApiVersion,
+    needTCGC
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);

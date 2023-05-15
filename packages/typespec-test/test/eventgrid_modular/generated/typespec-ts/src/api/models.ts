@@ -51,7 +51,7 @@ export interface LockToken {
   lockToken: string;
 }
 
-/** Details of the LockTokens information. This is used for both Acknowledge and Release operation response. */
+/** */
 export interface LockTokensResponse {
   /** Array of LockToken values for failed cloud events. */
   failedLockTokens: FailedLockToken[];

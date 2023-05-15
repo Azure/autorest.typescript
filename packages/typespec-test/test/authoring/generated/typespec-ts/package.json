@@ -57,7 +57,7 @@
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
     "@azure/core-paging": "^1.5.0",
-    "@azure/core-lro": "^2.5.0",
+    "@azure/core-lro": "^2.5.3",
     "@azure/abort-controller": "^1.0.0"
   },
   "devDependencies": {

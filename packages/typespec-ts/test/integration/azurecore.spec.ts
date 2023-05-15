@@ -1,12 +1,19 @@
 import { assert } from "chai";
 import AzureCoreClientFactory, {
-  AzureCoreClient, buildMultiCollection
+  AzureCoreClient,
+  buildMultiCollection,
+  isUnexpected
 } from "./generated/azure/core/src/index.js";
 import AzureCoreTraitsClientFactory, {
   AzureCoreTraitsClient
 } from "./generated/azure/core-traits/src/index.js";
 describe("Azure Core Rest Client", () => {
   let client: AzureCoreClient;
+  const validUser = {
+    id: 1,
+    name: "Madge",
+    etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+  };
 
   beforeEach(() => {
     client = AzureCoreClientFactory({
@@ -32,12 +39,14 @@ describe("Azure Core Rest Client", () => {
   });
   it("should patch user", async () => {
     try {
-      const result = await client.path("/azure/core/basic/users/{id}", 1).patch({
-        contentType: "application/merge-patch+json",
-        body: {
-          name: "Madge"
-        }
-      });
+      const result = await client
+        .path("/azure/core/basic/users/{id}", 1)
+        .patch({
+          contentType: "application/merge-patch+json",
+          body: {
+            name: "Madge"
+          }
+        });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
@@ -55,7 +64,9 @@ describe("Azure Core Rest Client", () => {
 
   it("should delete user", async () => {
     try {
-      const result = await client.path("/azure/core/basic/users/{id}", 1).delete();
+      const result = await client
+        .path("/azure/core/basic/users/{id}", 1)
+        .delete();
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);
@@ -89,6 +100,35 @@ describe("Azure Core Rest Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should list with custom pages", async () => {
+    try {
+      const result = await client.path("/azure/core/basic/custom-page").get();
+      if (isUnexpected(result)) {
+        assert.fail("Unexpected status " + result.status);
+      }
+      assert.strictEqual(result.status, "200");
+      assert.isNotEmpty(result.body.items);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should export a user", async () => {
+    try {
+      const result = await client
+        .path("/azure/core/basic/users/{id}:export", 1)
+        .post({
+          queryParameters: {
+            format: "json"
+          }
+        });
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, validUser);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });
 
 describe("Azure Core Traits Rest Client", () => {
@@ -108,12 +148,12 @@ describe("Azure Core Traits Rest Client", () => {
       const result = await client.path("/azure/core/traits/user/{id}", 1).get({
         headers: {
           foo: "123",
-          "If-Match": "valid",
-          "If-None-Match": "invalid",
+          "If-Match": '"valid"',
+          "If-None-Match": '"invalid"',
           "If-Modified-Since": "Thu, 26 Aug 2021 14:38:00 GMT",
           "If-Unmodified-Since": "Fri, 26 Aug 2022 14:38:00 GMT"
         }
-      })
+      });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);

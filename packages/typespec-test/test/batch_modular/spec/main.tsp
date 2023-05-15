@@ -7,8 +7,7 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 
 @service({
-  title: "BatchServiceClient",
-  version: "2022-10-01.16.0",
+  title: "BatchServiceClient"
 })
 @useAuth(AADToken)
 @versioned(BatchService.Versions)
@@ -17,6 +16,7 @@ using TypeSpec.Versioning;
 namespace BatchService;
 
 enum Versions {
+  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
   v2022_10_01: "2022-10-01.16.0",
 }
 
