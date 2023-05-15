@@ -7,7 +7,7 @@ import { AzureCoreClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AzureCoreClient`
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}

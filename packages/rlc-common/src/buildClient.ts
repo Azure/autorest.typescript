@@ -122,10 +122,7 @@ export function buildClient(model: RLCModel): File | undefined {
           `Initialize a new instance of \`${clientInterfaceName}\` \n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.name} type: ${param.type
-                .split("=")[0]
-                .split(" ")
-                .join("")}, ${
+              return `@param ${param.name} - ${
                 param.description ?? "The parameter " + param.name
               }`;
             })
@@ -143,7 +140,7 @@ export function buildClient(model: RLCModel): File | undefined {
   clientFile.addFunction(functionStatement);
 
   const paths = srcPath.replace(/\//g, path.sep).split(path.sep);
-  while(paths.length > 0 && paths[paths.length - 1] === "") {
+  while (paths.length > 0 && paths[paths.length - 1] === "") {
     paths.pop();
   }
   const parentPath =
@@ -159,7 +156,7 @@ export function buildClient(model: RLCModel): File | undefined {
     {
       namedImports: ["logger"],
       moduleSpecifier: `${
-        parentPath > 0 ? "../".repeat(parentPath): "./" 
+        parentPath > 0 ? "../".repeat(parentPath) : "./"
       }logger`
     }
   ]);

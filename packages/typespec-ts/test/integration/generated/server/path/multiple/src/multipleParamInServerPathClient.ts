@@ -11,8 +11,8 @@ export interface MultipleParamInServerPathClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `MultipleParamInServerPathClient`
- * @param endpoint type: string, Pass in http://localhost:3000 for endpoint.
- * @param options type: MultipleParamInServerPathClientOptions, the parameter for all optional parameters
+ * @param endpoint - Pass in http://localhost:3000 for endpoint.
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
