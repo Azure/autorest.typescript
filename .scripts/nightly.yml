@@ -1,6 +1,6 @@
 trigger: none
 schedules:
-  - cron: "0 16 * * *"
+  - cron: "0 12 * * *"
     displayName: Daily midnight build
     branches:
       include:
