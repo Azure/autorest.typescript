@@ -12,9 +12,9 @@ export interface AnomalyDetectorMVClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `AnomalyDetectorMVClient`
- * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
- * @param credentials type: KeyCredential, uniquely identify client credential
- * @param options type: AnomalyDetectorMVClientOptions, the parameter for all optional parameters
+ * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus2.api.cognitive.microsoft.com).
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
