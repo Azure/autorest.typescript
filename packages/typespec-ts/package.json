@@ -16,7 +16,7 @@
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
     "integration-test-ci": "npm run start-test-server & npm run copy:typespec && npm run generate-and-run",
     "start-test-server": "mkdirp -p coverage && npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript.json",
-    "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/http ./temp",
+    "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/http ./temp && cp -r ./test/integration/typespec/* ./temp/http",
     "generate-and-run": "npm run generate-cadl-only && npm run integration-test:alone && npm run stop-test-server",
     "generate-cadl-only": "ts-node ./test/commands/gen-cadl-ranch.ts",
     "integration-test:alone": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 4000 ./test/integration/*.spec.ts",

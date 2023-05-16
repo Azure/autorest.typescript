@@ -4,12 +4,12 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { SourcePath } from "./models";
 
-export interface GetByUnionOnlyBodyParam {
+export interface GetByUnionBodyParam {
   /** Input parameter. */
   body: SourcePath | string | string;
 }
 
-export interface GetByUnionOnlyMediaTypesParam {
+export interface GetByUnionMediaTypesParam {
   contentType:
     | "application/pdf"
     | "application/json"
@@ -19,8 +19,8 @@ export interface GetByUnionOnlyMediaTypesParam {
     | "text/plain";
 }
 
-export type GetByUnionOnlyParameters = GetByUnionOnlyMediaTypesParam &
-  GetByUnionOnlyBodyParam &
+export type GetByUnionParameters = GetByUnionMediaTypesParam &
+  GetByUnionBodyParam &
   RequestParameters;
 
 export interface GetBySharedRouteForStringBodyParam {
@@ -73,12 +73,12 @@ export type GetBySharedRouteForBytesParameters =
     GetBySharedRouteForBytesBodyParam &
     RequestParameters;
 
-export interface GetByOverloadParentBodyParam {
+export interface GetByOverloadBodyParam {
   /** Input parameter. */
   body: SourcePath | string | string;
 }
 
-export interface GetByOverloadParentMediaTypesParam {
+export interface GetByOverloadMediaTypesParam {
   contentType:
     | "application/pdf"
     | "application/json"
@@ -88,6 +88,55 @@ export interface GetByOverloadParentMediaTypesParam {
     | "text/plain";
 }
 
-export type GetByOverloadParentParameters = GetByOverloadParentMediaTypesParam &
-  GetByOverloadParentBodyParam &
+export type GetByOverloadParameters = GetByOverloadMediaTypesParam &
+  GetByOverloadBodyParam &
   RequestParameters;
+
+export interface GetByOverloadStringBodyParam {
+  /** Input parameter. */
+  body: string;
+}
+
+export interface GetByOverloadStringMediaTypesParam {
+  contentType: "text/plain";
+}
+
+export type GetByOverloadStringParameters = GetByOverloadStringMediaTypesParam &
+  GetByOverloadStringBodyParam &
+  RequestParameters;
+
+export interface GetByOverloadForModelBodyParam {
+  /** Input parameter. */
+  body: SourcePath;
+}
+
+export interface GetByOverloadForModelMediaTypesParam {
+  contentType: "application/json";
+}
+
+export type GetByOverloadForModelParameters =
+  GetByOverloadForModelMediaTypesParam &
+    GetByOverloadForModelBodyParam &
+    RequestParameters;
+
+export interface GetByOverloadForBytesBodyParam {
+  /**
+   * Input parameter.
+   *
+   * Value may contain any sequence of octets
+   */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface GetByOverloadForBytesMediaTypesParam {
+  contentType: "application/pdf" | "image/jpeg" | "image/png" | "image/tiff";
+}
+
+export type GetByOverloadForBytesParameters =
+  GetByOverloadForBytesMediaTypesParam &
+    GetByOverloadForBytesBodyParam &
+    RequestParameters;

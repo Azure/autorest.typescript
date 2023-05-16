@@ -4,7 +4,7 @@
 import { HttpResponse } from "@azure-rest/core-client";
 
 /** The request has succeeded. */
-export interface GetByUnionOnly200Response extends HttpResponse {
+export interface GetByUnion200Response extends HttpResponse {
   status: "200";
   body: string;
 }
@@ -28,7 +28,25 @@ export interface GetBySharedRouteForBytes200Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetByOverloadParent200Response extends HttpResponse {
+export interface GetByOverload200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}
+
+/** The request has succeeded. */
+export interface GetByOverloadString200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}
+
+/** The request has succeeded. */
+export interface GetByOverloadForModel200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}
+
+/** The request has succeeded. */
+export interface GetByOverloadForBytes200Response extends HttpResponse {
   status: "200";
   body: string;
 }

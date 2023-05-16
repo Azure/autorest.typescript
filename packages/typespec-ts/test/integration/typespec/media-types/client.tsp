@@ -16,6 +16,21 @@ namespace TypeScript.Test.MediaTypes;
   service: TypeScript.Test.MediaTypes,
 })
 interface MediaTypesClient {
+  /**
+   * Multiple content-type by union
+   */
+  getByUnion is MediaTypesOperations.getByUnionOnly;
+
+  /**
+   * Multiple content-type by shared routes
+   */
+  getBySharedRouteForString is MediaTypesOperations.getBySharedRouteForString;
+  getBySharedRouteForModel is MediaTypesOperations.getBySharedRouteForModel;
+  getBySharedRouteForBytes is MediaTypesOperations.getBySharedRouteForBytes;
+
+  /**
+   * Multiple content-type by overload
+   */
   getByOverload is MediaTypesOperations.getByOverloadParent;
 
   @overload(MediaTypesClient.getByOverload)

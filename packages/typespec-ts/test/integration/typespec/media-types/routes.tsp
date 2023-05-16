@@ -23,8 +23,8 @@ interface MediaTypesOperations {
    * Union maps union
    */
   @doc("Union of types map union of content types.")
-  @route("/union-only")
-  @operationId("unionOnly")
+  @route("/union")
+  @operationId("union")
   @post
   getByUnionOnly(
     @body

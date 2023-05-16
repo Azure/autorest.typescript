@@ -11,7 +11,7 @@ export async function runTypespec(config: CadlRanchConfig) {
   const __dirname = dirname(__filename);
   console.log(`=== Start ${targetFolder} ===`);
 
-  const typespecPath = joinPath(
+  let typespecPath = joinPath(
     `${__dirname}`,
     "..",
     "..",
@@ -23,16 +23,15 @@ export async function runTypespec(config: CadlRanchConfig) {
     `./integration/generated/${targetFolder}`
   );
   const possibleEntryFiles = ["client.tsp", "main.tsp"];
-  let entryFile = "";
-  for (let filename in possibleEntryFiles) {
-    const entry = joinPath(outputPath, filename);
+  for (let filename of possibleEntryFiles) {
+    const entry = joinPath(typespecPath, filename);
     if (fsextra.existsSync(entry)) {
-      entryFile = entry;
+      typespecPath = entry;
       break;
     }
   }
   const typespecCommand = `cd ${outputPath} && npx tsp`;
-  const commandArguments: string[] = ["compile", `${typespecPath}`, entryFile];
+  const commandArguments: string[] = ["compile", `${typespecPath}`];
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);
   const result = execSync(command);
