@@ -6,6 +6,11 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "mediaTypes",
+    inputPath: "media-types",
+    debug: true
+  },
+  {
     outputPath: "arrays/itemTypes",
     inputPath: "type/array"
   },

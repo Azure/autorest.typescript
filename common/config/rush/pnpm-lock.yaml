@@ -6819,7 +6819,7 @@ packages:
     dev: false
 
   file:projects/typespec-ts.tgz:
-    resolution: {integrity: sha512-tG/lMzQ8jsSopU1i8Mv3CcoI2Erbbt61H9HSjh4L0rsIjRypb5eWCDNr1x0PR/cFCcRcz0C7Xmz1/gqmfpwrZA==, tarball: file:projects/typespec-ts.tgz}
+    resolution: {integrity: sha512-3Ukm/u5nFjUv9/L6Cxthvh9N1z+JCfexYWFkA9TrcPBqeMsVgQBFae93ogtlKQYX4ZGhtcp08VAAtmGgdGUaJA==, tarball: file:projects/typespec-ts.tgz}
     name: '@rush-temp/typespec-ts'
     version: 0.0.0
     dependencies:
@@ -6845,6 +6845,7 @@ packages:
       '@typescript-eslint/parser': 5.59.5_3qfatcekpgbllh6uk5ivyhkbxq
       '@typespec/compiler': 0.44.0
       '@typespec/http': 0.44.0_@typespec+compiler@0.44.0
+      '@typespec/lint': 0.44.0_@typespec+compiler@0.44.0
       '@typespec/openapi': 0.44.0_wihkxl52pkwnxc25ba2weeyzd4
       '@typespec/openapi3': 0.44.0_avswljoapttvtv2tgwnve3owrq
       '@typespec/rest': 0.44.0_@typespec+compiler@0.44.0
