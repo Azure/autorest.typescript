@@ -21,10 +21,11 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType,
   getFormattedPropertyDoc,
   getBodyType,
-  predictDefaultValue
+  predictDefaultValue,
+  getBinaryType,
+  enrichBinaryTypeInBody
 } from "../modelUtils.js";
 
 import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
@@ -230,21 +231,25 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  const { hasBinaryContent, hasFormContent } = getBodyDetail(bodyType, headers);
+  const { hasBinaryContent, hasFormContent } = getBodyDetail(
+    program,
+    dpgContext,
+    bodyType,
+    headers
+  );
 
-  if (!hasBinaryContent && !hasFormContent) {
+  if (!hasFormContent) {
     // Case 1: Handle the normal case without binary or form data
+    // Case 2: Handle the binary body
     return transformNormalBody(
       program,
       dpgContext,
       bodyType,
       parameters,
       importedModels,
-      headers
+      headers,
+      hasBinaryContent
     );
-  } else if (hasBinaryContent) {
-    // Case 2: Handle the binary body
-    return transformBinaryBody(program, parameters);
   } else {
     // Case 3: Handle the form data
     return transformMultiFormBody(
@@ -263,22 +268,31 @@ function transformNormalBody(
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
-  headers: ParameterMetadata[]
+  headers: ParameterMetadata[],
+  hasBinaryContent: boolean
 ) {
-  const description = extractDescriptionsFromBody(
+  const descriptions = extractDescriptionsFromBody(
     program,
     dpgContext,
     bodyType,
     parameters
-  ).join("\n\n");
-  const type = extractNameFromCadlType(
+  );
+  if (hasBinaryContent) {
+    descriptions.push("Value may contain any sequence of octets");
+  }
+  let type = extractNameFromCadlType(
     program,
     dpgContext,
     bodyType,
     importedModels,
     headers
   );
-  const schema = getSchemaForType(program, dpgContext, bodyType);
+  let schema = getSchemaForType(program, dpgContext, bodyType);
+  let overrideType = undefined;
+  if (hasBinaryContent) {
+    schema = enrichBinaryTypeInBody(schema);
+    overrideType = schema.typeName;
+  }
   return {
     isPartialBody: false,
     body: [
@@ -286,32 +300,7 @@ function transformNormalBody(
         properties: schema.properties,
         typeName: schema.name,
         name: "body",
-        type,
-        required: parameters?.bodyParameter?.optional === false,
-        description
-      }
-    ]
-  };
-}
-
-function transformBinaryBody(
-  program: Program,
-  parameters: HttpOperationParameters
-) {
-  const descriptions: string[] = [];
-  const description =
-    parameters.bodyParameter &&
-    getFormattedPropertyDoc(program, parameters.bodyParameter, {});
-  if (description) {
-    descriptions.push(description!);
-  }
-  descriptions.push("Value may contain any sequence of octets");
-  return {
-    isPartialBody: false,
-    body: [
-      {
-        name: "body",
-        type: getBinaryType([SchemaContext.Input, SchemaContext.Exception]),
+        type: overrideType ?? type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n")
       }
@@ -395,12 +384,17 @@ function transformMultiFormBody(
   return bodyParameters;
 }
 
-function getBodyDetail(bodyType: Type, headers: ParameterMetadata[]) {
+function getBodyDetail(
+  program: Program,
+  dpgContext: SdkContext,
+  bodyType: Type,
+  headers: ParameterMetadata[]
+) {
   const contentTypes: string[] = headers
     .filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
   const hasBinaryContent = contentTypes.some((c) =>
-    isBinaryPayload(bodyType, c)
+    isBinaryPayload(program, dpgContext, bodyType, c)
   );
   const hasFormContent = contentTypes.includes(`"multipart/form-data"`);
   return { hasBinaryContent, hasFormContent };

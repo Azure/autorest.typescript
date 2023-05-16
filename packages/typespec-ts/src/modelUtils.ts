@@ -74,6 +74,60 @@ export function getBinaryType(usage: SchemaContext[]) {
     : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
 }
 
+export function isByteOrByteUnion(
+  program: Program,
+  dpgContext: SdkContext,
+  type: Type
+) {
+  const schema = getSchemaForType(program, dpgContext, type);
+  return isByteType(schema) || isByteUnion(schema);
+}
+
+function isByteType(schema: any) {
+  return schema.type === "string" && schema.format === "byte";
+}
+
+function isByteUnion(schema: any) {
+  if (!Array.isArray(schema.enum)) {
+    return false;
+  }
+  for (let ele of schema.enum) {
+    if (isByteType(ele)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function refineByteType(schema: any) {
+  schema.typeName = getBinaryType([
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]);
+  schema.outputTypeName = getBinaryType([SchemaContext.Output]);
+  return schema;
+}
+
+export function enrichBinaryTypeInBody(schema: any) {
+  if (isByteType(schema)) {
+    refineByteType(schema);
+  } else if (isByteUnion(schema)) {
+    let inputType: string[] = [];
+    for (let item of schema.enum) {
+      if (isByteType(item)) {
+        refineByteType(item);
+      }
+      // ignore the string type for input because we already have it in bytes union
+      if (getTypeName(item, [SchemaContext.Input]) !== "string") {
+        inputType.push(getTypeName(item, [SchemaContext.Input]));
+      }
+    }
+    // refine the input type
+    schema.typeName = inputType.join(" | ");
+  }
+  return schema;
+}
+
 export function getSchemaForType(
   program: Program,
   dpgContext: SdkContext,

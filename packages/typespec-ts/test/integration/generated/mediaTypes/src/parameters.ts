@@ -5,8 +5,17 @@ import { RequestParameters } from "@azure-rest/core-client";
 import { SourcePath } from "./models";
 
 export interface GetByUnionBodyParam {
-  /** Input parameter. */
-  body: SourcePath | string | string;
+  /**
+   * Input parameter.
+   *
+   * Value may contain any sequence of octets
+   */
+  body:
+    | SourcePath
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface GetByUnionMediaTypesParam {
@@ -74,8 +83,17 @@ export type GetBySharedRouteForBytesParameters =
     RequestParameters;
 
 export interface GetByOverloadBodyParam {
-  /** Input parameter. */
-  body: SourcePath | string | string;
+  /**
+   * Input parameter.
+   *
+   * Value may contain any sequence of octets
+   */
+  body:
+    | SourcePath
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
 }
 
 export interface GetByOverloadMediaTypesParam {

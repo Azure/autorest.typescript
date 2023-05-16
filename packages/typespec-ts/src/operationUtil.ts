@@ -33,6 +33,7 @@ import {
   OPERATION_LRO_LOW_PRIORITY,
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
+import { isByteOrByteUnion } from "./modelUtils.js";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -74,11 +75,15 @@ export function isDefinedStatusCode(statusCode: StatusCode) {
   return statusCode !== "*";
 }
 
-export function isBinaryPayload(body: Type, contentType: string) {
+export function isBinaryPayload(
+  program: Program,
+  dpgContext: SdkContext,
+  body: Type,
+  contentType: string
+) {
   contentType = `"${contentType}"`;
   if (
-    body.kind === "Scalar" &&
-    body.name === "bytes" &&
+    isByteOrByteUnion(program, dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
