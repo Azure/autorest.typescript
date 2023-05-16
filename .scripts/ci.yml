@@ -62,19 +62,19 @@ stages:
             name: SetRLCCommonDevVersion
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
           - script: |
-              export TAR_NAME=$(npm pack -q)
+              export TAR_NAME=$(pnpm pack -q)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackAutorestTypescriptArtifacts
             workingDirectory: $(Build.SourcesDirectory)/packages/autorest.typescript
           - script: |
-              export TAR_NAME=$(npm pack -q)
+              export TAR_NAME=$(pnpm pack -q)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackTypeSpecTSArtifacts
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
           - script: |
-              export TAR_NAME=$(npm pack -q)
+              export TAR_NAME=$(pnpm pack -q)
               echo $TAR_NAME
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackRLCCommonArtifacts

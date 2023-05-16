@@ -1,29 +1,30 @@
+trigger: none
 schedules:
-  - cron: "0 0 * * *"
+  - cron: "0 12 * * *"
     displayName: Daily midnight build
     branches:
       include:
         - main
+pr: none
 
-steps:
-  - script: npm install -g @typespec/compiler@next
-    displayName: Install @typespec/compiler@next
-  - template: build.yml
-  - script: npm run override-dev-version
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Override pnpm-config version to latest dev"
-  - script: npx @azure-tools/typespec-bump-deps package.json
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Override package.json version to latest dev"
-  - script: rush update --full && rush build
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Re-build after update the config"
-  - script: npm list
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "List the current dependency"
-  - script: npm run unit-test
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Run all unit test cases"
-  - script: npm run integration-test-ci
-    workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-    displayName: "Run all Cadl-ranch test cases"
+stages:
+  - stage: NightlyCI
+    jobs:
+      - job: CadlRanchTest
+        steps:
+          - template: nightly-prepare.yml
+          - script: npm run unit-test
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "Run all unit test cases"
+          - script: npm run integration-test-ci
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "Run all Cadl-ranch test cases"
+      - job: SmokeTest
+        steps:
+          - template: nightly-prepare.yml
+          - script: node $(Build.SourcesDirectory)/common/scripts/install-run-rushx.js smoke-test
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
+            displayName: "Generate Code From Cadl"
+          - script: npm run check:tree
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-test
+            displayName: "Check git Tree"
