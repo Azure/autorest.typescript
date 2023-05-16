@@ -6,48 +6,77 @@ import ServiceDrivenNewClientFactory, {
   ServiceDrivenNewClient
 } from "./generated/resiliency/srvDriven2/src/index.js";
 describe("ResiliencyDevDrivenClient Rest Client", () => {
-  let client1: ServiceDrivenOldClient;
+  let client11: ServiceDrivenOldClient;
+  let client12: ServiceDrivenOldClient;
+  let client21: ServiceDrivenNewClient;
+  let client22: ServiceDrivenNewClient;
 
   beforeEach(() => {
-    client1 = ServiceDrivenOldClientFactory("v1", {
-      allowInsecureConnection: true
+    client11 = ServiceDrivenOldClientFactory("v1", {
+      allowInsecureConnection: true,
+      apiVersion: "v1"
+    });
+    client12 = ServiceDrivenOldClientFactory("v2", {
+      allowInsecureConnection: true,
+      apiVersion: "v1"
+    });
+    client21 = ServiceDrivenNewClientFactory("v2", {
+      allowInsecureConnection: true,
+      apiVersion: "v1"
+    });
+    client22 = ServiceDrivenNewClientFactory("v2", {
+      allowInsecureConnection: true,
+      apiVersion: "v2"
     });
   });
 
-  let client2: ServiceDrivenNewClient;
-
-  beforeEach(() => {
-    client2 = ServiceDrivenNewClientFactory("v2", {
-      allowInsecureConnection: true
-    });
-  });
 
   describe("resiliency with service driven", () => {
     it("should work with none parameter", async () => {
-      const result1 = await client1
+      const result11 = await client11
         .path("/add-optional-param/from-none")
         .head();
 
-      assert.equal(result1.status, "204");
-      const result2 = await client2.path("/add-optional-param/from-none").head({
+      assert.equal(result11.status, "204");
+      const result12 = await client12
+      .path("/add-optional-param/from-none")
+      .head();
+
+      assert.equal(result12.status, "204");
+      const result21 = await client21.path("/add-optional-param/from-none").head({
         queryParameters: {
           "new-parameter": "new"
         }
       });
 
-      assert.equal(result2.status, "204");
+      assert.equal(result21.status, "204");
+      const result22 = await client22.path("/add-optional-param/from-none").head({
+        queryParameters: {
+          "new-parameter": "new"
+        }
+      });
+
+      assert.equal(result22.status, "204");
     });
 
     it("should work with one optional parameter", async () => {
-      const result1 = await client1
+      const result11 = await client11
         .path("/add-optional-param/from-one-optional")
         .get({
           queryParameters: {
             parameter: "optional"
           }
         });
-      assert.equal(result1.status, "204");
-      const result2 = await client2
+      assert.equal(result11.status, "204");
+      const result12 = await client12
+      .path("/add-optional-param/from-one-optional")
+      .get({
+        queryParameters: {
+          parameter: "optional"
+        }
+      });
+      assert.equal(result12.status, "204");
+      const result21 = await client21
         .path("/add-optional-param/from-one-optional")
         .get({
           queryParameters: {
@@ -55,19 +84,36 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
             "new-parameter": "new"
           }
         });
-      assert.equal(result2.status, "204");
+      assert.equal(result21.status, "204");
+      const result22 = await client22
+      .path("/add-optional-param/from-one-optional")
+      .get({
+        queryParameters: {
+          parameter: "optional",
+          "new-parameter": "new"
+        }
+      });
+      assert.equal(result22.status, "204");
     });
 
     it("should work with one required parameter", async () => {
-      const result1 = await client1
+      const result11 = await client11
         .path("/add-optional-param/from-one-required")
         .get({
           queryParameters: {
             parameter: "required"
           }
         });
-      assert.equal(result1.status, "204");
-      const result2 = await client2
+      assert.equal(result11.status, "204");
+      const result12 = await client12
+      .path("/add-optional-param/from-one-required")
+      .get({
+        queryParameters: {
+          parameter: "required"
+        }
+      });
+    assert.equal(result12.status, "204");
+      const result21 = await client21
         .path("/add-optional-param/from-one-required")
         .get({
           queryParameters: {
@@ -75,12 +121,27 @@ describe("ResiliencyDevDrivenClient Rest Client", () => {
             "new-parameter": "new"
           }
         });
-      assert.equal(result2.status, "204");
+      assert.equal(result21.status, "204");
+      const result22 = await client22
+      .path("/add-optional-param/from-one-required")
+      .get({
+        queryParameters: {
+          parameter: "required",
+          "new-parameter": "new"
+        }
+      });
+    assert.equal(result22.status, "204");
     });
   });
 
   it("should work with add operation", async () => {
-    const result2 = await client2.path("/add-operation").delete()
-    assert.equal(result2.status, "204");
+    const client122 = ServiceDrivenOldClientFactory("v2", {
+      allowInsecureConnection: true,
+      apiVersion: "v2"
+    });
+    const result122 = await client122.pathUnchecked("/add-operation").delete();
+    assert.equal(result122.status, "204");
+    const result22 = await client22.path("/add-operation").delete()
+    assert.equal(result22.status, "204");
   });
 });
