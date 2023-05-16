@@ -2,65 +2,68 @@
 // Licensed under the MIT license.
 
 import {
-  PublishCloudEvent200Response,
-  PublishCloudEventDefaultResponse,
-  ReceiveCloudEvents200Response,
-  ReceiveCloudEventsDefaultResponse,
-  AcknowledgeCloudEvents200Response,
-  AcknowledgeCloudEventsDefaultResponse,
-  ReleaseCloudEvents200Response,
-  ReleaseCloudEventsDefaultResponse,
-  RejectCloudEvents200Response,
-  RejectCloudEventsDefaultResponse,
+  ListWidgets200Response,
+  ListWidgetsDefaultResponse,
+  CreateWidget201Response,
+  CreateWidgetDefaultResponse,
+  GetWidget200Response,
+  GetWidgetDefaultResponse,
+  UpdateWidget200Response,
+  UpdateWidgetDefaultResponse,
+  DeleteWidget204Response,
+  DeleteWidgetDefaultResponse,
+  AnalyzeWidget200Response,
+  AnalyzeWidgetDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "POST /topics/{topicName}:publish": ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive":
-    ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge":
-    ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release":
-    ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject":
-    ["200"],
+  "GET /widgets": ["200"],
+  "POST /widgets": ["201"],
+  "GET /widgets/{id}": ["200"],
+  "PATCH /widgets/{id}": ["200"],
+  "DELETE /widgets/{id}": ["204"],
+  "POST /widgets/{id}/analyze": ["200"],
 };
 
 export function isUnexpected(
-  response: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
-): response is PublishCloudEventDefaultResponse;
+  response: ListWidgets200Response | ListWidgetsDefaultResponse
+): response is ListWidgetsDefaultResponse;
 export function isUnexpected(
-  response: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
-): response is ReceiveCloudEventsDefaultResponse;
+  response: CreateWidget201Response | CreateWidgetDefaultResponse
+): response is CreateWidgetDefaultResponse;
+export function isUnexpected(
+  response: GetWidget200Response | GetWidgetDefaultResponse
+): response is GetWidgetDefaultResponse;
+export function isUnexpected(
+  response: UpdateWidget200Response | UpdateWidgetDefaultResponse
+): response is UpdateWidgetDefaultResponse;
+export function isUnexpected(
+  response: DeleteWidget204Response | DeleteWidgetDefaultResponse
+): response is DeleteWidgetDefaultResponse;
+export function isUnexpected(
+  response: AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse
+): response is AnalyzeWidgetDefaultResponse;
 export function isUnexpected(
   response:
-    | AcknowledgeCloudEvents200Response
-    | AcknowledgeCloudEventsDefaultResponse
-): response is AcknowledgeCloudEventsDefaultResponse;
-export function isUnexpected(
-  response: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
-): response is ReleaseCloudEventsDefaultResponse;
-export function isUnexpected(
-  response: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
-): response is RejectCloudEventsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PublishCloudEvent200Response
-    | PublishCloudEventDefaultResponse
-    | ReceiveCloudEvents200Response
-    | ReceiveCloudEventsDefaultResponse
-    | AcknowledgeCloudEvents200Response
-    | AcknowledgeCloudEventsDefaultResponse
-    | ReleaseCloudEvents200Response
-    | ReleaseCloudEventsDefaultResponse
-    | RejectCloudEvents200Response
-    | RejectCloudEventsDefaultResponse
+    | ListWidgets200Response
+    | ListWidgetsDefaultResponse
+    | CreateWidget201Response
+    | CreateWidgetDefaultResponse
+    | GetWidget200Response
+    | GetWidgetDefaultResponse
+    | UpdateWidget200Response
+    | UpdateWidgetDefaultResponse
+    | DeleteWidget204Response
+    | DeleteWidgetDefaultResponse
+    | AnalyzeWidget200Response
+    | AnalyzeWidgetDefaultResponse
 ): response is
-  | PublishCloudEventDefaultResponse
-  | ReceiveCloudEventsDefaultResponse
-  | AcknowledgeCloudEventsDefaultResponse
-  | ReleaseCloudEventsDefaultResponse
-  | RejectCloudEventsDefaultResponse {
+  | ListWidgetsDefaultResponse
+  | CreateWidgetDefaultResponse
+  | GetWidgetDefaultResponse
+  | UpdateWidgetDefaultResponse
+  | DeleteWidgetDefaultResponse
+  | AnalyzeWidgetDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

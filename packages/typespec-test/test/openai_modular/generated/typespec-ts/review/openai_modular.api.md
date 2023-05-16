@@ -6,6 +6,7 @@
 
 import { AzureKeyCredential } from '@azure/core-auth';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
@@ -25,7 +26,31 @@ export interface ChatCompletions {
     usage: CompletionsUsage;
 }
 
+// @public (undocumented)
+export interface ChatCompletions {
+    choices: ChatChoice[];
+    created: number;
+    id: string;
+    usage: CompletionsUsage;
+}
+
 // @public
+export interface ChatCompletionsOptions {
+    frequencyPenalty?: number;
+    logitBias?: Record<string, number>;
+    maxTokens?: number;
+    messages: ChatMessage[];
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
+}
+
+// @public (undocumented)
 export interface ChatCompletionsOptions {
     frequencyPenalty?: number;
     logitBias?: Record<string, number>;
@@ -63,6 +88,14 @@ export interface ClientOptions extends ClientOptions_2 {
 }
 
 // @public
+export interface Completions {
+    choices: Choice[];
+    created: number;
+    id: string;
+    usage: CompletionsUsage;
+}
+
+// @public (undocumented)
 export interface Completions {
     choices: Choice[];
     created: number;
@@ -108,6 +141,25 @@ export interface CompletionsOptions {
     user?: string;
 }
 
+// @public (undocumented)
+export interface CompletionsOptions {
+    bestOf?: number;
+    echo?: boolean;
+    frequencyPenalty?: number;
+    logitBias?: Record<string, number>;
+    logprobs?: number;
+    maxTokens?: number;
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    prompt: string[];
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
+}
+
 // @public
 export interface CompletionsUsage {
     completionTokens: number;
@@ -127,7 +179,20 @@ export interface Embeddings {
     usage: EmbeddingsUsage;
 }
 
+// @public (undocumented)
+export interface Embeddings {
+    data: EmbeddingItem[];
+    usage: EmbeddingsUsage;
+}
+
 // @public
+export interface EmbeddingsOptions {
+    input: string | string[];
+    model?: string;
+    user?: string;
+}
+
+// @public (undocumented)
 export interface EmbeddingsOptions {
     input: string | string[];
     model?: string;
@@ -197,6 +262,7 @@ export interface RequestOptions {
         headers?: RawHttpHeadersInput;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
+        onResponse?: (response: HttpResponse) => void;
     };
 }
 

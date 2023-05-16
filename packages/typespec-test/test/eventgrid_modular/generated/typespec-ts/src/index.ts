@@ -2,21 +2,26 @@
 // Licensed under the MIT license.
 
 export {
-  CloudEventEvent,
-  ReceiveResponse,
+  PublishCloudEventRequest,
+  CloudEvent,
+  ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
-  LockToken,
-  LockTokenInput,
-  LockTokensResponse,
+  AcknowledgeOptions,
+  AcknowledgeResult,
   FailedLockToken,
+  ReleaseOptions,
+  ReleaseResult,
+  RejectOptions,
+  RejectResult,
 } from "./api/models.js";
 export {
   PublishCloudEventOptions,
-  PublishBatchOfCloudEventsOptions,
-  ReceiveBatchOfCloudEventsOptions,
-  AcknowledgeBatchOfCloudEventsOptions,
-  ReleaseBatchOfCloudEventsOptions,
+  PublishCloudEventsOptions,
+  ReceiveCloudEventsOptions,
+  AcknowledgeCloudEventsOptions,
+  ReleaseCloudEventsOptions,
+  RejectCloudEventsOptions,
 } from "./api/operations.js";
-export { AzureMessagingEventGridClient } from "./AzureMessagingEventGridClient.js";
+export { EventGridClient } from "./EventGridClient.js";
 export { ClientOptions, RequestOptions } from "./common/interfaces.js";

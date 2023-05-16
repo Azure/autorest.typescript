@@ -3,8 +3,8 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger";
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { AzureMessagingEventGridContext } from "./clientDefinitions.js";
+import { KeyCredential } from "@azure/core-auth";
+import { EventGridContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AzureMessagingEventGridContext`
@@ -14,15 +14,14 @@ import { AzureMessagingEventGridContext } from "./clientDefinitions.js";
  */
 export default function createClient(
   endpoint: string,
-  credentials: TokenCredential | KeyCredential,
+  credentials: KeyCredential,
   options: ClientOptions = {}
-): AzureMessagingEventGridContext {
+): EventGridContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2023-06-01-preview";
   options = {
     ...options,
     credentials: {
-      scopes: ["https://eventgrid.azure.net/.default"],
       apiKeyHeaderName: "SharedAccessKey",
     },
   };
@@ -42,11 +41,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as AzureMessagingEventGridContext;
+  const client = getClient(baseUrl, credentials, options) as EventGridContext;
 
   return client;
 }

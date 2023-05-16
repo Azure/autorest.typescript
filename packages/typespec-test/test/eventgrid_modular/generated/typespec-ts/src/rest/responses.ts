@@ -4,13 +4,17 @@
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
-  ReceiveResponseOutput,
-  LockTokensResponseOutput,
+  PublishResultOutput,
+  ReceiveResultOutput,
+  AcknowledgeResultOutput,
+  ReleaseResultOutput,
+  RejectResultOutput,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
 export interface PublishCloudEvent200Response extends HttpResponse {
   status: "200";
+  body: PublishResultOutput;
 }
 
 export interface PublishCloudEventDefaultHeaders {
@@ -25,69 +29,86 @@ export interface PublishCloudEventDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface PublishBatchOfCloudEvents200Response extends HttpResponse {
+export interface PublishCloudEvents200Response extends HttpResponse {
   status: "200";
+  body: PublishResultOutput;
 }
 
-export interface PublishBatchOfCloudEventsDefaultHeaders {
+export interface PublishCloudEventsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface PublishBatchOfCloudEventsDefaultResponse extends HttpResponse {
+export interface PublishCloudEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & PublishBatchOfCloudEventsDefaultHeaders;
-}
-
-/** The request has succeeded and a new resource has been created as a result. */
-export interface ReceiveBatchOfCloudEvents201Response extends HttpResponse {
-  status: "201";
-  body: ReceiveResponseOutput;
-}
-
-export interface ReceiveBatchOfCloudEventsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ReceiveBatchOfCloudEventsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ReceiveBatchOfCloudEventsDefaultHeaders;
+  headers: RawHttpHeaders & PublishCloudEventsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface AcknowledgeBatchOfCloudEvents200Response extends HttpResponse {
+export interface ReceiveCloudEvents200Response extends HttpResponse {
   status: "200";
-  body: LockTokensResponseOutput;
+  body: ReceiveResultOutput;
 }
 
-export interface AcknowledgeBatchOfCloudEventsDefaultHeaders {
+export interface ReceiveCloudEventsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface AcknowledgeBatchOfCloudEventsDefaultResponse
-  extends HttpResponse {
+export interface ReceiveCloudEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & AcknowledgeBatchOfCloudEventsDefaultHeaders;
+  headers: RawHttpHeaders & ReceiveCloudEventsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface ReleaseBatchOfCloudEvents200Response extends HttpResponse {
+export interface AcknowledgeCloudEvents200Response extends HttpResponse {
   status: "200";
-  body: LockTokensResponseOutput;
+  body: AcknowledgeResultOutput;
 }
 
-export interface ReleaseBatchOfCloudEventsDefaultHeaders {
+export interface AcknowledgeCloudEventsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface ReleaseBatchOfCloudEventsDefaultResponse extends HttpResponse {
+export interface AcknowledgeCloudEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & ReleaseBatchOfCloudEventsDefaultHeaders;
+  headers: RawHttpHeaders & AcknowledgeCloudEventsDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface ReleaseCloudEvents200Response extends HttpResponse {
+  status: "200";
+  body: ReleaseResultOutput;
+}
+
+export interface ReleaseCloudEventsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface ReleaseCloudEventsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & ReleaseCloudEventsDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface RejectCloudEvents200Response extends HttpResponse {
+  status: "200";
+  body: RejectResultOutput;
+}
+
+export interface RejectCloudEventsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface RejectCloudEventsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & RejectCloudEventsDefaultHeaders;
 }

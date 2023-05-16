@@ -2,6 +2,7 @@ import { Project, SourceFile } from "ts-morph";
 import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
+  getSendPrivateFunction,
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
@@ -30,7 +31,11 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, operationGroupFile);
       const operationDeclaration = getOperationFunction(o);
-      operationGroupFile.addFunction(operationDeclaration);
+      const sendOperationDeclaration = getSendPrivateFunction(o);
+      operationGroupFile.addFunctions([
+        sendOperationDeclaration,
+        operationDeclaration
+      ]);
     });
 
     operationGroupFile.addImportDeclarations([

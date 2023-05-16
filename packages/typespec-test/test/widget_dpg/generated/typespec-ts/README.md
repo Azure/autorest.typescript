@@ -1,12 +1,12 @@
-# Azure.Messaging.EventGrid REST client library for JavaScript
+# WidgetService REST client library for JavaScript
 
-Azure Messaging EventGrid Client
+Widget Service
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/eventgrid)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/widget_dpg)
 
 ## Getting started
 
@@ -18,15 +18,15 @@ Key links:
 
 - You must have an [Azure subscription](https://azure.microsoft.com/free/) to use this package.
 
-### Install the `@msinternal/eventgrid` package
+### Install the `@msinternal/widget_dpg` package
 
-Install the Azure.Messaging.EventGrid REST client REST client library for JavaScript with `npm`:
+Install the WidgetService REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/eventgrid
+npm install @msinternal/widget_dpg
 ```
 
-### Create and authenticate a `EventGridClient`
+### Create and authenticate a `WidgetServiceClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

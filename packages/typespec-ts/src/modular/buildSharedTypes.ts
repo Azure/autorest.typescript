@@ -2,6 +2,8 @@ import { Project, SourceFile } from "ts-morph";
 
 const content = `import { ClientOptions as RestClientOptions } from "@azure-rest/core-client";
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+import { HttpResponse } from "@azure-rest/core-client";
+
 export interface ClientOptions extends RestClientOptions {}
 export interface RequestOptions {
   requestOptions?: {
@@ -13,6 +15,10 @@ export interface RequestOptions {
     allowInsecureConnection?: boolean;
     /** Set to true if you want to skip encoding the path parameters */
     skipUrlEncoding?: boolean;
+    /**
+     * Callback to access the raw response object when the response is received
+     */
+    onResponse?: (response: HttpResponse) => void;
   };
 }`;
 
