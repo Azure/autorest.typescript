@@ -40,12 +40,12 @@ export async function runTypespec(config: CadlRanchConfig) {
       maxBuffer: MAX_BUFFER
     });
     console.log("Generated output:", result.toString());
+    console.log(`=== End ${targetFolder} ===`);
     return result;
   } catch (e) {
     console.log("Error happened");
     console.error(Error((e as any).stdout.toString()));
     process.exitCode = 1;
   }
-  console.log(`=== End ${targetFolder} ===`);
   return;
 }
