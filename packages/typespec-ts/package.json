@@ -70,6 +70,13 @@
     "ts-morph": "^15.1.0",
     "fs-extra": "^11.1.0"
   },
+  "files": [
+    "src",
+    "dist/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "mocha": {
     "extension": [
       "ts"
