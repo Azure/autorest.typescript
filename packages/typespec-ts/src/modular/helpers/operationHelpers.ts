@@ -144,7 +144,7 @@ export function getOperationFunction(
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
   // Extract required parameters
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] =
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation);
 
   // TODO: Support operation overloads
