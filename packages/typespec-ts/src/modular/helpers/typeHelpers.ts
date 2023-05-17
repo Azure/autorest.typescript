@@ -46,7 +46,7 @@ export function getType(type: Type): TypeMetadata {
     case "integer":
       return { name: getNullableType("number", type) };
     case "byte-array":
-      return { name: getNullableType("string", type) };
+      return { name: getNullableType("Uint8Array", type) };
     case "list":
       if (!type.elementType) {
         throw new Error("Unable to process Array with no elementType");

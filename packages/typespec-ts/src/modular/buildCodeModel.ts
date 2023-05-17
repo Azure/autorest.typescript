@@ -33,7 +33,8 @@ import {
   EmitContext,
   listServices,
   Union,
-  Type
+  Type,
+  IntrinsicType
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -64,7 +65,9 @@ import {
   SdkContext,
   getSdkUnion,
   getAllModels,
-  getPropertyNames
+  getPropertyNames,
+  SdkSimpleType,
+  getSdkSimpleType
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -912,7 +915,7 @@ function emitStdScalar(
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "byte-array", format: "byte" };
+      return { type: "Uint8Array", format: "byte" };
     case "int8":
     case "int16":
     case "int32":
@@ -1070,9 +1073,65 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       types: sdkType.values.map((x) => getType(context, x.__raw)),
       xmlMetadata: {}
     };
+  } else if (sdkType.kind === "enum") {
+    return {
+      name: sdkType.name,
+      nullable: sdkType.nullable,
+      description: sdkType.doc || `Type of ${sdkType.name}`,
+      internal: true,
+      type: sdkType.kind,
+      valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+      values: sdkType.values.map((x) => emitEnumMember(x)),
+      isFixed: sdkType.isFixed === false ? false : true,
+      xmlMetadata: {}
+    };
   } else {
     return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw) };
   }
+}
+
+function emitEnumMember(type: any): Record<string, any> {
+  return {
+    name: enumName(type.name),
+    value: type.value,
+    description: type.doc
+  };
+}
+
+function emitSimpleType(
+  context: SdkContext,
+  type: Scalar | IntrinsicType | SdkSimpleType
+): Record<string, any> {
+  let sdkType: SdkSimpleType;
+  if (type.kind === "Scalar" || type.kind === "Intrinsic") {
+    sdkType = getSdkSimpleType(context, type);
+  } else {
+    sdkType = type;
+  }
+
+  const extraInformation: Record<string, any> = {};
+  if (sdkType.kind === "string") {
+    extraInformation["pattern"] = sdkType.pattern;
+    extraInformation["minLength"] = sdkType.minLength;
+    extraInformation["maxLength"] = sdkType.maxLength;
+  } else if (
+    sdkType.kind === "int32" ||
+    sdkType.kind === "int64" ||
+    sdkType.kind === "float32" ||
+    sdkType.kind === "float64"
+  ) {
+    extraInformation["minValue"] = sdkType.minValue;
+    extraInformation["maxValue"] = sdkType.maxValue;
+  }
+  return {
+    nullable: sdkType.nullable,
+    type: "number", // TODO: switch to kind
+    doc: sdkType.doc,
+    apiVersions: sdkType.apiVersions,
+    sdkDefaultValue: sdkType.sdkDefaultValue,
+    format: sdkType.format,
+    ...extraInformation
+  };
 }
 
 function emitType(context: SdkContext, type: EmitterType): Record<string, any> {

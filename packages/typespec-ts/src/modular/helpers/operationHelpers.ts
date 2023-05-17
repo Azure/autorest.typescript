@@ -127,14 +127,16 @@ export function getOperationFunction(
     statements.push(
       `return ${deserializeResponseValue(response.type, "result.body")}`
     );
-  } else if (!response?.type?.properties) {
-    statements.push(`return;`);
-  } else {
+  } else if (response?.type?.properties) {
     statements.push(
       `return {`,
       getResponseMapping(response.type.properties ?? []).join(","),
       `}`
     );
+  } else if (returnType.type === "void") {
+    statements.push(`return;`);
+  } else {
+    statements.push(`return result.body;`);
   }
   return {
     ...functionStatement,
