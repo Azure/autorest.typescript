@@ -10,7 +10,7 @@ import { Widget, ColorType, AnalyzeResult } from "./models.js";
 
 export interface ListWidgetsOptions extends RequestOptions {}
 
-async function _listWidgetsSend(
+export function _listWidgetsSend(
   context: Client,
   options: ListWidgetsOptions = { requestOptions: {} }
 ) {
@@ -23,7 +23,7 @@ async function _listWidgetsSend(
     });
 }
 
-async function _listWidgetsDeserialize(
+export async function _listWidgetsDeserialize(
   result: OperationRawReturnType<typeof _listWidgetsSend>
 ): Promise<Widget[]> {
   if (isUnexpected(result)) {
@@ -48,7 +48,7 @@ export async function listWidgets(
 
 export interface GetWidgetOptions extends RequestOptions {}
 
-async function _getWidgetSend(
+export function _getWidgetSend(
   context: Client,
   id: string,
   options: GetWidgetOptions = { requestOptions: {} }
@@ -62,7 +62,7 @@ async function _getWidgetSend(
     });
 }
 
-async function _getWidgetDeserialize(
+export async function _getWidgetDeserialize(
   result: OperationRawReturnType<typeof _getWidgetSend>
 ): Promise<Widget> {
   if (isUnexpected(result)) {
@@ -88,7 +88,7 @@ export async function getWidget(
 
 export interface CreateWidgetOptions extends RequestOptions {}
 
-async function _createWidgetSend(
+export function _createWidgetSend(
   context: Client,
   weight: number,
   color: ColorType,
@@ -104,7 +104,7 @@ async function _createWidgetSend(
     });
 }
 
-async function _createWidgetDeserialize(
+export async function _createWidgetDeserialize(
   result: OperationRawReturnType<typeof _createWidgetSend>
 ): Promise<Widget> {
   if (isUnexpected(result)) {
@@ -136,7 +136,7 @@ export interface UpdateWidgetOptions extends RequestOptions {
   color?: ColorType;
 }
 
-async function _updateWidgetSend(
+export function _updateWidgetSend(
   context: Client,
   id: string,
   options: UpdateWidgetOptions = { requestOptions: {} }
@@ -154,7 +154,7 @@ async function _updateWidgetSend(
     });
 }
 
-async function _updateWidgetDeserialize(
+export async function _updateWidgetDeserialize(
   result: OperationRawReturnType<typeof _updateWidgetSend>
 ): Promise<Widget> {
   if (isUnexpected(result)) {
@@ -180,7 +180,7 @@ export async function updateWidget(
 
 export interface DeleteWidgetOptions extends RequestOptions {}
 
-async function _deleteWidgetSend(
+export function _deleteWidgetSend(
   context: Client,
   id: string,
   options: DeleteWidgetOptions = { requestOptions: {} }
@@ -194,7 +194,7 @@ async function _deleteWidgetSend(
     });
 }
 
-async function _deleteWidgetDeserialize(
+export async function _deleteWidgetDeserialize(
   result: OperationRawReturnType<typeof _deleteWidgetSend>
 ): Promise<void> {
   if (isUnexpected(result)) {
@@ -216,7 +216,7 @@ export async function deleteWidget(
 
 export interface AnalyzeWidgetOptions extends RequestOptions {}
 
-async function _analyzeWidgetSend(
+export function _analyzeWidgetSend(
   context: Client,
   id: string,
   options: AnalyzeWidgetOptions = { requestOptions: {} }
@@ -230,7 +230,7 @@ async function _analyzeWidgetSend(
     });
 }
 
-async function _analyzeWidgetDeserialize(
+export async function _analyzeWidgetDeserialize(
   result: OperationRawReturnType<typeof _analyzeWidgetSend>
 ): Promise<AnalyzeResult> {
   if (isUnexpected(result)) {

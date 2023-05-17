@@ -19,7 +19,7 @@ export interface PublishCloudEventOptions extends RequestOptions {
   contentType?: string;
 }
 
-async function _publishCloudEventSend(
+export function _publishCloudEventSend(
   context: Client,
   event: CloudEvent,
   topicName: string,
@@ -38,7 +38,7 @@ async function _publishCloudEventSend(
     });
 }
 
-async function _publishCloudEventDeserialize(
+export async function _publishCloudEventDeserialize(
   result: OperationRawReturnType<typeof _publishCloudEventSend>
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
@@ -69,7 +69,7 @@ export interface PublishCloudEventsOptions extends RequestOptions {
   contentType?: string;
 }
 
-async function _publishCloudEventsSend(
+export function _publishCloudEventsSend(
   context: Client,
   events: CloudEvent[],
   topicName: string,
@@ -88,7 +88,7 @@ async function _publishCloudEventsSend(
     });
 }
 
-async function _publishCloudEventsDeserialize(
+export async function _publishCloudEventsDeserialize(
   result: OperationRawReturnType<typeof _publishCloudEventsSend>
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
@@ -121,7 +121,7 @@ export interface ReceiveCloudEventsOptions extends RequestOptions {
   maxWaitTime?: number;
 }
 
-async function _receiveCloudEventsSend(
+export function _receiveCloudEventsSend(
   context: Client,
   topicName: string,
   eventSubscriptionName: string,
@@ -144,7 +144,7 @@ async function _receiveCloudEventsSend(
     });
 }
 
-async function _receiveCloudEventsDeserialize(
+export async function _receiveCloudEventsDeserialize(
   result: OperationRawReturnType<typeof _receiveCloudEventsSend>
 ): Promise<ReceiveResult> {
   if (isUnexpected(result)) {
@@ -194,7 +194,7 @@ export interface AcknowledgeCloudEventsOptions extends RequestOptions {
   contentType?: string;
 }
 
-async function _acknowledgeCloudEventsSend(
+export function _acknowledgeCloudEventsSend(
   context: Client,
   lockTokens: string[],
   topicName: string,
@@ -217,7 +217,7 @@ async function _acknowledgeCloudEventsSend(
     });
 }
 
-async function _acknowledgeCloudEventsDeserialize(
+export async function _acknowledgeCloudEventsDeserialize(
   result: OperationRawReturnType<typeof _acknowledgeCloudEventsSend>
 ): Promise<AcknowledgeResult> {
   if (isUnexpected(result)) {
@@ -257,7 +257,7 @@ export interface ReleaseCloudEventsOptions extends RequestOptions {
   contentType?: string;
 }
 
-async function _releaseCloudEventsSend(
+export function _releaseCloudEventsSend(
   context: Client,
   lockTokens: string[],
   topicName: string,
@@ -280,7 +280,7 @@ async function _releaseCloudEventsSend(
     });
 }
 
-async function _releaseCloudEventsDeserialize(
+export async function _releaseCloudEventsDeserialize(
   result: OperationRawReturnType<typeof _releaseCloudEventsSend>
 ): Promise<ReleaseResult> {
   if (isUnexpected(result)) {
@@ -320,7 +320,7 @@ export interface RejectCloudEventsOptions extends RequestOptions {
   contentType?: string;
 }
 
-async function _rejectCloudEventsSend(
+export function _rejectCloudEventsSend(
   context: Client,
   lockTokens: string[],
   topicName: string,
@@ -343,7 +343,7 @@ async function _rejectCloudEventsSend(
     });
 }
 
-async function _rejectCloudEventsDeserialize(
+export async function _rejectCloudEventsDeserialize(
   result: OperationRawReturnType<typeof _rejectCloudEventsSend>
 ): Promise<RejectResult> {
   if (isUnexpected(result)) {

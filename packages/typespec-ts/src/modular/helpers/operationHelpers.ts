@@ -22,8 +22,8 @@ export function getSendPrivateFunction(
   const { name } = getOperationName(operation);
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-    isAsync: true,
-    isExported: false,
+    isAsync: false,
+    isExported: true,
     name: `_${name}Send`,
     parameters
   };
@@ -66,7 +66,7 @@ export function getDeserializePrivateFunction(
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,
-    isExported: false,
+    isExported: true,
     name: `_${name}Deserialize`,
     parameters,
     returnType: `Promise<${returnType.type}>`

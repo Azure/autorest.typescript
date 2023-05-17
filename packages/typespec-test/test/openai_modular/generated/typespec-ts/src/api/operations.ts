@@ -27,7 +27,7 @@ export interface GetEmbeddingsOptions extends RequestOptions {
   model?: string;
 }
 
-async function _getEmbeddingsSend(
+export function _getEmbeddingsSend(
   context: Client,
   input: string | string[],
   deploymentId: string,
@@ -47,7 +47,7 @@ async function _getEmbeddingsSend(
     });
 }
 
-async function _getEmbeddingsDeserialize(
+export async function _getEmbeddingsDeserialize(
   result: OperationRawReturnType<typeof _getEmbeddingsSend>
 ): Promise<Embeddings> {
   if (isUnexpected(result)) {
@@ -167,7 +167,7 @@ export interface GetCompletionsOptions extends RequestOptions {
   model?: string;
 }
 
-async function _getCompletionsSend(
+export function _getCompletionsSend(
   context: Client,
   prompt: string[],
   deploymentId: string,
@@ -203,7 +203,7 @@ async function _getCompletionsSend(
     });
 }
 
-async function _getCompletionsDeserialize(
+export async function _getCompletionsDeserialize(
   result: OperationRawReturnType<typeof _getCompletionsSend>
 ): Promise<Completions> {
   if (isUnexpected(result)) {
@@ -321,7 +321,7 @@ export interface GetChatCompletionsOptions extends RequestOptions {
   model?: string;
 }
 
-async function _getChatCompletionsSend(
+export function _getChatCompletionsSend(
   context: Client,
   messages: ChatMessage[],
   deploymentId: string,
@@ -354,7 +354,7 @@ async function _getChatCompletionsSend(
     });
 }
 
-async function _getChatCompletionsDeserialize(
+export async function _getChatCompletionsDeserialize(
   result: OperationRawReturnType<typeof _getChatCompletionsSend>
 ): Promise<ChatCompletions> {
   if (isUnexpected(result)) {
