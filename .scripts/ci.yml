@@ -255,10 +255,10 @@ stages:
           - template: globals.yml
         strategy:
           matrix:
-            # macOS_Node16:
-            #   Pool:
-            #   OSVmImage: "macOS-latest"
-            #   NodeTestVersion: "16.x"
+            macOS_Node16:
+              Pool:
+              OSVmImage: "macOS-latest"
+              NodeTestVersion: "16.x"
             Linux_Node16:
               Pool: ${{ parameters.LinuxPool }}
               OSVmImage: "ubuntu-20.04"
@@ -294,7 +294,7 @@ stages:
           - publish: $(CADL_TESTSERVER_COVERAGE_REPORT)
             artifact: CoverageReport
             displayName: "Publish coverage report"
-            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux' ))
           - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
               - task: AzureCLI@2
                 displayName: "Upload to Cadl Ranch Coverage Report"
