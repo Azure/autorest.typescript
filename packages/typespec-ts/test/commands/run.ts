@@ -47,4 +47,5 @@ export async function runTypespec(config: CadlRanchConfig) {
     process.exitCode = 1;
   }
   console.log(`=== End ${targetFolder} ===`);
+  return;
 }
