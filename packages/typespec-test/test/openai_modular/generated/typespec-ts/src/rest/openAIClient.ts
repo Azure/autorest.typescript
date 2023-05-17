@@ -8,10 +8,10 @@ import { OpenAIContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `OpenAIContext`
- * @param endpoint type: string, Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
  * https://westus.api.cognitive.microsoft.com).
- * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

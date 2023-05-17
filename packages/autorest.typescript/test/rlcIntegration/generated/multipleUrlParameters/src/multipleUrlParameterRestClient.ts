@@ -8,10 +8,10 @@ import { MultipleUrlParameterRestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `MultipleUrlParameterRestClient`
- * @param endpoint type: string, The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com
- * @param serviceVersion type: "v2"|"v1", the version of api
- * @param credentials type: TokenCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - The catalog endpoint of your Purview account. Example: https://{accountName}.purview.azure.com
+ * @param serviceVersion - the version of api
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

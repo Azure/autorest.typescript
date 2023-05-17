@@ -23,7 +23,7 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
@@ -74,8 +74,8 @@ describe("Client Factory generation", () => {
 
           /**
            * Initialize a new instance of \`testClient\`
-           * @param endpoint type: string, The endpoint to use.
-           * @param options type: ClientOptions, the parameter for all optional parameters
+           * @param endpoint - The endpoint to use.
+           * @param options - the parameter for all optional parameters
            */
           export default function createClient(
             endpoint: string,
@@ -142,9 +142,9 @@ describe("Client Factory generation", () => {
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint type: string, The endpoint to use.
-             * @param version type: "V1"|"V2", The version to use
-             * @param options type: ClientOptions, the parameter for all optional parameters
+             * @param endpoint - The endpoint to use.
+             * @param version - The version to use
+             * @param options - the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -208,9 +208,9 @@ describe("Client Factory generation", () => {
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint type: string, The endpoint to use.
-             * @param version type: string, The version to use. Possible values: v1.1
-             * @param options type: ClientOptions, the parameter for all optional parameters
+             * @param endpoint - The endpoint to use.
+             * @param version - The version to use. Possible values: v1.1
+             * @param options - the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -259,8 +259,8 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint type: string, The parameter endpoint
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param endpoint - The parameter endpoint
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -311,8 +311,8 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint type: string, The parameter endpoint
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param endpoint - The parameter endpoint
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -363,9 +363,9 @@ describe("Client Factory generation", () => {
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint type: string, The parameter endpoint
-         * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param endpoint - The parameter endpoint
+         * @param credentials - uniquely identify client credential
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
