@@ -1,8 +1,6 @@
 import "@typespec/rest";
-import "@typespec/openapi";
 
 using TypeSpec.Http;
-using OpenAPI;
 
 namespace TypeScript.Test.MediaTypes;
 
