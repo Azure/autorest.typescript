@@ -25,9 +25,6 @@ export interface CloudEventOutput {
   subject?: string;
 }
 
-/** The result of the Publish operation. */
-export interface PublishResultOutput {}
-
 /** Details of the Receive operation response. */
 export interface ReceiveResultOutput {
   /** Array of receive responses, one per cloud event. */
@@ -74,12 +71,24 @@ export interface FailedLockTokenOutput {
   errorDescription: string;
 }
 
+/** Array of lock token strings for the corresponding received Cloud Events to be released. */
+export interface ReleaseOptionsOutput {
+  /** String array of lock tokens. */
+  lockTokens: string[];
+}
+
 /** The result of the Release operation. */
 export interface ReleaseResultOutput {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: Array<FailedLockTokenOutput>;
   /** Array of lock tokens values for the successfully released cloud events. */
   succeededLockTokens: string[];
+}
+
+/** Array of lock token strings for the corresponding received Cloud Events to be rejected. */
+export interface RejectOptionsOutput {
+  /** String array of lock tokens. */
+  lockTokens: string[];
 }
 
 /** The result of the Reject operation. */

@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestOptions } from "../common/interfaces.js";
 import { EventGridContext as Client, isUnexpected } from "../rest/index.js";
+import {
+  OperationRawReturnType,
+  RequestOptions,
+} from "../common/interfaces.js";
 import {
   CloudEvent,
   ReceiveResult,
@@ -35,6 +38,16 @@ async function _publishCloudEventSend(
     });
 }
 
+async function _publishCloudEventDeserialize(
+  result: OperationRawReturnType<typeof _publishCloudEventSend>
+): Promise<Record<string, any>> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return result.body;
+}
+
 /** Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
 export async function publishCloudEvent(
   context: Client,
@@ -48,11 +61,7 @@ export async function publishCloudEvent(
     topicName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return result.body;
+  return _publishCloudEventDeserialize(result);
 }
 
 export interface PublishCloudEventsOptions extends RequestOptions {
@@ -79,6 +88,16 @@ async function _publishCloudEventsSend(
     });
 }
 
+async function _publishCloudEventsDeserialize(
+  result: OperationRawReturnType<typeof _publishCloudEventsSend>
+): Promise<Record<string, any>> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return result.body;
+}
+
 /** Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status code with an empty JSON object in response. Otherwise, the server can return various error codes. For example, 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410: which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error. */
 export async function publishCloudEvents(
   context: Client,
@@ -92,11 +111,7 @@ export async function publishCloudEvents(
     topicName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return result.body;
+  return _publishCloudEventsDeserialize(result);
 }
 
 export interface ReceiveCloudEventsOptions extends RequestOptions {
@@ -129,19 +144,9 @@ async function _receiveCloudEventsSend(
     });
 }
 
-/** Receive Batch of Cloud Events from the Event Subscription. */
-export async function receiveCloudEvents(
-  context: Client,
-  topicName: string,
-  eventSubscriptionName: string,
-  options: ReceiveCloudEventsOptions = { requestOptions: {} }
+async function _receiveCloudEventsDeserialize(
+  result: OperationRawReturnType<typeof _receiveCloudEventsSend>
 ): Promise<ReceiveResult> {
-  const result = await _receiveCloudEventsSend(
-    context,
-    topicName,
-    eventSubscriptionName,
-    options
-  );
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -166,6 +171,22 @@ export async function receiveCloudEvents(
       },
     })),
   };
+}
+
+/** Receive Batch of Cloud Events from the Event Subscription. */
+export async function receiveCloudEvents(
+  context: Client,
+  topicName: string,
+  eventSubscriptionName: string,
+  options: ReceiveCloudEventsOptions = { requestOptions: {} }
+): Promise<ReceiveResult> {
+  const result = await _receiveCloudEventsSend(
+    context,
+    topicName,
+    eventSubscriptionName,
+    options
+  );
+  return _receiveCloudEventsDeserialize(result);
 }
 
 export interface AcknowledgeCloudEventsOptions extends RequestOptions {
@@ -196,6 +217,23 @@ async function _acknowledgeCloudEventsSend(
     });
 }
 
+async function _acknowledgeCloudEventsDeserialize(
+  result: OperationRawReturnType<typeof _acknowledgeCloudEventsSend>
+): Promise<AcknowledgeResult> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
+      lockToken: p["lockToken"],
+      errorCode: p["errorCode"],
+      errorDescription: p["errorDescription"],
+    })),
+    succeededLockTokens: result.body["succeededLockTokens"],
+  };
+}
+
 /** Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully acknowledged. The response body will include the set of successfully acknowledged lockTokens, along with other failed lockTokens with their corresponding error information. Successfully acknowledged events will no longer be available to any consumer. */
 export async function acknowledgeCloudEvents(
   context: Client,
@@ -211,18 +249,7 @@ export async function acknowledgeCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
-      lockToken: p["lockToken"],
-      errorCode: p["errorCode"],
-      errorDescription: p["errorDescription"],
-    })),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return _acknowledgeCloudEventsDeserialize(result);
 }
 
 export interface ReleaseCloudEventsOptions extends RequestOptions {
@@ -253,6 +280,23 @@ async function _releaseCloudEventsSend(
     });
 }
 
+async function _releaseCloudEventsDeserialize(
+  result: OperationRawReturnType<typeof _releaseCloudEventsSend>
+): Promise<ReleaseResult> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
+      lockToken: p["lockToken"],
+      errorCode: p["errorCode"],
+      errorDescription: p["errorDescription"],
+    })),
+    succeededLockTokens: result.body["succeededLockTokens"],
+  };
+}
+
 /** Release batch of Cloud Events. The server responds with an HTTP 200 status code if at least one event is successfully released. The response body will include the set of successfully released lockTokens, along with other failed lockTokens with their corresponding error information. */
 export async function releaseCloudEvents(
   context: Client,
@@ -268,18 +312,7 @@ export async function releaseCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
-      lockToken: p["lockToken"],
-      errorCode: p["errorCode"],
-      errorDescription: p["errorDescription"],
-    })),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return _releaseCloudEventsDeserialize(result);
 }
 
 export interface RejectCloudEventsOptions extends RequestOptions {
@@ -310,6 +343,23 @@ async function _rejectCloudEventsSend(
     });
 }
 
+async function _rejectCloudEventsDeserialize(
+  result: OperationRawReturnType<typeof _rejectCloudEventsSend>
+): Promise<RejectResult> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
+      lockToken: p["lockToken"],
+      errorCode: p["errorCode"],
+      errorDescription: p["errorDescription"],
+    })),
+    succeededLockTokens: result.body["succeededLockTokens"],
+  };
+}
+
 /** Reject batch of Cloud Events. */
 export async function rejectCloudEvents(
   context: Client,
@@ -325,16 +375,5 @@ export async function rejectCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
-      lockToken: p["lockToken"],
-      errorCode: p["errorCode"],
-      errorDescription: p["errorDescription"],
-    })),
-    succeededLockTokens: result.body["succeededLockTokens"],
-  };
+  return _rejectCloudEventsDeserialize(result);
 }

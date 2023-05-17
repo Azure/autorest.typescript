@@ -24,6 +24,12 @@ export interface AcknowledgeResult {
   succeededLockTokens: string[];
 }
 
+// @public (undocumented)
+export interface AcknowledgeResult {
+  failedLockTokens: FailedLockToken[];
+  succeededLockTokens: string[];
+}
+
 // @public
 export interface BrokerProperties {
   deliveryCount: number;
@@ -152,6 +158,11 @@ export interface ReceiveResult {
 }
 
 // @public (undocumented)
+export interface ReceiveResult {
+  value: ReceiveDetails[];
+}
+
+// @public (undocumented)
 export interface RejectCloudEventsOptions extends RequestOptions {
   contentType?: string;
 }
@@ -168,6 +179,12 @@ export interface RejectResult {
 }
 
 // @public (undocumented)
+export interface RejectResult {
+  failedLockTokens: FailedLockToken[];
+  succeededLockTokens: string[];
+}
+
+// @public (undocumented)
 export interface ReleaseCloudEventsOptions extends RequestOptions {
   contentType?: string;
 }
@@ -178,6 +195,12 @@ export interface ReleaseOptions {
 }
 
 // @public
+export interface ReleaseResult {
+  failedLockTokens: FailedLockToken[];
+  succeededLockTokens: string[];
+}
+
+// @public (undocumented)
 export interface ReleaseResult {
   failedLockTokens: FailedLockToken[];
   succeededLockTokens: string[];

@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestOptions } from "../common/interfaces.js";
 import { WidgetServiceContext as Client, isUnexpected } from "../rest/index.js";
+import {
+  OperationRawReturnType,
+  RequestOptions,
+} from "../common/interfaces.js";
 import { Widget, ColorType, AnalyzeResult } from "./models.js";
 
 export interface ListWidgetsOptions extends RequestOptions {}
@@ -20,12 +23,9 @@ async function _listWidgetsSend(
     });
 }
 
-/** */
-export async function listWidgets(
-  context: Client,
-  options: ListWidgetsOptions = { requestOptions: {} }
+async function _listWidgetsDeserialize(
+  result: OperationRawReturnType<typeof _listWidgetsSend>
 ): Promise<Widget[]> {
-  const result = await _listWidgetsSend(context, options);
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -35,6 +35,15 @@ export async function listWidgets(
     weight: p["weight"],
     color: p["color"],
   }));
+}
+
+/** */
+export async function listWidgets(
+  context: Client,
+  options: ListWidgetsOptions = { requestOptions: {} }
+): Promise<Widget[]> {
+  const result = await _listWidgetsSend(context, options);
+  return _listWidgetsDeserialize(result);
 }
 
 export interface GetWidgetOptions extends RequestOptions {}
@@ -53,13 +62,9 @@ async function _getWidgetSend(
     });
 }
 
-/** */
-export async function getWidget(
-  context: Client,
-  id: string,
-  options: GetWidgetOptions = { requestOptions: {} }
+async function _getWidgetDeserialize(
+  result: OperationRawReturnType<typeof _getWidgetSend>
 ): Promise<Widget> {
-  const result = await _getWidgetSend(context, id, options);
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -69,6 +74,16 @@ export async function getWidget(
     weight: result.body["weight"],
     color: result.body["color"],
   };
+}
+
+/** */
+export async function getWidget(
+  context: Client,
+  id: string,
+  options: GetWidgetOptions = { requestOptions: {} }
+): Promise<Widget> {
+  const result = await _getWidgetSend(context, id, options);
+  return _getWidgetDeserialize(result);
 }
 
 export interface CreateWidgetOptions extends RequestOptions {}
@@ -89,14 +104,9 @@ async function _createWidgetSend(
     });
 }
 
-/** */
-export async function createWidget(
-  context: Client,
-  weight: number,
-  color: ColorType,
-  options: CreateWidgetOptions = { requestOptions: {} }
+async function _createWidgetDeserialize(
+  result: OperationRawReturnType<typeof _createWidgetSend>
 ): Promise<Widget> {
-  const result = await _createWidgetSend(context, weight, color, options);
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -106,6 +116,17 @@ export async function createWidget(
     weight: result.body["weight"],
     color: result.body["color"],
   };
+}
+
+/** */
+export async function createWidget(
+  context: Client,
+  weight: number,
+  color: ColorType,
+  options: CreateWidgetOptions = { requestOptions: {} }
+): Promise<Widget> {
+  const result = await _createWidgetSend(context, weight, color, options);
+  return _createWidgetDeserialize(result);
 }
 
 export interface UpdateWidgetOptions extends RequestOptions {
@@ -133,13 +154,9 @@ async function _updateWidgetSend(
     });
 }
 
-/** */
-export async function updateWidget(
-  context: Client,
-  id: string,
-  options: UpdateWidgetOptions = { requestOptions: {} }
+async function _updateWidgetDeserialize(
+  result: OperationRawReturnType<typeof _updateWidgetSend>
 ): Promise<Widget> {
-  const result = await _updateWidgetSend(context, id, options);
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -149,6 +166,16 @@ export async function updateWidget(
     weight: result.body["weight"],
     color: result.body["color"],
   };
+}
+
+/** */
+export async function updateWidget(
+  context: Client,
+  id: string,
+  options: UpdateWidgetOptions = { requestOptions: {} }
+): Promise<Widget> {
+  const result = await _updateWidgetSend(context, id, options);
+  return _updateWidgetDeserialize(result);
 }
 
 export interface DeleteWidgetOptions extends RequestOptions {}
@@ -167,6 +194,16 @@ async function _deleteWidgetSend(
     });
 }
 
+async function _deleteWidgetDeserialize(
+  result: OperationRawReturnType<typeof _deleteWidgetSend>
+): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return;
+}
+
 /** */
 export async function deleteWidget(
   context: Client,
@@ -174,11 +211,7 @@ export async function deleteWidget(
   options: DeleteWidgetOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteWidgetSend(context, id, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return;
+  return _deleteWidgetDeserialize(result);
 }
 
 export interface AnalyzeWidgetOptions extends RequestOptions {}
@@ -197,13 +230,9 @@ async function _analyzeWidgetSend(
     });
 }
 
-/** */
-export async function analyzeWidget(
-  context: Client,
-  id: string,
-  options: AnalyzeWidgetOptions = { requestOptions: {} }
+async function _analyzeWidgetDeserialize(
+  result: OperationRawReturnType<typeof _analyzeWidgetSend>
 ): Promise<AnalyzeResult> {
-  const result = await _analyzeWidgetSend(context, id, options);
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -211,4 +240,14 @@ export async function analyzeWidget(
   return {
     summary: result.body["summary"],
   };
+}
+
+/** */
+export async function analyzeWidget(
+  context: Client,
+  id: string,
+  options: AnalyzeWidgetOptions = { requestOptions: {} }
+): Promise<AnalyzeResult> {
+  const result = await _analyzeWidgetSend(context, id, options);
+  return _analyzeWidgetDeserialize(result);
 }

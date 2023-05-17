@@ -48,9 +48,16 @@ async function main() {
 
   for (const folder of folders) {
     const path = join(root, "test", folder);
+    const contents = await readdir(path);
+
     console.log(`================Start ${folder}===============`);
-    generate(path);
-    build(path);
+    if (contents.includes("skip")) {
+      console.log(`         ###### Skipped ######         `);
+    } else {
+      generate(path);
+      build(path);
+    }
+
     console.log(`================End ${folder}===============`);
   }
 }
