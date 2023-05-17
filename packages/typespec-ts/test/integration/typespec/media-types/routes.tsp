@@ -19,7 +19,6 @@ interface MediaTypesOperations {
    */
   @doc("Union of types map union of content types.")
   @route("/union")
-  @operationId("union")
   @post
   getByUnionOnly(
     @body
@@ -39,7 +38,6 @@ interface MediaTypesOperations {
    */
   @doc("Using shared route to express the mapping info - string.")
   @route("/shared-route")
-  @operationId("sharedRoute")
   @sharedRoute
   @post
   getBySharedRouteForString(
@@ -51,7 +49,6 @@ interface MediaTypesOperations {
 
   @doc("Using shared route to express the mapping info - model.")
   @route("/shared-route")
-  @operationId("sharedRoute")
   @sharedRoute
   @post
   getBySharedRouteForModel(
@@ -63,7 +60,6 @@ interface MediaTypesOperations {
 
   @doc("Using shared route to express the mapping info - bytes.")
   @route("/shared-route")
-  @operationId("sharedRoute")
   @sharedRoute
   @post
   getBySharedRouteForBytes(
@@ -82,7 +78,6 @@ interface MediaTypesOperations {
    */
   @doc("Union of types map union of content types. Then use @overload to detailed mapping.")
   @route("/overload")
-  @operationId("overload")
   @post
   getByOverloadParent(
     @body
