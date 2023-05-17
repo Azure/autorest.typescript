@@ -7,8 +7,8 @@ import { OverloadTestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `OverloadTestClient`
- * @param $host type: string, The parameter $host
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param $host - The parameter $host
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   $host: string,
