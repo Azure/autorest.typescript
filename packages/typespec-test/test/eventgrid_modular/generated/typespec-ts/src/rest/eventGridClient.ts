@@ -7,7 +7,7 @@ import { KeyCredential } from "@azure/core-auth";
 import { EventGridContext } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `AzureMessagingEventGridContext`
+ * Initialize a new instance of `EventGridContext`
  * @param endpoint - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters

@@ -47,15 +47,15 @@ export interface BrokerPropertiesOutput {
   deliveryCount: number;
 }
 
-/** Lock token input formatting. */
-export interface LockTokenInputOutput {
-  /** LockToken */
+/** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
+export interface AcknowledgeOptionsOutput {
+  /** String array of lock tokens. */
   lockTokens: string[];
 }
 
-/** Details of the LockTokens information. This is used for both Acknowledge and Release operation response. */
-export interface LockTokensResponseOutput {
-  /** Array of LockToken values for failed cloud events. */
+/** The result of the Acknowledge operation. */
+export interface AcknowledgeResultOutput {
+  /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: Array<FailedLockTokenOutput>;
   /** Array of lock tokens values for the successfully acknowledged cloud events. */
   succeededLockTokens: string[];
