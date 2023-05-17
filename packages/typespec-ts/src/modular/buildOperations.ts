@@ -3,6 +3,7 @@ import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
   getSendPrivateFunction,
+  getDeserializePrivateFunction,
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
@@ -32,8 +33,10 @@ export function buildOperationFiles(
       buildOperationOptions(o, operationGroupFile);
       const operationDeclaration = getOperationFunction(o);
       const sendOperationDeclaration = getSendPrivateFunction(o);
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
+        deserializeOperationDeclaration,
         operationDeclaration
       ]);
     });
@@ -42,6 +45,13 @@ export function buildOperationFiles(
       {
         moduleSpecifier: "../rest/index.js",
         namedImports: [`${client.name}Context as Client`, "isUnexpected"]
+      }
+    ]);
+
+    operationGroupFile.addImportDeclarations([
+      {
+        moduleSpecifier: "../common/interfaces.js",
+        namedImports: ["OperationRawReturnType"]
       }
     ]);
 

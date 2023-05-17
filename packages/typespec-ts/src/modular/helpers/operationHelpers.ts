@@ -46,6 +46,57 @@ export function getSendPrivateFunction(
   };
 }
 
+export function getDeserializePrivateFunction(
+  operation: Operation
+): OptionalKind<FunctionDeclarationStructure> {
+  const { name } = getOperationName(operation);
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: `OperationRawReturnType<typeof _${name}Send>`
+    }
+  ];
+
+  // TODO: Support operation overloads
+  const response = operation.responses[0]!;
+  const returnType = response?.type?.type
+    ? buildType(response.type.name, response.type)
+    : { name: "", type: "void" };
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: true,
+    isExported: false,
+    name: `_${name}Deserialize`,
+    parameters,
+    returnType: `Promise<${returnType.type}>`
+  };
+  const statements: string[] = [];
+  statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+
+  if (response?.type?.type === "any") {
+    statements.push(`return result.body`);
+  } else if (response?.type?.elementType) {
+    statements.push(
+      `return ${deserializeResponseValue(response.type, "result.body")}`
+    );
+  } else if (response?.type?.properties) {
+    statements.push(
+      `return {`,
+      getResponseMapping(response.type.properties ?? []).join(","),
+      `}`
+    );
+  } else if (returnType.type === "void") {
+    statements.push(`return;`);
+  } else {
+    statements.push(`return result.body;`);
+  }
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
 function getOperationSignatureParameters(
   operation: Operation
 ): OptionalKind<ParameterDeclarationStructure>[] {
@@ -118,26 +169,27 @@ export function getOperationFunction(
       .map((p) => p.name)
       .join(", ")});`
   );
+  statements.push(`return _${name}Deserialize(result);`);
 
-  statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+  // statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
 
-  if (response?.type?.type === "any") {
-    statements.push(`return result.body`);
-  } else if (response?.type?.elementType) {
-    statements.push(
-      `return ${deserializeResponseValue(response.type, "result.body")}`
-    );
-  } else if (response?.type?.properties) {
-    statements.push(
-      `return {`,
-      getResponseMapping(response.type.properties ?? []).join(","),
-      `}`
-    );
-  } else if (returnType.type === "void") {
-    statements.push(`return;`);
-  } else {
-    statements.push(`return result.body;`);
-  }
+  // if (response?.type?.type === "any") {
+  //   statements.push(`return result.body`);
+  // } else if (response?.type?.elementType) {
+  //   statements.push(
+  //     `return ${deserializeResponseValue(response.type, "result.body")}`
+  //   );
+  // } else if (response?.type?.properties) {
+  //   statements.push(
+  //     `return {`,
+  //     getResponseMapping(response.type.properties ?? []).join(","),
+  //     `}`
+  //   );
+  // } else if (returnType.type === "void") {
+  //   statements.push(`return;`);
+  // } else {
+  //   statements.push(`return result.body;`);
+  // }
   return {
     ...functionStatement,
     statements

@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestOptions } from "../common/interfaces.js";
 import { OpenAIContext as Client, isUnexpected } from "../rest/index.js";
+import {
+  OperationRawReturnType,
+  RequestOptions,
+} from "../common/interfaces.js";
 import {
   Embeddings,
   Completions,
@@ -44,19 +47,9 @@ async function _getEmbeddingsSend(
     });
 }
 
-/** Return the embeddings for a given prompt. */
-export async function getEmbeddings(
-  context: Client,
-  input: string | string[],
-  deploymentId: string,
-  options: GetEmbeddingsOptions = { requestOptions: {} }
+async function _getEmbeddingsDeserialize(
+  result: OperationRawReturnType<typeof _getEmbeddingsSend>
 ): Promise<Embeddings> {
-  const result = await _getEmbeddingsSend(
-    context,
-    input,
-    deploymentId,
-    options
-  );
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -71,6 +64,22 @@ export async function getEmbeddings(
       totalTokens: result.body.usage["total_tokens"],
     },
   };
+}
+
+/** Return the embeddings for a given prompt. */
+export async function getEmbeddings(
+  context: Client,
+  input: string | string[],
+  deploymentId: string,
+  options: GetEmbeddingsOptions = { requestOptions: {} }
+): Promise<Embeddings> {
+  const result = await _getEmbeddingsSend(
+    context,
+    input,
+    deploymentId,
+    options
+  );
+  return _getEmbeddingsDeserialize(result);
 }
 
 export interface GetCompletionsOptions extends RequestOptions {
@@ -194,23 +203,9 @@ async function _getCompletionsSend(
     });
 }
 
-/**
- * Gets completions for the provided input prompts.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
-export async function getCompletions(
-  context: Client,
-  prompt: string[],
-  deploymentId: string,
-  options: GetCompletionsOptions = { requestOptions: {} }
+async function _getCompletionsDeserialize(
+  result: OperationRawReturnType<typeof _getCompletionsSend>
 ): Promise<Completions> {
-  const result = await _getCompletionsSend(
-    context,
-    prompt,
-    deploymentId,
-    options
-  );
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -238,6 +233,26 @@ export async function getCompletions(
       totalTokens: result.body.usage["total_tokens"],
     },
   };
+}
+
+/**
+ * Gets completions for the provided input prompts.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export async function getCompletions(
+  context: Client,
+  prompt: string[],
+  deploymentId: string,
+  options: GetCompletionsOptions = { requestOptions: {} }
+): Promise<Completions> {
+  const result = await _getCompletionsSend(
+    context,
+    prompt,
+    deploymentId,
+    options
+  );
+  return _getCompletionsDeserialize(result);
 }
 
 export interface GetChatCompletionsOptions extends RequestOptions {
@@ -339,23 +354,9 @@ async function _getChatCompletionsSend(
     });
 }
 
-/**
- * Gets chat completions for the provided chat messages.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
-export async function getChatCompletions(
-  context: Client,
-  messages: ChatMessage[],
-  deploymentId: string,
-  options: GetChatCompletionsOptions = { requestOptions: {} }
+async function _getChatCompletionsDeserialize(
+  result: OperationRawReturnType<typeof _getChatCompletionsSend>
 ): Promise<ChatCompletions> {
-  const result = await _getChatCompletionsSend(
-    context,
-    messages,
-    deploymentId,
-    options
-  );
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -379,4 +380,24 @@ export async function getChatCompletions(
       totalTokens: result.body.usage["total_tokens"],
     },
   };
+}
+
+/**
+ * Gets chat completions for the provided chat messages.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export async function getChatCompletions(
+  context: Client,
+  messages: ChatMessage[],
+  deploymentId: string,
+  options: GetChatCompletionsOptions = { requestOptions: {} }
+): Promise<ChatCompletions> {
+  const result = await _getChatCompletionsSend(
+    context,
+    messages,
+    deploymentId,
+    options
+  );
+  return _getChatCompletionsDeserialize(result);
 }

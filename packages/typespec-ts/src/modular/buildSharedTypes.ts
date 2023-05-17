@@ -4,6 +4,10 @@ const content = `import { ClientOptions as RestClientOptions } from "@azure-rest
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 
+type PromiseResolvedType<T> = T extends Promise<infer R> ? R : never;
+export type OperationRawReturnType<T extends (...args: any[]) => Promise<any>> =
+  PromiseResolvedType<ReturnType<T>>;
+  
 export interface ClientOptions extends RestClientOptions {}
 export interface RequestOptions {
   requestOptions?: {
