@@ -7,18 +7,15 @@ export interface CadlRanchConfig {
 export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "sharedRoute",
-    inputPath: "shared-route",
-    debug: true
+    inputPath: "shared-route"
   },
   {
     outputPath: "mediaTypes",
-    inputPath: "media-types",
-    debug: true
+    inputPath: "media-types"
   },
   {
     outputPath: "overload",
-    inputPath: "overload",
-    debug: true
+    inputPath: "overload"
   },
   {
     outputPath: "arrays/itemTypes",
