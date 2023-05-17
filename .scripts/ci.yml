@@ -294,7 +294,7 @@ stages:
           - publish: $(CADL_TESTSERVER_COVERAGE_REPORT)
             artifact: CoverageReport
             displayName: "Publish coverage report"
-            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))
+            condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
           - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
               - task: AzureCLI@2
                 displayName: "Upload to Cadl Ranch Coverage Report"
