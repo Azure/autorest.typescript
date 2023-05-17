@@ -34,7 +34,8 @@ import {
   listServices,
   Union,
   Type,
-  IntrinsicType
+  IntrinsicType,
+  getProjectedName
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -65,7 +66,6 @@ import {
   SdkContext,
   getSdkUnion,
   getAllModels,
-  getPropertyNames,
   SdkSimpleType,
   getSdkSimpleType
 } from "@azure-tools/typespec-client-generator-core";
@@ -763,7 +763,11 @@ function emitProperty(
   ) {
     clientDefaultValue = property.default.value;
   }
-  const [clientName, jsonName] = getPropertyNames(context, property);
+
+  // const [clientName, jsonName] = getPropertyNames(context, property);
+  const clientName = property.name;
+  const jsonName =
+    getProjectedName(context.program, property, "json") ?? property.name;
 
   if (property.model) {
     getType(context, property.model);

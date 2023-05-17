@@ -372,7 +372,7 @@ function isOptionalWithouDefault(
   return Boolean(param.optional && !param.clientDefaultValue);
 }
 function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
-  return `...(options.${param.clientName} && {"${param.restApiName}": options.${param.clientName}})`;
+  return `"${param.restApiName}": options?.${param.clientName}`;
 }
 
 type OptionalWithDefaultType = (Parameter | Property) & {

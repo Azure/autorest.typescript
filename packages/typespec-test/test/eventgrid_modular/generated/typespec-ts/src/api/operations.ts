@@ -138,8 +138,8 @@ export function _receiveCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
       queryParameters: {
-        ...(options.maxEvents && { maxEvents: options.maxEvents }),
-        ...(options.maxWaitTime && { maxWaitTime: options.maxWaitTime }),
+        maxEvents: options?.maxEvents,
+        maxWaitTime: options?.maxWaitTime,
       },
     });
 }

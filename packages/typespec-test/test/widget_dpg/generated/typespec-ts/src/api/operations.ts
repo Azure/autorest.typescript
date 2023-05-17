@@ -147,10 +147,7 @@ export function _updateWidgetSend(
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
-      body: {
-        ...(options.weight && { weight: options.weight }),
-        ...(options.color && { color: options.color }),
-      },
+      body: { weight: options?.weight, color: options?.color },
     });
 }
 

@@ -39,11 +39,7 @@ export function _getEmbeddingsSend(
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
-      body: {
-        ...(options.user && { user: options.user }),
-        ...(options.model && { model: options.model }),
-        input: input,
-      },
+      body: { user: options?.user, model: options?.model, input: input },
     });
 }
 
@@ -181,24 +177,20 @@ export function _getCompletionsSend(
       headers: { ...options.requestOptions?.headers },
       body: {
         prompt: prompt,
-        ...(options.maxTokens && { maxTokens: options.maxTokens }),
-        ...(options.temperature && { temperature: options.temperature }),
-        ...(options.topP && { topP: options.topP }),
-        ...(options.logitBias && { logitBias: options.logitBias }),
-        ...(options.user && { user: options.user }),
-        ...(options.n && { n: options.n }),
-        ...(options.logprobs && { logprobs: options.logprobs }),
-        ...(options.echo && { echo: options.echo }),
-        ...(options.stop && { stop: options.stop }),
-        ...(options.presencePenalty && {
-          presencePenalty: options.presencePenalty,
-        }),
-        ...(options.frequencyPenalty && {
-          frequencyPenalty: options.frequencyPenalty,
-        }),
-        ...(options.bestOf && { bestOf: options.bestOf }),
-        ...(options.stream && { stream: options.stream }),
-        ...(options.model && { model: options.model }),
+        max_tokens: options?.maxTokens,
+        temperature: options?.temperature,
+        top_p: options?.topP,
+        logit_bias: options?.logitBias,
+        user: options?.user,
+        n: options?.n,
+        logprobs: options?.logprobs,
+        echo: options?.echo,
+        stop: options?.stop,
+        presence_penalty: options?.presencePenalty,
+        frequency_penalty: options?.frequencyPenalty,
+        best_of: options?.bestOf,
+        stream: options?.stream,
+        model: options?.model,
       },
     });
 }
@@ -335,21 +327,17 @@ export function _getChatCompletionsSend(
       headers: { ...options.requestOptions?.headers },
       body: {
         messages: messages,
-        ...(options.maxTokens && { maxTokens: options.maxTokens }),
-        ...(options.temperature && { temperature: options.temperature }),
-        ...(options.topP && { topP: options.topP }),
-        ...(options.logitBias && { logitBias: options.logitBias }),
-        ...(options.user && { user: options.user }),
-        ...(options.n && { n: options.n }),
-        ...(options.stop && { stop: options.stop }),
-        ...(options.presencePenalty && {
-          presencePenalty: options.presencePenalty,
-        }),
-        ...(options.frequencyPenalty && {
-          frequencyPenalty: options.frequencyPenalty,
-        }),
-        ...(options.stream && { stream: options.stream }),
-        ...(options.model && { model: options.model }),
+        max_tokens: options?.maxTokens,
+        temperature: options?.temperature,
+        top_p: options?.topP,
+        logit_bias: options?.logitBias,
+        user: options?.user,
+        n: options?.n,
+        stop: options?.stop,
+        presence_penalty: options?.presencePenalty,
+        frequency_penalty: options?.frequencyPenalty,
+        stream: options?.stream,
+        model: options?.model,
       },
     });
 }
