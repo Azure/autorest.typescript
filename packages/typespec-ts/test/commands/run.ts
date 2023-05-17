@@ -42,6 +42,7 @@ export async function runTypespec(config: CadlRanchConfig) {
     });
     console.log("Generated output:", result.toString());
   } catch (e) {
+    console.log("Error happened");
     console.error(Error((e as any).stdout.toString()));
     process.exitCode = 1;
   }
