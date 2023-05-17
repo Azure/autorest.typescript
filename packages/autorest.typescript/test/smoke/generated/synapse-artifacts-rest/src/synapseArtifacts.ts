@@ -8,9 +8,9 @@ import { SynapseArtifactsClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `SynapseArtifactsClient`
- * @param endpoint type: string, The workspace development endpoint, for example https://myworkspace.dev.azuresynapse.net.
- * @param credentials type: TokenCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - The workspace development endpoint, for example https://myworkspace.dev.azuresynapse.net.
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

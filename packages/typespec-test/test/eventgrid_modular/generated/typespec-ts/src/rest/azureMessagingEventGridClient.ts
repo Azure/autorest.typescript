@@ -8,9 +8,9 @@ import { AzureMessagingEventGridContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `AzureMessagingEventGridContext`
- * @param endpoint type: string, The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
- * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

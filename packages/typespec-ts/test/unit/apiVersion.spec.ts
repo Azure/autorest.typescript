@@ -135,8 +135,8 @@ const buildDefaultReturn = (hasDefault: boolean) => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint type: string, The endpoint to use.
-   * @param options type: ClientOptions, the parameter for all optional parameters
+   * @param endpoint - The endpoint to use.
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
@@ -178,8 +178,8 @@ const buildPathReturn_WithDefault = () => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint type: string, The endpoint to use.
-   * @param options type: testClientOptions, the parameter for all optional parameters
+   * @param endpoint - The endpoint to use.
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
@@ -217,9 +217,9 @@ const buildPathReturn_WithoutDefault = () => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint type: string, The endpoint to use.
-   * @param apiVersion type: string, Api Version Possible values: 2022-05-15-preview
-   * @param options type: ClientOptions, the parameter for all optional parameters
+   * @param endpoint - The endpoint to use.
+   * @param apiVersion - Api Version Possible values: 2022-05-15-preview
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,

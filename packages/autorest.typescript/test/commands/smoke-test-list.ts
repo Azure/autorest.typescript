@@ -46,133 +46,133 @@ const getArmReadmes = (): SpecDefinition[] => {
 };
 
 export const readmes: SpecDefinition[] = [
-  // ...getArmReadmes(),
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/sql/resource-manager/readme.md"
-  //   ),
-  //   branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-  //   params: [
-  //     AutorestParams.GenerateTest,
-  //     AutorestParams.ModelDedup,
-  //     AutorestParams.GenerateSamples,
-  //     AutorestParams.AzureArm,
-  //     AutorestParams.AzureSdkForJs
-  //   ],
-  //   buildTag: "ci_1"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/web/resource-manager/readme.md"
-  //   ),
-  //   params: [
-  //     AutorestParams.GenerateTest,
-  //     AutorestParams.GenerateSamples,
-  //     AutorestParams.AzureSdkForJs
-  //   ],
-  //   branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-  //   buildTag: "ci_2"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/monitor/data-plane/readme.md"
-  //   ),
-  //   params: [AutorestParams.Security],
-  //   buildTag: "ci_2"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/graphrbac/data-plane/readme.md"
-  //   ),
-  //   buildTag: "ci_2"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md"
-  //   ),
-  //   params: [AutorestParams.ModelDedup],
-  //   branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-  //   buildTag: "ci_2"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/compute/resource-manager/readme.md"
-  //   ),
-  //   params: [
-  //     AutorestParams.GenerateTest,
-  //     AutorestParams.ModelDedup,
-  //     AutorestParams.GenerateSamples,
-  //     AutorestParams.AzureSdkForJs
-  //   ],
-  //   branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-  //   buildTag: "ci_2"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/network/resource-manager/readme.md"
-  //   ),
-  //   params: [
-  //     AutorestParams.GenerateTest,
-  //     AutorestParams.GenerateSamples,
-  //     AutorestParams.AzureSdkForJs,
-  //     AutorestParams.AzureArm
-  //   ],
-  //   branch: "25bea13c86145a7620e363826a9ae476c18adb5f",
-  //   buildTag: "ci_3"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
-  //   ),
-  //   params: [
-  //     AutorestParams.GenerateTest,
-  //     AutorestParams.GenerateSamples,
-  //     AutorestParams.AzureSdkForJs,
-  //     AutorestParams.AzureArm
-  //   ],
-  //   branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-  //   buildTag: "ci_3"
-  // },
-  // {
-  //   path: joinPath(
-  //     `${__dirname}`,
-  //     "..",
-  //     "..",
-  //     "./.tmp/specs/specification/storage/resource-manager/readme.md"
-  //   ),
-  //   params: [
-  //     AutorestParams.ModelDedup,
-  //     AutorestParams.GenerateTest,
-  //     AutorestParams.GenerateSamples,
-  //     AutorestParams.AzureSdkForJs
-  //   ],
-  //   branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
-  //   buildTag: "ci_3"
-  // },
+  ...getArmReadmes(),
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/sql/resource-manager/readme.md"
+    ),
+    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.ModelDedup,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureArm,
+      AutorestParams.AzureSdkForJs
+    ],
+    buildTag: "ci_1"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/web/resource-manager/readme.md"
+    ),
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
+    ],
+    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    buildTag: "ci_2"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/monitor/data-plane/readme.md"
+    ),
+    params: [AutorestParams.Security],
+    buildTag: "ci_2"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/graphrbac/data-plane/readme.md"
+    ),
+    buildTag: "ci_2"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md"
+    ),
+    params: [AutorestParams.ModelDedup],
+    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    buildTag: "ci_2"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/compute/resource-manager/readme.md"
+    ),
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.ModelDedup,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
+    ],
+    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    buildTag: "ci_2"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/network/resource-manager/readme.md"
+    ),
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.AzureArm
+    ],
+    branch: "25bea13c86145a7620e363826a9ae476c18adb5f",
+    buildTag: "ci_3"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/keyvault/resource-manager/readme.md"
+    ),
+    params: [
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs,
+      AutorestParams.AzureArm
+    ],
+    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    buildTag: "ci_3"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
+      "./.tmp/specs/specification/storage/resource-manager/readme.md"
+    ),
+    params: [
+      AutorestParams.ModelDedup,
+      AutorestParams.GenerateTest,
+      AutorestParams.GenerateSamples,
+      AutorestParams.AzureSdkForJs
+    ],
+    branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
+    buildTag: "ci_3"
+  },
   {
     path: joinPath(
       `${__dirname}`,
