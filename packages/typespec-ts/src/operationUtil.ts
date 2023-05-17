@@ -212,6 +212,10 @@ export function hasPollingOperations(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       if (isLongRunningOperation(program, route)) {
         return true;
       }
@@ -220,6 +224,10 @@ export function hasPollingOperations(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     if (isLongRunningOperation(program, route)) {
       return true;
     }
@@ -251,6 +259,10 @@ export function hasPagingOperations(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       if (isPagingOperation(program, route)) {
         return true;
       }
@@ -259,6 +271,10 @@ export function hasPagingOperations(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     if (isPagingOperation(program, route)) {
       return true;
     }

@@ -3,12 +3,6 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface GetThingBodyParam {
-  body: string | number;
-}
-
-export type GetThingParameters = GetThingBodyParam & RequestParameters;
-
 export interface GetStringBodyParam {
   body: string;
 }
@@ -20,23 +14,6 @@ export interface GetNumberBodyParam {
 }
 
 export type GetNumberParameters = GetNumberBodyParam & RequestParameters;
-
-export interface UploadBodyParam {
-  /** Value may contain any sequence of octets */
-  body:
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
-}
-
-export interface UploadMediaTypesParam {
-  contentType: "text/plain" | "application/octet-stream";
-}
-
-export type UploadParameters = UploadMediaTypesParam &
-  UploadBodyParam &
-  RequestParameters;
 
 export interface UploadStringBodyParam {
   body: string;
@@ -65,18 +42,6 @@ export interface UploadBytesMediaTypesParam {
 
 export type UploadBytesParameters = UploadBytesMediaTypesParam &
   UploadBytesBodyParam &
-  RequestParameters;
-
-export interface ProcessBodyParam {
-  body?: { data: string | string };
-}
-
-export interface ProcessMediaTypesParam {
-  contentType: "text/plain" | "application/octet-stream";
-}
-
-export type ProcessParameters = ProcessMediaTypesParam &
-  ProcessBodyParam &
   RequestParameters;
 
 export interface ProcessStringBodyParam {

@@ -28,12 +28,6 @@ export interface GetBySharedRouteForBytes200Response extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetByOverload200Response extends HttpResponse {
-  status: "200";
-  body: string;
-}
-
-/** The request has succeeded. */
 export interface GetByOverloadString200Response extends HttpResponse {
   status: "200";
   body: string;

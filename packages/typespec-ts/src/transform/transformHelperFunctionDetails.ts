@@ -47,6 +47,10 @@ export function transformHelperFunctionDetails(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       if (getPageable(program, route.operation)) {
         const nextLinkName =
           getPageable(program, route.operation) || "nextLink";
@@ -59,6 +63,10 @@ export function transformHelperFunctionDetails(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     if (getPageable(program, route.operation)) {
       const nextLinkName = getPageable(program, route.operation) || "nextLink";
       if (nextLinkName) {
@@ -112,12 +120,20 @@ function extractPageDetailFromCore(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       extractPageDetailFromCoreForRoute(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     extractPageDetailFromCoreForRoute(route);
   }
 

@@ -82,34 +82,6 @@ export type GetBySharedRouteForBytesParameters =
     GetBySharedRouteForBytesBodyParam &
     RequestParameters;
 
-export interface GetByOverloadBodyParam {
-  /**
-   * Input parameter.
-   *
-   * Value may contain any sequence of octets
-   */
-  body:
-    | SourcePath
-    | string
-    | Uint8Array
-    | ReadableStream<Uint8Array>
-    | NodeJS.ReadableStream;
-}
-
-export interface GetByOverloadMediaTypesParam {
-  contentType:
-    | "application/pdf"
-    | "application/json"
-    | "image/jpeg"
-    | "image/png"
-    | "image/tiff"
-    | "text/plain";
-}
-
-export type GetByOverloadParameters = GetByOverloadMediaTypesParam &
-  GetByOverloadBodyParam &
-  RequestParameters;
-
 export interface GetByOverloadStringBodyParam {
   /** Input parameter. */
   body: string;

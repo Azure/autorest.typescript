@@ -6,7 +6,6 @@ import {
   GetBySharedRouteForStringParameters,
   GetBySharedRouteForModelParameters,
   GetBySharedRouteForBytesParameters,
-  GetByOverloadParameters,
   GetByOverloadStringParameters,
   GetByOverloadForModelParameters,
   GetByOverloadForBytesParameters,
@@ -16,7 +15,6 @@ import {
   GetBySharedRouteForString200Response,
   GetBySharedRouteForModel200Response,
   GetBySharedRouteForBytes200Response,
-  GetByOverload200Response,
   GetByOverloadString200Response,
   GetByOverloadForModel200Response,
   GetByOverloadForBytes200Response,
@@ -43,11 +41,7 @@ export interface GetBySharedRouteForString {
   ): StreamableMethod<GetBySharedRouteForBytes200Response>;
 }
 
-export interface GetByOverload {
-  /** Union of types map union of content types. Then use @overload to detailed mapping. */
-  post(
-    options: GetByOverloadParameters
-  ): StreamableMethod<GetByOverload200Response>;
+export interface GetByOverloadString {
   post(
     options: GetByOverloadStringParameters
   ): StreamableMethod<GetByOverloadString200Response>;
@@ -65,7 +59,7 @@ export interface Routes {
   /** Resource for '/shared-route' has methods for the following verbs: post */
   (path: "/shared-route"): GetBySharedRouteForString;
   /** Resource for '/overload' has methods for the following verbs: post */
-  (path: "/overload"): GetByOverload;
+  (path: "/overload"): GetByOverloadString;
 }
 
 export type MediaTypesClient = Client & {

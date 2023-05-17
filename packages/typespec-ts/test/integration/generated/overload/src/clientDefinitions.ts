@@ -2,38 +2,26 @@
 // Licensed under the MIT license.
 
 import {
-  GetThingParameters,
   GetStringParameters,
   GetNumberParameters,
-  UploadParameters,
-  UploadBytesParameters,
   UploadStringParameters,
-  ProcessParameters,
-  ProcessBytesParameters,
+  UploadBytesParameters,
   ProcessStringParameters,
+  ProcessBytesParameters,
 } from "./parameters";
 import {
-  GetThing200Response,
   GetString200Response,
   GetNumber200Response,
-  Upload204Response,
-  UploadBytes204Response,
   UploadString204Response,
-  Process204Response,
-  ProcessBytes204Response,
+  UploadBytes204Response,
   ProcessString204Response,
+  ProcessBytes204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetThing {
-  post(options: GetThingParameters): StreamableMethod<GetThing200Response>;
+export interface GetString {
   post(options: GetStringParameters): StreamableMethod<GetString200Response>;
   post(options: GetNumberParameters): StreamableMethod<GetNumber200Response>;
-}
-
-export interface Upload {
-  put(options: UploadParameters): StreamableMethod<Upload204Response>;
-  put(options: UploadBytesParameters): StreamableMethod<UploadBytes204Response>;
 }
 
 export interface UploadString {
@@ -42,25 +30,28 @@ export interface UploadString {
   ): StreamableMethod<UploadString204Response>;
 }
 
-export interface Process {
-  put(options: ProcessParameters): StreamableMethod<Process204Response>;
-  put(
-    options: ProcessBytesParameters
-  ): StreamableMethod<ProcessBytes204Response>;
+export interface UploadBytes {
+  put(options: UploadBytesParameters): StreamableMethod<UploadBytes204Response>;
+}
+
+export interface ProcessString {
   post(
     options: ProcessStringParameters
   ): StreamableMethod<ProcessString204Response>;
+  put(
+    options: ProcessBytesParameters
+  ): StreamableMethod<ProcessBytes204Response>;
 }
 
 export interface Routes {
   /** Resource for '/overload/get' has methods for the following verbs: post */
-  (path: "/overload/get"): GetThing;
-  /** Resource for '/overload/changed-routes' has methods for the following verbs: put */
-  (path: "/overload/changed-routes"): Upload;
+  (path: "/overload/get"): GetString;
   /** Resource for '/overload/toString' has methods for the following verbs: put */
   (path: "/overload/toString"): UploadString;
-  /** Resource for '/overload/changed-actions' has methods for the following verbs: put, post */
-  (path: "/overload/changed-actions"): Process;
+  /** Resource for '/overload/changed-routes' has methods for the following verbs: put */
+  (path: "/overload/changed-routes"): UploadBytes;
+  /** Resource for '/overload/changed-actions' has methods for the following verbs: post, put */
+  (path: "/overload/changed-actions"): ProcessString;
 }
 
 export type OverloadTestClient = Client & {
