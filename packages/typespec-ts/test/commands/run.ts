@@ -3,7 +3,7 @@ import { dirname, join as joinPath } from "path";
 import { fileURLToPath } from "url";
 import { CadlRanchConfig } from "./cadl-ranch-list.js";
 import fsextra from "fs-extra";
-
+const MAX_BUFFER = 10 * 1024 * 1024;
 export async function runTypespec(config: CadlRanchConfig) {
   const targetFolder = config.outputPath,
     sourceTypespec = config.inputPath;
@@ -36,6 +36,15 @@ export async function runTypespec(config: CadlRanchConfig) {
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);
   const result = execSync(command);
+  try {
+    const result = execSync(command, {
+      maxBuffer: MAX_BUFFER
+    });
+    console.log("Generated output:", result.toString());
+  } catch (e) {
+    console.error(Error((e as any).stdout.toString()));
+    process.exitCode = 1;
+  }
   console.log(`=== End ${targetFolder} ===`);
   return result;
 }
