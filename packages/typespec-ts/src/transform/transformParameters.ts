@@ -280,7 +280,7 @@ function transformNormalBody(
   if (hasBinaryContent) {
     descriptions.push("Value may contain any sequence of octets");
   }
-  let type = extractNameFromCadlType(
+  const type = extractNameFromCadlType(
     program,
     dpgContext,
     bodyType,

@@ -91,7 +91,7 @@ function isByteUnion(schema: any) {
   if (!Array.isArray(schema.enum)) {
     return false;
   }
-  for (let ele of schema.enum) {
+  for (const ele of schema.enum) {
     if (isByteType(ele)) {
       return true;
     }
@@ -112,8 +112,8 @@ export function enrichBinaryTypeInBody(schema: any) {
   if (isByteType(schema)) {
     refineByteType(schema);
   } else if (isByteUnion(schema)) {
-    let inputType: string[] = [];
-    for (let item of schema.enum) {
+    const inputType: string[] = [];
+    for (const item of schema.enum) {
       if (isByteType(item)) {
         refineByteType(item);
       }
