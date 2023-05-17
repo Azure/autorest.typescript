@@ -27,6 +27,7 @@ export async function runTypespec(config: CadlRanchConfig) {
     const entry = joinPath(typespecPath, filename);
     if (fsextra.existsSync(entry)) {
       typespecPath = entry;
+      console.log(`Existing the entry file: ${entry}`);
       break;
     }
   }
