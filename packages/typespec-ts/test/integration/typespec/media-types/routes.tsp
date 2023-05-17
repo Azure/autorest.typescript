@@ -4,9 +4,6 @@ import "@typespec/openapi";
 using TypeSpec.Http;
 using OpenAPI;
 
-@service({
-  title: "MediaTypesClient",
-})
 namespace TypeScript.Test.MediaTypes;
 
 @doc("Uri or local path to source data.")
