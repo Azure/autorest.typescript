@@ -13,7 +13,7 @@ model Resource {
 @route("/sharedroute")
 interface SharedRouteOperations {
   /**
-   * different query parameter
+   * different query & header parameters
    */
 
   @sharedRoute
