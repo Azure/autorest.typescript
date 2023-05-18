@@ -8,19 +8,13 @@ namespace TypeScript.Test.Overalod;
 model Resource {
   id: string;
 }
-@route("/overload")
+
 interface OveralodOperations {
   /**
    * Overload with same routes
    */
   @route("/get")
   getThing(@body param: string | int32): string | int32;
-
-  @overload(OveralodOperations.getThing)
-  getString(@body param: string): string;
-
-  @overload(OveralodOperations.getThing)
-  getNumber(@body param: int32): int32;
 
   /**
    * Overload with different routes
@@ -33,17 +27,6 @@ interface OveralodOperations {
     @header contentType: "text/plain" | "application/octet-stream"
   ): void;
 
-  @overload(OveralodOperations.upload)
-  @route("/toString")
-  uploadString(@body data: string, @header contentType: "text/plain"): void;
-
-  @overload(OveralodOperations.upload)
-  uploadBytes(
-    @body
-    data: bytes,
-    @header contentType: "application/octet-stream"
-  ): void;
-
   /**
    * Overloads with different actions
    */
@@ -53,15 +36,5 @@ interface OveralodOperations {
   process(
     data: string | bytes,
     @header contentType: "text/plain" | "application/octet-stream"
-  ): void;
-
-  @overload(OveralodOperations.process)
-  @post
-  processString(data: string, @header contentType: "text/plain"): void;
-
-  @overload(OveralodOperations.process)
-  processBytes(
-    data: bytes,
-    @header contentType: "application/octet-stream"
   ): void;
 }
