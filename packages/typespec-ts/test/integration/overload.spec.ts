@@ -6,7 +6,7 @@ describe("OverloadTest Rest Client", () => {
   let client: OverloadTestClient;
 
   beforeEach(() => {
-    client = OverloadTestFactory("http://fake-url.con", {
+    client = OverloadTestFactory("http://fake-url.com", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

@@ -6,7 +6,7 @@ describe("MediaTypes Rest Client", () => {
   let client: MediaTypesClient;
 
   beforeEach(() => {
-    client = MediaTypesClientFactory("http://fake-url.con", {
+    client = MediaTypesClientFactory("http://fake-url.com", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

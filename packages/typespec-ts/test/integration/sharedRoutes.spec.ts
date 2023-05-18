@@ -6,7 +6,7 @@ describe("SharedRouteTest Rest Client", () => {
   let client: SharedRouteTestClient;
 
   beforeEach(() => {
-    client = SharedRouteTestClientFactory("http://fake-url.con", {
+    client = SharedRouteTestClientFactory("http://fake-url.com", {
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
