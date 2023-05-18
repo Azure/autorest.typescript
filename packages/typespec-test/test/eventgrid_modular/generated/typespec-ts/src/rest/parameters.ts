@@ -2,11 +2,16 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { CloudEventEvent, LockTokenInput, LockToken } from "./models.js";
+import {
+  CloudEvent,
+  AcknowledgeOptions,
+  ReleaseOptions,
+  RejectOptions,
+} from "./models.js";
 
 export interface PublishCloudEventBodyParam {
   /** Single Cloud Event being published. */
-  body: CloudEventEvent;
+  body: { event: CloudEvent };
 }
 
 export interface PublishCloudEventMediaTypesParam {
@@ -18,61 +23,73 @@ export type PublishCloudEventParameters = PublishCloudEventMediaTypesParam &
   PublishCloudEventBodyParam &
   RequestParameters;
 
-export interface PublishBatchOfCloudEventsBodyParam {
+export interface PublishCloudEventsBodyParam {
   /** Array of Cloud Events being published. */
-  body: Array<CloudEventEvent>;
+  body: Array<CloudEvent>;
 }
 
-export interface PublishBatchOfCloudEventsMediaTypesParam {
+export interface PublishCloudEventsMediaTypesParam {
   /** content type */
   contentType: "application/cloudevents-batch+json; charset=utf-8";
 }
 
-export type PublishBatchOfCloudEventsParameters =
-  PublishBatchOfCloudEventsMediaTypesParam &
-    PublishBatchOfCloudEventsBodyParam &
-    RequestParameters;
+export type PublishCloudEventsParameters = PublishCloudEventsMediaTypesParam &
+  PublishCloudEventsBodyParam &
+  RequestParameters;
 
-export interface ReceiveBatchOfCloudEventsQueryParamProperties {
-  /** Max Events count to be received. */
+export interface ReceiveCloudEventsQueryParamProperties {
+  /** Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. */
   maxEvents?: number;
-  /** Timeout value for receive operation in Seconds. Default is 60 seconds. */
-  timeout?: number;
+  /** Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. */
+  maxWaitTime?: number;
 }
 
-export interface ReceiveBatchOfCloudEventsQueryParam {
-  queryParameters?: ReceiveBatchOfCloudEventsQueryParamProperties;
+export interface ReceiveCloudEventsQueryParam {
+  queryParameters?: ReceiveCloudEventsQueryParamProperties;
 }
 
-export type ReceiveBatchOfCloudEventsParameters =
-  ReceiveBatchOfCloudEventsQueryParam & RequestParameters;
+export type ReceiveCloudEventsParameters = ReceiveCloudEventsQueryParam &
+  RequestParameters;
 
-export interface AcknowledgeBatchOfCloudEventsBodyParam {
-  /** Array of LockTokens for the corresponding received Cloud Events to be acknowledged. */
-  body: LockTokenInput;
+export interface AcknowledgeCloudEventsBodyParam {
+  /** AcknowledgeOptions. */
+  body: AcknowledgeOptions;
 }
 
-export interface AcknowledgeBatchOfCloudEventsMediaTypesParam {
+export interface AcknowledgeCloudEventsMediaTypesParam {
   /** content type */
   contentType: "application/json; charset=utf-8";
 }
 
-export type AcknowledgeBatchOfCloudEventsParameters =
-  AcknowledgeBatchOfCloudEventsMediaTypesParam &
-    AcknowledgeBatchOfCloudEventsBodyParam &
+export type AcknowledgeCloudEventsParameters =
+  AcknowledgeCloudEventsMediaTypesParam &
+    AcknowledgeCloudEventsBodyParam &
     RequestParameters;
 
-export interface ReleaseBatchOfCloudEventsBodyParam {
-  /** Array of LockTokens for the corresponding received Cloud Events to be acknowledged. */
-  body: Array<LockToken>;
+export interface ReleaseCloudEventsBodyParam {
+  /** ReleaseOptions */
+  body: ReleaseOptions;
 }
 
-export interface ReleaseBatchOfCloudEventsMediaTypesParam {
+export interface ReleaseCloudEventsMediaTypesParam {
   /** content type */
   contentType: "application/json; charset=utf-8";
 }
 
-export type ReleaseBatchOfCloudEventsParameters =
-  ReleaseBatchOfCloudEventsMediaTypesParam &
-    ReleaseBatchOfCloudEventsBodyParam &
-    RequestParameters;
+export type ReleaseCloudEventsParameters = ReleaseCloudEventsMediaTypesParam &
+  ReleaseCloudEventsBodyParam &
+  RequestParameters;
+
+export interface RejectCloudEventsBodyParam {
+  /** RejectOptions */
+  body: RejectOptions;
+}
+
+export interface RejectCloudEventsMediaTypesParam {
+  /** content type */
+  contentType: "application/json; charset=utf-8";
+}
+
+export type RejectCloudEventsParameters = RejectCloudEventsMediaTypesParam &
+  RejectCloudEventsBodyParam &
+  RequestParameters;

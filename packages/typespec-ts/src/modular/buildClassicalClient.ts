@@ -74,7 +74,7 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
 function importCredential(clientSourceFile: SourceFile): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier: "@azure/core-auth",
-    namedImports: ["TokenCredential", "AzureKeyCredential"]
+    namedImports: ["TokenCredential", "KeyCredential"]
   });
 }
 

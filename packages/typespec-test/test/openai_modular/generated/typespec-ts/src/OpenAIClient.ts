@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { TokenCredential, AzureKeyCredential } from "@azure/core-auth";
+import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { ClientOptions } from "./common/interfaces.js";
 import {
   Embeddings,
   Completions,
-  ChatCompletions,
   ChatMessage,
+  ChatCompletions,
   createOpenAI,
   OpenAIContext,
   getEmbeddings,
@@ -24,14 +24,14 @@ export class OpenAIClient {
   /** Azure OpenAI APIs for completions and search */
   constructor(
     endpoint: string,
-    credential: AzureKeyCredential | TokenCredential,
+    credential: KeyCredential | TokenCredential,
     options: ClientOptions = {}
   ) {
     this._client = createOpenAI(endpoint, credential, options);
   }
 
   getEmbeddings(
-    input: string | string[],
+    input: string[],
     deploymentId: string,
     options: GetEmbeddingsOptions = { requestOptions: {} }
   ): Promise<Embeddings> {
@@ -39,10 +39,11 @@ export class OpenAIClient {
   }
 
   getCompletions(
+    prompt: string[],
     deploymentId: string,
     options: GetCompletionsOptions = { requestOptions: {} }
   ): Promise<Completions> {
-    return getCompletions(this._client, deploymentId, options);
+    return getCompletions(this._client, prompt, deploymentId, options);
   }
 
   getChatCompletions(

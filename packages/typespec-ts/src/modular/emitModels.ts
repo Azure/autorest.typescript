@@ -17,6 +17,16 @@ export function buildModels(
     (t) => t.type === "model" || t.type === "enum"
   );
 
+  for (const model of codeModel.types) {
+    if (model.type === "combined" && model.nullable) {
+      for (const unionModel of model.types ?? []) {
+        if (unionModel.type === "model") {
+          models.push(unionModel);
+        }
+      }
+    }
+  }
+
   for (const model of models) {
     const properties = model.properties ?? [];
     const typeMetadata = getType(model);
@@ -25,6 +35,10 @@ export function buildModels(
       typeName = `${typeName}[]`;
     }
     if (model.type === "enum") {
+      if (modelsFile.getTypeAlias(model.name!)) {
+        // If the enum is already defined, we don't need to do anything
+        continue;
+      }
       modelsFile.addTypeAlias({
         name: model.name!,
         isExported: true,
