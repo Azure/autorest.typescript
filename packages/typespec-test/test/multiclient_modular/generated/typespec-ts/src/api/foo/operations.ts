@@ -31,9 +31,7 @@ export async function createOrUpdate(
       type: type,
     },
   });
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
+
 
   return {
     id: result.body["id"],
