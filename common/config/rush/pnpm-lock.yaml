@@ -110,7 +110,7 @@ importers:
       '@types/fs-extra': 9.0.13
       '@types/js-yaml': 3.12.1
       '@types/mocha': 5.2.7
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       '@types/prettier': 1.19.1
       '@types/sinon': 10.0.15
       '@types/xmlbuilder': 0.0.34
@@ -167,12 +167,12 @@ importers:
     devDependencies:
       '@types/fs-extra': 8.1.2
       '@types/lodash': 4.14.194
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       eslint: 8.40.0
       fs-extra: 10.1.0
       prettier: 2.7.1
       rimraf: 3.0.2
-      ts-node: 10.9.1_u5ax4hcaao6h6ctrp2v254guiq
+      ts-node: 10.9.1_s5yysxq5pekb2utcoyjmfmampi
       typescript: 5.0.4
 
   ../../packages/typespec-test:
@@ -208,7 +208,7 @@ importers:
       prettier: 2.7.1
     devDependencies:
       '@types/mocha': 5.2.7
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       ts-node: 8.10.2_typescript@5.0.4
       typescript: 5.0.4
 
@@ -264,7 +264,7 @@ importers:
       '@azure-rest/core-client': 1.1.3
       '@azure-tools/cadl-ranch': 0.4.14_3cjqqgv4r33nr5whoygb4gr3p4
       '@azure-tools/cadl-ranch-expect': 0.3.1_nwoy7fm4y4huu6dyos7frmr6pu
-      '@azure-tools/cadl-ranch-specs': 0.14.10_athkghgm7vcphcaeqavd4yxwcu
+      '@azure-tools/cadl-ranch-specs': 0.14.10_p6lkoqq4dykp5xy36obrjz7y4y
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.5.3
       '@azure/core-paging': 1.5.0
@@ -273,7 +273,7 @@ importers:
       '@types/chai': 4.3.5
       '@types/fs-extra': 9.0.13
       '@types/mocha': 9.1.1
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       '@types/prettier': 2.7.2
       '@typescript-eslint/eslint-plugin': 5.59.6_hrzo544y7ygaq2nap7kmpxcgnm
       '@typescript-eslint/parser': 5.59.6_3qfatcekpgbllh6uk5ivyhkbxq
@@ -354,7 +354,7 @@ packages:
     dependencies:
       '@azure/identity': 3.2.2
       '@azure/storage-blob': 12.14.0
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -375,7 +375,7 @@ packages:
       '@typespec/versioning': 0.44.0_@typespec+compiler@0.44.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.14.10_athkghgm7vcphcaeqavd4yxwcu:
+  /@azure-tools/cadl-ranch-specs/0.14.10_p6lkoqq4dykp5xy36obrjz7y4y:
     resolution: {integrity: sha512-BkBRnh6pI/vWoycYPxOaKNlgob1pdZPZdv5LoUovsInShS4X6YHJ58GWYSxSaAGDWMwjd2YJ9EwBY9mc9cwzfQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -1084,13 +1084,13 @@ packages:
   /@types/fs-extra/8.1.2:
     resolution: {integrity: sha512-SvSrYXfWSc7R4eqnOzbQF4TZmfpNSM9FrSWLU3EUnWBuyZqNBOrv1B1JA3byUDPUl9z4Ab3jeZG2eDdySlgNMg==}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     dev: true
 
   /@types/fs-extra/9.0.13:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     dev: true
 
   /@types/js-yaml/3.12.1:
@@ -1160,7 +1160,7 @@ packages:
   /@types/tunnel/0.0.3:
     resolution: {integrity: sha512-sOUTGn6h1SfQ+gbgqC364jLFBw2lnFqkgF3q0WovEHRLMrVD1sd5aufqi/aJObLekJO+Aq5z646U4Oxy6shXMA==}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     dev: true
 
   /@types/xmlbuilder/0.0.34:
@@ -1181,7 +1181,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     dev: true
     optional: true
 
@@ -2416,7 +2416,7 @@ packages:
     dependencies:
       '@types/cookie': 0.4.1
       '@types/cors': 2.8.13
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.4.2
@@ -3627,7 +3627,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -5340,7 +5340,7 @@ packages:
       code-block-writer: 11.0.3
     dev: false
 
-  /ts-node/10.9.1_u5ax4hcaao6h6ctrp2v254guiq:
+  /ts-node/10.9.1_s5yysxq5pekb2utcoyjmfmampi:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -5359,7 +5359,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
