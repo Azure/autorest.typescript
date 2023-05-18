@@ -4,25 +4,50 @@
 
 ```ts
 
-import { AzureKeyCredential } from '@azure/core-auth';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface ChatChoice {
     delta?: ChatMessage;
-    finishReason: CompletionsFinishReason;
+    finishReason: CompletionsFinishReason | null;
     index: number;
     message?: ChatMessage;
 }
 
-// @public (undocumented)
+// @public
 export interface ChatCompletions {
-    choices?: ChatChoice[];
+    choices: ChatChoice[];
     created: number;
     id: string;
     usage: CompletionsUsage;
+}
+
+// @public (undocumented)
+export interface ChatCompletions {
+    choices: ChatChoice[];
+    created: number;
+    id: string;
+    usage: CompletionsUsage;
+}
+
+// @public
+export interface ChatCompletionsOptions {
+    frequencyPenalty?: number;
+    logitBias?: Record<string, number>;
+    maxTokens?: number;
+    messages: ChatMessage[];
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
 }
 
 // @public (undocumented)
@@ -52,9 +77,9 @@ export type ChatRole = string;
 
 // @public
 export interface Choice {
-    finishReason: CompletionsFinishReason;
+    finishReason: CompletionsFinishReason | null;
     index: number;
-    logprobs?: CompletionsLogProbabilityModel;
+    logprobs: CompletionsLogProbabilityModel | null;
     text: string;
 }
 
@@ -62,9 +87,17 @@ export interface Choice {
 export interface ClientOptions extends ClientOptions_2 {
 }
 
+// @public
+export interface Completions {
+    choices: Choice[];
+    created: number;
+    id: string;
+    usage: CompletionsUsage;
+}
+
 // @public (undocumented)
 export interface Completions {
-    choices?: Choice[];
+    choices: Choice[];
     created: number;
     id: string;
     usage: CompletionsUsage;
@@ -75,10 +108,37 @@ export type CompletionsFinishReason = string;
 
 // @public
 export interface CompletionsLogProbabilityModel {
-    textOffset?: number[];
-    tokenLogprobs?: number[];
-    tokens?: string[];
-    topLogprobs?: Record<string, number>[];
+    textOffset: number[];
+    tokenLogprobs: (number | null)[];
+    tokens: string[];
+    topLogprobs: Record<string, number | null>[];
+}
+
+// @public
+export interface CompletionsLogProbabilityModel {
+    textOffset: number[];
+    tokenLogprobs: (number | null)[];
+    tokens: string[];
+    topLogprobs: Record<string, number | null>[];
+}
+
+// @public
+export interface CompletionsOptions {
+    bestOf?: number;
+    echo?: boolean;
+    frequencyPenalty?: number;
+    logitBias?: Record<string, number>;
+    logprobs?: number;
+    maxTokens?: number;
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    prompt: string[];
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
 }
 
 // @public (undocumented)
@@ -92,7 +152,7 @@ export interface CompletionsOptions {
     model?: string;
     n?: number;
     presencePenalty?: number;
-    prompt?: string[] | string;
+    prompt: string[];
     stop?: string[];
     stream?: boolean;
     temperature?: number;
@@ -113,15 +173,28 @@ export interface EmbeddingItem {
     index: number;
 }
 
-// @public (undocumented)
+// @public
 export interface Embeddings {
     data: EmbeddingItem[];
     usage: EmbeddingsUsage;
 }
 
 // @public (undocumented)
+export interface Embeddings {
+    data: EmbeddingItem[];
+    usage: EmbeddingsUsage;
+}
+
+// @public
 export interface EmbeddingsOptions {
-    input: string | string[];
+    input: string[];
+    model?: string;
+    user?: string;
+}
+
+// @public (undocumented)
+export interface EmbeddingsOptions {
+    input: string[];
     model?: string;
     user?: string;
 }
@@ -134,8 +207,6 @@ export interface EmbeddingsUsage {
 
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends RequestOptions {
-    accept?: "application/json";
-    content_type?: string;
     frequencyPenalty?: number;
     logitBias?: Record<string, number>;
     maxTokens?: number;
@@ -151,9 +222,7 @@ export interface GetChatCompletionsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
-    accept?: "application/json";
     bestOf?: number;
-    content_type?: string;
     echo?: boolean;
     frequencyPenalty?: number;
     logitBias?: Record<string, number>;
@@ -162,7 +231,6 @@ export interface GetCompletionsOptions extends RequestOptions {
     model?: string;
     n?: number;
     presencePenalty?: number;
-    prompt?: string[] | string;
     stop?: string[];
     stream?: boolean;
     temperature?: number;
@@ -172,21 +240,19 @@ export interface GetCompletionsOptions extends RequestOptions {
 
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends RequestOptions {
-    accept?: "application/json";
-    content_type?: string;
     model?: string;
     user?: string;
 }
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions);
+    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ClientOptions);
     // (undocumented)
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     // (undocumented)
-    getCompletions(deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
+    getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     // (undocumented)
-    getEmbeddings(input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+    getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
 }
 
 // @public (undocumented)
@@ -194,10 +260,9 @@ export interface RequestOptions {
     // (undocumented)
     requestOptions?: {
         headers?: RawHttpHeadersInput;
-        body?: unknown;
-        queryParameters?: Record<string, unknown>;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
+        onResponse?: (response: HttpResponse) => void;
     };
 }
 

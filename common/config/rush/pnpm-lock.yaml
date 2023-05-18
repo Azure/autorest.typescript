@@ -194,8 +194,8 @@ importers:
       ts-node: ^8.5.2
       typescript: ~5.0.0
     dependencies:
-      '@azure-tools/typespec-autorest': 0.30.0_vwrrrzfw7hq5zzmuw6ly3dq2de
-      '@azure-tools/typespec-azure-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
+      '@azure-tools/typespec-autorest': 0.30.0_shu3yi33bhw2wwh3ig52gyudt4
+      '@azure-tools/typespec-azure-core': 0.30.1_wihkxl52pkwnxc25ba2weeyzd4
       '@azure-tools/typespec-client-generator-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
       '@azure-tools/typespec-ts': link:../typespec-ts
       '@typespec/compiler': 0.44.0
@@ -218,7 +218,7 @@ importers:
       '@azure-tools/cadl-ranch': ~0.4.13
       '@azure-tools/cadl-ranch-expect': ^0.3.0
       '@azure-tools/cadl-ranch-specs': ~0.14.10
-      '@azure-tools/rlc-common': workspace:^0.13.0
+      '@azure-tools/rlc-common': ^0.13.0
       '@azure-tools/typespec-azure-core': '>=0.30.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.30.0 <1.0.0'
       '@azure/core-auth': ^1.3.2
@@ -251,8 +251,8 @@ importers:
       tslib: ^2.3.1
       typescript: ~5.0.0
     dependencies:
-      '@azure-tools/rlc-common': link:../rlc-common
-      '@azure-tools/typespec-azure-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
+      '@azure-tools/rlc-common': 0.13.0
+      '@azure-tools/typespec-azure-core': 0.30.1_wihkxl52pkwnxc25ba2weeyzd4
       '@azure-tools/typespec-client-generator-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
       '@typespec/compiler': 0.44.0
       '@typespec/rest': 0.44.0_@typespec+compiler@0.44.0
@@ -286,7 +286,7 @@ importers:
       mkdirp: 2.1.6
       mocha: 9.2.2
       rimraf: 3.0.2
-      ts-node: 10.9.1_u5ax4hcaao6h6ctrp2v254guiq
+      ts-node: 10.9.1_s5yysxq5pekb2utcoyjmfmampi
       typescript: 5.0.4
 
 packages:
@@ -389,7 +389,7 @@ packages:
       '@azure-tools/cadl-ranch': 0.4.14_3cjqqgv4r33nr5whoygb4gr3p4
       '@azure-tools/cadl-ranch-api': 0.2.5
       '@azure-tools/cadl-ranch-expect': 0.3.1_nwoy7fm4y4huu6dyos7frmr6pu
-      '@azure-tools/typespec-azure-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
+      '@azure-tools/typespec-azure-core': 0.30.1_wihkxl52pkwnxc25ba2weeyzd4
       '@typespec/compiler': 0.44.0
       '@typespec/http': 0.44.0_@typespec+compiler@0.44.0
       '@typespec/rest': 0.44.0_@typespec+compiler@0.44.0
@@ -445,6 +445,14 @@ packages:
       semver: 7.5.1
     dev: false
 
+  /@azure-tools/rlc-common/0.13.0:
+    resolution: {integrity: sha512-v3rbBl4l3zMqbCxYkIjcSnvFzMpVE7P16W5m566MSumUYRfvjgfh2ewS9V73oYBI3Rl+o0phcgXu+cOqNvpiYg==}
+    dependencies:
+      handlebars: 4.7.7
+      lodash: 4.17.21
+      ts-morph: 15.1.0
+    dev: false
+
   /@azure-tools/tasks/3.0.255:
     resolution: {integrity: sha512-GjALNLz7kWMEdRVbaN5g0cJHNAr3XVTbP0611Mv2UzMgGL6FOhNZJK+oPHJKLDR8EEDZNnkwPlyi7B+INXUSQA==}
     engines: {node: '>=10.12.0'}
@@ -462,7 +470,7 @@ packages:
       - supports-color
     dev: true
 
-  /@azure-tools/typespec-autorest/0.30.0_vwrrrzfw7hq5zzmuw6ly3dq2de:
+  /@azure-tools/typespec-autorest/0.30.0_shu3yi33bhw2wwh3ig52gyudt4:
     resolution: {integrity: sha512-Eww0EecO7te6r89djVK+mhcDJbCTjVUz3YneoCbuSftyAVGoj+OJPMS4fbkrKFKLpmV+b3YKGTH5e52jtD4YYA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -473,7 +481,7 @@ packages:
       '@typespec/rest': ~0.44.0
       '@typespec/versioning': ~0.44.0
     dependencies:
-      '@azure-tools/typespec-azure-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
+      '@azure-tools/typespec-azure-core': 0.30.1_wihkxl52pkwnxc25ba2weeyzd4
       '@typespec/compiler': 0.44.0
       '@typespec/http': 0.44.0_@typespec+compiler@0.44.0
       '@typespec/openapi': 0.44.0_wihkxl52pkwnxc25ba2weeyzd4
@@ -481,8 +489,8 @@ packages:
       '@typespec/versioning': 0.44.0_@typespec+compiler@0.44.0
     dev: false
 
-  /@azure-tools/typespec-azure-core/0.30.0_wihkxl52pkwnxc25ba2weeyzd4:
-    resolution: {integrity: sha512-OsLI/opkv3JO+tkdHa04/fL84qSNvRLHDsRQ+Q3VK8rLul9WXHa74yAqn5r3D8WuK+h2KG2dDNtJhhew5ehlgg==}
+  /@azure-tools/typespec-azure-core/0.30.1_wihkxl52pkwnxc25ba2weeyzd4:
+    resolution: {integrity: sha512-FvdsQrxyAxBfC0lmF2qdWmQklFO/CDpuCWTNfPjiVnokkZM9IDiln3YA2SeZjrQXQR4tSLaJVlUTm7ML7S/65Q==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.44.0
@@ -1052,7 +1060,7 @@ packages:
   /@types/cors/2.8.13:
     resolution: {integrity: sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     dev: true
 
   /@types/eslint-scope/3.7.4:
@@ -1111,11 +1119,11 @@ packages:
   /@types/node-fetch/2.6.4:
     resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
       form-data: 3.0.1
 
-  /@types/node/18.16.10:
-    resolution: {integrity: sha512-sMo3EngB6QkMBlB9rBe1lFdKSLqljyWPPWv6/FzSxh/IDlyVWSzE9RiF4eAuerQHybrWdqBgAGb03PM89qOasA==}
+  /@types/node/18.16.12:
+    resolution: {integrity: sha512-tIRrjbY9C277MOfP8M3zjMIhtMlUJ6YVqkGgLjz+74jVsdf4/UjC6Hku4+1N0BS0qyC0JAS6tJLUk9H6JUKviQ==}
 
   /@types/prettier/1.19.1:
     resolution: {integrity: sha512-5qOlnZscTn4xxM5MeGXAMOsIOIKIbh9e85zJWfBRVPlRMEVawzoPhINYbRGkBZCI8LxvBe7tJCdWiarA99OZfQ==}
@@ -1146,7 +1154,7 @@ packages:
   /@types/tunnel/0.0.1:
     resolution: {integrity: sha512-AOqu6bQu5MSWwYvehMXLukFHnupHrpZ8nvgae5Ggie9UwzDR1CCwoXgSSWNZJuyOlCdfdsWMA5F2LlmvyoTv8A==}
     dependencies:
-      '@types/node': 18.16.10
+      '@types/node': 18.16.12
     dev: false
 
   /@types/tunnel/0.0.3:
@@ -1830,7 +1838,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001487
+      caniuse-lite: 1.0.30001488
       electron-to-chromium: 1.4.396
       node-releases: 2.0.10
       update-browserslist-db: 1.0.11_browserslist@4.21.5
@@ -1896,8 +1904,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001487:
-    resolution: {integrity: sha512-83564Z3yWGqXsh2vaH/mhXfEM0wX+NlBCm1jYHOb97TrTWJEmPTccZgeLTPBUUb0PNVo+oomb7wkimZBIERClA==}
+  /caniuse-lite/1.0.30001488:
+    resolution: {integrity: sha512-NORIQuuL4xGpIy6iCCQGN4iFjlBXtfKWIenlUuyZJumLRIindLb7wXM+GO8erEhb7vXfcnf4BAg2PrSDN5TNLQ==}
     dev: true
 
   /capital-case/1.0.4:
@@ -3425,8 +3433,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /is-core-module/2.12.0:
-    resolution: {integrity: sha512-RECHCBCd/viahWmwj6enj19sKbHfJrddi/6cBDsNTKbNq0f7VeaUkBo60BqzvPqo/W54ChS62Z5qyun7cfOMqQ==}
+  /is-core-module/2.12.1:
+    resolution: {integrity: sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==}
     dependencies:
       has: 1.0.3
     dev: true
@@ -4754,7 +4762,7 @@ packages:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
     dependencies:
-      is-core-module: 2.12.0
+      is-core-module: 2.12.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true

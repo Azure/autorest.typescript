@@ -19,14 +19,13 @@ export interface EmbeddingsOptions {
    */
   model?: string;
   /**
-   * Input text to get embeddings for, encoded as a string.
-   * To get embeddings for multiple inputs in a single request, pass an array of strings.
+   * Input texts to get embeddings for, encoded as a an array of strings.
    * Each input must not exceed 2048 tokens in length.
    *
    * Unless you are embedding code, we suggest replacing newlines (\n) in your input with a single space,
    * as we have observed inferior results when newlines are present.
    */
-  input: string | string[];
+  input: string[];
 }
 
 /**
@@ -35,11 +34,8 @@ export interface EmbeddingsOptions {
  * provided prompt data.
  */
 export interface CompletionsOptions {
-  /**
-   * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
-   * otherwise specified.
-   */
-  prompt?: string[] | string;
+  /** The prompts to generate completions from. */
+  prompt: string[];
   /** The maximum number of tokens to generate. */
   max_tokens?: number;
   /**
@@ -170,8 +166,8 @@ export interface ChatCompletionsOptions {
    */
   user?: string;
   /**
-   * The number of completions choices that should be generated per provided prompt as part of an
-   * overall completions response.
+   * The number of chat completions choices that should be generated for a chat completions
+   * response.
    * Because this setting can generate many completions, it may quickly consume your token quota.
    * Use carefully and ensure reasonable settings for max_tokens and stop.
    */

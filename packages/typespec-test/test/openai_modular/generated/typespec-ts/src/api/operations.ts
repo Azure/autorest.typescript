@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestOptions } from "../common/interfaces.js";
 import { OpenAIContext as Client, isUnexpected } from "../rest/index.js";
+import {
+  OperationRawReturnType,
+  RequestOptions,
+} from "../common/interfaces.js";
 import {
   Embeddings,
   Completions,
-  ChatCompletions,
   ChatMessage,
+  ChatCompletions,
 } from "./models.js";
 
 export interface GetEmbeddingsOptions extends RequestOptions {
@@ -22,33 +25,27 @@ export interface GetEmbeddingsOptions extends RequestOptions {
    * resource URI that's connected to.
    */
   model?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
-/** Return the embeddings for a given prompt. */
-export async function getEmbeddings(
+export function _getEmbeddingsSend(
   context: Client,
-  input: string | string[],
+  input: string[],
   deploymentId: string,
   options: GetEmbeddingsOptions = { requestOptions: {} }
-): Promise<Embeddings> {
-  const result = await context
+) {
+  return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-      body: {
-        ...(options.user && { user: options.user }),
-        ...(options.model && { model: options.model }),
-        input: input,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
+      body: { user: options?.user, model: options?.model, input: input },
     });
+}
+
+export async function _getEmbeddingsDeserialize(
+  result: OperationRawReturnType<typeof _getEmbeddingsSend>
+): Promise<Embeddings> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -65,12 +62,23 @@ export async function getEmbeddings(
   };
 }
 
+/** Return the embeddings for a given prompt. */
+export async function getEmbeddings(
+  context: Client,
+  input: string[],
+  deploymentId: string,
+  options: GetEmbeddingsOptions = { requestOptions: {} }
+): Promise<Embeddings> {
+  const result = await _getEmbeddingsSend(
+    context,
+    input,
+    deploymentId,
+    options
+  );
+  return _getEmbeddingsDeserialize(result);
+}
+
 export interface GetCompletionsOptions extends RequestOptions {
-  /**
-   * The prompts to generate completions from. Defaults to a single prompt of <|endoftext|> if not
-   * otherwise specified.
-   */
-  prompt?: string[] | string;
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -153,52 +161,43 @@ export interface GetCompletionsOptions extends RequestOptions {
    * resource URI that's connected to.
    */
   model?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
-/**
- * Gets completions for the provided input prompts.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
-export async function getCompletions(
+export function _getCompletionsSend(
   context: Client,
+  prompt: string[],
   deploymentId: string,
   options: GetCompletionsOptions = { requestOptions: {} }
-): Promise<Completions> {
-  const result = await context
+) {
+  return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
-        ...(options.prompt && { prompt: options.prompt }),
-        ...(options.maxTokens && { max_tokens: options.maxTokens }),
-        ...(options.temperature && { temperature: options.temperature }),
-        ...(options.topP && { top_p: options.topP }),
-        ...(options.logitBias && { logit_bias: options.logitBias }),
-        ...(options.user && { user: options.user }),
-        ...(options.n && { n: options.n }),
-        ...(options.logprobs && { logprobs: options.logprobs }),
-        ...(options.echo && { echo: options.echo }),
-        ...(options.stop && { stop: options.stop }),
-        ...(options.presencePenalty && {
-          presence_penalty: options.presencePenalty,
-        }),
-        ...(options.frequencyPenalty && {
-          frequency_penalty: options.frequencyPenalty,
-        }),
-        ...(options.bestOf && { best_of: options.bestOf }),
-        ...(options.stream && { stream: options.stream }),
-        ...(options.model && { model: options.model }),
+        prompt: prompt,
+        max_tokens: options?.maxTokens,
+        temperature: options?.temperature,
+        top_p: options?.topP,
+        logit_bias: options?.logitBias,
+        user: options?.user,
+        n: options?.n,
+        logprobs: options?.logprobs,
+        echo: options?.echo,
+        stop: options?.stop,
+        presence_penalty: options?.presencePenalty,
+        frequency_penalty: options?.frequencyPenalty,
+        best_of: options?.bestOf,
+        stream: options?.stream,
+        model: options?.model,
       },
     });
+}
+
+export async function _getCompletionsDeserialize(
+  result: OperationRawReturnType<typeof _getCompletionsSend>
+): Promise<Completions> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -209,14 +208,15 @@ export async function getCompletions(
     choices: (result.body["choices"] ?? []).map((p) => ({
       text: p["text"],
       index: p["index"],
-      logprobs: !p.logprobs
-        ? undefined
-        : {
-            tokens: p.logprobs?.["tokens"],
-            tokenLogprobs: p.logprobs?.["token_logprobs"],
-            topLogprobs: p.logprobs?.["top_logprobs"],
-            textOffset: p.logprobs?.["text_offset"],
-          },
+      logprobs:
+        p.logprobs === null
+          ? null
+          : {
+              tokens: p.logprobs["tokens"],
+              tokenLogprobs: p.logprobs["token_logprobs"],
+              topLogprobs: p.logprobs["top_logprobs"],
+              textOffset: p.logprobs["text_offset"],
+            },
       finishReason: p["finish_reason"],
     })),
     usage: {
@@ -225,6 +225,26 @@ export async function getCompletions(
       totalTokens: result.body.usage["total_tokens"],
     },
   };
+}
+
+/**
+ * Gets completions for the provided input prompts.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export async function getCompletions(
+  context: Client,
+  prompt: string[],
+  deploymentId: string,
+  options: GetCompletionsOptions = { requestOptions: {} }
+): Promise<Completions> {
+  const result = await _getCompletionsSend(
+    context,
+    prompt,
+    deploymentId,
+    options
+  );
+  return _getCompletionsDeserialize(result);
 }
 
 export interface GetChatCompletionsOptions extends RequestOptions {
@@ -261,8 +281,8 @@ export interface GetChatCompletionsOptions extends RequestOptions {
    */
   user?: string;
   /**
-   * The number of completions choices that should be generated per provided prompt as part of an
-   * overall completions response.
+   * The number of chat completions choices that should be generated for a chat completions
+   * response.
    * Because this setting can generate many completions, it may quickly consume your token quota.
    * Use carefully and ensure reasonable settings for max_tokens and stop.
    */
@@ -291,50 +311,40 @@ export interface GetChatCompletionsOptions extends RequestOptions {
    * resource URI that's connected to.
    */
   model?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
-/**
- * Gets chat completions for the provided chat messages.
- * Completions support a wide variety of tasks and generate text that continues from or "completes"
- * provided prompt data.
- */
-export async function getChatCompletions(
+export function _getChatCompletionsSend(
   context: Client,
   messages: ChatMessage[],
   deploymentId: string,
   options: GetChatCompletionsOptions = { requestOptions: {} }
-): Promise<ChatCompletions> {
-  const result = await context
+) {
+  return context
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
-      contentType: (options.content_type as any) ?? "application/json",
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
         messages: messages,
-        ...(options.maxTokens && { max_tokens: options.maxTokens }),
-        ...(options.temperature && { temperature: options.temperature }),
-        ...(options.topP && { top_p: options.topP }),
-        ...(options.logitBias && { logit_bias: options.logitBias }),
-        ...(options.user && { user: options.user }),
-        ...(options.n && { n: options.n }),
-        ...(options.stop && { stop: options.stop }),
-        ...(options.presencePenalty && {
-          presence_penalty: options.presencePenalty,
-        }),
-        ...(options.frequencyPenalty && {
-          frequency_penalty: options.frequencyPenalty,
-        }),
-        ...(options.stream && { stream: options.stream }),
-        ...(options.model && { model: options.model }),
+        max_tokens: options?.maxTokens,
+        temperature: options?.temperature,
+        top_p: options?.topP,
+        logit_bias: options?.logitBias,
+        user: options?.user,
+        n: options?.n,
+        stop: options?.stop,
+        presence_penalty: options?.presencePenalty,
+        frequency_penalty: options?.frequencyPenalty,
+        stream: options?.stream,
+        model: options?.model,
       },
     });
+}
+
+export async function _getChatCompletionsDeserialize(
+  result: OperationRawReturnType<typeof _getChatCompletionsSend>
+): Promise<ChatCompletions> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -358,4 +368,24 @@ export async function getChatCompletions(
       totalTokens: result.body.usage["total_tokens"],
     },
   };
+}
+
+/**
+ * Gets chat completions for the provided chat messages.
+ * Completions support a wide variety of tasks and generate text that continues from or "completes"
+ * provided prompt data.
+ */
+export async function getChatCompletions(
+  context: Client,
+  messages: ChatMessage[],
+  deploymentId: string,
+  options: GetChatCompletionsOptions = { requestOptions: {} }
+): Promise<ChatCompletions> {
+  const result = await _getChatCompletionsSend(
+    context,
+    messages,
+    deploymentId,
+    options
+  );
+  return _getChatCompletionsDeserialize(result);
 }
