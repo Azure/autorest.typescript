@@ -4,9 +4,9 @@
 
 ```ts
 
-import { AzureKeyCredential } from '@azure/core-auth';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
@@ -57,7 +57,7 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
-    constructor(endpoint: string, credential: AzureKeyCredential, options?: ClientOptions);
+    constructor(endpoint: string, credential: KeyCredential, options?: ClientOptions);
     // (undocumented)
     acknowledgeCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
     // (undocumented)

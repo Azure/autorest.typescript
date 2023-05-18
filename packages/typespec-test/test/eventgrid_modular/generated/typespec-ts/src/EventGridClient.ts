@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { AzureKeyCredential } from "@azure/core-auth";
+import { KeyCredential } from "@azure/core-auth";
 import { ClientOptions } from "./common/interfaces.js";
 import {
   createEventGrid,
@@ -31,7 +31,7 @@ export class EventGridClient {
   /** Azure Messaging EventGrid Client */
   constructor(
     endpoint: string,
-    credential: AzureKeyCredential,
+    credential: KeyCredential,
     options: ClientOptions = {}
   ) {
     this._client = createEventGrid(endpoint, credential, options);

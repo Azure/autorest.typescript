@@ -4,9 +4,9 @@
 
 ```ts
 
-import { AzureKeyCredential } from '@azure/core-auth';
 import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
@@ -187,14 +187,14 @@ export interface Embeddings {
 
 // @public
 export interface EmbeddingsOptions {
-    input: string | string[];
+    input: string[];
     model?: string;
     user?: string;
 }
 
 // @public (undocumented)
 export interface EmbeddingsOptions {
-    input: string | string[];
+    input: string[];
     model?: string;
     user?: string;
 }
@@ -246,13 +246,13 @@ export interface GetEmbeddingsOptions extends RequestOptions {
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions);
+    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ClientOptions);
     // (undocumented)
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     // (undocumented)
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     // (undocumented)
-    getEmbeddings(input: string | string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+    getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
 }
 
 // @public (undocumented)

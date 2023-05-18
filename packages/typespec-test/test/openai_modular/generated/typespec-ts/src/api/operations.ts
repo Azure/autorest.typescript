@@ -29,7 +29,7 @@ export interface GetEmbeddingsOptions extends RequestOptions {
 
 export function _getEmbeddingsSend(
   context: Client,
-  input: string | string[],
+  input: string[],
   deploymentId: string,
   options: GetEmbeddingsOptions = { requestOptions: {} }
 ) {
@@ -65,7 +65,7 @@ export async function _getEmbeddingsDeserialize(
 /** Return the embeddings for a given prompt. */
 export async function getEmbeddings(
   context: Client,
-  input: string | string[],
+  input: string[],
   deploymentId: string,
   options: GetEmbeddingsOptions = { requestOptions: {} }
 ): Promise<Embeddings> {

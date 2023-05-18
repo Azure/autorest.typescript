@@ -218,7 +218,7 @@ importers:
       '@azure-tools/cadl-ranch': ~0.4.13
       '@azure-tools/cadl-ranch-expect': ^0.3.0
       '@azure-tools/cadl-ranch-specs': ~0.14.10
-      '@azure-tools/rlc-common': workspace:^0.13.0
+      '@azure-tools/rlc-common': ^0.13.0
       '@azure-tools/typespec-azure-core': '>=0.30.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.30.0 <1.0.0'
       '@azure/core-auth': ^1.3.2
@@ -251,7 +251,7 @@ importers:
       tslib: ^2.3.1
       typescript: ~5.0.0
     dependencies:
-      '@azure-tools/rlc-common': link:../rlc-common
+      '@azure-tools/rlc-common': 0.13.0
       '@azure-tools/typespec-azure-core': 0.30.1_wihkxl52pkwnxc25ba2weeyzd4
       '@azure-tools/typespec-client-generator-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
       '@typespec/compiler': 0.44.0
@@ -443,6 +443,14 @@ packages:
       '@azure-tools/async-io': 3.0.254
       js-yaml: 4.0.0
       semver: 7.5.1
+    dev: false
+
+  /@azure-tools/rlc-common/0.13.0:
+    resolution: {integrity: sha512-v3rbBl4l3zMqbCxYkIjcSnvFzMpVE7P16W5m566MSumUYRfvjgfh2ewS9V73oYBI3Rl+o0phcgXu+cOqNvpiYg==}
+    dependencies:
+      handlebars: 4.7.7
+      lodash: 4.17.21
+      ts-morph: 15.1.0
     dev: false
 
   /@azure-tools/tasks/3.0.255:

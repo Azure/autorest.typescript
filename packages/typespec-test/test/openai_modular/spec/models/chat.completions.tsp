@@ -97,7 +97,7 @@ model ChatCompletionsOptions {
     Use carefully and ensure reasonable settings for max_tokens and stop.
     """)
     @projectedName("json", "n")
-    @projectedName("csharp", "ChoiceCount")
+    @projectedName("javascript", "ChoiceCount")
     n?: int32;
 
     @doc("""

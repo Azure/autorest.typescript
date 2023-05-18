@@ -19,7 +19,7 @@ export function getType(type: Type): TypeMetadata {
   switch (type.type) {
     case "Key":
       return {
-        name: "AzureKeyCredential",
+        name: "KeyCredential",
         originModule: "@azure/core-auth",
         isRelative: false
       };
