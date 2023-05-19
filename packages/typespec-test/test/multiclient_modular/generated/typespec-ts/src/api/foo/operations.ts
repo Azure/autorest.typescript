@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { isUnexpected, Client } from "../../rest/foo/index.js";
-import { FooContext as Client, isUnexpected } from "../rest/index.js";
-import { OperationRawReturnType } from "../common/interfaces.js";
+import { Client, UnexpectedHelper } from "../../rest/foo/index.js";
+import {
+  OperationRawReturnType,
+  RequestOptions,
+} from "../../common/interfaces.js";
 import { Resource, CustomPage } from "./models.js";
-import { RequestOptions } from "../../common/interfaces.js";
+import { isUnexpected } from "../../rest/foo/isUnexpected.js";
 
 export interface CreateOrUpdateOptions extends RequestOptions {
   /** */
@@ -30,10 +32,6 @@ export function _createOrUpdateSend(
 export async function _createOrUpdateDeserialize(
   result: OperationRawReturnType<typeof _createOrUpdateSend>
 ): Promise<Resource> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     id: result.body["id"],
     name: result.body["name"],
@@ -50,10 +48,11 @@ export async function createOrUpdate(
   options: CreateOrUpdateOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _createOrUpdateSend(context, type, name, options);
-  return _createOrUpdateDeserialize(result);
-  if (isUnexpected(result)) {
+  if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
   }
+
+  return _createOrUpdateDeserialize(result);
 }
 
 export interface GetOptions extends RequestOptions {}
@@ -74,10 +73,6 @@ export function _getSend(
 export async function _getDeserialize(
   result: OperationRawReturnType<typeof _getSend>
 ): Promise<Resource> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     id: result.body["id"],
     name: result.body["name"],
@@ -93,10 +88,11 @@ export async function getOperation(
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _getSend(context, name, options);
-  return _getDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _getDeserialize(result);
 }
 
 export interface DeleteOptions extends RequestOptions {}
@@ -117,10 +113,6 @@ export function _deleteOperationSend(
 export async function _deleteOperationDeserialize(
   result: OperationRawReturnType<typeof _deleteOperationSend>
 ): Promise<void> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return;
 }
 
@@ -135,10 +127,11 @@ export async function deleteOperation(
   options: DeleteOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteOperationSend(context, name, options);
-  return _deleteOperationDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _deleteOperationDeserialize(result);
 }
 
 export interface ListOptions extends RequestOptions {}
@@ -158,10 +151,6 @@ export function _listSend(
 export async function _listDeserialize(
   result: OperationRawReturnType<typeof _listSend>
 ): Promise<CustomPage> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     value: (result.body["value"] ?? []).map((p) => ({
       id: p["id"],
@@ -179,8 +168,9 @@ export async function list(
   options: ListOptions = { requestOptions: {} }
 ): Promise<CustomPage> {
   const result = await _listSend(context, options);
-  return _listDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _listDeserialize(result);
 }

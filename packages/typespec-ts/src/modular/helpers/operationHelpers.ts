@@ -77,7 +77,6 @@ export function getDeserializePrivateFunction(
     returnType: `Promise<${returnType.type}>`
   };
   const statements: string[] = [];
-  statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
 
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
@@ -104,7 +103,7 @@ export function getDeserializePrivateFunction(
 
 function getOperationSignatureParameters(
   operation: Operation,
-  clientType: string
+  needSubClient: boolean
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const optionsType = getOperationOptionsName(operation);
   let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
@@ -131,7 +130,7 @@ function getOperationSignatureParameters(
   );
 
   // Add context as the first parameter
-  parameters.unshift({ name: "context", type: clientType });
+  parameters.unshift({ name: "context", type: needSubClient? "Client": "Client.Context" });
 
   // Add the options parameter
   parameters.push({
@@ -148,12 +147,12 @@ function getOperationSignatureParameters(
  */
 export function getOperationFunction(
   operation: Operation,
-  clientType: string,
+  needSubClient: boolean,
   needUnexpectedHelper: boolean = true
 ): OptionalKind<FunctionDeclarationStructure> {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(operation, clientType);
+    getOperationSignatureParameters(operation, needSubClient);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
@@ -177,11 +176,11 @@ export function getOperationFunction(
       .map((p) => p.name)
       .join(", ")});`
   );
-  statements.push(`return _${name}Deserialize(result);`);
-
   if (needUnexpectedHelper) {
     statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
   }
+  statements.push(`return _${name}Deserialize(result);`);
+
 
 
   // if (response?.type?.type === "any") {

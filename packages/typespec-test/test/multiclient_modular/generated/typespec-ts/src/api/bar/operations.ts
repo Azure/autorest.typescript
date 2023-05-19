@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { isUnexpected, Client } from "../../rest/bar/index.js";
-import { BarContext as Client, isUnexpected } from "../rest/index.js";
-import { OperationRawReturnType } from "../common/interfaces.js";
+import { Client } from "../../rest/bar/index.js";
+import {
+  OperationRawReturnType,
+  RequestOptions,
+} from "../../common/interfaces.js";
 import { Resource } from "./models.js";
-import { RequestOptions } from "../../common/interfaces.js";
+import { isUnexpected } from "../../rest/foo/isUnexpected.js";
 
 export interface GetBinaryOptions extends RequestOptions {}
 
@@ -24,10 +26,6 @@ export function _getBinarySend(
 export async function _getBinaryDeserialize(
   result: OperationRawReturnType<typeof _getBinarySend>
 ): Promise<any> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return result.body;
 }
 
@@ -37,10 +35,11 @@ export async function getBinary(
   options: GetBinaryOptions = { requestOptions: {} }
 ): Promise<any> {
   const result = await _getBinarySend(context, options);
-  return _getBinaryDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _getBinaryDeserialize(result);
 }
 
 export interface GetArrayOptions extends RequestOptions {}
@@ -60,10 +59,6 @@ export function _getArraySend(
 export async function _getArrayDeserialize(
   result: OperationRawReturnType<typeof _getArraySend>
 ): Promise<Resource[]> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return (result.body ?? []).map((p) => ({
     id: p["id"],
     name: p["name"],
@@ -78,10 +73,11 @@ export async function getArray(
   options: GetArrayOptions = { requestOptions: {} }
 ): Promise<Resource[]> {
   const result = await _getArraySend(context, options);
-  return _getArrayDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _getArrayDeserialize(result);
 }
 
 export interface CreateWithHeadersOptions extends RequestOptions {}
@@ -101,10 +97,6 @@ export function _createWithHeadersSend(
 export async function _createWithHeadersDeserialize(
   result: OperationRawReturnType<typeof _createWithHeadersSend>
 ): Promise<Resource> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     id: result.body["id"],
     name: result.body["name"],
@@ -119,10 +111,11 @@ export async function createWithHeaders(
   options: CreateWithHeadersOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _createWithHeadersSend(context, options);
-  return _createWithHeadersDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _createWithHeadersDeserialize(result);
 }
 
 export interface DeleteWithHeadersOptions extends RequestOptions {}
@@ -142,10 +135,6 @@ export function _deleteWithHeadersSend(
 export async function _deleteWithHeadersDeserialize(
   result: OperationRawReturnType<typeof _deleteWithHeadersSend>
 ): Promise<void> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return;
 }
 
@@ -155,8 +144,9 @@ export async function deleteWithHeaders(
   options: DeleteWithHeadersOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteWithHeadersSend(context, options);
-  return _deleteWithHeadersDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
+
+  return _deleteWithHeadersDeserialize(result);
 }

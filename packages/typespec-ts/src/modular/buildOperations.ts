@@ -35,19 +35,30 @@ export function buildOperationFiles(
 
     const namedImports: string[] = [];
     let clientType = "Client";
-    if (needUnexpectedHelper) {
-      namedImports.push("isUnexpected");
-    }
+    let needSubClient = false;
     if (subfolder && subfolder !== "") {
       namedImports.push(`Client`);
       clientType = `Client.${client.name}Context`;
+      if (needUnexpectedHelper) {
+        namedImports.push("UnexpectedHelper");
+      }
+      needSubClient = true;
       operationGroupFile.addImportDeclarations([
         {
           moduleSpecifier: `../../rest/${subfolder}/index.js`,
           namedImports
         }
-      ]);   
+      ]);
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: "../../common/interfaces.js",
+          namedImports: ["OperationRawReturnType"]
+        }
+      ]);
     } else {
+      if (needUnexpectedHelper) {
+        namedImports.push("isUnexpected");
+      }
       namedImports.push(`${client.name}Context as Client`);
       operationGroupFile.addImportDeclarations([
         {
@@ -55,11 +66,17 @@ export function buildOperationFiles(
           namedImports
         }
       ]);
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: "../common/interfaces.js",
+          namedImports: ["OperationRawReturnType"]
+        }
+      ]);
     }
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, operationGroupFile);
-      const operationDeclaration = getOperationFunction(o, clientType, needUnexpectedHelper);
-      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const operationDeclaration = getOperationFunction(o, needSubClient, needUnexpectedHelper);
+      const sendOperationDeclaration = getSendPrivateFunction(o, needSubClient);
       const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -68,19 +85,7 @@ export function buildOperationFiles(
       ]);
     });
 
-    operationGroupFile.addImportDeclarations([
-      {
-        moduleSpecifier: "../rest/index.js",
-        namedImports: [`${client.name}Context as Client`, "isUnexpected"]
-      }
-    ]);
 
-    operationGroupFile.addImportDeclarations([
-      {
-        moduleSpecifier: "../common/interfaces.js",
-        namedImports: ["OperationRawReturnType"]
-      }
-    ]);
 
     // Import models used from ./models.ts
     importModels(operationGroupFile, project);
