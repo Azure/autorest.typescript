@@ -6,6 +6,11 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "lroModuler",
+    inputPath: "azure/core/lro/standard",
+    debug: true
+  },
+  {
     outputPath: "sharedRoute",
     inputPath: "shared-route"
   },
