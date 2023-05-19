@@ -979,7 +979,7 @@ function getSchemaForStdScalar(
     case "float":
       return applyIntrinsicDecorators(program, cadlType, {
         type: "number",
-        format: "double"
+        format: "float"
       });
     case "string":
       return applyIntrinsicDecorators(program, cadlType, {
