@@ -215,9 +215,9 @@ importers:
   ../../packages/typespec-ts:
     specifiers:
       '@azure-rest/core-client': ^1.1.3
-      '@azure-tools/cadl-ranch': ~0.4.13
-      '@azure-tools/cadl-ranch-expect': ^0.3.0
-      '@azure-tools/cadl-ranch-specs': ~0.14.10
+      '@azure-tools/cadl-ranch': ~0.4.14
+      '@azure-tools/cadl-ranch-expect': ^0.3.1
+      '@azure-tools/cadl-ranch-specs': ~0.15.0
       '@azure-tools/rlc-common': ^0.13.0
       '@azure-tools/typespec-azure-core': '>=0.30.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.30.0 <1.0.0'
@@ -264,7 +264,7 @@ importers:
       '@azure-rest/core-client': 1.1.3
       '@azure-tools/cadl-ranch': 0.4.14_3cjqqgv4r33nr5whoygb4gr3p4
       '@azure-tools/cadl-ranch-expect': 0.3.1_nwoy7fm4y4huu6dyos7frmr6pu
-      '@azure-tools/cadl-ranch-specs': 0.14.10_p6lkoqq4dykp5xy36obrjz7y4y
+      '@azure-tools/cadl-ranch-specs': 0.15.0_p6lkoqq4dykp5xy36obrjz7y4y
       '@azure/core-auth': 1.4.0
       '@azure/core-lro': 2.5.3
       '@azure/core-paging': 1.5.0
@@ -375,16 +375,16 @@ packages:
       '@typespec/versioning': 0.44.0_@typespec+compiler@0.44.0
     dev: true
 
-  /@azure-tools/cadl-ranch-specs/0.14.10_p6lkoqq4dykp5xy36obrjz7y4y:
-    resolution: {integrity: sha512-BkBRnh6pI/vWoycYPxOaKNlgob1pdZPZdv5LoUovsInShS4X6YHJ58GWYSxSaAGDWMwjd2YJ9EwBY9mc9cwzfQ==}
+  /@azure-tools/cadl-ranch-specs/0.15.0_p6lkoqq4dykp5xy36obrjz7y4y:
+    resolution: {integrity: sha512-+BO4ZFJY6ko3HW+ZhbQ6lwdQMncD5kBVx2V5Jn3u9/RUETg4EuDVJJEa2DSMpRuPqWi+j3pU0iVI5ungxGJy7A==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/cadl-ranch-expect': ~0.3.0
-      '@azure-tools/typespec-azure-core': ~0.29.0
-      '@typespec/compiler': ~0.43.0
-      '@typespec/http': ~0.43.1
-      '@typespec/rest': ~0.43.0
-      '@typespec/versioning': ~0.43.0
+      '@azure-tools/cadl-ranch-expect': ~0.3.1
+      '@azure-tools/typespec-azure-core': ~0.30.0
+      '@typespec/compiler': ~0.44.0
+      '@typespec/http': ~0.44.0
+      '@typespec/rest': ~0.44.0
+      '@typespec/versioning': ~0.44.0
     dependencies:
       '@azure-tools/cadl-ranch': 0.4.14_3cjqqgv4r33nr5whoygb4gr3p4
       '@azure-tools/cadl-ranch-api': 0.2.5
