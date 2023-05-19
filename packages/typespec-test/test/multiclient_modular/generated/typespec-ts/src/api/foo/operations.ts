@@ -1,37 +1,38 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestOptions } from "../../common/interfaces.js";
 import { isUnexpected, Client } from "../../rest/foo/index.js";
+import { FooContext as Client, isUnexpected } from "../rest/index.js";
+import { OperationRawReturnType } from "../common/interfaces.js";
 import { Resource, CustomPage } from "./models.js";
+import { RequestOptions } from "../../common/interfaces.js";
 
 export interface CreateOrUpdateOptions extends RequestOptions {
   /** */
   description?: string;
-  /** Accept header. */
-  accept?: "application/json";
-  /** Body parameter Content-Type. Known values are: application/json. */
-  content_type?: string;
 }
 
-/** Creates a new resource or updates an existing one. */
-export async function createOrUpdate(
+export function _createOrUpdateSend(
   context: Client.FooContext,
-  name: string,
   type: string,
   name: string,
   options: CreateOrUpdateOptions = { requestOptions: {} }
+) {
+  return context
+    .path("/cadl-foo/resources/{name}", name)
+    .put({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      body: { description: options?.description, type: type },
+    });
+}
+
+export async function _createOrUpdateDeserialize(
+  result: OperationRawReturnType<typeof _createOrUpdateSend>
 ): Promise<Resource> {
-  const result = await context.path("/cadl-foo/resources/{name}", name).put({
-    contentType: (options.content_type as any) ?? "application/json",
-    headers: { Accept: "application/json", ...options.requestOptions?.headers },
-
-    body: {
-      ...(options.description && { description: options.description }),
-      type: type,
-    },
-  });
-
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
 
   return {
     id: result.body["id"],
@@ -41,9 +42,48 @@ export async function createOrUpdate(
   };
 }
 
-export interface GetOptions extends RequestOptions {
-  /** Accept header. */
-  accept?: "application/json";
+/** Creates a new resource or updates an existing one. */
+export async function createOrUpdate(
+  context: Client.FooContext,
+  type: string,
+  name: string,
+  options: CreateOrUpdateOptions = { requestOptions: {} }
+): Promise<Resource> {
+  const result = await _createOrUpdateSend(context, type, name, options);
+  return _createOrUpdateDeserialize(result);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+}
+
+export interface GetOptions extends RequestOptions {}
+
+export function _getSend(
+  context: Client.FooContext,
+  name: string,
+  options: GetOptions = { requestOptions: {} }
+) {
+  return context
+    .path("/cadl-foo/resources/{name}", name)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    });
+}
+
+export async function _getDeserialize(
+  result: OperationRawReturnType<typeof _getSend>
+): Promise<Resource> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    name: result.body["name"],
+    description: result.body["description"],
+    type: result.body["type"],
+  };
 }
 
 /** Gets the details of a resource. */
@@ -52,37 +92,31 @@ export async function getOperation(
   name: string,
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
-  const result = await context
-    .path("/cadl-foo/resources/{name}", name)
-    .get({
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
-    });
+  const result = await _getSend(context, name, options);
+  return _getDeserialize(result);
   if (isUnexpected(result)) {
     throw result.body;
   }
-
-  return {
-    id: result.body["id"],
-    name: result.body["name"],
-    description: result.body["description"],
-    type: result.body["type"],
-  };
 }
 
 export interface DeleteOptions extends RequestOptions {}
 
-/** Deletes a resource. */
-export async function deleteOperation(
+export function _deleteOperationSend(
   context: Client.FooContext,
   name: string,
   options: DeleteOptions = { requestOptions: {} }
-): Promise<void> {
-  const result = await context
+) {
+  return context
     .path("/cadl-foo/resources/{name}", name)
-    .delete({});
+    .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    });
+}
+
+export async function _deleteOperationDeserialize(
+  result: OperationRawReturnType<typeof _deleteOperationSend>
+): Promise<void> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -90,24 +124,40 @@ export async function deleteOperation(
   return;
 }
 
-export interface ListOptions extends RequestOptions {
-  /** Accept header. */
-  accept?: "application/json";
+/** Deletes a resource. */
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
+ *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+ */
+export async function deleteOperation(
+  context: Client.FooContext,
+  name: string,
+  options: DeleteOptions = { requestOptions: {} }
+): Promise<void> {
+  const result = await _deleteOperationSend(context, name, options);
+  return _deleteOperationDeserialize(result);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
 }
 
-/** Lists the existing resources. */
-export async function list(
+export interface ListOptions extends RequestOptions {}
+
+export function _listSend(
   context: Client.FooContext,
   options: ListOptions = { requestOptions: {} }
-): Promise<CustomPage> {
-  const result = await context
+) {
+  return context
     .path("/cadl-foo/resources")
     .get({
-      headers: {
-        Accept: "application/json",
-        ...options.requestOptions?.headers,
-      },
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
     });
+}
+
+export async function _listDeserialize(
+  result: OperationRawReturnType<typeof _listSend>
+): Promise<CustomPage> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -121,4 +171,16 @@ export async function list(
     })),
     nextLink: result.body["nextLink"],
   };
+}
+
+/** Lists the existing resources. */
+export async function list(
+  context: Client.FooContext,
+  options: ListOptions = { requestOptions: {} }
+): Promise<CustomPage> {
+  const result = await _listSend(context, options);
+  return _listDeserialize(result);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
 }

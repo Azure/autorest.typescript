@@ -13,6 +13,42 @@ export interface Resource {
   type: string;
 }
 
+/** */
+export interface Resource {
+  /** */
+  readonly id: string;
+  /** */
+  readonly name: string;
+  /** */
+  description?: string;
+  /** */
+  type: string;
+}
+
+/** */
+export interface Resource {
+  /** */
+  readonly id: string;
+  /** */
+  readonly name: string;
+  /** */
+  description?: string;
+  /** */
+  type: string;
+}
+
+/** */
+export interface Resource {
+  /** */
+  readonly id: string;
+  /** */
+  readonly name: string;
+  /** */
+  description?: string;
+  /** */
+  type: string;
+}
+
 /** Paged collection of Resource items */
 export interface CustomPage {
   /** The Resource items on this page */

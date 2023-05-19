@@ -28,11 +28,13 @@ export class BarClient {
     this._client = createBar(endpoint, apiVersion, options);
   }
 
-  getBinary(options: GetBinaryOptions = { requestOptions: {} }): Promise<void> {
+  getBinary(options: GetBinaryOptions = { requestOptions: {} }): Promise<any> {
     return getBinary(this._client, options);
   }
 
-  getArray(options: GetArrayOptions = { requestOptions: {} }): Promise<void> {
+  getArray(
+    options: GetArrayOptions = { requestOptions: {} }
+  ): Promise<Resource[]> {
     return getArray(this._client, options);
   }
 

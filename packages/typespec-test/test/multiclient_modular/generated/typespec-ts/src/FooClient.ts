@@ -30,13 +30,11 @@ export class FooClient {
   }
 
   createOrUpdate(
-    id: string,
-    name: string,
     type: string,
     name: string,
     options: CreateOrUpdateOptions = { requestOptions: {} }
   ): Promise<Resource> {
-    return createOrUpdate(this._client, id, name, type, name, options);
+    return createOrUpdate(this._client, type, name, options);
   }
 
   getOperation(
