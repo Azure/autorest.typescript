@@ -8,13 +8,13 @@ import {
   LroResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller,
+  createHttpPoller
 } from "@azure/core-lro";
 import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
-  CreateOrReplaceLogicalResponse,
+  CreateOrReplaceLogicalResponse
 } from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -61,7 +61,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
       return lroResponse;
-    },
+    }
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
@@ -87,7 +87,7 @@ function getLroResponse<TResult extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body,
-    },
+      body: response.body
+    }
   };
 }
