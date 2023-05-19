@@ -33,6 +33,7 @@ import {
   OPERATION_LRO_LOW_PRIORITY,
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
+import { isByteOrByteUnion } from "./modelUtils.js";
 
 export function getNormalizedOperationName(
   route: HttpOperation,
@@ -74,11 +75,15 @@ export function isDefinedStatusCode(statusCode: StatusCode) {
   return statusCode !== "*";
 }
 
-export function isBinaryPayload(body: Type, contentType: string) {
+export function isBinaryPayload(
+  program: Program,
+  dpgContext: SdkContext,
+  body: Type,
+  contentType: string
+) {
   contentType = `"${contentType}"`;
   if (
-    body.kind === "Scalar" &&
-    body.name === "bytes" &&
+    isByteOrByteUnion(program, dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
@@ -207,6 +212,10 @@ export function hasPollingOperations(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       if (isLongRunningOperation(program, route)) {
         return true;
       }
@@ -215,6 +224,10 @@ export function hasPollingOperations(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     if (isLongRunningOperation(program, route)) {
       return true;
     }
@@ -246,6 +259,10 @@ export function hasPagingOperations(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       if (isPagingOperation(program, route)) {
         return true;
       }
@@ -254,6 +271,10 @@ export function hasPagingOperations(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     if (isPagingOperation(program, route)) {
       return true;
     }
