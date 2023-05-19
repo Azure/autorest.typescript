@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.13.0",
+  "version": "0.13.10",
   "description": "An experimental CADL emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",

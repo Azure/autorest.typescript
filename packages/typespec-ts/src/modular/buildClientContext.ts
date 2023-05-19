@@ -27,9 +27,17 @@ export function buildClientContext(
     moduleSpecifier: "../rest/index.js",
     namedExports: [`${client.name}Context`]
   });
-  // clientContextFile.addExportAssignment({
-  //   expression: `${client.name}Context`
-  // });
+
+  clientContextFile.addImportDeclaration({
+    moduleSpecifier: "@azure-rest/core-client",
+    namedImports: ["ClientOptions"]
+  });
+
+  clientContextFile.addInterface({
+    name: `${name}ClientOptions`,
+    isExported: true,
+    extends: ["ClientOptions"]
+  });
 
   const factoryFunction = clientContextFile.addFunction({
     docs: [description],

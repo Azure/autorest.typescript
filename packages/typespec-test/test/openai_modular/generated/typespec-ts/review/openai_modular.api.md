@@ -4,8 +4,7 @@
 
 ```ts
 
-import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
+import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -81,10 +80,6 @@ export interface Choice {
     index: number;
     logprobs: CompletionsLogProbabilityModel | null;
     text: string;
-}
-
-// @public (undocumented)
-export interface ClientOptions extends ClientOptions_2 {
 }
 
 // @public
@@ -246,13 +241,14 @@ export interface GetEmbeddingsOptions extends RequestOptions {
 
 // @public (undocumented)
 export class OpenAIClient {
-    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ClientOptions);
-    // (undocumented)
+    constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
-    // (undocumented)
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
-    // (undocumented)
     getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+}
+
+// @public (undocumented)
+export interface OpenAIClientOptions extends ClientOptions {
 }
 
 // @public (undocumented)
@@ -262,7 +258,6 @@ export interface RequestOptions {
         headers?: RawHttpHeadersInput;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
-        onResponse?: (response: HttpResponse) => void;
     };
 }
 

@@ -23,5 +23,5 @@ export {
   GetCompletionsOptions,
   GetChatCompletionsOptions,
 } from "./api/operations.js";
-export { OpenAIClient } from "./OpenAIClient.js";
-export { ClientOptions, RequestOptions } from "./common/interfaces.js";
+export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
+export { RequestOptions } from "./common/interfaces.js";
