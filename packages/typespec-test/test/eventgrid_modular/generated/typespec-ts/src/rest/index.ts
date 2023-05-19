@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AzureMessagingEventGridClient from "./azureMessagingEventGridClient.js";
+import EventGridClient from "./eventGridClient.js";
 
-export * from "./azureMessagingEventGridClient.js";
+export * from "./eventGridClient.js";
 export * from "./parameters.js";
 export * from "./responses.js";
 export * from "./clientDefinitions.js";
@@ -11,4 +11,4 @@ export * from "./isUnexpected.js";
 export * from "./models.js";
 export * from "./outputModels.js";
 
-export default AzureMessagingEventGridClient;
+export default EventGridClient;

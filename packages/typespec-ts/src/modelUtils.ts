@@ -74,6 +74,60 @@ export function getBinaryType(usage: SchemaContext[]) {
     : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
 }
 
+export function isByteOrByteUnion(
+  program: Program,
+  dpgContext: SdkContext,
+  type: Type
+) {
+  const schema = getSchemaForType(program, dpgContext, type);
+  return isByteType(schema) || isByteUnion(schema);
+}
+
+function isByteType(schema: any) {
+  return schema.type === "string" && schema.format === "byte";
+}
+
+function isByteUnion(schema: any) {
+  if (!Array.isArray(schema.enum)) {
+    return false;
+  }
+  for (const ele of schema.enum) {
+    if (isByteType(ele)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function refineByteType(schema: any) {
+  schema.typeName = getBinaryType([
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]);
+  schema.outputTypeName = getBinaryType([SchemaContext.Output]);
+  return schema;
+}
+
+export function enrichBinaryTypeInBody(schema: any) {
+  if (isByteType(schema)) {
+    refineByteType(schema);
+  } else if (isByteUnion(schema)) {
+    const inputType: string[] = [];
+    for (const item of schema.enum) {
+      if (isByteType(item)) {
+        refineByteType(item);
+      }
+      // ignore the string type for input because we already have it in bytes union
+      if (getTypeName(item, [SchemaContext.Input]) !== "string") {
+        inputType.push(getTypeName(item, [SchemaContext.Input]));
+      }
+    }
+    // refine the input type
+    schema.typeName = inputType.join(" | ");
+  }
+  return schema;
+}
+
 export function getSchemaForType(
   program: Program,
   dpgContext: SdkContext,
@@ -102,8 +156,17 @@ export function getSchemaForType(
       needRef
     ) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
-      schema.outputTypeName = `${schema.name}Output`;
-      schema.typeName = `${schema.name}`;
+      if (!schema.name) {
+        //TODO: HANDLE ANONYMOUS
+        schema.outputTypeName =
+          schema.type === "object" ? "Record<string, any>" : "any";
+        schema.typeName =
+          schema.type === "object" ? "Record<string, unknown>" : "unknown";
+        schema.type = "unknown";
+      } else {
+        schema.outputTypeName = `${schema.name}Output`;
+        schema.typeName = `${schema.name}`;
+      }
     }
     schema.usage = usage;
     return schema;
@@ -789,23 +852,27 @@ function mapCadlStdTypeToTypeScript(
           }
         } else {
           if (schema.items.typeName) {
-            schema.typeName = schema.items.typeName
-              .split("|")
-              .map((typeName: string) => {
-                return `${typeName}[]`;
-              })
-              .join(" | ");
-            if (
-              schema.items.outputTypeName &&
-              usage &&
-              usage.includes(SchemaContext.Output)
-            ) {
-              schema.outputTypeName = schema.items.outputTypeName
+            if (schema.items.type === "dictionary") {
+              schema.typeName = `${schema.items.typeName}[]`;
+            } else {
+              schema.typeName = schema.items.typeName
                 .split("|")
                 .map((typeName: string) => {
                   return `${typeName}[]`;
                 })
                 .join(" | ");
+              if (
+                schema.items.outputTypeName &&
+                usage &&
+                usage.includes(SchemaContext.Output)
+              ) {
+                schema.outputTypeName = schema.items.outputTypeName
+                  .split("|")
+                  .map((typeName: string) => {
+                    return `${typeName}[]`;
+                  })
+                  .join(" | ");
+              }
             }
           } else if (schema.items.type.includes("|")) {
             schema.typeName = `(${schema.items.type})[]`;

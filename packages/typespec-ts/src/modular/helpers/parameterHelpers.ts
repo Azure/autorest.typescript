@@ -1,7 +1,7 @@
 import { Parameter } from "../modularCodeModel.js";
 
 const parameterTypeMap: Record<string, string> = {
-  Key: "AzureKeyCredential",
+  Key: "KeyCredential",
   OAuth2: "TokenCredential"
 };
 

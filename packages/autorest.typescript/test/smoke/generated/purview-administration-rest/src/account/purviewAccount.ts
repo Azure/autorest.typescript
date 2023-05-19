@@ -8,9 +8,9 @@ import { PurviewAccountClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `PurviewAccountClient`
- * @param endpoint type: string, The account endpoint of your Purview account. Example: https://{accountName}.purview.azure.com/account/
- * @param credentials type: TokenCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - The account endpoint of your Purview account. Example: https://{accountName}.purview.azure.com/account/
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export function createClient(
   endpoint: string,

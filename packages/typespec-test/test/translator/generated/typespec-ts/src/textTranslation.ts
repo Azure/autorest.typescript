@@ -7,9 +7,9 @@ import { TextTranslationClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `TextTranslationClient`
- * @param endpoint type: string, Supported Text Translation endpoints (protocol and hostname, for example:
+ * @param endpoint - Supported Text Translation endpoints (protocol and hostname, for example:
  *     https://api.cognitive.microsofttranslator.com).
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

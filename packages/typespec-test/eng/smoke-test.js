@@ -9,11 +9,11 @@ function generate(path) {
   console.log(command);
   try {
     const result = execSync(command, {
-      maxBuffer: MAX_BUFFER
+      maxBuffer: MAX_BUFFER,
     });
-    console.log("Generated output:", result.toString());
+    console.log("Generated output:", result.toString("utf8"));
   } catch (e) {
-    console.error(Error(e.stdout.toString()));
+    console.error(Error(e.stdout.toString("utf8")));
     process.exitCode = 1;
   }
 }
@@ -23,11 +23,11 @@ function build(path) {
   console.log(command);
   try {
     const result = execSync(command, {
-      maxBuffer: MAX_BUFFER
+      maxBuffer: MAX_BUFFER,
     });
-    console.log("build output:", result.toString());
+    console.log("build output:", result.toString("utf8"));
   } catch (e) {
-    console.log(Error(e.stdout.toString()));
+    console.log(Error(e.stdout.toString("utf8")));
     process.exitCode = 1;
   }
 }
@@ -48,11 +48,19 @@ async function main() {
 
   for (const folder of folders) {
     const path = join(root, "test", folder);
+    const contents = await readdir(path);
     console.log(`================Start ${folder}===============`);
-    generate(path);
-    build(path);
+    if (contents.includes("skip")) {
+      console.log(`          ##### Skipped #####          `);
+    } else {
+      generate(path);
+      build(path);
+    }
     console.log(`================End ${folder}===============`);
   }
 }
 
-main();
+main().catch((e) => {
+  console.log(e.stdout.toString("utf8"));
+  process.exitCode = 1;
+});

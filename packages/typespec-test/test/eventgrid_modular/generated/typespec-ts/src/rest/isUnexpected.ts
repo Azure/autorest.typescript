@@ -4,21 +4,25 @@
 import {
   PublishCloudEvent200Response,
   PublishCloudEventDefaultResponse,
-  ReceiveBatchOfCloudEvents201Response,
-  ReceiveBatchOfCloudEventsDefaultResponse,
-  AcknowledgeBatchOfCloudEvents200Response,
-  AcknowledgeBatchOfCloudEventsDefaultResponse,
-  ReleaseBatchOfCloudEvents200Response,
-  ReleaseBatchOfCloudEventsDefaultResponse,
+  ReceiveCloudEvents200Response,
+  ReceiveCloudEventsDefaultResponse,
+  AcknowledgeCloudEvents200Response,
+  AcknowledgeCloudEventsDefaultResponse,
+  ReleaseCloudEvents200Response,
+  ReleaseCloudEventsDefaultResponse,
+  RejectCloudEvents200Response,
+  RejectCloudEventsDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /topics/{topicName}:publish": ["200"],
   "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive":
-    ["201"],
+    ["200"],
   "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge":
     ["200"],
   "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release":
+    ["200"],
+  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject":
     ["200"],
 };
 
@@ -26,35 +30,37 @@ export function isUnexpected(
   response: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 ): response is PublishCloudEventDefaultResponse;
 export function isUnexpected(
-  response:
-    | ReceiveBatchOfCloudEvents201Response
-    | ReceiveBatchOfCloudEventsDefaultResponse
-): response is ReceiveBatchOfCloudEventsDefaultResponse;
+  response: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
+): response is ReceiveCloudEventsDefaultResponse;
 export function isUnexpected(
   response:
-    | AcknowledgeBatchOfCloudEvents200Response
-    | AcknowledgeBatchOfCloudEventsDefaultResponse
-): response is AcknowledgeBatchOfCloudEventsDefaultResponse;
+    | AcknowledgeCloudEvents200Response
+    | AcknowledgeCloudEventsDefaultResponse
+): response is AcknowledgeCloudEventsDefaultResponse;
 export function isUnexpected(
-  response:
-    | ReleaseBatchOfCloudEvents200Response
-    | ReleaseBatchOfCloudEventsDefaultResponse
-): response is ReleaseBatchOfCloudEventsDefaultResponse;
+  response: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
+): response is ReleaseCloudEventsDefaultResponse;
+export function isUnexpected(
+  response: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
+): response is RejectCloudEventsDefaultResponse;
 export function isUnexpected(
   response:
     | PublishCloudEvent200Response
     | PublishCloudEventDefaultResponse
-    | ReceiveBatchOfCloudEvents201Response
-    | ReceiveBatchOfCloudEventsDefaultResponse
-    | AcknowledgeBatchOfCloudEvents200Response
-    | AcknowledgeBatchOfCloudEventsDefaultResponse
-    | ReleaseBatchOfCloudEvents200Response
-    | ReleaseBatchOfCloudEventsDefaultResponse
+    | ReceiveCloudEvents200Response
+    | ReceiveCloudEventsDefaultResponse
+    | AcknowledgeCloudEvents200Response
+    | AcknowledgeCloudEventsDefaultResponse
+    | ReleaseCloudEvents200Response
+    | ReleaseCloudEventsDefaultResponse
+    | RejectCloudEvents200Response
+    | RejectCloudEventsDefaultResponse
 ): response is
   | PublishCloudEventDefaultResponse
-  | ReceiveBatchOfCloudEventsDefaultResponse
-  | AcknowledgeBatchOfCloudEventsDefaultResponse
-  | ReleaseBatchOfCloudEventsDefaultResponse {
+  | ReceiveCloudEventsDefaultResponse
+  | AcknowledgeCloudEventsDefaultResponse
+  | ReleaseCloudEventsDefaultResponse
+  | RejectCloudEventsDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

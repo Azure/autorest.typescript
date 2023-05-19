@@ -7,41 +7,52 @@ export interface TypeMetadata {
   modifier?: "Array";
 }
 
+function getNullableType(name: string, type: Type): string {
+  if (type.nullable) {
+    return `(${name} | null)`;
+  }
+
+  return name;
+}
+
 export function getType(type: Type): TypeMetadata {
   switch (type.type) {
     case "Key":
       return {
-        name: "AzureKeyCredential",
+        name: "KeyCredential",
         originModule: "@azure/core-auth",
         isRelative: false
       };
     case "boolean":
-      return { name: "boolean" };
+      return { name: getNullableType(type.type, type) };
     case "constant": {
       let typeName: string = type.value ?? "undefined";
       if (type.valueType?.type === "string") {
         typeName = type.value ? `"${type.value}"` : "undefined";
       }
-      return { name: typeName };
+      return { name: getNullableType(typeName, type) };
     }
     case "datetime":
-      return { name: "Date" };
+      return { name: getNullableType("Date", type) };
     case "enum":
       if (!type.name) {
         throw new Error("Unable to process enum without name");
       }
-      return { name: type.name, originModule: "models.js" };
+      return {
+        name: getNullableType(type.name, type),
+        originModule: "models.js"
+      };
     case "float":
     case "integer":
-      return { name: "number" };
+      return { name: getNullableType("number", type) };
     case "byte-array":
-      return { name: "string" };
+      return { name: getNullableType("Uint8Array", type) };
     case "list":
       if (!type.elementType) {
         throw new Error("Unable to process Array with no elementType");
       }
       return {
-        name: getType(type.elementType).name,
+        name: getNullableType(getType(type.elementType).name, type),
         modifier: "Array",
         originModule:
           type.elementType?.type === "model" ? "models.js" : undefined
@@ -50,10 +61,13 @@ export function getType(type: Type): TypeMetadata {
       if (!type.name) {
         throw new Error("Unable to process model without name");
       }
-      return { name: type.name, originModule: "models.js" };
+      return {
+        name: getNullableType(type.name, type),
+        originModule: "models.js"
+      };
     case "string":
     case "duration":
-      return { name: "string" };
+      return { name: getNullableType("string", type) };
     case "combined": {
       if (!type.types) {
         throw new Error("Unable to process combined without combinedTypes");
@@ -64,7 +78,7 @@ export function getType(type: Type): TypeMetadata {
           return `${sdkType}`;
         })
         .join(" | ");
-      return { name };
+      return { name: getNullableType(name, type) };
     }
     case "dict":
       if (!type.elementType) {
@@ -73,8 +87,15 @@ export function getType(type: Type): TypeMetadata {
       return {
         name: `Record<string, ${getTypeName(getType(type.elementType))}>`
       };
+    case "any":
+      return {
+        name: `Record<string, any>`
+      };
     default:
-      throw new Error(`Unsupported type ${type.type}`);
+      // throw new Error(`Unsupported type ${type.type}`);
+      return {
+        name: `any`
+      };
   }
 }
 

@@ -52,12 +52,20 @@ export function transformToResponseTypes(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       transformToResponseTypesForRoute(route, operationGroup);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     transformToResponseTypesForRoute(route);
   }
   if (inputImportedSet.size > 0) {
@@ -169,7 +177,7 @@ function transformBody(
       continue;
     }
     const hasBinaryContent = body.contentTypes.some((contentType) =>
-      isBinaryPayload(body.type, contentType)
+      isBinaryPayload(program, dpgContext, body.type, contentType)
     );
     if (hasBinaryContent) {
       typeSet.add(getBinaryType([SchemaContext.Output]));

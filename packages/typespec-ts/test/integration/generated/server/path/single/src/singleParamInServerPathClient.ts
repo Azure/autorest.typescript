@@ -7,8 +7,8 @@ import { SingleParamInServerPathClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `SingleParamInServerPathClient`
- * @param endpoint type: string, Need to be set as 'http://localhost:3000' in client.
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - Need to be set as 'http://localhost:3000' in client.
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,

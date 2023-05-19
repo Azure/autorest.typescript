@@ -7,8 +7,8 @@ import { CustomUrlRestClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `CustomUrlRestClient`
- * @param host type: string, A string value that is used as a global part of the parameterized host
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param host - A string value that is used as a global part of the parameterized host
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   host: string,

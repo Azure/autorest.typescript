@@ -2,6 +2,8 @@ import { Project, SourceFile } from "ts-morph";
 import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
+  getSendPrivateFunction,
+  getDeserializePrivateFunction,
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
@@ -57,8 +59,28 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, operationGroupFile);
       const operationDeclaration = getOperationFunction(o, clientType, needUnexpectedHelper);
-      operationGroupFile.addFunction(operationDeclaration);
+      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
+      operationGroupFile.addFunctions([
+        sendOperationDeclaration,
+        deserializeOperationDeclaration,
+        operationDeclaration
+      ]);
     });
+
+    operationGroupFile.addImportDeclarations([
+      {
+        moduleSpecifier: "../rest/index.js",
+        namedImports: [`${client.name}Context as Client`, "isUnexpected"]
+      }
+    ]);
+
+    operationGroupFile.addImportDeclarations([
+      {
+        moduleSpecifier: "../common/interfaces.js",
+        namedImports: ["OperationRawReturnType"]
+      }
+    ]);
 
     // Import models used from ./models.ts
     importModels(operationGroupFile, project);

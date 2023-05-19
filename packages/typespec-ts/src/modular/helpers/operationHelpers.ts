@@ -13,22 +13,105 @@ import {
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { getOperationName } from "./namingHelpers.js";
+import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
 
 /**
  * This operation builds and returns the function declaration for an operation.
  */
-export function getOperationFunction(
+export function getSendPrivateFunction(
   operation: Operation,
-  clientType: string,
-  needUnexpectedHelper: boolean = true
+  clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  const optionsType = getOperationOptionsName(operation);
-  // Extract required parameters
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+  const parameters = getOperationSignatureParameters(operation, clientType);
+  const { name } = getOperationName(operation);
 
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: true,
+    name: `_${name}Send`,
+    parameters
+  };
+
+  const operationPath = operation.url;
+  const operationMethod = operation.method.toLowerCase();
+
+  const statements: string[] = [];
+  statements.push(
+    `return context.path("${operationPath}", ${getPathParameters(
+      operation
+    )}).${operationMethod}({allowInsecureConnection: options.requestOptions?.allowInsecureConnection, skipUrlEncoding: options.requestOptions?.skipUrlEncoding, ${getRequestParameters(
+      operation
+    )}});`
+  );
+
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+export function getDeserializePrivateFunction(
+  operation: Operation
+): OptionalKind<FunctionDeclarationStructure> {
+  const { name } = getOperationName(operation);
+
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+    {
+      name: "result",
+      type: `OperationRawReturnType<typeof _${name}Send>`
+    }
+  ];
+
+  // TODO: Support operation overloads
+  const response = operation.responses[0]!;
+  const returnType = response?.type?.type
+    ? buildType(response.type.name, response.type)
+    : { name: "", type: "void" };
+
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: true,
+    isExported: true,
+    name: `_${name}Deserialize`,
+    parameters,
+    returnType: `Promise<${returnType.type}>`
+  };
+  const statements: string[] = [];
+  statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+
+  if (response?.type?.type === "any") {
+    statements.push(`return result.body`);
+  } else if (response?.type?.elementType) {
+    statements.push(
+      `return ${deserializeResponseValue(response.type, "result.body")}`
+    );
+  } else if (response?.type?.properties) {
+    statements.push(
+      `return {`,
+      getResponseMapping(response.type.properties ?? []).join(","),
+      `}`
+    );
+  } else if (returnType.type === "void") {
+    statements.push(`return;`);
+  } else {
+    statements.push(`return result.body;`);
+  }
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function getOperationSignatureParameters(
+  operation: Operation,
+  clientType: string
+): OptionalKind<ParameterDeclarationStructure>[] {
+  const optionsType = getOperationOptionsName(operation);
+  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
   if (operation.bodyParameter?.type.type === "model") {
     parameters = (operation.bodyParameter?.type.properties ?? [])
       .filter((p) => !p.optional)
+      .filter((p) => !p.readonly)
       .map((p) => buildType(p.clientName, p.type));
   } else if (operation.bodyParameter?.type.type === "list") {
     const bodyArray = operation.bodyParameter;
@@ -57,15 +140,30 @@ export function getOperationFunction(
     initializer: "{ requestOptions: {} }"
   });
 
+  return parameters;
+}
+
+/**
+ * This operation builds and returns the function declaration for an operation.
+ */
+export function getOperationFunction(
+  operation: Operation,
+  clientType: string,
+  needUnexpectedHelper: boolean = true
+): OptionalKind<FunctionDeclarationStructure> {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation, clientType);
+
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
-  const returnType =
-    response?.type?.type === "model"
-      ? buildType(response.type.name, response.type)
-      : { name: "", type: "void" };
+  const returnType = response?.type?.type
+    ? buildType(response.type.name, response.type)
+    : { name: "", type: "void" };
 
+  const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-    docs: [operation.description],
+    docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
     isAsync: true,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
@@ -73,30 +171,36 @@ export function getOperationFunction(
     returnType: `Promise<${returnType.type}>`
   };
 
-  const operationPath = operation.url;
-  const operationMethod = operation.method.toLowerCase();
-
   const statements: string[] = [];
   statements.push(
-    `const result = await context.path("${operationPath}", ${getPathParameters(
-      operation
-    )}).${operationMethod}({${getRequestParameters(operation)}});`
+    `const result = await _${name}Send(${parameters
+      .map((p) => p.name)
+      .join(", ")});`
   );
+  statements.push(`return _${name}Deserialize(result);`);
 
   if (needUnexpectedHelper) {
     statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
   }
 
 
-  if (!response?.type?.properties) {
-    statements.push(`return;`);
-  } else {
-    statements.push(
-      `return {`,
-      getResponseMapping(response.type.properties ?? []).join(","),
-      `}`
-    );
-  }
+  // if (response?.type?.type === "any") {
+  //   statements.push(`return result.body`);
+  // } else if (response?.type?.elementType) {
+  //   statements.push(
+  //     `return ${deserializeResponseValue(response.type, "result.body")}`
+  //   );
+  // } else if (response?.type?.properties) {
+  //   statements.push(
+  //     `return {`,
+  //     getResponseMapping(response.type.properties ?? []).join(","),
+  //     `}`
+  //   );
+  // } else if (returnType.type === "void") {
+  //   statements.push(`return;`);
+  // } else {
+  //   statements.push(`return result.body;`);
+  // }
   return {
     ...functionStatement,
     statements
@@ -279,7 +383,7 @@ function isOptionalWithouDefault(
   return Boolean(param.optional && !param.clientDefaultValue);
 }
 function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
-  return `...(options.${param.clientName} && {"${param.restApiName}": options.${param.clientName}})`;
+  return `"${param.restApiName}": options?.${param.clientName}`;
 }
 
 type OptionalWithDefaultType = (Parameter | Property) & {
@@ -346,6 +450,13 @@ function getPathParameters(operation: Operation) {
   return pathParams;
 }
 
+function getNullableCheck(name: string, type: Type) {
+  if (!type.nullable) {
+    return "";
+  }
+
+  return `${name} === null ? null :`;
+}
 /**
  * This function helps translating an RLC response to an HLC response,
  * extracting properties from body and headers and building the HLC response object
@@ -357,19 +468,18 @@ function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
+    const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
-      props.push(
-        `"${property.restApiName}": ${
-          !property.optional
-            ? ""
-            : `!${propertyPath}.${property.clientName} ? undefined :`
-        } {${getResponseMapping(
-          property.type.properties ?? [],
-          `${propertyPath}.${property.restApiName}${
-            property.optional ? "?" : ""
-          }`
-        )}}`
-      );
+      const definition = `"${property.restApiName}": ${getNullableCheck(
+        propertyFullName,
+        property.type
+      )} ${
+        !property.optional ? "" : `!${propertyFullName} ? undefined :`
+      } {${getResponseMapping(
+        property.type.properties ?? [],
+        `${propertyPath}.${property.restApiName}${property.optional ? "?" : ""}`
+      )}}`;
+      props.push(definition);
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
       const restValue = `${
