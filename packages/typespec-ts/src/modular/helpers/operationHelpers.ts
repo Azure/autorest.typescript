@@ -15,6 +15,17 @@ import { buildType } from "./typeHelpers.js";
 import { getOperationName } from "./namingHelpers.js";
 import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
 
+function getRLCResponseType(operation: Operation) {
+  const { name } = getOperationName(operation, { casing: "pascal" });
+  const statusCodes: (string | number)[] = Array.from(
+    new Set(operation.responses.flatMap((r) => r.statusCodes)).values()
+  );
+
+  statusCodes.push("Default");
+
+  return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
+}
+
 export function getSendPrivateFunction(
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
@@ -25,7 +36,8 @@ export function getSendPrivateFunction(
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
-    parameters
+    parameters,
+    returnType: `StreamableMethod<${getRLCResponseType(operation)}>`
   };
 
   const operationPath = operation.url;
@@ -54,7 +66,7 @@ export function getDeserializePrivateFunction(
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: `OperationRawReturnType<typeof _${name}Send>`
+      type: getRLCResponseType(operation)
     }
   ];
 
@@ -170,26 +182,6 @@ export function getOperationFunction(
       .join(", ")});`
   );
   statements.push(`return _${name}Deserialize(result);`);
-
-  // statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
-
-  // if (response?.type?.type === "any") {
-  //   statements.push(`return result.body`);
-  // } else if (response?.type?.elementType) {
-  //   statements.push(
-  //     `return ${deserializeResponseValue(response.type, "result.body")}`
-  //   );
-  // } else if (response?.type?.properties) {
-  //   statements.push(
-  //     `return {`,
-  //     getResponseMapping(response.type.properties ?? []).join(","),
-  //     `}`
-  //   );
-  // } else if (returnType.type === "void") {
-  //   statements.push(`return;`);
-  // } else {
-  //   statements.push(`return result.body;`);
-  // }
   return {
     ...functionStatement,
     statements

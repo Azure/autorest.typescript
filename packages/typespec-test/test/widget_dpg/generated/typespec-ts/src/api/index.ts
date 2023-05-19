@@ -26,4 +26,5 @@ export {
 export {
   createWidgetService,
   WidgetServiceContext,
+  WidgetServiceClientOptions,
 } from "./WidgetServiceContext.js";

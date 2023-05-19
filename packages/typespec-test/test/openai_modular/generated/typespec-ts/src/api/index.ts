@@ -18,7 +18,11 @@ export {
   ChatCompletions,
   ChatChoice,
 } from "./models.js";
-export { createOpenAI, OpenAIContext } from "./OpenAIContext.js";
+export {
+  createOpenAI,
+  OpenAIContext,
+  OpenAIClientOptions,
+} from "./OpenAIContext.js";
 export {
   getEmbeddings,
   getCompletions,

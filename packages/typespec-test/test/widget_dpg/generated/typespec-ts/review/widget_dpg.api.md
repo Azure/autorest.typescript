@@ -4,8 +4,7 @@
 
 ```ts
 
-import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
+import { ClientOptions } from '@azure-rest/core-client';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
@@ -19,25 +18,17 @@ export interface AnalyzeWidgetOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export interface ClientOptions extends ClientOptions_2 {
-}
-
-// @public (undocumented)
 export type ColorType = "red" | "blue";
 
 // @public (undocumented)
 export interface CreateWidget {
-    // (undocumented)
     color: ColorType;
-    // (undocumented)
     weight: number;
 }
 
 // @public (undocumented)
 export interface CreateWidget {
-    // (undocumented)
     color: ColorType;
-    // (undocumented)
     weight: number;
 }
 
@@ -64,69 +55,54 @@ export interface RequestOptions {
         headers?: RawHttpHeadersInput;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
-        onResponse?: (response: HttpResponse) => void;
     };
 }
 
 // @public (undocumented)
 export interface UpdateWidget {
-    // (undocumented)
     color?: ColorType;
-    // (undocumented)
     id: string;
-    // (undocumented)
     weight?: number;
 }
 
 // @public (undocumented)
 export interface UpdateWidget {
-    // (undocumented)
     color?: ColorType;
-    // (undocumented)
     weight?: number;
 }
 
 // @public (undocumented)
 export interface UpdateWidgetOptions extends RequestOptions {
-    // (undocumented)
     color?: ColorType;
-    // (undocumented)
     weight?: number;
 }
 
 // @public (undocumented)
 export interface Widget {
-    // (undocumented)
     color: ColorType;
-    // (undocumented)
     id: string;
-    // (undocumented)
     weight: number;
 }
 
 // @public (undocumented)
 export interface WidgetError {
-    // (undocumented)
     code: number;
-    // (undocumented)
     message: string;
 }
 
 // @public (undocumented)
 export class WidgetServiceClient {
-    constructor(endpoint: string, options?: ClientOptions);
-    // (undocumented)
+    constructor(endpoint: string, options?: WidgetServiceClientOptions);
     analyzeWidget(id: string, options?: AnalyzeWidgetOptions): Promise<AnalyzeResult>;
-    // (undocumented)
     createWidget(weight: number, color: ColorType, options?: CreateWidgetOptions): Promise<Widget>;
-    // (undocumented)
     deleteWidget(id: string, options?: DeleteWidgetOptions): Promise<void>;
-    // (undocumented)
     getWidget(id: string, options?: GetWidgetOptions): Promise<Widget>;
-    // (undocumented)
     listWidgets(options?: ListWidgetsOptions): Promise<Widget[]>;
-    // (undocumented)
     updateWidget(id: string, options?: UpdateWidgetOptions): Promise<Widget>;
+}
+
+// @public (undocumented)
+export interface WidgetServiceClientOptions extends ClientOptions {
 }
 
 // (No @packageDocumentation comment for this package)
