@@ -75,17 +75,24 @@ export function buildOperationFiles(
     }
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, operationGroupFile);
-      const operationDeclaration = getOperationFunction(o, clientType, needSubClient, needUnexpectedHelper);
+      const operationDeclaration = getOperationFunction(
+        o,
+        clientType,
+        needSubClient,
+        needUnexpectedHelper
+      );
       const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
-      const deserializeOperationDeclaration = getDeserializePrivateFunction(o, needSubClient, needUnexpectedHelper);
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(
+        o,
+        needSubClient,
+        needUnexpectedHelper
+      );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
         deserializeOperationDeclaration,
         operationDeclaration
       ]);
     });
-
-
 
     // Import models used from ./models.ts
     importModels(operationGroupFile, project);

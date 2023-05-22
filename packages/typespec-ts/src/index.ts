@@ -118,20 +118,39 @@ export async function $onEmit(context: EmitContext) {
     const project = new Project();
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
     buildSharedTypes(project, srcPath);
-    const rootIndexFile = project.createSourceFile(`${srcPath}/src/index.ts`, "", {
-      overwrite: true
-    });
+    const rootIndexFile = project.createSourceFile(
+      `${srcPath}/src/index.ts`,
+      "",
+      {
+        overwrite: true
+      }
+    );
     for (const subClient of modularCodeModel.clients) {
       let subfolder = "";
-      if(modularCodeModel.clients.length > 1) {
-        subfolder = normalizeName(subClient.name.replace("Client", ""), NameType.File);
+      if (modularCodeModel.clients.length > 1) {
+        subfolder = normalizeName(
+          subClient.name.replace("Client", ""),
+          NameType.File
+        );
       }
 
       buildClientContext(subClient, project, srcPath, subfolder);
       buildModels(modularCodeModel, project, srcPath, subfolder);
-      buildOperationFiles(subClient, project, srcPath, subfolder, needUnexpectedHelper.get(subClient.name + "Client"));
+      buildOperationFiles(
+        subClient,
+        project,
+        srcPath,
+        subfolder,
+        needUnexpectedHelper.get(subClient.name + "Client")
+      );
       buildApiIndexFile(project, srcPath, subfolder);
-      buildClassicalClient(subClient, project, srcPath, subfolder, needUnexpectedHelper.get(subClient.name + "Client"));
+      buildClassicalClient(
+        subClient,
+        project,
+        srcPath,
+        subfolder,
+        needUnexpectedHelper.get(subClient.name + "Client")
+      );
       buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
 
       emitPackage(project, srcPath, modularCodeModel);

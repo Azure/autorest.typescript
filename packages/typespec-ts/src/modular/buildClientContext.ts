@@ -27,7 +27,7 @@ export function buildClientContext(
       moduleSpecifier: `../../rest/${subfolder}/index.js`,
       namedImports: [`Client`]
     });
-  
+
     clientContextFile.addExportDeclaration({
       moduleSpecifier: `../../rest/${subfolder}/index.js`,
       namedExports: [`Client`]
@@ -44,7 +44,7 @@ export function buildClientContext(
       moduleSpecifier: `../rest/index.js`,
       namedImports: [`${client.name}Context`]
     });
-  
+
     clientContextFile.addExportDeclaration({
       moduleSpecifier: `../rest/index.js`,
       namedExports: [`${client.name}Context`]
@@ -61,7 +61,6 @@ export function buildClientContext(
   // clientContextFile.addExportAssignment({
   //   expression: `${client.name}Context`
   // });
-
 
   const credentialsParam = parameters.find(
     (p) => p.clientName === "credential"
@@ -106,7 +105,6 @@ export function buildClientContext(
       }
     ]);
   }
-
 
   clientContextFile.fixMissingImports(
     {},

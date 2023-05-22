@@ -84,13 +84,17 @@ function exportOptionsInterfaces(
       if (subfolder && subfolder !== "") {
         moduleSpecifier = `./api/${subfolder}/${file.getBaseNameWithoutExtension()}.js`;
       }
-      
+
       indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
     }
   }
 }
 
-function exportModels(indexFile: SourceFile, srcPath: string, subfolder: string) {
+function exportModels(
+  indexFile: SourceFile,
+  srcPath: string,
+  subfolder: string
+) {
   const project = indexFile.getProject();
   let modelFilePath = `${srcPath}/src/api/models.ts`;
   let moduleSpecifier = "./api/models.js";

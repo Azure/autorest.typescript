@@ -80,7 +80,11 @@ export function getDeserializePrivateFunction(
   };
   const statements: string[] = [];
   if (needUnexpectedHelper) {
-    statements.push(`if(${needSubClient? "UnexpectedHelper.": ""}isUnexpected(result)){`, "throw result.body", "}");
+    statements.push(
+      `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
+      "throw result.body",
+      "}"
+    );
   }
 
   if (response?.type?.type === "any") {
@@ -183,11 +187,13 @@ export function getOperationFunction(
       .join(", ")});`
   );
   if (needUnexpectedHelper) {
-    statements.push(`if(${needSubClient? "UnexpectedHelper.": ""}isUnexpected(result)){`, "throw result.body", "}");
+    statements.push(
+      `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
+      "throw result.body",
+      "}"
+    );
   }
   statements.push(`return _${name}Deserialize(result);`);
-
-
 
   // if (response?.type?.type === "any") {
   //   statements.push(`return result.body`);
@@ -256,15 +262,17 @@ function getRequestParameters(operation: Operation): string {
   }
 
   if (parametersImplementation.header.length) {
-    paramStrArray.push(`headers: {${parametersImplementation.header.join(
-      ",\n"
-    )}, ...options.requestOptions?.headers}`);
+    paramStrArray.push(
+      `headers: {${parametersImplementation.header.join(
+        ",\n"
+      )}, ...options.requestOptions?.headers}`
+    );
   }
 
   if (parametersImplementation.query.length) {
-    paramStrArray.push(`queryParameters: {${parametersImplementation.query.join(
-      ",\n"
-    )}}`);
+    paramStrArray.push(
+      `queryParameters: {${parametersImplementation.query.join(",\n")}}`
+    );
   }
 
   paramStrArray.push(`${buildBodyParameter(operation.bodyParameter)}`);
@@ -438,13 +446,15 @@ function getPathParameters(operation: Operation) {
   for (const param of operation.parameters) {
     if (param.location === "path") {
       if (!param.optional) {
-        pathParams += `${pathParams !== ""? ",": ""} ${param.clientName}`;
+        pathParams += `${pathParams !== "" ? "," : ""} ${param.clientName}`;
         continue;
       }
 
       const defaultValue = getDefaultValue(param);
 
-      pathParams += `${pathParams !== ""? ",": ""} options.${param.clientName}`;
+      pathParams += `${pathParams !== "" ? "," : ""} options.${
+        param.clientName
+      }`;
 
       if (defaultValue) {
         pathParams += ` ?? "${defaultValue}"`;

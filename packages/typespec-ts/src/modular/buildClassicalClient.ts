@@ -49,7 +49,6 @@ export function buildClassicalClient(
     });
   }
 
-
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: [description],
@@ -61,16 +60,27 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   importCredential(clientFile);
-  buildClientOperationGroups(client, clientClass, subfolder, needUnexpectedHelper);
+  buildClientOperationGroups(
+    client,
+    clientClass,
+    subfolder,
+    needUnexpectedHelper
+  );
   importAllModels(clientFile, srcPath, subfolder);
   clientFile.fixUnusedIdentifiers();
 }
 
-function importAllModels(clientFile: SourceFile, srcPath: string, subfolder: string) {
+function importAllModels(
+  clientFile: SourceFile,
+  srcPath: string,
+  subfolder: string
+) {
   const project = clientFile.getProject();
   let apiModels;
   if (subfolder && subfolder !== "") {
-    apiModels = project.getSourceFile(`${srcPath}/src/api/${subfolder}/index.ts`);
+    apiModels = project.getSourceFile(
+      `${srcPath}/src/api/${subfolder}/index.ts`
+    );
   } else {
     apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
   }
@@ -92,7 +102,6 @@ function importAllModels(clientFile: SourceFile, srcPath: string, subfolder: str
       namedImports: exported
     });
   }
-
 }
 
 function importCredential(clientSourceFile: SourceFile): void {
@@ -113,12 +122,17 @@ function buildClientOperationGroups(
     let clientType = "Client";
     let needSubClient = false;
     if (subfolder && subfolder !== "") {
-      clientType =  `Client.${clientClass.getName()}`;
+      clientType = `Client.${clientClass.getName()}`;
       needSubClient = true;
     }
     const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
       operationGroup.operations.map((operation) =>
-        getOperationFunction(operation, clientType, needSubClient, needUnexpectedHelper)
+        getOperationFunction(
+          operation,
+          clientType,
+          needSubClient,
+          needUnexpectedHelper
+        )
       );
 
     if (operationGroupName && operationGroupName !== "") {
@@ -148,9 +162,10 @@ function buildClientOperationGroups(
             parameters: d.parameters?.filter((p) => p.name !== "context"),
             statements: `return ${d.name}(${[
               "this._client",
-              ...[d.parameters?.map((p) => p.name)
-              .filter((p) => p !== "context")]]
-              .join(",")})`
+              ...[
+                d.parameters?.map((p) => p.name).filter((p) => p !== "context")
+              ]
+            ].join(",")})`
           };
 
           return method;

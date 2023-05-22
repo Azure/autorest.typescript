@@ -14,9 +14,7 @@ export function buildApiIndexFile(
     );
   } else {
     apiFiles = project.getSourceFiles(`**/src/api/**`);
-    indexFile = project.createSourceFile(
-      `${srcPath}/src/api/index.ts`
-    );
+    indexFile = project.createSourceFile(`${srcPath}/src/api/index.ts`);
   }
 
   for (const file of apiFiles) {
