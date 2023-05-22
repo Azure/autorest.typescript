@@ -6,8 +6,8 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
-    outputPath: "lroModuler/moduler",
-    inputPath: "lro-moduler",
+    outputPath: "lroModuler/modular",
+    inputPath: "lro-modular",
     debug: true
   },
   {

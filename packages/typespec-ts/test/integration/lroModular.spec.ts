@@ -1,4 +1,4 @@
-import { StandardClient } from "./generated/lroModuler/moduler/src/index.js";
+import { StandardClient } from "./generated/lroModular/modular/src/index.js";
 import { assert } from "chai";
 describe.only("LroModulerClient Rest Client", () => {
   let client: StandardClient;
