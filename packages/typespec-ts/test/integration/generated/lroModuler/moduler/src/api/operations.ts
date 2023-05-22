@@ -90,14 +90,14 @@ export async function beginCreateOrReplace(
     name,
     options
   );
-  const poller = await getLongRunningPoller<User>(context, initialResponse, {
+  const poller = (await getLongRunningPoller(context, initialResponse, {
     processResult: (result) => {
       return _createOrReplaceDeserialize(
         result as CreateOrReplaceLogicalResponse
-      );
+      ) as any;
     },
     intervalInMs: 0
-  });
+  })) as SimplePollerLike<OperationState<User>, User>;
 
   return poller;
 }
