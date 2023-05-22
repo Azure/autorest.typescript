@@ -28,7 +28,8 @@ import {
   buildLogger,
   RLCOptions,
   normalizeName,
-  NameType
+  NameType,
+  hasUnexpectedHelper
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./emitUtil.js";
@@ -47,7 +48,6 @@ import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
-import { hasUnexpectedHelper } from "@azure-tools/rlc-common";
 // import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
@@ -121,18 +121,18 @@ export async function $onEmit(context: EmitContext) {
     const rootIndexFile = project.createSourceFile(`${srcPath}/src/index.ts`, "", {
       overwrite: true
     });
-    for (const client of modularCodeModel.clients) {
+    for (const subClient of modularCodeModel.clients) {
       let subfolder = "";
       if(modularCodeModel.clients.length > 1) {
-        subfolder = normalizeName(client.name.replace("Client", ""), NameType.File);
+        subfolder = normalizeName(subClient.name.replace("Client", ""), NameType.File);
       }
 
-      buildClientContext(client, project, srcPath, subfolder);
+      buildClientContext(subClient, project, srcPath, subfolder);
       buildModels(modularCodeModel, project, srcPath, subfolder);
-      buildOperationFiles(client, project, srcPath, subfolder, needUnexpectedHelper.get(client.name));
+      buildOperationFiles(subClient, project, srcPath, subfolder, needUnexpectedHelper.get(subClient.name + "Client"));
       buildApiIndexFile(project, srcPath, subfolder);
-      buildClassicalClient(client, project, srcPath, subfolder);
-      buildRootIndex(client, project, rootIndexFile, srcPath, subfolder);
+      buildClassicalClient(subClient, project, srcPath, subfolder, needUnexpectedHelper.get(subClient.name + "Client"));
+      buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
 
       emitPackage(project, srcPath, modularCodeModel);
       emitTsConfig(project, srcPath, modularCodeModel);

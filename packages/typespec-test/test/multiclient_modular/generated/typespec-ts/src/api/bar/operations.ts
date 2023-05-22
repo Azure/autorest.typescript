@@ -7,7 +7,6 @@ import {
   RequestOptions,
 } from "../../common/interfaces.js";
 import { Resource } from "./models.js";
-import { isUnexpected } from "../../rest/foo/isUnexpected.js";
 
 export interface GetBinaryOptions extends RequestOptions {}
 
@@ -35,10 +34,6 @@ export async function getBinary(
   options: GetBinaryOptions = { requestOptions: {} }
 ): Promise<any> {
   const result = await _getBinarySend(context, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getBinaryDeserialize(result);
 }
 
@@ -73,10 +68,6 @@ export async function getArray(
   options: GetArrayOptions = { requestOptions: {} }
 ): Promise<Resource[]> {
   const result = await _getArraySend(context, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getArrayDeserialize(result);
 }
 
@@ -111,10 +102,6 @@ export async function createWithHeaders(
   options: CreateWithHeadersOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _createWithHeadersSend(context, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _createWithHeadersDeserialize(result);
 }
 
@@ -144,9 +131,5 @@ export async function deleteWithHeaders(
   options: DeleteWithHeadersOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteWithHeadersSend(context, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _deleteWithHeadersDeserialize(result);
 }

@@ -7,7 +7,6 @@ import {
   RequestOptions,
 } from "../../common/interfaces.js";
 import { Resource, CustomPage } from "./models.js";
-import { isUnexpected } from "../../rest/foo/isUnexpected.js";
 
 export interface CreateOrUpdateOptions extends RequestOptions {
   /** */
@@ -32,6 +31,10 @@ export function _createOrUpdateSend(
 export async function _createOrUpdateDeserialize(
   result: OperationRawReturnType<typeof _createOrUpdateSend>
 ): Promise<Resource> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     name: result.body["name"],
@@ -73,6 +76,10 @@ export function _getSend(
 export async function _getDeserialize(
   result: OperationRawReturnType<typeof _getSend>
 ): Promise<Resource> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     name: result.body["name"],
@@ -88,7 +95,7 @@ export async function getOperation(
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _getSend(context, name, options);
-  if (isUnexpected(result)) {
+  if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
   }
 
@@ -113,6 +120,10 @@ export function _deleteOperationSend(
 export async function _deleteOperationDeserialize(
   result: OperationRawReturnType<typeof _deleteOperationSend>
 ): Promise<void> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -127,7 +138,7 @@ export async function deleteOperation(
   options: DeleteOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteOperationSend(context, name, options);
-  if (isUnexpected(result)) {
+  if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
   }
 
@@ -151,6 +162,10 @@ export function _listSend(
 export async function _listDeserialize(
   result: OperationRawReturnType<typeof _listSend>
 ): Promise<CustomPage> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return {
     value: (result.body["value"] ?? []).map((p) => ({
       id: p["id"],
@@ -168,7 +183,7 @@ export async function list(
   options: ListOptions = { requestOptions: {} }
 ): Promise<CustomPage> {
   const result = await _listSend(context, options);
-  if (isUnexpected(result)) {
+  if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
   }
 
