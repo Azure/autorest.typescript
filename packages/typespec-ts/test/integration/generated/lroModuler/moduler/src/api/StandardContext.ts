@@ -9,7 +9,9 @@ export { StandardContext } from "../rest/index.js";
 
 /** Illustrates bodies templated with Azure Core with long-running operation */
 export function createStandard(options: ClientOptions = {}): StandardContext {
-  const baseUrl = endpoint;
-  const clientContext = getClient(baseUrl, options);
+  /**
+   * FIXME
+   */
+  const clientContext = getClient(options);
   return clientContext;
 }
