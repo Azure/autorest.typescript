@@ -245,7 +245,7 @@ function getType(context: SdkContext, type: EmitterType): any {
   const enableCache =
     !isSimpleType(context.program, type) && !isEmptyModel(type);
   const effectiveModel =
-    type.kind === "Model" && type.name
+    type.kind === "Model"
       ? getEffectiveSchemaType(context.program, type)
       : type;
   if (enableCache) {
