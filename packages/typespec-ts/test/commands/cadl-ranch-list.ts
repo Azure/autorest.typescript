@@ -6,6 +6,10 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "encode",
+    inputPath: "encode/duration"
+  },
+  {
     outputPath: "lroModuler/modular",
     inputPath: "lro-modular",
     debug: true
