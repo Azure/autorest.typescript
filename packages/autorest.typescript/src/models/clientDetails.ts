@@ -41,5 +41,6 @@ export interface ClientDetails {
   endpoint: EndpointDetails;
   samples?: SampleGroup[];
   allTypes: string[];
-  security: Security
+  security: Security,
+  hasTenantLevelOperation?: boolean
 }

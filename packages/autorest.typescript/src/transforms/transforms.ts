@@ -26,6 +26,7 @@ import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
 import { getSchemaParents } from "../utils/schemaHelpers";
 import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemasHierarchically";
+import { OperationGroupDetails } from "../models/operationDetails";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -127,7 +128,8 @@ export async function transformCodeModel(
     options,
     endpoint: baseUrl,
     allTypes: [],
-    security: codeModel.security
+    security: codeModel.security,
+    hasTenantLevelOperation: transofrmHasTenantLevel(operationGroups)
   };
 }
 
@@ -156,4 +158,18 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
   });
 
   return uberParents;
+}
+
+function transofrmHasTenantLevel(
+  operationGroups: OperationGroupDetails[]
+): boolean {
+  operationGroups.forEach(opGroup => {
+    opGroup.operations.forEach(op => {
+      if (op.isTenantLevel) {
+        return true;
+      }
+      return false;
+    });
+  });
+  return false;
 }

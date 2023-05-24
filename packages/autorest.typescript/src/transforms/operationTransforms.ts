@@ -437,6 +437,8 @@ export async function transformOperation(
 
   const mediaTypes = await getOperationMediaTypes(requests, responses);
 
+  const isTenantLevel =  isOperationTenantLevel(operation);
+
   return {
     name,
     typeDetails,
@@ -451,7 +453,8 @@ export async function transformOperation(
     mediaTypes,
     pagination,
     isLro,
-    lroOptions
+    lroOptions,
+    isTenantLevel
   };
 }
 
@@ -588,7 +591,9 @@ function getGroupedParameters(
     headerParameters: operationParams.filter(
       p => p.location === ParameterLocation.Header
     ),
-    cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
+    cookie: operationParams.filter(
+      p => p.location === ParameterLocation.Cookie
+    )
   };
 }
 
@@ -606,4 +611,18 @@ function getMapperForSchema(
       options: { hasXmlMetadata: mediaType === KnownMediaType.Xml }
     })
   );
+}
+
+function isOperationTenantLevel(operation: Operation) {
+  const subscriptionIdParameter = operation.parameters?.find(param => {
+    return (
+      param.protocol.http?.in === ParameterLocation.Path &&
+      param.language.default.name === "subscriptionId" &&
+      param.implementation === "Client"
+    );
+  });
+  if (subscriptionIdParameter || operation.operationId === "Operations_List") {
+    return false;
+  }
+  return true;
 }
