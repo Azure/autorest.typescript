@@ -12,6 +12,7 @@ import { PagedAsyncIterableIterator } from '@azure/core-paging';
 export class FeatureClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
+    constructor(credentials: coreAuth.TokenCredential, options?: FeatureClientOptionalParams);
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: FeatureClientOptionalParams);
     // (undocumented)
     apiVersion: string;
@@ -19,7 +20,7 @@ export class FeatureClient extends coreClient.ServiceClient {
     features: Features;
     listOperations(options?: ListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
 }
 
 // @public

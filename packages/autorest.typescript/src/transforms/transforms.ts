@@ -10,7 +10,8 @@ import {
   SealedChoiceSchema,
   SchemaType,
   OAuth2SecurityScheme,
-  KeySecurityScheme
+  KeySecurityScheme,
+  ParameterLocation
 } from "@autorest/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
@@ -129,7 +130,7 @@ export async function transformCodeModel(
     endpoint: baseUrl,
     allTypes: [],
     security: codeModel.security,
-    hasTenantLevelOperation: transofrmHasTenantLevel(operationGroups)
+    hasTenantLevelOperation: transformHasTenantLevel(operationGroups)
   };
 }
 
@@ -160,16 +161,42 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
   return uberParents;
 }
 
-function transofrmHasTenantLevel(
+function transformHasTenantLevel(
   operationGroups: OperationGroupDetails[]
 ): boolean {
+  let hasTenantLevelOperation = false;
+  let hasClientLevelSubscription = false;
+  operationGroups.forEach(opGroup => {
+    opGroup.operations.forEach(op => {
+      const subscriptionIdParam = op.parameters.find(p => {
+        return (
+          p.language.default.name.toLowerCase() === "subscriptionid"
+        );
+      });
+      if (subscriptionIdParam) {
+        hasClientLevelSubscription = true;
+        return;
+      }
+      if (hasClientLevelSubscription) {
+        return;
+      }
+    });
+    if (hasClientLevelSubscription) {
+      return;
+    }
+  });
   operationGroups.forEach(opGroup => {
     opGroup.operations.forEach(op => {
       if (op.isTenantLevel) {
-        return true;
+        hasTenantLevelOperation = true;
       }
-      return false;
+      if (hasTenantLevelOperation) {
+        return;
+      }
     });
+    if (hasTenantLevelOperation) {
+      return;
+    }
   });
-  return false;
+  return hasTenantLevelOperation && hasClientLevelSubscription;
 }

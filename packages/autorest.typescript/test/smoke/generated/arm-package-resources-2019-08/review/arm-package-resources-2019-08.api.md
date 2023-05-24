@@ -1061,6 +1061,7 @@ export interface ResourceListResult {
 export class ResourceManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
+    constructor(credentials: coreAuth.TokenCredential, options?: ResourceManagementClientOptionalParams);
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ResourceManagementClientOptionalParams);
     // (undocumented)
     apiVersion: string;
@@ -1077,7 +1078,7 @@ export class ResourceManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     resources: Resources;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
     // (undocumented)
     tags: Tags;
 }

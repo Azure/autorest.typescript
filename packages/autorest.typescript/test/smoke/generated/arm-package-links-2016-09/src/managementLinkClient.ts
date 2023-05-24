@@ -20,8 +20,18 @@ import { ManagementLinkClientOptionalParams } from "./models";
 export class ManagementLinkClient extends coreClient.ServiceClient {
   $host: string;
   apiVersion: string;
-  subscriptionId: string;
+  subscriptionId?: string;
 
+  /**
+   * Initializes a new instance of the ManagementLinkClient class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
+   * @param subscriptionId The ID of the target subscription.
+   * @param options The parameter options
+   */
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    options?: ManagementLinkClientOptionalParams
+  );
   /**
    * Initializes a new instance of the ManagementLinkClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -32,12 +42,30 @@ export class ManagementLinkClient extends coreClient.ServiceClient {
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: ManagementLinkClientOptionalParams
+  );
+  /**
+   * Initializes a new instance of the ManagementLinkClient class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
+   * @param subscriptionId The ID of the target subscription.
+   * @param options The parameter options
+   */
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    subscriptionIdOrOptions?: ManagementLinkClientOptionalParams | string,
+    options?: ManagementLinkClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
     }
-    if (subscriptionId === undefined) {
-      throw new Error("'subscriptionId' cannot be null");
+
+    let subscriptionId: string | undefined;
+
+    if (!subscriptionIdOrOptions !== undefined) {
+      if (typeof subscriptionIdOrOptions === "string") {
+        subscriptionId = subscriptionIdOrOptions;
+      } else if (typeof subscriptionIdOrOptions === "object") {
+        options = subscriptionIdOrOptions;
+      }
     }
 
     // Initializing default values for options

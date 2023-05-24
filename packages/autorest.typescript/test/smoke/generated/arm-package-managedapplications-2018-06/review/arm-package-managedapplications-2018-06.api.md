@@ -35,6 +35,7 @@ export type ApplicationArtifactType = "Template" | "Custom";
 export class ApplicationClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
+    constructor(credentials: coreAuth.TokenCredential, options?: ApplicationClientOptionalParams);
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ApplicationClientOptionalParams);
     // (undocumented)
     apiVersion: string;
@@ -43,7 +44,7 @@ export class ApplicationClient extends coreClient.ServiceClient {
     // (undocumented)
     applications: Applications;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
 }
 
 // @public

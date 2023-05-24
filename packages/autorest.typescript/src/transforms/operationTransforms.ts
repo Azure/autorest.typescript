@@ -617,7 +617,7 @@ function isOperationTenantLevel(operation: Operation) {
   const subscriptionIdParameter = operation.parameters?.find(param => {
     return (
       param.protocol.http?.in === ParameterLocation.Path &&
-      param.language.default.name === "subscriptionId" &&
+      param.language.default.name.toLowerCase() === "subscriptionid" &&
       param.implementation === "Client"
     );
   });

@@ -220,7 +220,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     apiVersionParams && apiVersionParams.length === 1
       ? apiVersionParams[0]
       : undefined;
-  writeClassProperties(clientClass, clientParams, importedModels);
+  writeClassProperties(clientClass, clientParams, importedModels, clientDetails.hasTenantLevelOperation);
   writeConstructor(clientDetails, clientClass, importedModels, apiVersionParam);
   if (useCoreV2 && apiVersionParam) {
     writeCustomApiVersion(clientClass);
@@ -246,7 +246,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 function writeClassProperties(
   clientClass: ClassDeclaration,
   clientParams: ParameterDetails[],
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  hasTenantLevelOperation: boolean = false
 ) {
   const params = clientParams.filter(p => !p.isSynthetic);
   params.forEach(({ typeDetails }) =>
@@ -254,6 +255,13 @@ function writeClassProperties(
   );
   clientClass.addProperties(
     params.map(param => {
+      if (param.name === "subscriptionId" && hasTenantLevelOperation) {
+        return {
+          name: param.name,
+          type: param.typeDetails.typeName,
+          hasQuestionToken: true
+        } as PropertyDeclarationStructure;
+      }
       return {
         name: param.name,
         type: param.typeDetails.typeName,
@@ -327,7 +335,7 @@ function writeConstructor(
     typeDetails.usedModels.forEach(model => importedModels.add(model))
   );
 
-  const clientConstructor = classDeclaration.addConstructor({
+  const clientConstructorInitial = {
     docs: [docs],
     parameters: [
       ...requiredParams.map(p => ({
@@ -341,33 +349,16 @@ function writeConstructor(
         type: optionsParameterType
       }
     ]
-  });
+  }
+
+  let clientConstructor;
   if (clientDetails.hasTenantLevelOperation) {
-    clientConstructor.addOverload({
+    clientConstructor = classDeclaration.addConstructor({
       docs: [docs],
       parameters: [
         ...requiredParams
           .filter(param => {
-            return param.name === "subscriptionId";
-          })
-          .map(p => ({
-            name: p.name,
-            hasQuestionToken: !p.required,
-            type: p.typeDetails.typeName
-          })),
-        {
-          name: "options",
-          hasQuestionToken: true,
-          type: optionsParameterType
-        }
-      ]
-    });
-    clientConstructor.addOverload({
-      docs: [docs],
-      parameters: [
-        ...requiredParams
-          .filter(param => {
-            return param.name === "subscriptionId";
+            return param.name !== "subscriptionId";
           })
           .map(p => ({
             name: p.name,
@@ -376,7 +367,7 @@ function writeConstructor(
           })),
         {
           name: "subscriptionIdOrOptions",
-          hasQuestionToken: false,
+          hasQuestionToken: true,
           type: optionsParameterType + "| string"
         },
         {
@@ -386,6 +377,28 @@ function writeConstructor(
         }
       ]
     });
+    clientConstructor.addOverload({
+      docs: [docs],
+      parameters: [
+        ...requiredParams
+          .filter(param => {
+            return param.name !== "subscriptionId";
+          })
+          .map(p => ({
+            name: p.name,
+            hasQuestionToken: !p.required,
+            type: p.typeDetails.typeName
+          })),
+        {
+          name: "options",
+          hasQuestionToken: true,
+          type: optionsParameterType
+        }
+      ]
+    });
+    clientConstructor.addOverload(clientConstructorInitial)
+  } else {
+    clientConstructor = classDeclaration.addConstructor(clientConstructorInitial);
   }
 
   const { useCoreV2 } = getAutorestOptions();
@@ -575,7 +588,7 @@ function getRequiredParamChecks(
   let requiredParams = requiredParameters;
   if (hasTenantLevelOperation) {
     requiredParams = requiredParameters.filter(param => {
-      return param.name === "subscriptionId";
+      return param.name !== "subscriptionId";
     });
   }
   return requiredParams.map(
@@ -654,8 +667,8 @@ function getTrack2DefaultContent(
   }
   `;
 
-  const defaultContent = `// Initializing default values for options
-  ${clientDetails.hasTenantLevelOperation ? overloadDefaults: ""} 
+  const defaultContent = `${clientDetails.hasTenantLevelOperation ? overloadDefaults: ""}
+  // Initializing default values for options
   if (!options) {
     options = {};
   }
