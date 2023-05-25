@@ -30,25 +30,13 @@ export class ApplicationClient extends coreClient.ServiceClient {
    */
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: ApplicationClientOptionalParams
-  );
-  /**
-   * Initializes a new instance of the ApplicationClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The parameter options
-   */
-  constructor(
-    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: ApplicationClientOptionalParams
   );
-  /**
-   * Initializes a new instance of the ApplicationClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The parameter options
-   */
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    options?: ApplicationClientOptionalParams
+  );
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionIdOrOptions?: ApplicationClientOptionalParams | string,

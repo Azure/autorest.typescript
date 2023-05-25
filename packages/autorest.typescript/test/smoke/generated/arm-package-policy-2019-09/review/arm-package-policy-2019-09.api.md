@@ -234,8 +234,8 @@ export type PolicyAssignmentsListResponse = PolicyAssignmentListResult;
 export class PolicyClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreAuth.TokenCredential, options?: PolicyClientOptionalParams);
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: PolicyClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: PolicyClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)

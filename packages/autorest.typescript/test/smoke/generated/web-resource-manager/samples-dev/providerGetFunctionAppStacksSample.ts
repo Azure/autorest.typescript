@@ -21,10 +21,8 @@ dotenv.config();
  * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetFunctionAppStacks.json
  */
 async function getFunctionAppStacks() {
-  const subscriptionId =
-    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const credential = new DefaultAzureCredential();
-  const client = new WebSiteManagementClient(credential, subscriptionId);
+  const client = new WebSiteManagementClient(credential);
   const resArray = new Array();
   for await (let item of client.provider.listFunctionAppStacks()) {
     resArray.push(item);

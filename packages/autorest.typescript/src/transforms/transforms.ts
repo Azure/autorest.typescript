@@ -164,13 +164,15 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
 function transformHasTenantLevel(
   operationGroups: OperationGroupDetails[]
 ): boolean {
-  let hasTenantLevelOperation = false;
+  let hasTenantLevelOperation: boolean = false;
   let hasClientLevelSubscription = false;
   operationGroups.forEach(opGroup => {
     opGroup.operations.forEach(op => {
       const subscriptionIdParam = op.parameters.find(p => {
         return (
-          p.language.default.name.toLowerCase() === "subscriptionid"
+          p.language.default.name.toLowerCase() === "subscriptionid" &&
+          p.protocol.http?.in === ParameterLocation.Path &&
+          p.implementation === "Client"
         );
       });
       if (subscriptionIdParam) {

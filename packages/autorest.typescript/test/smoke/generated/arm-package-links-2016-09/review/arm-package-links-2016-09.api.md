@@ -15,8 +15,8 @@ export function getContinuationToken(page: unknown): string | undefined;
 export class ManagementLinkClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreAuth.TokenCredential, options?: ManagementLinkClientOptionalParams);
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: ManagementLinkClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)

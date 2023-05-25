@@ -437,7 +437,7 @@ export async function transformOperation(
 
   const mediaTypes = await getOperationMediaTypes(requests, responses);
 
-  const isTenantLevel =  isOperationTenantLevel(operation);
+  const isTenantLevel = isOperationTenantLevel(operation);
 
   return {
     name,
@@ -591,9 +591,7 @@ function getGroupedParameters(
     headerParameters: operationParams.filter(
       p => p.location === ParameterLocation.Header
     ),
-    cookie: operationParams.filter(
-      p => p.location === ParameterLocation.Cookie
-    )
+    cookie: operationParams.filter(p => p.location === ParameterLocation.Cookie)
   };
 }
 
@@ -621,7 +619,11 @@ function isOperationTenantLevel(operation: Operation) {
       param.implementation === "Client"
     );
   });
-  if (subscriptionIdParameter || operation.operationId === "Operations_List") {
+  if (
+    subscriptionIdParameter ||
+    operation.operationId === "Operations_List" ||
+    operation.language.default.name.toLowerCase().startsWith("checkname")
+  ) {
     return false;
   }
   return true;

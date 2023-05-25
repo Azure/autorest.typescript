@@ -354,7 +354,6 @@ function writeConstructor(
   let clientConstructor;
   if (clientDetails.hasTenantLevelOperation) {
     clientConstructor = classDeclaration.addConstructor({
-      docs: [docs],
       parameters: [
         ...requiredParams
           .filter(param => {
@@ -377,8 +376,8 @@ function writeConstructor(
         }
       ]
     });
+    clientConstructor.addOverload(clientConstructorInitial)
     clientConstructor.addOverload({
-      docs: [docs],
       parameters: [
         ...requiredParams
           .filter(param => {
@@ -396,7 +395,6 @@ function writeConstructor(
         }
       ]
     });
-    clientConstructor.addOverload(clientConstructorInitial)
   } else {
     clientConstructor = classDeclaration.addConstructor(clientConstructorInitial);
   }

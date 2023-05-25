@@ -332,7 +332,7 @@ import {
 /// <reference lib="esnext.asynciterable" />
 export class NetworkManagementClient extends coreClient.ServiceClient {
   $host: string;
-  subscriptionId: string;
+  subscriptionId?: string;
 
   /**
    * Initializes a new instance of the NetworkManagementClient class.
@@ -345,12 +345,28 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: NetworkManagementClientOptionalParams
+  );
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    options?: NetworkManagementClientOptionalParams
+  );
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    subscriptionIdOrOptions?: NetworkManagementClientOptionalParams | string,
+    options?: NetworkManagementClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
     }
-    if (subscriptionId === undefined) {
-      throw new Error("'subscriptionId' cannot be null");
+
+    let subscriptionId: string | undefined;
+
+    if (!subscriptionIdOrOptions !== undefined) {
+      if (typeof subscriptionIdOrOptions === "string") {
+        subscriptionId = subscriptionIdOrOptions;
+      } else if (typeof subscriptionIdOrOptions === "object") {
+        options = subscriptionIdOrOptions;
+      }
     }
 
     // Initializing default values for options

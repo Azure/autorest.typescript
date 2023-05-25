@@ -33,25 +33,13 @@ export class ManagementLockClient extends coreClient.ServiceClient {
    */
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: ManagementLockClientOptionalParams
-  );
-  /**
-   * Initializes a new instance of the ManagementLockClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The parameter options
-   */
-  constructor(
-    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: ManagementLockClientOptionalParams
   );
-  /**
-   * Initializes a new instance of the ManagementLockClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
-   * @param subscriptionId The ID of the target subscription.
-   * @param options The parameter options
-   */
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    options?: ManagementLockClientOptionalParams
+  );
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionIdOrOptions?: ManagementLockClientOptionalParams | string,

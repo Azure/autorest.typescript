@@ -29,38 +29,9 @@ export class SubscriptionClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     options?: SubscriptionClientOptionalParams
-  );
-  /**
-   * Initializes a new instance of the SubscriptionClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
-   * @param options The parameter options
-   */
-  constructor(
-    credentials: coreAuth.TokenCredential,
-    options?: SubscriptionClientOptionalParams
-  );
-  /**
-   * Initializes a new instance of the SubscriptionClient class.
-   * @param credentials Subscription credentials which uniquely identify client subscription.
-   * @param options The parameter options
-   */
-  constructor(
-    credentials: coreAuth.TokenCredential,
-    subscriptionIdOrOptions?: SubscriptionClientOptionalParams | string,
-    options?: SubscriptionClientOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
-    }
-
-    let subscriptionId: string | undefined;
-
-    if (!subscriptionIdOrOptions !== undefined) {
-      if (typeof subscriptionIdOrOptions === "string") {
-        subscriptionId = subscriptionIdOrOptions;
-      } else if (typeof subscriptionIdOrOptions === "object") {
-        options = subscriptionIdOrOptions;
-      }
     }
 
     // Initializing default values for options

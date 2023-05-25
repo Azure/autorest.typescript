@@ -91,7 +91,6 @@ export class SubscriptionClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
-    constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)

@@ -22,7 +22,7 @@ import {
 
 export class ValidationClient extends coreClient.ServiceClient {
   $host: string;
-  subscriptionId: string;
+  subscriptionId?: string;
   apiVersion: string;
 
   /**
@@ -30,12 +30,20 @@ export class ValidationClient extends coreClient.ServiceClient {
    * @param subscriptionId Subscription ID.
    * @param options The parameter options
    */
+  constructor(subscriptionId: string, options?: ValidationClientOptionalParams);
+  constructor(options?: ValidationClientOptionalParams);
   constructor(
-    subscriptionId: string,
+    subscriptionIdOrOptions?: ValidationClientOptionalParams | string,
     options?: ValidationClientOptionalParams
   ) {
-    if (subscriptionId === undefined) {
-      throw new Error("'subscriptionId' cannot be null");
+    let subscriptionId: string | undefined;
+
+    if (!subscriptionIdOrOptions !== undefined) {
+      if (typeof subscriptionIdOrOptions === "string") {
+        subscriptionId = subscriptionIdOrOptions;
+      } else if (typeof subscriptionIdOrOptions === "object") {
+        options = subscriptionIdOrOptions;
+      }
     }
 
     // Initializing default values for options

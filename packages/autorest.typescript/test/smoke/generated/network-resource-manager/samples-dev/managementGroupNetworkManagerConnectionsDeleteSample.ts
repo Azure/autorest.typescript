@@ -21,12 +21,10 @@ dotenv.config();
  * x-ms-original-file: specification/network/resource-manager/Microsoft.Network/stable/2022-07-01/examples/NetworkManagerConnectionManagementGroupDelete.json
  */
 async function deleteManagementGroupNetworkManagerConnection() {
-  const subscriptionId =
-    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const managementGroupId = "managementGroupA";
   const networkManagerConnectionName = "TestNMConnection";
   const credential = new DefaultAzureCredential();
-  const client = new NetworkManagementClient(credential, subscriptionId);
+  const client = new NetworkManagementClient(credential);
   const result = await client.managementGroupNetworkManagerConnections.delete(
     managementGroupId,
     networkManagerConnectionName
