@@ -5,7 +5,6 @@ import { ClientOptions } from "./common/interfaces.js";
 import {
   User,
   createOrReplace,
-  beginCreateOrReplaceAndWait,
   beginCreateOrReplace,
   CreateOrReplaceOptions,
   createStandard,
@@ -27,17 +26,6 @@ export class StandardClient {
     options: CreateOrReplaceOptions = { requestOptions: {} }
   ): Promise<User> {
     return createOrReplace(this._client, role, name, options);
-  }
-
-  /**
-   * Below code are manually written now and will be generated later
-   */
-  beginCreateOrReplaceAndWait(
-    role: string,
-    name: string,
-    options: CreateOrReplaceOptions = { requestOptions: {} }
-  ): Promise<User> {
-    return beginCreateOrReplaceAndWait(this._client, role, name, options);
   }
 
   beginCreateOrReplace(

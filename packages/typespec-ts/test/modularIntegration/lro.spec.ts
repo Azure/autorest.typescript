@@ -1,4 +1,4 @@
-import { StandardClient } from "./generated/lroModular/modular/src/index.js";
+import { StandardClient } from "./generated/lro/modular/src/index.js";
 import { assert } from "chai";
 describe.only("LroModulerClient Rest Client", () => {
   let client: StandardClient;
@@ -15,23 +15,6 @@ describe.only("LroModulerClient Rest Client", () => {
       }
     });
     const result = await poller.pollUntilDone();
-    assert.equal(result.name, "madge");
-    assert.equal(result.role, "contributor");
-  });
-
-  it("should put LRO with beginCreateOrReplaceAndWait", async () => {
-    client = new StandardClient({
-      allowInsecureConnection: true
-    });
-    const result = await client.beginCreateOrReplaceAndWait(
-      "contributor",
-      "madge",
-      {
-        requestOptions: {
-          allowInsecureConnection: true
-        }
-      }
-    );
     assert.equal(result.name, "madge");
     assert.equal(result.role, "contributor");
   });
