@@ -22,7 +22,9 @@ export function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://purview.azure.net/.default"]
+      scopes: options.credentials?.scopes ?? [
+        "https://purview.azure.net/.default"
+      ]
     }
   };
 
