@@ -47,12 +47,13 @@ export class ManagedServiceIdentityClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: ManagedServiceIdentityClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
     operations: Operations;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
     // (undocumented)
     systemAssignedIdentities: SystemAssignedIdentities;
     // (undocumented)

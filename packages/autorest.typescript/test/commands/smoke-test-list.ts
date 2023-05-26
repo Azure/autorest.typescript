@@ -39,7 +39,15 @@ const getArmReadmes = (): SpecDefinition[] => {
       "..",
       "./.tmp/specs/specification/resources/resource-manager/readme.md"
     ),
-    params: [`--tag=${tag}`],
+    params:
+      tag === "package-subscriptions-2019-06"
+        ? [
+            AutorestParams.GenerateSamples,
+            AutorestParams.GenerateTest,
+            AutorestParams.AzureSdkForJs,
+            `--tag=${tag}`
+          ]
+        : [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"
   }));

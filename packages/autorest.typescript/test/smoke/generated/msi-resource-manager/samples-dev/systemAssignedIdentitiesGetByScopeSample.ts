@@ -21,11 +21,9 @@ dotenv.config();
  * x-ms-original-file: specification/msi/resource-manager/Microsoft.ManagedIdentity/stable/2018-11-30/examples/SystemAssignedIdentityGet.json
  */
 async function msiOperationsList() {
-  const subscriptionId =
-    process.env["SUBSCRIPTION_ID"] || "00000000-0000-0000-0000-000000000000";
   const scope = "scope";
   const credential = new DefaultAzureCredential();
-  const client = new ManagedServiceIdentityClient(credential, subscriptionId);
+  const client = new ManagedServiceIdentityClient(credential);
   const result = await client.systemAssignedIdentities.getByScope(scope);
   console.log(result);
 }

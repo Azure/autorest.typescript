@@ -36,6 +36,7 @@ export class ApplicationClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ApplicationClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: ApplicationClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -43,7 +44,7 @@ export class ApplicationClient extends coreClient.ServiceClient {
     // (undocumented)
     applications: Applications;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
 }
 
 // @public
