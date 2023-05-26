@@ -3,13 +3,13 @@
 
 import {
   StandardContext as Client,
+  CreateOrReplace200Response,
+  CreateOrReplace201Response,
+  CreateOrReplaceDefaultResponse,
   CreateOrReplaceLogicalResponse,
   isUnexpected
 } from "../rest/index.js";
-import {
-  OperationRawReturnType,
-  RequestOptions
-} from "../common/interfaces.js";
+import { RequestOptions } from "../common/interfaces.js";
 import { User } from "./models.js";
 import {
   CreateHttpPollerOptions,
@@ -21,7 +21,12 @@ import {
 } from "@azure/core-lro";
 import { HttpResponse } from "@azure-rest/core-client";
 
-export interface CreateOrReplaceOptions extends RequestOptions {}
+export interface CreateOrReplaceOptions extends RequestOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 export function _createOrReplaceSend(
   context: Client,
@@ -38,29 +43,20 @@ export function _createOrReplaceSend(
 }
 
 export async function _createOrReplaceDeserialize(
-  result:
-    | OperationRawReturnType<typeof _createOrReplaceSend>
-    | CreateOrReplaceLogicalResponse
+  result: CreateOrReplaceLogicalResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
     throw result.body;
   }
 
+  // if 201 -> how to convert
+  // if 202 -> how to convert
+  // if 200 -> how to convert
+
   return {
     name: result.body["name"],
     role: result.body["role"]
   };
-}
-
-/** Creates or replaces a User */
-export async function createOrReplace(
-  context: Client,
-  role: string,
-  name: string,
-  options: CreateOrReplaceOptions = { requestOptions: {} }
-): Promise<User> {
-  const result = await _createOrReplaceSend(context, role, name, options);
-  return _createOrReplaceDeserialize(result);
 }
 
 /**
@@ -73,32 +69,41 @@ export async function beginCreateOrReplace(
   name: string,
   options: CreateOrReplaceOptions = { requestOptions: {} }
 ): Promise<SimplePollerLike<OperationState<User>, User>> {
-  const poller = (await getLongRunningPoller(context, {
+  const pollerOptions = {
+    restoreFrom: options?.resumeFrom,
+    intervalInMs: options?.updateIntervalInMs
+  };
+  const operationDetail = {
     requestMethod: "PUT",
     requestUrl: "/azure/core/lro/standard/users/{name}",
     deserializeFn: _createOrReplaceDeserialize,
     sendFn: _createOrReplaceSend,
-    args: [context, role, name, options]
-  })) as SimplePollerLike<OperationState<User>, User>;
+    sendFnArgs: [context, role, name, options]
+  };
+  const poller = (await getLongRunningPoller(
+    context,
+    operationDetail,
+    pollerOptions
+  )) as SimplePollerLike<OperationState<User>, User>;
 
   return poller;
 }
 
-interface OperationPollingDetail {
+interface OperationPollingDetail<TResponse extends HttpResponse> {
   requestMethod: string;
   requestUrl: string;
   sendFn: Function;
-  deserializeFn: Function;
-  args: unknown[];
+  deserializeFn: (response: TResponse) => Promise<unknown>;
+  sendFnArgs: unknown[];
 }
 
-async function getLongRunningPoller<TResult>(
+async function getLongRunningPoller<TResponse extends HttpResponse>(
   client: Client,
-  operationDetail: OperationPollingDetail,
-  options: CreateHttpPollerOptions<TResult, OperationState<TResult>> = {}
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>> {
-  let initialResponse: HttpResponse;
-  const poller: LongRunningOperation<TResult> = {
+  operationDetail: OperationPollingDetail<TResponse>,
+  options: CreateHttpPollerOptions<unknown, OperationState<unknown>> = {}
+): Promise<SimplePollerLike<OperationState<unknown>, unknown>> {
+  let initialResponse: TResponse;
+  const poller: LongRunningOperation<unknown> = {
     requestMethod: operationDetail.requestMethod,
     requestPath: operationDetail.requestUrl,
     sendInitialRequest: async () => {
@@ -106,8 +111,8 @@ async function getLongRunningPoller<TResult>(
       // we are not triggering the initial request here, just extracting the information from the
       // response we were provided.
       initialResponse = (await operationDetail.sendFn(
-        ...operationDetail.args
-      )) as HttpResponse;
+        ...operationDetail.sendFnArgs
+      )) as TResponse;
       return getLroResponse(initialResponse, operationDetail.deserializeFn);
     },
     sendPollRequest: async (path) => {
@@ -123,14 +128,14 @@ async function getLongRunningPoller<TResult>(
         .pathUnchecked(path ?? operationDetail.requestUrl)
         .get();
       const lroResponse = getLroResponse(
-        response,
+        response as TResponse,
         operationDetail.deserializeFn
       );
       if (initialResponse.request.url) {
         lroResponse.rawResponse.headers["x-ms-original-url"] =
           initialResponse.request.url;
       }
-      return lroResponse as any;
+      return lroResponse;
     }
   };
 
@@ -142,10 +147,10 @@ async function getLongRunningPoller<TResult>(
  * @param response - a rest client http response
  * @returns - An LRO response that the LRO implementation understands
  */
-function getLroResponse<TResult extends HttpResponse>(
-  response: TResult,
-  deserializeFn: Function
-): LroResponse<TResult> {
+function getLroResponse<TResponse extends HttpResponse>(
+  response: TResponse,
+  deserializeFn: (result: TResponse) => Promise<unknown>
+): LroResponse {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
       `Status code of the response is not a number. Value: ${response.status}`
