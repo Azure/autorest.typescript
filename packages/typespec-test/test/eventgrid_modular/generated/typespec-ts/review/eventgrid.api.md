@@ -14,17 +14,6 @@ export interface AcknowledgeCloudEventsOptions extends RequestOptions {
 }
 
 // @public
-export interface AcknowledgeOptions {
-    lockTokens: string[];
-}
-
-// @public
-export interface AcknowledgeResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
 export interface AcknowledgeResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -78,12 +67,6 @@ export interface PublishCloudEventOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export interface PublishCloudEventRequest {
-    // (undocumented)
-    event: CloudEvent;
-}
-
-// @public (undocumented)
 export interface PublishCloudEventsOptions extends RequestOptions {
     contentType?: string;
 }
@@ -106,27 +89,11 @@ export interface ReceiveResult {
 }
 
 // @public (undocumented)
-export interface ReceiveResult {
-    value: ReceiveDetails[];
-}
-
-// @public (undocumented)
 export interface RejectCloudEventsOptions extends RequestOptions {
     contentType?: string;
 }
 
 // @public
-export interface RejectOptions {
-    lockTokens: string[];
-}
-
-// @public
-export interface RejectResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
 export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -138,25 +105,13 @@ export interface ReleaseCloudEventsOptions extends RequestOptions {
 }
 
 // @public
-export interface ReleaseOptions {
-    lockTokens: string[];
+export interface ReleaseResult {
+    failedLockTokens: FailedLockToken[];
+    succeededLockTokens: string[];
 }
 
 // @public
-export interface ReleaseResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
-export interface ReleaseResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
 export interface RequestOptions {
-    // (undocumented)
     requestOptions?: {
         headers?: RawHttpHeadersInput;
         allowInsecureConnection?: boolean;

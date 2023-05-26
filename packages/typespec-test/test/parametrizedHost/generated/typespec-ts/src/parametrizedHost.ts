@@ -32,7 +32,9 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://parametrized-host.azure.com/.default"],
+      scopes: options.credentials?.scopes ?? [
+        "https://parametrized-host.azure.com/.default",
+      ],
     },
   };
 

@@ -2,17 +2,14 @@
 // Licensed under the MIT license.
 
 export {
-  EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  CompletionsOptions,
   Completions,
   Choice,
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
-  ChatCompletionsOptions,
   ChatMessage,
   ChatRole,
   ChatCompletions,

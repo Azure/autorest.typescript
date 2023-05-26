@@ -35,7 +35,8 @@ import {
   Union,
   Type,
   IntrinsicType,
-  getProjectedName
+  getProjectedName,
+  isNullType
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -193,7 +194,7 @@ function handleDiscriminator(context: SdkContext, type: Model, model: any) {
   }
 }
 
-function getEffectiveSchemaType(program: Program, type: Model): Model {
+function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
   function isSchemaProperty(property: ModelProperty) {
     const headerInfo = getHeaderFieldName(program, property);
     const queryInfo = getQueryParamName(program, property);
@@ -202,11 +203,23 @@ function getEffectiveSchemaType(program: Program, type: Model): Model {
     return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
   }
 
-  const effective = getEffectiveModelType(program, type, isSchemaProperty);
+  let effective: Model;
+  if (type.kind === "Union") {
+    const nonNullOptions = [...type.variants.values()]
+      .map((x) => x.type)
+      .filter((t) => !isNullType(t));
+    if (nonNullOptions.length === 1 && nonNullOptions[0]?.kind === "Model") {
+      effective = getEffectiveModelType(program, nonNullOptions[0]);
+    }
+    return type as any;
+  } else {
+    effective = getEffectiveModelType(program, type, isSchemaProperty);
+  }
+
   if (effective.name) {
     return effective;
   }
-  return type;
+  return type as Model;
 }
 
 function isEmptyModel(type: EmitterType): boolean {
@@ -240,12 +253,17 @@ function processModelProperties(
   handleDiscriminator(context, model, newValue);
 }
 
-function getType(context: SdkContext, type: EmitterType): any {
+function getType(
+  context: SdkContext,
+  type: EmitterType,
+  options: { disableEffectiveModel?: boolean } = {}
+): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache =
     !isSimpleType(context.program, type) && !isEmptyModel(type);
   const effectiveModel =
-    type.kind === "Model" && type.name
+    !options.disableEffectiveModel &&
+    (type.kind === "Model" || type.kind === "Union")
       ? getEffectiveSchemaType(context.program, type)
       : type;
   if (enableCache) {
@@ -389,7 +407,9 @@ function emitBodyParameter(
   if (contentTypes.length !== 1) {
     throw Error("Currently only one kind of content-type!");
   }
-  const type = getType(context, getBodyType(context.program, httpOperation));
+  const type = getType(context, getBodyType(context.program, httpOperation), {
+    disableEffectiveModel: true
+  });
 
   if (type.type === "model" && type.name === "") {
     type.name = capitalize(httpOperation.operation.name) + "Request";
