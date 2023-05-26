@@ -26,7 +26,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["user_impersonation"]
+      scopes: options.credentials?.scopes ?? ["user_impersonation"]
     }
   };
 

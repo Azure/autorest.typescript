@@ -6,7 +6,7 @@ export function getClientParameters(
   client: Client
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const { name, parameters } = client;
-  let optionsParam = {
+  const optionsParam = {
     name: "options",
     type: `${name}ClientOptions`,
     initializer: "{}"

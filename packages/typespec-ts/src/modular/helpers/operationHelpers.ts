@@ -113,7 +113,7 @@ function getOperationSignatureParameters(
   operation: Operation
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const optionsType = getOperationOptionsName(operation);
-  let parameters: Map<
+  const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
