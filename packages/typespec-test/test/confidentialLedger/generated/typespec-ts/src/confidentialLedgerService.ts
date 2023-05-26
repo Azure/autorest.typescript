@@ -22,7 +22,9 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://confidential-ledger.azure.com/.default"],
+      scopes: options.credentials?.scopes ?? [
+        "https://confidential-ledger.azure.com/.default",
+      ],
     },
   };
 

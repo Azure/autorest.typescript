@@ -25,46 +25,6 @@ export interface ChatCompletions {
     usage: CompletionsUsage;
 }
 
-// @public (undocumented)
-export interface ChatCompletions {
-    choices: ChatChoice[];
-    created: number;
-    id: string;
-    usage: CompletionsUsage;
-}
-
-// @public
-export interface ChatCompletionsOptions {
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    messages: ChatMessage[];
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
-// @public (undocumented)
-export interface ChatCompletionsOptions {
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    messages: ChatMessage[];
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
 // @public
 export interface ChatMessage {
     content?: string;
@@ -83,14 +43,6 @@ export interface Choice {
 }
 
 // @public
-export interface Completions {
-    choices: Choice[];
-    created: number;
-    id: string;
-    usage: CompletionsUsage;
-}
-
-// @public (undocumented)
 export interface Completions {
     choices: Choice[];
     created: number;
@@ -118,44 +70,6 @@ export interface CompletionsLogProbabilityModel {
 }
 
 // @public
-export interface CompletionsOptions {
-    bestOf?: number;
-    echo?: boolean;
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    logprobs?: number;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    prompt: string[];
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
-// @public (undocumented)
-export interface CompletionsOptions {
-    bestOf?: number;
-    echo?: boolean;
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    logprobs?: number;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    prompt: string[];
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
-// @public
 export interface CompletionsUsage {
     completionTokens: number;
     promptTokens: number;
@@ -172,26 +86,6 @@ export interface EmbeddingItem {
 export interface Embeddings {
     data: EmbeddingItem[];
     usage: EmbeddingsUsage;
-}
-
-// @public (undocumented)
-export interface Embeddings {
-    data: EmbeddingItem[];
-    usage: EmbeddingsUsage;
-}
-
-// @public
-export interface EmbeddingsOptions {
-    input: string[];
-    model?: string;
-    user?: string;
-}
-
-// @public (undocumented)
-export interface EmbeddingsOptions {
-    input: string[];
-    model?: string;
-    user?: string;
 }
 
 // @public
@@ -251,9 +145,8 @@ export class OpenAIClient {
 export interface OpenAIClientOptions extends ClientOptions {
 }
 
-// @public (undocumented)
+// @public
 export interface RequestOptions {
-    // (undocumented)
     requestOptions?: {
         headers?: RawHttpHeadersInput;
         allowInsecureConnection?: boolean;

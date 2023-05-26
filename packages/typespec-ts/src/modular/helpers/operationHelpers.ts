@@ -113,40 +113,50 @@ function getOperationSignatureParameters(
   operation: Operation
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const optionsType = getOperationOptionsName(operation);
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+  let parameters: Map<
+    string,
+    OptionalKind<ParameterDeclarationStructure>
+  > = new Map();
   if (operation.bodyParameter?.type.type === "model") {
-    parameters = (operation.bodyParameter?.type.properties ?? [])
+    (operation.bodyParameter?.type.properties ?? [])
       .filter((p) => !p.optional)
       .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type));
+      .map((p) => buildType(p.clientName, p.type))
+      .forEach((p) => parameters.set(p.name, p));
   } else if (operation.bodyParameter?.type.type === "list") {
     const bodyArray = operation.bodyParameter;
-    parameters.push(buildType(bodyArray.clientName, bodyArray.type));
+    parameters.set(
+      bodyArray.clientName,
+      buildType(bodyArray.clientName, bodyArray.type)
+    );
   }
 
-  parameters = parameters.concat(
-    operation.parameters
-      .filter(
-        (p) =>
-          p.implementation === "Method" &&
-          p.type.type !== "constant" &&
-          p.clientDefaultValue === undefined &&
-          !p.optional
-      )
-      .map((p) => buildType(p.clientName, p.type))
-  );
+  operation.parameters
+    .filter(
+      (p) =>
+        p.implementation === "Method" &&
+        p.type.type !== "constant" &&
+        p.clientDefaultValue === undefined &&
+        !p.optional
+    )
+    .map((p) => buildType(p.clientName, p.type))
+    .forEach((p) => {
+      parameters.set(p.name, p);
+    });
 
   // Add context as the first parameter
-  parameters.unshift({ name: "context", type: "Client" });
+  const contextParam = { name: "context", type: "Client" };
 
   // Add the options parameter
-  parameters.push({
+  const optionsParam = {
     name: "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
-  });
+  };
 
-  return parameters;
+  const finalParameters = [contextParam, ...parameters.values(), optionsParam];
+
+  return finalParameters;
 }
 
 /**
