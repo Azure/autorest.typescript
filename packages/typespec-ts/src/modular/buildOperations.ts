@@ -72,6 +72,12 @@ export function buildOperationFiles(
           namedImports: ["GetLongRunningPollerOptions", "getLongRunningPoller"]
         }
       ]);
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: "@azure/core-lro",
+          namedImports: ["SimplePollerLike", "OperationState"]
+        }
+      ]);
     }
 
     // Import models used from ./models.ts
@@ -110,7 +116,25 @@ export function buildOperationOptions(
   const optionalBodyParams = (
     operation.bodyParameter?.type.properties ?? []
   ).filter((p) => p.optional);
+
   const options = [...optionalBodyParams, ...optionalParameters];
+  const lroOptions = [];
+  if (isLro(operation)) {
+    lroOptions.push({
+      docs: ["Delay to wait until next poll, in milliseconds."],
+      name: "updateIntervalInMs",
+      type: "number",
+      hasQuestionToken: true
+    });
+    lroOptions.push({
+      docs: [
+        "A serialized poller which can be used to resume an existing paused Long-Running-Operation."
+      ],
+      name: "resumeFrom",
+      type: "string",
+      hasQuestionToken: true
+    });
+  }
 
   const name = getOperationOptionsName(operation);
 
@@ -118,12 +142,14 @@ export function buildOperationOptions(
     name,
     isExported: true,
     extends: ["RequestOptions"],
-    properties: options.map((p) => {
-      return {
-        docs: [p.description],
-        hasQuestionToken: true,
-        ...buildType(p.clientName, p.type)
-      };
-    })
+    properties: lroOptions.concat(
+      options.map((p) => {
+        return {
+          docs: [p.description],
+          hasQuestionToken: true,
+          ...buildType(p.clientName, p.type)
+        };
+      })
+    )
   });
 }

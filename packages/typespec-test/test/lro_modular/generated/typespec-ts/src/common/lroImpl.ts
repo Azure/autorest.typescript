@@ -1,55 +1,19 @@
-import { Project, SourceFile } from "ts-morph";
-import { Client } from "./modularCodeModel.js";
-import { isLro, isPagingLro } from "./helpers/operationHelpers.js";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
 
-const content = `
-import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
- 
-/**
- * Common options to set on an outgoing operation
- */
-export interface RequestOptions {
-/**
- * Options to set on an outgoing HTTP request
- */
-  requestOptions?: {
-    /**
-     * Headers to send along with the request
-     */
-    headers?: RawHttpHeadersInput;
-    /** Set to true if the request is sent over HTTP instead of HTTPS */
-    allowInsecureConnection?: boolean;
-    /** Set to true if you want to skip encoding the path parameters */
-    skipUrlEncoding?: boolean;
-  };
-}`;
-
-/**
- * Creates a file with common interfaces. This should be moved to core
- */
-export function buildSharedTypes(
-  project: Project,
-  srcPath: string
-): SourceFile {
-  const path = `${srcPath}/src/common/interfaces.ts`;
-  const commonTypes = project.createSourceFile(path, content);
-
-  commonTypes.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
-
-  return commonTypes;
-}
-
-const lroContent = `
 import {
   CreateHttpPollerOptions,
   LongRunningOperation,
   LroResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
-import { Client, HttpResponse, StreamableMethod } from "@azure-rest/core-client";
-
+import {
+  Client,
+  HttpResponse,
+  StreamableMethod,
+} from "@azure-rest/core-client";
 
 export interface GetLongRunningPollerOptions<
   TResponse extends HttpResponse = HttpResponse
@@ -101,7 +65,7 @@ export async function getLongRunningPoller<TResponse extends HttpResponse>(
           initialResponse.request.url;
       }
       return lroResponse;
-    }
+    },
   };
 
   return await createHttpPoller(poller, options.createPollerOptions);
@@ -119,7 +83,7 @@ function getLroResponse<TResponse extends HttpResponse>(
 ): LroResponse {
   if (Number.isNaN(response.status)) {
     throw new TypeError(
-      \`Status code of the response is not a number. Value: \${response.status}\`
+      `Status code of the response is not a number. Value: ${response.status}`
     );
   }
 
@@ -128,27 +92,7 @@ function getLroResponse<TResponse extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body
-    }
+      body: response.body,
+    },
   };
-}
-`;
-
-export function buildLroImpl(
-  client: Client,
-  project: Project,
-  srcPath: string
-): SourceFile | undefined {
-  const hasLro = client.operationGroups.some((group) =>
-    group.operations.some(isLro || isPagingLro)
-  );
-  if (!hasLro) {
-    return;
-  }
-  const path = `${srcPath}/src/common/lroImpl.ts`;
-  const commonTypes = project.createSourceFile(path, lroContent);
-
-  commonTypes.fixMissingImports({}, { importModuleSpecifierEnding: "js" });
-
-  return commonTypes;
 }

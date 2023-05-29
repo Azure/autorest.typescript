@@ -208,9 +208,11 @@ function getLroOperationFunction(operation: Operation) {
     : { name: "", type: "void" };
 
   const { name, fixme = [] } = getOperationName(operation);
-  const lroFunctionName = `begin${getOperationName(operation, {
-    casing: "pascal"
-  })}`;
+  const lroFunctionName = `begin${
+    getOperationName(operation, {
+      casing: "pascal"
+    }).name
+  }`;
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
     isAsync: true,
@@ -227,7 +229,7 @@ function getLroOperationFunction(operation: Operation) {
     `
     const pollerOptions = {
       requestMethod: "${operationMethod}",
-      requestUrl: ""${operationPath}"",
+      requestUrl: "${operationPath}",
       deserializeFn: _${name}Deserialize,
       sendInitialRequestFn: _${name}Send,
       sendInitialRequestFnArgs: [${parameters.map((p) => p.name).join(", ")}],
@@ -242,7 +244,7 @@ function getLroOperationFunction(operation: Operation) {
   const poller = (await getLongRunningPoller(
     context,
     pollerOptions
-  )) as Promise<SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>>;
+  )) as SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>;
   `);
   statements.push(`return poller;`);
   return {
