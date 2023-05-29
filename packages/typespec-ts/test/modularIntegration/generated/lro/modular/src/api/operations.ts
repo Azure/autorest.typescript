@@ -3,9 +3,6 @@
 
 import {
   StandardContext as Client,
-  CreateOrReplace200Response,
-  CreateOrReplace201Response,
-  CreateOrReplaceDefaultResponse,
   CreateOrReplaceLogicalResponse,
   isUnexpected
 } from "../rest/index.js";
@@ -117,11 +114,8 @@ async function getLongRunningPoller<TResponse extends HttpResponse>(
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
       // depending on the lro pattern that the service implements. If non is provided we default to the initial path.
-      if (!path) {
-        path = options.requestUrl;
-      }
-      if (path === options.requestUrl && initialResponse.request.url) {
-        path = initialResponse.request.url;
+      if (!path || path === options.requestUrl) {
+        path = initialResponse.request.url ?? options.requestUrl;
       }
       const response = await client.pathUnchecked(path).get();
       const lroResponse = getLroResponse(
