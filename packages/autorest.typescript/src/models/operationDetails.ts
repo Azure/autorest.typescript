@@ -77,6 +77,7 @@ export interface OperationDetails {
   lroOptions?: { "final-state-via": string };
   scope?: Scope;
   namePrefix?: string;
+  isTenantLevel?: boolean;
 }
 
 /**

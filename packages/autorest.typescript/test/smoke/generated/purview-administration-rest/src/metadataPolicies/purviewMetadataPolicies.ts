@@ -22,7 +22,7 @@ export function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "CustomAuth"
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth"
     }
   };
 

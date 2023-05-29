@@ -22,7 +22,9 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://dev.azuresynapse.net/.default"]
+      scopes: options.credentials?.scopes ?? [
+        "https://dev.azuresynapse.net/.default"
+      ]
     }
   };
 

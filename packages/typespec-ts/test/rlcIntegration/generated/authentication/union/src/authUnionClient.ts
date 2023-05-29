@@ -20,8 +20,10 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://security.microsoft.com/.default"],
-      apiKeyHeaderName: "x-ms-api-key",
+      scopes: options.credentials?.scopes ?? [
+        "https://security.microsoft.com/.default",
+      ],
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
 

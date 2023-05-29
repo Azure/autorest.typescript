@@ -4,8 +4,7 @@
 
 ```ts
 
-import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
+import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 
@@ -15,17 +14,6 @@ export interface AcknowledgeCloudEventsOptions extends RequestOptions {
 }
 
 // @public
-export interface AcknowledgeOptions {
-    lockTokens: string[];
-}
-
-// @public
-export interface AcknowledgeResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
 export interface AcknowledgeResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -35,10 +23,6 @@ export interface AcknowledgeResult {
 export interface BrokerProperties {
     deliveryCount: number;
     lockToken: string;
-}
-
-// @public (undocumented)
-export interface ClientOptions extends ClientOptions_2 {
 }
 
 // @public
@@ -57,19 +41,17 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
-    constructor(endpoint: string, credential: KeyCredential, options?: ClientOptions);
-    // (undocumented)
+    constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
-    // (undocumented)
     publishCloudEvent(event: CloudEvent, topicName: string, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
-    // (undocumented)
     publishCloudEvents(events: CloudEvent[], topicName: string, options?: PublishCloudEventsOptions): Promise<Record<string, any>>;
-    // (undocumented)
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
-    // (undocumented)
     rejectCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: RejectCloudEventsOptions): Promise<RejectResult>;
-    // (undocumented)
     releaseCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
+}
+
+// @public (undocumented)
+export interface EventGridClientOptions extends ClientOptions {
 }
 
 // @public
@@ -82,12 +64,6 @@ export interface FailedLockToken {
 // @public (undocumented)
 export interface PublishCloudEventOptions extends RequestOptions {
     contentType?: string;
-}
-
-// @public (undocumented)
-export interface PublishCloudEventRequest {
-    // (undocumented)
-    event: CloudEvent;
 }
 
 // @public (undocumented)
@@ -113,27 +89,11 @@ export interface ReceiveResult {
 }
 
 // @public (undocumented)
-export interface ReceiveResult {
-    value: ReceiveDetails[];
-}
-
-// @public (undocumented)
 export interface RejectCloudEventsOptions extends RequestOptions {
     contentType?: string;
 }
 
 // @public
-export interface RejectOptions {
-    lockTokens: string[];
-}
-
-// @public
-export interface RejectResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
 export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -145,30 +105,17 @@ export interface ReleaseCloudEventsOptions extends RequestOptions {
 }
 
 // @public
-export interface ReleaseOptions {
-    lockTokens: string[];
+export interface ReleaseResult {
+    failedLockTokens: FailedLockToken[];
+    succeededLockTokens: string[];
 }
 
 // @public
-export interface ReleaseResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
-export interface ReleaseResult {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
-// @public (undocumented)
 export interface RequestOptions {
-    // (undocumented)
     requestOptions?: {
         headers?: RawHttpHeadersInput;
         allowInsecureConnection?: boolean;
         skipUrlEncoding?: boolean;
-        onResponse?: (response: HttpResponse) => void;
     };
 }
 

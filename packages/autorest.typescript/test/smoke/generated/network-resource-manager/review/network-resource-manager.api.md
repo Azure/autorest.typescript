@@ -8760,6 +8760,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: NetworkManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: NetworkManagementClientOptionalParams);
     // (undocumented)
     adminRuleCollections: AdminRuleCollections;
     // (undocumented)
@@ -8977,7 +8978,7 @@ export class NetworkManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     subnets: Subnets;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
     // (undocumented)
     subscriptionNetworkManagerConnections: SubscriptionNetworkManagerConnections;
     supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: SupportedSecurityProvidersOptionalParams): Promise<SupportedSecurityProvidersResponse>;
