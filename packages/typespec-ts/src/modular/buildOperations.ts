@@ -4,7 +4,9 @@ import {
   getOperationFunction,
   getSendPrivateFunction,
   getDeserializePrivateFunction,
-  getOperationOptionsName
+  getOperationOptionsName,
+  isLro,
+  isPagingLro
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
 
@@ -61,6 +63,16 @@ export function buildOperationFiles(
         namedImports: ["StreamableMethod"]
       }
     ]);
+
+    const hasLro = operationGroup.operations.some(isLro || isPagingLro);
+    if (hasLro) {
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: "../common/lroImpl.js",
+          namedImports: ["GetLongRunningPollerOptions", "getLongRunningPoller"]
+        }
+      ]);
+    }
 
     // Import models used from ./models.ts
     importModels(operationGroupFile, project);
