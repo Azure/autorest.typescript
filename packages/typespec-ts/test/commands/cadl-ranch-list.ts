@@ -10,11 +10,6 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "encode/duration"
   },
   {
-    outputPath: "lroModuler/modular",
-    inputPath: "lro-modular",
-    debug: true
-  },
-  {
     outputPath: "sharedRoute",
     inputPath: "shared-route"
   },

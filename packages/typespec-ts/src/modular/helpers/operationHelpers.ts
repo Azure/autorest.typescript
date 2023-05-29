@@ -165,6 +165,95 @@ function getOperationSignatureParameters(
 export function getOperationFunction(
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
+  if (isPagingLro(operation)) {
+    return getPagingLroOperationFunction(operation);
+  } else if (isPaging(operation)) {
+    return getPagingOperationFunction(operation);
+  } else if (isLro(operation)) {
+    return getLroOperationFunction(operation);
+  }
+  return getBasicOperationFunction(operation);
+}
+
+export function isLro(operation: Operation): boolean {
+  return operation.discriminator === "lro";
+}
+
+export function isPaging(operation: Operation): boolean {
+  return operation.discriminator === "paging";
+}
+
+export function isPagingLro(operation: Operation): boolean {
+  return operation.discriminator === "lropaging";
+}
+
+function getPagingLroOperationFunction(operation: Operation) {
+  // TODO: handle paging & lro logic
+  return getBasicOperationFunction(operation);
+}
+
+function getPagingOperationFunction(operation: Operation) {
+  // TODO: handle paging logic
+  return getBasicOperationFunction(operation);
+}
+
+function getLroOperationFunction(operation: Operation) {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation);
+
+  const response = operation.responses[0]!;
+  const returnType = response?.type?.type
+    ? buildType(response.type.name, response.type)
+    : { name: "", type: "void" };
+
+  const { name, fixme = [] } = getOperationName(operation);
+  const lroFunctionName = `begin${getOperationName(operation, {
+    casing: "pascal"
+  })}`;
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
+    isAsync: true,
+    isExported: true,
+    name: lroFunctionName,
+    parameters,
+    returnType: `Promise<SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>>`
+  };
+
+  const operationPath = operation.url;
+  const operationMethod = operation.method.toLowerCase();
+  const statements: string[] = [];
+  statements.push(
+    `
+    const pollerOptions = {
+      requestMethod: "${operationMethod}",
+      requestUrl: ""${operationPath}"",
+      deserializeFn: _${name}Deserialize,
+      sendInitialRequestFn: _${name}Send,
+      sendInitialRequestFnArgs: [${parameters.map((p) => p.name).join(", ")}],
+      createPollerOptions: {
+        restoreFrom: options?.resumeFrom,
+        intervalInMs: options?.updateIntervalInMs
+      }
+    } as GetLongRunningPollerOptions;
+    `
+  );
+  statements.push(`
+  const poller = (await getLongRunningPoller(
+    context,
+    pollerOptions
+  )) as Promise<SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>>;
+  `);
+  statements.push(`return poller;`);
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function getBasicOperationFunction(
+  operation: Operation
+): OptionalKind<FunctionDeclarationStructure> {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation);
