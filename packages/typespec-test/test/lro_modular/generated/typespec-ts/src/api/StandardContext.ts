@@ -16,7 +16,6 @@ export function createStandard(
   credential: KeyCredential | TokenCredential,
   options: StandardClientOptions = {}
 ): StandardContext {
-  const baseUrl = endpoint;
-  const clientContext = getClient(baseUrl, credential, options);
+  const clientContext = getClient(credential, options);
   return clientContext;
 }

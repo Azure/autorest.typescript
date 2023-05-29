@@ -1260,6 +1260,11 @@ function emitServerParams(
   }
   if (server.parameters) {
     const params: Parameter[] = [];
+    // If we have @server defined without any parameters - set the server.url as default value in RLC
+    // No client-level parameter required in modular side
+    if (server.parameters.size === 0 && server.url) {
+      return params;
+    }
     for (const param of server.parameters.values()) {
       const serverParameter: HttpServerParameter = {
         type: "endpointPath",
