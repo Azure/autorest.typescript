@@ -13,7 +13,6 @@ export interface StandardClientOptions extends ClientOptions {}
 
 /** Illustrates bodies templated with Azure Core with long-running operation */
 export function createStandard(
-  endpoint: string,
   credential: KeyCredential | TokenCredential,
   options: StandardClientOptions = {}
 ): StandardContext {

@@ -11,21 +11,9 @@
     ]
   },
   "schemes": [
-    "https"
+    "http"
   ],
-  "x-ms-parameterized-host": {
-    "hostTemplate": "/azure/core/lro/standard",
-    "useSchemePrefix": false,
-    "parameters": [
-      {
-        "name": "endpoint",
-        "in": "path",
-        "required": true,
-        "description": "Supported Widget Services endpoints (protocol and hostname, for example:\nhttps://westus.api.widget.contoso.com).",
-        "type": "string"
-      }
-    ]
-  },
+  "host": "localhost:3000/azure/core/lro/standard",
   "produces": [
     "application/json"
   ],

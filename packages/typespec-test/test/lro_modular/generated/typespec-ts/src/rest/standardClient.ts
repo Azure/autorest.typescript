@@ -8,17 +8,15 @@ import { StandardContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `StandardContext`
- * @param endpoint - Supported Widget Services endpoints (protocol and hostname, for example:
- * https://westus.api.widget.contoso.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
   credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {}
 ): StandardContext {
-  const baseUrl = options.baseUrl ?? `/azure/core/lro/standard`;
+  const baseUrl =
+    options.baseUrl ?? `http://localhost:3000/azure/core/lro/standard`;
   options.apiVersion = options.apiVersion ?? "2022-12-01-preview";
   options = {
     ...options,

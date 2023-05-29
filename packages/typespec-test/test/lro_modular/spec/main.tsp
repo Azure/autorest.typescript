@@ -23,15 +23,8 @@ using TypeSpec.Versioning;
   title: "Contoso Widget Manager",
 })
 @server(
-  "/azure/core/lro/standard",
-  "Contoso Widget APIs",
-  {
-    @doc("""
-Supported Widget Services endpoints (protocol and hostname, for example:
-https://westus.api.widget.contoso.com).
-""")
-    endpoint: string,
-  }
+  "http://localhost:3000/azure/core/lro/standard",
+  "Contoso Widget APIs"
 )
 @versioned(_Specs_.Azure.Core.Lro.Standard.Versions)
 namespace _Specs_.Azure.Core.Lro.Standard;

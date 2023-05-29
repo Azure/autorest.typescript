@@ -19,11 +19,10 @@ export class StandardClient {
 
   /** Illustrates bodies templated with Azure Core with long-running operation */
   constructor(
-    endpoint: string,
     credential: KeyCredential | TokenCredential,
     options: StandardClientOptions = {}
   ) {
-    this._client = createStandard(endpoint, credential, options);
+    this._client = createStandard(credential, options);
   }
 
   /** Creates or replaces a User */
