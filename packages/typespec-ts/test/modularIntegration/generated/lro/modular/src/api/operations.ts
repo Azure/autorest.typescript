@@ -19,7 +19,7 @@ import {
   SimplePollerLike,
   createHttpPoller
 } from "@azure/core-lro";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, StreamableMethod } from "@azure-rest/core-client";
 
 export interface CreateOrReplaceOptions extends RequestOptions {
   /** Delay to wait until next poll, in milliseconds. */
@@ -49,19 +49,11 @@ export async function _createOrReplaceDeserialize(
     throw result.body;
   }
 
-  // if 201 -> how to convert
-  // if 202 -> how to convert
-  // if 200 -> how to convert
-
   return {
     name: result.body["name"],
     role: result.body["role"]
   };
 }
-
-/**
- * Below are the LRO functions for createOrReplace and they are manually wroten now
- */
 
 export async function beginCreateOrReplace(
   context: Client,
@@ -70,66 +62,71 @@ export async function beginCreateOrReplace(
   options: CreateOrReplaceOptions = { requestOptions: {} }
 ): Promise<SimplePollerLike<OperationState<User>, User>> {
   const pollerOptions = {
-    restoreFrom: options?.resumeFrom,
-    intervalInMs: options?.updateIntervalInMs
-  };
-  const operationDetail = {
     requestMethod: "PUT",
     requestUrl: "/azure/core/lro/standard/users/{name}",
     deserializeFn: _createOrReplaceDeserialize,
-    sendFn: _createOrReplaceSend,
-    sendFnArgs: [context, role, name, options]
-  };
+    sendInitialRequestFn: _createOrReplaceSend,
+    sendInitialRequestFnArgs: [role, name, options],
+    createPollerOptions: {
+      restoreFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    }
+  } as GetLongRunningPollerOptions;
   const poller = (await getLongRunningPoller(
     context,
-    operationDetail,
     pollerOptions
   )) as SimplePollerLike<OperationState<User>, User>;
 
   return poller;
 }
 
-interface OperationPollingDetail<TResponse extends HttpResponse> {
+interface GetLongRunningPollerOptions<
+  TResponse extends HttpResponse = HttpResponse
+> {
   requestMethod: string;
   requestUrl: string;
-  sendFn: Function;
+  sendInitialRequestFn: (
+    context: Client,
+    ...args: unknown[]
+  ) => StreamableMethod<TResponse>;
+  sendInitialRequestFnArgs: unknown[];
   deserializeFn: (response: TResponse) => Promise<unknown>;
-  sendFnArgs: unknown[];
+  createPollerOptions: CreateHttpPollerOptions<
+    unknown,
+    OperationState<unknown>
+  >;
 }
 
 async function getLongRunningPoller<TResponse extends HttpResponse>(
   client: Client,
-  operationDetail: OperationPollingDetail<TResponse>,
-  options: CreateHttpPollerOptions<unknown, OperationState<unknown>> = {}
+  options: GetLongRunningPollerOptions<TResponse>
 ): Promise<SimplePollerLike<OperationState<unknown>, unknown>> {
   let initialResponse: TResponse;
   const poller: LongRunningOperation<unknown> = {
-    requestMethod: operationDetail.requestMethod,
-    requestPath: operationDetail.requestUrl,
+    requestMethod: options.requestMethod,
+    requestPath: options.requestUrl,
     sendInitialRequest: async () => {
-      // In the case of Rest Clients we are building the LRO poller object from a response that's the reason
-      // we are not triggering the initial request here, just extracting the information from the
-      // response we were provided.
-      initialResponse = (await operationDetail.sendFn(
-        ...operationDetail.sendFnArgs
+      initialResponse = (await options.sendInitialRequestFn(
+        client,
+        ...options.sendInitialRequestFnArgs
       )) as TResponse;
-      return getLroResponse(initialResponse, operationDetail.deserializeFn);
+      return getLroResponse(initialResponse, options.deserializeFn);
     },
     sendPollRequest: async (path) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
       // depending on the lro pattern that the service implements. If non is provided we default to the initial path.
-
-      if (path === operationDetail.requestUrl && initialResponse.request.url) {
+      if (!path) {
+        path = options.requestUrl;
+      }
+      if (path === options.requestUrl && initialResponse.request.url) {
         path = initialResponse.request.url;
       }
-      const response = await client
-        .pathUnchecked(path ?? operationDetail.requestUrl)
-        .get();
+      const response = await client.pathUnchecked(path).get();
       const lroResponse = getLroResponse(
         response as TResponse,
-        operationDetail.deserializeFn
+        options.deserializeFn
       );
       if (initialResponse.request.url) {
         lroResponse.rawResponse.headers["x-ms-original-url"] =
@@ -139,12 +136,13 @@ async function getLongRunningPoller<TResponse extends HttpResponse>(
     }
   };
 
-  return await createHttpPoller(poller, options);
+  return await createHttpPoller(poller, options.createPollerOptions);
 }
 
 /**
  * Converts a Rest Client response to a response that the LRO implementation understands
  * @param response - a rest client http response
+ * @param deserializeFn - deserialize function to convert Rest response to modular output
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResponse extends HttpResponse>(
