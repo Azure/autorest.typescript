@@ -18,7 +18,7 @@ import {
 } from "@azure/core-lro";
 import { HttpResponse, StreamableMethod } from "@azure-rest/core-client";
 
-export interface CreateOrReplaceOptions extends RequestOptions {
+export interface BeginCreateOrReplaceOptions extends RequestOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -29,7 +29,7 @@ export function _createOrReplaceSend(
   context: Client,
   role: string,
   name: string,
-  options: CreateOrReplaceOptions = { requestOptions: {} }
+  options: BeginCreateOrReplaceOptions = { requestOptions: {} }
 ) {
   return context.path("/azure/core/lro/standard/users/{name}", name).put({
     allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
@@ -56,7 +56,7 @@ export async function beginCreateOrReplace(
   context: Client,
   role: string,
   name: string,
-  options: CreateOrReplaceOptions = { requestOptions: {} }
+  options: BeginCreateOrReplaceOptions = { requestOptions: {} }
 ): Promise<SimplePollerLike<OperationState<User>, User>> {
   const pollerOptions = {
     requestMethod: "PUT",

@@ -3,8 +3,7 @@
 
 export { User } from "./models.js";
 export {
-  createOrReplace,
-  CreateOrReplaceOptions,
+  BeginCreateOrReplaceOptions,
   beginCreateOrReplace
 } from "./operations.js";
 export { createStandard, StandardContext } from "./StandardContext.js";

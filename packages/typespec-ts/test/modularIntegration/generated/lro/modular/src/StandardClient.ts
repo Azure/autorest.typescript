@@ -4,9 +4,8 @@
 import { ClientOptions } from "./common/interfaces.js";
 import {
   User,
-  createOrReplace,
   beginCreateOrReplace,
-  CreateOrReplaceOptions,
+  BeginCreateOrReplaceOptions,
   createStandard,
   StandardContext
 } from "./api/index.js";
@@ -20,18 +19,10 @@ export class StandardClient {
     this._client = createStandard(options);
   }
 
-  createOrReplace(
-    role: string,
-    name: string,
-    options: CreateOrReplaceOptions = { requestOptions: {} }
-  ): Promise<User> {
-    return createOrReplace(this._client, role, name, options);
-  }
-
   beginCreateOrReplace(
     role: string,
     name: string,
-    options: CreateOrReplaceOptions = { requestOptions: {} }
+    options: BeginCreateOrReplaceOptions = { requestOptions: {} }
   ): Promise<SimplePollerLike<OperationState<User>, User>> {
     return beginCreateOrReplace(this._client, role, name, options);
   }
