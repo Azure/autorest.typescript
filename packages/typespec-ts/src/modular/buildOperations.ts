@@ -55,6 +55,13 @@ export function buildOperationFiles(
       }
     ]);
 
+    operationGroupFile.addImportDeclarations([
+      {
+        moduleSpecifier: "@azure-rest/core-client",
+        namedImports: ["StreamableMethod"]
+      }
+    ]);
+
     // Import models used from ./models.ts
     importModels(operationGroupFile, project);
     operationGroupFile.fixMissingImports();

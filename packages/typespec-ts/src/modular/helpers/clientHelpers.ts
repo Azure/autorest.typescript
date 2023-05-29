@@ -6,22 +6,12 @@ export function getClientParameters(
   client: Client
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const { name, parameters } = client;
-  let optionsParam = {
+  const optionsParam = {
     name: "options",
-    type: `${name}Options`,
+    type: `${name}ClientOptions`,
     initializer: "{}"
   };
-  if (
-    !client.parameters
-      .filter((p) => p.implementation === "Client" && !p.isApiVersion)
-      .some((p) => p.optional || (!p.optional && p.clientDefaultValue))
-  ) {
-    optionsParam = {
-      name: "options",
-      type: `ClientOptions`,
-      initializer: "{}"
-    };
-  }
+
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
     ...parameters
       .filter((p) => p.type.type !== "constant")

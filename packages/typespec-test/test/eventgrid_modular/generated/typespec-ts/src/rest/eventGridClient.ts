@@ -22,7 +22,8 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "SharedAccessKey",
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "SharedAccessKey",
     },
   };
 

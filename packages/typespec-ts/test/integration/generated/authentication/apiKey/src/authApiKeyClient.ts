@@ -20,7 +20,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "x-ms-api-key",
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
 

@@ -19,7 +19,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "security-key"
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key"
     }
   };
 

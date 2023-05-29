@@ -284,10 +284,12 @@ function getClientFactoryBody(
     credentialScopes && credentialScopes.length
       ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
       : "";
-  const scopes = scopesString ? `scopes: [${scopesString}],` : "";
+  const scopes = scopesString
+    ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
+    : "";
 
   const apiKeyHeaderName = credentialKeyHeaderName
-    ? `apiKeyHeaderName: "${credentialKeyHeaderName}",`
+    ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
 
   const credentials =

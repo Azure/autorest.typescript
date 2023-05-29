@@ -1,11 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { EventGridContext as Client, isUnexpected } from "../rest/index.js";
 import {
-  OperationRawReturnType,
-  RequestOptions,
-} from "../common/interfaces.js";
+  AcknowledgeCloudEvents200Response,
+  AcknowledgeCloudEventsDefaultResponse,
+  EventGridContext as Client,
+  isUnexpected,
+  PublishCloudEvent200Response,
+  PublishCloudEventDefaultResponse,
+  PublishCloudEvents200Response,
+  PublishCloudEventsDefaultResponse,
+  ReceiveCloudEvents200Response,
+  ReceiveCloudEventsDefaultResponse,
+  RejectCloudEvents200Response,
+  RejectCloudEventsDefaultResponse,
+  ReleaseCloudEvents200Response,
+  ReleaseCloudEventsDefaultResponse,
+} from "../rest/index.js";
+import { StreamableMethod } from "@azure-rest/core-client";
 import {
   CloudEvent,
   ReceiveResult,
@@ -13,6 +25,7 @@ import {
   ReleaseResult,
   RejectResult,
 } from "./models.js";
+import { RequestOptions } from "../common/interfaces.js";
 
 export interface PublishCloudEventOptions extends RequestOptions {
   /** content type */
@@ -24,7 +37,9 @@ export function _publishCloudEventSend(
   event: CloudEvent,
   topicName: string,
   options: PublishCloudEventOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  PublishCloudEvent200Response | PublishCloudEventDefaultResponse
+> {
   return context
     .path("/topics/{topicName}:publish", topicName)
     .post({
@@ -39,7 +54,7 @@ export function _publishCloudEventSend(
 }
 
 export async function _publishCloudEventDeserialize(
-  result: OperationRawReturnType<typeof _publishCloudEventSend>
+  result: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -74,7 +89,9 @@ export function _publishCloudEventsSend(
   events: CloudEvent[],
   topicName: string,
   options: PublishCloudEventsOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
+> {
   return context
     .path("/topics/{topicName}:publish", topicName)
     .post({
@@ -89,7 +106,7 @@ export function _publishCloudEventsSend(
 }
 
 export async function _publishCloudEventsDeserialize(
-  result: OperationRawReturnType<typeof _publishCloudEventsSend>
+  result: PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -126,7 +143,9 @@ export function _receiveCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   options: ReceiveCloudEventsOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
+> {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive",
@@ -145,7 +164,7 @@ export function _receiveCloudEventsSend(
 }
 
 export async function _receiveCloudEventsDeserialize(
-  result: OperationRawReturnType<typeof _receiveCloudEventsSend>
+  result: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
 ): Promise<ReceiveResult> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -200,7 +219,9 @@ export function _acknowledgeCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   options: AcknowledgeCloudEventsOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  AcknowledgeCloudEvents200Response | AcknowledgeCloudEventsDefaultResponse
+> {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge",
@@ -218,7 +239,9 @@ export function _acknowledgeCloudEventsSend(
 }
 
 export async function _acknowledgeCloudEventsDeserialize(
-  result: OperationRawReturnType<typeof _acknowledgeCloudEventsSend>
+  result:
+    | AcknowledgeCloudEvents200Response
+    | AcknowledgeCloudEventsDefaultResponse
 ): Promise<AcknowledgeResult> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -263,7 +286,9 @@ export function _releaseCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   options: ReleaseCloudEventsOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
+> {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release",
@@ -281,7 +306,7 @@ export function _releaseCloudEventsSend(
 }
 
 export async function _releaseCloudEventsDeserialize(
-  result: OperationRawReturnType<typeof _releaseCloudEventsSend>
+  result: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
 ): Promise<ReleaseResult> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -326,7 +351,9 @@ export function _rejectCloudEventsSend(
   topicName: string,
   eventSubscriptionName: string,
   options: RejectCloudEventsOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
+> {
   return context
     .path(
       "/topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject",
@@ -344,7 +371,7 @@ export function _rejectCloudEventsSend(
 }
 
 export async function _rejectCloudEventsDeserialize(
-  result: OperationRawReturnType<typeof _rejectCloudEventsSend>
+  result: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
 ): Promise<RejectResult> {
   if (isUnexpected(result)) {
     throw result.body;

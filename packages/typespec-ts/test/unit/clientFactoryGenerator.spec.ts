@@ -373,8 +373,8 @@ describe("Client Factory generation", () => {
         options = {
             ...options,
             credentials: {
-              scopes: ["https://petstor.com/default"],
-              apiKeyHeaderName: "apiKey",
+              scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
+              apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "apiKey",
             },
           };
         

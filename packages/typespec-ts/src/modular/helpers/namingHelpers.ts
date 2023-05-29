@@ -1,3 +1,4 @@
+import { toCamelCase, toPascalCase } from "../../casingUtils.js";
 import { Client, Operation } from "../modularCodeModel.js";
 
 export function getClientName(client: Client) {
@@ -9,7 +10,11 @@ export interface GuardedName {
   fixme?: string[];
 }
 
-export function getOperationName(operation: Operation): GuardedName {
+export function getOperationName(
+  operation: Operation,
+  options: { casing: "camel" | "pascal" } = { casing: "camel" }
+): GuardedName {
+  const casingFn = options.casing === "camel" ? toCamelCase : toPascalCase;
   if (isReservedName(operation.name, NameType.Operation)) {
     return {
       name: `${operation.name}Operation`,
@@ -21,7 +26,7 @@ export function getOperationName(operation: Operation): GuardedName {
   }
 
   return {
-    name: operation.name
+    name: casingFn(operation.name)
   };
 }
 

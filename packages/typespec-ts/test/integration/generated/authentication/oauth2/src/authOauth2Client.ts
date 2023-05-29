@@ -20,7 +20,9 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://security.microsoft.com/.default"],
+      scopes: options.credentials?.scopes ?? [
+        "https://security.microsoft.com/.default",
+      ],
     },
   };
 
