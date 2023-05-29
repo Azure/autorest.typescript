@@ -2,18 +2,22 @@
 // Licensed under the MIT license.
 
 import { Client } from "../../rest/bar/index.js";
-import {
-  OperationRawReturnType,
-  RequestOptions,
-} from "../../common/interfaces.js";
+import { StreamableMethod } from "@azure-rest/core-client";
 import { Resource } from "./models.js";
+import { RequestOptions } from "../../common/interfaces.js";
+import {
+  GetBinary200Response,
+  GetArray200Response,
+  CreateWithHeaders201Response,
+  DeleteWithHeaders204Response,
+} from "../../rest/bar/responses.js";
 
 export interface GetBinaryOptions extends RequestOptions {}
 
 export function _getBinarySend(
   context: Client.BarContext,
   options: GetBinaryOptions = { requestOptions: {} }
-) {
+): StreamableMethod<GetBinary200Response> {
   return context
     .path("/cadl-bar/get-binary")
     .get({
@@ -23,7 +27,7 @@ export function _getBinarySend(
 }
 
 export async function _getBinaryDeserialize(
-  result: OperationRawReturnType<typeof _getBinarySend>
+  result: GetBinary200Response
 ): Promise<any> {
   return result.body;
 }
@@ -42,7 +46,7 @@ export interface GetArrayOptions extends RequestOptions {}
 export function _getArraySend(
   context: Client.BarContext,
   options: GetArrayOptions = { requestOptions: {} }
-) {
+): StreamableMethod<GetArray200Response> {
   return context
     .path("/cadl-bar")
     .get({
@@ -52,7 +56,7 @@ export function _getArraySend(
 }
 
 export async function _getArrayDeserialize(
-  result: OperationRawReturnType<typeof _getArraySend>
+  result: GetArray200Response
 ): Promise<Resource[]> {
   return (result.body ?? []).map((p) => ({
     id: p["id"],
@@ -76,7 +80,7 @@ export interface CreateWithHeadersOptions extends RequestOptions {}
 export function _createWithHeadersSend(
   context: Client.BarContext,
   options: CreateWithHeadersOptions = { requestOptions: {} }
-) {
+): StreamableMethod<CreateWithHeaders201Response> {
   return context
     .path("/cadl-bar/create-with-headers")
     .put({
@@ -86,7 +90,7 @@ export function _createWithHeadersSend(
 }
 
 export async function _createWithHeadersDeserialize(
-  result: OperationRawReturnType<typeof _createWithHeadersSend>
+  result: CreateWithHeaders201Response
 ): Promise<Resource> {
   return {
     id: result.body["id"],
@@ -110,7 +114,7 @@ export interface DeleteWithHeadersOptions extends RequestOptions {}
 export function _deleteWithHeadersSend(
   context: Client.BarContext,
   options: DeleteWithHeadersOptions = { requestOptions: {} }
-) {
+): StreamableMethod<DeleteWithHeaders204Response> {
   return context
     .path("/cadl-bar/delete-with-headers")
     .delete({
@@ -120,7 +124,7 @@ export function _deleteWithHeadersSend(
 }
 
 export async function _deleteWithHeadersDeserialize(
-  result: OperationRawReturnType<typeof _deleteWithHeadersSend>
+  result: DeleteWithHeaders204Response
 ): Promise<void> {
   return;
 }

@@ -19,7 +19,7 @@ export function buildRootIndex(
     );
   }
 
-  exportModels(rootIndexFile, srcPath, subfolder);
+  exportModels(rootIndexFile, srcPath, subfolder, clientName);
   exportOptionsInterfaces(client, rootIndexFile, srcPath, subfolder);
   exportClassicalClient(client, rootIndexFile);
 
@@ -93,7 +93,8 @@ function exportOptionsInterfaces(
 function exportModels(
   indexFile: SourceFile,
   srcPath: string,
-  subfolder: string
+  subfolder: string,
+  clientName: string
 ) {
   const project = indexFile.getProject();
   let modelFilePath = `${srcPath}/src/api/models.ts`;
@@ -108,7 +109,14 @@ function exportModels(
     return;
   }
 
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()];
+  const exportedModels = [...indexFile.getExportedDeclarations().keys()]
+  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(modelName => {
+    if (exportedModels.indexOf(modelName) > -1) {
+      return `${modelName} as ${clientName}${modelName}`
+    } else {
+      return modelName;
+    }
+  })
 
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }

@@ -17,12 +17,17 @@ import { getOperationName } from "./namingHelpers.js";
 import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
 
 function getRLCResponseType(operation: Operation) {
-  const { name } = getOperationName(operation, { casing: "pascal" });
+  const name = normalizeName(
+    getOperationName(operation, { casing: "pascal" }).name,
+    NameType.Interface
+  );
   const statusCodes: (string | number)[] = Array.from(
     new Set(operation.responses.flatMap((r) => r.statusCodes)).values()
   );
 
-  statusCodes.push("Default");
+  if (operation.exceptions.length > 0) {
+    statusCodes.push("Default");
+  }
 
   return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
 }

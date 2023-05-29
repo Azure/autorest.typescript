@@ -30,11 +30,6 @@ export function buildClassicalClient(
     `${srcPath}/src/${classicalClientname}.ts`
   );
 
-  clientFile.addExportDeclaration({
-    namedExports: [`${classicalClientname}Options`],
-    moduleSpecifier: `./api/${modularClientName}Context.js`
-  });
-
   const clientClass = clientFile.addClass({
     isExported: true,
     name: `${classicalClientname}`
@@ -42,12 +37,24 @@ export function buildClassicalClient(
 
   // Add the private client member. This will be the client context from /api
   if (subfolder && subfolder !== "") {
+
+    clientFile.addExportDeclaration({
+      namedExports: [`${classicalClientname}Options`],
+      moduleSpecifier: `./api/${subfolder}/${modularClientName}Context.js`
+    });
+
     clientClass.addProperty({
       name: "_client",
       type: `Client.${modularClientName}Context`,
       scope: Scope.Private
     });
+    
   } else {
+    clientFile.addExportDeclaration({
+      namedExports: [`${classicalClientname}Options`],
+      moduleSpecifier: `./api/${modularClientName}Context.js`
+    });
+
     clientClass.addProperty({
       name: "_client",
       type: `${modularClientName}Context`,

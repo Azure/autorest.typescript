@@ -2,11 +2,20 @@
 // Licensed under the MIT license.
 
 import { Client, UnexpectedHelper } from "../../rest/foo/index.js";
-import {
-  OperationRawReturnType,
-  RequestOptions,
-} from "../../common/interfaces.js";
+import { StreamableMethod } from "@azure-rest/core-client";
 import { Resource, CustomPage } from "./models.js";
+import { RequestOptions } from "../../common/interfaces.js";
+import {
+  CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
+  CreateOrUpdateDefaultResponse,
+  GetOperation200Response,
+  GetOperationDefaultResponse,
+  DeleteOperation204Response,
+  DeleteOperationDefaultResponse,
+  List200Response,
+  ListDefaultResponse,
+} from "../../rest/foo/responses.js";
 
 export interface CreateOrUpdateOptions extends RequestOptions {
   /** */
@@ -18,7 +27,11 @@ export function _createOrUpdateSend(
   type: string,
   name: string,
   options: CreateOrUpdateOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  | CreateOrUpdate200Response
+  | CreateOrUpdate201Response
+  | CreateOrUpdateDefaultResponse
+> {
   return context
     .path("/cadl-foo/resources/{name}", name)
     .put({
@@ -29,7 +42,10 @@ export function _createOrUpdateSend(
 }
 
 export async function _createOrUpdateDeserialize(
-  result: OperationRawReturnType<typeof _createOrUpdateSend>
+  result:
+    | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
+    | CreateOrUpdateDefaultResponse
 ): Promise<Resource> {
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
@@ -60,11 +76,11 @@ export async function createOrUpdate(
 
 export interface GetOptions extends RequestOptions {}
 
-export function _getSend(
+export function _getOperationSend(
   context: Client.FooContext,
   name: string,
   options: GetOptions = { requestOptions: {} }
-) {
+): StreamableMethod<GetOperation200Response | GetOperationDefaultResponse> {
   return context
     .path("/cadl-foo/resources/{name}", name)
     .get({
@@ -73,8 +89,8 @@ export function _getSend(
     });
 }
 
-export async function _getDeserialize(
-  result: OperationRawReturnType<typeof _getSend>
+export async function _getOperationDeserialize(
+  result: GetOperation200Response | GetOperationDefaultResponse
 ): Promise<Resource> {
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
@@ -89,17 +105,21 @@ export async function _getDeserialize(
 }
 
 /** Gets the details of a resource. */
+/**
+ *  @fixme get is a reserved word that cannot be used as an operation name. Please add @projectedName(
+ *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+ */
 export async function getOperation(
   context: Client.FooContext,
   name: string,
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
-  const result = await _getSend(context, name, options);
+  const result = await _getOperationSend(context, name, options);
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
   }
 
-  return _getDeserialize(result);
+  return _getOperationDeserialize(result);
 }
 
 export interface DeleteOptions extends RequestOptions {}
@@ -108,7 +128,9 @@ export function _deleteOperationSend(
   context: Client.FooContext,
   name: string,
   options: DeleteOptions = { requestOptions: {} }
-) {
+): StreamableMethod<
+  DeleteOperation204Response | DeleteOperationDefaultResponse
+> {
   return context
     .path("/cadl-foo/resources/{name}", name)
     .delete({
@@ -118,7 +140,7 @@ export function _deleteOperationSend(
 }
 
 export async function _deleteOperationDeserialize(
-  result: OperationRawReturnType<typeof _deleteOperationSend>
+  result: DeleteOperation204Response | DeleteOperationDefaultResponse
 ): Promise<void> {
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
@@ -150,7 +172,7 @@ export interface ListOptions extends RequestOptions {}
 export function _listSend(
   context: Client.FooContext,
   options: ListOptions = { requestOptions: {} }
-) {
+): StreamableMethod<List200Response | ListDefaultResponse> {
   return context
     .path("/cadl-foo/resources")
     .get({
@@ -160,7 +182,7 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: OperationRawReturnType<typeof _listSend>
+  result: List200Response | ListDefaultResponse
 ): Promise<CustomPage> {
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;

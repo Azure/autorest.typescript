@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ClientOptions } from "./common/interfaces.js";
 import {
   createFoo,
   Client,
+  FooClientOptions,
   Resource,
   CustomPage,
   createOrUpdate,
@@ -24,11 +24,12 @@ export class FooClient {
   constructor(
     endpoint: string,
     apiVersion: string,
-    options: ClientOptions = {}
+    options: FooClientOptions = {}
   ) {
     this._client = createFoo(endpoint, apiVersion, options);
   }
 
+  /** Creates a new resource or updates an existing one. */
   createOrUpdate(
     type: string,
     name: string,
@@ -37,6 +38,11 @@ export class FooClient {
     return createOrUpdate(this._client, type, name, options);
   }
 
+  /** Gets the details of a resource. */
+  /**
+   *  @fixme get is a reserved word that cannot be used as an operation name. Please add @projectedName(
+   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+   */
   getOperation(
     name: string,
     options: GetOptions = { requestOptions: {} }
@@ -44,6 +50,11 @@ export class FooClient {
     return getOperation(this._client, name, options);
   }
 
+  /** Deletes a resource. */
+  /**
+   *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
+   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+   */
   deleteOperation(
     name: string,
     options: DeleteOptions = { requestOptions: {} }
@@ -51,7 +62,10 @@ export class FooClient {
     return deleteOperation(this._client, name, options);
   }
 
+  /** Lists the existing resources. */
   list(options: ListOptions = { requestOptions: {} }): Promise<CustomPage> {
     return list(this._client, options);
   }
 }
+
+export { FooClientOptions } from "./api/foo/FooContext.js";
