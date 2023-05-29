@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { createEventGrid, EventGridContext } from "./EventGridContext.js";
 export {
-  PublishCloudEventRequest,
+  createEventGrid,
+  EventGridContext,
+  EventGridClientOptions,
+} from "./EventGridContext.js";
+export {
   CloudEvent,
   ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
-  AcknowledgeOptions,
   AcknowledgeResult,
   FailedLockToken,
-  ReleaseOptions,
   ReleaseResult,
-  RejectOptions,
   RejectResult,
 } from "./models.js";
 export {

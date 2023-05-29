@@ -10392,6 +10392,7 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: WebSiteManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: WebSiteManagementClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -10438,7 +10439,7 @@ export class WebSiteManagementClient extends coreClient.ServiceClient {
     // (undocumented)
     staticSites: StaticSites;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
     // (undocumented)
     topLevelDomains: TopLevelDomains;
     updatePublishingUser(userDetails: User, options?: UpdatePublishingUserOptionalParams): Promise<UpdatePublishingUserResponse>;

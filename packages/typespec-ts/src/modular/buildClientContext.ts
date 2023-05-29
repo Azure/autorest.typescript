@@ -58,9 +58,16 @@ export function buildClientContext(
     });
   }
 
-  // clientContextFile.addExportAssignment({
-  //   expression: `${client.name}Context`
-  // });
+  clientContextFile.addImportDeclaration({
+    moduleSpecifier: "@azure-rest/core-client",
+    namedImports: ["ClientOptions"]
+  });
+
+  clientContextFile.addInterface({
+    name: `${name}ClientOptions`,
+    isExported: true,
+    extends: ["ClientOptions"]
+  });
 
   const credentialsParam = parameters.find(
     (p) => p.clientName === "credential"

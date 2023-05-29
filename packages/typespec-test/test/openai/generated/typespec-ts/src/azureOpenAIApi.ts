@@ -23,8 +23,10 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      scopes: ["https://cognitiveservices.azure.com/.default"],
-      apiKeyHeaderName: "api-key",
+      scopes: options.credentials?.scopes ?? [
+        "https://cognitiveservices.azure.com/.default",
+      ],
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
 

@@ -29,6 +29,12 @@ export function buildClassicalClient(
   const clientFile = project.createSourceFile(
     `${srcPath}/src/${classicalClientname}.ts`
   );
+
+  clientFile.addExportDeclaration({
+    namedExports: [`${classicalClientname}Options`],
+    moduleSpecifier: `./api/${modularClientName}Context.js`
+  });
+
   const clientClass = clientFile.addClass({
     isExported: true,
     name: `${classicalClientname}`
@@ -156,6 +162,7 @@ function buildClientOperationGroups(
       clientClass.addMethods(
         operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
+            docs: d.docs ,
             name: d.name ?? "FIXME",
             kind: StructureKind.Method,
             returnType: d.returnType,
@@ -173,9 +180,4 @@ function buildClientOperationGroups(
       );
     }
   }
-  // Import ClientOptions
-  clientClass.getSourceFile().addImportDeclaration({
-    moduleSpecifier: `./common/interfaces.js`,
-    namedImports: ["ClientOptions"]
-  });
 }

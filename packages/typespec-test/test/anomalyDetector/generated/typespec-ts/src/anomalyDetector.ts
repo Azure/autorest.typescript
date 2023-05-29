@@ -29,7 +29,8 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "Ocp-Apim-Subscription-Key",
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
 

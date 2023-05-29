@@ -8,30 +8,30 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import { WebSiteManagementClient } from "@msinternal/web-resource-manager";
+import { SubscriptionClient } from "@msinternal/arm-package-subscriptions-2019-06";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
 /**
- * This sample demonstrates how to Description for Get available Web app frameworks and their versions
+ * This sample demonstrates how to Gets all subscriptions for a tenant.
  *
- * @summary Description for Get available Web app frameworks and their versions
- * x-ms-original-file: specification/web/resource-manager/Microsoft.Web/stable/2021-02-01/examples/GetWebAppStacks.json
+ * @summary Gets all subscriptions for a tenant.
+ * x-ms-original-file: specification/resources/resource-manager/Microsoft.Resources/stable/2019-06-01/examples/GetSubscriptions.json
  */
-async function getWebAppStacks() {
+async function getAllSubscriptions() {
   const credential = new DefaultAzureCredential();
-  const client = new WebSiteManagementClient(credential);
+  const client = new SubscriptionClient(credential);
   const resArray = new Array();
-  for await (let item of client.provider.listWebAppStacks()) {
+  for await (let item of client.subscriptions.list()) {
     resArray.push(item);
   }
   console.log(resArray);
 }
 
 async function main() {
-  getWebAppStacks();
+  getAllSubscriptions();
 }
 
 main().catch(console.error);

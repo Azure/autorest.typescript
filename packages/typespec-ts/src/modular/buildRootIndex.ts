@@ -27,7 +27,7 @@ export function buildRootIndex(
     rootIndexFile.addExportDeclarations([
       {
         moduleSpecifier: `./common/interfaces.js`,
-        namedExports: [`ClientOptions`, `RequestOptions`]
+        namedExports: [`RequestOptions`]
       }
     ]);
     buildIndexFirstTime = false;
@@ -37,7 +37,7 @@ export function buildRootIndex(
 function exportClassicalClient(client: Client, indexFile: SourceFile) {
   const clientName = `${getClientName(client)}Client`;
   indexFile.addExportDeclaration({
-    namedExports: [clientName],
+    namedExports: [clientName, `${clientName}Options`],
     moduleSpecifier: `./${clientName}.js`
   });
 }

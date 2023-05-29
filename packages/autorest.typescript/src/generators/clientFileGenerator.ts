@@ -220,7 +220,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     apiVersionParams && apiVersionParams.length === 1
       ? apiVersionParams[0]
       : undefined;
-  writeClassProperties(clientClass, clientParams, importedModels);
+  writeClassProperties(clientClass, clientParams, importedModels, clientDetails.hasTenantLevelOperation);
   writeConstructor(clientDetails, clientClass, importedModels, apiVersionParam);
   if (useCoreV2 && apiVersionParam) {
     writeCustomApiVersion(clientClass);
@@ -246,7 +246,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 function writeClassProperties(
   clientClass: ClassDeclaration,
   clientParams: ParameterDetails[],
-  importedModels: Set<string>
+  importedModels: Set<string>,
+  hasTenantLevelOperation: boolean = false
 ) {
   const params = clientParams.filter(p => !p.isSynthetic);
   params.forEach(({ typeDetails }) =>
@@ -254,6 +255,13 @@ function writeClassProperties(
   );
   clientClass.addProperties(
     params.map(param => {
+      if (param.name === "subscriptionId" && hasTenantLevelOperation) {
+        return {
+          name: param.name,
+          type: param.typeDetails.typeName,
+          hasQuestionToken: true
+        } as PropertyDeclarationStructure;
+      }
       return {
         name: param.name,
         type: param.typeDetails.typeName,
@@ -327,7 +335,7 @@ function writeConstructor(
     typeDetails.usedModels.forEach(model => importedModels.add(model))
   );
 
-  const clientConstructor = classDeclaration.addConstructor({
+  const clientConstructorInitial = {
     docs: [docs],
     parameters: [
       ...requiredParams.map(p => ({
@@ -341,7 +349,55 @@ function writeConstructor(
         type: optionsParameterType
       }
     ]
-  });
+  }
+
+  let clientConstructor;
+  if (clientDetails.hasTenantLevelOperation) {
+    clientConstructor = classDeclaration.addConstructor({
+      parameters: [
+        ...requiredParams
+          .filter(param => {
+            return param.name !== "subscriptionId";
+          })
+          .map(p => ({
+            name: p.name,
+            hasQuestionToken: !p.required,
+            type: p.typeDetails.typeName
+          })),
+        {
+          name: "subscriptionIdOrOptions",
+          hasQuestionToken: true,
+          type: optionsParameterType + "| string"
+        },
+        {
+          name: "options",
+          hasQuestionToken: true,
+          type: optionsParameterType
+        }
+      ]
+    });
+    clientConstructor.addOverload(clientConstructorInitial)
+    clientConstructor.addOverload({
+      parameters: [
+        ...requiredParams
+          .filter(param => {
+            return param.name !== "subscriptionId";
+          })
+          .map(p => ({
+            name: p.name,
+            hasQuestionToken: !p.required,
+            type: p.typeDetails.typeName
+          })),
+        {
+          name: "options",
+          hasQuestionToken: true,
+          type: optionsParameterType
+        }
+      ]
+    });
+  } else {
+    clientConstructor = classDeclaration.addConstructor(clientConstructorInitial);
+  }
 
   const { useCoreV2 } = getAutorestOptions();
   const hasLro = clientDetails.operationGroups.some(og =>
@@ -372,7 +428,13 @@ function writeConstructor(
   };
 
   clientConstructor.addStatements([
-    writeStatements(getRequiredParamChecks(requiredParams), addBlankLine),
+    writeStatements(
+      getRequiredParamChecks(
+        requiredParams,
+        clientDetails.hasTenantLevelOperation
+      ),
+      addBlankLine
+    ),
     writeStatement(
       writeDefaultOptions(
         clientParams.some(p => p.name === "credentials"),
@@ -517,8 +579,17 @@ function writeClientOperations(
   );
 }
 
-function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
-  return requiredParameters.map(
+function getRequiredParamChecks(
+  requiredParameters: ParameterDetails[],
+  hasTenantLevelOperation?: boolean
+) {
+  let requiredParams = requiredParameters;
+  if (hasTenantLevelOperation) {
+    requiredParams = requiredParameters.filter(param => {
+      return param.name !== "subscriptionId";
+    });
+  }
+  return requiredParams.map(
     ({ name }) => `if(${name} === undefined) {
     throw new Error("'${name}' cannot be null");
   }`
@@ -582,7 +653,18 @@ function getTrack2DefaultContent(
     addCredentials
   } = getAutorestOptions();
 
-  const defaultContent = `// Initializing default values for options
+  const overloadDefaults = `
+  let subscriptionId: string | undefined;
+
+  if (typeof subscriptionIdOrOptions === "string") {
+    subscriptionId = subscriptionIdOrOptions;
+  } else if (typeof subscriptionIdOrOptions === "object") {
+    options = subscriptionIdOrOptions;
+  }
+  `;
+
+  const defaultContent = `${clientDetails.hasTenantLevelOperation ? overloadDefaults: ""}
+  // Initializing default values for options
   if (!options) {
     options = {};
   }

@@ -39,7 +39,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { buildSharedTypes } from "./modular/buildSharedTypes.js";
-import { Project } from "ts-morph";
+import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
@@ -152,10 +152,10 @@ export async function $onEmit(context: EmitContext) {
         needUnexpectedHelper.get(subClient.name + "Client")
       );
       buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
-
-      emitPackage(project, srcPath, modularCodeModel);
-      emitTsConfig(project, srcPath, modularCodeModel);
     }
+    emitPackage(project, srcPath, modularCodeModel);
+    emitTsConfig(project, srcPath, modularCodeModel);
+    removeUnusedInterfaces(project);
 
     for (const file of project.getSourceFiles()) {
       await emitContentByBuilder(
@@ -166,6 +166,50 @@ export async function $onEmit(context: EmitContext) {
       // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
     }
   }
+}
+
+function removeUnusedInterfaces(project: Project) {
+  const allInterfaces = project
+    .getSourceFiles()
+    .flatMap((file) => file.getInterfaces());
+
+  const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
+    const references = interfaceDeclaration
+      .findReferencesAsNodes()
+      .filter((node) => {
+        const kind = node.getParent()?.getKind();
+        return (
+          kind !== SyntaxKind.ExportSpecifier &&
+          kind !== SyntaxKind.InterfaceDeclaration
+        );
+      });
+    return references.length === 0;
+  });
+
+  unusedInterfaces.forEach((interfaceDeclaration) => {
+    const interfaceName = interfaceDeclaration.getName();
+
+    // Get the index.ts file
+    const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+
+    for (const indexFile of indexFiles) {
+      // Get all export declarations
+      const exportDeclarations = indexFile.getExportDeclarations();
+
+      // Iterate over each export declaration
+      exportDeclarations.forEach((exportDeclaration) => {
+        // Find named exports that match the unused interface
+        const matchingExports = exportDeclaration
+          .getNamedExports()
+          .filter((ne) => ne.getName() === interfaceName);
+
+        // Remove the matching exports
+        matchingExports.forEach((me) => me.remove());
+      });
+    }
+
+    interfaceDeclaration.remove();
+  });
 }
 
 function clearSrcFolder(

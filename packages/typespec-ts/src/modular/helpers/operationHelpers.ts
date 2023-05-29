@@ -16,9 +16,17 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationName } from "./namingHelpers.js";
 import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
 
-/**
- * This operation builds and returns the function declaration for an operation.
- */
+function getRLCResponseType(operation: Operation) {
+  const { name } = getOperationName(operation, { casing: "pascal" });
+  const statusCodes: (string | number)[] = Array.from(
+    new Set(operation.responses.flatMap((r) => r.statusCodes)).values()
+  );
+
+  statusCodes.push("Default");
+
+  return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
+}
+
 export function getSendPrivateFunction(
   operation: Operation,
   clientType: string
@@ -30,7 +38,8 @@ export function getSendPrivateFunction(
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
-    parameters
+    parameters,
+    returnType: `StreamableMethod<${getRLCResponseType(operation)}>`
   };
 
   const operationPath = operation.url;
@@ -61,7 +70,7 @@ export function getDeserializePrivateFunction(
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: `OperationRawReturnType<typeof _${name}Send>`
+      type: getRLCResponseType(operation)
     }
   ];
 
@@ -115,40 +124,50 @@ function getOperationSignatureParameters(
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const optionsType = getOperationOptionsName(operation);
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [];
+  const parameters: Map<
+    string,
+    OptionalKind<ParameterDeclarationStructure>
+  > = new Map();
   if (operation.bodyParameter?.type.type === "model") {
-    parameters = (operation.bodyParameter?.type.properties ?? [])
+    (operation.bodyParameter?.type.properties ?? [])
       .filter((p) => !p.optional)
       .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type));
+      .map((p) => buildType(p.clientName, p.type))
+      .forEach((p) => parameters.set(p.name, p));
   } else if (operation.bodyParameter?.type.type === "list") {
     const bodyArray = operation.bodyParameter;
-    parameters.push(buildType(bodyArray.clientName, bodyArray.type));
+    parameters.set(
+      bodyArray.clientName,
+      buildType(bodyArray.clientName, bodyArray.type)
+    );
   }
 
-  parameters = parameters.concat(
-    operation.parameters
-      .filter(
-        (p) =>
-          p.implementation === "Method" &&
-          p.type.type !== "constant" &&
-          p.clientDefaultValue === undefined &&
-          !p.optional
-      )
-      .map((p) => buildType(p.clientName, p.type))
-  );
+  operation.parameters
+    .filter(
+      (p) =>
+        p.implementation === "Method" &&
+        p.type.type !== "constant" &&
+        p.clientDefaultValue === undefined &&
+        !p.optional
+    )
+    .map((p) => buildType(p.clientName, p.type))
+    .forEach((p) => {
+      parameters.set(p.name, p);
+    });
 
   // Add context as the first parameter
-  parameters.unshift({ name: "context", type: clientType });
+  const contextParam = { name: "context", type: clientType };
 
   // Add the options parameter
-  parameters.push({
+  const optionsParam = {
     name: "options",
     type: optionsType,
     initializer: "{ requestOptions: {} }"
-  });
+  };
 
-  return parameters;
+  const finalParameters = [contextParam, ...parameters.values(), optionsParam];
+
+  return finalParameters;
 }
 
 /**
@@ -194,24 +213,6 @@ export function getOperationFunction(
     );
   }
   statements.push(`return _${name}Deserialize(result);`);
-
-  // if (response?.type?.type === "any") {
-  //   statements.push(`return result.body`);
-  // } else if (response?.type?.elementType) {
-  //   statements.push(
-  //     `return ${deserializeResponseValue(response.type, "result.body")}`
-  //   );
-  // } else if (response?.type?.properties) {
-  //   statements.push(
-  //     `return {`,
-  //     getResponseMapping(response.type.properties ?? []).join(","),
-  //     `}`
-  //   );
-  // } else if (returnType.type === "void") {
-  //   statements.push(`return;`);
-  // } else {
-  //   statements.push(`return result.body;`);
-  // }
   return {
     ...functionStatement,
     statements
