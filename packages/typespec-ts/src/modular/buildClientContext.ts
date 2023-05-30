@@ -22,6 +22,17 @@ export function buildClientContext(
   );
 
   let factoryFunction;
+  clientContextFile.addImportDeclaration({
+    moduleSpecifier: "@azure-rest/core-client",
+    namedImports: ["ClientOptions"]
+  });
+
+  clientContextFile.addInterface({
+    name: `${name}ClientOptions`,
+    isExported: true,
+    extends: ["ClientOptions"]
+  });
+  
   if (subfolder && subfolder !== "") {
     clientContextFile.addImportDeclaration({
       moduleSpecifier: `../../rest/${subfolder}/index.js`,
@@ -49,6 +60,7 @@ export function buildClientContext(
       moduleSpecifier: `../rest/index.js`,
       namedExports: [`${client.name}Context`]
     });
+
     factoryFunction = clientContextFile.addFunction({
       docs: [description],
       name: `create${name}`,
@@ -57,17 +69,6 @@ export function buildClientContext(
       isExported: true
     });
   }
-
-  clientContextFile.addImportDeclaration({
-    moduleSpecifier: "@azure-rest/core-client",
-    namedImports: ["ClientOptions"]
-  });
-
-  clientContextFile.addInterface({
-    name: `${name}ClientOptions`,
-    isExported: true,
-    extends: ["ClientOptions"]
-  });
 
   const credentialsParam = parameters.find(
     (p) => p.clientName === "credential"

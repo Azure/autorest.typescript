@@ -83,6 +83,7 @@ import {
 } from "./modularCodeModel.js";
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
 import { camelToSnakeCase, toCamelCase } from "../casingUtils.js";
+import { getEnrichedDefaultApiVersion } from "../modelUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -469,6 +470,9 @@ function emitParameter(
     paramMap.in_docstring = false;
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
+    }
+    if (!clientDefaultValue) {
+      clientDefaultValue = getEnrichedDefaultApiVersion(context.program, context);
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };

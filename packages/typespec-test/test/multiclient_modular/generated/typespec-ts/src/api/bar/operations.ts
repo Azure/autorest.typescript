@@ -124,7 +124,7 @@ export function _deleteWithHeadersSend(
 }
 
 export async function _deleteWithHeadersDeserialize(
-  result: DeleteWithHeaders204Response
+  _result: DeleteWithHeaders204Response
 ): Promise<void> {
   return;
 }

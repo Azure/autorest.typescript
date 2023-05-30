@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Resource } from "./api/foo/models.js";
+export { Resource, CustomPage } from "./api/foo/models.js";
 export {
   CreateOrUpdateOptions,
   GetOptions,
@@ -10,7 +10,10 @@ export {
 } from "./api/foo/operations.js";
 export { FooClient, FooClientOptions } from "./FooClient.js";
 export { RequestOptions } from "./common/interfaces.js";
-export { Resource as BarClientResource } from "./api/bar/models.js";
+export {
+  Resource as BarClientResource,
+  CustomPage as BarClientCustomPage,
+} from "./api/bar/models.js";
 export {
   GetBinaryOptions,
   GetArrayOptions,

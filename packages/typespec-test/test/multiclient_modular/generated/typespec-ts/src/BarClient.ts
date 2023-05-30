@@ -3,8 +3,8 @@
 
 import {
   createBar,
-  Client,
   BarClientOptions,
+  Client,
   Resource,
   getBinary,
   getArray,
@@ -20,12 +20,8 @@ export class BarClient {
   private _client: Client.BarContext;
 
   /** Bar */
-  constructor(
-    endpoint: string,
-    apiVersion: string,
-    options: BarClientOptions = {}
-  ) {
-    this._client = createBar(endpoint, apiVersion, options);
+  constructor(endpoint: string, options: BarClientOptions = {}) {
+    this._client = createBar(endpoint, options);
   }
 
   /** */

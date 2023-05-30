@@ -3,8 +3,8 @@
 
 import {
   createFoo,
-  Client,
   FooClientOptions,
+  Client,
   Resource,
   CustomPage,
   createOrUpdate,
@@ -21,12 +21,8 @@ export class FooClient {
   private _client: Client.FooContext;
 
   /** Cadl Foo */
-  constructor(
-    endpoint: string,
-    apiVersion: string,
-    options: FooClientOptions = {}
-  ) {
-    this._client = createFoo(endpoint, apiVersion, options);
+  constructor(endpoint: string, options: FooClientOptions = {}) {
+    this._client = createFoo(endpoint, options);
   }
 
   /** Creates a new resource or updates an existing one. */

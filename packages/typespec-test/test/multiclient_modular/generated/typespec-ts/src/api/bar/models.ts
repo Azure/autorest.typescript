@@ -12,3 +12,11 @@ export interface Resource {
   /** */
   type: string;
 }
+
+/** Paged collection of Resource items */
+export interface CustomPage {
+  /** The Resource items on this page */
+  value: Resource[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}

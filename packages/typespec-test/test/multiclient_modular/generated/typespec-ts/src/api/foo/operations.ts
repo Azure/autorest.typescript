@@ -37,7 +37,7 @@ export function _createOrUpdateSend(
     .put({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      body: { description: options?.description, type: type },
+      body: { name, description: options?.description, type: type },
     });
 }
 
