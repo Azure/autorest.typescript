@@ -4,13 +4,19 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import {
   User,
+  ResourceOperationStatus,
   beginCreateOrReplace,
+  beginExport,
   CreateOrReplaceOptions,
+  ExportOptions,
   createStandard,
   StandardContext,
   StandardClientOptions,
 } from "./api/index.js";
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
+  SimplePollerLike,
+  OperationState as LroOperationState,
+} from "@azure/core-lro";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 
@@ -30,7 +36,21 @@ export class StandardClient {
     role: string,
     name: string,
     options: CreateOrReplaceOptions = { requestOptions: {} }
-  ): Promise<SimplePollerLike<OperationState<User>, User>> {
+  ): Promise<SimplePollerLike<LroOperationState<User>, User>> {
     return beginCreateOrReplace(this._client, role, name, options);
+  }
+
+  /** Exports a User */
+  beginExport(
+    name: string,
+    format: string,
+    options: ExportOptions = { requestOptions: {} }
+  ): Promise<
+    SimplePollerLike<
+      LroOperationState<ResourceOperationStatus>,
+      ResourceOperationStatus
+    >
+  > {
+    return beginExport(this._client, name, format, options);
   }
 }

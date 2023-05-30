@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { CreateOrReplaceParameters } from "./parameters.js";
+import { CreateOrReplaceParameters, ExportParameters } from "./parameters.js";
 import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -20,9 +22,18 @@ export interface CreateOrReplace {
   >;
 }
 
+export interface Export {
+  /** Exports a User */
+  post(
+    options: ExportParameters
+  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
+}
+
 export interface Routes {
   /** Resource for '/users/\{name\}' has methods for the following verbs: put */
   (path: "/users/{name}", name: string): CreateOrReplace;
+  /** Resource for '/users/\{name\}:export' has methods for the following verbs: post */
+  (path: "/users/{name}:export", name: string): Export;
 }
 
 export type StandardContext = Client & {

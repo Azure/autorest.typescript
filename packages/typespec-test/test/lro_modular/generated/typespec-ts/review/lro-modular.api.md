@@ -6,7 +6,7 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { OperationState } from '@azure/core-lro';
+import { OperationState as OperationState_2 } from '@azure/core-lro';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { SimplePollerLike } from '@azure/core-lro';
 import { TokenCredential } from '@azure/core-auth';
@@ -18,6 +18,37 @@ export interface CreateOrReplaceOptions extends RequestOptions {
 }
 
 // @public
+interface Error_2 {
+    code: string;
+    details: Error_2[];
+    innererror?: InnerError;
+    message: string;
+    target?: string;
+}
+export { Error_2 as Error }
+
+// @public
+export interface ExportedUser {
+    name: string;
+    resourceUri: string;
+}
+
+// @public (undocumented)
+export interface ExportOptions extends RequestOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public
+export interface InnerError {
+    code: string;
+    innererror?: InnerError;
+}
+
+// @public
+export type OperationState = string;
+
+// @public
 export interface RequestOptions {
     requestOptions?: {
         headers?: RawHttpHeadersInput;
@@ -27,9 +58,18 @@ export interface RequestOptions {
 }
 
 // @public (undocumented)
+export interface ResourceOperationStatus {
+    error?: Error_2;
+    readonly id: string;
+    result?: ExportedUser;
+    status: OperationState;
+}
+
+// @public (undocumented)
 export class StandardClient {
     constructor(credential: KeyCredential | TokenCredential, options?: StandardClientOptions);
-    beginCreateOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState<User>, User>>;
+    beginCreateOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState_2<User>, User>>;
+    beginExport(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState_2<ResourceOperationStatus>, ResourceOperationStatus>>;
 }
 
 // @public (undocumented)

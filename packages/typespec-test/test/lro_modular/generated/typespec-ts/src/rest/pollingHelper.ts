@@ -15,6 +15,9 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
   CreateOrReplaceLogicalResponse,
+  Export202Response,
+  ExportDefaultResponse,
+  ExportLogicalResponse,
 } from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -23,6 +26,13 @@ import {
  * @param options - Options to set a resume state or custom polling interval.
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
+export async function getLongRunningPoller<
+  TResult extends ExportLogicalResponse | ExportDefaultResponse
+>(
+  client: Client,
+  initialResponse: Export202Response | ExportDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends
     | CreateOrReplaceLogicalResponse

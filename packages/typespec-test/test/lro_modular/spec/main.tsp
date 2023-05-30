@@ -71,3 +71,8 @@ model ExportedUser {
 @summary("Adds a user or replaces a user's fields.")
 @global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, never>)
 op createOrReplace is ResourceOperations.LongRunningResourceCreateOrReplace<User>;
+
+@doc("Exports a User")
+@summary("Exports a user.")
+@global.Azure.Core.pollingOperation(ResourceOperations.GetResourceOperationStatus<User, ExportedUser>)
+op export is ResourceOperations.LongRunningResourceAction<User, UserExportParams, ExportedUser>;

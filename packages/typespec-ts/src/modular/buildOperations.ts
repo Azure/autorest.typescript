@@ -1,4 +1,9 @@
-import { Project, SourceFile } from "ts-morph";
+import {
+  FunctionDeclarationStructure,
+  OptionalKind,
+  Project,
+  SourceFile
+} from "ts-morph";
 import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
@@ -21,6 +26,9 @@ export function buildOperationFiles(
   srcPath: string = "src"
 ) {
   for (const operationGroup of client.operationGroups) {
+    // Operation-level container to save the auxiliary functions during deserialization
+    const auxiliaryFunctionCbs: OptionalKind<FunctionDeclarationStructure>[] =
+      [];
     const fileName = operationGroup.className
       ? `${operationGroup.className}`
       : // When the program has no operation groups defined all operations are put
@@ -35,13 +43,19 @@ export function buildOperationFiles(
       buildOperationOptions(o, operationGroupFile);
       const operationDeclaration = getOperationFunction(o);
       const sendOperationDeclaration = getSendPrivateFunction(o);
-      const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(
+        o,
+        auxiliaryFunctionCbs
+      );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
         deserializeOperationDeclaration,
         operationDeclaration
       ]);
     });
+
+    // Post-process to add auxiliary private functions
+    operationGroupFile.addFunctions(auxiliaryFunctionCbs);
 
     operationGroupFile.addImportDeclarations([
       {

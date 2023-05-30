@@ -6,11 +6,16 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
+  Export202Response,
+  ExportLogicalResponse,
+  ExportDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "PUT /users/{name}": ["200", "201"],
   "GET /users/{name}": ["200", "201"],
+  "POST /users/{name}:export": ["202"],
+  "GET /users/{name}:export": ["200", "202"],
 };
 
 export function isUnexpected(
@@ -21,12 +26,18 @@ export function isUnexpected(
     | CreateOrReplaceDefaultResponse
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
+): response is ExportDefaultResponse;
+export function isUnexpected(
   response:
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
-): response is CreateOrReplaceDefaultResponse {
+    | Export202Response
+    | ExportLogicalResponse
+    | ExportDefaultResponse
+): response is CreateOrReplaceDefaultResponse | ExportDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

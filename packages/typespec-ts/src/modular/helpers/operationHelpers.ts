@@ -3,7 +3,7 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { toPascalCase } from "../../casingUtils.js";
+import { camelToSnakeCase, toPascalCase } from "../../casingUtils.js";
 import {
   BodyParameter,
   Operation,
@@ -59,7 +59,8 @@ export function getSendPrivateFunction(
 }
 
 export function getDeserializePrivateFunction(
-  operation: Operation
+  operation: Operation,
+  auxiliaryFuntionCbs: OptionalKind<FunctionDeclarationStructure>[]
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
@@ -90,12 +91,19 @@ export function getDeserializePrivateFunction(
     statements.push(`return result.body`);
   } else if (response?.type?.elementType) {
     statements.push(
-      `return ${deserializeResponseValue(response.type, "result.body")}`
+      `return ${deserializeResponseValue(
+        response.type,
+        "result.body",
+        auxiliaryFuntionCbs
+      )}`
     );
   } else if (response?.type?.properties) {
     statements.push(
       `return {`,
-      getResponseMapping(response.type.properties ?? []).join(","),
+      getResponseMapping(
+        response.type.properties ?? [],
+        auxiliaryFuntionCbs
+      ).join(","),
       `}`
     );
   } else if (returnType.type === "void") {
@@ -546,6 +554,7 @@ function getNullableCheck(name: string, type: Type) {
  */
 function getResponseMapping(
   properties: Property[],
+  auxiliaryFuntionCbs: OptionalKind<FunctionDeclarationStructure>[],
   propertyPath: string = "result.body"
 ) {
   const props: string[] = [];
@@ -553,15 +562,26 @@ function getResponseMapping(
     // TODO: Do we need to also add headers in the result type?
     const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
-      const definition = `"${property.restApiName}": ${getNullableCheck(
-        propertyFullName,
-        property.type
-      )} ${
-        !property.optional ? "" : `!${propertyFullName} ? undefined :`
-      } {${getResponseMapping(
-        property.type.properties ?? [],
-        `${propertyPath}.${property.restApiName}${property.optional ? "?" : ""}`
-      )}}`;
+      let definition = "";
+      if (isSelfReferModel(property.type) && property.type.name) {
+        auxiliaryFuntionCbs.push(
+          getSelfReferModelFunction(property.type, auxiliaryFuntionCbs)
+        );
+        definition = `"${property.restApiName}": _parse${camelToSnakeCase(
+          property.type.name
+        )}(${propertyPath}.${property.restApiName})`;
+      } else {
+        definition = `"${property.restApiName}":
+       ${getNullableCheck(propertyFullName, property.type)} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } {${getResponseMapping(
+          property.type.properties ?? [],
+          auxiliaryFuntionCbs,
+          `${propertyPath}.${property.restApiName}${
+            property.optional ? "?" : ""
+          }`
+        )}}`;
+      }
       props.push(definition);
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
@@ -571,7 +591,8 @@ function getResponseMapping(
       props.push(
         `"${property.clientName}": ${deserializeResponseValue(
           property.type,
-          restValue
+          restValue,
+          auxiliaryFuntionCbs
         )}`
       );
     }
@@ -580,27 +601,106 @@ function getResponseMapping(
   return props;
 }
 
+function isSelfReferModel(model: Type) {
+  if (model.type !== "model" && !model.properties) {
+    return false;
+  }
+  let self = model.name;
+  return model.properties?.some(
+    (p) =>
+      (p.type.type === "model" && p.type.name === self) ||
+      (p.type.type === "list" &&
+        p.type.elementType?.type === "model" &&
+        p.type.elementType.name === self)
+  );
+}
+
+function getSelfReferModelFunction(
+  model: Type,
+  auxiliaryFuntionCbs: OptionalKind<FunctionDeclarationStructure>[]
+): OptionalKind<FunctionDeclarationStructure> {
+  const statements: string[] = [];
+  const assignments: string[] = [];
+  const self = model.name;
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    isAsync: false,
+    isExported: false,
+    name: `_parse${camelToSnakeCase(model.name!)}`,
+    parameters: [
+      {
+        name: "input",
+        type: "any"
+      }
+    ]
+  };
+  for (let prop of model.properties ?? []) {
+    if (prop.type.type === "model" && prop.type.name === self) {
+      assignments.push(
+        `${prop.restApiName}: _parse${camelToSnakeCase(model.name!)}(input?.${
+          prop.restApiName
+        })`
+      );
+    } else if (
+      prop.type.type === "list" &&
+      prop.type.elementType?.type === "model" &&
+      prop.type.elementType.name === self
+    ) {
+      assignments.push(
+        `${prop.restApiName}: (input?.${
+          prop.restApiName
+        } ?? []).map(p => _parse${camelToSnakeCase(model.name!)}(p))`
+      );
+    } else {
+      assignments.push(
+        ...getResponseMapping([prop], auxiliaryFuntionCbs, "input")
+      );
+    }
+  }
+
+  statements.push(`if(!input) { return null; }`);
+  statements.push(`return {`, assignments.join(","), `}`);
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
 /**
  * This function helps converting strings into JS complex types recursively.
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function deserializeResponseValue(type: Type, restValue: string): string {
+function deserializeResponseValue(
+  type: Type,
+  restValue: string,
+  auxiliaryFuntionCbs: OptionalKind<FunctionDeclarationStructure>[]
+): string {
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
     case "list":
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
-          "p"
-        )}}))`;
+        if (isSelfReferModel(type.elementType)) {
+          auxiliaryFuntionCbs.push(
+            getSelfReferModelFunction(type.elementType, auxiliaryFuntionCbs)
+          );
+          return `(${restValue} ?? []).map(p => _parse${camelToSnakeCase(
+            type.elementType.name!
+          )}(p))`;
+        } else {
+          return `(${restValue} ?? []).map(p => ({${getResponseMapping(
+            type.elementType?.properties ?? [],
+            auxiliaryFuntionCbs,
+            "p"
+          )}}))`;
+        }
       } else if (
         type.elementType?.properties?.some((p) => needsDeserialize(p.type))
       ) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
-          "p"
+          "p",
+          auxiliaryFuntionCbs
         )})`;
       } else {
         return restValue;

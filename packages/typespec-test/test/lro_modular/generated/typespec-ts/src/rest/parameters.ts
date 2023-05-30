@@ -11,3 +11,14 @@ export interface CreateOrReplaceBodyParam {
 
 export type CreateOrReplaceParameters = CreateOrReplaceBodyParam &
   RequestParameters;
+
+export interface ExportQueryParamProperties {
+  /** The format of the data. */
+  format: string;
+}
+
+export interface ExportQueryParam {
+  queryParameters: ExportQueryParamProperties;
+}
+
+export type ExportParameters = ExportQueryParam & RequestParameters;
