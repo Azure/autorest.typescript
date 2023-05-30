@@ -72,6 +72,7 @@ export function getDeserializePrivateFunction(
   ];
 
   // TODO: Support operation overloads
+  // TODO: Handle LRO deserialization
   const response = operation.responses[0]!;
   const returnType = response?.type?.type
     ? buildType(response.type.name, response.type)
@@ -625,14 +626,19 @@ function getSelfReferModelFunction(
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: false,
     isExported: false,
+    // TODO: better naming for function
     name: `_parse${camelToSnakeCase(model.name!)}`,
     parameters: [
       {
         name: "input",
         type: "any"
+        // TODO: Enable optional here
+        // TODO: switch to detail type
       }
     ]
+    // TODO: handle return type
   };
+  // TODO: handle optional and required one
   for (let prop of model.properties ?? []) {
     if (prop.type.type === "model" && prop.type.name === self) {
       assignments.push(

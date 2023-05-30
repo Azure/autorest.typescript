@@ -121,7 +121,7 @@ export async function _exportDeserialize(
   return {
     id: result.body["id"],
     status: result.body["status"],
-    error: _parseerror(result.body.error) as any,
+    error: _parseerror(result.body.error),
     result: !result.body.result
       ? undefined
       : {
