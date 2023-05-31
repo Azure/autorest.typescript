@@ -21,7 +21,7 @@ model Resource {
 
   @key
   @segment("resources")
-  @visibility("read create")
+  @visibility("read")
   name: string;
   description?: string;
   type: string;

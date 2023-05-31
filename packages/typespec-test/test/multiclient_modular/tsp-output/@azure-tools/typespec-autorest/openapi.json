@@ -339,6 +339,10 @@
           "type": "string",
           "readOnly": true
         },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
         "description": {
           "type": "string"
         },
@@ -348,6 +352,7 @@
       },
       "required": [
         "id",
+        "name",
         "type"
       ]
     },

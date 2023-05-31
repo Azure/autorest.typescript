@@ -3,7 +3,7 @@
 
 export interface ResourceOutput {
   readonly id: string;
-  name: string;
+  readonly name: string;
   description?: string;
   type: string;
 }
