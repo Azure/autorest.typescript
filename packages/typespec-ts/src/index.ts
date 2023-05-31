@@ -168,6 +168,9 @@ export async function $onEmit(context: EmitContext) {
   }
 }
 
+/**
+ * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
+ */
 // function removeUnusedInterfaces(project: Project) {
 //   const allInterfaces = project
 //     .getSourceFiles()
@@ -193,6 +196,8 @@ export async function $onEmit(context: EmitContext) {
 //     const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
 
 //     for (const indexFile of indexFiles) {
+//       const filepath = indexFile.getFilePath();
+//       console.log(filepath);
 //       // Get all export declarations
 //       const exportDeclarations = indexFile.getExportDeclarations();
 

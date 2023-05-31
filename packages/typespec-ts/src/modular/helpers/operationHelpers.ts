@@ -72,7 +72,7 @@ export function getDeserializePrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
       type: getRLCResponseType(operation)
@@ -81,9 +81,21 @@ export function getDeserializePrivateFunction(
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
-  const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type)
-    : { name: "", type: "void" };
+  let returnType;
+  if (response?.type?.type) {
+    returnType = buildType(response.type.name, response.type)
+  } else {
+    if (!needUnexpectedHelper) {
+      parameters = [
+        {
+          name: "_result",
+          type: getRLCResponseType(operation)
+        }
+      ];
+    }
+    returnType = { name: "", type: "void" };
+  }
+
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,
