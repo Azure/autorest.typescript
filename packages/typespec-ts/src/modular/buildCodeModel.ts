@@ -1,4 +1,8 @@
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import {
+  getLroMetadata,
+  getPagedResult,
+  isFixed
+} from "@azure-tools/typespec-azure-core";
 import {
   EnumMember,
   Enum,
@@ -155,13 +159,8 @@ function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
 }
 
-function isLro(_program: Program, operation: Operation): boolean {
-  for (const decorator of operation.decorators) {
-    if (decorator.decorator.name === "$pollingOperation") {
-      return true;
-    }
-  }
-  return false;
+function isLro(program: Program, operation: Operation): boolean {
+  return Boolean(getLroMetadata(program, operation));
 }
 
 function handleDiscriminator(context: SdkContext, type: Model, model: any) {
@@ -656,6 +655,8 @@ function emitLroOperation(
     operationGroupName
   );
   addLroInformation(emittedOperation);
+  let meta = getLroMetadata(context.program, operation);
+  meta = meta;
   return emittedOperation;
 }
 
