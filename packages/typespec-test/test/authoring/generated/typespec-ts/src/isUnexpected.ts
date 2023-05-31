@@ -6,16 +6,16 @@ import {
   CreateOrUpdate201Response,
   CreateOrUpdateLogicalResponse,
   CreateOrUpdateDefaultResponse,
-  Get200Response,
-  GetDefaultResponse,
-  Delete202Response,
+  GetOperation200Response,
+  GetOperationDefaultResponse,
+  DeleteOperation202Response,
   DeleteLogicalResponse,
-  DeleteDefaultResponse,
+  DeleteOperationDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
-  Export202Response,
+  ExportOperation202Response,
   ExportLogicalResponse,
-  ExportDefaultResponse,
+  ExportOperationDefaultResponse,
   Importx202Response,
   ImportxLogicalResponse,
   ImportxDefaultResponse,
@@ -89,17 +89,23 @@ export function isUnexpected(
     | CreateOrUpdateDefaultResponse
 ): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: Get200Response | GetDefaultResponse
-): response is GetDefaultResponse;
+  response: GetOperation200Response | GetOperationDefaultResponse
+): response is GetOperationDefaultResponse;
 export function isUnexpected(
-  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse
-): response is DeleteDefaultResponse;
+  response:
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
+): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
   response: ListProjects200Response | ListProjectsDefaultResponse
 ): response is ListProjectsDefaultResponse;
 export function isUnexpected(
-  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
-): response is ExportDefaultResponse;
+  response:
+    | ExportOperation202Response
+    | ExportLogicalResponse
+    | ExportOperationDefaultResponse
+): response is ExportOperationDefaultResponse;
 export function isUnexpected(
   response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse
 ): response is ImportxDefaultResponse;
@@ -155,16 +161,16 @@ export function isUnexpected(
     | CreateOrUpdate201Response
     | CreateOrUpdateLogicalResponse
     | CreateOrUpdateDefaultResponse
-    | Get200Response
-    | GetDefaultResponse
-    | Delete202Response
+    | GetOperation200Response
+    | GetOperationDefaultResponse
+    | DeleteOperation202Response
     | DeleteLogicalResponse
-    | DeleteDefaultResponse
+    | DeleteOperationDefaultResponse
     | ListProjects200Response
     | ListProjectsDefaultResponse
-    | Export202Response
+    | ExportOperation202Response
     | ExportLogicalResponse
-    | ExportDefaultResponse
+    | ExportOperationDefaultResponse
     | Importx202Response
     | ImportxLogicalResponse
     | ImportxDefaultResponse
@@ -195,10 +201,10 @@ export function isUnexpected(
     | ListTrainingConfigVersionsDefaultResponse
 ): response is
   | CreateOrUpdateDefaultResponse
-  | GetDefaultResponse
-  | DeleteDefaultResponse
+  | GetOperationDefaultResponse
+  | DeleteOperationDefaultResponse
   | ListProjectsDefaultResponse
-  | ExportDefaultResponse
+  | ExportOperationDefaultResponse
   | ImportxDefaultResponse
   | TrainDefaultResponse
   | GetDeploymentDefaultResponse

@@ -18,8 +18,8 @@ import {
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
   createWidgetService,
-  WidgetServiceContext,
   WidgetServiceClientOptions,
+  WidgetServiceContext,
 } from "./api/index.js";
 
 export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";

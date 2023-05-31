@@ -2,8 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  WidgetServiceContext as Client,
-  isUnexpected,
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
   CreateWidget201Response,
@@ -12,10 +10,12 @@ import {
   DeleteWidgetDefaultResponse,
   GetWidget200Response,
   GetWidgetDefaultResponse,
+  isUnexpected,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
   UpdateWidget200Response,
   UpdateWidgetDefaultResponse,
+  WidgetServiceContext as Client,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { Widget, ColorType, AnalyzeResult } from "./models.js";
@@ -32,7 +32,6 @@ export function _listWidgetsSend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -60,6 +59,10 @@ export async function listWidgets(
   options: ListWidgetsOptions = { requestOptions: {} }
 ): Promise<Widget[]> {
   const result = await _listWidgetsSend(context, options);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _listWidgetsDeserialize(result);
 }
 
@@ -75,7 +78,6 @@ export function _getWidgetSend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -100,6 +102,10 @@ export async function getWidget(
   options: GetWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _getWidgetSend(context, id, options);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _getWidgetDeserialize(result);
 }
 
@@ -116,7 +122,6 @@ export function _createWidgetSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
       body: { weight: weight, color: color },
     });
 }
@@ -148,6 +153,10 @@ export async function createWidget(
   options: CreateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _createWidgetSend(context, weight, color, options);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _createWidgetDeserialize(result);
 }
 
@@ -168,7 +177,6 @@ export function _updateWidgetSend(
     .patch({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
       body: { weight: options?.weight, color: options?.color },
     });
 }
@@ -197,6 +205,10 @@ export async function updateWidget(
   options: UpdateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _updateWidgetSend(context, id, options);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _updateWidgetDeserialize(result);
 }
 
@@ -212,7 +224,6 @@ export function _deleteWidgetSend(
     .delete({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -233,6 +244,10 @@ export async function deleteWidget(
   options: DeleteWidgetOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteWidgetSend(context, id, options);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _deleteWidgetDeserialize(result);
 }
 
@@ -248,7 +263,6 @@ export function _analyzeWidgetSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -271,5 +285,9 @@ export async function analyzeWidget(
   options: AnalyzeWidgetOptions = { requestOptions: {} }
 ): Promise<AnalyzeResult> {
   const result = await _analyzeWidgetSend(context, id, options);
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _analyzeWidgetDeserialize(result);
 }

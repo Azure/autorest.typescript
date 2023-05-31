@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
+  isUnexpected,
+  EventGridContext as Client,
   AcknowledgeCloudEvents200Response,
   AcknowledgeCloudEventsDefaultResponse,
-  EventGridContext as Client,
-  isUnexpected,
   PublishCloudEvent200Response,
   PublishCloudEventDefaultResponse,
   PublishCloudEvents200Response,
@@ -40,17 +40,15 @@ export function _publishCloudEventSend(
 ): StreamableMethod<
   PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 > {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      contentType:
-        (options.contentType as any) ??
-        "application/cloudevents+json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
-      body: { event: event },
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    contentType:
+      (options.contentType as any) ??
+      "application/cloudevents+json; charset=utf-8",
+
+    body: { event: event },
+  });
 }
 
 export async function _publishCloudEventDeserialize(
@@ -76,6 +74,10 @@ export async function publishCloudEvent(
     topicName,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _publishCloudEventDeserialize(result);
 }
 
@@ -92,17 +94,15 @@ export function _publishCloudEventsSend(
 ): StreamableMethod<
   PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 > {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      contentType:
-        (options.contentType as any) ??
-        "application/cloudevents-batch+json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
-      body: events,
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    contentType:
+      (options.contentType as any) ??
+      "application/cloudevents-batch+json; charset=utf-8",
+
+    body: events,
+  });
 }
 
 export async function _publishCloudEventsDeserialize(
@@ -128,6 +128,10 @@ export async function publishCloudEvents(
     topicName,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _publishCloudEventsDeserialize(result);
 }
 
@@ -155,7 +159,6 @@ export function _receiveCloudEventsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
       queryParameters: {
         maxEvents: options?.maxEvents,
         maxWaitTime: options?.maxWaitTime,
@@ -205,6 +208,10 @@ export async function receiveCloudEvents(
     eventSubscriptionName,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _receiveCloudEventsDeserialize(result);
 }
 
@@ -233,7 +240,7 @@ export function _acknowledgeCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
+
       body: { lockTokens: lockTokens },
     });
 }
@@ -272,6 +279,10 @@ export async function acknowledgeCloudEvents(
     eventSubscriptionName,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _acknowledgeCloudEventsDeserialize(result);
 }
 
@@ -300,7 +311,7 @@ export function _releaseCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
+
       body: { lockTokens: lockTokens },
     });
 }
@@ -337,6 +348,10 @@ export async function releaseCloudEvents(
     eventSubscriptionName,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _releaseCloudEventsDeserialize(result);
 }
 
@@ -365,7 +380,7 @@ export function _rejectCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
+
       body: { lockTokens: lockTokens },
     });
 }
@@ -402,5 +417,9 @@ export async function rejectCloudEvents(
     eventSubscriptionName,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _rejectCloudEventsDeserialize(result);
 }

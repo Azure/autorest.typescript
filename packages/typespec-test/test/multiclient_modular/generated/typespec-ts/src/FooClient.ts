@@ -17,6 +17,8 @@ import {
   ListOptions,
 } from "./api/foo/index.js";
 
+export { FooClientOptions } from "./api/foo/FooContext.js";
+
 export class FooClient {
   private _client: Client.FooContext;
 
@@ -63,5 +65,3 @@ export class FooClient {
     return list(this._client, options);
   }
 }
-
-export { FooClientOptions } from "./api/foo/FooContext.js";

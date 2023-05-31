@@ -11,10 +11,10 @@ import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
-  Get200Response,
-  GetDefaultResponse,
-  Delete204Response,
-  DeleteDefaultResponse,
+  GetOperation200Response,
+  GetOperationDefaultResponse,
+  DeleteOperation204Response,
+  DeleteOperationDefaultResponse,
   List200Response,
   ListDefaultResponse,
 } from "./responses";
@@ -32,11 +32,13 @@ export interface CreateOrUpdate {
   /** Gets the details of a resource. */
   get(
     options?: GetParameters
-  ): StreamableMethod<Get200Response | GetDefaultResponse>;
+  ): StreamableMethod<GetOperation200Response | GetOperationDefaultResponse>;
   /** Deletes a resource. */
   delete(
     options?: DeleteParameters
-  ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
+  ): StreamableMethod<
+    DeleteOperation204Response | DeleteOperationDefaultResponse
+  >;
 }
 
 export interface List {

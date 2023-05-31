@@ -29,6 +29,12 @@ export function buildClassicalClient(
   const clientFile = project.createSourceFile(
     `${srcPath}/src/${classicalClientname}.ts`
   );
+  clientFile.addExportDeclaration({
+    namedExports: [`${classicalClientname}Options`],
+    moduleSpecifier: `./api/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }${modularClientName}Context.js`
+  });
 
   const clientClass = clientFile.addClass({
     isExported: true,
@@ -37,24 +43,12 @@ export function buildClassicalClient(
 
   // Add the private client member. This will be the client context from /api
   if (subfolder && subfolder !== "") {
-
-    clientFile.addExportDeclaration({
-      namedExports: [`${classicalClientname}Options`],
-      moduleSpecifier: `./api/${subfolder}/${modularClientName}Context.js`
-    });
-
     clientClass.addProperty({
       name: "_client",
       type: `Client.${modularClientName}Context`,
       scope: Scope.Private
     });
-    
   } else {
-    clientFile.addExportDeclaration({
-      namedExports: [`${classicalClientname}Options`],
-      moduleSpecifier: `./api/${modularClientName}Context.js`
-    });
-
     clientClass.addProperty({
       name: "_client",
       type: `${modularClientName}Context`,
@@ -169,7 +163,7 @@ function buildClientOperationGroups(
       clientClass.addMethods(
         operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
-            docs: d.docs ,
+            docs: d.docs,
             name: d.name ?? "FIXME",
             kind: StructureKind.Method,
             returnType: d.returnType,

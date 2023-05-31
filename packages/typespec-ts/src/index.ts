@@ -70,7 +70,7 @@ export async function $onEmit(context: EmitContext) {
     );
     const pathToClear = rlcModels.srcPath;
     needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
-    clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
+    clearSrcFolder(pathToClear, count, options.multiClient, options.isModularLibrary);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -220,12 +220,13 @@ export async function $onEmit(context: EmitContext) {
 function clearSrcFolder(
   srcPath: string,
   count: number,
-  isMultiClient: boolean = false
+  isMultiClient: boolean = false,
+  isModularLibrary: boolean = false
 ) {
   fsextra.emptyDirSync(srcPath);
-  if (isMultiClient && count === 0) {
+  if ((isMultiClient || isModularLibrary) && count === 0) {
     const folderPath = path.join(
-      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
+      srcPath.substring(0, srcPath.lastIndexOf(path.sep + "src") + 4)
     );
     fsextra.emptyDirSync(folderPath);
   }

@@ -2,14 +2,14 @@
 // Licensed under the MIT license.
 
 import {
-  OpenAIContext as Client,
-  isUnexpected,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetCompletions200Response,
   GetCompletionsDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
+  isUnexpected,
+  OpenAIContext as Client,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
@@ -45,7 +45,6 @@ export function _getEmbeddingsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
       body: { user: options?.user, model: options?.model, input: input },
     });
 }
@@ -82,6 +81,10 @@ export async function getEmbeddings(
     deploymentId,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _getEmbeddingsDeserialize(result);
 }
 
@@ -181,7 +184,6 @@ export function _getCompletionsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
       body: {
         prompt: prompt,
         max_tokens: options?.maxTokens,
@@ -251,6 +253,10 @@ export async function getCompletions(
     deploymentId,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _getCompletionsDeserialize(result);
 }
 
@@ -333,7 +339,6 @@ export function _getChatCompletionsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
       body: {
         messages: messages,
         max_tokens: options?.maxTokens,
@@ -396,5 +401,9 @@ export async function getChatCompletions(
     deploymentId,
     options
   );
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return _getChatCompletionsDeserialize(result);
 }

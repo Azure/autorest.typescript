@@ -15,11 +15,11 @@ import {
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
   CreateOrUpdateLogicalResponse,
-  Delete202Response,
-  DeleteDefaultResponse,
+  DeleteOperation202Response,
+  DeleteOperationDefaultResponse,
   DeleteLogicalResponse,
-  Export202Response,
-  ExportDefaultResponse,
+  ExportOperation202Response,
+  ExportOperationDefaultResponse,
   ExportLogicalResponse,
   Importx202Response,
   ImportxDefaultResponse,
@@ -56,17 +56,17 @@ export async function getLongRunningPoller<
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
-  TResult extends DeleteLogicalResponse | DeleteDefaultResponse
+  TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse
 >(
   client: Client,
-  initialResponse: Delete202Response | DeleteDefaultResponse,
+  initialResponse: DeleteOperation202Response | DeleteOperationDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
-  TResult extends ExportLogicalResponse | ExportDefaultResponse
+  TResult extends ExportLogicalResponse | ExportOperationDefaultResponse
 >(
   client: Client,
-  initialResponse: Export202Response | ExportDefaultResponse,
+  initialResponse: ExportOperation202Response | ExportOperationDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<

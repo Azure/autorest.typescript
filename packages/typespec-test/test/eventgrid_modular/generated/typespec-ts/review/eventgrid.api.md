@@ -14,6 +14,11 @@ export interface AcknowledgeCloudEventsOptions extends RequestOptions {
 }
 
 // @public
+export interface AcknowledgeOptions {
+    lockTokens: string[];
+}
+
+// @public
 export interface AcknowledgeResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -67,6 +72,12 @@ export interface PublishCloudEventOptions extends RequestOptions {
 }
 
 // @public (undocumented)
+export interface PublishCloudEventRequest {
+    // (undocumented)
+    event: CloudEvent;
+}
+
+// @public (undocumented)
 export interface PublishCloudEventsOptions extends RequestOptions {
     contentType?: string;
 }
@@ -94,6 +105,11 @@ export interface RejectCloudEventsOptions extends RequestOptions {
 }
 
 // @public
+export interface RejectOptions {
+    lockTokens: string[];
+}
+
+// @public
 export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -102,6 +118,11 @@ export interface RejectResult {
 // @public (undocumented)
 export interface ReleaseCloudEventsOptions extends RequestOptions {
     contentType?: string;
+}
+
+// @public
+export interface ReleaseOptions {
+    lockTokens: string[];
 }
 
 // @public

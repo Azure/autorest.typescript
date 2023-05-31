@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Widget, ColorType, AnalyzeResult } from "./models.js";
+export {
+  Widget,
+  ColorType,
+  WidgetError,
+  CreateWidget,
+  UpdateWidget,
+  AnalyzeResult,
+} from "./models.js";
 export {
   listWidgets,
   getWidget,
@@ -18,6 +25,6 @@ export {
 } from "./operations.js";
 export {
   createWidgetService,
-  WidgetServiceContext,
   WidgetServiceClientOptions,
+  WidgetServiceContext,
 } from "./WidgetServiceContext.js";
