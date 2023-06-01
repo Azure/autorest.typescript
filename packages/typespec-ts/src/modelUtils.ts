@@ -232,11 +232,12 @@ function getSchemaForScalar(
   scalar: Scalar,
   relevantProperty?: ModelProperty
 ) {
-  let result = getSchemaForStdScalar(program, scalar, relevantProperty);
+  let result;
   const encodeData = getEncode(program, scalar);
-  if (!result && encodeData) {
-    result = getSchemaForScalar(program, dpgContext, encodeData.type);
-  } else if (!result && scalar.baseScalar) {
+  result = encodeData
+    ? getSchemaForScalar(program, dpgContext, encodeData.type)
+    : getSchemaForStdScalar(program, scalar, relevantProperty);
+  if (!result && scalar.baseScalar) {
     result = getSchemaForScalar(program, dpgContext, scalar.baseScalar);
   }
   return applyIntrinsicDecorators(program, scalar, result);
