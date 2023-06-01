@@ -13,12 +13,15 @@ stages:
       - job: CadlRanchTest
         steps:
           - template: nightly-prepare.yml
-          - script: npm run unit-test
-            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-            displayName: "Run all unit test cases"
           - script: npm run integration-test-ci
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Run all Cadl-ranch test cases"
+      - job: UnitTest
+        steps:
+          - template: nightly-prepare.yml
+          - script: npm run unit-test
+            workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
+            displayName: "Run all unit test cases"
       - job: SmokeTest
         steps:
           - template: nightly-prepare.yml
