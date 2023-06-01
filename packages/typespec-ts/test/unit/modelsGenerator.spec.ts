@@ -239,12 +239,12 @@ describe("Input/output model type", () => {
     it("should handle enum -> string_literals", async () => {
       const cadlTypeDefinition = `
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       @fixed
+      @doc("Translation Language Values")
       enum TranslationLanguageValues {
-        @doc("English")
+        @doc("English descriptions")
         English,
-        @doc("Chinese")
+        @doc("Chinese descriptions")
         Chinese,
       }`;
       const cadlType = "TranslationLanguageValues";
