@@ -7,7 +7,8 @@ export interface CadlRanchConfig {
 export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "encode",
-    inputPath: "encode/duration"
+    inputPath: "encode/duration",
+    debug: true
   },
   {
     outputPath: "sharedRoute",

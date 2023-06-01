@@ -16,3 +16,7 @@ export interface Int32SecondsDurationPropertyOutput {
 export interface FloatSecondsDurationPropertyOutput {
   value: number;
 }
+
+export interface FloatSecondsDurationArrayPropertyOutput {
+  value: string[];
+}
