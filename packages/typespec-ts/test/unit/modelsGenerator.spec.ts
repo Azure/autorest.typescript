@@ -165,7 +165,9 @@ describe("Input/output model type", () => {
       const schemaOutput = await emitModelsFromCadl(`
       @doc("Extensible enum model description")
       enum TranslationLanguageValues {
+        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
         English,
+        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
         Chinese,
       }
       model InputOutputModel {
@@ -206,6 +208,7 @@ describe("Input/output model type", () => {
     it("should handle extensible_enum as body -> string", async () => {
       // When extensible_enum is comsumed as body property it should be string only
       const schemaOutput = await emitParameterFromCadl(`
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       enum TranslationLanguage {
         English,
         Chinese,
@@ -237,8 +240,11 @@ describe("Input/output model type", () => {
       const cadlTypeDefinition = `
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       @fixed
+      @doc("Translation Language Values")
       enum TranslationLanguageValues {
+        @doc("English descriptions")
         English,
+        @doc("Chinese descriptions")
         Chinese,
       }`;
       const cadlType = "TranslationLanguageValues";
