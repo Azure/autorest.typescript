@@ -2,7 +2,6 @@ import { assert } from "chai";
 import EncodeDurationClientFactory, {
   EncodeDurationClient
 } from "./generated/encode/src/index.js";
-import { matrix } from "../util/matrix.js";
 describe("EncodeDurationClient Rest Client", () => {
   let client: EncodeDurationClient;
 
@@ -15,31 +14,7 @@ describe("EncodeDurationClient Rest Client", () => {
     });
   });
 
-  interface TypeDetail {
-    type: "default" | "float-seconds" | "int32-seconds" | "iso8601";
-    defaultValue: any;
-  }
-
-  const durationData: TypeDetail[] = [
-    {
-      type: "default",
-      defaultValue: "P40D"
-    },
-    {
-      type: "float-seconds",
-      defaultValue: 35.621
-    },
-    {
-      type: "int32-seconds",
-      defaultValue: 36
-    },
-    {
-      type: "iso8601",
-      defaultValue: "P40D"
-    }
-  ];
-
-  describe("EncodeDurationClient Rest Client", () => {
+  describe("property", () => {
     it(`should post default property`, async () => {
       try {
         const result = await client
@@ -55,16 +30,105 @@ describe("EncodeDurationClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
-  });
 
-  matrix([durationData], async (params: TypeDetail) => {
-    it(`should get ${params.type} query`, async () => {
+    it(`should post float-seconds property`, async () => {
       try {
         const result = await client
-          .path(`/encode/duration/query/${params.type}` as any)
+          .path(`/encode/duration/property/float-seconds`)
+          .post({
+            body: {
+              value: 35.621
+            }
+          });
+        assert.strictEqual(result.status, "200");
+        assert.strictEqual(result.body.value, 35.621);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should post int32-seconds property`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/property/int32-seconds`)
+          .post({
+            body: {
+              value: 36
+            }
+          });
+        assert.strictEqual(result.status, "200");
+        assert.strictEqual(result.body.value, 36);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should post iso8601 property`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/property/iso8601`)
+          .post({
+            body: {
+              value: "P40D"
+            }
+          });
+        assert.strictEqual(result.status, "200");
+        assert.strictEqual(result.body.value, "P40D");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+  });
+
+  describe("query", () => {
+    it(`should get default query`, async () => {
+      try {
+        const result = await client.path(`/encode/duration/query/default`).get({
+          queryParameters: {
+            input: "P40D"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get iso8601 query`, async () => {
+      try {
+        const result = await client.path(`/encode/duration/query/iso8601`).get({
+          queryParameters: {
+            input: "P40D"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get int32-seconds query`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/query/int32-seconds`)
           .get({
             queryParameters: {
-              input: params.defaultValue
+              input: 36
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get float-seconds query`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/query/float-seconds`)
+          .get({
+            queryParameters: {
+              input: 35.621
             }
           });
         assert.strictEqual(result.status, "204");
