@@ -39,18 +39,18 @@ describe("EncodeDurationClient Rest Client", () => {
     }
   ];
 
-  matrix([durationData], async (params: TypeDetail) => {
-    it(`should post ${params.type} property`, async () => {
+  describe("EncodeDurationClient Rest Client", () => {
+    it(`should post default property`, async () => {
       try {
-        const result = await (
-          client.path(`/encode/duration/property/${params.type}` as any) as any
-        ).post({
-          body: {
-            value: params.defaultValue as any
-          }
-        });
+        const result = await client
+          .path(`/encode/duration/property/default`)
+          .post({
+            body: {
+              value: "P40D"
+            }
+          });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.value, params.defaultValue);
+        assert.strictEqual(result.body.value, "P40D");
       } catch (err) {
         assert.fail(err as string);
       }
