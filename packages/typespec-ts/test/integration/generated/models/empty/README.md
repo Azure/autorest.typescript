@@ -1,4 +1,4 @@
-# TypeModelEmpty REST client library for JavaScript
+# Empty REST client library for JavaScript
 
 Illustrates usage of empty model used in operation's parameters and responses.
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/empty-model` package
 
-Install the TypeModelEmpty REST client REST client library for JavaScript with `npm`:
+Install the Empty REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/empty-model
 ```
 
-### Create and authenticate a `TypeModelEmptyClient`
+### Create and authenticate a `EmptyClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
