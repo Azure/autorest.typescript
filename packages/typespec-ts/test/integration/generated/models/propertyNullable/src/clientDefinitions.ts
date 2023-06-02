@@ -222,6 +222,6 @@ export interface Routes {
   ): CollectionsModelGetNull;
 }
 
-export type TypePropertyNullableClient = Client & {
+export type NullableClient = Client & {
   path: Routes;
 };

@@ -244,7 +244,6 @@ export interface Routes {
   ): ListTrainingConfigVersions;
 }
 
-export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient =
-  Client & {
-    path: Routes;
-  };
+export type AuthoringClient = Client & {
+  path: Routes;
+};

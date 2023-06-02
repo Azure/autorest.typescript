@@ -21,12 +21,12 @@ export interface CollectionOutput {
 }
 
 // @public (undocumented)
-export type ConfidentialLedgerServiceClient = Client & {
+export type ConfidentialLedgerClient = Client & {
     path: Routes;
 };
 
 // @public
-function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions): ConfidentialLedgerServiceClient;
+function createClient(ledgerUri: string, credentials: TokenCredential, options?: ClientOptions): ConfidentialLedgerClient;
 export default createClient;
 
 // @public (undocumented)

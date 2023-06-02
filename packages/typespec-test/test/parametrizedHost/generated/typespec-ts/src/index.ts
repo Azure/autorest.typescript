@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ParametrizedHost from "./parametrizedHost";
+import ParametrizedHostClient from "./parametrizedHostClient";
 
-export * from "./parametrizedHost";
+export * from "./parametrizedHostClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./isUnexpected";
 export * from "./outputModels";
 
-export default ParametrizedHost;
+export default ParametrizedHostClient;

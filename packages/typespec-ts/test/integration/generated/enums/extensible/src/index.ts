@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import TypeEnumExtensible from "./typeEnumExtensible";
+import ExtensibleClient from "./extensibleClient";
 
-export * from "./typeEnumExtensible";
+export * from "./extensibleClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 
-export default TypeEnumExtensible;
+export default ExtensibleClient;

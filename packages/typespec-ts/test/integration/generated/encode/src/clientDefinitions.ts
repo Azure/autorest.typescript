@@ -90,6 +90,6 @@ export interface Routes {
   (path: "/encode/duration/property/float-seconds"): PropertyFloatSeconds;
 }
 
-export type EncodeDurationClient = Client & {
+export type DurationClient = Client & {
   path: Routes;
 };

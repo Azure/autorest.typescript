@@ -34,7 +34,6 @@ export interface Routes {
   ): GetDeployment;
 }
 
-export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient =
-  Client & {
-    path: Routes;
-  };
+export type AuthoringClient = Client & {
+  path: Routes;
+};

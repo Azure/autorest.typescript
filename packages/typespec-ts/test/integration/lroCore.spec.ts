@@ -1,11 +1,11 @@
 import SpecsAzureCoreLroStandardClientFactory, {
-  SpecsAzureCoreLroStandardClient,
+  StandardClient,
   getLongRunningPoller,
   isUnexpected
 } from "./generated/lro/lroCore/src/index.js";
 import { assert } from "chai";
 describe("AzureLroCoreClient Rest Client", () => {
-  let client: SpecsAzureCoreLroStandardClient;
+  let client: StandardClient;
 
   beforeEach(() => {
     client = SpecsAzureCoreLroStandardClientFactory({

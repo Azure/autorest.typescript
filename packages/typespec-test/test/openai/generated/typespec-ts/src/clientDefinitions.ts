@@ -42,6 +42,6 @@ export interface Routes {
   ): GetCompletions;
 }
 
-export type AzureOpenAIApiClient = Client & {
+export type OpenAIClient = Client & {
   path: Routes;
 };

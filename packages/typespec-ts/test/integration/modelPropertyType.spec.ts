@@ -1,5 +1,5 @@
 import TypePropertyValueTypesClientFactory, {
-  TypePropertyValueTypesClient
+  ValueTypesClient
 } from "./generated/models/propertyTypes/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
@@ -90,7 +90,7 @@ const testedTypes: TypeDetail[] = [
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {
-  let client: TypePropertyValueTypesClient;
+  let client: ValueTypesClient;
 
   beforeEach(() => {
     client = TypePropertyValueTypesClientFactory({

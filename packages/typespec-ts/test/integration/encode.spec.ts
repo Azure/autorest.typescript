@@ -1,10 +1,10 @@
 import { assert } from "chai";
 import EncodeDurationClientFactory, {
-  EncodeDurationClient
+  DurationClient
 } from "./generated/encode/src/index.js";
 import { matrix } from "../util/matrix.js";
 describe("EncodeDurationClient Rest Client", () => {
-  let client: EncodeDurationClient;
+  let client: DurationClient;
 
   beforeEach(() => {
     client = EncodeDurationClientFactory({
