@@ -1,3 +1,7 @@
+## 6.0.3 (2023-06-02)
+
+- [Feature] Make subscriptionId optional if there are tenant level operations. Please refer to pr [#]
+
 ## 6.0.2 (2023-05-15)
 
 - [Feature] Support typespec compiler 0.44.0 and support @encode feature, Please refer to pr [#1829](https://github.com/Azure/autorest.typescript/pull/1829).
