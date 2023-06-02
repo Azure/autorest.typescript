@@ -56,6 +56,6 @@ export interface Routes {
   ): AliasSpreadWithMultipleParameters;
 }
 
-export type ParametersSpreadClient = Client & {
+export type SpreadClient = Client & {
   path: Routes;
 };

@@ -19,13 +19,8 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public (undocumented)
-export type ContosoWidgetManagerClient = Client & {
-    path: Routes;
-};
-
 // @public
-function createClient(endpoint: string, options?: ClientOptions): ContosoWidgetManagerClient;
+function createClient(endpoint: string, options?: ClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -328,6 +323,11 @@ export interface Widget {
 
 // @public
 export type WidgetListOutput = Paged<WidgetOutput>;
+
+// @public (undocumented)
+export type WidgetManagerClient = Client & {
+    path: Routes;
+};
 
 // @public
 export interface WidgetOutput {

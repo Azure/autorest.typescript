@@ -54,6 +54,6 @@ export interface Routes {
   (path: "/overload/changed-actions"): ProcessString;
 }
 
-export type OverloadTestClient = Client & {
+export type OverloadClient = Client & {
   path: Routes;
 };

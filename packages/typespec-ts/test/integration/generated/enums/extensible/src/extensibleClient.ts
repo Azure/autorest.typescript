@@ -3,22 +3,18 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TextTranslationClient } from "./clientDefinitions";
+import { ExtensibleClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `TextTranslationClient`
- * @param endpoint - Supported Text Translation endpoints (protocol and hostname, for example:
- *     https://api.cognitive.microsofttranslator.com).
+ * Initialize a new instance of `ExtensibleClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
   options: ClientOptions = {}
-): TextTranslationClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "3.0";
-
-  const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
+): ExtensibleClient {
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  options.apiVersion = options.apiVersion ?? "1.0.0";
+  const userAgentInfo = `azsdk-js-extensible-enums-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -33,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TextTranslationClient;
+  const client = getClient(baseUrl, options) as ExtensibleClient;
 
   return client;
 }

@@ -20,8 +20,13 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+// @public (undocumented)
+export type AuthoringClient = Client & {
+    path: Routes;
+};
+
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AuthoringClient;
 export default createClient;
 
 // @public (undocumented)
@@ -716,11 +721,6 @@ export interface ListTrainingConfigVersionsQueryParamProperties {
     skip?: number;
     top?: number;
 }
-
-// @public (undocumented)
-export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client & {
-    path: Routes;
-};
 
 // @public
 export interface OperationStatusOutput {

@@ -1,4 +1,4 @@
-# TypeModelInheritance REST client library for JavaScript
+# Inheritance REST client library for JavaScript
 
 Illustrates inheritance and polymorphic model.
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/model-inheritance` package
 
-Install the TypeModelInheritance REST client REST client library for JavaScript with `npm`:
+Install the Inheritance REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/model-inheritance
 ```
 
-### Create and authenticate a `TypeModelInheritanceClient`
+### Create and authenticate a `InheritanceClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

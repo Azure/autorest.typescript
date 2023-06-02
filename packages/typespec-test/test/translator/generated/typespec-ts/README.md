@@ -1,4 +1,4 @@
-# Azure TextTranslation REST client library for JavaScript
+# Azure Translator REST client library for JavaScript
 
 Text translation is a cloud-based REST API feature of the Translator service that uses neural
 machine translation technology to enable quick and accurate source-to-target text translation
@@ -37,13 +37,13 @@ Key links:
 
 ### Install the `@azure-rest/cognitiveservices-translator` package
 
-Install the Azure TextTranslation REST client REST client library for JavaScript with `npm`:
+Install the Azure Translator REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/cognitiveservices-translator
 ```
 
-### Create and authenticate a `TextTranslationClient`
+### Create and authenticate a `TranslatorClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

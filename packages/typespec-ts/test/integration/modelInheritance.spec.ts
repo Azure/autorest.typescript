@@ -1,12 +1,12 @@
 import TypeModelInheritanceClientFactory, {
-  TypeModelInheritanceClient,
+  InheritanceClient,
   Salmon,
   SharkOutput
 } from "./generated/models/inheritance/src/index.js";
 import { assert } from "chai";
 
 describe("ModelsInheritance Rest Client", () => {
-  let client: TypeModelInheritanceClient;
+  let client: InheritanceClient;
 
   beforeEach(() => {
     client = TypeModelInheritanceClientFactory({

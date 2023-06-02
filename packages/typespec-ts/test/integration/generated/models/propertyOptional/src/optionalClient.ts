@@ -3,20 +3,18 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { SharedRouteTestClient } from "./clientDefinitions";
+import { OptionalClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `SharedRouteTestClient`
- * @param $host - The parameter $host
+ * Initialize a new instance of `OptionalClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  $host: string,
   options: ClientOptions = {}
-): SharedRouteTestClient {
-  const baseUrl = options.baseUrl ?? `${$host}`;
-
-  const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
+): OptionalClient {
+  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
+  options.apiVersion = options.apiVersion ?? "1.0.0";
+  const userAgentInfo = `azsdk-js-optional-property-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -31,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as SharedRouteTestClient;
+  const client = getClient(baseUrl, options) as OptionalClient;
 
   return client;
 }
