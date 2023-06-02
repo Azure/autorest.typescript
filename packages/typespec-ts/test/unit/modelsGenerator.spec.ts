@@ -813,14 +813,13 @@ describe("Input/output model type", () => {
         );
       });
 
-      it.only("should handle duration in type with encode `float32`", async () => {
+      it("should handle duration in type with encode `float32`", async () => {
         const schemaOutput = await emitModelsFromCadl(
           `
-
         @encode(DurationKnownEncoding.seconds, float32)
         scalar Float32Duration extends duration;
         model SimpleModel {
-          prop: Float32Duration;
+          prop: Float32Duration[];
         }
         @route("/duration/prop/iso8601")
         @get
@@ -835,7 +834,7 @@ describe("Input/output model type", () => {
           inputModelFile?.content!,
           `
         export interface SimpleModel { 
-          "prop": number;
+          "prop": number[];
         }
         `
         );
@@ -843,7 +842,7 @@ describe("Input/output model type", () => {
           outputModelFile?.content!,
           `
         export interface SimpleModelOutput { 
-          "prop": number;
+          "prop": number[];
         }
         `
         );

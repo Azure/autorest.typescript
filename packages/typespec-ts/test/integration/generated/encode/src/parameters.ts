@@ -54,7 +54,7 @@ export type QueryFloatSecondsParameters = QueryFloatSecondsQueryParam &
   RequestParameters;
 
 export interface QueryInt32SecondsArrayQueryParamProperties {
-  input: string[];
+  input: number[];
 }
 
 export interface QueryInt32SecondsArrayQueryParam {

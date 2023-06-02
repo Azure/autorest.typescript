@@ -78,6 +78,22 @@ describe("EncodeDurationClient Rest Client", () => {
         assert.fail(err as string);
       }
     });
+
+    it(`should post float-seconds-array property`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/property/float-seconds-array`)
+          .post({
+            body: {
+              value: [35.621, 46.781]
+            }
+          });
+        assert.strictEqual(result.status, "200");
+        assert.strictEqual(result.body.value, [35.621, 46.781]);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
   });
 
   describe("query", () => {
@@ -122,6 +138,22 @@ describe("EncodeDurationClient Rest Client", () => {
       }
     });
 
+    it(`should get int32-seconds-array query`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/query/int32-seconds-array`)
+          .get({
+            queryParameters: {
+              input: [36, 47]
+            },
+            skipUrlEncoding: true
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
     it(`should get float-seconds query`, async () => {
       try {
         const result = await client
@@ -129,6 +161,83 @@ describe("EncodeDurationClient Rest Client", () => {
           .get({
             queryParameters: {
               input: 35.621
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+  });
+
+  describe.only("header", () => {
+    it(`should get default header`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/header/default`)
+          .get({
+            headers: {
+              duration: "P40D"
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get iso8601 header`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/header/iso8601`)
+          .get({
+            headers: {
+              duration: "P40D"
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get iso8601-array header`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/header/iso8601-array`)
+          .get({
+            headers: {
+              duration: ["P40D", "P50D"] as any
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get int32-seconds header`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/header/int32-seconds`)
+          .get({
+            headers: {
+              duration: 36
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get float-seconds header`, async () => {
+      try {
+        const result = await client
+          .path(`/encode/duration/header/float-seconds`)
+          .get({
+            headers: {
+              duration: 35.621
             }
           });
         assert.strictEqual(result.status, "204");

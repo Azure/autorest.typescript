@@ -18,5 +18,5 @@ export interface FloatSecondsDurationProperty {
 }
 
 export interface FloatSecondsDurationArrayProperty {
-  value: string[];
+  value: number[];
 }
