@@ -82,6 +82,10 @@ export const cadls: CadlRanchConfig[] = [
     inputPath: "type/model/usage"
   },
   {
+    outputPath: "models/empty",
+    inputPath: "type/model/empty"
+  },
+  {
     outputPath: "resiliency/srvDriven1",
     inputPath: "resiliency/srv-driven/old.tsp"
   },

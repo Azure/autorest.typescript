@@ -812,6 +812,41 @@ describe("Input/output model type", () => {
         `
         );
       });
+
+      it("should handle duration in type with encode `float32`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        @encode(DurationKnownEncoding.seconds, float32)
+        scalar Float32Duration extends duration;
+        model SimpleModel {
+          prop: Float32Duration[];
+        }
+        @route("/duration/prop/iso8601")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": number[];
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": number[];
+        }
+        `
+        );
+      });
     });
 
     describe("as query parameter", () => {
