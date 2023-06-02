@@ -3,15 +3,13 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TypeModelEmptyClient } from "./clientDefinitions";
+import { EmptyClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `TypeModelEmptyClient`
+ * Initialize a new instance of `EmptyClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {}
-): TypeModelEmptyClient {
+export default function createClient(options: ClientOptions = {}): EmptyClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-empty-model-rest/1.0.0-beta.1`;
@@ -29,7 +27,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TypeModelEmptyClient;
+  const client = getClient(baseUrl, options) as EmptyClient;
 
   return client;
 }
