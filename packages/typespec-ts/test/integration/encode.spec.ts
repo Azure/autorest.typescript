@@ -89,7 +89,7 @@ describe("EncodeDurationClient Rest Client", () => {
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.value, [35.621, 46.781]);
+        assert.deepEqual(result.body.value, [35.621, 46.781]);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -170,7 +170,7 @@ describe("EncodeDurationClient Rest Client", () => {
     });
   });
 
-  describe.only("header", () => {
+  describe("header", () => {
     it(`should get default header`, async () => {
       try {
         const result = await client
