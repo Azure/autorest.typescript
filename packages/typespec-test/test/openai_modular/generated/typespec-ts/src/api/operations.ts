@@ -45,6 +45,7 @@ export function _getEmbeddingsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: { user: options?.user, model: options?.model, input: input },
     });
 }
@@ -184,6 +185,7 @@ export function _getCompletionsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
         prompt: prompt,
         max_tokens: options?.maxTokens,
@@ -339,6 +341,7 @@ export function _getChatCompletionsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: {
         messages: messages,
         max_tokens: options?.maxTokens,

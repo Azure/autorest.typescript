@@ -23,6 +23,7 @@ export function _getBinarySend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -52,6 +53,7 @@ export function _getArraySend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -86,6 +88,7 @@ export function _createWithHeadersSend(
     .put({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -120,6 +123,7 @@ export function _deleteWithHeadersSend(
     .delete({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 

@@ -63,7 +63,7 @@ function createClient_2(endpoint: string, options?: ClientOptions): ResponseClie
 // @public (undocumented)
 interface CreateOrUpdate {
     delete(options?: DeleteParameters): StreamableMethod<DeleteOperation204Response | DeleteOperationDefaultResponse>;
-    get(options?: GetParameters): StreamableMethod<GetOperation200Response | GetOperationDefaultResponse>;
+    get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
     put(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
 
@@ -178,6 +178,14 @@ interface DeleteWithHeaders204Response extends HttpResponse {
 // @public (undocumented)
 type DeleteWithHeadersParameters = RequestParameters;
 
+// @public
+interface Get200Response extends HttpResponse {
+    // (undocumented)
+    body: ResourceOutput;
+    // (undocumented)
+    status: "200";
+}
+
 // @public (undocumented)
 interface GetArray {
     // (undocumented)
@@ -214,25 +222,17 @@ interface GetBinary200Response extends HttpResponse {
 // @public (undocumented)
 type GetBinaryParameters = RequestParameters;
 
-// @public
-interface GetOperation200Response extends HttpResponse {
-    // (undocumented)
-    body: ResourceOutput;
-    // (undocumented)
-    status: "200";
-}
-
 // @public (undocumented)
-interface GetOperationDefaultHeaders {
+interface GetDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public (undocumented)
-interface GetOperationDefaultResponse extends HttpResponse {
+interface GetDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
-    headers: RawHttpHeaders & GetOperationDefaultHeaders;
+    headers: RawHttpHeaders & GetDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -250,7 +250,7 @@ type GetParameters = RequestParameters;
 function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
 
 // @public (undocumented)
-function isUnexpected(response: GetOperation200Response | GetOperationDefaultResponse): response is GetOperationDefaultResponse;
+function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 // @public (undocumented)
 function isUnexpected(response: DeleteOperation204Response | DeleteOperationDefaultResponse): response is DeleteOperationDefaultResponse;
@@ -411,9 +411,9 @@ declare namespace Responses {
         CreateOrUpdate201Response,
         CreateOrUpdateDefaultHeaders,
         CreateOrUpdateDefaultResponse,
-        GetOperation200Response,
-        GetOperationDefaultHeaders,
-        GetOperationDefaultResponse,
+        Get200Response,
+        GetDefaultHeaders,
+        GetDefaultResponse,
         DeleteOperation204Response,
         DeleteOperationDefaultHeaders,
         DeleteOperationDefaultResponse,

@@ -40,15 +40,17 @@ export function _publishCloudEventSend(
 ): StreamableMethod<
   PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 > {
-  return context.path("/topics/{topicName}:publish", topicName).post({
-    allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-    contentType:
-      (options.contentType as any) ??
-      "application/cloudevents+json; charset=utf-8",
-
-    body: { event: event },
-  });
+  return context
+    .path("/topics/{topicName}:publish", topicName)
+    .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      contentType:
+        (options.contentType as any) ??
+        "application/cloudevents+json; charset=utf-8",
+      headers: { ...options.requestOptions?.headers },
+      body: { event: event },
+    });
 }
 
 export async function _publishCloudEventDeserialize(
@@ -94,15 +96,17 @@ export function _publishCloudEventsSend(
 ): StreamableMethod<
   PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 > {
-  return context.path("/topics/{topicName}:publish", topicName).post({
-    allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-    contentType:
-      (options.contentType as any) ??
-      "application/cloudevents-batch+json; charset=utf-8",
-
-    body: events,
-  });
+  return context
+    .path("/topics/{topicName}:publish", topicName)
+    .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      contentType:
+        (options.contentType as any) ??
+        "application/cloudevents-batch+json; charset=utf-8",
+      headers: { ...options.requestOptions?.headers },
+      body: events,
+    });
 }
 
 export async function _publishCloudEventsDeserialize(
@@ -159,6 +163,7 @@ export function _receiveCloudEventsSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       queryParameters: {
         maxEvents: options?.maxEvents,
         maxWaitTime: options?.maxWaitTime,
@@ -240,7 +245,7 @@ export function _acknowledgeCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-
+      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
 }
@@ -311,7 +316,7 @@ export function _releaseCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-
+      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
 }
@@ -380,7 +385,7 @@ export function _rejectCloudEventsSend(
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-
+      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
 }

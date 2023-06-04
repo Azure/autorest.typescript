@@ -23,14 +23,14 @@ import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
-  GetOperation200Response,
-  GetOperationDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
   DeleteOperation202Response,
   DeleteOperationDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
   Importx202Response,
   ImportxDefaultResponse,
   Train202Response,
@@ -69,7 +69,7 @@ export interface CreateOrUpdate {
   /** Gets the details of a project. */
   get(
     options?: GetParameters
-  ): StreamableMethod<GetOperation200Response | GetOperationDefaultResponse>;
+  ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a project. */
   delete(
     options?: DeleteParameters
@@ -89,9 +89,7 @@ export interface Export {
   /** Triggers a job to export a project's data. */
   post(
     options: ExportParameters
-  ): StreamableMethod<
-    ExportOperation202Response | ExportOperationDefaultResponse
-  >;
+  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
 }
 
 export interface Importx {

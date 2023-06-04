@@ -9,8 +9,8 @@ import {
   CreateOrUpdate200Response,
   CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
-  GetOperation200Response,
-  GetOperationDefaultResponse,
+  Get200Response,
+  GetDefaultResponse,
   DeleteOperation204Response,
   DeleteOperationDefaultResponse,
   List200Response,
@@ -37,6 +37,7 @@ export function _createOrUpdateSend(
     .put({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: { description: options?.description, type: type },
     });
 }
@@ -76,21 +77,22 @@ export async function createOrUpdate(
 
 export interface GetOptions extends RequestOptions {}
 
-export function _getOperationSend(
+export function _getSend(
   context: Client.FooContext,
   name: string,
   options: GetOptions = { requestOptions: {} }
-): StreamableMethod<GetOperation200Response | GetOperationDefaultResponse> {
+): StreamableMethod<Get200Response | GetDefaultResponse> {
   return context
     .path("/cadl-foo/resources/{name}", name)
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
-export async function _getOperationDeserialize(
-  result: GetOperation200Response | GetOperationDefaultResponse
+export async function _getDeserialize(
+  result: Get200Response | GetDefaultResponse
 ): Promise<Resource> {
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
@@ -105,21 +107,17 @@ export async function _getOperationDeserialize(
 }
 
 /** Gets the details of a resource. */
-/**
- *  @fixme get is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
-export async function getOperation(
+export async function get(
   context: Client.FooContext,
   name: string,
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
-  const result = await _getOperationSend(context, name, options);
+  const result = await _getSend(context, name, options);
   if (UnexpectedHelper.isUnexpected(result)) {
     throw result.body;
   }
 
-  return _getOperationDeserialize(result);
+  return _getDeserialize(result);
 }
 
 export interface DeleteOptions extends RequestOptions {}
@@ -136,6 +134,7 @@ export function _deleteOperationSend(
     .delete({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -178,6 +177,7 @@ export function _listSend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 

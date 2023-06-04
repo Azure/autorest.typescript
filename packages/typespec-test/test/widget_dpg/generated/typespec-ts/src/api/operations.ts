@@ -32,6 +32,7 @@ export function _listWidgetsSend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -78,6 +79,7 @@ export function _getWidgetSend(
     .get({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -122,6 +124,7 @@ export function _createWidgetSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: { weight: weight, color: color },
     });
 }
@@ -177,6 +180,7 @@ export function _updateWidgetSend(
     .patch({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
       body: { weight: options?.weight, color: options?.color },
     });
 }
@@ -224,6 +228,7 @@ export function _deleteWidgetSend(
     .delete({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 
@@ -263,6 +268,7 @@ export function _analyzeWidgetSend(
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
     });
 }
 

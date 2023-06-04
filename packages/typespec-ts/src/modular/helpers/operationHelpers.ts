@@ -273,29 +273,27 @@ function getRequestParameters(operation: Operation): string {
     }
   }
 
-  let paramStrArray: string[] = [];
+  let paramStr = "";
 
   if (contentTypeParameter) {
-    paramStrArray = [`${getContentTypeValue(contentTypeParameter)}`];
+    paramStr = `${getContentTypeValue(contentTypeParameter)},`;
   }
 
-  if (parametersImplementation.header.length) {
-    paramStrArray.push(
-      `headers: {${parametersImplementation.header.join(
-        ",\n"
-      )}, ...options.requestOptions?.headers}`
-    );
-  }
+  paramStr = `${paramStr}\nheaders: {${
+    parametersImplementation.header.length
+      ? parametersImplementation.header.join(",\n") + ","
+      : ""
+  } ...options.requestOptions?.headers},`;
 
   if (parametersImplementation.query.length) {
-    paramStrArray.push(
-      `queryParameters: {${parametersImplementation.query.join(",\n")}}`
-    );
+    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
+      ",\n"
+    )}},`;
   }
 
-  paramStrArray.push(`${buildBodyParameter(operation.bodyParameter)}`);
+  paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
 
-  return paramStrArray.join(",\n");
+  return paramStr;
 }
 
 function buildBodyParameter(bodyParameter: BodyParameter | undefined) {

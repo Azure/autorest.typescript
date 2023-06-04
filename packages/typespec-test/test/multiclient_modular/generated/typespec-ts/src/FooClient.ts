@@ -8,7 +8,7 @@ import {
   Resource,
   CustomPage,
   createOrUpdate,
-  getOperation,
+  get,
   deleteOperation,
   list,
   CreateOrUpdateOptions,
@@ -37,15 +37,11 @@ export class FooClient {
   }
 
   /** Gets the details of a resource. */
-  /**
-   *  @fixme get is a reserved word that cannot be used as an operation name. Please add @projectedName(
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
-  getOperation(
+  get(
     name: string,
     options: GetOptions = { requestOptions: {} }
   ): Promise<Resource> {
-    return getOperation(this._client, name, options);
+    return get(this._client, name, options);
   }
 
   /** Deletes a resource. */

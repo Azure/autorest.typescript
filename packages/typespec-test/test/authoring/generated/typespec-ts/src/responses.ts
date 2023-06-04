@@ -57,20 +57,20 @@ export interface CreateOrUpdateLogicalResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetOperation200Response extends HttpResponse {
+export interface Get200Response extends HttpResponse {
   status: "200";
   body: ProjectOutput;
 }
 
-export interface GetOperationDefaultHeaders {
+export interface GetDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface GetOperationDefaultResponse extends HttpResponse {
+export interface GetDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & GetOperationDefaultHeaders;
+  headers: RawHttpHeaders & GetDefaultHeaders;
 }
 
 export interface DeleteOperation202Headers {
@@ -119,26 +119,26 @@ export interface ListProjectsDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & ListProjectsDefaultHeaders;
 }
 
-export interface ExportOperation202Headers {
+export interface Export202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface ExportOperation202Response extends HttpResponse {
+export interface Export202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & ExportOperation202Headers;
+  headers: RawHttpHeaders & Export202Headers;
 }
 
-export interface ExportOperationDefaultHeaders {
+export interface ExportDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface ExportOperationDefaultResponse extends HttpResponse {
+export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & ExportOperationDefaultHeaders;
+  headers: RawHttpHeaders & ExportDefaultHeaders;
 }
 
 /** The final response for long-running export operation */

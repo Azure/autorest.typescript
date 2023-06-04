@@ -71,7 +71,7 @@ export class FooClient {
     constructor(endpoint: string, options?: FooClientOptions);
     createOrUpdate(type: string, name: string, options?: CreateOrUpdateOptions): Promise<Resource>;
     deleteOperation(name: string, options?: DeleteOptions): Promise<void>;
-    getOperation(name: string, options?: GetOptions): Promise<Resource>;
+    get(name: string, options?: GetOptions): Promise<Resource>;
     list(options?: ListOptions): Promise<CustomPage>;
 }
 

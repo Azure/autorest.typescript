@@ -125,19 +125,19 @@ export interface ListWithCustomPageModelDefaultResponse extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface Delete204Response extends HttpResponse {
+export interface DeleteOperation204Response extends HttpResponse {
   status: "204";
 }
 
-export interface DeleteDefaultHeaders {
+export interface DeleteOperationDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface DeleteDefaultResponse extends HttpResponse {
+export interface DeleteOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & DeleteDefaultHeaders;
+  headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
 }
 
 /** The request has succeeded. */
