@@ -75,12 +75,7 @@ export function buildOperationFiles(
     }
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, operationGroupFile);
-      const operationDeclaration = getOperationFunction(
-        o,
-        clientType,
-        needSubClient,
-        needUnexpectedHelper
-      );
+      const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,

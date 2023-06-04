@@ -18,8 +18,7 @@ export function buildClassicalClient(
   client: Client,
   project: Project,
   srcPath: string,
-  subfolder: string,
-  needUnexpectedHelper?: boolean
+  subfolder: string
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
@@ -67,12 +66,7 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   importCredential(clientFile);
-  buildClientOperationGroups(
-    client,
-    clientClass,
-    subfolder,
-    needUnexpectedHelper
-  );
+  buildClientOperationGroups(client, clientClass, subfolder);
   importAllModels(clientFile, srcPath, subfolder);
   clientFile.fixUnusedIdentifiers();
 }
@@ -121,25 +115,17 @@ function importCredential(clientSourceFile: SourceFile): void {
 function buildClientOperationGroups(
   client: Client,
   clientClass: ClassDeclaration,
-  subfolder: string,
-  needUnexpectedHelper?: boolean
+  subfolder: string
 ) {
   for (const operationGroup of client.operationGroups) {
     const operationGroupName = toCamelCase(operationGroup.propertyName);
     let clientType = "Client";
-    let needSubClient = false;
     if (subfolder && subfolder !== "") {
       clientType = `Client.${clientClass.getName()}`;
-      needSubClient = true;
     }
     const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
       operationGroup.operations.map((operation) =>
-        getOperationFunction(
-          operation,
-          clientType,
-          needSubClient,
-          needUnexpectedHelper
-        )
+        getOperationFunction(operation, clientType)
       );
 
     if (operationGroupName && operationGroupName !== "") {

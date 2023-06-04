@@ -68,10 +68,6 @@ export async function createOrUpdate(
   options: CreateOrUpdateOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _createOrUpdateSend(context, type, name, options);
-  if (UnexpectedHelper.isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _createOrUpdateDeserialize(result);
 }
 
@@ -113,10 +109,6 @@ export async function get(
   options: GetOptions = { requestOptions: {} }
 ): Promise<Resource> {
   const result = await _getSend(context, name, options);
-  if (UnexpectedHelper.isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getDeserialize(result);
 }
 
@@ -159,10 +151,6 @@ export async function deleteOperation(
   options: DeleteOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteOperationSend(context, name, options);
-  if (UnexpectedHelper.isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _deleteOperationDeserialize(result);
 }
 
@@ -205,9 +193,5 @@ export async function list(
   options: ListOptions = { requestOptions: {} }
 ): Promise<CustomPage> {
   const result = await _listSend(context, options);
-  if (UnexpectedHelper.isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _listDeserialize(result);
 }

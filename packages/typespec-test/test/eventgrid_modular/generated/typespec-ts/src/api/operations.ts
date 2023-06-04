@@ -76,10 +76,6 @@ export async function publishCloudEvent(
     topicName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _publishCloudEventDeserialize(result);
 }
 
@@ -132,10 +128,6 @@ export async function publishCloudEvents(
     topicName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _publishCloudEventsDeserialize(result);
 }
 
@@ -213,10 +205,6 @@ export async function receiveCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _receiveCloudEventsDeserialize(result);
 }
 
@@ -284,10 +272,6 @@ export async function acknowledgeCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _acknowledgeCloudEventsDeserialize(result);
 }
 
@@ -353,10 +337,6 @@ export async function releaseCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _releaseCloudEventsDeserialize(result);
 }
 
@@ -422,9 +402,5 @@ export async function rejectCloudEvents(
     eventSubscriptionName,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _rejectCloudEventsDeserialize(result);
 }

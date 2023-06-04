@@ -82,10 +82,6 @@ export async function getEmbeddings(
     deploymentId,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getEmbeddingsDeserialize(result);
 }
 
@@ -255,10 +251,6 @@ export async function getCompletions(
     deploymentId,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getCompletionsDeserialize(result);
 }
 
@@ -404,9 +396,5 @@ export async function getChatCompletions(
     deploymentId,
     options
   );
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getChatCompletionsDeserialize(result);
 }

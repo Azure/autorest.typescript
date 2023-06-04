@@ -70,7 +70,12 @@ export async function $onEmit(context: EmitContext) {
     );
     const pathToClear = rlcModels.srcPath;
     needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
-    clearSrcFolder(pathToClear, count, options.multiClient, options.isModularLibrary);
+    clearSrcFolder(
+      pathToClear,
+      count,
+      options.multiClient,
+      options.isModularLibrary
+    );
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
     await emitContentByBuilder(program, buildResponseTypes, rlcModels);
@@ -144,13 +149,7 @@ export async function $onEmit(context: EmitContext) {
         needUnexpectedHelper.get(subClient.name + "Client")
       );
       buildApiIndexFile(project, srcPath, subfolder);
-      buildClassicalClient(
-        subClient,
-        project,
-        srcPath,
-        subfolder,
-        needUnexpectedHelper.get(subClient.name + "Client")
-      );
+      buildClassicalClient(subClient, project, srcPath, subfolder);
       buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
     }
     emitPackage(project, srcPath, modularCodeModel);

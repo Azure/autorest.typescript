@@ -60,10 +60,6 @@ export async function listWidgets(
   options: ListWidgetsOptions = { requestOptions: {} }
 ): Promise<Widget[]> {
   const result = await _listWidgetsSend(context, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _listWidgetsDeserialize(result);
 }
 
@@ -104,10 +100,6 @@ export async function getWidget(
   options: GetWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _getWidgetSend(context, id, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _getWidgetDeserialize(result);
 }
 
@@ -156,10 +148,6 @@ export async function createWidget(
   options: CreateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _createWidgetSend(context, weight, color, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _createWidgetDeserialize(result);
 }
 
@@ -209,10 +197,6 @@ export async function updateWidget(
   options: UpdateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _updateWidgetSend(context, id, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _updateWidgetDeserialize(result);
 }
 
@@ -249,10 +233,6 @@ export async function deleteWidget(
   options: DeleteWidgetOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteWidgetSend(context, id, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _deleteWidgetDeserialize(result);
 }
 
@@ -291,9 +271,5 @@ export async function analyzeWidget(
   options: AnalyzeWidgetOptions = { requestOptions: {} }
 ): Promise<AnalyzeResult> {
   const result = await _analyzeWidgetSend(context, id, options);
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return _analyzeWidgetDeserialize(result);
 }

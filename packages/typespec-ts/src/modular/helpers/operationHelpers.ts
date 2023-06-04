@@ -192,9 +192,7 @@ function getOperationSignatureParameters(
  */
 export function getOperationFunction(
   operation: Operation,
-  clientType: string,
-  needSubClient: boolean,
-  needUnexpectedHelper: boolean = true
+  clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
@@ -222,13 +220,6 @@ export function getOperationFunction(
       .map((p) => p.name)
       .join(", ")});`
   );
-  if (needUnexpectedHelper) {
-    statements.push(
-      `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
-      "throw result.body",
-      "}"
-    );
-  }
   statements.push(`return _${name}Deserialize(result);`);
   return {
     ...functionStatement,
