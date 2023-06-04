@@ -20,12 +20,6 @@ export class BarClient {
     getBinary(options?: GetBinaryOptions): Promise<any>;
 }
 
-// @public
-export interface BarClientCustomPage {
-    nextLink?: string;
-    value: BarClientResource[];
-}
-
 // @public (undocumented)
 export interface BarClientOptions extends ClientOptions {
 }

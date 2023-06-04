@@ -21,18 +21,6 @@ export interface AnalyzeWidgetOptions extends RequestOptions {
 export type ColorType = "red" | "blue";
 
 // @public (undocumented)
-export interface CreateWidget {
-    color: ColorType;
-    weight: number;
-}
-
-// @public (undocumented)
-export interface CreateWidget {
-    color: ColorType;
-    weight: number;
-}
-
-// @public (undocumented)
 export interface CreateWidgetOptions extends RequestOptions {
 }
 
@@ -58,19 +46,6 @@ export interface RequestOptions {
 }
 
 // @public (undocumented)
-export interface UpdateWidget {
-    color?: ColorType;
-    id: string;
-    weight?: number;
-}
-
-// @public (undocumented)
-export interface UpdateWidget {
-    color?: ColorType;
-    weight?: number;
-}
-
-// @public (undocumented)
 export interface UpdateWidgetOptions extends RequestOptions {
     color?: ColorType;
     weight?: number;
@@ -81,12 +56,6 @@ export interface Widget {
     color: ColorType;
     id: string;
     weight: number;
-}
-
-// @public (undocumented)
-export interface WidgetError {
-    code: number;
-    message: string;
 }
 
 // @public (undocumented)

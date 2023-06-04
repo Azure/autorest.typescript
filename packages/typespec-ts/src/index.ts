@@ -39,7 +39,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { buildSharedTypes } from "./modular/buildSharedTypes.js";
-import { Project } from "ts-morph";
+import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
@@ -154,7 +154,7 @@ export async function $onEmit(context: EmitContext) {
     }
     emitPackage(project, srcPath, modularCodeModel);
     emitTsConfig(project, srcPath, modularCodeModel);
-    // removeUnusedInterfaces(project);
+    removeUnusedInterfaces(project);
 
     for (const file of project.getSourceFiles()) {
       await emitContentByBuilder(
@@ -170,51 +170,67 @@ export async function $onEmit(context: EmitContext) {
 /**
  * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
  */
-// function removeUnusedInterfaces(project: Project) {
-//   const allInterfaces = project
-//     .getSourceFiles()
-//     .flatMap((file) => file.getInterfaces());
+export function removeUnusedInterfaces(project: Project) {
+  const allInterfaces = project.getSourceFiles().flatMap((file) =>
+    file.getInterfaces().map((interfaceDeclaration) => {
+      return { interfaceDeclaration, filepath: file.getFilePath() };
+    })
+  );
 
-//   const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
-//     const references = interfaceDeclaration
-//       .findReferencesAsNodes()
-//       .filter((node) => {
-//         const kind = node.getParent()?.getKind();
-//         return (
-//           kind !== SyntaxKind.ExportSpecifier &&
-//           kind !== SyntaxKind.InterfaceDeclaration
-//         );
-//       });
-//     return references.length === 0;
-//   });
+  const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
+    const references = interfaceDeclaration.interfaceDeclaration
+      .findReferencesAsNodes()
+      .filter((node) => {
+        const kind = node.getParent()?.getKind();
+        return (
+          kind !== SyntaxKind.ExportSpecifier &&
+          kind !== SyntaxKind.InterfaceDeclaration
+        );
+      });
+    return references.length === 0;
+  });
 
-//   unusedInterfaces.forEach((interfaceDeclaration) => {
-//     const interfaceName = interfaceDeclaration.getName();
+  unusedInterfaces.forEach((interfaceDeclaration) => {
+    const interfaceName = interfaceDeclaration.interfaceDeclaration.getName();
 
-//     // Get the index.ts file
-//     const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+    // Get the index.ts file
+    const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
 
-//     for (const indexFile of indexFiles) {
-//       const filepath = indexFile.getFilePath();
-//       console.log(filepath);
-//       // Get all export declarations
-//       const exportDeclarations = indexFile.getExportDeclarations();
+    for (const indexFile of indexFiles) {
+      const filepath = indexFile.getFilePath();
+      if (
+        path
+          .dirname(interfaceDeclaration.filepath)
+          .includes(path.dirname(indexFile.getFilePath()))
+      ) {
+        console.log(filepath);
+        // Get all export declarations
+        const exportDeclarations = indexFile.getExportDeclarations();
 
-//       // Iterate over each export declaration
-//       exportDeclarations.forEach((exportDeclaration) => {
-//         // Find named exports that match the unused interface
-//         const matchingExports = exportDeclaration
-//           .getNamedExports()
-//           .filter((ne) => ne.getName() === interfaceName);
-
-//         // Remove the matching exports
-//         matchingExports.forEach((me) => me.remove());
-//       });
-//     }
-
-//     interfaceDeclaration.remove();
-//   });
-// }
+        // Iterate over each export declaration
+        exportDeclarations.forEach((exportDeclaration) => {
+          // Find named exports that match the unused interface
+          const matchingExports = exportDeclaration
+            .getNamedExports()
+            .filter(
+              (ne) =>
+                ne.getName() === interfaceName &&
+                path.join(
+                  path.dirname(filepath),
+                  exportDeclaration
+                    .getModuleSpecifierValue()
+                    ?.replace(".js", ".ts") ?? ""
+                ) === interfaceDeclaration.filepath
+            );
+          // "/Users/zhangqiaoqiao/work/code/autorest.typescript/packages/typespec-test/test/multiclient_modular/generated/typespec-ts/src/index.ts"
+          // Remove the matching exports
+          matchingExports.forEach((me) => me.remove());
+        });
+      }
+    }
+    interfaceDeclaration.interfaceDeclaration.remove();
+  });
+}
 
 function clearSrcFolder(
   srcPath: string,

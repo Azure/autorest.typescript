@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export { createBar, BarClientOptions, Client } from "./BarContext.js";
-export { Resource, CustomPage } from "./models.js";
+export { Resource } from "./models.js";
 export {
   getBinary,
   getArray,

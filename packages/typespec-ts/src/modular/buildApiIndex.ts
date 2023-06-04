@@ -26,5 +26,4 @@ export function buildApiIndexFile(
       namedExports: exports
     });
   }
-  indexFile.fixUnusedIdentifiers();
 }

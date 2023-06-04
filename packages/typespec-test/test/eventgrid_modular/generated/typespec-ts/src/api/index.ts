@@ -7,17 +7,13 @@ export {
   EventGridContext,
 } from "./EventGridContext.js";
 export {
-  PublishCloudEventRequest,
   CloudEvent,
   ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
-  AcknowledgeOptions,
   AcknowledgeResult,
   FailedLockToken,
-  ReleaseOptions,
   ReleaseResult,
-  RejectOptions,
   RejectResult,
 } from "./models.js";
 export {
