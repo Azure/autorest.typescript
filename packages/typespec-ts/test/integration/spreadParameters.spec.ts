@@ -1,9 +1,9 @@
 import ParametersSpreadClientFactory, {
-  ParametersSpreadClient
+  SpreadClient
 } from "./generated/parameters/spread/src/index.js";
 import { assert } from "chai";
 describe("HelloClient Rest Client", () => {
-  let client: ParametersSpreadClient;
+  let client: SpreadClient;
 
   beforeEach(() => {
     client = ParametersSpreadClientFactory({ allowInsecureConnection: true });

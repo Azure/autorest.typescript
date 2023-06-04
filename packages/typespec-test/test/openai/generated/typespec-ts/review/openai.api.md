@@ -14,11 +14,6 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public (undocumented)
-export type AzureOpenAIApiClient = Client & {
-    path: Routes;
-};
-
 // @public
 export interface ChoiceOutput {
     finish_reason?: string;
@@ -73,7 +68,7 @@ export interface CompletionsUsageOutput {
 }
 
 // @public
-function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): AzureOpenAIApiClient;
+function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options?: ClientOptions): OpenAIClient;
 export default createClient;
 
 // @public
@@ -196,6 +191,11 @@ export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsD
 
 // @public (undocumented)
 export function isUnexpected(response: GetCompletions200Response | GetCompletionsDefaultResponse): response is GetCompletionsDefaultResponse;
+
+// @public (undocumented)
+export type OpenAIClient = Client & {
+    path: Routes;
+};
 
 // @public (undocumented)
 export interface Routes {

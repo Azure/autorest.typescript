@@ -63,7 +63,10 @@ export async function transformRLCModel(
   const libraryName = normalizeName(
     options.batch && (options.isModularLibrary || options.batch.length > 1)
       ? client.name
-      : options?.title ?? getDefaultService(program)?.title ?? "",
+      : options?.title ??
+          client.name ??
+          getDefaultService(program)?.title ??
+          "",
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();

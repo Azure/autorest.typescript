@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import SharedRouteTest from "./sharedRouteTest";
+import SharedRouteClient from "./sharedRouteClient";
 
-export * from "./sharedRouteTest";
+export * from "./sharedRouteClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default SharedRouteTest;
+export default SharedRouteClient;

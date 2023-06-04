@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import SharedRouteTestClientFactory, {
-  SharedRouteTestClient
+  SharedRouteClient
 } from "./generated/sharedRoute/src/index.js";
 describe("SharedRouteTest Rest Client", () => {
-  let client: SharedRouteTestClient;
+  let client: SharedRouteClient;
 
   beforeEach(() => {
     client = SharedRouteTestClientFactory("http://fake-url.com", {

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import ConfidentialLedgerService from "./confidentialLedgerService";
+import ConfidentialLedgerClient from "./confidentialLedgerClient";
 
-export * from "./confidentialLedgerService";
+export * from "./confidentialLedgerClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -12,4 +12,4 @@ export * from "./models";
 export * from "./outputModels";
 export * from "./paginateHelper";
 
-export default ConfidentialLedgerService;
+export default ConfidentialLedgerClient;

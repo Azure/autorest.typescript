@@ -3,34 +3,32 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TokenCredential, KeyCredential } from "@azure/core-auth";
-import { AzureOpenAIApiClient } from "./clientDefinitions";
+import { TokenCredential } from "@azure/core-auth";
+import { ConfidentialLedgerClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `AzureOpenAIApiClient`
- * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
- * https://westus.api.cognitive.microsoft.com).
+ * Initialize a new instance of `ConfidentialLedgerClient`
+ * @param ledgerUri - The parameter ledgerUri
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  endpoint: string,
-  credentials: TokenCredential | KeyCredential,
+  ledgerUri: string,
+  credentials: TokenCredential,
   options: ClientOptions = {}
-): AzureOpenAIApiClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}/openai`;
-  options.apiVersion = options.apiVersion ?? "2022-12-01";
+): ConfidentialLedgerClient {
+  const baseUrl = options.baseUrl ?? `${ledgerUri}`;
+  options.apiVersion = options.apiVersion ?? "2022-05-13";
   options = {
     ...options,
     credentials: {
       scopes: options.credentials?.scopes ?? [
-        "https://cognitiveservices.azure.com/.default",
+        "https://confidential-ledger.azure.com/.default",
       ],
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
 
-  const userAgentInfo = `azsdk-js-openai-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-confidential-ledger-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -49,7 +47,7 @@ export default function createClient(
     baseUrl,
     credentials,
     options
-  ) as AzureOpenAIApiClient;
+  ) as ConfidentialLedgerClient;
 
   return client;
 }

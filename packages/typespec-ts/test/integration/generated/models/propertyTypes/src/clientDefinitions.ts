@@ -305,6 +305,6 @@ export interface Routes {
   (path: "/type/property/value-types/unknown/array"): UnknownArrayGet;
 }
 
-export type TypePropertyValueTypesClient = Client & {
+export type ValueTypesClient = Client & {
   path: Routes;
 };

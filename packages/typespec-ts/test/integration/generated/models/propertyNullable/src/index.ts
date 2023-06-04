@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import TypePropertyNullable from "./typePropertyNullable";
+import NullableClient from "./nullableClient";
 
-export * from "./typePropertyNullable";
+export * from "./nullableClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default TypePropertyNullable;
+export default NullableClient;

@@ -40,6 +40,6 @@ export interface Routes {
   (path: "/type/enum/extensible/string/unknown-value"): GetUnknownValue;
 }
 
-export type TypeEnumExtensibleClient = Client & {
+export type ExtensibleClient = Client & {
   path: Routes;
 };

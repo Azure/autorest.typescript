@@ -3,18 +3,18 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TypeModelUsageClient } from "./clientDefinitions";
+import { NullableClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `TypeModelUsageClient`
+ * Initialize a new instance of `NullableClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): TypeModelUsageClient {
+): NullableClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-usage-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-nullable-property-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -29,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TypeModelUsageClient;
+  const client = getClient(baseUrl, options) as NullableClient;
 
   return client;
 }

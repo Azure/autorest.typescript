@@ -232,7 +232,10 @@ function getSchemaForScalar(
   scalar: Scalar,
   relevantProperty?: ModelProperty
 ) {
-  let result = getSchemaForStdScalar(program, scalar, relevantProperty);
+  const encodeData = getEncode(program, scalar);
+  let result: any = encodeData
+    ? getSchemaForScalar(program, dpgContext, encodeData.type)
+    : getSchemaForStdScalar(program, scalar, relevantProperty);
   if (!result && scalar.baseScalar) {
     result = getSchemaForScalar(program, dpgContext, scalar.baseScalar);
   }

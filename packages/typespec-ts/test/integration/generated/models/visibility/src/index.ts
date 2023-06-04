@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import TypeModelVisibility from "./typeModelVisibility";
+import VisibilityClient from "./visibilityClient";
 
-export * from "./typeModelVisibility";
+export * from "./visibilityClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default TypeModelVisibility;
+export default VisibilityClient;

@@ -49,6 +49,6 @@ export interface Routes {
   (path: "/azure/core/lro/standard/users/{name}:export", name: string): Export;
 }
 
-export type SpecsAzureCoreLroStandardClient = Client & {
+export type StandardClient = Client & {
   path: Routes;
 };

@@ -13,8 +13,13 @@ import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+// @public (undocumented)
+export type AuthoringClient = Client & {
+    path: Routes;
+};
+
 // @public
-function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
+function createClient(endpoint: string, credentials: KeyCredential, options?: ClientOptions): AuthoringClient;
 export default createClient;
 
 // @public
@@ -110,11 +115,6 @@ export function isUnexpected(response: GetDeployment200Response | GetDeploymentD
 
 // @public (undocumented)
 export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
-
-// @public (undocumented)
-export type MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient = Client & {
-    path: Routes;
-};
 
 // @public (undocumented)
 export interface Routes {

@@ -76,6 +76,6 @@ export interface Routes {
   ): GetWrongDiscriminator;
 }
 
-export type TypeModelInheritanceClient = Client & {
+export type InheritanceClient = Client & {
   path: Routes;
 };

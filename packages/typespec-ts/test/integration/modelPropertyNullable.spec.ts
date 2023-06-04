@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import TypePropertyNullableClientFactory, {
-  TypePropertyNullableClient
+  NullableClient
 } from "./generated/models/propertyNullable/src/index.js";
 import { matrix } from "../util/matrix.js";
 
@@ -37,7 +37,7 @@ const testedTypes: TypeDetail[] = [
   }
 ];
 describe("ModelsPropertyNullableClient Rest Client", () => {
-  let client: TypePropertyNullableClient;
+  let client: NullableClient;
 
   beforeEach(() => {
     client = TypePropertyNullableClientFactory({

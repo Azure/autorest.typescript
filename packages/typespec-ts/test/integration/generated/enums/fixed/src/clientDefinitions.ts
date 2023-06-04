@@ -38,6 +38,6 @@ export interface Routes {
   (path: "/type/enum/fixed/string/unknown-value"): PutUnknownValue;
 }
 
-export type TypeEnumFixedClient = Client & {
+export type FixedClient = Client & {
   path: Routes;
 };

@@ -1,4 +1,4 @@
-# TypePropertyOptional REST client library for JavaScript
+# Optional REST client library for JavaScript
 
 Illustrates models with optional properties.
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/optional-property` package
 
-Install the TypePropertyOptional REST client REST client library for JavaScript with `npm`:
+Install the Optional REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/optional-property
 ```
 
-### Create and authenticate a `TypePropertyOptionalClient`
+### Create and authenticate a `OptionalClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

@@ -188,6 +188,6 @@ export interface Routes {
   (path: "/app/users/{userId}", userId: string): DeleteUser;
 }
 
-export type ConfidentialLedgerServiceClient = Client & {
+export type ConfidentialLedgerClient = Client & {
   path: Routes;
 };

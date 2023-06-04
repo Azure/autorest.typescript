@@ -1,9 +1,9 @@
 import TypeEnumExtensibleClientFactory, {
-  TypeEnumExtensibleClient
+  ExtensibleClient
 } from "./generated/enums/extensible/src/index.js";
 import { assert } from "chai";
 describe("ExtensibleEnums Rest Client", () => {
-  let client: TypeEnumExtensibleClient;
+  let client: ExtensibleClient;
 
   beforeEach(() => {
     client = TypeEnumExtensibleClientFactory({ allowInsecureConnection: true });

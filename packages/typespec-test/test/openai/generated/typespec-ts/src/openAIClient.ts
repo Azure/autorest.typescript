@@ -3,31 +3,34 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { KeyCredential } from "@azure/core-auth";
-import { MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient } from "./clientDefinitions";
+import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { OpenAIClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient`
- * @param endpoint - The endpoint to use.
+ * Initialize a new instance of `OpenAIClient`
+ * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
+ * https://westus.api.cognitive.microsoft.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
-  credentials: KeyCredential,
+  credentials: TokenCredential | KeyCredential,
   options: ClientOptions = {}
-): MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient {
-  const baseUrl = options.baseUrl ?? `${endpoint}/language`;
-  options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
+): OpenAIClient {
+  const baseUrl = options.baseUrl ?? `${endpoint}/openai`;
+  options.apiVersion = options.apiVersion ?? "2022-12-01";
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
+      scopes: options.credentials?.scopes ?? [
+        "https://cognitiveservices.azure.com/.default",
+      ],
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
 
-  const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-openai-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -42,11 +45,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as MicrosoftCognitiveLanguageServiceAnalyzeTextAuthoringClient;
+  const client = getClient(baseUrl, credentials, options) as OpenAIClient;
 
   return client;
 }
