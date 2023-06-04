@@ -109,14 +109,16 @@ function exportModels(
     return;
   }
 
-  const exportedModels = [...indexFile.getExportedDeclarations().keys()]
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(modelName => {
-    if (exportedModels.indexOf(modelName) > -1) {
-      return `${modelName} as ${clientName}${modelName}`
-    } else {
-      return modelName;
+  const exportedModels = [...indexFile.getExportedDeclarations().keys()];
+  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(
+    (modelName) => {
+      if (exportedModels.indexOf(modelName) > -1) {
+        return `${modelName} as ${clientName}${modelName}`;
+      } else {
+        return modelName;
+      }
     }
-  })
+  );
 
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }

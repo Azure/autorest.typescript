@@ -222,7 +222,6 @@ export function removeUnusedInterfaces(project: Project) {
                     ?.replace(".js", ".ts") ?? ""
                 ) === interfaceDeclaration.filepath
             );
-          // "/Users/zhangqiaoqiao/work/code/autorest.typescript/packages/typespec-test/test/multiclient_modular/generated/typespec-ts/src/index.ts"
           // Remove the matching exports
           matchingExports.forEach((me) => me.remove());
         });

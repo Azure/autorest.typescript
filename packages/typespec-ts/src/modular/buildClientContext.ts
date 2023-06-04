@@ -32,7 +32,7 @@ export function buildClientContext(
     isExported: true,
     extends: ["ClientOptions"]
   });
-  
+
   if (subfolder && subfolder !== "") {
     clientContextFile.addImportDeclaration({
       moduleSpecifier: `../../rest/${subfolder}/index.js`,

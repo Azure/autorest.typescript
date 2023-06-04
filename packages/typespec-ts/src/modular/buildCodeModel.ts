@@ -472,7 +472,10 @@ function emitParameter(
       clientDefaultValue = defaultApiVersion.value;
     }
     if (!clientDefaultValue) {
-      clientDefaultValue = getEnrichedDefaultApiVersion(context.program, context);
+      clientDefaultValue = getEnrichedDefaultApiVersion(
+        context.program,
+        context
+      );
     }
   }
   return { clientDefaultValue, ...base, ...paramMap };
