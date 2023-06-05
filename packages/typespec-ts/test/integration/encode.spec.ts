@@ -2,6 +2,7 @@ import { assert } from "chai";
 import EncodeDurationClientFactory, {
   DurationClient
 } from "./generated/encode/src/index.js";
+import { buildCsvCollection } from "./generated/encode/src/serializeHelper.js";
 describe("EncodeDurationClient Rest Client", () => {
   let client: DurationClient;
 
@@ -207,7 +208,7 @@ describe("EncodeDurationClient Rest Client", () => {
           .path(`/encode/duration/header/iso8601-array`)
           .get({
             headers: {
-              duration: ["P40D", "P50D"] as any
+              duration: buildCsvCollection(["P40D", "P50D"])
             }
           });
         assert.strictEqual(result.status, "204");

@@ -3,12 +3,14 @@ import * as path from "path";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import {
+  hasCsvCollection,
   hasMultiCollection,
   hasPipeCollection,
   hasSsvCollection,
   hasTsvCollection
 } from "./helpers/operationHelpers.js";
 import {
+  buildCsvCollectionContent,
   buildMultiCollectionContent,
   buildPipeCollectionContent,
   buildSsvCollectionContent,
@@ -28,6 +30,9 @@ export function buildSerializeHelper(model: RLCModel) {
   }
   if (hasTsvCollection(model)) {
     serializeHelperContent += "\n" + buildTsvCollectionContent;
+  }
+  if (hasCsvCollection(model)) {
+    serializeHelperContent += "\n" + buildCsvCollectionContent;
   }
   if (serializeHelperContent !== "") {
     const readmeFileContents = hbs.compile(serializeHelperContent, {
