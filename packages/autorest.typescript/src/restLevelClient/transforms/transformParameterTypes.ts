@@ -9,8 +9,7 @@ import {
   Property,
   SchemaContext,
   ObjectSchema as M4ObjectSchema,
-  Request as M4OperationRequest,
-  VirtualParameter
+  Request as M4OperationRequest
 } from "@autorest/codemodel";
 import {
   ImportKind,
@@ -254,8 +253,7 @@ function getParameterSchema(
       serializeInfo.hasMultiCollection ||
       serializeInfo.hasPipeCollection ||
       serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection ||
-      serializeInfo.hasCsvCollection
+      serializeInfo.hasTsvCollection
     ) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
@@ -282,12 +280,8 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
-  let hasCsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
-  const httpInfo =
-    parameter.protocol.http ||
-    (parameter as VirtualParameter).originalParameter.protocol.http;
   if (
     parameter.protocol.http?.explode === true &&
     parameter.protocol.http?.style === "form"
@@ -295,15 +289,6 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
     hasMultiCollection = true;
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
-  }
-  if (
-    httpInfo &&
-    httpInfo.in === ParameterLocation.Header &&
-    parameter.protocol.http?.style === "simple"
-  ) {
-    hasCsvCollection = true;
-    descriptions.push("buildCsvCollection");
-    collectionInfo.push("csv");
   }
   if (parameter.protocol.http?.style === "spaceDelimited") {
     hasSsvCollection = true;
@@ -325,7 +310,6 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
     hasPipeCollection,
     hasSsvCollection,
     hasTsvCollection,
-    hasCsvCollection,
     descriptions,
     collectionInfo
   };
