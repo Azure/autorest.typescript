@@ -18,7 +18,7 @@ export {
   ListOptions,
   createBar,
   BarClientOptions,
-  BarResource,
+  BarClientResource,
   getBinary,
   getArray,
   createWithHeaders,

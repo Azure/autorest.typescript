@@ -169,7 +169,7 @@ export async function $onEmit(context: EmitContext) {
           srcPath,
           subfolder,
           apiTopLevelIndexFile,
-          subClient.name
+          subClient.name + "Client"
         );
       }
       buildRootIndex(

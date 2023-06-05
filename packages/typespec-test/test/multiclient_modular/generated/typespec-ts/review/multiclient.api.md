@@ -18,11 +18,11 @@ import { StreamableMethod } from '@azure-rest/core-client';
 export class BarClient {
     constructor(endpoint: string, options?: BarClientOptions);
     // (undocumented)
-    createWithHeaders(options?: CreateWithHeadersOptions): Promise<BarResource>;
+    createWithHeaders(options?: CreateWithHeadersOptions): Promise<BarClientResource>;
     // (undocumented)
     deleteWithHeaders(options?: DeleteWithHeadersOptions): Promise<void>;
     // (undocumented)
-    getArray(options?: GetArrayOptions): Promise<BarResource[]>;
+    getArray(options?: GetArrayOptions): Promise<BarClientResource[]>;
     // (undocumented)
     getBinary(options?: GetBinaryOptions): Promise<any>;
 }
@@ -32,7 +32,7 @@ export interface BarClientOptions extends ClientOptions {
 }
 
 // @public (undocumented)
-export interface BarResource {
+export interface BarClientResource {
     // (undocumented)
     description?: string;
     // (undocumented)
@@ -63,7 +63,7 @@ export interface CreateOrUpdateOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export function createWithHeaders(context: Client_3.BarContext, options?: CreateWithHeadersOptions): Promise<BarResource>;
+export function createWithHeaders(context: Client_3.BarContext, options?: CreateWithHeadersOptions): Promise<BarClientResource>;
 
 // @public (undocumented)
 export interface CreateWithHeadersOptions extends RequestOptions {
@@ -106,7 +106,7 @@ export interface FooClientOptions extends ClientOptions {
 export function get(context: Client.FooContext, name: string, options?: GetOptions): Promise<Resource>;
 
 // @public (undocumented)
-export function getArray(context: Client_3.BarContext, options?: GetArrayOptions): Promise<BarResource[]>;
+export function getArray(context: Client_3.BarContext, options?: GetArrayOptions): Promise<BarClientResource[]>;
 
 // @public (undocumented)
 export interface GetArrayOptions extends RequestOptions {

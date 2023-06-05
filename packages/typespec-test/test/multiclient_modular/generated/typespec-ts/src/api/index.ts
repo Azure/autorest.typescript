@@ -18,7 +18,7 @@ export {
 export {
   createBar,
   BarClientOptions,
-  Resource as BarResource,
+  Resource as BarClientResource,
   getBinary,
   getArray,
   createWithHeaders,
