@@ -41,8 +41,8 @@ function exportClassicalClient(client: Client, indexFile: SourceFile) {
 
 function exportApiIndex(indexFile: SourceFile, srcPath: string) {
   const project = indexFile.getProject();
-  let modelFilePath = `${srcPath}/src/api/index.ts`;
-  let moduleSpecifier = "./api/index.js";
+  const modelFilePath = `${srcPath}/src/api/index.ts`;
+  const moduleSpecifier = "./api/index.js";
   const modelsFile = project.getSourceFile(modelFilePath);
   if (!modelsFile) {
     return;

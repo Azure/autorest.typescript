@@ -36,7 +36,9 @@ export function buildApiTopLevelIndexFile(
   apiTopLevelIndexFile: SourceFile,
   clientName: string
 ) {
-  const apiFile = project.getSourceFile(join(srcPath, `src/api/${subfolder}/index.ts`));
+  const apiFile = project.getSourceFile(
+    join(srcPath, `src/api/${subfolder}/index.ts`)
+  );
 
   const exportedModels = [
     ...apiTopLevelIndexFile.getExportedDeclarations().keys()
