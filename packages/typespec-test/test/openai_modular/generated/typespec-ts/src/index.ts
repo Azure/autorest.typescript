@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { OpenAIClient } from "./OpenAIClient.js";
 export {
   Embeddings,
   EmbeddingItem,
@@ -14,11 +15,14 @@ export {
   ChatRole,
   ChatCompletions,
   ChatChoice,
-} from "./api/models.js";
-export {
+  createOpenAI,
+  OpenAIClientOptions,
+  OpenAIContext,
+  getEmbeddings,
+  getCompletions,
+  getChatCompletions,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
-} from "./api/operations.js";
-export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
+} from "./api/index.js";
 export { RequestOptions } from "./common/interfaces.js";

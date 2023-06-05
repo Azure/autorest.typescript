@@ -16,8 +16,6 @@ import {
   DeleteWithHeadersOptions,
 } from "./api/bar/index.js";
 
-export { BarClientOptions } from "./api/bar/BarContext.js";
-
 export class BarClient {
   private _client: Client.BarContext;
 

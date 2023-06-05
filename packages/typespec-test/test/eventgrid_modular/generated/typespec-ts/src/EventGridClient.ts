@@ -25,8 +25,6 @@ import {
   RejectCloudEventsOptions,
 } from "./api/index.js";
 
-export { EventGridClientOptions } from "./api/EventGridContext.js";
-
 export class EventGridClient {
   private _client: EventGridContext;
 

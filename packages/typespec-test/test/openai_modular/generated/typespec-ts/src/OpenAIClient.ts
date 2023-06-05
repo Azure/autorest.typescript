@@ -18,8 +18,6 @@ import {
   GetChatCompletionsOptions,
 } from "./api/index.js";
 
-export { OpenAIClientOptions } from "./api/OpenAIContext.js";
-
 export class OpenAIClient {
   private _client: OpenAIContext;
 

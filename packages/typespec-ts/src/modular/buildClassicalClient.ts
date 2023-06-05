@@ -28,12 +28,6 @@ export function buildClassicalClient(
   const clientFile = project.createSourceFile(
     `${srcPath}/src/${classicalClientname}.ts`
   );
-  clientFile.addExportDeclaration({
-    namedExports: [`${classicalClientname}Options`],
-    moduleSpecifier: `./api/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }${modularClientName}Context.js`
-  });
 
   const clientClass = clientFile.addClass({
     isExported: true,

@@ -4,9 +4,15 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -77,6 +83,9 @@ export interface CompletionsUsage {
 }
 
 // @public
+export function createOpenAI(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions): OpenAIContext;
+
+// @public
 export interface EmbeddingItem {
     embedding: number[];
     index: number;
@@ -94,6 +103,9 @@ export interface EmbeddingsUsage {
     totalTokens: number;
 }
 
+// @public
+export function getChatCompletions(context: OpenAIContext, messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
+
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends RequestOptions {
     frequencyPenalty?: number;
@@ -108,6 +120,9 @@ export interface GetChatCompletionsOptions extends RequestOptions {
     topP?: number;
     user?: string;
 }
+
+// @public
+export function getCompletions(context: OpenAIContext, prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
@@ -127,6 +142,9 @@ export interface GetCompletionsOptions extends RequestOptions {
     user?: string;
 }
 
+// @public
+export function getEmbeddings(context: OpenAIContext, input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends RequestOptions {
     model?: string;
@@ -145,6 +163,11 @@ export class OpenAIClient {
 export interface OpenAIClientOptions extends ClientOptions {
 }
 
+// @public (undocumented)
+export type OpenAIContext = Client & {
+    path: Routes;
+};
+
 // @public
 export interface RequestOptions {
     requestOptions?: {
@@ -153,6 +176,10 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
+
+// Warnings were encountered during analysis:
+//
+// src/rest/clientDefinitions.ts:71:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

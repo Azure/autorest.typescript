@@ -4,18 +4,25 @@
 
 ```ts
 
+import { Client as Client_2 } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorResponse } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
+import { Paged } from '@azure/core-paging';
+import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export class BarClient {
     constructor(endpoint: string, options?: BarClientOptions);
     // (undocumented)
-    createWithHeaders(options?: CreateWithHeadersOptions): Promise<BarClientResource>;
+    createWithHeaders(options?: CreateWithHeadersOptions): Promise<BarResource>;
     // (undocumented)
     deleteWithHeaders(options?: DeleteWithHeadersOptions): Promise<void>;
     // (undocumented)
-    getArray(options?: GetArrayOptions): Promise<BarClientResource[]>;
+    getArray(options?: GetArrayOptions): Promise<BarResource[]>;
     // (undocumented)
     getBinary(options?: GetBinaryOptions): Promise<any>;
 }
@@ -25,7 +32,7 @@ export interface BarClientOptions extends ClientOptions {
 }
 
 // @public (undocumented)
-export interface BarClientResource {
+export interface BarResource {
     // (undocumented)
     description?: string;
     // (undocumented)
@@ -36,11 +43,27 @@ export interface BarClientResource {
     type: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "Client_3" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function createBar(endpoint: string, options?: BarClientOptions): Client_3.BarContext;
+
+// Warning: (ae-forgotten-export) The symbol "Client" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function createFoo(endpoint: string, options?: FooClientOptions): Client.FooContext;
+
+// @public
+export function createOrUpdate(context: Client.FooContext, type: string, name: string, options?: CreateOrUpdateOptions): Promise<Resource>;
+
 // @public (undocumented)
 export interface CreateOrUpdateOptions extends RequestOptions {
     // (undocumented)
     description?: string;
 }
+
+// @public (undocumented)
+export function createWithHeaders(context: Client_3.BarContext, options?: CreateWithHeadersOptions): Promise<BarResource>;
 
 // @public (undocumented)
 export interface CreateWithHeadersOptions extends RequestOptions {
@@ -52,9 +75,15 @@ export interface CustomPage {
     value: Resource[];
 }
 
+// @public
+export function deleteOperation(context: Client.FooContext, name: string, options?: DeleteOptions): Promise<void>;
+
 // @public (undocumented)
 export interface DeleteOptions extends RequestOptions {
 }
+
+// @public (undocumented)
+export function deleteWithHeaders(context: Client_3.BarContext, options?: DeleteWithHeadersOptions): Promise<void>;
 
 // @public (undocumented)
 export interface DeleteWithHeadersOptions extends RequestOptions {
@@ -73,9 +102,18 @@ export class FooClient {
 export interface FooClientOptions extends ClientOptions {
 }
 
+// @public
+export function get(context: Client.FooContext, name: string, options?: GetOptions): Promise<Resource>;
+
+// @public (undocumented)
+export function getArray(context: Client_3.BarContext, options?: GetArrayOptions): Promise<BarResource[]>;
+
 // @public (undocumented)
 export interface GetArrayOptions extends RequestOptions {
 }
+
+// @public (undocumented)
+export function getBinary(context: Client_3.BarContext, options?: GetBinaryOptions): Promise<any>;
 
 // @public (undocumented)
 export interface GetBinaryOptions extends RequestOptions {
@@ -84,6 +122,9 @@ export interface GetBinaryOptions extends RequestOptions {
 // @public (undocumented)
 export interface GetOptions extends RequestOptions {
 }
+
+// @public
+export function list(context: Client.FooContext, options?: ListOptions): Promise<CustomPage>;
 
 // @public (undocumented)
 export interface ListOptions extends RequestOptions {

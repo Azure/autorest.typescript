@@ -4,14 +4,21 @@
 
 ```ts
 
+import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { HttpResponse } from '@azure-rest/core-client';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { RequestParameters } from '@azure-rest/core-client';
+import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface AnalyzeResult {
     // (undocumented)
     summary: string;
 }
+
+// @public
+export function analyzeWidget(context: WidgetServiceContext, id: string, options?: AnalyzeWidgetOptions): Promise<AnalyzeResult>;
 
 // @public (undocumented)
 export interface AnalyzeWidgetOptions extends RequestOptions {
@@ -20,17 +27,32 @@ export interface AnalyzeWidgetOptions extends RequestOptions {
 // @public (undocumented)
 export type ColorType = "red" | "blue";
 
+// @public
+export function createWidget(context: WidgetServiceContext, weight: number, color: ColorType, options?: CreateWidgetOptions): Promise<Widget>;
+
 // @public (undocumented)
 export interface CreateWidgetOptions extends RequestOptions {
 }
 
 // @public (undocumented)
+export function createWidgetService(endpoint: string, options?: WidgetServiceClientOptions): WidgetServiceContext;
+
+// @public
+export function deleteWidget(context: WidgetServiceContext, id: string, options?: DeleteWidgetOptions): Promise<void>;
+
+// @public (undocumented)
 export interface DeleteWidgetOptions extends RequestOptions {
 }
+
+// @public
+export function getWidget(context: WidgetServiceContext, id: string, options?: GetWidgetOptions): Promise<Widget>;
 
 // @public (undocumented)
 export interface GetWidgetOptions extends RequestOptions {
 }
+
+// @public
+export function listWidgets(context: WidgetServiceContext, options?: ListWidgetsOptions): Promise<Widget[]>;
 
 // @public (undocumented)
 export interface ListWidgetsOptions extends RequestOptions {
@@ -44,6 +66,9 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
+
+// @public
+export function updateWidget(context: WidgetServiceContext, id: string, options?: UpdateWidgetOptions): Promise<Widget>;
 
 // @public (undocumented)
 export interface UpdateWidgetOptions extends RequestOptions {
@@ -72,6 +97,15 @@ export class WidgetServiceClient {
 // @public (undocumented)
 export interface WidgetServiceClientOptions extends ClientOptions {
 }
+
+// @public (undocumented)
+export type WidgetServiceContext = Client & {
+    path: Routes;
+};
+
+// Warnings were encountered during analysis:
+//
+// src/rest/clientDefinitions.ts:83:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

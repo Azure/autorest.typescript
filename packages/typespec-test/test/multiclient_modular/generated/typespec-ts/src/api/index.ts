@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { FooClient } from "./FooClient.js";
-export { BarClient } from "./BarClient.js";
 export {
   createFoo,
   FooClientOptions,
@@ -16,9 +14,11 @@ export {
   GetOptions,
   DeleteOptions,
   ListOptions,
+} from "./foo/index.js";
+export {
   createBar,
   BarClientOptions,
-  BarResource,
+  Resource as BarResource,
   getBinary,
   getArray,
   createWithHeaders,
@@ -27,5 +27,4 @@ export {
   GetArrayOptions,
   CreateWithHeadersOptions,
   DeleteWithHeadersOptions,
-} from "./api/index.js";
-export { RequestOptions } from "./common/interfaces.js";
+} from "./bar/index.js";
