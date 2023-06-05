@@ -31,6 +31,6 @@ export interface Routes {
   (path: "/type/model/empty/round-trip"): PostRoundTripEmpty;
 }
 
-export type TypeModelEmptyClient = Client & {
+export type EmptyClient = Client & {
   path: Routes;
 };

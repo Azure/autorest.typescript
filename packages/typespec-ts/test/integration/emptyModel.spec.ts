@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import TypeModelEmptyClientFactory, {
-  TypeModelEmptyClient
+  EmptyClient
 } from "./generated/models/empty/src/index.js";
 describe("TypeModelEmptyClient Rest Client", () => {
-  let client: TypeModelEmptyClient;
+  let client: EmptyClient;
 
   beforeEach(() => {
     client = TypeModelEmptyClientFactory({
