@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCModel, RLCOptions } from "../interfaces.js";
+import { RLCModel } from "../interfaces.js";
 import { NameType, normalizeName } from "./nameUtils.js";
 
 /**

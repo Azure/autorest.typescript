@@ -4,6 +4,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
 import {
+  hasCsvCollection,
   hasInputModels,
   hasMultiCollection,
   hasOutputModels,
@@ -148,7 +149,8 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     hasMultiCollection(model) ||
     hasSsvCollection(model) ||
     hasPipeCollection(model) ||
-    hasTsvCollection(model)
+    hasTsvCollection(model) ||
+    hasCsvCollection(model)
   ) {
     file.addImportDeclaration({
       namespaceImport: "SerializeHelper",

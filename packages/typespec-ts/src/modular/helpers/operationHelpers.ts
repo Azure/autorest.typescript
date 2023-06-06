@@ -83,7 +83,7 @@ export function getDeserializePrivateFunction(
   const response = operation.responses[0]!;
   let returnType;
   if (response?.type?.type) {
-    returnType = buildType(response.type.name, response.type)
+    returnType = buildType(response.type.name, response.type);
   } else {
     if (!needUnexpectedHelper) {
       parameters = [
@@ -95,7 +95,6 @@ export function getDeserializePrivateFunction(
     }
     returnType = { name: "", type: "void" };
   }
-
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,

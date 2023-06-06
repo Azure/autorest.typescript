@@ -194,6 +194,7 @@ function extractSpecialSerializeInfo(
   let hasPipeCollection = false;
   let hasTsvCollection = false;
   let hasSsvCollection = false;
+  let hasCsvCollection = false;
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
@@ -216,6 +217,9 @@ function extractSpecialSerializeInfo(
         hasSsvCollection = hasSsvCollection
           ? hasSsvCollection
           : serializeInfo.hasSsvCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
       });
     }
   }
@@ -236,12 +240,16 @@ function extractSpecialSerializeInfo(
       hasSsvCollection = hasSsvCollection
         ? hasSsvCollection
         : serializeInfo.hasSsvCollection;
+      hasCsvCollection = hasCsvCollection
+        ? hasCsvCollection
+        : serializeInfo.hasCsvCollection;
     });
   }
   return {
     hasMultiCollection,
     hasPipeCollection,
     hasTsvCollection,
-    hasSsvCollection
+    hasSsvCollection,
+    hasCsvCollection
   };
 }
