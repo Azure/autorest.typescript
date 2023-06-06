@@ -122,7 +122,8 @@ export type HeaderIso8601Parameters = HeaderIso8601HeaderParam &
   RequestParameters;
 
 export interface HeaderIso8601ArrayHeaders {
-  duration: string[];
+  /**  This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
+  duration: string;
 }
 
 export interface HeaderIso8601ArrayHeaderParam {

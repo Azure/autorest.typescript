@@ -40,6 +40,7 @@ export interface HelperFunctionDetails {
   hasPipeCollection?: boolean;
   hasSsvCollection?: boolean;
   hasTsvCollection?: boolean;
+  hasCsvCollection?: boolean;
 }
 
 export interface PagingDetails {
