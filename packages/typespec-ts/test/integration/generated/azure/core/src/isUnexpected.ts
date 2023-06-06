@@ -10,8 +10,8 @@ import {
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  Delete204Response,
-  DeleteDefaultResponse,
+  DeleteOperation204Response,
+  DeleteOperationDefaultResponse,
   List200Response,
   ListDefaultResponse,
   ListWithPage200Response,
@@ -49,8 +49,8 @@ export function isUnexpected(
   response: Get200Response | GetDefaultResponse
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response: Delete204Response | DeleteDefaultResponse
-): response is DeleteDefaultResponse;
+  response: DeleteOperation204Response | DeleteOperationDefaultResponse
+): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
   response: List200Response | ListDefaultResponse
 ): response is ListDefaultResponse;
@@ -75,8 +75,8 @@ export function isUnexpected(
     | CreateOrReplaceDefaultResponse
     | Get200Response
     | GetDefaultResponse
-    | Delete204Response
-    | DeleteDefaultResponse
+    | DeleteOperation204Response
+    | DeleteOperationDefaultResponse
     | List200Response
     | ListDefaultResponse
     | ListWithPage200Response
@@ -89,7 +89,7 @@ export function isUnexpected(
   | CreateOrUpdateDefaultResponse
   | CreateOrReplaceDefaultResponse
   | GetDefaultResponse
-  | DeleteDefaultResponse
+  | DeleteOperationDefaultResponse
   | ListDefaultResponse
   | ListWithPageDefaultResponse
   | ListWithCustomPageModelDefaultResponse
