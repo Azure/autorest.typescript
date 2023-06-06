@@ -148,6 +148,9 @@ export function buildClient(model: RLCModel): File | undefined {
       ? paths.length - 1 - paths.lastIndexOf("src")
       : 0;
 
+  const loggerPath = `${
+    parentPath > 0 ? "../".repeat(parentPath) : "./"
+  }logger`;
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
@@ -155,9 +158,13 @@ export function buildClient(model: RLCModel): File | undefined {
     },
     {
       namedImports: ["logger"],
-      moduleSpecifier: `${
-        parentPath > 0 ? "../".repeat(parentPath) : "./"
-      }logger`
+      moduleSpecifier: getImportModuleName(
+        {
+          cjsName: loggerPath,
+          esModulesName: `${loggerPath}.js`
+        },
+        model
+      )
     }
   ]);
 

@@ -117,6 +117,20 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     exports.push("PaginateHelper");
   }
 
+  if (hasUnexpectedHelper(model)) {
+    file.addImportDeclaration({
+      namespaceImport: "UnexpectedHelper",
+      moduleSpecifier: getImportModuleName(
+        {
+          cjsName: "./isUnexpected",
+          esModulesName: "./isUnexpected.js"
+        },
+        model
+      )
+    });
+    exports.push("UnexpectedHelper");
+  }
+  
   if (hasPollingOperations(model)) {
     file.addImportDeclaration({
       namespaceImport: "PollingHelper",

@@ -18,7 +18,7 @@ export enum NameType {
 
 const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
 
-const ReservedModelNames: ReservedName[] = [
+export const ReservedModelNames: ReservedName[] = [
   { name: "any", reservedFor: [NameType.Parameter] },
   { name: "as", reservedFor: [NameType.Parameter] },
   { name: "boolean", reservedFor: [NameType.Parameter, ...Newable] },
@@ -33,7 +33,7 @@ const ReservedModelNames: ReservedName[] = [
   { name: "debugger", reservedFor: [NameType.Parameter] },
   { name: "declare", reservedFor: [NameType.Parameter] },
   { name: "default", reservedFor: [NameType.Parameter] },
-  { name: "delete", reservedFor: [NameType.Parameter] },
+  { name: "delete", reservedFor: [NameType.Parameter, NameType.Operation] },
   { name: "do", reservedFor: [NameType.Parameter] },
   { name: "else", reservedFor: [NameType.Parameter] },
   { name: "enum", reservedFor: [NameType.Parameter] },
@@ -106,9 +106,10 @@ export function guardReservedNames(
 function getSuffix(nameType?: NameType) {
   switch (nameType) {
     case NameType.File:
-    case NameType.Operation:
     case NameType.Property:
       return "";
+    case NameType.Operation:
+      return "Operation";
     case NameType.OperationGroup:
       return "Operations";
     case NameType.Parameter:

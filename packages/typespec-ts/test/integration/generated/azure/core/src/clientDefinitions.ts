@@ -20,8 +20,8 @@ import {
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  Delete204Response,
-  DeleteDefaultResponse,
+  DeleteOperation204Response,
+  DeleteOperationDefaultResponse,
   List200Response,
   ListDefaultResponse,
   ListWithPage200Response,
@@ -57,7 +57,9 @@ export interface CreateOrUpdate {
   /** Deletes a User */
   delete(
     options?: DeleteParameters
-  ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
+  ): StreamableMethod<
+    DeleteOperation204Response | DeleteOperationDefaultResponse
+  >;
 }
 
 export interface List {

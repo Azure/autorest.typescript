@@ -10,8 +10,8 @@ import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
-  Delete202Response,
-  DeleteDefaultResponse,
+  DeleteOperation202Response,
+  DeleteOperationDefaultResponse,
   Export202Response,
   ExportDefaultResponse,
 } from "./responses";
@@ -29,7 +29,9 @@ export interface CreateOrReplace {
   /** Deletes a User */
   delete(
     options?: DeleteParameters
-  ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
+  ): StreamableMethod<
+    DeleteOperation202Response | DeleteOperationDefaultResponse
+  >;
 }
 
 export interface Export {

@@ -236,7 +236,7 @@ importers:
       '@typespec/compiler': '>=0.44.0 <1.0.0'
       '@typespec/http': ~0.44.0
       '@typespec/rest': '>=0.44.0 <1.0.0'
-      '@typespec/versioning': ~0.44.0
+      '@typespec/versioning': '>=0.44.0 <1.0.0'
       chai: ^4.3.6
       chalk: ^4.0.0
       cross-env: ^7.0.3
@@ -256,6 +256,7 @@ importers:
       '@azure-tools/typespec-client-generator-core': 0.30.0_wihkxl52pkwnxc25ba2weeyzd4
       '@typespec/compiler': 0.44.0
       '@typespec/rest': 0.44.0_@typespec+compiler@0.44.0
+      '@typespec/versioning': 0.44.0_@typespec+compiler@0.44.0
       fs-extra: 11.1.1
       prettier: 2.7.1
       ts-morph: 15.1.0
@@ -278,7 +279,6 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.59.6_hrzo544y7ygaq2nap7kmpxcgnm
       '@typescript-eslint/parser': 5.59.6_3qfatcekpgbllh6uk5ivyhkbxq
       '@typespec/http': 0.44.0_@typespec+compiler@0.44.0
-      '@typespec/versioning': 0.44.0_@typespec+compiler@0.44.0
       chai: 4.3.7
       chalk: 4.1.2
       cross-env: 7.0.3
