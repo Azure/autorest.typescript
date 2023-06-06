@@ -62,7 +62,7 @@ function createClient_2(endpoint: string, options?: ClientOptions): ResponseClie
 
 // @public (undocumented)
 interface CreateOrUpdate {
-    delete(options?: DeleteParameters): StreamableMethod<DeleteOperation204Response | DeleteOperationDefaultResponse>;
+    delete(options?: DeleteParameters): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
     put(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
@@ -132,22 +132,22 @@ interface CreateWithHeaders201Response extends HttpResponse {
 type CreateWithHeadersParameters = RequestParameters;
 
 // @public
-interface DeleteOperation204Response extends HttpResponse {
+interface Delete204Response extends HttpResponse {
     // (undocumented)
     status: "204";
 }
 
 // @public (undocumented)
-interface DeleteOperationDefaultHeaders {
+interface DeleteDefaultHeaders {
     "x-ms-error-code"?: string;
 }
 
 // @public (undocumented)
-interface DeleteOperationDefaultResponse extends HttpResponse {
+interface DeleteDefaultResponse extends HttpResponse {
     // (undocumented)
     body: ErrorResponse;
     // (undocumented)
-    headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
+    headers: RawHttpHeaders & DeleteDefaultHeaders;
     // (undocumented)
     status: string;
 }
@@ -253,7 +253,7 @@ function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Res
 function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
 
 // @public (undocumented)
-function isUnexpected(response: DeleteOperation204Response | DeleteOperationDefaultResponse): response is DeleteOperationDefaultResponse;
+function isUnexpected(response: Delete204Response | DeleteDefaultResponse): response is DeleteDefaultResponse;
 
 // @public (undocumented)
 function isUnexpected(response: List200Response | ListDefaultResponse): response is ListDefaultResponse;
@@ -414,9 +414,9 @@ declare namespace Responses {
         Get200Response,
         GetDefaultHeaders,
         GetDefaultResponse,
-        DeleteOperation204Response,
-        DeleteOperationDefaultHeaders,
-        DeleteOperationDefaultResponse,
+        Delete204Response,
+        DeleteDefaultHeaders,
+        DeleteDefaultResponse,
         List200Response,
         ListDefaultHeaders,
         ListDefaultResponse

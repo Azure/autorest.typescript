@@ -46,19 +46,19 @@ export interface GetDefaultResponse extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface DeleteOperation204Response extends HttpResponse {
+export interface Delete204Response extends HttpResponse {
   status: "204";
 }
 
-export interface DeleteOperationDefaultHeaders {
+export interface DeleteDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface DeleteOperationDefaultResponse extends HttpResponse {
+export interface DeleteDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
+  headers: RawHttpHeaders & DeleteDefaultHeaders;
 }
 
 /** The request has succeeded. */

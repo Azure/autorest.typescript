@@ -25,8 +25,8 @@ import {
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  DeleteOperation202Response,
-  DeleteOperationDefaultResponse,
+  Delete202Response,
+  DeleteDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
   Export202Response,
@@ -73,9 +73,7 @@ export interface CreateOrUpdate {
   /** Deletes a project. */
   delete(
     options?: DeleteParameters
-  ): StreamableMethod<
-    DeleteOperation202Response | DeleteOperationDefaultResponse
-  >;
+  ): StreamableMethod<Delete202Response | DeleteDefaultResponse>;
 }
 
 export interface ListProjects {
