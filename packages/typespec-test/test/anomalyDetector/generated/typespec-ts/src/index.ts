@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AnomalyDetector from "./anomalyDetector";
+import AnomalyDetectorClient from "./anomalyDetectorClient";
 
-export * from "./anomalyDetector";
+export * from "./anomalyDetectorClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -12,4 +12,4 @@ export * from "./models";
 export * from "./outputModels";
 export * from "./paginateHelper";
 
-export default AnomalyDetector;
+export default AnomalyDetectorClient;

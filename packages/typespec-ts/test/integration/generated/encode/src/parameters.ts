@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import {
   DefaultDurationProperty,
   ISO8601DurationProperty,
   Int32SecondsDurationProperty,
   FloatSecondsDurationProperty,
+  FloatSecondsDurationArrayProperty,
 } from "./models";
 
 export interface QueryDefaultQueryParamProperties {
@@ -51,6 +53,17 @@ export interface QueryFloatSecondsQueryParam {
 export type QueryFloatSecondsParameters = QueryFloatSecondsQueryParam &
   RequestParameters;
 
+export interface QueryInt32SecondsArrayQueryParamProperties {
+  input: number[];
+}
+
+export interface QueryInt32SecondsArrayQueryParam {
+  queryParameters: QueryInt32SecondsArrayQueryParamProperties;
+}
+
+export type QueryInt32SecondsArrayParameters =
+  QueryInt32SecondsArrayQueryParam & RequestParameters;
+
 export interface PropertyDefaultBodyParam {
   body: DefaultDurationProperty;
 }
@@ -77,4 +90,67 @@ export interface PropertyFloatSecondsBodyParam {
 }
 
 export type PropertyFloatSecondsParameters = PropertyFloatSecondsBodyParam &
+  RequestParameters;
+
+export interface PropertyFloatSecondsArrayBodyParam {
+  body: FloatSecondsDurationArrayProperty;
+}
+
+export type PropertyFloatSecondsArrayParameters =
+  PropertyFloatSecondsArrayBodyParam & RequestParameters;
+
+export interface HeaderDefaultHeaders {
+  duration: string;
+}
+
+export interface HeaderDefaultHeaderParam {
+  headers: RawHttpHeadersInput & HeaderDefaultHeaders;
+}
+
+export type HeaderDefaultParameters = HeaderDefaultHeaderParam &
+  RequestParameters;
+
+export interface HeaderIso8601Headers {
+  duration: string;
+}
+
+export interface HeaderIso8601HeaderParam {
+  headers: RawHttpHeadersInput & HeaderIso8601Headers;
+}
+
+export type HeaderIso8601Parameters = HeaderIso8601HeaderParam &
+  RequestParameters;
+
+export interface HeaderIso8601ArrayHeaders {
+  /**  This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
+  duration: string;
+}
+
+export interface HeaderIso8601ArrayHeaderParam {
+  headers: RawHttpHeadersInput & HeaderIso8601ArrayHeaders;
+}
+
+export type HeaderIso8601ArrayParameters = HeaderIso8601ArrayHeaderParam &
+  RequestParameters;
+
+export interface HeaderInt32SecondsHeaders {
+  duration: number;
+}
+
+export interface HeaderInt32SecondsHeaderParam {
+  headers: RawHttpHeadersInput & HeaderInt32SecondsHeaders;
+}
+
+export type HeaderInt32SecondsParameters = HeaderInt32SecondsHeaderParam &
+  RequestParameters;
+
+export interface HeaderFloatSecondsHeaders {
+  duration: number;
+}
+
+export interface HeaderFloatSecondsHeaderParam {
+  headers: RawHttpHeadersInput & HeaderFloatSecondsHeaders;
+}
+
+export type HeaderFloatSecondsParameters = HeaderFloatSecondsHeaderParam &
   RequestParameters;

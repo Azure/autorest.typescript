@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCModel, RLCOptions } from "../interfaces.js";
+import { RLCModel } from "../interfaces.js";
 import { NameType, normalizeName } from "./nameUtils.js";
 
 /**
@@ -55,7 +55,11 @@ export function getResponseBaseName(
   statusCode: string
 ) {
   return normalizeName(
-    `${operationGroup}_${operationName}_${statusCode}`,
+    `${operationGroup}_${normalizeName(
+      operationName,
+      NameType.Operation,
+      true
+    )}_${statusCode}`,
     NameType.Interface
   );
 }

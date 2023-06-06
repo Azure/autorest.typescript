@@ -3,18 +3,20 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TypeEnumFixedClient } from "./clientDefinitions";
+import { SharedRouteClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `TypeEnumFixedClient`
+ * Initialize a new instance of `SharedRouteClient`
+ * @param $host - The parameter $host
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
+  $host: string,
   options: ClientOptions = {}
-): TypeEnumFixedClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-extensible-fixed-rest/1.0.0`;
+): SharedRouteClient {
+  const baseUrl = options.baseUrl ?? `${$host}`;
+
+  const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -29,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TypeEnumFixedClient;
+  const client = getClient(baseUrl, options) as SharedRouteClient;
 
   return client;
 }

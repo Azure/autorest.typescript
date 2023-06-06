@@ -3,18 +3,18 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { ParametersSpreadClient } from "./clientDefinitions";
+import { VisibilityClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ParametersSpreadClient`
+ * Initialize a new instance of `VisibilityClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): ParametersSpreadClient {
+): VisibilityClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-parameterSpread-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-visibility-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -29,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ParametersSpreadClient;
+  const client = getClient(baseUrl, options) as VisibilityClient;
 
   return client;
 }

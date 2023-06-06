@@ -3,32 +3,31 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TokenCredential } from "@azure/core-auth";
-import { ConfidentialLedgerServiceClient } from "./clientDefinitions";
+import { KeyCredential } from "@azure/core-auth";
+import { AuthoringClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ConfidentialLedgerServiceClient`
- * @param ledgerUri - The parameter ledgerUri
+ * Initialize a new instance of `AuthoringClient`
+ * @param endpoint - The endpoint to use.
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  ledgerUri: string,
-  credentials: TokenCredential,
+  endpoint: string,
+  credentials: KeyCredential,
   options: ClientOptions = {}
-): ConfidentialLedgerServiceClient {
-  const baseUrl = options.baseUrl ?? `${ledgerUri}`;
-  options.apiVersion = options.apiVersion ?? "2022-05-13";
+): AuthoringClient {
+  const baseUrl = options.baseUrl ?? `${endpoint}/language`;
+  options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
   options = {
     ...options,
     credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://confidential-ledger.azure.com/.default",
-      ],
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
 
-  const userAgentInfo = `azsdk-js-confidential-ledger-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -43,11 +42,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as ConfidentialLedgerServiceClient;
+  const client = getClient(baseUrl, credentials, options) as AuthoringClient;
 
   return client;
 }

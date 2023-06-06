@@ -72,6 +72,6 @@ export interface Routes {
   (path: "/widgets"): ListWidgets;
 }
 
-export type ContosoWidgetManagerClient = Client & {
+export type WidgetManagerClient = Client & {
   path: Routes;
 };

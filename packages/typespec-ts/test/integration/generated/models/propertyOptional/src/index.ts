@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import TypePropertyOptional from "./typePropertyOptional";
+import OptionalClient from "./optionalClient";
 
-export * from "./typePropertyOptional";
+export * from "./optionalClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./models";
 export * from "./outputModels";
 
-export default TypePropertyOptional;
+export default OptionalClient;

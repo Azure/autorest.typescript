@@ -258,6 +258,6 @@ export interface Routes {
   ): RequiredAndOptionalGetRequiredOnly;
 }
 
-export type TypePropertyOptionalClient = Client & {
+export type OptionalClient = Client & {
   path: Routes;
 };

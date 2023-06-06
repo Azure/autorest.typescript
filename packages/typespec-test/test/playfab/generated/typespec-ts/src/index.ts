@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import PlayFab from "./playFab";
+import PlayFabClient from "./playFabClient";
 
-export * from "./playFab";
+export * from "./playFabClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -11,4 +11,4 @@ export * from "./isUnexpected";
 export * from "./models";
 export * from "./outputModels";
 
-export default PlayFab;
+export default PlayFabClient;

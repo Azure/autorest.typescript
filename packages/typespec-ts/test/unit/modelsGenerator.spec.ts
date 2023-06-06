@@ -165,7 +165,9 @@ describe("Input/output model type", () => {
       const schemaOutput = await emitModelsFromCadl(`
       @doc("Extensible enum model description")
       enum TranslationLanguageValues {
+        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
         English,
+        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
         Chinese,
       }
       model InputOutputModel {
@@ -206,6 +208,7 @@ describe("Input/output model type", () => {
     it("should handle extensible_enum as body -> string", async () => {
       // When extensible_enum is comsumed as body property it should be string only
       const schemaOutput = await emitParameterFromCadl(`
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       enum TranslationLanguage {
         English,
         Chinese,
@@ -237,8 +240,11 @@ describe("Input/output model type", () => {
       const cadlTypeDefinition = `
       #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
       @fixed
+      @doc("Translation Language Values")
       enum TranslationLanguageValues {
+        @doc("English descriptions")
         English,
+        @doc("Chinese descriptions")
         Chinese,
       }`;
       const cadlType = "TranslationLanguageValues";
@@ -802,6 +808,41 @@ describe("Input/output model type", () => {
           `
         export interface SimpleModelOutput { 
           "prop": string;
+        }
+        `
+        );
+      });
+
+      it("should handle duration in type with encode `float32`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        @encode(DurationKnownEncoding.seconds, float32)
+        scalar Float32Duration extends duration;
+        model SimpleModel {
+          prop: Float32Duration[];
+        }
+        @route("/duration/prop/iso8601")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": number[];
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": number[];
         }
         `
         );

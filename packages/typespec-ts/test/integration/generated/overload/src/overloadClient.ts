@@ -3,18 +3,20 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { EncodeDurationClient } from "./clientDefinitions";
+import { OverloadClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `EncodeDurationClient`
+ * Initialize a new instance of `OverloadClient`
+ * @param $host - The parameter $host
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
+  $host: string,
   options: ClientOptions = {}
-): EncodeDurationClient {
-  const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-encode-duration-rest/1.0.0-beta.1`;
+): OverloadClient {
+  const baseUrl = options.baseUrl ?? `${$host}`;
+
+  const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -29,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as EncodeDurationClient;
+  const client = getClient(baseUrl, options) as OverloadClient;
 
   return client;
 }

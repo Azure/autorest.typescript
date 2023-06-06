@@ -7,7 +7,7 @@ import {
 describe("typespec-azure-core: operation templates", () => {
   it("ResourceCreateWithServiceProvidedName", async () => {
     const { parameters, responses } = await compileResourceOperation(
-      `@test op create is Azure.Core.ResourceCreateWithServiceProvidedName<TestModel, Customizations>;`
+      `@test op create is Azure.Core.StandardResourceOperations.ResourceCreateWithServiceProvidedName<TestModel, Customizations>;`
     );
     assert.ok(parameters);
     assert.ok(responses);

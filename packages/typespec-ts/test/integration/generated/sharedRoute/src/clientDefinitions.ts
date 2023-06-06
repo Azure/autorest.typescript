@@ -64,6 +64,6 @@ export interface Routes {
   (path: "/sharedroute/request-response"): ProcessInt;
 }
 
-export type SharedRouteTestClient = Client & {
+export type SharedRouteClient = Client & {
   path: Routes;
 };

@@ -1,9 +1,9 @@
 import TypeModelUsageClientFactory, {
-  TypeModelUsageClient
+  UsageClient
 } from "./generated/models/usage/src/index.js";
 import { assert } from "chai";
 describe("ModelsUsageClient Rest Client", () => {
-  let client: TypeModelUsageClient;
+  let client: UsageClient;
   const body = {
     requiredProp: "example-value"
   };

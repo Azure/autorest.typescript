@@ -60,8 +60,8 @@ export interface QueryCsvQueryParam {
 export type QueryCsvParameters = QueryCsvQueryParam & RequestParameters;
 
 export interface HeaderCsvHeaders {
-  /** Possible values for colors are [blue,red,green] */
-  colors: string[];
+  /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
+  colors: string;
 }
 
 export interface HeaderCsvHeaderParam {

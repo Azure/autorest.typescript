@@ -123,6 +123,7 @@ describe("Client Factory generation", () => {
             scalar Endpoint extends string;
 
             #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
             @doc("The version to use")
             @fixed
             enum Version {
@@ -193,6 +194,7 @@ describe("Client Factory generation", () => {
 
             @doc("The version to use.")
             enum Versions {
+              @doc("v1.1")
               v1_1: "v1.1",
             }
             `,

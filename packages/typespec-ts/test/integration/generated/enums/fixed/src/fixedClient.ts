@@ -3,18 +3,16 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { TypeEnumExtensibleClient } from "./clientDefinitions";
+import { FixedClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `TypeEnumExtensibleClient`
+ * Initialize a new instance of `FixedClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {}
-): TypeEnumExtensibleClient {
+export default function createClient(options: ClientOptions = {}): FixedClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  const userAgentInfo = `azsdk-js-extensible-enums-rest/1.0.0`;
+  const userAgentInfo = `azsdk-js-extensible-fixed-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -29,7 +27,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as TypeEnumExtensibleClient;
+  const client = getClient(baseUrl, options) as FixedClient;
 
   return client;
 }

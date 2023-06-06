@@ -854,7 +854,7 @@ export interface BoundaryOverlapResponseOutput {
 export type BoundaryResourceMergeAndPatch = Partial<Boundary>;
 
 // @public (undocumented)
-export function buildMultiCollection(queryParameters: string[], parameterName: string): string;
+export function buildMultiCollection(items: string[], parameterName: string): string;
 
 // @public
 export interface CascadeDeleteJobOutput {

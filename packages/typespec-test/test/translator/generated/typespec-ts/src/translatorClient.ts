@@ -3,21 +3,22 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { ContosoWidgetManagerClient } from "./clientDefinitions";
+import { TranslatorClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ContosoWidgetManagerClient`
- * @param endpoint - The parameter endpoint
+ * Initialize a new instance of `TranslatorClient`
+ * @param endpoint - Supported Text Translation endpoints (protocol and hostname, for example:
+ *     https://api.cognitive.microsofttranslator.com).
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   options: ClientOptions = {}
-): ContosoWidgetManagerClient {
+): TranslatorClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2022-11-01-preview";
+  options.apiVersion = options.apiVersion ?? "3.0";
 
-  const userAgentInfo = `azsdk-js-contosowidgetmanager-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-cognitiveservices-translator-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -32,7 +33,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ContosoWidgetManagerClient;
+  const client = getClient(baseUrl, options) as TranslatorClient;
 
   return client;
 }
