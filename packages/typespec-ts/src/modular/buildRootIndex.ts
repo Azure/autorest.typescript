@@ -48,14 +48,14 @@ function exportApiIndex(indexFile: SourceFile, srcPath: string) {
     return;
   }
 
-  const namedExports: string[] = []
+  const namedExports: string[] = [];
   modelsFile.getExportedDeclarations().forEach((value, key) => {
     const validExports = value.filter((e) => {
-      return (e.getKind() !== SyntaxKind.FunctionDeclaration )
-    })
+      return e.getKind() !== SyntaxKind.FunctionDeclaration;
+    });
     if (validExports.length > 0) {
       namedExports.push(key);
     }
-  })
+  });
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }
