@@ -4,15 +4,9 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorResponse } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface AcknowledgeCloudEventsOptions extends RequestOptions {
@@ -59,11 +53,6 @@ export class EventGridClient {
 // @public (undocumented)
 export interface EventGridClientOptions extends ClientOptions {
 }
-
-// @public (undocumented)
-export type EventGridContext = Client & {
-    path: Routes;
-};
 
 // @public
 export interface FailedLockToken {
@@ -129,10 +118,6 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
-
-// Warnings were encountered during analysis:
-//
-// src/rest/clientDefinitions.ts:109:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

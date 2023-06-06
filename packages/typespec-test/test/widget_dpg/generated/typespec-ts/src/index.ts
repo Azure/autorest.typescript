@@ -13,6 +13,5 @@ export {
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
   WidgetServiceClientOptions,
-  WidgetServiceContext,
 } from "./api/index.js";
 export { RequestOptions } from "./common/interfaces.js";

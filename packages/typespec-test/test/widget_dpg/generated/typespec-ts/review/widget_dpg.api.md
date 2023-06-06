@@ -4,12 +4,8 @@
 
 ```ts
 
-import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
-import { HttpResponse } from '@azure-rest/core-client';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { RequestParameters } from '@azure-rest/core-client';
-import { StreamableMethod } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface AnalyzeResult {
@@ -76,15 +72,6 @@ export class WidgetServiceClient {
 // @public (undocumented)
 export interface WidgetServiceClientOptions extends ClientOptions {
 }
-
-// @public (undocumented)
-export type WidgetServiceContext = Client & {
-    path: Routes;
-};
-
-// Warnings were encountered during analysis:
-//
-// src/rest/clientDefinitions.ts:83:3 - (ae-forgotten-export) The symbol "Routes" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

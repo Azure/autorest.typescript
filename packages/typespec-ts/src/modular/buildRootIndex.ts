@@ -53,7 +53,7 @@ function exportApiIndex(indexFile: SourceFile, srcPath: string) {
     const validExports = value.filter((e) => {
       return e.getKind() !== SyntaxKind.FunctionDeclaration;
     });
-    if (validExports.length > 0) {
+    if (validExports.length > 0 && !key.endsWith("Context")) {
       namedExports.push(key);
     }
   });

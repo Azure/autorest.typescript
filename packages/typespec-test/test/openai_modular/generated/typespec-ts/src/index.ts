@@ -16,7 +16,6 @@ export {
   ChatCompletions,
   ChatChoice,
   OpenAIClientOptions,
-  OpenAIContext,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,

@@ -4,7 +4,6 @@
 export { EventGridClient } from "./EventGridClient.js";
 export {
   EventGridClientOptions,
-  EventGridContext,
   CloudEvent,
   ReceiveResult,
   ReceiveDetails,
