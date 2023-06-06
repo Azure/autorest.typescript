@@ -106,9 +106,10 @@ export function guardReservedNames(
 function getSuffix(nameType?: NameType) {
   switch (nameType) {
     case NameType.File:
-    case NameType.Operation:
     case NameType.Property:
       return "";
+    case NameType.Operation:
+      return "Operation";
     case NameType.OperationGroup:
       return "Operations";
     case NameType.Parameter:

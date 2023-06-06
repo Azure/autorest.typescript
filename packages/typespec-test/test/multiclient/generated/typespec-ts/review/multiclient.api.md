@@ -43,7 +43,8 @@ declare namespace CoreClient {
         Client_2 as Client,
         Models,
         OutputModels,
-        PaginateHelper
+        PaginateHelper,
+        UnexpectedHelper
     }
 }
 export { CoreClient }
@@ -246,6 +247,18 @@ type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
 type GetParameters = RequestParameters;
 
 // @public (undocumented)
+function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected(response: Delete204Response | DeleteDefaultResponse): response is DeleteDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected(response: List200Response | ListDefaultResponse): response is ListDefaultResponse;
+
+// @public (undocumented)
 interface List {
     get(options?: ListParameters): StreamableMethod<List200Response | ListDefaultResponse>;
 }
@@ -433,6 +446,12 @@ interface Routes_2 {
     (path: "/response"): GetArray;
     (path: "/response/create-with-headers"): CreateWithHeaders;
     (path: "/response/delete-with-headers"): DeleteWithHeaders;
+}
+
+declare namespace UnexpectedHelper {
+    export {
+        isUnexpected
+    }
 }
 
 // (No @packageDocumentation comment for this package)

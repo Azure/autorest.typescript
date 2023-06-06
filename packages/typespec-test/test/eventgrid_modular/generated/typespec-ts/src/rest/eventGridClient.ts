@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "../logger";
+import { logger } from "../logger.js";
 import { KeyCredential } from "@azure/core-auth";
 import { EventGridContext } from "./clientDefinitions.js";
 
