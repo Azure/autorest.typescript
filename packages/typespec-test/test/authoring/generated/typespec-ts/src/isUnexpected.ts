@@ -8,9 +8,9 @@ import {
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  Delete202Response,
+  DeleteOperation202Response,
   DeleteLogicalResponse,
-  DeleteDefaultResponse,
+  DeleteOperationDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
   Export202Response,
@@ -92,8 +92,11 @@ export function isUnexpected(
   response: Get200Response | GetDefaultResponse
 ): response is GetDefaultResponse;
 export function isUnexpected(
-  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse
-): response is DeleteDefaultResponse;
+  response:
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
+): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
   response: ListProjects200Response | ListProjectsDefaultResponse
 ): response is ListProjectsDefaultResponse;
@@ -157,9 +160,9 @@ export function isUnexpected(
     | CreateOrUpdateDefaultResponse
     | Get200Response
     | GetDefaultResponse
-    | Delete202Response
+    | DeleteOperation202Response
     | DeleteLogicalResponse
-    | DeleteDefaultResponse
+    | DeleteOperationDefaultResponse
     | ListProjects200Response
     | ListProjectsDefaultResponse
     | Export202Response
@@ -196,7 +199,7 @@ export function isUnexpected(
 ): response is
   | CreateOrUpdateDefaultResponse
   | GetDefaultResponse
-  | DeleteDefaultResponse
+  | DeleteOperationDefaultResponse
   | ListProjectsDefaultResponse
   | ExportDefaultResponse
   | ImportxDefaultResponse

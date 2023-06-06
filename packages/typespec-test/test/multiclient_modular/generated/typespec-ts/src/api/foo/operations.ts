@@ -11,6 +11,8 @@ import {
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
+  DeleteOperation204Response,
+  DeleteOperationDefaultResponse,
   List200Response,
   ListDefaultResponse,
 } from "../../rest/foo/responses.js";

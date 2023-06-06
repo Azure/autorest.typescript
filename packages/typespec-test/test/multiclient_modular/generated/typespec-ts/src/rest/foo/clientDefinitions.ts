@@ -13,8 +13,8 @@ import {
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
-  Delete204Response,
-  DeleteDefaultResponse,
+  DeleteOperation204Response,
+  DeleteOperationDefaultResponse,
   List200Response,
   ListDefaultResponse,
 } from "./responses.js";
@@ -36,7 +36,9 @@ export interface CreateOrUpdate {
   /** Deletes a resource. */
   delete(
     options?: DeleteParameters
-  ): StreamableMethod<Delete204Response | DeleteDefaultResponse>;
+  ): StreamableMethod<
+    DeleteOperation204Response | DeleteOperationDefaultResponse
+  >;
 }
 
 export interface List {
