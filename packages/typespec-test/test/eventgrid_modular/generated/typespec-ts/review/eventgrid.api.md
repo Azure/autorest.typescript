@@ -14,9 +14,6 @@ import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public
-export function acknowledgeCloudEvents(context: EventGridContext, lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
-
 // @public (undocumented)
 export interface AcknowledgeCloudEventsOptions extends RequestOptions {
     contentType?: string;
@@ -48,9 +45,6 @@ export interface CloudEvent {
     type: string;
 }
 
-// @public
-export function createEventGrid(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions): EventGridContext;
-
 // @public (undocumented)
 export class EventGridClient {
     constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
@@ -78,24 +72,15 @@ export interface FailedLockToken {
     lockToken: string;
 }
 
-// @public
-export function publishCloudEvent(context: EventGridContext, event: CloudEvent, topicName: string, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
-
 // @public (undocumented)
 export interface PublishCloudEventOptions extends RequestOptions {
     contentType?: string;
 }
 
-// @public
-export function publishCloudEvents(context: EventGridContext, events: CloudEvent[], topicName: string, options?: PublishCloudEventsOptions): Promise<Record<string, any>>;
-
 // @public (undocumented)
 export interface PublishCloudEventsOptions extends RequestOptions {
     contentType?: string;
 }
-
-// @public
-export function receiveCloudEvents(context: EventGridContext, topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
 
 // @public (undocumented)
 export interface ReceiveCloudEventsOptions extends RequestOptions {
@@ -114,9 +99,6 @@ export interface ReceiveResult {
     value: ReceiveDetails[];
 }
 
-// @public
-export function rejectCloudEvents(context: EventGridContext, lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: RejectCloudEventsOptions): Promise<RejectResult>;
-
 // @public (undocumented)
 export interface RejectCloudEventsOptions extends RequestOptions {
     contentType?: string;
@@ -127,9 +109,6 @@ export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
 }
-
-// @public
-export function releaseCloudEvents(context: EventGridContext, lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
 
 // @public (undocumented)
 export interface ReleaseCloudEventsOptions extends RequestOptions {

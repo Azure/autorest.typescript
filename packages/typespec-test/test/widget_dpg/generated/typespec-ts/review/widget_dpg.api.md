@@ -17,9 +17,6 @@ export interface AnalyzeResult {
     summary: string;
 }
 
-// @public
-export function analyzeWidget(context: WidgetServiceContext, id: string, options?: AnalyzeWidgetOptions): Promise<AnalyzeResult>;
-
 // @public (undocumented)
 export interface AnalyzeWidgetOptions extends RequestOptions {
 }
@@ -27,32 +24,17 @@ export interface AnalyzeWidgetOptions extends RequestOptions {
 // @public (undocumented)
 export type ColorType = "red" | "blue";
 
-// @public
-export function createWidget(context: WidgetServiceContext, weight: number, color: ColorType, options?: CreateWidgetOptions): Promise<Widget>;
-
 // @public (undocumented)
 export interface CreateWidgetOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export function createWidgetService(endpoint: string, options?: WidgetServiceClientOptions): WidgetServiceContext;
-
-// @public
-export function deleteWidget(context: WidgetServiceContext, id: string, options?: DeleteWidgetOptions): Promise<void>;
-
-// @public (undocumented)
 export interface DeleteWidgetOptions extends RequestOptions {
 }
-
-// @public
-export function getWidget(context: WidgetServiceContext, id: string, options?: GetWidgetOptions): Promise<Widget>;
 
 // @public (undocumented)
 export interface GetWidgetOptions extends RequestOptions {
 }
-
-// @public
-export function listWidgets(context: WidgetServiceContext, options?: ListWidgetsOptions): Promise<Widget[]>;
 
 // @public (undocumented)
 export interface ListWidgetsOptions extends RequestOptions {
@@ -66,9 +48,6 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
-
-// @public
-export function updateWidget(context: WidgetServiceContext, id: string, options?: UpdateWidgetOptions): Promise<Widget>;
 
 // @public (undocumented)
 export interface UpdateWidgetOptions extends RequestOptions {

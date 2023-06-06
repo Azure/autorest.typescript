@@ -83,9 +83,6 @@ export interface CompletionsUsage {
 }
 
 // @public
-export function createOpenAI(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions): OpenAIContext;
-
-// @public
 export interface EmbeddingItem {
     embedding: number[];
     index: number;
@@ -103,9 +100,6 @@ export interface EmbeddingsUsage {
     totalTokens: number;
 }
 
-// @public
-export function getChatCompletions(context: OpenAIContext, messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
-
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends RequestOptions {
     frequencyPenalty?: number;
@@ -120,9 +114,6 @@ export interface GetChatCompletionsOptions extends RequestOptions {
     topP?: number;
     user?: string;
 }
-
-// @public
-export function getCompletions(context: OpenAIContext, prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends RequestOptions {
@@ -141,9 +132,6 @@ export interface GetCompletionsOptions extends RequestOptions {
     topP?: number;
     user?: string;
 }
-
-// @public
-export function getEmbeddings(context: OpenAIContext, input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
 
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends RequestOptions {

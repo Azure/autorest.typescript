@@ -1,4 +1,4 @@
-import { Project, SourceFile } from "ts-morph";
+import { Project, SourceFile, SyntaxKind } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client } from "./modularCodeModel.js";
 
@@ -48,6 +48,14 @@ function exportApiIndex(indexFile: SourceFile, srcPath: string) {
     return;
   }
 
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()];
+  const namedExports: string[] = []
+  modelsFile.getExportedDeclarations().forEach((value, key) => {
+    const validExports = value.filter((e) => {
+      return (e.getKind() !== SyntaxKind.FunctionDeclaration )
+    })
+    if (validExports.length > 0) {
+      namedExports.push(key);
+    }
+  })
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }
