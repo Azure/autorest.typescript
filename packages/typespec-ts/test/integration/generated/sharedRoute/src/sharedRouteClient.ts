@@ -7,7 +7,7 @@ import { SharedRouteClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `SharedRouteClient`
- * @param $host - The parameter $host
+ * @param $host - A sequence of textual characters.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(

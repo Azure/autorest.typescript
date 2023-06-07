@@ -7,7 +7,7 @@ import { MediaTypesClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `MediaTypesClient`
- * @param $host - The parameter $host
+ * @param $host - A sequence of textual characters.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(

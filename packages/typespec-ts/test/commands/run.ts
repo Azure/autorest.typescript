@@ -32,7 +32,11 @@ export async function runTypespec(config: CadlRanchConfig) {
     }
   }
   const typespecCommand = `cd ${outputPath} && npx tsp`;
-  const commandArguments: string[] = ["compile", `${typespecPath}`];
+  const commandArguments: string[] = [
+    "compile",
+    `${typespecPath}`,
+    "--config tspconfig.yaml"
+  ];
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);
   try {

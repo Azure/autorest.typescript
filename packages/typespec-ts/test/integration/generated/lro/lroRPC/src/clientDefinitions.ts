@@ -74,6 +74,6 @@ export interface Routes {
   ): GetPoll;
 }
 
-export type SpecsAzureCoreLroRpcClient = Client & {
+export type RpcClient = Client & {
   path: Routes;
 };
