@@ -58,8 +58,171 @@
     }
   },
   "tags": [],
-  "paths": {},
+  "paths": {
+    "/deployments/{deploymentId}/completions": {
+      "post": {
+        "operationId": "GetCompletions",
+        "description": "Return the completions for a given prompt.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "required": true,
+            "description": "deployment id of the deployed model",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Completions.CompletionsOptions"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "apim-request-id": {
+                "description": "Request ID for troubleshooting purposes",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Completions.Completions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-convenient-api": true
+      }
+    },
+    "/deployments/{deploymentId}/embeddings": {
+      "post": {
+        "operationId": "GetEmbeddings",
+        "description": "Return the embeddings for a given prompt.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "required": true,
+            "description": "deployment id of the deployed model",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Embeddings.EmbeddingsOptions"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Embeddings.Embeddings"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-convenient-api": true
+      }
+    }
+  },
   "definitions": {
+    "Azure.Core.Foundations.Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable representation of the error."
+        },
+        "target": {
+          "type": "string",
+          "description": "The target of the error."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Azure.Core.Foundations.Error"
+          },
+          "x-ms-identifiers": [],
+          "description": "An array of details about specific errors that led to this reported error.",
+          "x-typespec-name": "Azure.Core.Foundations.Error[]"
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "An object containing more specific information than the current object about the error."
+        }
+      },
+      "description": "The error object.",
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "Azure.Core.Foundations.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The error object."
+        }
+      },
+      "description": "A response containing error details.",
+      "required": [
+        "error"
+      ]
+    },
+    "Azure.Core.Foundations.InnerError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "Inner error."
+        }
+      },
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses."
+    },
     "Completions.Choice": {
       "type": "object",
       "properties": {
@@ -115,8 +278,8 @@
             "$ref": "#/definitions/Completions.Choice"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "Completions.Choice[]",
-          "description": "Array of choices returned containing text completions to prompts sent"
+          "description": "Array of choices returned containing text completions to prompts sent",
+          "x-typespec-name": "Completions.Choice[]"
         },
         "usage": {
           "$ref": "#/definitions/Completions.CompletionsUsage",
@@ -137,8 +300,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "Tokens"
+          "description": "Tokens",
+          "x-typespec-name": "string[]"
         },
         "token_logprobs": {
           "type": "array",
@@ -146,8 +309,8 @@
             "type": "number",
             "format": "float"
           },
-          "x-typespec-name": "float32[]",
-          "description": "LogProbs of Tokens"
+          "description": "LogProbs of Tokens",
+          "x-typespec-name": "float32[]"
         },
         "top_logprobs": {
           "type": "array",
@@ -160,8 +323,8 @@
             "x-typespec-name": "Record<float32>"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "Record<float32>[]",
-          "description": "Top LogProbs"
+          "description": "Top LogProbs",
+          "x-typespec-name": "Record<float32>[]"
         },
         "text_offset": {
           "type": "array",
@@ -169,8 +332,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "x-typespec-name": "int32[]",
-          "description": "Text offset"
+          "description": "Text offset",
+          "x-typespec-name": "int32[]"
         }
       },
       "description": "LogProbs model within completion choice"
@@ -183,8 +346,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "An optional prompt to complete from, encoded as a string, a list of strings, or\na list of token lists. Defaults to <|endoftext|>. The prompt to complete from.\nIf you would like to provide multiple prompts, use the POST variant of this\nmethod. Note that <|endoftext|> is the document separator that the model sees\nduring training, so if a prompt is not specified the model will generate as if\nfrom the beginning of a new document. Maximum allowed size of string list is\n2048."
+          "description": "An optional prompt to complete from, encoded as a string, a list of strings, or\na list of token lists. Defaults to <|endoftext|>. The prompt to complete from.\nIf you would like to provide multiple prompts, use the POST variant of this\nmethod. Note that <|endoftext|> is the document separator that the model sees\nduring training, so if a prompt is not specified the model will generate as if\nfrom the beginning of a new document. Maximum allowed size of string list is\n2048.",
+          "x-typespec-name": "string[]"
         },
         "max_tokens": {
           "type": "integer",
@@ -207,8 +370,8 @@
             "type": "integer",
             "format": "int32"
           },
-          "x-typespec-name": "Record<int32>",
-          "description": "Defaults to null. Modify the likelihood of specified tokens appearing in the\ncompletion. Accepts a json object that maps tokens (specified by their token ID\nin the GPT tokenizer) to an associated bias value from -100 to 100. You can use\nthis tokenizer tool (which works for both GPT-2 and GPT-3) to convert text to\ntoken IDs. Mathematically, the bias is added to the logits generated by the\nmodel prior to sampling. The exact effect will vary per model, but values\nbetween -1 and 1 should decrease or increase likelihood of selection; values\nlike -100 or 100 should result in a ban or exclusive selection of the relevant\ntoken. As an example, you can pass {\"50256\" &#58; -100} to prevent the\n<|endoftext|> token from being generated."
+          "description": "Defaults to null. Modify the likelihood of specified tokens appearing in the\ncompletion. Accepts a json object that maps tokens (specified by their token ID\nin the GPT tokenizer) to an associated bias value from -100 to 100. You can use\nthis tokenizer tool (which works for both GPT-2 and GPT-3) to convert text to\ntoken IDs. Mathematically, the bias is added to the logits generated by the\nmodel prior to sampling. The exact effect will vary per model, but values\nbetween -1 and 1 should decrease or increase likelihood of selection; values\nlike -100 or 100 should result in a ban or exclusive selection of the relevant\ntoken. As an example, you can pass {\"50256\" &#58; -100} to prevent the\n<|endoftext|> token from being generated.",
+          "x-typespec-name": "Record<int32>"
         },
         "user": {
           "type": "string",
@@ -237,8 +400,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "A sequence which indicates the end of the current document."
+          "description": "A sequence which indicates the end of the current document.",
+          "x-typespec-name": "string[]"
         },
         "completion_config": {
           "type": "string",
@@ -329,8 +492,8 @@
             "type": "number",
             "format": "float"
           },
-          "x-typespec-name": "float32[]",
-          "description": "List of embeddings value for the input prompt. These represents a measurement of releated of text strings"
+          "description": "List of embeddings value for the input prompt. These represents a measurement of releated of text strings",
+          "x-typespec-name": "float32[]"
         },
         "index": {
           "type": "integer",
@@ -364,8 +527,8 @@
             "$ref": "#/definitions/Embeddings.EmbeddingItem"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "Embeddings.EmbeddingItem[]",
-          "description": "Embedding values for the prompts submitted in the request"
+          "description": "Embedding values for the prompts submitted in the request",
+          "x-typespec-name": "Embeddings.EmbeddingItem[]"
         },
         "model": {
           "type": "string",
@@ -445,5 +608,16 @@
       }
     }
   },
-  "parameters": {}
+  "parameters": {
+    "Azure.Core.Foundations.ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "description": "The API version to use for this operation.",
+      "x-ms-client-name": "apiVersion",
+      "type": "string",
+      "minLength": 1,
+      "x-ms-parameter-location": "method"
+    }
+  }
 }

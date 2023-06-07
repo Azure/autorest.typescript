@@ -8,7 +8,7 @@ import { ConfidentialLedgerClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `ConfidentialLedgerClient`
- * @param ledgerUri - The parameter ledgerUri
+ * @param ledgerUri - Represent a URL string as described by https://url.spec.whatwg.org/
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */

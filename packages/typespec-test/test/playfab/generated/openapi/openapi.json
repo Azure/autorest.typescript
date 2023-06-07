@@ -852,8 +852,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "Names of the files to have their pending uploads aborted."
+          "description": "Names of the files to have their pending uploads aborted.",
+          "x-typespec-name": "string[]"
         },
         "ProfileVersion": {
           "type": "number",
@@ -1132,8 +1132,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "Names of the files to be deleted."
+          "description": "Names of the files to be deleted.",
+          "x-typespec-name": "string[]"
         },
         "ProfileVersion": {
           "type": "number",
@@ -1269,8 +1269,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-'\nand '.'"
+          "description": "Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-'\nand '.'",
+          "x-typespec-name": "string[]"
         },
         "ProfileVersion": {
           "type": "number",
@@ -1489,8 +1489,8 @@
             "$ref": "#/definitions/LinkedPlayerIdentity"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "LinkedPlayerIdentity[]",
-          "description": "List of player identities currently linked to the master_player_account."
+          "description": "List of player identities currently linked to the master_player_account.",
+          "x-typespec-name": "LinkedPlayerIdentity[]"
         }
       }
     },
@@ -1579,8 +1579,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'"
+          "description": "Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'",
+          "x-typespec-name": "string[]"
         },
         "ProfileVersion": {
           "type": "number",
@@ -1629,8 +1629,8 @@
             "$ref": "#/definitions/InitiateFileUploadMetadata"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "InitiateFileUploadMetadata[]",
-          "description": "Collection of file names and upload urls"
+          "description": "Collection of file names and upload urls",
+          "x-typespec-name": "InitiateFileUploadMetadata[]"
         }
       }
     },
@@ -1817,8 +1817,8 @@
             "$ref": "#/definitions/SetObject"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "SetObject[]",
-          "description": "Collection of objects to set on the profile."
+          "description": "Collection of objects to set on the profile.",
+          "x-typespec-name": "SetObject[]"
         }
       },
       "description": "Sets JSON objects on the requested entity profile. May include a version number\nto be used to perform optimistic concurrency operations during update. If the\ncurrent version differs from the version in the request the request will be\nignored. If no version is set on the request then the value will always be\nupdated if the values differ. Using the version value does not guarantee a\nwrite though, ConcurrentEditError may still occur if multiple clients are\nattempting to update the same profile. ",
@@ -1858,8 +1858,8 @@
             "$ref": "#/definitions/SetObjectInfo"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "SetObjectInfo[]",
-          "description": "New version of the entity profile."
+          "description": "New version of the entity profile.",
+          "x-typespec-name": "SetObjectInfo[]"
         }
       }
     },
@@ -1914,8 +1914,8 @@
             "$ref": "#/definitions/EventContents"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "EventContents[]",
-          "description": "Collection of events to write to PlayStream."
+          "description": "Collection of events to write to PlayStream.",
+          "x-typespec-name": "EventContents[]"
         }
       },
       "required": [
@@ -1947,8 +1947,8 @@
           "items": {
             "type": "string"
           },
-          "x-typespec-name": "string[]",
-          "description": "The unique identifiers assigned by the server to the events, in the same order\nas the events in the request. Only returned if FlushToPlayStream option is\ntrue."
+          "description": "The unique identifiers assigned by the server to the events, in the same order\nas the events in the request. Only returned if FlushToPlayStream option is\ntrue.",
+          "x-typespec-name": "string[]"
         }
       }
     },
@@ -2175,7 +2175,8 @@
     },
     "object": {
       "type": "object",
-      "properties": {}
+      "properties": {},
+      "description": "Represent a model"
     }
   },
   "parameters": {}
