@@ -24,6 +24,7 @@ import {
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ListByResourceGroup {
+  /** different query & header parameters */
   post(
     options: ListByResourceGroupParameters
   ): StreamableMethod<ListByResourceGroup200Response>;
@@ -33,6 +34,7 @@ export interface ListByResourceGroup {
 }
 
 export interface UpdateInt {
+  /** different request bodies */
   post(options: UpdateIntParameters): StreamableMethod<UpdateInt204Response>;
   post(
     options: UpdateStringParameters
@@ -40,6 +42,7 @@ export interface UpdateInt {
 }
 
 export interface ReturnsInt {
+  /** different responses */
   post(options: ReturnsIntParameters): StreamableMethod<ReturnsInt200Response>;
   post(
     options: ReturnsStringParameters
@@ -47,6 +50,7 @@ export interface ReturnsInt {
 }
 
 export interface ProcessInt {
+  /** different request and response bodies */
   post(options: ProcessIntParameters): StreamableMethod<ProcessInt200Response>;
   post(
     options: ProcessStringParameters

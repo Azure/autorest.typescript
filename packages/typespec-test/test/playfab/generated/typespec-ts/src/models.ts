@@ -23,6 +23,7 @@ export interface GetEntityTokenRequest {
   Entity?: object;
 }
 
+/** Represent a model */
 export interface Object {}
 
 /** Combined entity type and ID structure which uniquely identifies a single entity. */

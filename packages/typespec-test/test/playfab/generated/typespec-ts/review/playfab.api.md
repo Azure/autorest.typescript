@@ -907,12 +907,12 @@ export interface LoginPlayerResultOutput {
     status?: string;
 }
 
-// @public (undocumented)
+// @public
 interface Object_2 {
 }
 export { Object_2 as Object }
 
-// @public (undocumented)
+// @public
 export interface ObjectOutput {
 }
 

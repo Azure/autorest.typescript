@@ -1,4 +1,4 @@
-# SpecsAzureCoreLroRpc REST client library for JavaScript
+# Rpc REST client library for JavaScript
 
 Illustrates bodies templated with Azure Core with long-running operation
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/lro-rpc` package
 
-Install the SpecsAzureCoreLroRpc REST client REST client library for JavaScript with `npm`:
+Install the Rpc REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/lro-rpc
 ```
 
-### Create and authenticate a `SpecsAzureCoreLroRpcClient`
+### Create and authenticate a `RpcClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the
