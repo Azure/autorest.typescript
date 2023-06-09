@@ -1,37 +1,26 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { GetJobParameters, CreateJobParameters } from "./parameters";
+import { MatchTrialsParameters } from "./parameters";
 import {
-  GetJob200Response,
-  GetJobDefaultResponse,
-  CreateJob200Response,
-  CreateJob202Response,
-  CreateJobDefaultResponse,
+  MatchTrials200Response,
+  MatchTrials202Response,
+  MatchTrialsDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetJob {
-  /** Gets the status and details of the Trial Matcher job. */
-  get(
-    options?: GetJobParameters
-  ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
-}
-
-export interface CreateJob {
+export interface MatchTrials {
   /** Creates a Trial Matcher job with the given request body. */
   post(
-    options?: CreateJobParameters
+    options?: MatchTrialsParameters
   ): StreamableMethod<
-    CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse
+    MatchTrials200Response | MatchTrials202Response | MatchTrialsDefaultResponse
   >;
 }
 
 export interface Routes {
-  /** Resource for '/trialmatcher/jobs/\{jobId\}' has methods for the following verbs: get */
-  (path: "/trialmatcher/jobs/{jobId}", jobId: string): GetJob;
   /** Resource for '/trialmatcher/jobs' has methods for the following verbs: post */
-  (path: "/trialmatcher/jobs"): CreateJob;
+  (path: "/trialmatcher/jobs"): MatchTrials;
 }
 
 export type HealthInsightsClinicalMatchingClient = Client & {

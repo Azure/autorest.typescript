@@ -5,23 +5,21 @@ import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import { TrialMatcherData } from "./models";
 
-export type GetJobParameters = RequestParameters;
-
-export interface CreateJobHeaders {
+export interface MatchTrialsHeaders {
   /** An opaque, globally-unique, client-generated string identifier for the request. */
   "Repeatability-Request-ID"?: string;
   /** Specifies the date and time at which the request was first created. */
   "Repeatability-First-Sent"?: string;
 }
 
-export interface CreateJobBodyParam {
+export interface MatchTrialsBodyParam {
   body?: TrialMatcherData;
 }
 
-export interface CreateJobHeaderParam {
-  headers?: RawHttpHeadersInput & CreateJobHeaders;
+export interface MatchTrialsHeaderParam {
+  headers?: RawHttpHeadersInput & MatchTrialsHeaders;
 }
 
-export type CreateJobParameters = CreateJobHeaderParam &
-  CreateJobBodyParam &
+export type MatchTrialsParameters = MatchTrialsHeaderParam &
+  MatchTrialsBodyParam &
   RequestParameters;
