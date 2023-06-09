@@ -54,8 +54,8 @@ export type AbortFileUploadsParameters = AbortFileUploadsHeaderParam & AbortFile
 
 // @public
 export interface AbortFileUploadsRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
     FileNames: string[];
     ProfileVersion?: number;
 }
@@ -88,7 +88,7 @@ export interface ApiErrorWrapperOutput {
 export interface AuthenticateAndroidDeviceIdIdentityRequest {
     AndroidDeviceId: string;
     BehaviorIfIdentityNotLinked: string;
-    CustomTags?: object;
+    CustomTags?: Object_2;
     ExistingMasterPlayerAccountId?: string;
     PlayerAccountPoolId: string;
     TitleId?: string;
@@ -98,7 +98,7 @@ export interface AuthenticateAndroidDeviceIdIdentityRequest {
 export interface AuthenticateCustomIdIdentityRequest {
     BehaviorIfIdentityNotLinked: string;
     CustomId: string;
-    CustomTags?: object;
+    CustomTags?: Object_2;
     ExistingMasterPlayerAccountId?: string;
     PlayerAccountPoolId: string;
     TitleId?: string;
@@ -122,7 +122,7 @@ export interface AuthenticateIdentityResultOutput {
 // @public (undocumented)
 export interface AuthenticateIOSDeviceIdIdentityRequest {
     BehaviorIfIdentityNotLinked: string;
-    CustomTags?: object;
+    CustomTags?: Object_2;
     DeviceId: string;
     ExistingMasterPlayerAccountId?: string;
     PlayerAccountPoolId: string;
@@ -132,7 +132,7 @@ export interface AuthenticateIOSDeviceIdIdentityRequest {
 // @public (undocumented)
 export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
     BehaviorIfIdentityNotLinked: string;
-    CustomTags?: object;
+    CustomTags?: Object_2;
     ExistingMasterPlayerAccountId?: string;
     NintendoSwitchDeviceId: string;
     PlayerAccountPoolId: string;
@@ -350,8 +350,8 @@ export type DeleteFilesParameters = DeleteFilesHeaderParam & DeleteFilesBodyPara
 
 // @public
 export interface DeleteFilesRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
     FileNames: string[];
     ProfileVersion?: number;
 }
@@ -391,13 +391,13 @@ export interface EntityTokenResponseOutput {
 
 // @public (undocumented)
 export interface EventContents {
-    CustomTags?: object;
-    Entity?: object;
+    CustomTags?: Object_2;
+    Entity?: EntityKey;
     EventNamespace: string;
     Name: string;
     OriginalId?: string;
     OriginalTimestamp?: string;
-    Payload?: object;
+    Payload?: Object_2;
     PayloadJSON?: string;
 }
 
@@ -444,8 +444,8 @@ export type FinalizeFileUploadsParameters = FinalizeFileUploadsHeaderParam & Fin
 
 // @public
 export interface FinalizeFileUploadsRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
     FileNames: string[];
     ProfileVersion: number;
 }
@@ -507,8 +507,8 @@ export type GetEntityTokenParameters = GetEntityTokenHeaderParam & GetEntityToke
 
 // @public
 export interface GetEntityTokenRequest {
-    CustomTags?: object;
-    Entity?: object;
+    CustomTags?: Object_2;
+    Entity?: EntityKey;
 }
 
 // @public (undocumented)
@@ -578,8 +578,8 @@ export type GetFilesParameters = GetFilesHeaderParam & GetFilesBodyParam & Reque
 
 // @public
 export interface GetFilesRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
 }
 
 // @public (undocumented)
@@ -641,7 +641,7 @@ export type GetLinkedPlayerIdentitiesParameters = GetLinkedPlayerIdentitiesHeade
 
 // @public (undocumented)
 export interface GetLinkedPlayerIdentitiesRequest {
-    CustomTags?: object;
+    CustomTags?: Object_2;
     MasterPlayerAccountId?: string;
 }
 
@@ -701,8 +701,8 @@ export type GetObjectsParameters = GetObjectsHeaderParam & GetObjectsBodyParam &
 
 // @public
 export interface GetObjectsRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
     EscapeObject?: boolean;
 }
 
@@ -770,8 +770,8 @@ export type InitiateFileUploadsParameters = InitiateFileUploadsHeaderParam & Ini
 
 // @public
 export interface InitiateFileUploadsRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
     FileNames: string[];
     ProfileVersion?: number;
 }
@@ -890,7 +890,7 @@ export type LoginPlayerParameters = LoginPlayerHeaderParam & LoginPlayerBodyPara
 
 // @public (undocumented)
 export interface LoginPlayerRequest {
-    CustomTags?: object;
+    CustomTags?: Object_2;
     TitleId: string;
 }
 
@@ -950,7 +950,7 @@ export interface Routes {
 
 // @public (undocumented)
 export interface SetObject {
-    DataObject?: object;
+    DataObject?: Object_2;
     DeleteObject?: boolean;
     EscapedDataObject?: string;
     ObjectName: string;
@@ -1006,8 +1006,8 @@ export type SetObjectsParameters = SetObjectsHeaderParam & SetObjectsBodyParam &
 
 // @public
 export interface SetObjectsRequest {
-    CustomTags?: object;
-    Entity: object;
+    CustomTags?: Object_2;
+    Entity: EntityKey;
     ExpectedProfileVersion?: number;
     Objects: Array<SetObject>;
 }
@@ -1070,7 +1070,7 @@ export type UnlinkPlayerIdentityParameters = UnlinkPlayerIdentityHeaderParam & U
 
 // @public (undocumented)
 export interface UnlinkPlayerIdentityRequest {
-    CustomTags?: object;
+    CustomTags?: Object_2;
     IdentityLinkId: string;
     MasterPlayerAccountId?: string;
 }
@@ -1126,7 +1126,7 @@ export type WriteEventsParameters = WriteEventsHeaderParam & WriteEventsBodyPara
 
 // @public (undocumented)
 export interface WriteEventsRequest {
-    CustomTags?: object;
+    CustomTags?: Object_2;
     Events: Array<EventContents>;
 }
 

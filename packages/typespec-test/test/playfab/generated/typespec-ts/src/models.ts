@@ -15,12 +15,12 @@ export interface GetEntityTokenRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * The optional entity to perform this action on. Defaults to the currently logged
    * in entity.
    */
-  Entity?: object;
+  Entity?: EntityKey;
 }
 
 /** Represent a model */
@@ -58,7 +58,7 @@ export interface AuthenticateAndroidDeviceIdIdentityRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * Optional master_player_account entity in the player account pool to associate
    * with the authenticated player identity. When specified, then the request must
@@ -109,7 +109,7 @@ export interface AuthenticateCustomIdIdentityRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * Optional master_player_account entity in the player account pool to associate
    * with the authenticated player identity. When specified, then the request must
@@ -155,7 +155,7 @@ export interface AuthenticateIOSDeviceIdIdentityRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** Vendor-specific iOS identifier for the user's device. */
   DeviceId: string;
   /**
@@ -203,7 +203,7 @@ export interface AuthenticateNintendoSwitchDeviceIDIdentityRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * Optional master_player_account entity in the player account pool to associate
    * with the authenticated player identity. When specified, then the request must
@@ -237,7 +237,7 @@ export interface GetLinkedPlayerIdentitiesRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** master_player_account entity. */
   MasterPlayerAccountId?: string;
 }
@@ -247,7 +247,7 @@ export interface UnlinkPlayerIdentityRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * Unique identifier of the link between the player identity and
    * master_player_account to be unlinked. If no matching player identity is
@@ -265,9 +265,9 @@ export interface AbortFileUploadsRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
   /** Names of the files to have their pending uploads aborted. */
   FileNames: string[];
   /**
@@ -283,9 +283,9 @@ export interface DeleteFilesRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
   /** Names of the files to be deleted. */
   FileNames: string[];
   /**
@@ -304,9 +304,9 @@ export interface FinalizeFileUploadsRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
   /**
    * Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-'
    * and '.'
@@ -330,9 +330,9 @@ export interface GetFilesRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
 }
 
 /**
@@ -345,9 +345,9 @@ export interface InitiateFileUploadsRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
   /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
   FileNames: string[];
   /**
@@ -363,9 +363,9 @@ export interface GetObjectsRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
   /**
    * Determines whether the object will be returned as an escaped JSON string or as
    * a un-escaped JSON object. Default is JSON object.
@@ -387,9 +387,9 @@ export interface SetObjectsRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** The entity to perform this action on. */
-  Entity: object;
+  Entity: EntityKey;
   /**
    * Optional field used for concurrency control. By specifying the previously
    * returned value of ProfileVersion from GetProfile API, you can ensure that the
@@ -407,7 +407,7 @@ export interface SetObject {
    * be deleted if it exists, or no operation will occur if it does not exist. Only
    * one of Object or EscapedDataObject fields may be used.
    */
-  DataObject?: object;
+  DataObject?: Object;
   /**
    * Flag to indicate that this object should be deleted. Both DataObject and
    * EscapedDataObject must not be set as well.
@@ -429,7 +429,7 @@ export interface WriteEventsRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /** Collection of events to write to PlayStream. */
   Events: Array<EventContents>;
 }
@@ -441,12 +441,12 @@ export interface EventContents {
    * base request custom tags will be merged, but not overriden. This enables the
    * caller to specify static tags and per event tags.
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * Entity associated with the event. If null, the event will apply to the calling
    * entity.
    */
-  Entity?: object;
+  Entity?: EntityKey;
   /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
   EventNamespace: string;
   /** The name of this event. */
@@ -466,7 +466,7 @@ export interface EventContents {
    * Arbitrary data associated with the event. Only one of Payload or PayloadJSON is
    * allowed.
    */
-  Payload?: object;
+  Payload?: Object;
   /**
    * Arbitrary data associated with the event, represented as a JSON serialized
    * string. Only one of Payload or PayloadJSON is allowed.
@@ -479,7 +479,7 @@ export interface LoginPlayerRequest {
    * The optional custom tags associated with the request (e.g. build number,
    * external trace identifiers, etc.).
    */
-  CustomTags?: object;
+  CustomTags?: Object;
   /**
    * Unique identifier for the title, found in the Settings > Game Properties
    * section of the PlayFab developer site when a title has been selected.

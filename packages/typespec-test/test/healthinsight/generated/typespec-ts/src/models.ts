@@ -1,38 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** The body of the Trial Matcher request. */
-export interface TrialMatcherData {
-  /** The list of patients, including their clinical information and data. */
-  patients: Array<PatientRecord>;
-  /** Configuration affecting the Trial Matcher model's inference. */
-  configuration?: object;
-}
-
-/** A patient record, including their clinical information and data. */
-export interface PatientRecord {
-  /** A given identifier for the patient. Has to be unique across all patients in a single request. */
-  id: string;
-  /** Patient structured information, including demographics and known structured clinical information. */
-  info?: object;
-  /** Patient unstructured clinical data, given as documents. */
-  data?: Array<PatientDocument>;
-}
-
-/** Patient structured information, including demographics and known structured clinical information. */
-export interface PatientInfo {
-  /**
-   * The patient's sex.
-   *
-   * Possible values: female, male, unspecified
-   */
-  sex?: string;
-  /** The patient's date of birth. */
-  birthDate?: Date | string;
-  /** Known clinical information for the patient, structured. */
-  clinicalInfo?: Array<ClinicalCodedElement>;
-}
-
 /** A piece of clinical information, expressed as a code in a clinical coding system. */
 export interface ClinicalCodedElement {
   /** The clinical coding system, e.g. ICD-10, SNOMED-CT, UMLS. */
@@ -43,118 +11,6 @@ export interface ClinicalCodedElement {
   name?: string;
   /** A value associated with the code within the given clinical coding system. */
   value?: string;
-}
-
-/** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
-export interface PatientDocument {
-  /**
-   * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
-   *
-   * Possible values: note, fhirBundle, dicom, genomicSequencing
-   */
-  type: string;
-  /**
-   * The type of the clinical document.
-   *
-   * Possible values: consultation, dischargeSummary, historyAndPhysical, procedure, progress, imaging, laboratory, pathology
-   */
-  clinicalType?: string;
-  /** A given identifier for the document. Has to be unique across all documents for a single patient. */
-  id: string;
-  /** A 2 letter ISO 639-1 representation of the language of the document. */
-  language?: string;
-  /** The date and time when the document was created. */
-  createdDateTime?: Date | string;
-  /** The content of the patient document. */
-  content: object;
-}
-
-/** The content of the patient document. */
-export interface DocumentContent {
-  /**
-   * The type of the content's source.
-   * In case the source type is 'inline', the content is given as a string (for instance, text).
-   * In case the source type is 'reference', the content is given as a URI.
-   *
-   * Possible values: inline, reference
-   */
-  sourceType: string;
-  /** The content of the document, given either inline (as a string) or as a reference (URI). */
-  value: string;
-}
-
-/** Configuration affecting the Trial Matcher model's inference. */
-export interface TrialMatcherModelConfiguration {
-  /** An indication whether the model should produce verbose output. */
-  verbose?: boolean;
-  /** An indication whether the model's output should include evidence for the inferences. */
-  includeEvidence?: boolean;
-  /**
-   * The clinical trials that the patient(s) should be matched to. <br />The trial
-   * selection can be given as a list of custom clinical trials and/or a list of
-   * filters to known clinical trial registries. In case both are given, the
-   * resulting trial set is a union of the two sets.
-   */
-  clinicalTrials: object;
-}
-
-/**
- * The clinical trials that the patient(s) should be matched to.
- * The trial selection can be given as a list of custom clinical trials and/or a list of filters to known clinical trial registries.
- * In case both are given, the resulting trial set is a union of the two sets.
- */
-export interface ClinicalTrials {
-  /** A list of clinical trials. */
-  customTrials?: Array<ClinicalTrialDetails>;
-  /**
-   * A list of filters, each one creating a selection of trials from a given
-   * clinical trial registry.
-   */
-  registryFilters?: Array<ClinicalTrialRegistryFilter>;
-}
-
-/** A description of a clinical trial. */
-export interface ClinicalTrialDetails {
-  /** A given identifier for the clinical trial. Has to be unique within a list of clinical trials. */
-  id: string;
-  /** The eligibility criteria of the clinical trial (inclusion and exclusion), given as text. */
-  eligibilityCriteriaText?: string;
-  /** Demographic criteria for a clinical trial. */
-  demographics?: object;
-  /** Trial data which is of interest to the potential participant. */
-  metadata: object;
-}
-
-/** Demographic criteria for a clinical trial. */
-export interface ClinicalTrialDemographics {
-  /**
-   * Indication of the sex of people who may participate in the clinical trial.
-   *
-   * Possible values: all, female, male
-   */
-  acceptedSex?: string;
-  /** A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. */
-  acceptedAgeRange?: object;
-}
-
-/** A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. */
-export interface AcceptedAgeRange {
-  /** A person's age, given as a number (value) and a unit (e.g. years, months) */
-  minimumAge?: object;
-  /** A person's age, given as a number (value) and a unit (e.g. years, months) */
-  maximumAge?: object;
-}
-
-/** A person's age, given as a number (value) and a unit (e.g. years, months) */
-export interface AcceptedAge {
-  /**
-   * Possible units for a person's age.
-   *
-   * Possible values: years, months, days
-   */
-  unit: string;
-  /** The number of years/months/days that represents the person's age. */
-  value: number;
 }
 
 /** Trial data which is of interest to the potential participant. */
@@ -206,6 +62,150 @@ export interface ClinicalTrialResearchFacility {
   state?: string;
   /** Country/region name. */
   countryOrRegion: string;
+}
+
+/** The body of the Trial Matcher request. */
+export interface TrialMatcherData {
+  /** The list of patients, including their clinical information and data. */
+  patients: Array<PatientRecord>;
+  /** Configuration affecting the Trial Matcher model's inference. */
+  configuration?: TrialMatcherModelConfiguration;
+}
+
+/** A patient record, including their clinical information and data. */
+export interface PatientRecord {
+  /** A given identifier for the patient. Has to be unique across all patients in a single request. */
+  id: string;
+  /** Patient structured information, including demographics and known structured clinical information. */
+  info?: PatientInfo;
+  /** Patient unstructured clinical data, given as documents. */
+  data?: Array<PatientDocument>;
+}
+
+/** Patient structured information, including demographics and known structured clinical information. */
+export interface PatientInfo {
+  /**
+   * The patient's sex.
+   *
+   * Possible values: female, male, unspecified
+   */
+  sex?: string;
+  /** The patient's date of birth. */
+  birthDate?: Date | string;
+  /** Known clinical information for the patient, structured. */
+  clinicalInfo?: Array<ClinicalCodedElement>;
+}
+
+/** A clinical document related to a patient. Document here is in the wide sense - not just a text document (note). */
+export interface PatientDocument {
+  /**
+   * The type of the patient document, such as 'note' (text document) or 'fhirBundle' (FHIR JSON document).
+   *
+   * Possible values: note, fhirBundle, dicom, genomicSequencing
+   */
+  type: string;
+  /**
+   * The type of the clinical document.
+   *
+   * Possible values: consultation, dischargeSummary, historyAndPhysical, procedure, progress, imaging, laboratory, pathology
+   */
+  clinicalType?: string;
+  /** A given identifier for the document. Has to be unique across all documents for a single patient. */
+  id: string;
+  /** A 2 letter ISO 639-1 representation of the language of the document. */
+  language?: string;
+  /** The date and time when the document was created. */
+  createdDateTime?: Date | string;
+  /** The content of the patient document. */
+  content: DocumentContent;
+}
+
+/** The content of the patient document. */
+export interface DocumentContent {
+  /**
+   * The type of the content's source.
+   * In case the source type is 'inline', the content is given as a string (for instance, text).
+   * In case the source type is 'reference', the content is given as a URI.
+   *
+   * Possible values: inline, reference
+   */
+  sourceType: string;
+  /** The content of the document, given either inline (as a string) or as a reference (URI). */
+  value: string;
+}
+
+/** Configuration affecting the Trial Matcher model's inference. */
+export interface TrialMatcherModelConfiguration {
+  /** An indication whether the model should produce verbose output. */
+  verbose?: boolean;
+  /** An indication whether the model's output should include evidence for the inferences. */
+  includeEvidence?: boolean;
+  /**
+   * The clinical trials that the patient(s) should be matched to. <br />The trial
+   * selection can be given as a list of custom clinical trials and/or a list of
+   * filters to known clinical trial registries. In case both are given, the
+   * resulting trial set is a union of the two sets.
+   */
+  clinicalTrials: ClinicalTrials;
+}
+
+/**
+ * The clinical trials that the patient(s) should be matched to.
+ * The trial selection can be given as a list of custom clinical trials and/or a list of filters to known clinical trial registries.
+ * In case both are given, the resulting trial set is a union of the two sets.
+ */
+export interface ClinicalTrials {
+  /** A list of clinical trials. */
+  customTrials?: Array<ClinicalTrialDetails>;
+  /**
+   * A list of filters, each one creating a selection of trials from a given
+   * clinical trial registry.
+   */
+  registryFilters?: Array<ClinicalTrialRegistryFilter>;
+}
+
+/** A description of a clinical trial. */
+export interface ClinicalTrialDetails {
+  /** A given identifier for the clinical trial. Has to be unique within a list of clinical trials. */
+  id: string;
+  /** The eligibility criteria of the clinical trial (inclusion and exclusion), given as text. */
+  eligibilityCriteriaText?: string;
+  /** Demographic criteria for a clinical trial. */
+  demographics?: ClinicalTrialDemographics;
+  /** Trial data which is of interest to the potential participant. */
+  metadata: ClinicalTrialMetadata;
+}
+
+/** Demographic criteria for a clinical trial. */
+export interface ClinicalTrialDemographics {
+  /**
+   * Indication of the sex of people who may participate in the clinical trial.
+   *
+   * Possible values: all, female, male
+   */
+  acceptedSex?: string;
+  /** A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. */
+  acceptedAgeRange?: AcceptedAgeRange;
+}
+
+/** A definition of the range of ages accepted by a clinical trial. Contains a minimum age and/or a maximum age. */
+export interface AcceptedAgeRange {
+  /** A person's age, given as a number (value) and a unit (e.g. years, months) */
+  minimumAge?: AcceptedAge;
+  /** A person's age, given as a number (value) and a unit (e.g. years, months) */
+  maximumAge?: AcceptedAge;
+}
+
+/** A person's age, given as a number (value) and a unit (e.g. years, months) */
+export interface AcceptedAge {
+  /**
+   * Possible units for a person's age.
+   *
+   * Possible values: years, months, days
+   */
+  unit: string;
+  /** The number of years/months/days that represents the person's age. */
+  value: number;
 }
 
 /** A filter defining a subset of clinical trials from a given clinical trial registry (e.g. clinicaltrials.gov). */
@@ -290,9 +290,9 @@ export interface GeographicArea {
    */
   type: string;
   /** `GeoJSON` geometry, representing the area circle's center. */
-  geometry: object;
+  geometry: AreaGeometry;
   /** `GeoJSON` object properties. */
-  properties: object;
+  properties: AreaProperties;
 }
 
 /** `GeoJSON` geometry, representing the area circle's center. */

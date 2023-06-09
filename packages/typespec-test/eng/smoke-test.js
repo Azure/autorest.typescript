@@ -1,11 +1,19 @@
 import { readdir } from "fs/promises";
+import { existsSync } from "fs";
 import { join, dirname } from "path";
 import { execSync } from "child_process";
 import { fileURLToPath } from "url";
 
 const MAX_BUFFER = 10 * 1024 * 1024;
 function generate(path) {
-  const command = `cd ${path} && npx tsp compile ./spec`;
+  let command = `cd ${path} && npx tsp compile ./spec`;
+  try {
+    if(existsSync(join(path, "spec", "client.tsp"))) {
+      command += "/client.tsp";
+    }
+  } catch (e) {
+    // do nothing
+  }
   console.log(command);
   try {
     const result = execSync(command, {
