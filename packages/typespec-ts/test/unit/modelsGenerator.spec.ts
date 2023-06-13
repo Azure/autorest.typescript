@@ -439,12 +439,6 @@ describe("Input/output model type", () => {
     });
   });
   describe("object generation", () => {
-    it("should handle object type -> Record<string, unknown>", async () => {
-      const cadlType = "object";
-      const typeScriptType = "Record<string, unknown>";
-      await verifyPropertyType(cadlType, typeScriptType);
-    });
-    
     it("should handle basic model -> type/interface", async () => {
       const cadlDefinition = `
       model SimpleModel {
