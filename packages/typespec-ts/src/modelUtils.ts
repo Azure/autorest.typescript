@@ -453,6 +453,8 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
+  modelSchema.typeName = modelSchema.name;
+  
   if (
     (model.name === "ErrorResponse" ||
       model.name === "ErrorModel" ||
