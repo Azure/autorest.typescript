@@ -134,7 +134,10 @@ function getParameterMetadata(
     false,
     parameter.param
   ) as Schema;
-  let type = getTypeName(schema);
+  let type =
+    paramType === "query"
+      ? getTypeName(schema, [SchemaContext.Exception, SchemaContext.Input])
+      : getTypeName(schema);
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
