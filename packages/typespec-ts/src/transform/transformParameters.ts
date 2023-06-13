@@ -126,15 +126,19 @@ function getParameterMetadata(
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter
 ): ParameterMetadata {
+  const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
   const schema = getSchemaForType(
     program,
     dpgContext,
     parameter.param.type,
-    [SchemaContext.Exception, SchemaContext.Input],
+    schemaContext,
     false,
     parameter.param
   ) as Schema;
-  let type = getTypeName(schema);
+  let type =
+    paramType === "query"
+      ? getTypeName(schema, schemaContext)
+      : getTypeName(schema);
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
