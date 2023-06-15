@@ -63,11 +63,7 @@ export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
 }
 
 export function getOperationName(program: Program, operation: Operation) {
-  const projectedOperationName = getProjectedName(
-    program,
-    operation,
-    "javascript"
-  );
+  const projectedOperationName = getProjectedName(program, operation, "json");
 
   return normalizeName(
     projectedOperationName ?? operation.name,
