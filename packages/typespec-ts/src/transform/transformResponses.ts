@@ -235,7 +235,7 @@ function transformLroLogicalResponse(
     description: `The final response for long-running ${route.operation.name} operation`,
     predefinedName: getLroLogicalResponseName(
       operationGroupName,
-      route.operation.name
+      getOperationName(program, route.operation)
     ),
     body: successResp?.body
   };

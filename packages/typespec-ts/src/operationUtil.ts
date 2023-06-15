@@ -42,18 +42,6 @@ import {
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
 
-export function getNormalizedOperationName(
-  route: HttpOperation,
-  includeGroupName = true
-) {
-  return includeGroupName
-    ? normalizeName(
-        `${route.container?.name}_${route.operation.name}`,
-        NameType.Interface
-      )
-    : normalizeName(`${route.operation.name}`, NameType.Interface);
-}
-
 export function getOperationStatuscode(
   response: HttpOperationResponse
 ): string {

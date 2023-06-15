@@ -327,7 +327,8 @@ export interface LoadTestRunCreateOrUpdateTestRunDefaultResponse
 }
 
 /** The final response for long-running CreateOrUpdateTestRun operation */
-export interface CreateOrUpdateTestRunLogicalResponse extends HttpResponse {
+export interface LoadTestRunCreateOrUpdateTestRunLogicalResponse
+  extends HttpResponse {
   status: "200";
   body: Record<string, any>;
 }

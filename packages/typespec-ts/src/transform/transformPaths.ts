@@ -117,7 +117,7 @@ function transformOperation(
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
       operationGroupName,
-      route.operation.name,
+      getOperationName(program, route.operation),
       getOperationStatuscode(resp)
     );
     respNames.push(respName);
@@ -126,7 +126,10 @@ function transformOperation(
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
-    optionsName: getParameterTypeName(operationGroupName, route.operation.name),
+    optionsName: getParameterTypeName(
+      operationGroupName,
+      getOperationName(program, route.operation)
+    ),
     responseTypes,
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
