@@ -1,3 +1,7 @@
+## 0.13.3 (2023-06-14)
+
+- [Bugfix] Fix isUnexpected helper function in health insights case. Please refer to pr [#1889](https://github.com/Azure/autorest.typescript/pull/1889).
+
 ## 0.13.2 (2023-06-13)
 
 - [Feature] Support typespec compiler 0.45.0, Please refer to pr [#1881](https://github.com/Azure/autorest.typescript/pull/1881).
