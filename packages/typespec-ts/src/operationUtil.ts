@@ -9,7 +9,14 @@ import {
   getLroLogicalResponseName,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
+import {
+  getProjectedName,
+  ignoreDiagnostics,
+  Model,
+  Operation,
+  Program,
+  Type
+} from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -35,18 +42,6 @@ import {
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
 
-export function getNormalizedOperationName(
-  route: HttpOperation,
-  includeGroupName = true
-) {
-  return includeGroupName
-    ? normalizeName(
-        `${route.container?.name}_${route.operation.name}`,
-        NameType.Interface
-      )
-    : normalizeName(`${route.operation.name}`, NameType.Interface);
-}
-
 export function getOperationStatuscode(
   response: HttpOperationResponse
 ): string {
@@ -62,6 +57,16 @@ export function getOperationStatuscode(
 export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
   return normalizeName(
     operationGroup?.type.name ?? "",
+    NameType.Interface,
+    true
+  );
+}
+
+export function getOperationName(program: Program, operation: Operation) {
+  const projectedOperationName = getProjectedName(program, operation, "json");
+
+  return normalizeName(
+    projectedOperationName ?? operation.name,
     NameType.Interface,
     true
   );
@@ -178,7 +183,10 @@ export function extractOperationLroDetail(
     logicalResponseTypes = {
       error: responsesTypes.error,
       success: [
-        getLroLogicalResponseName(operationGroupName, operation.operation.name)
+        getLroLogicalResponseName(
+          operationGroupName,
+          getOperationName(program, operation.operation)
+        )
       ]
     };
     const metadata = getLroMetadata(program, operation.operation);

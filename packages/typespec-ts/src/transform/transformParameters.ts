@@ -28,7 +28,11 @@ import {
   enrichBinaryTypeInBody
 } from "../modelUtils.js";
 
-import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
+import {
+  getOperationGroupName,
+  getOperationName,
+  isBinaryPayload
+} from "../operationUtil.js";
 import {
   SdkClient,
   SdkContext,
@@ -81,7 +85,7 @@ export function transformToParameterTypes(
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
       operationGroup: getOperationGroupName(operationGroup),
-      operationName: route.operation.name,
+      operationName: getOperationName(program, route.operation),
       parameters: []
     };
     // transform query param
