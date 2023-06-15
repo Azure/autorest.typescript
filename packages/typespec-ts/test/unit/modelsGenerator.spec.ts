@@ -1,5 +1,9 @@
 import { assert } from "chai";
-import { emitModelsFromCadl, emitParameterFromCadl } from "./util/emitUtil.js";
+import {
+  emitModelsFromCadl,
+  emitParameterFromCadl,
+  emitResponsesFromCadl
+} from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
 type VerifyPropertyConfig = {
@@ -1512,7 +1516,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should generate projected operation name", async () => {
+    it("should generate projected operation name for parameter", async () => {
       const parameters = await emitParameterFromCadl(
         `
         @projectedName("json", "testRunOperation")
@@ -1526,6 +1530,28 @@ describe("Input/output model type", () => {
           import { RequestParameters } from "@azure-rest/core-client";
           
           export type TestRunOperationParameters =  RequestParameters;
+          `
+      );
+    });
+
+    it("should generate projected operation name for response", async () => {
+      const parameters = await emitResponsesFromCadl(
+        `
+        @projectedName("json", "testRunOperation")
+        op test(): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+          
+        /** The request has succeeded. */
+        export interface TestRunOperation200Response extends HttpResponse {
+          status: "200";
+         body: string;
+        }
           `
       );
     });
