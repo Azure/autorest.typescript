@@ -1555,6 +1555,28 @@ describe("Input/output model type", () => {
           `
       );
     });
+
+    it("should not generate projected javascript name in RLC", async () => {
+      const parameters = await emitResponsesFromCadl(
+        `
+        @projectedName("javascript", "testRunOperation")
+        op test(): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+          
+        /** The request has succeeded. */
+        export interface Test200Response extends HttpResponse {
+          status: "200";
+         body: string;
+        }
+          `
+      );
+    });
   });
 
   describe("@friendlyName for model", () => {
