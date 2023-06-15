@@ -116,7 +116,6 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
   });
 
   if (allErrorTypes.size) {
-    const hasTemplate = true;
     isErrorHelper.addFunction({
       overloads,
       isExported: true,
@@ -133,35 +132,30 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           const lroOriginal = response.headers["x-ms-original-url"];
           const url = new URL(lroOriginal ?? response.request.url);
           const method = response.request.method;
-          ${
-            hasTemplate ? "let" : "const"
-          } pathDetails = responseMap[\`\${method} \${url.pathname}\`];
-          if (!pathDetails) {`,
-        hasTemplate
-          ? "pathDetails = getParametrizedPathSuccess(method, url.pathname);"
-          : `return true;`,
-        `  }
+          let pathDetails = responseMap[\`\${method} \${url.pathname}\`];
+          if (!pathDetails) {
+            pathDetails = getParametrizedPathSuccess(method, url.pathname);
+          }
           return !pathDetails.includes(response.status);
         `
       ]
     });
-    if (hasTemplate) {
-      isErrorHelper.addFunction({
-        isExported: false,
-        name: "getParametrizedPathSuccess",
-        parameters: [
-          {
-            name: "method",
-            type: "string"
-          },
-          {
-            name: "path",
-            type: "string"
-          }
-        ],
-        returnType: `string[]`,
-        statements: [
-          `
+    isErrorHelper.addFunction({
+      isExported: false,
+      name: "getParametrizedPathSuccess",
+      parameters: [
+        {
+          name: "method",
+          type: "string"
+        },
+        {
+          name: "path",
+          type: "string"
+        }
+      ],
+      returnType: `string[]`,
+      statements: [
+        `
           const pathParts = path.split("/");
             
           // Traverse list to match the longest candidate
@@ -228,39 +222,28 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         
           return matchedValue;
         `
-        ]
-      });
+      ]
+    });
 
-      isErrorHelper.addFunction({
-        isExported: false,
-        name: "getPathFromMapKey",
-        parameters: [
-          {
-            name: "mapKey",
-            type: "string"
-          }
-        ],
-        returnType: `string`,
-        statements: [
-          `const pathStart = mapKey.indexOf("/");
+    isErrorHelper.addFunction({
+      isExported: false,
+      name: "getPathFromMapKey",
+      parameters: [
+        {
+          name: "mapKey",
+          type: "string"
+        }
+      ],
+      returnType: `string`,
+      statements: [
+        `const pathStart = mapKey.indexOf("/");
          return mapKey.slice(pathStart);`
-        ]
-      });
-    }
+      ]
+    });
   }
 
   return {
     path: filePath,
     content: isErrorHelper.getFullText()
   };
-}
-
-function hasParametrizedPath(pathDictionary: Paths): boolean {
-  for (const [path] of Object.entries(pathDictionary)) {
-    if (path.includes("/{") && path.includes("}")) {
-      return true;
-    }
-  }
-
-  return false;
 }
