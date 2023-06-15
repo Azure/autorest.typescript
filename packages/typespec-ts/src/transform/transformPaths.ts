@@ -28,6 +28,7 @@ import { getSchemaForType } from "../modelUtils.js";
 import {
   extractOperationLroDetail,
   getOperationGroupName,
+  getOperationName,
   getOperationStatuscode,
   isDefaultStatusCode,
   isDefinedStatusCode,
@@ -129,7 +130,7 @@ function transformOperation(
     responseTypes,
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
-    operationName: route.operation.name,
+    operationName: getOperationName(program, route.operation),
     operationHelperDetail: {
       lroDetails: extractOperationLroDetail(
         program,

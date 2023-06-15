@@ -9,7 +9,14 @@ import {
   getLroLogicalResponseName,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
+import {
+  getProjectedName,
+  ignoreDiagnostics,
+  Model,
+  Operation,
+  Program,
+  Type
+} from "@typespec/compiler";
 import {
   getHttpOperation,
   HttpOperation,
@@ -65,6 +72,16 @@ export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
     NameType.Interface,
     true
   );
+}
+
+export function getOperationName(program: Program, operation: Operation) {
+  const projectedOperationName = getProjectedName(
+    program,
+    operation,
+    "javascript"
+  );
+
+  return projectedOperationName ?? operation.name;
 }
 
 export function isDefaultStatusCode(statusCode: StatusCode) {

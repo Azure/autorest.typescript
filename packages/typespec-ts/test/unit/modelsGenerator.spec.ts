@@ -1511,6 +1511,24 @@ describe("Input/output model type", () => {
         }`
       });
     });
+
+    it("should generate projected operation name", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @projectedName("javascript", "testRunOperation")
+        op test(): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+          import { RequestParameters } from "@azure-rest/core-client";
+          
+          export type TestRunOperationParameters =  RequestParameters;
+          `
+      );
+    });
   });
 
   describe("@friendlyName for model", () => {

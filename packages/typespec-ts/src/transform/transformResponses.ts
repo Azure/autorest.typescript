@@ -33,7 +33,8 @@ import {
   getOperationGroupName,
   getOperationStatuscode,
   isBinaryPayload,
-  getOperationLroOverload
+  getOperationLroOverload,
+  getOperationName
 } from "../operationUtil.js";
 
 export function transformToResponseTypes(
@@ -77,7 +78,7 @@ export function transformToResponseTypes(
   ) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(operationGroup),
-      operationName: route.operation.name,
+      operationName: getOperationName(program, route.operation),
       responses: []
     };
     for (const resp of route.responses) {
