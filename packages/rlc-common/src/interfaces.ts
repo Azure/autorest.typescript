@@ -123,6 +123,7 @@ export interface RLCOptions {
   azureArm?: boolean;
   sourceFrom?: "Cadl" | "Swagger";
   isModularLibrary?: boolean;
+  sourceOnly?: boolean;
 }
 
 export interface ServiceInfo {

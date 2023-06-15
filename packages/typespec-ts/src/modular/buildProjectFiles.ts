@@ -3,11 +3,11 @@ import { ModularCodeModel } from "./modularCodeModel.js";
 
 export function emitPackage(
   project: Project,
-  srcPath: string,
+  pkgPath: string,
   codeModel: ModularCodeModel
 ) {
   const packageJson = project.createSourceFile(
-    `${srcPath}/package-files/package.json`,
+    `${pkgPath}/package-files/package.json`,
     "",
     {
       overwrite: true
@@ -184,11 +184,11 @@ export function emitPackage(
 
 export function emitTsConfig(
   project: Project,
-  srcPath: string,
+  pkgPath: string,
   codeModel: ModularCodeModel
 ) {
   const tsConfig = project.createSourceFile(
-    `${srcPath}/package-files/tsconfig.json`,
+    `${pkgPath}/package-files/tsconfig.json`,
     "",
     {
       overwrite: true

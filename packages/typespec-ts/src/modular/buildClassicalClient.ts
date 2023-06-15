@@ -25,7 +25,7 @@ export function buildClassicalClient(
   const params = getClientParameters(client);
 
   const clientFile = project.createSourceFile(
-    `${srcPath}/src/${classicalClientname}.ts`
+    `${srcPath}/${classicalClientname}.ts`
   );
 
   clientFile.addExportDeclaration({
@@ -63,7 +63,7 @@ export function buildClassicalClient(
 
 function importAllModels(clientFile: SourceFile, srcPath: string) {
   const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
+  const apiModels = project.getSourceFile(`${srcPath}/api/index.ts`);
 
   if (!apiModels) {
     return;

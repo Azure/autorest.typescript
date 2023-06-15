@@ -26,7 +26,7 @@ export function buildOperationFiles(
         "operations";
 
     const operationGroupFile = project.createSourceFile(
-      `${srcPath}/src/api/${fileName}.ts`
+      `${srcPath}/api/${fileName}.ts`
     );
 
     operationGroup.operations.forEach((o) => {

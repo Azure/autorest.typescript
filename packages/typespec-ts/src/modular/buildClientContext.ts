@@ -15,7 +15,7 @@ export function buildClientContext(
   const { description, parameters } = client;
   const name = getClientName(client);
   const clientContextFile = project.createSourceFile(
-    `${srcPath}/src/api/${name}Context.ts`
+    `${srcPath}/api/${name}Context.ts`
   );
 
   clientContextFile.addImportDeclaration({

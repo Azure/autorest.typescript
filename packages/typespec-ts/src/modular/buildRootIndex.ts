@@ -8,15 +8,15 @@ export function buildRootIndex(
   srcPath: string
 ) {
   const clientName = `${getClientName(client)}Client`;
-  const clientFile = project.getSourceFile(`${srcPath}/src/${clientName}.ts`);
+  const clientFile = project.getSourceFile(`${srcPath}/${clientName}.ts`);
 
   if (!clientFile) {
     throw new Error(
-      `Couldn't find client file: ${srcPath}/src/${clientName}.ts`
+      `Couldn't find client file: ${srcPath}/${clientName}.ts`
     );
   }
 
-  const file = project.createSourceFile(`${srcPath}/src/index.ts`, "", {
+  const file = project.createSourceFile(`${srcPath}/index.ts`, "", {
     overwrite: true
   });
 
@@ -47,7 +47,7 @@ function exportOptionsInterfaces(
 ) {
   const clientContextName = `${getClientName(client)}Context`;
   const project = indexFile.getProject();
-  const files = project.getSourceFiles(`${srcPath}/src/api/**`);
+  const files = project.getSourceFiles(`${srcPath}/api/**`);
 
   for (const file of files) {
     if (file.getBaseNameWithoutExtension() === clientContextName) {
@@ -81,7 +81,7 @@ function exportOptionsInterfaces(
 
 function exportModels(indexFile: SourceFile, srcPath: string) {
   const project = indexFile.getProject();
-  const modelsFile = project.getSourceFile(`${srcPath}/src/api/models.ts`);
+  const modelsFile = project.getSourceFile(`${srcPath}/api/models.ts`);
 
   if (!modelsFile) {
     return;

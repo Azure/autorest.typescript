@@ -52,7 +52,7 @@ export async function $onEmit(context: EmitContext) {
   const options: RLCOptions = context.options;
   const dpgContext = createSdkContext(context);
   const clients = listClients(dpgContext);
-  const srcPath: string = context.emitterOutputDir;
+  const rootPath: string = context.emitterOutputDir;
   let count = -1;
   for (const client of clients) {
     count++;
@@ -63,7 +63,7 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir,
       dpgContext
     );
-    const pathToClear = options.isModularLibrary ? srcPath : rlcModels.srcPath;
+    const pathToClear = options.isModularLibrary ? rootPath : rlcModels.srcPath;
     clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
     await emitModels(rlcModels, program);
     await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
@@ -111,7 +111,7 @@ export async function $onEmit(context: EmitContext) {
     // TODO: Emit modular parts of the library
     const project = new Project();
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
-
+    const srcPath = options.sourceOnly ? rootPath : `${rootPath}/src`;
     for (const client of modularCodeModel.clients) {
       buildSharedTypes(project, srcPath);
       buildClientContext(client, project, srcPath);
@@ -120,8 +120,10 @@ export async function $onEmit(context: EmitContext) {
       buildApiIndexFile(project, srcPath);
       buildClassicalClient(client, project, srcPath);
       buildRootIndex(client, project, srcPath);
-      emitPackage(project, srcPath, modularCodeModel);
-      emitTsConfig(project, srcPath, modularCodeModel);
+      if (!options.sourceOnly) {
+        emitPackage(project, rootPath, modularCodeModel);
+        emitTsConfig(project, rootPath, modularCodeModel);
+      }
     }
 
     removeUnusedInterfaces(project);
@@ -182,14 +184,14 @@ function removeUnusedInterfaces(project: Project) {
 }
 
 function clearSrcFolder(
-  srcPath: string,
+  pkgPath: string,
   count: number,
   isMultiClient: boolean = false
 ) {
-  fsextra.emptyDirSync(srcPath);
+  fsextra.emptyDirSync(pkgPath);
   if (isMultiClient && count === 0) {
     const folderPath = path.join(
-      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4)
+      pkgPath.substring(0, pkgPath.indexOf(path.sep + "src") + 4)
     );
     fsextra.emptyDirSync(folderPath);
   }
