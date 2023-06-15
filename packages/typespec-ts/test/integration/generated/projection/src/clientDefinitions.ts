@@ -25,7 +25,7 @@ export interface Json {
   ): StreamableMethod<PropertyJson204Response>;
 }
 
-export interface _client {
+export interface _Client {
   post(
     options?: PropertyClientParameters
   ): StreamableMethod<PropertyClient204Response>;
@@ -55,7 +55,7 @@ export interface Routes {
   /** Resource for '/projection/projected-name/property/json' has methods for the following verbs: post */
   (path: "/projection/projected-name/property/json"): Json;
   /** Resource for '/projection/projected-name/property/client' has methods for the following verbs: post */
-  (path: "/projection/projected-name/property/client"): _client;
+  (path: "/projection/projected-name/property/client"): _Client;
   /** Resource for '/projection/projected-name/property/language' has methods for the following verbs: post */
   (path: "/projection/projected-name/property/language"): Language;
   /** Resource for '/projection/projected-name/property/json-and-client' has methods for the following verbs: post */
