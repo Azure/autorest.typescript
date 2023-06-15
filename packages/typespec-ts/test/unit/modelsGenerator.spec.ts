@@ -1515,7 +1515,7 @@ describe("Input/output model type", () => {
     it("should generate projected operation name", async () => {
       const parameters = await emitParameterFromCadl(
         `
-        @projectedName("javascript", "testRunOperation")
+        @projectedName("json", "testRunOperation")
         op test(): string;
         `
       );
