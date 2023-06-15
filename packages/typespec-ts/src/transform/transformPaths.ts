@@ -73,6 +73,7 @@ export function transformPaths(
  * an operation can end up returning.
  */
 function getResponseTypes(
+  program: Program,
   operation: HttpOperation,
   operationGroup?: SdkOperationGroup
 ): ResponseTypes {
@@ -87,7 +88,7 @@ function getResponseTypes(
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
           getOperationGroupName(operationGroup),
-          operation.operation.name,
+          getOperationName(program, operation.operation),
           statusCode
         );
         return responseName;
@@ -122,7 +123,7 @@ function transformOperation(
     );
     respNames.push(respName);
   }
-  const responseTypes = getResponseTypes(route, operationGroup);
+  const responseTypes = getResponseTypes(program, route, operationGroup);
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
@@ -154,7 +155,9 @@ function transformOperation(
   } else {
     paths[route.path] = {
       description: getDoc(program, route.operation) ?? "",
-      name: escapeCoreName(route.operation.name || "Client"),
+      name: escapeCoreName(
+        getOperationName(program, route.operation) || "Client"
+      ),
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {

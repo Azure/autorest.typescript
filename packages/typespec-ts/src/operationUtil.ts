@@ -69,7 +69,11 @@ export function getOperationName(program: Program, operation: Operation) {
     "javascript"
   );
 
-  return projectedOperationName ?? operation.name;
+  return normalizeName(
+    projectedOperationName ?? operation.name,
+    NameType.Interface,
+    true
+  );
 }
 
 export function isDefaultStatusCode(statusCode: StatusCode) {
@@ -183,7 +187,10 @@ export function extractOperationLroDetail(
     logicalResponseTypes = {
       error: responsesTypes.error,
       success: [
-        getLroLogicalResponseName(operationGroupName, operation.operation.name)
+        getLroLogicalResponseName(
+          operationGroupName,
+          getOperationName(program, operation.operation)
+        )
       ]
     };
     const metadata = getLroMetadata(program, operation.operation);

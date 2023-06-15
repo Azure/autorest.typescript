@@ -91,7 +91,7 @@ import {
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface CreateOrUpdateTest {
+export interface LoadTestAdministrationCreateOrUpdateTest {
   /** Create a new test or update an existing test. */
   patch(
     options: LoadTestAdministrationCreateOrUpdateTestParameters
@@ -116,7 +116,7 @@ export interface CreateOrUpdateTest {
   >;
 }
 
-export interface ListTests {
+export interface LoadTestAdministrationListTests {
   /**
    * Get all load tests by the fully qualified resource Id e.g
    * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
@@ -129,7 +129,7 @@ export interface ListTests {
   >;
 }
 
-export interface UploadTestFile {
+export interface LoadTestAdministrationUploadTestFile {
   /**
    * Upload input file for a given test name. File size can't be more than 50 MB.
    * Existing file with same name for the given test will be overwritten. File
@@ -157,7 +157,7 @@ export interface UploadTestFile {
   >;
 }
 
-export interface ListTestFiles {
+export interface LoadTestAdministrationListTestFiles {
   /** Get all test files. */
   get(
     options?: LoadTestAdministrationListTestFilesParameters
@@ -167,7 +167,7 @@ export interface ListTestFiles {
   >;
 }
 
-export interface CreateOrUpdateAppComponents {
+export interface LoadTestAdministrationCreateOrUpdateAppComponents {
   /** Associate an app component (collection of azure resources) to a test */
   patch(
     options: LoadTestAdministrationCreateOrUpdateAppComponentsParameters
@@ -185,7 +185,7 @@ export interface CreateOrUpdateAppComponents {
   >;
 }
 
-export interface CreateOrUpdateServerMetricsConfig {
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig {
   /** Configure server metrics for a test */
   patch(
     options: LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters
@@ -203,7 +203,7 @@ export interface CreateOrUpdateServerMetricsConfig {
   >;
 }
 
-export interface GetTestRun {
+export interface LoadTestRunGetTestRun {
   /** Get test run details by name. */
   get(
     options?: LoadTestRunGetTestRunParameters
@@ -227,7 +227,7 @@ export interface GetTestRun {
   >;
 }
 
-export interface GetTestRunFile {
+export interface LoadTestRunGetTestRunFile {
   /** Get test run file by file name. */
   get(
     options?: LoadTestRunGetTestRunFileParameters
@@ -237,7 +237,7 @@ export interface GetTestRunFile {
   >;
 }
 
-export interface ListTestRuns {
+export interface LoadTestRunListTestRuns {
   /** Get all test runs with given filters */
   get(
     options?: LoadTestRunListTestRunsParameters
@@ -246,7 +246,7 @@ export interface ListTestRuns {
   >;
 }
 
-export interface StopTestRun {
+export interface LoadTestRunStopTestRun {
   /** Stop test run by name. */
   post(
     options?: LoadTestRunStopTestRunParameters
@@ -255,7 +255,7 @@ export interface StopTestRun {
   >;
 }
 
-export interface ListMetricNamespaces {
+export interface LoadTestRunListMetricNamespaces {
   /** List the metric namespaces for a load test run. */
   get(
     options?: LoadTestRunListMetricNamespacesParameters
@@ -265,7 +265,7 @@ export interface ListMetricNamespaces {
   >;
 }
 
-export interface ListMetricDefinitions {
+export interface LoadTestRunListMetricDefinitions {
   /** List the metric definitions for a load test run. */
   get(
     options?: LoadTestRunListMetricDefinitionsParameters
@@ -275,7 +275,7 @@ export interface ListMetricDefinitions {
   >;
 }
 
-export interface ListMetrics {
+export interface LoadTestRunListMetrics {
   /** List the metric values for a load test run. */
   post(
     options: LoadTestRunListMetricsParameters
@@ -284,7 +284,7 @@ export interface ListMetrics {
   >;
 }
 
-export interface ListMetricDimensionValues {
+export interface LoadTestRunListMetricDimensionValues {
   /** List the dimension values for the given metric dimension name. */
   get(
     options: LoadTestRunListMetricDimensionValuesParameters
@@ -294,7 +294,7 @@ export interface ListMetricDimensionValues {
   >;
 }
 
-export interface CreateOrUpdateAppComponents {
+export interface LoadTestRunCreateOrUpdateAppComponents {
   /** Associate an app component (collection of azure resources) to a test run */
   patch(
     options: LoadTestRunCreateOrUpdateAppComponentsParameters
@@ -315,7 +315,7 @@ export interface CreateOrUpdateAppComponents {
   >;
 }
 
-export interface CreateOrUpdateServerMetricsConfig {
+export interface LoadTestRunCreateOrUpdateServerMetricsConfig {
   /** Configure server metrics for a test run */
   patch(
     options: LoadTestRunCreateOrUpdateServerMetricsConfigParameters
@@ -335,67 +335,79 @@ export interface CreateOrUpdateServerMetricsConfig {
 
 export interface Routes {
   /** Resource for '/tests/\{testId\}' has methods for the following verbs: patch, delete, get */
-  (path: "/tests/{testId}", testId: string): CreateOrUpdateTest;
+  (
+    path: "/tests/{testId}",
+    testId: string
+  ): LoadTestAdministrationCreateOrUpdateTest;
   /** Resource for '/tests' has methods for the following verbs: get */
-  (path: "/tests"): ListTests;
+  (path: "/tests"): LoadTestAdministrationListTests;
   /** Resource for '/tests/\{testId\}/files/\{fileName\}' has methods for the following verbs: put, get, delete */
   (
     path: "/tests/{testId}/files/{fileName}",
     testId: string,
     fileName: string
-  ): UploadTestFile;
+  ): LoadTestAdministrationUploadTestFile;
   /** Resource for '/tests/\{testId\}/files' has methods for the following verbs: get */
-  (path: "/tests/{testId}/files", testId: string): ListTestFiles;
+  (
+    path: "/tests/{testId}/files",
+    testId: string
+  ): LoadTestAdministrationListTestFiles;
   /** Resource for '/tests/\{testId\}/app-components' has methods for the following verbs: patch, get */
   (
     path: "/tests/{testId}/app-components",
     testId: string
-  ): CreateOrUpdateAppComponents;
+  ): LoadTestAdministrationCreateOrUpdateAppComponents;
   /** Resource for '/tests/\{testId\}/server-metrics-config' has methods for the following verbs: patch, get */
   (
     path: "/tests/{testId}/server-metrics-config",
     testId: string
-  ): CreateOrUpdateServerMetricsConfig;
+  ): LoadTestAdministrationCreateOrUpdateServerMetricsConfig;
   /** Resource for '/test-runs/\{testRunId\}' has methods for the following verbs: get, patch, delete */
-  (path: "/test-runs/{testRunId}", testRunId: string): GetTestRun;
+  (path: "/test-runs/{testRunId}", testRunId: string): LoadTestRunGetTestRun;
   /** Resource for '/test-runs/\{testRunId\}/files/\{fileName\}' has methods for the following verbs: get */
   (
     path: "/test-runs/{testRunId}/files/{fileName}",
     testRunId: string,
     fileName: string
-  ): GetTestRunFile;
+  ): LoadTestRunGetTestRunFile;
   /** Resource for '/test-runs' has methods for the following verbs: get */
-  (path: "/test-runs"): ListTestRuns;
+  (path: "/test-runs"): LoadTestRunListTestRuns;
   /** Resource for '/test-runs/\{testRunId\}:stop' has methods for the following verbs: post */
-  (path: "/test-runs/{testRunId}:stop", testRunId: string): StopTestRun;
+  (
+    path: "/test-runs/{testRunId}:stop",
+    testRunId: string
+  ): LoadTestRunStopTestRun;
   /** Resource for '/test-runs/\{testRunId\}/metric-namespaces' has methods for the following verbs: get */
   (
     path: "/test-runs/{testRunId}/metric-namespaces",
     testRunId: string
-  ): ListMetricNamespaces;
+  ): LoadTestRunListMetricNamespaces;
   /** Resource for '/test-runs/\{testRunId\}/metric-definitions' has methods for the following verbs: get */
   (
     path: "/test-runs/{testRunId}/metric-definitions",
     testRunId: string
-  ): ListMetricDefinitions;
+  ): LoadTestRunListMetricDefinitions;
   /** Resource for '/test-runs/\{testRunId\}/metrics' has methods for the following verbs: post */
-  (path: "/test-runs/{testRunId}/metrics", testRunId: string): ListMetrics;
+  (
+    path: "/test-runs/{testRunId}/metrics",
+    testRunId: string
+  ): LoadTestRunListMetrics;
   /** Resource for '/test-runs/\{testRunId\}/metric-dimensions/\{name\}/values' has methods for the following verbs: get */
   (
     path: "/test-runs/{testRunId}/metric-dimensions/{name}/values",
     testRunId: string,
     name: string
-  ): ListMetricDimensionValues;
+  ): LoadTestRunListMetricDimensionValues;
   /** Resource for '/test-runs/\{testRunId\}/app-components' has methods for the following verbs: patch, get */
   (
     path: "/test-runs/{testRunId}/app-components",
     testRunId: string
-  ): CreateOrUpdateAppComponents;
+  ): LoadTestRunCreateOrUpdateAppComponents;
   /** Resource for '/test-runs/\{testRunId\}/server-metrics-config' has methods for the following verbs: patch, get */
   (
     path: "/test-runs/{testRunId}/server-metrics-config",
     testRunId: string
-  ): CreateOrUpdateServerMetricsConfig;
+  ): LoadTestRunCreateOrUpdateServerMetricsConfig;
 }
 
 export type AzureLoadTestingClient = Client & {
