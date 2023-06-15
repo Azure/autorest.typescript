@@ -11,9 +11,7 @@ export function buildRootIndex(
   const clientFile = project.getSourceFile(`${srcPath}/${clientName}.ts`);
 
   if (!clientFile) {
-    throw new Error(
-      `Couldn't find client file: ${srcPath}/${clientName}.ts`
-    );
+    throw new Error(`Couldn't find client file: ${srcPath}/${clientName}.ts`);
   }
 
   const file = project.createSourceFile(`${srcPath}/index.ts`, "", {
