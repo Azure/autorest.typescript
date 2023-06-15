@@ -116,7 +116,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
   });
 
   if (allErrorTypes.size) {
-    const hasTemplate = hasParametrizedPath(pathDictionary);
+    const hasTemplate = true;
     isErrorHelper.addFunction({
       overloads,
       isExported: true,
