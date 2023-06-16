@@ -95,7 +95,7 @@ export async function generateRestLevelClient() {
   // buildResponseTypes
   generateFileByBuilder(project, buildResponseTypes, rlcModels, srcPath);
   // generate input & output models
-  generateSchemaTypes(project, rlcModels);
+  generateSchemaTypes(project, rlcModels, srcPath);
   // buildParameterTypes
   generateFileByBuilder(project, buildParameterTypes, rlcModels, srcPath);
   // buildClientDefinitions

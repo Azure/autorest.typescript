@@ -22,9 +22,8 @@ import {
 } from "./helpers/nameConstructors.js";
 
 let hasErrorResponse = false;
-export function buildResponseTypes(model: RLCModel) {
+export function buildResponseTypes(model: RLCModel, srcPath: string) {
   const project = new Project();
-  const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `responses.ts`);
   hasErrorResponse = false;
   const responsesFile = project.createSourceFile(filePath, undefined, {

@@ -23,9 +23,8 @@ import {
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
 
-export function buildParameterTypes(model: RLCModel) {
+export function buildParameterTypes(model: RLCModel, srcPath: string) {
   const project = new Project();
-  const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `parameters.ts`);
   const partialBodyTypeNames = new Set<string>();
   const parametersFile = project.createSourceFile(filePath, undefined, {

@@ -6,8 +6,8 @@ import { dirname, join } from "path";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./lib.js";
 
-export async function emitModels(rlcModels: RLCModel, program: Program) {
-  const schemaOutput = buildSchemaTypes(rlcModels);
+export async function emitModels(rlcModels: RLCModel, program: Program, srcPath: string) {
+  const schemaOutput = buildSchemaTypes(rlcModels, srcPath);
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
     if (inputModelFile) {

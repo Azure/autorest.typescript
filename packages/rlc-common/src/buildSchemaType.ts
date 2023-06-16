@@ -13,8 +13,7 @@ import { RLCModel, SchemaContext } from "./interfaces.js";
 /**
  * Generates types to represent schema definitions in the swagger
  */
-export function buildSchemaTypes(model: RLCModel) {
-  const { srcPath } = model;
+export function buildSchemaTypes(model: RLCModel, srcPath: string) {
   const project = new Project();
   let filePath = path.join(srcPath, `models.ts`);
   const inputModelFile = generateModelFiles(model, project, filePath, [

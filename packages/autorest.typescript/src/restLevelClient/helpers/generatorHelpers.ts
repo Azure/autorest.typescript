@@ -26,8 +26,8 @@ export function generateFileByBuilder(
   }
 }
 
-export function generateSchemaTypes(project: Project, rlcModels: RLCModel) {
-  const { inputModelFile, outputModelFile } = buildSchemaTypes(rlcModels);
+export function generateSchemaTypes(project: Project, rlcModels: RLCModel, srcPath: string) {
+  const { inputModelFile, outputModelFile } = buildSchemaTypes(rlcModels, srcPath);
   generateFile(inputModelFile, project);
   generateFile(outputModelFile, project);
 }
