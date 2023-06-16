@@ -31,7 +31,7 @@ export async function emitModelsFromCadl(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = listClients(dpgContext, false);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
@@ -59,7 +59,7 @@ export async function emitParameterFromCadl(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = listClients(dpgContext, false);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
   if (clients && clients[0]) {
@@ -87,7 +87,7 @@ export async function emitClientDefinitionFromCadl(
   const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = listClients(dpgContext, false);
   let paths = {};
   if (clients && clients[0]) {
     paths = transformPaths(program, clients[0], dpgContext);
@@ -109,7 +109,7 @@ export async function emitClientFactoryFromCadl(
   const dpgContext = createDpgContextTestHelper(context.program);
   const urlInfo = transformUrlInfo(program, dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
-  const clients = listClients(dpgContext);
+  const clients = listClients(dpgContext, false);
   let apiVersionInfo;
   if (clients && clients[0]) {
     apiVersionInfo = transformApiVersionInfo(
@@ -145,7 +145,7 @@ export async function emitResponsesFromCadl(
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = new Map<ImportKind, Set<string>>();
-  const clients = listClients(dpgContext);
+  const clients = listClients(dpgContext, false);
   let responses;
   if (clients && clients[0]) {
     responses = transformToResponseTypes(

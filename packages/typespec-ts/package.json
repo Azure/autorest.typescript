@@ -55,7 +55,7 @@
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.31.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.31.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": "file:/Users/zhangqiaoqiao/work/code/typespec-azure/packages/typespec-client-generator-core",
     "@typespec/compiler": ">=0.45.0 <1.0.0",
     "@typespec/http": ">=0.45.0 <1.0.0",
     "@typespec/rest": ">=0.45.0 <1.0.0",

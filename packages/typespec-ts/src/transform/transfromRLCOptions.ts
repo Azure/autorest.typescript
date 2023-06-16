@@ -22,7 +22,7 @@ export function transformRLCOptions(
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
-  const batch = listClients(dpgContext);
+  const batch = listClients(dpgContext, false);
   options.batch = batch;
   return options;
 }

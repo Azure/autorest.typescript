@@ -11,7 +11,7 @@
     "@typespec/versioning": ">=0.45.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.31.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.31.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.31.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": "file:/Users/zhangqiaoqiao/work/code/typespec-azure/packages/typespec-client-generator-core",
     "@typespec/openapi3": ">=0.45.0 <1.0.0",
     "@typespec/prettier-plugin-typespec": ">=0.45.0 <1.0.0",
     "prettier": "2.7.1"

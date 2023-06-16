@@ -51,7 +51,7 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
   const dpgContext = createSdkContext(context);
-  const clients = listClients(dpgContext);
+  const clients = listClients(dpgContext, false);
   const srcPath: string = context.emitterOutputDir;
   let count = -1;
   for (const client of clients) {
