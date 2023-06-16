@@ -11,7 +11,7 @@ export function buildLogger(model: RLCModel, srcPath: string) {
   }
   const project = new Project();
   const { packageDetails } = model.options;
-    const filePath = path.join(
+  const filePath = path.join(
     srcPath,
     `logger.ts`
   );

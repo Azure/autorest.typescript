@@ -55,7 +55,7 @@ describe("generateReadmeFile", () => {
     const project = getEmptyProject();
     // then transform CodeModel to RLCModel
     const rlcModels = transform(codeModel);
-    generateFileByBuilder(project, buildReadmeFile, rlcModels);
+    generateFileByBuilder(project, buildReadmeFile, rlcModels, "");
     const expectedContends = readFileSync(
       path.join(__dirname, "files/case-rlcReadme.md"),
       "utf-8"

@@ -142,14 +142,8 @@ export function buildClient(model: RLCModel, srcPath: string): File | undefined 
   while (paths.length > 0 && paths[paths.length - 1] === "") {
     paths.pop();
   }
-  const parentPath =
-    paths.lastIndexOf("src") > -1
-      ? paths.length - 1 - paths.lastIndexOf("src")
-      : 0;
 
-  const loggerPath = `${
-    parentPath > 0 ? "../".repeat(parentPath) : "./"
-  }logger`;
+  const loggerPath = `./logger.js`;
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
