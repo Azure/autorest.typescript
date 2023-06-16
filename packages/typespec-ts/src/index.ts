@@ -54,7 +54,7 @@ export async function $onEmit(context: EmitContext) {
   const clients = listClients(dpgContext);
   const rootPath: string = context.emitterOutputDir;
   const srcPath = options.sourceOnly ? rootPath : `${rootPath}/src`;
-  const restSrcPath = `${srcPath}/rest`;
+  const restSrcPath = options.isModularLibrary ? `${srcPath}/rest` : srcPath;
   let count = -1;
   for (const client of clients) {
     count++;
