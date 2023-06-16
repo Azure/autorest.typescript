@@ -139,10 +139,10 @@
       }
     },
     "/test-runs/{testRunId}": {
-      "get": {
-        "operationId": "LoadTestRun_GetTestRun",
-        "summary": "Get test run details by name.",
-        "description": "Get test run details by name.",
+      "delete": {
+        "operationId": "LoadTestRun_DeleteTestRun",
+        "summary": "Delete a test run by its name.",
+        "description": "Delete a test run by its name.",
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -156,11 +156,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "The request has succeeded.",
-            "schema": {
-              "$ref": "#/definitions/TestRun"
-            }
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "default": {
             "description": "An unexpected error response.",
@@ -252,10 +249,10 @@
           "application/merge-patch+json"
         ]
       },
-      "delete": {
-        "operationId": "LoadTestRun_DeleteTestRun",
-        "summary": "Delete a test run by its name.",
-        "description": "Delete a test run by its name.",
+      "get": {
+        "operationId": "LoadTestRun_GetTestRun",
+        "summary": "Get test run details by name.",
+        "description": "Get test run details by name.",
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -269,8 +266,11 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful. "
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRun"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
