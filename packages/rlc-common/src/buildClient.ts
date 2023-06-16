@@ -45,8 +45,9 @@ function getClientOptionsInterface(
   };
 }
 
-export function buildClient(model: RLCModel, srcPath: string): File | undefined {
+export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
+  const { srcPath, options } = model;
   const project = new Project();
   const filePath = path.join(srcPath, `${name}.ts`);
   const clientFile = project.createSourceFile(filePath, undefined, {
@@ -142,8 +143,14 @@ export function buildClient(model: RLCModel, srcPath: string): File | undefined 
   while (paths.length > 0 && paths[paths.length - 1] === "") {
     paths.pop();
   }
+  const parentPath =
+    paths.lastIndexOf("src") > -1
+      ? paths.length - 1 - paths.lastIndexOf("src")
+      : 0;
 
-  const loggerPath = `./logger`;
+  const loggerPath = `${
+    parentPath > 0 ? "../".repeat(parentPath) : "./"
+  }logger`;
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],

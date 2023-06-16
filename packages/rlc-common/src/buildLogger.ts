@@ -5,14 +5,15 @@ import { RLCModel } from "./interfaces.js";
 import { Project } from "ts-morph";
 import * as path from "path";
 
-export function buildLogger(model: RLCModel, srcPath: string) {
+export function buildLogger(model: RLCModel) {
   if (!model.options) {
     return undefined;
   }
   const project = new Project();
+  const { srcPath } = model;
   const { packageDetails } = model.options;
   const filePath = path.join(
-    srcPath,
+    srcPath.substring(0, srcPath.lastIndexOf("src") + 4),
     `logger.ts`
   );
   const loggerFile = project.createSourceFile("logger.ts", undefined, {

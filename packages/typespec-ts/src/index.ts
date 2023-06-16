@@ -53,8 +53,6 @@ export async function $onEmit(context: EmitContext) {
   const dpgContext = createSdkContext(context);
   const clients = listClients(dpgContext);
   const rootPath: string = context.emitterOutputDir;
-  const srcPath = options.sourceOnly ? rootPath : `${rootPath}/src`;
-  const restSrcPath = options.isModularLibrary ? `${srcPath}/rest` : srcPath;
   let count = -1;
   for (const client of clients) {
     count++;
@@ -65,6 +63,7 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir,
       dpgContext
     );
+    const restSrcPath = rlcModels.srcPath;
     const pathToClear = options.isModularLibrary ? rootPath : rlcModels.srcPath;
     clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
     await emitModels(rlcModels, program, restSrcPath);
@@ -92,7 +91,7 @@ export async function $onEmit(context: EmitContext) {
         buildTsConfig
       ],
       rlcModels,
-      srcPath,
+      restSrcPath,
       context.emitterOutputDir
     );
     // build test relevant files
@@ -106,11 +105,11 @@ export async function $onEmit(context: EmitContext) {
         buildSampleTest
       ],
       rlcModels,
-      srcPath,
+      restSrcPath,
       context.emitterOutputDir
     );
   }
-
+  const srcPath = options.sourceOnly ? rootPath : path.join(rootPath, "src");
   if (options.isModularLibrary) {
     // TODO: Emit modular parts of the library
     const project = new Project();
