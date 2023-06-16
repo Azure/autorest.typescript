@@ -131,8 +131,7 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(
         program,
         () => ({ content: file.getFullText(), path: file.getFilePath() }),
-        modularCodeModel as any,
-        srcPath
+        modularCodeModel as any
       );
       // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
     }
