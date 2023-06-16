@@ -143,7 +143,7 @@ export function buildClient(model: RLCModel, srcPath: string): File | undefined 
     paths.pop();
   }
 
-  const loggerPath = `./logger.js`;
+  const loggerPath = `./logger`;
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
