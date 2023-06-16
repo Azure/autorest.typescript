@@ -6,8 +6,8 @@ import { dirname, join } from "path";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./lib.js";
 
-export async function emitModels(rlcModels: RLCModel, program: Program, srcPath: string) {
-  const schemaOutput = buildSchemaTypes(rlcModels, srcPath);
+export async function emitModels(rlcModels: RLCModel, program: Program) {
+  const schemaOutput = buildSchemaTypes(rlcModels);
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
     if (inputModelFile) {
@@ -23,14 +23,13 @@ export async function emitContentByBuilder(
   program: Program,
   builderFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
-  srcPath: string,
   emitterOutputDir?: string
 ) {
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
   for (const builderFn of builderFnOrList) {
-    const contentFile = builderFn(rlcModels, srcPath);
+    const contentFile = builderFn(rlcModels);
     if (contentFile) {
       await emitFile(contentFile, program, emitterOutputDir);
     }

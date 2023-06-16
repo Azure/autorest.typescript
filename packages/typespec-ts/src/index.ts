@@ -63,22 +63,21 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir,
       dpgContext
     );
-    const restSrcPath = rlcModels.srcPath;
     const pathToClear = options.isModularLibrary ? rootPath : rlcModels.srcPath;
     clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
-    await emitModels(rlcModels, program, restSrcPath);
-    await emitContentByBuilder(program, buildClientDefinitions, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildResponseTypes, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildClient, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildParameterTypes, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildIndexFile, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildLogger, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildTopLevelIndex, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildPaginateHelper, rlcModels, restSrcPath);
-    await emitContentByBuilder(program, buildPollingHelper, rlcModels, restSrcPath);
+    await emitModels(rlcModels, program);
+    await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
+    await emitContentByBuilder(program, buildResponseTypes, rlcModels);
+    await emitContentByBuilder(program, buildClient, rlcModels);
+    await emitContentByBuilder(program, buildParameterTypes, rlcModels);
+    await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
+    await emitContentByBuilder(program, buildIndexFile, rlcModels);
+    await emitContentByBuilder(program, buildLogger, rlcModels);
+    await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
+    await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
+    await emitContentByBuilder(program, buildPollingHelper, rlcModels);
     // buildSerializeHelper
-    await emitContentByBuilder(program, buildSerializeHelper, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
     // build metadata relevant files
     await emitContentByBuilder(
       program,
@@ -91,7 +90,6 @@ export async function $onEmit(context: EmitContext) {
         buildTsConfig
       ],
       rlcModels,
-      restSrcPath,
       context.emitterOutputDir
     );
     // build test relevant files
@@ -105,7 +103,6 @@ export async function $onEmit(context: EmitContext) {
         buildSampleTest
       ],
       rlcModels,
-      restSrcPath,
       context.emitterOutputDir
     );
   }

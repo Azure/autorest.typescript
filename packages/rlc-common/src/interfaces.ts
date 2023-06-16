@@ -246,5 +246,6 @@ export type ResponseHeaderSchema = Schema;
 export type ResponseBodySchema = Schema;
 
 export type ContentBuilder = {
-  (model: RLCModel, srcPath: string, hasSampleGenerated?: boolean): File | undefined;
+  (model: RLCModel): File | undefined;
+  (model: RLCModel, hasSampleGenerated?: boolean): File | undefined;
 };

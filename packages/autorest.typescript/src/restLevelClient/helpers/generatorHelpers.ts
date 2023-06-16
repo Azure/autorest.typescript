@@ -10,7 +10,6 @@ export function generateFileByBuilder(
   project: Project,
   buildFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
-  srcPath: string,
   hasSampleGenerated?: boolean
 ) {
   if (!Array.isArray(buildFnOrList)) {
@@ -19,15 +18,14 @@ export function generateFileByBuilder(
   for (const buildFn of buildFnOrList) {
     const preparedFile: RLCFile | undefined = buildFn(
       rlcModels,
-      srcPath,
       hasSampleGenerated
     );
     generateFile(preparedFile, project);
   }
 }
 
-export function generateSchemaTypes(project: Project, rlcModels: RLCModel, srcPath: string) {
-  const { inputModelFile, outputModelFile } = buildSchemaTypes(rlcModels, srcPath);
+export function generateSchemaTypes(project: Project, rlcModels: RLCModel) {
+  const { inputModelFile, outputModelFile } = buildSchemaTypes(rlcModels);
   generateFile(inputModelFile, project);
   generateFile(outputModelFile, project);
 }

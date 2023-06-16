@@ -39,11 +39,7 @@ const restLevelTsConfigNotInAzureSdkForJs: Record<string, any> = {
   include: ["./src/**/*.ts"]
 };
 
-export function buildTsConfig(
-  model: RLCModel,
-  _srcPath: string,
-  hasSamplesGenerated = false
-) {
+export function buildTsConfig(model: RLCModel, hasSamplesGenerated = false) {
   const generateMetadata = Boolean(model.options?.generateMetadata);
   if (!generateMetadata) {
     return;

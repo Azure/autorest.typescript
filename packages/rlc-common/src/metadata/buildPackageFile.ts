@@ -14,11 +14,7 @@ let hasPaging = false;
 let hasLRO = false;
 let clientFilePaths: string[] = [];
 
-export function buildPackageFile(
-  model: RLCModel,
-  _srcPath: string,
-  hasSamplesGenerated = false
-) {
+export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
   const generateMetadata = Boolean(model.options?.generateMetadata);
   if (!generateMetadata) {
     return;
