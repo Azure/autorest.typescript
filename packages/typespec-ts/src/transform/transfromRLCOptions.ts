@@ -1,7 +1,4 @@
-import {
-  SdkContext,
-  listClients
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import {
   NameType,
   normalizeName,
@@ -12,7 +9,8 @@ import {
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
-import { getDefaultService } from "../modelUtils.js";
+import { getDefaultService } from "../utils/modelUtils.js";
+import { getRLCClients } from "../utils/clientUtils.js";
 
 export function transformRLCOptions(
   program: Program,
@@ -22,7 +20,7 @@ export function transformRLCOptions(
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
-  const batch = listClients(dpgContext, false);
+  const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;
 }

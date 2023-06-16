@@ -3,7 +3,7 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { toPascalCase } from "../../casingUtils.js";
+import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
   Operation,

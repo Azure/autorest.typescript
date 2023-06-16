@@ -82,7 +82,7 @@ import {
   Header
 } from "./modularCodeModel.js";
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
-import { camelToSnakeCase, toCamelCase } from "../casingUtils.js";
+import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";

@@ -8,7 +8,7 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { toCamelCase } from "../casingUtils.js";
+import { toCamelCase } from "../utils/casingUtils.js";
 import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";

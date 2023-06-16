@@ -28,7 +28,7 @@ import {
   getSchemaForType,
   getTypeName,
   predictDefaultValue
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 import { transformHelperFunctionDetails } from "./transformHelperFunctionDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
@@ -36,7 +36,7 @@ import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
-import { getClientLroOverload } from "../operationUtil.js";
+import { getClientLroOverload } from "../utils/operationUtil.js";
 
 export async function transformRLCModel(
   program: Program,

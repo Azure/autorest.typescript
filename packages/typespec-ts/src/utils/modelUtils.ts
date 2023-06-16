@@ -43,7 +43,7 @@ import {
   getEncode,
   EncodeData
 } from "@typespec/compiler";
-import { reportDiagnostic } from "./lib.js";
+import { reportDiagnostic } from "../lib.js";
 import {
   DictionarySchema,
   NameType,
@@ -454,7 +454,7 @@ function getSchemaForModel(
   );
 
   modelSchema.typeName = modelSchema.name;
-  
+
   if (
     (model.name === "ErrorResponse" ||
       model.name === "ErrorModel" ||

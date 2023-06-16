@@ -28,14 +28,14 @@ import {
   getTypeName,
   getSchemaForType,
   getBinaryType
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
   getOperationStatuscode,
   isBinaryPayload,
   getOperationLroOverload,
   getOperationName
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,

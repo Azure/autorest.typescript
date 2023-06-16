@@ -15,7 +15,7 @@ import {
   includeDerivedModel,
   getBodyType,
   trimUsage
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 
 export function transformSchemas(
   program: Program,

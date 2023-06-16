@@ -12,7 +12,7 @@ import {
   hasPagingOperations,
   extractPagedMetadataNested,
   hasPollingOperations
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
 import { getSpecialSerializeInfo } from "./transformParameters.js";
 
 export function transformHelperFunctionDetails(
