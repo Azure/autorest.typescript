@@ -17,7 +17,7 @@ import {
   buildTsvCollectionContent
 } from "./static/serializeHelper.js";
 
-export function buildSerializeHelper(model: RLCModel) {
+export function buildSerializeHelper(model: RLCModel, srcPath: string) {
   let serializeHelperContent = "";
   if (hasMultiCollection(model)) {
     serializeHelperContent += "\n" + buildMultiCollectionContent;
@@ -38,7 +38,6 @@ export function buildSerializeHelper(model: RLCModel) {
     const readmeFileContents = hbs.compile(serializeHelperContent, {
       noEscape: true
     });
-    const { srcPath } = model;
     return {
       path: path.join(srcPath, "serializeHelper.ts"),
       content: readmeFileContents({})

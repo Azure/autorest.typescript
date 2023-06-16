@@ -72,47 +72,47 @@ export async function generateRestLevelClient() {
   const rlcModels = transform(model);
 
   // buildReadmeFile
-  generateFileByBuilder(project, buildReadmeFile, rlcModels);
+  generateFileByBuilder(project, buildReadmeFile, rlcModels, srcPath);
   // buildLicenseFile
-  generateFileByBuilder(project, buildLicenseFile, rlcModels);
+  generateFileByBuilder(project, buildLicenseFile, rlcModels, srcPath);
   // buildApiExtractorConfig
-  generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
+  generateFileByBuilder(project, buildApiExtractorConfig, rlcModels, srcPath);
   // buildRollupConfig
-  generateFileByBuilder(project, buildRollupConfig, rlcModels);
+  generateFileByBuilder(project, buildRollupConfig, rlcModels, srcPath);
   // buildEsLintConfig
-  generateFileByBuilder(project, buildEsLintConfig, rlcModels);
+  generateFileByBuilder(project, buildEsLintConfig, rlcModels, srcPath);
   // buildKarmaConfigFile
-  generateFileByBuilder(project, buildKarmaConfigFile, rlcModels);
+  generateFileByBuilder(project, buildKarmaConfigFile, rlcModels, srcPath);
   // buildEnvFile
-  generateFileByBuilder(project, buildEnvFile, rlcModels);
+  generateFileByBuilder(project, buildEnvFile, rlcModels, srcPath);
   // buildEnvBrowserFile
-  generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
+  generateFileByBuilder(project, buildEnvBrowserFile, rlcModels, srcPath);
   // buildRecordedClientFile
-  generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
+  generateFileByBuilder(project, buildRecordedClientFile, rlcModels, srcPath);
   // buildSampleTest
-  generateFileByBuilder(project, buildSampleTest, rlcModels);
+  generateFileByBuilder(project, buildSampleTest, rlcModels, srcPath);
 
   // buildResponseTypes
-  generateFileByBuilder(project, buildResponseTypes, rlcModels);
+  generateFileByBuilder(project, buildResponseTypes, rlcModels, srcPath);
   // generate input & output models
   generateSchemaTypes(project, rlcModels);
   // buildParameterTypes
-  generateFileByBuilder(project, buildParameterTypes, rlcModels);
+  generateFileByBuilder(project, buildParameterTypes, rlcModels, srcPath);
   // buildClientDefinitions
-  generateFileByBuilder(project, buildClientDefinitions, rlcModels);
+  generateFileByBuilder(project, buildClientDefinitions, rlcModels, srcPath);
   // buildClient
-  generateFileByBuilder(project, buildClient, rlcModels);
+  generateFileByBuilder(project, buildClient, rlcModels, srcPath);
   // buildIndexFile
-  generateFileByBuilder(project, buildIndexFile, rlcModels);
+  generateFileByBuilder(project, buildIndexFile, rlcModels, srcPath);
   // buildIsUnexpectedHelper
-  generateFileByBuilder(project, buildIsUnexpectedHelper, rlcModels);
+  generateFileByBuilder(project, buildIsUnexpectedHelper, rlcModels, srcPath);
   // buildPaginateHelper
-  generateFileByBuilder(project, buildPaginateHelper, rlcModels);
+  generateFileByBuilder(project, buildPaginateHelper, rlcModels, srcPath);
   // buildPollingHelper
-  generateFileByBuilder(project, buildPollingHelper, rlcModels);
+  generateFileByBuilder(project, buildPollingHelper, rlcModels, srcPath);
   // buildSerializeHelper
-  generateFileByBuilder(project, buildSerializeHelper, rlcModels);
-  generateFileByBuilder(project, buildLogger, rlcModels);
+  generateFileByBuilder(project, buildSerializeHelper, rlcModels, srcPath);
+  generateFileByBuilder(project, buildLogger, rlcModels, srcPath);
   generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
@@ -129,6 +129,7 @@ export async function generateRestLevelClient() {
     project,
     buildPackageFile,
     rlcModels,
+    srcPath,
     hasRLCSamplesGenerated
   );
   // buildTsConfig
@@ -136,6 +137,7 @@ export async function generateRestLevelClient() {
     project,
     buildTsConfig,
     rlcModels,
+    srcPath,
     hasRLCSamplesGenerated
   );
 

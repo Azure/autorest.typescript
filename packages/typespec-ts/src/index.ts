@@ -53,6 +53,8 @@ export async function $onEmit(context: EmitContext) {
   const dpgContext = createSdkContext(context);
   const clients = listClients(dpgContext);
   const rootPath: string = context.emitterOutputDir;
+  const srcPath = options.sourceOnly ? rootPath : `${rootPath}/src`;
+  const restSrcPath = `${srcPath}/rest`;
   let count = -1;
   for (const client of clients) {
     count++;
@@ -66,18 +68,18 @@ export async function $onEmit(context: EmitContext) {
     const pathToClear = options.isModularLibrary ? rootPath : rlcModels.srcPath;
     clearSrcFolder(pathToClear, count, rlcModels?.options?.multiClient);
     await emitModels(rlcModels, program);
-    await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
-    await emitContentByBuilder(program, buildResponseTypes, rlcModels);
-    await emitContentByBuilder(program, buildClient, rlcModels);
-    await emitContentByBuilder(program, buildParameterTypes, rlcModels);
-    await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
-    await emitContentByBuilder(program, buildIndexFile, rlcModels);
-    await emitContentByBuilder(program, buildLogger, rlcModels);
-    await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-    await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
-    await emitContentByBuilder(program, buildPollingHelper, rlcModels);
+    await emitContentByBuilder(program, buildClientDefinitions, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildResponseTypes, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildClient, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildParameterTypes, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildIndexFile, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildLogger, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildTopLevelIndex, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildPaginateHelper, rlcModels, restSrcPath);
+    await emitContentByBuilder(program, buildPollingHelper, rlcModels, restSrcPath);
     // buildSerializeHelper
-    await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
+    await emitContentByBuilder(program, buildSerializeHelper, rlcModels, restSrcPath);
     // build metadata relevant files
     await emitContentByBuilder(
       program,
@@ -90,6 +92,7 @@ export async function $onEmit(context: EmitContext) {
         buildTsConfig
       ],
       rlcModels,
+      srcPath,
       context.emitterOutputDir
     );
     // build test relevant files
@@ -103,6 +106,7 @@ export async function $onEmit(context: EmitContext) {
         buildSampleTest
       ],
       rlcModels,
+      srcPath,
       context.emitterOutputDir
     );
   }
@@ -111,7 +115,6 @@ export async function $onEmit(context: EmitContext) {
     // TODO: Emit modular parts of the library
     const project = new Project();
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
-    const srcPath = options.sourceOnly ? rootPath : `${rootPath}/src`;
     for (const client of modularCodeModel.clients) {
       buildSharedTypes(project, srcPath);
       buildClientContext(client, project, srcPath);
@@ -132,7 +135,8 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(
         program,
         () => ({ content: file.getFullText(), path: file.getFilePath() }),
-        modularCodeModel as any
+        modularCodeModel as any,
+        srcPath
       );
       // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
     }

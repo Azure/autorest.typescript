@@ -45,9 +45,8 @@ function getClientOptionsInterface(
   };
 }
 
-export function buildClient(model: RLCModel): File | undefined {
+export function buildClient(model: RLCModel, srcPath: string): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
-  const { srcPath, options } = model;
   const project = new Project();
   const filePath = path.join(srcPath, `${name}.ts`);
   const clientFile = project.createSourceFile(filePath, undefined, {

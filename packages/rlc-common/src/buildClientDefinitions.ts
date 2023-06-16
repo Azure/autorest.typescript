@@ -30,14 +30,13 @@ import {
   getImportModuleName
 } from "./helpers/nameConstructors.js";
 
-export function buildClientDefinitions(model: RLCModel) {
+export function buildClientDefinitions(model: RLCModel, srcPath: string) {
   const options = {
     importedParameters: new Set<string>(),
     importedResponses: new Set<string>(),
     clientImports: new Set<string>()
   };
   const project = new Project();
-  const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `clientDefinitions.ts`);
   const clientDefinitionsFile = project.createSourceFile(filePath, undefined, {
     overwrite: true

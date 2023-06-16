@@ -23,13 +23,14 @@ export async function emitContentByBuilder(
   program: Program,
   builderFnOrList: ContentBuilder | ContentBuilder[],
   rlcModels: RLCModel,
+  srcPath: string,
   emitterOutputDir?: string
 ) {
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
   for (const builderFn of builderFnOrList) {
-    const contentFile = builderFn(rlcModels);
+    const contentFile = builderFn(rlcModels, srcPath);
     if (contentFile) {
       await emitFile(contentFile, program, emitterOutputDir);
     }
