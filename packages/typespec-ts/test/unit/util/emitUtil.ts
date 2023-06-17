@@ -164,3 +164,19 @@ export async function emitResponsesFromCadl(
     importSet
   });
 }
+
+export async function getRLCClientsFromCadl(
+  cadlContent: string
+) {
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    false,
+    false,
+    true,
+    true
+  );
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = getRLCClients(dpgContext);
+  return clients;
+}
