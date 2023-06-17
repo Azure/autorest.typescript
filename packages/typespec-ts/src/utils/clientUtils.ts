@@ -15,10 +15,7 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
     }
     const clients = sdkClientsNamespacesMap.get(client.service) ?? [];
     clients.push(client);
-    sdkClientsNamespacesMap.set(
-      client.service,
-      clients
-    );
+    sdkClientsNamespacesMap.set(client.service, clients);
   });
   sdkClientsNamespacesMap.forEach((value, service) => {
     if (value.length === 1 && value[0]) {
