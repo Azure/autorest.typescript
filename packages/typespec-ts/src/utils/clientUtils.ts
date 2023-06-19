@@ -9,14 +9,11 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
   const clientsInSdk = listClients(dpgContext);
   const sdkClientsNamespacesMap = new Map<Namespace, SdkClient[]>();
   const validClients: SdkClient[] = [];
-  clientsInSdk.forEach((client) => {
-    if (!sdkClientsNamespacesMap.has(client.service)) {
-      sdkClientsNamespacesMap.set(client.service, []);
-    }
+  for (const client of clientsInSdk) {
     const clients = sdkClientsNamespacesMap.get(client.service) ?? [];
     clients.push(client);
     sdkClientsNamespacesMap.set(client.service, clients);
-  });
+  }
   sdkClientsNamespacesMap.forEach((value, service) => {
     if (value.length === 1 && value[0]) {
       // to respect the boundaries that is defined by one @client
