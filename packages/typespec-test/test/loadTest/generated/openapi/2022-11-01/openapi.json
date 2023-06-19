@@ -139,10 +139,10 @@
       }
     },
     "/test-runs/{testRunId}": {
-      "get": {
-        "operationId": "LoadTestRun_GetTestRun",
-        "summary": "Get test run details by name.",
-        "description": "Get test run details by name.",
+      "delete": {
+        "operationId": "LoadTestRun_DeleteTestRun",
+        "summary": "Delete a test run by its name.",
+        "description": "Delete a test run by its name.",
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -156,11 +156,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "The request has succeeded.",
-            "schema": {
-              "$ref": "#/definitions/TestRun"
-            }
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
           },
           "default": {
             "description": "An unexpected error response.",
@@ -252,10 +249,10 @@
           "application/merge-patch+json"
         ]
       },
-      "delete": {
-        "operationId": "LoadTestRun_DeleteTestRun",
-        "summary": "Delete a test run by its name.",
-        "description": "Delete a test run by its name.",
+      "get": {
+        "operationId": "LoadTestRun_GetTestRun",
+        "summary": "Get test run details by name.",
+        "description": "Get test run details by name.",
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -269,8 +266,11 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful. "
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRun"
+            }
           },
           "default": {
             "description": "An unexpected error response.",
@@ -1705,21 +1705,11 @@
       "type": "object",
       "properties": {
         "value": {
-          "type": "object",
-          "properties": {
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/DimensionValue"
-              },
-              "x-ms-identifiers": [],
-              "x-typespec-name": "DimensionValue[]"
-            }
+          "type": "array",
+          "items": {
+            "type": "string"
           },
-          "required": [
-            "items"
-          ],
-          "x-typespec-name": "(anonymous model)"
+          "x-typespec-name": "string[]"
         }
       },
       "required": [
@@ -2921,93 +2911,6 @@
           "type": "string",
           "description": "Unique test run name as identifier",
           "readOnly": true
-        }
-      },
-      "description": "Load test run model",
-      "required": [
-        "testRunId"
-      ]
-    },
-    "TestRunAppComponents": {
-      "type": "object",
-      "properties": {
-        "components": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/AppComponent"
-          },
-          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
-          "x-typespec-name": "Record<AppComponent>"
-        },
-        "testRunId": {
-          "type": "string",
-          "description": "Test run identifier",
-          "readOnly": true
-        },
-        "createdDateTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The creation datetime(ISO 8601 literal format).",
-          "readOnly": true
-        },
-        "createdBy": {
-          "type": "string",
-          "description": "The user that created.",
-          "readOnly": true
-        },
-        "lastModifiedDateTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "The last Modified datetime(ISO 8601 literal format).",
-          "readOnly": true
-        },
-        "lastModifiedBy": {
-          "type": "string",
-          "description": "The user that last modified.",
-          "readOnly": true
-        }
-      },
-      "description": "Test run app component",
-      "required": [
-        "components"
-      ]
-    },
-    "TestRunAppComponentsUpdate": {
-      "type": "object",
-      "properties": {
-        "components": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/AppComponent"
-          },
-          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
-          "x-typespec-name": "Record<AppComponent>"
-        }
-      },
-      "description": "Test run app component"
-    },
-    "TestRunArtifacts": {
-      "type": "object",
-      "properties": {
-        "inputArtifacts": {
-          "$ref": "#/definitions/TestRunInputArtifacts",
-          "description": "The input artifacts for the test run.",
-          "readOnly": true
-        },
-        "outputArtifacts": {
-          "$ref": "#/definitions/TestRunOutputArtifacts",
-          "description": "The output artifacts for the test run."
-        }
-      },
-      "description": "Collection of test run artifacts"
-    },
-    "TestRunInfo": {
-      "type": "object",
-      "properties": {
-        "testRunId": {
-          "type": "string",
-          "description": "Unique test run name as identifier",
-          "readOnly": true
         },
         "passFailCriteria": {
           "$ref": "#/definitions/PassFailCriteria",
@@ -3150,6 +3053,79 @@
       "required": [
         "testRunId"
       ]
+    },
+    "TestRunAppComponents": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AppComponent"
+          },
+          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
+          "x-typespec-name": "Record<AppComponent>"
+        },
+        "testRunId": {
+          "type": "string",
+          "description": "Test run identifier",
+          "readOnly": true
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Test run app component",
+      "required": [
+        "components"
+      ]
+    },
+    "TestRunAppComponentsUpdate": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AppComponent"
+          },
+          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
+          "x-typespec-name": "Record<AppComponent>"
+        }
+      },
+      "description": "Test run app component"
+    },
+    "TestRunArtifacts": {
+      "type": "object",
+      "properties": {
+        "inputArtifacts": {
+          "$ref": "#/definitions/TestRunInputArtifacts",
+          "description": "The input artifacts for the test run.",
+          "readOnly": true
+        },
+        "outputArtifacts": {
+          "$ref": "#/definitions/TestRunOutputArtifacts",
+          "description": "The output artifacts for the test run."
+        }
+      },
+      "description": "Collection of test run artifacts"
     },
     "TestRunInputArtifacts": {
       "type": "object",
@@ -3329,8 +3305,63 @@
     },
     "TestRunUpdate": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "passFailCriteria": {
+          "$ref": "#/definitions/PassFailCriteria",
+          "description": "Pass fail criteria for a test."
+        },
+        "secrets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          },
+          "description": "Secrets can be stored in an Azure Key Vault or any other secret store. If the\nsecret is stored in an Azure Key Vault, the value should be the secret\nidentifier and the type should be AKV_SECRET_URI. If the secret is stored\nelsewhere, the secret value should be provided directly and the type should be\nSECRET_VALUE.",
+          "x-typespec-name": "Record<Secret>"
+        },
+        "certificate": {
+          "$ref": "#/definitions/CertificateMetadata",
+          "description": "Certificates metadata"
+        },
+        "environmentVariables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables which are defined as a set of <name,value> pairs.",
+          "x-typespec-name": "Record<string>"
+        },
+        "loadTestConfiguration": {
+          "$ref": "#/definitions/LoadTestConfiguration",
+          "description": "The load test configuration."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of a testRun."
+        },
+        "testId": {
+          "type": "string",
+          "description": "Associated test Id."
+        },
+        "description": {
+          "type": "string",
+          "description": "The test run description."
+        }
+      },
       "description": "Load test run model"
+    },
+    "TestRuns": {
+      "type": "object",
+      "properties": {
+        "testRunId": {
+          "type": "string",
+          "description": "Unique test run name as identifier",
+          "readOnly": true
+        }
+      },
+      "description": "Load test run model",
+      "required": [
+        "testRunId"
+      ]
     },
     "TestServerMetricConfig": {
       "type": "object",

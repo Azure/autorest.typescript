@@ -80,7 +80,7 @@ Provide the metadata for `package.json`, `README.md` and user-agent information.
 
 ### title
 
-Generally the codegen will leverage the title defined in `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `title` info.
+Generally the codegen will leverage the title defined in `@client` and `@service` decorator in TypeSpec to name our client. But if you'd like to override it you could config the `title` info.
 
 ```yaml
 title: AnomalyDetectorRest
