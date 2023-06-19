@@ -271,7 +271,7 @@ export interface TestRunCreateOrUpdate200Headers {
 /** The request has succeeded. */
 export interface TestRunCreateOrUpdate200Response extends HttpResponse {
   status: "200";
-  body: Record<string, any>;
+  body: TestRunOutput;
   headers: RawHttpHeaders & TestRunCreateOrUpdate200Headers;
 }
 
@@ -283,7 +283,7 @@ export interface TestRunCreateOrUpdate201Headers {
 /** The request has succeeded and a new resource has been created as a result. */
 export interface TestRunCreateOrUpdate201Response extends HttpResponse {
   status: "201";
-  body: Record<string, any>;
+  body: TestRunOutput;
   headers: RawHttpHeaders & TestRunCreateOrUpdate201Headers;
 }
 
@@ -301,7 +301,7 @@ export interface TestRunCreateOrUpdateDefaultResponse extends HttpResponse {
 /** The final response for long-running CreateOrUpdateTestRun operation */
 export interface TestRunCreateOrUpdateLogicalResponse extends HttpResponse {
   status: "200";
-  body: Record<string, any>;
+  body: TestRunOutput;
 }
 
 /** The request has succeeded. */
