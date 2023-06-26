@@ -85,6 +85,7 @@ export interface Type {
   format?: string;
   properties?: Property[];
   types?: Type[];
+  isCoreErrorType?: boolean;
 }
 
 export interface Client {

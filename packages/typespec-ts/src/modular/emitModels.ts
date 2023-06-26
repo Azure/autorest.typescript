@@ -110,6 +110,6 @@ function isAzureCoreError(t: Type) {
   return (
     t.name &&
     ["Error", "InnerError"].includes(t.name) &&
-    (t as any).isCoreErrorType === true
+    t.isCoreErrorType === true
   );
 }

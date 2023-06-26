@@ -463,7 +463,7 @@ function getResponseMapping(
     const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
       let definition;
-      if ((property.type as any).isCoreErrorType) {
+      if (property.type.isCoreErrorType) {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
           property.type
