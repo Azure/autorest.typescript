@@ -454,7 +454,7 @@ function getSchemaForModel(
   );
 
   modelSchema.typeName = modelSchema.name;
-  
+
   if (
     (model.name === "ErrorResponse" ||
       model.name === "ErrorModel" ||

@@ -89,7 +89,7 @@ export function buildModels(
   }
 
   function getCoreClientErrorType(name: string) {
-    let coreClientType: string = name === "Error" ? "ErrorModel" : name;
+    const coreClientType: string = name === "Error" ? "ErrorModel" : name;
     coreClientTypes.add(coreClientType);
     return coreClientType;
   }
