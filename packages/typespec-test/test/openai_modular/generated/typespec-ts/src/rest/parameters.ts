@@ -6,6 +6,7 @@ import {
   EmbeddingsOptions,
   CompletionsOptions,
   ChatCompletionsOptions,
+  ImageGenerationOptions,
 } from "./models.js";
 
 export interface GetEmbeddingsBodyParam {
@@ -27,4 +28,12 @@ export interface GetChatCompletionsBodyParam {
 }
 
 export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
+  RequestParameters;
+export type GetImageOperationStatusParameters = RequestParameters;
+
+export interface StartGenerateImageBodyParam {
+  body?: ImageGenerationOptions;
+}
+
+export type StartGenerateImageParameters = StartGenerateImageBodyParam &
   RequestParameters;
