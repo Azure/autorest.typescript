@@ -198,14 +198,6 @@ export interface ImageLocation {
   error?: ErrorModel;
 }
 
-/** An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses. */
-export interface InnerError {
-  /** One of a server-defined set of error codes. */
-  code?: string;
-  /** Inner error. */
-  innererror?: InnerError;
-}
-
 /** The state of a job or item. */
 /** "notRunning", "running", "succeeded", "canceled", "failed" */
 export type State = string;

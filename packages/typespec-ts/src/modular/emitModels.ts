@@ -13,9 +13,9 @@ export function buildModels(
   const modelsFile = project.createSourceFile(`${srcPath}/src/api/models.ts`);
 
   // We are generating both models and enums here
-  const hasErrorType = codeModel.types.filter(isCoreError);
+  const coreClientTypes = new Set<string>();
   const models = codeModel.types.filter(
-    (t) => (t.type === "model" || t.type === "enum") && !isCoreError(t)
+    (t) => (t.type === "model" || t.type === "enum") && !isAzureCoreError(t)
   );
 
   for (const model of codeModel.types) {
@@ -68,9 +68,9 @@ export function buildModels(
         properties: properties.map((p) => {
           const propertyMetadata = getType(p.type);
           let propertyTypeName = propertyMetadata.name;
-          if (isCoreError(p.type)) {
-            propertyTypeName = isCoreError(p.type)
-              ? `ErrorModel`
+          if (isAzureCoreError(p.type)) {
+            propertyTypeName = isAzureCoreError(p.type)
+              ? getCoreErrorType(propertyTypeName)
               : propertyTypeName;
           }
           if (propertyMetadata.modifier === "Array") {
@@ -88,11 +88,17 @@ export function buildModels(
     }
   }
 
-  if (hasErrorType) {
+  function getCoreErrorType(name: string) {
+    let coreClientType: string = name === "Error" ? "ErrorModel" : name;
+    coreClientTypes.add(coreClientType);
+    return coreClientType;
+  }
+
+  if (coreClientTypes.size > 0) {
     modelsFile.addImportDeclarations([
       {
         moduleSpecifier: "@azure-rest/core-client",
-        namedImports: ["ErrorModel"]
+        namedImports: Array.from(coreClientTypes)
       }
     ]);
   }
@@ -100,6 +106,10 @@ export function buildModels(
   return modelsFile;
 }
 
-function isCoreError(t: Type) {
-  return t.name === "Error" && (t as any).isCoreErrorType === true;
+function isAzureCoreError(t: Type) {
+  return (
+    t.name &&
+    ["Error", "InnerError"].includes(t.name) &&
+    (t as any).isCoreErrorType === true
+  );
 }

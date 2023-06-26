@@ -17,7 +17,6 @@ export {
   ImageOperationResponse,
   ImageResponse,
   ImageLocation,
-  InnerError,
   State,
   ImageSize,
 } from "./api/models.js";

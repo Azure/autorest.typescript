@@ -163,12 +163,6 @@ export interface ImageResponse {
 // @public
 export type ImageSize = string;
 
-// @public
-export interface InnerError {
-    code?: string;
-    innererror?: InnerError;
-}
-
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
