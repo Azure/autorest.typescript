@@ -95,16 +95,6 @@ export interface EmbeddingsUsage {
     totalTokens: number;
 }
 
-// @public
-interface Error_2 {
-    code: string;
-    details?: Error_2[];
-    innererror?: InnerError;
-    message: string;
-    target?: string;
-}
-export { Error_2 as Error }
-
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends RequestOptions {
     frequencyPenalty?: number;

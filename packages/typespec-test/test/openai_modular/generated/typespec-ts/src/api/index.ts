@@ -17,7 +17,6 @@ export {
   ImageOperationResponse,
   ImageResponse,
   ImageLocation,
-  Error,
   InnerError,
   State,
   ImageSize,

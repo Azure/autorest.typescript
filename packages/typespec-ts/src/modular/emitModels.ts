@@ -15,7 +15,7 @@ export function buildModels(
   // We are generating both models and enums here
   const hasErrorType = codeModel.types.filter(isCoreError);
   const models = codeModel.types.filter(
-    (t) => t.type === "model" || t.type === "enum" || isCoreError(t)
+    (t) => (t.type === "model" || t.type === "enum") && !isCoreError(t)
   );
 
   for (const model of codeModel.types) {
