@@ -70,7 +70,7 @@ export function buildModels(
           let propertyTypeName = propertyMetadata.name;
           if (isAzureCoreError(p.type)) {
             propertyTypeName = isAzureCoreError(p.type)
-              ? getCoreErrorType(propertyTypeName)
+              ? getCoreClientErrorType(propertyTypeName)
               : propertyTypeName;
           }
           if (propertyMetadata.modifier === "Array") {
@@ -88,7 +88,7 @@ export function buildModels(
     }
   }
 
-  function getCoreErrorType(name: string) {
+  function getCoreClientErrorType(name: string) {
     let coreClientType: string = name === "Error" ? "ErrorModel" : name;
     coreClientTypes.add(coreClientType);
     return coreClientType;
