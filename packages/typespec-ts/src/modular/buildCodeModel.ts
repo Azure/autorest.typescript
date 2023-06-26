@@ -838,7 +838,6 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
   const modelName = effectiveName
     ? effectiveName
     : getName(context.program, type);
-  const isCoreErrorType = isAzureCoreErrorType(type);
   return {
     type: "model",
     name: modelName,
@@ -851,7 +850,7 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isCoreErrorType
+    isCoreErrorType: isAzureCoreErrorType(type)
   };
 }
 
