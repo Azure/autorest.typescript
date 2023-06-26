@@ -7,15 +7,20 @@ import {
   Completions,
   ChatMessage,
   ChatCompletions,
+  ImageOperationResponse,
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptions,
   getEmbeddings,
   getCompletions,
   getChatCompletions,
+  getImageOperationStatus,
+  startGenerateImage,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
+  GetImageOperationStatusOptions,
+  StartGenerateImageOptions,
 } from "./api/index.js";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
@@ -65,5 +70,21 @@ export class OpenAIClient {
     options: GetChatCompletionsOptions = { requestOptions: {} }
   ): Promise<ChatCompletions> {
     return getChatCompletions(this._client, messages, deploymentId, options);
+  }
+
+  /** Returns the status of the images operation */
+  getImageOperationStatus(
+    operationId: string,
+    options: GetImageOperationStatusOptions = { requestOptions: {} }
+  ): Promise<ImageOperationResponse> {
+    return getImageOperationStatus(this._client, operationId, options);
+  }
+
+  /** Starts the generation of a batch of images from a text caption */
+  startGenerateImage(
+    prompt: string,
+    options: StartGenerateImageOptions = { requestOptions: {} }
+  ): Promise<ImageOperationResponse> {
+    return startGenerateImage(this._client, prompt, options);
   }
 }

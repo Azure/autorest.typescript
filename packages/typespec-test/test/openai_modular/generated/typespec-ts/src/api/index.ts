@@ -14,6 +14,13 @@ export {
   ChatRole,
   ChatCompletions,
   ChatChoice,
+  ImageOperationResponse,
+  ImageResponse,
+  ImageLocation,
+  Error,
+  InnerError,
+  State,
+  ImageSize,
 } from "./models.js";
 export {
   createOpenAI,
@@ -24,7 +31,11 @@ export {
   getEmbeddings,
   getCompletions,
   getChatCompletions,
+  getImageOperationStatus,
+  startGenerateImage,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
+  GetImageOperationStatusOptions,
+  StartGenerateImageOptions,
 } from "./operations.js";
