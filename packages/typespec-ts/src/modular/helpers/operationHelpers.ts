@@ -186,7 +186,7 @@ function getLroOperationFunction(operation: Operation) {
     docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
     isAsync: true,
     isExported: true,
-    name: name,
+    name: operation.lroName ?? name,
     parameters,
     returnType: lroReturnType
   };

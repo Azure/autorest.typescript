@@ -53,8 +53,8 @@ export interface ResourceOperationStatus {
 // @public (undocumented)
 export class StandardClient {
     constructor(credential: KeyCredential | TokenCredential, options?: StandardClientOptions);
-    createOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState<User>, User>>;
-    exportOperation(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState<ResourceOperationStatus>, ResourceOperationStatus>>;
+    beginCreateOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState<User>, User>>;
+    beginExport(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState<ResourceOperationStatus>, ResourceOperationStatus>>;
 }
 
 // @public (undocumented)

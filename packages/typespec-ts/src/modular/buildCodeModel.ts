@@ -609,6 +609,9 @@ function emitOperation(
 }
 
 function addLroInformation(emittedOperation: HrlcOperation) {
+  emittedOperation["lroName"] = applyCasing(`begin_${emittedOperation.name}`, {
+    casing: CASING
+  });
   emittedOperation["discriminator"] = "lro";
 }
 

@@ -8,8 +8,8 @@ export {
   ExportedUser,
 } from "./models.js";
 export {
-  createOrReplace,
-  exportOperation,
+  beginCreateOrReplace,
+  beginExport,
   CreateOrReplaceOptions,
   ExportOptions,
 } from "./operations.js";

@@ -5,8 +5,8 @@ import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import {
   User,
   ResourceOperationStatus,
-  createOrReplace,
-  exportOperation,
+  beginCreateOrReplace,
+  beginExport,
   CreateOrReplaceOptions,
   ExportOptions,
   createStandard,
@@ -29,12 +29,12 @@ export class StandardClient {
   }
 
   /** Creates or replaces a User */
-  createOrReplace(
+  beginCreateOrReplace(
     role: string,
     name: string,
     options: CreateOrReplaceOptions = { requestOptions: {} }
   ): Promise<SimplePollerLike<OperationState<User>, User>> {
-    return createOrReplace(this._client, role, name, options);
+    return beginCreateOrReplace(this._client, role, name, options);
   }
 
   /** Exports a User */
@@ -43,7 +43,7 @@ export class StandardClient {
    * @projectedName (
    *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
    */
-  exportOperation(
+  beginExport(
     name: string,
     format: string,
     options: ExportOptions = { requestOptions: {} }
@@ -53,6 +53,6 @@ export class StandardClient {
       ResourceOperationStatus
     >
   > {
-    return exportOperation(this._client, name, format, options);
+    return beginExport(this._client, name, format, options);
   }
 }

@@ -151,4 +151,5 @@ export interface Operation {
   itemName?: string;
   continuationTokenName?: string;
   addedOn?: string;
+  lroName?: string;
 }

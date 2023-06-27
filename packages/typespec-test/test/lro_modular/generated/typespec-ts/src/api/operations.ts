@@ -63,7 +63,7 @@ export async function _createOrReplaceDeserialize(
 }
 
 /** Creates or replaces a User */
-export async function createOrReplace(
+export async function beginCreateOrReplace(
   context: Client,
   role: string,
   name: string,
@@ -137,7 +137,7 @@ export async function _exportOperationDeserialize(
  *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
  *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
  */
-export async function exportOperation(
+export async function beginExport(
   context: Client,
   name: string,
   format: string,
