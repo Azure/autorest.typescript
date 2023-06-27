@@ -9,10 +9,15 @@ import {
   CreateOrReplaceDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
-import { User, ResourceOperationStatus } from "./models.js";
+import { User, ResourceOperationStatus, OperationState } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
-export interface CreateOrReplaceOptions extends RequestOptions {}
+export interface CreateOrReplaceOptions extends RequestOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 export function _createOrReplaceSend(
   context: Client,
@@ -61,7 +66,12 @@ export async function createOrReplace(
   return _createOrReplaceDeserialize(result);
 }
 
-export interface ExportOptions extends RequestOptions {}
+export interface ExportOptions extends RequestOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
 
 export function _exportOperationSend(
   context: Client,
