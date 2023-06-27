@@ -28,8 +28,8 @@ import {
   ListWithPageDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
-  Export200Response,
-  ExportDefaultResponse,
+  ExportOperation200Response,
+  ExportOperationDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -89,7 +89,9 @@ export interface Export {
   /** Exports a User */
   post(
     options: ExportParameters
-  ): StreamableMethod<Export200Response | ExportDefaultResponse>;
+  ): StreamableMethod<
+    ExportOperation200Response | ExportOperationDefaultResponse
+  >;
 }
 
 export interface Routes {
