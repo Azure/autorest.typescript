@@ -536,3 +536,15 @@ function deserializeResponseValue(type: Type, restValue: string): string {
 function needsDeserialize(type?: Type) {
   return type?.type === "datetime" || type?.type === "model";
 }
+
+export function isLro(operation: Operation): boolean {
+  return operation.discriminator === "lro";
+}
+
+export function isPaging(operation: Operation): boolean {
+  return operation.discriminator === "paging";
+}
+
+export function isPagingLro(operation: Operation): boolean {
+  return operation.discriminator === "lropaging";
+}

@@ -35,7 +35,7 @@ import {
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { buildSharedTypes } from "./modular/buildSharedTypes.js";
+import { buildLroImpl, buildSharedTypes } from "./modular/buildSharedTypes.js";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
@@ -114,6 +114,7 @@ export async function $onEmit(context: EmitContext) {
 
     for (const client of modularCodeModel.clients) {
       buildSharedTypes(project, srcPath);
+      buildLroImpl(client, project, srcPath);
       buildClientContext(client, project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
       buildOperationFiles(client, project, srcPath);
