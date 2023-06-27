@@ -195,7 +195,7 @@ function getLroOperationFunction(operation: Operation) {
   statements.push(
     `const pollerOptions = {
       requestMethod: "${operation.method}",
-      requestUrl: "/users/{name}",
+      requestUrl: "${operation.url}",
       deserializeFn: _${name}Deserialize,
       sendInitialRequestFn: _${name}Send,
       sendInitialRequestFnArgs: [${parameters.map((p) => p.name).join(", ")}],

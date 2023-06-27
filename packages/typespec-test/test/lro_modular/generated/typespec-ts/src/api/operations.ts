@@ -7,6 +7,8 @@ import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
+  ExportOperation202Response,
+  ExportOperationDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
@@ -98,7 +100,7 @@ export function _exportOperationSend(
   format: string,
   options: ExportOptions = { requestOptions: {} }
 ): StreamableMethod<
-  exportOperation202Response | exportOperationDefaultResponse
+  ExportOperation202Response | ExportOperationDefaultResponse
 > {
   return context
     .path("/users/{name}:export", name)
@@ -111,7 +113,7 @@ export function _exportOperationSend(
 }
 
 export async function _exportOperationDeserialize(
-  result: exportOperation202Response | exportOperationDefaultResponse
+  result: ExportOperation202Response | ExportOperationDefaultResponse
 ): Promise<ResourceOperationStatus> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -148,7 +150,7 @@ export async function exportOperation(
 > {
   const pollerOptions = {
     requestMethod: "POST",
-    requestUrl: "/users/{name}",
+    requestUrl: "/users/{name}:export",
     deserializeFn: _exportOperationDeserialize,
     sendInitialRequestFn: _exportOperationSend,
     sendInitialRequestFnArgs: [context, name, format, options],
