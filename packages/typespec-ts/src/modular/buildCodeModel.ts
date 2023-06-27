@@ -1,4 +1,8 @@
-import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
+import {
+  getLroMetadata,
+  getPagedResult,
+  isFixed
+} from "@azure-tools/typespec-azure-core";
 import {
   EnumMember,
   Enum,
@@ -155,13 +159,8 @@ function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
 }
 
-function isLro(_program: Program, operation: Operation): boolean {
-  for (const decorator of operation.decorators) {
-    if (decorator.decorator.name === "$pollingOperation") {
-      return true;
-    }
-  }
-  return false;
+function isLro(program: Program, operation: Operation): boolean {
+  return Boolean(getLroMetadata(program, operation));
 }
 
 function handleDiscriminator(context: SdkContext, type: Model, model: any) {
@@ -1261,6 +1260,11 @@ function emitServerParams(
   }
   if (server.parameters) {
     const params: Parameter[] = [];
+    // If we have @server defined without any parameters - set the server.url as default value in RLC
+    // No client-level parameter required in modular side
+    if (server.parameters.size === 0 && server.url) {
+      return params;
+    }
     for (const param of server.parameters.values()) {
       const serverParameter: HttpServerParameter = {
         type: "endpointPath",

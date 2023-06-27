@@ -13,6 +13,7 @@ import {
   StandardContext,
   StandardClientOptions,
 } from "./api/index.js";
+import { OperationState } from "@azure/core-lro";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 

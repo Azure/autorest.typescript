@@ -11,7 +11,11 @@ import {
 import { toCamelCase } from "../casingUtils.js";
 import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { getOperationFunction } from "./helpers/operationHelpers.js";
+import {
+  getOperationFunction,
+  isLro,
+  isPagingLro
+} from "./helpers/operationHelpers.js";
 import { Client } from "./modularCodeModel.js";
 
 export function buildClassicalClient(
@@ -58,6 +62,7 @@ export function buildClassicalClient(
   importCredential(clientFile);
   buildClientOperationGroups(client, clientClass);
   importAllModels(clientFile, srcPath);
+  importLro(client, clientFile);
   clientFile.fixUnusedIdentifiers();
 }
 
@@ -146,4 +151,17 @@ function buildClientOperationGroups(
       );
     }
   }
+}
+
+function importLro(client: Client, clientSourceFile: SourceFile) {
+  const hasLro = client.operationGroups.some((group) =>
+    group.operations.some((o) => isLro(o) || isPagingLro(o))
+  );
+  if (!hasLro) {
+    return;
+  }
+  clientSourceFile.addImportDeclaration({
+    moduleSpecifier: "@azure/core-lro",
+    namedImports: ["SimplePollerLike", "OperationState"]
+  });
 }
