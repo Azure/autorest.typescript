@@ -165,6 +165,60 @@ function getOperationSignatureParameters(
 export function getOperationFunction(
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
+  if (isLro(operation)) {
+    return getLroOperationFunction(operation);
+  }
+  return getBasicOperationFunction(operation);
+}
+
+function getLroOperationFunction(operation: Operation) {
+  // Extract required parameters
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] =
+    getOperationSignatureParameters(operation);
+  const response = operation.responses[0]!;
+  const returnType = response?.type?.type
+    ? buildType(response.type.name, response.type)
+    : { name: "", type: "void" };
+  const lroReturnType = `Promise<SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>>`;
+
+  const { name, fixme = [] } = getOperationName(operation);
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
+    isAsync: true,
+    isExported: true,
+    name: name,
+    parameters,
+    returnType: lroReturnType
+  };
+
+  const statements: string[] = [];
+  statements.push(
+    `const pollerOptions = {
+      requestMethod: "${operation.method}",
+      requestUrl: "/users/{name}",
+      deserializeFn: _${name}Deserialize,
+      sendInitialRequestFn: _${name}Send,
+      sendInitialRequestFnArgs: [${parameters.map((p) => p.name).join(", ")}],
+      createPollerOptions: {
+        restoreFrom: options?.resumeFrom,
+        intervalInMs: options?.updateIntervalInMs,
+      },
+    } as GetLongRunningPollerOptions;`
+  );
+  statements.push(
+    `const poller = (await getLongRunningPoller(
+      context,
+      pollerOptions
+    )) as SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>;`
+  );
+  statements.push(`return poller;`);
+  return {
+    ...functionStatement,
+    statements
+  };
+}
+
+function getBasicOperationFunction(operation: Operation) {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation);

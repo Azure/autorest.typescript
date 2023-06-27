@@ -9,6 +9,11 @@ import {
   CreateOrReplaceDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
+import {
+  GetLongRunningPollerOptions,
+  getLongRunningPoller,
+} from "../common/lroImpl.js";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import { User, ResourceOperationStatus } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
@@ -61,9 +66,23 @@ export async function createOrReplace(
   role: string,
   name: string,
   options: CreateOrReplaceOptions = { requestOptions: {} }
-): Promise<User> {
-  const result = await _createOrReplaceSend(context, role, name, options);
-  return _createOrReplaceDeserialize(result);
+): Promise<SimplePollerLike<OperationState<User>, User>> {
+  const pollerOptions = {
+    requestMethod: "PUT",
+    requestUrl: "/users/{name}",
+    deserializeFn: _createOrReplaceDeserialize,
+    sendInitialRequestFn: _createOrReplaceSend,
+    sendInitialRequestFnArgs: [context, role, name, options],
+    createPollerOptions: {
+      restoreFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+    },
+  } as GetLongRunningPollerOptions;
+  const poller = (await getLongRunningPoller(
+    context,
+    pollerOptions
+  )) as SimplePollerLike<OperationState<User>, User>;
+  return poller;
 }
 
 export interface ExportOptions extends RequestOptions {
@@ -121,7 +140,29 @@ export async function exportOperation(
   name: string,
   format: string,
   options: ExportOptions = { requestOptions: {} }
-): Promise<ResourceOperationStatus> {
-  const result = await _exportOperationSend(context, name, format, options);
-  return _exportOperationDeserialize(result);
+): Promise<
+  SimplePollerLike<
+    OperationState<ResourceOperationStatus>,
+    ResourceOperationStatus
+  >
+> {
+  const pollerOptions = {
+    requestMethod: "POST",
+    requestUrl: "/users/{name}",
+    deserializeFn: _exportOperationDeserialize,
+    sendInitialRequestFn: _exportOperationSend,
+    sendInitialRequestFnArgs: [context, name, format, options],
+    createPollerOptions: {
+      restoreFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+    },
+  } as GetLongRunningPollerOptions;
+  const poller = (await getLongRunningPoller(
+    context,
+    pollerOptions
+  )) as SimplePollerLike<
+    OperationState<ResourceOperationStatus>,
+    ResourceOperationStatus
+  >;
+  return poller;
 }

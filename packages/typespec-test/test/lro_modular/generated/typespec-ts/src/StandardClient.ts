@@ -13,6 +13,7 @@ import {
   StandardContext,
   StandardClientOptions,
 } from "./api/index.js";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 
@@ -32,7 +33,7 @@ export class StandardClient {
     role: string,
     name: string,
     options: CreateOrReplaceOptions = { requestOptions: {} }
-  ): Promise<User> {
+  ): Promise<SimplePollerLike<OperationState<User>, User>> {
     return createOrReplace(this._client, role, name, options);
   }
 
@@ -46,7 +47,12 @@ export class StandardClient {
     name: string,
     format: string,
     options: ExportOptions = { requestOptions: {} }
-  ): Promise<ResourceOperationStatus> {
+  ): Promise<
+    SimplePollerLike<
+      OperationState<ResourceOperationStatus>,
+      ResourceOperationStatus
+    >
+  > {
     return exportOperation(this._client, name, format, options);
   }
 }
