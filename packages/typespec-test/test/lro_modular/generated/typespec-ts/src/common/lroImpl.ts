@@ -19,10 +19,7 @@ export interface GetLongRunningPollerOptions<
 > {
   requestMethod: string;
   requestUrl: string;
-  sendInitialRequestFn: (
-    context: Client,
-    ...args: unknown[]
-  ) => StreamableMethod<TResponse>;
+  sendInitialRequestFn: (...args: unknown[]) => StreamableMethod<TResponse>;
   sendInitialRequestFnArgs: unknown[];
   deserializeFn: (response: TResponse) => Promise<unknown>;
   createPollerOptions: CreateHttpPollerOptions<
@@ -40,7 +37,6 @@ export async function getLongRunningPoller<TResponse extends HttpResponse>(
     requestPath: options.requestUrl,
     sendInitialRequest: async () => {
       initialResponse = (await options.sendInitialRequestFn(
-        client,
         ...options.sendInitialRequestFnArgs
       )) as TResponse;
       return getLroResponse(initialResponse, options.deserializeFn);

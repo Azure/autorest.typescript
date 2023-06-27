@@ -6,11 +6,9 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
-import { KeyCredential } from '@azure/core-auth';
 import { OperationState } from '@azure/core-lro';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { SimplePollerLike } from '@azure/core-lro';
-import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
 export interface CreateOrReplaceOptions extends RequestOptions {
@@ -52,7 +50,7 @@ export interface ResourceOperationStatus {
 
 // @public (undocumented)
 export class StandardClient {
-    constructor(credential: KeyCredential | TokenCredential, options?: StandardClientOptions);
+    constructor(options?: StandardClientOptions);
     beginCreateOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState<User>, User>>;
     beginExport(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState<ResourceOperationStatus>, ResourceOperationStatus>>;
 }
