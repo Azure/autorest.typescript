@@ -876,7 +876,7 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
 
   return {
     type: "enum",
-    name: type.name,
+    name: type.name === "OperationState" ? "PollingOperationState" : type.name,
     description: getDocStr(program, type),
     valueType: { type: enumMemberType(type.members.values().next().value) },
     values: enumValues,

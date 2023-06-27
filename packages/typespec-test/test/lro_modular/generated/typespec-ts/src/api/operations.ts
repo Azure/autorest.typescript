@@ -9,7 +9,7 @@ import {
   CreateOrReplaceDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
-import { User, ResourceOperationStatus, OperationState } from "./models.js";
+import { User, ResourceOperationStatus } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
 export interface CreateOrReplaceOptions extends RequestOptions {

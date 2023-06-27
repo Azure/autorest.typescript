@@ -16,7 +16,7 @@ export interface ResourceOperationStatus {
   /** The unique ID of the operation. */
   readonly id: string;
   /** The status of the operation */
-  status: OperationState;
+  status: PollingOperationState;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
   /** The result of the operation. */
@@ -25,7 +25,7 @@ export interface ResourceOperationStatus {
 
 /** Enum describing allowed operation states. */
 /** "InProgress", "Succeeded", "Failed", "Canceled" */
-export type OperationState = string;
+export type PollingOperationState = string;
 
 /** The exported user data. */
 export interface ExportedUser {

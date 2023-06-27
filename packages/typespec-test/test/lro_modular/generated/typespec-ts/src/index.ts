@@ -4,7 +4,7 @@
 export {
   User,
   ResourceOperationStatus,
-  OperationState,
+  PollingOperationState,
   ExportedUser,
 } from "./api/models.js";
 export { CreateOrReplaceOptions, ExportOptions } from "./api/operations.js";

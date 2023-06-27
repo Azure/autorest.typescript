@@ -4,7 +4,7 @@
 export {
   User,
   ResourceOperationStatus,
-  OperationState,
+  PollingOperationState,
   ExportedUser,
 } from "./models.js";
 export {
