@@ -1,6 +1,6 @@
 import { Project, SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { ModularCodeModel, Type } from "./modularCodeModel.js";
 
 /**
  * This function creates the file containing all the models defined in TypeSpec
@@ -13,8 +13,9 @@ export function buildModels(
   const modelsFile = project.createSourceFile(`${srcPath}/src/api/models.ts`);
 
   // We are generating both models and enums here
+  const coreClientTypes = new Set<string>();
   const models = codeModel.types.filter(
-    (t) => t.type === "model" || t.type === "enum"
+    (t) => (t.type === "model" || t.type === "enum") && !isAzureCoreError(t)
   );
 
   for (const model of codeModel.types) {
@@ -67,6 +68,11 @@ export function buildModels(
         properties: properties.map((p) => {
           const propertyMetadata = getType(p.type);
           let propertyTypeName = propertyMetadata.name;
+          if (isAzureCoreError(p.type)) {
+            propertyTypeName = isAzureCoreError(p.type)
+              ? getCoreClientErrorType(propertyTypeName)
+              : propertyTypeName;
+          }
           if (propertyMetadata.modifier === "Array") {
             propertyTypeName = `${propertyTypeName}[]`;
           }
@@ -82,5 +88,28 @@ export function buildModels(
     }
   }
 
+  function getCoreClientErrorType(name: string) {
+    const coreClientType: string = name === "Error" ? "ErrorModel" : name;
+    coreClientTypes.add(coreClientType);
+    return coreClientType;
+  }
+
+  if (coreClientTypes.size > 0) {
+    modelsFile.addImportDeclarations([
+      {
+        moduleSpecifier: "@azure-rest/core-client",
+        namedImports: Array.from(coreClientTypes)
+      }
+    ]);
+  }
+
   return modelsFile;
+}
+
+function isAzureCoreError(t: Type) {
+  return (
+    t.name &&
+    ["Error", "InnerError"].includes(t.name) &&
+    t.isCoreErrorType === true
+  );
 }

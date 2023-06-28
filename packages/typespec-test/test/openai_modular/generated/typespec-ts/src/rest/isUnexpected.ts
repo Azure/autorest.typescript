@@ -8,12 +8,21 @@ import {
   GetCompletionsDefaultResponse,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
+  GetImageOperationStatus200Response,
+  GetImageOperationStatusLogicalResponse,
+  GetImageOperationStatusDefaultResponse,
+  StartGenerateImage202Response,
+  StartGenerateImageLogicalResponse,
+  StartGenerateImageDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "POST /deployments/{deploymentId}/embeddings": ["200"],
   "POST /deployments/{deploymentId}/completions": ["200"],
   "POST /deployments/{deploymentId}/chat/completions": ["200"],
+  "GET /operations/images/{operationId}": ["200"],
+  "POST /images/generations:submit": ["202"],
+  "GET /images/generations:submit": ["200", "202"],
 };
 
 export function isUnexpected(
@@ -27,16 +36,36 @@ export function isUnexpected(
 ): response is GetChatCompletionsDefaultResponse;
 export function isUnexpected(
   response:
+    | GetImageOperationStatus200Response
+    | GetImageOperationStatusLogicalResponse
+    | GetImageOperationStatusDefaultResponse
+): response is GetImageOperationStatusDefaultResponse;
+export function isUnexpected(
+  response:
+    | StartGenerateImage202Response
+    | StartGenerateImageLogicalResponse
+    | StartGenerateImageDefaultResponse
+): response is StartGenerateImageDefaultResponse;
+export function isUnexpected(
+  response:
     | GetEmbeddings200Response
     | GetEmbeddingsDefaultResponse
     | GetCompletions200Response
     | GetCompletionsDefaultResponse
     | GetChatCompletions200Response
     | GetChatCompletionsDefaultResponse
+    | GetImageOperationStatus200Response
+    | GetImageOperationStatusLogicalResponse
+    | GetImageOperationStatusDefaultResponse
+    | StartGenerateImage202Response
+    | StartGenerateImageLogicalResponse
+    | StartGenerateImageDefaultResponse
 ): response is
   | GetEmbeddingsDefaultResponse
   | GetCompletionsDefaultResponse
-  | GetChatCompletionsDefaultResponse {
+  | GetChatCompletionsDefaultResponse
+  | GetImageOperationStatusDefaultResponse
+  | StartGenerateImageDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

@@ -10,6 +10,10 @@ import {
   GetCompletionsDefaultResponse,
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
+  GetImageOperationStatus200Response,
+  GetImageOperationStatusDefaultResponse,
+  StartGenerateImage202Response,
+  StartGenerateImageDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
@@ -17,6 +21,8 @@ import {
   Completions,
   ChatMessage,
   ChatCompletions,
+  ImageOperationResponse,
+  ImageSize,
 } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
@@ -397,4 +403,129 @@ export async function getChatCompletions(
     options
   );
   return _getChatCompletionsDeserialize(result);
+}
+
+export interface GetImageOperationStatusOptions extends RequestOptions {}
+
+export function _getImageOperationStatusSend(
+  context: Client,
+  operationId: string,
+  options: GetImageOperationStatusOptions = { requestOptions: {} }
+): StreamableMethod<
+  GetImageOperationStatus200Response | GetImageOperationStatusDefaultResponse
+> {
+  return context
+    .path("/operations/images/{operationId}", operationId)
+    .get({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
+    });
+}
+
+export async function _getImageOperationStatusDeserialize(
+  result:
+    | GetImageOperationStatus200Response
+    | GetImageOperationStatusDefaultResponse
+): Promise<ImageOperationResponse> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    created: result.body["created"],
+    expires: result.body["expires"],
+    result: !result.body.result
+      ? undefined
+      : {
+          created: result.body.result?.["created"],
+          data: (result.body.result?.["data"] ?? []).map((p) => ({
+            url: p["url"],
+            error: !p.error ? undefined : p.error,
+          })),
+        },
+    status: result.body["status"],
+    error: !result.body.error ? undefined : result.body.error,
+  };
+}
+
+/** Returns the status of the images operation */
+export async function getImageOperationStatus(
+  context: Client,
+  operationId: string,
+  options: GetImageOperationStatusOptions = { requestOptions: {} }
+): Promise<ImageOperationResponse> {
+  const result = await _getImageOperationStatusSend(
+    context,
+    operationId,
+    options
+  );
+  return _getImageOperationStatusDeserialize(result);
+}
+
+export interface StartGenerateImageOptions extends RequestOptions {
+  /** The number of images to generate (defaults to 1). */
+  n?: number;
+  /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
+  size?: ImageSize;
+  /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
+  user?: string;
+}
+
+export function _startGenerateImageSend(
+  context: Client,
+  prompt: string,
+  options: StartGenerateImageOptions = { requestOptions: {} }
+): StreamableMethod<
+  StartGenerateImage202Response | StartGenerateImageDefaultResponse
+> {
+  return context
+    .path("/images/generations:submit")
+    .post({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
+      body: {
+        prompt: prompt,
+        n: options.n ?? 1,
+        size: options?.size,
+        user: options?.user,
+      },
+    });
+}
+
+export async function _startGenerateImageDeserialize(
+  result: StartGenerateImage202Response | StartGenerateImageDefaultResponse
+): Promise<ImageOperationResponse> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    created: result.body["created"],
+    expires: result.body["expires"],
+    result: !result.body.result
+      ? undefined
+      : {
+          created: result.body.result?.["created"],
+          data: (result.body.result?.["data"] ?? []).map((p) => ({
+            url: p["url"],
+            error: !p.error ? undefined : p.error,
+          })),
+        },
+    status: result.body["status"],
+    error: !result.body.error ? undefined : result.body.error,
+  };
+}
+
+/** Starts the generation of a batch of images from a text caption */
+export async function startGenerateImage(
+  context: Client,
+  prompt: string,
+  options: StartGenerateImageOptions = { requestOptions: {} }
+): Promise<ImageOperationResponse> {
+  const result = await _startGenerateImageSend(context, prompt, options);
+  return _startGenerateImageDeserialize(result);
 }

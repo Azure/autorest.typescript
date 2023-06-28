@@ -849,7 +849,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     snakeCaseName: modelName
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
-    base: modelName === "" ? "json" : "dpg"
+    base: modelName === "" ? "json" : "dpg",
+    isCoreErrorType: isAzureCoreErrorType(type)
   };
 }
 
