@@ -1262,7 +1262,7 @@ function emitServerParams(
         clientName: "endpoint",
         clientDefaultValue: null,
         restApiName: "$host",
-        location: "path",
+        location: "endpointPath",
         type: { type: "string" },
         implementation: "Client",
         inOverload: false

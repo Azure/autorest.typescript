@@ -119,7 +119,7 @@ export function getDeserializePrivateFunction(
   if (isLroCustomizedReturn) {
     statements.push(`if(!result.body.result){`, "return undefined;", "}");
   }
-  if (responseType.type === "any") {
+  if (responseType?.type === "any") {
     statements.push(`return ${deserializationRoot}`);
   } else if (responseType?.elementType) {
     statements.push(
