@@ -72,7 +72,7 @@ describe("client utils get rlc clients", () => {
     `;
     const clients = await getRLCClientsFromCadl(content);
     assert.equal(clients.length, 1);
-    assert.equal(clients[0]?.name, "MyClient");
+    assert.equal(clients[0]?.name, "MyServiceClient");
   });
 
   it("should get the @client client if each services have only one @client decorators", async () => {
@@ -105,8 +105,8 @@ describe("client utils get rlc clients", () => {
     `;
     const clients = await getRLCClientsFromCadl(content);
     assert.equal(clients.length, 2);
-    assert.equal(clients[0]?.name, "MyClient");
-    assert.equal(clients[1]?.name, "MySecondClient");
+    assert.equal(clients[0]?.name, "MyServiceClient");
+    assert.equal(clients[1]?.name, "MySecondServiceClient");
   });
 
   it("should handle both 1:1 and 1:N mappings between @service and @client", async () => {
@@ -146,7 +146,7 @@ describe("client utils get rlc clients", () => {
     `;
     const clients = await getRLCClientsFromCadl(content);
     assert.equal(clients.length, 2);
-    assert.equal(clients[0]?.name, "MyClient");
+    assert.equal(clients[0]?.name, "MyServiceClient");
     assert.equal(clients[1]?.name, "MySecondServiceClient");
   });
 });
