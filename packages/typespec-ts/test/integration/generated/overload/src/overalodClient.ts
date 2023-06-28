@@ -3,17 +3,17 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { OverloadClient } from "./clientDefinitions";
+import { OveralodClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `OverloadClient`
+ * Initialize a new instance of `OveralodClient`
  * @param $host - A sequence of textual characters.
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   $host: string,
   options: ClientOptions = {}
-): OverloadClient {
+): OveralodClient {
   const baseUrl = options.baseUrl ?? `${$host}`;
 
   const userAgentInfo = `azsdk-js-media-types-rest/1.0.0-beta.1`;
@@ -31,7 +31,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as OverloadClient;
+  const client = getClient(baseUrl, options) as OveralodClient;
 
   return client;
 }

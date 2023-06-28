@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import OverloadTestFactory, {
-  OverloadClient
+  OveralodClient
 } from "./generated/overload/src/index.js";
 describe("OverloadTest Rest Client", () => {
-  let client: OverloadClient;
+  let client: OveralodClient;
 
   beforeEach(() => {
     client = OverloadTestFactory("http://fake-url.com", {
