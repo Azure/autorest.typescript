@@ -15,13 +15,14 @@ import {
   getCompletions,
   getChatCompletions,
   getImageOperationStatus,
-  startGenerateImage,
+  beginStartGenerateImage,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
 } from "./api/index.js";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
 
@@ -81,10 +82,15 @@ export class OpenAIClient {
   }
 
   /** Starts the generation of a batch of images from a text caption */
-  startGenerateImage(
+  beginStartGenerateImage(
     prompt: string,
     options: StartGenerateImageOptions = { requestOptions: {} }
-  ): Promise<ImageOperationResponse> {
-    return startGenerateImage(this._client, prompt, options);
+  ): Promise<
+    SimplePollerLike<
+      OperationState<ImageOperationResponse>,
+      ImageOperationResponse
+    >
+  > {
+    return beginStartGenerateImage(this._client, prompt, options);
   }
 }

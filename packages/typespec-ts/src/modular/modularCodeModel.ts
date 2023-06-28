@@ -1,4 +1,5 @@
 import { RLCOptions } from "@azure-tools/rlc-common";
+import { LroMetadata } from "@azure-tools/typespec-azure-core";
 
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -152,4 +153,5 @@ export interface Operation {
   continuationTokenName?: string;
   addedOn?: string;
   lroName?: string;
+  lroMetadata?: LroMetadata;
 }

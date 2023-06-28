@@ -126,6 +126,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     removeUnusedInterfaces(project);
+    removeUnusedCoreReferences(project);
 
     for (const file of project.getSourceFiles()) {
       await emitContentByBuilder(
@@ -180,6 +181,39 @@ function removeUnusedInterfaces(project: Project) {
 
     interfaceDeclaration.remove();
   });
+}
+
+function removeUnusedCoreReferences(project: Project) {
+  const coreTypes = ["ErrorModel"];
+  // Get the models.ts file
+  for (let sourceModelFile of project.getSourceFiles("**/models.ts")) {
+    // 1. find any imports from core, if no return
+    const anyImportFromCore = sourceModelFile
+      .getImportDeclarations()
+      .filter((i) => i.getModuleSpecifierValue() === "@azure-rest/core-client");
+    const anyTypesInCore = anyImportFromCore
+      .flatMap((f) => f.getNamedImports())
+      .filter((n) => coreTypes.includes(n.getName()));
+    // if no any core reference link return directly
+    if (anyTypesInCore.length === 0) {
+      return;
+    }
+
+    // 2. if yes, find any referred types in core
+    const includedInFiles = sourceModelFile
+      .getInterfaces()
+      .flatMap((i) => i.getProperties())
+      .filter((p) => coreTypes.includes(p.getType().getText()));
+    // if we have real reference link we could not remove any
+    if (includedInFiles.length > 0) {
+      return;
+    }
+    // 3. if no, remove refer
+    anyTypesInCore.forEach((ni) => ni.remove());
+    anyImportFromCore
+      .filter((f) => f.getNamedImports().length === 0)
+      .forEach((f) => f.remove());
+  }
 }
 
 function clearSrcFolder(

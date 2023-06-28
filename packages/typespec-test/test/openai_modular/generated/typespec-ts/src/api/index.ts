@@ -30,7 +30,7 @@ export {
   getCompletions,
   getChatCompletions,
   getImageOperationStatus,
-  startGenerateImage,
+  beginStartGenerateImage,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,

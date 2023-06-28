@@ -7,7 +7,9 @@
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { OperationState } from '@azure/core-lro';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { SimplePollerLike } from '@azure/core-lro';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -166,11 +168,11 @@ export type ImageSize = string;
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
+    beginStartGenerateImage(prompt: string, options?: StartGenerateImageOptions): Promise<SimplePollerLike<OperationState<ImageOperationResponse>, ImageOperationResponse>>;
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
     getImageOperationStatus(operationId: string, options?: GetImageOperationStatusOptions): Promise<ImageOperationResponse>;
-    startGenerateImage(prompt: string, options?: StartGenerateImageOptions): Promise<ImageOperationResponse>;
 }
 
 // @public (undocumented)
@@ -189,7 +191,9 @@ export interface RequestOptions {
 // @public (undocumented)
 export interface StartGenerateImageOptions extends RequestOptions {
     n?: number;
+    resumeFrom?: string;
     size?: ImageSize;
+    updateIntervalInMs?: number;
     user?: string;
 }
 

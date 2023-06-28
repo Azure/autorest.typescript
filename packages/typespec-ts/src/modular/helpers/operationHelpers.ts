@@ -26,6 +26,30 @@ function getRLCResponseType(operation: Operation) {
   return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
 }
 
+function getOperationResponseType(operation: Operation) {
+  const response = operation.responses[0]!;
+  let responseType = response.type;
+  if (
+    operation.lroMetadata &&
+    responseType &&
+    (operation.lroMetadata?.finalStep?.target as any)?.name === "result" &&
+    responseType.type === "model"
+  ) {
+    const selectedProperties = (responseType.properties ?? []).filter(
+      (p) => p.clientName === "result"
+    );
+    if (
+      selectedProperties &&
+      selectedProperties[0]?.clientName === "result" &&
+      selectedProperties[0].type.name ===
+        operation.lroMetadata.logicalResult.name
+    ) {
+      responseType = selectedProperties[0].type;
+    }
+  }
+  return responseType;
+}
+
 export function getSendPrivateFunction(
   operation: Operation
 ): OptionalKind<FunctionDeclarationStructure> {
@@ -71,9 +95,13 @@ export function getDeserializePrivateFunction(
   ];
 
   // TODO: Support operation overloads
-  const response = operation.responses[0]!;
-  const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type)
+  let responseType = getOperationResponseType(operation);
+  const isLroCustomizedReturn = responseType !== operation.responses[0]!.type;
+  const deserializationRoot = isLroCustomizedReturn
+    ? "result.body.result"
+    : "result.body";
+  const returnType = responseType?.type
+    ? buildType(responseType.name, responseType)
     : { name: "", type: "void" };
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
@@ -81,27 +109,35 @@ export function getDeserializePrivateFunction(
     isExported: true,
     name: `_${name}Deserialize`,
     parameters,
-    returnType: `Promise<${returnType.type}>`
+    returnType: `Promise<${
+      isLroCustomizedReturn ? `${returnType.type} | undefined` : returnType.type
+    }>`
   };
   const statements: string[] = [];
   statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
 
-  if (response?.type?.type === "any") {
-    statements.push(`return result.body`);
-  } else if (response?.type?.elementType) {
+  if (isLroCustomizedReturn) {
+    statements.push(`if(!result.body.result){`, "return undefined;", "}");
+  }
+  if (responseType.type === "any") {
+    statements.push(`return ${deserializationRoot}`);
+  } else if (responseType?.elementType) {
     statements.push(
-      `return ${deserializeResponseValue(response.type, "result.body")}`
+      `return ${deserializeResponseValue(responseType, deserializationRoot)}`
     );
-  } else if (response?.type?.properties) {
+  } else if (responseType?.properties) {
     statements.push(
       `return {`,
-      getResponseMapping(response.type.properties ?? []).join(","),
+      getResponseMapping(
+        responseType.properties ?? [],
+        deserializationRoot
+      ).join(","),
       `}`
     );
   } else if (returnType.type === "void") {
     statements.push(`return;`);
   } else {
-    statements.push(`return result.body;`);
+    statements.push(`return ${deserializationRoot};`);
   }
   return {
     ...functionStatement,
@@ -175,11 +211,10 @@ function getLroOperationFunction(operation: Operation) {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation);
-  const response = operation.responses[0]!;
-  const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type)
+  const responseType = getOperationResponseType(operation);
+  const returnType = responseType?.type
+    ? buildType(responseType.name, responseType)
     : { name: "", type: "void" };
-  const lroReturnType = `Promise<SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>>`;
 
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
@@ -188,7 +223,7 @@ function getLroOperationFunction(operation: Operation) {
     isExported: true,
     name: operation.lroName ?? name,
     parameters,
-    returnType: lroReturnType
+    returnType: `Promise<SimplePollerLike<OperationState<${returnType.type}>, ${returnType.type}>>`
   };
 
   const statements: string[] = [];

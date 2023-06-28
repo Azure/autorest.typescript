@@ -16,7 +16,7 @@ import {
   getLongRunningPoller,
 } from "../common/lroImpl.js";
 import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { User, ResourceOperationStatus } from "./models.js";
+import { User, ExportedUser } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
 export interface CreateOrReplaceOptions extends RequestOptions {
@@ -114,21 +114,18 @@ export function _exportOperationSend(
 
 export async function _exportOperationDeserialize(
   result: ExportOperation202Response | ExportOperationDefaultResponse
-): Promise<ResourceOperationStatus> {
+): Promise<ExportedUser | undefined> {
   if (isUnexpected(result)) {
     throw result.body;
   }
 
+  if (!result.body.result) {
+    return undefined;
+  }
+
   return {
-    id: result.body["id"],
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
-    result: !result.body.result
-      ? undefined
-      : {
-          name: result.body.result?.["name"],
-          resourceUri: result.body.result?.["resourceUri"],
-        },
+    name: result.body.result["name"],
+    resourceUri: result.body.result["resourceUri"],
   };
 }
 
@@ -142,12 +139,7 @@ export async function beginExport(
   name: string,
   format: string,
   options: ExportOptions = { requestOptions: {} }
-): Promise<
-  SimplePollerLike<
-    OperationState<ResourceOperationStatus>,
-    ResourceOperationStatus
-  >
-> {
+): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>> {
   const pollerOptions = {
     requestMethod: "POST",
     requestUrl: "/users/{name}:export",
@@ -162,9 +154,6 @@ export async function beginExport(
   const poller = (await getLongRunningPoller(
     context,
     pollerOptions
-  )) as SimplePollerLike<
-    OperationState<ResourceOperationStatus>,
-    ResourceOperationStatus
-  >;
+  )) as SimplePollerLike<OperationState<ExportedUser>, ExportedUser>;
   return poller;
 }

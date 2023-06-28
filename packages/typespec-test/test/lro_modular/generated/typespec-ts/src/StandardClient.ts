@@ -3,7 +3,7 @@
 
 import {
   User,
-  ResourceOperationStatus,
+  ExportedUser,
   beginCreateOrReplace,
   beginExport,
   CreateOrReplaceOptions,
@@ -43,12 +43,7 @@ export class StandardClient {
     name: string,
     format: string,
     options: ExportOptions = { requestOptions: {} }
-  ): Promise<
-    SimplePollerLike<
-      OperationState<ResourceOperationStatus>,
-      ResourceOperationStatus
-    >
-  > {
+  ): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>> {
     return beginExport(this._client, name, format, options);
   }
 }

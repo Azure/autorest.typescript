@@ -17,6 +17,11 @@ import {
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
+  GetLongRunningPollerOptions,
+  getLongRunningPoller,
+} from "../common/lroImpl.js";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
   Embeddings,
   Completions,
   ChatMessage,
@@ -465,6 +470,10 @@ export async function getImageOperationStatus(
 }
 
 export interface StartGenerateImageOptions extends RequestOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
   /** The number of images to generate (defaults to 1). */
   n?: number;
   /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
@@ -521,11 +530,33 @@ export async function _startGenerateImageDeserialize(
 }
 
 /** Starts the generation of a batch of images from a text caption */
-export async function startGenerateImage(
+export async function beginStartGenerateImage(
   context: Client,
   prompt: string,
   options: StartGenerateImageOptions = { requestOptions: {} }
-): Promise<ImageOperationResponse> {
-  const result = await _startGenerateImageSend(context, prompt, options);
-  return _startGenerateImageDeserialize(result);
+): Promise<
+  SimplePollerLike<
+    OperationState<ImageOperationResponse>,
+    ImageOperationResponse
+  >
+> {
+  const pollerOptions = {
+    requestMethod: "POST",
+    requestUrl: "/images/generations:submit",
+    deserializeFn: _startGenerateImageDeserialize,
+    sendInitialRequestFn: _startGenerateImageSend,
+    sendInitialRequestFnArgs: [context, prompt, options],
+    createPollerOptions: {
+      restoreFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+    },
+  } as GetLongRunningPollerOptions;
+  const poller = (await getLongRunningPoller(
+    context,
+    pollerOptions
+  )) as SimplePollerLike<
+    OperationState<ImageOperationResponse>,
+    ImageOperationResponse
+  >;
+  return poller;
 }

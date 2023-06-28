@@ -1,12 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  User,
-  ResourceOperationStatus,
-  PollingOperationState,
-  ExportedUser,
-} from "./models.js";
+export { User, PollingOperationState, ExportedUser } from "./models.js";
 export {
   beginCreateOrReplace,
   beginExport,

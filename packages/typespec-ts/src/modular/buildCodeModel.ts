@@ -160,7 +160,10 @@ function getDocStr(program: Program, target: Type): string {
 }
 
 function isLro(program: Program, operation: Operation): boolean {
-  return Boolean(getLroMetadata(program, operation));
+  const lroMetadata = getLroMetadata(program, operation);
+  return Boolean(
+    lroMetadata && lroMetadata.logicalResult && lroMetadata.statusMonitorStep
+  );
 }
 
 function handleDiscriminator(context: SdkContext, type: Model, model: any) {
@@ -608,11 +611,16 @@ function emitOperation(
   return emitBasicOperation(context, operation, operationGroupName);
 }
 
-function addLroInformation(emittedOperation: HrlcOperation) {
+function addLroInformation(
+  program: Program,
+  operation: Operation,
+  emittedOperation: HrlcOperation
+) {
   emittedOperation["lroName"] = applyCasing(`begin_${emittedOperation.name}`, {
     casing: CASING
   });
   emittedOperation["discriminator"] = "lro";
+  emittedOperation["lroMetadata"] = getLroMetadata(program, operation);
 }
 
 function addPagingInformation(
@@ -641,7 +649,7 @@ function emitLroPagingOperation(
     operation,
     operationGroupName
   );
-  addLroInformation(emittedOperation);
+  addLroInformation(context.program, operation, emittedOperation);
   addPagingInformation(context.program, operation, emittedOperation);
   emittedOperation["discriminator"] = "lropaging";
   return emittedOperation;
@@ -657,7 +665,7 @@ function emitLroOperation(
     operation,
     operationGroupName
   );
-  addLroInformation(emittedOperation);
+  addLroInformation(context.program, operation, emittedOperation);
   return emittedOperation;
 }
 

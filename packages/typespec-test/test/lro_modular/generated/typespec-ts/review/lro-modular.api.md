@@ -5,7 +5,6 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { SimplePollerLike } from '@azure/core-lro';
@@ -41,18 +40,10 @@ export interface RequestOptions {
 }
 
 // @public (undocumented)
-export interface ResourceOperationStatus {
-    error?: ErrorModel;
-    readonly id: string;
-    result?: ExportedUser;
-    status: PollingOperationState;
-}
-
-// @public (undocumented)
 export class StandardClient {
     constructor(options?: StandardClientOptions);
     beginCreateOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState<User>, User>>;
-    beginExport(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState<ResourceOperationStatus>, ResourceOperationStatus>>;
+    beginExport(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>>;
 }
 
 // @public (undocumented)
