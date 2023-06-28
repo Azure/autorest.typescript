@@ -95,7 +95,7 @@ export function getDeserializePrivateFunction(
   ];
 
   // TODO: Support operation overloads
-  let responseType = getOperationResponseType(operation);
+  const responseType = getOperationResponseType(operation);
   const isLroCustomizedReturn = responseType !== operation.responses[0]!.type;
   const deserializationRoot = isLroCustomizedReturn
     ? "result.body.result"

@@ -186,7 +186,7 @@ function removeUnusedInterfaces(project: Project) {
 function removeUnusedCoreReferences(project: Project) {
   const coreTypes = ["ErrorModel"];
   // Get the models.ts file
-  for (let sourceModelFile of project.getSourceFiles("**/models.ts")) {
+  for (const sourceModelFile of project.getSourceFiles("**/models.ts")) {
     // 1. find any imports from core, if no return
     const anyImportFromCore = sourceModelFile
       .getImportDeclarations()
