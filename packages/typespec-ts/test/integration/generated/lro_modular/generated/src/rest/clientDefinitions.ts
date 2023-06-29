@@ -1,11 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { CreateOrReplaceParameters, ExportParameters } from "./parameters.js";
+import {
+  CreateOrReplaceParameters,
+  DeleteParameters,
+  ExportParameters,
+} from "./parameters.js";
 import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
+  DeleteOperation202Response,
+  DeleteOperationDefaultResponse,
   ExportOperation202Response,
   ExportOperationDefaultResponse,
 } from "./responses.js";
@@ -20,6 +26,12 @@ export interface CreateOrReplace {
     | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse
   >;
+  /** Deletes a User */
+  delete(
+    options?: DeleteParameters
+  ): StreamableMethod<
+    DeleteOperation202Response | DeleteOperationDefaultResponse
+  >;
 }
 
 export interface Export {
@@ -32,10 +44,13 @@ export interface Export {
 }
 
 export interface Routes {
-  /** Resource for '/users/\{name\}' has methods for the following verbs: put */
-  (path: "/users/{name}", name: string): CreateOrReplace;
-  /** Resource for '/users/\{name\}:export' has methods for the following verbs: post */
-  (path: "/users/{name}:export", name: string): Export;
+  /** Resource for '/azure/core/lro/standard/users/\{name\}' has methods for the following verbs: put, delete */
+  (
+    path: "/azure/core/lro/standard/users/{name}",
+    name: string
+  ): CreateOrReplace;
+  /** Resource for '/azure/core/lro/standard/users/\{name\}:export' has methods for the following verbs: post */
+  (path: "/azure/core/lro/standard/users/{name}:export", name: string): Export;
 }
 
 export type StandardContext = Client & {

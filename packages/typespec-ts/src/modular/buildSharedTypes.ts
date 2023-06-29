@@ -87,14 +87,11 @@ export async function getLongRunningPoller<TResponse extends HttpResponse>(
         path = initialResponse.request.url ?? options.requestUrl;
       }
       const response = await client.pathUnchecked(path).get();
+      response.headers["x-ms-original-url"] = initialResponse.request.url;
       const lroResponse = getLroResponse(
         response as TResponse,
         options.deserializeFn
       );
-      if (initialResponse.request.url) {
-        lroResponse.rawResponse.headers["x-ms-original-url"] =
-          initialResponse.request.url;
-      }
       return lroResponse;
     }
   };

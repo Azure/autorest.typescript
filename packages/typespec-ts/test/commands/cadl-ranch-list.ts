@@ -1,136 +1,173 @@
-export interface CadlRanchConfig {
+export interface TypeSpecRanchConfig {
   outputPath: string;
   inputPath: string;
-  debug?: boolean;
+  tag?: "rlc" | "modular" | "all" | "debug";
 }
 
-export const cadls: CadlRanchConfig[] = [
+export const tsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "encode",
-    inputPath: "encode/duration"
+    inputPath: "encode/duration",
+    tag: "rlc"
   },
   {
     outputPath: "sharedRoute",
-    inputPath: "shared-route"
+    inputPath: "shared-route",
+    tag: "rlc"
   },
   {
     outputPath: "mediaTypes",
-    inputPath: "media-types"
+    inputPath: "media-types",
+    tag: "rlc"
   },
   {
     outputPath: "overload",
-    inputPath: "overload"
+    inputPath: "overload",
+    tag: "rlc"
   },
   {
     outputPath: "arrays/itemTypes",
-    inputPath: "type/array"
+    inputPath: "type/array",
+    tag: "rlc"
   },
   {
     outputPath: "authentication/apiKey",
-    inputPath: "authentication/api-key"
+    inputPath: "authentication/api-key",
+    tag: "rlc"
   },
   {
     outputPath: "authentication/oauth2",
-    inputPath: "authentication/oauth2"
+    inputPath: "authentication/oauth2",
+    tag: "rlc"
   },
   {
     outputPath: "authentication/union",
-    inputPath: "authentication/union"
+    inputPath: "authentication/union",
+    tag: "rlc"
   },
   {
     outputPath: "dictionary",
-    inputPath: "type/dictionary"
+    inputPath: "type/dictionary",
+    tag: "rlc"
   },
   {
     outputPath: "enums/extensible",
-    inputPath: "type/enum/extensible"
+    inputPath: "type/enum/extensible",
+    tag: "rlc"
   },
   {
     outputPath: "enums/fixed",
-    inputPath: "type/enum/fixed"
+    inputPath: "type/enum/fixed",
+    tag: "rlc"
   },
   {
     outputPath: "lro/lroCore",
-    inputPath: "azure/core/lro/standard"
+    inputPath: "azure/core/lro/standard",
+    tag: "rlc"
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc"
+    inputPath: "azure/core/lro/rpc",
+    tag: "rlc"
   },
   {
     outputPath: "models/inheritance",
-    inputPath: "type/model/inheritance"
+    inputPath: "type/model/inheritance",
+    tag: "rlc"
   },
   {
     outputPath: "models/propertyOptional",
-    inputPath: "type/property/optional"
+    inputPath: "type/property/optional",
+    tag: "rlc"
   },
   {
     outputPath: "models/propertyNullable",
-    inputPath: "type/property/nullable"
+    inputPath: "type/property/nullable",
+    tag: "rlc"
   },
   {
     outputPath: "models/propertyTypes",
-    inputPath: "type/property/value-types"
+    inputPath: "type/property/value-types",
+    tag: "rlc"
   },
   {
     outputPath: "models/visibility",
-    inputPath: "type/model/visibility"
+    inputPath: "type/model/visibility",
+    tag: "rlc"
   },
   {
     outputPath: "models/usage",
-    inputPath: "type/model/usage"
+    inputPath: "type/model/usage",
+    tag: "rlc"
   },
   {
     outputPath: "models/empty",
-    inputPath: "type/model/empty"
+    inputPath: "type/model/empty",
+    tag: "rlc"
   },
   {
     outputPath: "resiliency/srvDriven1",
-    inputPath: "resiliency/srv-driven/old.tsp"
+    inputPath: "resiliency/srv-driven/old.tsp",
+    tag: "rlc"
   },
   {
     outputPath: "resiliency/srvDriven2",
-    inputPath: "resiliency/srv-driven/main.tsp"
+    inputPath: "resiliency/srv-driven/main.tsp",
+    tag: "rlc"
   },
   {
     outputPath: "specialWords",
-    inputPath: "special-words"
+    inputPath: "special-words",
+    tag: "rlc"
   },
   {
     outputPath: "unions",
-    inputPath: "type/union"
+    inputPath: "type/union",
+    tag: "rlc"
   },
   {
     outputPath: "parameters/collection-format",
-    inputPath: "parameters/collection-format"
+    inputPath: "parameters/collection-format",
+    tag: "rlc"
   },
   {
     outputPath: "parameters/spread",
-    inputPath: "parameters/spread"
+    inputPath: "parameters/spread",
+    tag: "rlc"
   },
   {
     outputPath: "projection",
-    inputPath: "projection/projected-name"
+    inputPath: "projection/projected-name",
+    tag: "rlc"
   },
   {
     outputPath: "internal",
-    inputPath: "azure/client-generator-core/internal"
+    inputPath: "azure/client-generator-core/internal",
+    tag: "rlc"
   },
   {
     outputPath: "server/path/single",
-    inputPath: "server/path/single"
+    inputPath: "server/path/single",
+    tag: "rlc"
   },
   {
     outputPath: "server/path/multiple",
-    inputPath: "server/path/multiple"
+    inputPath: "server/path/multiple",
+    tag: "rlc"
   },
   {
     outputPath: "azure/core",
-    inputPath: "azure/core/basic"
+    inputPath: "azure/core/basic",
+    tag: "rlc"
   },
   {
     outputPath: "azure/core-traits",
-    inputPath: "azure/core/traits"
+    inputPath: "azure/core/traits",
+    tag: "rlc"
+  },
+  {
+    outputPath: "lro_modular",
+    inputPath: "azure/core/lro/standard",
+    tag: "debug"
   }
 ];

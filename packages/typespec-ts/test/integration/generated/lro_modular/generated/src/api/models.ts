@@ -12,15 +12,13 @@ export interface User {
 }
 
 /** */
-export interface ResourceOperationStatus {
+export interface OperationStatus {
   /** The unique ID of the operation. */
   readonly id: string;
   /** The status of the operation */
   status: PollingOperationState;
   /** Error object that describes the error when status is "Failed". */
   error?: ErrorModel;
-  /** The result of the operation. */
-  result?: ExportedUser;
 }
 
 /** Enum describing allowed operation states. */

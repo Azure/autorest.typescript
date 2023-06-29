@@ -42,11 +42,7 @@ describe("AzureLroCoreClient Rest Client", () => {
     try {
       const initalResponse = await client
         .path("/azure/core/lro/standard/users/{name}", "madge")
-        .delete({
-          body: {
-            role: "contributor"
-          }
-        });
+        .delete();
       const poller = await getLongRunningPoller(client, initalResponse);
       const result = await poller.pollUntilDone();
       assert.equal(result.status, "200");

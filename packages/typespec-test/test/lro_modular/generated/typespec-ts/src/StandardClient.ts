@@ -4,10 +4,13 @@
 import {
   User,
   ExportedUser,
+  OperationStatus,
   beginCreateOrReplace,
   beginExport,
+  beginDelete,
   CreateOrReplaceOptions,
   ExportOptions,
+  DeleteOptions,
   createStandard,
   StandardContext,
   StandardClientOptions,
@@ -45,5 +48,20 @@ export class StandardClient {
     options: ExportOptions = { requestOptions: {} }
   ): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>> {
     return beginExport(this._client, name, format, options);
+  }
+
+  /** The most basic operation. */
+  /**
+   * @fixme delete is a reserved word that cannot be used as an operation name. Please add
+   * @projectedName (
+   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+   */
+  beginDelete(
+    name: string,
+    options: DeleteOptions = { requestOptions: {} }
+  ): Promise<
+    SimplePollerLike<OperationState<OperationStatus>, OperationStatus>
+  > {
+    return beginDelete(this._client, name, options);
   }
 }

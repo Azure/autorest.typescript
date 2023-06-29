@@ -6,6 +6,9 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
+  DeleteOperation202Response,
+  DeleteLogicalResponse,
+  DeleteOperationDefaultResponse,
   ExportOperation202Response,
   ExportLogicalResponse,
   ExportOperationDefaultResponse,
@@ -13,7 +16,8 @@ import {
 
 const responseMap: Record<string, string[]> = {
   "PUT /users/{name}": ["200", "201"],
-  "GET /users/{name}": ["200", "201"],
+  "GET /users/{name}": ["200", "202"],
+  "DELETE /users/{name}": ["202"],
   "POST /users/{name}:export": ["202"],
   "GET /users/{name}:export": ["200", "202"],
 };
@@ -27,6 +31,12 @@ export function isUnexpected(
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
   response:
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
+): response is DeleteOperationDefaultResponse;
+export function isUnexpected(
+  response:
     | ExportOperation202Response
     | ExportLogicalResponse
     | ExportOperationDefaultResponse
@@ -37,10 +47,16 @@ export function isUnexpected(
     | CreateOrReplace201Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
     | ExportOperation202Response
     | ExportLogicalResponse
     | ExportOperationDefaultResponse
-): response is CreateOrReplaceDefaultResponse | ExportOperationDefaultResponse {
+): response is
+  | CreateOrReplaceDefaultResponse
+  | DeleteOperationDefaultResponse
+  | ExportOperationDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

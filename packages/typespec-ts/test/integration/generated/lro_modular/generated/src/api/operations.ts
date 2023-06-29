@@ -18,7 +18,7 @@ import {
   getLongRunningPoller,
 } from "../common/lroImpl.js";
 import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { User, ExportedUser, OperationStatus } from "./models.js";
+import { User, OperationStatus, ExportedUser } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
 export interface CreateOrReplaceOptions extends RequestOptions {
@@ -39,7 +39,7 @@ export function _createOrReplaceSend(
   | CreateOrReplaceDefaultResponse
 > {
   return context
-    .path("/users/{name}", name)
+    .path("/azure/core/lro/standard/users/{name}", name)
     .put({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
@@ -73,7 +73,7 @@ export async function beginCreateOrReplace(
 ): Promise<SimplePollerLike<OperationState<User>, User>> {
   const pollerOptions = {
     requestMethod: "PUT",
-    requestUrl: "/users/{name}",
+    requestUrl: "/azure/core/lro/standard/users/{name}",
     deserializeFn: _createOrReplaceDeserialize,
     sendInitialRequestFn: _createOrReplaceSend,
     sendInitialRequestFnArgs: [context, role, name, options],
@@ -86,6 +86,71 @@ export async function beginCreateOrReplace(
     context,
     pollerOptions
   )) as SimplePollerLike<OperationState<User>, User>;
+  return poller;
+}
+
+export interface DeleteOptions extends RequestOptions {
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+export function _deleteOperationSend(
+  context: Client,
+  name: string,
+  options: DeleteOptions = { requestOptions: {} }
+): StreamableMethod<
+  DeleteOperation202Response | DeleteOperationDefaultResponse
+> {
+  return context
+    .path("/azure/core/lro/standard/users/{name}", name)
+    .delete({
+      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      headers: { ...options.requestOptions?.headers },
+    });
+}
+
+export async function _deleteOperationDeserialize(
+  result: DeleteOperation202Response | DeleteOperationDefaultResponse
+): Promise<OperationStatus> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    status: result.body["status"],
+    error: !result.body.error ? undefined : result.body.error,
+  };
+}
+
+/** Deletes a User */
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
+ *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+ */
+export async function beginDelete(
+  context: Client,
+  name: string,
+  options: DeleteOptions = { requestOptions: {} }
+): Promise<SimplePollerLike<OperationState<OperationStatus>, OperationStatus>> {
+  const pollerOptions = {
+    requestMethod: "DELETE",
+    requestUrl: "/azure/core/lro/standard/users/{name}",
+    deserializeFn: _deleteOperationDeserialize,
+    sendInitialRequestFn: _deleteOperationSend,
+    sendInitialRequestFnArgs: [context, name, options],
+    createPollerOptions: {
+      restoreFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs,
+    },
+  } as GetLongRunningPollerOptions;
+  const poller = (await getLongRunningPoller(
+    context,
+    pollerOptions
+  )) as SimplePollerLike<OperationState<OperationStatus>, OperationStatus>;
   return poller;
 }
 
@@ -105,7 +170,7 @@ export function _exportOperationSend(
   ExportOperation202Response | ExportOperationDefaultResponse
 > {
   return context
-    .path("/users/{name}:export", name)
+    .path("/azure/core/lro/standard/users/{name}:export", name)
     .post({
       allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
@@ -144,7 +209,7 @@ export async function beginExport(
 ): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>> {
   const pollerOptions = {
     requestMethod: "POST",
-    requestUrl: "/users/{name}:export",
+    requestUrl: "/azure/core/lro/standard/users/{name}:export",
     deserializeFn: _exportOperationDeserialize,
     sendInitialRequestFn: _exportOperationSend,
     sendInitialRequestFnArgs: [context, name, format, options],
@@ -157,70 +222,5 @@ export async function beginExport(
     context,
     pollerOptions
   )) as SimplePollerLike<OperationState<ExportedUser>, ExportedUser>;
-  return poller;
-}
-
-export interface DeleteOptions extends RequestOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
-
-export function _deleteOperationSend(
-  context: Client,
-  name: string,
-  options: DeleteOptions = { requestOptions: {} }
-): StreamableMethod<
-  DeleteOperation202Response | DeleteOperationDefaultResponse
-> {
-  return context
-    .path("/users/{name}", name)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
-}
-
-export async function _deleteOperationDeserialize(
-  result: DeleteOperation202Response | DeleteOperationDefaultResponse
-): Promise<OperationStatus> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    id: result.body["id"],
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
-  };
-}
-
-/** The most basic operation. */
-/**
- *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
-export async function beginDelete(
-  context: Client,
-  name: string,
-  options: DeleteOptions = { requestOptions: {} }
-): Promise<SimplePollerLike<OperationState<OperationStatus>, OperationStatus>> {
-  const pollerOptions = {
-    requestMethod: "DELETE",
-    requestUrl: "/users/{name}",
-    deserializeFn: _deleteOperationDeserialize,
-    sendInitialRequestFn: _deleteOperationSend,
-    sendInitialRequestFnArgs: [context, name, options],
-    createPollerOptions: {
-      restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-    },
-  } as GetLongRunningPollerOptions;
-  const poller = (await getLongRunningPoller(
-    context,
-    pollerOptions
-  )) as SimplePollerLike<OperationState<OperationStatus>, OperationStatus>;
   return poller;
 }

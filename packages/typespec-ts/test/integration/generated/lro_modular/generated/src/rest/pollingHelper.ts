@@ -15,6 +15,9 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
   CreateOrReplaceLogicalResponse,
+  DeleteOperation202Response,
+  DeleteOperationDefaultResponse,
+  DeleteLogicalResponse,
   ExportOperation202Response,
   ExportOperationDefaultResponse,
   ExportLogicalResponse,
@@ -43,6 +46,13 @@ export async function getLongRunningPoller<
     | CreateOrReplace200Response
     | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse,
+  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
+): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export async function getLongRunningPoller<
+  TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse
+>(
+  client: Client,
+  initialResponse: DeleteOperation202Response | DeleteOperationDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

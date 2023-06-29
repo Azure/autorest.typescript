@@ -88,6 +88,69 @@
             }
           }
         }
+      },
+      "delete": {
+        "operationId": "Delete",
+        "description": "The most basic operation.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "The name of user.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The request has been accepted for processing, but processing has not yet completed.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location for monitoring the operation state.",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The unique ID of the operation."
+                },
+                "status": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.OperationState",
+                  "description": "The status of the operation"
+                },
+                "error": {
+                  "$ref": "#/definitions/Azure.Core.Foundations.Error",
+                  "description": "Error object that describes the error when status is \"Failed\"."
+                }
+              },
+              "description": "Provides status details for long running operations.",
+              "required": [
+                "id",
+                "status"
+              ],
+              "x-typespec-name": "Azure.Core.Foundations.OperationStatus<never, Azure.Core.Foundations.Error>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
       }
     },
     "/users/{name}:export": {

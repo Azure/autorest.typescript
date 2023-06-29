@@ -5,12 +5,19 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { OperationState } from '@azure/core-lro';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { SimplePollerLike } from '@azure/core-lro';
 
 // @public (undocumented)
 export interface CreateOrReplaceOptions extends RequestOptions {
+    resumeFrom?: string;
+    updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface DeleteOptions extends RequestOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
@@ -25,6 +32,13 @@ export interface ExportedUser {
 export interface ExportOptions extends RequestOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
+}
+
+// @public (undocumented)
+export interface OperationStatus {
+    error?: ErrorModel;
+    readonly id: string;
+    status: PollingOperationState;
 }
 
 // @public
@@ -43,6 +57,7 @@ export interface RequestOptions {
 export class StandardClient {
     constructor(options?: StandardClientOptions);
     beginCreateOrReplace(role: string, name: string, options?: CreateOrReplaceOptions): Promise<SimplePollerLike<OperationState<User>, User>>;
+    beginDelete(name: string, options?: DeleteOptions): Promise<SimplePollerLike<OperationState<OperationStatus>, OperationStatus>>;
     beginExport(name: string, format: string, options?: ExportOptions): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>>;
 }
 

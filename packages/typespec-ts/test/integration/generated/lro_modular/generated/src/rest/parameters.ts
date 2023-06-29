@@ -11,6 +11,7 @@ export interface CreateOrReplaceBodyParam {
 
 export type CreateOrReplaceParameters = CreateOrReplaceBodyParam &
   RequestParameters;
+export type DeleteParameters = RequestParameters;
 
 export interface ExportQueryParamProperties {
   /** The format of the data. */

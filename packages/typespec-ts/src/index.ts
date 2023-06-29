@@ -36,7 +36,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { buildLroImpl, buildSharedTypes } from "./modular/buildSharedTypes.js";
-import { Project, SyntaxKind } from "ts-morph";
+import { Project, SyntaxKind, TypeFormatFlags } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
@@ -203,7 +203,13 @@ function removeUnusedCoreReferences(project: Project) {
     const includedInFiles = sourceModelFile
       .getInterfaces()
       .flatMap((i) => i.getProperties())
-      .filter((p) => coreTypes.includes(p.getType().getText()));
+      .filter(
+        (p) =>
+          coreTypes.includes(p.getType().getText()) ||
+          coreTypes.includes(
+            p.getType().getText(p, TypeFormatFlags.NoTruncation)
+          )
+      );
     // if we have real reference link we could not remove any
     if (includedInFiles.length > 0) {
       return;

@@ -3,7 +3,11 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { UserOutput, ResourceOperationStatusOutput } from "./outputModels.js";
+import {
+  UserOutput,
+  ResourceOperationStatusOutput,
+  OperationStatusOutput,
+} from "./outputModels.js";
 
 export interface CreateOrReplace200Headers {
   /** The location for monitoring the operation state. */
@@ -73,4 +77,33 @@ export interface ExportOperationDefaultResponse extends HttpResponse {
 export interface ExportLogicalResponse extends HttpResponse {
   status: "200";
   body: ResourceOperationStatusOutput;
+}
+
+export interface DeleteOperation202Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface DeleteOperation202Response extends HttpResponse {
+  status: "202";
+  body: OperationStatusOutput;
+  headers: RawHttpHeaders & DeleteOperation202Headers;
+}
+
+export interface DeleteOperationDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface DeleteOperationDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
+}
+
+/** The final response for long-running delete operation */
+export interface DeleteLogicalResponse extends HttpResponse {
+  status: "200";
+  body: OperationStatusOutput;
 }

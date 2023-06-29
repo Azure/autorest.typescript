@@ -6,16 +6,20 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
+  DeleteOperation202Response,
+  DeleteLogicalResponse,
+  DeleteOperationDefaultResponse,
   ExportOperation202Response,
   ExportLogicalResponse,
   ExportOperationDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
-  "PUT /users/{name}": ["200", "201"],
-  "GET /users/{name}": ["200", "201"],
-  "POST /users/{name}:export": ["202"],
-  "GET /users/{name}:export": ["200", "202"],
+  "PUT /azure/core/lro/standard/users/{name}": ["200", "201"],
+  "GET /azure/core/lro/standard/users/{name}": ["200", "202"],
+  "DELETE /azure/core/lro/standard/users/{name}": ["202"],
+  "POST /azure/core/lro/standard/users/{name}:export": ["202"],
+  "GET /azure/core/lro/standard/users/{name}:export": ["200", "202"],
 };
 
 export function isUnexpected(
@@ -25,6 +29,12 @@ export function isUnexpected(
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
 ): response is CreateOrReplaceDefaultResponse;
+export function isUnexpected(
+  response:
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
+): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
   response:
     | ExportOperation202Response
@@ -37,10 +47,16 @@ export function isUnexpected(
     | CreateOrReplace201Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
     | ExportOperation202Response
     | ExportLogicalResponse
     | ExportOperationDefaultResponse
-): response is CreateOrReplaceDefaultResponse | ExportOperationDefaultResponse {
+): response is
+  | CreateOrReplaceDefaultResponse
+  | DeleteOperationDefaultResponse
+  | ExportOperationDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

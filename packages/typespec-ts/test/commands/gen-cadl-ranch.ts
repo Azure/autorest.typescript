@@ -1,22 +1,23 @@
-import { cadls } from "./cadl-ranch-list.js";
+import { tsps } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
 import pkg from "chalk";
 const { bold } = pkg;
 const logError = (str: string) => console.error(bold.red(str));
 
-async function generateCadls(isDebugging = false) {
-  const list = cadls;
-  for (const cadl of list) {
-    if (isDebugging === true && cadl.debug !== true) {
+async function generateCadls(tag: string = "all") {
+  const list = tsps;
+  for (const tsp of list) {
+    if (tag !== "all" && tsp.tag !== tag) {
       continue;
     }
-    await runTypespec(cadl);
+    await runTypespec(tsp);
   }
 }
 
 async function main() {
-  const isDebugging = process.argv.indexOf("--debug") !== -1;
-  await generateCadls(isDebugging);
+  const tagOptions = process.argv.filter((s) => s.startsWith("--tag="));
+  const tag = tagOptions[0]?.split("=")[1];
+  await generateCadls(tag);
 }
 
 main().catch((error) => {

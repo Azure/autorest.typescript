@@ -3,10 +3,13 @@
 
 import {
   User,
-  ResourceOperationStatus,
+  OperationStatus,
+  ExportedUser,
   beginCreateOrReplace,
+  beginDelete,
   beginExport,
   CreateOrReplaceOptions,
+  DeleteOptions,
   ExportOptions,
   createStandard,
   StandardContext,
@@ -33,6 +36,21 @@ export class StandardClient {
     return beginCreateOrReplace(this._client, role, name, options);
   }
 
+  /** Deletes a User */
+  /**
+   * @fixme delete is a reserved word that cannot be used as an operation name. Please add
+   * @projectedName (
+   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+   */
+  beginDelete(
+    name: string,
+    options: DeleteOptions = { requestOptions: {} }
+  ): Promise<
+    SimplePollerLike<OperationState<OperationStatus>, OperationStatus>
+  > {
+    return beginDelete(this._client, name, options);
+  }
+
   /** Exports a User */
   /**
    * @fixme export is a reserved word that cannot be used as an operation name. Please add
@@ -43,12 +61,7 @@ export class StandardClient {
     name: string,
     format: string,
     options: ExportOptions = { requestOptions: {} }
-  ): Promise<
-    SimplePollerLike<
-      OperationState<ResourceOperationStatus>,
-      ResourceOperationStatus
-    >
-  > {
+  ): Promise<SimplePollerLike<OperationState<ExportedUser>, ExportedUser>> {
     return beginExport(this._client, name, format, options);
   }
 }

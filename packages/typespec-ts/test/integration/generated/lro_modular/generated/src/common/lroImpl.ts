@@ -7,12 +7,12 @@ import {
   LroResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import {
   Client,
   HttpResponse,
-  StreamableMethod
+  StreamableMethod,
 } from "@azure-rest/core-client";
 export interface GetLongRunningPollerOptions<
   TResponse extends HttpResponse = HttpResponse
@@ -50,16 +50,13 @@ export async function getLongRunningPoller<TResponse extends HttpResponse>(
         path = initialResponse.request.url ?? options.requestUrl;
       }
       const response = await client.pathUnchecked(path).get();
+      response.headers["x-ms-original-url"] = initialResponse.request.url;
       const lroResponse = getLroResponse(
         response as TResponse,
         options.deserializeFn
       );
-      if (initialResponse.request.url) {
-        lroResponse.rawResponse.headers["x-ms-original-url"] =
-          initialResponse.request.url;
-      }
       return lroResponse;
-    }
+    },
   };
   return await createHttpPoller(poller, options.createPollerOptions);
 }
@@ -83,7 +80,7 @@ function getLroResponse<TResponse extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body
-    }
+      body: response.body,
+    },
   };
 }

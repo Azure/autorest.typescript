@@ -22,3 +22,4 @@ export interface ExportQueryParam {
 }
 
 export type ExportParameters = ExportQueryParam & RequestParameters;
+export type DeleteParameters = RequestParameters;
