@@ -55,7 +55,7 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc"
+    inputPath: "azure/core/lro/rpc/legacy"
   },
   {
     outputPath: "models/inheritance",
