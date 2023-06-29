@@ -4,7 +4,7 @@ import { File, RLCModel } from "@azure-tools/rlc-common";
 import { CompilerHost, Program } from "@typespec/compiler";
 import { dirname, join } from "path";
 import { format } from "prettier";
-import { prettierJSONOptions, prettierTypeScriptOptions } from "./lib.js";
+import { prettierJSONOptions, prettierTypeScriptOptions } from "../lib.js";
 
 export async function emitModels(rlcModels: RLCModel, program: Program) {
   const schemaOutput = buildSchemaTypes(rlcModels);

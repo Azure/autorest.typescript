@@ -43,7 +43,7 @@ import {
   getEncode,
   EncodeData
 } from "@typespec/compiler";
-import { reportDiagnostic } from "./lib.js";
+import { reportDiagnostic } from "../lib.js";
 import {
   DictionarySchema,
   NameType,

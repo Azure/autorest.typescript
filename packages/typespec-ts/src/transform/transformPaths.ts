@@ -24,7 +24,7 @@ import {
   SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getSchemaForType } from "../modelUtils.js";
+import { getSchemaForType } from "../utils/modelUtils.js";
 import {
   extractOperationLroDetail,
   getOperationGroupName,
@@ -33,7 +33,7 @@ import {
   isDefaultStatusCode,
   isDefinedStatusCode,
   isPagingOperation
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
 
 export function transformPaths(
   program: Program,

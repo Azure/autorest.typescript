@@ -1,4 +1,3 @@
-import { listClients } from "@azure-tools/typespec-client-generator-core";
 import {
   buildClient,
   buildClientDefinitions,
@@ -16,6 +15,7 @@ import { transformUrlInfo } from "../../../src/transform/transform.js";
 import { transformApiVersionInfo } from "../../../src/transform/transformApiVersionInfo.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
+import { getRLCClients } from "../../../src/utils/clientUtils.js";
 
 export async function emitModelsFromCadl(
   cadlContent: string,
@@ -31,7 +31,7 @@ export async function emitModelsFromCadl(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
@@ -59,7 +59,7 @@ export async function emitParameterFromCadl(
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
   if (clients && clients[0]) {
@@ -87,7 +87,7 @@ export async function emitClientDefinitionFromCadl(
   const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let paths = {};
   if (clients && clients[0]) {
     paths = transformPaths(program, clients[0], dpgContext);
@@ -109,7 +109,7 @@ export async function emitClientFactoryFromCadl(
   const dpgContext = createDpgContextTestHelper(context.program);
   const urlInfo = transformUrlInfo(program, dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let apiVersionInfo;
   if (clients && clients[0]) {
     apiVersionInfo = transformApiVersionInfo(
@@ -145,7 +145,7 @@ export async function emitResponsesFromCadl(
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = new Map<ImportKind, Set<string>>();
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
     responses = transformToResponseTypes(
@@ -163,4 +163,20 @@ export async function emitResponsesFromCadl(
     responses,
     importSet
   });
+}
+
+export async function getRLCClientsFromCadl(
+  cadlContent: string
+) {
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    false,
+    false,
+    true,
+    true
+  );
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = getRLCClients(dpgContext);
+  return clients;
 }

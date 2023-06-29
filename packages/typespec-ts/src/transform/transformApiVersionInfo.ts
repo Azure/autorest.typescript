@@ -18,7 +18,7 @@ import {
   getEnrichedDefaultApiVersion,
   getSchemaForType,
   trimUsage
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 
 export function transformApiVersionInfo(
   client: SdkClient,

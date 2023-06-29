@@ -26,13 +26,13 @@ import {
   predictDefaultValue,
   getBinaryType,
   enrichBinaryTypeInBody
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 
 import {
   getOperationGroupName,
   getOperationName,
   isBinaryPayload
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
 import {
   SdkClient,
   SdkContext,
