@@ -6,8 +6,20 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
-    outputPath: "encode",
+    outputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
+    outputPath: "encode/duration",
     inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
   },
   {
     outputPath: "sharedRoute",
@@ -55,7 +67,7 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc"
+    inputPath: "azure/core/lro/rpc/legacy"
   },
   {
     outputPath: "models/inheritance",

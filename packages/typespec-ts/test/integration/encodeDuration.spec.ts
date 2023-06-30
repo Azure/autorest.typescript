@@ -1,8 +1,8 @@
 import { assert } from "chai";
 import EncodeDurationClientFactory, {
   DurationClient
-} from "./generated/encode/src/index.js";
-import { buildCsvCollection } from "./generated/encode/src/serializeHelper.js";
+} from "./generated/encode/duration/src/index.js";
+import { buildCsvCollection } from "./generated/encode/duration/src/serializeHelper.js";
 describe("EncodeDurationClient Rest Client", () => {
   let client: DurationClient;
 

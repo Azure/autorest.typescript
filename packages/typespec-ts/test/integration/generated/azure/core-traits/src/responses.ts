@@ -3,7 +3,7 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { UserOutput } from "./outputModels";
+import { UserOutput, UserActionResponseOutput } from "./outputModels";
 
 export interface SmokeTest200Headers {
   bar: string;
@@ -29,4 +29,27 @@ export interface SmokeTestDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & SmokeTestDefaultHeaders;
+}
+
+export interface RepeatableAction200Headers {
+  /** Indicates whether the repeatable request was accepted or rejected. */
+  "repeatability-result"?: "accepted" | "rejected";
+}
+
+/** The request has succeeded. */
+export interface RepeatableAction200Response extends HttpResponse {
+  status: "200";
+  body: UserActionResponseOutput;
+  headers: RawHttpHeaders & RepeatableAction200Headers;
+}
+
+export interface RepeatableActionDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface RepeatableActionDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & RepeatableActionDefaultHeaders;
 }

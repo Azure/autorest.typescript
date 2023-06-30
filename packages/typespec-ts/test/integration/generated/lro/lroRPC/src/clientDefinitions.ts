@@ -1,23 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  CreateJobParameters,
-  GetJobParameters,
-  CreateJobFinalOnLocationParameters,
-  GetPollParameters,
-} from "./parameters";
+import { CreateJobParameters } from "./parameters";
 import {
   CreateJob200Response,
   CreateJob202Response,
   CreateJobDefaultResponse,
-  GetJob200Response,
-  GetJobDefaultResponse,
-  CreateJobFinalOnLocation200Response,
-  CreateJobFinalOnLocation202Response,
-  CreateJobFinalOnLocationDefaultResponse,
-  GetPoll200Response,
-  GetPollDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -30,50 +18,13 @@ export interface CreateJob {
   >;
 }
 
-export interface GetJob {
-  /** Gets the status of a Job */
-  get(
-    options?: GetJobParameters
-  ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
-}
-
-export interface CreateJobFinalOnLocation {
-  /** Creates a Job */
-  post(
-    options?: CreateJobFinalOnLocationParameters
-  ): StreamableMethod<
-    | CreateJobFinalOnLocation200Response
-    | CreateJobFinalOnLocation202Response
-    | CreateJobFinalOnLocationDefaultResponse
-  >;
-}
-
-export interface GetPoll {
-  /** Gets the status of a Job */
-  get(
-    options?: GetPollParameters
-  ): StreamableMethod<GetPoll200Response | GetPollDefaultResponse>;
-}
-
 export interface Routes {
-  /** Resource for '/azure/core/lro/rpc/same-poll-result/jobs' has methods for the following verbs: post */
-  (path: "/azure/core/lro/rpc/same-poll-result/jobs"): CreateJob;
-  /** Resource for '/azure/core/lro/rpc/same-poll-result/jobs/\{jobId\}' has methods for the following verbs: get */
+  /** Resource for '/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs' has methods for the following verbs: post */
   (
-    path: "/azure/core/lro/rpc/same-poll-result/jobs/{jobId}",
-    jobId: string
-  ): GetJob;
-  /** Resource for '/azure/core/lro/rpc/different-poll-result/jobs' has methods for the following verbs: post */
-  (
-    path: "/azure/core/lro/rpc/different-poll-result/jobs"
-  ): CreateJobFinalOnLocation;
-  /** Resource for '/azure/core/lro/rpc/different-poll-result/jobs/operations/\{operationId\}' has methods for the following verbs: get */
-  (
-    path: "/azure/core/lro/rpc/different-poll-result/jobs/operations/{operationId}",
-    operationId: string
-  ): GetPoll;
+    path: "/azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs"
+  ): CreateJob;
 }
 
-export type RpcClient = Client & {
+export type LegacyClient = Client & {
   path: Routes;
 };
