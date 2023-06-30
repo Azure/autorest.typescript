@@ -1,12 +1,12 @@
 import { assert } from "chai";
 import CollectionFormatClientFactory, {
+  buildCsvCollection,
   buildMultiCollection,
   buildPipeCollection,
   buildSsvCollection,
   buildTsvCollection,
   CollectionFormatClient
 } from "./generated/parameters/collection-format/src/index.js";
-import { buildCsvCollection } from "./generated/encode/src/serializeHelper.js";
 describe("Collection Format Rest Client", () => {
   let client: CollectionFormatClient;
   const colors = ["blue", "red", "green"];

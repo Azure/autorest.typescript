@@ -146,7 +146,12 @@ function getParameterMetadata(
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (type === "string[]" || type === "Array<string>") {
+  if (
+    type === "string[]" ||
+    type === "Array<string>" ||
+    type === "number[]" ||
+    type === "Array<number>"
+  ) {
     const serializeInfo = getSpecialSerializeInfo(parameter);
     if (
       serializeInfo.hasMultiCollection ||
