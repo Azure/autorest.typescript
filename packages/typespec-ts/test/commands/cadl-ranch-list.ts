@@ -6,9 +6,12 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
     outputPath: "parameters/body-optionality",
-    inputPath: "parameters/body-optionality",
-    debug: true
+    inputPath: "parameters/body-optionality"
   },
   {
     outputPath: "encode/duration",
