@@ -50,15 +50,8 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "../common/interfaces.js",
-        namedImports: ["OperationRawReturnType"]
-      }
-    ]);
-
-    operationGroupFile.addImportDeclarations([
-      {
         moduleSpecifier: "@azure-rest/core-client",
-        namedImports: ["StreamableMethod"]
+        namedImports: ["StreamableMethod", "operationOptionsToRequestParameters", "OperationOptions"]
       }
     ]);
 
@@ -105,7 +98,7 @@ export function buildOperationOptions(
   sourceFile.addInterface({
     name,
     isExported: true,
-    extends: ["RequestOptions"],
+    extends: ["OperationOptions"],
     properties: options.map((p) => {
       return {
         docs: [p.description],

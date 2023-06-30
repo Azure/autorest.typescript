@@ -32,7 +32,6 @@ import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { buildSharedTypes } from "./modular/buildSharedTypes.js";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
@@ -111,7 +110,6 @@ export async function $onEmit(context: EmitContext) {
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
 
     for (const client of modularCodeModel.clients) {
-      buildSharedTypes(project, srcPath);
       buildClientContext(client, project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
       buildOperationFiles(client, project, srcPath);
