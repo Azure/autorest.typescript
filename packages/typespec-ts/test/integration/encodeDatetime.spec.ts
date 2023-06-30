@@ -3,7 +3,7 @@ import EncodeDatetimeClientFactory, {
   DatetimeClient
 } from "./generated/encode/datetime/src/index.js";
 import { buildCsvCollection } from "./generated/encode/datetime/src/serializeHelper.js";
-describe("EncodeDurationClient Rest Client", () => {
+describe("EncodeDatetimeClient Rest Client", () => {
   let client: DatetimeClient;
 
   beforeEach(() => {
