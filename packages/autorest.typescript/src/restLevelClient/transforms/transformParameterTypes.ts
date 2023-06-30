@@ -171,12 +171,7 @@ function transformBodyParameters(
     );
   } else {
     rlcBodyParam.body = [
-      getParameterSchema(
-        bodyParameters[0],
-        importedModels,
-        false,
-        contentTypeParam
-      )
+      getParameterSchema(bodyParameters[0], importedModels, false, contentTypeParam)
     ];
   }
 
@@ -247,29 +242,11 @@ function getParameterSchema(
       typeName: schema.name
     };
   }
-  if (
-    type === "string[]" ||
-    type === "Array<string>" ||
-    type === "number[]" ||
-    type === "Array<number>"
-  ) {
+  if (type === "Array<string>" || type === "Array<number>") {
     const serializeInfo = getSpecialSerializeInfo(parameter);
-    if (
-      serializeInfo.hasMultiCollection ||
-      serializeInfo.hasPipeCollection ||
-      serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection
-    ) {
+    if (serializeInfo.hasMultiCollection || serializeInfo.hasPipeCollection || serializeInfo.hasSsvCollection || serializeInfo.hasTsvCollection) {
       type = "string";
-      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
-        ", "
-      )} collection, we provide ${serializeInfo.descriptions.join(
-        ", "
-      )} from serializeHelper.ts to help${
-        serializeInfo.hasMultiCollection
-          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-          : ""
-      }`;
+      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(", ")} collection, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help${serializeInfo.hasMultiCollection? ", you will probably need to set skipUrlEncoding as true when sending the request": ""}`;
     }
   }
   return {
@@ -287,10 +264,7 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
   let hasTsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
-  if (
-    parameter.protocol.http?.explode === true &&
-    parameter.protocol.http?.style === "form"
-  ) {
+  if (parameter.protocol.http?.explode === true && parameter.protocol.http?.style === 'form') {
     hasMultiCollection = true;
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
@@ -317,7 +291,7 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
     hasTsvCollection,
     descriptions,
     collectionInfo
-  };
+  }
 }
 
 /**
