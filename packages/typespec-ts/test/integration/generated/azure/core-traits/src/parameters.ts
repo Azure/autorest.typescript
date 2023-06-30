@@ -3,6 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
+import { UserActionParam } from "./models";
 
 export interface SmokeTestHeaders {
   /** header in request */
@@ -24,3 +25,22 @@ export interface SmokeTestHeaderParam {
 }
 
 export type SmokeTestParameters = SmokeTestHeaderParam & RequestParameters;
+
+export interface RepeatableActionHeaders {
+  /** An opaque, globally-unique, client-generated string identifier for the request. */
+  "Repeatability-Request-ID"?: string;
+  /** Specifies the date and time at which the request was first created. */
+  "Repeatability-First-Sent"?: string;
+}
+
+export interface RepeatableActionBodyParam {
+  body?: UserActionParam;
+}
+
+export interface RepeatableActionHeaderParam {
+  headers?: RawHttpHeadersInput & RepeatableActionHeaders;
+}
+
+export type RepeatableActionParameters = RepeatableActionHeaderParam &
+  RepeatableActionBodyParam &
+  RequestParameters;

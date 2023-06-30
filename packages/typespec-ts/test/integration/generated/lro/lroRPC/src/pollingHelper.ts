@@ -15,16 +15,6 @@ import {
   CreateJob202Response,
   CreateJobDefaultResponse,
   CreateJobLogicalResponse,
-  GetJob200Response,
-  GetJobDefaultResponse,
-  GetJobLogicalResponse,
-  CreateJobFinalOnLocation200Response,
-  CreateJobFinalOnLocation202Response,
-  CreateJobFinalOnLocationDefaultResponse,
-  CreateJobFinalOnLocationLogicalResponse,
-  GetPoll200Response,
-  GetPollDefaultResponse,
-  GetPollLogicalResponse,
 } from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -41,32 +31,6 @@ export async function getLongRunningPoller<
     | CreateJob200Response
     | CreateJob202Response
     | CreateJobDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends GetJobLogicalResponse | GetJobDefaultResponse
->(
-  client: Client,
-  initialResponse: GetJob200Response | GetJobDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends
-    | CreateJobFinalOnLocationLogicalResponse
-    | CreateJobFinalOnLocationDefaultResponse
->(
-  client: Client,
-  initialResponse:
-    | CreateJobFinalOnLocation200Response
-    | CreateJobFinalOnLocation202Response
-    | CreateJobFinalOnLocationDefaultResponse,
-  options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
-): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
-export async function getLongRunningPoller<
-  TResult extends GetPollLogicalResponse | GetPollDefaultResponse
->(
-  client: Client,
-  initialResponse: GetPoll200Response | GetPollDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(
