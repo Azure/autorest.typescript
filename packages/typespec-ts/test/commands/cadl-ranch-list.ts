@@ -6,6 +6,11 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality",
+    debug: true
+  },
+  {
     outputPath: "encode/duration",
     inputPath: "encode/duration"
   },
