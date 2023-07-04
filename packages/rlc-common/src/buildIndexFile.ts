@@ -130,7 +130,7 @@ function generateRLCIndexForMultiClient(file: SourceFile, model: RLCModel) {
     });
     exports.push("UnexpectedHelper");
   }
-  
+
   if (hasPollingOperations(model)) {
     file.addImportDeclaration({
       namespaceImport: "PollingHelper",
