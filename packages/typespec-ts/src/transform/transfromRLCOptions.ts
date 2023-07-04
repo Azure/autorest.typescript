@@ -41,7 +41,6 @@ function extractRLCOptions(
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
   const enableOperationGroup = getEnableOperationGroup(emitterOptions);
-  console.log(">>>>>>>>>>", emitterOptions, ENABLE_GROUP_NAME_PREFIX);
   return {
     ...emitterOptions,
     ...credentialInfo,
