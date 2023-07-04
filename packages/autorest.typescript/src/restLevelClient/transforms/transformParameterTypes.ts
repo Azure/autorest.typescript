@@ -242,7 +242,7 @@ function getParameterSchema(
       typeName: schema.name
     };
   }
-  if (type === "Array<string>") {
+  if (type === "Array<string>" || type === "Array<number>") {
     const serializeInfo = getSpecialSerializeInfo(parameter);
     if (serializeInfo.hasMultiCollection || serializeInfo.hasPipeCollection || serializeInfo.hasSsvCollection || serializeInfo.hasTsvCollection) {
       type = "string";

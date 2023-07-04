@@ -3,7 +3,7 @@ import {
   OptionalKind,
   ParameterDeclarationStructure
 } from "ts-morph";
-import { toPascalCase } from "../../casingUtils.js";
+import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
   Operation,
@@ -491,15 +491,28 @@ function getResponseMapping(
     // TODO: Do we need to also add headers in the result type?
     const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
-      const definition = `"${property.restApiName}": ${getNullableCheck(
-        propertyFullName,
-        property.type
-      )} ${
-        !property.optional ? "" : `!${propertyFullName} ? undefined :`
-      } {${getResponseMapping(
-        property.type.properties ?? [],
-        `${propertyPath}.${property.restApiName}${property.optional ? "?" : ""}`
-      )}}`;
+      let definition;
+      if (property.type.isCoreErrorType) {
+        definition = `"${property.restApiName}": ${getNullableCheck(
+          propertyFullName,
+          property.type
+        )} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } ${propertyFullName}`;
+      } else {
+        definition = `"${property.restApiName}": ${getNullableCheck(
+          propertyFullName,
+          property.type
+        )} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } {${getResponseMapping(
+          property.type.properties ?? [],
+          `${propertyPath}.${property.restApiName}${
+            property.optional ? "?" : ""
+          }`
+        )}}`;
+      }
+
       props.push(definition);
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";

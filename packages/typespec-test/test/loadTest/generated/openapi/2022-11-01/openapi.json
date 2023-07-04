@@ -1,0 +1,3555 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Azure Load Testing",
+    "version": "2022-11-01",
+    "description": "These APIs allow end users to create, view and run load tests using Azure Load\nTest Service.",
+    "x-typespec-generated": [
+      {
+        "emitter": "@azure-tools/typespec-autorest"
+      }
+    ]
+  },
+  "schemes": [
+    "https"
+  ],
+  "x-ms-parameterized-host": {
+    "hostTemplate": "https://{endpoint}",
+    "useSchemePrefix": false,
+    "parameters": [
+      {
+        "name": "endpoint",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ]
+  },
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "Oauth2": [
+        "https://cnt-prod.loadtesting.azure.com/.default"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "Oauth2": {
+      "type": "oauth2",
+      "description": "The Azure Active Directory OAuth2 Flow",
+      "flow": "implicit",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+      "scopes": {
+        "https://cnt-prod.loadtesting.azure.com/.default": ""
+      }
+    }
+  },
+  "tags": [],
+  "paths": {
+    "/test-runs": {
+      "get": {
+        "operationId": "LoadTestRun_ListTestRuns",
+        "summary": "Get all test runs with given filters",
+        "description": "Get all test runs with given filters",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "orderby",
+            "in": "query",
+            "required": false,
+            "description": "Sort on the supported fields in (field asc/desc) format. eg: executedDateTime\nasc. Supported fields - executedDateTime",
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Prefix based, case sensitive search on searchable fields - description,\nexecutedUser. For example, to search for a test run, with description 500 VUs,\nthe search parameter can be 500.",
+            "type": "string"
+          },
+          {
+            "name": "testId",
+            "in": "query",
+            "required": false,
+            "description": "Unique name of an existing load test.",
+            "type": "string"
+          },
+          {
+            "name": "executionFrom",
+            "in": "query",
+            "required": false,
+            "description": "Start DateTime(ISO 8601 literal format) of test-run execution time filter range.",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "executionTo",
+            "in": "query",
+            "required": false,
+            "description": "End DateTime(ISO 8601 literal format) of test-run execution time filter range.",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Comma separated list of test run status.",
+            "type": "string"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": false,
+            "description": "Number of results in response.",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedTestRun"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/test-runs/{testRunId}": {
+      "delete": {
+        "operationId": "LoadTestRun_DeleteTestRun",
+        "summary": "Delete a test run by its name.",
+        "description": "Delete a test run by its name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "LoadTestRun_CreateOrUpdateTestRun",
+        "summary": "Create and start a new test run with the given name.",
+        "description": "Create and start a new test run with the given name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique test run name as identifier",
+            "type": "string"
+          },
+          {
+            "name": "oldTestRunId",
+            "in": "query",
+            "required": false,
+            "description": "Existing test run identifier that should be rerun, if this is provided, the\ntest will run with the JMX file, configuration and app components from the\nexisting test run. You can override the configuration values for new test run\nin the request body.",
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "required": true,
+            "description": "The resource instance.",
+            "schema": {
+              "$ref": "#/definitions/TestRunUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location for monitoring the operation state.",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/TestRun"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "headers": {
+              "Operation-Location": {
+                "description": "The location for monitoring the operation state.",
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/TestRun"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      },
+      "get": {
+        "operationId": "LoadTestRun_GetTestRun",
+        "summary": "Get test run details by name.",
+        "description": "Get test run details by name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRun"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/test-runs/{testRunId}:stop": {
+      "post": {
+        "operationId": "LoadTestRun_StopTestRun",
+        "summary": "Stop test run by name.",
+        "description": "Stop test run by name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRun"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/test-runs/{testRunId}/app-components": {
+      "patch": {
+        "operationId": "LoadTestRun_CreateOrUpdateAppComponents",
+        "summary": "Associate an app component (collection of azure resources) to a test run",
+        "description": "Associate an app component (collection of azure resources) to a test run",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "App Component model.",
+            "schema": {
+              "$ref": "#/definitions/TestRunAppComponentsUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRunAppComponents"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/TestRunAppComponents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      },
+      "get": {
+        "operationId": "LoadTestRun_GetAppComponents",
+        "summary": "Get associated app component (collection of azure resources) for the given test\nrun.",
+        "description": "Get associated app component (collection of azure resources) for the given test\nrun.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRunAppComponents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/test-runs/{testRunId}/files/{fileName}": {
+      "get": {
+        "operationId": "LoadTestRun_GetTestRunFile",
+        "summary": "Get test run file by file name.",
+        "description": "Get test run file by file name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "description": "Test run file name with file extension",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/FileInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/test-runs/{testRunId}/metric-definitions": {
+      "get": {
+        "operationId": "LoadTestRun_ListMetricDefinitions",
+        "summary": "List the metric definitions for a load test run.",
+        "description": "List the metric definitions for a load test run.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "metricNamespace",
+            "in": "query",
+            "required": false,
+            "description": "Metric namespace to query metric definitions for.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/MetricDefinitionCollection"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/test-runs/{testRunId}/metric-dimensions/{name}/values": {
+      "get": {
+        "operationId": "LoadTestRun_ListMetricDimensionValues",
+        "summary": "List the dimension values for the given metric dimension name.",
+        "description": "List the dimension values for the given metric dimension name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique test run name as identifier",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "Dimension name",
+            "type": "string"
+          },
+          {
+            "$ref": "#/parameters/MetricDimensions.interval"
+          },
+          {
+            "$ref": "#/parameters/MetricDimensions.metricName"
+          },
+          {
+            "$ref": "#/parameters/MetricDimensions.metricNamespace"
+          },
+          {
+            "$ref": "#/parameters/MetricDimensions.timespan"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/DimensionValueList"
+                  },
+                  "x-ms-identifiers": [],
+                  "description": "The DimensionValueList items on this page",
+                  "x-typespec-name": "DimensionValueList[]"
+                },
+                "nextLink": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "The link to the next page of items",
+                  "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+                }
+              },
+              "description": "Paged collection of DimensionValueList items",
+              "required": [
+                "value"
+              ],
+              "x-typespec-name": "Azure.Core.Foundations.CustomPage<DimensionValueList, Azure.Core.(anonymous model)>"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/test-runs/{testRunId}/metric-namespaces": {
+      "get": {
+        "operationId": "LoadTestRun_ListMetricNamespaces",
+        "summary": "List the metric namespaces for a load test run.",
+        "description": "List the metric namespaces for a load test run.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/MetricNamespaceCollection"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/test-runs/{testRunId}/metrics": {
+      "post": {
+        "operationId": "LoadTestRun_ListMetrics",
+        "summary": "List the metric values for a load test run.",
+        "description": "List the metric values for a load test run.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "aggregation",
+            "in": "query",
+            "required": false,
+            "description": "The aggregation",
+            "type": "string"
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "description": "The interval (i.e. timegrain) of the query.",
+            "type": "string",
+            "enum": [
+              "PT5S",
+              "PT10S",
+              "PT1M",
+              "PT5M",
+              "PT1H"
+            ],
+            "x-ms-enum": {
+              "name": "Interval",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "PT5S",
+                  "value": "PT5S",
+                  "description": "5 seconds, available only if test run duration is less than 10 minutes"
+                },
+                {
+                  "name": "PT10S",
+                  "value": "PT10S",
+                  "description": "10 seconds, available only if test run duration is less than 10 minutes"
+                },
+                {
+                  "name": "PT1M",
+                  "value": "PT1M",
+                  "description": "1 minute"
+                },
+                {
+                  "name": "PT5M",
+                  "value": "PT5M",
+                  "description": "5 minutes, available only if test run duration is greater than 1 minute"
+                },
+                {
+                  "name": "PT1H",
+                  "value": "PT1H",
+                  "description": "1 hour, available only if test run duration is greater than 1 minute"
+                }
+              ]
+            }
+          },
+          {
+            "name": "metricName",
+            "in": "query",
+            "required": false,
+            "description": "Metric name",
+            "type": "string"
+          },
+          {
+            "name": "metricNamespace",
+            "in": "query",
+            "required": false,
+            "description": "Metric namespace to query metric definitions for.",
+            "type": "string"
+          },
+          {
+            "name": "timespan",
+            "in": "query",
+            "required": false,
+            "description": "The timespan of the query. It is a string with the following format\n'startDateTime_ISO/endDateTime_ISO'.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Metric dimension filter ",
+            "schema": {
+              "$ref": "#/definitions/MetricRequestPayload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedTimeSeriesElement"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/test-runs/{testRunId}/server-metrics-config": {
+      "patch": {
+        "operationId": "LoadTestRun_CreateOrUpdateServerMetricsConfig",
+        "summary": "Configure server metrics for a test run",
+        "description": "Configure server metrics for a test run",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Server metric configuration model.",
+            "schema": {
+              "$ref": "#/definitions/TestRunServerMetricConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRunServerMetricConfig"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/TestRunServerMetricConfig"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      },
+      "get": {
+        "operationId": "LoadTestRun_GetServerMetricsConfig",
+        "summary": "List server metrics configuration for the given test run.",
+        "description": "List server metrics configuration for the given test run.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testRunId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test run, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestRunServerMetricConfig"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/tests": {
+      "get": {
+        "operationId": "LoadTestAdministration_ListTests",
+        "summary": "Get all load tests by the fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.",
+        "description": "Get all load tests by the fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "orderby",
+            "in": "query",
+            "required": false,
+            "description": "Sort on the supported fields in (field asc/desc) format. eg:\nlastModifiedDateTime asc. Supported fields - lastModifiedDateTime",
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Prefix based, case sensitive search on searchable fields - displayName,\ncreatedBy. For example, to search for a test, with display name is Login Test,\nthe search parameter can be Login.",
+            "type": "string"
+          },
+          {
+            "name": "lastModifiedStartTime",
+            "in": "query",
+            "required": false,
+            "description": "Start DateTime(ISO 8601 literal format) of the last updated time range to\nfilter tests.",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "lastModifiedEndTime",
+            "in": "query",
+            "required": false,
+            "description": "End DateTime(ISO 8601 literal format) of the last updated time range to filter\ntests.",
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "maxpagesize",
+            "in": "query",
+            "required": false,
+            "description": "Number of results in response.",
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedTest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/tests/{testId}": {
+      "patch": {
+        "operationId": "LoadTestAdministration_CreateOrUpdateTest",
+        "summary": "Create a new test or update an existing test.",
+        "description": "Create a new test or update an existing test.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Load test model",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      },
+      "delete": {
+        "operationId": "LoadTestAdministration_DeleteTest",
+        "summary": "Delete a test by its name.",
+        "description": "Delete a test by its name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "LoadTestAdministration_GetTest",
+        "summary": "Get load test details by test name",
+        "description": "Get load test details by test name",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Test"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/tests/{testId}/app-components": {
+      "patch": {
+        "operationId": "LoadTestAdministration_CreateOrUpdateAppComponents",
+        "summary": "Associate an app component (collection of azure resources) to a test",
+        "description": "Associate an app component (collection of azure resources) to a test",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "App Component model.",
+            "schema": {
+              "$ref": "#/definitions/TestAppComponentsUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestAppComponents"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/TestAppComponents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      },
+      "get": {
+        "operationId": "LoadTestAdministration_GetAppComponents",
+        "summary": "Get associated app component (collection of azure resources) for the given test.",
+        "description": "Get associated app component (collection of azure resources) for the given test.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestAppComponents"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/tests/{testId}/files": {
+      "get": {
+        "operationId": "LoadTestAdministration_ListTestFiles",
+        "summary": "Get all test files.",
+        "description": "Get all test files.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/PagedFileInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        }
+      }
+    },
+    "/tests/{testId}/files/{fileName}": {
+      "put": {
+        "operationId": "LoadTestAdministration_UploadTestFile",
+        "summary": "Upload input file for a given test name. File size can't be more than 50 MB.\nExisting file with same name for the given test will be overwritten. File\nshould be provided in the request body as application/octet-stream.",
+        "description": "Upload input file for a given test name. File size can't be more than 50 MB.\nExisting file with same name for the given test will be overwritten. File\nshould be provided in the request body as application/octet-stream.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for test file with file extension like : App.jmx",
+            "type": "string"
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "required": false,
+            "description": "File type",
+            "type": "string",
+            "enum": [
+              "JMX_FILE",
+              "USER_PROPERTIES",
+              "ADDITIONAL_ARTIFACTS"
+            ],
+            "x-ms-enum": {
+              "name": "FileType",
+              "modelAsString": true,
+              "values": [
+                {
+                  "name": "JMX_FILE",
+                  "value": "JMX_FILE",
+                  "description": "If file is jmx script"
+                },
+                {
+                  "name": "USER_PROPERTIES",
+                  "value": "USER_PROPERTIES",
+                  "description": "If file is user properties"
+                },
+                {
+                  "name": "ADDITIONAL_ARTIFACTS",
+                  "value": "ADDITIONAL_ARTIFACTS",
+                  "description": "If file is not any of other supported type"
+                }
+              ]
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "The file content as application/octet-stream.",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/FileInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/octet-stream"
+        ]
+      },
+      "get": {
+        "operationId": "LoadTestAdministration_GetTestFile",
+        "summary": "Get test file by the file name.",
+        "description": "Get test file by the file name.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "description": "File name with file extension like app.jmx",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/FileInfo"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "LoadTestAdministration_DeleteTestFile",
+        "summary": "Delete file by the file name for a test",
+        "description": "Delete file by the file name for a test",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "fileName",
+            "in": "path",
+            "required": true,
+            "description": "File name with file extension like app.jmx",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/tests/{testId}/server-metrics-config": {
+      "patch": {
+        "operationId": "LoadTestAdministration_CreateOrUpdateServerMetricsConfig",
+        "summary": "Configure server metrics for a test",
+        "description": "Configure server metrics for a test",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "Server metric configuration model.",
+            "schema": {
+              "$ref": "#/definitions/TestServerMetricConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestServerMetricConfig"
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/TestServerMetricConfig"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        },
+        "consumes": [
+          "application/merge-patch+json"
+        ]
+      },
+      "get": {
+        "operationId": "LoadTestAdministration_GetServerMetricsConfig",
+        "summary": "List server metrics configuration for the given test.",
+        "description": "List server metrics configuration for the given test.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "testId",
+            "in": "path",
+            "required": true,
+            "description": "Unique name for the load test, must contain only lower-case alphabetic,\nnumeric, underscore or hyphen characters.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/TestServerMetricConfig"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "APIVersions": {
+      "type": "string",
+      "enum": [
+        "2022-11-01"
+      ],
+      "x-ms-enum": {
+        "name": "APIVersions",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "v2022_11_01",
+            "value": "2022-11-01"
+          }
+        ]
+      }
+    },
+    "AggregationType": {
+      "type": "string",
+      "enum": [
+        "Average",
+        "Count",
+        "None",
+        "Total",
+        "Percentile90",
+        "Percentile95",
+        "Percentile99"
+      ],
+      "x-ms-enum": {
+        "name": "AggregationType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "Average",
+            "value": "Average",
+            "description": "Average value"
+          },
+          {
+            "name": "Count",
+            "value": "Count",
+            "description": "Total count"
+          },
+          {
+            "name": "None",
+            "value": "None",
+            "description": "Aggregation will be average in this case"
+          },
+          {
+            "name": "Total",
+            "value": "Total",
+            "description": "Total sum"
+          },
+          {
+            "name": "Percentile90",
+            "value": "Percentile90",
+            "description": "90th percentile"
+          },
+          {
+            "name": "Percentile95",
+            "value": "Percentile95",
+            "description": "95th percentile"
+          },
+          {
+            "name": "Percentile99",
+            "value": "Percentile99",
+            "description": "99th percentile"
+          }
+        ]
+      }
+    },
+    "AppComponent": {
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "type": "string",
+          "description": "fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}",
+          "readOnly": true
+        },
+        "resourceName": {
+          "type": "string",
+          "description": "Azure resource name, required while creating the app component."
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Azure resource type, required while creating the app component."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Azure resource display name"
+        },
+        "resourceGroup": {
+          "type": "string",
+          "description": "Resource group name of the Azure resource",
+          "readOnly": true
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Subscription Id of the Azure resource",
+          "readOnly": true
+        },
+        "kind": {
+          "type": "string",
+          "description": "Kind of Azure resource type"
+        }
+      },
+      "description": "An Azure resource object (Refer azure generic resource model :\nhttps://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)"
+    },
+    "Azure.Core.Foundations.Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "message": {
+          "type": "string",
+          "description": "A human-readable representation of the error."
+        },
+        "target": {
+          "type": "string",
+          "description": "The target of the error."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Azure.Core.Foundations.Error"
+          },
+          "x-ms-identifiers": [],
+          "description": "An array of details about specific errors that led to this reported error.",
+          "x-typespec-name": "Azure.Core.Foundations.Error[]"
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "An object containing more specific information than the current object about the error."
+        }
+      },
+      "description": "The error object.",
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "Azure.Core.Foundations.ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Azure.Core.Foundations.Error",
+          "description": "The error object."
+        }
+      },
+      "description": "A response containing error details.",
+      "required": [
+        "error"
+      ]
+    },
+    "Azure.Core.Foundations.InnerError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "One of a server-defined set of error codes."
+        },
+        "innererror": {
+          "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
+          "description": "Inner error."
+        }
+      },
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses."
+    },
+    "CertificateMetadata": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "The value of the certificate for respective type"
+        },
+        "type": {
+          "$ref": "#/definitions/CertificateType",
+          "description": "Type of certificate"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the certificate."
+        }
+      },
+      "description": "Certificates metadata"
+    },
+    "CertificateType": {
+      "type": "string",
+      "enum": [
+        "AKV_CERT_URI"
+      ],
+      "x-ms-enum": {
+        "name": "CertificateType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "AKV_CERT_URI",
+            "value": "AKV_CERT_URI",
+            "description": "If the certificate is stored in an Azure Key Vault"
+          }
+        ]
+      }
+    },
+    "Dimension": {
+      "type": "object",
+      "properties": {}
+    },
+    "DimensionFilter": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The dimension name"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The dimension values. Maximum values can be 20.",
+          "x-typespec-name": "string[]"
+        }
+      },
+      "description": "Dimension name and values to filter"
+    },
+    "DimensionValue": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the dimension."
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the dimension."
+        }
+      },
+      "description": "Represents a metric dimension value."
+    },
+    "DimensionValueList": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-typespec-name": "string[]"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "The error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "The error message."
+        },
+        "target": {
+          "type": "string",
+          "description": "The error target."
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          },
+          "x-ms-identifiers": [],
+          "description": "Additional details and inner errors.",
+          "x-typespec-name": "Error[]"
+        }
+      },
+      "description": "Error from a REST request.",
+      "required": [
+        "code",
+        "message"
+      ]
+    },
+    "ErrorDetails": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Error details in case test run was not successfully run.",
+          "readOnly": true
+        }
+      },
+      "description": "Error details if there is any failure in load test run"
+    },
+    "ErrorResponseBody": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "$ref": "#/definitions/Error",
+          "description": "Error from a REST request."
+        }
+      },
+      "description": "The definition of an error object.",
+      "required": [
+        "error"
+      ]
+    },
+    "FileInfo": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "File URL."
+        },
+        "fileName": {
+          "type": "string",
+          "description": "Name of the file."
+        },
+        "fileType": {
+          "$ref": "#/definitions/FileType",
+          "description": "File type"
+        },
+        "expireDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Expiry time of the file (ISO 8601 literal format)"
+        },
+        "validationStatus": {
+          "$ref": "#/definitions/FileStatus",
+          "description": "Validation status of the file"
+        },
+        "validationFailureDetails": {
+          "type": "string",
+          "description": "Validation failure error details"
+        }
+      },
+      "description": "File info"
+    },
+    "FileStatus": {
+      "type": "string",
+      "enum": [
+        "NOT_VALIDATED",
+        "VALIDATION_SUCCESS",
+        "VALIDATION_FAILURE",
+        "VALIDATION_INITIATED",
+        "VALIDATION_NOT_REQUIRED"
+      ],
+      "x-ms-enum": {
+        "name": "FileStatus",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "NOT_VALIDATED",
+            "value": "NOT_VALIDATED",
+            "description": "File is not validated."
+          },
+          {
+            "name": "VALIDATION_SUCCESS",
+            "value": "VALIDATION_SUCCESS",
+            "description": "File is validated."
+          },
+          {
+            "name": "VALIDATION_FAILURE",
+            "value": "VALIDATION_FAILURE",
+            "description": "File validation is failed."
+          },
+          {
+            "name": "VALIDATION_INITIATED",
+            "value": "VALIDATION_INITIATED",
+            "description": "File validation is in progress."
+          },
+          {
+            "name": "VALIDATION_NOT_REQUIRED",
+            "value": "VALIDATION_NOT_REQUIRED",
+            "description": "Validation is not required."
+          }
+        ]
+      }
+    },
+    "FileType": {
+      "type": "string",
+      "enum": [
+        "JMX_FILE",
+        "USER_PROPERTIES",
+        "ADDITIONAL_ARTIFACTS"
+      ],
+      "x-ms-enum": {
+        "name": "FileType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "JMX_FILE",
+            "value": "JMX_FILE",
+            "description": "If file is jmx script"
+          },
+          {
+            "name": "USER_PROPERTIES",
+            "value": "USER_PROPERTIES",
+            "description": "If file is user properties"
+          },
+          {
+            "name": "ADDITIONAL_ARTIFACTS",
+            "value": "ADDITIONAL_ARTIFACTS",
+            "description": "If file is not any of other supported type"
+          }
+        ]
+      }
+    },
+    "Interval": {
+      "type": "string",
+      "enum": [
+        "PT5S",
+        "PT10S",
+        "PT1M",
+        "PT5M",
+        "PT1H"
+      ],
+      "x-ms-enum": {
+        "name": "Interval",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "PT5S",
+            "value": "PT5S",
+            "description": "5 seconds, available only if test run duration is less than 10 minutes"
+          },
+          {
+            "name": "PT10S",
+            "value": "PT10S",
+            "description": "10 seconds, available only if test run duration is less than 10 minutes"
+          },
+          {
+            "name": "PT1M",
+            "value": "PT1M",
+            "description": "1 minute"
+          },
+          {
+            "name": "PT5M",
+            "value": "PT5M",
+            "description": "5 minutes, available only if test run duration is greater than 1 minute"
+          },
+          {
+            "name": "PT1H",
+            "value": "PT1H",
+            "description": "1 hour, available only if test run duration is greater than 1 minute"
+          }
+        ]
+      }
+    },
+    "LoadTestConfiguration": {
+      "type": "object",
+      "properties": {
+        "engineInstances": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The number of engine instances to execute load test. Supported values are in\nrange of 1-45. Required for creating a new test."
+        },
+        "splitAllCSVs": {
+          "type": "boolean",
+          "description": "If false, Azure Load Testing copies and processes your input files unmodified\nacross all test engine instances. If true, Azure Load Testing splits the CSV\ninput data evenly across all engine instances. If you provide multiple CSV\nfiles, each file will be split evenly."
+        },
+        "quickStartTest": {
+          "type": "boolean",
+          "description": "If true, optionalLoadTestConfig is required and JMX script for the load test is\nnot required to upload."
+        },
+        "optionalLoadTestConfig": {
+          "$ref": "#/definitions/OptionalLoadTestConfig",
+          "description": "Optional load test config"
+        }
+      },
+      "description": "The load test configuration."
+    },
+    "MetricAvailability": {
+      "type": "object",
+      "properties": {
+        "timeGrain": {
+          "$ref": "#/definitions/TimeGrain",
+          "description": "The time grain specifies the aggregation interval for the metric. Expressed as\na duration 'PT1M', 'PT1H', etc."
+        }
+      },
+      "description": "Metric availability specifies the time grain (aggregation interval or frequency)"
+    },
+    "MetricDefinition": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NameAndDesc"
+          },
+          "x-ms-identifiers": [],
+          "description": "List of dimensions",
+          "x-typespec-name": "NameAndDesc[]"
+        },
+        "description": {
+          "type": "string",
+          "description": "The metric description"
+        },
+        "name": {
+          "type": "string",
+          "description": "The metric name"
+        },
+        "namespace": {
+          "type": "string",
+          "description": "The namespace the metric belongs to."
+        },
+        "primaryAggregationType": {
+          "$ref": "#/definitions/AggregationType",
+          "description": "The primary aggregation type value defining how to use the values for display."
+        },
+        "supportedAggregationTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The collection of what all aggregation types are supported.",
+          "x-typespec-name": "string[]"
+        },
+        "unit": {
+          "$ref": "#/definitions/MetricUnit",
+          "description": "The unit of the metric."
+        },
+        "metricAvailabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetricAvailability"
+          },
+          "x-ms-identifiers": [],
+          "description": "Metric availability specifies the time grain (aggregation interval or\nfrequency).",
+          "x-typespec-name": "MetricAvailability[]"
+        }
+      },
+      "description": "Metric definition"
+    },
+    "MetricDefinitionCollection": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetricDefinition"
+          },
+          "x-ms-identifiers": [],
+          "description": "the values for the metric definitions.",
+          "x-typespec-name": "MetricDefinition[]"
+        }
+      },
+      "description": "Represents collection of metric definitions.",
+      "required": [
+        "value"
+      ]
+    },
+    "MetricNamespace": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "The namespace description."
+        },
+        "name": {
+          "type": "string",
+          "description": "The metric namespace name."
+        }
+      },
+      "description": "Metric namespace class specifies the metadata for a metric namespace."
+    },
+    "MetricNamespaceCollection": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetricNamespace"
+          },
+          "x-ms-identifiers": [],
+          "description": "The values for the metric namespaces.",
+          "x-typespec-name": "MetricNamespace[]"
+        }
+      },
+      "description": "Represents collection of metric namespaces.",
+      "required": [
+        "value"
+      ]
+    },
+    "MetricRequestPayload": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DimensionFilter"
+          },
+          "x-ms-identifiers": [],
+          "description": "Get metrics for specific dimension values. Example: Metric contains dimension\nlike SamplerName, Error. To retrieve all the time series data where SamplerName\nis equals to HTTPRequest1 or HTTPRequest2, the DimensionFilter value will be\n{\"SamplerName\", [\"HTTPRequest1\", \"HTTPRequest2\"}",
+          "x-typespec-name": "DimensionFilter[]"
+        }
+      },
+      "description": "Filters to fetch the set of metric"
+    },
+    "MetricUnit": {
+      "type": "string",
+      "enum": [
+        "NotSpecified",
+        "Percent",
+        "Count",
+        "Seconds",
+        "Milliseconds",
+        "Bytes",
+        "BytesPerSecond",
+        "CountPerSecond"
+      ],
+      "x-ms-enum": {
+        "name": "MetricUnit",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "NotSpecified",
+            "value": "NotSpecified",
+            "description": "No unit specified"
+          },
+          {
+            "name": "Percent",
+            "value": "Percent",
+            "description": "Percentage"
+          },
+          {
+            "name": "Count",
+            "value": "Count",
+            "description": "Value count"
+          },
+          {
+            "name": "Seconds",
+            "value": "Seconds",
+            "description": "Seconds"
+          },
+          {
+            "name": "Milliseconds",
+            "value": "Milliseconds",
+            "description": "Milliseconds"
+          },
+          {
+            "name": "Bytes",
+            "value": "Bytes",
+            "description": "Bytes"
+          },
+          {
+            "name": "BytesPerSecond",
+            "value": "BytesPerSecond",
+            "description": "Bytes per second"
+          },
+          {
+            "name": "CountPerSecond",
+            "value": "CountPerSecond",
+            "description": "Count per second"
+          }
+        ]
+      }
+    },
+    "MetricValue": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "description": "The timestamp for the metric value in ISO 8601 format."
+        },
+        "value": {
+          "type": "number",
+          "format": "float",
+          "description": "The metric value."
+        }
+      },
+      "description": "Represents a metric value."
+    },
+    "NameAndDesc": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "The description"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name"
+        }
+      },
+      "description": "The name and description"
+    },
+    "Oauth2": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "oauth2"
+          ],
+          "description": "OAuth2 authentication"
+        },
+        "flows": {
+          "type": "array",
+          "items": {},
+          "x-typespec-name": "[(anonymous model)]",
+          "description": "Supported OAuth2 flows"
+        }
+      },
+      "description": "The Azure Active Directory OAuth2 Flow",
+      "required": [
+        "type",
+        "flows"
+      ]
+    },
+    "OptionalLoadTestConfig": {
+      "type": "object",
+      "properties": {
+        "endpointUrl": {
+          "type": "string",
+          "description": "Test URL. Provide the complete HTTP URL. For example,\nhttp://contoso-app.azurewebsites.net/login"
+        },
+        "virtualUsers": {
+          "type": "integer",
+          "format": "int32",
+          "description": "No of concurrent virtual users"
+        },
+        "rampUpTime": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Ramp up time"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Test run duration"
+        }
+      },
+      "description": "Optional load test config"
+    },
+    "PFAction": {
+      "type": "string",
+      "enum": [
+        "continue",
+        "stop"
+      ],
+      "x-ms-enum": {
+        "name": "PFAction",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "continue",
+            "value": "continue",
+            "description": "Test will continue to run even if pass fail metric criteria metric gets failed"
+          },
+          {
+            "name": "stop",
+            "value": "stop",
+            "description": "Test run will stop if pass fail criteria metric is not passed."
+          }
+        ]
+      }
+    },
+    "PFAgFunc": {
+      "type": "string",
+      "enum": [
+        "count",
+        "percentage",
+        "avg",
+        "p50",
+        "p90",
+        "p95",
+        "p99",
+        "min",
+        "max"
+      ],
+      "x-ms-enum": {
+        "name": "PFAgFunc",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "count",
+            "value": "count",
+            "description": "Criteria applies for count value"
+          },
+          {
+            "name": "percentage",
+            "value": "percentage",
+            "description": "Criteria applies for given percentage value"
+          },
+          {
+            "name": "avg",
+            "value": "avg",
+            "description": "Criteria applies for avg value"
+          },
+          {
+            "name": "p50",
+            "value": "p50",
+            "description": "Criteria applies for 50th percentile value"
+          },
+          {
+            "name": "p90",
+            "value": "p90",
+            "description": "Criteria applies for 90th percentile value"
+          },
+          {
+            "name": "p95",
+            "value": "p95",
+            "description": "Criteria applies for 95th percentile value"
+          },
+          {
+            "name": "p99",
+            "value": "p99",
+            "description": "Criteria applies for 99th percentile value"
+          },
+          {
+            "name": "min",
+            "value": "min",
+            "description": "Criteria applies for minimum value"
+          },
+          {
+            "name": "max",
+            "value": "max",
+            "description": "Criteria applies for maximum value"
+          }
+        ]
+      }
+    },
+    "PFMetrics": {
+      "type": "string",
+      "enum": [
+        "response_time_ms",
+        "latency",
+        "error",
+        "requests",
+        "requests_per_sec"
+      ],
+      "x-ms-enum": {
+        "name": "PFMetrics",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "response_time_ms",
+            "value": "response_time_ms",
+            "description": "Pass fail criteria for response time metric"
+          },
+          {
+            "name": "latency",
+            "value": "latency",
+            "description": "Pass fail criteria for response time metric"
+          },
+          {
+            "name": "error",
+            "value": "error",
+            "description": "Pass fail criteria for error metric"
+          },
+          {
+            "name": "requests",
+            "value": "requests",
+            "description": "Pass fail criteria for total requests"
+          },
+          {
+            "name": "requests_per_sec",
+            "value": "requests_per_sec",
+            "description": "Pass fail criteria for request rate."
+          }
+        ]
+      }
+    },
+    "PFResult": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "undetermined",
+        "failed"
+      ],
+      "x-ms-enum": {
+        "name": "PFResult",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "passed",
+            "value": "passed",
+            "description": "Given pass fail criteria metric has passed."
+          },
+          {
+            "name": "undetermined",
+            "value": "undetermined",
+            "description": "Given pass fail criteria metric couldn't determine."
+          },
+          {
+            "name": "failed",
+            "value": "failed",
+            "description": "Given pass fail criteria metric has failed."
+          }
+        ]
+      }
+    },
+    "PFTestResult": {
+      "type": "string",
+      "enum": [
+        "PASSED",
+        "NOT_APPLICABLE",
+        "FAILED"
+      ],
+      "x-ms-enum": {
+        "name": "PFTestResult",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "PASSED",
+            "value": "PASSED",
+            "description": "Pass/fail criteria has passed."
+          },
+          {
+            "name": "NOT_APPLICABLE",
+            "value": "NOT_APPLICABLE",
+            "description": "Pass/fail criteria is not applicable."
+          },
+          {
+            "name": "FAILED",
+            "value": "FAILED",
+            "description": "Pass/fail criteria has failed."
+          }
+        ]
+      }
+    },
+    "PagedFileInfo": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileInfo"
+          },
+          "x-ms-identifiers": [],
+          "description": "The FileInfo items on this page",
+          "x-typespec-name": "FileInfo[]"
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items",
+          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+        }
+      },
+      "description": "Collection of files.",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedTest": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Test"
+          },
+          "x-ms-identifiers": [],
+          "description": "The Test items on this page",
+          "x-typespec-name": "Test[]"
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items",
+          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+        }
+      },
+      "description": "Collection of tests",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedTestRun": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TestRun"
+          },
+          "x-ms-identifiers": [],
+          "description": "The TestRun items on this page",
+          "x-typespec-name": "TestRun[]"
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items",
+          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+        }
+      },
+      "description": "Collection of test runs",
+      "required": [
+        "value"
+      ]
+    },
+    "PagedTimeSeriesElement": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TimeSeriesElement"
+          },
+          "x-ms-identifiers": [],
+          "description": "The TimeSeriesElement items on this page",
+          "x-typespec-name": "TimeSeriesElement[]"
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items",
+          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+        }
+      },
+      "description": "The response to a metrics query.",
+      "required": [
+        "value"
+      ]
+    },
+    "PassFailCriteria": {
+      "type": "object",
+      "properties": {
+        "passFailMetrics": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/PassFailMetric"
+          },
+          "description": "Map of id and pass fail metrics { id  : pass fail metrics }.",
+          "x-typespec-name": "Record<PassFailMetric>"
+        }
+      },
+      "description": "Pass fail criteria for a test."
+    },
+    "PassFailMetric": {
+      "type": "object",
+      "properties": {
+        "clientMetric": {
+          "$ref": "#/definitions/PFMetrics",
+          "description": "The client metric on which the criteria should be applied."
+        },
+        "aggregate": {
+          "$ref": "#/definitions/PFAgFunc",
+          "description": "The aggregation function to be applied on the client metric. Allowed functions\n- ‘percentage’ - for error metric , ‘avg’, ‘p50’, ‘p90’, ‘p95’, ‘p99’, ‘min’,\n‘max’ - for response_time_ms and latency metric, ‘avg’ - for requests_per_sec,\n‘count’ - for requests"
+        },
+        "condition": {
+          "type": "string",
+          "description": "The comparison operator. Supported types ‘>’, ‘<’ "
+        },
+        "requestName": {
+          "type": "string",
+          "description": "Request name for which the Pass fail criteria has to be applied "
+        },
+        "value": {
+          "type": "number",
+          "format": "float",
+          "description": "The value to compare with the client metric. Allowed values - ‘error : [0.0 ,\n100.0] unit- % ’, response_time_ms and latency : any integer value unit- ms."
+        },
+        "action": {
+          "$ref": "#/definitions/PFAction",
+          "description": "Action taken after the threshold is met. Default is ‘continue’."
+        },
+        "actualValue": {
+          "type": "number",
+          "format": "float",
+          "description": "The actual value of the client metric for the test run.",
+          "readOnly": true
+        },
+        "result": {
+          "$ref": "#/definitions/PFResult",
+          "description": "Outcome of the test run.",
+          "readOnly": true
+        }
+      },
+      "description": "Pass fail metric"
+    },
+    "ResourceMetric": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique name for metric.",
+          "readOnly": true
+        },
+        "resourceId": {
+          "type": "string",
+          "description": "Azure resource id."
+        },
+        "metricNamespace": {
+          "type": "string",
+          "description": "Metric name space."
+        },
+        "displayDescription": {
+          "type": "string",
+          "description": "Metric description."
+        },
+        "name": {
+          "type": "string",
+          "description": "The invariant value of metric name"
+        },
+        "aggregation": {
+          "type": "string",
+          "description": "Metric aggregation."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Metric unit."
+        },
+        "resourceType": {
+          "type": "string",
+          "description": "Azure resource type."
+        }
+      },
+      "description": "Associated metric definition for particular metrics of the azure resource (\nRefer :\nhttps://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition).",
+      "required": [
+        "resourceId",
+        "metricNamespace",
+        "name",
+        "aggregation",
+        "resourceType"
+      ]
+    },
+    "Secret": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "The value of the secret for the respective type"
+        },
+        "type": {
+          "$ref": "#/definitions/SecretType",
+          "description": "Type of secret"
+        }
+      },
+      "description": "Secret"
+    },
+    "SecretType": {
+      "type": "string",
+      "enum": [
+        "AKV_SECRET_URI",
+        "SECRET_VALUE"
+      ],
+      "x-ms-enum": {
+        "name": "SecretType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "AKV_SECRET_URI",
+            "value": "AKV_SECRET_URI",
+            "description": "If the secret is stored in an Azure Key Vault"
+          },
+          {
+            "name": "SECRET_VALUE",
+            "value": "SECRET_VALUE",
+            "description": "If the Plain text secret value provided"
+          }
+        ]
+      }
+    },
+    "Status": {
+      "type": "string",
+      "enum": [
+        "ACCEPTED",
+        "NOTSTARTED",
+        "PROVISIONING",
+        "PROVISIONED",
+        "CONFIGURING",
+        "CONFIGURED",
+        "EXECUTING",
+        "EXECUTED",
+        "DEPROVISIONING",
+        "DEPROVISIONED",
+        "DONE",
+        "CANCELLING",
+        "CANCELLED",
+        "FAILED",
+        "VALIDATION_SUCCESS",
+        "VALIDATION_FAILURE"
+      ],
+      "x-ms-enum": {
+        "name": "Status",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "ACCEPTED",
+            "value": "ACCEPTED",
+            "description": "Test run request is accepted"
+          },
+          {
+            "name": "NOTSTARTED",
+            "value": "NOTSTARTED",
+            "description": "Test run is not yet started."
+          },
+          {
+            "name": "PROVISIONING",
+            "value": "PROVISIONING",
+            "description": "Test run is getting provision"
+          },
+          {
+            "name": "PROVISIONED",
+            "value": "PROVISIONED",
+            "description": "Test run is provisioned"
+          },
+          {
+            "name": "CONFIGURING",
+            "value": "CONFIGURING",
+            "description": "Test run is getting configure"
+          },
+          {
+            "name": "CONFIGURED",
+            "value": "CONFIGURED",
+            "description": "Test run configuration is done"
+          },
+          {
+            "name": "EXECUTING",
+            "value": "EXECUTING",
+            "description": "Test run has started executing"
+          },
+          {
+            "name": "EXECUTED",
+            "value": "EXECUTED",
+            "description": "Test run has been executed"
+          },
+          {
+            "name": "DEPROVISIONING",
+            "value": "DEPROVISIONING",
+            "description": "Test run is getting deprovision"
+          },
+          {
+            "name": "DEPROVISIONED",
+            "value": "DEPROVISIONED",
+            "description": "Test run request is deprovisioned"
+          },
+          {
+            "name": "DONE",
+            "value": "DONE",
+            "description": "Test run request is finished"
+          },
+          {
+            "name": "CANCELLING",
+            "value": "CANCELLING",
+            "description": "Test run request is getting cancelled"
+          },
+          {
+            "name": "CANCELLED",
+            "value": "CANCELLED",
+            "description": "Test run request is cancelled"
+          },
+          {
+            "name": "FAILED",
+            "value": "FAILED",
+            "description": "Test run request is failed"
+          },
+          {
+            "name": "VALIDATION_SUCCESS",
+            "value": "VALIDATION_SUCCESS",
+            "description": "Test run JMX file is validated"
+          },
+          {
+            "name": "VALIDATION_FAILURE",
+            "value": "VALIDATION_FAILURE",
+            "description": "Test run JMX file validation is failed"
+          }
+        ]
+      }
+    },
+    "Test": {
+      "type": "object",
+      "properties": {
+        "passFailCriteria": {
+          "$ref": "#/definitions/PassFailCriteria",
+          "description": "Pass fail criteria for a test."
+        },
+        "secrets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          },
+          "description": "Secrets can be stored in an Azure Key Vault or any other secret store. If the\nsecret is stored in an Azure Key Vault, the value should be the secret\nidentifier and the type should be AKV_SECRET_URI. If the secret is stored\nelsewhere, the secret value should be provided directly and the type should be\nSECRET_VALUE.",
+          "x-typespec-name": "Record<Secret>"
+        },
+        "certificate": {
+          "$ref": "#/definitions/CertificateMetadata",
+          "description": "Certificates metadata"
+        },
+        "environmentVariables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables which are defined as a set of <name,value> pairs.",
+          "x-typespec-name": "Record<string>"
+        },
+        "loadTestConfiguration": {
+          "$ref": "#/definitions/LoadTestConfiguration",
+          "description": "The load test configuration."
+        },
+        "inputArtifacts": {
+          "$ref": "#/definitions/TestInputArtifacts",
+          "description": "The input artifacts for the test.",
+          "readOnly": true
+        },
+        "testId": {
+          "type": "string",
+          "description": "Unique test name as identifier.",
+          "readOnly": true
+        },
+        "description": {
+          "type": "string",
+          "description": "The test description."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of a test."
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "Subnet ID on which the load test instances should run."
+        },
+        "keyvaultReferenceIdentityType": {
+          "type": "string",
+          "description": "Type of the managed identity referencing the Key vault."
+        },
+        "keyvaultReferenceIdentityId": {
+          "type": "string",
+          "description": "Resource Id of the managed identity referencing the Key vault."
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Load test model"
+    },
+    "TestAppComponents": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AppComponent"
+          },
+          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
+          "x-typespec-name": "Record<AppComponent>"
+        },
+        "testId": {
+          "type": "string",
+          "description": "Test identifier",
+          "readOnly": true
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Test app component",
+      "required": [
+        "components"
+      ]
+    },
+    "TestAppComponentsUpdate": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AppComponent"
+          },
+          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
+          "x-typespec-name": "Record<AppComponent>"
+        }
+      },
+      "description": "Test app component"
+    },
+    "TestInputArtifacts": {
+      "type": "object",
+      "properties": {
+        "configFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "testScriptFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "userPropFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "inputArtifactsZipFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "additionalFileInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileInfo"
+          },
+          "x-ms-identifiers": [],
+          "description": "Additional supported files for the test run",
+          "x-typespec-name": "FileInfo[]",
+          "readOnly": true
+        }
+      },
+      "description": "The input artifacts for the test."
+    },
+    "TestRun": {
+      "type": "object",
+      "properties": {
+        "testRunId": {
+          "type": "string",
+          "description": "Unique test run name as identifier",
+          "readOnly": true
+        },
+        "passFailCriteria": {
+          "$ref": "#/definitions/PassFailCriteria",
+          "description": "Pass fail criteria for a test."
+        },
+        "secrets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          },
+          "description": "Secrets can be stored in an Azure Key Vault or any other secret store. If the\nsecret is stored in an Azure Key Vault, the value should be the secret\nidentifier and the type should be AKV_SECRET_URI. If the secret is stored\nelsewhere, the secret value should be provided directly and the type should be\nSECRET_VALUE.",
+          "x-typespec-name": "Record<Secret>"
+        },
+        "certificate": {
+          "$ref": "#/definitions/CertificateMetadata",
+          "description": "Certificates metadata"
+        },
+        "environmentVariables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables which are defined as a set of <name,value> pairs.",
+          "x-typespec-name": "Record<string>"
+        },
+        "errorDetails": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorDetails"
+          },
+          "x-ms-identifiers": [],
+          "description": "Error details if there is any failure in load test run",
+          "x-typespec-name": "ErrorDetails[]",
+          "readOnly": true
+        },
+        "testRunStatistics": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/TestRunStatistics"
+          },
+          "description": "Test run statistics.",
+          "x-typespec-name": "Record<TestRunStatistics>",
+          "readOnly": true
+        },
+        "loadTestConfiguration": {
+          "$ref": "#/definitions/LoadTestConfiguration",
+          "description": "The load test configuration."
+        },
+        "testArtifacts": {
+          "$ref": "#/definitions/TestRunArtifacts",
+          "description": "Collection of test run artifacts",
+          "readOnly": true
+        },
+        "testResult": {
+          "$ref": "#/definitions/PFTestResult",
+          "description": "Test result for pass/Fail criteria used during the test run.",
+          "readOnly": true
+        },
+        "virtualUsers": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of virtual users, for which test has been run.",
+          "readOnly": true
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of a testRun."
+        },
+        "testId": {
+          "type": "string",
+          "description": "Associated test Id."
+        },
+        "description": {
+          "type": "string",
+          "description": "The test run description."
+        },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "description": "The test run status.",
+          "readOnly": true
+        },
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The test run start DateTime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The test run end DateTime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "executedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Test run initiated time.",
+          "readOnly": true
+        },
+        "portalUrl": {
+          "type": "string",
+          "description": "Portal url.",
+          "readOnly": true
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Test run duration in milliseconds.",
+          "readOnly": true
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "Subnet ID on which the load test instances should run.",
+          "readOnly": true
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Load test run model",
+      "required": [
+        "testRunId"
+      ]
+    },
+    "TestRunAppComponents": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AppComponent"
+          },
+          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
+          "x-typespec-name": "Record<AppComponent>"
+        },
+        "testRunId": {
+          "type": "string",
+          "description": "Test run identifier",
+          "readOnly": true
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Test run app component",
+      "required": [
+        "components"
+      ]
+    },
+    "TestRunAppComponentsUpdate": {
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/AppComponent"
+          },
+          "description": "Azure resource collection { resource id (fully qualified resource Id e.g\nsubscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})\n: resource object } ",
+          "x-typespec-name": "Record<AppComponent>"
+        }
+      },
+      "description": "Test run app component"
+    },
+    "TestRunArtifacts": {
+      "type": "object",
+      "properties": {
+        "inputArtifacts": {
+          "$ref": "#/definitions/TestRunInputArtifacts",
+          "description": "The input artifacts for the test run.",
+          "readOnly": true
+        },
+        "outputArtifacts": {
+          "$ref": "#/definitions/TestRunOutputArtifacts",
+          "description": "The output artifacts for the test run."
+        }
+      },
+      "description": "Collection of test run artifacts"
+    },
+    "TestRunInputArtifacts": {
+      "type": "object",
+      "properties": {
+        "configFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "testScriptFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "userPropFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "inputArtifactsZipFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "additionalFileInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileInfo"
+          },
+          "x-ms-identifiers": [],
+          "description": "Additional supported files for the test run",
+          "x-typespec-name": "FileInfo[]",
+          "readOnly": true
+        }
+      },
+      "description": "The input artifacts for the test run."
+    },
+    "TestRunOutputArtifacts": {
+      "type": "object",
+      "properties": {
+        "resultFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        },
+        "logsFileInfo": {
+          "$ref": "#/definitions/FileInfo",
+          "description": "File info"
+        }
+      },
+      "description": "The output artifacts for the test run."
+    },
+    "TestRunServerMetricConfig": {
+      "type": "object",
+      "properties": {
+        "testRunId": {
+          "type": "string",
+          "description": "Test run identifier",
+          "readOnly": true
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ResourceMetric"
+          },
+          "description": "Azure resource metrics collection {metric id : metrics object} (Refer :\nhttps://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition\nfor metric id).",
+          "x-typespec-name": "Record<ResourceMetric>"
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Test run server metrics configuration"
+    },
+    "TestRunStatistics": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "type": "string",
+          "description": "Transaction name.",
+          "readOnly": true
+        },
+        "sampleCount": {
+          "type": "number",
+          "format": "float",
+          "description": "Sampler count.",
+          "readOnly": true
+        },
+        "errorCount": {
+          "type": "number",
+          "format": "float",
+          "description": "Error count.",
+          "readOnly": true
+        },
+        "errorPct": {
+          "type": "number",
+          "format": "float",
+          "description": "Error percentage.",
+          "readOnly": true
+        },
+        "meanResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "Mean response time.",
+          "readOnly": true
+        },
+        "medianResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "Median response time.",
+          "readOnly": true
+        },
+        "maxResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "Max response time.",
+          "readOnly": true
+        },
+        "minResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "Minimum response time.",
+          "readOnly": true
+        },
+        "pct1ResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "90 percentile response time.",
+          "readOnly": true
+        },
+        "pct2ResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "95 percentile response time.",
+          "readOnly": true
+        },
+        "pct3ResTime": {
+          "type": "number",
+          "format": "float",
+          "description": "99 percentile response time.",
+          "readOnly": true
+        },
+        "throughput": {
+          "type": "number",
+          "format": "float",
+          "description": "Throughput.",
+          "readOnly": true
+        },
+        "receivedKBytesPerSec": {
+          "type": "number",
+          "format": "float",
+          "description": "Received network bytes.",
+          "readOnly": true
+        },
+        "sentKBytesPerSec": {
+          "type": "number",
+          "format": "float",
+          "description": "Send network bytes.",
+          "readOnly": true
+        }
+      },
+      "description": "Test run statistics."
+    },
+    "TestRunUpdate": {
+      "type": "object",
+      "properties": {
+        "passFailCriteria": {
+          "$ref": "#/definitions/PassFailCriteria",
+          "description": "Pass fail criteria for a test."
+        },
+        "secrets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          },
+          "description": "Secrets can be stored in an Azure Key Vault or any other secret store. If the\nsecret is stored in an Azure Key Vault, the value should be the secret\nidentifier and the type should be AKV_SECRET_URI. If the secret is stored\nelsewhere, the secret value should be provided directly and the type should be\nSECRET_VALUE.",
+          "x-typespec-name": "Record<Secret>"
+        },
+        "certificate": {
+          "$ref": "#/definitions/CertificateMetadata",
+          "description": "Certificates metadata"
+        },
+        "environmentVariables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Environment variables which are defined as a set of <name,value> pairs.",
+          "x-typespec-name": "Record<string>"
+        },
+        "loadTestConfiguration": {
+          "$ref": "#/definitions/LoadTestConfiguration",
+          "description": "The load test configuration."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of a testRun."
+        },
+        "testId": {
+          "type": "string",
+          "description": "Associated test Id."
+        },
+        "description": {
+          "type": "string",
+          "description": "The test run description."
+        }
+      },
+      "description": "Load test run model"
+    },
+    "TestRuns": {
+      "type": "object",
+      "properties": {
+        "testRunId": {
+          "type": "string",
+          "description": "Unique test run name as identifier",
+          "readOnly": true
+        }
+      },
+      "description": "Load test run model",
+      "required": [
+        "testRunId"
+      ]
+    },
+    "TestServerMetricConfig": {
+      "type": "object",
+      "properties": {
+        "testId": {
+          "type": "string",
+          "description": "Test identifier",
+          "readOnly": true
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ResourceMetric"
+          },
+          "description": "Azure resource metrics collection {metric id : metrics object} (Refer :\nhttps://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition\nfor metric id).",
+          "x-typespec-name": "Record<ResourceMetric>"
+        },
+        "createdDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "createdBy": {
+          "type": "string",
+          "description": "The user that created.",
+          "readOnly": true
+        },
+        "lastModifiedDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last Modified datetime(ISO 8601 literal format).",
+          "readOnly": true
+        },
+        "lastModifiedBy": {
+          "type": "string",
+          "description": "The user that last modified.",
+          "readOnly": true
+        }
+      },
+      "description": "Test server metrics configuration"
+    },
+    "TimeGrain": {
+      "type": "string",
+      "enum": [
+        "PT5S",
+        "PT10S",
+        "PT1M",
+        "PT5M",
+        "PT1H"
+      ],
+      "x-ms-enum": {
+        "name": "TimeGrain",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "PT5S",
+            "value": "PT5S",
+            "description": "5 seconds, available only if test run duration is less than 10 minutes"
+          },
+          {
+            "name": "PT10S",
+            "value": "PT10S",
+            "description": "10 seconds, available only if test run duration is less than 10 minutes"
+          },
+          {
+            "name": "PT1M",
+            "value": "PT1M",
+            "description": "1 minute"
+          },
+          {
+            "name": "PT5M",
+            "value": "PT5M",
+            "description": "5 minutes, available only if test run duration is greater than 1 minute"
+          },
+          {
+            "name": "PT1H",
+            "value": "PT1H",
+            "description": "1 hour, available only if test run duration is greater than 1 minute"
+          }
+        ]
+      }
+    },
+    "TimeSeriesElement": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MetricValue"
+          },
+          "x-ms-identifiers": [],
+          "description": "An array of data points representing the metric values.",
+          "x-typespec-name": "MetricValue[]"
+        },
+        "dimensionValues": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DimensionValue"
+          },
+          "x-ms-identifiers": [],
+          "description": "The dimension values ",
+          "x-typespec-name": "DimensionValue[]"
+        }
+      },
+      "description": "The time series returned when a data query is performed."
+    }
+  },
+  "parameters": {
+    "Azure.Core.Foundations.ApiVersionParameter": {
+      "name": "api-version",
+      "in": "query",
+      "required": true,
+      "description": "The API version to use for this operation.",
+      "x-ms-client-name": "apiVersion",
+      "type": "string",
+      "minLength": 1,
+      "x-ms-parameter-location": "method"
+    },
+    "MetricDimensions.interval": {
+      "name": "interval",
+      "in": "query",
+      "required": false,
+      "description": "The interval (i.e. timegrain) of the query.",
+      "type": "string",
+      "enum": [
+        "PT5S",
+        "PT10S",
+        "PT1M",
+        "PT5M",
+        "PT1H"
+      ],
+      "x-ms-enum": {
+        "name": "Interval",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "PT5S",
+            "value": "PT5S",
+            "description": "5 seconds, available only if test run duration is less than 10 minutes"
+          },
+          {
+            "name": "PT10S",
+            "value": "PT10S",
+            "description": "10 seconds, available only if test run duration is less than 10 minutes"
+          },
+          {
+            "name": "PT1M",
+            "value": "PT1M",
+            "description": "1 minute"
+          },
+          {
+            "name": "PT5M",
+            "value": "PT5M",
+            "description": "5 minutes, available only if test run duration is greater than 1 minute"
+          },
+          {
+            "name": "PT1H",
+            "value": "PT1H",
+            "description": "1 hour, available only if test run duration is greater than 1 minute"
+          }
+        ]
+      },
+      "x-ms-parameter-location": "method"
+    },
+    "MetricDimensions.metricName": {
+      "name": "metricName",
+      "in": "query",
+      "required": false,
+      "description": "Metric name",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "MetricDimensions.metricNamespace": {
+      "name": "metricNamespace",
+      "in": "query",
+      "required": true,
+      "description": "Metric namespace to query metric definitions for.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    },
+    "MetricDimensions.timespan": {
+      "name": "timespan",
+      "in": "query",
+      "required": false,
+      "description": "The timespan of the query. It is a string with the following format\n'startDateTime_ISO/endDateTime_ISO'.",
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    }
+  }
+}

@@ -28,13 +28,14 @@ import {
   getTypeName,
   getSchemaForType,
   getBinaryType
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
   getOperationStatuscode,
   isBinaryPayload,
-  getOperationLroOverload
-} from "../operationUtil.js";
+  getOperationLroOverload,
+  getOperationName
+} from "../utils/operationUtil.js";
 
 export function transformToResponseTypes(
   program: Program,
@@ -77,7 +78,7 @@ export function transformToResponseTypes(
   ) {
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(operationGroup),
-      operationName: route.operation.name,
+      operationName: getOperationName(program, route.operation),
       responses: []
     };
     for (const resp of route.responses) {
@@ -234,7 +235,7 @@ function transformLroLogicalResponse(
     description: `The final response for long-running ${route.operation.name} operation`,
     predefinedName: getLroLogicalResponseName(
       operationGroupName,
-      route.operation.name
+      getOperationName(program, route.operation)
     ),
     body: successResp?.body
   };

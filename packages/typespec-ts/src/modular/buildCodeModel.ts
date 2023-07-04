@@ -82,8 +82,8 @@ import {
   Header
 } from "./modularCodeModel.js";
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
-import { camelToSnakeCase, toCamelCase } from "../casingUtils.js";
-import { getEnrichedDefaultApiVersion } from "../modelUtils.js";
+import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
+import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -856,7 +856,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     snakeCaseName: modelName
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
-    base: modelName === "" ? "json" : "dpg"
+    base: modelName === "" ? "json" : "dpg",
+    isCoreErrorType: isAzureCoreErrorType(type)
   };
 }
 

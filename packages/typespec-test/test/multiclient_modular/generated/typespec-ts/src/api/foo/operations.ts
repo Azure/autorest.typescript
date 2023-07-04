@@ -5,17 +5,6 @@ import { Client, UnexpectedHelper } from "../../rest/foo/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { Resource, CustomPage } from "./models.js";
 import { RequestOptions } from "../../common/interfaces.js";
-import {
-  CreateOrUpdate200Response,
-  CreateOrUpdate201Response,
-  CreateOrUpdateDefaultResponse,
-  Get200Response,
-  GetDefaultResponse,
-  DeleteOperation204Response,
-  DeleteOperationDefaultResponse,
-  List200Response,
-  ListDefaultResponse,
-} from "../../rest/foo/responses.js";
 
 export interface CreateOrUpdateOptions extends RequestOptions {
   /** */

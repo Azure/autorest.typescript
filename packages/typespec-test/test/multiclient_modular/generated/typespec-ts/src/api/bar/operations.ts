@@ -1,16 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "../../rest/bar/index.js";
+import { Client, UnexpectedHelper } from "../../rest/bar/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { Resource } from "./models.js";
 import { RequestOptions } from "../../common/interfaces.js";
-import {
-  GetBinary200Response,
-  GetArray200Response,
-  CreateWithHeaders201Response,
-  DeleteWithHeaders204Response,
-} from "../../rest/bar/responses.js";
 
 export interface GetBinaryOptions extends RequestOptions {}
 
@@ -30,6 +24,10 @@ export function _getBinarySend(
 export async function _getBinaryDeserialize(
   result: GetBinary200Response
 ): Promise<any> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return result.body;
 }
 
@@ -60,6 +58,10 @@ export function _getArraySend(
 export async function _getArrayDeserialize(
   result: GetArray200Response
 ): Promise<Resource[]> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return (result.body ?? []).map((p) => ({
     id: p["id"],
     name: p["name"],
@@ -95,6 +97,10 @@ export function _createWithHeadersSend(
 export async function _createWithHeadersDeserialize(
   result: CreateWithHeaders201Response
 ): Promise<Resource> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     name: result.body["name"],
@@ -128,8 +134,12 @@ export function _deleteWithHeadersSend(
 }
 
 export async function _deleteWithHeadersDeserialize(
-  _result: DeleteWithHeaders204Response
+  result: DeleteWithHeaders204Response
 ): Promise<void> {
+  if (UnexpectedHelper.isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 

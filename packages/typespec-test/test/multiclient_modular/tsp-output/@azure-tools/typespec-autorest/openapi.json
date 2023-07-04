@@ -110,8 +110,8 @@
                   "items": {
                     "$ref": "#/definitions/Resource"
                   },
-                  "x-typespec-name": "Resource[]",
-                  "description": "The Resource items on this page"
+                  "description": "The Resource items on this page",
+                  "x-typespec-name": "Resource[]"
                 },
                 "nextLink": {
                   "type": "string",
@@ -287,8 +287,8 @@
             "$ref": "#/definitions/Azure.Core.Foundations.Error"
           },
           "x-ms-identifiers": [],
-          "x-typespec-name": "Azure.Core.Foundations.Error[]",
-          "description": "An array of details about specific errors that led to this reported error."
+          "description": "An array of details about specific errors that led to this reported error.",
+          "x-typespec-name": "Azure.Core.Foundations.Error[]"
         },
         "innererror": {
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
@@ -298,8 +298,7 @@
       "description": "The error object.",
       "required": [
         "code",
-        "message",
-        "details"
+        "message"
       ]
     },
     "Azure.Core.Foundations.ErrorResponse": {
@@ -327,10 +326,7 @@
           "description": "Inner error."
         }
       },
-      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.",
-      "required": [
-        "code"
-      ]
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses."
     },
     "Resource": {
       "type": "object",
@@ -370,8 +366,8 @@
       "required": true,
       "description": "The API version to use for this operation.",
       "x-ms-client-name": "apiVersion",
-      "minLength": 1,
       "type": "string",
+      "minLength": 1,
       "x-ms-parameter-location": "method"
     }
   }

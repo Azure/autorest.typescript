@@ -2,28 +2,26 @@
 // Licensed under the MIT license.
 
 import {
-  GetByUnionParameters,
+  GetByUnionOnlyParameters,
   GetBySharedRouteForStringParameters,
   GetBySharedRouteForModelParameters,
   GetBySharedRouteForBytesParameters,
-  GetByOverloadStringParameters,
-  GetByOverloadForModelParameters,
-  GetByOverloadForBytesParameters,
+  GetByOverloadParentParameters,
 } from "./parameters";
 import {
-  GetByUnion200Response,
+  GetByUnionOnly200Response,
   GetBySharedRouteForString200Response,
   GetBySharedRouteForModel200Response,
   GetBySharedRouteForBytes200Response,
-  GetByOverloadString200Response,
-  GetByOverloadForModel200Response,
-  GetByOverloadForBytes200Response,
+  GetByOverloadParent200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface GetByUnion {
+export interface GetByUnionOnly {
   /** Union of types map union of content types. */
-  post(options: GetByUnionParameters): StreamableMethod<GetByUnion200Response>;
+  post(
+    options: GetByUnionOnlyParameters
+  ): StreamableMethod<GetByUnionOnly200Response>;
 }
 
 export interface GetBySharedRouteForString {
@@ -41,25 +39,20 @@ export interface GetBySharedRouteForString {
   ): StreamableMethod<GetBySharedRouteForBytes200Response>;
 }
 
-export interface GetByOverloadString {
+export interface GetByOverloadParent {
+  /** Union of types map union of content types. Then use @overload to detailed mapping. */
   post(
-    options: GetByOverloadStringParameters
-  ): StreamableMethod<GetByOverloadString200Response>;
-  post(
-    options: GetByOverloadForModelParameters
-  ): StreamableMethod<GetByOverloadForModel200Response>;
-  post(
-    options: GetByOverloadForBytesParameters
-  ): StreamableMethod<GetByOverloadForBytes200Response>;
+    options: GetByOverloadParentParameters
+  ): StreamableMethod<GetByOverloadParent200Response>;
 }
 
 export interface Routes {
-  /** Resource for '/union' has methods for the following verbs: post */
-  (path: "/union"): GetByUnion;
-  /** Resource for '/shared-route' has methods for the following verbs: post */
-  (path: "/shared-route"): GetBySharedRouteForString;
-  /** Resource for '/overload' has methods for the following verbs: post */
-  (path: "/overload"): GetByOverloadString;
+  /** Resource for '/mediatypes/union' has methods for the following verbs: post */
+  (path: "/mediatypes/union"): GetByUnionOnly;
+  /** Resource for '/mediatypes/shared-route' has methods for the following verbs: post */
+  (path: "/mediatypes/shared-route"): GetBySharedRouteForString;
+  /** Resource for '/mediatypes/overload' has methods for the following verbs: post */
+  (path: "/mediatypes/overload"): GetByOverloadParent;
 }
 
 export type MediaTypesClient = Client & {

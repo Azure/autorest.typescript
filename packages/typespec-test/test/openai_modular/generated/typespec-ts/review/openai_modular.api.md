@@ -5,6 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
+import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
@@ -134,11 +135,42 @@ export interface GetEmbeddingsOptions extends RequestOptions {
 }
 
 // @public (undocumented)
+export interface GetImageOperationStatusOptions extends RequestOptions {
+}
+
+// @public
+export interface ImageLocation {
+    error?: ErrorModel;
+    url?: string;
+}
+
+// @public
+export interface ImageOperationResponse {
+    created: number;
+    error?: ErrorModel;
+    expires?: number;
+    id: string;
+    result?: ImageResponse;
+    status: State;
+}
+
+// @public
+export interface ImageResponse {
+    created: number;
+    data: ImageLocation[];
+}
+
+// @public
+export type ImageSize = string;
+
+// @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+    getImageOperationStatus(operationId: string, options?: GetImageOperationStatusOptions): Promise<ImageOperationResponse>;
+    startGenerateImage(prompt: string, options?: StartGenerateImageOptions): Promise<ImageOperationResponse>;
 }
 
 // @public (undocumented)
@@ -153,6 +185,16 @@ export interface RequestOptions {
         skipUrlEncoding?: boolean;
     };
 }
+
+// @public (undocumented)
+export interface StartGenerateImageOptions extends RequestOptions {
+    n?: number;
+    size?: ImageSize;
+    user?: string;
+}
+
+// @public
+export type State = string;
 
 // (No @packageDocumentation comment for this package)
 

@@ -4,33 +4,17 @@
 import { HttpResponse } from "@azure-rest/core-client";
 
 /** The request has succeeded. */
-export interface GetString200Response extends HttpResponse {
+export interface GetThing200Response extends HttpResponse {
   status: "200";
-  body: string;
-}
-
-/** The request has succeeded. */
-export interface GetNumber200Response extends HttpResponse {
-  status: "200";
-  body: number;
+  body: string | number;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface UploadString204Response extends HttpResponse {
+export interface Upload204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface UploadBytes204Response extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ProcessString204Response extends HttpResponse {
-  status: "204";
-}
-
-/** There is no content to send for this request, but the headers may be useful. */
-export interface ProcessBytes204Response extends HttpResponse {
+export interface Process204Response extends HttpResponse {
   status: "204";
 }

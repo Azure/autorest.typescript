@@ -15,9 +15,16 @@ export {
   ChatRole,
   ChatCompletions,
   ChatChoice,
+  ImageOperationResponse,
+  ImageResponse,
+  ImageLocation,
+  State,
+  ImageSize,
   OpenAIClientOptions,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
+  GetImageOperationStatusOptions,
+  StartGenerateImageOptions,
 } from "./api/index.js";
 export { RequestOptions } from "./common/interfaces.js";

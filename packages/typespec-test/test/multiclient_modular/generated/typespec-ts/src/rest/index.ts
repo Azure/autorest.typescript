@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import * as FooClient from "./foo/index.js";
-import * as BarClient from "./bar/index.js";
+import MultiClientClient from "./multiClientClient.js";
 
-export { FooClient, BarClient };
+export * from "./multiClientClient.js";
+export * from "./parameters.js";
+export * from "./responses.js";
+export * from "./clientDefinitions.js";
+
+export default MultiClientClient;

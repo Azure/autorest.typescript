@@ -24,15 +24,16 @@ import {
   SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getSchemaForType } from "../modelUtils.js";
+import { getSchemaForType } from "../utils/modelUtils.js";
 import {
   extractOperationLroDetail,
   getOperationGroupName,
+  getOperationName,
   getOperationStatuscode,
   isDefaultStatusCode,
   isDefinedStatusCode,
   isPagingOperation
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
 
 export function transformPaths(
   program: Program,
@@ -72,6 +73,7 @@ export function transformPaths(
  * an operation can end up returning.
  */
 function getResponseTypes(
+  program: Program,
   operation: HttpOperation,
   operationGroup?: SdkOperationGroup
 ): ResponseTypes {
@@ -86,7 +88,7 @@ function getResponseTypes(
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
           getOperationGroupName(operationGroup),
-          operation.operation.name,
+          getOperationName(program, operation.operation),
           statusCode
         );
         return responseName;
@@ -116,20 +118,23 @@ function transformOperation(
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
       operationGroupName,
-      route.operation.name,
+      getOperationName(program, route.operation),
       getOperationStatuscode(resp)
     );
     respNames.push(respName);
   }
-  const responseTypes = getResponseTypes(route, operationGroup);
+  const responseTypes = getResponseTypes(program, route, operationGroup);
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
-    optionsName: getParameterTypeName(operationGroupName, route.operation.name),
+    optionsName: getParameterTypeName(
+      operationGroupName,
+      getOperationName(program, route.operation)
+    ),
     responseTypes,
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
-    operationName: route.operation.name,
+    operationName: getOperationName(program, route.operation),
     operationHelperDetail: {
       lroDetails: extractOperationLroDetail(
         program,
@@ -150,7 +155,9 @@ function transformOperation(
   } else {
     paths[route.path] = {
       description: getDoc(program, route.operation) ?? "",
-      name: escapeCoreName(route.operation.name || "Client"),
+      name: escapeCoreName(
+        getOperationName(program, route.operation) || "Client"
+      ),
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {
