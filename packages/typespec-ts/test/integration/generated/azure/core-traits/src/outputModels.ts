@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** Provides the 'Repeatability-*' headers to enable repeatable requests. */
-export interface RepeatabilityRequestHeadersOutput {}
-
-/** Provides the 'Repeatability-*' headers to enable repeatable requests. */
-export interface RepeatabilityResponseHeadersOutput {}
-
 /** Provides the 'If-*' headers to enable conditional (cached) responses */
 export interface ConditionalRequestHeadersOutput {}
 
@@ -22,4 +16,16 @@ export interface UserOutput {
   readonly id: number;
   /** The user's name. */
   name?: string;
+}
+
+/** Provides the 'Repeatability-*' headers to enable repeatable requests. */
+export interface RepeatabilityRequestHeadersOutput {}
+
+/** Provides the 'Repeatability-*' headers to enable repeatable requests. */
+export interface RepeatabilityResponseHeadersOutput {}
+
+/** User action response */
+export interface UserActionResponseOutput {
+  /** User action result. */
+  userActionResult: string;
 }
