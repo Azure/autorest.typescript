@@ -12,6 +12,8 @@ import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 
+export let ENABLE_GROUP_NAME_PREFIX = false;
+
 export function transformRLCOptions(
   program: Program,
   emitterOptions: RLCOptions,
@@ -38,6 +40,8 @@ function extractRLCOptions(
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
+  const enableOperationGroup = getEnableOperationGroup(emitterOptions);
+  console.log(">>>>>>>>>>", emitterOptions, ENABLE_GROUP_NAME_PREFIX);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -48,7 +52,8 @@ function extractRLCOptions(
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
-    sourceFrom: "Cadl"
+    sourceFrom: "Cadl",
+    enableOperationGroup
   };
 }
 
@@ -102,6 +107,16 @@ function processAuth(program: Program) {
     }
   }
   return securityInfo;
+}
+
+function getEnableOperationGroup(emitterOptions: RLCOptions) {
+  if (
+    emitterOptions.enableOperationGroup === true ||
+    emitterOptions.enableOperationGroup === "true"
+  ) {
+    ENABLE_GROUP_NAME_PREFIX = true;
+  }
+  return ENABLE_GROUP_NAME_PREFIX;
 }
 
 function getIncludeShortcuts(emitterOptions: RLCOptions) {

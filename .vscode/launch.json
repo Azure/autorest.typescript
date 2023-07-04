@@ -84,8 +84,14 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/openai_modular",
-      "runtimeArgs": ["tsp", "compile", "./spec"],
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/loadTest",
+      "runtimeArgs": [
+        "tsp",
+        "compile",
+        "./spec",
+        "--option",
+        "@azure-tools/typespec-ts.enableOperationGroup=true"
+      ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",

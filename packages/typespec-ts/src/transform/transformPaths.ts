@@ -21,7 +21,6 @@ import {
   SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { getSchemaForType } from "../utils/modelUtils.js";
@@ -53,7 +52,7 @@ export function transformPaths(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformOperation(program, dpgContext, route, paths, operationGroup);
+      transformOperation(program, dpgContext, route, paths);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -74,8 +73,7 @@ export function transformPaths(
  */
 function getResponseTypes(
   program: Program,
-  operation: HttpOperation,
-  operationGroup?: SdkOperationGroup
+  operation: HttpOperation
 ): ResponseTypes {
   const returnTypes: ResponseTypes = {
     error: [],
@@ -87,7 +85,7 @@ function getResponseTypes(
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          getOperationGroupName(operationGroup),
+          getOperationGroupName(operation),
           getOperationName(program, operation.operation),
           statusCode
         );
@@ -109,12 +107,10 @@ function transformOperation(
   program: Program,
   dpgContext: SdkContext,
   route: HttpOperation,
-  paths: Paths,
-
-  operationGroup?: SdkOperationGroup
+  paths: Paths
 ) {
   const respNames = [];
-  const operationGroupName = getOperationGroupName(operationGroup);
+  const operationGroupName = getOperationGroupName(route);
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
       operationGroupName,
@@ -123,7 +119,7 @@ function transformOperation(
     );
     respNames.push(respName);
   }
-  const responseTypes = getResponseTypes(program, route, operationGroup);
+  const responseTypes = getResponseTypes(program, route);
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
@@ -173,7 +169,7 @@ function transformOperation(
             description: getDoc(program, p.param)
           };
         }),
-      operationGroupName: getOperationGroupName(operationGroup),
+      operationGroupName: getOperationGroupName(route),
       methods: {
         [route.verb]: [method]
       }

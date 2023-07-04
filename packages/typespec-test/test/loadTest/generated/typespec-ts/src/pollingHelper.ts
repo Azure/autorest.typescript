@@ -11,10 +11,10 @@ import {
   createHttpPoller,
 } from "@azure/core-lro";
 import {
-  TestRunCreateOrUpdate200Response,
-  TestRunCreateOrUpdate201Response,
-  TestRunCreateOrUpdateDefaultResponse,
-  TestRunCreateOrUpdateLogicalResponse,
+  LoadTestRunCreateOrUpdateTestRun200Response,
+  LoadTestRunCreateOrUpdateTestRun201Response,
+  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
+  LoadTestRunCreateOrUpdateTestRunLogicalResponse,
 } from "./responses";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -25,14 +25,14 @@ import {
  */
 export async function getLongRunningPoller<
   TResult extends
-    | TestRunCreateOrUpdateLogicalResponse
-    | TestRunCreateOrUpdateDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
 >(
   client: Client,
   initialResponse:
-    | TestRunCreateOrUpdate200Response
-    | TestRunCreateOrUpdate201Response
-    | TestRunCreateOrUpdateDefaultResponse,
+    | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

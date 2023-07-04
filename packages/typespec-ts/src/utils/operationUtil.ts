@@ -32,8 +32,7 @@ import {
   SdkClient,
   SdkContext,
   listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkOperationGroup
+  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
   OperationLroDetail,
@@ -41,6 +40,7 @@ import {
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
+import { ENABLE_GROUP_NAME_PREFIX } from "../transform/transfromRLCOptions.js";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -54,12 +54,23 @@ export function getOperationStatuscode(
 }
 
 // FIXME: this is the placeholder function to extract the operationGroupName
-export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
-  return normalizeName(
-    operationGroup?.type.name ?? "",
-    NameType.Interface,
-    true
-  );
+export function getOperationGroupName(route?: HttpOperation): string;
+export function getOperationGroupName(operation?: Operation): string;
+export function getOperationGroupName(
+  operationOrRoute?: Operation | HttpOperation
+) {
+  if (!ENABLE_GROUP_NAME_PREFIX || !operationOrRoute) {
+    return "";
+  }
+  if ((operationOrRoute as any).kind !== "Operation") {
+    // It is a HttpOperation
+    operationOrRoute = (operationOrRoute as HttpOperation).operation;
+  }
+  const interfaceOrNamespaceName =
+    (operationOrRoute as Operation)?.interface?.name ??
+    (operationOrRoute as Operation)?.namespace?.name ??
+    "";
+  return normalizeName(interfaceOrNamespaceName, NameType.Interface, true);
 }
 
 export function getOperationName(program: Program, operation: Operation) {

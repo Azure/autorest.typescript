@@ -43,7 +43,6 @@ import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
-// import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;

@@ -38,7 +38,6 @@ import {
   SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 
@@ -62,7 +61,7 @@ export function transformToParameterTypes(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformToParameterTypesForRoute(program, route, operationGroup);
+      transformToParameterTypesForRoute(program, route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -79,12 +78,11 @@ export function transformToParameterTypes(
   }
   function transformToParameterTypesForRoute(
     program: Program,
-    route: HttpOperation,
-    operationGroup?: SdkOperationGroup
+    route: HttpOperation
   ) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: getOperationGroupName(operationGroup),
+      operationGroup: getOperationGroupName(route),
       operationName: getOperationName(program, route.operation),
       parameters: []
     };

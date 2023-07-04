@@ -5,8 +5,7 @@ import {
   SdkClient,
   SdkContext,
   listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkOperationGroup
+  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ResponseHeaderSchema,
@@ -57,7 +56,7 @@ export function transformToResponseTypes(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformToResponseTypesForRoute(route, operationGroup);
+      transformToResponseTypesForRoute(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -72,12 +71,9 @@ export function transformToResponseTypes(
   if (inputImportedSet.size > 0) {
     importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
   }
-  function transformToResponseTypesForRoute(
-    route: HttpOperation,
-    operationGroup?: SdkOperationGroup
-  ) {
+  function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: getOperationGroupName(operationGroup),
+      operationGroup: getOperationGroupName(route),
       operationName: getOperationName(program, route.operation),
       responses: []
     };
@@ -100,7 +96,7 @@ export function transformToResponseTypes(
     const lroLogicalResponse = transformLroLogicalResponse(
       program,
       route,
-      getOperationGroupName(operationGroup),
+      getOperationGroupName(route),
       rlcOperationUnit.responses
     );
     if (lroLogicalResponse) {
