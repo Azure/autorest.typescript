@@ -9,13 +9,13 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface Public200Response extends HttpResponse {
+export interface SharedPublic200Response extends HttpResponse {
   status: "200";
   body: SharedModelOutput;
 }
 
 /** The request has succeeded. */
-export interface Internal200Response extends HttpResponse {
+export interface SharedInternal200Response extends HttpResponse {
   status: "200";
   body: SharedModelOutput;
 }

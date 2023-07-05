@@ -2,25 +2,29 @@
 // Licensed under the MIT license.
 
 import {
-  PublicParameters,
-  InternalParameters,
+  SharedPublicParameters,
+  SharedInternalParameters,
   PublicOnlyParameters,
   InternalOnlyParameters,
 } from "./parameters";
 import {
-  Public200Response,
-  Internal200Response,
+  SharedPublic200Response,
+  SharedInternal200Response,
   PublicOnly200Response,
   InternalOnly200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Public {
-  get(options: PublicParameters): StreamableMethod<Public200Response>;
+  get(
+    options: SharedPublicParameters
+  ): StreamableMethod<SharedPublic200Response>;
 }
 
 export interface Internal {
-  get(options: InternalParameters): StreamableMethod<Internal200Response>;
+  get(
+    options: SharedInternalParameters
+  ): StreamableMethod<SharedInternal200Response>;
 }
 
 export interface PublicOnly {
