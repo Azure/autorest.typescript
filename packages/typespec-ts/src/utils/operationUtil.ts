@@ -95,10 +95,7 @@ export function getOperationGroupName(
   return normalizeName(namespace.name ?? "", NameType.Interface, true);
 }
 
-export function dpgContextgetOperationName(
-  program: Program,
-  operation: Operation
-) {
+export function getOperationName(program: Program, operation: Operation) {
   const projectedOperationName = getProjectedName(program, operation, "json");
 
   return normalizeName(
