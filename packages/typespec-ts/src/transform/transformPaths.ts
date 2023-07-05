@@ -85,7 +85,7 @@ function getResponseTypes(
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          getOperationGroupName(operation),
+          getOperationGroupName(program, operation),
           getOperationName(program, operation.operation),
           statusCode
         );
@@ -110,7 +110,7 @@ function transformOperation(
   paths: Paths
 ) {
   const respNames = [];
-  const operationGroupName = getOperationGroupName(route);
+  const operationGroupName = getOperationGroupName(program, route);
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
       operationGroupName,
@@ -169,7 +169,7 @@ function transformOperation(
             description: getDoc(program, p.param)
           };
         }),
-      operationGroupName: getOperationGroupName(route),
+      operationGroupName: getOperationGroupName(program, route),
       methods: {
         [route.verb]: [method]
       }

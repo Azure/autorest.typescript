@@ -12,6 +12,8 @@ import {
 import {
   getProjectedName,
   ignoreDiagnostics,
+  isGlobalNamespace,
+  isService,
   Model,
   Operation,
   Program,
@@ -54,23 +56,43 @@ export function getOperationStatuscode(
 }
 
 // FIXME: this is the placeholder function to extract the operationGroupName
-export function getOperationGroupName(route?: HttpOperation): string;
-export function getOperationGroupName(operation?: Operation): string;
 export function getOperationGroupName(
+  program: Program,
+  route?: HttpOperation
+): string;
+export function getOperationGroupName(
+  program: Program,
+  operation?: Operation
+): string;
+export function getOperationGroupName(
+  program: Program,
   operationOrRoute?: Operation | HttpOperation
 ) {
   if (!ENABLE_GROUP_NAME_PREFIX || !operationOrRoute) {
     return "";
   }
+  // If this is a HttpOperation
   if ((operationOrRoute as any).kind !== "Operation") {
-    // It is a HttpOperation
     operationOrRoute = (operationOrRoute as HttpOperation).operation;
   }
-  const interfaceOrNamespaceName =
-    (operationOrRoute as Operation)?.interface?.name ??
-    (operationOrRoute as Operation)?.namespace?.name ??
-    "";
-  return normalizeName(interfaceOrNamespaceName, NameType.Interface, true);
+  const operation = operationOrRoute as Operation;
+  if (operation.interface) {
+    return normalizeName(
+      operation.interface?.name ?? "",
+      NameType.Interface,
+      true
+    );
+  }
+  const namespace = operation.namespace;
+  if (
+    namespace === undefined ||
+    isGlobalNamespace(program, namespace) ||
+    isService(program, namespace)
+  ) {
+    return "";
+  }
+
+  return normalizeName(namespace.name ?? "", NameType.Interface, true);
 }
 
 export function getOperationName(program: Program, operation: Operation) {

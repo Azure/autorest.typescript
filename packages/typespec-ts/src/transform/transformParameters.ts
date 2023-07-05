@@ -82,7 +82,7 @@ export function transformToParameterTypes(
   ) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: getOperationGroupName(route),
+      operationGroup: getOperationGroupName(program, route),
       operationName: getOperationName(program, route.operation),
       parameters: []
     };

@@ -6,70 +6,64 @@ import {
   PropertyClientParameters,
   PropertyLanguageParameters,
   PropertyJsonAndClientParameters,
-  ProjectedNameOperationParameters,
-  ProjectedNameParameterParameters,
+  OperationParameters,
+  ParameterParameters,
 } from "./parameters";
 import {
   PropertyJson204Response,
   PropertyClient204Response,
   PropertyLanguage204Response,
   PropertyJsonAndClient204Response,
-  ProjectedNameOperation204Response,
-  ProjectedNameParameter204Response,
+  Operation204Response,
+  Parameter204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface PropertyJson {
+export interface Json {
   post(
     options?: PropertyJsonParameters
   ): StreamableMethod<PropertyJson204Response>;
 }
 
-export interface PropertyClient {
+export interface _Client {
   post(
     options?: PropertyClientParameters
   ): StreamableMethod<PropertyClient204Response>;
 }
 
-export interface PropertyLanguage {
+export interface Language {
   post(
     options?: PropertyLanguageParameters
   ): StreamableMethod<PropertyLanguage204Response>;
 }
 
-export interface PropertyJsonAndClient {
+export interface JsonAndClient {
   post(
     options?: PropertyJsonAndClientParameters
   ): StreamableMethod<PropertyJsonAndClient204Response>;
 }
 
-export interface ProjectedNameOperation {
-  post(
-    options?: ProjectedNameOperationParameters
-  ): StreamableMethod<ProjectedNameOperation204Response>;
+export interface Operation {
+  post(options?: OperationParameters): StreamableMethod<Operation204Response>;
 }
 
-export interface ProjectedNameParameter {
-  post(
-    options: ProjectedNameParameterParameters
-  ): StreamableMethod<ProjectedNameParameter204Response>;
+export interface Parameter {
+  post(options: ParameterParameters): StreamableMethod<Parameter204Response>;
 }
 
 export interface Routes {
   /** Resource for '/projection/projected-name/property/json' has methods for the following verbs: post */
-  (path: "/projection/projected-name/property/json"): PropertyJson;
+  (path: "/projection/projected-name/property/json"): Json;
   /** Resource for '/projection/projected-name/property/client' has methods for the following verbs: post */
-  (path: "/projection/projected-name/property/client"): PropertyClient;
+  (path: "/projection/projected-name/property/client"): _Client;
   /** Resource for '/projection/projected-name/property/language' has methods for the following verbs: post */
-  (path: "/projection/projected-name/property/language"): PropertyLanguage;
+  (path: "/projection/projected-name/property/language"): Language;
   /** Resource for '/projection/projected-name/property/json-and-client' has methods for the following verbs: post */
-  (
-    path: "/projection/projected-name/property/json-and-client"
-  ): PropertyJsonAndClient;
+  (path: "/projection/projected-name/property/json-and-client"): JsonAndClient;
   /** Resource for '/projection/projected-name/operation' has methods for the following verbs: post */
-  (path: "/projection/projected-name/operation"): ProjectedNameOperation;
+  (path: "/projection/projected-name/operation"): Operation;
   /** Resource for '/projection/projected-name/parameter' has methods for the following verbs: post */
-  (path: "/projection/projected-name/parameter"): ProjectedNameParameter;
+  (path: "/projection/projected-name/parameter"): Parameter;
 }
 
 export type ProjectionClient = Client & {

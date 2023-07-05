@@ -24,11 +24,11 @@ export interface PropertyJsonAndClient204Response extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ProjectedNameOperation204Response extends HttpResponse {
+export interface Operation204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ProjectedNameParameter204Response extends HttpResponse {
+export interface Parameter204Response extends HttpResponse {
   status: "204";
 }

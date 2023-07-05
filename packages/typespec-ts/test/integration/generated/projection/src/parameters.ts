@@ -35,15 +35,14 @@ export interface PropertyJsonAndClientBodyParam {
 
 export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
   RequestParameters;
-export type ProjectedNameOperationParameters = RequestParameters;
+export type OperationParameters = RequestParameters;
 
-export interface ProjectedNameParameterQueryParamProperties {
+export interface ParameterQueryParamProperties {
   "default-name": string;
 }
 
-export interface ProjectedNameParameterQueryParam {
-  queryParameters: ProjectedNameParameterQueryParamProperties;
+export interface ParameterQueryParam {
+  queryParameters: ParameterQueryParamProperties;
 }
 
-export type ProjectedNameParameterParameters =
-  ProjectedNameParameterQueryParam & RequestParameters;
+export type ParameterParameters = ParameterQueryParam & RequestParameters;

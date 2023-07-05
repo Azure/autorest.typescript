@@ -73,7 +73,7 @@ export function transformToResponseTypes(
   }
   function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
-      operationGroup: getOperationGroupName(route),
+      operationGroup: getOperationGroupName(program, route),
       operationName: getOperationName(program, route.operation),
       responses: []
     };
@@ -96,7 +96,7 @@ export function transformToResponseTypes(
     const lroLogicalResponse = transformLroLogicalResponse(
       program,
       route,
-      getOperationGroupName(route),
+      getOperationGroupName(program, route),
       rlcOperationUnit.responses
     );
     if (lroLogicalResponse) {
