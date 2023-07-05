@@ -1,4 +1,3 @@
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import {
   NameType,
   normalizeName,
@@ -11,17 +10,19 @@ import { getAuthentication } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
-
-export let ENABLE_GROUP_NAME_PREFIX = false;
+import { RLCSdkContext } from "./transform.js";
 
 export function transformRLCOptions(
-  program: Program,
   emitterOptions: RLCOptions,
   emitterOutputDir: string,
-  dpgContext: SdkContext
+  dpgContext: RLCSdkContext
 ): RLCOptions {
   // Extract the options from emitter option
-  const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
+  const options = extractRLCOptions(
+    dpgContext.program,
+    emitterOptions,
+    emitterOutputDir
+  );
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;
@@ -109,13 +110,10 @@ function processAuth(program: Program) {
 }
 
 function getEnableOperationGroup(emitterOptions: RLCOptions) {
-  if (
-    emitterOptions.enableOperationGroup === true ||
-    emitterOptions.enableOperationGroup === "true"
-  ) {
-    ENABLE_GROUP_NAME_PREFIX = true;
+  if (emitterOptions.enableOperationGroup === true) {
+    return true;
   }
-  return ENABLE_GROUP_NAME_PREFIX;
+  return false;
 }
 
 function getIncludeShortcuts(emitterOptions: RLCOptions) {

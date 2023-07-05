@@ -74,12 +74,8 @@ export function getBinaryType(usage: SchemaContext[]) {
     : "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
 }
 
-export function isByteOrByteUnion(
-  program: Program,
-  dpgContext: SdkContext,
-  type: Type
-) {
-  const schema = getSchemaForType(program, dpgContext, type);
+export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
+  const schema = getSchemaForType(dpgContext, type);
   return isByteType(schema) || isByteUnion(schema);
 }
 
@@ -129,16 +125,16 @@ export function enrichBinaryTypeInBody(schema: any) {
 }
 
 export function getSchemaForType(
-  program: Program,
   dpgContext: SdkContext,
   typeInput: Type,
   usage?: SchemaContext[],
   needRef: boolean = false,
   relevantProperty?: ModelProperty
 ) {
+  const program = dpgContext.program;
   const type = getEffectiveModelFromType(program, typeInput);
 
-  const builtinType = mapCadlTypeToTypeScript(program, dpgContext, type, usage);
+  const builtinType = mapCadlTypeToTypeScript(dpgContext, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(program, type);
@@ -148,13 +144,7 @@ export function getSchemaForType(
     return builtinType;
   }
   if (type.kind === "Model") {
-    const schema = getSchemaForModel(
-      program,
-      dpgContext,
-      type,
-      usage,
-      needRef
-    ) as any;
+    const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
       if (!schema.name) {
         //TODO: HANDLE ANONYMOUS
@@ -171,13 +161,13 @@ export function getSchemaForType(
     schema.usage = usage;
     return schema;
   } else if (type.kind === "Union") {
-    return getSchemaForUnion(program, dpgContext, type, usage);
+    return getSchemaForUnion(dpgContext, type, usage);
   } else if (type.kind === "UnionVariant") {
-    return getSchemaForUnionVariant(program, dpgContext, type, usage);
+    return getSchemaForUnionVariant(dpgContext, type, usage);
   } else if (type.kind === "Enum") {
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
-    return getSchemaForScalar(program, dpgContext, type, relevantProperty);
+    return getSchemaForScalar(dpgContext, type, relevantProperty);
   }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
@@ -227,23 +217,22 @@ export function includeDerivedModel(model: Model): boolean {
 }
 
 function getSchemaForScalar(
-  program: Program,
   dpgContext: SdkContext,
   scalar: Scalar,
   relevantProperty?: ModelProperty
 ) {
+  const program = dpgContext.program;
   const encodeData = getEncode(program, scalar);
   let result: any = encodeData
-    ? getSchemaForScalar(program, dpgContext, encodeData.type)
+    ? getSchemaForScalar(dpgContext, encodeData.type)
     : getSchemaForStdScalar(program, scalar, relevantProperty);
   if (!result && scalar.baseScalar) {
-    result = getSchemaForScalar(program, dpgContext, scalar.baseScalar);
+    result = getSchemaForScalar(dpgContext, scalar.baseScalar);
   }
   return applyIntrinsicDecorators(program, scalar, result);
 }
 
 function getSchemaForUnion(
-  program: Program,
   dpgContext: SdkContext,
   union: Union,
   usage?: SchemaContext[]
@@ -253,7 +242,7 @@ function getSchemaForUnion(
 
   for (const variant of variants) {
     // We already know it's not a model type
-    values.push(getSchemaForType(program, dpgContext, variant.type, usage));
+    values.push(getSchemaForType(dpgContext, variant.type, usage));
   }
 
   const schema: any = {};
@@ -284,12 +273,11 @@ function getSchemaForUnion(
 }
 
 function getSchemaForUnionVariant(
-  program: Program,
   dpgContext: SdkContext,
   variant: UnionVariant,
   usage?: SchemaContext[]
 ): Schema {
-  return getSchemaForType(program, dpgContext, variant, usage);
+  return getSchemaForType(dpgContext, variant, usage);
 }
 
 // An openapi "string" can be defined in several different ways in Cadl
@@ -409,12 +397,12 @@ function isSchemaProperty(program: Program, property: ModelProperty) {
 }
 
 function getSchemaForModel(
-  program: Program,
   dpgContext: SdkContext,
   model: Model,
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
+  const program = dpgContext.program;
   const overridedModelName =
     getProjectedName(program, model, "javascript") ??
     getProjectedName(program, model, "client") ??
@@ -505,17 +493,10 @@ function getSchemaForModel(
     };
   }
   for (const child of derivedModels) {
-    const childSchema = getSchemaForType(
-      program,
-      dpgContext,
-      child,
-      usage,
-      true
-    );
+    const childSchema = getSchemaForType(dpgContext, child, usage, true);
     for (const [name, prop] of child.properties) {
       if (name === discriminator?.propertyName) {
         const propSchema = getSchemaForType(
-          program,
           dpgContext,
           prop.type,
           usage,
@@ -565,7 +546,6 @@ function getSchemaForModel(
     }
 
     const propSchema = getSchemaForType(
-      program,
       dpgContext,
       prop.type,
       usage,
@@ -645,24 +625,15 @@ function getSchemaForModel(
   ) {
     // Take the base model schema but carry across the documentation property
     // that we set before
-    const baseSchema = getSchemaForType(
-      program,
-      dpgContext,
-      model.baseModel,
-      usage
-    );
+    const baseSchema = getSchemaForType(dpgContext, model.baseModel, usage);
     modelSchema = {
       ...baseSchema,
       description: modelSchema.description
     };
   } else if (model.baseModel) {
     modelSchema.parents = {
-      all: [
-        getSchemaForType(program, dpgContext, model.baseModel, usage, true)
-      ],
-      immediate: [
-        getSchemaForType(program, dpgContext, model.baseModel, usage, true)
-      ]
+      all: [getSchemaForType(dpgContext, model.baseModel, usage, true)],
+      immediate: [getSchemaForType(dpgContext, model.baseModel, usage, true)]
     };
   }
   return modelSchema;
@@ -670,7 +641,6 @@ function getSchemaForModel(
 // Map an Cadl type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
 function mapCadlTypeToTypeScript(
-  program: Program,
   dpgContext: SdkContext,
   cadlType: Type,
   usage?: SchemaContext[]
@@ -683,7 +653,7 @@ function mapCadlTypeToTypeScript(
     case "Boolean":
       return { type: `${cadlType.value}` };
     case "Model":
-      return mapCadlStdTypeToTypeScript(program, dpgContext, cadlType, usage);
+      return mapCadlStdTypeToTypeScript(dpgContext, cadlType, usage);
   }
   if (cadlType.kind === undefined) {
     if (typeof cadlType === "string") {
@@ -790,11 +760,11 @@ function getSchemaForEnum(program: Program, e: Enum) {
  * Map Cadl intrinsic models to open api definitions
  */
 function mapCadlStdTypeToTypeScript(
-  program: Program,
   dpgContext: SdkContext,
   cadlType: Model,
   usage?: SchemaContext[]
 ): any | undefined {
+  const program = dpgContext.program;
   const indexer = (cadlType as Model).indexer;
   if (indexer !== undefined) {
     if (!isNeverType(indexer.key)) {
@@ -802,7 +772,6 @@ function mapCadlStdTypeToTypeScript(
       let schema: any = {};
       if (name === "string") {
         const valueType = getSchemaForType(
-          program,
           dpgContext,
           indexer.value!,
           usage,
@@ -835,13 +804,7 @@ function mapCadlStdTypeToTypeScript(
       } else if (name === "integer") {
         schema = {
           type: "array",
-          items: getSchemaForType(
-            program,
-            dpgContext,
-            indexer.value!,
-            usage,
-            true
-          ),
+          items: getSchemaForType(dpgContext, indexer.value!, usage, true),
           description: getDoc(program, cadlType)
         };
         if (
@@ -1158,13 +1121,13 @@ export function getBodyType(
  * @returns
  */
 export function predictDefaultValue(
-  program: Program,
   dpgContext: SdkContext,
   param?: ModelProperty
 ) {
   if (!param) {
     return;
   }
+  const program = dpgContext.program;
   const specificDefault = param?.default;
   if (isLiteralValue(specificDefault)) {
     return specificDefault.value;

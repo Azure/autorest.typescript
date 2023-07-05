@@ -18,7 +18,6 @@ import {
 } from "@typespec/http";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
   isApiVersion
@@ -33,11 +32,12 @@ import {
   isDefinedStatusCode,
   isPagingOperation
 } from "../utils/operationUtil.js";
+import { RLCSdkContext } from "./transform.js";
 
 export function transformPaths(
   program: Program,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: RLCSdkContext
 ): Paths {
   const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
@@ -52,7 +52,7 @@ export function transformPaths(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      transformOperation(program, dpgContext, route, paths);
+      transformOperation(dpgContext, route, paths);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -62,7 +62,7 @@ export function transformPaths(
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    transformOperation(program, dpgContext, route, paths);
+    transformOperation(dpgContext, route, paths);
   }
   return paths;
 }
@@ -72,7 +72,7 @@ export function transformPaths(
  * an operation can end up returning.
  */
 function getResponseTypes(
-  program: Program,
+  dpgContext: RLCSdkContext,
   operation: HttpOperation
 ): ResponseTypes {
   const returnTypes: ResponseTypes = {
@@ -85,8 +85,8 @@ function getResponseTypes(
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          getOperationGroupName(program, operation),
-          getOperationName(program, operation.operation),
+          getOperationGroupName(dpgContext, operation),
+          getOperationName(dpgContext.program, operation.operation),
           statusCode
         );
         return responseName;
@@ -104,13 +104,13 @@ function getResponseTypes(
 }
 
 function transformOperation(
-  program: Program,
-  dpgContext: SdkContext,
+  dpgContext: RLCSdkContext,
   route: HttpOperation,
   paths: Paths
 ) {
+  const program = dpgContext.program;
   const respNames = [];
-  const operationGroupName = getOperationGroupName(program, route);
+  const operationGroupName = getOperationGroupName(dpgContext, route);
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
       operationGroupName,
@@ -119,7 +119,7 @@ function transformOperation(
     );
     respNames.push(respName);
   }
-  const responseTypes = getResponseTypes(program, route);
+  const responseTypes = getResponseTypes(dpgContext, route);
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
@@ -160,16 +160,12 @@ function transformOperation(
           return {
             name: p.name,
             type: p.param.sourceProperty
-              ? getSchemaForType(
-                  program,
-                  dpgContext,
-                  p.param.sourceProperty?.type
-                ).type
-              : getSchemaForType(program, dpgContext, p.param.type).type,
+              ? getSchemaForType(dpgContext, p.param.sourceProperty?.type).type
+              : getSchemaForType(dpgContext, p.param.type).type,
             description: getDoc(program, p.param)
           };
         }),
-      operationGroupName: getOperationGroupName(program, route),
+      operationGroupName: getOperationGroupName(dpgContext, route),
       methods: {
         [route.verb]: [method]
       }
@@ -184,7 +180,7 @@ function escapeCoreName(name: string) {
   return name;
 }
 function hasRequiredOptions(
-  dpgContext: SdkContext,
+  dpgContext: RLCSdkContext,
   routeParameters: HttpOperationParameters
 ) {
   const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;

@@ -123,7 +123,7 @@ export interface RLCOptions {
   azureArm?: boolean;
   sourceFrom?: "Cadl" | "Swagger";
   isModularLibrary?: boolean;
-  enableOperationGroup?: boolean | string;
+  enableOperationGroup?: boolean;
 }
 
 export interface ServiceInfo {

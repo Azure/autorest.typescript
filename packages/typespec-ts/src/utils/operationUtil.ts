@@ -42,7 +42,7 @@ import {
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
-import { ENABLE_GROUP_NAME_PREFIX } from "../transform/transfromRLCOptions.js";
+import { RLCSdkContext } from "../transform/transform.js";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -56,20 +56,21 @@ export function getOperationStatuscode(
 }
 
 export function getOperationGroupName(
-  program: Program,
+  dpgContext: RLCSdkContext,
   route?: HttpOperation
 ): string;
 export function getOperationGroupName(
-  program: Program,
+  dpgContext: RLCSdkContext,
   operation?: Operation
 ): string;
 export function getOperationGroupName(
-  program: Program,
+  dpgContext: RLCSdkContext,
   operationOrRoute?: Operation | HttpOperation
 ) {
-  if (!ENABLE_GROUP_NAME_PREFIX || !operationOrRoute) {
+  if (!dpgContext.options?.enableOperationGroup || !operationOrRoute) {
     return "";
   }
+  const program = dpgContext.program;
   // If this is a HttpOperation
   if ((operationOrRoute as any).kind !== "Operation") {
     operationOrRoute = (operationOrRoute as HttpOperation).operation;
@@ -94,7 +95,10 @@ export function getOperationGroupName(
   return normalizeName(namespace.name ?? "", NameType.Interface, true);
 }
 
-export function getOperationName(program: Program, operation: Operation) {
+export function dpgContextgetOperationName(
+  program: Program,
+  operation: Operation
+) {
   const projectedOperationName = getProjectedName(program, operation, "json");
 
   return normalizeName(
@@ -113,14 +117,13 @@ export function isDefinedStatusCode(statusCode: StatusCode) {
 }
 
 export function isBinaryPayload(
-  program: Program,
   dpgContext: SdkContext,
   body: Type,
   contentType: string
 ) {
   contentType = `"${contentType}"`;
   if (
-    isByteOrByteUnion(program, dpgContext, body) &&
+    isByteOrByteUnion(dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
