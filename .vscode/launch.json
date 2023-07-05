@@ -85,7 +85,6 @@
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-test/test/openai_modular",
-
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
