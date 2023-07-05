@@ -85,13 +85,7 @@
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-test/test/loadTest",
-      "runtimeArgs": [
-        "tsp",
-        "compile",
-        "./spec",
-        "--option",
-        "@azure-tools/typespec-ts.enableOperationGroup=true"
-      ],
+      "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node",
