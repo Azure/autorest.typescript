@@ -9,38 +9,41 @@ import {
   JsonAndClientProjectedNameModel,
 } from "./models";
 
-export interface JsonBodyParam {
+export interface PropertyJsonBodyParam {
   body?: JsonProjectedNameModel;
 }
 
-export type JsonParameters = JsonBodyParam & RequestParameters;
+export type PropertyJsonParameters = PropertyJsonBodyParam & RequestParameters;
 
-export interface ClientBodyParam {
+export interface PropertyClientBodyParam {
   body?: ClientProjectedNameModel;
 }
 
-export type ClientParameters = ClientBodyParam & RequestParameters;
+export type PropertyClientParameters = PropertyClientBodyParam &
+  RequestParameters;
 
-export interface LanguageBodyParam {
+export interface PropertyLanguageBodyParam {
   body?: LanguageProjectedNameModel;
 }
 
-export type LanguageParameters = LanguageBodyParam & RequestParameters;
+export type PropertyLanguageParameters = PropertyLanguageBodyParam &
+  RequestParameters;
 
-export interface JsonAndClientBodyParam {
+export interface PropertyJsonAndClientBodyParam {
   body?: JsonAndClientProjectedNameModel;
 }
 
-export type JsonAndClientParameters = JsonAndClientBodyParam &
+export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
   RequestParameters;
-export type OperationParameters = RequestParameters;
+export type ProjectedNameOperationParameters = RequestParameters;
 
-export interface ParameterQueryParamProperties {
+export interface ProjectedNameParameterQueryParamProperties {
   "default-name": string;
 }
 
-export interface ParameterQueryParam {
-  queryParameters: ParameterQueryParamProperties;
+export interface ProjectedNameParameterQueryParam {
+  queryParameters: ProjectedNameParameterQueryParamProperties;
 }
 
-export type ParameterParameters = ParameterQueryParam & RequestParameters;
+export type ProjectedNameParameterParameters =
+  ProjectedNameParameterQueryParam & RequestParameters;
