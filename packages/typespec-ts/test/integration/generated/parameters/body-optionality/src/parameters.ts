@@ -4,17 +4,19 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { BodyModel } from "./models";
 
-export interface SetModelBodyParam {
+export interface OptionalExplicitSetModelBodyParam {
   body?: BodyModel;
 }
 
-export type SetModelParameters = SetModelBodyParam & RequestParameters;
+export type OptionalExplicitSetModelParameters =
+  OptionalExplicitSetModelBodyParam & RequestParameters;
 
-export interface OmitBodyParam {
+export interface OptionalExplicitOmitBodyParam {
   body?: BodyModel;
 }
 
-export type OmitParameters = OmitBodyParam & RequestParameters;
+export type OptionalExplicitOmitParameters = OptionalExplicitOmitBodyParam &
+  RequestParameters;
 
 export interface RequiredExplicitBodyParam {
   body: BodyModel;

@@ -2,25 +2,29 @@
 // Licensed under the MIT license.
 
 import {
-  SetModelParameters,
-  OmitParameters,
+  OptionalExplicitSetModelParameters,
+  OptionalExplicitOmitParameters,
   RequiredExplicitParameters,
   RequiredImplicitParameters,
 } from "./parameters";
 import {
-  SetModel204Response,
-  Omit204Response,
+  OptionalExplicitSetModel204Response,
+  OptionalExplicitOmit204Response,
   RequiredExplicit204Response,
   RequiredImplicit204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface SetModel {
-  post(options?: SetModelParameters): StreamableMethod<SetModel204Response>;
+  post(
+    options?: OptionalExplicitSetModelParameters
+  ): StreamableMethod<OptionalExplicitSetModel204Response>;
 }
 
 export interface Omit {
-  post(options?: OmitParameters): StreamableMethod<Omit204Response>;
+  post(
+    options?: OptionalExplicitOmitParameters
+  ): StreamableMethod<OptionalExplicitOmit204Response>;
 }
 
 export interface RequiredExplicit {
