@@ -35,8 +35,7 @@ export async function runTypespec(config: CadlRanchConfig) {
   const commandArguments: string[] = [
     "compile",
     `${typespecPath}`,
-    "--config tspconfig.yaml ",
-    "--option @azure-tools/typespec-ts.enableOperationGroup=true" // Always enable operation group prefix for cadl-ranch cases
+    "--config tspconfig.yaml "
   ];
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);

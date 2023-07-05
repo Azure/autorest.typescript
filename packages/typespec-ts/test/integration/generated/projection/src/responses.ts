@@ -4,22 +4,22 @@
 import { HttpResponse } from "@azure-rest/core-client";
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface PropertyJson204Response extends HttpResponse {
+export interface Json204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface PropertyClient204Response extends HttpResponse {
+export interface Client204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface PropertyLanguage204Response extends HttpResponse {
+export interface Language204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface PropertyJsonAndClient204Response extends HttpResponse {
+export interface JsonAndClient204Response extends HttpResponse {
   status: "204";
 }
 

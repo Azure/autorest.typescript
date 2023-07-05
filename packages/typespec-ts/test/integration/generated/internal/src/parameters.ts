@@ -3,26 +3,25 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface SharedPublicQueryParamProperties {
+export interface PublicQueryParamProperties {
   name: string;
 }
 
-export interface SharedPublicQueryParam {
-  queryParameters: SharedPublicQueryParamProperties;
+export interface PublicQueryParam {
+  queryParameters: PublicQueryParamProperties;
 }
 
-export type SharedPublicParameters = SharedPublicQueryParam & RequestParameters;
+export type PublicParameters = PublicQueryParam & RequestParameters;
 
-export interface SharedInternalQueryParamProperties {
+export interface InternalQueryParamProperties {
   name: string;
 }
 
-export interface SharedInternalQueryParam {
-  queryParameters: SharedInternalQueryParamProperties;
+export interface InternalQueryParam {
+  queryParameters: InternalQueryParamProperties;
 }
 
-export type SharedInternalParameters = SharedInternalQueryParam &
-  RequestParameters;
+export type InternalParameters = InternalQueryParam & RequestParameters;
 
 export interface PublicOnlyQueryParamProperties {
   name: string;

@@ -9,31 +9,29 @@ import {
   JsonAndClientProjectedNameModel,
 } from "./models";
 
-export interface PropertyJsonBodyParam {
+export interface JsonBodyParam {
   body?: JsonProjectedNameModel;
 }
 
-export type PropertyJsonParameters = PropertyJsonBodyParam & RequestParameters;
+export type JsonParameters = JsonBodyParam & RequestParameters;
 
-export interface PropertyClientBodyParam {
+export interface ClientBodyParam {
   body?: ClientProjectedNameModel;
 }
 
-export type PropertyClientParameters = PropertyClientBodyParam &
-  RequestParameters;
+export type ClientParameters = ClientBodyParam & RequestParameters;
 
-export interface PropertyLanguageBodyParam {
+export interface LanguageBodyParam {
   body?: LanguageProjectedNameModel;
 }
 
-export type PropertyLanguageParameters = PropertyLanguageBodyParam &
-  RequestParameters;
+export type LanguageParameters = LanguageBodyParam & RequestParameters;
 
-export interface PropertyJsonAndClientBodyParam {
+export interface JsonAndClientBodyParam {
   body?: JsonAndClientProjectedNameModel;
 }
 
-export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
+export type JsonAndClientParameters = JsonAndClientBodyParam &
   RequestParameters;
 export type OperationParameters = RequestParameters;
 
