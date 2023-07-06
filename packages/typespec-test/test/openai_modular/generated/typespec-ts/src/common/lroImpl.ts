@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  CreateHttpPollerOptions,
   LongRunningOperation,
   LroResponse,
   OperationState,
@@ -22,10 +21,6 @@ export interface GetLongRunningPollerOptions<
   sendInitialRequestFn: (...args: unknown[]) => StreamableMethod<TResponse>;
   sendInitialRequestFnArgs: unknown[];
   deserializeFn: (response: TResponse) => Promise<unknown>;
-  createPollerOptions: CreateHttpPollerOptions<
-    unknown,
-    OperationState<unknown>
-  >;
 }
 export async function getLongRunningPoller<TResponse extends HttpResponse>(
   client: Client,
@@ -58,7 +53,7 @@ export async function getLongRunningPoller<TResponse extends HttpResponse>(
       return lroResponse;
     },
   };
-  return await createHttpPoller(poller, options.createPollerOptions);
+  return await createHttpPoller(poller);
 }
 /**
  * Converts a Rest Client response to a response that the LRO implementation understands

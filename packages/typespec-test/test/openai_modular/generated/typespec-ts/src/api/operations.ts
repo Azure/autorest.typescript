@@ -470,10 +470,6 @@ export async function getImageOperationStatus(
 }
 
 export interface StartGenerateImageOptions extends RequestOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
   /** The number of images to generate (defaults to 1). */
   n?: number;
   /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
@@ -546,10 +542,6 @@ export async function beginStartGenerateImage(
     deserializeFn: _startGenerateImageDeserialize,
     sendInitialRequestFn: _startGenerateImageSend,
     sendInitialRequestFnArgs: [context, prompt, options],
-    createPollerOptions: {
-      restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-    },
   } as GetLongRunningPollerOptions;
   const poller = (await getLongRunningPoller(
     context,

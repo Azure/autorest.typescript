@@ -191,9 +191,7 @@ export interface RequestOptions {
 // @public (undocumented)
 export interface StartGenerateImageOptions extends RequestOptions {
     n?: number;
-    resumeFrom?: string;
     size?: ImageSize;
-    updateIntervalInMs?: number;
     user?: string;
 }
 

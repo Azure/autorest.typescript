@@ -72,10 +72,6 @@ export async function beginCreateOrReplace(
     deserializeFn: _createOrReplaceDeserialize,
     sendInitialRequestFn: _createOrReplaceSend,
     sendInitialRequestFnArgs: [context, role, name, options],
-    createPollerOptions: {
-      restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-    },
   } as GetLongRunningPollerOptions;
   const poller = (await getLongRunningPoller(
     context,
@@ -132,10 +128,6 @@ export async function beginDelete(
     deserializeFn: _deleteOperationDeserialize,
     sendInitialRequestFn: _deleteOperationSend,
     sendInitialRequestFnArgs: [context, name, options],
-    createPollerOptions: {
-      restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-    },
   } as GetLongRunningPollerOptions;
   const poller = (await getLongRunningPoller(
     context,
@@ -198,10 +190,6 @@ export async function beginExport(
     deserializeFn: _exportOperationDeserialize,
     sendInitialRequestFn: _exportOperationSend,
     sendInitialRequestFnArgs: [context, name, format, options],
-    createPollerOptions: {
-      restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-    },
   } as GetLongRunningPollerOptions;
   const poller = (await getLongRunningPoller(
     context,

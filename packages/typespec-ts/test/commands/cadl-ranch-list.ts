@@ -1,24 +1,21 @@
 export interface TypeSpecRanchConfig {
   outputPath: string;
   inputPath: string;
-  tag?: "rlc" | "modular" | "all" | "debug";
+  debug?: boolean;
 }
 
-export const tsps: TypeSpecRanchConfig[] = [
+export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
-    inputPath: "special-headers/repeatability",
-    tag: "rlc"
+    inputPath: "special-headers/repeatability"
   },
   {
     outputPath: "parameters/body-optionality",
-    inputPath: "parameters/body-optionality",
-    tag: "rlc"
+    inputPath: "parameters/body-optionality"
   },
   {
     outputPath: "encode/duration",
-    inputPath: "encode/duration",
-    tag: "rlc"
+    inputPath: "encode/duration"
   },
   {
     outputPath: "encode/datetime",
@@ -26,162 +23,133 @@ export const tsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "sharedRoute",
-    inputPath: "shared-route",
-    tag: "rlc"
+    inputPath: "shared-route"
   },
   {
     outputPath: "mediaTypes",
-    inputPath: "media-types",
-    tag: "rlc"
+    inputPath: "media-types"
   },
   {
     outputPath: "overload",
-    inputPath: "overload",
-    tag: "rlc"
+    inputPath: "overload"
   },
   {
     outputPath: "arrays/itemTypes",
-    inputPath: "type/array",
-    tag: "rlc"
+    inputPath: "type/array"
   },
   {
     outputPath: "authentication/apiKey",
-    inputPath: "authentication/api-key",
-    tag: "rlc"
+    inputPath: "authentication/api-key"
   },
   {
     outputPath: "authentication/oauth2",
-    inputPath: "authentication/oauth2",
-    tag: "rlc"
+    inputPath: "authentication/oauth2"
   },
   {
     outputPath: "authentication/union",
-    inputPath: "authentication/union",
-    tag: "rlc"
+    inputPath: "authentication/union"
   },
   {
     outputPath: "dictionary",
-    inputPath: "type/dictionary",
-    tag: "rlc"
+    inputPath: "type/dictionary"
   },
   {
     outputPath: "enums/extensible",
-    inputPath: "type/enum/extensible",
-    tag: "rlc"
+    inputPath: "type/enum/extensible"
   },
   {
     outputPath: "enums/fixed",
-    inputPath: "type/enum/fixed",
-    tag: "rlc"
+    inputPath: "type/enum/fixed"
   },
   {
     outputPath: "lro/lroCore",
-    inputPath: "azure/core/lro/standard",
-    tag: "rlc"
+    inputPath: "azure/core/lro/standard"
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc/legacy",
-    tag: "rlc"
+    inputPath: "azure/core/lro/rpc/legacy"
   },
   {
     outputPath: "models/inheritance",
-    inputPath: "type/model/inheritance",
-    tag: "rlc"
+    inputPath: "type/model/inheritance"
   },
   {
     outputPath: "models/propertyOptional",
-    inputPath: "type/property/optional",
-    tag: "rlc"
+    inputPath: "type/property/optional"
   },
   {
     outputPath: "models/propertyNullable",
-    inputPath: "type/property/nullable",
-    tag: "rlc"
+    inputPath: "type/property/nullable"
   },
   {
     outputPath: "models/propertyTypes",
-    inputPath: "type/property/value-types",
-    tag: "rlc"
+    inputPath: "type/property/value-types"
   },
   {
     outputPath: "models/visibility",
-    inputPath: "type/model/visibility",
-    tag: "rlc"
+    inputPath: "type/model/visibility"
   },
   {
     outputPath: "models/usage",
-    inputPath: "type/model/usage",
-    tag: "rlc"
+    inputPath: "type/model/usage"
   },
   {
     outputPath: "models/empty",
-    inputPath: "type/model/empty",
-    tag: "rlc"
+    inputPath: "type/model/empty"
   },
   {
     outputPath: "resiliency/srvDriven1",
-    inputPath: "resiliency/srv-driven/old.tsp",
-    tag: "rlc"
+    inputPath: "resiliency/srv-driven/old.tsp"
   },
   {
     outputPath: "resiliency/srvDriven2",
-    inputPath: "resiliency/srv-driven/main.tsp",
-    tag: "rlc"
+    inputPath: "resiliency/srv-driven/main.tsp"
   },
   {
     outputPath: "specialWords",
-    inputPath: "special-words",
-    tag: "rlc"
+    inputPath: "special-words"
   },
   {
     outputPath: "unions",
-    inputPath: "type/union",
-    tag: "rlc"
+    inputPath: "type/union"
   },
   {
     outputPath: "parameters/collection-format",
-    inputPath: "parameters/collection-format",
-    tag: "rlc"
+    inputPath: "parameters/collection-format"
   },
   {
     outputPath: "parameters/spread",
-    inputPath: "parameters/spread",
-    tag: "rlc"
+    inputPath: "parameters/spread"
   },
   {
     outputPath: "projection",
-    inputPath: "projection/projected-name",
-    tag: "rlc"
+    inputPath: "projection/projected-name"
   },
   {
     outputPath: "internal",
-    inputPath: "azure/client-generator-core/internal",
-    tag: "rlc"
+    inputPath: "azure/client-generator-core/internal"
   },
   {
     outputPath: "server/path/single",
-    inputPath: "server/path/single",
-    tag: "rlc"
+    inputPath: "server/path/single"
   },
   {
     outputPath: "server/path/multiple",
-    inputPath: "server/path/multiple",
-    tag: "rlc"
+    inputPath: "server/path/multiple"
   },
   {
     outputPath: "azure/core",
-    inputPath: "azure/core/basic",
-    tag: "rlc"
+    inputPath: "azure/core/basic"
   },
   {
     outputPath: "azure/core-traits",
-    inputPath: "azure/core/traits",
-    tag: "rlc"
-  },
+    inputPath: "azure/core/traits"
+  }
+];
+
+export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "lro_modular",
-    inputPath: "azure/core/lro/standard",
-    tag: "modular"
+    inputPath: "azure/core/lro/standard"
   }
 ];

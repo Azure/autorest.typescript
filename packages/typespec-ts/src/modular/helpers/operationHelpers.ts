@@ -233,11 +233,7 @@ function getLroOperationFunction(operation: Operation) {
       requestUrl: "${operation.url}",
       deserializeFn: _${name}Deserialize,
       sendInitialRequestFn: _${name}Send,
-      sendInitialRequestFnArgs: [${parameters.map((p) => p.name).join(", ")}],
-      createPollerOptions: {
-        restoreFrom: options?.resumeFrom,
-        intervalInMs: options?.updateIntervalInMs,
-      },
+      sendInitialRequestFnArgs: [${parameters.map((p) => p.name).join(", ")}]
     } as GetLongRunningPollerOptions;`
   );
   statements.push(

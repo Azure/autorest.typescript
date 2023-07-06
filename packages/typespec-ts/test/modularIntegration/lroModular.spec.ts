@@ -1,6 +1,6 @@
-import { StandardClient } from "./generated/lro_modular/generated/src/index.js";
+import { StandardClient } from "../modularIntegration/generated/lro_modular/generated/src/index.js";
 import { assert } from "chai";
-describe.only("AzureLroCoreClient Rest Client", () => {
+describe("AzureLroCoreClient Rest Client", () => {
   let client: StandardClient;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe.only("AzureLroCoreClient Rest Client", () => {
     }
   });
 
-  it.only("should delete LRO response", async () => {
+  it("should delete LRO response", async () => {
     try {
       const poller = await client.beginDelete("madge", {
         requestOptions: {
