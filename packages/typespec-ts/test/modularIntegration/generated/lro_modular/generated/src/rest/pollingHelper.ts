@@ -18,8 +18,8 @@ import {
   DeleteOperation202Response,
   DeleteOperationDefaultResponse,
   DeleteLogicalResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
   ExportLogicalResponse,
 } from "./responses";
 /**
@@ -30,10 +30,10 @@ import {
  * @returns - A poller object to poll for operation state updates and eventually get the final response.
  */
 export async function getLongRunningPoller<
-  TResult extends ExportLogicalResponse | ExportOperationDefaultResponse
+  TResult extends ExportLogicalResponse | ExportDefaultResponse
 >(
   client: Client,
-  initialResponse: ExportOperation202Response | ExportOperationDefaultResponse,
+  initialResponse: Export202Response | ExportDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<

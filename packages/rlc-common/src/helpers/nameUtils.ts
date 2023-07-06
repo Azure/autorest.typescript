@@ -38,7 +38,7 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "else", reservedFor: [NameType.Parameter] },
   { name: "enum", reservedFor: [NameType.Parameter] },
   { name: "error", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "export", reservedFor: [NameType.Parameter, NameType.Operation] },
+  { name: "export", reservedFor: [NameType.Parameter] },
   { name: "extends", reservedFor: [NameType.Parameter] },
   { name: "false", reservedFor: [NameType.Parameter] },
   { name: "finally", reservedFor: [NameType.Parameter] },

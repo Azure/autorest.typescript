@@ -29,8 +29,8 @@ import {
   DeleteOperationDefaultResponse,
   ListProjects200Response,
   ListProjectsDefaultResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
   Importx202Response,
   ImportxDefaultResponse,
   Train202Response,
@@ -89,9 +89,7 @@ export interface Export {
   /** Triggers a job to export a project's data. */
   post(
     options: ExportParameters
-  ): StreamableMethod<
-    ExportOperation202Response | ExportOperationDefaultResponse
-  >;
+  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
 }
 
 export interface Importx {

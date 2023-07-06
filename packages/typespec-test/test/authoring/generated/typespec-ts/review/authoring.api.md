@@ -271,41 +271,41 @@ export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters
 
 // @public (undocumented)
 export interface Export {
-    post(options: ExportParameters): StreamableMethod<ExportOperation202Response | ExportOperationDefaultResponse>;
+    post(options: ExportParameters): StreamableMethod<Export202Response | ExportDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface Export202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface Export202Response extends HttpResponse {
+    // (undocumented)
+    headers: RawHttpHeaders & Export202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface ExportDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface ExportDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & ExportDefaultHeaders;
+    // (undocumented)
+    status: string;
 }
 
 // @public
 export interface ExportLogicalResponse extends HttpResponse {
     // (undocumented)
     status: "200";
-}
-
-// @public (undocumented)
-export interface ExportOperation202Headers {
-    "operation-location": string;
-}
-
-// @public
-export interface ExportOperation202Response extends HttpResponse {
-    // (undocumented)
-    headers: RawHttpHeaders & ExportOperation202Headers;
-    // (undocumented)
-    status: "202";
-}
-
-// @public (undocumented)
-export interface ExportOperationDefaultHeaders {
-    "x-ms-error-code"?: string;
-}
-
-// @public (undocumented)
-export interface ExportOperationDefaultResponse extends HttpResponse {
-    // (undocumented)
-    body: ErrorResponse;
-    // (undocumented)
-    headers: RawHttpHeaders & ExportOperationDefaultHeaders;
-    // (undocumented)
-    status: string;
 }
 
 // @public (undocumented)
@@ -419,7 +419,7 @@ export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalRespon
 export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse>(client: Client, initialResponse: DeleteOperation202Response | DeleteOperationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportOperationDefaultResponse>(client: Client, initialResponse: ExportOperation202Response | ExportOperationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends ExportLogicalResponse | ExportDefaultResponse>(client: Client, initialResponse: Export202Response | ExportDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends ImportxLogicalResponse | ImportxDefaultResponse>(client: Client, initialResponse: Importx202Response | ImportxDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -575,7 +575,7 @@ export function isUnexpected(response: DeleteOperation202Response | DeleteLogica
 export function isUnexpected(response: ListProjects200Response | ListProjectsDefaultResponse): response is ListProjectsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: ExportOperation202Response | ExportLogicalResponse | ExportOperationDefaultResponse): response is ExportOperationDefaultResponse;
+export function isUnexpected(response: Export202Response | ExportLogicalResponse | ExportDefaultResponse): response is ExportDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: Importx202Response | ImportxLogicalResponse | ImportxDefaultResponse): response is ImportxDefaultResponse;

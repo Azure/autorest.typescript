@@ -18,8 +18,8 @@ import {
   ListWithPageDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
-  ExportOperation200Response,
-  ExportOperationDefaultResponse,
+  Export200Response,
+  ExportDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -63,8 +63,8 @@ export function isUnexpected(
     | ListWithCustomPageModelDefaultResponse
 ): response is ListWithCustomPageModelDefaultResponse;
 export function isUnexpected(
-  response: ExportOperation200Response | ExportOperationDefaultResponse
-): response is ExportOperationDefaultResponse;
+  response: Export200Response | ExportDefaultResponse
+): response is ExportDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrUpdate200Response
@@ -83,8 +83,8 @@ export function isUnexpected(
     | ListWithPageDefaultResponse
     | ListWithCustomPageModel200Response
     | ListWithCustomPageModelDefaultResponse
-    | ExportOperation200Response
-    | ExportOperationDefaultResponse
+    | Export200Response
+    | ExportDefaultResponse
 ): response is
   | CreateOrUpdateDefaultResponse
   | CreateOrReplaceDefaultResponse
@@ -93,7 +93,7 @@ export function isUnexpected(
   | ListDefaultResponse
   | ListWithPageDefaultResponse
   | ListWithCustomPageModelDefaultResponse
-  | ExportOperationDefaultResponse {
+  | ExportDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

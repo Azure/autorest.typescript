@@ -9,9 +9,9 @@ import {
   DeleteOperation202Response,
   DeleteLogicalResponse,
   DeleteOperationDefaultResponse,
-  ExportOperation202Response,
+  Export202Response,
   ExportLogicalResponse,
-  ExportOperationDefaultResponse,
+  ExportDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -36,11 +36,8 @@ export function isUnexpected(
     | DeleteOperationDefaultResponse
 ): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
-  response:
-    | ExportOperation202Response
-    | ExportLogicalResponse
-    | ExportOperationDefaultResponse
-): response is ExportOperationDefaultResponse;
+  response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
+): response is ExportDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrReplace200Response
@@ -50,13 +47,13 @@ export function isUnexpected(
     | DeleteOperation202Response
     | DeleteLogicalResponse
     | DeleteOperationDefaultResponse
-    | ExportOperation202Response
+    | Export202Response
     | ExportLogicalResponse
-    | ExportOperationDefaultResponse
+    | ExportDefaultResponse
 ): response is
   | CreateOrReplaceDefaultResponse
   | DeleteOperationDefaultResponse
-  | ExportOperationDefaultResponse {
+  | ExportDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

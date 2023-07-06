@@ -52,11 +52,6 @@ export class StandardClient {
   }
 
   /** Exports a User */
-  /**
-   * @fixme export is a reserved word that cannot be used as an operation name. Please add
-   * @projectedName (
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
   beginExport(
     name: string,
     format: string,

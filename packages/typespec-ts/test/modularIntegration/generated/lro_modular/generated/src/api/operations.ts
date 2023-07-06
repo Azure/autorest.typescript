@@ -9,8 +9,8 @@ import {
   CreateOrReplaceDefaultResponse,
   DeleteOperation202Response,
   DeleteOperationDefaultResponse,
-  ExportOperation202Response,
-  ExportOperationDefaultResponse,
+  Export202Response,
+  ExportDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
@@ -138,14 +138,12 @@ export async function beginDelete(
 
 export interface ExportOptions extends RequestOptions {}
 
-export function _exportOperationSend(
+export function _exportSend(
   context: Client,
   name: string,
   format: string,
   options: ExportOptions = { requestOptions: {} }
-): StreamableMethod<
-  ExportOperation202Response | ExportOperationDefaultResponse
-> {
+): StreamableMethod<Export202Response | ExportDefaultResponse> {
   return context
     .path("/azure/core/lro/standard/users/{name}:export", name)
     .post({
@@ -156,8 +154,8 @@ export function _exportOperationSend(
     });
 }
 
-export async function _exportOperationDeserialize(
-  result: ExportOperation202Response | ExportOperationDefaultResponse
+export async function _exportDeserialize(
+  result: Export202Response | ExportDefaultResponse
 ): Promise<ExportedUser | undefined> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -174,10 +172,6 @@ export async function _exportOperationDeserialize(
 }
 
 /** Exports a User */
-/**
- *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
 export async function beginExport(
   context: Client,
   name: string,
@@ -187,8 +181,8 @@ export async function beginExport(
   const pollerOptions = {
     requestMethod: "POST",
     requestUrl: "/azure/core/lro/standard/users/{name}:export",
-    deserializeFn: _exportOperationDeserialize,
-    sendInitialRequestFn: _exportOperationSend,
+    deserializeFn: _exportDeserialize,
+    sendInitialRequestFn: _exportSend,
     sendInitialRequestFnArgs: [context, name, format, options],
   } as GetLongRunningPollerOptions;
   const poller = (await getLongRunningPoller(

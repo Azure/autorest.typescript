@@ -141,18 +141,18 @@ export interface DeleteOperationDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface ExportOperation200Response extends HttpResponse {
+export interface Export200Response extends HttpResponse {
   status: "200";
   body: UserOutput;
 }
 
-export interface ExportOperationDefaultHeaders {
+export interface ExportDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface ExportOperationDefaultResponse extends HttpResponse {
+export interface ExportDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & ExportOperationDefaultHeaders;
+  headers: RawHttpHeaders & ExportDefaultHeaders;
 }
