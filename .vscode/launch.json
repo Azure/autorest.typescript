@@ -98,7 +98,8 @@
       "runtimeArgs": [
         "ts-node",
         "./test/commands/gen-cadl-ranch.ts",
-        "--tag=debug"
+        "--tag=rlc",
+        "--debug"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
