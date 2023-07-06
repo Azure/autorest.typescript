@@ -27,13 +27,16 @@ export function _listWidgetsSend(
   context: Client,
   options: ListWidgetsOptions = { requestOptions: {} }
 ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse> {
-  return context
-    .path("/widgets")
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+  return context.path("/widgets").get({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+  });
 }
 
 export async function _listWidgetsDeserialize(
@@ -70,13 +73,16 @@ export function _getWidgetSend(
   id: string,
   options: GetWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse> {
-  return context
-    .path("/widgets/{id}", id)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+  return context.path("/widgets/{id}", id).get({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+  });
 }
 
 export async function _getWidgetDeserialize(
@@ -111,14 +117,17 @@ export function _createWidgetSend(
   color: ColorType,
   options: CreateWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse> {
-  return context
-    .path("/widgets")
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-      body: { weight: weight, color: color },
-    });
+  return context.path("/widgets").post({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+    body: { weight: weight, color: color },
+  });
 }
 
 export async function _createWidgetDeserialize(
@@ -163,14 +172,17 @@ export function _updateWidgetSend(
   id: string,
   options: UpdateWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<UpdateWidget200Response | UpdateWidgetDefaultResponse> {
-  return context
-    .path("/widgets/{id}", id)
-    .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-      body: { weight: options?.weight, color: options?.color },
-    });
+  return context.path("/widgets/{id}", id).patch({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+    body: { weight: options?.weight, color: options?.color },
+  });
 }
 
 export async function _updateWidgetDeserialize(
@@ -207,13 +219,16 @@ export function _deleteWidgetSend(
   id: string,
   options: DeleteWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse> {
-  return context
-    .path("/widgets/{id}", id)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+  return context.path("/widgets/{id}", id).delete({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+  });
 }
 
 export async function _deleteWidgetDeserialize(
@@ -243,13 +258,16 @@ export function _analyzeWidgetSend(
   id: string,
   options: AnalyzeWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse> {
-  return context
-    .path("/widgets/{id}/analyze", id)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+  return context.path("/widgets/{id}/analyze", id).post({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+  });
 }
 
 export async function _analyzeWidgetDeserialize(

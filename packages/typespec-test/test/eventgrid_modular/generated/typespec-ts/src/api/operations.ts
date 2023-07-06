@@ -40,17 +40,20 @@ export function _publishCloudEventSend(
 ): StreamableMethod<
   PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 > {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      contentType:
-        (options.contentType as any) ??
-        "application/cloudevents+json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
-      body: { event: event },
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    contentType:
+      (options.contentType as any) ??
+      "application/cloudevents+json; charset=utf-8",
+    headers: { ...options.requestOptions?.headers },
+    body: { event: event },
+  });
 }
 
 export async function _publishCloudEventDeserialize(
@@ -92,17 +95,20 @@ export function _publishCloudEventsSend(
 ): StreamableMethod<
   PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 > {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      contentType:
-        (options.contentType as any) ??
-        "application/cloudevents-batch+json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
-      body: events,
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    contentType:
+      (options.contentType as any) ??
+      "application/cloudevents-batch+json; charset=utf-8",
+    headers: { ...options.requestOptions?.headers },
+    body: events,
+  });
 }
 
 export async function _publishCloudEventsDeserialize(
@@ -153,7 +159,12 @@ export function _receiveCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
       queryParameters: {
@@ -229,7 +240,12 @@ export function _acknowledgeCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
@@ -296,7 +312,12 @@ export function _releaseCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
@@ -361,7 +382,12 @@ export function _rejectCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
