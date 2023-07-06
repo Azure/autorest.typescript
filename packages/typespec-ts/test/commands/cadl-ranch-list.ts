@@ -7,14 +7,18 @@ export interface TypeSpecRanchConfig {
 export const tsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
-    inputPath: "encode/duration",
+    inputPath: "headers/repeatability",
     tag: "rlc"
+  },
   {
     outputPath: "parameters/body-optionality",
-    inputPath: "parameters/body-optionality"
+    inputPath: "parameters/body-optionality",
+    tag: "rlc"
   },
   {
     outputPath: "encode/duration",
+    inputPath: "encode/duration",
+    tag: "rlc"
   },
   {
     outputPath: "encode/datetime",
@@ -77,7 +81,7 @@ export const tsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc",
+    inputPath: "azure/core/lro/rpc/legacy",
     tag: "rlc"
   },
   {
@@ -178,6 +182,6 @@ export const tsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "lro_modular",
     inputPath: "azure/core/lro/standard",
-    tag: "debug"
+    tag: "modular"
   }
 ];
