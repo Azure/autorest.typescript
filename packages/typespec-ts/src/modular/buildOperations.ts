@@ -41,7 +41,6 @@ export function buildOperationFiles(
       ]);
     });
 
-
     // Import models used from ./models.ts
     importModels(operationGroupFile, project, srcPath);
 
@@ -59,13 +58,16 @@ export function buildOperationFiles(
       }
     ]);
 
-
     operationGroupFile.fixMissingImports();
   }
 }
 
-function importModels(sourceFile: SourceFile, project: Project, srcPath: string) {
-  const modelsFile = project.getSourceFile( `${srcPath}/src/models/index.ts`);
+function importModels(
+  sourceFile: SourceFile,
+  project: Project,
+  srcPath: string
+) {
+  const modelsFile = project.getSourceFile(`${srcPath}/src/models/index.ts`);
   const models: string[] = [];
 
   for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
