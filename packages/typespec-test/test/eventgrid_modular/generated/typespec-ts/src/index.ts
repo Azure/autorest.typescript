@@ -10,7 +10,7 @@ export {
   FailedLockToken,
   ReleaseResult,
   RejectResult,
-} from "./api/models.js";
+} from "./models/index.js";
 export {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,

@@ -50,40 +50,33 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "../common/interfaces.js",
-        namedImports: ["OperationRawReturnType"]
-      }
-    ]);
-
-    operationGroupFile.addImportDeclarations([
-      {
         moduleSpecifier: "@azure-rest/core-client",
         namedImports: ["StreamableMethod"]
       }
     ]);
 
     // Import models used from ./models.ts
-    importModels(operationGroupFile, project);
+    // importModels(operationGroupFile, project);
     operationGroupFile.fixMissingImports();
   }
 }
 
-function importModels(sourceFile: SourceFile, project: Project) {
-  const modelsFile = project.getSourceFile("models.ts");
-  const models: string[] = [];
+// function importModels(sourceFile: SourceFile, project: Project) {
+//   const modelsFile = project.getSourceFile("../models/index.ts");
+//   const models: string[] = [];
 
-  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    models.push(entry[0]);
-  }
+//   for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
+//     models.push(entry[0]);
+//   }
 
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: "./models.js",
-    namedImports: models
-  });
+//   sourceFile.addImportDeclaration({
+//     moduleSpecifier: "../models/index.js",
+//     namedImports: models
+//   });
 
-  // Import all models and then let ts-morph clean up the unused ones
-  sourceFile.fixUnusedIdentifiers();
-}
+//   // Import all models and then let ts-morph clean up the unused ones
+//   sourceFile.fixUnusedIdentifiers();
+// }
 
 /**
  * This function generates the interfaces for each operation options

@@ -3,11 +3,6 @@
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import {
-  Embeddings,
-  Completions,
-  ChatMessage,
-  ChatCompletions,
-  ImageOperationResponse,
   createOpenAI,
   OpenAIContext,
   OpenAIClientOptions,
@@ -22,6 +17,13 @@ import {
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
 } from "./api/index.js";
+import {
+  Embeddings,
+  Completions,
+  ChatMessage,
+  ChatCompletions,
+  ImageOperationResponse,
+} from "./models/index.js";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
 

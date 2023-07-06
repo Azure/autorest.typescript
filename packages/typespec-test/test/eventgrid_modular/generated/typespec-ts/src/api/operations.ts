@@ -4,6 +4,7 @@
 import {
   AcknowledgeCloudEvents200Response,
   AcknowledgeCloudEventsDefaultResponse,
+  CloudEvent,
   EventGridContext as Client,
   isUnexpected,
   PublishCloudEvent200Response,
@@ -18,14 +19,13 @@ import {
   ReleaseCloudEventsDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
+import { RequestOptions } from "../common/interfaces.js";
 import {
-  CloudEvent,
   ReceiveResult,
   AcknowledgeResult,
   ReleaseResult,
   RejectResult,
-} from "./models.js";
-import { RequestOptions } from "../common/interfaces.js";
+} from "../models/index.js";
 
 export interface PublishCloudEventOptions extends RequestOptions {
   /** content type */

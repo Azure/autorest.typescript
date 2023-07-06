@@ -2,9 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  Widget,
-  ColorType,
-  AnalyzeResult,
   listWidgets,
   getWidget,
   createWidget,
@@ -21,6 +18,7 @@ import {
   WidgetServiceContext,
   WidgetServiceClientOptions,
 } from "./api/index.js";
+import { Widget, ColorType, AnalyzeResult } from "./models/index.js";
 
 export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 

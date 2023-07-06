@@ -10,7 +10,7 @@ export function buildModels(
   project: Project,
   srcPath: string = "src"
 ): SourceFile {
-  const modelsFile = project.createSourceFile(`${srcPath}/src/api/models.ts`);
+  const modelsFile = project.createSourceFile(`${srcPath}/src/models/index.ts`);
 
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();

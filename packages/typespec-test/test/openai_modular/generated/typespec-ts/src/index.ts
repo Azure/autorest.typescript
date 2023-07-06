@@ -19,7 +19,7 @@ export {
   ImageLocation,
   State,
   ImageSize,
-} from "./api/models.js";
+} from "./models/index.js";
 export {
   GetEmbeddingsOptions,
   GetCompletionsOptions,

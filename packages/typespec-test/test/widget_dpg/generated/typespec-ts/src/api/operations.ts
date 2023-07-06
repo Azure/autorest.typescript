@@ -18,8 +18,8 @@ import {
   UpdateWidgetDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
-import { Widget, ColorType, AnalyzeResult } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
+import { Widget, ColorType, AnalyzeResult } from "../models/index.js";
 
 export interface ListWidgetsOptions extends RequestOptions {}
 

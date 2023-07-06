@@ -4,6 +4,7 @@
 import {
   OpenAIContext as Client,
   isUnexpected,
+  ChatMessage,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetCompletions200Response,
@@ -16,15 +17,14 @@ import {
   StartGenerateImageDefaultResponse,
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
+import { RequestOptions } from "../common/interfaces.js";
 import {
   Embeddings,
   Completions,
-  ChatMessage,
   ChatCompletions,
   ImageOperationResponse,
   ImageSize,
-} from "./models.js";
-import { RequestOptions } from "../common/interfaces.js";
+} from "../models/index.js";
 
 export interface GetEmbeddingsOptions extends RequestOptions {
   /**
