@@ -250,7 +250,7 @@ export function populateOperationParameters(
   const name = normalizeName(
     parameterName,
     NameType.Parameter,
-    parameter.language.default.isTopLevelParameter /** shouldGuard */
+    true /** shouldGuard */
   );
 
   const sameNameParams = operationParameters.filter(
@@ -347,8 +347,8 @@ function getParameterPath(parameter: Parameter) {
   // ParameterPath has to include the name we used for the parameter, not the serializedName
   const name = normalizeName(
     metadata.name,
-    NameType.Parameter,
-    parameter.language.default.isTopLevelParameter ? true: false /** shouldGuard */
+    parameter.language.default.isTopLevelParameter ? NameType.Parameter:NameType.Property,
+    true /** shouldGuard */
   );
 
   if (parameter.groupedBy) {
