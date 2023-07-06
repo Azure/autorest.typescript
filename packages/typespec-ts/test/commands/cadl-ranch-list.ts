@@ -7,7 +7,7 @@ export interface TypeSpecRanchConfig {
 export const tsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
-    inputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability",
     tag: "rlc"
   },
   {
