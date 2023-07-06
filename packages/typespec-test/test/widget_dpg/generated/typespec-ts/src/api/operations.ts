@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Widget, ColorType, AnalyzeResult } from "../models/index.js";
 import {
   WidgetServiceContext as Client,
   isUnexpected,
@@ -19,7 +20,6 @@ import {
 } from "../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import { RequestOptions } from "../common/interfaces.js";
-import { Widget, ColorType, AnalyzeResult } from "../models/index.js";
 
 export interface ListWidgetsOptions extends RequestOptions {}
 

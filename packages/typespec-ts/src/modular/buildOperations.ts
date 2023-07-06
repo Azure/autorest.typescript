@@ -41,6 +41,10 @@ export function buildOperationFiles(
       ]);
     });
 
+
+    // Import models used from ./models.ts
+    importModels(operationGroupFile, project, srcPath);
+
     operationGroupFile.addImportDeclarations([
       {
         moduleSpecifier: "../rest/index.js",
@@ -55,28 +59,27 @@ export function buildOperationFiles(
       }
     ]);
 
-    // Import models used from ./models.ts
-    // importModels(operationGroupFile, project);
+
     operationGroupFile.fixMissingImports();
   }
 }
 
-// function importModels(sourceFile: SourceFile, project: Project) {
-//   const modelsFile = project.getSourceFile("../models/index.ts");
-//   const models: string[] = [];
+function importModels(sourceFile: SourceFile, project: Project, srcPath: string) {
+  const modelsFile = project.getSourceFile( `${srcPath}/src/models/index.ts`);
+  const models: string[] = [];
 
-//   for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
-//     models.push(entry[0]);
-//   }
+  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    models.push(entry[0]);
+  }
 
-//   sourceFile.addImportDeclaration({
-//     moduleSpecifier: "../models/index.js",
-//     namedImports: models
-//   });
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: "../models/index.js",
+    namedImports: models
+  });
 
-//   // Import all models and then let ts-morph clean up the unused ones
-//   sourceFile.fixUnusedIdentifiers();
-// }
+  // Import all models and then let ts-morph clean up the unused ones
+  sourceFile.fixUnusedIdentifiers();
+}
 
 /**
  * This function generates the interfaces for each operation options
