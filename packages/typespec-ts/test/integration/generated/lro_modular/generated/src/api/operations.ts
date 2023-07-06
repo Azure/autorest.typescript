@@ -21,12 +21,7 @@ import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import { User, OperationStatus, ExportedUser } from "./models.js";
 import { RequestOptions } from "../common/interfaces.js";
 
-export interface CreateOrReplaceOptions extends RequestOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
+export interface CreateOrReplaceOptions extends RequestOptions {}
 
 export function _createOrReplaceSend(
   context: Client,
@@ -89,12 +84,7 @@ export async function beginCreateOrReplace(
   return poller;
 }
 
-export interface DeleteOptions extends RequestOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
+export interface DeleteOptions extends RequestOptions {}
 
 export function _deleteOperationSend(
   context: Client,
@@ -154,12 +144,7 @@ export async function beginDelete(
   return poller;
 }
 
-export interface ExportOptions extends RequestOptions {
-  /** Delay to wait until next poll, in milliseconds. */
-  updateIntervalInMs?: number;
-  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-  resumeFrom?: string;
-}
+export interface ExportOptions extends RequestOptions {}
 
 export function _exportOperationSend(
   context: Client,
