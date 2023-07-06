@@ -29,9 +29,9 @@ import {
   RLCOptions
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
-import { emitContentByBuilder, emitModels } from "./emitUtil.js";
+import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import {
-  listClients,
+  SdkContext,
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
@@ -45,13 +45,17 @@ import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
-// import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
+import { getRLCClients } from "./utils/clientUtils.js";
+
+export interface RLCSdkContext extends SdkContext {
+  options: RLCOptions;
+}
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const options: RLCOptions = context.options;
   const dpgContext = createSdkContext(context);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   const srcPath: string = context.emitterOutputDir;
   let count = -1;
   for (const client of clients) {

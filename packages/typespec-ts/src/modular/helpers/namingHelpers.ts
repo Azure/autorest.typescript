@@ -1,4 +1,4 @@
-import { toCamelCase, toPascalCase } from "../../casingUtils.js";
+import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
 import { Client, Operation } from "../modularCodeModel.js";
 import {
   ReservedModelNames,

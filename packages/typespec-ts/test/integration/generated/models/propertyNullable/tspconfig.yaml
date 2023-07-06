@@ -8,6 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
+    enableOperationGroup: true
     packageDetails:
       name: "@msinternal/nullable-property"
       description: "Nullable Property Test Service"

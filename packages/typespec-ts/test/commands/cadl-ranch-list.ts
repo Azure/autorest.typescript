@@ -6,9 +6,19 @@ export interface TypeSpecRanchConfig {
 
 export const tsps: TypeSpecRanchConfig[] = [
   {
-    outputPath: "encode",
+    outputPath: "headers/repeatability",
     inputPath: "encode/duration",
     tag: "rlc"
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
+    outputPath: "encode/duration",
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
   },
   {
     outputPath: "sharedRoute",

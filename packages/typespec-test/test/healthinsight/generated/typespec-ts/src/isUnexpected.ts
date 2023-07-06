@@ -2,31 +2,39 @@
 // Licensed under the MIT license.
 
 import {
-  MatchTrials200Response,
-  MatchTrials202Response,
-  MatchTrialsLogicalResponse,
-  MatchTrialsDefaultResponse,
+  GetJob200Response,
+  GetJobDefaultResponse,
+  CreateJob200Response,
+  CreateJob202Response,
+  CreateJobLogicalResponse,
+  CreateJobDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
+  "GET /trialmatcher/jobs/{jobId}": ["200"],
   "POST /trialmatcher/jobs": ["200", "202"],
   "GET /trialmatcher/jobs": ["200", "202"],
 };
 
 export function isUnexpected(
-  response:
-    | MatchTrials200Response
-    | MatchTrials202Response
-    | MatchTrialsLogicalResponse
-    | MatchTrialsDefaultResponse
-): response is MatchTrialsDefaultResponse;
+  response: GetJob200Response | GetJobDefaultResponse
+): response is GetJobDefaultResponse;
 export function isUnexpected(
   response:
-    | MatchTrials200Response
-    | MatchTrials202Response
-    | MatchTrialsLogicalResponse
-    | MatchTrialsDefaultResponse
-): response is MatchTrialsDefaultResponse {
+    | CreateJob200Response
+    | CreateJob202Response
+    | CreateJobLogicalResponse
+    | CreateJobDefaultResponse
+): response is CreateJobDefaultResponse;
+export function isUnexpected(
+  response:
+    | GetJob200Response
+    | GetJobDefaultResponse
+    | CreateJob200Response
+    | CreateJob202Response
+    | CreateJobLogicalResponse
+    | CreateJobDefaultResponse
+): response is GetJobDefaultResponse | CreateJobDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

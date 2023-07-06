@@ -14,21 +14,21 @@ export function buildMultiCollection(
 }`;
 
 export const buildPipeCollectionContent = `
-export function buildPipeCollection(items: string[]): string {
+export function buildPipeCollection(items: string[] | number[]): string {
   return items.join("|");
 }`;
 
 export const buildSsvCollectionContent = `
-export function buildSsvCollection(items: string[]): string {
+export function buildSsvCollection(items: string[] | number[]): string {
   return items.join(" ");
 }`;
 
 export const buildTsvCollectionContent = `
-export function buildTsvCollection(items: string[]) {
+export function buildTsvCollection(items: string[] | number[]) {
   return items.join("\\t");
 }`;
 
 export const buildCsvCollectionContent = `
-export function buildCsvCollection(items: string[]) {
+export function buildCsvCollection(items: string[] | number[]) {
   return items.join(",");
 }`;

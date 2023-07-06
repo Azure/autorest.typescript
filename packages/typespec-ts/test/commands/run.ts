@@ -35,7 +35,7 @@ export async function runTypespec(config: TypeSpecRanchConfig) {
   const commandArguments: string[] = [
     "compile",
     `${typespecPath}`,
-    "--config tspconfig.yaml"
+    "--config tspconfig.yaml "
   ];
   const command = `${typespecCommand} ${commandArguments.join(" ")}`;
   console.log(command);

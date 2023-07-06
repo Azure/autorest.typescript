@@ -28,7 +28,7 @@ import {
   getSchemaForType,
   getTypeName,
   predictDefaultValue
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 import { transformHelperFunctionDetails } from "./transformHelperFunctionDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
@@ -36,21 +36,25 @@ import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
-import { getClientLroOverload } from "../operationUtil.js";
+import { getClientLroOverload } from "../utils/operationUtil.js";
+
+export interface RLCSdkContext extends SdkContext {
+  options?: RLCOptions;
+}
 
 export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
   client: SdkClient,
   emitterOutputDir: string,
-  dpgContext: SdkContext
+  dpgContext: RLCSdkContext
 ): Promise<RLCModel> {
   const options: RLCOptions = transformRLCOptions(
-    program,
     emitterOptions,
     emitterOutputDir,
     dpgContext
   );
+  dpgContext.options = options;
   const srcPath = join(
     emitterOutputDir ?? "",
     "src",
@@ -74,31 +78,20 @@ export async function transformRLCModel(
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
 
   const responses: OperationResponse[] = transformToResponseTypes(
-    program,
     importSet,
     client,
     dpgContext
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
-    program,
     importSet,
     client,
     dpgContext
   );
-  const helperDetails = transformHelperFunctionDetails(
-    program,
-    client,
-    dpgContext
-  );
+  const helperDetails = transformHelperFunctionDetails(client, dpgContext);
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
   const urlInfo = transformUrlInfo(program, dpgContext);
-  const apiVersionInfo = transformApiVersionInfo(
-    client,
-    program,
-    dpgContext,
-    urlInfo
-  );
+  const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
   return {
     srcPath,
     libraryName,
@@ -137,7 +130,6 @@ export function transformUrlInfo(
         }
 
         const schema = getSchemaForType(
-          program,
           dpgContext,
           type,
           [SchemaContext.Exception, SchemaContext.Input],
@@ -151,11 +143,7 @@ export function transformUrlInfo(
             (getDoc(program, property) &&
               getFormattedPropertyDoc(program, property, schema, " ")) ??
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
-          value: predictDefaultValue(
-            program,
-            dpgContext,
-            host?.[0]?.parameters.get(key)
-          )
+          value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
       }
     }

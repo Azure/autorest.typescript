@@ -28,7 +28,8 @@ export async function rlcEmitterFor(
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
   ignoreClientApiVersion: boolean = false,
-  needTCGC: boolean = false
+  needTCGC: boolean = false,
+  withRawContent: boolean = false
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
@@ -40,25 +41,25 @@ export async function rlcEmitterFor(
   ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 
   namespace Azure.TypeScript.Testing;
   `;
-  host.addTypeSpecFile(
-    "main.tsp",
-    `
-  import "@typespec/http";
-  import "@typespec/rest";
-  import "@typespec/versioning";
-  ${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
-  ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
+  const content = withRawContent
+    ? code
+    : `
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
+${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
 
-  using TypeSpec.Rest; 
-  using TypeSpec.Http;
-  using TypeSpec.Versioning;
-  ${needAzureCore ? "using Azure.Core;" : ""}
-  
-  ${needNamespaces ? namespace : ""}
+using TypeSpec.Rest; 
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+${needAzureCore ? "using Azure.Core;" : ""}
 
-  ${code}
-  `
-  );
+${needNamespaces ? namespace : ""}
+
+${code}
+`;
+  host.addTypeSpecFile("main.tsp", content);
   await host.compile("./", {
     warningAsError: false
   });

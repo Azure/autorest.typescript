@@ -23,6 +23,7 @@ options:
     generateMetadata: true
     generateTest: true
     azureSdkForJs: false
+    enableOperationGroup: true
     packageDetails:
       name: "@azure-rest/load-testing"
       description: "This package contains Microsoft Azure LoadTestingClient client library."

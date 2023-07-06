@@ -86,7 +86,7 @@ import {
   Header
 } from "./modularCodeModel.js";
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
-import { camelToSnakeCase, toCamelCase } from "../casingUtils.js";
+import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1454,7 +1454,6 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: transformRLCOptions(
-      context.program,
       context.options as any,
       context.emitterOutputDir,
       dpgContext

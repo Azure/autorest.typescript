@@ -1,8 +1,4 @@
 import {
-  SdkContext,
-  listClients
-} from "@azure-tools/typespec-client-generator-core";
-import {
   NameType,
   normalizeName,
   PackageDetails,
@@ -12,17 +8,22 @@ import {
 import { getDoc, NoTarget, Program } from "@typespec/compiler";
 import { getAuthentication } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
-import { getDefaultService } from "../modelUtils.js";
+import { getDefaultService } from "../utils/modelUtils.js";
+import { getRLCClients } from "../utils/clientUtils.js";
+import { RLCSdkContext } from "./transform.js";
 
 export function transformRLCOptions(
-  program: Program,
   emitterOptions: RLCOptions,
   emitterOutputDir: string,
-  dpgContext: SdkContext
+  dpgContext: RLCSdkContext
 ): RLCOptions {
   // Extract the options from emitter option
-  const options = extractRLCOptions(program, emitterOptions, emitterOutputDir);
-  const batch = listClients(dpgContext);
+  const options = extractRLCOptions(
+    dpgContext.program,
+    emitterOptions,
+    emitterOutputDir
+  );
+  const batch = getRLCClients(dpgContext);
   options.batch = batch;
   return options;
 }
@@ -40,6 +41,7 @@ function extractRLCOptions(
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
+  const enableOperationGroup = getEnableOperationGroup(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -50,7 +52,8 @@ function extractRLCOptions(
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
-    sourceFrom: "Cadl"
+    sourceFrom: "Cadl",
+    enableOperationGroup
   };
 }
 
@@ -104,6 +107,13 @@ function processAuth(program: Program) {
     }
   }
   return securityInfo;
+}
+
+function getEnableOperationGroup(emitterOptions: RLCOptions) {
+  if (emitterOptions.enableOperationGroup === true) {
+    return true;
+  }
+  return false;
 }
 
 function getIncludeShortcuts(emitterOptions: RLCOptions) {
