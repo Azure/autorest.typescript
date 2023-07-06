@@ -47,9 +47,16 @@ export function getSendPrivateFunction(
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({allowInsecureConnection: options.requestOptions?.allowInsecureConnection, skipUrlEncoding: options.requestOptions?.skipUrlEncoding, ${getRequestParameters(
-      operation
-    )}});`
+    )}).${operationMethod}({
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
+      skipUrlEncoding: options.requestOptions?.skipUrlEncoding, ${getRequestParameters(
+        operation
+      )}});`
   );
 
   return {

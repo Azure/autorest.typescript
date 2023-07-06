@@ -49,7 +49,12 @@ export function _getEmbeddingsSend(
   return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
       body: { user: options?.user, model: options?.model, input: input },
@@ -185,7 +190,12 @@ export function _getCompletionsSend(
   return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
       body: {
@@ -337,7 +347,12 @@ export function _getChatCompletionsSend(
   return context
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
+      ...(options.requestOptions?.allowInsecureConnection === undefined
+        ? {}
+        : {
+            allowInsecureConnection:
+              options.requestOptions?.allowInsecureConnection,
+          }),
       skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
       headers: { ...options.requestOptions?.headers },
       body: {
@@ -414,13 +429,16 @@ export function _getImageOperationStatusSend(
 ): StreamableMethod<
   GetImageOperationStatus200Response | GetImageOperationStatusDefaultResponse
 > {
-  return context
-    .path("/operations/images/{operationId}", operationId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+  return context.path("/operations/images/{operationId}", operationId).get({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+  });
 }
 
 export async function _getImageOperationStatusDeserialize(
@@ -480,19 +498,22 @@ export function _startGenerateImageSend(
 ): StreamableMethod<
   StartGenerateImage202Response | StartGenerateImageDefaultResponse
 > {
-  return context
-    .path("/images/generations:submit")
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-      body: {
-        prompt: prompt,
-        n: options.n ?? 1,
-        size: options?.size,
-        user: options?.user,
-      },
-    });
+  return context.path("/images/generations:submit").post({
+    ...(options.requestOptions?.allowInsecureConnection === undefined
+      ? {}
+      : {
+          allowInsecureConnection:
+            options.requestOptions?.allowInsecureConnection,
+        }),
+    skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+    headers: { ...options.requestOptions?.headers },
+    body: {
+      prompt: prompt,
+      n: options.n ?? 1,
+      size: options?.size,
+      user: options?.user,
+    },
+  });
 }
 
 export async function _startGenerateImageDeserialize(
