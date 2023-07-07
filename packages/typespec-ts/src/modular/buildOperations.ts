@@ -7,6 +7,8 @@ import {
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
+import { getRLCClients, isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -14,6 +16,7 @@ import { Client, Operation } from "./modularCodeModel.js";
  * file called operations.ts where all operations are generated.
  */
 export function buildOperationFiles(
+  dpgContext: SdkContext,
   client: Client,
   project: Project,
   srcPath: string = "src",
@@ -35,14 +38,12 @@ export function buildOperationFiles(
 
     const namedImports: string[] = [];
     let clientType = "Client";
-    let needSubClient = false;
-    if (subfolder && subfolder !== "") {
+    if (isRLCMultiEndpoint(dpgContext)) {
       namedImports.push(`Client`);
       clientType = `Client.${client.name}Context`;
       if (needUnexpectedHelper) {
         namedImports.push("UnexpectedHelper");
       }
-      needSubClient = true;
       operationGroupFile.addImportDeclarations([
         {
           moduleSpecifier: `../../rest/${subfolder}/index.js`,
@@ -59,10 +60,11 @@ export function buildOperationFiles(
       if (needUnexpectedHelper) {
         namedImports.push("isUnexpected");
       }
-      namedImports.push(`${client.name}Context as Client`);
+      const rlcClientName = getRLCClients(dpgContext)[0]?.name
+      namedImports.push(`${rlcClientName}Context as Client`);
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: `../rest/index.js`,
+          moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
           namedImports
         }
       ]);
@@ -79,7 +81,7 @@ export function buildOperationFiles(
       const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
-        needSubClient,
+        isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper
       );
       operationGroupFile.addFunctions([

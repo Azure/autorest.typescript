@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  Client,
-  UnexpectedHelper,
-} from "../../rest/loadTestAdministration/index.js";
+  isUnexpected,
+  AzureLoadTestingClientContext as Client,
+} from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
   Test,
@@ -68,7 +68,7 @@ export interface CreateOrUpdateTestOptions extends RequestOptions {
 }
 
 export function _createOrUpdateTestSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: CreateOrUpdateTestOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -105,7 +105,7 @@ export async function _createOrUpdateTestDeserialize(
     | CreateOrUpdateTest201Response
     | CreateOrUpdateTestDefaultResponse
 ): Promise<Test> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -271,7 +271,7 @@ export async function _createOrUpdateTestDeserialize(
 
 /** Create a new test or update an existing test. */
 export async function createOrUpdateTest(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: CreateOrUpdateTestOptions = { requestOptions: {} }
 ): Promise<Test> {
@@ -295,7 +295,7 @@ export interface CreateOrUpdateAppComponentsOptions extends RequestOptions {
 }
 
 export function _createOrUpdateAppComponentsSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   components: Record<string, AppComponent>,
   testId: string,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
@@ -322,7 +322,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
     | CreateOrUpdateAppComponents201Response
     | CreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestAppComponents> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -338,7 +338,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
 
 /** Associate an app component (collection of azure resources) to a test */
 export async function createOrUpdateAppComponents(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   components: Record<string, AppComponent>,
   testId: string,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
@@ -375,7 +375,7 @@ export interface CreateOrUpdateServerMetricsConfigOptions
 }
 
 export function _createOrUpdateServerMetricsConfigSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -401,7 +401,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
     | CreateOrUpdateServerMetricsConfig201Response
     | CreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestServerMetricConfig> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -417,7 +417,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
 
 /** Configure server metrics for a test */
 export async function createOrUpdateServerMetricsConfig(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): Promise<TestServerMetricConfig> {
@@ -432,7 +432,7 @@ export async function createOrUpdateServerMetricsConfig(
 export interface GetAppComponentsOptions extends RequestOptions {}
 
 export function _getAppComponentsSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: GetAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -450,7 +450,7 @@ export function _getAppComponentsSend(
 export async function _getAppComponentsDeserialize(
   result: GetAppComponents200Response | GetAppComponentsDefaultResponse
 ): Promise<TestAppComponents> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -466,7 +466,7 @@ export async function _getAppComponentsDeserialize(
 
 /** Get associated app component (collection of azure resources) for the given test. */
 export async function getAppComponents(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: GetAppComponentsOptions = { requestOptions: {} }
 ): Promise<TestAppComponents> {
@@ -477,7 +477,7 @@ export async function getAppComponents(
 export interface GetServerMetricsConfigOptions extends RequestOptions {}
 
 export function _getServerMetricsConfigSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: GetServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -497,7 +497,7 @@ export async function _getServerMetricsConfigDeserialize(
     | GetServerMetricsConfig200Response
     | GetServerMetricsConfigDefaultResponse
 ): Promise<TestServerMetricConfig> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -513,7 +513,7 @@ export async function _getServerMetricsConfigDeserialize(
 
 /** List server metrics configuration for the given test. */
 export async function getServerMetricsConfig(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: GetServerMetricsConfigOptions = { requestOptions: {} }
 ): Promise<TestServerMetricConfig> {
@@ -524,7 +524,7 @@ export async function getServerMetricsConfig(
 export interface GetTestOptions extends RequestOptions {}
 
 export function _getTestSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: GetTestOptions = { requestOptions: {} }
 ): StreamableMethod<GetTest200Response | GetTestDefaultResponse> {
@@ -540,7 +540,7 @@ export function _getTestSend(
 export async function _getTestDeserialize(
   result: GetTest200Response | GetTestDefaultResponse
 ): Promise<Test> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -706,7 +706,7 @@ export async function _getTestDeserialize(
 
 /** Get load test details by test name */
 export async function getTest(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: GetTestOptions = { requestOptions: {} }
 ): Promise<Test> {
@@ -717,7 +717,7 @@ export async function getTest(
 export interface GetTestFileOptions extends RequestOptions {}
 
 export function _getTestFileSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   fileName: string,
   options: GetTestFileOptions = { requestOptions: {} }
@@ -734,7 +734,7 @@ export function _getTestFileSend(
 export async function _getTestFileDeserialize(
   result: GetTestFile200Response | GetTestFileDefaultResponse
 ): Promise<FileInfo> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -750,7 +750,7 @@ export async function _getTestFileDeserialize(
 
 /** Get test file by the file name. */
 export async function getTestFile(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   fileName: string,
   options: GetTestFileOptions = { requestOptions: {} }
@@ -762,7 +762,7 @@ export async function getTestFile(
 export interface ListTestFilesOptions extends RequestOptions {}
 
 export function _listTestFilesSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: ListTestFilesOptions = { requestOptions: {} }
 ): StreamableMethod<ListTestFiles200Response | ListTestFilesDefaultResponse> {
@@ -778,7 +778,7 @@ export function _listTestFilesSend(
 export async function _listTestFilesDeserialize(
   result: ListTestFiles200Response | ListTestFilesDefaultResponse
 ): Promise<FileInfoList> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -797,7 +797,7 @@ export async function _listTestFilesDeserialize(
 
 /** Get all test files. */
 export async function listTestFiles(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: ListTestFilesOptions = { requestOptions: {} }
 ): Promise<FileInfoList> {
@@ -832,7 +832,7 @@ export interface ListTestsOptions extends RequestOptions {
 }
 
 export function _listTestsSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   options: ListTestsOptions = { requestOptions: {} }
 ): StreamableMethod<ListTests200Response | ListTestsDefaultResponse> {
   return context
@@ -854,7 +854,7 @@ export function _listTestsSend(
 export async function _listTestsDeserialize(
   result: ListTests200Response | ListTestsDefaultResponse
 ): Promise<TestsList> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1001,7 +1001,7 @@ export async function _listTestsDeserialize(
  * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
  */
 export async function listTests(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   options: ListTestsOptions = { requestOptions: {} }
 ): Promise<TestsList> {
   const result = await _listTestsSend(context, options);
@@ -1016,7 +1016,7 @@ export interface UploadTestFileOptions extends RequestOptions {
 }
 
 export function _uploadTestFileSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   fileName: string,
   options: UploadTestFileOptions = { requestOptions: {} }
@@ -1035,7 +1035,7 @@ export function _uploadTestFileSend(
 export async function _uploadTestFileDeserialize(
   result: UploadTestFile201Response | UploadTestFileDefaultResponse
 ): Promise<FileInfo> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1055,7 +1055,7 @@ export async function _uploadTestFileDeserialize(
  * should be provided in the request body as application/octet-stream.
  */
 export async function uploadTestFile(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   fileName: string,
   options: UploadTestFileOptions = { requestOptions: {} }
@@ -1067,7 +1067,7 @@ export async function uploadTestFile(
 export interface DeleteTestFileOptions extends RequestOptions {}
 
 export function _deleteTestFileSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   fileName: string,
   options: DeleteTestFileOptions = { requestOptions: {} }
@@ -1084,7 +1084,7 @@ export function _deleteTestFileSend(
 export async function _deleteTestFileDeserialize(
   result: DeleteTestFile204Response | DeleteTestFileDefaultResponse
 ): Promise<void> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1093,7 +1093,7 @@ export async function _deleteTestFileDeserialize(
 
 /** Delete file by the file name for a test */
 export async function deleteTestFile(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   fileName: string,
   options: DeleteTestFileOptions = { requestOptions: {} }
@@ -1105,7 +1105,7 @@ export async function deleteTestFile(
 export interface DeleteTestOptions extends RequestOptions {}
 
 export function _deleteTestSend(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: DeleteTestOptions = { requestOptions: {} }
 ): StreamableMethod<DeleteTest204Response | DeleteTestDefaultResponse> {
@@ -1121,7 +1121,7 @@ export function _deleteTestSend(
 export async function _deleteTestDeserialize(
   result: DeleteTest204Response | DeleteTestDefaultResponse
 ): Promise<void> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1130,7 +1130,7 @@ export async function _deleteTestDeserialize(
 
 /** Delete a test by its name. */
 export async function deleteTest(
-  context: Client.LoadTestAdministrationContext,
+  context: Client,
   testId: string,
   options: DeleteTestOptions = { requestOptions: {} }
 ): Promise<void> {

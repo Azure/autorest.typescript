@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client, UnexpectedHelper } from "../../rest/loadTestRun/index.js";
+import {
+  isUnexpected,
+  AzureLoadTestingClientContext as Client,
+} from "../../rest/index.js";
 import { StreamableMethod } from "@azure-rest/core-client";
 import {
   PassFailCriteria,
@@ -96,7 +99,7 @@ export interface TestRunOptions extends RequestOptions {
 }
 
 export function _testRunSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: TestRunOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -127,7 +130,7 @@ export function _testRunSend(
 export async function _testRunDeserialize(
   result: TestRun200Response | TestRun201Response | TestRunDefaultResponse
 ): Promise<TestRun> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -357,7 +360,7 @@ export async function _testRunDeserialize(
 
 /** Create and start a new test run with the given name. */
 export async function testRun(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: TestRunOptions = { requestOptions: {} }
 ): Promise<TestRun> {
@@ -381,7 +384,7 @@ export interface CreateOrUpdateAppComponentsOptions extends RequestOptions {
 }
 
 export function _createOrUpdateAppComponentsSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   components: Record<string, AppComponent>,
   testRunId: string,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
@@ -408,7 +411,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
     | CreateOrUpdateAppComponents201Response
     | CreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -424,7 +427,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
 
 /** Associate an app component (collection of azure resources) to a test run */
 export async function createOrUpdateAppComponents(
-  context: Client.LoadTestRunContext,
+  context: Client,
   components: Record<string, AppComponent>,
   testRunId: string,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
@@ -461,7 +464,7 @@ export interface CreateOrUpdateServerMetricsConfigOptions
 }
 
 export function _createOrUpdateServerMetricsConfigSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -487,7 +490,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
     | CreateOrUpdateServerMetricsConfig201Response
     | CreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -503,7 +506,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
 
 /** Configure server metrics for a test run */
 export async function createOrUpdateServerMetricsConfig(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): Promise<TestRunServerMetricConfig> {
@@ -518,7 +521,7 @@ export async function createOrUpdateServerMetricsConfig(
 export interface DeleteTestRunOptions extends RequestOptions {}
 
 export function _deleteTestRunSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: DeleteTestRunOptions = { requestOptions: {} }
 ): StreamableMethod<DeleteTestRun204Response | DeleteTestRunDefaultResponse> {
@@ -534,7 +537,7 @@ export function _deleteTestRunSend(
 export async function _deleteTestRunDeserialize(
   result: DeleteTestRun204Response | DeleteTestRunDefaultResponse
 ): Promise<void> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -543,7 +546,7 @@ export async function _deleteTestRunDeserialize(
 
 /** Delete a test run by its name. */
 export async function deleteTestRun(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: DeleteTestRunOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -554,7 +557,7 @@ export async function deleteTestRun(
 export interface GetAppComponentsOptions extends RequestOptions {}
 
 export function _getAppComponentsSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: GetAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -572,7 +575,7 @@ export function _getAppComponentsSend(
 export async function _getAppComponentsDeserialize(
   result: GetAppComponents200Response | GetAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -591,7 +594,7 @@ export async function _getAppComponentsDeserialize(
  * run.
  */
 export async function getAppComponents(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: GetAppComponentsOptions = { requestOptions: {} }
 ): Promise<TestRunAppComponents> {
@@ -602,7 +605,7 @@ export async function getAppComponents(
 export interface GetServerMetricsConfigOptions extends RequestOptions {}
 
 export function _getServerMetricsConfigSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: GetServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -622,7 +625,7 @@ export async function _getServerMetricsConfigDeserialize(
     | GetServerMetricsConfig200Response
     | GetServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -638,7 +641,7 @@ export async function _getServerMetricsConfigDeserialize(
 
 /** List server metrics configuration for the given test run. */
 export async function getServerMetricsConfig(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: GetServerMetricsConfigOptions = { requestOptions: {} }
 ): Promise<TestRunServerMetricConfig> {
@@ -649,7 +652,7 @@ export async function getServerMetricsConfig(
 export interface GetTestRunOptions extends RequestOptions {}
 
 export function _getTestRunSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: GetTestRunOptions = { requestOptions: {} }
 ): StreamableMethod<GetTestRun200Response | GetTestRunDefaultResponse> {
@@ -665,7 +668,7 @@ export function _getTestRunSend(
 export async function _getTestRunDeserialize(
   result: GetTestRun200Response | GetTestRunDefaultResponse
 ): Promise<TestRun> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -895,7 +898,7 @@ export async function _getTestRunDeserialize(
 
 /** Get test run details by name. */
 export async function getTestRun(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: GetTestRunOptions = { requestOptions: {} }
 ): Promise<TestRun> {
@@ -906,7 +909,7 @@ export async function getTestRun(
 export interface GetTestRunFileOptions extends RequestOptions {}
 
 export function _getTestRunFileSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   fileName: string,
   options: GetTestRunFileOptions = { requestOptions: {} }
@@ -923,7 +926,7 @@ export function _getTestRunFileSend(
 export async function _getTestRunFileDeserialize(
   result: GetTestRunFile200Response | GetTestRunFileDefaultResponse
 ): Promise<FileInfo> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -939,7 +942,7 @@ export async function _getTestRunFileDeserialize(
 
 /** Get test run file by file name. */
 export async function getTestRunFile(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   fileName: string,
   options: GetTestRunFileOptions = { requestOptions: {} }
@@ -966,7 +969,7 @@ export interface ListMetricDimensionValuesOptions extends RequestOptions {
 }
 
 export function _listMetricDimensionValuesSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   name: string,
   metricNamespace: string,
@@ -999,7 +1002,7 @@ export async function _listMetricDimensionValuesDeserialize(
     | ListMetricDimensionValues200Response
     | ListMetricDimensionValuesDefaultResponse
 ): Promise<CustomPage> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1011,7 +1014,7 @@ export async function _listMetricDimensionValuesDeserialize(
 
 /** List the dimension values for the given metric dimension name. */
 export async function listMetricDimensionValues(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   name: string,
   metricNamespace: string,
@@ -1033,7 +1036,7 @@ export interface ListMetricDefinitionsOptions extends RequestOptions {
 }
 
 export function _listMetricDefinitionsSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: ListMetricDefinitionsOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -1054,7 +1057,7 @@ export async function _listMetricDefinitionsDeserialize(
     | ListMetricDefinitions200Response
     | ListMetricDefinitionsDefaultResponse
 ): Promise<MetricDefinitionCollection> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1079,7 +1082,7 @@ export async function _listMetricDefinitionsDeserialize(
 
 /** List the metric definitions for a load test run. */
 export async function listMetricDefinitions(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: ListMetricDefinitionsOptions = { requestOptions: {} }
 ): Promise<MetricDefinitionCollection> {
@@ -1090,7 +1093,7 @@ export async function listMetricDefinitions(
 export interface ListMetricNamespacesOptions extends RequestOptions {}
 
 export function _listMetricNamespacesSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: ListMetricNamespacesOptions = { requestOptions: {} }
 ): StreamableMethod<
@@ -1108,7 +1111,7 @@ export function _listMetricNamespacesSend(
 export async function _listMetricNamespacesDeserialize(
   result: ListMetricNamespaces200Response | ListMetricNamespacesDefaultResponse
 ): Promise<MetricNamespaceCollection> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1122,7 +1125,7 @@ export async function _listMetricNamespacesDeserialize(
 
 /** List the metric namespaces for a load test run. */
 export async function listMetricNamespaces(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: ListMetricNamespacesOptions = { requestOptions: {} }
 ): Promise<MetricNamespaceCollection> {
@@ -1154,7 +1157,7 @@ export interface ListMetricsOptions extends RequestOptions {
 }
 
 export function _listMetricsSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: ListMetricsOptions = { requestOptions: {} }
 ): StreamableMethod<ListMetrics200Response | ListMetricsDefaultResponse> {
@@ -1178,7 +1181,7 @@ export function _listMetricsSend(
 export async function _listMetricsDeserialize(
   result: ListMetrics200Response | ListMetricsDefaultResponse
 ): Promise<Metrics> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1199,7 +1202,7 @@ export async function _listMetricsDeserialize(
 
 /** List the metric values for a load test run. */
 export async function listMetrics(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: ListMetricsOptions = { requestOptions: {} }
 ): Promise<Metrics> {
@@ -1232,7 +1235,7 @@ export interface ListTestRunsOptions extends RequestOptions {
 }
 
 export function _listTestRunsSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   options: ListTestRunsOptions = { requestOptions: {} }
 ): StreamableMethod<ListTestRuns200Response | ListTestRunsDefaultResponse> {
   return context
@@ -1256,7 +1259,7 @@ export function _listTestRunsSend(
 export async function _listTestRunsDeserialize(
   result: ListTestRuns200Response | ListTestRunsDefaultResponse
 ): Promise<TestRunsList> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1514,7 +1517,7 @@ export async function _listTestRunsDeserialize(
 
 /** Get all test runs with given filters */
 export async function listTestRuns(
-  context: Client.LoadTestRunContext,
+  context: Client,
   options: ListTestRunsOptions = { requestOptions: {} }
 ): Promise<TestRunsList> {
   const result = await _listTestRunsSend(context, options);
@@ -1524,7 +1527,7 @@ export async function listTestRuns(
 export interface StopTestRunOptions extends RequestOptions {}
 
 export function _stopTestRunSend(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: StopTestRunOptions = { requestOptions: {} }
 ): StreamableMethod<StopTestRun200Response | StopTestRunDefaultResponse> {
@@ -1540,7 +1543,7 @@ export function _stopTestRunSend(
 export async function _stopTestRunDeserialize(
   result: StopTestRun200Response | StopTestRunDefaultResponse
 ): Promise<TestRun> {
-  if (UnexpectedHelper.isUnexpected(result)) {
+  if (isUnexpected(result)) {
     throw result.body;
   }
 
@@ -1770,7 +1773,7 @@ export async function _stopTestRunDeserialize(
 
 /** Stop test run by name. */
 export async function stopTestRun(
-  context: Client.LoadTestRunContext,
+  context: Client,
   testRunId: string,
   options: StopTestRunOptions = { requestOptions: {} }
 ): Promise<TestRun> {

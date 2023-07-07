@@ -13,8 +13,11 @@ import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client } from "./modularCodeModel.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 export function buildClassicalClient(
+  dpgContext: SdkContext,
   client: Client,
   project: Project,
   srcPath: string,
@@ -35,7 +38,7 @@ export function buildClassicalClient(
   });
 
   // Add the private client member. This will be the client context from /api
-  if (subfolder && subfolder !== "") {
+  if (isRLCMultiEndpoint(dpgContext)) {
     clientClass.addProperty({
       name: "_client",
       type: `Client.${modularClientName}Context`,

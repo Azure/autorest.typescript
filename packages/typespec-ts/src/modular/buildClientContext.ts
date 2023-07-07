@@ -3,11 +3,14 @@ import { getClientParameters } from "./helpers/clientHelpers.js";
 import { importCredential } from "./helpers/credentialHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, Parameter } from "./modularCodeModel.js";
+import { getRLCClients, isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 /**
  * This function creates the file containing the modular client context
  */
 export function buildClientContext(
+  dpgContext: SdkContext,
   client: Client,
   project: Project,
   srcPath: string = "src",
@@ -33,7 +36,7 @@ export function buildClientContext(
     extends: ["ClientOptions"]
   });
 
-  if (subfolder && subfolder !== "") {
+  if (isRLCMultiEndpoint(dpgContext)) {
     clientContextFile.addImportDeclaration({
       moduleSpecifier: `../../rest/${subfolder}/index.js`,
       namedImports: [`Client`]
@@ -51,20 +54,21 @@ export function buildClientContext(
       isExported: true
     });
   } else {
+    const rlcClientName = getRLCClients(dpgContext)[0]?.name
     clientContextFile.addImportDeclaration({
-      moduleSpecifier: `../rest/index.js`,
-      namedImports: [`${client.name}Context`]
+      moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
+      namedImports: [`${rlcClientName}Context`]
     });
 
     clientContextFile.addExportDeclaration({
-      moduleSpecifier: `../rest/index.js`,
-      namedExports: [`${client.name}Context`]
+      moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
+      namedExports: [`${rlcClientName}Context`]
     });
 
     factoryFunction = clientContextFile.addFunction({
       docs: [description],
       name: `create${name}`,
-      returnType: `${client.name}Context`,
+      returnType: `${rlcClientName}Context`,
       parameters: getClientParameters(client),
       isExported: true
     });
@@ -98,7 +102,7 @@ export function buildClientContext(
 
   factoryFunction.addStatements([getClientStatement, "return clientContext;"]);
 
-  if (subfolder && subfolder !== "") {
+  if (isRLCMultiEndpoint(dpgContext)) {
     clientContextFile.addImportDeclarations([
       {
         moduleSpecifier: `../../rest/${subfolder}/index.js`,
@@ -108,7 +112,7 @@ export function buildClientContext(
   } else {
     clientContextFile.addImportDeclarations([
       {
-        moduleSpecifier: `../rest/index.js`,
+        moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
         defaultImport: "getClient"
       }
     ]);

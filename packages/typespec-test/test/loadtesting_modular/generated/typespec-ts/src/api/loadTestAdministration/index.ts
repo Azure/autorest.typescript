@@ -4,7 +4,7 @@
 export {
   createLoadTestAdministration,
   LoadTestAdministrationClientOptions,
-  Client,
+  AzureLoadTestingClientContext,
 } from "./LoadTestAdministrationContext.js";
 export {
   Test,
