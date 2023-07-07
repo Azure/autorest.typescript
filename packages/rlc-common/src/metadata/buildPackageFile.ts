@@ -153,7 +153,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "1.1.4-alpha.20230630.1",
+      "@azure-rest/core-client": "^1.1.4",
       "@azure/core-rest-pipeline": "^1.8.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",

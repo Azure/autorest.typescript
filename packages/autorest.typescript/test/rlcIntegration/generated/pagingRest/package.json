@@ -4,13 +4,22 @@
   "author": "Microsoft Corporation",
   "version": "1.0.0-preview1",
   "description": "A generated SDK for Paging.",
-  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "keywords": [
+    "node",
+    "azure",
+    "cloud",
+    "typescript",
+    "browser",
+    "isomorphic"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/paging-service.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "bugs": {
+    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
+  },
   "files": [
     "dist/",
     "dist-esm/",
@@ -19,7 +28,9 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": { "node": ">=14.0.0" },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:browser": "echo skipped.",
@@ -52,7 +63,7 @@
   "autoPublish": false,
   "dependencies": {
     "@azure/core-auth": "^1.3.0",
-    "@azure-rest/core-client": "1.1.4-alpha.20230630.1",
+    "@azure-rest/core-client": "^1.1.4",
     "@azure/core-rest-pipeline": "^1.8.0",
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
