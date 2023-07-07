@@ -4,22 +4,13 @@
   "author": "Microsoft Corporation",
   "version": "1.0.0-preview1",
   "description": "A generated SDK for DPGCustomizationClient.",
-  "keywords": [
-    "node",
-    "azure",
-    "cloud",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/index.js",
   "types": "./types/dpg-customization-rest.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
-  "bugs": {
-    "url": "https://github.com/Azure/azure-sdk-for-js/issues"
-  },
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/",
     "dist-esm/",
@@ -28,9 +19,7 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": {
-    "node": ">=14.0.0"
-  },
+  "engines": { "node": ">=14.0.0" },
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:browser": "tsc -p . && dev-tool run bundle",
@@ -86,21 +75,13 @@
   },
   "//metadata": {
     "constantPaths": [
-      {
-        "path": "src/dPGCustomizationClient.ts",
-        "prefix": "userAgentInfo"
-      },
-      {
-        "path": "swagger/README.md",
-        "prefix": "package-version"
-      }
+      { "path": "src/dPGCustomizationClient.ts", "prefix": "userAgentInfo" },
+      { "path": "swagger/README.md", "prefix": "package-version" }
     ]
   },
   "//sampleConfiguration": {
     "productName": "DPGCustomizationClient",
-    "productSlugs": [
-      "azure"
-    ],
+    "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/dpg-customization-rest"
   }
