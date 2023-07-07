@@ -57,18 +57,12 @@ export async function emitParameterFromCadl(
     ignoreClientApiVersion,
     needTCGC
   );
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
   if (clients && clients[0]) {
-    parameters = transformToParameterTypes(
-      program,
-      importSet,
-      clients[0],
-      dpgContext
-    );
+    parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
   }
   return buildParameterTypes({
     srcPath: "",
@@ -112,12 +106,7 @@ export async function emitClientFactoryFromCadl(
   const clients = getRLCClients(dpgContext);
   let apiVersionInfo;
   if (clients && clients[0]) {
-    apiVersionInfo = transformApiVersionInfo(
-      clients[0],
-      program,
-      dpgContext,
-      urlInfo
-    );
+    apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
   }
 
   return buildClient({
@@ -142,18 +131,12 @@ export async function emitResponsesFromCadl(
   needAzureCore: boolean = false
 ) {
   const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = new Map<ImportKind, Set<string>>();
   const clients = getRLCClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
-    responses = transformToResponseTypes(
-      program,
-      importSet,
-      clients[0],
-      dpgContext
-    );
+    responses = transformToResponseTypes(importSet, clients[0], dpgContext);
   }
   return buildResponseTypes({
     srcPath: "",
@@ -165,9 +148,7 @@ export async function emitResponsesFromCadl(
   });
 }
 
-export async function getRLCClientsFromCadl(
-  cadlContent: string
-) {
+export async function getRLCClientsFromCadl(cadlContent: string) {
   const context = await rlcEmitterFor(
     cadlContent,
     true,

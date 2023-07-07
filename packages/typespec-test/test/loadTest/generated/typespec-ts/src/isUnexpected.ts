@@ -2,65 +2,65 @@
 // Licensed under the MIT license.
 
 import {
-  TestCreateOrUpdate200Response,
-  TestCreateOrUpdate201Response,
-  TestCreateOrUpdateDefaultResponse,
-  TestDelete204Response,
-  TestDeleteDefaultResponse,
-  TestGet200Response,
-  TestGetDefaultResponse,
-  TestList200Response,
-  TestListDefaultResponse,
-  TestUploadFile201Response,
-  TestUploadFileDefaultResponse,
-  TestGetFile200Response,
-  TestGetFileDefaultResponse,
-  TestDeleteFile204Response,
-  TestDeleteFileDefaultResponse,
-  TestListFiles200Response,
-  TestListFilesDefaultResponse,
-  TestCreateOrUpdateAppComponents200Response,
-  TestCreateOrUpdateAppComponents201Response,
-  TestCreateOrUpdateAppComponentsDefaultResponse,
-  TestListAppComponents200Response,
-  TestListAppComponentsDefaultResponse,
-  TestCreateOrUpdateServerMetricsConfig200Response,
-  TestCreateOrUpdateServerMetricsConfig201Response,
-  TestCreateOrUpdateServerMetricsConfigDefaultResponse,
-  TestListServerMetricsConfig200Response,
-  TestListServerMetricsConfigDefaultResponse,
-  TestRunDelete204Response,
-  TestRunDeleteDefaultResponse,
-  TestRunCreateOrUpdate200Response,
-  TestRunCreateOrUpdate201Response,
-  TestRunCreateOrUpdateLogicalResponse,
-  TestRunCreateOrUpdateDefaultResponse,
-  TestRunGet200Response,
-  TestRunGetDefaultResponse,
-  TestRunGetFile200Response,
-  TestRunGetFileDefaultResponse,
-  TestRunList200Response,
-  TestRunListDefaultResponse,
-  TestRunStop200Response,
-  TestRunStopDefaultResponse,
-  TestRunListMetricNamespaces200Response,
-  TestRunListMetricNamespacesDefaultResponse,
-  TestRunListMetricDefinitions200Response,
-  TestRunListMetricDefinitionsDefaultResponse,
-  TestRunListMetrics200Response,
-  TestRunListMetricsDefaultResponse,
-  TestRunListMetricDimensionValues200Response,
-  TestRunListMetricDimensionValuesDefaultResponse,
-  TestRunCreateOrUpdateAppComponents200Response,
-  TestRunCreateOrUpdateAppComponents201Response,
-  TestRunCreateOrUpdateAppComponentsDefaultResponse,
-  TestRunListAppComponents200Response,
-  TestRunListAppComponentsDefaultResponse,
-  TestRunCreateOrUpdateServerMetricsConfig200Response,
-  TestRunCreateOrUpdateServerMetricsConfig201Response,
-  TestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
-  TestRunListServerMetricsConfig200Response,
-  TestRunListServerMetricsConfigDefaultResponse,
+  LoadTestAdministrationCreateOrUpdateTest200Response,
+  LoadTestAdministrationCreateOrUpdateTest201Response,
+  LoadTestAdministrationCreateOrUpdateTestDefaultResponse,
+  LoadTestAdministrationDeleteTest204Response,
+  LoadTestAdministrationDeleteTestDefaultResponse,
+  LoadTestAdministrationGetTest200Response,
+  LoadTestAdministrationGetTestDefaultResponse,
+  LoadTestAdministrationListTests200Response,
+  LoadTestAdministrationListTestsDefaultResponse,
+  LoadTestAdministrationUploadTestFile201Response,
+  LoadTestAdministrationUploadTestFileDefaultResponse,
+  LoadTestAdministrationGetTestFile200Response,
+  LoadTestAdministrationGetTestFileDefaultResponse,
+  LoadTestAdministrationDeleteTestFile204Response,
+  LoadTestAdministrationDeleteTestFileDefaultResponse,
+  LoadTestAdministrationListTestFiles200Response,
+  LoadTestAdministrationListTestFilesDefaultResponse,
+  LoadTestAdministrationCreateOrUpdateAppComponents200Response,
+  LoadTestAdministrationCreateOrUpdateAppComponents201Response,
+  LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
+  LoadTestAdministrationGetAppComponents200Response,
+  LoadTestAdministrationGetAppComponentsDefaultResponse,
+  LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response,
+  LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response,
+  LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
+  LoadTestAdministrationGetServerMetricsConfig200Response,
+  LoadTestAdministrationGetServerMetricsConfigDefaultResponse,
+  LoadTestRunDeleteTestRun204Response,
+  LoadTestRunDeleteTestRunDefaultResponse,
+  LoadTestRunCreateOrUpdateTestRun200Response,
+  LoadTestRunCreateOrUpdateTestRun201Response,
+  LoadTestRunCreateOrUpdateTestRunLogicalResponse,
+  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
+  LoadTestRunGetTestRun200Response,
+  LoadTestRunGetTestRunDefaultResponse,
+  LoadTestRunGetTestRunFile200Response,
+  LoadTestRunGetTestRunFileDefaultResponse,
+  LoadTestRunListTestRuns200Response,
+  LoadTestRunListTestRunsDefaultResponse,
+  LoadTestRunStopTestRun200Response,
+  LoadTestRunStopTestRunDefaultResponse,
+  LoadTestRunListMetricNamespaces200Response,
+  LoadTestRunListMetricNamespacesDefaultResponse,
+  LoadTestRunListMetricDefinitions200Response,
+  LoadTestRunListMetricDefinitionsDefaultResponse,
+  LoadTestRunListMetrics200Response,
+  LoadTestRunListMetricsDefaultResponse,
+  LoadTestRunListMetricDimensionValues200Response,
+  LoadTestRunListMetricDimensionValuesDefaultResponse,
+  LoadTestRunCreateOrUpdateAppComponents200Response,
+  LoadTestRunCreateOrUpdateAppComponents201Response,
+  LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
+  LoadTestRunGetAppComponents200Response,
+  LoadTestRunGetAppComponentsDefaultResponse,
+  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
+  LoadTestRunTestRunListServerMetricsConfig200Response,
+  LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -94,203 +94,229 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | TestCreateOrUpdate200Response
-    | TestCreateOrUpdate201Response
-    | TestCreateOrUpdateDefaultResponse
-): response is TestCreateOrUpdateDefaultResponse;
-export function isUnexpected(
-  response: TestDelete204Response | TestDeleteDefaultResponse
-): response is TestDeleteDefaultResponse;
-export function isUnexpected(
-  response: TestGet200Response | TestGetDefaultResponse
-): response is TestGetDefaultResponse;
-export function isUnexpected(
-  response: TestList200Response | TestListDefaultResponse
-): response is TestListDefaultResponse;
-export function isUnexpected(
-  response: TestUploadFile201Response | TestUploadFileDefaultResponse
-): response is TestUploadFileDefaultResponse;
-export function isUnexpected(
-  response: TestGetFile200Response | TestGetFileDefaultResponse
-): response is TestGetFileDefaultResponse;
-export function isUnexpected(
-  response: TestDeleteFile204Response | TestDeleteFileDefaultResponse
-): response is TestDeleteFileDefaultResponse;
-export function isUnexpected(
-  response: TestListFiles200Response | TestListFilesDefaultResponse
-): response is TestListFilesDefaultResponse;
+    | LoadTestAdministrationCreateOrUpdateTest200Response
+    | LoadTestAdministrationCreateOrUpdateTest201Response
+    | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
+): response is LoadTestAdministrationCreateOrUpdateTestDefaultResponse;
 export function isUnexpected(
   response:
-    | TestCreateOrUpdateAppComponents200Response
-    | TestCreateOrUpdateAppComponents201Response
-    | TestCreateOrUpdateAppComponentsDefaultResponse
-): response is TestCreateOrUpdateAppComponentsDefaultResponse;
+    | LoadTestAdministrationDeleteTest204Response
+    | LoadTestAdministrationDeleteTestDefaultResponse
+): response is LoadTestAdministrationDeleteTestDefaultResponse;
 export function isUnexpected(
   response:
-    | TestListAppComponents200Response
-    | TestListAppComponentsDefaultResponse
-): response is TestListAppComponentsDefaultResponse;
+    | LoadTestAdministrationGetTest200Response
+    | LoadTestAdministrationGetTestDefaultResponse
+): response is LoadTestAdministrationGetTestDefaultResponse;
 export function isUnexpected(
   response:
-    | TestCreateOrUpdateServerMetricsConfig200Response
-    | TestCreateOrUpdateServerMetricsConfig201Response
-    | TestCreateOrUpdateServerMetricsConfigDefaultResponse
-): response is TestCreateOrUpdateServerMetricsConfigDefaultResponse;
+    | LoadTestAdministrationListTests200Response
+    | LoadTestAdministrationListTestsDefaultResponse
+): response is LoadTestAdministrationListTestsDefaultResponse;
 export function isUnexpected(
   response:
-    | TestListServerMetricsConfig200Response
-    | TestListServerMetricsConfigDefaultResponse
-): response is TestListServerMetricsConfigDefaultResponse;
-export function isUnexpected(
-  response: TestRunDelete204Response | TestRunDeleteDefaultResponse
-): response is TestRunDeleteDefaultResponse;
+    | LoadTestAdministrationUploadTestFile201Response
+    | LoadTestAdministrationUploadTestFileDefaultResponse
+): response is LoadTestAdministrationUploadTestFileDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunCreateOrUpdate200Response
-    | TestRunCreateOrUpdate201Response
-    | TestRunCreateOrUpdateLogicalResponse
-    | TestRunCreateOrUpdateDefaultResponse
-): response is TestRunCreateOrUpdateDefaultResponse;
-export function isUnexpected(
-  response: TestRunGet200Response | TestRunGetDefaultResponse
-): response is TestRunGetDefaultResponse;
-export function isUnexpected(
-  response: TestRunGetFile200Response | TestRunGetFileDefaultResponse
-): response is TestRunGetFileDefaultResponse;
-export function isUnexpected(
-  response: TestRunList200Response | TestRunListDefaultResponse
-): response is TestRunListDefaultResponse;
-export function isUnexpected(
-  response: TestRunStop200Response | TestRunStopDefaultResponse
-): response is TestRunStopDefaultResponse;
+    | LoadTestAdministrationGetTestFile200Response
+    | LoadTestAdministrationGetTestFileDefaultResponse
+): response is LoadTestAdministrationGetTestFileDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunListMetricNamespaces200Response
-    | TestRunListMetricNamespacesDefaultResponse
-): response is TestRunListMetricNamespacesDefaultResponse;
+    | LoadTestAdministrationDeleteTestFile204Response
+    | LoadTestAdministrationDeleteTestFileDefaultResponse
+): response is LoadTestAdministrationDeleteTestFileDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunListMetricDefinitions200Response
-    | TestRunListMetricDefinitionsDefaultResponse
-): response is TestRunListMetricDefinitionsDefaultResponse;
-export function isUnexpected(
-  response: TestRunListMetrics200Response | TestRunListMetricsDefaultResponse
-): response is TestRunListMetricsDefaultResponse;
+    | LoadTestAdministrationListTestFiles200Response
+    | LoadTestAdministrationListTestFilesDefaultResponse
+): response is LoadTestAdministrationListTestFilesDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunListMetricDimensionValues200Response
-    | TestRunListMetricDimensionValuesDefaultResponse
-): response is TestRunListMetricDimensionValuesDefaultResponse;
+    | LoadTestAdministrationCreateOrUpdateAppComponents200Response
+    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
+    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+): response is LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunCreateOrUpdateAppComponents200Response
-    | TestRunCreateOrUpdateAppComponents201Response
-    | TestRunCreateOrUpdateAppComponentsDefaultResponse
-): response is TestRunCreateOrUpdateAppComponentsDefaultResponse;
+    | LoadTestAdministrationGetAppComponents200Response
+    | LoadTestAdministrationGetAppComponentsDefaultResponse
+): response is LoadTestAdministrationGetAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunListAppComponents200Response
-    | TestRunListAppComponentsDefaultResponse
-): response is TestRunListAppComponentsDefaultResponse;
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+): response is LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunCreateOrUpdateServerMetricsConfig200Response
-    | TestRunCreateOrUpdateServerMetricsConfig201Response
-    | TestRunCreateOrUpdateServerMetricsConfigDefaultResponse
-): response is TestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
+    | LoadTestAdministrationGetServerMetricsConfig200Response
+    | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
+): response is LoadTestAdministrationGetServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
-    | TestRunListServerMetricsConfig200Response
-    | TestRunListServerMetricsConfigDefaultResponse
-): response is TestRunListServerMetricsConfigDefaultResponse;
+    | LoadTestRunDeleteTestRun204Response
+    | LoadTestRunDeleteTestRunDefaultResponse
+): response is LoadTestRunDeleteTestRunDefaultResponse;
 export function isUnexpected(
   response:
-    | TestCreateOrUpdate200Response
-    | TestCreateOrUpdate201Response
-    | TestCreateOrUpdateDefaultResponse
-    | TestDelete204Response
-    | TestDeleteDefaultResponse
-    | TestGet200Response
-    | TestGetDefaultResponse
-    | TestList200Response
-    | TestListDefaultResponse
-    | TestUploadFile201Response
-    | TestUploadFileDefaultResponse
-    | TestGetFile200Response
-    | TestGetFileDefaultResponse
-    | TestDeleteFile204Response
-    | TestDeleteFileDefaultResponse
-    | TestListFiles200Response
-    | TestListFilesDefaultResponse
-    | TestCreateOrUpdateAppComponents200Response
-    | TestCreateOrUpdateAppComponents201Response
-    | TestCreateOrUpdateAppComponentsDefaultResponse
-    | TestListAppComponents200Response
-    | TestListAppComponentsDefaultResponse
-    | TestCreateOrUpdateServerMetricsConfig200Response
-    | TestCreateOrUpdateServerMetricsConfig201Response
-    | TestCreateOrUpdateServerMetricsConfigDefaultResponse
-    | TestListServerMetricsConfig200Response
-    | TestListServerMetricsConfigDefaultResponse
-    | TestRunDelete204Response
-    | TestRunDeleteDefaultResponse
-    | TestRunCreateOrUpdate200Response
-    | TestRunCreateOrUpdate201Response
-    | TestRunCreateOrUpdateLogicalResponse
-    | TestRunCreateOrUpdateDefaultResponse
-    | TestRunGet200Response
-    | TestRunGetDefaultResponse
-    | TestRunGetFile200Response
-    | TestRunGetFileDefaultResponse
-    | TestRunList200Response
-    | TestRunListDefaultResponse
-    | TestRunStop200Response
-    | TestRunStopDefaultResponse
-    | TestRunListMetricNamespaces200Response
-    | TestRunListMetricNamespacesDefaultResponse
-    | TestRunListMetricDefinitions200Response
-    | TestRunListMetricDefinitionsDefaultResponse
-    | TestRunListMetrics200Response
-    | TestRunListMetricsDefaultResponse
-    | TestRunListMetricDimensionValues200Response
-    | TestRunListMetricDimensionValuesDefaultResponse
-    | TestRunCreateOrUpdateAppComponents200Response
-    | TestRunCreateOrUpdateAppComponents201Response
-    | TestRunCreateOrUpdateAppComponentsDefaultResponse
-    | TestRunListAppComponents200Response
-    | TestRunListAppComponentsDefaultResponse
-    | TestRunCreateOrUpdateServerMetricsConfig200Response
-    | TestRunCreateOrUpdateServerMetricsConfig201Response
-    | TestRunCreateOrUpdateServerMetricsConfigDefaultResponse
-    | TestRunListServerMetricsConfig200Response
-    | TestRunListServerMetricsConfigDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunGetTestRun200Response
+    | LoadTestRunGetTestRunDefaultResponse
+): response is LoadTestRunGetTestRunDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunGetTestRunFile200Response
+    | LoadTestRunGetTestRunFileDefaultResponse
+): response is LoadTestRunGetTestRunFileDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunListTestRuns200Response
+    | LoadTestRunListTestRunsDefaultResponse
+): response is LoadTestRunListTestRunsDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunStopTestRun200Response
+    | LoadTestRunStopTestRunDefaultResponse
+): response is LoadTestRunStopTestRunDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunListMetricNamespaces200Response
+    | LoadTestRunListMetricNamespacesDefaultResponse
+): response is LoadTestRunListMetricNamespacesDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunListMetricDefinitions200Response
+    | LoadTestRunListMetricDefinitionsDefaultResponse
+): response is LoadTestRunListMetricDefinitionsDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunListMetrics200Response
+    | LoadTestRunListMetricsDefaultResponse
+): response is LoadTestRunListMetricsDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunListMetricDimensionValues200Response
+    | LoadTestRunListMetricDimensionValuesDefaultResponse
+): response is LoadTestRunListMetricDimensionValuesDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunCreateOrUpdateAppComponents200Response
+    | LoadTestRunCreateOrUpdateAppComponents201Response
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
+): response is LoadTestRunCreateOrUpdateAppComponentsDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunGetAppComponents200Response
+    | LoadTestRunGetAppComponentsDefaultResponse
+): response is LoadTestRunGetAppComponentsDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+): response is LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestRunTestRunListServerMetricsConfig200Response
+    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
+): response is LoadTestRunTestRunListServerMetricsConfigDefaultResponse;
+export function isUnexpected(
+  response:
+    | LoadTestAdministrationCreateOrUpdateTest200Response
+    | LoadTestAdministrationCreateOrUpdateTest201Response
+    | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
+    | LoadTestAdministrationDeleteTest204Response
+    | LoadTestAdministrationDeleteTestDefaultResponse
+    | LoadTestAdministrationGetTest200Response
+    | LoadTestAdministrationGetTestDefaultResponse
+    | LoadTestAdministrationListTests200Response
+    | LoadTestAdministrationListTestsDefaultResponse
+    | LoadTestAdministrationUploadTestFile201Response
+    | LoadTestAdministrationUploadTestFileDefaultResponse
+    | LoadTestAdministrationGetTestFile200Response
+    | LoadTestAdministrationGetTestFileDefaultResponse
+    | LoadTestAdministrationDeleteTestFile204Response
+    | LoadTestAdministrationDeleteTestFileDefaultResponse
+    | LoadTestAdministrationListTestFiles200Response
+    | LoadTestAdministrationListTestFilesDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateAppComponents200Response
+    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
+    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestAdministrationGetAppComponents200Response
+    | LoadTestAdministrationGetAppComponentsDefaultResponse
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestAdministrationGetServerMetricsConfig200Response
+    | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
+    | LoadTestRunDeleteTestRun204Response
+    | LoadTestRunDeleteTestRunDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+    | LoadTestRunGetTestRun200Response
+    | LoadTestRunGetTestRunDefaultResponse
+    | LoadTestRunGetTestRunFile200Response
+    | LoadTestRunGetTestRunFileDefaultResponse
+    | LoadTestRunListTestRuns200Response
+    | LoadTestRunListTestRunsDefaultResponse
+    | LoadTestRunStopTestRun200Response
+    | LoadTestRunStopTestRunDefaultResponse
+    | LoadTestRunListMetricNamespaces200Response
+    | LoadTestRunListMetricNamespacesDefaultResponse
+    | LoadTestRunListMetricDefinitions200Response
+    | LoadTestRunListMetricDefinitionsDefaultResponse
+    | LoadTestRunListMetrics200Response
+    | LoadTestRunListMetricsDefaultResponse
+    | LoadTestRunListMetricDimensionValues200Response
+    | LoadTestRunListMetricDimensionValuesDefaultResponse
+    | LoadTestRunCreateOrUpdateAppComponents200Response
+    | LoadTestRunCreateOrUpdateAppComponents201Response
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestRunGetAppComponents200Response
+    | LoadTestRunGetAppComponentsDefaultResponse
+    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestRunTestRunListServerMetricsConfig200Response
+    | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
 ): response is
-  | TestCreateOrUpdateDefaultResponse
-  | TestDeleteDefaultResponse
-  | TestGetDefaultResponse
-  | TestListDefaultResponse
-  | TestUploadFileDefaultResponse
-  | TestGetFileDefaultResponse
-  | TestDeleteFileDefaultResponse
-  | TestListFilesDefaultResponse
-  | TestCreateOrUpdateAppComponentsDefaultResponse
-  | TestListAppComponentsDefaultResponse
-  | TestCreateOrUpdateServerMetricsConfigDefaultResponse
-  | TestListServerMetricsConfigDefaultResponse
-  | TestRunDeleteDefaultResponse
-  | TestRunCreateOrUpdateDefaultResponse
-  | TestRunGetDefaultResponse
-  | TestRunGetFileDefaultResponse
-  | TestRunListDefaultResponse
-  | TestRunStopDefaultResponse
-  | TestRunListMetricNamespacesDefaultResponse
-  | TestRunListMetricDefinitionsDefaultResponse
-  | TestRunListMetricsDefaultResponse
-  | TestRunListMetricDimensionValuesDefaultResponse
-  | TestRunCreateOrUpdateAppComponentsDefaultResponse
-  | TestRunListAppComponentsDefaultResponse
-  | TestRunCreateOrUpdateServerMetricsConfigDefaultResponse
-  | TestRunListServerMetricsConfigDefaultResponse {
+  | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
+  | LoadTestAdministrationDeleteTestDefaultResponse
+  | LoadTestAdministrationGetTestDefaultResponse
+  | LoadTestAdministrationListTestsDefaultResponse
+  | LoadTestAdministrationUploadTestFileDefaultResponse
+  | LoadTestAdministrationGetTestFileDefaultResponse
+  | LoadTestAdministrationDeleteTestFileDefaultResponse
+  | LoadTestAdministrationListTestFilesDefaultResponse
+  | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+  | LoadTestAdministrationGetAppComponentsDefaultResponse
+  | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+  | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
+  | LoadTestRunDeleteTestRunDefaultResponse
+  | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+  | LoadTestRunGetTestRunDefaultResponse
+  | LoadTestRunGetTestRunFileDefaultResponse
+  | LoadTestRunListTestRunsDefaultResponse
+  | LoadTestRunStopTestRunDefaultResponse
+  | LoadTestRunListMetricNamespacesDefaultResponse
+  | LoadTestRunListMetricDefinitionsDefaultResponse
+  | LoadTestRunListMetricsDefaultResponse
+  | LoadTestRunListMetricDimensionValuesDefaultResponse
+  | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
+  | LoadTestRunGetAppComponentsDefaultResponse
+  | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+  | LoadTestRunTestRunListServerMetricsConfigDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

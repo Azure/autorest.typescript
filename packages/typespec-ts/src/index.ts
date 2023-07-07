@@ -33,7 +33,10 @@ import {
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
-import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkContext,
+  createSdkContext
+} from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { buildSharedTypes } from "./modular/buildSharedTypes.js";
 import { Project, SyntaxKind } from "ts-morph";
@@ -49,7 +52,10 @@ import {
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
-// import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
+
+export interface RLCSdkContext extends SdkContext {
+  options: RLCOptions;
+}
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
