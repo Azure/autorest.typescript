@@ -28,4 +28,3 @@ export {
   StartGenerateImageOptions,
 } from "./api/operations.js";
 export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
-export { RequestOptions } from "./common/interfaces.js";
