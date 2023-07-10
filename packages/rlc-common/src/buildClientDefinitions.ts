@@ -192,7 +192,10 @@ function getOperationReturnTypeName(
     operationGroupName &&
     operationGroupName !== "Client"
   ) {
-    return `${pascalCase(operationGroupName)}${pascalCase(name)}`;
+    return normalizeName(
+      `${pascalCase(operationGroupName)}${pascalCase(name)}`,
+      NameType.Interface
+    );
   }
 
   return pascalCase(name);

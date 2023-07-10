@@ -30,9 +30,11 @@ import {
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
-import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkContext,
+  createSdkContext
+} from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { buildSharedTypes } from "./modular/buildSharedTypes.js";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
@@ -43,7 +45,10 @@ import { buildApiIndexFile } from "./modular/buildApiIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
-// import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
+
+export interface RLCSdkContext extends SdkContext {
+  options: RLCOptions;
+}
 
 export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
@@ -111,7 +116,6 @@ export async function $onEmit(context: EmitContext) {
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
 
     for (const client of modularCodeModel.clients) {
-      buildSharedTypes(project, srcPath);
       buildClientContext(client, project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
       buildOperationFiles(client, project, srcPath);

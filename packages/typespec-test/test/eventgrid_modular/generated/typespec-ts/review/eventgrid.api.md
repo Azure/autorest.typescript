@@ -6,10 +6,10 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { OperationOptions } from '@azure-rest/core-client';
 
 // @public (undocumented)
-export interface AcknowledgeCloudEventsOptions extends RequestOptions {
+export interface AcknowledgeCloudEventsOptions extends OperationOptions {
     contentType?: string;
 }
 
@@ -62,17 +62,17 @@ export interface FailedLockToken {
 }
 
 // @public (undocumented)
-export interface PublishCloudEventOptions extends RequestOptions {
+export interface PublishCloudEventOptions extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface PublishCloudEventsOptions extends RequestOptions {
+export interface PublishCloudEventsOptions extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface ReceiveCloudEventsOptions extends RequestOptions {
+export interface ReceiveCloudEventsOptions extends OperationOptions {
     maxEvents?: number;
     maxWaitTime?: number;
 }
@@ -89,7 +89,7 @@ export interface ReceiveResult {
 }
 
 // @public (undocumented)
-export interface RejectCloudEventsOptions extends RequestOptions {
+export interface RejectCloudEventsOptions extends OperationOptions {
     contentType?: string;
 }
 
@@ -100,7 +100,7 @@ export interface RejectResult {
 }
 
 // @public (undocumented)
-export interface ReleaseCloudEventsOptions extends RequestOptions {
+export interface ReleaseCloudEventsOptions extends OperationOptions {
     contentType?: string;
 }
 
@@ -108,15 +108,6 @@ export interface ReleaseCloudEventsOptions extends RequestOptions {
 export interface ReleaseResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
-}
-
-// @public
-export interface RequestOptions {
-    requestOptions?: {
-        headers?: RawHttpHeadersInput;
-        allowInsecureConnection?: boolean;
-        skipUrlEncoding?: boolean;
-    };
 }
 
 // (No @packageDocumentation comment for this package)

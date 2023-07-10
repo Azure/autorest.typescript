@@ -23,13 +23,6 @@ export function buildRootIndex(
   exportModels(file, srcPath);
   exportOptionsInterfaces(client, file, srcPath);
   exportClassicalClient(client, file);
-
-  file.addExportDeclarations([
-    {
-      moduleSpecifier: `./common/interfaces.js`,
-      namedExports: [`RequestOptions`]
-    }
-  ]);
 }
 
 function exportClassicalClient(client: Client, indexFile: SourceFile) {

@@ -1439,7 +1439,6 @@ export function emitCodeModel(
   // Get types
   const codeModel: ModularCodeModel = {
     options: transformRLCOptions(
-      context.program,
       context.options as any,
       context.emitterOutputDir,
       dpgContext

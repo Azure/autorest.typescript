@@ -18,10 +18,13 @@ import {
   UpdateWidget200Response,
   UpdateWidgetDefaultResponse,
 } from "../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
-import { RequestOptions } from "../common/interfaces.js";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+  OperationOptions,
+} from "@azure-rest/core-client";
 
-export interface ListWidgetsOptions extends RequestOptions {}
+export interface ListWidgetsOptions extends OperationOptions {}
 
 export function _listWidgetsSend(
   context: Client,
@@ -29,11 +32,7 @@ export function _listWidgetsSend(
 ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse> {
   return context
     .path("/widgets")
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWidgetsDeserialize(
@@ -63,7 +62,7 @@ export async function listWidgets(
   return _listWidgetsDeserialize(result);
 }
 
-export interface GetWidgetOptions extends RequestOptions {}
+export interface GetWidgetOptions extends OperationOptions {}
 
 export function _getWidgetSend(
   context: Client,
@@ -72,11 +71,7 @@ export function _getWidgetSend(
 ): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getWidgetDeserialize(
@@ -103,7 +98,7 @@ export async function getWidget(
   return _getWidgetDeserialize(result);
 }
 
-export interface CreateWidgetOptions extends RequestOptions {}
+export interface CreateWidgetOptions extends OperationOptions {}
 
 export function _createWidgetSend(
   context: Client,
@@ -114,9 +109,7 @@ export function _createWidgetSend(
   return context
     .path("/widgets")
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: { weight: weight, color: color },
     });
 }
@@ -151,7 +144,7 @@ export async function createWidget(
   return _createWidgetDeserialize(result);
 }
 
-export interface UpdateWidgetOptions extends RequestOptions {
+export interface UpdateWidgetOptions extends OperationOptions {
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */
@@ -166,9 +159,7 @@ export function _updateWidgetSend(
   return context
     .path("/widgets/{id}", id)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: { weight: options?.weight, color: options?.color },
     });
 }
@@ -200,7 +191,7 @@ export async function updateWidget(
   return _updateWidgetDeserialize(result);
 }
 
-export interface DeleteWidgetOptions extends RequestOptions {}
+export interface DeleteWidgetOptions extends OperationOptions {}
 
 export function _deleteWidgetSend(
   context: Client,
@@ -209,11 +200,7 @@ export function _deleteWidgetSend(
 ): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteWidgetDeserialize(
@@ -236,7 +223,7 @@ export async function deleteWidget(
   return _deleteWidgetDeserialize(result);
 }
 
-export interface AnalyzeWidgetOptions extends RequestOptions {}
+export interface AnalyzeWidgetOptions extends OperationOptions {}
 
 export function _analyzeWidgetSend(
   context: Client,
@@ -245,11 +232,7 @@ export function _analyzeWidgetSend(
 ): StreamableMethod<AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}/analyze", id)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _analyzeWidgetDeserialize(

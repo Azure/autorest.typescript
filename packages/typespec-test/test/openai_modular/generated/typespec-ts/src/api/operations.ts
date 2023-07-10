@@ -23,10 +23,13 @@ import {
   StartGenerateImage202Response,
   StartGenerateImageDefaultResponse,
 } from "../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
-import { RequestOptions } from "../common/interfaces.js";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+  OperationOptions,
+} from "@azure-rest/core-client";
 
-export interface GetEmbeddingsOptions extends RequestOptions {
+export interface GetEmbeddingsOptions extends OperationOptions {
   /**
    * An identifier for the caller or end user of the operation. This may be used for tracking
    * or rate-limiting purposes.
@@ -49,9 +52,7 @@ export function _getEmbeddingsSend(
   return context
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: { user: options?.user, model: options?.model, input: input },
     });
 }
@@ -91,7 +92,7 @@ export async function getEmbeddings(
   return _getEmbeddingsDeserialize(result);
 }
 
-export interface GetCompletionsOptions extends RequestOptions {
+export interface GetCompletionsOptions extends OperationOptions {
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -185,9 +186,7 @@ export function _getCompletionsSend(
   return context
     .path("/deployments/{deploymentId}/completions", deploymentId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: {
         prompt: prompt,
         max_tokens: options?.maxTokens,
@@ -260,7 +259,7 @@ export async function getCompletions(
   return _getCompletionsDeserialize(result);
 }
 
-export interface GetChatCompletionsOptions extends RequestOptions {
+export interface GetChatCompletionsOptions extends OperationOptions {
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -337,9 +336,7 @@ export function _getChatCompletionsSend(
   return context
     .path("/deployments/{deploymentId}/chat/completions", deploymentId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: {
         messages: messages,
         max_tokens: options?.maxTokens,
@@ -405,7 +402,7 @@ export async function getChatCompletions(
   return _getChatCompletionsDeserialize(result);
 }
 
-export interface GetImageOperationStatusOptions extends RequestOptions {}
+export interface GetImageOperationStatusOptions extends OperationOptions {}
 
 export function _getImageOperationStatusSend(
   context: Client,
@@ -416,11 +413,7 @@ export function _getImageOperationStatusSend(
 > {
   return context
     .path("/operations/images/{operationId}", operationId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getImageOperationStatusDeserialize(
@@ -464,7 +457,7 @@ export async function getImageOperationStatus(
   return _getImageOperationStatusDeserialize(result);
 }
 
-export interface StartGenerateImageOptions extends RequestOptions {
+export interface StartGenerateImageOptions extends OperationOptions {
   /** The number of images to generate (defaults to 1). */
   n?: number;
   /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
@@ -483,9 +476,7 @@ export function _startGenerateImageSend(
   return context
     .path("/images/generations:submit")
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: {
         prompt: prompt,
         n: options.n ?? 1,

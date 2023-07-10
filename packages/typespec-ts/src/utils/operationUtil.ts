@@ -12,6 +12,8 @@ import {
 import {
   getProjectedName,
   ignoreDiagnostics,
+  isGlobalNamespace,
+  isService,
   Model,
   Operation,
   Program,
@@ -32,8 +34,7 @@ import {
   SdkClient,
   SdkContext,
   listOperationGroups,
-  listOperationsInOperationGroup,
-  SdkOperationGroup
+  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
   OperationLroDetail,
@@ -41,6 +42,7 @@ import {
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
+import { RLCSdkContext } from "../transform/transform.js";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -53,13 +55,44 @@ export function getOperationStatuscode(
   }
 }
 
-// FIXME: this is the placeholder function to extract the operationGroupName
-export function getOperationGroupName(operationGroup?: SdkOperationGroup) {
-  return normalizeName(
-    operationGroup?.type.name ?? "",
-    NameType.Interface,
-    true
-  );
+export function getOperationGroupName(
+  dpgContext: RLCSdkContext,
+  route?: HttpOperation
+): string;
+export function getOperationGroupName(
+  dpgContext: RLCSdkContext,
+  operation?: Operation
+): string;
+export function getOperationGroupName(
+  dpgContext: RLCSdkContext,
+  operationOrRoute?: Operation | HttpOperation
+) {
+  if (!dpgContext.options?.enableOperationGroup || !operationOrRoute) {
+    return "";
+  }
+  const program = dpgContext.program;
+  // If this is a HttpOperation
+  if ((operationOrRoute as any).kind !== "Operation") {
+    operationOrRoute = (operationOrRoute as HttpOperation).operation;
+  }
+  const operation = operationOrRoute as Operation;
+  if (operation.interface) {
+    return normalizeName(
+      operation.interface?.name ?? "",
+      NameType.Interface,
+      true
+    );
+  }
+  const namespace = operation.namespace;
+  if (
+    namespace === undefined ||
+    isGlobalNamespace(program, namespace) ||
+    isService(program, namespace)
+  ) {
+    return "";
+  }
+
+  return normalizeName(namespace.name ?? "", NameType.Interface, true);
 }
 
 export function getOperationName(program: Program, operation: Operation) {
@@ -81,14 +114,13 @@ export function isDefinedStatusCode(statusCode: StatusCode) {
 }
 
 export function isBinaryPayload(
-  program: Program,
   dpgContext: SdkContext,
   body: Type,
   contentType: string
 ) {
   contentType = `"${contentType}"`;
   if (
-    isByteOrByteUnion(program, dpgContext, body) &&
+    isByteOrByteUnion(dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
