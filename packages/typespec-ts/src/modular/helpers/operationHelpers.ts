@@ -54,7 +54,7 @@ export function getSendPrivateFunction(
   statements.push(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
-    )}).${operationMethod}({allowInsecureConnection: options.requestOptions?.allowInsecureConnection, skipUrlEncoding: options.requestOptions?.skipUrlEncoding, ${getRequestParameters(
+    )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
       operation
     )}});`
   );
@@ -269,11 +269,11 @@ function getRequestParameters(operation: Operation): string {
     paramStr = `${getContentTypeValue(contentTypeParameter)},`;
   }
 
-  paramStr = `${paramStr}\nheaders: {${
-    parametersImplementation.header.length
-      ? parametersImplementation.header.join(",\n") + ","
-      : ""
-  } ...options.requestOptions?.headers},`;
+  if (parametersImplementation.header.length) {
+    paramStr = `${paramStr}\nheaders: {${
+      parametersImplementation.header.join(",\n") + ","
+    },`;
+  }
 
   if (parametersImplementation.query.length) {
     paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(

@@ -4,7 +4,7 @@
 export {
   createLoadTestRun,
   LoadTestRunClientOptions,
-  AzureLoadTestingClientContext,
+  AzureLoadTestingContext,
 } from "./LoadTestRunContext.js";
 export {
   Test,

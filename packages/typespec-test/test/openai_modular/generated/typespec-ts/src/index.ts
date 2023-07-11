@@ -27,4 +27,3 @@ export {
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
 } from "./api/index.js";
-export { RequestOptions } from "./common/interfaces.js";

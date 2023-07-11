@@ -4,7 +4,7 @@
 export {
   createLoadTestAdministration,
   LoadTestAdministrationClientOptions,
-  AzureLoadTestingClientContext,
+  AzureLoadTestingContext,
   Test,
   PassFailCriteria,
   PassFailMetric,
@@ -77,7 +77,7 @@ export {
 export {
   createLoadTestRun,
   LoadTestRunClientOptions,
-  AzureLoadTestingClientContext as LoadTestRunClientAzureLoadTestingClientContext,
+  AzureLoadTestingContext as LoadTestRunClientAzureLoadTestingContext,
   Test as LoadTestRunClientTest,
   PassFailCriteria as LoadTestRunClientPassFailCriteria,
   PassFailMetric as LoadTestRunClientPassFailMetric,

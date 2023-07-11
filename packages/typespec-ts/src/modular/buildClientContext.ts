@@ -3,7 +3,7 @@ import { getClientParameters } from "./helpers/clientHelpers.js";
 import { importCredential } from "./helpers/credentialHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, Parameter } from "./modularCodeModel.js";
-import { getRLCClients, isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 /**
@@ -49,26 +49,26 @@ export function buildClientContext(
     factoryFunction = clientContextFile.addFunction({
       docs: [description],
       name: `create${name}`,
-      returnType: `Client.${client.name}Context`,
+      returnType: `Client.${client.name}`,
       parameters: getClientParameters(client),
       isExported: true
     });
   } else {
-    const rlcClientName = getRLCClients(dpgContext)[0]?.name
+    const rlcClientName = client.rlcClientName;
     clientContextFile.addImportDeclaration({
       moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
-      namedImports: [`${rlcClientName}Context`]
+      namedImports: [`${rlcClientName}`]
     });
 
     clientContextFile.addExportDeclaration({
       moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
-      namedExports: [`${rlcClientName}Context`]
+      namedExports: [`${rlcClientName}`]
     });
 
     factoryFunction = clientContextFile.addFunction({
       docs: [description],
       name: `create${name}`,
-      returnType: `${rlcClientName}Context`,
+      returnType: `${rlcClientName}`,
       parameters: getClientParameters(client),
       isExported: true
     });

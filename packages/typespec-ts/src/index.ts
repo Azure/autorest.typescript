@@ -29,7 +29,8 @@ import {
   RLCOptions,
   normalizeName,
   NameType,
-  hasUnexpectedHelper
+  hasUnexpectedHelper,
+  RLCModel
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
@@ -38,7 +39,6 @@ import {
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { buildSharedTypes } from "./modular/buildSharedTypes.js";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
@@ -66,6 +66,7 @@ export async function $onEmit(context: EmitContext) {
   let count = -1;
 
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<string, RLCModel>();
   for (const client of clients) {
     count++;
     const rlcModels = await transformRLCModel(
@@ -75,6 +76,7 @@ export async function $onEmit(context: EmitContext) {
       context.emitterOutputDir,
       dpgContext
     );
+    serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
     const pathToClear = rlcModels.srcPath;
     needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
     clearSrcFolder(
@@ -128,8 +130,7 @@ export async function $onEmit(context: EmitContext) {
   if (options.isModularLibrary) {
     // TODO: Emit modular parts of the library
     const project = new Project();
-    const modularCodeModel = emitCodeModel(context, { casing: "camel" });
-    buildSharedTypes(project, srcPath);
+    const modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, { casing: "camel" });
     const rootIndexFile = project.createSourceFile(
       `${srcPath}/src/index.ts`,
       "",

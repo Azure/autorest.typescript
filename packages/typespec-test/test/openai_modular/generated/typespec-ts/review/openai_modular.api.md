@@ -7,7 +7,7 @@
 import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { OperationOptions } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -96,7 +96,7 @@ export interface EmbeddingsUsage {
 }
 
 // @public (undocumented)
-export interface GetChatCompletionsOptions extends RequestOptions {
+export interface GetChatCompletionsOptions extends OperationOptions {
     frequencyPenalty?: number;
     logitBias?: Record<string, number>;
     maxTokens?: number;
@@ -111,7 +111,7 @@ export interface GetChatCompletionsOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export interface GetCompletionsOptions extends RequestOptions {
+export interface GetCompletionsOptions extends OperationOptions {
     bestOf?: number;
     echo?: boolean;
     frequencyPenalty?: number;
@@ -129,13 +129,13 @@ export interface GetCompletionsOptions extends RequestOptions {
 }
 
 // @public (undocumented)
-export interface GetEmbeddingsOptions extends RequestOptions {
+export interface GetEmbeddingsOptions extends OperationOptions {
     model?: string;
     user?: string;
 }
 
 // @public (undocumented)
-export interface GetImageOperationStatusOptions extends RequestOptions {
+export interface GetImageOperationStatusOptions extends OperationOptions {
 }
 
 // @public
@@ -177,17 +177,8 @@ export class OpenAIClient {
 export interface OpenAIClientOptions extends ClientOptions {
 }
 
-// @public
-export interface RequestOptions {
-    requestOptions?: {
-        headers?: RawHttpHeadersInput;
-        allowInsecureConnection?: boolean;
-        skipUrlEncoding?: boolean;
-    };
-}
-
 // @public (undocumented)
-export interface StartGenerateImageOptions extends RequestOptions {
+export interface StartGenerateImageOptions extends OperationOptions {
     n?: number;
     size?: ImageSize;
     user?: string;

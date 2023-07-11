@@ -3,9 +3,13 @@
 
 import {
   isUnexpected,
-  AzureLoadTestingClientContext as Client,
+  AzureLoadTestingContext as Client,
 } from "../../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+  OperationOptions,
+} from "@azure-rest/core-client";
 import {
   PassFailCriteria,
   Secret,
@@ -30,9 +34,8 @@ import {
   Interval,
   CustomPage,
 } from "./models.js";
-import { RequestOptions } from "../../common/interfaces.js";
 
-export interface TestRunOptions extends RequestOptions {
+export interface TestRunOptions extends OperationOptions {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
   /**
@@ -108,11 +111,9 @@ export function _testRunSend(
   return context
     .path("/test-runs/{testRunId}", testRunId)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      headers: { ...options.requestOptions?.headers },
       queryParameters: { oldTestRunId: options?.oldTestRunId },
       body: {
         passFailCriteria: options?.passFailCriteria,
@@ -368,7 +369,7 @@ export async function testRun(
   return _testRunDeserialize(result);
 }
 
-export interface CreateOrUpdateAppComponentsOptions extends RequestOptions {
+export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
   /** Test run identifier */
   testRunId?: string;
   /** The creation datetime(ISO 8601 literal format). */
@@ -396,11 +397,9 @@ export function _createOrUpdateAppComponentsSend(
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      headers: { ...options.requestOptions?.headers },
       body: { components: components },
     });
 }
@@ -442,7 +441,7 @@ export async function createOrUpdateAppComponents(
 }
 
 export interface CreateOrUpdateServerMetricsConfigOptions
-  extends RequestOptions {
+  extends OperationOptions {
   /** Test run identifier */
   testRunId?: string;
   /**
@@ -475,11 +474,9 @@ export function _createOrUpdateServerMetricsConfigSend(
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      headers: { ...options.requestOptions?.headers },
       body: { metrics: options?.metrics },
     });
 }
@@ -518,7 +515,7 @@ export async function createOrUpdateServerMetricsConfig(
   return _createOrUpdateServerMetricsConfigDeserialize(result);
 }
 
-export interface DeleteTestRunOptions extends RequestOptions {}
+export interface DeleteTestRunOptions extends OperationOptions {}
 
 export function _deleteTestRunSend(
   context: Client,
@@ -527,11 +524,7 @@ export function _deleteTestRunSend(
 ): StreamableMethod<DeleteTestRun204Response | DeleteTestRunDefaultResponse> {
   return context
     .path("/test-runs/{testRunId}", testRunId)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestRunDeserialize(
@@ -554,7 +547,7 @@ export async function deleteTestRun(
   return _deleteTestRunDeserialize(result);
 }
 
-export interface GetAppComponentsOptions extends RequestOptions {}
+export interface GetAppComponentsOptions extends OperationOptions {}
 
 export function _getAppComponentsSend(
   context: Client,
@@ -565,11 +558,7 @@ export function _getAppComponentsSend(
 > {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAppComponentsDeserialize(
@@ -602,7 +591,7 @@ export async function getAppComponents(
   return _getAppComponentsDeserialize(result);
 }
 
-export interface GetServerMetricsConfigOptions extends RequestOptions {}
+export interface GetServerMetricsConfigOptions extends OperationOptions {}
 
 export function _getServerMetricsConfigSend(
   context: Client,
@@ -613,11 +602,7 @@ export function _getServerMetricsConfigSend(
 > {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getServerMetricsConfigDeserialize(
@@ -649,7 +634,7 @@ export async function getServerMetricsConfig(
   return _getServerMetricsConfigDeserialize(result);
 }
 
-export interface GetTestRunOptions extends RequestOptions {}
+export interface GetTestRunOptions extends OperationOptions {}
 
 export function _getTestRunSend(
   context: Client,
@@ -658,11 +643,7 @@ export function _getTestRunSend(
 ): StreamableMethod<GetTestRun200Response | GetTestRunDefaultResponse> {
   return context
     .path("/test-runs/{testRunId}", testRunId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunDeserialize(
@@ -906,7 +887,7 @@ export async function getTestRun(
   return _getTestRunDeserialize(result);
 }
 
-export interface GetTestRunFileOptions extends RequestOptions {}
+export interface GetTestRunFileOptions extends OperationOptions {}
 
 export function _getTestRunFileSend(
   context: Client,
@@ -916,11 +897,7 @@ export function _getTestRunFileSend(
 ): StreamableMethod<GetTestRunFile200Response | GetTestRunFileDefaultResponse> {
   return context
     .path("/test-runs/{testRunId}/files/{fileName}", testRunId, fileName)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunFileDeserialize(
@@ -956,7 +933,7 @@ export async function getTestRunFile(
   return _getTestRunFileDeserialize(result);
 }
 
-export interface ListMetricDimensionValuesOptions extends RequestOptions {
+export interface ListMetricDimensionValuesOptions extends OperationOptions {
   /** The interval (i.e. timegrain) of the query. */
   interval?: Interval;
   /** Metric name */
@@ -985,9 +962,7 @@ export function _listMetricDimensionValuesSend(
       name
     )
     .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: {
         interval: options?.interval,
         metricName: options?.metricName,
@@ -1030,7 +1005,7 @@ export async function listMetricDimensionValues(
   return _listMetricDimensionValuesDeserialize(result);
 }
 
-export interface ListMetricDefinitionsOptions extends RequestOptions {
+export interface ListMetricDefinitionsOptions extends OperationOptions {
   /** Metric namespace to query metric definitions for. */
   metricNamespace?: string;
 }
@@ -1045,9 +1020,7 @@ export function _listMetricDefinitionsSend(
   return context
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)
     .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: { metricNamespace: options?.metricNamespace },
     });
 }
@@ -1090,7 +1063,7 @@ export async function listMetricDefinitions(
   return _listMetricDefinitionsDeserialize(result);
 }
 
-export interface ListMetricNamespacesOptions extends RequestOptions {}
+export interface ListMetricNamespacesOptions extends OperationOptions {}
 
 export function _listMetricNamespacesSend(
   context: Client,
@@ -1101,11 +1074,7 @@ export function _listMetricNamespacesSend(
 > {
   return context
     .path("/test-runs/{testRunId}/metric-namespaces", testRunId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listMetricNamespacesDeserialize(
@@ -1133,7 +1102,7 @@ export async function listMetricNamespaces(
   return _listMetricNamespacesDeserialize(result);
 }
 
-export interface ListMetricsOptions extends RequestOptions {
+export interface ListMetricsOptions extends OperationOptions {
   /**
    * Get metrics for specific dimension values. Example: Metric contains dimension
    * like SamplerName, Error. To retrieve all the time series data where SamplerName
@@ -1164,9 +1133,7 @@ export function _listMetricsSend(
   return context
     .path("/test-runs/{testRunId}/metrics", testRunId)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: {
         aggregation: options?.aggregation,
         interval: options?.interval,
@@ -1210,7 +1177,7 @@ export async function listMetrics(
   return _listMetricsDeserialize(result);
 }
 
-export interface ListTestRunsOptions extends RequestOptions {
+export interface ListTestRunsOptions extends OperationOptions {
   /**
    * Sort on the supported fields in (field asc/desc) format. eg: executedDateTime
    * asc. Supported fields - executedDateTime
@@ -1241,9 +1208,7 @@ export function _listTestRunsSend(
   return context
     .path("/test-runs")
     .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: {
         orderby: options?.orderby,
         search: options?.search,
@@ -1524,7 +1489,7 @@ export async function listTestRuns(
   return _listTestRunsDeserialize(result);
 }
 
-export interface StopTestRunOptions extends RequestOptions {}
+export interface StopTestRunOptions extends OperationOptions {}
 
 export function _stopTestRunSend(
   context: Client,
@@ -1533,11 +1498,7 @@ export function _stopTestRunSend(
 ): StreamableMethod<StopTestRun200Response | StopTestRunDefaultResponse> {
   return context
     .path("/test-runs/{testRunId}:stop", testRunId)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stopTestRunDeserialize(

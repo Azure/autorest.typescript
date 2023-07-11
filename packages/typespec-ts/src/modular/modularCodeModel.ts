@@ -95,6 +95,7 @@ export interface Client {
   operationGroups: OperationGroup[];
   url: string;
   apiVersions: any[];
+  rlcClientName: string;
 }
 
 export type ParameterLocation =

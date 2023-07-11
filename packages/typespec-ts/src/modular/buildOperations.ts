@@ -7,7 +7,7 @@ import {
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
-import { getRLCClients, isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 /**
@@ -40,7 +40,7 @@ export function buildOperationFiles(
     let clientType = "Client";
     if (isRLCMultiEndpoint(dpgContext)) {
       namedImports.push(`Client`);
-      clientType = `Client.${client.name}Context`;
+      clientType = `Client.${client.rlcClientName}`;
       if (needUnexpectedHelper) {
         namedImports.push("UnexpectedHelper");
       }
@@ -50,28 +50,16 @@ export function buildOperationFiles(
           namedImports
         }
       ]);
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: "../../common/interfaces.js",
-          namedImports: ["OperationRawReturnType"]
-        }
-      ]);
     } else {
       if (needUnexpectedHelper) {
         namedImports.push("isUnexpected");
       }
-      const rlcClientName = getRLCClients(dpgContext)[0]?.name
-      namedImports.push(`${rlcClientName}Context as Client`);
+      const rlcClientName = client.rlcClientName;
+      namedImports.push(`${rlcClientName} as Client`);
       operationGroupFile.addImportDeclarations([
         {
           moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
           namedImports
-        }
-      ]);
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: "../common/interfaces.js",
-          namedImports: ["OperationRawReturnType"]
         }
       ]);
     }
@@ -94,7 +82,11 @@ export function buildOperationFiles(
     operationGroupFile.addImportDeclarations([
       {
         moduleSpecifier: "@azure-rest/core-client",
-        namedImports: ["StreamableMethod"]
+        namedImports: [
+          "StreamableMethod",
+          "operationOptionsToRequestParameters",
+          "OperationOptions"
+        ]
       }
     ]);
 
@@ -141,7 +133,7 @@ export function buildOperationOptions(
   sourceFile.addInterface({
     name,
     isExported: true,
-    extends: ["RequestOptions"],
+    extends: ["OperationOptions"],
     properties: options.map((p) => {
       return {
         docs: [p.description],

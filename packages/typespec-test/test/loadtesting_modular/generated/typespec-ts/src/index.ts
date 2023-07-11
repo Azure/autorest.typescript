@@ -125,4 +125,3 @@ export {
   ListTestRunsOptions,
   StopTestRunOptions,
 } from "./api/index.js";
-export { RequestOptions } from "./common/interfaces.js";

@@ -3,9 +3,13 @@
 
 import {
   isUnexpected,
-  AzureLoadTestingClientContext as Client,
+  AzureLoadTestingContext as Client,
 } from "../../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+  OperationOptions,
+} from "@azure-rest/core-client";
 import {
   Test,
   PassFailCriteria,
@@ -22,9 +26,8 @@ import {
   FileInfoList,
   TestsList,
 } from "./models.js";
-import { RequestOptions } from "../../common/interfaces.js";
 
-export interface CreateOrUpdateTestOptions extends RequestOptions {
+export interface CreateOrUpdateTestOptions extends OperationOptions {
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteria;
   /**
@@ -79,11 +82,9 @@ export function _createOrUpdateTestSend(
   return context
     .path("/tests/{testId}", testId)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      headers: { ...options.requestOptions?.headers },
       body: {
         passFailCriteria: options?.passFailCriteria,
         secrets: options?.secrets,
@@ -279,7 +280,7 @@ export async function createOrUpdateTest(
   return _createOrUpdateTestDeserialize(result);
 }
 
-export interface CreateOrUpdateAppComponentsOptions extends RequestOptions {
+export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
   /** Test identifier */
   testId?: string;
   /** The creation datetime(ISO 8601 literal format). */
@@ -307,11 +308,9 @@ export function _createOrUpdateAppComponentsSend(
   return context
     .path("/tests/{testId}/app-components", testId)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      headers: { ...options.requestOptions?.headers },
       body: { components: components },
     });
 }
@@ -353,7 +352,7 @@ export async function createOrUpdateAppComponents(
 }
 
 export interface CreateOrUpdateServerMetricsConfigOptions
-  extends RequestOptions {
+  extends OperationOptions {
   /** Test identifier */
   testId?: string;
   /**
@@ -386,11 +385,9 @@ export function _createOrUpdateServerMetricsConfigSend(
   return context
     .path("/tests/{testId}/server-metrics-config", testId)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      headers: { ...options.requestOptions?.headers },
       body: { metrics: options?.metrics },
     });
 }
@@ -429,7 +426,7 @@ export async function createOrUpdateServerMetricsConfig(
   return _createOrUpdateServerMetricsConfigDeserialize(result);
 }
 
-export interface GetAppComponentsOptions extends RequestOptions {}
+export interface GetAppComponentsOptions extends OperationOptions {}
 
 export function _getAppComponentsSend(
   context: Client,
@@ -440,11 +437,7 @@ export function _getAppComponentsSend(
 > {
   return context
     .path("/tests/{testId}/app-components", testId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getAppComponentsDeserialize(
@@ -474,7 +467,7 @@ export async function getAppComponents(
   return _getAppComponentsDeserialize(result);
 }
 
-export interface GetServerMetricsConfigOptions extends RequestOptions {}
+export interface GetServerMetricsConfigOptions extends OperationOptions {}
 
 export function _getServerMetricsConfigSend(
   context: Client,
@@ -485,11 +478,7 @@ export function _getServerMetricsConfigSend(
 > {
   return context
     .path("/tests/{testId}/server-metrics-config", testId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getServerMetricsConfigDeserialize(
@@ -521,7 +510,7 @@ export async function getServerMetricsConfig(
   return _getServerMetricsConfigDeserialize(result);
 }
 
-export interface GetTestOptions extends RequestOptions {}
+export interface GetTestOptions extends OperationOptions {}
 
 export function _getTestSend(
   context: Client,
@@ -530,11 +519,7 @@ export function _getTestSend(
 ): StreamableMethod<GetTest200Response | GetTestDefaultResponse> {
   return context
     .path("/tests/{testId}", testId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestDeserialize(
@@ -714,7 +699,7 @@ export async function getTest(
   return _getTestDeserialize(result);
 }
 
-export interface GetTestFileOptions extends RequestOptions {}
+export interface GetTestFileOptions extends OperationOptions {}
 
 export function _getTestFileSend(
   context: Client,
@@ -724,11 +709,7 @@ export function _getTestFileSend(
 ): StreamableMethod<GetTestFile200Response | GetTestFileDefaultResponse> {
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestFileDeserialize(
@@ -759,7 +740,7 @@ export async function getTestFile(
   return _getTestFileDeserialize(result);
 }
 
-export interface ListTestFilesOptions extends RequestOptions {}
+export interface ListTestFilesOptions extends OperationOptions {}
 
 export function _listTestFilesSend(
   context: Client,
@@ -768,11 +749,7 @@ export function _listTestFilesSend(
 ): StreamableMethod<ListTestFiles200Response | ListTestFilesDefaultResponse> {
   return context
     .path("/tests/{testId}/files", testId)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listTestFilesDeserialize(
@@ -805,7 +782,7 @@ export async function listTestFiles(
   return _listTestFilesDeserialize(result);
 }
 
-export interface ListTestsOptions extends RequestOptions {
+export interface ListTestsOptions extends OperationOptions {
   /**
    * Sort on the supported fields in (field asc/desc) format. eg:
    * lastModifiedDateTime asc. Supported fields - lastModifiedDateTime
@@ -838,9 +815,7 @@ export function _listTestsSend(
   return context
     .path("/tests")
     .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: {
         orderby: options?.orderby,
         search: options?.search,
@@ -1008,7 +983,7 @@ export async function listTests(
   return _listTestsDeserialize(result);
 }
 
-export interface UploadTestFileOptions extends RequestOptions {
+export interface UploadTestFileOptions extends OperationOptions {
   /** */
   contentType?: string;
   /** File type */
@@ -1024,10 +999,8 @@ export function _uploadTestFileSend(
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
     .put({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
-      headers: { ...options.requestOptions?.headers },
       queryParameters: { fileType: options?.fileType },
     });
 }
@@ -1064,7 +1037,7 @@ export async function uploadTestFile(
   return _uploadTestFileDeserialize(result);
 }
 
-export interface DeleteTestFileOptions extends RequestOptions {}
+export interface DeleteTestFileOptions extends OperationOptions {}
 
 export function _deleteTestFileSend(
   context: Client,
@@ -1074,11 +1047,7 @@ export function _deleteTestFileSend(
 ): StreamableMethod<DeleteTestFile204Response | DeleteTestFileDefaultResponse> {
   return context
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestFileDeserialize(
@@ -1102,7 +1071,7 @@ export async function deleteTestFile(
   return _deleteTestFileDeserialize(result);
 }
 
-export interface DeleteTestOptions extends RequestOptions {}
+export interface DeleteTestOptions extends OperationOptions {}
 
 export function _deleteTestSend(
   context: Client,
@@ -1111,11 +1080,7 @@ export function _deleteTestSend(
 ): StreamableMethod<DeleteTest204Response | DeleteTestDefaultResponse> {
   return context
     .path("/tests/{testId}", testId)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestDeserialize(

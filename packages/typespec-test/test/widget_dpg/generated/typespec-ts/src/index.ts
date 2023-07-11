@@ -14,4 +14,3 @@ export {
   AnalyzeWidgetOptions,
   WidgetServiceClientOptions,
 } from "./api/index.js";
-export { RequestOptions } from "./common/interfaces.js";

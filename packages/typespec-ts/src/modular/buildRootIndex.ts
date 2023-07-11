@@ -22,12 +22,6 @@ export function buildRootIndex(
 
   if (isLast) {
     exportApiIndex(rootIndexFile, srcPath);
-    rootIndexFile.addExportDeclarations([
-      {
-        moduleSpecifier: `./common/interfaces.js`,
-        namedExports: [`RequestOptions`]
-      }
-    ]);
   }
 }
 

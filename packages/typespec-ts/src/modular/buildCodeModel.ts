@@ -84,6 +84,7 @@ import {
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
 import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
+import { RLCModel, getClientName } from "@azure-tools/rlc-common";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1387,7 +1388,7 @@ function getApiVersionParameter(context: SdkContext): Parameter | void {
   }
 }
 
-function emitClients(context: SdkContext, namespace: string): HrlcClient[] {
+function emitClients(context: SdkContext, namespace: string, rlcModelsMap: Map<string, RLCModel>): HrlcClient[] {
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
@@ -1397,13 +1398,15 @@ function emitClients(context: SdkContext, namespace: string): HrlcClient[] {
       continue;
     }
     const server = getServerHelper(program, client.service);
+    const rlcModels = rlcModelsMap.get(client.service.name);
     const emittedClient: HrlcClient = {
       name: clientName.split(".").at(-1) ?? "",
       description: getDocStr(program, client.type),
       parameters: emitGlobalParameters(context, client.service),
       operationGroups: emitOperationGroups(context, client),
       url: server ? server.url : "",
-      apiVersions: []
+      apiVersions: [],
+      rlcClientName:  rlcModels? getClientName(rlcModels): client.name
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
@@ -1437,6 +1440,7 @@ function getNamespaces(context: SdkContext): Set<string> {
 
 export function emitCodeModel(
   context: EmitContext<EmitterOptions>,
+  rlcModelsMap: Map<string, RLCModel>,
   options: { casing: "snake" | "camel" } = { casing: "snake" }
 ): ModularCodeModel {
   CASING = options.casing ?? CASING;
@@ -1463,11 +1467,12 @@ export function emitCodeModel(
 
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
-      codeModel.clients = emitClients(dpgContext, namespace);
+      codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
     } else {
       codeModel["subnamespaceToClients"][namespace] = emitClients(
         dpgContext,
-        namespace
+        namespace,
+        rlcModelsMap
       );
     }
   }
