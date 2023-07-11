@@ -85,6 +85,7 @@ import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
 import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import { RLCModel, getClientName } from "@azure-tools/rlc-common";
+import { getOperationGroupName, getOperationName } from "../utils/operationUtil.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -714,17 +715,14 @@ function emitBasicOperation(
   const httpOperation = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   );
-  let sourceOperation = httpOperation;
-  if (operation.sourceOperation) {
-    sourceOperation = ignoreDiagnostics(
-      getHttpOperation(context.program, operation.sourceOperation)
-    );
-  }
+  let sourceOperation = operation.sourceOperation ?? operation;
+  const sourceOperationGroupName = getOperationGroupName(context, sourceOperation);
+  const sourceOperationName = getOperationName(context.program, sourceOperation);
   const rlcResponses = rlcModels.responses?.filter((op) => {
     return (
-      (sourceOperation.operation.interface?.name === "" ||
-        op.operationGroup === sourceOperation.operation.interface?.name) &&
-      op.operationName === sourceOperation.operation.name
+      (sourceOperationGroupName === "" ||
+        op.operationGroup === sourceOperationGroupName) &&
+      op.operationName === sourceOperationName
     );
   });
 
