@@ -5,6 +5,7 @@ import { TokenCredential } from "@azure/core-auth";
 import {
   createLoadTestRun,
   LoadTestRunClientOptions,
+  AzureLoadTestingContext,
   FileInfo,
   AppComponent,
   TestRun,
@@ -46,7 +47,7 @@ import {
 } from "./api/loadTestRun/index.js";
 
 export class LoadTestRunClient {
-  private _client: LoadTestRunContext;
+  private _client: AzureLoadTestingContext;
 
   /** */
   constructor(

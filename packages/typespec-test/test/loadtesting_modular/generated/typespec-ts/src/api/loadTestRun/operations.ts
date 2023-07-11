@@ -4,6 +4,36 @@
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
+  LoadTestRunCreateOrUpdateAppComponents200Response,
+  LoadTestRunCreateOrUpdateAppComponents201Response,
+  LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
+  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
+  LoadTestRunCreateOrUpdateTestRun200Response,
+  LoadTestRunCreateOrUpdateTestRun201Response,
+  LoadTestRunCreateOrUpdateTestRunDefaultResponse,
+  LoadTestRunCreateOrUpdateTestRunLogicalResponse,
+  LoadTestRunDeleteTestRun204Response,
+  LoadTestRunDeleteTestRunDefaultResponse,
+  LoadTestRunGetAppComponents200Response,
+  LoadTestRunGetAppComponentsDefaultResponse,
+  LoadTestRunGetTestRun200Response,
+  LoadTestRunGetTestRunDefaultResponse,
+  LoadTestRunGetTestRunFile200Response,
+  LoadTestRunGetTestRunFileDefaultResponse,
+  LoadTestRunListMetricDefinitions200Response,
+  LoadTestRunListMetricDefinitionsDefaultResponse,
+  LoadTestRunListMetricDimensionValues200Response,
+  LoadTestRunListMetricDimensionValuesDefaultResponse,
+  LoadTestRunListMetricNamespaces200Response,
+  LoadTestRunListMetricNamespacesDefaultResponse,
+  LoadTestRunListMetrics200Response,
+  LoadTestRunListMetricsDefaultResponse,
+  LoadTestRunListTestRuns200Response,
+  LoadTestRunListTestRunsDefaultResponse,
+  LoadTestRunStopTestRun200Response,
+  LoadTestRunStopTestRunDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -106,7 +136,10 @@ export function _testRunSend(
   testRunId: string,
   options: TestRunOptions = { requestOptions: {} }
 ): StreamableMethod<
-  TestRun200Response | TestRun201Response | TestRunDefaultResponse
+  | LoadTestRunCreateOrUpdateTestRun200Response
+  | LoadTestRunCreateOrUpdateTestRun201Response
+  | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+  | LoadTestRunCreateOrUpdateTestRunLogicalResponse
 > {
   return context
     .path("/test-runs/{testRunId}", testRunId)
@@ -129,7 +162,11 @@ export function _testRunSend(
 }
 
 export async function _testRunDeserialize(
-  result: TestRun200Response | TestRun201Response | TestRunDefaultResponse
+  result:
+    | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRunDefaultResponse
+    | LoadTestRunCreateOrUpdateTestRunLogicalResponse
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -390,9 +427,9 @@ export function _createOrUpdateAppComponentsSend(
   testRunId: string,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | CreateOrUpdateAppComponents200Response
-  | CreateOrUpdateAppComponents201Response
-  | CreateOrUpdateAppComponentsDefaultResponse
+  | LoadTestRunCreateOrUpdateAppComponents200Response
+  | LoadTestRunCreateOrUpdateAppComponents201Response
+  | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
@@ -406,9 +443,9 @@ export function _createOrUpdateAppComponentsSend(
 
 export async function _createOrUpdateAppComponentsDeserialize(
   result:
-    | CreateOrUpdateAppComponents200Response
-    | CreateOrUpdateAppComponents201Response
-    | CreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestRunCreateOrUpdateAppComponents200Response
+    | LoadTestRunCreateOrUpdateAppComponents201Response
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -467,9 +504,9 @@ export function _createOrUpdateServerMetricsConfigSend(
   testRunId: string,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | CreateOrUpdateServerMetricsConfig200Response
-  | CreateOrUpdateServerMetricsConfig201Response
-  | CreateOrUpdateServerMetricsConfigDefaultResponse
+  | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+  | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+  | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
@@ -483,9 +520,9 @@ export function _createOrUpdateServerMetricsConfigSend(
 
 export async function _createOrUpdateServerMetricsConfigDeserialize(
   result:
-    | CreateOrUpdateServerMetricsConfig200Response
-    | CreateOrUpdateServerMetricsConfig201Response
-    | CreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -521,14 +558,18 @@ export function _deleteTestRunSend(
   context: Client,
   testRunId: string,
   options: DeleteTestRunOptions = { requestOptions: {} }
-): StreamableMethod<DeleteTestRun204Response | DeleteTestRunDefaultResponse> {
+): StreamableMethod<
+  LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse
+> {
   return context
     .path("/test-runs/{testRunId}", testRunId)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteTestRunDeserialize(
-  result: DeleteTestRun204Response | DeleteTestRunDefaultResponse
+  result:
+    | LoadTestRunDeleteTestRun204Response
+    | LoadTestRunDeleteTestRunDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -554,7 +595,8 @@ export function _getAppComponentsSend(
   testRunId: string,
   options: GetAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  GetAppComponents200Response | GetAppComponentsDefaultResponse
+  | LoadTestRunGetAppComponents200Response
+  | LoadTestRunGetAppComponentsDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
@@ -562,7 +604,9 @@ export function _getAppComponentsSend(
 }
 
 export async function _getAppComponentsDeserialize(
-  result: GetAppComponents200Response | GetAppComponentsDefaultResponse
+  result:
+    | LoadTestRunGetAppComponents200Response
+    | LoadTestRunGetAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -597,18 +641,14 @@ export function _getServerMetricsConfigSend(
   context: Client,
   testRunId: string,
   options: GetServerMetricsConfigOptions = { requestOptions: {} }
-): StreamableMethod<
-  GetServerMetricsConfig200Response | GetServerMetricsConfigDefaultResponse
-> {
+): StreamableMethod<undefined> {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getServerMetricsConfigDeserialize(
-  result:
-    | GetServerMetricsConfig200Response
-    | GetServerMetricsConfigDefaultResponse
+  result
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -640,14 +680,18 @@ export function _getTestRunSend(
   context: Client,
   testRunId: string,
   options: GetTestRunOptions = { requestOptions: {} }
-): StreamableMethod<GetTestRun200Response | GetTestRunDefaultResponse> {
+): StreamableMethod<
+  LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse
+> {
   return context
     .path("/test-runs/{testRunId}", testRunId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunDeserialize(
-  result: GetTestRun200Response | GetTestRunDefaultResponse
+  result:
+    | LoadTestRunGetTestRun200Response
+    | LoadTestRunGetTestRunDefaultResponse
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -894,14 +938,19 @@ export function _getTestRunFileSend(
   testRunId: string,
   fileName: string,
   options: GetTestRunFileOptions = { requestOptions: {} }
-): StreamableMethod<GetTestRunFile200Response | GetTestRunFileDefaultResponse> {
+): StreamableMethod<
+  | LoadTestRunGetTestRunFile200Response
+  | LoadTestRunGetTestRunFileDefaultResponse
+> {
   return context
     .path("/test-runs/{testRunId}/files/{fileName}", testRunId, fileName)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getTestRunFileDeserialize(
-  result: GetTestRunFile200Response | GetTestRunFileDefaultResponse
+  result:
+    | LoadTestRunGetTestRunFile200Response
+    | LoadTestRunGetTestRunFileDefaultResponse
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -952,8 +1001,8 @@ export function _listMetricDimensionValuesSend(
   metricNamespace: string,
   options: ListMetricDimensionValuesOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | ListMetricDimensionValues200Response
-  | ListMetricDimensionValuesDefaultResponse
+  | LoadTestRunListMetricDimensionValues200Response
+  | LoadTestRunListMetricDimensionValuesDefaultResponse
 > {
   return context
     .path(
@@ -974,8 +1023,8 @@ export function _listMetricDimensionValuesSend(
 
 export async function _listMetricDimensionValuesDeserialize(
   result:
-    | ListMetricDimensionValues200Response
-    | ListMetricDimensionValuesDefaultResponse
+    | LoadTestRunListMetricDimensionValues200Response
+    | LoadTestRunListMetricDimensionValuesDefaultResponse
 ): Promise<CustomPage> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -1015,7 +1064,8 @@ export function _listMetricDefinitionsSend(
   testRunId: string,
   options: ListMetricDefinitionsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  ListMetricDefinitions200Response | ListMetricDefinitionsDefaultResponse
+  | LoadTestRunListMetricDefinitions200Response
+  | LoadTestRunListMetricDefinitionsDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)
@@ -1027,8 +1077,8 @@ export function _listMetricDefinitionsSend(
 
 export async function _listMetricDefinitionsDeserialize(
   result:
-    | ListMetricDefinitions200Response
-    | ListMetricDefinitionsDefaultResponse
+    | LoadTestRunListMetricDefinitions200Response
+    | LoadTestRunListMetricDefinitionsDefaultResponse
 ): Promise<MetricDefinitionCollection> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -1070,7 +1120,8 @@ export function _listMetricNamespacesSend(
   testRunId: string,
   options: ListMetricNamespacesOptions = { requestOptions: {} }
 ): StreamableMethod<
-  ListMetricNamespaces200Response | ListMetricNamespacesDefaultResponse
+  | LoadTestRunListMetricNamespaces200Response
+  | LoadTestRunListMetricNamespacesDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/metric-namespaces", testRunId)
@@ -1078,7 +1129,9 @@ export function _listMetricNamespacesSend(
 }
 
 export async function _listMetricNamespacesDeserialize(
-  result: ListMetricNamespaces200Response | ListMetricNamespacesDefaultResponse
+  result:
+    | LoadTestRunListMetricNamespaces200Response
+    | LoadTestRunListMetricNamespacesDefaultResponse
 ): Promise<MetricNamespaceCollection> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -1129,7 +1182,9 @@ export function _listMetricsSend(
   context: Client,
   testRunId: string,
   options: ListMetricsOptions = { requestOptions: {} }
-): StreamableMethod<ListMetrics200Response | ListMetricsDefaultResponse> {
+): StreamableMethod<
+  LoadTestRunListMetrics200Response | LoadTestRunListMetricsDefaultResponse
+> {
   return context
     .path("/test-runs/{testRunId}/metrics", testRunId)
     .post({
@@ -1146,7 +1201,9 @@ export function _listMetricsSend(
 }
 
 export async function _listMetricsDeserialize(
-  result: ListMetrics200Response | ListMetricsDefaultResponse
+  result:
+    | LoadTestRunListMetrics200Response
+    | LoadTestRunListMetricsDefaultResponse
 ): Promise<Metrics> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -1204,7 +1261,9 @@ export interface ListTestRunsOptions extends OperationOptions {
 export function _listTestRunsSend(
   context: Client,
   options: ListTestRunsOptions = { requestOptions: {} }
-): StreamableMethod<ListTestRuns200Response | ListTestRunsDefaultResponse> {
+): StreamableMethod<
+  LoadTestRunListTestRuns200Response | LoadTestRunListTestRunsDefaultResponse
+> {
   return context
     .path("/test-runs")
     .get({
@@ -1222,7 +1281,9 @@ export function _listTestRunsSend(
 }
 
 export async function _listTestRunsDeserialize(
-  result: ListTestRuns200Response | ListTestRunsDefaultResponse
+  result:
+    | LoadTestRunListTestRuns200Response
+    | LoadTestRunListTestRunsDefaultResponse
 ): Promise<TestRunsList> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -1495,14 +1556,18 @@ export function _stopTestRunSend(
   context: Client,
   testRunId: string,
   options: StopTestRunOptions = { requestOptions: {} }
-): StreamableMethod<StopTestRun200Response | StopTestRunDefaultResponse> {
+): StreamableMethod<
+  LoadTestRunStopTestRun200Response | LoadTestRunStopTestRunDefaultResponse
+> {
   return context
     .path("/test-runs/{testRunId}:stop", testRunId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _stopTestRunDeserialize(
-  result: StopTestRun200Response | StopTestRunDefaultResponse
+  result:
+    | LoadTestRunStopTestRun200Response
+    | LoadTestRunStopTestRunDefaultResponse
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
     throw result.body;

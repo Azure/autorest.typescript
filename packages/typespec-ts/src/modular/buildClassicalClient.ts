@@ -41,13 +41,13 @@ export function buildClassicalClient(
   if (isRLCMultiEndpoint(dpgContext)) {
     clientClass.addProperty({
       name: "_client",
-      type: `Client.${modularClientName}Context`,
+      type: `Client.${client.rlcClientName}`,
       scope: Scope.Private
     });
   } else {
     clientClass.addProperty({
       name: "_client",
-      type: `${modularClientName}Context`,
+      type: `${client.rlcClientName}`,
       scope: Scope.Private
     });
   }

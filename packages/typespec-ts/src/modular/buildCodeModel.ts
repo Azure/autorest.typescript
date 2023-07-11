@@ -603,18 +603,29 @@ function emitResponse(
 function emitOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const lro = isLro(context.program, operation);
   const paging = getPagedResult(context.program, operation);
   if (lro && paging) {
-    return emitLroPagingOperation(context, operation, operationGroupName);
+    return emitLroPagingOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
   } else if (paging) {
-    return emitPagingOperation(context, operation, operationGroupName);
+    return emitPagingOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
   } else if (lro) {
-    return emitLroOperation(context, operation, operationGroupName);
+    return emitLroOperation(context, operation, operationGroupName, rlcModels);
   }
-  return emitBasicOperation(context, operation, operationGroupName);
+  return emitBasicOperation(context, operation, operationGroupName, rlcModels);
 }
 
 function addLroInformation(emittedOperation: HrlcOperation) {
@@ -640,12 +651,14 @@ function addPagingInformation(
 function emitLroPagingOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
-    operationGroupName
+    operationGroupName,
+    rlcModels
   );
   addLroInformation(emittedOperation);
   addPagingInformation(context.program, operation, emittedOperation);
@@ -656,12 +669,14 @@ function emitLroPagingOperation(
 function emitLroOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
-    operationGroupName
+    operationGroupName,
+    rlcModels
   );
   addLroInformation(emittedOperation);
   return emittedOperation;
@@ -670,12 +685,14 @@ function emitLroOperation(
 function emitPagingOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
-    operationGroupName
+    operationGroupName,
+    rlcModels
   );
   addPagingInformation(context.program, operation, emittedOperation);
   return emittedOperation;
@@ -684,7 +701,8 @@ function emitPagingOperation(
 function emitBasicOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   // Set up parameters for operation
   const parameters: any[] = [];
@@ -696,6 +714,20 @@ function emitBasicOperation(
   const httpOperation = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   );
+  let sourceOperation = httpOperation;
+  if (operation.sourceOperation) {
+    sourceOperation = ignoreDiagnostics(
+      getHttpOperation(context.program, operation.sourceOperation)
+    );
+  }
+  const rlcResponses = rlcModels.responses?.filter((op) => {
+    return (
+      (sourceOperation.operation.interface?.name === "" ||
+        op.operationGroup === sourceOperation.operation.interface?.name) &&
+      op.operationName === sourceOperation.operation.name
+    );
+  });
+
   for (const param of httpOperation.parameters.parameters) {
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param) && apiVersionParam === undefined) {
@@ -762,7 +794,8 @@ function emitBasicOperation(
     discriminator: "basic",
     isOverload: false,
     overloads: [],
-    apiVersions: [getAddedOnVersion(context.program, operation)]
+    apiVersions: [getAddedOnVersion(context.program, operation)],
+    rlcResponse: rlcResponses?.[0]
   };
 }
 
@@ -1204,7 +1237,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
 
 function emitOperationGroups(
   context: SdkContext,
-  client: SdkClient
+  client: SdkClient,
+  rlcModels: RLCModel
 ): OperationGroup[] {
   const operationGroups: OperationGroup[] = [];
   for (const operationGroup of listOperationGroups(context, client)) {
@@ -1214,7 +1248,7 @@ function emitOperationGroups(
       context,
       operationGroup
     )) {
-      operations.push(emitOperation(context, operation, name));
+      operations.push(emitOperation(context, operation, name, rlcModels));
     }
     operationGroups.push({
       className: name,
@@ -1224,7 +1258,7 @@ function emitOperationGroups(
   }
   const clientOperations: HrlcOperation[] = [];
   for (const operation of listOperationsInOperationGroup(context, client)) {
-    clientOperations.push(emitOperation(context, operation, ""));
+    clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
     operationGroups.push({
@@ -1388,7 +1422,11 @@ function getApiVersionParameter(context: SdkContext): Parameter | void {
   }
 }
 
-function emitClients(context: SdkContext, namespace: string, rlcModelsMap: Map<string, RLCModel>): HrlcClient[] {
+function emitClients(
+  context: SdkContext,
+  namespace: string,
+  rlcModelsMap: Map<string, RLCModel>
+): HrlcClient[] {
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
@@ -1399,14 +1437,17 @@ function emitClients(context: SdkContext, namespace: string, rlcModelsMap: Map<s
     }
     const server = getServerHelper(program, client.service);
     const rlcModels = rlcModelsMap.get(client.service.name);
+    if (!rlcModels) {
+      continue;
+    }
     const emittedClient: HrlcClient = {
       name: clientName.split(".").at(-1) ?? "",
       description: getDocStr(program, client.type),
       parameters: emitGlobalParameters(context, client.service),
-      operationGroups: emitOperationGroups(context, client),
+      operationGroups: emitOperationGroups(context, client, rlcModels),
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName:  rlcModels? getClientName(rlcModels): client.name
+      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {

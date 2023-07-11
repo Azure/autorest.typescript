@@ -12,24 +12,31 @@ import {
   Type
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
-import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  OperationResponse,
+  getResponseBaseName,
+  getResponseTypeName,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import { getOperationName } from "./namingHelpers.js";
 import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
 
-function getRLCResponseType(operation: Operation) {
-  const name = normalizeName(
-    getOperationName(operation, { casing: "pascal" }).name,
-    NameType.Interface
-  );
-  const statusCodes: (string | number)[] = Array.from(
-    new Set(operation.responses.flatMap((r) => r.statusCodes)).values()
-  );
-
-  if (operation.exceptions.length > 0) {
-    statusCodes.push("Default");
+function getRLCResponseType(rlcResponse?: OperationResponse) {
+  if (!rlcResponse?.responses) {
+    return;
   }
-
-  return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
+  return rlcResponse?.responses
+    .map((resp) => {
+      const baseResponseName = getResponseBaseName(
+        rlcResponse.operationGroup,
+        rlcResponse.operationName,
+        resp.statusCode
+      );
+      // Get the information to build the Response Interface
+      return resp.predefinedName ?? getResponseTypeName(baseResponseName);
+    })
+    .join(" | ");
 }
 
 export function getSendPrivateFunction(
@@ -44,7 +51,7 @@ export function getSendPrivateFunction(
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType: `StreamableMethod<${getRLCResponseType(operation)}>`
+    returnType: `StreamableMethod<${getRLCResponseType(operation.rlcResponse)}>`
   };
 
   const operationPath = operation.url;
@@ -75,7 +82,7 @@ export function getDeserializePrivateFunction(
   let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: getRLCResponseType(operation)
+      type: getRLCResponseType(operation.rlcResponse)
     }
   ];
 
@@ -89,7 +96,7 @@ export function getDeserializePrivateFunction(
       parameters = [
         {
           name: "_result",
-          type: getRLCResponseType(operation)
+          type: getRLCResponseType(operation.rlcResponse)
         }
       ];
     }

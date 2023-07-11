@@ -5,6 +5,7 @@ import { TokenCredential } from "@azure/core-auth";
 import {
   createLoadTestAdministration,
   LoadTestAdministrationClientOptions,
+  AzureLoadTestingContext,
   Test,
   FileInfo,
   TestAppComponents,
@@ -39,7 +40,7 @@ import {
 } from "./api/loadTestAdministration/index.js";
 
 export class LoadTestAdministrationClient {
-  private _client: LoadTestAdministrationContext;
+  private _client: AzureLoadTestingContext;
 
   /** */
   constructor(
