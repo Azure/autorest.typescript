@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { ColorType } from "./models";
+import { ColorType } from "./models.js";
 
 export interface ListWidgetsOptions extends OperationOptions {}
 

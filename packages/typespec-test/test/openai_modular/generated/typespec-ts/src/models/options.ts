@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { ImageSize } from "./models";
+import { ImageSize } from "./models.js";
 
 export interface GetEmbeddingsOptions extends OperationOptions {
   /**

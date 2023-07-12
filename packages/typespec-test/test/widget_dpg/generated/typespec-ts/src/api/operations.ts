@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import "../models/index.js";
 import {
   WidgetServiceContext as Client,
   isUnexpected,

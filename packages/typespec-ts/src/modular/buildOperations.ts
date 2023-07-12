@@ -44,9 +44,6 @@ export function buildOperationFiles(
       ]);
     });
 
-    // Import models used from ./models.ts
-    importModels(operationGroupFile, project, srcPath);
-
     operationGroupFile.addImportDeclarations([
       {
         moduleSpecifier: "../rest/index.js",
@@ -71,29 +68,21 @@ export function buildOperationFiles(
     ]);
 
     modelOptionsFile.fixMissingImports();
+    modelOptionsFile
+      .getImportDeclarations()
+      .filter((id) => {
+        return (
+          id.isModuleSpecifierRelative() &&
+          !id.getModuleSpecifierValue().endsWith(".js")
+        );
+      })
+      .map((id) => {
+        id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
+        return id;
+      });
+
     operationGroupFile.fixMissingImports();
   }
-}
-
-function importModels(
-  sourceFile: SourceFile,
-  project: Project,
-  srcPath: string
-) {
-  const modelsFile = project.getSourceFile(`${srcPath}/src/models/index.ts`);
-  const models: string[] = [];
-
-  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
-    models.push(entry[0]);
-  }
-
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: "../models/index.js",
-    namedImports: models
-  });
-
-  // Import all models and then let ts-morph clean up the unused ones
-  sourceFile.fixUnusedIdentifiers();
 }
 
 /**
