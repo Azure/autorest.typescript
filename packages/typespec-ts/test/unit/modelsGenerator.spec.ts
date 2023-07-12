@@ -727,9 +727,10 @@ describe("Input/output model type", () => {
           AA,
           BB,
         }
+        @discriminator("a")
         model B {
           a: A,
-        }
+        } 
         model C extends B {
           a: A.AA,
         }
@@ -758,6 +759,7 @@ describe("Input/output model type", () => {
           AA: 1.1,
           BB: 2.2,
         }
+        @discriminator("a")
         model B {
           a: A,
         }
