@@ -16,6 +16,7 @@ import { transformApiVersionInfo } from "../../../src/transform/transformApiVers
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../../src/utils/clientUtils.js";
+import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 
 export async function emitModelsFromCadl(
   cadlContent: string,
@@ -36,6 +37,7 @@ export async function emitModelsFromCadl(
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
   }
+  expectDiagnosticEmpty(program.diagnostics);
   return buildSchemaTypes({
     schemas: rlcSchemas,
     srcPath: "",

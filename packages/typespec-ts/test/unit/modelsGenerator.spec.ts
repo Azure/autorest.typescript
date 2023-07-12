@@ -720,6 +720,69 @@ describe("Input/output model type", () => {
           `
         });
       });
+
+      it("should handle inheritance model with string enum member as same property", async () => {
+        const schemaOutput = await emitModelsFromCadl(`
+        enum A {
+          AA,
+          BB,
+        }
+        model B {
+          a: A,
+        }
+        model C extends B {
+          a: A.AA,
+        }
+        op read(): { @body body: C };
+        `);
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assert.ok(!inputModelFile?.content);
+        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+          export interface COutput extends BOutput {
+            a: "AA";
+          }
+  
+          export interface BOutput {
+            /** Possible values: AA, BB */
+            a: string;
+          }`
+        );
+      });
+      it("should handle inheritance model with number enum member as same property", async () => {
+        const schemaOutput = await emitModelsFromCadl(`
+        enum A {
+          AA: 1.1,
+          BB: 2.2,
+        }
+        model B {
+          a: A,
+        }
+        model C extends B {
+          a: A.AA,
+        }
+        op read(): { @body body: C };
+        `);
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assert.ok(!inputModelFile?.content);
+        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+          export interface COutput extends BOutput {
+            a: 1.1;
+          }
+  
+          export interface BOutput {
+            /** Possible values: 1.1, 2.2 */
+            a: string;
+          }`
+        );
+      });
     });
   });
   describe("bytes generation as property", () => {

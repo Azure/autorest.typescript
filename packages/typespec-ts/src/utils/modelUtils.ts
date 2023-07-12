@@ -168,6 +168,8 @@ export function getSchemaForType(
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
     return getSchemaForScalar(dpgContext, type, relevantProperty);
+  } else if (type.kind === "EnumMember") {
+    return getSchemaForEnumMember(program, type);
   }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
@@ -724,6 +726,13 @@ function applyIntrinsicDecorators(
 
   return newTarget;
 }
+
+function getSchemaForEnumMember(program: Program, e: EnumMember) {
+  const value = e.value ?? e.name;
+  const type = enumMemberType(e) === "string" ? `"${value}"` : `${value}`;
+  return { type, description: getDoc(program, e) };
+}
+
 function getSchemaForEnum(program: Program, e: Enum) {
   const values = [];
   const type = enumMemberType(e.members.values().next().value);
@@ -749,12 +758,13 @@ function getSchemaForEnum(program: Program, e: Enum) {
     }
   }
   return schema;
-  function enumMemberType(member: EnumMember) {
-    if (typeof member.value === "number") {
-      return "number";
-    }
-    return "string";
+}
+
+function enumMemberType(member: EnumMember) {
+  if (typeof member.value === "number") {
+    return "number";
   }
+  return "string";
 }
 /**
  * Map Cadl intrinsic models to open api definitions
