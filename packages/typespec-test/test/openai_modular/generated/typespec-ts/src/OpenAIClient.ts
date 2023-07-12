@@ -11,11 +11,6 @@ import {
   getChatCompletions,
   getImageOperationStatus,
   startGenerateImage,
-  GetEmbeddingsOptions,
-  GetCompletionsOptions,
-  GetChatCompletionsOptions,
-  GetImageOperationStatusOptions,
-  StartGenerateImageOptions,
 } from "./api/index.js";
 import {
   Embeddings,
@@ -23,6 +18,11 @@ import {
   ChatMessage,
   ChatCompletions,
   ImageOperationResponse,
+  GetEmbeddingsOptions,
+  GetCompletionsOptions,
+  GetChatCompletionsOptions,
+  GetImageOperationStatusOptions,
+  StartGenerateImageOptions,
 } from "./models/index.js";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";

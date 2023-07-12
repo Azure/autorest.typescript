@@ -12,9 +12,4 @@ export {
   getChatCompletions,
   getImageOperationStatus,
   startGenerateImage,
-  GetEmbeddingsOptions,
-  GetCompletionsOptions,
-  GetChatCompletionsOptions,
-  GetImageOperationStatusOptions,
-  StartGenerateImageOptions,
 } from "./operations.js";

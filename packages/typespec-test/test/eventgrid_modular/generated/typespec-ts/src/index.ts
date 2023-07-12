@@ -10,13 +10,11 @@ export {
   FailedLockToken,
   ReleaseResult,
   RejectResult,
-} from "./models/index.js";
-export {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
   ReceiveCloudEventsOptions,
   AcknowledgeCloudEventsOptions,
   ReleaseCloudEventsOptions,
   RejectCloudEventsOptions,
-} from "./api/operations.js";
+} from "./models/index.js";
 export { EventGridClient, EventGridClientOptions } from "./EventGridClient.js";

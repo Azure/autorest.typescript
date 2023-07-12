@@ -13,10 +13,4 @@ export {
   acknowledgeCloudEvents,
   releaseCloudEvents,
   rejectCloudEvents,
-  PublishCloudEventOptions,
-  PublishCloudEventsOptions,
-  ReceiveCloudEventsOptions,
-  AcknowledgeCloudEventsOptions,
-  ReleaseCloudEventsOptions,
-  RejectCloudEventsOptions,
 } from "./operations.js";

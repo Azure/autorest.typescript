@@ -29,8 +29,9 @@ export function buildOperationFiles(
       `${srcPath}/src/api/${fileName}.ts`
     );
 
+    const modelOptionsFile = project.createSourceFile(`${srcPath}/src/models/options.ts`)
     operationGroup.operations.forEach((o) => {
-      buildOperationOptions(o, operationGroupFile);
+      buildOperationOptions(o, modelOptionsFile);
       const operationDeclaration = getOperationFunction(o);
       const sendOperationDeclaration = getSendPrivateFunction(o);
       const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
@@ -57,11 +58,17 @@ export function buildOperationFiles(
         namedImports: [
           "StreamableMethod",
           "operationOptionsToRequestParameters",
-          "OperationOptions"
         ]
       }
     ]);
+    modelOptionsFile.addImportDeclarations([
+      {
+        moduleSpecifier: "@azure-rest/core-client",
+        namedImports: ["OperationOptions"]
+      }
+    ])
 
+    modelOptionsFile.fixMissingImports();
     operationGroupFile.fixMissingImports();
   }
 }

@@ -8,17 +8,21 @@ import {
   updateWidget,
   deleteWidget,
   analyzeWidget,
+  createWidgetService,
+  WidgetServiceContext,
+  WidgetServiceClientOptions,
+} from "./api/index.js";
+import {
+  Widget,
+  ColorType,
+  AnalyzeResult,
   ListWidgetsOptions,
   GetWidgetOptions,
   CreateWidgetOptions,
   UpdateWidgetOptions,
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
-  createWidgetService,
-  WidgetServiceContext,
-  WidgetServiceClientOptions,
-} from "./api/index.js";
-import { Widget, ColorType, AnalyzeResult } from "./models/index.js";
+} from "./models/index.js";
 
 export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 

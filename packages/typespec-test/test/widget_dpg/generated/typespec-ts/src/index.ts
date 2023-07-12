@@ -1,15 +1,17 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Widget, ColorType, AnalyzeResult } from "./models/index.js";
 export {
+  Widget,
+  ColorType,
+  AnalyzeResult,
   ListWidgetsOptions,
   GetWidgetOptions,
   CreateWidgetOptions,
   UpdateWidgetOptions,
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
-} from "./api/operations.js";
+} from "./models/index.js";
 export {
   WidgetServiceClient,
   WidgetServiceClientOptions,

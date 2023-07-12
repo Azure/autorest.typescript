@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Widget, ColorType, AnalyzeResult } from "../models/index.js";
+import "../models/index.js";
 import {
   WidgetServiceContext as Client,
   isUnexpected,
@@ -21,10 +21,16 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
-
-export interface ListWidgetsOptions extends OperationOptions {}
+import { Widget, ColorType, AnalyzeResult } from "../models/models.js";
+import {
+  ListWidgetsOptions,
+  GetWidgetOptions,
+  CreateWidgetOptions,
+  UpdateWidgetOptions,
+  DeleteWidgetOptions,
+  AnalyzeWidgetOptions,
+} from "../models/options.js";
 
 export function _listWidgetsSend(
   context: Client,
@@ -62,8 +68,6 @@ export async function listWidgets(
   return _listWidgetsDeserialize(result);
 }
 
-export interface GetWidgetOptions extends OperationOptions {}
-
 export function _getWidgetSend(
   context: Client,
   id: string,
@@ -97,8 +101,6 @@ export async function getWidget(
   const result = await _getWidgetSend(context, id, options);
   return _getWidgetDeserialize(result);
 }
-
-export interface CreateWidgetOptions extends OperationOptions {}
 
 export function _createWidgetSend(
   context: Client,
@@ -144,13 +146,6 @@ export async function createWidget(
   return _createWidgetDeserialize(result);
 }
 
-export interface UpdateWidgetOptions extends OperationOptions {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight?: number;
-  /** The color of the widget. */
-  color?: ColorType;
-}
-
 export function _updateWidgetSend(
   context: Client,
   id: string,
@@ -191,8 +186,6 @@ export async function updateWidget(
   return _updateWidgetDeserialize(result);
 }
 
-export interface DeleteWidgetOptions extends OperationOptions {}
-
 export function _deleteWidgetSend(
   context: Client,
   id: string,
@@ -222,8 +215,6 @@ export async function deleteWidget(
   const result = await _deleteWidgetSend(context, id, options);
   return _deleteWidgetDeserialize(result);
 }
-
-export interface AnalyzeWidgetOptions extends OperationOptions {}
 
 export function _analyzeWidgetSend(
   context: Client,
