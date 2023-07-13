@@ -85,6 +85,7 @@ export function buildOperationFiles(
       });
 
     operationGroupFile.fixMissingImports();
+    // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();
   }
 }
@@ -107,6 +108,7 @@ function importModels(
   });
 
   // Import all models and then let ts-morph clean up the unused ones
+  // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
   // sourceFile.fixUnusedIdentifiers();
 }
 
