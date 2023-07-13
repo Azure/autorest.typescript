@@ -8,5 +8,6 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
+    enableOperationGroup: true
     packageDetails:
       name: "@msinternal/encode-duration"

@@ -44,5 +44,7 @@ export function transformOptions(model: CodeModel): RLCOptions {
   options.credentialScopes = credentialScopes;
   options.credentialKeyHeaderName = credentialKeyHeaderName;
   options.sourceFrom = "Swagger";
+  // Always enable operation group prefix for swagger
+  options.enableOperationGroup = true;
   return options;
 }

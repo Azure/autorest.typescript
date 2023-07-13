@@ -8,6 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
+    enableOperationGroup: true
     title: SpecialWordsClient
     packageDetails:
       name: "@msinternal/special-words"

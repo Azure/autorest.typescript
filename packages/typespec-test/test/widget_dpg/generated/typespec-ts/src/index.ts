@@ -14,4 +14,3 @@ export {
   WidgetServiceClient,
   WidgetServiceClientOptions,
 } from "./WidgetServiceClient.js";
-export { RequestOptions } from "./common/interfaces.js";

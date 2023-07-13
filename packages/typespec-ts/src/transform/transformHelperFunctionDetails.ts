@@ -16,10 +16,10 @@ import {
 import { getSpecialSerializeInfo } from "./transformParameters.js";
 
 export function transformHelperFunctionDetails(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ): HelperFunctionDetails {
+  const program = dpgContext.program;
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(program, client, dpgContext)

@@ -3,7 +3,6 @@
 
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -16,11 +15,12 @@ import {
   getBodyType,
   trimUsage
 } from "../utils/modelUtils.js";
+import { RLCSdkContext } from "./transform.js";
 
 export function transformSchemas(
   program: Program,
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: RLCSdkContext
 ) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
@@ -76,7 +76,7 @@ export function transformSchemas(
     }
   }
   program.stateMap(modelKey).forEach((context, cadlModel) => {
-    const model = getSchemaForType(program, dpgContext, cadlModel, context);
+    const model = getSchemaForType(dpgContext, cadlModel, context);
     if (model) {
       model.usage = context;
     }

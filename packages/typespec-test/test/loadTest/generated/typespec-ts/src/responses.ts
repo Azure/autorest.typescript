@@ -21,514 +21,547 @@ import {
 } from "./outputModels";
 
 /** The request has succeeded. */
-export interface TestCreateOrUpdate200Response extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateTest200Response
+  extends HttpResponse {
   status: "200";
   body: TestOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TestCreateOrUpdate201Response extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateTest201Response
+  extends HttpResponse {
   status: "201";
   body: TestOutput;
 }
 
-export interface TestCreateOrUpdateDefaultHeaders {
+export interface LoadTestAdministrationCreateOrUpdateTestDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestCreateOrUpdateDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationCreateOrUpdateTestDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestCreateOrUpdateDefaultHeaders;
+  headers: RawHttpHeaders &
+    LoadTestAdministrationCreateOrUpdateTestDefaultHeaders;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface TestDelete204Response extends HttpResponse {
+export interface LoadTestAdministrationDeleteTest204Response
+  extends HttpResponse {
   status: "204";
 }
 
-export interface TestDeleteDefaultHeaders {
+export interface LoadTestAdministrationDeleteTestDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestDeleteDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationDeleteTestDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestDeleteDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationDeleteTestDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestGet200Response extends HttpResponse {
+export interface LoadTestAdministrationGetTest200Response extends HttpResponse {
   status: "200";
   body: TestOutput;
 }
 
-export interface TestGetDefaultHeaders {
+export interface LoadTestAdministrationGetTestDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestGetDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationGetTestDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestGetDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationGetTestDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestList200Response extends HttpResponse {
+export interface LoadTestAdministrationListTests200Response
+  extends HttpResponse {
   status: "200";
   body: PagedTestOutput;
 }
 
-export interface TestListDefaultHeaders {
+export interface LoadTestAdministrationListTestsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestListDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationListTestsDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestListDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationListTestsDefaultHeaders;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TestUploadFile201Response extends HttpResponse {
+export interface LoadTestAdministrationUploadTestFile201Response
+  extends HttpResponse {
   status: "201";
   body: FileInfoOutput;
 }
 
-export interface TestUploadFileDefaultHeaders {
+export interface LoadTestAdministrationUploadTestFileDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestUploadFileDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationUploadTestFileDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestUploadFileDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationUploadTestFileDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestGetFile200Response extends HttpResponse {
+export interface LoadTestAdministrationGetTestFile200Response
+  extends HttpResponse {
   status: "200";
   body: FileInfoOutput;
 }
 
-export interface TestGetFileDefaultHeaders {
+export interface LoadTestAdministrationGetTestFileDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestGetFileDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationGetTestFileDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestGetFileDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationGetTestFileDefaultHeaders;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface TestDeleteFile204Response extends HttpResponse {
+export interface LoadTestAdministrationDeleteTestFile204Response
+  extends HttpResponse {
   status: "204";
 }
 
-export interface TestDeleteFileDefaultHeaders {
+export interface LoadTestAdministrationDeleteTestFileDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestDeleteFileDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationDeleteTestFileDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestDeleteFileDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationDeleteTestFileDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestListFiles200Response extends HttpResponse {
+export interface LoadTestAdministrationListTestFiles200Response
+  extends HttpResponse {
   status: "200";
   body: PagedFileInfoOutput;
 }
 
-export interface TestListFilesDefaultHeaders {
+export interface LoadTestAdministrationListTestFilesDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestListFilesDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationListTestFilesDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestListFilesDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestAdministrationListTestFilesDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestCreateOrUpdateAppComponents200Response
+export interface LoadTestAdministrationCreateOrUpdateAppComponents200Response
   extends HttpResponse {
   status: "200";
   body: TestAppComponentsOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TestCreateOrUpdateAppComponents201Response
+export interface LoadTestAdministrationCreateOrUpdateAppComponents201Response
   extends HttpResponse {
   status: "201";
   body: TestAppComponentsOutput;
 }
 
-export interface TestCreateOrUpdateAppComponentsDefaultHeaders {
+export interface LoadTestAdministrationCreateOrUpdateAppComponentsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestCreateOrUpdateAppComponentsDefaultResponse
+export interface LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestCreateOrUpdateAppComponentsDefaultHeaders;
+  headers: RawHttpHeaders &
+    LoadTestAdministrationCreateOrUpdateAppComponentsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestListAppComponents200Response extends HttpResponse {
+export interface LoadTestAdministrationGetAppComponents200Response
+  extends HttpResponse {
   status: "200";
   body: TestAppComponentsOutput;
 }
 
-export interface TestListAppComponentsDefaultHeaders {
+export interface LoadTestAdministrationGetAppComponentsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestListAppComponentsDefaultResponse extends HttpResponse {
+export interface LoadTestAdministrationGetAppComponentsDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestListAppComponentsDefaultHeaders;
+  headers: RawHttpHeaders &
+    LoadTestAdministrationGetAppComponentsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestCreateOrUpdateServerMetricsConfig200Response
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
   extends HttpResponse {
   status: "200";
   body: TestServerMetricConfigOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TestCreateOrUpdateServerMetricsConfig201Response
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
   extends HttpResponse {
   status: "201";
   body: TestServerMetricConfigOutput;
 }
 
-export interface TestCreateOrUpdateServerMetricsConfigDefaultHeaders {
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestCreateOrUpdateServerMetricsConfigDefaultResponse
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestCreateOrUpdateServerMetricsConfigDefaultHeaders;
+  headers: RawHttpHeaders &
+    LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestListServerMetricsConfig200Response extends HttpResponse {
+export interface LoadTestAdministrationGetServerMetricsConfig200Response
+  extends HttpResponse {
   status: "200";
   body: TestServerMetricConfigOutput;
 }
 
-export interface TestListServerMetricsConfigDefaultHeaders {
+export interface LoadTestAdministrationGetServerMetricsConfigDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestListServerMetricsConfigDefaultResponse
+export interface LoadTestAdministrationGetServerMetricsConfigDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestListServerMetricsConfigDefaultHeaders;
+  headers: RawHttpHeaders &
+    LoadTestAdministrationGetServerMetricsConfigDefaultHeaders;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface TestRunDelete204Response extends HttpResponse {
+export interface LoadTestRunDeleteTestRun204Response extends HttpResponse {
   status: "204";
 }
 
-export interface TestRunDeleteDefaultHeaders {
+export interface LoadTestRunDeleteTestRunDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunDeleteDefaultResponse extends HttpResponse {
+export interface LoadTestRunDeleteTestRunDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunDeleteDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunDeleteTestRunDefaultHeaders;
 }
 
-export interface TestRunCreateOrUpdate200Headers {
+export interface LoadTestRunCreateOrUpdateTestRun200Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has succeeded. */
-export interface TestRunCreateOrUpdate200Response extends HttpResponse {
+export interface LoadTestRunCreateOrUpdateTestRun200Response
+  extends HttpResponse {
   status: "200";
   body: TestRunOutput;
-  headers: RawHttpHeaders & TestRunCreateOrUpdate200Headers;
+  headers: RawHttpHeaders & LoadTestRunCreateOrUpdateTestRun200Headers;
 }
 
-export interface TestRunCreateOrUpdate201Headers {
+export interface LoadTestRunCreateOrUpdateTestRun201Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TestRunCreateOrUpdate201Response extends HttpResponse {
+export interface LoadTestRunCreateOrUpdateTestRun201Response
+  extends HttpResponse {
   status: "201";
   body: TestRunOutput;
-  headers: RawHttpHeaders & TestRunCreateOrUpdate201Headers;
+  headers: RawHttpHeaders & LoadTestRunCreateOrUpdateTestRun201Headers;
 }
 
-export interface TestRunCreateOrUpdateDefaultHeaders {
+export interface LoadTestRunCreateOrUpdateTestRunDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunCreateOrUpdateDefaultResponse extends HttpResponse {
+export interface LoadTestRunCreateOrUpdateTestRunDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunCreateOrUpdateDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunCreateOrUpdateTestRunDefaultHeaders;
 }
 
 /** The final response for long-running CreateOrUpdateTestRun operation */
-export interface TestRunCreateOrUpdateLogicalResponse extends HttpResponse {
+export interface LoadTestRunCreateOrUpdateTestRunLogicalResponse
+  extends HttpResponse {
   status: "200";
   body: TestRunOutput;
 }
 
 /** The request has succeeded. */
-export interface TestRunGet200Response extends HttpResponse {
+export interface LoadTestRunGetTestRun200Response extends HttpResponse {
   status: "200";
   body: TestRunOutput;
 }
 
-export interface TestRunGetDefaultHeaders {
+export interface LoadTestRunGetTestRunDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunGetDefaultResponse extends HttpResponse {
+export interface LoadTestRunGetTestRunDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunGetDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunGetTestRunDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunGetFile200Response extends HttpResponse {
+export interface LoadTestRunGetTestRunFile200Response extends HttpResponse {
   status: "200";
   body: FileInfoOutput;
 }
 
-export interface TestRunGetFileDefaultHeaders {
+export interface LoadTestRunGetTestRunFileDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunGetFileDefaultResponse extends HttpResponse {
+export interface LoadTestRunGetTestRunFileDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunGetFileDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunGetTestRunFileDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunList200Response extends HttpResponse {
+export interface LoadTestRunListTestRuns200Response extends HttpResponse {
   status: "200";
   body: PagedTestRunOutput;
 }
 
-export interface TestRunListDefaultHeaders {
+export interface LoadTestRunListTestRunsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunListDefaultResponse extends HttpResponse {
+export interface LoadTestRunListTestRunsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunListTestRunsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunStop200Response extends HttpResponse {
+export interface LoadTestRunStopTestRun200Response extends HttpResponse {
   status: "200";
   body: TestRunOutput;
 }
 
-export interface TestRunStopDefaultHeaders {
+export interface LoadTestRunStopTestRunDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunStopDefaultResponse extends HttpResponse {
+export interface LoadTestRunStopTestRunDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunStopDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunStopTestRunDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunListMetricNamespaces200Response extends HttpResponse {
+export interface LoadTestRunListMetricNamespaces200Response
+  extends HttpResponse {
   status: "200";
   body: MetricNamespaceCollectionOutput;
 }
 
-export interface TestRunListMetricNamespacesDefaultHeaders {
+export interface LoadTestRunListMetricNamespacesDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunListMetricNamespacesDefaultResponse
+export interface LoadTestRunListMetricNamespacesDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListMetricNamespacesDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunListMetricNamespacesDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunListMetricDefinitions200Response extends HttpResponse {
+export interface LoadTestRunListMetricDefinitions200Response
+  extends HttpResponse {
   status: "200";
   body: MetricDefinitionCollectionOutput;
 }
 
-export interface TestRunListMetricDefinitionsDefaultHeaders {
+export interface LoadTestRunListMetricDefinitionsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunListMetricDefinitionsDefaultResponse
+export interface LoadTestRunListMetricDefinitionsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListMetricDefinitionsDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunListMetricDefinitionsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunListMetrics200Response extends HttpResponse {
+export interface LoadTestRunListMetrics200Response extends HttpResponse {
   status: "200";
   body: PagedTimeSeriesElementOutput;
 }
 
-export interface TestRunListMetricsDefaultHeaders {
+export interface LoadTestRunListMetricsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunListMetricsDefaultResponse extends HttpResponse {
+export interface LoadTestRunListMetricsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListMetricsDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunListMetricsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunListMetricDimensionValues200Response
+export interface LoadTestRunListMetricDimensionValues200Response
   extends HttpResponse {
   status: "200";
   body: DimensionValueListListOutput;
 }
 
-export interface TestRunListMetricDimensionValuesDefaultHeaders {
+export interface LoadTestRunListMetricDimensionValuesDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunListMetricDimensionValuesDefaultResponse
+export interface LoadTestRunListMetricDimensionValuesDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListMetricDimensionValuesDefaultHeaders;
+  headers: RawHttpHeaders & LoadTestRunListMetricDimensionValuesDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunCreateOrUpdateAppComponents200Response
+export interface LoadTestRunCreateOrUpdateAppComponents200Response
   extends HttpResponse {
   status: "200";
   body: TestRunAppComponentsOutput;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TestRunCreateOrUpdateAppComponents201Response
+export interface LoadTestRunCreateOrUpdateAppComponents201Response
   extends HttpResponse {
   status: "201";
   body: TestRunAppComponentsOutput;
 }
 
-export interface TestRunCreateOrUpdateAppComponentsDefaultHeaders {
+export interface LoadTestRunCreateOrUpdateAppComponentsDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunCreateOrUpdateAppComponentsDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunCreateOrUpdateAppComponentsDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface TestRunListAppComponents200Response extends HttpResponse {
-  status: "200";
-  body: TestRunAppComponentsOutput;
-}
-
-export interface TestRunListAppComponentsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TestRunListAppComponentsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListAppComponentsDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface TestRunCreateOrUpdateServerMetricsConfig200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestRunServerMetricConfigOutput;
-}
-
-/** The request has succeeded and a new resource has been created as a result. */
-export interface TestRunCreateOrUpdateServerMetricsConfig201Response
-  extends HttpResponse {
-  status: "201";
-  body: TestRunServerMetricConfigOutput;
-}
-
-export interface TestRunCreateOrUpdateServerMetricsConfigDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TestRunCreateOrUpdateServerMetricsConfigDefaultResponse
+export interface LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders &
-    TestRunCreateOrUpdateServerMetricsConfigDefaultHeaders;
+    LoadTestRunCreateOrUpdateAppComponentsDefaultHeaders;
 }
 
 /** The request has succeeded. */
-export interface TestRunListServerMetricsConfig200Response
+export interface LoadTestRunGetAppComponents200Response extends HttpResponse {
+  status: "200";
+  body: TestRunAppComponentsOutput;
+}
+
+export interface LoadTestRunGetAppComponentsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface LoadTestRunGetAppComponentsDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & LoadTestRunGetAppComponentsDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface LoadTestRunCreateOrUpdateServerMetricsConfig200Response
   extends HttpResponse {
   status: "200";
   body: TestRunServerMetricConfigOutput;
 }
 
-export interface TestRunListServerMetricsConfigDefaultHeaders {
+/** The request has succeeded and a new resource has been created as a result. */
+export interface LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+  extends HttpResponse {
+  status: "201";
+  body: TestRunServerMetricConfigOutput;
+}
+
+export interface LoadTestRunCreateOrUpdateServerMetricsConfigDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface TestRunListServerMetricsConfigDefaultResponse
+export interface LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
   extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & TestRunListServerMetricsConfigDefaultHeaders;
+  headers: RawHttpHeaders &
+    LoadTestRunCreateOrUpdateServerMetricsConfigDefaultHeaders;
+}
+
+/** The request has succeeded. */
+export interface LoadTestRunTestRunListServerMetricsConfig200Response
+  extends HttpResponse {
+  status: "200";
+  body: TestRunServerMetricConfigOutput;
+}
+
+export interface LoadTestRunTestRunListServerMetricsConfigDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface LoadTestRunTestRunListServerMetricsConfigDefaultResponse
+  extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders &
+    LoadTestRunTestRunListServerMetricsConfigDefaultHeaders;
 }
