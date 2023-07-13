@@ -303,7 +303,7 @@ stages:
                   scriptType: "bash"
                   scriptLocation: "inlineScript"
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
-                  inlineScript: npx cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_RLC_REPORT) --generatorName typescript-rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version")
+                  inlineScript: npx cadl-ranch upload-coverage --coverageFile $(CADL_TESTSERVER_COVERAGE_RLC_REPORT) --generatorName typescript/rlc --storageAccountName azuresdkcadlranch --generatorVersion $(node -p -e "require('./package.json').version")
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}:
