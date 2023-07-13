@@ -44,13 +44,16 @@ export function buildOperationFiles(
       ]);
     });
 
+    // Import models used from ./models.ts
+    // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
+    importModels(srcPath, operationGroupFile, project);
+
     operationGroupFile.addImportDeclarations([
       {
         moduleSpecifier: "../rest/index.js",
-        namedImports: [`${client.name}Context as Client`, "isUnexpected"]
+        namedImports: [`${client.name}Context as Client`]
       }
     ]);
-
     operationGroupFile.addImportDeclarations([
       {
         moduleSpecifier: "@azure-rest/core-client",
@@ -82,7 +85,29 @@ export function buildOperationFiles(
       });
 
     operationGroupFile.fixMissingImports();
+    operationGroupFile.fixUnusedIdentifiers();
   }
+}
+
+function importModels(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project
+) {
+  const modelsFile = project.getSourceFile(`${srcPath}/src/models/models.ts`);
+  const models: string[] = [];
+
+  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    models.push(entry[0]);
+  }
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: "../models/models.js",
+    namedImports: models
+  });
+
+  // Import all models and then let ts-morph clean up the unused ones
+  // sourceFile.fixUnusedIdentifiers();
 }
 
 /**

@@ -2,9 +2,15 @@
 // Licensed under the MIT license.
 
 import {
+  CloudEvent,
+  ReceiveResult,
+  AcknowledgeResult,
+  ReleaseResult,
+  RejectResult,
+} from "../models/models.js";
+import {
   AcknowledgeCloudEvents200Response,
   AcknowledgeCloudEventsDefaultResponse,
-  CloudEvent,
   EventGridContext as Client,
   isUnexpected,
   PublishCloudEvent200Response,
@@ -22,12 +28,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  ReceiveResult,
-  AcknowledgeResult,
-  ReleaseResult,
-  RejectResult,
-} from "../models/models.js";
 import {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,

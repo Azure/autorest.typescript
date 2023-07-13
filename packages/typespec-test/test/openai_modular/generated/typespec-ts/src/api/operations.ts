@@ -2,9 +2,13 @@
 // Licensed under the MIT license.
 
 import {
-  OpenAIContext as Client,
-  isUnexpected,
+  Embeddings,
+  Completions,
   ChatMessage,
+  ChatCompletions,
+  ImageOperationResponse,
+} from "../models/models.js";
+import {
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetCompletions200Response,
@@ -13,6 +17,8 @@ import {
   GetEmbeddingsDefaultResponse,
   GetImageOperationStatus200Response,
   GetImageOperationStatusDefaultResponse,
+  isUnexpected,
+  OpenAIContext as Client,
   StartGenerateImage202Response,
   StartGenerateImageDefaultResponse,
 } from "../rest/index.js";
@@ -20,12 +26,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  Embeddings,
-  Completions,
-  ChatCompletions,
-  ImageOperationResponse,
-} from "../models/models.js";
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,

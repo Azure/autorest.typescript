@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Widget, ColorType, AnalyzeResult } from "../models/models.js";
 import {
-  WidgetServiceContext as Client,
-  isUnexpected,
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
   CreateWidget201Response,
@@ -12,16 +11,17 @@ import {
   DeleteWidgetDefaultResponse,
   GetWidget200Response,
   GetWidgetDefaultResponse,
+  isUnexpected,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
   UpdateWidget200Response,
   UpdateWidgetDefaultResponse,
+  WidgetServiceContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { Widget, ColorType, AnalyzeResult } from "../models/models.js";
 import {
   ListWidgetsOptions,
   GetWidgetOptions,
