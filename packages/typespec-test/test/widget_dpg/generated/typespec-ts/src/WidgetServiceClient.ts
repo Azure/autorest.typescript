@@ -12,17 +12,15 @@ import {
   WidgetServiceContext,
   WidgetServiceClientOptions,
 } from "./api/index.js";
+import { Widget, ColorType, AnalyzeResult } from "./models/models.js";
 import {
-  Widget,
-  ColorType,
-  AnalyzeResult,
   ListWidgetsOptions,
   GetWidgetOptions,
   CreateWidgetOptions,
   UpdateWidgetOptions,
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
-} from "./models/index.js";
+} from "./models/options.js";
 
 export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 

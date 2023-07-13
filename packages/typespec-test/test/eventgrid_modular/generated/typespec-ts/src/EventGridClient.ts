@@ -19,13 +19,15 @@ import {
   AcknowledgeResult,
   ReleaseResult,
   RejectResult,
+} from "./models/models.js";
+import {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
   ReceiveCloudEventsOptions,
   AcknowledgeCloudEventsOptions,
   ReleaseCloudEventsOptions,
   RejectCloudEventsOptions,
-} from "./models/index.js";
+} from "./models/options.js";
 
 export { EventGridClientOptions } from "./api/EventGridContext.js";
 

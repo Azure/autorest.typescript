@@ -59,6 +59,7 @@ export function buildClassicalClient(
   buildClientOperationGroups(client, clientClass);
   importAllApis(clientFile, srcPath);
   importAllModels(clientFile, srcPath);
+  clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
 }
 
@@ -80,7 +81,7 @@ function importAllApis(clientFile: SourceFile, srcPath: string) {
 
 function importAllModels(clientFile: SourceFile, srcPath: string) {
   const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(`${srcPath}/src/models/index.ts`);
+  const apiModels = project.getSourceFile(`${srcPath}/src/models/models.ts`);
 
   if (!apiModels) {
     return;
@@ -89,7 +90,7 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
   const exported = [...apiModels.getExportedDeclarations().keys()];
 
   clientFile.addImportDeclaration({
-    moduleSpecifier: `./models/index.js`,
+    moduleSpecifier: `./models/models.js`,
     namedImports: exported
   });
 }

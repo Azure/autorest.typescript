@@ -18,12 +18,14 @@ import {
   ChatMessage,
   ChatCompletions,
   ImageOperationResponse,
+} from "./models/models.js";
+import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
-} from "./models/index.js";
+} from "./models/options.js";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
 
