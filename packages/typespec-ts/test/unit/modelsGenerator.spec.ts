@@ -721,28 +721,23 @@ describe("Input/output model type", () => {
         });
       });
 
-      it("should handle inheritance model with string enum member as same property", async () => {
-        const schemaOutput = await emitModelsFromCadl(`
-        enum A {
-          AA,
-          BB,
-        }
-        @discriminator("a")
-        model B {
-          a: A,
-        } 
-        model C extends B {
-          a: A.AA,
-        }
-        op read(): { @body body: C };
-        `);
-        assert.ok(schemaOutput);
-        const { inputModelFile, outputModelFile } = schemaOutput!;
-        assert.ok(!inputModelFile?.content);
-        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        assertEqualContent(
-          outputModelFile?.content!,
-          `
+      describe.only("enum and enum member as discriminator", () => {
+        describe("is string", () => {
+          const typespec = (hasDiscriminator: boolean) => `
+          enum A {
+            AA,
+            BB,
+          }
+          ${hasDiscriminator ? '@discriminator("a")' : ""}
+          model B {
+            a: A,
+          } 
+          model C extends B {
+            a: A.AA,
+          }
+          op read(): { @body body: C };
+          `;
+          const output = `
           export interface COutput extends BOutput {
             a: "AA";
           }
@@ -750,31 +745,42 @@ describe("Input/output model type", () => {
           export interface BOutput {
             /** Possible values: AA, BB */
             a: string;
-          }`
-        );
-      });
-      it("should handle inheritance model with number enum member as same property", async () => {
-        const schemaOutput = await emitModelsFromCadl(`
-        enum A {
-          AA: 1.1,
-          BB: 2.2,
-        }
-        @discriminator("a")
-        model B {
-          a: A,
-        }
-        model C extends B {
-          a: A.AA,
-        }
-        op read(): { @body body: C };
-        `);
-        assert.ok(schemaOutput);
-        const { inputModelFile, outputModelFile } = schemaOutput!;
-        assert.ok(!inputModelFile?.content);
-        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-        assertEqualContent(
-          outputModelFile?.content!,
-          `
+          }`;
+          it("with @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(true));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(outputModelFile?.content!, output);
+          });
+
+          it("without @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(false));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(outputModelFile?.content!, output);
+          });
+        });
+
+        describe("is number", () => {
+          const typespec = (hasDiscriminator: boolean) => `
+          enum A {
+            AA: 1.1,
+            BB: 2.2,
+          }
+          ${hasDiscriminator ? '@discriminator("a")' : ""}
+          model B {
+            a: A,
+          }
+          model C extends B {
+            a: A.AA,
+          }
+          op read(): { @body body: C };
+          `;
+          const output = `
           export interface COutput extends BOutput {
             a: 1.1;
           }
@@ -782,8 +788,25 @@ describe("Input/output model type", () => {
           export interface BOutput {
             /** Possible values: 1.1, 2.2 */
             a: string;
-          }`
-        );
+          }`;
+          it("with @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(true));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(outputModelFile?.content!, output);
+          });
+
+          it("without @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(false));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(outputModelFile?.content!, output);
+          });
+        });
       });
     });
   });
