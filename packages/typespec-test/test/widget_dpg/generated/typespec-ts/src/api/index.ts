@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Widget, ColorType, AnalyzeResult } from "./models.js";
 export {
   listWidgets,
   getWidget,
@@ -9,12 +8,6 @@ export {
   updateWidget,
   deleteWidget,
   analyzeWidget,
-  ListWidgetsOptions,
-  GetWidgetOptions,
-  CreateWidgetOptions,
-  UpdateWidgetOptions,
-  DeleteWidgetOptions,
-  AnalyzeWidgetOptions,
 } from "./operations.js";
 export {
   createWidgetService,

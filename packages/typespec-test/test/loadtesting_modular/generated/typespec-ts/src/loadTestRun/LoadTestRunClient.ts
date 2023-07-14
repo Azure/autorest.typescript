@@ -3,19 +3,15 @@
 
 import { TokenCredential } from "@azure/core-auth";
 import {
+  CreateOrUpdateAppComponentsOptions,
+  CreateOrUpdateServerMetricsConfigOptions,
+  GetAppComponentsOptions,
+  GetServerMetricsConfigOptions,
+} from "../models/index.js";
+import {
   createLoadTestRun,
   LoadTestRunClientOptions,
   AzureLoadTestingContext,
-  FileInfo,
-  AppComponent,
-  TestRun,
-  TestRunAppComponents,
-  TestRunServerMetricConfig,
-  MetricDefinitionCollection,
-  MetricNamespaceCollection,
-  Metrics,
-  TestRunsList,
-  CustomPage,
   testRun,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -30,12 +26,22 @@ import {
   listMetrics,
   listTestRuns,
   stopTestRun,
+} from "./api/index.js";
+import {
+  FileInfo,
+  AppComponent,
+  TestRun,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  MetricDefinitionCollection,
+  MetricNamespaceCollection,
+  Metrics,
+  TestRunsList,
+  CustomPage,
+} from "./models/models.js";
+import {
   TestRunOptions,
-  CreateOrUpdateAppComponentsOptions,
-  CreateOrUpdateServerMetricsConfigOptions,
   DeleteTestRunOptions,
-  GetAppComponentsOptions,
-  GetServerMetricsConfigOptions,
   GetTestRunOptions,
   GetTestRunFileOptions,
   ListMetricDimensionValuesOptions,
@@ -44,7 +50,7 @@ import {
   ListMetricsOptions,
   ListTestRunsOptions,
   StopTestRunOptions,
-} from "./api/loadTestRun/index.js";
+} from "./models/options.js";
 
 export class LoadTestRunClient {
   private _client: AzureLoadTestingContext;

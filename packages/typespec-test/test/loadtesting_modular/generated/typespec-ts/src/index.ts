@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { LoadTestAdministrationClient } from "./LoadTestAdministrationClient.js";
-export { LoadTestRunClient } from "./LoadTestRunClient.js";
+export { LoadTestAdministrationClient } from "./loadTestAdministration/LoadTestAdministrationClient.js";
+export { LoadTestRunClient } from "./loadTestRun/LoadTestRunClient.js";
 export {
-  LoadTestAdministrationClientOptions,
   Test,
   PassFailCriteria,
   PassFailMetric,
@@ -36,18 +35,26 @@ export {
   TestRunOutputArtifacts,
   PFTestResult,
   Status,
+  TestRunAppComponents,
+  TestRunServerMetricConfig,
+  MetricDefinitionCollection,
   MetricDefinition,
   NameAndDesc,
   AggregationType,
   MetricUnit,
   MetricAvailability,
   TimeGrain,
+  MetricNamespaceCollection,
   MetricNamespace,
+  MetricRequestPayload,
   DimensionFilter,
+  Metrics,
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
+  TestRunsList,
   Interval,
+  CustomPage,
   DimensionValueList,
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,
@@ -61,7 +68,6 @@ export {
   UploadTestFileOptions,
   DeleteTestFileOptions,
   DeleteTestOptions,
-  LoadTestRunClientOptions,
   LoadTestRunClientTest,
   LoadTestRunClientPassFailCriteria,
   LoadTestRunClientPassFailMetric,
@@ -79,8 +85,12 @@ export {
   LoadTestRunClientFileInfo,
   LoadTestRunClientFileType,
   LoadTestRunClientFileStatus,
+  LoadTestRunClientTestAppComponents,
   LoadTestRunClientAppComponent,
+  LoadTestRunClientTestServerMetricConfig,
   LoadTestRunClientResourceMetric,
+  LoadTestRunClientFileInfoList,
+  LoadTestRunClientTestsList,
   LoadTestRunClientTestRun,
   LoadTestRunClientErrorDetails,
   LoadTestRunClientTestRunStatistics,
@@ -124,4 +134,4 @@ export {
   ListMetricsOptions,
   ListTestRunsOptions,
   StopTestRunOptions,
-} from "./api/index.js";
+} from "./models/index.js";

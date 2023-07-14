@@ -13,7 +13,7 @@ export function buildModels(
   subfolder: string = ""
 ): SourceFile {
   const modelsFile = project.createSourceFile(
-    path.join(`${srcPath}/src/api`, subfolder, `models.ts`)
+    path.join(`${srcPath}/src/`, subfolder, `models/models.ts`)
   );
 
   // We are generating both models and enums here

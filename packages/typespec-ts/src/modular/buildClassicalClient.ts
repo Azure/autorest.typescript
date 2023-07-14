@@ -29,7 +29,7 @@ export function buildClassicalClient(
   const params = getClientParameters(client);
 
   const clientFile = project.createSourceFile(
-    `${srcPath}/src/${classicalClientname}.ts`
+    `${srcPath}/src/${subfolder !== ""? subfolder + "/": ""}${classicalClientname}.ts`
   );
 
   const clientClass = clientFile.addClass({
@@ -64,8 +64,32 @@ export function buildClassicalClient(
   ]);
   importCredential(clientFile);
   buildClientOperationGroups(client, clientClass, subfolder);
+  importAllApis(clientFile, srcPath, subfolder);
   importAllModels(clientFile, srcPath, subfolder);
+  clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
+}
+
+function importAllApis(
+  clientFile: SourceFile,
+  srcPath: string,
+  subfolder: string
+) {
+  const project = clientFile.getProject();
+  const apiModels = project.getSourceFile(
+      `${srcPath}/src/${subfolder !== "" ? subfolder + "/": ""}api/index.ts`
+    );
+
+  if (!apiModels) {
+    return;
+  }
+
+  const exported = [...apiModels.getExportedDeclarations().keys()];
+
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./api/index.js`,
+    namedImports: exported
+  });
 }
 
 function importAllModels(
@@ -74,14 +98,9 @@ function importAllModels(
   subfolder: string
 ) {
   const project = clientFile.getProject();
-  let apiModels;
-  if (subfolder && subfolder !== "") {
-    apiModels = project.getSourceFile(
-      `${srcPath}/src/api/${subfolder}/index.ts`
-    );
-  } else {
-    apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
-  }
+  const apiModels = project.getSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
+  );
 
   if (!apiModels) {
     return;
@@ -89,17 +108,10 @@ function importAllModels(
 
   const exported = [...apiModels.getExportedDeclarations().keys()];
 
-  if (subfolder && subfolder !== "") {
-    clientFile.addImportDeclaration({
-      moduleSpecifier: `./api/${subfolder}/index.js`,
-      namedImports: exported
-    });
-  } else {
-    clientFile.addImportDeclaration({
-      moduleSpecifier: `./api/index.js`,
-      namedImports: exported
-    });
-  }
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./models/models.js`,
+    namedImports: exported
+  });
 }
 
 function importCredential(clientSourceFile: SourceFile): void {

@@ -31,10 +31,14 @@ export function buildOperationFiles(
         "operations";
 
     const operationGroupFile = project.createSourceFile(
-      `${srcPath}/src/api/${
+      `${srcPath}/src/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
-      }${fileName}.ts`
+      }api/${fileName}.ts`
     );
+
+        // Import models used from ./models.ts
+    // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
+    importModels(srcPath, operationGroupFile, project, subfolder);
 
     const namedImports: string[] = [];
     let clientType = "Client";
@@ -63,8 +67,11 @@ export function buildOperationFiles(
         }
       ]);
     }
+    const modelOptionsFile = project.createSourceFile(
+      `${srcPath}/src/${subfolder}/models/options.ts`
+    );
     operationGroup.operations.forEach((o) => {
-      buildOperationOptions(o, operationGroupFile);
+      buildOperationOptions(o, modelOptionsFile);
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
@@ -84,20 +91,46 @@ export function buildOperationFiles(
         moduleSpecifier: "@azure-rest/core-client",
         namedImports: [
           "StreamableMethod",
-          "operationOptionsToRequestParameters",
-          "OperationOptions"
+          "operationOptionsToRequestParameters"
         ]
       }
     ]);
+    modelOptionsFile.addImportDeclarations([
+      {
+        moduleSpecifier: "@azure-rest/core-client",
+        namedImports: ["OperationOptions"]
+      }
+    ]);
 
-    // Import models used from ./models.ts
-    importModels(operationGroupFile, project);
+    modelOptionsFile.fixMissingImports();
+    modelOptionsFile
+      .getImportDeclarations()
+      .filter((id) => {
+        return (
+          id.isModuleSpecifierRelative() &&
+          !id.getModuleSpecifierValue().endsWith(".js")
+        );
+      })
+      .map((id) => {
+        id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
+        return id;
+      });
+
     operationGroupFile.fixMissingImports();
+    // have to fixUnusedIdentifiers after everything get generated.
+    operationGroupFile.fixUnusedIdentifiers();
   }
 }
 
-function importModels(sourceFile: SourceFile, project: Project) {
-  const modelsFile = project.getSourceFile("models.ts");
+function importModels(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  subfolder: string = ""
+) {
+  const modelsFile = project.getSourceFile( `${srcPath}/src/${
+    subfolder && subfolder !== "" ? subfolder + "/" : ""
+  }models/models.ts`);
   const models: string[] = [];
 
   for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
@@ -105,12 +138,13 @@ function importModels(sourceFile: SourceFile, project: Project) {
   }
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: "./models.js",
+    moduleSpecifier: "../models/models.js",
     namedImports: models
   });
 
   // Import all models and then let ts-morph clean up the unused ones
-  sourceFile.fixUnusedIdentifiers();
+  // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
+  // sourceFile.fixUnusedIdentifiers();
 }
 
 /**

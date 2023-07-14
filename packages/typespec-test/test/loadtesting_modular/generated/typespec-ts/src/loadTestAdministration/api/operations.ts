@@ -2,6 +2,15 @@
 // Licensed under the MIT license.
 
 import {
+  Test,
+  FileInfo,
+  TestAppComponents,
+  AppComponent,
+  TestServerMetricConfig,
+  FileInfoList,
+  TestsList,
+} from "../models/models.js";
+import {
   isUnexpected,
   AzureLoadTestingContext as Client,
   LoadTestAdministrationCreateOrUpdateAppComponents200Response,
@@ -35,67 +44,21 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
 import {
-  Test,
-  PassFailCriteria,
-  Secret,
-  CertificateMetadata,
-  LoadTestConfiguration,
-  TestInputArtifacts,
-  FileInfo,
-  FileType,
-  TestAppComponents,
-  AppComponent,
-  TestServerMetricConfig,
-  ResourceMetric,
-  FileInfoList,
-  TestsList,
-} from "./models.js";
-
-export interface CreateOrUpdateTestOptions extends OperationOptions {
-  /** Pass fail criteria for a test. */
-  passFailCriteria?: PassFailCriteria;
-  /**
-   * Secrets can be stored in an Azure Key Vault or any other secret store. If the
-   * secret is stored in an Azure Key Vault, the value should be the secret
-   * identifier and the type should be AKV_SECRET_URI. If the secret is stored
-   * elsewhere, the secret value should be provided directly and the type should be
-   * SECRET_VALUE.
-   */
-  secrets?: Record<string, Secret>;
-  /** Certificates metadata */
-  certificate?: CertificateMetadata;
-  /** Environment variables which are defined as a set of <name,value> pairs. */
-  environmentVariables?: Record<string, string>;
-  /** The load test configuration. */
-  loadTestConfiguration?: LoadTestConfiguration;
-  /** The input artifacts for the test. */
-  inputArtifacts?: TestInputArtifacts;
-  /** Unique test name as identifier. */
-  testId?: string;
-  /** The test description. */
-  description?: string;
-  /** Display name of a test. */
-  displayName?: string;
-  /** Subnet ID on which the load test instances should run. */
-  subnetId?: string;
-  /** Type of the managed identity referencing the Key vault. */
-  keyvaultReferenceIdentityType?: string;
-  /** Resource Id of the managed identity referencing the Key vault. */
-  keyvaultReferenceIdentityId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
-  /** */
-  contentType?: string;
-}
+  CreateOrUpdateTestOptions,
+  CreateOrUpdateAppComponentsOptions,
+  CreateOrUpdateServerMetricsConfigOptions,
+  GetAppComponentsOptions,
+  GetServerMetricsConfigOptions,
+  GetTestOptions,
+  GetTestFileOptions,
+  ListTestFilesOptions,
+  ListTestsOptions,
+  UploadTestFileOptions,
+  DeleteTestFileOptions,
+  DeleteTestOptions,
+} from "../models/options.js";
 
 export function _createOrUpdateTestSend(
   context: Client,
@@ -307,21 +270,6 @@ export async function createOrUpdateTest(
   return _createOrUpdateTestDeserialize(result);
 }
 
-export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
-  /** Test identifier */
-  testId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
-  /** */
-  contentType?: string;
-}
-
 export function _createOrUpdateAppComponentsSend(
   context: Client,
   components: Record<string, AppComponent>,
@@ -378,28 +326,6 @@ export async function createOrUpdateAppComponents(
   return _createOrUpdateAppComponentsDeserialize(result);
 }
 
-export interface CreateOrUpdateServerMetricsConfigOptions
-  extends OperationOptions {
-  /** Test identifier */
-  testId?: string;
-  /**
-   * Azure resource metrics collection {metric id : metrics object} (Refer :
-   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
-   * for metric id).
-   */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
-  /** */
-  contentType?: string;
-}
-
 export function _createOrUpdateServerMetricsConfigSend(
   context: Client,
   testId: string,
@@ -453,8 +379,6 @@ export async function createOrUpdateServerMetricsConfig(
   return _createOrUpdateServerMetricsConfigDeserialize(result);
 }
 
-export interface GetAppComponentsOptions extends OperationOptions {}
-
 export function _getAppComponentsSend(
   context: Client,
   testId: string,
@@ -497,8 +421,6 @@ export async function getAppComponents(
   return _getAppComponentsDeserialize(result);
 }
 
-export interface GetServerMetricsConfigOptions extends OperationOptions {}
-
 export function _getServerMetricsConfigSend(
   context: Client,
   testId: string,
@@ -540,8 +462,6 @@ export async function getServerMetricsConfig(
   const result = await _getServerMetricsConfigSend(context, testId, options);
   return _getServerMetricsConfigDeserialize(result);
 }
-
-export interface GetTestOptions extends OperationOptions {}
 
 export function _getTestSend(
   context: Client,
@@ -735,8 +655,6 @@ export async function getTest(
   return _getTestDeserialize(result);
 }
 
-export interface GetTestFileOptions extends OperationOptions {}
-
 export function _getTestFileSend(
   context: Client,
   testId: string,
@@ -781,8 +699,6 @@ export async function getTestFile(
   return _getTestFileDeserialize(result);
 }
 
-export interface ListTestFilesOptions extends OperationOptions {}
-
 export function _listTestFilesSend(
   context: Client,
   testId: string,
@@ -826,32 +742,6 @@ export async function listTestFiles(
 ): Promise<FileInfoList> {
   const result = await _listTestFilesSend(context, testId, options);
   return _listTestFilesDeserialize(result);
-}
-
-export interface ListTestsOptions extends OperationOptions {
-  /**
-   * Sort on the supported fields in (field asc/desc) format. eg:
-   * lastModifiedDateTime asc. Supported fields - lastModifiedDateTime
-   */
-  orderby?: string;
-  /**
-   * Prefix based, case sensitive search on searchable fields - displayName,
-   * createdBy. For example, to search for a test, with display name is Login Test,
-   * the search parameter can be Login.
-   */
-  search?: string;
-  /**
-   * Start DateTime(ISO 8601 literal format) of the last updated time range to
-   * filter tests.
-   */
-  lastModifiedStartTime?: any;
-  /**
-   * End DateTime(ISO 8601 literal format) of the last updated time range to filter
-   * tests.
-   */
-  lastModifiedEndTime?: any;
-  /** Number of results in response. */
-  maxpagesize?: number;
 }
 
 export function _listTestsSend(
@@ -1034,13 +924,6 @@ export async function listTests(
   return _listTestsDeserialize(result);
 }
 
-export interface UploadTestFileOptions extends OperationOptions {
-  /** */
-  contentType?: string;
-  /** File type */
-  fileType?: FileType;
-}
-
 export function _uploadTestFileSend(
   context: Client,
   testId: string,
@@ -1093,8 +976,6 @@ export async function uploadTestFile(
   return _uploadTestFileDeserialize(result);
 }
 
-export interface DeleteTestFileOptions extends OperationOptions {}
-
 export function _deleteTestFileSend(
   context: Client,
   testId: string,
@@ -1131,8 +1012,6 @@ export async function deleteTestFile(
   const result = await _deleteTestFileSend(context, testId, fileName, options);
   return _deleteTestFileDeserialize(result);
 }
-
-export interface DeleteTestOptions extends OperationOptions {}
 
 export function _deleteTestSend(
   context: Client,

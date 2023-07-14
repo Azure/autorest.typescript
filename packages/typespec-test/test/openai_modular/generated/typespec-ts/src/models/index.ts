@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { OpenAIClient } from "./OpenAIClient.js";
 export {
   Embeddings,
   EmbeddingItem,
@@ -20,18 +19,11 @@ export {
   ImageLocation,
   State,
   ImageSize,
-<<<<<<< HEAD
-  OpenAIClientOptions,
-=======
->>>>>>> main
+} from "./models.js";
+export {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
-<<<<<<< HEAD
-} from "./api/index.js";
-=======
-} from "./models/index.js";
-export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
->>>>>>> main
+} from "./options.js";

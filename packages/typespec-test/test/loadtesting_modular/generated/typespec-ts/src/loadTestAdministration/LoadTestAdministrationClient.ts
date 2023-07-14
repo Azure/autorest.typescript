@@ -6,13 +6,6 @@ import {
   createLoadTestAdministration,
   LoadTestAdministrationClientOptions,
   AzureLoadTestingContext,
-  Test,
-  FileInfo,
-  TestAppComponents,
-  AppComponent,
-  TestServerMetricConfig,
-  FileInfoList,
-  TestsList,
   createOrUpdateTest,
   createOrUpdateAppComponents,
   createOrUpdateServerMetricsConfig,
@@ -25,6 +18,17 @@ import {
   uploadTestFile,
   deleteTestFile,
   deleteTest,
+} from "./api/index.js";
+import {
+  Test,
+  FileInfo,
+  TestAppComponents,
+  AppComponent,
+  TestServerMetricConfig,
+  FileInfoList,
+  TestsList,
+} from "./models/models.js";
+import {
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,
   CreateOrUpdateServerMetricsConfigOptions,
@@ -37,7 +41,7 @@ import {
   UploadTestFileOptions,
   DeleteTestFileOptions,
   DeleteTestOptions,
-} from "./api/loadTestAdministration/index.js";
+} from "./models/options.js";
 
 export class LoadTestAdministrationClient {
   private _client: AzureLoadTestingContext;

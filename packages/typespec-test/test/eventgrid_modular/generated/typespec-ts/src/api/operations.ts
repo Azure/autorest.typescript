@@ -2,8 +2,18 @@
 // Licensed under the MIT license.
 
 import {
+<<<<<<< HEAD
   isUnexpected,
   EventGridContext as Client,
+=======
+  CloudEvent,
+  ReceiveResult,
+  AcknowledgeResult,
+  ReleaseResult,
+  RejectResult,
+} from "../models/models.js";
+import {
+>>>>>>> main
   AcknowledgeCloudEvents200Response,
   AcknowledgeCloudEventsDefaultResponse,
   PublishCloudEvent200Response,
@@ -20,20 +30,15 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
 import {
-  CloudEvent,
-  ReceiveResult,
-  AcknowledgeResult,
-  ReleaseResult,
-  RejectResult,
-} from "./models.js";
-
-export interface PublishCloudEventOptions extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
+  PublishCloudEventOptions,
+  PublishCloudEventsOptions,
+  ReceiveCloudEventsOptions,
+  AcknowledgeCloudEventsOptions,
+  ReleaseCloudEventsOptions,
+  RejectCloudEventsOptions,
+} from "../models/options.js";
 
 export function _publishCloudEventSend(
   context: Client,
@@ -80,11 +85,6 @@ export async function publishCloudEvent(
   return _publishCloudEventDeserialize(result);
 }
 
-export interface PublishCloudEventsOptions extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _publishCloudEventsSend(
   context: Client,
   events: CloudEvent[],
@@ -128,13 +128,6 @@ export async function publishCloudEvents(
     options
   );
   return _publishCloudEventsDeserialize(result);
-}
-
-export interface ReceiveCloudEventsOptions extends OperationOptions {
-  /** Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. */
-  maxEvents?: number;
-  /** Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. */
-  maxWaitTime?: number;
 }
 
 export function _receiveCloudEventsSend(
@@ -205,11 +198,6 @@ export async function receiveCloudEvents(
   return _receiveCloudEventsDeserialize(result);
 }
 
-export interface AcknowledgeCloudEventsOptions extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _acknowledgeCloudEventsSend(
   context: Client,
   lockTokens: string[],
@@ -270,11 +258,6 @@ export async function acknowledgeCloudEvents(
   return _acknowledgeCloudEventsDeserialize(result);
 }
 
-export interface ReleaseCloudEventsOptions extends OperationOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _releaseCloudEventsSend(
   context: Client,
   lockTokens: string[],
@@ -331,11 +314,6 @@ export async function releaseCloudEvents(
     options
   );
   return _releaseCloudEventsDeserialize(result);
-}
-
-export interface RejectCloudEventsOptions extends OperationOptions {
-  /** content type */
-  contentType?: string;
 }
 
 export function _rejectCloudEventsSend(

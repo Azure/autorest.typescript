@@ -39,16 +39,13 @@ import {
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { Project, SyntaxKind } from "ts-morph";
+import { Project } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import {
-  buildApiIndexFile,
-  buildApiTopLevelIndexFile
-} from "./modular/buildApiIndex.js";
+import { buildSubpathIndexFile, buildSubpathTopLevelIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -139,9 +136,17 @@ export async function $onEmit(context: EmitContext) {
       }
     );
     let apiTopLevelIndexFile;
+    let modelsTopLevelIndexFile;
     if (modularCodeModel.clients.length > 1) {
       apiTopLevelIndexFile = project.createSourceFile(
         `${srcPath}/src/api/index.ts`,
+        "",
+        {
+          overwrite: true
+        }
+      );
+      modelsTopLevelIndexFile = project.createSourceFile(
+        `${srcPath}/src/models/index.ts`,
         "",
         {
           overwrite: true
@@ -167,15 +172,27 @@ export async function $onEmit(context: EmitContext) {
         subfolder,
         needUnexpectedHelper.get(subClient.name + "Client")
       );
-      buildApiIndexFile(project, srcPath, subfolder);
+      buildSubpathIndexFile(project, srcPath, "models", subfolder);
+      buildSubpathIndexFile(project, srcPath, "api", subfolder);
       buildClassicalClient(dpgContext, subClient, project, srcPath, subfolder);
       if (apiTopLevelIndexFile) {
-        buildApiTopLevelIndexFile(
+        buildSubpathTopLevelIndexFile(
           project,
           srcPath,
           subfolder,
           apiTopLevelIndexFile,
-          subClient.name + "Client"
+          subClient.name + "Client",
+          "api"
+        );
+      }
+      if (modelsTopLevelIndexFile) {
+        buildSubpathTopLevelIndexFile(
+          project,
+          srcPath,
+          subfolder,
+          modelsTopLevelIndexFile,
+          subClient.name + "Client",
+          "models"
         );
       }
       buildRootIndex(
@@ -183,6 +200,7 @@ export async function $onEmit(context: EmitContext) {
         project,
         rootIndexFile,
         srcPath,
+        subfolder,
         subClient ===
           modularCodeModel.clients[modularCodeModel.clients.length - 1]
       );
@@ -190,7 +208,7 @@ export async function $onEmit(context: EmitContext) {
 
     emitPackage(project, srcPath, modularCodeModel);
     emitTsConfig(project, srcPath, modularCodeModel);
-    removeUnusedInterfaces(project);
+    // removeUnusedInterfaces(project);
 
     for (const file of project.getSourceFiles()) {
       await emitContentByBuilder(
@@ -206,66 +224,66 @@ export async function $onEmit(context: EmitContext) {
 /**
  * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
  */
-export function removeUnusedInterfaces(project: Project) {
-  const allInterfaces = project.getSourceFiles().flatMap((file) =>
-    file.getInterfaces().map((interfaceDeclaration) => {
-      return { interfaceDeclaration, filepath: file.getFilePath() };
-    })
-  );
+// export function removeUnusedInterfaces(project: Project) {
+//   const allInterfaces = project.getSourceFiles().flatMap((file) =>
+//     file.getInterfaces().map((interfaceDeclaration) => {
+//       return { interfaceDeclaration, filepath: file.getFilePath() };
+//     })
+//   );
 
-  const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
-    const references = interfaceDeclaration.interfaceDeclaration
-      .findReferencesAsNodes()
-      .filter((node) => {
-        const kind = node.getParent()?.getKind();
-        return (
-          kind !== SyntaxKind.ExportSpecifier &&
-          kind !== SyntaxKind.InterfaceDeclaration
-        );
-      });
-    return references.length === 0;
-  });
+//   const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
+//     const references = interfaceDeclaration.interfaceDeclaration
+//       .findReferencesAsNodes()
+//       .filter((node) => {
+//         const kind = node.getParent()?.getKind();
+//         return (
+//           kind !== SyntaxKind.ExportSpecifier &&
+//           kind !== SyntaxKind.InterfaceDeclaration
+//         );
+//       });
+//     return references.length === 0;
+//   });
 
-  unusedInterfaces.forEach((interfaceDeclaration) => {
-    const references = interfaceDeclaration.interfaceDeclaration
-      .findReferencesAsNodes()
-      .filter((node) => {
-        const kind = node.getParent()?.getKind();
-        return kind === SyntaxKind.ExportSpecifier;
-      });
-    const map = new Map<string, string>();
-    references.forEach((node) => {
-      const exportPath = node.getSourceFile().getFilePath();
-      map.set(exportPath, node.getText());
-    });
+//   unusedInterfaces.forEach((interfaceDeclaration) => {
+//     const references = interfaceDeclaration.interfaceDeclaration
+//       .findReferencesAsNodes()
+//       .filter((node) => {
+//         const kind = node.getParent()?.getKind();
+//         return kind === SyntaxKind.ExportSpecifier;
+//       });
+//     const map = new Map<string, string>();
+//     references.forEach((node) => {
+//       const exportPath = node.getSourceFile().getFilePath();
+//       map.set(exportPath, node.getText());
+//     });
 
-    // Get the index.ts file
-    const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+//     // Get the index.ts file
+//     const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
 
-    for (const indexFile of indexFiles) {
-      const filepath = indexFile.getFilePath();
-      if (map.has(filepath)) {
-        // Get all export declarations
-        const exportDeclarations = indexFile.getExportDeclarations();
+//     for (const indexFile of indexFiles) {
+//       const filepath = indexFile.getFilePath();
+//       if (map.has(filepath)) {
+//         // Get all export declarations
+//         const exportDeclarations = indexFile.getExportDeclarations();
 
-        // Iterate over each export declaration
-        exportDeclarations.forEach((exportDeclaration) => {
-          // Find named exports that match the unused interface
-          const matchingExports = exportDeclaration
-            .getNamedExports()
-            .filter(
-              (ne) =>
-                ne.getName() === map.get(filepath) ||
-                ne.getAliasNode()?.getText() === map.get(filepath)
-            );
-          // Remove the matching exports
-          matchingExports.forEach((me) => me.remove());
-        });
-      }
-    }
-    interfaceDeclaration.interfaceDeclaration.remove();
-  });
-}
+//         // Iterate over each export declaration
+//         exportDeclarations.forEach((exportDeclaration) => {
+//           // Find named exports that match the unused interface
+//           const matchingExports = exportDeclaration
+//             .getNamedExports()
+//             .filter(
+//               (ne) =>
+//                 ne.getName() === map.get(filepath) ||
+//                 ne.getAliasNode()?.getText() === map.get(filepath)
+//             );
+//           // Remove the matching exports
+//           matchingExports.forEach((me) => me.remove());
+//         });
+//       }
+//     }
+//     interfaceDeclaration.interfaceDeclaration.remove();
+//   });
+// }
 
 function clearSrcFolder(
   srcPath: string,
