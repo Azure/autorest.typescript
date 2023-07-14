@@ -732,11 +732,15 @@ function emitBasicOperation(
     context.program,
     sourceOperation
   );
+  const sourceRoutePath = ignoreDiagnostics(
+    getHttpOperation(context.program, operation)
+  ).path;
   const rlcResponses = rlcModels.responses?.filter((op) => {
     return (
       (sourceOperationGroupName === "" ||
         op.operationGroup === sourceOperationGroupName) &&
-      op.operationName === sourceOperationName
+      op.operationName === sourceOperationName &&
+      op.path === sourceRoutePath
     );
   });
 

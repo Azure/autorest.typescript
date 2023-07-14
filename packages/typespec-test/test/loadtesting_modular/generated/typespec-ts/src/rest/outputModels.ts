@@ -285,6 +285,8 @@ export interface ResourceMetricOutput {
 
 /** Load test run model */
 export interface TestRunOutput {
+  /** Unique test run name as identifier */
+  readonly testRunId: string;
   /** Pass fail criteria for a test. */
   passFailCriteria?: PassFailCriteriaOutput;
   /**

@@ -501,7 +501,6 @@ model ResourceMetric {
 model TestRuns {
   // FIXME: is testRunId optional or required in the response? Resource key and path params cannot be optional
   @key
-  @path
   @doc("Unique test run name as identifier")
   @visibility("read")
   testRunId: string;
@@ -844,7 +843,6 @@ model DimensionValueList {
 model Dimension {
   @key
   @doc("Dimension name")
-  @path("name")
   @visibility("query")
   name: string;
 }

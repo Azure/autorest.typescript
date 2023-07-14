@@ -39,6 +39,7 @@ export function transformResponseTypes(
       operationGroup: "",
       // Please note the operationName already has operationGroup as prefix
       operationName: `${operationLanguageMetadata.name}`,
+      path: operation.requests?.[0].protocol?.http?.path,
       responses: []
     };
     for (const response of responses) {

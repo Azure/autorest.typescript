@@ -939,6 +939,7 @@ export function _uploadTestFileSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
       queryParameters: { fileType: options?.fileType },
+      body: options.body,
     });
 }
 

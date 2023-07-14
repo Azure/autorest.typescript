@@ -16,20 +16,20 @@ import {
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
-  LoadTestAdministrationCreateOrUpdateAppComponents200Response,
-  LoadTestAdministrationCreateOrUpdateAppComponents201Response,
-  LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response,
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response,
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
-  LoadTestAdministrationGetAppComponents200Response,
-  LoadTestAdministrationGetAppComponentsDefaultResponse,
+  LoadTestRunCreateOrUpdateAppComponents200Response,
+  LoadTestRunCreateOrUpdateAppComponents201Response,
+  LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
+  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestRunCreateOrUpdateTestRun200Response,
   LoadTestRunCreateOrUpdateTestRun201Response,
   LoadTestRunCreateOrUpdateTestRunDefaultResponse,
   LoadTestRunCreateOrUpdateTestRunLogicalResponse,
   LoadTestRunDeleteTestRun204Response,
   LoadTestRunDeleteTestRunDefaultResponse,
+  LoadTestRunGetAppComponents200Response,
+  LoadTestRunGetAppComponentsDefaultResponse,
   LoadTestRunGetTestRun200Response,
   LoadTestRunGetTestRunDefaultResponse,
   LoadTestRunGetTestRunFile200Response,
@@ -351,9 +351,9 @@ export function _createOrUpdateAppComponentsSend(
   testRunId: string,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | LoadTestAdministrationCreateOrUpdateAppComponents200Response
-  | LoadTestAdministrationCreateOrUpdateAppComponents201Response
-  | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+  | LoadTestRunCreateOrUpdateAppComponents200Response
+  | LoadTestRunCreateOrUpdateAppComponents201Response
+  | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
@@ -367,9 +367,9 @@ export function _createOrUpdateAppComponentsSend(
 
 export async function _createOrUpdateAppComponentsDeserialize(
   result:
-    | LoadTestAdministrationCreateOrUpdateAppComponents200Response
-    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
-    | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
+    | LoadTestRunCreateOrUpdateAppComponents200Response
+    | LoadTestRunCreateOrUpdateAppComponents201Response
+    | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -406,9 +406,9 @@ export function _createOrUpdateServerMetricsConfigSend(
   testRunId: string,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
-  | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
-  | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+  | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+  | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+  | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/server-metrics-config", testRunId)
@@ -422,9 +422,9 @@ export function _createOrUpdateServerMetricsConfigSend(
 
 export async function _createOrUpdateServerMetricsConfigDeserialize(
   result:
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
+    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -493,8 +493,8 @@ export function _getAppComponentsSend(
   testRunId: string,
   options: GetAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | LoadTestAdministrationGetAppComponents200Response
-  | LoadTestAdministrationGetAppComponentsDefaultResponse
+  | LoadTestRunGetAppComponents200Response
+  | LoadTestRunGetAppComponentsDefaultResponse
 > {
   return context
     .path("/test-runs/{testRunId}/app-components", testRunId)
@@ -503,8 +503,8 @@ export function _getAppComponentsSend(
 
 export async function _getAppComponentsDeserialize(
   result:
-    | LoadTestAdministrationGetAppComponents200Response
-    | LoadTestAdministrationGetAppComponentsDefaultResponse
+    | LoadTestRunGetAppComponents200Response
+    | LoadTestRunGetAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
     throw result.body;
