@@ -74,14 +74,14 @@ function exportOptionsInterfaces(
 
 function exportModels(indexFile: SourceFile, srcPath: string) {
   const project = indexFile.getProject();
-  const modelsFile = project.getSourceFile(`${srcPath}/src/api/models.ts`);
+  const modelsFile = project.getSourceFile(`${srcPath}/src/models/index.ts`);
 
   if (!modelsFile) {
     return;
   }
 
   const namedExports = [...modelsFile.getExportedDeclarations().keys()];
-  const moduleSpecifier = "./api/models.js";
+  const moduleSpecifier = "./models/index.js";
 
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }

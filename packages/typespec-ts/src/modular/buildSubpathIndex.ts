@@ -1,8 +1,14 @@
 import { Project } from "ts-morph";
 
-export function buildApiIndexFile(project: Project, srcPath: string) {
-  const apiFiles = project.getSourceFiles("**/src/api/**");
-  const indexFile = project.createSourceFile(`${srcPath}/src/api/index.ts`);
+export function buildSubpathIndexFile(
+  project: Project,
+  srcPath: string,
+  subpath: string
+) {
+  const apiFiles = project.getSourceFiles(`**/src/${subpath}/**`);
+  const indexFile = project.createSourceFile(
+    `${srcPath}/src/${subpath}/index.ts`
+  );
   for (const file of apiFiles) {
     const exports = [...file.getExportedDeclarations().keys()].filter(
       (k) => !k.startsWith("_")

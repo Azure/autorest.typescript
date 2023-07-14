@@ -36,6 +36,10 @@ export function emitPackage(
         types: "./types/src/api/index.d.ts",
         import: "./dist-esm/src/api/index.js"
       },
+      "./models": {
+        types: "./types/src/models/index.d.ts",
+        import: "./dist-esm/src/models/index.js"
+      },
       "./rest": {
         types: "./types/src/rest/index.d.ts",
         import: "./dist-esm/src/rest/index.js"

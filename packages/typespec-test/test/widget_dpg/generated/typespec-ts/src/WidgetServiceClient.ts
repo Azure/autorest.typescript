@@ -2,25 +2,25 @@
 // Licensed under the MIT license.
 
 import {
-  Widget,
-  ColorType,
-  AnalyzeResult,
   listWidgets,
   getWidget,
   createWidget,
   updateWidget,
   deleteWidget,
   analyzeWidget,
+  createWidgetService,
+  WidgetServiceContext,
+  WidgetServiceClientOptions,
+} from "./api/index.js";
+import { Widget, ColorType, AnalyzeResult } from "./models/models.js";
+import {
   ListWidgetsOptions,
   GetWidgetOptions,
   CreateWidgetOptions,
   UpdateWidgetOptions,
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
-  createWidgetService,
-  WidgetServiceContext,
-  WidgetServiceClientOptions,
-} from "./api/index.js";
+} from "./models/options.js";
 
 export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 

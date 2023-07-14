@@ -57,11 +57,13 @@ export function buildClassicalClient(
   ]);
   importCredential(clientFile);
   buildClientOperationGroups(client, clientClass);
+  importAllApis(clientFile, srcPath);
   importAllModels(clientFile, srcPath);
+  clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
 }
 
-function importAllModels(clientFile: SourceFile, srcPath: string) {
+function importAllApis(clientFile: SourceFile, srcPath: string) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
 
@@ -73,6 +75,22 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
 
   clientFile.addImportDeclaration({
     moduleSpecifier: `./api/index.js`,
+    namedImports: exported
+  });
+}
+
+function importAllModels(clientFile: SourceFile, srcPath: string) {
+  const project = clientFile.getProject();
+  const apiModels = project.getSourceFile(`${srcPath}/src/models/models.ts`);
+
+  if (!apiModels) {
+    return;
+  }
+
+  const exported = [...apiModels.getExportedDeclarations().keys()];
+
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./models/models.js`,
     namedImports: exported
   });
 }
