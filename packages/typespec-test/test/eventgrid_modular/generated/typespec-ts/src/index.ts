@@ -3,14 +3,17 @@
 
 export { EventGridClient } from "./EventGridClient.js";
 export {
-  EventGridClientOptions,
+  PublishCloudEventRequest,
   CloudEvent,
   ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
+  AcknowledgeOptions,
   AcknowledgeResult,
   FailedLockToken,
+  ReleaseOptions,
   ReleaseResult,
+  RejectOptions,
   RejectResult,
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
@@ -18,9 +21,4 @@ export {
   AcknowledgeCloudEventsOptions,
   ReleaseCloudEventsOptions,
   RejectCloudEventsOptions,
-<<<<<<< HEAD
-} from "./api/index.js";
-=======
 } from "./models/index.js";
-export { EventGridClient, EventGridClientOptions } from "./EventGridClient.js";
->>>>>>> main

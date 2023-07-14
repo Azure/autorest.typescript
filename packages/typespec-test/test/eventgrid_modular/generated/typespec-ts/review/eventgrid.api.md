@@ -14,6 +14,11 @@ export interface AcknowledgeCloudEventsOptions extends OperationOptions {
 }
 
 // @public
+export interface AcknowledgeOptions {
+    lockTokens: string[];
+}
+
+// @public
 export interface AcknowledgeResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -41,6 +46,7 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
+    // Warning: (ae-forgotten-export) The symbol "EventGridClientOptions" needs to be exported by the entry point index.d.ts
     constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
     publishCloudEvent(event: CloudEvent, topicName: string, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
@@ -48,10 +54,6 @@ export class EventGridClient {
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
     rejectCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: RejectCloudEventsOptions): Promise<RejectResult>;
     releaseCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
-}
-
-// @public (undocumented)
-export interface EventGridClientOptions extends ClientOptions {
 }
 
 // @public
@@ -64,6 +66,12 @@ export interface FailedLockToken {
 // @public (undocumented)
 export interface PublishCloudEventOptions extends OperationOptions {
     contentType?: string;
+}
+
+// @public (undocumented)
+export interface PublishCloudEventRequest {
+    // (undocumented)
+    event: CloudEvent;
 }
 
 // @public (undocumented)
@@ -94,6 +102,11 @@ export interface RejectCloudEventsOptions extends OperationOptions {
 }
 
 // @public
+export interface RejectOptions {
+    lockTokens: string[];
+}
+
+// @public
 export interface RejectResult {
     failedLockTokens: FailedLockToken[];
     succeededLockTokens: string[];
@@ -102,6 +115,11 @@ export interface RejectResult {
 // @public (undocumented)
 export interface ReleaseCloudEventsOptions extends OperationOptions {
     contentType?: string;
+}
+
+// @public
+export interface ReleaseOptions {
+    lockTokens: string[];
 }
 
 // @public

@@ -9,8 +9,8 @@ import {
   deleteWidget,
   analyzeWidget,
   createWidgetService,
-  WidgetServiceContext,
   WidgetServiceClientOptions,
+  WidgetServiceContext,
 } from "./api/index.js";
 import { Widget, ColorType, AnalyzeResult } from "./models/models.js";
 import {
@@ -20,14 +20,7 @@ import {
   UpdateWidgetOptions,
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
-<<<<<<< HEAD
-  createWidgetService,
-  WidgetServiceClientOptions,
-  WidgetServiceContext,
-} from "./api/index.js";
-=======
 } from "./models/options.js";
->>>>>>> main
 
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;

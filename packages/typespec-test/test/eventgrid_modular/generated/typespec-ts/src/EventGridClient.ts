@@ -5,15 +5,7 @@ import { KeyCredential } from "@azure/core-auth";
 import {
   createEventGrid,
   EventGridClientOptions,
-<<<<<<< HEAD
   EventGridContext,
-  CloudEvent,
-  ReceiveResult,
-  AcknowledgeResult,
-  ReleaseResult,
-  RejectResult,
-=======
->>>>>>> main
   publishCloudEvent,
   publishCloudEvents,
   receiveCloudEvents,

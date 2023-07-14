@@ -3,14 +3,17 @@
 
 export { OpenAIClient } from "./OpenAIClient.js";
 export {
+  EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
+  CompletionsOptions,
   Completions,
   Choice,
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
+  ChatCompletionsOptions,
   ChatMessage,
   ChatRole,
   ChatCompletions,
@@ -19,19 +22,11 @@ export {
   ImageResponse,
   ImageLocation,
   State,
+  ImageGenerationOptions,
   ImageSize,
-<<<<<<< HEAD
-  OpenAIClientOptions,
-=======
->>>>>>> main
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
-<<<<<<< HEAD
-} from "./api/index.js";
-=======
 } from "./models/index.js";
-export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
->>>>>>> main

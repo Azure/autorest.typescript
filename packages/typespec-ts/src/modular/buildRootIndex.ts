@@ -11,7 +11,9 @@ export function buildRootIndex(
   isLast: boolean
 ) {
   const clientName = `${getClientName(client)}Client`;
-  const clientFile = project.getSourceFile(`${srcPath}/src/${subfolder !== "" ? subfolder + "/": ""}${clientName}.ts`);
+  const clientFile = project.getSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
+  );
 
   if (!clientFile) {
     throw new Error(
@@ -23,28 +25,70 @@ export function buildRootIndex(
 
   if (isLast) {
     // exportApiIndex(rootIndexFile, srcPath);
-    exportModels(rootIndexFile, srcPath);
+    exportModels(rootIndexFile, project, srcPath);
   }
 }
 
-function exportClassicalClient(client: Client, indexFile: SourceFile, subfolder: string) {
+function exportClassicalClient(
+  client: Client,
+  indexFile: SourceFile,
+  subfolder: string,
+  isSubClient: boolean = false
+) {
   const clientName = `${getClientName(client)}Client`;
   indexFile.addExportDeclaration({
     namedExports: [clientName],
-    moduleSpecifier: `./${subfolder !== "" ? subfolder + "/": ""}${clientName}.js`
+    moduleSpecifier: `./${
+      subfolder !== "" && !isSubClient ? subfolder + "/" : ""
+    }${clientName}.js`
   });
 }
 
-function exportModels(indexFile: SourceFile, srcPath: string) {
-  const project = indexFile.getProject();
-  const modelsFile = project.getSourceFile(`${srcPath}/src/models/index.ts`);
+function exportModels(
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  subfolder: string = "",
+  isSubClient: boolean = false
+) {
+  const modelsFile = project.getSourceFile(
+    `${srcPath}/src/${
+      subfolder !== "" && isSubClient ? subfolder + "/" : ""
+    }models/index.ts`
+  );
   if (!modelsFile) {
     return;
   }
 
+  const namedExports = [...modelsFile.getExportedDeclarations().keys()];
   const moduleSpecifier = "./models/index.js";
   indexFile.addExportDeclaration({
     moduleSpecifier,
-    namedExports: [...modelsFile.getExportedDeclarations().keys()]
+    namedExports
   });
+}
+
+export function buildSubClientIndexFile(
+  client: Client,
+  project: Project,
+  srcPath: string,
+  subfolder: string
+) {
+  const subClientIndexFile = project.createSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
+    undefined,
+    { overwrite: true }
+  );
+  const clientName = `${getClientName(client)}Client`;
+  const clientFilePath = `${srcPath}/src/${
+    subfolder !== "" ? subfolder + "/" : ""
+  }${clientName}.ts`;
+  const clientFile = project.getSourceFile(clientFilePath);
+
+  if (!clientFile) {
+    throw new Error(`Couldn't find client file: ${clientFilePath}`);
+  }
+
+  exportClassicalClient(client, subClientIndexFile, subfolder, true);
+  exportModels(subClientIndexFile, project, srcPath, subfolder, true);
 }

@@ -42,7 +42,7 @@ import * as path from "path";
 import { Project } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
-import { buildRootIndex } from "./modular/buildRootIndex.js";
+import { buildRootIndex, buildSubClientIndexFile } from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile, buildSubpathTopLevelIndexFile } from "./modular/buildSubpathIndex.js";
@@ -175,6 +175,9 @@ export async function $onEmit(context: EmitContext) {
       buildSubpathIndexFile(project, srcPath, "models", subfolder);
       buildSubpathIndexFile(project, srcPath, "api", subfolder);
       buildClassicalClient(dpgContext, subClient, project, srcPath, subfolder);
+      if (modularCodeModel.clients.length > 1) {
+        buildSubClientIndexFile(subClient, project, srcPath, subfolder);
+      }
       if (apiTopLevelIndexFile) {
         buildSubpathTopLevelIndexFile(
           project,

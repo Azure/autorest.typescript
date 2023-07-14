@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-<<<<<<< HEAD
 export { WidgetServiceClient } from "./WidgetServiceClient.js";
-=======
->>>>>>> main
 export {
   Widget,
   ColorType,
+  WidgetError,
+  CreateWidget,
+  UpdateWidget,
   AnalyzeResult,
   ListWidgetsOptions,
   GetWidgetOptions,
@@ -15,11 +15,4 @@ export {
   UpdateWidgetOptions,
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
-<<<<<<< HEAD
-=======
 } from "./models/index.js";
-export {
-  WidgetServiceClient,
->>>>>>> main
-  WidgetServiceClientOptions,
-} from "./api/index.js";

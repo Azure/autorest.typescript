@@ -2,8 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-<<<<<<< HEAD
-=======
   Embeddings,
   Completions,
   ChatMessage,
@@ -11,7 +9,6 @@ import {
   ImageOperationResponse,
 } from "../models/models.js";
 import {
->>>>>>> main
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetCompletions200Response,
@@ -20,10 +17,12 @@ import {
   GetEmbeddingsDefaultResponse,
   GetImageOperationStatus200Response,
   GetImageOperationStatusDefaultResponse,
+  GetImageOperationStatusLogicalResponse,
   isUnexpected,
   OpenAIContext as Client,
   StartGenerateImage202Response,
   StartGenerateImageDefaultResponse,
+  StartGenerateImageLogicalResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -250,7 +249,9 @@ export function _getImageOperationStatusSend(
   operationId: string,
   options: GetImageOperationStatusOptions = { requestOptions: {} }
 ): StreamableMethod<
-  GetImageOperationStatus200Response | GetImageOperationStatusDefaultResponse
+  | GetImageOperationStatus200Response
+  | GetImageOperationStatusDefaultResponse
+  | GetImageOperationStatusLogicalResponse
 > {
   return context
     .path("/operations/images/{operationId}", operationId)
@@ -261,6 +262,7 @@ export async function _getImageOperationStatusDeserialize(
   result:
     | GetImageOperationStatus200Response
     | GetImageOperationStatusDefaultResponse
+    | GetImageOperationStatusLogicalResponse
 ): Promise<ImageOperationResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -303,7 +305,9 @@ export function _startGenerateImageSend(
   prompt: string,
   options: StartGenerateImageOptions = { requestOptions: {} }
 ): StreamableMethod<
-  StartGenerateImage202Response | StartGenerateImageDefaultResponse
+  | StartGenerateImage202Response
+  | StartGenerateImageDefaultResponse
+  | StartGenerateImageLogicalResponse
 > {
   return context
     .path("/images/generations:submit")
@@ -319,7 +323,10 @@ export function _startGenerateImageSend(
 }
 
 export async function _startGenerateImageDeserialize(
-  result: StartGenerateImage202Response | StartGenerateImageDefaultResponse
+  result:
+    | StartGenerateImage202Response
+    | StartGenerateImageDefaultResponse
+    | StartGenerateImageLogicalResponse
 ): Promise<ImageOperationResponse> {
   if (isUnexpected(result)) {
     throw result.body;

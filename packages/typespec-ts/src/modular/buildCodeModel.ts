@@ -36,7 +36,8 @@ import {
   Type,
   IntrinsicType,
   getProjectedName,
-  isNullType
+  isNullType,
+  isTemplateDeclarationOrInstance
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -85,7 +86,10 @@ import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
 import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import { RLCModel, getClientName } from "@azure-tools/rlc-common";
-import { getOperationGroupName, getOperationName } from "../utils/operationUtil.js";
+import {
+  getOperationGroupName,
+  getOperationName
+} from "../utils/operationUtil.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -715,9 +719,19 @@ function emitBasicOperation(
   const httpOperation = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   );
-  let sourceOperation = operation.sourceOperation ?? operation;
-  const sourceOperationGroupName = getOperationGroupName(context, sourceOperation);
-  const sourceOperationName = getOperationName(context.program, sourceOperation);
+  let sourceOperation =
+    operation.sourceOperation &&
+    !isTemplateDeclarationOrInstance(operation.sourceOperation)
+      ? operation.sourceOperation
+      : operation;
+  const sourceOperationGroupName = getOperationGroupName(
+    context,
+    sourceOperation
+  );
+  const sourceOperationName = getOperationName(
+    context.program,
+    sourceOperation
+  );
   const rlcResponses = rlcModels.responses?.filter((op) => {
     return (
       (sourceOperationGroupName === "" ||

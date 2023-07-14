@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-<<<<<<< HEAD
-  isUnexpected,
-  EventGridContext as Client,
-=======
   CloudEvent,
   ReceiveResult,
   AcknowledgeResult,
@@ -13,7 +9,8 @@ import {
   RejectResult,
 } from "../models/models.js";
 import {
->>>>>>> main
+  isUnexpected,
+  EventGridContext as Client,
   AcknowledgeCloudEvents200Response,
   AcknowledgeCloudEventsDefaultResponse,
   PublishCloudEvent200Response,
