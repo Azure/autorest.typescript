@@ -719,7 +719,7 @@ function emitBasicOperation(
   const httpOperation = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   );
-  let sourceOperation =
+  const sourceOperation =
     operation.sourceOperation &&
     !isTemplateDeclarationOrInstance(operation.sourceOperation)
       ? operation.sourceOperation
