@@ -997,7 +997,7 @@ function emitStdScalar(
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "Uint8Array", format: "byte" };
+      return { type: "byte-array", format: "byte" };
     case "int8":
     case "int16":
     case "int32":

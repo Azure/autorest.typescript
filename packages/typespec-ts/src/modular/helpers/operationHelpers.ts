@@ -43,6 +43,9 @@ export function getSendPrivateFunction(
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
+  if (operation.name === "uploadTestFile") {
+    operation;
+  }
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
 
@@ -162,6 +165,11 @@ function getOperationSignatureParameters(
     parameters.set(
       bodyArray.clientName,
       buildType(bodyArray.clientName, bodyArray.type)
+    );
+  } else if (operation.bodyParameter?.type.type === "byte-array") {
+    parameters.set(
+      operation.bodyParameter.clientName,
+      buildType(operation.bodyParameter.clientName, operation.bodyParameter.type)
     );
   }
 
@@ -315,6 +323,10 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
+  if (bodyParameter.type.type === "byte-array") {
+    return `\nbody: ${bodyParameter.clientName},`;
+  }
+  
   return "";
 }
 

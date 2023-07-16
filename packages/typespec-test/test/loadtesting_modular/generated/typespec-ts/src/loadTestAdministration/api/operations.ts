@@ -926,6 +926,7 @@ export async function listTests(
 
 export function _uploadTestFileSend(
   context: Client,
+  body: Uint8Array,
   testId: string,
   fileName: string,
   options: UploadTestFileOptions = { requestOptions: {} }
@@ -939,7 +940,7 @@ export function _uploadTestFileSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
       queryParameters: { fileType: options?.fileType },
-      body: options.body,
+      body: body,
     });
 }
 
@@ -969,11 +970,18 @@ export async function _uploadTestFileDeserialize(
  */
 export async function uploadTestFile(
   context: Client,
+  body: Uint8Array,
   testId: string,
   fileName: string,
   options: UploadTestFileOptions = { requestOptions: {} }
 ): Promise<FileInfo> {
-  const result = await _uploadTestFileSend(context, testId, fileName, options);
+  const result = await _uploadTestFileSend(
+    context,
+    body,
+    testId,
+    fileName,
+    options
+  );
   return _uploadTestFileDeserialize(result);
 }
 

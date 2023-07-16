@@ -142,11 +142,12 @@ export class LoadTestAdministrationClient {
    * should be provided in the request body as application/octet-stream.
    */
   uploadTestFile(
+    body: Uint8Array,
     testId: string,
     fileName: string,
     options: UploadTestFileOptions = { requestOptions: {} }
   ): Promise<FileInfo> {
-    return uploadTestFile(this._client, testId, fileName, options);
+    return uploadTestFile(this._client, body, testId, fileName, options);
   }
 
   /** Delete file by the file name for a test */
