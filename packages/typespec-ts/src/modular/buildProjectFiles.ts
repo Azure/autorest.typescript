@@ -1,5 +1,6 @@
 import { Project } from "ts-morph";
 import { ModularCodeModel } from "./modularCodeModel.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function emitPackage(
   project: Project,
@@ -179,7 +180,28 @@ export function emitPackage(
       "@azure/logger": "^1.0.3",
       tslib: "^2.4.0"
     }
-  };
+  } as any;
+
+  if (codeModel.clients.length > 1) {
+    for (const client of codeModel.clients) {
+      const subfolder = normalizeName(
+        client.name.replace("Client", ""),
+        NameType.File
+      );
+      content.exports[`./${subfolder}`] = {
+        types: `./types/src/${subfolder}/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/index.js`
+      };
+      content.exports[`./${subfolder}/api`] = {
+        types: `./types/src/${subfolder}/api/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/api/index.js`
+      };
+      content.exports[`./${subfolder}/models`] = {
+        types: `./types/src/${subfolder}/models/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/models/index.js`
+      };
+    }
+  }
 
   packageJson.addStatements(JSON.stringify(content));
 

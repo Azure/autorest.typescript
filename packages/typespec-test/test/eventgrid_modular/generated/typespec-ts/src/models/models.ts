@@ -16,7 +16,7 @@ export interface CloudEvent {
   /** Event data specific to the event type. */
   data?: any;
   /** Event data specific to the event type, encoded as a base64 string. */
-  dataBase64?: any;
+  dataBase64?: Uint8Array;
   /** Type of event related to the originating occurrence. */
   type: string;
   /** The time (in UTC) the event was generated, in RFC3339 format. */

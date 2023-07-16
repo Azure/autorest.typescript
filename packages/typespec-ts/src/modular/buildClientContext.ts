@@ -56,12 +56,16 @@ export function buildClientContext(
   } else {
     const rlcClientName = client.rlcClientName;
     clientContextFile.addImportDeclaration({
-      moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
+      moduleSpecifier: `${
+        subfolder && subfolder !== "" ? "../" : ""
+      }../rest/index.js`,
       namedImports: [`${rlcClientName}`]
     });
 
     clientContextFile.addExportDeclaration({
-      moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
+      moduleSpecifier: `${
+        subfolder && subfolder !== "" ? "../" : ""
+      }../rest/index.js`,
       namedExports: [`${rlcClientName}`]
     });
 
@@ -112,7 +116,9 @@ export function buildClientContext(
   } else {
     clientContextFile.addImportDeclarations([
       {
-        moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
+        moduleSpecifier: `${
+          subfolder && subfolder !== "" ? "../" : ""
+        }../rest/index.js`,
         defaultImport: "getClient"
       }
     ]);

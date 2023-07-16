@@ -24,6 +24,30 @@
     "./rest": {
       "types": "./types/src/rest/index.d.ts",
       "import": "./dist-esm/src/rest/index.js"
+    },
+    "./loadTestAdministration": {
+      "types": "./types/src/loadTestAdministration/index.d.ts",
+      "import": "./dist-esm/src/loadTestAdministration/index.js"
+    },
+    "./loadTestAdministration/api": {
+      "types": "./types/src/loadTestAdministration/api/index.d.ts",
+      "import": "./dist-esm/src/loadTestAdministration/api/index.js"
+    },
+    "./loadTestAdministration/models": {
+      "types": "./types/src/loadTestAdministration/models/index.d.ts",
+      "import": "./dist-esm/src/loadTestAdministration/models/index.js"
+    },
+    "./loadTestRun": {
+      "types": "./types/src/loadTestRun/index.d.ts",
+      "import": "./dist-esm/src/loadTestRun/index.js"
+    },
+    "./loadTestRun/api": {
+      "types": "./types/src/loadTestRun/api/index.d.ts",
+      "import": "./dist-esm/src/loadTestRun/api/index.js"
+    },
+    "./loadTestRun/models": {
+      "types": "./types/src/loadTestRun/models/index.d.ts",
+      "import": "./dist-esm/src/loadTestRun/models/index.js"
     }
   },
   "//metadata": {

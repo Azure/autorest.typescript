@@ -559,6 +559,8 @@ function deserializeResponseValue(type: Type, restValue: string): string {
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
+    case "byte-array":
+      return `Buffer.from(${restValue} ?? "")`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(

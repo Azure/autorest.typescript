@@ -36,7 +36,7 @@ export function buildOperationFiles(
       }api/${fileName}.ts`
     );
 
-        // Import models used from ./models.ts
+    // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
     importModels(srcPath, operationGroupFile, project, subfolder);
 
@@ -62,7 +62,9 @@ export function buildOperationFiles(
       namedImports.push(`${rlcClientName} as Client`);
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: `${subfolder && subfolder !== '' ? "../": ""}../rest/index.js`,
+          moduleSpecifier: `${
+            subfolder && subfolder !== "" ? "../" : ""
+          }../rest/index.js`,
           namedImports
         }
       ]);
@@ -128,9 +130,11 @@ function importModels(
   project: Project,
   subfolder: string = ""
 ) {
-  const modelsFile = project.getSourceFile( `${srcPath}/src/${
-    subfolder && subfolder !== "" ? subfolder + "/" : ""
-  }models/models.ts`);
+  const modelsFile = project.getSourceFile(
+    `${srcPath}/src/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }models/models.ts`
+  );
   const models: string[] = [];
 
   for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {

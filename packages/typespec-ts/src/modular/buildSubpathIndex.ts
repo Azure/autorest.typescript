@@ -41,7 +41,9 @@ export function buildSubpathTopLevelIndexFile(
     let exports = [];
     exports = [...subpathIndexFile.getExportedDeclarations().keys()]
       // _ stands for internal use and Client stands for Rest Level Client, and we don't want to export it in the api layer.
-      .filter((k) => !k.startsWith("_") && k !== "Client" && !k.endsWith("Context"))
+      .filter(
+        (k) => !k.startsWith("_") && k !== "Client" && !k.endsWith("Context")
+      )
       .map((modelName) => {
         if (exportedModels.indexOf(modelName) > -1) {
           if (modelName.charAt(0) === modelName.charAt(0).toUpperCase()) {

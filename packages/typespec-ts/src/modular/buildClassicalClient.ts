@@ -29,7 +29,9 @@ export function buildClassicalClient(
   const params = getClientParameters(client);
 
   const clientFile = project.createSourceFile(
-    `${srcPath}/src/${subfolder !== ""? subfolder + "/": ""}${classicalClientname}.ts`
+    `${srcPath}/src/${
+      subfolder !== "" ? subfolder + "/" : ""
+    }${classicalClientname}.ts`
   );
 
   const clientClass = clientFile.addClass({
@@ -77,8 +79,8 @@ function importAllApis(
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
-      `${srcPath}/src/${subfolder !== "" ? subfolder + "/": ""}api/index.ts`
-    );
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
+  );
 
   if (!apiModels) {
     return;
