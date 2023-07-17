@@ -27,6 +27,8 @@ import {
   StartGenerateImageOptions,
 } from "./models/options.js";
 
+export { OpenAIClientOptions } from "./api/OpenAIContext.js";
+
 export class OpenAIClient {
   private _client: OpenAIContext;
 

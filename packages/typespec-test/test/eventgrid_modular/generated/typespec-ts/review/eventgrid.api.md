@@ -46,7 +46,6 @@ export interface CloudEvent {
 
 // @public (undocumented)
 export class EventGridClient {
-    // Warning: (ae-forgotten-export) The symbol "EventGridClientOptions" needs to be exported by the entry point index.d.ts
     constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
     publishCloudEvent(event: CloudEvent, topicName: string, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
@@ -54,6 +53,10 @@ export class EventGridClient {
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
     rejectCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: RejectCloudEventsOptions): Promise<RejectResult>;
     releaseCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
+}
+
+// @public (undocumented)
+export interface EventGridClientOptions extends ClientOptions {
 }
 
 // @public

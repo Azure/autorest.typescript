@@ -37,7 +37,7 @@ function exportClassicalClient(
 ) {
   const clientName = `${getClientName(client)}Client`;
   indexFile.addExportDeclaration({
-    namedExports: [clientName],
+    namedExports: [clientName, `${clientName}Options`],
     moduleSpecifier: `./${
       subfolder !== "" && !isSubClient ? subfolder + "/" : ""
     }${clientName}.js`

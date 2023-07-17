@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { EventGridClient } from "./EventGridClient.js";
+export { EventGridClient, EventGridClientOptions } from "./EventGridClient.js";
 export {
   PublishCloudEventRequest,
   CloudEvent,

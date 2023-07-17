@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { WidgetServiceClient } from "./WidgetServiceClient.js";
+export {
+  WidgetServiceClient,
+  WidgetServiceClientOptions,
+} from "./WidgetServiceClient.js";
 export {
   Widget,
   ColorType,

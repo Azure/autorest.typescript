@@ -43,6 +43,8 @@ import {
   DeleteTestOptions,
 } from "./models/options.js";
 
+export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministrationContext.js";
+
 export class LoadTestAdministrationClient {
   private _client: AzureLoadTestingContext;
 

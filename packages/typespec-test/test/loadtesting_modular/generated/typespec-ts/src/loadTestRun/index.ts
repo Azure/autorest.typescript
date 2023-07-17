@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { LoadTestRunClient } from "./LoadTestRunClient.js";
+export {
+  LoadTestRunClient,
+  LoadTestRunClientOptions,
+} from "./LoadTestRunClient.js";
 export {
   Test,
   PassFailCriteria,

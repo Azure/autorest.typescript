@@ -22,6 +22,8 @@ import {
   AnalyzeWidgetOptions,
 } from "./models/options.js";
 
+export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
+
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
 

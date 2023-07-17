@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { LoadTestAdministrationClient } from "./LoadTestAdministrationClient.js";
+export {
+  LoadTestAdministrationClient,
+  LoadTestAdministrationClientOptions,
+} from "./LoadTestAdministrationClient.js";
 export {
   Test,
   PassFailCriteria,

@@ -52,6 +52,8 @@ import {
   StopTestRunOptions,
 } from "./models/options.js";
 
+export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
+
 export class LoadTestRunClient {
   private _client: AzureLoadTestingContext;
 

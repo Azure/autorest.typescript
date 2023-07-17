@@ -219,7 +219,6 @@ export interface ListTestsOptions extends OperationOptions {
 
 // @public (undocumented)
 export class LoadTestAdministrationClient {
-    // Warning: (ae-forgotten-export) The symbol "LoadTestAdministrationClientOptions" needs to be exported by the entry point index.d.ts
     constructor(endpoint: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptions);
     createOrUpdateAppComponents(components: Record<string, AppComponent>, testId: string, options?: CreateOrUpdateAppComponentsOptions): Promise<TestAppComponents>;
     createOrUpdateServerMetricsConfig(testId: string, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
@@ -235,6 +234,10 @@ export class LoadTestAdministrationClient {
     uploadTestFile(body: Uint8Array, testId: string, fileName: string, options?: UploadTestFileOptions): Promise<FileInfo>;
 }
 
+// @public (undocumented)
+export interface LoadTestAdministrationClientOptions extends ClientOptions {
+}
+
 // @public
 export interface LoadTestConfiguration {
     engineInstances?: number;
@@ -245,7 +248,6 @@ export interface LoadTestConfiguration {
 
 // @public (undocumented)
 export class LoadTestRunClient {
-    // Warning: (ae-forgotten-export) The symbol "LoadTestRunClientOptions" needs to be exported by the entry point index.d.ts
     constructor(endpoint: string, credential: TokenCredential, options?: LoadTestRunClientOptions);
     createOrUpdateAppComponents(components: Record<string, LoadTestRunClientAppComponent>, testRunId: string, options?: CreateOrUpdateAppComponentsOptions): Promise<LoadTestRunClientTestRunAppComponents>;
     createOrUpdateServerMetricsConfig(testRunId: string, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<LoadTestRunClientTestRunServerMetricConfig>;
@@ -445,6 +447,10 @@ export interface LoadTestRunClientOptionalLoadTestConfig {
     endpointUrl?: string;
     rampUpTime?: number;
     virtualUsers?: number;
+}
+
+// @public (undocumented)
+export interface LoadTestRunClientOptions extends ClientOptions {
 }
 
 // @public

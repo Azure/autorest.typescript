@@ -265,13 +265,16 @@ export type ImageSize = string;
 
 // @public (undocumented)
 export class OpenAIClient {
-    // Warning: (ae-forgotten-export) The symbol "OpenAIClientOptions" needs to be exported by the entry point index.d.ts
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
     getImageOperationStatus(operationId: string, options?: GetImageOperationStatusOptions): Promise<ImageOperationResponse>;
     startGenerateImage(prompt: string, options?: StartGenerateImageOptions): Promise<ImageOperationResponse>;
+}
+
+// @public (undocumented)
+export interface OpenAIClientOptions extends ClientOptions {
 }
 
 // @public (undocumented)
