@@ -239,28 +239,52 @@ describe("Input/output model type", () => {
       );
     });
 
-    // TODO: Is enum convered to string literals only? Do we need to generate enum instaed?
-    it("should handle enum -> string_literals", async () => {
-      const cadlTypeDefinition = `
-      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-      @fixed
-      @doc("Translation Language Values")
-      enum TranslationLanguageValues {
-        @doc("English descriptions")
-        English,
-        @doc("Chinese descriptions")
-        Chinese,
-      }`;
-      const cadlType = "TranslationLanguageValues";
-      const typeScriptType = `"English" | "Chinese"`;
-      await verifyPropertyType(
-        cadlType,
-        typeScriptType,
-        {
-          additionalCadlDefinition: cadlTypeDefinition
-        },
-        true
-      );
+    describe("fixed enum", () => {
+      it("should handle enum -> string_literals", async () => {
+        const cadlTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          English,
+          @doc("Chinese descriptions")
+          Chinese,
+        }`;
+        const cadlType = "TranslationLanguageValues";
+        const typeScriptType = `"English" | "Chinese"`;
+        await verifyPropertyType(
+          cadlType,
+          typeScriptType,
+          {
+            additionalCadlDefinition: cadlTypeDefinition
+          },
+          true
+        );
+      });
+
+      it("with enum value is xx.xx", async () => {
+        const cadlTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          \`English.Class\`,
+          @doc("Chinese descriptions")
+          \`Chinese.Class\`,
+        }`;
+        const cadlType = "TranslationLanguageValues";
+        const typeScriptType = `"English.Class" | "Chinese.Class"`;
+        await verifyPropertyType(
+          cadlType,
+          typeScriptType,
+          {
+            additionalCadlDefinition: cadlTypeDefinition
+          },
+          true
+        );
+      });
     });
 
     it("should handle type_literals:string -> string_literals", async () => {
