@@ -300,18 +300,26 @@ function isOasString(type: Type): boolean {
 function isStringLiteral(type: Type): boolean {
   return (
     type.kind === "String" ||
-    (type.kind === "Union" && type.options.every((o) => o.kind === "String"))
+    (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
+    (type.kind === "EnumMember" &&
+      typeof (type.value ?? type.name) === "string")
   );
 }
 
 // Return any string literal values for type
 function getStringValues(type: Type): string[] {
-  if (type.kind === "String") {
-    return [type.value];
-  } else if (type.kind === "Union") {
-    return type.options.flatMap(getStringValues).filter((v) => v);
+  switch (type.kind) {
+    case "String":
+      return [type.value];
+    case "Union":
+      return [...type.variants.values()]
+        .flatMap((x) => getStringValues(x.type))
+        .filter((x) => x !== undefined);
+    case "EnumMember":
+      return typeof type.value !== "number" ? [type.value ?? type.name] : [];
+    default:
+      return [];
   }
-  return [];
 }
 function validateDiscriminator(
   program: Program,
@@ -330,7 +338,11 @@ function validateDiscriminator(
       return false;
     }
     let retval = true;
-    if (!isOasString(prop.type)) {
+    if (
+      !isOasString(prop.type) &&
+      prop.type.kind !== "EnumMember" &&
+      prop.type.kind !== "Enum"
+    ) {
       reportDiagnostic(program, {
         code: "discriminator",
         messageId: "type",
