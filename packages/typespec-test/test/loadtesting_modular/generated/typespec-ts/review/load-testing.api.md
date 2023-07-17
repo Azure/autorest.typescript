@@ -77,12 +77,6 @@ export interface CreateOrUpdateTestOptions extends OperationOptions {
     testId?: string;
 }
 
-// @public
-export interface CustomPage {
-    nextLink?: string;
-    value: DimensionValueList[];
-}
-
 // @public (undocumented)
 export interface DeleteTestFileOptions extends OperationOptions {
 }
@@ -249,18 +243,25 @@ export interface LoadTestConfiguration {
 // @public (undocumented)
 export class LoadTestRunClient {
     constructor(endpoint: string, credential: TokenCredential, options?: LoadTestRunClientOptions);
-    createOrUpdateAppComponents(components: Record<string, LoadTestRunClientAppComponent>, testRunId: string, options?: CreateOrUpdateAppComponentsOptions): Promise<LoadTestRunClientTestRunAppComponents>;
-    createOrUpdateServerMetricsConfig(testRunId: string, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<LoadTestRunClientTestRunServerMetricConfig>;
+    // Warning: (ae-forgotten-export) The symbol "TestRunAppComponents" needs to be exported by the entry point index.d.ts
+    createOrUpdateAppComponents(components: Record<string, LoadTestRunClientAppComponent>, testRunId: string, options?: CreateOrUpdateAppComponentsOptions): Promise<TestRunAppComponents>;
+    // Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig" needs to be exported by the entry point index.d.ts
+    createOrUpdateServerMetricsConfig(testRunId: string, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
     deleteTestRun(testRunId: string, options?: DeleteTestRunOptions): Promise<void>;
-    getAppComponents(testRunId: string, options?: GetAppComponentsOptions): Promise<LoadTestRunClientTestRunAppComponents>;
-    getServerMetricsConfig(testRunId: string, options?: GetServerMetricsConfigOptions): Promise<LoadTestRunClientTestRunServerMetricConfig>;
+    getAppComponents(testRunId: string, options?: GetAppComponentsOptions): Promise<TestRunAppComponents>;
+    getServerMetricsConfig(testRunId: string, options?: GetServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
     getTestRun(testRunId: string, options?: GetTestRunOptions): Promise<LoadTestRunClientTestRun>;
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptions): Promise<LoadTestRunClientFileInfo>;
-    listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptions): Promise<LoadTestRunClientMetricDefinitionCollection>;
-    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): Promise<LoadTestRunClientCustomPage>;
-    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<LoadTestRunClientMetricNamespaceCollection>;
-    listMetrics(testRunId: string, options?: ListMetricsOptions): Promise<LoadTestRunClientMetrics>;
-    listTestRuns(options?: ListTestRunsOptions): Promise<LoadTestRunClientTestRunsList>;
+    // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
+    listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptions): Promise<MetricDefinitionCollection>;
+    // Warning: (ae-forgotten-export) The symbol "CustomPage" needs to be exported by the entry point index.d.ts
+    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): Promise<CustomPage>;
+    // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
+    listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<MetricNamespaceCollection>;
+    // Warning: (ae-forgotten-export) The symbol "Metrics" needs to be exported by the entry point index.d.ts
+    listMetrics(testRunId: string, options?: ListMetricsOptions): Promise<Metrics>;
+    // Warning: (ae-forgotten-export) The symbol "TestRunsList" needs to be exported by the entry point index.d.ts
+    listTestRuns(options?: ListTestRunsOptions): Promise<TestRunsList>;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
     testRun(testRunId: string, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
 }
@@ -313,12 +314,6 @@ export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptions exten
 }
 
 // @public
-export interface LoadTestRunClientCustomPage {
-    nextLink?: string;
-    value: LoadTestRunClientDimensionValueList[];
-}
-
-// @public
 export interface LoadTestRunClientDimensionFilter {
     name?: string;
     values?: string[];
@@ -349,12 +344,6 @@ export interface LoadTestRunClientFileInfo {
     url?: string;
     validationFailureDetails?: string;
     validationStatus?: LoadTestRunClientFileStatus;
-}
-
-// @public
-export interface LoadTestRunClientFileInfoList {
-    nextLink?: string;
-    value: LoadTestRunClientFileInfo[];
 }
 
 // @public
@@ -400,30 +389,9 @@ export interface LoadTestRunClientMetricDefinition {
 }
 
 // @public
-export interface LoadTestRunClientMetricDefinitionCollection {
-    value: LoadTestRunClientMetricDefinition[];
-}
-
-// @public
 export interface LoadTestRunClientMetricNamespace {
     description?: string;
     name?: string;
-}
-
-// @public
-export interface LoadTestRunClientMetricNamespaceCollection {
-    value: LoadTestRunClientMetricNamespace[];
-}
-
-// @public
-export interface LoadTestRunClientMetricRequestPayload {
-    filters?: LoadTestRunClientDimensionFilter[];
-}
-
-// @public
-export interface LoadTestRunClientMetrics {
-    nextLink?: string;
-    value: LoadTestRunClientTimeSeriesElement[];
 }
 
 // @public
@@ -530,16 +498,6 @@ export interface LoadTestRunClientTest {
 }
 
 // @public
-export interface LoadTestRunClientTestAppComponents {
-    components: Record<string, LoadTestRunClientAppComponent>;
-    readonly createdBy?: string;
-    readonly createdDateTime?: any;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: any;
-    readonly testId?: string;
-}
-
-// @public
 export interface LoadTestRunClientTestInputArtifacts {
     readonly additionalFileInfo?: LoadTestRunClientFileInfo[];
     configFileInfo?: LoadTestRunClientFileInfo;
@@ -578,16 +536,6 @@ export interface LoadTestRunClientTestRun {
 }
 
 // @public
-export interface LoadTestRunClientTestRunAppComponents {
-    components: Record<string, LoadTestRunClientAppComponent>;
-    readonly createdBy?: string;
-    readonly createdDateTime?: any;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: any;
-    readonly testRunId?: string;
-}
-
-// @public
 export interface LoadTestRunClientTestRunArtifacts {
     readonly inputArtifacts?: LoadTestRunClientTestRunInputArtifacts;
     outputArtifacts?: LoadTestRunClientTestRunOutputArtifacts;
@@ -609,22 +557,6 @@ export interface LoadTestRunClientTestRunOutputArtifacts {
 }
 
 // @public
-export interface LoadTestRunClientTestRunServerMetricConfig {
-    readonly createdBy?: string;
-    readonly createdDateTime?: any;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: any;
-    metrics?: Record<string, LoadTestRunClientResourceMetric>;
-    readonly testRunId?: string;
-}
-
-// @public
-export interface LoadTestRunClientTestRunsList {
-    nextLink?: string;
-    value: LoadTestRunClientTestRun[];
-}
-
-// @public
 export interface LoadTestRunClientTestRunStatistics {
     readonly errorCount?: number;
     readonly errorPct?: number;
@@ -640,22 +572,6 @@ export interface LoadTestRunClientTestRunStatistics {
     readonly sentKBytesPerSec?: number;
     readonly throughput?: number;
     readonly transaction?: string;
-}
-
-// @public
-export interface LoadTestRunClientTestServerMetricConfig {
-    readonly createdBy?: string;
-    readonly createdDateTime?: any;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: any;
-    metrics?: Record<string, LoadTestRunClientResourceMetric>;
-    readonly testId?: string;
-}
-
-// @public
-export interface LoadTestRunClientTestsList {
-    nextLink?: string;
-    value: LoadTestRunClientTest[];
 }
 
 // @public
@@ -685,30 +601,9 @@ export interface MetricDefinition {
 }
 
 // @public
-export interface MetricDefinitionCollection {
-    value: MetricDefinition[];
-}
-
-// @public
 export interface MetricNamespace {
     description?: string;
     name?: string;
-}
-
-// @public
-export interface MetricNamespaceCollection {
-    value: MetricNamespace[];
-}
-
-// @public
-export interface MetricRequestPayload {
-    filters?: DimensionFilter[];
-}
-
-// @public
-export interface Metrics {
-    nextLink?: string;
-    value: TimeSeriesElement[];
 }
 
 // @public
@@ -863,16 +758,6 @@ export interface TestRun {
 }
 
 // @public
-export interface TestRunAppComponents {
-    components: Record<string, AppComponent>;
-    readonly createdBy?: string;
-    readonly createdDateTime?: any;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: any;
-    readonly testRunId?: string;
-}
-
-// @public
 export interface TestRunArtifacts {
     readonly inputArtifacts?: TestRunInputArtifacts;
     outputArtifacts?: TestRunOutputArtifacts;
@@ -921,22 +806,6 @@ export interface TestRunOptions extends OperationOptions {
 export interface TestRunOutputArtifacts {
     logsFileInfo?: FileInfo;
     resultFileInfo?: FileInfo;
-}
-
-// @public
-export interface TestRunServerMetricConfig {
-    readonly createdBy?: string;
-    readonly createdDateTime?: any;
-    readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: any;
-    metrics?: Record<string, ResourceMetric>;
-    readonly testRunId?: string;
-}
-
-// @public
-export interface TestRunsList {
-    nextLink?: string;
-    value: TestRun[];
 }
 
 // @public

@@ -169,7 +169,10 @@ function getOperationSignatureParameters(
   } else if (operation.bodyParameter?.type.type === "byte-array") {
     parameters.set(
       operation.bodyParameter.clientName,
-      buildType(operation.bodyParameter.clientName, operation.bodyParameter.type)
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type
+      )
     );
   }
 
@@ -326,7 +329,7 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
   if (bodyParameter.type.type === "byte-array") {
     return `\nbody: ${bodyParameter.clientName},`;
   }
-  
+
   return "";
 }
 

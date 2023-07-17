@@ -191,26 +191,6 @@ export type FileType = string;
 /** "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED" */
 export type FileStatus = string;
 
-/** Test app component */
-export interface TestAppComponents {
-  /**
-   * Azure resource collection { resource id (fully qualified resource Id e.g
-   * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName})
-   * : resource object }
-   */
-  components: Record<string, AppComponent>;
-  /** Test identifier */
-  readonly testId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
-  /** The user that created. */
-  readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  readonly lastModifiedBy?: string;
-}
-
 /**
  * An Azure resource object (Refer azure generic resource model :
  * https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id#genericresource)
@@ -235,26 +215,6 @@ export interface AppComponent {
   kind?: string;
 }
 
-/** Test server metrics configuration */
-export interface TestServerMetricConfig {
-  /** Test identifier */
-  readonly testId?: string;
-  /**
-   * Azure resource metrics collection {metric id : metrics object} (Refer :
-   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
-   * for metric id).
-   */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
-  /** The user that created. */
-  readonly createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  readonly lastModifiedBy?: string;
-}
-
 /**
  * Associated metric definition for particular metrics of the azure resource (
  * Refer :
@@ -277,22 +237,6 @@ export interface ResourceMetric {
   unit?: string;
   /** Azure resource type. */
   resourceType: string;
-}
-
-/** Collection of files. */
-export interface FileInfoList {
-  /** The FileInfo items on this page */
-  value: FileInfo[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-
-/** Collection of tests */
-export interface TestsList {
-  /** The Test items on this page */
-  value: Test[];
-  /** The link to the next page of items */
-  nextLink?: string;
 }
 
 /** Load test run model */
@@ -539,17 +483,6 @@ export interface MetricNamespace {
   description?: string;
   /** The metric namespace name. */
   name?: string;
-}
-
-/** Filters to fetch the set of metric */
-export interface MetricRequestPayload {
-  /**
-   * Get metrics for specific dimension values. Example: Metric contains dimension
-   * like SamplerName, Error. To retrieve all the time series data where SamplerName
-   * is equals to HTTPRequest1 or HTTPRequest2, the DimensionFilter value will be
-   * {"SamplerName", ["HTTPRequest1", "HTTPRequest2"}
-   */
-  filters?: DimensionFilter[];
 }
 
 /** Dimension name and values to filter */

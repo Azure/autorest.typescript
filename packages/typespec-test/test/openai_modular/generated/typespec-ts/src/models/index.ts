@@ -2,17 +2,14 @@
 // Licensed under the MIT license.
 
 export {
-  EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  CompletionsOptions,
   Completions,
   Choice,
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
-  ChatCompletionsOptions,
   ChatMessage,
   ChatRole,
   ChatCompletions,
@@ -21,7 +18,6 @@ export {
   ImageResponse,
   ImageLocation,
   State,
-  ImageGenerationOptions,
   ImageSize,
 } from "./models.js";
 export {

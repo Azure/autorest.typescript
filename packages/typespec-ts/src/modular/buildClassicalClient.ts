@@ -38,7 +38,7 @@ export function buildClassicalClient(
     namedExports: [`${classicalClientname}Options`],
     moduleSpecifier: `./api/${modularClientName}Context.js`
   });
-  
+
   const clientClass = clientFile.addClass({
     isExported: true,
     name: `${classicalClientname}`

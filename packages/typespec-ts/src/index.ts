@@ -39,13 +39,19 @@ import {
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { Project } from "ts-morph";
+import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
-import { buildRootIndex, buildSubClientIndexFile } from "./modular/buildRootIndex.js";
+import {
+  buildRootIndex,
+  buildSubClientIndexFile
+} from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import { buildSubpathIndexFile, buildSubpathTopLevelIndexFile } from "./modular/buildSubpathIndex.js";
+import {
+  buildSubpathIndexFile,
+  buildSubpathTopLevelIndexFile
+} from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -63,7 +69,10 @@ export async function $onEmit(context: EmitContext) {
   let count = -1;
 
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
-  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<string, RLCModel>();
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
   for (const client of clients) {
     count++;
     const rlcModels = await transformRLCModel(
@@ -127,7 +136,9 @@ export async function $onEmit(context: EmitContext) {
   if (options.isModularLibrary) {
     // TODO: Emit modular parts of the library
     const project = new Project();
-    const modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, { casing: "camel" });
+    const modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, {
+      casing: "camel"
+    });
     const rootIndexFile = project.createSourceFile(
       `${srcPath}/src/index.ts`,
       "",
@@ -211,7 +222,7 @@ export async function $onEmit(context: EmitContext) {
 
     emitPackage(project, srcPath, modularCodeModel);
     emitTsConfig(project, srcPath, modularCodeModel);
-    // removeUnusedInterfaces(project);
+    removeUnusedInterfaces(project);
 
     for (const file of project.getSourceFiles()) {
       await emitContentByBuilder(
@@ -227,66 +238,84 @@ export async function $onEmit(context: EmitContext) {
 /**
  * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
  */
-// export function removeUnusedInterfaces(project: Project) {
-//   const allInterfaces = project.getSourceFiles().flatMap((file) =>
-//     file.getInterfaces().map((interfaceDeclaration) => {
-//       return { interfaceDeclaration, filepath: file.getFilePath() };
-//     })
-//   );
+export function removeUnusedInterfaces(project: Project) {
+  const allInterfaces = project.getSourceFiles().flatMap((file) =>
+    file.getInterfaces().map((interfaceDeclaration) => {
+      return { interfaceDeclaration, filepath: file.getFilePath() };
+    })
+  );
 
-//   const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
-//     const references = interfaceDeclaration.interfaceDeclaration
-//       .findReferencesAsNodes()
-//       .filter((node) => {
-//         const kind = node.getParent()?.getKind();
-//         return (
-//           kind !== SyntaxKind.ExportSpecifier &&
-//           kind !== SyntaxKind.InterfaceDeclaration
-//         );
-//       });
-//     return references.length === 0;
-//   });
+  const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
+    const references = interfaceDeclaration.interfaceDeclaration
+      .findReferencesAsNodes()
+      .filter((node) => {
+        const kind = node.getParent()?.getKind();
+        return (
+          kind !== SyntaxKind.ExportSpecifier &&
+          kind !== SyntaxKind.InterfaceDeclaration
+        );
+      });
+    return references.length === 0;
+  });
 
-//   unusedInterfaces.forEach((interfaceDeclaration) => {
-//     const references = interfaceDeclaration.interfaceDeclaration
-//       .findReferencesAsNodes()
-//       .filter((node) => {
-//         const kind = node.getParent()?.getKind();
-//         return kind === SyntaxKind.ExportSpecifier;
-//       });
-//     const map = new Map<string, string>();
-//     references.forEach((node) => {
-//       const exportPath = node.getSourceFile().getFilePath();
-//       map.set(exportPath, node.getText());
-//     });
+  unusedInterfaces.forEach((interfaceDeclaration) => {
+    const references = interfaceDeclaration.interfaceDeclaration
+      .findReferencesAsNodes()
+      .filter((node) => {
+        const kind = node.getParent()?.getKind();
+        return kind === SyntaxKind.ExportSpecifier;
+      });
+    const map = new Map<string, string>();
+    references.forEach((node) => {
+      const exportPath = node.getSourceFile().getFilePath();
+      map.set(exportPath, node.getText());
+    });
 
-//     // Get the index.ts file
-//     const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+    // Get the index.ts file
+    const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+    // to make sure the top level index file is in the last
+    const sortedIndexFiles = indexFiles.sort((idx1, idx2) => {
+      return (
+        idx2.getFilePath().split("/").length -
+        idx1.getFilePath().split("/").length
+      );
+    });
 
-//     for (const indexFile of indexFiles) {
-//       const filepath = indexFile.getFilePath();
-//       if (map.has(filepath)) {
-//         // Get all export declarations
-//         const exportDeclarations = indexFile.getExportDeclarations();
+    const matchAliasNodes: string[] = [];
+    for (const indexFile of sortedIndexFiles) {
+      const filepath = indexFile.getFilePath();
+      if (map.has(filepath)) {
+        // Get all export declarations
+        const exportDeclarations = indexFile.getExportDeclarations();
 
-//         // Iterate over each export declaration
-//         exportDeclarations.forEach((exportDeclaration) => {
-//           // Find named exports that match the unused interface
-//           const matchingExports = exportDeclaration
-//             .getNamedExports()
-//             .filter(
-//               (ne) =>
-//                 ne.getName() === map.get(filepath) ||
-//                 ne.getAliasNode()?.getText() === map.get(filepath)
-//             );
-//           // Remove the matching exports
-//           matchingExports.forEach((me) => me.remove());
-//         });
-//       }
-//     }
-//     interfaceDeclaration.interfaceDeclaration.remove();
-//   });
-// }
+        // Iterate over each export declaration
+        exportDeclarations.forEach((exportDeclaration) => {
+          // Find named exports that match the unused interface
+          const matchingExports = exportDeclaration
+            .getNamedExports()
+            .filter((ne) => {
+              const aliasNode = ne.getAliasNode();
+              if (
+                aliasNode &&
+                aliasNode.getText() !== map.get(filepath) &&
+                ne.getName() === map.get(filepath)
+              ) {
+                matchAliasNodes.push(aliasNode.getText());
+              }
+              return (
+                matchAliasNodes.indexOf(ne.getName()) > -1 ||
+                ne.getName() === map.get(filepath) ||
+                ne.getAliasNode()?.getText() === map.get(filepath)
+              );
+            });
+          // Remove the matching exports
+          matchingExports.forEach((me) => me.remove());
+        });
+      }
+    }
+    interfaceDeclaration.interfaceDeclaration.remove();
+  });
+}
 
 function clearSrcFolder(
   srcPath: string,
