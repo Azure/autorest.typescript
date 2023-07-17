@@ -721,7 +721,7 @@ describe("Input/output model type", () => {
         });
       });
 
-      describe.only("enum and enum member as discriminator", () => {
+      describe("enum and enum member as discriminator", () => {
         describe("is string", () => {
           const typespec = (hasDiscriminator: boolean) => `
           enum A {
@@ -737,22 +737,25 @@ describe("Input/output model type", () => {
           }
           op read(): { @body body: C };
           `;
-          const output = `
-          export interface COutput extends BOutput {
-            a: "AA";
-          }
-  
-          export interface BOutput {
-            /** Possible values: AA, BB */
-            a: string;
-          }`;
           it("with @discriminator", async () => {
             const schemaOutput = await emitModelsFromCadl(typespec(true));
             assert.ok(schemaOutput);
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(outputModelFile?.content!, output);
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutputParent {
+              a: "AA";
+            }
+
+            export interface BOutputParent {
+              a: "B" | "AA";
+            }
+
+            export type BOutput = COutput;`
+            );
           });
 
           it("without @discriminator", async () => {
@@ -761,7 +764,18 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(outputModelFile?.content!, output);
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutput {
+              a: "AA";
+            }
+    
+            export interface BOutput {
+              /** Possible values: AA, BB */
+              a: string;
+            }`
+            );
           });
         });
 
@@ -780,23 +794,6 @@ describe("Input/output model type", () => {
           }
           op read(): { @body body: C };
           `;
-          const output = `
-          export interface COutput extends BOutput {
-            a: 1.1;
-          }
-  
-          export interface BOutput {
-            /** Possible values: 1.1, 2.2 */
-            a: string;
-          }`;
-          it("with @discriminator", async () => {
-            const schemaOutput = await emitModelsFromCadl(typespec(true));
-            assert.ok(schemaOutput);
-            const { inputModelFile, outputModelFile } = schemaOutput!;
-            assert.ok(!inputModelFile?.content);
-            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(outputModelFile?.content!, output);
-          });
 
           it("without @discriminator", async () => {
             const schemaOutput = await emitModelsFromCadl(typespec(false));
@@ -804,7 +801,18 @@ describe("Input/output model type", () => {
             const { inputModelFile, outputModelFile } = schemaOutput!;
             assert.ok(!inputModelFile?.content);
             assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-            assertEqualContent(outputModelFile?.content!, output);
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutput {
+              a: 1.1;
+            }
+    
+            export interface BOutput {
+              /** Possible values: 1.1, 2.2 */
+              a: string;
+            }`
+            );
           });
         });
       });
