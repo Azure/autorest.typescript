@@ -1,7 +1,8 @@
 import TypeModelInheritanceClientFactory, {
   InheritanceClient,
   Salmon,
-  SharkOutput
+  Shark,
+  Siamese
 } from "./generated/models/inheritance/src/index.js";
 import { assert } from "chai";
 
@@ -14,7 +15,7 @@ describe("ModelsInheritance Rest Client", () => {
     });
   });
 
-  const validBody = { name: "abc", age: 32, smart: true };
+  const validBody: Siamese = { name: "abc", age: 32, smart: true };
   it("should get valid", async () => {
     try {
       const result = await client.path("/type/model/inheritance/valid").get();
@@ -60,7 +61,9 @@ describe("ModelsInheritance Rest Client", () => {
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
       assert.strictEqual(result.body.kind, "shark");
-      assert.strictEqual((result.body as SharkOutput).sharktype, "goblin");
+      if (result.body.kind === "shark") {
+        assert.strictEqual(result.body.sharktype, "goblin");
+      }
     } catch (err) {
       assert.fail(err as string);
     }
@@ -68,14 +71,15 @@ describe("ModelsInheritance Rest Client", () => {
 
   it("should put polymorphic body", async () => {
     try {
+      const body: Shark = {
+        age: 1,
+        kind: "shark",
+        sharktype: "goblin"
+      };
       const result = await client
         .path("/type/model/inheritance/discriminated/model")
         .put({
-          body: {
-            age: 1,
-            kind: "shark",
-            sharktype: "goblin"
-          }
+          body
         });
       assert.strictEqual(result.status, "200");
     } catch (err) {
@@ -83,13 +87,13 @@ describe("ModelsInheritance Rest Client", () => {
     }
   });
 
-  const validRecursiveBody = {
+  const validRecursiveBody: Salmon = {
     age: 1,
     kind: "salmon",
     partner: {
       age: 2,
       kind: "shark",
-      sharktype: "saw",
+      sharktype: "saw"
     },
     friends: [
       {
@@ -97,31 +101,31 @@ describe("ModelsInheritance Rest Client", () => {
         kind: "salmon",
         partner: {
           age: 3,
-          kind: "salmon",
+          kind: "salmon"
         },
         hate: {
           key1: {
             age: 4,
-            kind: "salmon",
+            kind: "salmon"
           },
           key2: {
             age: 2,
             kind: "shark",
-            sharktype: "goblin",
-          },
-        },
+            sharktype: "goblin"
+          }
+        }
       },
       {
         age: 3,
         kind: "shark",
-        sharktype: "goblin",
-      },
+        sharktype: "goblin"
+      }
     ],
     hate: {
       key3: {
         age: 3,
         kind: "shark",
-        sharktype: "saw",
+        sharktype: "saw"
       },
       key4: {
         age: 2,
@@ -129,16 +133,16 @@ describe("ModelsInheritance Rest Client", () => {
         friends: [
           {
             age: 1,
-            kind: "salmon",
+            kind: "salmon"
           },
           {
             age: 4,
             kind: "shark",
-            sharktype: "goblin",
-          },
-        ],
-      },
-    },
+            sharktype: "goblin"
+          }
+        ]
+      }
+    }
   };
   it("should get recursive body", async () => {
     try {
@@ -146,7 +150,16 @@ describe("ModelsInheritance Rest Client", () => {
         .path("/type/model/inheritance/discriminated/recursivemodel")
         .get();
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(JSON.stringify(result.body), JSON.stringify(validRecursiveBody));
+      assert.strictEqual(
+        JSON.stringify(result.body),
+        JSON.stringify(validRecursiveBody)
+      );
+      if (result.body.kind === "salmon") {
+        assert.strictEqual(
+          result.body.partner?.kind,
+          validRecursiveBody.partner?.kind
+        );
+      }
     } catch (err) {
       assert.fail(err as string);
     }
@@ -157,14 +170,14 @@ describe("ModelsInheritance Rest Client", () => {
       const result = await client
         .path("/type/model/inheritance/discriminated/recursivemodel")
         .put({
-            body: validRecursiveBody as Salmon
+          body: validRecursiveBody
         });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
     }
   });
-  
+
   it("should get missing discriminator body", async () => {
     try {
       const result = await client
@@ -184,7 +197,7 @@ describe("ModelsInheritance Rest Client", () => {
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
-      assert.strictEqual(result.body.kind, "wrongKind")
+      assert.strictEqual(result.body.kind, "wrongKind");
     } catch (err) {
       assert.fail(err as string);
     }

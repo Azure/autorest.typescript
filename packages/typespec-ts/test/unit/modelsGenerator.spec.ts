@@ -548,7 +548,7 @@ describe("Input/output model type", () => {
           export interface PetOutputParent {
             name: string;
             weight?: number;
-            "kind": "Pet" | "cat" | "dog";
+            "kind": string;
           }
   
           export interface CatOutput extends PetOutputParent {
@@ -609,13 +609,13 @@ describe("Input/output model type", () => {
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
         export interface FishOutputParent {
           age: number;
-          kind: "Fish" | "shark" | "salmon";
+          kind: string;
         }
         
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
         export interface SharkOutputParent extends FishOutputParent {
           kind: "shark";
-          sharktype: "Shark" | "saw" | "goblin";
+          sharktype: string;
         }
         
         /** The third level model SawShark in polymorphic multiple levels inheritance. */
@@ -696,7 +696,7 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelParent {
-            "model.kind": "BaseModel" | "derived";
+            "model.kind": string;
           }
   
           /** This is a base model has discriminator name containing dot. */
@@ -712,7 +712,7 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelOutputParent {
-            "model.kind": "BaseModel" | "derived";
+            "model.kind": string;
           }
   
           /** This is a base model has discriminator name containing dot. */
@@ -751,7 +751,7 @@ describe("Input/output model type", () => {
             }
 
             export interface BOutputParent {
-              a: "B" | "AA";
+              a: string;
             }
 
             export type BOutput = COutput;`
