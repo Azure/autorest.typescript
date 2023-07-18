@@ -38,6 +38,7 @@ export function buildObjectInterfaces(
     }
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
     const interfaceDeclaration = getObjectInterfaceDeclaration(
+      model,
       baseName,
       objectSchema,
       schemaUsage,
@@ -175,6 +176,7 @@ function getPolymorphicTypeAlias(
  * root node it will suffix it with Base.
  */
 function getObjectInterfaceDeclaration(
+  model: RLCModel,
   baseName: string,
   objectSchema: ObjectSchema,
   schemaUsage: SchemaContext[],
@@ -195,6 +197,7 @@ function getObjectInterfaceDeclaration(
 
   // Add the polymorphic property if exists
   propertySignatures = addDiscriminatorProperty(
+    model,
     objectSchema,
     propertySignatures
   );
@@ -218,10 +221,11 @@ function isPolymorphicParent(objectSchema: ObjectSchema) {
 }
 
 function addDiscriminatorProperty(
+  model: RLCModel,
   objectSchema: ObjectSchema,
   properties: PropertySignatureStructure[]
 ): PropertySignatureStructure[] {
-  const polymorphicProperty = getDiscriminatorProperty(objectSchema);
+  const polymorphicProperty = getDiscriminatorProperty(model, objectSchema);
 
   if (polymorphicProperty) {
     // It is possible that the polymorphic property needs to override an existing property.
@@ -240,6 +244,7 @@ function addDiscriminatorProperty(
  * Finds the name of the property used as discriminator and the discriminator value.
  */
 function getDiscriminatorProperty(
+  model: RLCModel,
   objectSchema: ObjectSchema
 ): PropertySignatureStructure | undefined {
   const discriminatorValue = objectSchema.discriminatorValue;
@@ -256,11 +261,10 @@ function getDiscriminatorProperty(
         `getDiscriminatorProperty: Expected object ${objectSchema.name} to have a discriminator in its hierarchy but found none`
       );
     }
-
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
-      type: discriminators
+      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`
     };
   }
 

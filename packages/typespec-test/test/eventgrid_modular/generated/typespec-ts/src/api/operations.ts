@@ -2,6 +2,13 @@
 // Licensed under the MIT license.
 
 import {
+  CloudEvent,
+  ReceiveResult,
+  AcknowledgeResult,
+  ReleaseResult,
+  RejectResult,
+} from "../models/models.js";
+import {
   AcknowledgeCloudEvents200Response,
   AcknowledgeCloudEventsDefaultResponse,
   EventGridContext as Client,
@@ -17,20 +24,18 @@ import {
   ReleaseCloudEvents200Response,
   ReleaseCloudEventsDefaultResponse,
 } from "../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
 import {
-  CloudEvent,
-  ReceiveResult,
-  AcknowledgeResult,
-  ReleaseResult,
-  RejectResult,
-} from "./models.js";
-import { RequestOptions } from "../common/interfaces.js";
-
-export interface PublishCloudEventOptions extends RequestOptions {
-  /** content type */
-  contentType?: string;
-}
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
+  PublishCloudEventOptions,
+  PublishCloudEventsOptions,
+  ReceiveCloudEventsOptions,
+  AcknowledgeCloudEventsOptions,
+  ReleaseCloudEventsOptions,
+  RejectCloudEventsOptions,
+} from "../models/options.js";
 
 export function _publishCloudEventSend(
   context: Client,
@@ -43,12 +48,10 @@ export function _publishCloudEventSend(
   return context
     .path("/topics/{topicName}:publish", topicName)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
       body: { event: event },
     });
 }
@@ -79,11 +82,6 @@ export async function publishCloudEvent(
   return _publishCloudEventDeserialize(result);
 }
 
-export interface PublishCloudEventsOptions extends RequestOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _publishCloudEventsSend(
   context: Client,
   events: CloudEvent[],
@@ -95,12 +93,10 @@ export function _publishCloudEventsSend(
   return context
     .path("/topics/{topicName}:publish", topicName)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ??
         "application/cloudevents-batch+json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
       body: events,
     });
 }
@@ -131,13 +127,6 @@ export async function publishCloudEvents(
   return _publishCloudEventsDeserialize(result);
 }
 
-export interface ReceiveCloudEventsOptions extends RequestOptions {
-  /** Max Events count to be received. Minimum value is 1, while maximum value is 100 events. If not specified, the default value is 1. */
-  maxEvents?: number;
-  /** Max wait time value for receive operation in Seconds. It is the time in seconds that the server approximately waits for the availability of an event and responds to the request. If an event is available, the broker responds immediately to the client. Minimum value is 10 seconds, while maximum value is 120 seconds. If not specified, the default value is 60 seconds. */
-  maxWaitTime?: number;
-}
-
 export function _receiveCloudEventsSend(
   context: Client,
   topicName: string,
@@ -153,9 +142,7 @@ export function _receiveCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: {
         maxEvents: options?.maxEvents,
         maxWaitTime: options?.maxWaitTime,
@@ -208,11 +195,6 @@ export async function receiveCloudEvents(
   return _receiveCloudEventsDeserialize(result);
 }
 
-export interface AcknowledgeCloudEventsOptions extends RequestOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _acknowledgeCloudEventsSend(
   context: Client,
   lockTokens: string[],
@@ -229,11 +211,9 @@ export function _acknowledgeCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
 }
@@ -275,11 +255,6 @@ export async function acknowledgeCloudEvents(
   return _acknowledgeCloudEventsDeserialize(result);
 }
 
-export interface ReleaseCloudEventsOptions extends RequestOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _releaseCloudEventsSend(
   context: Client,
   lockTokens: string[],
@@ -296,11 +271,9 @@ export function _releaseCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
 }
@@ -340,11 +313,6 @@ export async function releaseCloudEvents(
   return _releaseCloudEventsDeserialize(result);
 }
 
-export interface RejectCloudEventsOptions extends RequestOptions {
-  /** content type */
-  contentType?: string;
-}
-
 export function _rejectCloudEventsSend(
   context: Client,
   lockTokens: string[],
@@ -361,11 +329,9 @@ export function _rejectCloudEventsSend(
       eventSubscriptionName
     )
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
+      ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/json; charset=utf-8",
-      headers: { ...options.requestOptions?.headers },
       body: { lockTokens: lockTokens },
     });
 }

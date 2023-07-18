@@ -1,6 +1,7 @@
 import { assert } from "chai";
 import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
+import { Diagnostic } from "@typespec/compiler";
 
 describe("Client Factory generation", () => {
   describe("should handle url parameters", () => {
@@ -293,7 +294,9 @@ describe("Client Factory generation", () => {
 
   describe("should handle different auth options", () => {
     it("should not generate credential if scope is empty", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      try {
+        await emitClientFactoryFromCadl(
+          `
       @useAuth(
         OAuth2Auth<[{
           type: OAuth2FlowType.implicit,
@@ -302,44 +305,19 @@ describe("Client Factory generation", () => {
         }]>)
       @service( {title: "PetStoreClient"})
       namespace PetStore;
-      `);
-      assert.ok(models);
-      assertEqualContent(
-        models!.content,
-        `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { logger } from "./logger";
-        import { testClient } from "./clientDefinitions";
-        
-        /**
-         * Initialize a new instance of \`testClient\`
-         * @param endpoint - The parameter endpoint
-         * @param options - the parameter for all optional parameters
-         */
-        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
-        
-        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
-        const userAgentPrefix =
-            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
-            : \`\${userAgentInfo}\`;
-        options = {
-            ...options,
-            userAgentOptions: {
-            userAgentPrefix,
-            },
-            loggingOptions: {
-              logger: options.loggingOptions?.logger ?? logger.info
-            },
-        };
-        
-        const client = getClient(baseUrl, options) as testClient;
-        
-        return client;
-    }
-    `
-      );
+      `,
+          false,
+          false
+        );
+        assert.fail("Should throw diagnostic errors");
+      } catch (e) {
+        const diagnostics = e as Diagnostic[];
+        assert.equal(diagnostics.length, 1);
+        assert.equal(
+          diagnostics[0]?.code,
+          "@azure-tools/typespec-ts/no-credential-scopes"
+        );
+      }
     });
 
     it("should generate both credentials if both defined", async () => {

@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Widget, ColorType, AnalyzeResult } from "../models/models.js";
 import {
-  WidgetServiceContext as Client,
-  isUnexpected,
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
   CreateWidget201Response,
@@ -12,16 +11,25 @@ import {
   DeleteWidgetDefaultResponse,
   GetWidget200Response,
   GetWidgetDefaultResponse,
+  isUnexpected,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
   UpdateWidget200Response,
   UpdateWidgetDefaultResponse,
+  WidgetServiceContext as Client,
 } from "../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
-import { Widget, ColorType, AnalyzeResult } from "./models.js";
-import { RequestOptions } from "../common/interfaces.js";
-
-export interface ListWidgetsOptions extends RequestOptions {}
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
+  ListWidgetsOptions,
+  GetWidgetOptions,
+  CreateWidgetOptions,
+  UpdateWidgetOptions,
+  DeleteWidgetOptions,
+  AnalyzeWidgetOptions,
+} from "../models/options.js";
 
 export function _listWidgetsSend(
   context: Client,
@@ -29,11 +37,7 @@ export function _listWidgetsSend(
 ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse> {
   return context
     .path("/widgets")
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _listWidgetsDeserialize(
@@ -63,8 +67,6 @@ export async function listWidgets(
   return _listWidgetsDeserialize(result);
 }
 
-export interface GetWidgetOptions extends RequestOptions {}
-
 export function _getWidgetSend(
   context: Client,
   id: string,
@@ -72,11 +74,7 @@ export function _getWidgetSend(
 ): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
-    .get({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getWidgetDeserialize(
@@ -103,8 +101,6 @@ export async function getWidget(
   return _getWidgetDeserialize(result);
 }
 
-export interface CreateWidgetOptions extends RequestOptions {}
-
 export function _createWidgetSend(
   context: Client,
   weight: number,
@@ -114,9 +110,7 @@ export function _createWidgetSend(
   return context
     .path("/widgets")
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: { weight: weight, color: color },
     });
 }
@@ -151,13 +145,6 @@ export async function createWidget(
   return _createWidgetDeserialize(result);
 }
 
-export interface UpdateWidgetOptions extends RequestOptions {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight?: number;
-  /** The color of the widget. */
-  color?: ColorType;
-}
-
 export function _updateWidgetSend(
   context: Client,
   id: string,
@@ -166,9 +153,7 @@ export function _updateWidgetSend(
   return context
     .path("/widgets/{id}", id)
     .patch({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: { weight: options?.weight, color: options?.color },
     });
 }
@@ -200,8 +185,6 @@ export async function updateWidget(
   return _updateWidgetDeserialize(result);
 }
 
-export interface DeleteWidgetOptions extends RequestOptions {}
-
 export function _deleteWidgetSend(
   context: Client,
   id: string,
@@ -209,11 +192,7 @@ export function _deleteWidgetSend(
 ): StreamableMethod<DeleteWidget204Response | DeleteWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteWidgetDeserialize(
@@ -236,8 +215,6 @@ export async function deleteWidget(
   return _deleteWidgetDeserialize(result);
 }
 
-export interface AnalyzeWidgetOptions extends RequestOptions {}
-
 export function _analyzeWidgetSend(
   context: Client,
   id: string,
@@ -245,11 +222,7 @@ export function _analyzeWidgetSend(
 ): StreamableMethod<AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}/analyze", id)
-    .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _analyzeWidgetDeserialize(

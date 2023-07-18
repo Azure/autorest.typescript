@@ -23,13 +23,6 @@ export function buildRootIndex(
   exportModels(file, srcPath);
   exportOptionsInterfaces(client, file, srcPath);
   exportClassicalClient(client, file);
-
-  file.addExportDeclarations([
-    {
-      moduleSpecifier: `./common/interfaces.js`,
-      namedExports: [`RequestOptions`]
-    }
-  ]);
 }
 
 function exportClassicalClient(client: Client, indexFile: SourceFile) {
@@ -81,14 +74,14 @@ function exportOptionsInterfaces(
 
 function exportModels(indexFile: SourceFile, srcPath: string) {
   const project = indexFile.getProject();
-  const modelsFile = project.getSourceFile(`${srcPath}/src/api/models.ts`);
+  const modelsFile = project.getSourceFile(`${srcPath}/src/models/index.ts`);
 
   if (!modelsFile) {
     return;
   }
 
   const namedExports = [...modelsFile.getExportedDeclarations().keys()];
-  const moduleSpecifier = "./api/models.js";
+  const moduleSpecifier = "./models/index.js";
 
   indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
 }

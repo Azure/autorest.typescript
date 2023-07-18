@@ -19,10 +19,11 @@ export {
   ImageLocation,
   State,
   ImageSize,
+} from "./models.js";
+export {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
-} from "./models/index.js";
-export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
+} from "./options.js";

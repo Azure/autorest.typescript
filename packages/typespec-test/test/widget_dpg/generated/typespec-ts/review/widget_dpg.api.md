@@ -5,7 +5,7 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
+import { OperationOptions } from '@azure-rest/core-client';
 
 // @public (undocumented)
 export interface AnalyzeResult {
@@ -14,39 +14,30 @@ export interface AnalyzeResult {
 }
 
 // @public (undocumented)
-export interface AnalyzeWidgetOptions extends RequestOptions {
+export interface AnalyzeWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
 export type ColorType = "red" | "blue";
 
 // @public (undocumented)
-export interface CreateWidgetOptions extends RequestOptions {
+export interface CreateWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface DeleteWidgetOptions extends RequestOptions {
+export interface DeleteWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface GetWidgetOptions extends RequestOptions {
+export interface GetWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface ListWidgetsOptions extends RequestOptions {
-}
-
-// @public
-export interface RequestOptions {
-    requestOptions?: {
-        headers?: RawHttpHeadersInput;
-        allowInsecureConnection?: boolean;
-        skipUrlEncoding?: boolean;
-    };
+export interface ListWidgetsOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface UpdateWidgetOptions extends RequestOptions {
+export interface UpdateWidgetOptions extends OperationOptions {
     color?: ColorType;
     weight?: number;
 }

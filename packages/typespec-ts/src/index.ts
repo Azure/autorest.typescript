@@ -42,7 +42,7 @@ import { emitCodeModel } from "./modular/buildCodeModel.js";
 import { buildRootIndex } from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import { buildApiIndexFile } from "./modular/buildApiIndex.js";
+import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -117,12 +117,12 @@ export async function $onEmit(context: EmitContext) {
     const modularCodeModel = emitCodeModel(context, { casing: "camel" });
 
     for (const client of modularCodeModel.clients) {
-      buildSharedTypes(project, srcPath);
       buildLroImpl(client, project, srcPath);
       buildClientContext(client, project, srcPath);
       buildModels(modularCodeModel, project, srcPath);
       buildOperationFiles(client, project, srcPath);
-      buildApiIndexFile(project, srcPath);
+      buildSubpathIndexFile(project, srcPath, "models");
+      buildSubpathIndexFile(project, srcPath, "api");
       buildClassicalClient(client, project, srcPath);
       buildRootIndex(client, project, srcPath);
       emitPackage(project, srcPath, modularCodeModel);

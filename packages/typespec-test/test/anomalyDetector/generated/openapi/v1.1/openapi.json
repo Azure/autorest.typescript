@@ -60,8 +60,8 @@
   "securityDefinitions": {
     "ApiKeyAuth": {
       "type": "apiKey",
-      "in": "header",
-      "name": "Ocp-Apim-Subscription-Key"
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
     }
   },
   "tags": [],
@@ -75,8 +75,8 @@
           {
             "name": "resultId",
             "in": "path",
-            "required": true,
             "description": "ID of a batch detection result.",
+            "required": true,
             "type": "string",
             "format": "uuid"
           }
@@ -90,62 +90,20 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ResponseError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
       }
     },
     "/multivariate/models": {
-      "post": {
-        "operationId": "Multivariate_TrainMultivariateModel",
-        "summary": "Train a Multivariate Anomaly Detection Model",
-        "description": "Create and train a multivariate anomaly detection model. The request must\ninclude a source parameter to indicate an externally accessible Azure blob\nstorage URI.There are two types of data input: An URI pointed to an Azure blob\nstorage folder which contains multiple CSV files, and each CSV file contains\ntwo columns, timestamp and variable. Another type of input is an URI pointed to\na CSV file in Azure blob storage, which contains all the variables and a\ntimestamp column.",
-        "parameters": [
-          {
-            "name": "modelInfo",
-            "in": "body",
-            "required": true,
-            "description": "Model information.",
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ModelInfo"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "The request has succeeded and a new resource has been created as a result.",
-            "headers": {
-              "location": {
-                "description": "Location and ID of the model.",
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.AnomalyDetectionModel"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "headers": {
-              "x-ms-error-code": {
-                "description": "Error code.",
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
-            }
-          }
-        }
-      },
       "get": {
         "operationId": "Multivariate_ListMultivariateModels",
         "summary": "List Multivariate Models",
@@ -154,17 +112,17 @@
           {
             "name": "skip",
             "in": "query",
-            "required": false,
             "description": "Skip indicates how many models will be skipped.",
-            "default": 0,
+            "required": false,
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "default": 0
           },
           {
             "name": "top",
             "in": "query",
-            "required": false,
             "description": "Top indicates how many models will be fetched.",
+            "required": false,
             "type": "integer",
             "format": "int32"
           }
@@ -178,54 +136,65 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ResponseError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         },
         "x-ms-pageable": {
           "nextLinkName": "nextLink"
         }
-      }
-    },
-    "/multivariate/models/{modelId}": {
-      "delete": {
-        "operationId": "Multivariate_DeleteMultivariateModel",
-        "summary": "Delete Multivariate Model",
-        "description": "Delete an existing multivariate model according to the modelId",
+      },
+      "post": {
+        "operationId": "Multivariate_TrainMultivariateModel",
+        "summary": "Train a Multivariate Anomaly Detection Model",
+        "description": "Create and train a multivariate anomaly detection model. The request must\ninclude a source parameter to indicate an externally accessible Azure blob\nstorage URI.There are two types of data input: An URI pointed to an Azure blob\nstorage folder which contains multiple CSV files, and each CSV file contains\ntwo columns, timestamp and variable. Another type of input is an URI pointed to\na CSV file in Azure blob storage, which contains all the variables and a\ntimestamp column.",
         "parameters": [
           {
-            "name": "modelId",
-            "in": "path",
+            "name": "modelInfo",
+            "in": "body",
+            "description": "Model information.",
             "required": true,
-            "description": "Model identifier.",
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ModelInfo"
+            }
           }
         ],
         "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful. "
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.AnomalyDetectionModel"
+            },
+            "headers": {
+              "location": {
+                "type": "string",
+                "description": "Location and ID of the model."
+              }
+            }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ResponseError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
-      },
+      }
+    },
+    "/multivariate/models/{modelId}": {
       "get": {
         "operationId": "Multivariate_GetMultivariateModel",
         "summary": "Get Multivariate Model",
@@ -234,8 +203,8 @@
           {
             "name": "modelId",
             "in": "path",
-            "required": true,
             "description": "Model identifier.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -248,14 +217,45 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ResponseError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "Multivariate_DeleteMultivariateModel",
+        "summary": "Delete Multivariate Model",
+        "description": "Delete an existing multivariate model according to the modelId",
+        "parameters": [
+          {
+            "name": "modelId",
+            "in": "path",
+            "description": "Model identifier.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
             "schema": {
               "$ref": "#/definitions/Multivariate.ResponseError"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "description": "Error code.",
+                "type": "string"
+              }
             }
           }
         }
@@ -270,15 +270,15 @@
           {
             "name": "modelId",
             "in": "path",
-            "required": true,
             "description": "Model identifier.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "options",
             "in": "body",
-            "required": true,
             "description": "Request of multivariate anomaly detection.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Multivariate.MultivariateBatchDetectionOptions"
             }
@@ -287,30 +287,30 @@
         "responses": {
           "202": {
             "description": "The request has been accepted for processing, but processing has not yet completed.",
-            "headers": {
-              "operation-id": {
-                "description": "Id of the detection result.",
-                "type": "string"
-              },
-              "operation-location": {
-                "description": "Location of the detection result.",
-                "type": "string"
-              }
-            },
             "schema": {
               "$ref": "#/definitions/Multivariate.MultivariateDetectionResult"
+            },
+            "headers": {
+              "operation-id": {
+                "type": "string",
+                "description": "Id of the detection result."
+              },
+              "operation-location": {
+                "type": "string",
+                "description": "Location of the detection result."
+              }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ResponseError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -325,15 +325,15 @@
           {
             "name": "modelId",
             "in": "path",
-            "required": true,
             "description": "Model identifier.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "options",
             "in": "body",
-            "required": true,
             "description": "Request of last detection.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Multivariate.MultivariateLastDetectionOptions"
             }
@@ -348,14 +348,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Multivariate.ResponseError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Multivariate.ResponseError"
             }
           }
         }
@@ -370,8 +370,8 @@
           {
             "name": "options",
             "in": "body",
-            "required": true,
             "description": "Method of univariate anomaly detection.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Univariate.UnivariateChangePointDetectionOptions"
             }
@@ -386,14 +386,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Univariate.AnomalyDetectorError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Univariate.AnomalyDetectorError"
             }
           }
         }
@@ -408,8 +408,8 @@
           {
             "name": "options",
             "in": "body",
-            "required": true,
             "description": "Method of univariate anomaly detection.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Univariate.UnivariateDetectionOptions"
             }
@@ -424,14 +424,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Univariate.AnomalyDetectorError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Univariate.AnomalyDetectorError"
             }
           }
         }
@@ -446,8 +446,8 @@
           {
             "name": "options",
             "in": "body",
-            "required": true,
             "description": "Method of univariate anomaly detection.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Univariate.UnivariateDetectionOptions"
             }
@@ -462,14 +462,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Univariate.AnomalyDetectorError"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "Error code.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Univariate.AnomalyDetectorError"
             }
           }
         }
@@ -506,6 +506,7 @@
     },
     "Multivariate.AlignPolicy": {
       "type": "object",
+      "description": "An optional field, indicating the manner to align multiple variables.",
       "properties": {
         "alignMode": {
           "$ref": "#/definitions/Multivariate.AlignMode",
@@ -520,16 +521,16 @@
           "format": "float",
           "description": "An optional field. Required when fillNAMethod is Fixed."
         }
-      },
-      "description": "An optional field, indicating the manner to align multiple variables."
+      }
     },
     "Multivariate.AnomalyDetectionModel": {
       "type": "object",
+      "description": "Response of getting a model.",
       "properties": {
         "modelId": {
           "type": "string",
-          "description": "Model identifier.",
           "format": "uuid",
+          "description": "Model identifier.",
           "readOnly": true
         },
         "createdTime": {
@@ -547,7 +548,6 @@
           "description": "Training result of a model including its status, errors and diagnostics\ninformation."
         }
       },
-      "description": "Response of getting a model.",
       "required": [
         "modelId",
         "createdTime",
@@ -556,6 +556,7 @@
     },
     "Multivariate.AnomalyInterpretation": {
       "type": "object",
+      "description": "Interpretation of the anomalous timestamp.",
       "properties": {
         "variable": {
           "type": "string",
@@ -570,11 +571,11 @@
           "$ref": "#/definitions/Multivariate.CorrelationChanges",
           "description": "Correlation changes among the anomalous variables"
         }
-      },
-      "description": "Interpretation of the anomalous timestamp."
+      }
     },
     "Multivariate.AnomalyState": {
       "type": "object",
+      "description": "Anomaly status and information.",
       "properties": {
         "timestamp": {
           "type": "string",
@@ -587,21 +588,20 @@
         },
         "errors": {
           "type": "array",
+          "description": "Error message for the current timestamp.",
           "items": {
             "$ref": "#/definitions/Multivariate.ErrorResponse"
           },
-          "x-ms-identifiers": [],
-          "description": "Error message for the current timestamp.",
-          "x-typespec-name": "Multivariate.ErrorResponse[]"
+          "x-ms-identifiers": []
         }
       },
-      "description": "Anomaly status and information.",
       "required": [
         "timestamp"
       ]
     },
     "Multivariate.AnomalyValue": {
       "type": "object",
+      "description": "Detailed information of the anomalous timestamp.",
       "properties": {
         "isAnomaly": {
           "type": "boolean",
@@ -623,15 +623,13 @@
         },
         "interpretation": {
           "type": "array",
+          "description": "Interpretation of this anomalous timestamp.",
           "items": {
             "$ref": "#/definitions/Multivariate.AnomalyInterpretation"
           },
-          "x-ms-identifiers": [],
-          "description": "Interpretation of this anomalous timestamp.",
-          "x-typespec-name": "Multivariate.AnomalyInterpretation[]"
+          "x-ms-identifiers": []
         }
       },
-      "description": "Detailed information of the anomalous timestamp.",
       "required": [
         "isAnomaly",
         "severity",
@@ -640,17 +638,16 @@
     },
     "Multivariate.CorrelationChanges": {
       "type": "object",
+      "description": "Correlation changes among the anomalous variables",
       "properties": {
         "changedVariables": {
           "type": "array",
+          "description": "The correlated variables that have correlation changes under an anomaly.",
           "items": {
             "type": "string"
-          },
-          "description": "The correlated variables that have correlation changes under an anomaly.",
-          "x-typespec-name": "string[]"
+          }
         }
-      },
-      "description": "Correlation changes among the anomalous variables"
+      }
     },
     "Multivariate.DataSchema": {
       "type": "string",
@@ -678,6 +675,7 @@
     },
     "Multivariate.DiagnosticsInfo": {
       "type": "object",
+      "description": "Diagnostics information to help inspect the states of model or variable.",
       "properties": {
         "modelState": {
           "$ref": "#/definitions/Multivariate.ModelState",
@@ -685,18 +683,17 @@
         },
         "variableStates": {
           "type": "array",
+          "description": "Variable Status.",
           "items": {
             "$ref": "#/definitions/Multivariate.VariableState"
           },
-          "x-ms-identifiers": [],
-          "description": "Variable Status.",
-          "x-typespec-name": "Multivariate.VariableState[]"
+          "x-ms-identifiers": []
         }
-      },
-      "description": "Diagnostics information to help inspect the states of model or variable."
+      }
     },
     "Multivariate.ErrorResponse": {
       "type": "object",
+      "description": "ErrorResponse contains code and message that shows the error information.",
       "properties": {
         "code": {
           "type": "string",
@@ -707,7 +704,6 @@
           "description": "The message explaining the error reported by the service."
         }
       },
-      "description": "ErrorResponse contains code and message that shows the error information.",
       "required": [
         "code",
         "message"
@@ -730,6 +726,7 @@
     },
     "Multivariate.ModelInfo": {
       "type": "object",
+      "description": "Training result of a model including its status, errors and diagnostics\ninformation.",
       "properties": {
         "dataSource": {
           "type": "string",
@@ -769,20 +766,18 @@
         },
         "errors": {
           "type": "array",
+          "description": "Error messages when failed to create a model.",
           "items": {
             "$ref": "#/definitions/Multivariate.ErrorResponse"
           },
-          "x-ms-identifiers": [],
-          "description": "Error messages when failed to create a model.",
-          "x-typespec-name": "Multivariate.ErrorResponse[]",
-          "readOnly": true
+          "readOnly": true,
+          "x-ms-identifiers": []
         },
         "diagnosticsInfo": {
           "$ref": "#/definitions/Multivariate.DiagnosticsInfo",
           "description": "Diagnostics information to help inspect the states of model or variable."
         }
       },
-      "description": "Training result of a model including its status, errors and diagnostics\ninformation.",
       "required": [
         "dataSource",
         "startTime",
@@ -791,15 +786,15 @@
     },
     "Multivariate.ModelList": {
       "type": "object",
+      "description": "Response of listing models.",
       "properties": {
         "models": {
           "type": "array",
+          "description": "List of models.",
           "items": {
             "$ref": "#/definitions/Multivariate.AnomalyDetectionModel"
           },
-          "x-ms-identifiers": [],
-          "description": "List of models.",
-          "x-typespec-name": "Multivariate.AnomalyDetectionModel[]"
+          "x-ms-identifiers": []
         },
         "currentCount": {
           "type": "integer",
@@ -816,7 +811,6 @@
           "description": "The link to fetch more models."
         }
       },
-      "description": "Response of listing models.",
       "required": [
         "models",
         "currentCount",
@@ -825,45 +819,41 @@
     },
     "Multivariate.ModelState": {
       "type": "object",
+      "description": "Model status.",
       "properties": {
         "epochIds": {
           "type": "array",
+          "description": "This indicates the number of passes of the entire training dataset the\nalgorithm has completed.",
           "items": {
             "type": "integer",
             "format": "int32"
-          },
-          "description": "This indicates the number of passes of the entire training dataset the\nalgorithm has completed.",
-          "x-typespec-name": "int32[]"
+          }
         },
         "trainLosses": {
           "type": "array",
+          "description": "List of metrics used to assess how the model fits the training data for each\nepoch.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "List of metrics used to assess how the model fits the training data for each\nepoch.",
-          "x-typespec-name": "float32[]"
+          }
         },
         "validationLosses": {
           "type": "array",
+          "description": "List of metrics used to assess how the model fits the validation set for each\nepoch.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "List of metrics used to assess how the model fits the validation set for each\nepoch.",
-          "x-typespec-name": "float32[]"
+          }
         },
         "latenciesInSeconds": {
           "type": "array",
+          "description": "Latency for each epoch. ",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "Latency for each epoch. ",
-          "x-typespec-name": "float32[]"
+          }
         }
-      },
-      "description": "Model status."
+      }
     },
     "Multivariate.ModelStatus": {
       "type": "string",
@@ -898,6 +888,7 @@
     },
     "Multivariate.MultivariateBatchDetectionOptions": {
       "type": "object",
+      "description": "Detection request for batch inference. This is an asynchronous inference which\nwill need another API to get detection results.",
       "properties": {
         "dataSource": {
           "type": "string",
@@ -919,7 +910,6 @@
           "description": "A required field, indicating the end time of data for detection, which should\nbe date-time of ISO 8601 format."
         }
       },
-      "description": "Detection request for batch inference. This is an asynchronous inference which\nwill need another API to get detection results.",
       "required": [
         "dataSource",
         "topContributorCount",
@@ -929,6 +919,7 @@
     },
     "Multivariate.MultivariateBatchDetectionResultSummary": {
       "type": "object",
+      "description": "Multivariate anomaly detection status.",
       "properties": {
         "status": {
           "$ref": "#/definitions/Multivariate.MultivariateBatchDetectionStatus",
@@ -936,28 +927,25 @@
         },
         "errors": {
           "type": "array",
+          "description": "Error message when detection is failed.",
           "items": {
             "$ref": "#/definitions/Multivariate.ErrorResponse"
           },
-          "x-ms-identifiers": [],
-          "description": "Error message when detection is failed.",
-          "x-typespec-name": "Multivariate.ErrorResponse[]"
+          "x-ms-identifiers": []
         },
         "variableStates": {
           "type": "array",
+          "description": "Variable Status.",
           "items": {
             "$ref": "#/definitions/Multivariate.VariableState"
           },
-          "x-ms-identifiers": [],
-          "description": "Variable Status.",
-          "x-typespec-name": "Multivariate.VariableState[]"
+          "x-ms-identifiers": []
         },
         "setupInfo": {
           "$ref": "#/definitions/Multivariate.MultivariateBatchDetectionOptions",
           "description": "Detection request for batch inference. This is an asynchronous inference which\nwill need another API to get detection results."
         }
       },
-      "description": "Multivariate anomaly detection status.",
       "required": [
         "status",
         "setupInfo"
@@ -996,11 +984,12 @@
     },
     "Multivariate.MultivariateDetectionResult": {
       "type": "object",
+      "description": "Detection results for the given resultId.",
       "properties": {
         "resultId": {
           "type": "string",
-          "description": "Result identifier, which is used to fetch the results of an inference call.",
           "format": "uuid",
+          "description": "Result identifier, which is used to fetch the results of an inference call.",
           "readOnly": true
         },
         "summary": {
@@ -1009,15 +998,13 @@
         },
         "results": {
           "type": "array",
+          "description": "Detection result for each timestamp.",
           "items": {
             "$ref": "#/definitions/Multivariate.AnomalyState"
           },
-          "x-ms-identifiers": [],
-          "description": "Detection result for each timestamp.",
-          "x-typespec-name": "Multivariate.AnomalyState[]"
+          "x-ms-identifiers": []
         }
       },
-      "description": "Detection results for the given resultId.",
       "required": [
         "resultId",
         "summary",
@@ -1026,15 +1013,15 @@
     },
     "Multivariate.MultivariateLastDetectionOptions": {
       "type": "object",
+      "description": "Request of last detection.",
       "properties": {
         "variables": {
           "type": "array",
+          "description": "This contains the inference data, including the name, timestamps(ISO 8601) and\nvalues of variables.",
           "items": {
             "$ref": "#/definitions/Multivariate.VariableValues"
           },
-          "x-ms-identifiers": [],
-          "description": "This contains the inference data, including the name, timestamps(ISO 8601) and\nvalues of variables.",
-          "x-typespec-name": "Multivariate.VariableValues[]"
+          "x-ms-identifiers": []
         },
         "topContributorCount": {
           "type": "integer",
@@ -1042,7 +1029,6 @@
           "description": "An optional field, which is used to specify the number of top contributed\nvariables for one anomalous timestamp in the response. The default number is\n10."
         }
       },
-      "description": "Request of last detection.",
       "required": [
         "variables",
         "topContributorCount"
@@ -1050,30 +1036,29 @@
     },
     "Multivariate.MultivariateLastDetectionResult": {
       "type": "object",
+      "description": "Results of last detection.",
       "properties": {
         "variableStates": {
           "type": "array",
+          "description": "Variable Status.",
           "items": {
             "$ref": "#/definitions/Multivariate.VariableState"
           },
-          "x-ms-identifiers": [],
-          "description": "Variable Status.",
-          "x-typespec-name": "Multivariate.VariableState[]"
+          "x-ms-identifiers": []
         },
         "results": {
           "type": "array",
+          "description": "Anomaly status and information.",
           "items": {
             "$ref": "#/definitions/Multivariate.AnomalyState"
           },
-          "x-ms-identifiers": [],
-          "description": "Anomaly status and information.",
-          "x-typespec-name": "Multivariate.AnomalyState[]"
+          "x-ms-identifiers": []
         }
-      },
-      "description": "Results of last detection."
+      }
     },
     "Multivariate.ResponseError": {
       "type": "object",
+      "description": "Error response",
       "properties": {
         "code": {
           "type": "string",
@@ -1084,7 +1069,6 @@
           "description": "The message explaining the error reported by the service."
         }
       },
-      "description": "Error response",
       "required": [
         "code",
         "message"
@@ -1092,6 +1076,7 @@
     },
     "Multivariate.VariableState": {
       "type": "object",
+      "description": "Variable Status.",
       "properties": {
         "variable": {
           "type": "string",
@@ -1119,11 +1104,11 @@
           "format": "date-time",
           "description": "Last valid timestamp with value of input data."
         }
-      },
-      "description": "Variable Status."
+      }
     },
     "Multivariate.VariableValues": {
       "type": "object",
+      "description": "Variable values.",
       "properties": {
         "variable": {
           "type": "string",
@@ -1131,23 +1116,20 @@
         },
         "timestamps": {
           "type": "array",
+          "description": "Timestamps of last detection request",
           "items": {
             "type": "string"
-          },
-          "description": "Timestamps of last detection request",
-          "x-typespec-name": "string[]"
+          }
         },
         "values": {
           "type": "array",
+          "description": "Values of variables.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "Values of variables.",
-          "x-typespec-name": "float32[]"
+          }
         }
       },
-      "description": "Variable values.",
       "required": [
         "variable",
         "timestamps",
@@ -1156,6 +1138,7 @@
     },
     "Univariate.AnomalyDetectorError": {
       "type": "object",
+      "description": "Error information returned by the API.",
       "properties": {
         "code": {
           "$ref": "#/definitions/Univariate.AnomalyDetectorErrorCodes",
@@ -1165,8 +1148,7 @@
           "type": "string",
           "description": "A message explaining the error reported by the service."
         }
-      },
-      "description": "Error information returned by the API."
+      }
     },
     "Univariate.AnomalyDetectorErrorCodes": {
       "type": "string",
@@ -1287,6 +1269,7 @@
     },
     "Univariate.TimeSeriesPoint": {
       "type": "object",
+      "description": "The definition of input timeseries points.",
       "properties": {
         "timestamp": {
           "type": "string",
@@ -1299,22 +1282,21 @@
           "description": "The measurement of that point, should be float."
         }
       },
-      "description": "The definition of input timeseries points.",
       "required": [
         "value"
       ]
     },
     "Univariate.UnivariateChangePointDetectionOptions": {
       "type": "object",
+      "description": "The request of change point detection.",
       "properties": {
         "series": {
           "type": "array",
+          "description": "Time series data points. Points should be sorted by timestamp in ascending\norder to match the change point detection result.",
           "items": {
             "$ref": "#/definitions/Univariate.TimeSeriesPoint"
           },
-          "x-ms-identifiers": [],
-          "description": "Time series data points. Points should be sorted by timestamp in ascending\norder to match the change point detection result.",
-          "x-typespec-name": "Univariate.TimeSeriesPoint[]"
+          "x-ms-identifiers": []
         },
         "granularity": {
           "$ref": "#/definitions/Univariate.TimeGranularity",
@@ -1341,7 +1323,6 @@
           "description": "Optional argument, advanced model parameter, between 0.0-1.0, the lower the\nvalue is, the larger the trend error will be which means less change point will\nbe accepted."
         }
       },
-      "description": "The request of change point detection.",
       "required": [
         "series",
         "granularity"
@@ -1349,6 +1330,7 @@
     },
     "Univariate.UnivariateChangePointDetectionResult": {
       "type": "object",
+      "description": "The response of change point detection.",
       "properties": {
         "period": {
           "type": "integer",
@@ -1358,35 +1340,32 @@
         },
         "isChangePoint": {
           "type": "array",
+          "description": "isChangePoint contains change point properties for each input point. True means\nan anomaly either negative or positive has been detected. The index of the\narray is consistent with the input series.",
           "items": {
             "type": "boolean"
-          },
-          "description": "isChangePoint contains change point properties for each input point. True means\nan anomaly either negative or positive has been detected. The index of the\narray is consistent with the input series.",
-          "x-typespec-name": "boolean[]"
+          }
         },
         "confidenceScores": {
           "type": "array",
+          "description": "the change point confidence of each point",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "the change point confidence of each point",
-          "x-typespec-name": "float32[]"
+          }
         }
-      },
-      "description": "The response of change point detection."
+      }
     },
     "Univariate.UnivariateDetectionOptions": {
       "type": "object",
+      "description": "The request of entire or last anomaly detection.",
       "properties": {
         "series": {
           "type": "array",
+          "description": "Time series data points. Points should be sorted by timestamp in ascending\norder to match the anomaly detection result. If the data is not sorted\ncorrectly or there is duplicated timestamp, the API will not work. In such\ncase, an error message will be returned.",
           "items": {
             "$ref": "#/definitions/Univariate.TimeSeriesPoint"
           },
-          "x-ms-identifiers": [],
-          "description": "Time series data points. Points should be sorted by timestamp in ascending\norder to match the anomaly detection result. If the data is not sorted\ncorrectly or there is duplicated timestamp, the API will not work. In such\ncase, an error message will be returned.",
-          "x-typespec-name": "Univariate.TimeSeriesPoint[]"
+          "x-ms-identifiers": []
         },
         "granularity": {
           "$ref": "#/definitions/Univariate.TimeGranularity",
@@ -1422,13 +1401,13 @@
           "description": "Used to specify the value to fill, it's used when granularity is not \"none\"\nand imputeMode is \"fixed\"."
         }
       },
-      "description": "The request of entire or last anomaly detection.",
       "required": [
         "series"
       ]
     },
     "Univariate.UnivariateEntireDetectionResult": {
       "type": "object",
+      "description": "The response of entire anomaly detection.",
       "properties": {
         "period": {
           "type": "integer",
@@ -1437,66 +1416,58 @@
         },
         "expectedValues": {
           "type": "array",
+          "description": "ExpectedValues contain expected value for each input point. The index of the\narray is consistent with the input series.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "ExpectedValues contain expected value for each input point. The index of the\narray is consistent with the input series.",
-          "x-typespec-name": "float32[]"
+          }
         },
         "upperMargins": {
           "type": "array",
+          "description": "UpperMargins contain upper margin of each input point. UpperMargin is used to\ncalculate upperBoundary, which equals to expectedValue + (100 -\nmarginScale)*upperMargin. Anomalies in response can be filtered by\nupperBoundary and lowerBoundary. By adjusting marginScale value, less\nsignificant anomalies can be filtered in client side. The index of the array is\nconsistent with the input series.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "UpperMargins contain upper margin of each input point. UpperMargin is used to\ncalculate upperBoundary, which equals to expectedValue + (100 -\nmarginScale)*upperMargin. Anomalies in response can be filtered by\nupperBoundary and lowerBoundary. By adjusting marginScale value, less\nsignificant anomalies can be filtered in client side. The index of the array is\nconsistent with the input series.",
-          "x-typespec-name": "float32[]"
+          }
         },
         "lowerMargins": {
           "type": "array",
+          "description": "LowerMargins contain lower margin of each input point. LowerMargin is used to\ncalculate lowerBoundary, which equals to expectedValue - (100 -\nmarginScale)*lowerMargin. Points between the boundary can be marked as normal\nones in client side. The index of the array is consistent with the input\nseries.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "LowerMargins contain lower margin of each input point. LowerMargin is used to\ncalculate lowerBoundary, which equals to expectedValue - (100 -\nmarginScale)*lowerMargin. Points between the boundary can be marked as normal\nones in client side. The index of the array is consistent with the input\nseries.",
-          "x-typespec-name": "float32[]"
+          }
         },
         "isAnomaly": {
           "type": "array",
+          "description": "IsAnomaly contains anomaly properties for each input point. True means an\nanomaly either negative or positive has been detected. The index of the array\nis consistent with the input series.",
           "items": {
             "type": "boolean"
-          },
-          "description": "IsAnomaly contains anomaly properties for each input point. True means an\nanomaly either negative or positive has been detected. The index of the array\nis consistent with the input series.",
-          "x-typespec-name": "boolean[]"
+          }
         },
         "isNegativeAnomaly": {
           "type": "array",
+          "description": "IsNegativeAnomaly contains anomaly status in negative direction for each input\npoint. True means a negative anomaly has been detected. A negative anomaly\nmeans the point is detected as an anomaly and its real value is smaller than\nthe expected one. The index of the array is consistent with the input series.",
           "items": {
             "type": "boolean"
-          },
-          "description": "IsNegativeAnomaly contains anomaly status in negative direction for each input\npoint. True means a negative anomaly has been detected. A negative anomaly\nmeans the point is detected as an anomaly and its real value is smaller than\nthe expected one. The index of the array is consistent with the input series.",
-          "x-typespec-name": "boolean[]"
+          }
         },
         "isPositiveAnomaly": {
           "type": "array",
+          "description": "IsPositiveAnomaly contain anomaly status in positive direction for each input\npoint. True means a positive anomaly has been detected. A positive anomaly\nmeans the point is detected as an anomaly and its real value is larger than the\nexpected one. The index of the array is consistent with the input series.",
           "items": {
             "type": "boolean"
-          },
-          "description": "IsPositiveAnomaly contain anomaly status in positive direction for each input\npoint. True means a positive anomaly has been detected. A positive anomaly\nmeans the point is detected as an anomaly and its real value is larger than the\nexpected one. The index of the array is consistent with the input series.",
-          "x-typespec-name": "boolean[]"
+          }
         },
         "severity": {
           "type": "array",
+          "description": "The severity score for each input point. The larger the value is, the more\nsever the anomaly is. For normal points, the \"severity\" is always 0.",
           "items": {
             "type": "number",
             "format": "float"
-          },
-          "description": "The severity score for each input point. The larger the value is, the more\nsever the anomaly is. For normal points, the \"severity\" is always 0.",
-          "x-typespec-name": "float32[]"
+          }
         }
       },
-      "description": "The response of entire anomaly detection.",
       "required": [
         "period",
         "expectedValues",
@@ -1509,6 +1480,7 @@
     },
     "Univariate.UnivariateLastDetectionResult": {
       "type": "object",
+      "description": "The response of last anomaly detection.",
       "properties": {
         "period": {
           "type": "integer",
@@ -1553,7 +1525,6 @@
           "description": "The severity score for the last input point. The larger the value is, the more\nsever the anomaly is. For normal points, the \"severity\" is always 0."
         }
       },
-      "description": "The response of last anomaly detection.",
       "required": [
         "period",
         "suggestedWindow",
