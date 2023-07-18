@@ -39,8 +39,8 @@
   "securityDefinitions": {
     "ApiKeyAuth": {
       "type": "apiKey",
-      "in": "header",
-      "name": "Ocp-Apim-Subscription-Key"
+      "name": "Ocp-Apim-Subscription-Key",
+      "in": "header"
     }
   },
   "tags": [],
@@ -59,40 +59,37 @@
             "description": "The request has succeeded.",
             "schema": {
               "type": "object",
+              "description": "Paged collection of Project items",
               "properties": {
                 "value": {
                   "type": "array",
+                  "description": "The Project items on this page",
                   "items": {
                     "$ref": "#/definitions/Project"
                   },
-                  "x-ms-identifiers": [],
-                  "description": "The Project items on this page",
-                  "x-typespec-name": "Project[]"
+                  "x-ms-identifiers": []
                 },
                 "nextLink": {
                   "type": "string",
                   "format": "uri",
-                  "description": "The link to the next page of items",
-                  "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+                  "description": "The link to the next page of items"
                 }
               },
-              "description": "Paged collection of Project items",
               "required": [
                 "value"
-              ],
-              "x-typespec-name": "Azure.Core.Foundations.CustomPage<Project, Azure.Core.(anonymous model)>"
+              ]
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         },
@@ -102,74 +99,6 @@
       }
     },
     "/authoring/analyze-text/projects/{projectName}": {
-      "patch": {
-        "operationId": "Projects_CreateOrUpdate",
-        "description": "Creates a new project or updates an existing one.",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "projectName",
-            "in": "path",
-            "required": true,
-            "description": "The project name.",
-            "type": "string"
-          },
-          {
-            "name": "resource",
-            "in": "body",
-            "required": true,
-            "description": "The resource instance.",
-            "schema": {
-              "$ref": "#/definitions/ProjectUpdate"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The request has succeeded.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Project"
-            }
-          },
-          "201": {
-            "description": "The request has succeeded and a new resource has been created as a result.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
-                "type": "string",
-                "format": "uri"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Project"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "headers": {
-              "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        },
-        "consumes": [
-          "application/merge-patch+json"
-        ]
-      },
       "get": {
         "operationId": "Projects_Get",
         "description": "Gets the details of a project.",
@@ -180,8 +109,8 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -194,14 +123,82 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "Projects_CreateOrUpdate",
+        "description": "Creates a new project or updates an existing one.",
+        "consumes": [
+          "application/merge-patch+json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "projectName",
+            "in": "path",
+            "description": "The project name.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "description": "The resource instance.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProjectUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The request has succeeded.",
+            "schema": {
+              "$ref": "#/definitions/Project"
             },
+            "headers": {
+              "Operation-Location": {
+                "type": "string",
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
+              }
+            }
+          },
+          "201": {
+            "description": "The request has succeeded and a new resource has been created as a result.",
+            "schema": {
+              "$ref": "#/definitions/Project"
+            },
+            "headers": {
+              "Operation-Location": {
+                "type": "string",
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
             "schema": {
               "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
             }
           }
         }
@@ -216,23 +213,17 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "202": {
             "description": "The request has been accepted for processing, but processing has not yet completed.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
-                "type": "string",
-                "format": "uri"
-              }
-            },
             "schema": {
               "type": "object",
+              "description": "Provides status details for long running operations.",
               "properties": {
                 "id": {
                   "type": "string",
@@ -247,24 +238,29 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
-              "description": "Provides status details for long running operations.",
               "required": [
                 "id",
                 "status"
-              ],
-              "x-typespec-name": "Azure.Core.Foundations.OperationStatus<never, Azure.Core.Foundations.Error>"
+              ]
+            },
+            "headers": {
+              "Operation-Location": {
+                "type": "string",
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
+              }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -281,8 +277,8 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
@@ -294,22 +290,22 @@
             "description": "The request has been accepted for processing, but processing has not yet completed.",
             "headers": {
               "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
               }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -326,8 +322,8 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -336,22 +332,22 @@
             "description": "The request has been accepted for processing, but processing has not yet completed.",
             "headers": {
               "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
               }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -368,15 +364,15 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "description": "The body of the request.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/TrainingJobOptions"
             }
@@ -387,22 +383,22 @@
             "description": "The request has been accepted for processing, but processing has not yet completed.",
             "headers": {
               "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
               }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -419,8 +415,8 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -429,40 +425,37 @@
             "description": "The request has succeeded.",
             "schema": {
               "type": "object",
+              "description": "Paged collection of Deployment items",
               "properties": {
                 "value": {
                   "type": "array",
+                  "description": "The Deployment items on this page",
                   "items": {
                     "$ref": "#/definitions/Deployment"
                   },
-                  "x-ms-identifiers": [],
-                  "description": "The Deployment items on this page",
-                  "x-typespec-name": "Deployment[]"
+                  "x-ms-identifiers": []
                 },
                 "nextLink": {
                   "type": "string",
                   "format": "uri",
-                  "description": "The link to the next page of items",
-                  "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+                  "description": "The link to the next page of items"
                 }
               },
-              "description": "Paged collection of Deployment items",
               "required": [
                 "value"
-              ],
-              "x-typespec-name": "Azure.Core.Foundations.CustomPage<Deployment, Azure.Core.(anonymous model)>"
+              ]
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         },
@@ -482,15 +475,15 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "deploymentName",
             "in": "path",
-            "required": true,
             "description": "The name of the deployment.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -503,14 +496,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -525,22 +518,22 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "deploymentName",
             "in": "path",
-            "required": true,
             "description": "The name of the deployment.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "resource",
             "in": "body",
-            "required": true,
             "description": "The resource instance.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/Deployment"
             }
@@ -549,40 +542,40 @@
         "responses": {
           "200": {
             "description": "The request has succeeded.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
-                "type": "string",
-                "format": "uri"
-              }
-            },
             "schema": {
               "$ref": "#/definitions/Deployment"
+            },
+            "headers": {
+              "Operation-Location": {
+                "type": "string",
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
+              }
             }
           },
           "201": {
             "description": "The request has succeeded and a new resource has been created as a result.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
-                "type": "string",
-                "format": "uri"
-              }
-            },
             "schema": {
               "$ref": "#/definitions/Deployment"
+            },
+            "headers": {
+              "Operation-Location": {
+                "type": "string",
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
+              }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -597,30 +590,24 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "deploymentName",
             "in": "path",
-            "required": true,
             "description": "The name of the deployment.",
+            "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "202": {
             "description": "The request has been accepted for processing, but processing has not yet completed.",
-            "headers": {
-              "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
-                "type": "string",
-                "format": "uri"
-              }
-            },
             "schema": {
               "type": "object",
+              "description": "Provides status details for long running operations.",
               "properties": {
                 "id": {
                   "type": "string",
@@ -635,24 +622,29 @@
                   "description": "Error object that describes the error when status is \"Failed\"."
                 }
               },
-              "description": "Provides status details for long running operations.",
               "required": [
                 "id",
                 "status"
-              ],
-              "x-typespec-name": "Azure.Core.Foundations.OperationStatus<never, Azure.Core.Foundations.Error>"
+              ]
+            },
+            "headers": {
+              "Operation-Location": {
+                "type": "string",
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
+              }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -669,22 +661,22 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "deploymentName",
             "in": "path",
-            "required": true,
             "description": "The name of the deployment.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "jobId",
             "in": "path",
-            "required": true,
             "description": "The job ID.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -697,14 +689,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -721,22 +713,22 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "deploymentName",
             "in": "path",
-            "required": true,
             "description": "The name of the deployment.",
+            "required": true,
             "type": "string"
           },
           {
             "name": "jobId",
             "in": "path",
-            "required": true,
             "description": "The job ID.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -749,14 +741,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -773,8 +765,8 @@
           {
             "name": "projectName",
             "in": "path",
-            "required": true,
             "description": "The project name.",
+            "required": true,
             "type": "string"
           },
           {
@@ -786,22 +778,22 @@
             "description": "The request has been accepted for processing, but processing has not yet completed.",
             "headers": {
               "Operation-Location": {
-                "description": "The location for monitoring the operation state.",
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "The location for monitoring the operation state."
               }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -834,14 +826,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         },
@@ -877,14 +869,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         },
@@ -897,6 +889,7 @@
   "definitions": {
     "Azure.Core.Foundations.Error": {
       "type": "object",
+      "description": "The error object.",
       "properties": {
         "code": {
           "type": "string",
@@ -912,19 +905,17 @@
         },
         "details": {
           "type": "array",
+          "description": "An array of details about specific errors that led to this reported error.",
           "items": {
             "$ref": "#/definitions/Azure.Core.Foundations.Error"
           },
-          "x-ms-identifiers": [],
-          "description": "An array of details about specific errors that led to this reported error.",
-          "x-typespec-name": "Azure.Core.Foundations.Error[]"
+          "x-ms-identifiers": []
         },
         "innererror": {
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
           "description": "An object containing more specific information than the current object about the error."
         }
       },
-      "description": "The error object.",
       "required": [
         "code",
         "message"
@@ -932,19 +923,20 @@
     },
     "Azure.Core.Foundations.ErrorResponse": {
       "type": "object",
+      "description": "A response containing error details.",
       "properties": {
         "error": {
           "$ref": "#/definitions/Azure.Core.Foundations.Error",
           "description": "The error object."
         }
       },
-      "description": "A response containing error details.",
       "required": [
         "error"
       ]
     },
     "Azure.Core.Foundations.InnerError": {
       "type": "object",
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.",
       "properties": {
         "code": {
           "type": "string",
@@ -954,8 +946,7 @@
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
           "description": "Inner error."
         }
-      },
-      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses."
+      }
     },
     "Azure.Core.Foundations.OperationState": {
       "type": "string",
@@ -995,6 +986,7 @@
     },
     "Deployment": {
       "type": "object",
+      "description": "The details of a project deployment.",
       "properties": {
         "name": {
           "type": "string",
@@ -1002,13 +994,13 @@
           "readOnly": true
         }
       },
-      "description": "The details of a project deployment.",
       "required": [
         "name"
       ]
     },
     "DeploymentJob": {
       "type": "object",
+      "description": "The details of a deployment job.",
       "properties": {
         "jobId": {
           "type": "string",
@@ -1038,12 +1030,11 @@
         },
         "warnings": {
           "type": "array",
+          "description": "The warnings that were encountered while executing the job.",
           "items": {
             "$ref": "#/definitions/JobWarning"
           },
-          "x-ms-identifiers": [],
-          "description": "The warnings that were encountered while executing the job.",
-          "x-typespec-name": "JobWarning[]"
+          "x-ms-identifiers": []
         },
         "errors": {
           "$ref": "#/definitions/Azure.Core.Foundations.Error",
@@ -1055,7 +1046,6 @@
           "readOnly": true
         }
       },
-      "description": "The details of a deployment job.",
       "required": [
         "jobId",
         "createdDateTime",
@@ -1073,11 +1063,12 @@
     },
     "ExportedProject": {
       "type": "object",
-      "properties": {},
-      "description": "The details of an exported project."
+      "description": "The details of an exported project.",
+      "properties": {}
     },
     "Job": {
       "type": "object",
+      "description": "The details about a job.",
       "properties": {
         "jobId": {
           "type": "string",
@@ -1107,19 +1098,17 @@
         },
         "warnings": {
           "type": "array",
+          "description": "The warnings that were encountered while executing the job.",
           "items": {
             "$ref": "#/definitions/JobWarning"
           },
-          "x-ms-identifiers": [],
-          "description": "The warnings that were encountered while executing the job.",
-          "x-typespec-name": "JobWarning[]"
+          "x-ms-identifiers": []
         },
         "errors": {
           "$ref": "#/definitions/Azure.Core.Foundations.Error",
           "description": "The errors encountered while executing the job."
         }
       },
-      "description": "The details about a job.",
       "required": [
         "jobId",
         "createdDateTime",
@@ -1149,6 +1138,7 @@
     },
     "JobWarning": {
       "type": "object",
+      "description": "Represents a warning that was encountered while executing the request.",
       "properties": {
         "code": {
           "type": "string",
@@ -1159,7 +1149,6 @@
           "description": "The warning message."
         }
       },
-      "description": "Represents a warning that was encountered while executing the request.",
       "required": [
         "code",
         "message"
@@ -1167,54 +1156,51 @@
     },
     "PagedSupportedLanguage": {
       "type": "object",
+      "description": "A collection of SupportedLanguage resources.",
       "properties": {
         "value": {
           "type": "array",
+          "description": "The SupportedLanguage items on this page",
           "items": {
             "$ref": "#/definitions/SupportedLanguage"
           },
-          "x-ms-identifiers": [],
-          "description": "The SupportedLanguage items on this page",
-          "x-typespec-name": "SupportedLanguage[]"
+          "x-ms-identifiers": []
         },
         "nextLink": {
           "type": "string",
           "format": "uri",
-          "description": "The link to the next page of items",
-          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+          "description": "The link to the next page of items"
         }
       },
-      "description": "A collection of SupportedLanguage resources.",
       "required": [
         "value"
       ]
     },
     "PagedTrainingConfigVersion": {
       "type": "object",
+      "description": "A collection of TrainingConfigVersion resources.",
       "properties": {
         "value": {
           "type": "array",
+          "description": "The TrainingConfigVersion items on this page",
           "items": {
             "$ref": "#/definitions/TrainingConfigVersion"
           },
-          "x-ms-identifiers": [],
-          "description": "The TrainingConfigVersion items on this page",
-          "x-typespec-name": "TrainingConfigVersion[]"
+          "x-ms-identifiers": []
         },
         "nextLink": {
           "type": "string",
           "format": "uri",
-          "description": "The link to the next page of items",
-          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+          "description": "The link to the next page of items"
         }
       },
-      "description": "A collection of TrainingConfigVersion resources.",
       "required": [
         "value"
       ]
     },
     "Project": {
       "type": "object",
+      "description": "The details of a project.",
       "properties": {
         "projectName": {
           "type": "string",
@@ -1270,7 +1256,6 @@
           "readOnly": true
         }
       },
-      "description": "The details of a project.",
       "required": [
         "projectName",
         "projectKind",
@@ -1314,13 +1299,14 @@
     },
     "ProjectSettings": {
       "type": "object",
+      "description": "Represents the settings used to define the project behavior.",
       "additionalProperties": {
         "type": "string"
-      },
-      "description": "Represents the settings used to define the project behavior."
+      }
     },
     "ProjectUpdate": {
       "type": "object",
+      "description": "The details of a project.",
       "properties": {
         "projectKind": {
           "$ref": "#/definitions/ProjectKind",
@@ -1346,11 +1332,11 @@
           "type": "string",
           "description": "The project language. This is BCP-47 representation of a language. For example, use \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
         }
-      },
-      "description": "The details of a project."
+      }
     },
     "SupportedLanguage": {
       "type": "object",
+      "description": "Represents a supported language.",
       "properties": {
         "languageName": {
           "type": "string",
@@ -1361,7 +1347,6 @@
           "description": "The language code. This is BCP-47 representation of a language. For example, \"en\" for English, \"en-gb\" for English (UK), \"es\" for Spanish etc."
         }
       },
-      "description": "Represents a supported language.",
       "required": [
         "languageName",
         "languageCode"
@@ -1369,6 +1354,7 @@
     },
     "SwapDeploymentsJob": {
       "type": "object",
+      "description": "The details of a swap deployments job.",
       "properties": {
         "jobId": {
           "type": "string",
@@ -1398,12 +1384,11 @@
         },
         "warnings": {
           "type": "array",
+          "description": "The warnings that were encountered while executing the job.",
           "items": {
             "$ref": "#/definitions/JobWarning"
           },
-          "x-ms-identifiers": [],
-          "description": "The warnings that were encountered while executing the job.",
-          "x-typespec-name": "JobWarning[]"
+          "x-ms-identifiers": []
         },
         "errors": {
           "$ref": "#/definitions/Azure.Core.Foundations.Error",
@@ -1415,7 +1400,6 @@
           "readOnly": true
         }
       },
-      "description": "The details of a swap deployments job.",
       "required": [
         "jobId",
         "createdDateTime",
@@ -1429,6 +1413,7 @@
     },
     "SwapDeploymentsOptions": {
       "type": "object",
+      "description": "Swap deployment options.",
       "properties": {
         "firstDeploymentName": {
           "type": "string",
@@ -1439,7 +1424,6 @@
           "description": "Represents the second deployment name."
         }
       },
-      "description": "Swap deployment options.",
       "required": [
         "firstDeploymentName",
         "secondDeploymentName"
@@ -1447,6 +1431,7 @@
     },
     "TrainingConfigVersion": {
       "type": "object",
+      "description": "Represents a training config version.",
       "properties": {
         "trainingConfigVersion": {
           "type": "string",
@@ -1458,7 +1443,6 @@
           "description": "Represents the training config version expiration date."
         }
       },
-      "description": "Represents a training config version.",
       "required": [
         "trainingConfigVersion",
         "modelExpirationDate"
@@ -1466,13 +1450,13 @@
     },
     "TrainingJobOptions": {
       "type": "object",
+      "description": "Training job parameters.",
       "properties": {
         "modelLabel": {
           "type": "string",
           "description": "The model label."
         }
       },
-      "description": "Training job parameters.",
       "required": [
         "modelLabel"
       ]
@@ -1482,18 +1466,18 @@
     "Azure.Core.Foundations.ApiVersionParameter": {
       "name": "api-version",
       "in": "query",
-      "required": true,
       "description": "The API version to use for this operation.",
-      "x-ms-client-name": "apiVersion",
+      "required": true,
       "type": "string",
       "minLength": 1,
-      "x-ms-parameter-location": "method"
+      "x-ms-parameter-location": "method",
+      "x-ms-client-name": "apiVersion"
     },
     "Azure.Core.MaxPageSizeQueryParameter": {
       "name": "maxpagesize",
       "in": "query",
-      "required": false,
       "description": "The maximum number of result items per page.",
+      "required": false,
       "type": "integer",
       "format": "int32",
       "x-ms-parameter-location": "method"
@@ -1501,18 +1485,18 @@
     "Azure.Core.SkipQueryParameter": {
       "name": "skip",
       "in": "query",
-      "required": false,
       "description": "The number of result items to skip.",
-      "default": 0,
+      "required": false,
       "type": "integer",
       "format": "int32",
+      "default": 0,
       "x-ms-parameter-location": "method"
     },
     "Azure.Core.TopQueryParameter": {
       "name": "top",
       "in": "query",
-      "required": false,
       "description": "The number of result items to return.",
+      "required": false,
       "type": "integer",
       "format": "int32",
       "x-ms-parameter-location": "method"
@@ -1520,16 +1504,16 @@
     "ExportParams": {
       "name": "projectFileVersion",
       "in": "query",
-      "required": true,
       "description": "The project file version.",
+      "required": true,
       "type": "string",
       "x-ms-parameter-location": "method"
     },
     "SwapDeploymentsParams": {
       "name": "body",
       "in": "body",
-      "required": true,
       "description": "The body schema of the operation.",
+      "required": true,
       "schema": {
         "$ref": "#/definitions/SwapDeploymentsOptions"
       },
