@@ -23,11 +23,16 @@ import {
   StartGenerateImageDefaultResponse,
 } from "../rest/index.js";
 import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import {
   GetLongRunningPollerOptions,
   getLongRunningPoller,
 } from "../common/lroImpl.js";
 import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
+  GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
   GetImageOperationStatusOptions,

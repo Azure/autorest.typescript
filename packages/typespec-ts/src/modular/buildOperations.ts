@@ -71,6 +71,19 @@ export function buildOperationFiles(
         namedImports: ["OperationOptions"]
       }
     ]);
+    modelOptionsFile.fixMissingImports();
+    modelOptionsFile
+      .getImportDeclarations()
+      .filter((id) => {
+        return (
+          id.isModuleSpecifierRelative() &&
+          !id.getModuleSpecifierValue().endsWith(".js")
+        );
+      })
+      .map((id) => {
+        id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
+        return id;
+      });
 
     const hasLro = operationGroup.operations.some(
       (o) => isLro(o) || isPagingLro(o)
@@ -86,20 +99,6 @@ export function buildOperationFiles(
         {
           moduleSpecifier: "@azure/core-lro",
           namedImports: ["SimplePollerLike", "OperationState"]
-    modelOptionsFile.fixMissingImports();
-    modelOptionsFile
-      .getImportDeclarations()
-      .filter((id) => {
-        return (
-          id.isModuleSpecifierRelative() &&
-          !id.getModuleSpecifierValue().endsWith(".js")
-        );
-      })
-      .map((id) => {
-        id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
-        return id;
-      });
-
         }
       ]);
     }

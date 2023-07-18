@@ -19,6 +19,7 @@ import {
   ChatCompletions,
   ImageOperationResponse,
 } from "./models/models.js";
+import { SimplePollerLike, OperationState } from "@azure/core-lro";
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
@@ -26,7 +27,6 @@ import {
   GetImageOperationStatusOptions,
   StartGenerateImageOptions,
 } from "./models/options.js";
-import { SimplePollerLike, OperationState } from "@azure/core-lro";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
 

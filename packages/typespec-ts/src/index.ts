@@ -35,7 +35,7 @@ import {
   createSdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
-import { buildLroImpl, buildSharedTypes } from "./modular/buildSharedTypes.js";
+import { buildLroImpl } from "./modular/buildLroImpl.js";
 import { Project, SyntaxKind, TypeFormatFlags } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
