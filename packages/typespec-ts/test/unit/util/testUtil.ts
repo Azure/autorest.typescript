@@ -33,6 +33,7 @@ export async function rlcEmitterFor(
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
+  #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   @service({
     title: "Azure TypeScript Testing",
     ${ignoreClientApiVersion ? "" : 'version: "2022-12-16-preview",'}
