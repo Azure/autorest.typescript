@@ -6,8 +6,9 @@ export {
   OperationStatus,
   PollingOperationState,
   ExportedUser,
+} from "./models.js";
+export {
   CreateOrReplaceOptions,
   DeleteOptions,
   ExportOptions,
-} from "./models/index.js";
-export { StandardClient, StandardClientOptions } from "./StandardClient.js";
+} from "./options.js";

@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { User, OperationStatus, ExportedUser } from "../models/models.js";
 import {
-  StandardContext as Client,
-  isUnexpected,
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
@@ -11,17 +10,23 @@ import {
   DeleteOperationDefaultResponse,
   Export202Response,
   ExportDefaultResponse,
+  isUnexpected,
+  StandardContext as Client,
 } from "../rest/index.js";
-import { StreamableMethod } from "@azure-rest/core-client";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
 import {
   GetLongRunningPollerOptions,
   getLongRunningPoller,
 } from "../common/lroImpl.js";
 import { SimplePollerLike, OperationState } from "@azure/core-lro";
-import { User, OperationStatus, ExportedUser } from "./models.js";
-import { RequestOptions } from "../common/interfaces.js";
-
-export interface CreateOrReplaceOptions extends RequestOptions {}
+import {
+  CreateOrReplaceOptions,
+  DeleteOptions,
+  ExportOptions,
+} from "../models/options.js";
 
 export function _createOrReplaceSend(
   context: Client,
@@ -36,9 +41,7 @@ export function _createOrReplaceSend(
   return context
     .path("/azure/core/lro/standard/users/{name}", name)
     .put({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       body: { role: role },
     });
 }
@@ -80,8 +83,6 @@ export async function beginCreateOrReplace(
   return poller;
 }
 
-export interface DeleteOptions extends RequestOptions {}
-
 export function _deleteOperationSend(
   context: Client,
   name: string,
@@ -91,11 +92,7 @@ export function _deleteOperationSend(
 > {
   return context
     .path("/azure/core/lro/standard/users/{name}", name)
-    .delete({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
-    });
+    .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _deleteOperationDeserialize(
@@ -136,8 +133,6 @@ export async function beginDelete(
   return poller;
 }
 
-export interface ExportOptions extends RequestOptions {}
-
 export function _exportSend(
   context: Client,
   name: string,
@@ -147,9 +142,7 @@ export function _exportSend(
   return context
     .path("/azure/core/lro/standard/users/{name}:export", name)
     .post({
-      allowInsecureConnection: options.requestOptions?.allowInsecureConnection,
-      skipUrlEncoding: options.requestOptions?.skipUrlEncoding,
-      headers: { ...options.requestOptions?.headers },
+      ...operationOptionsToRequestParameters(options),
       queryParameters: { format: format },
     });
 }

@@ -2,20 +2,20 @@
 // Licensed under the MIT license.
 
 import {
-  User,
-  OperationStatus,
-  ExportedUser,
   beginCreateOrReplace,
   beginDelete,
   beginExport,
-  CreateOrReplaceOptions,
-  DeleteOptions,
-  ExportOptions,
   createStandard,
   StandardContext,
   StandardClientOptions,
 } from "./api/index.js";
+import { User, OperationStatus, ExportedUser } from "./models/models.js";
 import { SimplePollerLike, OperationState } from "@azure/core-lro";
+import {
+  CreateOrReplaceOptions,
+  DeleteOptions,
+  ExportOptions,
+} from "./models/options.js";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 
