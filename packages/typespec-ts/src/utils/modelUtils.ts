@@ -168,6 +168,8 @@ export function getSchemaForType(
     return getSchemaForEnum(program, type);
   } else if (type.kind === "Scalar") {
     return getSchemaForScalar(dpgContext, type, relevantProperty);
+  } else if (type.kind === "EnumMember") {
+    return getSchemaForEnumMember(program, type);
   }
   if (isUnknownType(type)) {
     const returnType: any = { type: "unknown" };
@@ -298,18 +300,26 @@ function isOasString(type: Type): boolean {
 function isStringLiteral(type: Type): boolean {
   return (
     type.kind === "String" ||
-    (type.kind === "Union" && type.options.every((o) => o.kind === "String"))
+    (type.kind === "Union" && type.options.every((o) => o.kind === "String")) ||
+    (type.kind === "EnumMember" &&
+      typeof (type.value ?? type.name) === "string")
   );
 }
 
 // Return any string literal values for type
 function getStringValues(type: Type): string[] {
-  if (type.kind === "String") {
-    return [type.value];
-  } else if (type.kind === "Union") {
-    return type.options.flatMap(getStringValues).filter((v) => v);
+  switch (type.kind) {
+    case "String":
+      return [type.value];
+    case "Union":
+      return [...type.variants.values()]
+        .flatMap((x) => getStringValues(x.type))
+        .filter((x) => x !== undefined);
+    case "EnumMember":
+      return typeof type.value !== "number" ? [type.value ?? type.name] : [];
+    default:
+      return [];
   }
-  return [];
 }
 function validateDiscriminator(
   program: Program,
@@ -328,7 +338,11 @@ function validateDiscriminator(
       return false;
     }
     let retval = true;
-    if (!isOasString(prop.type)) {
+    if (
+      !isOasString(prop.type) &&
+      prop.type.kind !== "EnumMember" &&
+      prop.type.kind !== "Enum"
+    ) {
       reportDiagnostic(program, {
         code: "discriminator",
         messageId: "type",
@@ -724,6 +738,13 @@ function applyIntrinsicDecorators(
 
   return newTarget;
 }
+
+function getSchemaForEnumMember(program: Program, e: EnumMember) {
+  const value = e.value ?? e.name;
+  const type = enumMemberType(e) === "string" ? `"${value}"` : `${value}`;
+  return { type, description: getDoc(program, e) };
+}
+
 function getSchemaForEnum(program: Program, e: Enum) {
   const values = [];
   const type = enumMemberType(e.members.values().next().value);
@@ -749,12 +770,13 @@ function getSchemaForEnum(program: Program, e: Enum) {
     }
   }
   return schema;
-  function enumMemberType(member: EnumMember) {
-    if (typeof member.value === "number") {
-      return "number";
-    }
-    return "string";
+}
+
+function enumMemberType(member: EnumMember) {
+  if (typeof member.value === "number") {
+    return "number";
   }
+  return "string";
 }
 /**
  * Map Cadl intrinsic models to open api definitions

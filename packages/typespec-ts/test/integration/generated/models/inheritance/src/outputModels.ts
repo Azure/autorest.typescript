@@ -19,13 +19,13 @@ export interface PetOutput {
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
 export interface FishOutputParent {
   age: number;
-  kind: "Fish" | "shark" | "salmon";
+  kind: string;
 }
 
 /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
 export interface SharkOutputParent extends FishOutputParent {
   kind: "shark";
-  sharktype: "Shark" | "saw" | "goblin";
+  sharktype: string;
 }
 
 /** The third level model SawShark in polymorphic multiple levels inheritance. */

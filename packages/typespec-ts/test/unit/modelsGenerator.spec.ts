@@ -239,28 +239,52 @@ describe("Input/output model type", () => {
       );
     });
 
-    // TODO: Is enum convered to string literals only? Do we need to generate enum instaed?
-    it("should handle enum -> string_literals", async () => {
-      const cadlTypeDefinition = `
-      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-      @fixed
-      @doc("Translation Language Values")
-      enum TranslationLanguageValues {
-        @doc("English descriptions")
-        English,
-        @doc("Chinese descriptions")
-        Chinese,
-      }`;
-      const cadlType = "TranslationLanguageValues";
-      const typeScriptType = `"English" | "Chinese"`;
-      await verifyPropertyType(
-        cadlType,
-        typeScriptType,
-        {
-          additionalCadlDefinition: cadlTypeDefinition
-        },
-        true
-      );
+    describe("fixed enum", () => {
+      it("should handle enum -> string_literals", async () => {
+        const cadlTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          English,
+          @doc("Chinese descriptions")
+          Chinese,
+        }`;
+        const cadlType = "TranslationLanguageValues";
+        const typeScriptType = `"English" | "Chinese"`;
+        await verifyPropertyType(
+          cadlType,
+          typeScriptType,
+          {
+            additionalCadlDefinition: cadlTypeDefinition
+          },
+          true
+        );
+      });
+
+      it("with enum value is xx.xx", async () => {
+        const cadlTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          \`English.Class\`,
+          @doc("Chinese descriptions")
+          \`Chinese.Class\`,
+        }`;
+        const cadlType = "TranslationLanguageValues";
+        const typeScriptType = `"English.Class" | "Chinese.Class"`;
+        await verifyPropertyType(
+          cadlType,
+          typeScriptType,
+          {
+            additionalCadlDefinition: cadlTypeDefinition
+          },
+          true
+        );
+      });
     });
 
     it("should handle type_literals:string -> string_literals", async () => {
@@ -548,7 +572,7 @@ describe("Input/output model type", () => {
           export interface PetOutputParent {
             name: string;
             weight?: number;
-            "kind": "Pet" | "cat" | "dog";
+            "kind": string;
           }
   
           export interface CatOutput extends PetOutputParent {
@@ -609,13 +633,13 @@ describe("Input/output model type", () => {
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
         export interface FishOutputParent {
           age: number;
-          kind: "Fish" | "shark" | "salmon";
+          kind: string;
         }
         
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
         export interface SharkOutputParent extends FishOutputParent {
           kind: "shark";
-          sharktype: "Shark" | "saw" | "goblin";
+          sharktype: string;
         }
         
         /** The third level model SawShark in polymorphic multiple levels inheritance. */
@@ -696,7 +720,7 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelParent {
-            "model.kind": "BaseModel" | "derived";
+            "model.kind": string;
           }
   
           /** This is a base model has discriminator name containing dot. */
@@ -712,12 +736,108 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelOutputParent {
-            "model.kind": "BaseModel" | "derived";
+            "model.kind": string;
           }
   
           /** This is a base model has discriminator name containing dot. */
           export type BaseModelOutput = ${inputModelName}Output;
           `
+        });
+      });
+
+      describe("enum and enum member as discriminator", () => {
+        describe("is string", () => {
+          const typespec = (hasDiscriminator: boolean) => `
+          enum A {
+            AA,
+            BB,
+          }
+          ${hasDiscriminator ? '@discriminator("a")' : ""}
+          model B {
+            a: A,
+          } 
+          model C extends B {
+            a: A.AA,
+          }
+          op read(): { @body body: C };
+          `;
+          it("with @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(true));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutputParent {
+              a: "AA";
+            }
+
+            export interface BOutputParent {
+              a: string;
+            }
+
+            export type BOutput = COutput;`
+            );
+          });
+
+          it("without @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(false));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutput {
+              a: "AA";
+            }
+    
+            export interface BOutput {
+              /** Possible values: AA, BB */
+              a: string;
+            }`
+            );
+          });
+        });
+
+        describe("is number", () => {
+          const typespec = (hasDiscriminator: boolean) => `
+          enum A {
+            AA: 1.1,
+            BB: 2.2,
+          }
+          ${hasDiscriminator ? '@discriminator("a")' : ""}
+          model B {
+            a: A,
+          }
+          model C extends B {
+            a: A.AA,
+          }
+          op read(): { @body body: C };
+          `;
+
+          it("without @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(false));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutput {
+              a: 1.1;
+            }
+    
+            export interface BOutput {
+              /** Possible values: 1.1, 2.2 */
+              a: string;
+            }`
+            );
+          });
         });
       });
     });
