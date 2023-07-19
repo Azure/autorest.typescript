@@ -1,10 +1,10 @@
-export interface CadlRanchConfig {
+export interface TypeSpecRanchConfig {
   outputPath: string;
   inputPath: string;
   debug?: boolean;
 }
 
-export const cadls: CadlRanchConfig[] = [
+export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
@@ -144,5 +144,12 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "azure/core-traits",
     inputPath: "azure/core/traits"
+  }
+];
+
+export const modularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "lro_modular",
+    inputPath: "azure/core/lro/standard"
   }
 ];
