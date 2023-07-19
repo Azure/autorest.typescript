@@ -26,7 +26,7 @@ describe.only("ClientRequestIdClient", () => {
     }
   });
 
-  it("should override client-request-id headers correctly", async () => {
+  it("should set client-request-id header and value if input is provided", async () => {
     try {
       const overrideReqId = "86aede1f-96fa-4e7f-b1e1-bf8a947cb804";
       const result = await client
