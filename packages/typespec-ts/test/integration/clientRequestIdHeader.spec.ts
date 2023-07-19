@@ -14,7 +14,7 @@ describe.only("ClientRequestIdClient", () => {
     });
   });
 
-  it("should set client-request-id headers correctly", async () => {
+  it("should append client-request-id header and value if no any input", async () => {
     try {
       const result = await client
         .path("/special-headers/client-request-id")
