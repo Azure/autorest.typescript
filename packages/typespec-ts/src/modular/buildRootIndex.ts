@@ -7,8 +7,7 @@ export function buildRootIndex(
   project: Project,
   rootIndexFile: SourceFile,
   srcPath: string,
-  subfolder: string,
-  isLast: boolean
+  subfolder: string
 ) {
   const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(
@@ -22,11 +21,7 @@ export function buildRootIndex(
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder);
-
-  if (isLast) {
-    // exportApiIndex(rootIndexFile, srcPath);
-    exportModels(rootIndexFile, project, srcPath);
-  }
+  exportModels(rootIndexFile, project, srcPath, clientName, subfolder, true);
 }
 
 function exportClassicalClient(
@@ -48,20 +43,29 @@ function exportModels(
   indexFile: SourceFile,
   project: Project,
   srcPath: string,
+  clientName: string,
   subfolder: string = "",
-  isSubClient: boolean = false
+  isTopLevel: boolean = false
 ) {
   const modelsFile = project.getSourceFile(
-    `${srcPath}/src/${
-      subfolder !== "" && isSubClient ? subfolder + "/" : ""
-    }models/index.ts`
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/index.ts`
   );
   if (!modelsFile) {
     return;
   }
 
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()];
-  const moduleSpecifier = "./models/index.js";
+  const exported = [...indexFile.getExportedDeclarations().keys()];
+  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(
+    (modelName) => {
+      if (exported.indexOf(modelName) > -1) {
+        return `${modelName} as ${clientName}${modelName}`;
+      }
+      return modelName;
+    }
+  );
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
+  }models/index.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
     namedExports
@@ -90,5 +94,5 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportModels(subClientIndexFile, project, srcPath, subfolder, true);
+  exportModels(subClientIndexFile, project, srcPath, clientName, subfolder);
 }

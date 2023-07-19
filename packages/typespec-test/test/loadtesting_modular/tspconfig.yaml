@@ -14,5 +14,5 @@ options:
     isModularLibrary: true
     packageDetails:
       name: "@azure/load-testing"
-      description: "This package contains Microsoft Azure LoadTestingClient client library."
+      description: This package contains Microsoft Azure LoadTestingClient client library.
       version: 1.0.1

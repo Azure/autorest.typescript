@@ -48,10 +48,7 @@ import {
 } from "./modular/buildRootIndex.js";
 import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
-import {
-  buildSubpathIndexFile,
-  buildSubpathTopLevelIndexFile
-} from "./modular/buildSubpathIndex.js";
+import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
@@ -146,24 +143,6 @@ export async function $onEmit(context: EmitContext) {
         overwrite: true
       }
     );
-    let apiTopLevelIndexFile;
-    let modelsTopLevelIndexFile;
-    if (modularCodeModel.clients.length > 1) {
-      apiTopLevelIndexFile = project.createSourceFile(
-        `${srcPath}/src/api/index.ts`,
-        "",
-        {
-          overwrite: true
-        }
-      );
-      modelsTopLevelIndexFile = project.createSourceFile(
-        `${srcPath}/src/models/index.ts`,
-        "",
-        {
-          overwrite: true
-        }
-      );
-    }
     for (const subClient of modularCodeModel.clients) {
       let subfolder = "";
       if (modularCodeModel.clients.length > 1) {
@@ -189,35 +168,7 @@ export async function $onEmit(context: EmitContext) {
       if (modularCodeModel.clients.length > 1) {
         buildSubClientIndexFile(subClient, project, srcPath, subfolder);
       }
-      if (apiTopLevelIndexFile) {
-        buildSubpathTopLevelIndexFile(
-          project,
-          srcPath,
-          subfolder,
-          apiTopLevelIndexFile,
-          subClient.name + "Client",
-          "api"
-        );
-      }
-      if (modelsTopLevelIndexFile) {
-        buildSubpathTopLevelIndexFile(
-          project,
-          srcPath,
-          subfolder,
-          modelsTopLevelIndexFile,
-          subClient.name + "Client",
-          "models"
-        );
-      }
-      buildRootIndex(
-        subClient,
-        project,
-        rootIndexFile,
-        srcPath,
-        subfolder,
-        subClient ===
-          modularCodeModel.clients[modularCodeModel.clients.length - 1]
-      );
+      buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
     }
 
     emitPackage(project, srcPath, modularCodeModel);

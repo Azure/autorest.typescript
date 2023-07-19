@@ -19,7 +19,7 @@ export function emitPackage(
       codeModel.options?.packageDetails?.name ?? "@msinternal/unamedpackage"
     }`,
     version: "1.0.0-beta.1",
-    description: `"${codeModel.options?.packageDetails?.description}"`,
+    description: `${codeModel.options?.packageDetails?.description}`,
     "sdk-type": "client",
     main: "dist/index.js",
     module: "dist-esm/src/index.js",
@@ -183,6 +183,8 @@ export function emitPackage(
   } as any;
 
   if (codeModel.clients.length > 1) {
+    delete content.exports["./api"];
+    delete content.exports["./models"];
     for (const client of codeModel.clients) {
       const subfolder = normalizeName(
         client.name.replace("Client", ""),

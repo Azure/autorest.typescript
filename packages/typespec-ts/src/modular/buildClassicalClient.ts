@@ -70,9 +70,9 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   importCredential(clientFile);
+  importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(client, clientClass, subfolder);
   importAllApis(clientFile, srcPath, subfolder);
-  importAllModels(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
 }
@@ -118,6 +118,23 @@ function importAllModels(
   clientFile.addImportDeclaration({
     moduleSpecifier: `./models/models.js`,
     namedImports: exported
+  });
+
+  const apiModelsOptions = project.getSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
+  );
+
+  if (!apiModelsOptions) {
+    return;
+  }
+
+  const exportedOptions = [
+    ...apiModelsOptions.getExportedDeclarations().keys()
+  ];
+
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./models/options.js`,
+    namedImports: exportedOptions
   });
 }
 

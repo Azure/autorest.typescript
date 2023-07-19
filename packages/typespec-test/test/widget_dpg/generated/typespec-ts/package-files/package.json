@@ -1,7 +1,7 @@
 {
   "name": "@msinternal/widget_dpg",
   "version": "1.0.0-beta.1",
-  "description": "\"Widget Service\"",
+  "description": "Widget Service",
   "sdk-type": "client",
   "main": "dist/index.js",
   "module": "dist-esm/src/index.js",

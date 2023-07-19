@@ -1,7 +1,7 @@
 {
   "name": "@azure/load-testing",
   "version": "1.0.0-beta.1",
-  "description": "\"This package contains Microsoft Azure LoadTestingClient client library.\"",
+  "description": "This package contains Microsoft Azure LoadTestingClient client library.",
   "sdk-type": "client",
   "main": "dist/index.js",
   "module": "dist-esm/src/index.js",
@@ -12,14 +12,6 @@
       "types": "./types/src/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist-esm/src/index.js"
-    },
-    "./api": {
-      "types": "./types/src/api/index.d.ts",
-      "import": "./dist-esm/src/api/index.js"
-    },
-    "./models": {
-      "types": "./types/src/models/index.d.ts",
-      "import": "./dist-esm/src/models/index.js"
     },
     "./rest": {
       "types": "./types/src/rest/index.d.ts",

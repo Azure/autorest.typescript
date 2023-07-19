@@ -1,7 +1,7 @@
 {
   "name": "@msinternal/openai_modular",
   "version": "1.0.0-beta.1",
-  "description": "\"OpenAI Inference Service\"",
+  "description": "OpenAI Inference Service",
   "sdk-type": "client",
   "main": "dist/index.js",
   "module": "dist-esm/src/index.js",

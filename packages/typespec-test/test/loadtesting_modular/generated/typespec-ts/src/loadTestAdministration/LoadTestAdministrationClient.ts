@@ -3,23 +3,6 @@
 
 import { TokenCredential } from "@azure/core-auth";
 import {
-  createLoadTestAdministration,
-  LoadTestAdministrationClientOptions,
-  AzureLoadTestingContext,
-  createOrUpdateTest,
-  createOrUpdateAppComponents,
-  createOrUpdateServerMetricsConfig,
-  getAppComponents,
-  getServerMetricsConfig,
-  getTest,
-  getTestFile,
-  listTestFiles,
-  listTests,
-  uploadTestFile,
-  deleteTestFile,
-  deleteTest,
-} from "./api/index.js";
-import {
   Test,
   FileInfo,
   TestAppComponents,
@@ -42,6 +25,23 @@ import {
   DeleteTestFileOptions,
   DeleteTestOptions,
 } from "./models/options.js";
+import {
+  createLoadTestAdministration,
+  LoadTestAdministrationClientOptions,
+  AzureLoadTestingContext,
+  createOrUpdateTest,
+  createOrUpdateAppComponents,
+  createOrUpdateServerMetricsConfig,
+  getAppComponents,
+  getServerMetricsConfig,
+  getTest,
+  getTestFile,
+  listTestFiles,
+  listTests,
+  uploadTestFile,
+  deleteTestFile,
+  deleteTest,
+} from "./api/index.js";
 
 export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministrationContext.js";
 
