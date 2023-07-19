@@ -12,6 +12,11 @@ export interface RLCModel {
   importSet?: Map<ImportKind, Set<string>>;
   helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
+  telemetryOptions?: TelemetryOptions;
+}
+
+export interface TelemetryOptions {
+  customRequestIdHeaderName?: string;
 }
 
 export interface PathTemplateApiVersion {

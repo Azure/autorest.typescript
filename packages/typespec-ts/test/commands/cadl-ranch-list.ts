@@ -6,6 +6,11 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "headers/clientRequestId",
+    inputPath: "special-headers/client-request-id",
+    debug: true
+  },
+  {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
   },

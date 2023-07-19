@@ -3,7 +3,9 @@
 
 import {
   SdkClient,
-  SdkContext
+  SdkContext,
+  listOperationGroups,
+  listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
@@ -19,8 +21,8 @@ import {
   SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@typespec/compiler";
-import { getServers } from "@typespec/http";
+import { Program, getDoc, ignoreDiagnostics } from "@typespec/compiler";
+import { HttpOperation, getHttpOperation, getServers } from "@typespec/http";
 import { join } from "path";
 import {
   getDefaultService,
@@ -37,6 +39,7 @@ import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
+import { TelemetryOptions } from "@azure-tools/rlc-common";
 
 export interface RLCSdkContext extends SdkContext {
   options?: RLCOptions;
@@ -90,8 +93,9 @@ export async function transformRLCModel(
   const helperDetails = transformHelperFunctionDetails(client, dpgContext);
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
-  const urlInfo = transformUrlInfo(program, dpgContext);
+  const urlInfo = transformUrlInfo(dpgContext);
   const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
+  const telemetryOptions = transformTelemetryOptions(dpgContext, client);
   return {
     srcPath,
     libraryName,
@@ -103,14 +107,74 @@ export async function transformRLCModel(
     apiVersionInfo,
     parameters,
     helperDetails,
-    urlInfo
+    urlInfo,
+    telemetryOptions
   };
 }
 
-export function transformUrlInfo(
-  program: Program,
-  dpgContext: SdkContext
-): UrlInfo | undefined {
+function transformTelemetryOptions(
+  dpgContext: SdkContext,
+  client: SdkClient
+): TelemetryOptions | undefined {
+  const customRequestIdHeaderName = getFirstCustomRequestHeaderName(
+    dpgContext,
+    client
+  );
+  if (customRequestIdHeaderName) {
+    return {
+      customRequestIdHeaderName
+    };
+  }
+  return undefined;
+}
+
+function getFirstCustomRequestHeaderName(
+  dpgContext: SdkContext,
+  client: SdkClient
+) {
+  const program = dpgContext.program;
+  const operationGroups = listOperationGroups(dpgContext, client);
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
+    for (const op of operations) {
+      const headerName = getCustomRequestHeader(
+        ignoreDiagnostics(getHttpOperation(program, op))
+      );
+      if (headerName != undefined) {
+        return headerName;
+      }
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const headerName = getCustomRequestHeader(
+      ignoreDiagnostics(getHttpOperation(program, clientOp))
+    );
+    if (headerName != undefined) {
+      return headerName;
+    }
+  }
+  return undefined;
+}
+
+function getCustomRequestHeader(route: HttpOperation): string | undefined {
+  const CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
+  const params = route.parameters.parameters.filter(
+    (p) =>
+      p.type === "header" && p.name.toLowerCase() === CUSTOM_REQUEST_HEADER_NAME
+  );
+  if (params.length > 0) {
+    return CUSTOM_REQUEST_HEADER_NAME;
+  }
+
+  return undefined;
+}
+
+export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
+  const program = dpgContext.program;
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
