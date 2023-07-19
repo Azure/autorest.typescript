@@ -8,5 +8,4 @@ options:
     isModularLibrary: true
     "emitter-output-dir": "{project-root}/generated"
     packageDetails:
-      name: "@msinternal/lro-modular"
-      description: "LRO modular Inference Service"
+      name: "@msinternal/modular-model-usage"

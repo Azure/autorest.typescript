@@ -149,7 +149,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
 
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
-    outputPath: "lro_modular",
-    inputPath: "azure/core/lro/standard"
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];
