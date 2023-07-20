@@ -13,10 +13,6 @@
       "require": "./dist/index.cjs",
       "import": "./dist-esm/src/index.js"
     },
-    "./rest": {
-      "types": "./types/src/rest/index.d.ts",
-      "import": "./dist-esm/src/rest/index.js"
-    },
     "./loadTestAdministration": {
       "types": "./types/src/loadTestAdministration/index.d.ts",
       "import": "./dist-esm/src/loadTestAdministration/index.js"

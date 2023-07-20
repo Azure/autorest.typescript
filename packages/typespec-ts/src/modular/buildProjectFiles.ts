@@ -41,10 +41,6 @@ export function emitPackage(
         types: "./types/src/models/index.d.ts",
         import: "./dist-esm/src/models/index.js"
       },
-      "./rest": {
-        types: "./types/src/rest/index.d.ts",
-        import: "./dist-esm/src/rest/index.js"
-      }
     },
     "//metadata": {
       constantPaths: [
