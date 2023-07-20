@@ -150,6 +150,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
-    inputPath: "type/model/usage"
+    inputPath: "type/model/usage",
+    debug: true
   }
 ];
