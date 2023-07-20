@@ -11,7 +11,6 @@ export interface UsageClientOptions extends ClientOptions {}
 
 /** Illustrates usage of Record in different places(Operation parameters, return type or both). */
 export function createUsage(options: UsageClientOptions = {}): UsageContext {
-  const baseUrl = endpoint;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(options);
   return clientContext;
 }
