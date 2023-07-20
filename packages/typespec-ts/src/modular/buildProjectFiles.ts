@@ -40,7 +40,7 @@ export function emitPackage(
       "./models": {
         types: "./types/src/models/index.d.ts",
         import: "./dist-esm/src/models/index.js"
-      },
+      }
     },
     "//metadata": {
       constantPaths: [
