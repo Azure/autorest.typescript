@@ -293,11 +293,11 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             continueOnError: true
           - publish: $(CADL_TESTSERVER_COVERAGE_RLC_REPORT)
-            artifact: CoverageReport
+            artifact: RLCCoverageReport
             displayName: "Publish rlc coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
           - publish: $(CADL_TESTSERVER_COVERAGE_MODULAR_REPORT)
-            artifact: CoverageReport
+            artifact: ModularCoverageReport
             displayName: "Publish modular coverage report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq( variables['Agent.OS'], 'Linux'))
           - ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))}}:
