@@ -21,9 +21,15 @@ function getRLCResponseType(operation: Operation) {
     new Set(operation.responses.flatMap((r) => r.statusCodes)).values()
   );
 
-  statusCodes.push("Default");
+  if (hasRLCDefaultResponse(operation)) {
+    statusCodes.push("Default");
+  }
 
   return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
+}
+
+function hasRLCDefaultResponse(operation: Operation) {
+  return operation.exceptions.length > 0;
 }
 
 export function getSendPrivateFunction(
@@ -84,7 +90,9 @@ export function getDeserializePrivateFunction(
     returnType: `Promise<${returnType.type}>`
   };
   const statements: string[] = [];
-  statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+  if (hasRLCDefaultResponse(operation)) {
+    statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+  }
 
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
@@ -99,6 +107,9 @@ export function getDeserializePrivateFunction(
       `}`
     );
   } else if (returnType.type === "void") {
+    if (statements.length === 0) {
+      statements.push(`result;`);
+    }
     statements.push(`return;`);
   } else {
     statements.push(`return result.body;`);

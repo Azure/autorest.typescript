@@ -22,7 +22,7 @@ export function _inputSend(
   context: Client,
   requiredProp: string,
   options: InputOptions = { requestOptions: {} }
-): StreamableMethod<Input204Response | InputDefaultResponse> {
+): StreamableMethod<Input204Response> {
   return context
     .path("/type/model/usage/input")
     .post({
@@ -32,12 +32,9 @@ export function _inputSend(
 }
 
 export async function _inputDeserialize(
-  result: Input204Response | InputDefaultResponse
+  result: Input204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
+  result;
   return;
 }
 
@@ -54,19 +51,15 @@ export async function input(
 export function _outputSend(
   context: Client,
   options: OutputOptions = { requestOptions: {} }
-): StreamableMethod<Output200Response | OutputDefaultResponse> {
+): StreamableMethod<Output200Response> {
   return context
     .path("/type/model/usage/output")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _outputDeserialize(
-  result: Output200Response | OutputDefaultResponse
+  result: Output200Response
 ): Promise<OutputRecord> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     requiredProp: result.body["requiredProp"],
   };
@@ -85,7 +78,7 @@ export function _inputAndOutputSend(
   context: Client,
   requiredProp: string,
   options: InputAndOutputOptions = { requestOptions: {} }
-): StreamableMethod<InputAndOutput200Response | InputAndOutputDefaultResponse> {
+): StreamableMethod<InputAndOutput200Response> {
   return context
     .path("/type/model/usage/input-output")
     .post({
@@ -95,12 +88,8 @@ export function _inputAndOutputSend(
 }
 
 export async function _inputAndOutputDeserialize(
-  result: InputAndOutput200Response | InputAndOutputDefaultResponse
+  result: InputAndOutput200Response
 ): Promise<InputOutputRecord> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     requiredProp: result.body["requiredProp"],
   };
