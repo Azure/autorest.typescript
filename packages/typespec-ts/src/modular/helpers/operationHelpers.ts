@@ -129,7 +129,15 @@ function getOperationSignatureParameters(
       bodyArray.clientName,
       buildType(bodyArray.clientName, bodyArray.type)
     );
-  }
+  } else if (operation.bodyParameter?.type.type === "byte-array") {
+    parameters.set(
+      operation.bodyParameter.clientName,
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type
+      )
+    );
+  } 
 
   operation.parameters
     .filter(
@@ -527,7 +535,8 @@ function deserializeResponseValue(type: Type, restValue: string): string {
       } else {
         return restValue;
       }
-
+    case "byte-array":
+      return `stringToUint8Array(${restValue} ?? "", "${type.format ?? "base64"}")`;
     default:
       return restValue;
   }

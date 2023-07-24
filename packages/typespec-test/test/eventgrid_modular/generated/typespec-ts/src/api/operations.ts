@@ -167,7 +167,7 @@ export async function _receiveCloudEventsDeserialize(
         id: p.event["id"],
         source: p.event["source"],
         data: p.event["data"],
-        dataBase64: p.event["data_base64"],
+        dataBase64: stringToUint8Array(p.event["data_base64"] ?? "", "base64"),
         type: p.event["type"],
         time: new Date(p.event["time"] ?? ""),
         specversion: p.event["specversion"],

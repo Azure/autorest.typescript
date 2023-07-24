@@ -36,7 +36,8 @@ import {
   Type,
   IntrinsicType,
   getProjectedName,
-  isNullType
+  isNullType,
+  getEncode
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -936,11 +937,12 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion) {
 }
 
 function emitStdScalar(
+  program: Program,
   scalar: Scalar & { name: IntrinsicScalarName }
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "Uint8Array", format: "byte" };
+      return { type: "byte-array", format: getEncode(program,  scalar) };
     case "int8":
     case "int16":
     case "int32":
@@ -1035,7 +1037,7 @@ function applyIntrinsicDecorators(
 function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
   let result: Record<string, any> = {};
   if (program.checker.isStdType(scalar)) {
-    result = emitStdScalar(scalar);
+    result = emitStdScalar(program, scalar);
   } else if (scalar.baseScalar) {
     result = emitScalar(program, scalar.baseScalar);
   }
