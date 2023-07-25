@@ -1,17 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  listWidgets,
-  getWidget,
-  createWidget,
-  updateWidget,
-  deleteWidget,
-  analyzeWidget,
-  createWidgetService,
-  WidgetServiceContext,
-  WidgetServiceClientOptions,
-} from "./api/index.js";
 import { Widget, ColorType, AnalyzeResult } from "./models/models.js";
 import {
   ListWidgetsOptions,
@@ -21,6 +10,17 @@ import {
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
 } from "./models/options.js";
+import {
+  listWidgets,
+  getWidget,
+  createWidget,
+  updateWidget,
+  deleteWidget,
+  analyzeWidget,
+  createWidgetService,
+  WidgetServiceClientOptions,
+  WidgetServiceContext,
+} from "./api/index.js";
 
 export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 

@@ -75,6 +75,7 @@ export function transformToResponseTypes(
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(dpgContext, route),
       operationName: getOperationName(program, route.operation),
+      path: route.path,
       responses: []
     };
     for (const resp of route.responses) {

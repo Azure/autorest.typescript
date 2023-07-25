@@ -232,6 +232,7 @@ export interface ParameterMetadata {
 export interface OperationResponse {
   operationGroup: string;
   operationName: string;
+  path: string;
   responses: ResponseMetadata[];
 }
 export interface ResponseMetadata {

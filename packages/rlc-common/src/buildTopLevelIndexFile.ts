@@ -16,11 +16,14 @@ export function buildTopLevelIndex(model: RLCModel) {
   }
   const project = new Project();
   const { srcPath } = model;
-  const { multiClient, batch } = model.options;
+  const { multiClient } = model.options;
+  const batch = model.options.batch;
   if (srcPath) {
     const clientName = model.libraryName;
     const moduleName = normalizeName(clientName, NameType.File);
-    const relativePath = "./" + getRelativePartFromSrcPath(srcPath);
+    const relativePath =
+      "./" +
+      getRelativePartFromSrcPath(srcPath, model.options.isModularLibrary);
     batchOutputFolder.push([relativePath, clientName, moduleName]);
   }
   if (

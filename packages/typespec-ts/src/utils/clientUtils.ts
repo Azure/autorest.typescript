@@ -16,3 +16,7 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
     };
   });
 }
+
+export function isRLCMultiEndpoint(dpgContext: SdkContext): boolean {
+  return getRLCClients(dpgContext).length > 1;
+}

@@ -7,6 +7,8 @@ import {
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -14,9 +16,12 @@ import { Client, Operation } from "./modularCodeModel.js";
  * file called operations.ts where all operations are generated.
  */
 export function buildOperationFiles(
+  dpgContext: SdkContext,
   client: Client,
   project: Project,
-  srcPath: string = "src"
+  srcPath: string = "src",
+  subfolder: string = "",
+  needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
     const fileName = operationGroup.className
@@ -26,17 +31,56 @@ export function buildOperationFiles(
         "operations";
 
     const operationGroupFile = project.createSourceFile(
-      `${srcPath}/src/api/${fileName}.ts`
+      `${srcPath}/src/${
+        subfolder && subfolder !== "" ? subfolder + "/" : ""
+      }api/${fileName}.ts`
     );
 
+    // Import models used from ./models.ts
+    // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
+    importModels(srcPath, operationGroupFile, project, subfolder);
+
+    const namedImports: string[] = [];
+    let clientType = "Client";
+    if (isRLCMultiEndpoint(dpgContext)) {
+      namedImports.push(`Client`);
+      clientType = `Client.${client.rlcClientName}`;
+      if (needUnexpectedHelper) {
+        namedImports.push("UnexpectedHelper");
+      }
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: `../../rest/${subfolder}/index.js`,
+          namedImports
+        }
+      ]);
+    } else {
+      if (needUnexpectedHelper) {
+        namedImports.push("isUnexpected");
+      }
+      const rlcClientName = client.rlcClientName;
+      namedImports.push(`${rlcClientName} as Client`);
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: `${
+            subfolder && subfolder !== "" ? "../" : ""
+          }../rest/index.js`,
+          namedImports
+        }
+      ]);
+    }
     const modelOptionsFile = project.createSourceFile(
-      `${srcPath}/src/models/options.ts`
+      `${srcPath}/src/${subfolder}/models/options.ts`
     );
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, modelOptionsFile);
-      const operationDeclaration = getOperationFunction(o);
-      const sendOperationDeclaration = getSendPrivateFunction(o);
-      const deserializeOperationDeclaration = getDeserializePrivateFunction(o);
+      const operationDeclaration = getOperationFunction(o, clientType);
+      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const deserializeOperationDeclaration = getDeserializePrivateFunction(
+        o,
+        isRLCMultiEndpoint(dpgContext),
+        needUnexpectedHelper
+      );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
         deserializeOperationDeclaration,
@@ -44,16 +88,6 @@ export function buildOperationFiles(
       ]);
     });
 
-    // Import models used from ./models.ts
-    // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(srcPath, operationGroupFile, project);
-
-    operationGroupFile.addImportDeclarations([
-      {
-        moduleSpecifier: "../rest/index.js",
-        namedImports: [`${client.name}Context as Client`]
-      }
-    ]);
     operationGroupFile.addImportDeclarations([
       {
         moduleSpecifier: "@azure-rest/core-client",
@@ -93,9 +127,14 @@ export function buildOperationFiles(
 function importModels(
   srcPath: string,
   sourceFile: SourceFile,
-  project: Project
+  project: Project,
+  subfolder: string = ""
 ) {
-  const modelsFile = project.getSourceFile(`${srcPath}/src/models/models.ts`);
+  const modelsFile = project.getSourceFile(
+    `${srcPath}/src/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }models/models.ts`
+  );
   const models: string[] = [];
 
   for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
