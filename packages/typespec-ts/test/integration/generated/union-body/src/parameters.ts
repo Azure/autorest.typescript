@@ -4,8 +4,10 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { RequestRegisterCC, RequestRegisterVA } from "./models";
 
-export interface RegistrationBodyParam {
+export interface RequestUnionBodyBodyParam {
   body: RequestRegisterCC | RequestRegisterVA;
 }
 
-export type RegistrationParameters = RegistrationBodyParam & RequestParameters;
+export type RequestUnionBodyParameters = RequestUnionBodyBodyParam &
+  RequestParameters;
+export type ResponseUnionBodyParameters = RequestParameters;

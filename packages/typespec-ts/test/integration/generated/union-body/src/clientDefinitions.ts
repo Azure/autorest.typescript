@@ -1,19 +1,33 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RegistrationParameters } from "./parameters";
-import { Registration200Response } from "./responses";
+import {
+  RequestUnionBodyParameters,
+  ResponseUnionBodyParameters,
+} from "./parameters";
+import {
+  RequestUnionBody200Response,
+  ResponseUnionBody200Response,
+} from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface Registration {
+export interface RequestUnionBody {
   post(
-    options: RegistrationParameters
-  ): StreamableMethod<Registration200Response>;
+    options: RequestUnionBodyParameters
+  ): StreamableMethod<RequestUnionBody200Response>;
+}
+
+export interface ResponseUnionBody {
+  get(
+    options?: ResponseUnionBodyParameters
+  ): StreamableMethod<ResponseUnionBody200Response>;
 }
 
 export interface Routes {
-  /** Resource for '/registration' has methods for the following verbs: post */
-  (path: "/registration"): Registration;
+  /** Resource for '/request-union-body' has methods for the following verbs: post */
+  (path: "/request-union-body"): RequestUnionBody;
+  /** Resource for '/response-union-body' has methods for the following verbs: get */
+  (path: "/response-union-body"): ResponseUnionBody;
 }
 
 export type UnionBodyClient = Client & {

@@ -19,10 +19,18 @@ model RequestRegisterVA {
   prop: string;
 }
 
+model ReturnResponse {
+  @body body: RequestRegisterCC | RequestRegisterVA
+}
+
 @service({})
 @route("/")
 namespace NicepayPlatform {
   @post
-  @route("/registration")
-  op Registration(@body request: RequestRegisterCC | RequestRegisterVA): {};
+  @route("/request-union-body")
+  op requestUnionBody(@body request: RequestRegisterCC | RequestRegisterVA): {};
+
+  @get
+  @route("/response-union-body")
+  op responseUnionBody(): ReturnResponse;
 }
