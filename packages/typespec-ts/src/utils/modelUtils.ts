@@ -823,9 +823,7 @@ function mapCadlStdTypeToTypeScript(
             schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
           }
         } else {
-          schema.typeName = `Record<string, ${
-            valueType.typeName ?? valueType.type
-          }>`;
+          schema.typeName = `Record<string, ${getTypeName(valueType, usage)}>`;
         }
       } else if (name === "integer") {
         schema = {

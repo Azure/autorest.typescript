@@ -47,7 +47,7 @@ export type Float32ValuePutParameters = Float32ValuePutBodyParam &
 export type DatetimeValueGetParameters = RequestParameters;
 
 export interface DatetimeValuePutBodyParam {
-  body: Record<string, string>;
+  body: Record<string, Date | string>;
 }
 
 export type DatetimeValuePutParameters = DatetimeValuePutBodyParam &
