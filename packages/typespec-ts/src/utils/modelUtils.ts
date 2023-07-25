@@ -264,10 +264,12 @@ function getSchemaForUnion(
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
     } else if (union.expression && !union.name) {
-      schema.type = unionAlias;
+      schema.type = "union";
+      schema.typeName = unionAlias;
       schema.outputTypeName = outputUnionAlias;
     } else {
-      schema.type = union.name ?? unionAlias;
+      schema.type = "union";
+      schema.typeName = union.name ?? unionAlias;
     }
   }
 
@@ -821,7 +823,9 @@ function mapCadlStdTypeToTypeScript(
             schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
           }
         } else {
-          schema.typeName = `Record<string, ${valueType.type}>`;
+          schema.typeName = `Record<string, ${
+            valueType.typeName ?? valueType.type
+          }>`;
         }
       } else if (name === "integer") {
         schema = {
@@ -844,6 +848,8 @@ function mapCadlStdTypeToTypeScript(
           if (schema.items.typeName) {
             if (schema.items.type === "dictionary") {
               schema.typeName = `${schema.items.typeName}[]`;
+            } else if (schema.items.type === "union") {
+              schema.typeName = `(${schema.items.typeName})[]`;
             } else {
               schema.typeName = schema.items.typeName
                 .split("|")
@@ -1053,6 +1059,10 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
       const importName = getDictionaryValueName(schema as DictionarySchema);
       return importName ? [importName] : undefined;
     }
+    case "union":
+      return (schema as any).enum
+        .filter((i: Schema) => i.type === "object")
+        .map((i: Schema) => getPriorityName(i) ?? "");
     default:
       return;
   }
