@@ -3,11 +3,12 @@ import { Project } from "ts-morph";
 export function buildSubpathIndexFile(
   project: Project,
   srcPath: string,
-  subpath: string
+  subpath: string,
+  subfolder: string
 ) {
-  const apiFiles = project.getSourceFiles(`**/src/${subpath}/**`);
+  const apiFiles = project.getSourceFiles(`**/src/${subfolder}/${subpath}/**`);
   const indexFile = project.createSourceFile(
-    `${srcPath}/src/${subpath}/index.ts`
+    `${srcPath}/src/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
     const exports = [...file.getExportedDeclarations().keys()].filter(

@@ -1,7 +1,7 @@
 {
   "name": "@msinternal/eventgrid",
   "version": "1.0.0-beta.1",
-  "description": "\"Azure EventGrid\"",
+  "description": "Azure EventGrid",
   "sdk-type": "client",
   "main": "dist/index.js",
   "module": "dist-esm/src/index.js",
@@ -20,10 +20,6 @@
     "./models": {
       "types": "./types/src/models/index.d.ts",
       "import": "./dist-esm/src/models/index.js"
-    },
-    "./rest": {
-      "types": "./types/src/rest/index.d.ts",
-      "import": "./dist-esm/src/rest/index.js"
     }
   },
   "//metadata": {

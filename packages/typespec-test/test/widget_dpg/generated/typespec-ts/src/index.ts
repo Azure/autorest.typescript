@@ -2,6 +2,10 @@
 // Licensed under the MIT license.
 
 export {
+  WidgetServiceClient,
+  WidgetServiceClientOptions,
+} from "./WidgetServiceClient.js";
+export {
   Widget,
   ColorType,
   AnalyzeResult,
@@ -12,7 +16,3 @@ export {
   DeleteWidgetOptions,
   AnalyzeWidgetOptions,
 } from "./models/index.js";
-export {
-  WidgetServiceClient,
-  WidgetServiceClientOptions,
-} from "./WidgetServiceClient.js";

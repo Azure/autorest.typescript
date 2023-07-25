@@ -11,6 +11,6 @@ export {
 } from "./operations.js";
 export {
   createWidgetService,
-  WidgetServiceContext,
   WidgetServiceClientOptions,
+  WidgetServiceContext,
 } from "./WidgetServiceContext.js";
