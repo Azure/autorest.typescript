@@ -7,8 +7,7 @@ export interface CadlRanchConfig {
 export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "union-body",
-    inputPath: "union-body",
-    debug: true
+    inputPath: "union-body"
   },
   {
     outputPath: "headers/repeatability",
