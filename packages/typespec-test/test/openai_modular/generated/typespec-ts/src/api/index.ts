@@ -10,6 +10,6 @@ export {
   getEmbeddings,
   getCompletions,
   getChatCompletions,
-  getImageOperationStatus,
-  startGenerateImage,
+  getAzureBatchImageGenerationOperationStatus,
+  beginAzureBatchImageGeneration,
 } from "./operations.js";

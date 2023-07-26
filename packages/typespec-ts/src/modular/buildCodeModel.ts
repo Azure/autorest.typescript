@@ -254,6 +254,9 @@ function processModelProperties(
     ) {
       continue;
     }
+    if (!Boolean(newValue.properties)) {
+      newValue.properties = [];
+    }
     newValue.properties.push(emitProperty(context, property));
   }
   // need to do discriminator outside `emitModel` to avoid infinite recursion
