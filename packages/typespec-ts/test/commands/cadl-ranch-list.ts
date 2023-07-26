@@ -55,7 +55,6 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "dictionary",
-    inputPath: "type/dictionary",
      inputPath: "type/dictionary"
   },
   {
