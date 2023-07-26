@@ -247,7 +247,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
     packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
-    packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.3.8";
+    packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
