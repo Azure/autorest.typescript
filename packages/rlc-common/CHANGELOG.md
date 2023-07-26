@@ -5,7 +5,6 @@
 - [Feature] Add `models` subpath for Modular package, Please refer to pr [#1915](https://github.com/Azure/autorest.typescript/pull/1915).
 - [Feature] Enable a flag to take interface name as operation group, Please refer to pr [#1911](https://github.com/Azure/autorest.typescript/pull/1911).
 - [Bugfix] Fix the generation failure when the request and response body is union type, Please refer to pr [#1935](https://github.com/Azure/autorest.typescript/pull/1935).
-- [Bugfix] Fix the generation failure when the properties is undefined, Please refer to pr [#1936](https://github.com/Azure/autorest.typescript/pull/1936).
 
 ## 0.13.4 (2023-06-30)
 
