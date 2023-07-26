@@ -56,7 +56,7 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "dictionary",
     inputPath: "type/dictionary",
-    debug: true
+     inputPath: "type/dictionary"
   },
   {
     outputPath: "enums/extensible",
