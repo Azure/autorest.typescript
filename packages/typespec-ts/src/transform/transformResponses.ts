@@ -222,7 +222,7 @@ function transformLroLogicalResponse(
   }
   const sortedResponses = existingResponses
     .filter((r) => r.statusCode.startsWith("20"))
-    .sort((r1, r2) => (r1.statusCode > r2.statusCode ? -1 : 1));
+    .sort((r1, r2) => (r1.statusCode > r2.statusCode ? 1 : -1));
   const successResp = sortedResponses[0];
   const logicalLROResponse: ResponseMetadata = {
     statusCode: "200",
