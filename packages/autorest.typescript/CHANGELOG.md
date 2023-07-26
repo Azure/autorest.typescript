@@ -1,4 +1,4 @@
-## 0.14.0 (2023-07-26)
+## 6.0.7 (2023-07-26)
 
 - [Feature] Uprage M4 to v4.26.2, Please refer to pr [#1930](https://github.com/Azure/autorest.typescript/pull/1930).
 - [Feature] Upgrade typespec compiler to v0.46.0, Please refer to pr [#1927](https://github.com/Azure/autorest.typescript/pull/1927).
