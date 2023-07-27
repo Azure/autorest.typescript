@@ -75,6 +75,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
 
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
+  if (packageDetails.version === undefined) {
+    packageDetails.version = "1.0.0-beta.1";
+  }
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
