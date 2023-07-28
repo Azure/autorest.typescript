@@ -10,7 +10,7 @@ import {
 /** The request has succeeded. */
 export interface RequestUnionBody200Response extends HttpResponse {
   status: "200";
-  body: Record<string, any>;
+  body: any;
 }
 
 /** The request has succeeded. */

@@ -146,13 +146,10 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
-      if (!schema.name) {
+      if (!schema.name || schema.name === "") {
         //TODO: HANDLE ANONYMOUS
-        schema.outputTypeName =
-          schema.type === "object" ? "Record<string, any>" : "any";
-        schema.typeName =
-          schema.type === "object" ? "Record<string, unknown>" : "unknown";
-        schema.type = "unknown";
+        schema.outputTypeName = "any";
+        schema.typeName = isUnknownType(type) ? "unknown" : "any";
       } else {
         schema.outputTypeName = `${schema.name}Output`;
         schema.typeName = `${schema.name}`;
@@ -555,6 +552,9 @@ function getSchemaForModel(
     return modelSchema;
   }
   for (const [propName, prop] of model.properties) {
+    if (propName === "recordOfRecordOfUnknown") {
+      prop;
+    }
     const restApiName = getProjectedName(program, prop, "json");
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
@@ -811,19 +811,28 @@ function mapCadlStdTypeToTypeScript(
           !isUnknownType(indexer.value!) &&
           !isUnionType(indexer.value!)
         ) {
-          schema.typeName = `Record<string, ${valueType.name}>`;
+          schema.typeName = `Record<string, ${valueType.typeName}>`;
           schema.valueTypeName = valueType.name;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
-            schema.outputValueTypeName = `${valueType.name}Output`;
+            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputValueTypeName = `${valueType.outputTypeName}`;
           }
         } else if (isUnknownType(indexer.value!)) {
-          schema.typeName = `Record<string, ${valueType.type}>`;
+          schema.typeName = `Record<string, ${
+            valueType.typeName ?? valueType.type
+          }>`;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputTypeName = `Record<string, ${
+              valueType.outputTypeName ?? valueType.type
+            }>`;
           }
         } else {
-          schema.typeName = `Record<string, ${getTypeName(valueType, usage)}>`;
+          schema.typeName = `Record<string, ${getTypeName(valueType, [
+            SchemaContext.Input
+          ])}>`;
+          schema.outputTypeName = `Record<string, ${getTypeName(valueType, [
+            SchemaContext.Output
+          ])}>`;
         }
       } else if (name === "integer") {
         schema = {
@@ -1067,9 +1076,11 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
 }
 
 function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
-  return usage &&
+  const usageCondition =
+    usage &&
     usage.includes(SchemaContext.Input) &&
-    !usage.includes(SchemaContext.Output)
+    !usage.includes(SchemaContext.Output);
+  return usageCondition
     ? schema.typeName ?? schema.name
     : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
