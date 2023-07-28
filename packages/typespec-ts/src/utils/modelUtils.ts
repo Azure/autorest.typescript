@@ -552,9 +552,6 @@ function getSchemaForModel(
     return modelSchema;
   }
   for (const [propName, prop] of model.properties) {
-    if (propName === "recordOfRecordOfUnknown") {
-      prop;
-    }
     const restApiName = getProjectedName(program, prop, "json");
     const name = `"${restApiName ?? propName}"`;
     if (!isSchemaProperty(program, prop)) {
@@ -1076,11 +1073,9 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
 }
 
 function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
-  const usageCondition =
-    usage &&
+  return usage &&
     usage.includes(SchemaContext.Input) &&
-    !usage.includes(SchemaContext.Output);
-  return usageCondition
+    !usage.includes(SchemaContext.Output)
     ? schema.typeName ?? schema.name
     : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
