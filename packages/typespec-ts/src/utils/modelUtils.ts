@@ -148,8 +148,11 @@ export function getSchemaForType(
     if (usage && usage.includes(SchemaContext.Output)) {
       if (!schema.name || schema.name === "") {
         //TODO: HANDLE ANONYMOUS
-        schema.outputTypeName = "any";
-        schema.typeName = isUnknownType(type) ? "unknown" : "any";
+        schema.outputTypeName =
+          schema.type === "object" ? "Record<string, any>" : "any";
+        schema.typeName =
+          schema.type === "object" ? "Record<string, unknown>" : "unknown";
+        schema.type = "unknown";
       } else {
         schema.outputTypeName = `${schema.name}Output`;
         schema.typeName = `${schema.name}`;
