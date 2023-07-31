@@ -1162,7 +1162,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
     return {
       name: sdkType.name,
       nullable: sdkType.nullable,
-      description: sdkType.doc || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
@@ -1522,7 +1522,7 @@ export function emitCodeModel(
 
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model);
+    getType(dpgContext, model.__raw);
   }
 
   for (const namespace of getNamespaces(dpgContext)) {
