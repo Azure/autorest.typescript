@@ -1193,9 +1193,6 @@ function emitSimpleType(
   } else {
     sdkType = type;
   }
-
-
-  const extraInformation: Record<string, any> = {};
   return {
     nullable: sdkType.nullable,
     type: "number", // TODO: switch to kind
@@ -1203,7 +1200,6 @@ function emitSimpleType(
     apiVersions: [],
     sdkDefaultValue: undefined,
     format: undefined,
-    ...extraInformation
   };
 }
 
