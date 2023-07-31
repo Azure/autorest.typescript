@@ -1137,14 +1137,14 @@ describe("Input/output model type", () => {
       await verifyPropertyType(cadlType, inputType, { outputType });
     });
 
-    it("should handle record of empty object Record<{}> -> Record<string, Record<string, unknown/any>>", async () => {
+    it("should handle record of empty object Record<{}> -> input Record<string, Record<string, unknown>>, output Record<string, Record<string, any>>", async () => {
       const cadlType = "Record<{}>";
       const inputType = "Record<string, Record<string, unknown>>";
       const outputType = "Record<string, Record<string, any>>";
       await verifyPropertyType(cadlType, inputType, { outputType });
     });
 
-    it("should handle record of record of empty object Record<Record<{}>> -> Record<string, Record<string, Record<string, any/unknown>>>", async () => {
+    it("should handle record of record of empty object Record<Record<{}>> -> input Record<string, Record<string, Record<string, unknown>>> output  Record<string, Record<string, Record<string, any>>>", async () => {
       const cadlType = "Record<Record<{}>>";
       const inputType = "Record<string, Record<string, Record<string, unknown>>>";
       const outputType = "Record<string, Record<string, Record<string, any>>>";
