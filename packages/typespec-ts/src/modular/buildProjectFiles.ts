@@ -154,7 +154,7 @@ export function emitPackage(
       "karma-junit-reporter": "^2.0.1",
       "karma-mocha": "^2.0.1",
       "karma-mocha-reporter": "^2.2.5",
-      "karma-sourcemap-loader": "^0.3.8",
+      "karma-sourcemap-loader": "^0.4.0",
       mocha: "^7.1.1",
       "mocha-junit-reporter": "^2.0.2",
       nyc: "^15.1.0",
