@@ -146,7 +146,7 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
-      if (!schema.name) {
+      if (!schema.name || schema.name === "") {
         //TODO: HANDLE ANONYMOUS
         schema.outputTypeName =
           schema.type === "object" ? "Record<string, any>" : "any";
@@ -811,19 +811,28 @@ function mapCadlStdTypeToTypeScript(
           !isUnknownType(indexer.value!) &&
           !isUnionType(indexer.value!)
         ) {
-          schema.typeName = `Record<string, ${valueType.name}>`;
+          schema.typeName = `Record<string, ${valueType.typeName}>`;
           schema.valueTypeName = valueType.name;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
-            schema.outputValueTypeName = `${valueType.name}Output`;
+            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputValueTypeName = `${valueType.outputTypeName}`;
           }
         } else if (isUnknownType(indexer.value!)) {
-          schema.typeName = `Record<string, ${valueType.type}>`;
+          schema.typeName = `Record<string, ${
+            valueType.typeName ?? valueType.type
+          }>`;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputTypeName = `Record<string, ${
+              valueType.outputTypeName ?? valueType.type
+            }>`;
           }
         } else {
-          schema.typeName = `Record<string, ${getTypeName(valueType, usage)}>`;
+          schema.typeName = `Record<string, ${getTypeName(valueType, [
+            SchemaContext.Input
+          ])}>`;
+          schema.outputTypeName = `Record<string, ${getTypeName(valueType, [
+            SchemaContext.Output
+          ])}>`;
         }
       } else if (name === "integer") {
         schema = {

@@ -188,7 +188,11 @@ function transformBody(
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
     if (importedNames) {
-      importedNames.forEach(importedModels.add, importedModels);
+      importedNames
+        .filter((name) => {
+          return name !== "any";
+        })
+        .forEach(importedModels.add, importedModels);
     }
     typeSet.add(bodyType);
   }
