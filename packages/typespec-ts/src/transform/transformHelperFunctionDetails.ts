@@ -112,7 +112,6 @@ function extractPageDetailFromCore(
   // Add default values
   nextLinks.add("nextLink");
   itemNames.add("value");
-  itemNames.add("items");
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
