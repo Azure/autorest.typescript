@@ -75,6 +75,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
 
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
+  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
@@ -161,7 +162,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         "@azure/core-paging": "^1.5.0"
       }),
       ...(hasLRO && {
-        "@azure/core-lro": "^2.5.3",
+        "@azure/core-lro": "^2.5.4",
         "@azure/abort-controller": "^1.0.0"
       })
     },
@@ -242,12 +243,12 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
     packageInfo.devDependencies["karma-coverage"] = "^2.0.0";
     packageInfo.devDependencies["karma-env-preprocessor"] = "^0.1.1";
-    packageInfo.devDependencies["karma-firefox-launcher"] = "^1.1.0";
+    packageInfo.devDependencies["karma-firefox-launcher"] = "^2.1.2";
     packageInfo.devDependencies["karma-junit-reporter"] = "^2.0.1";
     packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
     packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
-    packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.3.8";
+    packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";

@@ -53,6 +53,7 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 
+export * from "./lib.js";
 export interface RLCSdkContext extends SdkContext {
   options: RLCOptions;
 }

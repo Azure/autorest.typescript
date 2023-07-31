@@ -6,6 +6,10 @@ export interface CadlRanchConfig {
 
 export const cadls: CadlRanchConfig[] = [
   {
+    outputPath: "union-body",
+    inputPath: "union-body"
+  },
+  {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
   },

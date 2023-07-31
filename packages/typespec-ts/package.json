@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.13.4",
+  "version": "0.14.0",
   "description": "An experimental CADL emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -49,7 +49,7 @@
     "@azure/core-auth": "^1.3.2",
     "cross-env": "^7.0.3",
     "@azure/core-paging": "^1.5.0",
-    "@azure/core-lro": "^2.5.3",
+    "@azure/core-lro": "^2.5.4",
     "@azure/core-rest-pipeline": "^1.9.2",
     "@azure/logger": "^1.0.4"
   },
@@ -64,7 +64,7 @@
   "dependencies": {
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "workspace:^0.13.4",
+    "@azure-tools/rlc-common": "workspace:^0.14.0",
     "ts-morph": "^15.1.0",
     "fs-extra": "^11.1.0"
   },
