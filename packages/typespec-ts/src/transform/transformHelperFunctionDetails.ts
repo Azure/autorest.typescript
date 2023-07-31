@@ -113,7 +113,6 @@ function extractPageDetailFromCore(
   nextLinks.add("nextLink");
   itemNames.add("value");
   const operationGroups = listOperationGroups(dpgContext, client);
-
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
