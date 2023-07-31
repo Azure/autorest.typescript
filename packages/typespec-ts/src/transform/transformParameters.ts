@@ -402,7 +402,10 @@ function extractNameFromCadlType(
   if (importedNames) {
     importedNames.forEach(importedModels.add, importedModels);
   }
-  let typeName = getTypeName(bodySchema);
+  let typeName = getTypeName(bodySchema, [
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]);
   if (isAnonymousModel(bodySchema)) {
     // Handle anonymous Model
     return generateAnomymousModelSigniture(bodySchema, importedModels);
