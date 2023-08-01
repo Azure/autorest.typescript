@@ -46,9 +46,6 @@ export function getSendPrivateFunction(
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  if (operation.name === "uploadTestFile") {
-    operation;
-  }
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
 
