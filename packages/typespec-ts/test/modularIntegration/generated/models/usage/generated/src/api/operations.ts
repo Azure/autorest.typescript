@@ -32,9 +32,8 @@ export function _inputSend(
 }
 
 export async function _inputDeserialize(
-  result: Input204Response
+  _result: Input204Response
 ): Promise<void> {
-  result;
   return;
 }
 
