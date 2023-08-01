@@ -77,16 +77,12 @@ export interface PassFailMetric {
   readonly result?: PFResult;
 }
 
-/** */
 /** "response_time_ms", "latency", "error", "requests", "requests_per_sec" */
 export type PFMetrics = string;
-/** */
 /** "count", "percentage", "avg", "p50", "p90", "p95", "p99", "min", "max" */
 export type PFAgFunc = string;
-/** */
 /** "continue", "stop" */
 export type PFAction = string;
-/** */
 /** "passed", "undetermined", "failed" */
 export type PFResult = string;
 
@@ -98,7 +94,6 @@ export interface Secret {
   type?: SecretType;
 }
 
-/** */
 /** "AKV_SECRET_URI", "SECRET_VALUE" */
 export type SecretType = string;
 
@@ -112,7 +107,6 @@ export interface CertificateMetadata {
   name?: string;
 }
 
-/** */
 /** "AKV_CERT_URI" */
 export type CertificateType = string;
 
@@ -184,10 +178,8 @@ export interface FileInfo {
   validationFailureDetails?: string;
 }
 
-/** */
 /** "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS" */
 export type FileType = string;
-/** */
 /** "NOT_VALIDATED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE", "VALIDATION_INITIATED", "VALIDATION_NOT_REQUIRED" */
 export type FileStatus = string;
 
@@ -423,10 +415,8 @@ export interface TestRunOutputArtifacts {
   logsFileInfo?: FileInfo;
 }
 
-/** */
 /** "PASSED", "NOT_APPLICABLE", "FAILED" */
 export type PFTestResult = string;
-/** */
 /** "ACCEPTED", "NOTSTARTED", "PROVISIONING", "PROVISIONED", "CONFIGURING", "CONFIGURED", "EXECUTING", "EXECUTED", "DEPROVISIONING", "DEPROVISIONED", "DONE", "CANCELLING", "CANCELLED", "FAILED", "VALIDATION_SUCCESS", "VALIDATION_FAILURE" */
 export type Status = string;
 
@@ -461,10 +451,8 @@ export interface NameAndDesc {
   name?: string;
 }
 
-/** */
 /** "Average", "Count", "None", "Total", "Percentile90", "Percentile95", "Percentile99" */
 export type AggregationType = string;
-/** */
 /** "NotSpecified", "Percent", "Count", "Seconds", "Milliseconds", "Bytes", "BytesPerSecond", "CountPerSecond" */
 export type MetricUnit = string;
 
@@ -477,7 +465,6 @@ export interface MetricAvailability {
   timeGrain?: TimeGrain;
 }
 
-/** */
 /** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
 export type TimeGrain = string;
 
@@ -521,12 +508,9 @@ export interface DimensionValue {
   value?: string;
 }
 
-/** */
 /** "PT5S", "PT10S", "PT1M", "PT5M", "PT1H" */
 export type Interval = string;
 
-/** */
 export interface DimensionValueList {
-  /** */
   readonly value: string[];
 }

@@ -51,7 +51,6 @@ export interface CreateOrUpdateTestOptions extends OperationOptions {
   lastModifiedDateTime?: any;
   /** The user that last modified. */
   lastModifiedBy?: string;
-  /** */
   contentType?: string;
 }
 
@@ -66,7 +65,6 @@ export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
   lastModifiedDateTime?: any;
   /** The user that last modified. */
   lastModifiedBy?: string;
-  /** */
   contentType?: string;
 }
 
@@ -88,7 +86,6 @@ export interface CreateOrUpdateServerMetricsConfigOptions
   lastModifiedDateTime?: any;
   /** The user that last modified. */
   lastModifiedBy?: string;
-  /** */
   contentType?: string;
 }
 
@@ -129,7 +126,6 @@ export interface ListTestsOptions extends OperationOptions {
 }
 
 export interface UploadTestFileOptions extends OperationOptions {
-  /** */
   contentType?: string;
   /** File type */
   fileType?: FileType;

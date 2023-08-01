@@ -20,7 +20,8 @@ import {
   SendOnDefault$binaryOptionalParams,
   SendOnDefault$textOptionalParams,
   Send$binaryOptionalParams,
-  Send$textOptionalParams
+  Send$textOptionalParams,
+  SendResponse
 } from "./models";
 
 export class MediaTypesV3LROClient extends coreClient.ServiceClient {
@@ -212,12 +213,12 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
    * @param data
    * @param options The options parameters.
    */
-  beginSend(
+  send(
     thing: string,
     contentType: "application/octet-stream",
     data: coreRestPipeline.RequestBodyType,
     options?: Send$binaryOptionalParams
-  ): Promise<SimplePollerLike<OperationState<void>, void>>;
+  ): Promise<SendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
    * @param thing Target thing name
@@ -225,17 +226,17 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
    * @param data simple string
    * @param options The options parameters.
    */
-  beginSend(
+  send(
     thing: string,
     contentType: "text/plain",
     data: string,
     options?: Send$textOptionalParams
-  ): Promise<SimplePollerLike<OperationState<void>, void>>;
+  ): Promise<SendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
    * @param args Includes all the parameters for this operation.
    */
-  async beginSend(
+  send(
     ...args:
       | [
           string,
@@ -244,7 +245,7 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
           Send$binaryOptionalParams?
         ]
       | [string, "text/plain", string, Send$textOptionalParams?]
-  ): Promise<SimplePollerLike<OperationState<void>, void>> {
+  ): Promise<SendResponse> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
     let options;
@@ -271,81 +272,8 @@ export class MediaTypesV3LROClient extends coreClient.ServiceClient {
         `"contentType" must be a valid value but instead was "${args[1]}".`
       );
     }
-    operationArguments.options = this.getOperationOptions(options);
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.sendOperationRequest(args, spec);
-    };
-    const sendOperationFn = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return {
-        flatResponse,
-        rawResponse: {
-          statusCode: currentRawResponse!.status,
-          body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
-      };
-    };
-
-    const lro = createLroSpec({
-      sendOperationFn,
-      args: operationArguments,
-      spec: operationSpec
-    });
-    const poller = await createHttpPoller<void, OperationState<void>>(lro, {
-      restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
-    });
-    await poller.poll();
-    return poller;
-  }
-
-  /**
-   * Send payload to targetted thing in Foo service.
-   * @param args Includes all the parameters for this operation.
-   */
-  async beginSendAndWait(
-    ...args:
-      | [
-          string,
-          "application/octet-stream",
-          coreRestPipeline.RequestBodyType,
-          Send$binaryOptionalParams?
-        ]
-      | [string, "text/plain", string, Send$textOptionalParams?]
-  ): Promise<void> {
-    if (args[1] === "application/octet-stream") {
-      const poller = await this.beginSend(...args);
-      return poller.pollUntilDone();
-    } else if (args[1] === "text/plain") {
-      const poller = await this.beginSend(...args);
-      return poller.pollUntilDone();
-    }
-    throw new Error("Impossible case");
+    operationArguments.options = options || {};
+    return this.sendOperationRequest(operationArguments, operationSpec);
   }
 }
 // Operation Specifications
@@ -376,7 +304,12 @@ const sendOnDefault$textOperationSpec: coreClient.OperationSpec = {
 const send$binaryOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    204: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],
@@ -387,7 +320,12 @@ const send$binaryOperationSpec: coreClient.OperationSpec = {
 const send$textOperationSpec: coreClient.OperationSpec = {
   path: "/foo/api/v1/things/{thing}",
   httpMethod: "POST",
-  responses: { 200: {}, 201: {}, 202: {}, 204: {} },
+  responses: {
+    204: {},
+    400: {
+      bodyMapper: { type: { name: "String" } }
+    }
+  },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
   urlParameters: [Parameters.$host, Parameters.thing],

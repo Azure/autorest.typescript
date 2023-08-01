@@ -55,7 +55,6 @@ export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
 export class LoadTestRunClient {
   private _client: AzureLoadTestingContext;
 
-  /** */
   constructor(
     endpoint: string,
     credential: TokenCredential,

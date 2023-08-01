@@ -10,7 +10,6 @@ export interface LoadTestAdministrationClientOptions extends ClientOptions {}
 
 export { AzureLoadTestingContext } from "../../rest/index.js";
 
-/** */
 export function createLoadTestAdministration(
   endpoint: string,
   credential: TokenCredential,
