@@ -60,6 +60,7 @@
       }
     },
     "/foo/api/v1/things/{thing}": {
+      "x-ms-long-running-operation": true,
       "post": {
         "tags": [
           "FooApi"
@@ -118,8 +119,7 @@
               }
             }
           }
-        },
-        "x-ms-long-running-operation": true
+        }
       }
     }
   },
