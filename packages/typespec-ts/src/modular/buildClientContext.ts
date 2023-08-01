@@ -5,6 +5,7 @@ import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, Parameter } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -47,7 +48,7 @@ export function buildClientContext(
       namedExports: [`Client`]
     });
     factoryFunction = clientContextFile.addFunction({
-      docs: description?.trim().length === 0 ? [] : [description!],
+      docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `Client.${client.name}`,
       parameters: getClientParameters(client),
@@ -70,7 +71,7 @@ export function buildClientContext(
     });
 
     factoryFunction = clientContextFile.addFunction({
-      docs: description.trim().length === 0 ? [] : [description],
+      docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `${rlcClientName}`,
       parameters: getClientParameters(client),

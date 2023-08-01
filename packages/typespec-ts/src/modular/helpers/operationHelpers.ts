@@ -20,7 +20,10 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import { getOperationName } from "./namingHelpers.js";
-import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
+import {
+  getFixmeForMultilineDocs,
+  getDocsFromDescription
+} from "./docsHelpers.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -222,10 +225,11 @@ export function getOperationFunction(
     : { name: "", type: "void" };
 
   const { name, fixme = [] } = getOperationName(operation);
-  const descriptions =
-    operation.description.trim().length === 0 ? [] : [operation.description];
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-    docs: [...descriptions, ...getFixmeForMultilineDocs(fixme)],
+    docs: [
+      ...getDocsFromDescription(operation.description),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
     isAsync: true,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),

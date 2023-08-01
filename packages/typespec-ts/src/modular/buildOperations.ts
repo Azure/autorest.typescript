@@ -9,6 +9,7 @@ import {
 import { Client, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -174,7 +175,7 @@ export function buildOperationOptions(
     extends: ["OperationOptions"],
     properties: options.map((p) => {
       return {
-        docs: [p.description],
+        docs: getDocsFromDescription(p.description),
         hasQuestionToken: true,
         ...buildType(p.clientName, p.type)
       };

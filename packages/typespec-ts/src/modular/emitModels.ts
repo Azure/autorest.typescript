@@ -2,6 +2,7 @@ import { Project, SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
 import { ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
 /**
  * This function creates the file containing all the models defined in TypeSpec
@@ -48,7 +49,7 @@ export function buildModels(
         name: model.name!,
         isExported: true,
         docs: [
-          model.description ?? "",
+          ...getDocsFromDescription(model.description),
           // If it is a fixed enum we don't need to list the known values in the docs as the
           // output will be a literal union which is self documenting
           model.isFixed
@@ -68,7 +69,7 @@ export function buildModels(
       modelsFile.addInterface({
         name: model.name,
         isExported: true,
-        docs: [model.description ?? ""],
+        docs: getDocsFromDescription(model.description),
         properties: properties.map((p) => {
           const propertyMetadata = getType(p.type);
           let propertyTypeName = propertyMetadata.name;
@@ -82,7 +83,7 @@ export function buildModels(
           }
           return {
             name: `"${p.clientName}"`,
-            docs: [p.description],
+            docs: getDocsFromDescription(p.description),
             hasQuestionToken: p.optional,
             isReadonly: p.readonly,
             type: propertyTypeName
