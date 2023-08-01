@@ -39,10 +39,6 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
     .join(" | ");
 }
 
-function hasRLCDefaultResponse(operation: Operation) {
-  return operation.exceptions.length > 0;
-}
-
 export function getSendPrivateFunction(
   operation: Operation,
   clientType: string
@@ -139,9 +135,6 @@ export function getDeserializePrivateFunction(
       `}`
     );
   } else if (returnType.type === "void") {
-    if (statements.length === 0) {
-      statements.push(`result;`);
-    }
     statements.push(`return;`);
   } else {
     statements.push(`return result.body;`);
