@@ -47,7 +47,7 @@ export function buildClientContext(
       namedExports: [`Client`]
     });
     factoryFunction = clientContextFile.addFunction({
-      docs: [description],
+      docs: description?.trim().length === 0 ? [] : [description!],
       name: `create${name}`,
       returnType: `Client.${client.name}`,
       parameters: getClientParameters(client),
@@ -70,7 +70,7 @@ export function buildClientContext(
     });
 
     factoryFunction = clientContextFile.addFunction({
-      docs: [description],
+      docs: description.trim().length === 0 ? [] : [description],
       name: `create${name}`,
       returnType: `${rlcClientName}`,
       parameters: getClientParameters(client),

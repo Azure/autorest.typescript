@@ -61,7 +61,7 @@ export function buildClassicalClient(
 
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
-    docs: [description],
+    docs: description.trim().length === 0 ? [] : [description],
     parameters: params
   });
   constructor.addStatements([

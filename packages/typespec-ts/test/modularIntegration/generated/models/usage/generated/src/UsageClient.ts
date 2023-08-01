@@ -26,7 +26,6 @@ export class UsageClient {
     this._client = createUsage(options);
   }
 
-  /** */
   input(
     requiredProp: string,
     options: InputOptions = { requestOptions: {} }
@@ -34,14 +33,12 @@ export class UsageClient {
     return input(this._client, requiredProp, options);
   }
 
-  /** */
   output(
     options: OutputOptions = { requestOptions: {} }
   ): Promise<OutputRecord> {
     return output(this._client, options);
   }
 
-  /** */
   inputAndOutput(
     requiredProp: string,
     options: InputAndOutputOptions = { requestOptions: {} }

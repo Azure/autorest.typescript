@@ -37,7 +37,6 @@ export async function _inputDeserialize(
   return;
 }
 
-/** */
 export async function input(
   context: Client,
   requiredProp: string,
@@ -64,7 +63,6 @@ export async function _outputDeserialize(
   };
 }
 
-/** */
 export async function output(
   context: Client,
   options: OutputOptions = { requestOptions: {} }
@@ -94,7 +92,6 @@ export async function _inputAndOutputDeserialize(
   };
 }
 
-/** */
 export async function inputAndOutput(
   context: Client,
   requiredProp: string,

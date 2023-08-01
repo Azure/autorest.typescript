@@ -222,8 +222,10 @@ export function getOperationFunction(
     : { name: "", type: "void" };
 
   const { name, fixme = [] } = getOperationName(operation);
+  const descriptions =
+    operation.description.trim().length === 0 ? [] : [operation.description];
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-    docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
+    docs: [...descriptions, ...getFixmeForMultilineDocs(fixme)],
     isAsync: true,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
