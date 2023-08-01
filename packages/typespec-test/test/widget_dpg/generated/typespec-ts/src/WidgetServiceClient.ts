@@ -27,7 +27,6 @@ export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
 
-  /** */
   constructor(endpoint: string, options: WidgetServiceClientOptions = {}) {
     this._client = createWidgetService(endpoint, options);
   }
