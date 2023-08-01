@@ -12,20 +12,31 @@ import {
   Type
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
+import {
+  NameType,
+  OperationResponse,
+  getResponseBaseName,
+  getResponseTypeName,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import { getOperationName } from "./namingHelpers.js";
 import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
 
-function getRLCResponseType(operation: Operation) {
-  const { name } = getOperationName(operation, { casing: "pascal" });
-  const statusCodes: (string | number)[] = Array.from(
-    new Set(operation.responses.flatMap((r) => r.statusCodes)).values()
-  );
-
-  if (hasRLCDefaultResponse(operation)) {
-    statusCodes.push("Default");
+function getRLCResponseType(rlcResponse?: OperationResponse) {
+  if (!rlcResponse?.responses) {
+    return;
   }
-
-  return statusCodes.map((s) => `${name}${s}Response`).join(" | ");
+  return rlcResponse?.responses
+    .map((resp) => {
+      const baseResponseName = getResponseBaseName(
+        rlcResponse.operationGroup,
+        rlcResponse.operationName,
+        resp.statusCode
+      );
+      // Get the information to build the Response Interface
+      return resp.predefinedName ?? getResponseTypeName(baseResponseName);
+    })
+    .join(" | ");
 }
 
 function hasRLCDefaultResponse(operation: Operation) {
@@ -33,9 +44,13 @@ function hasRLCDefaultResponse(operation: Operation) {
 }
 
 export function getSendPrivateFunction(
-  operation: Operation
+  operation: Operation,
+  clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  const parameters = getOperationSignatureParameters(operation);
+  if (operation.name === "uploadTestFile") {
+    operation;
+  }
+  const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
@@ -43,7 +58,7 @@ export function getSendPrivateFunction(
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType: `StreamableMethod<${getRLCResponseType(operation)}>`
+    returnType: `StreamableMethod<${getRLCResponseType(operation.rlcResponse)}>`
   };
 
   const operationPath = operation.url;
@@ -65,22 +80,35 @@ export function getSendPrivateFunction(
 }
 
 export function getDeserializePrivateFunction(
-  operation: Operation
+  operation: Operation,
+  needSubClient: boolean,
+  needUnexpectedHelper: boolean
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
-  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
-      type: getRLCResponseType(operation)
+      type: getRLCResponseType(operation.rlcResponse)
     }
   ];
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
-  const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type)
-    : { name: "", type: "void" };
+  let returnType;
+  if (response?.type?.type) {
+    returnType = buildType(response.type.name, response.type);
+  } else {
+    if (!needUnexpectedHelper) {
+      parameters = [
+        {
+          name: "_result",
+          type: getRLCResponseType(operation.rlcResponse)
+        }
+      ];
+    }
+    returnType = { name: "", type: "void" };
+  }
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: true,
@@ -90,8 +118,12 @@ export function getDeserializePrivateFunction(
     returnType: `Promise<${returnType.type}>`
   };
   const statements: string[] = [];
-  if (hasRLCDefaultResponse(operation)) {
-    statements.push(`if(isUnexpected(result)){`, "throw result.body", "}");
+  if (needUnexpectedHelper) {
+    statements.push(
+      `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
+      "throw result.body",
+      "}"
+    );
   }
 
   if (response?.type?.type === "any") {
@@ -121,7 +153,8 @@ export function getDeserializePrivateFunction(
 }
 
 function getOperationSignatureParameters(
-  operation: Operation
+  operation: Operation,
+  clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const optionsType = getOperationOptionsName(operation);
   const parameters: Map<
@@ -140,6 +173,14 @@ function getOperationSignatureParameters(
       bodyArray.clientName,
       buildType(bodyArray.clientName, bodyArray.type)
     );
+  } else if (operation.bodyParameter?.type.type === "byte-array") {
+    parameters.set(
+      operation.bodyParameter.clientName,
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type
+      )
+    );
   }
 
   operation.parameters
@@ -156,7 +197,7 @@ function getOperationSignatureParameters(
     });
 
   // Add context as the first parameter
-  const contextParam = { name: "context", type: "Client" };
+  const contextParam = { name: "context", type: clientType };
 
   // Add the options parameter
   const optionsParam = {
@@ -174,11 +215,12 @@ function getOperationSignatureParameters(
  * This operation builds and returns the function declaration for an operation.
  */
 export function getOperationFunction(
-  operation: Operation
+  operation: Operation,
+  clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
-    getOperationSignatureParameters(operation);
+    getOperationSignatureParameters(operation, clientType);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
@@ -191,7 +233,7 @@ export function getOperationFunction(
     docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
     isAsync: true,
     isExported: true,
-    name: name,
+    name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
     returnType: `Promise<${returnType.type}>`
   };
@@ -291,6 +333,10 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
+  if (bodyParameter.type.type === "byte-array") {
+    return `\nbody: ${bodyParameter.clientName},`;
+  }
+
   return "";
 }
 
@@ -335,7 +381,7 @@ function getContentTypeValue(param: Parameter | Property) {
   }
 
   if (defaultValue) {
-    return `contentType: (options.${param.clientName} as any) ?? "${defaultValue}"`;
+    return `contentType: options.${param.clientName} as any ?? "${defaultValue}"`;
   } else {
     return `contentType: options.${param.clientName}`;
   }
@@ -435,18 +481,19 @@ function getPathParameters(operation: Operation) {
   for (const param of operation.parameters) {
     if (param.location === "path") {
       if (!param.optional) {
-        pathParams = `${pathParams} ${param.clientName},`;
+        pathParams += `${pathParams !== "" ? "," : ""} ${param.clientName}`;
         continue;
       }
 
       const defaultValue = getDefaultValue(param);
 
-      pathParams = `${pathParams}, options.${param.clientName}`;
+      pathParams += `${pathParams !== "" ? "," : ""} options.${
+        param.clientName
+      }`;
 
       if (defaultValue) {
-        pathParams = ` ?? "${defaultValue}"`;
+        pathParams += ` ?? "${defaultValue}"`;
       }
-      pathParams = `${pathParams},`;
     }
   }
 
@@ -522,6 +569,8 @@ function deserializeResponseValue(type: Type, restValue: string): string {
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
+    case "byte-array":
+      return `Buffer.from(${restValue} ?? "")`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(

@@ -1,4 +1,4 @@
-import { RLCOptions } from "@azure-tools/rlc-common";
+import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
 
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -95,6 +95,7 @@ export interface Client {
   operationGroups: OperationGroup[];
   url: string;
   apiVersions: any[];
+  rlcClientName: string;
 }
 
 export type ParameterLocation =
@@ -151,4 +152,5 @@ export interface Operation {
   itemName?: string;
   continuationTokenName?: string;
   addedOn?: string;
+  rlcResponse?: OperationResponse;
 }

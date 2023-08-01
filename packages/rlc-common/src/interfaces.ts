@@ -198,7 +198,7 @@ export interface PackageDetails {
   scopeName?: string;
   nameWithoutScope?: string;
   description?: string;
-  version: string;
+  version?: string;
 }
 export interface OperationParameter {
   operationGroup: string;
@@ -232,6 +232,7 @@ export interface ParameterMetadata {
 export interface OperationResponse {
   operationGroup: string;
   operationName: string;
+  path: string;
   responses: ResponseMetadata[];
 }
 export interface ResponseMetadata {

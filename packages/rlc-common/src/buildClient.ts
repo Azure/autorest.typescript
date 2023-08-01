@@ -203,7 +203,7 @@ function isSecurityInfoDefined(
   );
 }
 
-function getClientFactoryBody(
+export function getClientFactoryBody(
   model: RLCModel,
   clientTypeName: string
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {

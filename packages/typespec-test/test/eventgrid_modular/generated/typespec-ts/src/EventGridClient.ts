@@ -3,17 +3,6 @@
 
 import { KeyCredential } from "@azure/core-auth";
 import {
-  createEventGrid,
-  EventGridContext,
-  EventGridClientOptions,
-  publishCloudEvent,
-  publishCloudEvents,
-  receiveCloudEvents,
-  acknowledgeCloudEvents,
-  releaseCloudEvents,
-  rejectCloudEvents,
-} from "./api/index.js";
-import {
   CloudEvent,
   ReceiveResult,
   AcknowledgeResult,
@@ -28,6 +17,17 @@ import {
   ReleaseCloudEventsOptions,
   RejectCloudEventsOptions,
 } from "./models/options.js";
+import {
+  createEventGrid,
+  EventGridClientOptions,
+  EventGridContext,
+  publishCloudEvent,
+  publishCloudEvents,
+  receiveCloudEvents,
+  acknowledgeCloudEvents,
+  releaseCloudEvents,
+  rejectCloudEvents,
+} from "./api/index.js";
 
 export { EventGridClientOptions } from "./api/EventGridContext.js";
 

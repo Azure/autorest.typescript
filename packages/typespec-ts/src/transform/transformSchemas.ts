@@ -54,7 +54,10 @@ export function transformSchemas(
   }
   function transformSchemaForRoute(route: HttpOperation) {
     const bodyModel = getBodyType(program, route);
-    if (bodyModel && bodyModel.kind === "Model") {
+    if (
+      bodyModel &&
+      (bodyModel.kind === "Model" || bodyModel.kind === "Union")
+    ) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {

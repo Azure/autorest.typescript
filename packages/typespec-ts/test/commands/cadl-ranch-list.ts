@@ -6,6 +6,10 @@ export interface TypeSpecRanchConfig {
 
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
+    outputPath: "union-body",
+    inputPath: "union-body"
+  },
+  {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
   },

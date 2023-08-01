@@ -75,6 +75,7 @@ export function transformToResponseTypes(
     const rlcOperationUnit: OperationResponse = {
       operationGroup: getOperationGroupName(dpgContext, route),
       operationName: getOperationName(program, route.operation),
+      path: route.path,
       responses: []
     };
     for (const resp of route.responses) {
@@ -187,7 +188,11 @@ function transformBody(
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
     if (importedNames) {
-      importedNames.forEach(importedModels.add, importedModels);
+      importedNames
+        .filter((name) => {
+          return name !== "any";
+        })
+        .forEach(importedModels.add, importedModels);
     }
     typeSet.add(bodyType);
   }
@@ -221,7 +226,7 @@ function transformLroLogicalResponse(
   }
   const sortedResponses = existingResponses
     .filter((r) => r.statusCode.startsWith("20"))
-    .sort((r1, r2) => (r1.statusCode > r2.statusCode ? -1 : 1));
+    .sort((r1, r2) => (r1.statusCode > r2.statusCode ? 1 : -1));
   const successResp = sortedResponses[0];
   const logicalLROResponse: ResponseMetadata = {
     statusCode: "200",

@@ -1558,6 +1558,7 @@ export interface TestRunOutput {
     readonly testArtifacts?: TestRunArtifactsOutput;
     testId?: string;
     readonly testResult?: string;
+    readonly testRunId: string;
     readonly testRunStatistics?: Record<string, TestRunStatisticsOutput>;
     readonly virtualUsers?: number;
 }
