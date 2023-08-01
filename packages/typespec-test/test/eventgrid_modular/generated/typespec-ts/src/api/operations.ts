@@ -28,6 +28,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
@@ -52,7 +53,20 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      body: { event: event },
+      body: {
+        event: {
+          id: event["id"],
+          source: event["source"],
+          data: event["data"],
+          data_base64: uint8ArrayToString(event["dataBase64"] ?? "", "base64"),
+          type: event["type"],
+          time: new Date(event["time"] ?? ""),
+          specversion: event["specversion"],
+          dataschema: event["dataschema"],
+          datacontenttype: event["datacontenttype"],
+          subject: event["subject"],
+        },
+      },
     });
 }
 
@@ -167,7 +181,7 @@ export async function _receiveCloudEventsDeserialize(
         id: p.event["id"],
         source: p.event["source"],
         data: p.event["data"],
-        dataBase64: Buffer.from(p.event["data_base64"] ?? ""),
+        dataBase64: stringToUint8Array(p.event["data_base64"] ?? "", "base64"),
         type: p.event["type"],
         time: new Date(p.event["time"] ?? ""),
         specversion: p.event["specversion"],

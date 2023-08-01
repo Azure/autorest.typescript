@@ -10,6 +10,7 @@ import { Client, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 
+export const utilImports: Set<string> = new Set<string>();
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -24,6 +25,7 @@ export function buildOperationFiles(
   needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
+    utilImports.clear();
     const fileName = operationGroup.className
       ? `${operationGroup.className}`
       : // When the program has no operation groups defined all operations are put
@@ -97,6 +99,14 @@ export function buildOperationFiles(
         ]
       }
     ]);
+    if (utilImports.size > 0) {
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: "@azure/core-util",
+          namedImports: [...utilImports.values()]
+        }
+      ]);
+    }
     modelOptionsFile.addImportDeclarations([
       {
         moduleSpecifier: "@azure-rest/core-client",

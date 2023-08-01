@@ -21,6 +21,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { getOperationName } from "./namingHelpers.js";
 import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
+import { utilImports } from "../buildOperations.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -311,14 +312,25 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
 
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = [];
+    let hasSerializeBody = false;
     for (const param of bodyParameter?.type.properties?.filter(
       (p) => !p.readonly
     ) ?? []) {
-      bodyParts.push(getParameterMap(param));
+      if (param.type.type === "model") {
+        hasSerializeBody = true;
+        bodyParts.push(...getRequestBodyMapping(param.type, param.clientName));
+      } else {
+        bodyParts.push(getParameterMap(param));
+      }
     }
 
     if (bodyParameter && bodyParameter.type.properties) {
-      return `\nbody: {${bodyParts.join(",\n")}},`;
+      if (hasSerializeBody) {
+        return `\nbody: {"${bodyParameter.restApiName}": {${bodyParts.join(",\n")}}},`;
+      } else {
+        return `\nbody: {${bodyParts.join(",\n")}},`;
+      }
+
     }
   }
 
@@ -500,6 +512,67 @@ function getNullableCheck(name: string, type: Type) {
 
   return `${name} === null ? null :`;
 }
+
+/**
+ * 
+ * This function helps translating an HLC request to RLC request,
+ * extracting properties from body and headers and building the RLC response object
+ */
+function getRequestBodyMapping(
+  modelPropertyType: Type,
+  propertyPath: string = "body"
+) {
+  if (!modelPropertyType.properties || !modelPropertyType.properties) {
+    return [];
+  }
+  const props: string[] = [];
+  const properties: Property[] = modelPropertyType.properties;
+  for (const property of properties) {
+    if (property.readonly) {
+      continue;
+    }
+    const propertyFullName = `${propertyPath}.${property.restApiName}`;
+    if (property.type.type === "model") {
+      let definition;
+      if (property.type.isCoreErrorType) {
+        definition = `"${property.restApiName}": ${getNullableCheck(
+          propertyFullName,
+          property.type
+        )} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } ${propertyFullName}`;
+      } else {
+        definition = `"${property.restApiName}": ${getNullableCheck(
+          propertyFullName,
+          property.type
+        )} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } {${getResponseMapping(
+          property.type.properties ?? [],
+          `${propertyPath}.${property.restApiName}${
+            property.optional ? "?" : ""
+          }`
+        )}}`;
+      }
+
+      props.push(definition);
+    } else {
+      const dot = propertyPath.endsWith("?") ? "." : "";
+      const restValue = `${
+        propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      }["${property.clientName}"]`;
+      props.push(
+        `"${property.restApiName}": ${serializeRequestValue(
+          property.type,
+          restValue
+        )}`
+      );
+    }
+  }
+
+  return props;
+}
+
 /**
  * This function helps translating an RLC response to an HLC response,
  * extracting properties from body and headers and building the HLC response object
@@ -562,8 +635,6 @@ function deserializeResponseValue(type: Type, restValue: string): string {
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
-    case "byte-array":
-      return `Buffer.from(${restValue} ?? "")`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
@@ -581,7 +652,41 @@ function deserializeResponseValue(type: Type, restValue: string): string {
         return restValue;
       }
     case "byte-array":
+      utilImports.add("stringToUint8Array");
       return `stringToUint8Array(${restValue} ?? "", "${type.format ?? "base64"}")`;
+    default:
+      return restValue;
+  }
+}
+
+/**
+ * This function helps converting strings into JS complex types recursively.
+ * We need to drill down into Array elements to make sure that the element type is
+ * deserialized correctly
+ */
+function serializeRequestValue(type: Type, restValue: string): string {
+  switch (type.type) {
+    case "datetime":
+      return `new Date(${restValue} ?? "")`;
+    case "list":
+      if (type.elementType?.type === "model") {
+        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
+          type.elementType?.properties ?? [],
+          "p"
+        )}}))`;
+      } else if (
+        type.elementType?.properties?.some((p) => needsDeserialize(p.type))
+      ) {
+        return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
+          type.elementType!,
+          "p"
+        )})`;
+      } else {
+        return restValue;
+      }
+    case "byte-array":
+      utilImports.add("uint8ArrayToString");
+      return `uint8ArrayToString(${restValue} ?? "", "${type.format ?? "base64"}")`;
     default:
       return restValue;
   }
