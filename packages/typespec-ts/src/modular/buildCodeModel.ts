@@ -1167,7 +1167,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(x)),
-      isFixed: sdkType.isFixed === false ? false : true,
+      isFixed: sdkType.isFixed,
       xmlMetadata: {}
     };
   } else {

@@ -12,8 +12,8 @@ export interface Widget {
 }
 
 /** Type of ColorType */
-/** */
-export type ColorType = "red" | "blue";
+/** "red", "blue" */
+export type ColorType = string;
 
 /** */
 export interface AnalyzeResult {
