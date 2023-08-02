@@ -9,7 +9,6 @@ export interface WidgetServiceClientOptions extends ClientOptions {}
 
 export { WidgetServiceContext } from "../rest/index.js";
 
-/** */
 export function createWidgetService(
   endpoint: string,
   options: WidgetServiceClientOptions = {}

@@ -1,22 +1,27 @@
-import { cadls } from "./cadl-ranch-list.js";
+import { modularTsps, rlcTsps } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
 import pkg from "chalk";
 const { bold } = pkg;
 const logError = (str: string) => console.error(bold.red(str));
-
-async function generateCadls(isDebugging = false) {
-  const list = cadls;
-  for (const cadl of list) {
-    if (isDebugging === true && cadl.debug !== true) {
+// tag could be "rlc" | "modular"
+async function generateCadls(tag: string = "rlc", isDebugging?: boolean) {
+  let list = rlcTsps;
+  if (tag === "modular") {
+    list = modularTsps;
+  }
+  for (const tsp of list) {
+    if (isDebugging === true && tsp.debug !== true) {
       continue;
     }
-    await runTypespec(cadl);
+    await runTypespec(tsp, tag);
   }
 }
 
 async function main() {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
-  await generateCadls(isDebugging);
+  const tagOptions = process.argv.filter((s) => s.startsWith("--tag="));
+  const tag = tagOptions[0]?.split("=")[1];
+  await generateCadls(tag, isDebugging);
 }
 
 main().catch((error) => {

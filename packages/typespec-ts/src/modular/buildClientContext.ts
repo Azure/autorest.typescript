@@ -5,6 +5,7 @@ import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, Parameter } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -47,7 +48,7 @@ export function buildClientContext(
       namedExports: [`Client`]
     });
     factoryFunction = clientContextFile.addFunction({
-      docs: [description],
+      docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `Client.${client.name}`,
       parameters: getClientParameters(client),
@@ -70,7 +71,7 @@ export function buildClientContext(
     });
 
     factoryFunction = clientContextFile.addFunction({
-      docs: [description],
+      docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `${rlcClientName}`,
       parameters: getClientParameters(client),
@@ -86,22 +87,28 @@ export function buildClientContext(
     (p) => p.location === "endpointPath"
   );
 
-  let baseUrl: string | undefined = "endpoint";
   if (baseUrlParam) {
+    let baseUrl: string | undefined = "endpoint";
     baseUrl =
       baseUrlParam.type.type === "constant"
         ? baseUrlParam.type.value
         : baseUrlParam.clientName;
+    factoryFunction.addStatements([`const baseUrl = ${baseUrl}`]);
   }
 
-  factoryFunction.addStatements([`const baseUrl = ${baseUrl}`]);
-  let getClientStatement = `const clientContext = getClient(baseUrl, options)`;
+  let getClientStatement = `const clientContext = getClient(options)`;
+
+  if (baseUrlParam) {
+    getClientStatement = `const clientContext = getClient(baseUrl, options)`;
+  }
 
   // If the client needs credentials we need to pass those to getClient
   if (credentialsParam) {
     importCredential(credentialsParam.type, clientContextFile);
     addCredentialOptionsStatement(credentialsParam, factoryFunction);
-    getClientStatement = `const clientContext = getClient(baseUrl, credential, options)`;
+    getClientStatement = baseUrlParam
+      ? `const clientContext = getClient(baseUrl, credential, options)`
+      : `const clientContext = getClient(credential, options)`;
   }
 
   factoryFunction.addStatements([getClientStatement, "return clientContext;"]);

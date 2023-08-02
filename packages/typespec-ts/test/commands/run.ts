@@ -1,10 +1,10 @@
 import { execSync } from "child_process";
 import { dirname, join as joinPath } from "path";
 import { fileURLToPath } from "url";
-import { CadlRanchConfig } from "./cadl-ranch-list.js";
+import { TypeSpecRanchConfig } from "./cadl-ranch-list.js";
 import fsextra from "fs-extra";
 const MAX_BUFFER = 10 * 1024 * 1024;
-export async function runTypespec(config: CadlRanchConfig) {
+export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
   const targetFolder = config.outputPath,
     sourceTypespec = config.inputPath;
   const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +20,9 @@ export async function runTypespec(config: CadlRanchConfig) {
   const outputPath = joinPath(
     `${__dirname}`,
     "..",
-    `./integration/generated/${targetFolder}`
+    `./${
+      mode === "modular" ? "modularIntegration" : "integration"
+    }/generated/${targetFolder}`
   );
   const possibleEntryFiles = ["client.tsp", "main.tsp"];
   for (let filename of possibleEntryFiles) {

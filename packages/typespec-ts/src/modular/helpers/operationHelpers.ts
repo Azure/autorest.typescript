@@ -20,7 +20,10 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import { getOperationName } from "./namingHelpers.js";
-import { getFixmeForMultilineDocs } from "./fixmeHelpers.js";
+import {
+  getFixmeForMultilineDocs,
+  getDocsFromDescription
+} from "./docsHelpers.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -43,9 +46,6 @@ export function getSendPrivateFunction(
   operation: Operation,
   clientType: string
 ): OptionalKind<FunctionDeclarationStructure> {
-  if (operation.name === "uploadTestFile") {
-    operation;
-  }
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
 
@@ -223,7 +223,10 @@ export function getOperationFunction(
 
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-    docs: [operation.description, ...getFixmeForMultilineDocs(fixme)],
+    docs: [
+      ...getDocsFromDescription(operation.description),
+      ...getFixmeForMultilineDocs(fixme)
+    ],
     isAsync: true,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),

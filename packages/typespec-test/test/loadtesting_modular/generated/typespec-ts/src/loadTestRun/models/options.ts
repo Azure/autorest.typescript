@@ -94,7 +94,6 @@ export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
   lastModifiedDateTime?: any;
   /** The user that last modified. */
   lastModifiedBy?: string;
-  /** */
   contentType?: string;
 }
 
@@ -116,7 +115,6 @@ export interface CreateOrUpdateServerMetricsConfigOptions
   lastModifiedDateTime?: any;
   /** The user that last modified. */
   lastModifiedBy?: string;
-  /** */
   contentType?: string;
 }
 
