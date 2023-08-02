@@ -10,7 +10,6 @@ export interface LoadTestRunClientOptions extends ClientOptions {}
 
 export { AzureLoadTestingContext } from "../../rest/index.js";
 
-/** */
 export function createLoadTestRun(
   endpoint: string,
   credential: TokenCredential,

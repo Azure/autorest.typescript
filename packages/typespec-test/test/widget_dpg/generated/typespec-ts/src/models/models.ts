@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** */
 export interface Widget {
   /** The UUID of this widget. This is generated automatically by the service. */
   id: string;
@@ -15,8 +14,6 @@ export interface Widget {
 /** */
 export type ColorType = "red" | "blue";
 
-/** */
 export interface AnalyzeResult {
-  /** */
   summary: string;
 }

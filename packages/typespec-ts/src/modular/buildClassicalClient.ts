@@ -15,6 +15,7 @@ import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -61,7 +62,7 @@ export function buildClassicalClient(
 
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
-    docs: [description],
+    docs: getDocsFromDescription(description),
     parameters: params
   });
   constructor.addStatements([

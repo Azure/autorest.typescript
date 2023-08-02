@@ -1,10 +1,10 @@
-export interface CadlRanchConfig {
+export interface TypeSpecRanchConfig {
   outputPath: string;
   inputPath: string;
   debug?: boolean;
 }
 
-export const cadls: CadlRanchConfig[] = [
+export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "union-body",
     inputPath: "union-body"
@@ -148,5 +148,12 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "azure/core-traits",
     inputPath: "azure/core/traits"
+  }
+];
+
+export const modularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];

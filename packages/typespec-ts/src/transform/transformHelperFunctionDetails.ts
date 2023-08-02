@@ -168,12 +168,7 @@ function extractPageDetailFromCore(
 }
 
 function parseNextLinkName(paged: PagedResultMetadata): string | undefined {
-  const pathComponents = paged.nextLinkPath?.split(".");
-  if (pathComponents) {
-    // TODO: This logic breaks down if there actually is a dotted path.
-    return pathComponents[pathComponents.length - 1];
-  }
-  return undefined;
+  return paged.nextLinkProperty?.name;
 }
 
 function parseItemName(paged: PagedResultMetadata): string | undefined {

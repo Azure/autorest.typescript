@@ -48,7 +48,6 @@ export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministratio
 export class LoadTestAdministrationClient {
   private _client: AzureLoadTestingContext;
 
-  /** */
   constructor(
     endpoint: string,
     credential: TokenCredential,
