@@ -316,7 +316,7 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     for (const param of bodyParameter?.type.properties?.filter(
       (p) => !p.readonly
     ) ?? []) {
-      if (param.type.type === "model") {
+      if (param.type.type === "model" && isRequired(param)) {
         hasSerializeBody = true;
         bodyParts.push(...getRequestBodyMapping(param.type, param.clientName));
       } else {
