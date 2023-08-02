@@ -104,15 +104,26 @@ export function _publishCloudEventsSend(
 ): StreamableMethod<
   PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 > {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ??
-        "application/cloudevents-batch+json; charset=utf-8",
-      body: events,
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType:
+      (options.contentType as any) ??
+      "application/cloudevents-batch+json; charset=utf-8",
+    body: (events ?? []).map((p) => {
+      return {
+        id: p["id"],
+        source: p["source"],
+        data: p["data"],
+        data_base64: uint8ArrayToString(p["dataBase64"] ?? "", "base64"),
+        type: p["type"],
+        time: new Date(p["time"] ?? ""),
+        specversion: p["specversion"],
+        dataschema: p["dataschema"],
+        datacontenttype: p["datacontenttype"],
+        subject: p["subject"],
+      };
+    }),
+  });
 }
 
 export async function _publishCloudEventsDeserialize(

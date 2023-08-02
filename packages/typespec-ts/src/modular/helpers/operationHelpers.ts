@@ -175,7 +175,7 @@ function getOperationSignatureParameters(
         operation.bodyParameter.type
       )
     );
-  } 
+  }
 
   operation.parameters
     .filter(
@@ -326,15 +326,25 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
 
     if (bodyParameter && bodyParameter.type.properties) {
       if (hasSerializeBody) {
-        return `\nbody: {"${bodyParameter.restApiName}": {${bodyParts.join(",\n")}}},`;
+        return `\nbody: {"${bodyParameter.restApiName}": {${bodyParts.join(
+          ",\n"
+        )}}},`;
       } else {
         return `\nbody: {${bodyParts.join(",\n")}},`;
       }
-
     }
   }
 
   if (bodyParameter.type.type === "list") {
+    if (bodyParameter.type.elementType?.type === "model") {
+      const bodyParts = getRequestBodyMapping(
+        bodyParameter.type.elementType,
+        "p"
+      );
+      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
+        ${bodyParts.join(", ")}
+      };}),`;
+    }
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
@@ -514,7 +524,7 @@ function getNullableCheck(name: string, type: Type) {
 }
 
 /**
- * 
+ *
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
@@ -653,7 +663,9 @@ function deserializeResponseValue(type: Type, restValue: string): string {
       }
     case "byte-array":
       utilImports.add("stringToUint8Array");
-      return `stringToUint8Array(${restValue} ?? "", "${type.format ?? "base64"}")`;
+      return `stringToUint8Array(${restValue} ?? "", "${
+        type.format ?? "base64"
+      }")`;
     default:
       return restValue;
   }
@@ -686,7 +698,9 @@ function serializeRequestValue(type: Type, restValue: string): string {
       }
     case "byte-array":
       utilImports.add("uint8ArrayToString");
-      return `uint8ArrayToString(${restValue} ?? "", "${type.format ?? "base64"}")`;
+      return `uint8ArrayToString(${restValue} ?? "", "${
+        type.format ?? "base64"
+      }")`;
     default:
       return restValue;
   }
