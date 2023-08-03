@@ -75,7 +75,6 @@
     "rollup": "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9",
-    "ts-node": "^10.0.0",
     "@azure-tools/test-credential": "^1.0.0",
     "@azure/identity": "^2.0.1",
     "@azure-tools/test-recorder": "^3.0.0",
@@ -95,7 +94,8 @@
     "karma-source-map-support": "~1.4.0",
     "karma-sourcemap-loader": "^0.3.8",
     "karma": "^6.2.0",
-    "nyc": "^15.0.0"
+    "nyc": "^15.0.0",
+    "ts-node": "^10.0.0"
   },
   "type": "module",
   "browser": {
