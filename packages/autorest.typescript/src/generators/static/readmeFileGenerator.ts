@@ -10,7 +10,7 @@ import { CodeModel, Info, Languages } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { normalizeName, NameType } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
-import { SampleDetails, SampleGroup } from "../../models/sampleDetails";
+import { SampleGroup } from "../../models/sampleDetails";
 import { ClientDetails } from "../../models/clientDetails";
 
 /**
