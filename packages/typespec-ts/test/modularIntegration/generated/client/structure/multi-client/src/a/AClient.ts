@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { ClientType } from "./models/models.js";
 import {
   RenamedOneOptions,
   RenamedThreeOptions,
@@ -8,6 +9,7 @@ import {
 } from "./models/options.js";
 import {
   createA,
+  AClientOptions,
   ServiceContext,
   renamedOne,
   renamedThree,
@@ -19,7 +21,7 @@ export { AClientOptions } from "./api/AContext.js";
 export class AClient {
   private _client: ServiceContext;
 
-  constructor(client: enum, options: AClientClientOptions = {}) {
+  constructor(client: ClientType, options: AClientOptions = {}) {
     this._client = createA(client, options);
   }
 

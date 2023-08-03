@@ -153,7 +153,6 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      buildClientContext(dpgContext, subClient, project, srcPath, subfolder);
       buildModels(modularCodeModel, project, srcPath, subfolder);
       buildOperationFiles(
         dpgContext,
@@ -163,6 +162,7 @@ export async function $onEmit(context: EmitContext) {
         subfolder,
         needUnexpectedHelper.get(subClient.name + "Client")
       );
+      buildClientContext(dpgContext, subClient, project, srcPath, subfolder);
       buildSubpathIndexFile(project, srcPath, "models", subfolder);
       buildSubpathIndexFile(project, srcPath, "api", subfolder);
       buildClassicalClient(dpgContext, subClient, project, srcPath, subfolder);

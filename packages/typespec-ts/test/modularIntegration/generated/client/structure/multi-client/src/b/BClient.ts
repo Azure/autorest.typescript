@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { ClientType } from "./models/models.js";
 import {
   RenamedTwoOptions,
   RenamedFourOptions,
@@ -8,6 +9,7 @@ import {
 } from "./models/options.js";
 import {
   createB,
+  BClientOptions,
   ServiceContext,
   renamedTwo,
   renamedFour,
@@ -19,7 +21,7 @@ export { BClientOptions } from "./api/BContext.js";
 export class BClient {
   private _client: ServiceContext;
 
-  constructor(client: enum, options: BClientClientOptions = {}) {
+  constructor(client: ClientType, options: BClientOptions = {}) {
     this._client = createB(client, options);
   }
 

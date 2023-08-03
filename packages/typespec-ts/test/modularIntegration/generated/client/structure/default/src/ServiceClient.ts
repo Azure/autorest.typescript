@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { ClientType } from "./models/models.js";
 import {
   OneOptions,
   TwoOptions,
@@ -35,7 +36,7 @@ export class ServiceClient {
    * 5. have two clients with operations come from different interfaces
    * 6. have two clients with a hierarchy relation.
    */
-  constructor(client: enum, options: ServiceClientOptions = {}) {
+  constructor(client: ClientType, options: ServiceClientOptions = {}) {
     this._client = createService(client, options);
   }
 

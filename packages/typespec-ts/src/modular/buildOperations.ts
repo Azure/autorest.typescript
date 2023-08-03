@@ -125,7 +125,7 @@ export function buildOperationFiles(
   }
 }
 
-function importModels(
+export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,

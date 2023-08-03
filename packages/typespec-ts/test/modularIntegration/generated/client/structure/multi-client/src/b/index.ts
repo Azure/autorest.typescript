@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { BClient } from "./BClient.js";
+export { BClient, BClientOptions } from "./BClient.js";
 export {
   ClientType,
   RenamedTwoOptions,

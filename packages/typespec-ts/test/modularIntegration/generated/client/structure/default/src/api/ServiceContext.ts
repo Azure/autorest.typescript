@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { ClientType } from "../models/models.js";
 import { ClientOptions } from "@azure-rest/core-client";
 import { ServiceContext } from "../rest/index.js";
 import getClient from "../rest/index.js";
@@ -19,7 +20,7 @@ export { ServiceContext } from "../rest/index.js";
  * 6. have two clients with a hierarchy relation.
  */
 export function createService(
-  client: enum,
+  client: ClientType,
   options: ServiceClientOptions = {}
 ): ServiceContext {
   const baseUrl = client;

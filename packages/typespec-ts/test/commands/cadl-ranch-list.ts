@@ -174,7 +174,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "client/structure/default",
-    inputPath: "client/structure/default"
+    inputPath: "client/structure/default",
   },
   {
     outputPath: "client/structure/multi-client",
