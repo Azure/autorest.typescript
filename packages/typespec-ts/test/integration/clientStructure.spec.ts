@@ -12,7 +12,7 @@ import ServiceTwoOpGroupClientFactory, {
   ServiceClient as ServiceTwoOpGroupClient
 } from "./generated/client/structure/two-operation-group/src/index.js";
 import { assert } from "chai";
-describe("BodyOptionalityClient Rest Client", () => {
+describe.only("BodyOptionalityClient Rest Client", () => {
   let client0: ServiceDefaultClient;
   let client1: ServiceMultiClient;
   let client2: ServiceRenamedClient;
@@ -31,14 +31,14 @@ describe("BodyOptionalityClient Rest Client", () => {
     });
     client3 = ServiceTwoOpGroupClientFactory("two-operation-group", {
       allowInsecureConnection: true
-    })
-    clientArray.push(...[client0, client1, client2, client3]);
+    });
+    clientArray = new Array(...[client0, client1, client2, client3]);
   });
 
   it("should call operation one correctly", async () => {
     for (const client of clientArray) {
       try {
-        const result = await client.path("/one").get();
+        const result = await client.path("/one").patch();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -49,7 +49,7 @@ describe("BodyOptionalityClient Rest Client", () => {
   it("should call operation two correctly", async () => {
     for (const client of clientArray) {
       try {
-        const result = await client.path("/two").get();
+        const result = await client.path("/two").patch();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -60,7 +60,7 @@ describe("BodyOptionalityClient Rest Client", () => {
   it("should call operation three correctly", async () => {
     for (const client of clientArray) {
       try {
-        const result = await client.path("/three").get();
+        const result = await client.path("/three").patch();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -71,7 +71,7 @@ describe("BodyOptionalityClient Rest Client", () => {
   it("should call operation four correctly", async () => {
     for (const client of clientArray) {
       try {
-        const result = await client.path("/four").get();
+        const result = await client.path("/four").patch();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -82,7 +82,7 @@ describe("BodyOptionalityClient Rest Client", () => {
   it("should call operation five correctly", async () => {
     for (const client of clientArray) {
       try {
-        const result = await client.path("/five").get();
+        const result = await client.path("/five").patch();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
@@ -93,7 +93,7 @@ describe("BodyOptionalityClient Rest Client", () => {
   it("should call operation six correctly", async () => {
     for (const client of clientArray) {
       try {
-        const result = await client.path("/six").get();
+        const result = await client.path("/six").patch();
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
