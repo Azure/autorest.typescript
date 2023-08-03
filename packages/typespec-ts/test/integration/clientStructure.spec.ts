@@ -12,7 +12,7 @@ import ServiceTwoOpGroupClientFactory, {
   ServiceClient as ServiceTwoOpGroupClient
 } from "./generated/client/structure/two-operation-group/src/index.js";
 import { assert } from "chai";
-describe.only("BodyOptionalityClient Rest Client", () => {
+describe("BodyOptionalityClient Rest Client", () => {
   let client0: ServiceDefaultClient;
   let client1: ServiceMultiClient;
   let client2: ServiceRenamedClient;
