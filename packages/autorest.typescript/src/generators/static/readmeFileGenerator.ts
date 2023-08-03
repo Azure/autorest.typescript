@@ -10,6 +10,8 @@ import { CodeModel, Info, Languages } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { normalizeName, NameType } from "../../utils/nameUtils";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
+import { SampleDetails, SampleGroup } from "../../models/sampleDetails";
+import { ClientDetails } from "../../models/clientDetails";
 
 /**
  * Meta data information about the service, the package, and the client.
@@ -60,6 +62,7 @@ interface Metadata {
   dependencyLink?: string;
   /** Indicates if the package is a multi-client */
   hasMultiClients?: boolean;
+  checkSubid?: boolean;
 }
 
 /**
@@ -164,13 +167,18 @@ function createMetadata(codeModel: CodeModel): Metadata {
   };
 }
 
-export function generateReadmeFile(codeModel: CodeModel, project: Project) {
+export function generateReadmeFile(
+  codeModel: CodeModel,
+  project: Project,
+  clientDetails: ClientDetails
+) {
   const { generateMetadata } = getAutorestOptions();
   if (!generateMetadata) {
     return;
   }
 
   const metadata = createMetadata(codeModel);
+  enrichClientSubscriptionId(clientDetails.samples!, metadata);
   const file = fs.readFileSync(path.join(__dirname, "hlcREADME.md.hbs"), {
     encoding: "utf-8"
   });
@@ -178,6 +186,21 @@ export function generateReadmeFile(codeModel: CodeModel, project: Project) {
   project.createSourceFile("README.md", readmeFileContents(metadata), {
     overwrite: true
   });
+}
+
+function enrichClientSubscriptionId(
+  clientDetail: SampleGroup[],
+  metadata: Metadata
+) {
+  clientDetail.some(sampleGroup => {
+    sampleGroup.samples.some(sample => {
+      const checkSubscriptionId = sample.clientParameterNames.includes(
+        "subscriptionId"
+      );
+      metadata.checkSubid = checkSubscriptionId;
+    });
+  });
+  return metadata;
 }
 
 function getClientAndServiceName(
