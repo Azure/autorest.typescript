@@ -62,7 +62,8 @@ interface Metadata {
   dependencyLink?: string;
   /** Indicates if the package is a multi-client */
   hasMultiClients?: boolean;
-  checkSubid?: boolean;
+  /** Indicates if we have a client-level subscription id paramter */
+  hasClientSubscriptionId?: boolean;
 }
 
 /**
@@ -70,7 +71,10 @@ interface Metadata {
  * @param codeModel - include the client details
  * @returns inferred metadata about the service, the package, and the client
  */
-function createMetadata(codeModel: CodeModel): Metadata {
+function createMetadata(
+  codeModel: CodeModel,
+  clientDetails: ClientDetails
+): Metadata {
   const {
     packageDetails,
     azureOutputDirectory,
@@ -163,7 +167,8 @@ function createMetadata(codeModel: CodeModel): Metadata {
     serviceDocURL: productDocLink,
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
-    hasMultiClients: multiClient && batch && batch.length > 1
+    hasMultiClients: multiClient && batch && batch.length > 1,
+    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails.samples)
   };
 }
 
@@ -177,8 +182,7 @@ export function generateReadmeFile(
     return;
   }
 
-  const metadata = createMetadata(codeModel);
-  enrichClientSubscriptionId(clientDetails.samples!, metadata);
+  const metadata = createMetadata(codeModel, clientDetails);
   const file = fs.readFileSync(path.join(__dirname, "hlcREADME.md.hbs"), {
     encoding: "utf-8"
   });
@@ -188,19 +192,16 @@ export function generateReadmeFile(
   });
 }
 
-function enrichClientSubscriptionId(
-  clientDetail: SampleGroup[],
-  metadata: Metadata
-) {
-  clientDetail.some(sampleGroup => {
-    sampleGroup.samples.some(sample => {
-      const checkSubscriptionId = sample.clientParameterNames.includes(
-        "subscriptionId"
-      );
-      metadata.checkSubid = checkSubscriptionId;
-    });
+function hasClientSubscriptionId(samples?: SampleGroup[]) {
+  if (!samples || samples.length === 0) {
+    // have the subscription id parameter in constructor if no samples
+    return true;
+  }
+  return samples.some(group => {
+    group.samples.some(sample =>
+      sample.clientParameterNames.toLocaleLowerCase().includes("subscriptionid")
+    );
   });
-  return metadata;
 }
 
 function getClientAndServiceName(
