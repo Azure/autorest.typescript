@@ -321,7 +321,7 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     ) ?? []) {
       if (param.type.type === "model" && isRequired(param)) {
         hasSerializeBody = true;
-        bodyParts.push(...getRequestBodyMapping(param.type, param.clientName));
+        bodyParts.push(...getRequestModelMapping(param.type, param.clientName));
       } else {
         bodyParts.push(getParameterMap(param));
       }
@@ -340,7 +340,7 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
 
   if (bodyParameter.type.type === "list") {
     if (bodyParameter.type.elementType?.type === "model") {
-      const bodyParts = getRequestBodyMapping(
+      const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p"
       );
@@ -414,6 +414,12 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 }
 
 function getRequired(param: RequiredType) {
+  if (param.type.type === "model") {
+    return `"${param.restApiName}": ${getRequestModelMapping(
+      param.type,
+      param.clientName
+    ).join(",")}`;
+  }
   return `"${param.restApiName}": ${param.clientName}`;
 }
 
@@ -449,6 +455,12 @@ function isOptionalWithouDefault(
   return Boolean(param.optional && !param.clientDefaultValue);
 }
 function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
+  if (param.type.type === "model") {
+    return `"${param.restApiName}": {${getRequestModelMapping(
+      param.type,
+      "options?." + param.clientName + "?"
+    ).join(", ")}}`;
+  }
   return `"${param.restApiName}": options?.${param.clientName}`;
 }
 
@@ -462,6 +474,12 @@ function isOptionalWithDefault(
 }
 
 function getOptionalWithDefault(param: OptionalWithDefaultType) {
+  if (param.type.type === "model") {
+    return `"${param.restApiName}": {${getRequestModelMapping(
+      param.type,
+      "options?." + param.clientName
+    ).join(", ")}} ?? ${getQuotedValue(param)}`;
+  }
   return `"${param.restApiName}": options.${
     param.clientName
   } ?? ${getQuotedValue(param)}`;
@@ -531,7 +549,7 @@ function getNullableCheck(name: string, type: Type) {
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
-function getRequestBodyMapping(
+function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body"
 ) {
@@ -666,9 +684,11 @@ function deserializeResponseValue(type: Type, restValue: string): string {
       }
     case "byte-array":
       utilImports.add("stringToUint8Array");
-      return `stringToUint8Array(${restValue} ?? "", "${
+      return `typeof ${restValue} === 'string'
+      ? stringToUint8Array(${restValue} ?? new Uint8Array(), "${
         type.format ?? "base64"
-      }")`;
+      }")
+      : ${restValue}`;
     default:
       return restValue;
   }
@@ -701,7 +721,7 @@ function serializeRequestValue(type: Type, restValue: string): string {
       }
     case "byte-array":
       utilImports.add("uint8ArrayToString");
-      return `uint8ArrayToString(${restValue} ?? "", "${
+      return `uint8ArrayToString(${restValue} ?? new Uint8Array(), "${
         type.format ?? "base64"
       }")`;
     default:

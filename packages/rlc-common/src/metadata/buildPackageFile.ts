@@ -164,7 +164,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       ...(hasLRO && {
         "@azure/core-lro": "^2.5.4",
         "@azure/abort-controller": "^1.0.0"
-      })
+      }),
+      "@azure/core-util": "^1.4.0"
     },
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",

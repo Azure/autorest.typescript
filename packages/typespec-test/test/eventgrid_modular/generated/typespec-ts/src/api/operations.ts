@@ -58,7 +58,10 @@ export function _publishCloudEventSend(
           id: event["id"],
           source: event["source"],
           data: event["data"],
-          data_base64: uint8ArrayToString(event["dataBase64"] ?? "", "base64"),
+          data_base64: uint8ArrayToString(
+            event["dataBase64"] ?? new Uint8Array(),
+            "base64"
+          ),
           type: event["type"],
           time: new Date(event["time"] ?? ""),
           specversion: event["specversion"],
@@ -114,7 +117,10 @@ export function _publishCloudEventsSend(
         id: p["id"],
         source: p["source"],
         data: p["data"],
-        data_base64: uint8ArrayToString(p["dataBase64"] ?? "", "base64"),
+        data_base64: uint8ArrayToString(
+          p["dataBase64"] ?? new Uint8Array(),
+          "base64"
+        ),
         type: p["type"],
         time: new Date(p["time"] ?? ""),
         specversion: p["specversion"],
@@ -192,7 +198,13 @@ export async function _receiveCloudEventsDeserialize(
         id: p.event["id"],
         source: p.event["source"],
         data: p.event["data"],
-        dataBase64: stringToUint8Array(p.event["data_base64"] ?? "", "base64"),
+        dataBase64:
+          typeof p.event["data_base64"] === "string"
+            ? stringToUint8Array(
+                p.event["data_base64"] ?? new Uint8Array(),
+                "base64"
+              )
+            : p.event["data_base64"],
         type: p.event["type"],
         time: new Date(p.event["time"] ?? ""),
         specversion: p.event["specversion"],
