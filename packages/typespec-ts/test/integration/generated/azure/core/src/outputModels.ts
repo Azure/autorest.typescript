@@ -29,7 +29,7 @@ export interface UserListResultsOutput {
   /** List of items. */
   items: Array<UserOutput>;
   /** Link to fetch more items. */
-  nextLink?: string;
+  "odata.nextLink"?: string;
 }
 
 /** Paged collection of User items */
