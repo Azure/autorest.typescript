@@ -116,7 +116,7 @@ function transformTelemetryOptions(
   dpgContext: SdkContext,
   client: SdkClient
 ): TelemetryOptions | undefined {
-  const customRequestIdHeaderName = getFirstCustomRequestHeaderName(
+  const customRequestIdHeaderName = getCustomRequestHeaderNameForClient(
     dpgContext,
     client
   );
@@ -128,7 +128,7 @@ function transformTelemetryOptions(
   return undefined;
 }
 
-function getFirstCustomRequestHeaderName(
+function getCustomRequestHeaderNameForClient(
   dpgContext: SdkContext,
   client: SdkClient
 ) {
@@ -140,7 +140,7 @@ function getFirstCustomRequestHeaderName(
       operationGroup
     );
     for (const op of operations) {
-      const headerName = getCustomRequestHeader(
+      const headerName = getCustomRequestHeaderNameForOperation(
         ignoreDiagnostics(getHttpOperation(program, op))
       );
       if (headerName != undefined) {
@@ -150,7 +150,7 @@ function getFirstCustomRequestHeaderName(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const headerName = getCustomRequestHeader(
+    const headerName = getCustomRequestHeaderNameForOperation(
       ignoreDiagnostics(getHttpOperation(program, clientOp))
     );
     if (headerName != undefined) {
@@ -160,7 +160,9 @@ function getFirstCustomRequestHeaderName(
   return undefined;
 }
 
-function getCustomRequestHeader(route: HttpOperation): string | undefined {
+function getCustomRequestHeaderNameForOperation(
+  route: HttpOperation
+): string | undefined {
   const CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
   const params = route.parameters.parameters.filter(
     (p) =>
