@@ -23,7 +23,7 @@ importers:
       '@azure/core-paging': ^1.5.0
       '@azure/core-rest-pipeline': ^1.8.0
       '@azure/core-tracing': ^1.0.0
-      '@azure/core-util': ^1.0.0-beta.1
+      '@azure/core-util': ^1.4.0
       '@azure/core-xml': ^1.0.0-beta.1
       '@azure/logger': ^1.0.0
       '@microsoft.azure/autorest.testserver': ^3.3.34
@@ -102,7 +102,7 @@ importers:
     devDependencies:
       '@azure-tools/test-recorder': 3.0.0
       '@azure/abort-controller': 1.1.0
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/core-xml': 1.3.4
       '@microsoft.azure/autorest.testserver': 3.3.47
       '@types/chai': 4.3.5
@@ -225,6 +225,7 @@ importers:
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
       '@azure/core-rest-pipeline': ^1.9.2
+      '@azure/core-util': ^1.4.0
       '@azure/logger': ^1.0.4
       '@types/chai': ^4.3.1
       '@types/fs-extra': ^9.0.13
@@ -271,6 +272,7 @@ importers:
       '@azure/core-lro': 2.5.4
       '@azure/core-paging': 1.5.0
       '@azure/core-rest-pipeline': 1.11.0
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
       '@types/chai': 4.3.5
       '@types/fs-extra': 9.0.13
@@ -325,7 +327,7 @@ packages:
       '@azure/core-auth': 1.4.0
       '@azure/core-rest-pipeline': 1.11.0
       '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       tslib: 2.6.0
     transitivePeerDependencies:
       - supports-color
@@ -463,7 +465,7 @@ packages:
     dependencies:
       '@azure/core-auth': 1.4.0
       '@azure/core-rest-pipeline': 1.11.0
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
     transitivePeerDependencies:
       - supports-color
@@ -543,7 +545,7 @@ packages:
       '@azure/core-auth': 1.4.0
       '@azure/core-rest-pipeline': 1.11.0
       '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
       tslib: 2.6.0
     transitivePeerDependencies:
@@ -590,7 +592,7 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.4.0
       '@azure/core-tracing': 1.0.0-preview.13
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
       '@types/node-fetch': 2.6.4
       '@types/tunnel': 0.0.3
@@ -610,7 +612,7 @@ packages:
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
       tslib: 2.6.0
 
@@ -627,7 +629,7 @@ packages:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.4.0
       '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
       form-data: 4.0.0
       http-proxy-agent: 5.0.0
@@ -659,8 +661,8 @@ packages:
     dependencies:
       tslib: 2.6.0
 
-  /@azure/core-util/1.3.2:
-    resolution: {integrity: sha512-2bECOUh88RvL1pMZTcc6OzfobBeWDBf5oBbhjIhT1MV9otMVWCzpOJkkiKtrnO88y5GGBelgY8At73KGAdbkeQ==}
+  /@azure/core-util/1.4.0:
+    resolution: {integrity: sha512-eGAyJpm3skVQoLiRqm/xPa+SXi/NPDdSHMxbRAz2lSprd+Zs+qrpQGQQ2VQ3Nttu+nSZR4XoYQC71LbEI7jsig==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
@@ -683,7 +685,7 @@ packages:
       '@azure/core-client': 1.7.3
       '@azure/core-rest-pipeline': 1.11.0
       '@azure/core-tracing': 1.0.1
-      '@azure/core-util': 1.3.2
+      '@azure/core-util': 1.4.0
       '@azure/logger': 1.0.4
       '@azure/msal-browser': 2.37.1
       '@azure/msal-common': 13.1.0
