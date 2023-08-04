@@ -782,7 +782,7 @@ function serializeRequestValue(
       if(!coreUtilSet) {
         importSet.set("@azure/core-util", new Set<string>().add("uint8ArrayToString"));
       } else {
-        coreUtilSet?.add("uint8ArrayToString");
+        coreUtilSet.add("uint8ArrayToString");
       }
       return `uint8ArrayToString(${restValue} ?? new Uint8Array(), "${
         type.format ?? "base64"
