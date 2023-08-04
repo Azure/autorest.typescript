@@ -24,7 +24,6 @@ import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
 } from "./docsHelpers.js";
-import { utilImports } from "../buildOperations.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -45,7 +44,8 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
 
 export function getSendPrivateFunction(
   operation: Operation,
-  clientType: string
+  clientType: string,
+  importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
@@ -66,7 +66,8 @@ export function getSendPrivateFunction(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
-      operation
+      operation,
+      importSet
     )}});`
   );
 
@@ -79,7 +80,8 @@ export function getSendPrivateFunction(
 export function getDeserializePrivateFunction(
   operation: Operation,
   needSubClient: boolean,
-  needUnexpectedHelper: boolean
+  needUnexpectedHelper: boolean,
+  importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
@@ -127,12 +129,20 @@ export function getDeserializePrivateFunction(
     statements.push(`return result.body`);
   } else if (response?.type?.elementType) {
     statements.push(
-      `return ${deserializeResponseValue(response.type, "result.body")}`
+      `return ${deserializeResponseValue(
+        response.type,
+        "result.body",
+        importSet
+      )}`
     );
   } else if (response?.type?.properties) {
     statements.push(
       `return {`,
-      getResponseMapping(response.type.properties ?? []).join(","),
+      getResponseMapping(
+        response.type.properties ?? [],
+        "result.body",
+        importSet
+      ).join(","),
       `}`
     );
   } else if (returnType.type === "void") {
@@ -259,7 +269,10 @@ export function getOperationOptionsName(operation: Operation) {
  * RLC internally. This will translate High Level parameters into the RLC ones.
  * Figuring out what goes in headers, body, path and qsp.
  */
-function getRequestParameters(operation: Operation): string {
+function getRequestParameters(
+  operation: Operation,
+  importSet: Map<string, Set<string>>
+): string {
   if (!operation.parameters) {
     return "";
   }
@@ -281,7 +294,9 @@ function getRequestParameters(operation: Operation): string {
 
   for (const param of operationParameters) {
     if (param.location === "header" || param.location === "query") {
-      parametersImplementation[param.location].push(getParameterMap(param));
+      parametersImplementation[param.location].push(
+        getParameterMap(param, importSet)
+      );
     }
   }
 
@@ -303,12 +318,18 @@ function getRequestParameters(operation: Operation): string {
     )}},`;
   }
 
-  paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
+  paramStr = `${paramStr}${buildBodyParameter(
+    operation.bodyParameter,
+    importSet
+  )}`;
 
   return paramStr;
 }
 
-function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
+function buildBodyParameter(
+  bodyParameter: BodyParameter | undefined,
+  importSet: Map<string, Set<string>>
+) {
   if (!bodyParameter) {
     return "";
   }
@@ -321,9 +342,11 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     ) ?? []) {
       if (param.type.type === "model" && isRequired(param)) {
         hasSerializeBody = true;
-        bodyParts.push(...getRequestModelMapping(param.type, param.clientName));
+        bodyParts.push(
+          ...getRequestModelMapping(param.type, param.clientName, importSet)
+        );
       } else {
-        bodyParts.push(getParameterMap(param));
+        bodyParts.push(getParameterMap(param, importSet));
       }
     }
 
@@ -342,7 +365,8 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
     if (bodyParameter.type.elementType?.type === "model") {
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
-        "p"
+        "p",
+        importSet
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
@@ -361,21 +385,24 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
 /**
  * This function helps with renames, translating client names to rest api names
  */
-function getParameterMap(param: Parameter | Property) {
+function getParameterMap(
+  param: Parameter | Property,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+): string {
   if (isConstant(param)) {
     return getConstantValue(param);
   }
 
   if (isOptionalWithouDefault(param)) {
-    return getOptionalWithoutDefault(param);
+    return getOptionalWithoutDefault(param, importSet);
   }
 
   if (isOptionalWithDefault(param)) {
-    return getOptionalWithDefault(param);
+    return getOptionalWithDefault(param, importSet);
   }
 
   if (isRequired(param)) {
-    return getRequired(param);
+    return getRequired(param, importSet);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -413,11 +440,15 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType) {
+function getRequired(
+  param: RequiredType,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": ${getRequestModelMapping(
       param.type,
-      param.clientName
+      param.clientName,
+      importSet
     ).join(",")}`;
   }
   return `"${param.restApiName}": ${param.clientName}`;
@@ -454,11 +485,15 @@ function isOptionalWithouDefault(
 ): param is OptionalWithoutDefaultType {
   return Boolean(param.optional && !param.clientDefaultValue);
 }
-function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
+function getOptionalWithoutDefault(
+  param: OptionalWithoutDefaultType,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
-      "options?." + param.clientName + "?"
+      "options?." + param.clientName + "?",
+      importSet
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": options?.${param.clientName}`;
@@ -473,11 +508,15 @@ function isOptionalWithDefault(
   return Boolean(param.clientDefaultValue);
 }
 
-function getOptionalWithDefault(param: OptionalWithDefaultType) {
+function getOptionalWithDefault(
+  param: OptionalWithDefaultType,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
-      "options?." + param.clientName
+      "options?." + param.clientName,
+      importSet
     ).join(", ")}} ?? ${getQuotedValue(param)}`;
   }
   return `"${param.restApiName}": options.${
@@ -551,7 +590,8 @@ function getNullableCheck(name: string, type: Type) {
  */
 function getRequestModelMapping(
   modelPropertyType: Type,
-  propertyPath: string = "body"
+  propertyPath: string = "body",
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
 ) {
   if (!modelPropertyType.properties || !modelPropertyType.properties) {
     return [];
@@ -578,11 +618,12 @@ function getRequestModelMapping(
           property.type
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
-        } {${getResponseMapping(
-          property.type.properties ?? [],
+        } {${getRequestModelMapping(
+          property.type,
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
-          }`
+          }`,
+          importSet
         )}}`;
       }
 
@@ -595,7 +636,8 @@ function getRequestModelMapping(
       props.push(
         `"${property.restApiName}": ${serializeRequestValue(
           property.type,
-          restValue
+          restValue,
+          importSet
         )}`
       );
     }
@@ -610,7 +652,8 @@ function getRequestModelMapping(
  */
 function getResponseMapping(
   properties: Property[],
-  propertyPath: string = "result.body"
+  propertyPath: string = "result.body",
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
 ) {
   const props: string[] = [];
   for (const property of properties) {
@@ -648,7 +691,8 @@ function getResponseMapping(
       props.push(
         `"${property.clientName}": ${deserializeResponseValue(
           property.type,
-          restValue
+          restValue,
+          importSet
         )}`
       );
     }
@@ -662,7 +706,11 @@ function getResponseMapping(
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function deserializeResponseValue(type: Type, restValue: string): string {
+function deserializeResponseValue(
+  type: Type,
+  restValue: string,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+): string {
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
@@ -677,13 +725,19 @@ function deserializeResponseValue(type: Type, restValue: string): string {
       ) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
-          "p"
+          "p",
+          importSet
         )})`;
       } else {
         return restValue;
       }
     case "byte-array":
-      utilImports.add("stringToUint8Array");
+      const coreUtilSet = importSet.get("@azure/core-util");
+      if (!coreUtilSet) {
+        importSet.set("@azure/core-util", new Set<string>().add("stringToUint8Array"));
+      } else {
+        coreUtilSet.add("stringToUint8Array");
+      }
       return `typeof ${restValue} === 'string'
       ? stringToUint8Array(${restValue} ?? new Uint8Array(), "${
         type.format ?? "base64"
@@ -699,7 +753,11 @@ function deserializeResponseValue(type: Type, restValue: string): string {
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function serializeRequestValue(type: Type, restValue: string): string {
+function serializeRequestValue(
+  type: Type,
+  restValue: string,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+): string {
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
@@ -720,7 +778,12 @@ function serializeRequestValue(type: Type, restValue: string): string {
         return restValue;
       }
     case "byte-array":
-      utilImports.add("uint8ArrayToString");
+      const coreUtilSet = importSet.get("@azure/core-util");
+      if(!coreUtilSet) {
+        importSet.set("@azure/core-util", new Set<string>().add("uint8ArrayToString"));
+      }
+      coreUtilSet?.add("uint8ArrayToString");
+
       return `uint8ArrayToString(${restValue} ?? new Uint8Array(), "${
         type.format ?? "base64"
       }")`;

@@ -11,7 +11,6 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
-export const utilImports: Set<string> = new Set<string>();
 /**
  * This function creates a file under /api for each operation group.
  * If there is no operation group in the TypeSpec program, we create a single
@@ -26,7 +25,7 @@ export function buildOperationFiles(
   needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
-    utilImports.clear();
+    const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
     const fileName = operationGroup.className
       ? `${operationGroup.className}`
       : // When the program has no operation groups defined all operations are put
@@ -78,11 +77,16 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       buildOperationOptions(o, modelOptionsFile);
       const operationDeclaration = getOperationFunction(o, clientType);
-      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const sendOperationDeclaration = getSendPrivateFunction(
+        o,
+        clientType,
+        importSet
+      );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
-        needUnexpectedHelper
+        needUnexpectedHelper,
+        importSet
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -100,13 +104,15 @@ export function buildOperationFiles(
         ]
       }
     ]);
-    if (utilImports.size > 0) {
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: "@azure/core-util",
-          namedImports: [...utilImports.values()]
-        }
-      ]);
+    if (importSet.size > 0) {
+      for (const [moduleName, imports] of importSet.entries()) {
+        operationGroupFile.addImportDeclarations([
+          {
+            moduleSpecifier: moduleName,
+            namedImports: [...imports.values()]
+          }
+        ]);
+      }
     }
     modelOptionsFile.addImportDeclarations([
       {
