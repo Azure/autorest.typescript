@@ -1002,7 +1002,7 @@ function emitStdScalar(
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "byte-array", format: getEncode(program,  scalar) };
+      return { type: "byte-array", format: getEncode(program, scalar) };
     case "int8":
     case "int16":
     case "int32":
