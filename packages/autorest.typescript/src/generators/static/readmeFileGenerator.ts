@@ -73,7 +73,7 @@ interface Metadata {
  */
 function createMetadata(
   codeModel: CodeModel,
-  clientDetails: ClientDetails
+  clientDetails?: ClientDetails
 ): Metadata {
   const {
     packageDetails,
@@ -168,14 +168,14 @@ function createMetadata(
     dependencyDescription: dependencyInfo?.description,
     dependencyLink: dependencyInfo?.link,
     hasMultiClients: multiClient && batch && batch.length > 1,
-    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails.samples)
+    hasClientSubscriptionId: hasClientSubscriptionId(clientDetails?.samples)
   };
 }
 
 export function generateReadmeFile(
   codeModel: CodeModel,
   project: Project,
-  clientDetails: ClientDetails
+  clientDetails?: ClientDetails
 ) {
   const { generateMetadata } = getAutorestOptions();
   if (!generateMetadata) {
