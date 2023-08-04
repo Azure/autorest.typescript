@@ -2,7 +2,7 @@ import { assert } from "chai";
 import ClientRequestIdClientFactory, {
   ClientRequestIdClient
 } from "./generated/headers/clientRequestId/src/index.js";
-describe.only("ClientRequestIdClient", () => {
+describe("ClientRequestIdClient", () => {
   let client: ClientRequestIdClient;
 
   beforeEach(() => {
