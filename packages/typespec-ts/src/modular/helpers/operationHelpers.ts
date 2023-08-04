@@ -711,6 +711,7 @@ function deserializeResponseValue(
   restValue: string,
   importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
 ): string {
+  const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
@@ -732,7 +733,6 @@ function deserializeResponseValue(
         return restValue;
       }
     case "byte-array":
-      const coreUtilSet = importSet.get("@azure/core-util");
       if (!coreUtilSet) {
         importSet.set("@azure/core-util", new Set<string>().add("stringToUint8Array"));
       } else {
@@ -758,6 +758,7 @@ function serializeRequestValue(
   restValue: string,
   importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
 ): string {
+  const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
       return `new Date(${restValue} ?? "")`;
@@ -778,12 +779,11 @@ function serializeRequestValue(
         return restValue;
       }
     case "byte-array":
-      const coreUtilSet = importSet.get("@azure/core-util");
       if(!coreUtilSet) {
         importSet.set("@azure/core-util", new Set<string>().add("uint8ArrayToString"));
+      } else {
+        coreUtilSet?.add("uint8ArrayToString");
       }
-      coreUtilSet?.add("uint8ArrayToString");
-
       return `uint8ArrayToString(${restValue} ?? new Uint8Array(), "${
         type.format ?? "base64"
       }")`;
