@@ -198,7 +198,7 @@ function hasClientSubscriptionId(samples?: SampleGroup[]) {
     return true;
   }
   return samples.some(group => {
-    group.samples.some(sample =>
+    return group.samples.some(sample =>
       sample.clientParameterNames.toLocaleLowerCase().includes("subscriptionid")
     );
   });
