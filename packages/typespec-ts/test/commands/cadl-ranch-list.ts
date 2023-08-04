@@ -75,11 +75,11 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc/legacy"
+    inputPath: "azure/core/lro/rpc-legacy"
   },
   {
     outputPath: "models/inheritance",
-    inputPath: "type/model/inheritance"
+    inputPath: "type/model/inheritance/nested-discriminator"
   },
   {
     outputPath: "models/propertyOptional",

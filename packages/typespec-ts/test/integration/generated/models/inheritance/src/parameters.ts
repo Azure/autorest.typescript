@@ -2,20 +2,8 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Siamese, Fish } from "./models";
+import { Fish } from "./models";
 
-export interface PostValidBodyParam {
-  body: Siamese;
-}
-
-export type PostValidParameters = PostValidBodyParam & RequestParameters;
-export type GetValidParameters = RequestParameters;
-
-export interface PutValidBodyParam {
-  body: Siamese;
-}
-
-export type PutValidParameters = PutValidBodyParam & RequestParameters;
 export type GetModelParameters = RequestParameters;
 
 export interface PutModelBodyParam {
