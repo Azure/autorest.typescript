@@ -30,9 +30,9 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
         scopeName: { type: "string", nullable: true },
         nameWithoutScope: { type: "string", nullable: true },
         description: { type: "string", nullable: true },
-        version: { type: "string", nullable: false }
+        version: { type: "string", nullable: true }
       },
-      required: ["name", "version"],
+      required: ["name"],
       nullable: true
     },
     addCredentials: { type: "boolean", nullable: true },

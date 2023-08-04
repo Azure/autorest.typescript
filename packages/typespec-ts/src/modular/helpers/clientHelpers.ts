@@ -14,7 +14,11 @@ export function getClientParameters(
 
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
     ...parameters
-      .filter((p) => p.type.type !== "constant")
+      .filter(
+        (p) =>
+          p.type.type !== "constant" &&
+          (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
+      )
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
         return {
           name: p.clientName,

@@ -1,5 +1,6 @@
 import { Project } from "ts-morph";
 import { ModularCodeModel } from "./modularCodeModel.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function emitPackage(
   project: Project,
@@ -18,7 +19,7 @@ export function emitPackage(
       codeModel.options?.packageDetails?.name ?? "@msinternal/unamedpackage"
     }`,
     version: "1.0.0-beta.1",
-    description: `"${codeModel.options?.packageDetails?.description}"`,
+    description: `${codeModel.options?.packageDetails?.description}`,
     "sdk-type": "client",
     main: "dist/index.js",
     module: "dist-esm/src/index.js",
@@ -39,10 +40,6 @@ export function emitPackage(
       "./models": {
         types: "./types/src/models/index.d.ts",
         import: "./dist-esm/src/models/index.js"
-      },
-      "./rest": {
-        types: "./types/src/rest/index.d.ts",
-        import: "./dist-esm/src/rest/index.js"
       }
     },
     "//metadata": {
@@ -157,7 +154,7 @@ export function emitPackage(
       "karma-junit-reporter": "^2.0.1",
       "karma-mocha": "^2.0.1",
       "karma-mocha-reporter": "^2.2.5",
-      "karma-sourcemap-loader": "^0.3.8",
+      "karma-sourcemap-loader": "^0.4.0",
       mocha: "^7.1.1",
       "mocha-junit-reporter": "^2.0.2",
       nyc: "^15.1.0",
@@ -179,7 +176,30 @@ export function emitPackage(
       "@azure/logger": "^1.0.3",
       tslib: "^2.4.0"
     }
-  };
+  } as any;
+
+  if (codeModel.clients.length > 1) {
+    delete content.exports["./api"];
+    delete content.exports["./models"];
+    for (const client of codeModel.clients) {
+      const subfolder = normalizeName(
+        client.name.replace("Client", ""),
+        NameType.File
+      );
+      content.exports[`./${subfolder}`] = {
+        types: `./types/src/${subfolder}/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/index.js`
+      };
+      content.exports[`./${subfolder}/api`] = {
+        types: `./types/src/${subfolder}/api/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/api/index.js`
+      };
+      content.exports[`./${subfolder}/models`] = {
+        types: `./types/src/${subfolder}/models/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/models/index.js`
+      };
+    }
+  }
 
   packageJson.addStatements(JSON.stringify(content));
 

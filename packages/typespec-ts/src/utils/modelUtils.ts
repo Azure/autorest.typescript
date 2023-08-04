@@ -146,7 +146,7 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (usage && usage.includes(SchemaContext.Output)) {
-      if (!schema.name) {
+      if (!schema.name || schema.name === "") {
         //TODO: HANDLE ANONYMOUS
         schema.outputTypeName =
           schema.type === "object" ? "Record<string, any>" : "any";
@@ -264,10 +264,12 @@ function getSchemaForUnion(
       schema.alias = unionAlias;
       schema.outputAlias = outputUnionAlias;
     } else if (union.expression && !union.name) {
-      schema.type = unionAlias;
+      schema.type = "union";
+      schema.typeName = unionAlias;
       schema.outputTypeName = outputUnionAlias;
     } else {
-      schema.type = union.name ?? unionAlias;
+      schema.type = "union";
+      schema.typeName = union.name ?? unionAlias;
     }
   }
 
@@ -809,19 +811,28 @@ function mapCadlStdTypeToTypeScript(
           !isUnknownType(indexer.value!) &&
           !isUnionType(indexer.value!)
         ) {
-          schema.typeName = `Record<string, ${valueType.name}>`;
+          schema.typeName = `Record<string, ${valueType.typeName}>`;
           schema.valueTypeName = valueType.name;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.name}Output>`;
-            schema.outputValueTypeName = `${valueType.name}Output`;
+            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputValueTypeName = `${valueType.outputTypeName}`;
           }
         } else if (isUnknownType(indexer.value!)) {
-          schema.typeName = `Record<string, ${valueType.type}>`;
+          schema.typeName = `Record<string, ${
+            valueType.typeName ?? valueType.type
+          }>`;
           if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+            schema.outputTypeName = `Record<string, ${
+              valueType.outputTypeName ?? valueType.type
+            }>`;
           }
         } else {
-          schema.typeName = `Record<string, ${valueType.type}>`;
+          schema.typeName = `Record<string, ${getTypeName(valueType, [
+            SchemaContext.Input
+          ])}>`;
+          schema.outputTypeName = `Record<string, ${getTypeName(valueType, [
+            SchemaContext.Output
+          ])}>`;
         }
       } else if (name === "integer") {
         schema = {
@@ -844,6 +855,8 @@ function mapCadlStdTypeToTypeScript(
           if (schema.items.typeName) {
             if (schema.items.type === "dictionary") {
               schema.typeName = `${schema.items.typeName}[]`;
+            } else if (schema.items.type === "union") {
+              schema.typeName = `(${schema.items.typeName})[]`;
             } else {
               schema.typeName = schema.items.typeName
                 .split("|")
@@ -1053,6 +1066,10 @@ export function getImportedModelName(schema: Schema): string[] | undefined {
       const importName = getDictionaryValueName(schema as DictionarySchema);
       return importName ? [importName] : undefined;
     }
+    case "union":
+      return (schema as any).enum
+        .filter((i: Schema) => i.type === "object")
+        .map((i: Schema) => getPriorityName(i) ?? "");
     default:
       return;
   }

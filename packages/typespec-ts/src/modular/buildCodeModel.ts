@@ -36,7 +36,8 @@ import {
   Type,
   IntrinsicType,
   getProjectedName,
-  isNullType
+  isNullType,
+  isTemplateDeclarationOrInstance
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -82,7 +83,13 @@ import {
   Header
 } from "./modularCodeModel.js";
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
+import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
+import { RLCModel, getClientName } from "@azure-tools/rlc-common";
+import {
+  getOperationGroupName,
+  getOperationName
+} from "../utils/operationUtil.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -246,6 +253,9 @@ function processModelProperties(
       isHeader(context.program, property)
     ) {
       continue;
+    }
+    if (newValue.properties === undefined || newValue.properties === null) {
+      newValue.properties = [];
     }
     newValue.properties.push(emitProperty(context, property));
   }
@@ -470,6 +480,12 @@ function emitParameter(
     if (defaultApiVersion) {
       clientDefaultValue = defaultApiVersion.value;
     }
+    if (!clientDefaultValue) {
+      clientDefaultValue = getEnrichedDefaultApiVersion(
+        context.program,
+        context
+      );
+    }
   }
   return { clientDefaultValue, ...base, ...paramMap };
 }
@@ -595,18 +611,29 @@ function emitResponse(
 function emitOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const lro = isLro(context.program, operation);
   const paging = getPagedResult(context.program, operation);
   if (lro && paging) {
-    return emitLroPagingOperation(context, operation, operationGroupName);
+    return emitLroPagingOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
   } else if (paging) {
-    return emitPagingOperation(context, operation, operationGroupName);
+    return emitPagingOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
   } else if (lro) {
-    return emitLroOperation(context, operation, operationGroupName);
+    return emitLroOperation(context, operation, operationGroupName, rlcModels);
   }
-  return emitBasicOperation(context, operation, operationGroupName);
+  return emitBasicOperation(context, operation, operationGroupName, rlcModels);
 }
 
 function addLroInformation(emittedOperation: HrlcOperation) {
@@ -632,12 +659,14 @@ function addPagingInformation(
 function emitLroPagingOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
-    operationGroupName
+    operationGroupName,
+    rlcModels
   );
   addLroInformation(emittedOperation);
   addPagingInformation(context.program, operation, emittedOperation);
@@ -648,12 +677,14 @@ function emitLroPagingOperation(
 function emitLroOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
-    operationGroupName
+    operationGroupName,
+    rlcModels
   );
   addLroInformation(emittedOperation);
   return emittedOperation;
@@ -662,12 +693,14 @@ function emitLroOperation(
 function emitPagingOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   const emittedOperation = emitBasicOperation(
     context,
     operation,
-    operationGroupName
+    operationGroupName,
+    rlcModels
   );
   addPagingInformation(context.program, operation, emittedOperation);
   return emittedOperation;
@@ -676,7 +709,8 @@ function emitPagingOperation(
 function emitBasicOperation(
   context: SdkContext,
   operation: Operation,
-  operationGroupName: string
+  operationGroupName: string,
+  rlcModels: RLCModel
 ): HrlcOperation {
   // Set up parameters for operation
   const parameters: any[] = [];
@@ -688,6 +722,31 @@ function emitBasicOperation(
   const httpOperation = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   );
+  const sourceOperation =
+    operation.sourceOperation &&
+    !isTemplateDeclarationOrInstance(operation.sourceOperation)
+      ? operation.sourceOperation
+      : operation;
+  const sourceOperationGroupName = getOperationGroupName(
+    context,
+    sourceOperation
+  );
+  const sourceOperationName = getOperationName(
+    context.program,
+    sourceOperation
+  );
+  const sourceRoutePath = ignoreDiagnostics(
+    getHttpOperation(context.program, operation)
+  ).path;
+  const rlcResponses = rlcModels.responses?.filter((op) => {
+    return (
+      (sourceOperationGroupName === "" ||
+        op.operationGroup === sourceOperationGroupName) &&
+      op.operationName === sourceOperationName &&
+      op.path === sourceRoutePath
+    );
+  });
+
   for (const param of httpOperation.parameters.parameters) {
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param) && apiVersionParam === undefined) {
@@ -754,7 +813,8 @@ function emitBasicOperation(
     discriminator: "basic",
     isOverload: false,
     overloads: [],
-    apiVersions: [getAddedOnVersion(context.program, operation)]
+    apiVersions: [getAddedOnVersion(context.program, operation)],
+    rlcResponse: rlcResponses?.[0]
   };
 }
 
@@ -940,7 +1000,7 @@ function emitStdScalar(
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "Uint8Array", format: "byte" };
+      return { type: "byte-array", format: "byte" };
     case "int8":
     case "int16":
     case "int32":
@@ -1196,7 +1256,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
 
 function emitOperationGroups(
   context: SdkContext,
-  client: SdkClient
+  client: SdkClient,
+  rlcModels: RLCModel
 ): OperationGroup[] {
   const operationGroups: OperationGroup[] = [];
   for (const operationGroup of listOperationGroups(context, client)) {
@@ -1206,7 +1267,7 @@ function emitOperationGroups(
       context,
       operationGroup
     )) {
-      operations.push(emitOperation(context, operation, name));
+      operations.push(emitOperation(context, operation, name, rlcModels));
     }
     operationGroups.push({
       className: name,
@@ -1216,7 +1277,7 @@ function emitOperationGroups(
   }
   const clientOperations: HrlcOperation[] = [];
   for (const operation of listOperationsInOperationGroup(context, client)) {
-    clientOperations.push(emitOperation(context, operation, ""));
+    clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
     operationGroups.push({
@@ -1252,7 +1313,7 @@ function emitServerParams(
         clientName: "endpoint",
         clientDefaultValue: null,
         restApiName: "$host",
-        location: "path",
+        location: "endpointPath",
         type: { type: "string" },
         implementation: "Client",
         inOverload: false
@@ -1380,7 +1441,11 @@ function getApiVersionParameter(context: SdkContext): Parameter | void {
   }
 }
 
-function emitClients(context: SdkContext, namespace: string): HrlcClient[] {
+function emitClients(
+  context: SdkContext,
+  namespace: string,
+  rlcModelsMap: Map<string, RLCModel>
+): HrlcClient[] {
   const program = context.program;
   const clients = listClients(context);
   const retval: HrlcClient[] = [];
@@ -1390,13 +1455,18 @@ function emitClients(context: SdkContext, namespace: string): HrlcClient[] {
       continue;
     }
     const server = getServerHelper(program, client.service);
+    const rlcModels = rlcModelsMap.get(client.service.name);
+    if (!rlcModels) {
+      continue;
+    }
     const emittedClient: HrlcClient = {
       name: clientName.split(".").at(-1) ?? "",
       description: getDocStr(program, client.type),
       parameters: emitGlobalParameters(context, client.service),
-      operationGroups: emitOperationGroups(context, client),
+      operationGroups: emitOperationGroups(context, client, rlcModels),
       url: server ? server.url : "",
-      apiVersions: []
+      apiVersions: [],
+      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
@@ -1430,6 +1500,7 @@ function getNamespaces(context: SdkContext): Set<string> {
 
 export function emitCodeModel(
   context: EmitContext<EmitterOptions>,
+  rlcModelsMap: Map<string, RLCModel>,
   options: { casing: "snake" | "camel" } = { casing: "snake" }
 ): ModularCodeModel {
   CASING = options.casing ?? CASING;
@@ -1456,11 +1527,12 @@ export function emitCodeModel(
 
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
-      codeModel.clients = emitClients(dpgContext, namespace);
+      codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
     } else {
       codeModel["subnamespaceToClients"][namespace] = emitClients(
         dpgContext,
-        namespace
+        namespace,
+        rlcModelsMap
       );
     }
   }

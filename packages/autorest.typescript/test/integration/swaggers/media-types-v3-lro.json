@@ -8,7 +8,9 @@
     "/foo/api/v1": {
       "post": {
         "x-ms-long-running-operation": true,
-        "tags": ["FooApi"],
+        "tags": [
+          "FooApi"
+        ],
         "summary": "Send payload to Foo service.",
         "operationId": "SendOnDefault",
         "parameters": [
@@ -60,7 +62,9 @@
     "/foo/api/v1/things/{thing}": {
       "x-ms-long-running-operation": true,
       "post": {
-        "tags": ["FooApi"],
+        "tags": [
+          "FooApi"
+        ],
         "summary": "Send payload to targetted thing in Foo service.",
         "operationId": "Send",
         "parameters": [

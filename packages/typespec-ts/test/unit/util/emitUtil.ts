@@ -1,6 +1,7 @@
 import {
   buildClient,
   buildClientDefinitions,
+  buildPaginateHelper,
   buildParameterTypes,
   buildResponseTypes,
   buildSchemaTypes,
@@ -17,6 +18,36 @@ import { transformToResponseTypes } from "../../../src/transform/transformRespon
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
 import { getRLCClients } from "../../../src/utils/clientUtils.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
+import { transformHelperFunctionDetails } from "../../../src/transform/transformHelperFunctionDetails.js";
+
+export async function emitPageHelperFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false,
+  needTCGC: boolean = false
+) {
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    needAzureCore,
+    false,
+    needTCGC
+  );
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = getRLCClients(dpgContext);
+  let helperDetail;
+  if (clients && clients[0]) {
+    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext);
+  }
+  expectDiagnosticEmpty(program.diagnostics);
+  return buildPaginateHelper({
+    helperDetails: helperDetail,
+    srcPath: "",
+    paths: {},
+    libraryName: "test",
+    schemas: []
+  });
+}
 
 export async function emitModelsFromCadl(
   cadlContent: string,

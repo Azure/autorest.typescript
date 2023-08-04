@@ -13,11 +13,16 @@ import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client } from "./modularCodeModel.js";
+import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 
 export function buildClassicalClient(
+  dpgContext: SdkContext,
   client: Client,
   project: Project,
-  srcPath: string
+  srcPath: string,
+  subfolder: string
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
@@ -25,7 +30,9 @@ export function buildClassicalClient(
   const params = getClientParameters(client);
 
   const clientFile = project.createSourceFile(
-    `${srcPath}/src/${classicalClientname}.ts`
+    `${srcPath}/src/${
+      subfolder !== "" ? subfolder + "/" : ""
+    }${classicalClientname}.ts`
   );
 
   clientFile.addExportDeclaration({
@@ -39,15 +46,23 @@ export function buildClassicalClient(
   });
 
   // Add the private client member. This will be the client context from /api
-  clientClass.addProperty({
-    name: "_client",
-    type: `${modularClientName}Context`,
-    scope: Scope.Private
-  });
+  if (isRLCMultiEndpoint(dpgContext)) {
+    clientClass.addProperty({
+      name: "_client",
+      type: `Client.${client.rlcClientName}`,
+      scope: Scope.Private
+    });
+  } else {
+    clientClass.addProperty({
+      name: "_client",
+      type: `${client.rlcClientName}`,
+      scope: Scope.Private
+    });
+  }
 
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
-    docs: [description],
+    docs: getDocsFromDescription(description),
     parameters: params
   });
   constructor.addStatements([
@@ -56,16 +71,22 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   importCredential(clientFile);
-  buildClientOperationGroups(client, clientClass);
-  importAllApis(clientFile, srcPath);
-  importAllModels(clientFile, srcPath);
+  importAllModels(clientFile, srcPath, subfolder);
+  buildClientOperationGroups(client, clientClass, subfolder);
+  importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
 }
 
-function importAllApis(clientFile: SourceFile, srcPath: string) {
+function importAllApis(
+  clientFile: SourceFile,
+  srcPath: string,
+  subfolder: string
+) {
   const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(`${srcPath}/src/api/index.ts`);
+  const apiModels = project.getSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
+  );
 
   if (!apiModels) {
     return;
@@ -79,9 +100,15 @@ function importAllApis(clientFile: SourceFile, srcPath: string) {
   });
 }
 
-function importAllModels(clientFile: SourceFile, srcPath: string) {
+function importAllModels(
+  clientFile: SourceFile,
+  srcPath: string,
+  subfolder: string
+) {
   const project = clientFile.getProject();
-  const apiModels = project.getSourceFile(`${srcPath}/src/models/models.ts`);
+  const apiModels = project.getSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
+  );
 
   if (!apiModels) {
     return;
@@ -92,6 +119,23 @@ function importAllModels(clientFile: SourceFile, srcPath: string) {
   clientFile.addImportDeclaration({
     moduleSpecifier: `./models/models.js`,
     namedImports: exported
+  });
+
+  const apiModelsOptions = project.getSourceFile(
+    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
+  );
+
+  if (!apiModelsOptions) {
+    return;
+  }
+
+  const exportedOptions = [
+    ...apiModelsOptions.getExportedDeclarations().keys()
+  ];
+
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./models/options.js`,
+    namedImports: exportedOptions
   });
 }
 
@@ -104,59 +148,52 @@ function importCredential(clientSourceFile: SourceFile): void {
 
 function buildClientOperationGroups(
   client: Client,
-  clientClass: ClassDeclaration
+  clientClass: ClassDeclaration,
+  subfolder: string
 ) {
   for (const operationGroup of client.operationGroups) {
     const operationGroupName = toCamelCase(operationGroup.propertyName);
+    let clientType = "Client";
+    if (subfolder && subfolder !== "") {
+      clientType = `Client.${clientClass.getName()}`;
+    }
     const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
       operationGroup.operations.map((operation) =>
-        getOperationFunction(operation)
+        getOperationFunction(operation, clientType)
       );
 
-    const tempfile = new Project().createSourceFile("temp.ts");
-
-    const declarations = tempfile.addFunctions(operationDeclarations);
-
-    if (operationGroupName) {
+    if (operationGroupName && operationGroupName !== "") {
       clientClass.addProperty({
         name: operationGroupName,
         initializer: `
       {
-        ${declarations.map((d) => {
-          return `${d.getName()}: (${d
-            .getParameters()
-            .filter((p) => p.getName() !== "context")
-            .map((p) => p.getText())
-            .join(",")}): ${d
-            .getReturnType()
-            .getText()} => {return ${d.getName()}(${[
+        ${operationDeclarations.map((d) => {
+          return `${d.name}: (${d.parameters
+            ?.filter((p) => p.name !== "context")
+            .map((p) => p.name + ": " + p.type)
+            .join(",")}): ${d.returnType} => {return ${d.name}(${[
             "this._client",
-            ...d.getParameters().map((p) => p.getName())
-          ]
-            .filter((p) => p !== "context")
-            .join(",")})}`;
+            ...[d.parameters?.map((p) => p.name).filter((p) => p !== "context")]
+          ].join(",")})}`;
         })}
       }
       `
       });
     } else {
       clientClass.addMethods(
-        declarations.map((d) => {
+        operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
-            docs: d.getJsDocs().map((d) => d.getStructure()),
-            name: d.getName() ?? "FIXME",
+            docs: d.docs,
+            name: d.name ?? "FIXME",
             kind: StructureKind.Method,
-            returnType: d.getReturnType().getText(),
-            parameters: d
-              .getParameters()
-              .filter((p) => p.getName() !== "context")
-              .map((d) => d.getStructure()),
-            statements: `return ${d.getName()}(${[
+            returnType: d.returnType,
+            parameters: d.parameters?.filter((p) => p.name !== "context"),
+            statements: `return ${d.name}(${[
               "this._client",
-              ...d.getParameters().map((p) => p.getName())
-            ]
-              .filter((p) => p !== "context")
-              .join(",")})`
+              ...[
+                d.parameters?.map((p) => p.name).filter((p) => p !== "context")
+              ]
+            ].join(",")})`
           };
 
           return method;

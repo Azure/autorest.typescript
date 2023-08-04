@@ -3,8 +3,8 @@
 
 export {
   createOpenAI,
-  OpenAIContext,
   OpenAIClientOptions,
+  OpenAIContext,
 } from "./OpenAIContext.js";
 export {
   getEmbeddings,

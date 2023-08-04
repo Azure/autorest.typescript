@@ -38,6 +38,7 @@ export function getOperationName(
 export function isReservedName(name: string, nameType: NameType): boolean {
   return ReservedModelNames.some(
     (reservedName) =>
-      reservedName.name === name && reservedName.reservedFor.includes(nameType)
+      reservedName.name === name.toLowerCase() &&
+      reservedName.reservedFor.includes(nameType)
   );
 }
