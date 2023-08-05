@@ -387,7 +387,7 @@ function buildBodyParameter(
  */
 function getParameterMap(
   param: Parameter | Property,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ): string {
   if (isConstant(param)) {
     return getConstantValue(param);
@@ -442,7 +442,7 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(
   param: RequiredType,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": ${getRequestModelMapping(
@@ -487,7 +487,7 @@ function isOptionalWithouDefault(
 }
 function getOptionalWithoutDefault(
   param: OptionalWithoutDefaultType,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
@@ -510,7 +510,7 @@ function isOptionalWithDefault(
 
 function getOptionalWithDefault(
   param: OptionalWithDefaultType,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
@@ -591,7 +591,7 @@ function getNullableCheck(name: string, type: Type) {
 function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ) {
   if (!modelPropertyType.properties || !modelPropertyType.properties) {
     return [];
@@ -653,7 +653,7 @@ function getRequestModelMapping(
 function getResponseMapping(
   properties: Property[],
   propertyPath: string = "result.body",
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ) {
   const props: string[] = [];
   for (const property of properties) {
@@ -678,7 +678,8 @@ function getResponseMapping(
           property.type.properties ?? [],
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
-          }`
+          }`,
+          importSet
         )}}`;
       }
 
@@ -719,7 +720,8 @@ function deserializeResponseValue(
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
           type.elementType?.properties ?? [],
-          "p"
+          "p",
+          importSet
         )}}))`;
       } else if (
         type.elementType?.properties?.some((p) => needsDeserialize(p.type))
@@ -766,7 +768,8 @@ function serializeRequestValue(
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
           type.elementType?.properties ?? [],
-          "p"
+          "p",
+          importSet
         )}}))`;
       } else if (
         type.elementType?.properties?.some((p) => needsDeserialize(p.type))
