@@ -6,20 +6,20 @@ import {
   ServiceContext as Client,
   Six204Response,
   Two204Response,
-} from "../../rest/index.js";
+} from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  RenamedTwoOptions,
-  RenamedFourOptions,
-  RenamedSixOptions,
+  GroupRenamedTwoOptions,
+  GroupRenamedFourOptions,
+  GroupRenamedSixOptions,
 } from "../models/options.js";
 
 export function _renamedTwoSend(
   context: Client,
-  options: RenamedTwoOptions = { requestOptions: {} }
+  options: GroupRenamedTwoOptions = { requestOptions: {} }
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
@@ -34,7 +34,7 @@ export async function _renamedTwoDeserialize(
 
 export async function renamedTwo(
   context: Client,
-  options: RenamedTwoOptions = { requestOptions: {} }
+  options: GroupRenamedTwoOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _renamedTwoSend(context, options);
   return _renamedTwoDeserialize(result);
@@ -42,7 +42,7 @@ export async function renamedTwo(
 
 export function _renamedFourSend(
   context: Client,
-  options: RenamedFourOptions = { requestOptions: {} }
+  options: GroupRenamedFourOptions = { requestOptions: {} }
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
@@ -57,7 +57,7 @@ export async function _renamedFourDeserialize(
 
 export async function renamedFour(
   context: Client,
-  options: RenamedFourOptions = { requestOptions: {} }
+  options: GroupRenamedFourOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _renamedFourSend(context, options);
   return _renamedFourDeserialize(result);
@@ -65,7 +65,7 @@ export async function renamedFour(
 
 export function _renamedSixSend(
   context: Client,
-  options: RenamedSixOptions = { requestOptions: {} }
+  options: GroupRenamedSixOptions = { requestOptions: {} }
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
@@ -80,7 +80,7 @@ export async function _renamedSixDeserialize(
 
 export async function renamedSix(
   context: Client,
-  options: RenamedSixOptions = { requestOptions: {} }
+  options: GroupRenamedSixOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _renamedSixSend(context, options);
   return _renamedSixDeserialize(result);

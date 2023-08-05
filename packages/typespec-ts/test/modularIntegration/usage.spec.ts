@@ -1,4 +1,4 @@
-import { UsageClient } from "../modularIntegration/generated/models/usage/generated/src/index.js";
+import { UsageClient } from "./generated/models/usage/generated/src/index.js";
 import { assert } from "chai";
 import {
   UsageContext,

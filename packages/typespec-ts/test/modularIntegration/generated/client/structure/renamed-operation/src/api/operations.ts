@@ -6,7 +6,7 @@ import {
   One204Response,
   ServiceContext as Client,
   Three204Response,
-} from "../../rest/index.js";
+} from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,

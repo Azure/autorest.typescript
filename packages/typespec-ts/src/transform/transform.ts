@@ -150,7 +150,7 @@ export function transformUrlInfo(
     }
   }
   if (endpoint && urlParameters.length > 0) {
-    for(const param of urlParameters) {
+    for (const param of urlParameters) {
       if (param.oriName) {
         const regexp = new RegExp(`{${param.oriName}}`, "g");
         endpoint = endpoint.replace(regexp, `{${param.name}}`);

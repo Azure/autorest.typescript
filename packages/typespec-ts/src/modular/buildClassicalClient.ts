@@ -170,7 +170,9 @@ function buildClientOperationGroups(
         ${operationDeclarations.map((d) => {
           return `${d.name}: (${d.parameters
             ?.filter((p) => p.name !== "context")
-            .map((p) => p.name + ": " + p.type)
+            .map(
+              (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+            )
             .join(",")}): ${d.returnType} => {return ${d.name}(${[
             "this._client",
             ...[d.parameters?.map((p) => p.name).filter((p) => p !== "context")]
