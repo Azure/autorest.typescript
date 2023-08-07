@@ -156,7 +156,9 @@ export async function $onEmit(context: EmitContext) {
       buildModels(modularCodeModel, project, srcPath, subfolder);
       buildModelsOptions(subClient, project, srcPath, subfolder);
       const hasClientUnexpectedHelper =
-        needUnexpectedHelper.get(subClient.name + "Client") ?? false;
+        needUnexpectedHelper.get(
+          subClient.rlcClientName.replace("Context", "Client")
+        ) ?? false;
       buildOperationFiles(
         dpgContext,
         subClient,
