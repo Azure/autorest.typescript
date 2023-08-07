@@ -12,10 +12,10 @@ export interface RLCModel {
   importSet?: Map<ImportKind, Set<string>>;
   helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
-  telemetryOptions?: TelemetryOptions;
+  telemetryOptions?: TelemetryInfo;
 }
 
-export interface TelemetryOptions {
+export interface TelemetryInfo {
   customRequestIdHeaderName?: string;
 }
 

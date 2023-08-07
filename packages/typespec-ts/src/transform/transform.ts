@@ -3,9 +3,7 @@
 
 import {
   SdkClient,
-  SdkContext,
-  listOperationGroups,
-  listOperationsInOperationGroup
+  SdkContext
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
@@ -21,8 +19,8 @@ import {
   SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import { Program, getDoc, ignoreDiagnostics } from "@typespec/compiler";
-import { HttpOperation, getHttpOperation, getServers } from "@typespec/http";
+import { Program, getDoc } from "@typespec/compiler";
+import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
   getDefaultService,
@@ -39,7 +37,7 @@ import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
-import { TelemetryOptions } from "@azure-tools/rlc-common";
+import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
 
 export interface RLCSdkContext extends SdkContext {
   options?: RLCOptions;
@@ -95,7 +93,7 @@ export async function transformRLCModel(
   helperDetails.clientLroOverload = getClientLroOverload(paths);
   const urlInfo = transformUrlInfo(dpgContext);
   const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
-  const telemetryOptions = transformTelemetryOptions(dpgContext, client);
+  const telemetryOptions = transformTelemetryInfo(dpgContext, client);
   return {
     srcPath,
     libraryName,
@@ -110,69 +108,6 @@ export async function transformRLCModel(
     urlInfo,
     telemetryOptions
   };
-}
-
-function transformTelemetryOptions(
-  dpgContext: SdkContext,
-  client: SdkClient
-): TelemetryOptions | undefined {
-  const customRequestIdHeaderName = getCustomRequestHeaderNameForClient(
-    dpgContext,
-    client
-  );
-  if (customRequestIdHeaderName) {
-    return {
-      customRequestIdHeaderName
-    };
-  }
-  return undefined;
-}
-
-function getCustomRequestHeaderNameForClient(
-  dpgContext: SdkContext,
-  client: SdkClient
-) {
-  const program = dpgContext.program;
-  const operationGroups = listOperationGroups(dpgContext, client);
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-    for (const op of operations) {
-      const headerName = getCustomRequestHeaderNameForOperation(
-        ignoreDiagnostics(getHttpOperation(program, op))
-      );
-      if (headerName != undefined) {
-        return headerName;
-      }
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const headerName = getCustomRequestHeaderNameForOperation(
-      ignoreDiagnostics(getHttpOperation(program, clientOp))
-    );
-    if (headerName != undefined) {
-      return headerName;
-    }
-  }
-  return undefined;
-}
-
-function getCustomRequestHeaderNameForOperation(
-  route: HttpOperation
-): string | undefined {
-  const CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
-  const params = route.parameters.parameters.filter(
-    (p) =>
-      p.type === "header" && p.name.toLowerCase() === CUSTOM_REQUEST_HEADER_NAME
-  );
-  if (params.length > 0) {
-    return CUSTOM_REQUEST_HEADER_NAME;
-  }
-
-  return undefined;
 }
 
 export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
