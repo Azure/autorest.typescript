@@ -1,4 +1,5 @@
 import { Project, SourceFile } from "ts-morph";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
@@ -26,7 +27,7 @@ export function buildOperationFiles(
 ) {
   for (const operationGroup of client.operationGroups) {
     const fileName = operationGroup.className
-      ? `${operationGroup.className}`
+      ? `${normalizeName(operationGroup.className, NameType.File)}`
       : // When the program has no operation groups defined all operations are put
         // into a nameless operation group. We'll call this operations.
         "operations";
@@ -70,11 +71,7 @@ export function buildOperationFiles(
         }
       ]);
     }
-    const modelOptionsFile = project.createSourceFile(
-      `${srcPath}/src/${subfolder}/models/options.ts`
-    );
     operationGroup.operations.forEach((o) => {
-      buildOperationOptions(o, modelOptionsFile);
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
@@ -98,26 +95,6 @@ export function buildOperationFiles(
         ]
       }
     ]);
-    modelOptionsFile.addImportDeclarations([
-      {
-        moduleSpecifier: "@azure-rest/core-client",
-        namedImports: ["OperationOptions"]
-      }
-    ]);
-
-    modelOptionsFile.fixMissingImports();
-    modelOptionsFile
-      .getImportDeclarations()
-      .filter((id) => {
-        return (
-          id.isModuleSpecifierRelative() &&
-          !id.getModuleSpecifierValue().endsWith(".js")
-        );
-      })
-      .map((id) => {
-        id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
-        return id;
-      });
 
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
@@ -125,7 +102,7 @@ export function buildOperationFiles(
   }
 }
 
-function importModels(
+export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,

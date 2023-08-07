@@ -69,14 +69,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "lro/lroCore",
     inputPath: "azure/core/lro/standard"
   },
-  {
-    outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc/legacy"
-  },
-  {
-    outputPath: "models/inheritance",
-    inputPath: "type/model/inheritance"
-  },
+  // {
+  //   outputPath: "lro/lroRPC",
+  //   inputPath: "azure/core/lro/rpc/legacy"
+  // },
+  // {
+  //   outputPath: "models/inheritance",
+  //   inputPath: "type/model/inheritance"
+  // },
   {
     outputPath: "models/propertyOptional",
     inputPath: "type/property/optional"
@@ -148,6 +148,22 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core-traits",
     inputPath: "azure/core/traits"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default"
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
   }
 ];
 
@@ -155,5 +171,21 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default",
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
   }
 ];

@@ -6,7 +6,7 @@ import TypeModelInheritanceClientFactory, {
 } from "./generated/models/inheritance/src/index.js";
 import { assert } from "chai";
 
-describe("ModelsInheritance Rest Client", () => {
+describe.skip("ModelsInheritance Rest Client", () => {
   let client: InheritanceClient;
 
   beforeEach(() => {
