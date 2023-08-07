@@ -57,8 +57,7 @@
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
     "@azure/core-lro": "^2.5.4",
-    "@azure/abort-controller": "^1.0.0",
-    "@azure/core-util": "^1.4.0"
+    "@azure/abort-controller": "^1.0.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
