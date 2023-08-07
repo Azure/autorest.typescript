@@ -45,4 +45,26 @@ describe("ClientRequestIdClient", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should custom the header name in client options", async () => {
+    const headerName = "x-ms-test-for-js";
+    client = ClientRequestIdClientFactory({
+      allowInsecureConnection: true,
+      retryOptions: {
+        maxRetries: 0
+      },
+      telemetryOptions: {
+        clientRequestIdHeaderName: headerName
+      }
+    });
+    try {
+      const result = await client
+        .path("/special-headers/client-request-id")
+        .get();
+      assert.strictEqual(result.status, "400");
+      assert.isNotNull(result.request.headers.get(headerName));
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });
