@@ -252,6 +252,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
+    packageInfo.devDependencies["ts-node"] = "^10.0.0";
     packageInfo.scripts["test"] =
       "npm run clean && npm run build:test && npm run unit-test";
     packageInfo.scripts["test:node"] =
