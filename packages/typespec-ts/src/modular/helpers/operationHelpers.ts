@@ -440,10 +440,7 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(
-  param: RequiredType,
-  importSet: Map<string, Set<string>>
-) {
+function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": ${getRequestModelMapping(
       param.type,
@@ -710,12 +707,12 @@ function getResponseMapping(
 function deserializeResponseValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      return `new Date(${restValue} ?? "")`;
+      return `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
@@ -736,14 +733,15 @@ function deserializeResponseValue(
       }
     case "byte-array":
       if (!coreUtilSet) {
-        importSet.set("@azure/core-util", new Set<string>().add("stringToUint8Array"));
+        importSet.set(
+          "@azure/core-util",
+          new Set<string>().add("stringToUint8Array")
+        );
       } else {
         coreUtilSet.add("stringToUint8Array");
       }
       return `typeof ${restValue} === 'string'
-      ? stringToUint8Array(${restValue} ?? new Uint8Array(), "${
-        type.format ?? "base64"
-      }")
+      ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
       : ${restValue}`;
     default:
       return restValue;
@@ -763,7 +761,7 @@ function serializeRequestValue(
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      return `new Date(${restValue} ?? "")`;
+      return `${restValue} !== undefined ? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
@@ -776,20 +774,24 @@ function serializeRequestValue(
       ) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
-          "p"
+          "p",
+          importSet
         )})`;
       } else {
         return restValue;
       }
     case "byte-array":
-      if(!coreUtilSet) {
-        importSet.set("@azure/core-util", new Set<string>().add("uint8ArrayToString"));
+      if (!coreUtilSet) {
+        importSet.set(
+          "@azure/core-util",
+          new Set<string>().add("uint8ArrayToString")
+        );
       } else {
         coreUtilSet.add("uint8ArrayToString");
       }
-      return `uint8ArrayToString(${restValue} ?? new Uint8Array(), "${
+      return `${restValue} !== undefined ? uint8ArrayToString(${restValue}, "${
         type.format ?? "base64"
-      }")`;
+      }"): undefined`;
     default:
       return restValue;
   }
