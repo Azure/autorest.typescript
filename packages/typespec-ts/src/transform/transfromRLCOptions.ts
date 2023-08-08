@@ -20,7 +20,7 @@ export function transformRLCOptions(
   const options = extractRLCOptions(
     dpgContext.program,
     emitterOptions,
-    dpgContext.generationPathDetail?.rootDir!
+    dpgContext.generationPathDetail?.rootDir ?? ""
   );
   const batch = getRLCClients(dpgContext);
   options.batch = batch;

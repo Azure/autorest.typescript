@@ -46,7 +46,7 @@ export async function transformRLCModel(
   const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
   dpgContext.rlcOptions = options;
   const srcPath = join(
-    dpgContext.generationPathDetail?.rlcSourcesDir!,
+    dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
       : ""
