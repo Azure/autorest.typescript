@@ -9,7 +9,6 @@ import {
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-// import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -34,7 +33,7 @@ export function buildOperationFiles(
         "operations";
 
     const operationGroupFile = project.createSourceFile(
-      `${srcPath}/src/${
+      `${srcPath}/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${fileName}.ts`
     );
@@ -110,7 +109,7 @@ export function importModels(
   subfolder: string = ""
 ) {
   const modelsFile = project.getSourceFile(
-    `${srcPath}/src/${
+    `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }models/models.ts`
   );

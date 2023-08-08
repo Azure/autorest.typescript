@@ -8,7 +8,7 @@ export function buildSubpathIndexFile(
 ) {
   const apiFiles = project.getSourceFiles(`**/src/${subfolder}/${subpath}/**`);
   const indexFile = project.createSourceFile(
-    `${srcPath}/src/${subfolder}/${subpath}/index.ts`
+    `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
     const exports = [...file.getExportedDeclarations().keys()].filter(

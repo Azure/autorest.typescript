@@ -21,7 +21,7 @@ export function buildClientContext(
   const { description, parameters } = client;
   const name = getClientName(client);
   const clientContextFile = project.createSourceFile(
-    `${srcPath}/src/${
+    `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }/api/${name}Context.ts`
   );

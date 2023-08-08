@@ -58,14 +58,14 @@ export async function $onEmit(context: EmitContext) {
   const program: Program = context.program;
   const unresolvedOptions: RLCOptions = context.options;
   const dpgContext = createSdkContext(context) as SdkContext;
-  const srcPath: string = context.emitterOutputDir;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
   >();
-  const generationDir: GenerationDirDetail = await calculateGenerationDir();
-  dpgContext.generationPathDetail = generationDir;
+  const generationPathDetail: GenerationDirDetail =
+    await calculateGenerationDir();
+  dpgContext.generationPathDetail = generationPathDetail;
   // 1. Clear sources folder
   clearSrcFolder();
   // 2. Generate RLC sources
@@ -78,8 +78,7 @@ export async function $onEmit(context: EmitContext) {
     const projectRoot = context.emitterOutputDir ?? "";
     let sourcesRoot = join(projectRoot, "src");
     const customizationFolder = join(projectRoot, "sources");
-    const hasCustomization = await fsextra.pathExists(customizationFolder);
-    if (hasCustomization) {
+    if (await fsextra.pathExists(customizationFolder)) {
       sourcesRoot = join(customizationFolder, "genereated");
     }
     return {
@@ -97,7 +96,8 @@ export async function $onEmit(context: EmitContext) {
 
   function clearSrcFolder() {
     fsextra.emptyDirSync(
-      generationDir.modularSourcesDir ?? generationDir.rlcSourcesDir
+      generationPathDetail.modularSourcesDir ??
+        generationPathDetail.rlcSourcesDir
     );
   }
 
@@ -111,7 +111,6 @@ export async function $onEmit(context: EmitContext) {
         dpgContext
       );
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
-
       needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
 
       await emitModels(rlcModels, program);
@@ -139,7 +138,7 @@ export async function $onEmit(context: EmitContext) {
           buildTsConfig
         ],
         rlcModels,
-        generationDir.metadataDir
+        generationPathDetail.metadataDir
       );
       // build test relevant files
       await emitContentByBuilder(
@@ -152,7 +151,7 @@ export async function $onEmit(context: EmitContext) {
           buildSampleTest
         ],
         rlcModels,
-        generationDir.metadataDir
+        generationPathDetail.metadataDir
       );
     }
   }
@@ -160,6 +159,7 @@ export async function $onEmit(context: EmitContext) {
   async function generateModular() {
     if (unresolvedOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
+      const modularSourcesRoot = generationPathDetail.modularSourcesDir!;
       const project = new Project();
       const modularCodeModel = emitCodeModel(
         context,
@@ -169,7 +169,7 @@ export async function $onEmit(context: EmitContext) {
         }
       );
       const rootIndexFile = project.createSourceFile(
-        `${srcPath}/src/index.ts`,
+        `${modularSourcesRoot}/index.ts`,
         "",
         {
           overwrite: true
@@ -184,8 +184,8 @@ export async function $onEmit(context: EmitContext) {
           );
         }
 
-        buildModels(modularCodeModel, project, srcPath, subfolder);
-        buildModelsOptions(subClient, project, srcPath, subfolder);
+        buildModels(modularCodeModel, project, modularSourcesRoot, subfolder);
+        buildModelsOptions(subClient, project, modularSourcesRoot, subfolder);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(
             subClient.rlcClientName.replace("Context", "Client")
@@ -194,28 +194,45 @@ export async function $onEmit(context: EmitContext) {
           dpgContext,
           subClient,
           project,
-          srcPath,
+          modularSourcesRoot,
           subfolder,
           hasClientUnexpectedHelper
         );
-        buildClientContext(dpgContext, subClient, project, srcPath, subfolder);
-        buildSubpathIndexFile(project, srcPath, "models", subfolder);
-        buildSubpathIndexFile(project, srcPath, "api", subfolder);
+        buildClientContext(
+          dpgContext,
+          subClient,
+          project,
+          modularSourcesRoot,
+          subfolder
+        );
+        buildSubpathIndexFile(project, modularSourcesRoot, "models", subfolder);
+        buildSubpathIndexFile(project, modularSourcesRoot, "api", subfolder);
         buildClassicalClient(
           dpgContext,
           subClient,
           project,
-          srcPath,
+          modularSourcesRoot,
           subfolder
         );
         if (modularCodeModel.clients.length > 1) {
-          buildSubClientIndexFile(subClient, project, srcPath, subfolder);
+          buildSubClientIndexFile(
+            subClient,
+            project,
+            modularSourcesRoot,
+            subfolder
+          );
         }
-        buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
+        buildRootIndex(
+          subClient,
+          project,
+          rootIndexFile,
+          modularSourcesRoot,
+          subfolder
+        );
       }
 
-      emitPackage(project, srcPath, modularCodeModel);
-      emitTsConfig(project, srcPath, modularCodeModel);
+      emitPackage(project, generationPathDetail.metadataDir, modularCodeModel);
+      emitTsConfig(project, generationPathDetail.metadataDir, modularCodeModel);
       removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {

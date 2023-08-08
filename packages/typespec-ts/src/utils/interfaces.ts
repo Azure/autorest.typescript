@@ -10,5 +10,5 @@ export interface GenerationDirDetail {
   rootDir: string;
   rlcSourcesDir: string;
   modularSourcesDir?: string;
-  metadataDir?: string;
+  metadataDir: string;
 }
