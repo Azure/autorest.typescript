@@ -35,7 +35,7 @@ export default function createClient(
   const client = getClient(baseUrl, options) as AuthHttpCustomClient;
 
   client.pipeline.addPolicy({
-    name: "customHttpAuthPolicy",
+    name: "customKeyCredentialPolicy",
     async sendRequest(request, next) {
       request.headers.set(
         "Authorization",

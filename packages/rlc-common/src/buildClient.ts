@@ -344,7 +344,7 @@ export function getClientFactoryBody(
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
     customHttpAuthStatement = `
       client.pipeline.addPolicy({
-        name: "customHttpAuthPolicy",
+        name: "customKeyCredentialPolicy",
         async sendRequest(request, next) {
           request.headers.set("${customHttpAuthHeaderName}", "${customHttpAuthSharedKeyPrefix} " + credentials.key);
           return next(request);
