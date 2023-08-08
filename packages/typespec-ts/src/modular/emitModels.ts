@@ -1,8 +1,9 @@
 import { Project, SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
-import { ModularCodeModel, Type } from "./modularCodeModel.js";
+import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { buildOperationOptions } from "./buildOperations.js";
 
 /**
  * This function creates the file containing all the models defined in TypeSpec
@@ -117,4 +118,44 @@ function isAzureCoreError(t: Type) {
     ["Error", "InnerError"].includes(t.name) &&
     t.isCoreErrorType === true
   );
+}
+
+export function buildModelsOptions(
+  client: Client,
+  project: Project,
+  srcPath: string = "src",
+  subfolder: string = ""
+) {
+  const modelOptionsFile = project.createSourceFile(
+    `${srcPath}/src/${subfolder}/models/options.ts`,
+    undefined,
+    {
+      overwrite: true
+    }
+  );
+  for (const operationGroup of client.operationGroups) {
+    operationGroup.operations.forEach((o) => {
+      buildOperationOptions(o, modelOptionsFile);
+    });
+  }
+  modelOptionsFile.addImportDeclarations([
+    {
+      moduleSpecifier: "@azure-rest/core-client",
+      namedImports: ["OperationOptions"]
+    }
+  ]);
+
+  modelOptionsFile.fixMissingImports();
+  modelOptionsFile
+    .getImportDeclarations()
+    .filter((id) => {
+      return (
+        id.isModuleSpecifierRelative() &&
+        !id.getModuleSpecifierValue().endsWith(".js")
+      );
+    })
+    .map((id) => {
+      id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
+      return id;
+    });
 }

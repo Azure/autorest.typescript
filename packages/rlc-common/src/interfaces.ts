@@ -84,6 +84,7 @@ export interface PathMetadata {
 export type Paths = Record<string, PathMetadata>;
 
 export type PathParameter = {
+  oriName?: string;
   name: string;
   type: string;
   description?: string;

@@ -46,7 +46,7 @@ import {
   buildRootIndex,
   buildSubClientIndexFile
 } from "./modular/buildRootIndex.js";
-import { buildModels } from "./modular/emitModels.js";
+import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
@@ -153,16 +153,21 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      buildClientContext(dpgContext, subClient, project, srcPath, subfolder);
       buildModels(modularCodeModel, project, srcPath, subfolder);
+      buildModelsOptions(subClient, project, srcPath, subfolder);
+      const hasClientUnexpectedHelper =
+        needUnexpectedHelper.get(
+          subClient.rlcClientName.replace("Context", "Client")
+        ) ?? false;
       buildOperationFiles(
         dpgContext,
         subClient,
         project,
         srcPath,
         subfolder,
-        needUnexpectedHelper.get(subClient.name + "Client")
+        hasClientUnexpectedHelper
       );
+      buildClientContext(dpgContext, subClient, project, srcPath, subfolder);
       buildSubpathIndexFile(project, srcPath, "models", subfolder);
       buildSubpathIndexFile(project, srcPath, "api", subfolder);
       buildClassicalClient(dpgContext, subClient, project, srcPath, subfolder);

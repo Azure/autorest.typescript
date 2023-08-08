@@ -138,7 +138,8 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
           property!
         );
         urlParameters.push({
-          name: key,
+          oriName: key,
+          name: normalizeName(key, NameType.Parameter, true),
           type: getTypeName(schema),
           description:
             (getDoc(program, property) &&
@@ -146,6 +147,14 @@ export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
           value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
+      }
+    }
+  }
+  if (endpoint && urlParameters.length > 0) {
+    for (const param of urlParameters) {
+      if (param.oriName) {
+        const regexp = new RegExp(`{${param.oriName}}`, "g");
+        endpoint = endpoint.replace(regexp, `{${param.name}}`);
       }
     }
   }

@@ -1,11 +1,13 @@
 import { OptionalKind, ParameterDeclarationStructure } from "ts-morph";
 import { Client } from "../modularCodeModel.js";
-import { getParameterType } from "./parameterHelpers.js";
+import { getType } from "./typeHelpers.js";
+import { getClientName } from "./namingHelpers.js";
 
 export function getClientParameters(
   client: Client
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const { name, parameters } = client;
+  const { parameters } = client;
+  const name = getClientName(client);
   const optionsParam = {
     name: "options",
     type: `${name}ClientOptions`,
@@ -22,7 +24,7 @@ export function getClientParameters(
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
         return {
           name: p.clientName,
-          type: getParameterType(p)
+          type: getType(p.type).name
         };
       }),
     optionsParam

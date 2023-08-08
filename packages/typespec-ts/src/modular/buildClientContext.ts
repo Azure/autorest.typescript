@@ -6,6 +6,7 @@ import { Client, Parameter } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { importModels } from "./buildOperations.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -26,6 +27,7 @@ export function buildClientContext(
   );
 
   let factoryFunction;
+  importModels(srcPath, clientContextFile, project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier: "@azure-rest/core-client",
     namedImports: ["ClientOptions"]
@@ -136,6 +138,7 @@ export function buildClientContext(
     { importModuleSpecifierEnding: "js" }
   );
 
+  clientContextFile.fixUnusedIdentifiers();
   return clientContextFile;
 }
 
