@@ -49,7 +49,7 @@ export async function transformRLCModel(
     emitterOutputDir,
     dpgContext
   );
-  dpgContext.options = options;
+  dpgContext.rlcOptions = options;
   const srcPath = join(
     emitterOutputDir ?? "",
     "src",

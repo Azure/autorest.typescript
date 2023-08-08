@@ -66,7 +66,7 @@ export function getOperationGroupName(
   dpgContext: SdkContext,
   operationOrRoute?: Operation | HttpOperation
 ) {
-  if (!dpgContext.options?.enableOperationGroup || !operationOrRoute) {
+  if (!dpgContext.rlcOptions?.enableOperationGroup || !operationOrRoute) {
     return "";
   }
   const program = dpgContext.program;

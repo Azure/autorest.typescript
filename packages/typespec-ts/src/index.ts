@@ -50,15 +50,15 @@ import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
+import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 
 export * from "./lib.js";
 
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
-  const options: RLCOptions = context.options;
-  const dpgContext = createSdkContext(context);
-  const clients = getRLCClients(dpgContext);
+  const unresolvedOptions: RLCOptions = context.options;
+  const dpgContext = createSdkContext(context) as SdkContext;
   const srcPath: string = context.emitterOutputDir;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -66,6 +66,9 @@ export async function $onEmit(context: EmitContext) {
     RLCModel
   >();
 
+  // 0. Calculate generation dir
+  const generationDir: GenerationDirDetail = calculateGenerationDir();
+  dpgContext.generationDir = generationDir;
   // 1. Clear sources folder
   clearSrcFolder();
   // 2. Generate RLC sources
@@ -74,14 +77,33 @@ export async function $onEmit(context: EmitContext) {
   await generateModular();
   // 4. Generate metadata and samples/tests
 
+  function calculateGenerationDir(): GenerationDirDetail {
+    const projectRoot = context.emitterOutputDir ?? "";
+    let sourcesRoot = join(projectRoot, "src");
+    const customizationFolder = join(projectRoot, "sources");
+    if (fsextra.pathExistsSync(customizationFolder)) {
+      sourcesRoot = join(customizationFolder, "genereated");
+    }
+    return {
+      metadataDir: projectRoot,
+      rlcSourcesDir: join(
+        sourcesRoot,
+        unresolvedOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
+      ),
+      modularSourcesDir: unresolvedOptions.isModularLibrary
+        ? sourcesRoot
+        : undefined
+    };
+  }
+
   function clearSrcFolder() {
-    const isMultiClient = options.multiClient ?? false;
-    const isModularLibrary = options.isModularLibrary ?? false;
+    const isMultiClient = unresolvedOptions.multiClient ?? false;
+    const isModularLibrary = unresolvedOptions.isModularLibrary ?? false;
     const pathToClear = join(
       context.emitterOutputDir ?? "",
       "src",
       // When generating modular library, RLC has to go under rest folder
-      options.isModularLibrary ? "rest" : ""
+      unresolvedOptions.isModularLibrary ? "rest" : ""
     );
     fsextra.emptyDirSync(pathToClear);
     if (isMultiClient || isModularLibrary) {
@@ -93,10 +115,11 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateRLC() {
+    const clients = getRLCClients(dpgContext);
     for (const client of clients) {
       const rlcModels = await transformRLCModel(
         program,
-        options,
+        unresolvedOptions,
         client,
         context.emitterOutputDir,
         dpgContext
@@ -149,7 +172,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModular() {
-    if (options.isModularLibrary) {
+    if (unresolvedOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
       const project = new Project();
       const modularCodeModel = emitCodeModel(
