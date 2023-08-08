@@ -155,7 +155,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     dependencies: {
       "@azure/core-auth": "^1.3.0",
       "@azure-rest/core-client": "^1.1.4",
-      "@azure/core-rest-pipeline": "^1.8.0",
+      "@azure/core-rest-pipeline": "^1.12.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
@@ -255,6 +255,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
+    packageInfo.devDependencies["ts-node"] = "^10.0.0";
     packageInfo.scripts["test"] =
       "npm run clean && npm run build:test && npm run unit-test";
     packageInfo.scripts["test:node"] =

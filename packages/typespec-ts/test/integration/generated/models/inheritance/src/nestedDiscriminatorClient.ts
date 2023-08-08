@@ -3,15 +3,15 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { InheritanceClient } from "./clientDefinitions";
+import { NestedDiscriminatorClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `InheritanceClient`
+ * Initialize a new instance of `NestedDiscriminatorClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): InheritanceClient {
+): NestedDiscriminatorClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-model-inheritance-rest/1.0.0`;
@@ -29,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as InheritanceClient;
+  const client = getClient(baseUrl, options) as NestedDiscriminatorClient;
 
   return client;
 }

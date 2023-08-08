@@ -137,7 +137,7 @@ export async function emitClientFactoryFromCadl(
   const context = await rlcEmitterFor(cadlContent, false, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const urlInfo = transformUrlInfo(program, dpgContext);
+  const urlInfo = transformUrlInfo(dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
   const clients = getRLCClients(dpgContext);
   let apiVersionInfo;
