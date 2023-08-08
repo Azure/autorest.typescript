@@ -72,7 +72,6 @@ export async function $onEmit(context: EmitContext) {
   await generateRLC();
   // 3. Generate Modular sources
   await generateModular();
-  // 4. Generate metadata and samples/tests
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
