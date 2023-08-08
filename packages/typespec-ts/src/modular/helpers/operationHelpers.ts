@@ -44,7 +44,8 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
 
 export function getSendPrivateFunction(
   operation: Operation,
-  clientType: string
+  clientType: string,
+  importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
@@ -65,7 +66,8 @@ export function getSendPrivateFunction(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
-      operation
+      operation,
+      importSet
     )}});`
   );
 
@@ -78,7 +80,8 @@ export function getSendPrivateFunction(
 export function getDeserializePrivateFunction(
   operation: Operation,
   needSubClient: boolean,
-  needUnexpectedHelper: boolean
+  needUnexpectedHelper: boolean,
+  importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
@@ -126,12 +129,20 @@ export function getDeserializePrivateFunction(
     statements.push(`return result.body`);
   } else if (response?.type?.elementType) {
     statements.push(
-      `return ${deserializeResponseValue(response.type, "result.body")}`
+      `return ${deserializeResponseValue(
+        response.type,
+        "result.body",
+        importSet
+      )}`
     );
   } else if (response?.type?.properties) {
     statements.push(
       `return {`,
-      getResponseMapping(response.type.properties ?? []).join(","),
+      getResponseMapping(
+        response.type.properties ?? [],
+        "result.body",
+        importSet
+      ).join(","),
       `}`
     );
   } else if (returnType.type === "void") {
@@ -258,7 +269,10 @@ export function getOperationOptionsName(operation: Operation) {
  * RLC internally. This will translate High Level parameters into the RLC ones.
  * Figuring out what goes in headers, body, path and qsp.
  */
-function getRequestParameters(operation: Operation): string {
+function getRequestParameters(
+  operation: Operation,
+  importSet: Map<string, Set<string>>
+): string {
   if (!operation.parameters) {
     return "";
   }
@@ -280,7 +294,9 @@ function getRequestParameters(operation: Operation): string {
 
   for (const param of operationParameters) {
     if (param.location === "header" || param.location === "query") {
-      parametersImplementation[param.location].push(getParameterMap(param));
+      parametersImplementation[param.location].push(
+        getParameterMap(param, importSet)
+      );
     }
   }
 
@@ -302,30 +318,60 @@ function getRequestParameters(operation: Operation): string {
     )}},`;
   }
 
-  paramStr = `${paramStr}${buildBodyParameter(operation.bodyParameter)}`;
+  paramStr = `${paramStr}${buildBodyParameter(
+    operation.bodyParameter,
+    importSet
+  )}`;
 
   return paramStr;
 }
 
-function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
+function buildBodyParameter(
+  bodyParameter: BodyParameter | undefined,
+  importSet: Map<string, Set<string>>
+) {
   if (!bodyParameter) {
     return "";
   }
 
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = [];
+    let hasSerializeBody = false;
     for (const param of bodyParameter?.type.properties?.filter(
       (p) => !p.readonly
     ) ?? []) {
-      bodyParts.push(getParameterMap(param));
+      if (param.type.type === "model" && isRequired(param)) {
+        hasSerializeBody = true;
+        bodyParts.push(
+          ...getRequestModelMapping(param.type, param.clientName, importSet)
+        );
+      } else {
+        bodyParts.push(getParameterMap(param, importSet));
+      }
     }
 
     if (bodyParameter && bodyParameter.type.properties) {
-      return `\nbody: {${bodyParts.join(",\n")}},`;
+      if (hasSerializeBody) {
+        return `\nbody: {"${bodyParameter.restApiName}": {${bodyParts.join(
+          ",\n"
+        )}}},`;
+      } else {
+        return `\nbody: {${bodyParts.join(",\n")}},`;
+      }
     }
   }
 
   if (bodyParameter.type.type === "list") {
+    if (bodyParameter.type.elementType?.type === "model") {
+      const bodyParts = getRequestModelMapping(
+        bodyParameter.type.elementType,
+        "p",
+        importSet
+      );
+      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
+        ${bodyParts.join(", ")}
+      };}),`;
+    }
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
@@ -339,21 +385,24 @@ function buildBodyParameter(bodyParameter: BodyParameter | undefined) {
 /**
  * This function helps with renames, translating client names to rest api names
  */
-function getParameterMap(param: Parameter | Property) {
+function getParameterMap(
+  param: Parameter | Property,
+  importSet: Map<string, Set<string>>
+): string {
   if (isConstant(param)) {
     return getConstantValue(param);
   }
 
   if (isOptionalWithouDefault(param)) {
-    return getOptionalWithoutDefault(param);
+    return getOptionalWithoutDefault(param, importSet);
   }
 
   if (isOptionalWithDefault(param)) {
-    return getOptionalWithDefault(param);
+    return getOptionalWithDefault(param, importSet);
   }
 
   if (isRequired(param)) {
-    return getRequired(param);
+    return getRequired(param, importSet);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -391,7 +440,14 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType) {
+function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
+  if (param.type.type === "model") {
+    return `"${param.restApiName}": ${getRequestModelMapping(
+      param.type,
+      param.clientName,
+      importSet
+    ).join(",")}`;
+  }
   return `"${param.restApiName}": ${param.clientName}`;
 }
 
@@ -426,7 +482,17 @@ function isOptionalWithouDefault(
 ): param is OptionalWithoutDefaultType {
   return Boolean(param.optional && !param.clientDefaultValue);
 }
-function getOptionalWithoutDefault(param: OptionalWithoutDefaultType) {
+function getOptionalWithoutDefault(
+  param: OptionalWithoutDefaultType,
+  importSet: Map<string, Set<string>>
+) {
+  if (param.type.type === "model") {
+    return `"${param.restApiName}": {${getRequestModelMapping(
+      param.type,
+      "options?." + param.clientName + "?",
+      importSet
+    ).join(", ")}}`;
+  }
   return `"${param.restApiName}": options?.${param.clientName}`;
 }
 
@@ -439,7 +505,17 @@ function isOptionalWithDefault(
   return Boolean(param.clientDefaultValue);
 }
 
-function getOptionalWithDefault(param: OptionalWithDefaultType) {
+function getOptionalWithDefault(
+  param: OptionalWithDefaultType,
+  importSet: Map<string, Set<string>>
+) {
+  if (param.type.type === "model") {
+    return `"${param.restApiName}": {${getRequestModelMapping(
+      param.type,
+      "options?." + param.clientName,
+      importSet
+    ).join(", ")}} ?? ${getQuotedValue(param)}`;
+  }
   return `"${param.restApiName}": options.${
     param.clientName
   } ?? ${getQuotedValue(param)}`;
@@ -503,13 +579,78 @@ function getNullableCheck(name: string, type: Type) {
 
   return `${name} === null ? null :`;
 }
+
+/**
+ *
+ * This function helps translating an HLC request to RLC request,
+ * extracting properties from body and headers and building the RLC response object
+ */
+function getRequestModelMapping(
+  modelPropertyType: Type,
+  propertyPath: string = "body",
+  importSet: Map<string, Set<string>>
+) {
+  if (!modelPropertyType.properties || !modelPropertyType.properties) {
+    return [];
+  }
+  const props: string[] = [];
+  const properties: Property[] = modelPropertyType.properties;
+  for (const property of properties) {
+    if (property.readonly) {
+      continue;
+    }
+    const propertyFullName = `${propertyPath}.${property.restApiName}`;
+    if (property.type.type === "model") {
+      let definition;
+      if (property.type.isCoreErrorType) {
+        definition = `"${property.restApiName}": ${getNullableCheck(
+          propertyFullName,
+          property.type
+        )} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } ${propertyFullName}`;
+      } else {
+        definition = `"${property.restApiName}": ${getNullableCheck(
+          propertyFullName,
+          property.type
+        )} ${
+          !property.optional ? "" : `!${propertyFullName} ? undefined :`
+        } {${getRequestModelMapping(
+          property.type,
+          `${propertyPath}.${property.restApiName}${
+            property.optional ? "?" : ""
+          }`,
+          importSet
+        )}}`;
+      }
+
+      props.push(definition);
+    } else {
+      const dot = propertyPath.endsWith("?") ? "." : "";
+      const restValue = `${
+        propertyPath ? `${propertyPath}${dot}` : `${dot}`
+      }["${property.clientName}"]`;
+      props.push(
+        `"${property.restApiName}": ${serializeRequestValue(
+          property.type,
+          restValue,
+          importSet
+        )}`
+      );
+    }
+  }
+
+  return props;
+}
+
 /**
  * This function helps translating an RLC response to an HLC response,
  * extracting properties from body and headers and building the HLC response object
  */
 function getResponseMapping(
   properties: Property[],
-  propertyPath: string = "result.body"
+  propertyPath: string = "result.body",
+  importSet: Map<string, Set<string>>
 ) {
   const props: string[] = [];
   for (const property of properties) {
@@ -534,7 +675,8 @@ function getResponseMapping(
           property.type.properties ?? [],
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
-          }`
+          }`,
+          importSet
         )}}`;
       }
 
@@ -547,7 +689,8 @@ function getResponseMapping(
       props.push(
         `"${property.clientName}": ${deserializeResponseValue(
           property.type,
-          restValue
+          restValue,
+          importSet
         )}`
       );
     }
@@ -561,29 +704,94 @@ function getResponseMapping(
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function deserializeResponseValue(type: Type, restValue: string): string {
+function deserializeResponseValue(
+  type: Type,
+  restValue: string,
+  importSet: Map<string, Set<string>>
+): string {
+  const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      return `new Date(${restValue} ?? "")`;
-    case "byte-array":
-      return `Buffer.from(${restValue} ?? "")`;
+      return `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
           type.elementType?.properties ?? [],
-          "p"
+          "p",
+          importSet
         )}}))`;
       } else if (
         type.elementType?.properties?.some((p) => needsDeserialize(p.type))
       ) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
-          "p"
+          "p",
+          importSet
         )})`;
       } else {
         return restValue;
       }
+    case "byte-array":
+      if (!coreUtilSet) {
+        importSet.set(
+          "@azure/core-util",
+          new Set<string>().add("stringToUint8Array")
+        );
+      } else {
+        coreUtilSet.add("stringToUint8Array");
+      }
+      return `typeof ${restValue} === 'string'
+      ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
+      : ${restValue}`;
+    default:
+      return restValue;
+  }
+}
 
+/**
+ * This function helps converting strings into JS complex types recursively.
+ * We need to drill down into Array elements to make sure that the element type is
+ * deserialized correctly
+ */
+function serializeRequestValue(
+  type: Type,
+  restValue: string,
+  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+): string {
+  const coreUtilSet = importSet.get("@azure/core-util");
+  switch (type.type) {
+    case "datetime":
+      return `${restValue} !== undefined ? new Date(${restValue}): undefined`;
+    case "list":
+      if (type.elementType?.type === "model") {
+        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
+          type.elementType?.properties ?? [],
+          "p",
+          importSet
+        )}}))`;
+      } else if (
+        type.elementType?.properties?.some((p) => needsDeserialize(p.type))
+      ) {
+        return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
+          type.elementType!,
+          "p",
+          importSet
+        )})`;
+      } else {
+        return restValue;
+      }
+    case "byte-array":
+      if (!coreUtilSet) {
+        importSet.set(
+          "@azure/core-util",
+          new Set<string>().add("uint8ArrayToString")
+        );
+      } else {
+        coreUtilSet.add("uint8ArrayToString");
+      }
+      return `${restValue} !== undefined ? uint8ArrayToString(${restValue}, "${
+        type.format ?? "base64"
+      }"): undefined`;
     default:
       return restValue;
   }
