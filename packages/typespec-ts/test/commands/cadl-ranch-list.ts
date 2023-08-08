@@ -10,6 +10,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "union-body"
   },
   {
+    outputPath: "headers/clientRequestId",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
   },
@@ -73,14 +77,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "lro/lroCore",
     inputPath: "azure/core/lro/standard"
   },
-  // {
-  //   outputPath: "lro/lroRPC",
-  //   inputPath: "azure/core/lro/rpc/legacy"
-  // },
-  // {
-  //   outputPath: "models/inheritance",
-  //   inputPath: "type/model/inheritance"
-  // },
+  {
+    outputPath: "lro/lroRPC",
+    inputPath: "azure/core/lro/rpc-legacy"
+  },
+  {
+    outputPath: "models/inheritance",
+    inputPath: "type/model/inheritance/nested-discriminator"
+  },
   {
     outputPath: "models/propertyOptional",
     inputPath: "type/property/optional"

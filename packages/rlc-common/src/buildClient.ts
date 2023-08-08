@@ -284,14 +284,23 @@ export function getClientFactoryBody(
     declarations: [{ name: "userAgentPrefix", initializer: userAgentPrefix }]
   };
 
-  const userAgentOptionsStatement = `options = {
+  const customHeaderOptions = model.telemetryOptions?.customRequestIdHeaderName
+    ? `,
+    telemetryOptions: {
+      clientRequestIdHeaderName:
+        options.telemetryOptions?.clientRequestIdHeaderName ??
+        "${model.telemetryOptions?.customRequestIdHeaderName}"
+    }`
+    : "";
+
+  const overrideOptionsStatement = `options = {
       ...options,
       userAgentOptions: {
         userAgentPrefix
       },
       loggingOptions: {
         logger: options.loggingOptions?.logger ?? logger.info
-      }
+      }${customHeaderOptions}
     }`;
 
   const baseUrlStatement: VariableStatementStructure = {
@@ -367,7 +376,7 @@ export function getClientFactoryBody(
     credentials,
     userAgentInfoStatement,
     userAgentStatement,
-    userAgentOptionsStatement,
+    overrideOptionsStatement,
     getClient,
     customHttpAuthStatement,
     returnStatement

@@ -2,9 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  PostValidParameters,
-  GetValidParameters,
-  PutValidParameters,
   GetModelParameters,
   PutModelParameters,
   GetRecursiveModelParameters,
@@ -13,27 +10,18 @@ import {
   GetWrongDiscriminatorParameters,
 } from "./parameters";
 import {
-  PostValid200Response,
-  GetValid200Response,
-  PutValid200Response,
   GetModel200Response,
-  PutModel200Response,
+  PutModel204Response,
   GetRecursiveModel200Response,
-  PutRecursiveModel200Response,
+  PutRecursiveModel204Response,
   GetMissingDiscriminator200Response,
   GetWrongDiscriminator200Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface PostValid {
-  post(options: PostValidParameters): StreamableMethod<PostValid200Response>;
-  get(options?: GetValidParameters): StreamableMethod<GetValid200Response>;
-  put(options: PutValidParameters): StreamableMethod<PutValid200Response>;
-}
-
 export interface GetModel {
   get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
-  put(options: PutModelParameters): StreamableMethod<PutModel200Response>;
+  put(options: PutModelParameters): StreamableMethod<PutModel204Response>;
 }
 
 export interface GetRecursiveModel {
@@ -42,7 +30,7 @@ export interface GetRecursiveModel {
   ): StreamableMethod<GetRecursiveModel200Response>;
   put(
     options: PutRecursiveModelParameters
-  ): StreamableMethod<PutRecursiveModel200Response>;
+  ): StreamableMethod<PutRecursiveModel204Response>;
 }
 
 export interface GetMissingDiscriminator {
@@ -58,24 +46,22 @@ export interface GetWrongDiscriminator {
 }
 
 export interface Routes {
-  /** Resource for '/type/model/inheritance/valid' has methods for the following verbs: post, get, put */
-  (path: "/type/model/inheritance/valid"): PostValid;
-  /** Resource for '/type/model/inheritance/discriminated/model' has methods for the following verbs: get, put */
-  (path: "/type/model/inheritance/discriminated/model"): GetModel;
-  /** Resource for '/type/model/inheritance/discriminated/recursivemodel' has methods for the following verbs: get, put */
+  /** Resource for '/type/model/inheritance/nested-discriminator/model' has methods for the following verbs: get, put */
+  (path: "/type/model/inheritance/nested-discriminator/model"): GetModel;
+  /** Resource for '/type/model/inheritance/nested-discriminator/recursivemodel' has methods for the following verbs: get, put */
   (
-    path: "/type/model/inheritance/discriminated/recursivemodel"
+    path: "/type/model/inheritance/nested-discriminator/recursivemodel"
   ): GetRecursiveModel;
-  /** Resource for '/type/model/inheritance/discriminated/missingdiscriminator' has methods for the following verbs: get */
+  /** Resource for '/type/model/inheritance/nested-discriminator/missingdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/discriminated/missingdiscriminator"
+    path: "/type/model/inheritance/nested-discriminator/missingdiscriminator"
   ): GetMissingDiscriminator;
-  /** Resource for '/type/model/inheritance/discriminated/wrongdiscriminator' has methods for the following verbs: get */
+  /** Resource for '/type/model/inheritance/nested-discriminator/wrongdiscriminator' has methods for the following verbs: get */
   (
-    path: "/type/model/inheritance/discriminated/wrongdiscriminator"
+    path: "/type/model/inheritance/nested-discriminator/wrongdiscriminator"
   ): GetWrongDiscriminator;
 }
 
-export type InheritanceClient = Client & {
+export type NestedDiscriminatorClient = Client & {
   path: Routes;
 };
