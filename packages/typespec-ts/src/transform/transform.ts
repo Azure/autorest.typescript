@@ -41,20 +41,12 @@ export async function transformRLCModel(
   program: Program,
   emitterOptions: RLCOptions,
   client: SdkClient,
-  emitterOutputDir: string,
   dpgContext: SdkContext
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(
-    emitterOptions,
-    emitterOutputDir,
-    dpgContext
-  );
+  const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
   dpgContext.rlcOptions = options;
   const srcPath = join(
-    emitterOutputDir ?? "",
-    "src",
-    // When generating modular library, RLC has to go under rest folder
-    options.isModularLibrary ? "rest" : "",
+    dpgContext.generationPathDetail?.rlcSourcesDir!,
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
       : ""

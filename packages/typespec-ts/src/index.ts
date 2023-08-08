@@ -35,7 +35,6 @@ import {
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
-import * as path from "path";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
@@ -65,10 +64,8 @@ export async function $onEmit(context: EmitContext) {
     string,
     RLCModel
   >();
-
-  // 0. Calculate generation dir
-  const generationDir: GenerationDirDetail = calculateGenerationDir();
-  dpgContext.generationDir = generationDir;
+  const generationDir: GenerationDirDetail = await calculateGenerationDir();
+  dpgContext.generationPathDetail = generationDir;
   // 1. Clear sources folder
   clearSrcFolder();
   // 2. Generate RLC sources
@@ -77,14 +74,16 @@ export async function $onEmit(context: EmitContext) {
   await generateModular();
   // 4. Generate metadata and samples/tests
 
-  function calculateGenerationDir(): GenerationDirDetail {
+  async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
     let sourcesRoot = join(projectRoot, "src");
     const customizationFolder = join(projectRoot, "sources");
-    if (fsextra.pathExistsSync(customizationFolder)) {
+    const hasCustomization = await fsextra.pathExists(customizationFolder);
+    if (hasCustomization) {
       sourcesRoot = join(customizationFolder, "genereated");
     }
     return {
+      rootDir: projectRoot,
       metadataDir: projectRoot,
       rlcSourcesDir: join(
         sourcesRoot,
@@ -97,21 +96,9 @@ export async function $onEmit(context: EmitContext) {
   }
 
   function clearSrcFolder() {
-    const isMultiClient = unresolvedOptions.multiClient ?? false;
-    const isModularLibrary = unresolvedOptions.isModularLibrary ?? false;
-    const pathToClear = join(
-      context.emitterOutputDir ?? "",
-      "src",
-      // When generating modular library, RLC has to go under rest folder
-      unresolvedOptions.isModularLibrary ? "rest" : ""
+    fsextra.emptyDirSync(
+      generationDir.modularSourcesDir ?? generationDir.rlcSourcesDir
     );
-    fsextra.emptyDirSync(pathToClear);
-    if (isMultiClient || isModularLibrary) {
-      const folderPath = path.join(
-        pathToClear.substring(0, pathToClear.lastIndexOf(path.sep + "src") + 4)
-      );
-      fsextra.emptyDirSync(folderPath);
-    }
   }
 
   async function generateRLC() {
@@ -121,7 +108,6 @@ export async function $onEmit(context: EmitContext) {
         program,
         unresolvedOptions,
         client,
-        context.emitterOutputDir,
         dpgContext
       );
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
@@ -153,7 +139,7 @@ export async function $onEmit(context: EmitContext) {
           buildTsConfig
         ],
         rlcModels,
-        context.emitterOutputDir
+        generationDir.metadataDir
       );
       // build test relevant files
       await emitContentByBuilder(
@@ -166,7 +152,7 @@ export async function $onEmit(context: EmitContext) {
           buildSampleTest
         ],
         rlcModels,
-        context.emitterOutputDir
+        generationDir.metadataDir
       );
     }
   }

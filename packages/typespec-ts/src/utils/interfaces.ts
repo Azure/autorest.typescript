@@ -3,11 +3,12 @@ import { SdkContext as TCGCSdkContext } from "@azure-tools/typespec-client-gener
 
 export interface SdkContext extends TCGCSdkContext {
   rlcOptions?: RLCOptions;
-  generationDir?: GenerationDirDetail;
+  generationPathDetail?: GenerationDirDetail;
 }
 
 export interface GenerationDirDetail {
-  rlcSourcesDir?: string;
+  rootDir: string;
+  rlcSourcesDir: string;
   modularSourcesDir?: string;
   metadataDir?: string;
 }

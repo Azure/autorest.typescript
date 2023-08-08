@@ -1509,11 +1509,7 @@ export function emitCodeModel(
     getClientNamespaceString(dpgContext)?.toLowerCase();
   // Get types
   const codeModel: ModularCodeModel = {
-    options: transformRLCOptions(
-      context.options as any,
-      context.emitterOutputDir,
-      dpgContext
-    ),
+    options: transformRLCOptions(context.options as any, dpgContext),
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],

@@ -14,14 +14,13 @@ import { SdkContext } from "../utils/interfaces.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
-  emitterOutputDir: string,
   dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(
     dpgContext.program,
     emitterOptions,
-    emitterOutputDir
+    dpgContext.generationPathDetail?.rootDir!
   );
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
@@ -31,7 +30,7 @@ export function transformRLCOptions(
 function extractRLCOptions(
   program: Program,
   emitterOptions: RLCOptions,
-  emitterOutputDir: string
+  generationRootDir: string
 ): RLCOptions {
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
@@ -40,7 +39,7 @@ function extractRLCOptions(
   const generateMetadata = getGenerateMetadata(emitterOptions);
   const generateTest = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
-  const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
+  const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(emitterOptions);
   return {
     ...emitterOptions,
