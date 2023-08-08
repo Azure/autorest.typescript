@@ -37,6 +37,7 @@ import { transformSchemas } from "./transformSchemas.js";
 import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
+import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
 
 export interface RLCSdkContext extends SdkContext {
   options?: RLCOptions;
@@ -90,8 +91,9 @@ export async function transformRLCModel(
   const helperDetails = transformHelperFunctionDetails(client, dpgContext);
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
-  const urlInfo = transformUrlInfo(program, dpgContext);
+  const urlInfo = transformUrlInfo(dpgContext);
   const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
+  const telemetryOptions = transformTelemetryInfo(dpgContext, client);
   return {
     srcPath,
     libraryName,
@@ -103,14 +105,13 @@ export async function transformRLCModel(
     apiVersionInfo,
     parameters,
     helperDetails,
-    urlInfo
+    urlInfo,
+    telemetryOptions
   };
 }
 
-export function transformUrlInfo(
-  program: Program,
-  dpgContext: SdkContext
-): UrlInfo | undefined {
+export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
+  const program = dpgContext.program;
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
