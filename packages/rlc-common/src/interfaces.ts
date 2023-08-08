@@ -111,6 +111,8 @@ export interface RLCOptions {
   addCredentials?: boolean;
   credentialScopes?: string[];
   credentialKeyHeaderName?: string;
+  customHttpAuthHeaderName?: string;
+  customHttpAuthSharedKeyPrefix?: string;
   generateMetadata?: boolean;
   generateTest?: boolean;
   generateSample?: boolean;

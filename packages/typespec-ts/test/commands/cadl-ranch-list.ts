@@ -46,6 +46,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "authentication/api-key"
   },
   {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
     outputPath: "authentication/oauth2",
     inputPath: "authentication/oauth2"
   },

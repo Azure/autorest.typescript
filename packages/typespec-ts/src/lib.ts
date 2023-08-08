@@ -42,6 +42,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       items: { type: "string" }
     },
     credentialKeyHeaderName: { type: "string", nullable: true },
+    customHttpAuthHeaderName: { type: "string", nullable: true },
+    customHttpAuthSharedKeyPrefix: { type: "string", nullable: true },
     generateMetadata: { type: "boolean", nullable: true },
     generateTest: { type: "boolean", nullable: true },
     generateSample: { type: "boolean", nullable: true },
