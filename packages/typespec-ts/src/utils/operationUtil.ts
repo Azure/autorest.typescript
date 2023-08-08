@@ -32,7 +32,6 @@ import {
 } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -42,7 +41,7 @@ import {
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
-import { RLCSdkContext } from "../transform/transform.js";
+import { SdkContext } from "./interfaces.js";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -56,15 +55,15 @@ export function getOperationStatuscode(
 }
 
 export function getOperationGroupName(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   route?: HttpOperation
 ): string;
 export function getOperationGroupName(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   operation?: Operation
 ): string;
 export function getOperationGroupName(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   operationOrRoute?: Operation | HttpOperation
 ) {
   if (!dpgContext.options?.enableOperationGroup || !operationOrRoute) {

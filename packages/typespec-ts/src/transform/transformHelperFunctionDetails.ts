@@ -1,7 +1,6 @@
 import { PagedResultMetadata } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -14,6 +13,7 @@ import {
   hasPollingOperations
 } from "../utils/operationUtil.js";
 import { getSpecialSerializeInfo } from "./transformParameters.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,

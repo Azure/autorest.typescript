@@ -34,10 +34,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
-import {
-  SdkContext,
-  createSdkContext
-} from "@azure-tools/typespec-client-generator-core";
+import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import * as path from "path";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
@@ -96,9 +93,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateRLC() {
-    let count = -1;
     for (const client of clients) {
-      count++;
       const rlcModels = await transformRLCModel(
         program,
         options,

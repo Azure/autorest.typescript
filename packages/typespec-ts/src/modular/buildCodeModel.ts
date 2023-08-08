@@ -65,7 +65,6 @@ import {
   getDefaultApiVersion,
   getClientNamespaceString,
   createSdkContext,
-  SdkContext,
   getSdkUnion,
   getAllModels,
   SdkSimpleType,
@@ -90,6 +89,7 @@ import {
   getOperationGroupName,
   getOperationName
 } from "../utils/operationUtil.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 interface HttpServerParameter {
   type: "endpointPath";

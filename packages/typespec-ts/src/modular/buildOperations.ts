@@ -9,8 +9,9 @@ import {
 } from "./helpers/operationHelpers.js";
 import { Client, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+// import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 /**
  * This function creates a file under /api for each operation group.

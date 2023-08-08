@@ -14,8 +14,8 @@ import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,

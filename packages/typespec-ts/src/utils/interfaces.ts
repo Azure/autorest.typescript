@@ -1,6 +1,13 @@
 import { RLCOptions } from "@azure-tools/rlc-common";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext as TCGCSdkContext } from "@azure-tools/typespec-client-generator-core";
 
-export interface RLCSdkContext extends SdkContext {
-  options: RLCOptions;
+export interface SdkContext extends TCGCSdkContext {
+  options?: RLCOptions;
+  generationDir?: GenerationDirDetail;
+}
+
+export interface GenerationDirDetail {
+  rlcSourcesDir: string;
+  modularSourcesDir?: string;
+  metadataDir?: string;
 }

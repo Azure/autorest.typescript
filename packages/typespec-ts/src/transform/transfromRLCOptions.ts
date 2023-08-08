@@ -10,12 +10,12 @@ import { getAuthentication } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
   emitterOutputDir: string,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(

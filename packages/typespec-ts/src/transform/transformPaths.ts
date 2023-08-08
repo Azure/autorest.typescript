@@ -32,12 +32,12 @@ import {
   isDefinedStatusCode,
   isPagingOperation
 } from "../utils/operationUtil.js";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformPaths(
   program: Program,
   client: SdkClient,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): Paths {
   const operationGroups = listOperationGroups(dpgContext, client);
   const paths: Paths = {};
@@ -72,7 +72,7 @@ export function transformPaths(
  * an operation can end up returning.
  */
 function getResponseTypes(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   operation: HttpOperation
 ): ResponseTypes {
   const returnTypes: ResponseTypes = {
@@ -104,7 +104,7 @@ function getResponseTypes(
 }
 
 function transformOperation(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   route: HttpOperation,
   paths: Paths
 ) {
@@ -180,7 +180,7 @@ function escapeCoreName(name: string) {
   return name;
 }
 function hasRequiredOptions(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   routeParameters: HttpOperationParameters
 ) {
   const isRequiredBodyParam = routeParameters.bodyParameter?.optional === false;
