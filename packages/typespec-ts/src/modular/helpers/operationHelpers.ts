@@ -84,6 +84,9 @@ export function getDeserializePrivateFunction(
   importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
+  if (name === "getCompletions") {
+    operation;
+  }
 
   let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
@@ -132,7 +135,8 @@ export function getDeserializePrivateFunction(
       `return ${deserializeResponseValue(
         response.type,
         "result.body",
-        importSet
+        importSet,
+        response.type.nullable ?? true
       )}`
     );
   } else if (response?.type?.properties) {
@@ -655,18 +659,21 @@ function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
-    const propertyFullName = `${propertyPath}.${property.clientName}`;
+    const propertyFullName = `${propertyPath}.${property.restApiName}`;
+    if (propertyFullName === "p.contentFilterResults") {
+      propertyFullName;
+    }
     if (property.type.type === "model") {
       let definition;
       if (property.type.isCoreErrorType) {
-        definition = `"${property.restApiName}": ${getNullableCheck(
+        definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
           property.type
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
       } else {
-        definition = `"${property.restApiName}": ${getNullableCheck(
+        definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
           property.type
         )} ${
@@ -690,7 +697,8 @@ function getResponseMapping(
         `"${property.clientName}": ${deserializeResponseValue(
           property.type,
           restValue,
-          importSet
+          importSet,
+          property.type.nullable ?? true
         )}`
       );
     }
@@ -707,12 +715,13 @@ function getResponseMapping(
 function deserializeResponseValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  required: boolean
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      return `${restValue} !== undefined? new Date(${restValue}): undefined`;
+      return required? `new Date(${restValue})`: `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
@@ -726,7 +735,8 @@ function deserializeResponseValue(
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
-          importSet
+          importSet,
+          required
         )})`;
       } else {
         return restValue;
@@ -772,7 +782,7 @@ function serializeRequestValue(
       } else if (
         type.elementType?.properties?.some((p) => needsDeserialize(p.type))
       ) {
-        return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
+        return `(${restValue} ?? []).map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet

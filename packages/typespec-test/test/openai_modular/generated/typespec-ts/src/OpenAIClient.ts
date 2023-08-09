@@ -7,14 +7,14 @@ import {
   Completions,
   ChatMessage,
   ChatCompletions,
-  ImageOperationResponse,
+  BatchImageGenerationOperationResponse,
 } from "./models/models.js";
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
-  GetImageOperationStatusOptions,
-  StartGenerateImageOptions,
+  GetAzureBatchImageGenerationOperationStatusOptions,
+  BeginAzureBatchImageGenerationOptions,
 } from "./models/options.js";
 import {
   createOpenAI,
@@ -23,8 +23,8 @@ import {
   getEmbeddings,
   getCompletions,
   getChatCompletions,
-  getImageOperationStatus,
-  startGenerateImage,
+  getAzureBatchImageGenerationOperationStatus,
+  beginAzureBatchImageGeneration,
 } from "./api/index.js";
 
 export { OpenAIClientOptions } from "./api/OpenAIContext.js";
@@ -77,18 +77,24 @@ export class OpenAIClient {
   }
 
   /** Returns the status of the images operation */
-  getImageOperationStatus(
+  getAzureBatchImageGenerationOperationStatus(
     operationId: string,
-    options: GetImageOperationStatusOptions = { requestOptions: {} }
-  ): Promise<ImageOperationResponse> {
-    return getImageOperationStatus(this._client, operationId, options);
+    options: GetAzureBatchImageGenerationOperationStatusOptions = {
+      requestOptions: {},
+    }
+  ): Promise<BatchImageGenerationOperationResponse> {
+    return getAzureBatchImageGenerationOperationStatus(
+      this._client,
+      operationId,
+      options
+    );
   }
 
   /** Starts the generation of a batch of images from a text caption */
-  startGenerateImage(
+  beginAzureBatchImageGeneration(
     prompt: string,
-    options: StartGenerateImageOptions = { requestOptions: {} }
-  ): Promise<ImageOperationResponse> {
-    return startGenerateImage(this._client, prompt, options);
+    options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} }
+  ): Promise<BatchImageGenerationOperationResponse> {
+    return beginAzureBatchImageGeneration(this._client, prompt, options);
   }
 }
