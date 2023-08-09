@@ -78,7 +78,7 @@ export async function $onEmit(context: EmitContext) {
     let sourcesRoot = join(projectRoot, "src");
     const customizationFolder = join(projectRoot, "sources");
     if (await fsextra.pathExists(customizationFolder)) {
-      sourcesRoot = join(customizationFolder, "genereated");
+      sourcesRoot = join(customizationFolder, "genereated", "src");
     }
     return {
       rootDir: projectRoot,
