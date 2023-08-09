@@ -84,7 +84,7 @@ export function getDeserializePrivateFunction(
   importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
-  if (name === "getCompletions") {
+  if (name === "beginAzureBatchImageGeneration") {
     operation;
   }
 
@@ -660,7 +660,7 @@ function getResponseMapping(
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
-    if (propertyFullName === "p.contentFilterResults") {
+    if (property.type.type === "combined") {
       propertyFullName;
     }
     if (property.type.type === "model") {
@@ -721,7 +721,9 @@ function deserializeResponseValue(
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      return required? `new Date(${restValue})`: `${restValue} !== undefined? new Date(${restValue}): undefined`;
+      return required
+        ? `new Date(${restValue})`
+        : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
@@ -753,9 +755,38 @@ function deserializeResponseValue(
       return `typeof ${restValue} === 'string'
       ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
       : ${restValue}`;
+    case "combined":
+      const types = needUnionDeserialize(type);
+      const typeUnionNames = type.types?.map((t) => { return t.name ?? "";});
+      const typePredictFunctions = types?.map((t) => { return getTypePredictFunction(t, typeUnionNames);});
+      return typePredictFunctions?.join("\n") ?? "";
     default:
       return restValue;
   }
+}
+
+function needUnionDeserialize(type: Type) {
+  return type.types?.filter(
+    (t) =>
+      t.type === "datetime" ||
+      t.type === "byte-array" ||
+      (t.type === "model" &&
+        t.properties?.some((p) => p.clientName !== p.restApiName)) ||
+      (t.type === "list" &&
+        t.elementType?.type === "model" &&
+        t.elementType?.properties?.some((p) => p.clientName !== p.restApiName))
+  );
+}
+
+function getTypePredictFunction(type: Type, typeUnionNames: string[] | undefined): string {
+  if (typeUnionNames === undefined) {
+    return ""
+  }
+  if (type.type === "model" && type.name) {
+    return `function is${toPascalCase(type.name)}(obj: ${typeUnionNames}): obj is ${type.name} {
+    }`
+  }
+  return "";
 }
 
 /**
