@@ -35,7 +35,7 @@ function copyFile(path) {
     const result = execSync(cp, {
       maxBuffer: MAX_BUFFER,
     });
-    console.log("Generated output:", result.toString("utf8"));
+    console.log("Copy file output:", result.toString("utf8"));
   }
 }
 
