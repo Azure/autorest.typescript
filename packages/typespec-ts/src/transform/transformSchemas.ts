@@ -15,12 +15,12 @@ import {
   getBodyType,
   trimUsage
 } from "../utils/modelUtils.js";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformSchemas(
   program: Program,
   client: SdkClient,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,

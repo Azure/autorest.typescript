@@ -8,7 +8,7 @@ const MAX_BUFFER = 10 * 1024 * 1024;
 function generate(path) {
   let command = `cd ${path} && npx tsp compile ./spec`;
   try {
-    if(existsSync(join(path, "spec", "client.tsp"))) {
+    if (existsSync(join(path, "spec", "client.tsp"))) {
       command += "/client.tsp";
     }
   } catch (e) {
@@ -23,6 +23,19 @@ function generate(path) {
   } catch (e) {
     console.error(Error(e.stdout.toString("utf8")));
     process.exitCode = 1;
+  }
+}
+
+function copyFile(path) {
+  const customizationPath = join(path, "generated/typespec-ts/sources/generated/src");
+  const srcPath = join(path, "generated/typespec-ts");
+  if (existsSync(customizationPath)) {
+    const cp = `cp -rf ${customizationPath} ${srcPath}`;
+    console.log(cp);
+    const result = execSync(cp, {
+      maxBuffer: MAX_BUFFER,
+    });
+    console.log("Copy file output:", result.toString("utf8"));
   }
 }
 
@@ -62,6 +75,7 @@ async function main() {
       console.log(`          ##### Skipped #####          `);
     } else {
       generate(path);
+      copyFile(path);
       build(path);
     }
     console.log(`================End ${folder}===============`);

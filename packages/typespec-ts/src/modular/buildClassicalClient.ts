@@ -14,8 +14,8 @@ import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -30,7 +30,7 @@ export function buildClassicalClient(
   const params = getClientParameters(client);
 
   const clientFile = project.createSourceFile(
-    `${srcPath}/src/${
+    `${srcPath}/${
       subfolder !== "" ? subfolder + "/" : ""
     }${classicalClientname}.ts`
   );
@@ -85,7 +85,7 @@ function importAllApis(
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
   );
 
   if (!apiModels) {
@@ -107,7 +107,7 @@ function importAllModels(
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
   );
 
   if (!apiModels) {
@@ -122,7 +122,7 @@ function importAllModels(
   });
 
   const apiModelsOptions = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
   );
 
   if (!apiModelsOptions) {

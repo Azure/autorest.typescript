@@ -4,11 +4,11 @@ import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function emitPackage(
   project: Project,
-  srcPath: string,
+  metadataDir: string,
   codeModel: ModularCodeModel
 ) {
   const packageJson = project.createSourceFile(
-    `${srcPath}/package-files/package.json`,
+    `${metadataDir}/package-files/package.json`,
     "",
     {
       overwrite: true

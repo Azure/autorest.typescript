@@ -15,7 +15,7 @@ export function buildModels(
   subfolder: string = ""
 ): SourceFile {
   const modelsFile = project.createSourceFile(
-    path.join(`${srcPath}/src/`, subfolder, `models/models.ts`)
+    path.join(`${srcPath}/`, subfolder, `models/models.ts`)
   );
 
   // We are generating both models and enums here
@@ -127,7 +127,7 @@ export function buildModelsOptions(
   subfolder: string = ""
 ) {
   const modelOptionsFile = project.createSourceFile(
-    `${srcPath}/src/${subfolder}/models/options.ts`,
+    `${srcPath}/${subfolder}/models/options.ts`,
     undefined,
     {
       overwrite: true

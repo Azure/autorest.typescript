@@ -39,12 +39,12 @@ import {
   listOperationsInOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToParameterTypes(
   importDetails: Map<ImportKind, Set<string>>,
   client: SdkClient,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): OperationParameter[] {
   const program = dpgContext.program;
   const operationGroups = listOperationGroups(dpgContext, client);
@@ -114,7 +114,7 @@ export function transformToParameterTypes(
 }
 
 function getParameterMetadata(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter
 ): ParameterMetadata {
@@ -180,7 +180,7 @@ function getParameterName(name: string) {
 }
 
 function transformQueryParameters(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
@@ -207,7 +207,7 @@ function transformPathParameters() {
 }
 
 function transformHeaderParameters(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
@@ -222,7 +222,7 @@ function transformHeaderParameters(
 }
 
 function transformBodyParameters(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
   importedModels: Set<string>,
@@ -264,7 +264,7 @@ function transformBodyParameters(
 }
 
 function transformNormalBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
@@ -307,7 +307,7 @@ function transformNormalBody(
 }
 
 function transformMultiFormBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>
@@ -374,7 +374,7 @@ function transformMultiFormBody(
 }
 
 function getBodyDetail(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   headers: ParameterMetadata[]
 ) {
@@ -389,7 +389,7 @@ function getBodyDetail(
 }
 
 function extractNameFromCadlType(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   cadlType: Type,
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
@@ -454,7 +454,7 @@ function generateAnomymousModelSigniture(
 }
 
 function extractDescriptionsFromBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters
 ) {
