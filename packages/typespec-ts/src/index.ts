@@ -3,6 +3,7 @@
 
 import { Program, EmitContext } from "@typespec/compiler";
 import * as fsextra from "fs-extra";
+import { existsSync } from "fs";
 import {
   buildClientDefinitions,
   buildResponseTypes,
@@ -70,11 +71,11 @@ export async function $onEmit(context: EmitContext) {
   // 1. Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   // 2. Clear sources folder
-  clearSrcFolder();
+  await clearSrcFolder();
   // 3. Generate RLC sources
-  await generateRLC();
+  await generateRLCSources();
   // 4. Generate Modular sources
-  await generateModular();
+  await generateModularSources();
   // 5. Generate metadata and test files
   await generateMetadataAndTest();
 
@@ -109,14 +110,14 @@ export async function $onEmit(context: EmitContext) {
     };
   }
 
-  function clearSrcFolder() {
-    fsextra.emptyDirSync(
+  async function clearSrcFolder() {
+    await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
         dpgContext.generationPathDetail?.rlcSourcesDir!
     );
   }
 
-  async function generateRLC() {
+  async function generateRLCSources() {
     const clients = getRLCClients(dpgContext);
     for (const client of clients) {
       const rlcModels = await transformRLCModel(program, client, dpgContext);
@@ -139,7 +140,7 @@ export async function $onEmit(context: EmitContext) {
     }
   }
 
-  async function generateModular() {
+  async function generateModularSources() {
     if (unresolvedOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
       const modularSourcesRoot =
@@ -225,13 +226,13 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateMetadataAndTest() {
-    if (rlcCodeModels.length === 0 || rlcCodeModels[0]) {
+    if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
       return;
     }
-    const rlcClient: RLCModel = rlcCodeModels[0]!;
+    const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
     // Generate metadata
-    const hasPackageFile = fsextra.existsSync(
+    const hasPackageFile = await existsSync(
       join(dpgContext.generationPathDetail?.metadataDir!, "package.json")
     );
     const shouldGenerateMetadata =
@@ -279,7 +280,7 @@ export async function $onEmit(context: EmitContext) {
     }
 
     // Generate test relevant files
-    const hasTestFolder = fsextra.pathExistsSync(
+    const hasTestFolder = await fsextra.pathExists(
       join(dpgContext.generationPathDetail?.metadataDir!, "test")
     );
     const shouldGenerateTest =
