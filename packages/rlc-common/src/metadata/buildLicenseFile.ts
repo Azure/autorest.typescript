@@ -28,10 +28,6 @@ SOFTWARE.
 `;
 
 export function buildLicenseFile(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
   return {
     path: "LICENSE",
     content: mitLicenseText.trim()

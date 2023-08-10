@@ -5,10 +5,9 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildRollupConfig(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata),
-    azureSdkForJs = Boolean(model.options?.azureSdkForJs);
-  // when it's generating rlc codes, only generate rollup config in codegen test
-  if (!generateMetadata || azureSdkForJs) {
+  const azureSdkForJs = Boolean(model.options?.azureSdkForJs);
+  // Only generate the file when it is not in sdk repo
+  if (azureSdkForJs === true || azureSdkForJs === undefined) {
     return;
   }
 

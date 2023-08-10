@@ -15,10 +15,6 @@ let hasLRO = false;
 let clientFilePaths: string[] = [];
 
 export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
   const project = new Project();
   const filePath = "package.json";
   const packageJsonContents = restLevelPackage(model, hasSamplesGenerated);

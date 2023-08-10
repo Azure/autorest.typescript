@@ -40,10 +40,6 @@ const restLevelTsConfigNotInAzureSdkForJs: Record<string, any> = {
 };
 
 export function buildTsConfig(model: RLCModel, hasSamplesGenerated = false) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
   const { generateTest, packageDetails, generateSample, azureSdkForJs } =
     model.options || {};
   const clientPackageName = packageDetails?.name ?? "";

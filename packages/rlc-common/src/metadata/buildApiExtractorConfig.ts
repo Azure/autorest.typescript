@@ -5,10 +5,6 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
   const { generateTest, packageDetails } = model.options || {};
   const project = new Project();
   const config = {
