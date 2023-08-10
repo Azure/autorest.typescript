@@ -51,6 +51,7 @@ import { getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
+import { ModularCodeModel } from "./modular/modularCodeModel.js";
 
 export * from "./lib.js";
 
@@ -64,16 +65,17 @@ export async function $onEmit(context: EmitContext) {
     string,
     RLCModel
   >();
-  const rlcClients: RLCModel[] = [];
+  const rlcCodeModels: RLCModel[] = [];
+  let modularCodeModel: ModularCodeModel;
   // 1. Enrich the dpg context with path detail and common options
   await enrichDpgContext();
-  // 1. Clear sources folder
+  // 2. Clear sources folder
   clearSrcFolder();
-  // 2. Generate RLC sources
+  // 3. Generate RLC sources
   await generateRLC();
-  // 3. Generate Modular sources
+  // 4. Generate Modular sources
   await generateModular();
-  // 4. Generate metadata and test files
+  // 5. Generate metadata and test files
   await generateMetadataAndTest();
 
   async function enrichDpgContext() {
@@ -118,7 +120,7 @@ export async function $onEmit(context: EmitContext) {
     const clients = getRLCClients(dpgContext);
     for (const client of clients) {
       const rlcModels = await transformRLCModel(program, client, dpgContext);
-      rlcClients.push(rlcModels);
+      rlcCodeModels.push(rlcModels);
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
       needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
 
@@ -143,13 +145,9 @@ export async function $onEmit(context: EmitContext) {
       const modularSourcesRoot =
         dpgContext.generationPathDetail?.modularSourcesDir!;
       const project = new Project();
-      const modularCodeModel = emitCodeModel(
-        context,
-        serviceNameToRlcModelsMap,
-        {
-          casing: "camel"
-        }
-      );
+      modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, {
+        casing: "camel"
+      });
       const rootIndexFile = project.createSourceFile(
         `${modularSourcesRoot}/index.ts`,
         "",
@@ -213,16 +211,6 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      emitPackage(
-        project,
-        dpgContext.generationPathDetail?.metadataDir!,
-        modularCodeModel
-      );
-      emitTsConfig(
-        project,
-        dpgContext.generationPathDetail?.metadataDir!,
-        modularCodeModel
-      );
       removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {
@@ -237,10 +225,10 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateMetadataAndTest() {
-    if (rlcClients.length === 0 || rlcClients[0]) {
+    if (rlcCodeModels.length === 0 || rlcCodeModels[0]) {
       return;
     }
-    const rlcClient: RLCModel = rlcClients[0]!;
+    const rlcClient: RLCModel = rlcCodeModels[0]!;
     const option = dpgContext.rlcOptions!;
     // Generate metadata
     const hasPackageFile = fsextra.existsSync(
@@ -267,6 +255,27 @@ export async function $onEmit(context: EmitContext) {
         rlcClient,
         dpgContext.generationPathDetail?.metadataDir
       );
+
+      if (option.isModularLibrary) {
+        const project = new Project();
+        emitPackage(
+          project,
+          dpgContext.generationPathDetail?.metadataDir!,
+          modularCodeModel
+        );
+        emitTsConfig(
+          project,
+          dpgContext.generationPathDetail?.metadataDir!,
+          modularCodeModel
+        );
+        for (const file of project.getSourceFiles()) {
+          await emitContentByBuilder(
+            program,
+            () => ({ content: file.getFullText(), path: file.getFilePath() }),
+            modularCodeModel as any
+          );
+        }
+      }
     }
 
     // Generate test relevant files

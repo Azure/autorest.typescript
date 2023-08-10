@@ -8,7 +8,7 @@ export function emitPackage(
   codeModel: ModularCodeModel
 ) {
   const packageJson = project.createSourceFile(
-    `${metadataDir}/package-files/package.json`,
+    `${metadataDir}/package.json`,
     "",
     {
       overwrite: true
@@ -211,13 +211,9 @@ export function emitTsConfig(
   srcPath: string,
   codeModel: ModularCodeModel
 ) {
-  const tsConfig = project.createSourceFile(
-    `${srcPath}/package-files/tsconfig.json`,
-    "",
-    {
-      overwrite: true
-    }
-  );
+  const tsConfig = project.createSourceFile(`${srcPath}/tsconfig.json`, "", {
+    overwrite: true
+  });
   const content = {
     extends: "../../../tsconfig.package",
     compilerOptions: {
