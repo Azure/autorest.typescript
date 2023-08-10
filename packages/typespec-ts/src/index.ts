@@ -50,6 +50,7 @@ import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
+import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 
 export * from "./lib.js";
 
@@ -63,15 +64,28 @@ export async function $onEmit(context: EmitContext) {
     string,
     RLCModel
   >();
-  const generationPathDetail: GenerationDirDetail =
-    await calculateGenerationDir();
-  dpgContext.generationPathDetail = generationPathDetail;
+  const rlcClients: RLCModel[] = [];
+  // 1. Enrich the dpg context with path detail and common options
+  await enrichDpgContext();
   // 1. Clear sources folder
   clearSrcFolder();
   // 2. Generate RLC sources
   await generateRLC();
   // 3. Generate Modular sources
   await generateModular();
+  // 4. Generate metadata and test files
+  await generateMetadataAndTest();
+
+  async function enrichDpgContext() {
+    const generationPathDetail: GenerationDirDetail =
+      await calculateGenerationDir();
+    dpgContext.generationPathDetail = generationPathDetail;
+    const options: RLCOptions = transformRLCOptions(
+      unresolvedOptions,
+      dpgContext
+    );
+    dpgContext.rlcOptions = options;
+  }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
     const projectRoot = context.emitterOutputDir ?? "";
@@ -95,20 +109,16 @@ export async function $onEmit(context: EmitContext) {
 
   function clearSrcFolder() {
     fsextra.emptyDirSync(
-      generationPathDetail.modularSourcesDir ??
-        generationPathDetail.rlcSourcesDir
+      dpgContext.generationPathDetail?.modularSourcesDir ??
+        dpgContext.generationPathDetail?.rlcSourcesDir!
     );
   }
 
   async function generateRLC() {
     const clients = getRLCClients(dpgContext);
     for (const client of clients) {
-      const rlcModels = await transformRLCModel(
-        program,
-        unresolvedOptions,
-        client,
-        dpgContext
-      );
+      const rlcModels = await transformRLCModel(program, client, dpgContext);
+      rlcClients.push(rlcModels);
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
       needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
 
@@ -123,42 +133,15 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
       await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
       await emitContentByBuilder(program, buildPollingHelper, rlcModels);
-      // buildSerializeHelper
       await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
-      // build metadata relevant files
-      await emitContentByBuilder(
-        program,
-        [
-          buildEsLintConfig,
-          buildRollupConfig,
-          buildApiExtractorConfig,
-          buildReadmeFile,
-          buildPackageFile,
-          buildTsConfig
-        ],
-        rlcModels,
-        generationPathDetail.metadataDir
-      );
-      // build test relevant files
-      await emitContentByBuilder(
-        program,
-        [
-          buildKarmaConfigFile,
-          buildEnvFile,
-          buildEnvBrowserFile,
-          buildRecordedClientFile,
-          buildSampleTest
-        ],
-        rlcModels,
-        generationPathDetail.metadataDir
-      );
     }
   }
 
   async function generateModular() {
     if (unresolvedOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
-      const modularSourcesRoot = generationPathDetail.modularSourcesDir!;
+      const modularSourcesRoot =
+        dpgContext.generationPathDetail?.modularSourcesDir!;
       const project = new Project();
       const modularCodeModel = emitCodeModel(
         context,
@@ -230,8 +213,16 @@ export async function $onEmit(context: EmitContext) {
         );
       }
 
-      emitPackage(project, generationPathDetail.metadataDir, modularCodeModel);
-      emitTsConfig(project, generationPathDetail.metadataDir, modularCodeModel);
+      emitPackage(
+        project,
+        dpgContext.generationPathDetail?.metadataDir!,
+        modularCodeModel
+      );
+      emitTsConfig(
+        project,
+        dpgContext.generationPathDetail?.metadataDir!,
+        modularCodeModel
+      );
       removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {
@@ -242,6 +233,62 @@ export async function $onEmit(context: EmitContext) {
         );
         // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
       }
+    }
+  }
+
+  async function generateMetadataAndTest() {
+    if (rlcClients.length === 0 || rlcClients[0]) {
+      return;
+    }
+    const rlcClient: RLCModel = rlcClients[0]!;
+    const option = dpgContext.rlcOptions!;
+    // Generate metadata
+    const hasPackageFile = fsextra.existsSync(
+      join(dpgContext.generationPathDetail?.metadataDir!, "package.json")
+    );
+    const shouldGenerateMetadata =
+      option.generateMetadata === true ||
+      (option.generateMetadata === undefined && hasPackageFile);
+    const commonBuilders = [
+      buildEsLintConfig,
+      buildRollupConfig,
+      buildApiExtractorConfig,
+      buildReadmeFile
+    ];
+    if (!option.isModularLibrary) {
+      commonBuilders.push(buildPackageFile);
+      commonBuilders.push(buildTsConfig);
+    }
+    if (shouldGenerateMetadata) {
+      // build metadata relevant files
+      await emitContentByBuilder(
+        program,
+        commonBuilders,
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
+    }
+
+    // Generate test relevant files
+    const hasTestFolder = fsextra.pathExistsSync(
+      join(dpgContext.generationPathDetail?.metadataDir!, "test")
+    );
+    const shouldGenerateTest =
+      option.generateTest === true ||
+      (option.generateTest === undefined && hasTestFolder);
+    if (shouldGenerateTest) {
+      await emitContentByBuilder(
+        program,
+        [
+          buildKarmaConfigFile,
+          buildEnvFile,
+          buildEnvBrowserFile,
+          buildRecordedClientFile,
+          buildSampleTest
+        ],
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
   }
 }
