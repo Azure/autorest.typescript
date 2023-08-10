@@ -26,6 +26,7 @@ export function buildOperationFiles(
   needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
+    const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
     const fileName = operationGroup.className
       ? `${normalizeName(operationGroup.className, NameType.File)}`
       : // When the program has no operation groups defined all operations are put
@@ -73,11 +74,16 @@ export function buildOperationFiles(
     }
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
-      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const sendOperationDeclaration = getSendPrivateFunction(
+        o,
+        clientType,
+        importSet
+      );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
-        needUnexpectedHelper
+        needUnexpectedHelper,
+        importSet
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -95,7 +101,16 @@ export function buildOperationFiles(
         ]
       }
     ]);
-
+    if (importSet.size > 0) {
+      for (const [moduleName, imports] of importSet.entries()) {
+        operationGroupFile.addImportDeclarations([
+          {
+            moduleSpecifier: moduleName,
+            namedImports: [...imports.values()]
+          }
+        ]);
+      }
+    }
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();

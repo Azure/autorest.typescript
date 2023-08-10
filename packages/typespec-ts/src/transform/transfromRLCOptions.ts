@@ -70,6 +70,9 @@ function processAuth(program: Program) {
     for (const auth of option.schemes) {
       switch (auth.type) {
         case "http":
+          securityInfo.addCredentials = true;
+          securityInfo.customHttpAuthHeaderName = "Authorization";
+          securityInfo.customHttpAuthSharedKeyPrefix = auth.scheme;
           break;
         case "apiKey":
           if (auth.in === "cookie") {
@@ -191,10 +194,20 @@ export function getCredentialInfo(
     securityInfo && securityInfo.credentialKeyHeaderName
       ? securityInfo.credentialKeyHeaderName
       : emitterOptions.credentialKeyHeaderName;
+  const customHttpAuthHeaderName =
+    securityInfo && securityInfo.customHttpAuthHeaderName
+      ? securityInfo.customHttpAuthHeaderName
+      : emitterOptions.customHttpAuthHeaderName;
+  const customHttpAuthSharedKeyPrefix =
+    securityInfo && securityInfo.customHttpAuthSharedKeyPrefix
+      ? securityInfo.customHttpAuthSharedKeyPrefix
+      : emitterOptions.customHttpAuthSharedKeyPrefix;
   return {
     addCredentials,
     credentialScopes,
-    credentialKeyHeaderName
+    credentialKeyHeaderName,
+    customHttpAuthHeaderName,
+    customHttpAuthSharedKeyPrefix
   };
 }
 

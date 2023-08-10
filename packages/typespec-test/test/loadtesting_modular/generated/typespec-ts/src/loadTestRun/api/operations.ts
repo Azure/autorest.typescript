@@ -88,11 +88,42 @@ export function _testRunSend(
         (options.contentType as any) ?? "application/merge-patch+json",
       queryParameters: { oldTestRunId: options?.oldTestRunId },
       body: {
-        passFailCriteria: options?.passFailCriteria,
+        passFailCriteria: {
+          passFailMetrics: options?.passFailCriteria?.["passFailMetrics"],
+        },
         secrets: options?.secrets,
-        certificate: options?.certificate,
+        certificate: {
+          value: options?.certificate?.["value"],
+          type: options?.certificate?.["type"],
+          name: options?.certificate?.["name"],
+        },
         environmentVariables: options?.environmentVariables,
-        loadTestConfiguration: options?.loadTestConfiguration,
+        loadTestConfiguration: {
+          engineInstances: options?.loadTestConfiguration?.["engineInstances"],
+          splitAllCSVs: options?.loadTestConfiguration?.["splitAllCSVs"],
+          quickStartTest: options?.loadTestConfiguration?.["quickStartTest"],
+          optionalLoadTestConfig: !options?.loadTestConfiguration
+            ?.optionalLoadTestConfig
+            ? undefined
+            : {
+                endpointUrl:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "endpointUrl"
+                  ],
+                virtualUsers:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "virtualUsers"
+                  ],
+                rampUpTime:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "rampUpTime"
+                  ],
+                duration:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "duration"
+                  ],
+              },
+        },
         displayName: options?.displayName,
         testId: options?.testId,
         description: options?.description,

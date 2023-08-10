@@ -1,20 +1,20 @@
 {
-  "name": "@azure/load-testing",
+  "name": "@msinternal/auth-httpcustom",
   "sdk-type": "client",
   "author": "Microsoft Corporation",
-  "version": "1.0.1",
-  "description": "This package contains Microsoft Azure LoadTestingClient client library.",
+  "version": "1.0.0",
+  "description": "Auth Http Custom Test Service",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "main": "dist/index.js",
   "module": "./dist-esm/src/index.js",
-  "types": "./types/load-testing.d.ts",
+  "types": "./types/auth-httpcustom.d.ts",
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
     "dist/",
     "dist-esm/src/",
-    "types/load-testing.d.ts",
+    "types/auth-httpcustom.d.ts",
     "README.md",
     "LICENSE",
     "review/*"
@@ -55,11 +55,7 @@
     "@azure-rest/core-client": "^1.1.4",
     "@azure/core-rest-pipeline": "^1.12.0",
     "@azure/logger": "^1.0.0",
-    "tslib": "^2.2.0",
-    "@azure/core-paging": "^1.5.0",
-    "@azure/core-lro": "^2.5.4",
-    "@azure/abort-controller": "^1.0.0",
-    "@azure/core-util": "^1.4.0"
+    "tslib": "^2.2.0"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
@@ -101,6 +97,7 @@
     "nyc": "^15.0.0",
     "ts-node": "^10.0.0"
   },
+  "type": "module",
   "browser": {
     "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
   }
