@@ -159,7 +159,7 @@ export function emitPackage(
       nyc: "^15.1.0",
       prettier: "^2.5.1",
       puppeteer: "^19.2.2",
-      rimraf: "^3.0.2",
+      rimraf: "^5.0.0",
       rollup: "^2.0.0",
       "rollup-plugin-shim": "^1.0.0",
       "rollup-plugin-sourcemaps": "^0.6.3",

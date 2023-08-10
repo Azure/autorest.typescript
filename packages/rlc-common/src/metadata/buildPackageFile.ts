@@ -173,7 +173,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
       prettier: "^2.5.1",
-      rimraf: "^3.0.0",
+      rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
       typescript: "~5.0.0"
     }
