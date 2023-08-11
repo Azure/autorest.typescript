@@ -19,7 +19,7 @@ function generate(path) {
     }
     // Recovery the sources folder if we have
     if (hasCustomization) {
-      const recoveryCmd = `mkdir ${join(path, "generated", "typespec-ts", "sources")}`;
+      const recoveryCmd = `mkdir -p ${join(path, "generated", "typespec-ts", "sources")}`;
       console.log("Run command:", recoveryCmd);
       execSync(recoveryCmd, {
         maxBuffer: MAX_BUFFER,
@@ -32,6 +32,7 @@ function generate(path) {
     }
   } catch (e) {
     // do nothing
+    console.log("Preparation error:", e);
   }
 
   try {
