@@ -757,8 +757,10 @@ function deserializeResponseValue(
       : ${restValue}`;
     case "combined":
       const types = needUnionDeserialize(type);
-      const typeUnionNames = type.types?.map((t) => { return t.name ?? "";});
-      const typePredictFunctions = types?.map((t) => { return getTypePredictFunction(t, typeUnionNames);});
+      const typeUnionNames =  getTypeUnionName(type);
+      const typePredictFunctions = types?.map((t) => {
+        return getTypePredictFunction(t, typeUnionNames);
+      });
       return typePredictFunctions?.join("\n") ?? "";
     default:
       return restValue;
@@ -778,15 +780,75 @@ function needUnionDeserialize(type: Type) {
   );
 }
 
-function getTypePredictFunction(type: Type, typeUnionNames: string[] | undefined): string {
+function getTypeUnionName(type: Type) {
+  return type.types
+    ?.map((t) => {
+      if (t.type === "list" && t.elementType?.type === "model") {
+        return t.elementType.name + "[]";
+      }
+      return t.name;
+    })
+    .join(" | ");
+}
+
+function getTypePredictFunction(
+  type: Type,
+  typeUnionNames: string | undefined
+): string {
   if (typeUnionNames === undefined) {
-    return ""
+    return "";
   }
+  const statements: string[] = [];
   if (type.type === "model" && type.name) {
-    return `function is${toPascalCase(type.name)}(obj: ${typeUnionNames}): obj is ${type.name} {
-    }`
+    statements.push(
+      `function is${toPascalCase(type.name)}(obj: ${typeUnionNames}): obj is ${
+        type.name
+      } {`
+    );
+    if (type.properties) {
+      statements.push(
+        `return ${type.properties
+          .map((p) => {
+            return `(obj as ${type.name}).${p.restApiName} !== undefined`;
+          })
+          .join(" && ")};`
+      );
+    } else {
+      statements.push(`return true;`);
+    }
+    statements.push(`}`);
+  } else if (
+    type.type === "list" &&
+    type.elementType?.type === "model" &&
+    type.elementType.name
+  ) {
+    statements.push(
+      `function is${toPascalCase(
+        type.elementType.name
+      )}(obj: ${typeUnionNames}): obj is ${type.elementType.name}[] {`
+    );
+    if (type.elementType?.type === "model") {
+      if (
+        type.elementType.properties &&
+        type.elementType.properties.length > 0
+      ) {
+        statements.push("if (obj.length > 0) {");
+        statements.push(
+          `return (${type.elementType.properties
+            ?.map((p) => {
+              return `(obj as ${type.elementType?.name})[0].${p.restApiName} !== undefined`;
+            })
+            .join(" && ")});`
+        );
+        statements.push("}");
+        statements.push("return false;");
+      } else {
+        statements.push(`return true;`);
+      }
+      statements.push(`}`);
+    }
   }
-  return "";
+  return statements.join("\n");
 }
 
 /**

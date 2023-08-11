@@ -7,6 +7,8 @@ import {
   ChatMessage,
   ChatCompletions,
   BatchImageGenerationOperationResponse,
+  ImageLocation,
+  ImagePayload,
 } from "../models/models.js";
 import {
   BeginAzureBatchImageGeneration202Response,
@@ -418,7 +420,14 @@ export async function _getAzureBatchImageGenerationOperationStatusDeserialize(
       ? undefined
       : {
           created: new Date(result.body.result?.["created"]),
-          data: result.body.result?.["data"],
+          data: function isImagePayload(
+            obj: ImageLocation[] | ImagePayload[]
+          ): obj is ImagePayload[] {
+            if (obj.length > 0) {
+              return (obj as ImagePayload)[0].b64_json !== undefined;
+            }
+            return false;
+          },
         },
     status: result.body["status"],
     error: !result.body.error ? undefined : result.body.error,
@@ -482,7 +491,14 @@ export async function _beginAzureBatchImageGenerationDeserialize(
       ? undefined
       : {
           created: new Date(result.body.result?.["created"]),
-          data: result.body.result?.["data"],
+          data: function isImagePayload(
+            obj: ImageLocation[] | ImagePayload[]
+          ): obj is ImagePayload[] {
+            if (obj.length > 0) {
+              return (obj as ImagePayload)[0].b64_json !== undefined;
+            }
+            return false;
+          },
         },
     status: result.body["status"],
     error: !result.body.error ? undefined : result.body.error,
