@@ -112,9 +112,13 @@ async function getGenerateSample(
     : Boolean(generateSample);
 }
 
-async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
+async function getGenerateTest(
+  host: AutorestExtensionHost
+): Promise<undefined | boolean> {
   const generateTest = await host.getValue("generate-test");
-  return generateTest === null ? false : Boolean(generateTest);
+  return generateTest === null || generateTest === undefined
+    ? undefined
+    : Boolean(generateTest);
 }
 
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
@@ -156,8 +160,13 @@ async function getDisableAsyncOperators(
 async function getHideClients(host: AutorestExtensionHost): Promise<boolean> {
   return (await host.getValue("hide-clients")) || false;
 }
-async function getGenerateMetadata(host: AutorestExtensionHost) {
-  return (await host.getValue("generate-metadata")) !== false;
+async function getGenerateMetadata(
+  host: AutorestExtensionHost
+): Promise<undefined | boolean> {
+  const generateMetadata = await host.getValue("generate-metadata");
+  return generateMetadata === undefined || generateMetadata === null
+    ? undefined
+    : Boolean(generateMetadata);
 }
 
 async function getLicenseHeader(host: AutorestExtensionHost): Promise<boolean> {
@@ -267,8 +276,9 @@ async function getPackageDetails(
   const name = normalizeName(model.language.default.name, NameType.File);
   // TODO: Look for an existing package.json and
   const packageName: string = (await host.getValue("package-name")) || name;
-  const packageNameParts: RegExpMatchArray | null =
-    packageName.match(/(^@(.*)\/)?(.*)/);
+  const packageNameParts: RegExpMatchArray | null = packageName.match(
+    /(^@(.*)\/)?(.*)/
+  );
   if (!packageNameParts) {
     throw new Error("Expecting valid package name");
   }
