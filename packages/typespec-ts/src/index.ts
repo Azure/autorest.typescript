@@ -113,7 +113,8 @@ export async function $onEmit(context: EmitContext) {
   async function clearSrcFolder() {
     await fsextra.emptyDir(
       dpgContext.generationPathDetail?.modularSourcesDir ??
-        dpgContext.generationPathDetail?.rlcSourcesDir!
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 
@@ -144,7 +145,7 @@ export async function $onEmit(context: EmitContext) {
     if (unresolvedOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
       const modularSourcesRoot =
-        dpgContext.generationPathDetail?.modularSourcesDir!;
+        dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
       const project = new Project();
       modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, {
         casing: "camel"
@@ -233,7 +234,7 @@ export async function $onEmit(context: EmitContext) {
     const option = dpgContext.rlcOptions!;
     // Generate metadata
     const hasPackageFile = await existsSync(
-      join(dpgContext.generationPathDetail?.metadataDir!, "package.json")
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
     );
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
@@ -261,12 +262,12 @@ export async function $onEmit(context: EmitContext) {
         const project = new Project();
         emitPackage(
           project,
-          dpgContext.generationPathDetail?.metadataDir!,
+          dpgContext.generationPathDetail?.metadataDir ?? "",
           modularCodeModel
         );
         emitTsConfig(
           project,
-          dpgContext.generationPathDetail?.metadataDir!,
+          dpgContext.generationPathDetail?.metadataDir ?? "",
           modularCodeModel
         );
         for (const file of project.getSourceFiles()) {
@@ -281,7 +282,7 @@ export async function $onEmit(context: EmitContext) {
 
     // Generate test relevant files
     const hasTestFolder = await fsextra.pathExists(
-      join(dpgContext.generationPathDetail?.metadataDir!, "test")
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
     );
     const shouldGenerateTest =
       option.generateTest === true ||

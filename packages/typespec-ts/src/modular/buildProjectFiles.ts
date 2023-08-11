@@ -21,15 +21,9 @@ export function emitPackage(
   );
   const hasLRO = hasLROOperation(codeModel),
     hasPaging = hasPagingOperation(codeModel);
-  let {
-    packageDetails,
-    generateTest,
-    generateSample,
-    azureOutputDirectory,
-    azureSdkForJs,
-    sourceFrom,
-    isModularLibrary
-  } = codeModel.options;
+  const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
+    codeModel.options;
+  let { packageDetails, generateTest, generateSample } = codeModel.options;
   if (packageDetails === undefined) {
     packageDetails = {
       name: "@msinternal/unamedpackage",
@@ -371,8 +365,8 @@ export function emitTsConfig(
     }
   );
 
-  let { generateTest, packageDetails, generateSample, azureSdkForJs } =
-    codeModel.options || {};
+  const { packageDetails, azureSdkForJs } = codeModel.options || {};
+  let { generateTest, generateSample } = codeModel.options || {};
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
