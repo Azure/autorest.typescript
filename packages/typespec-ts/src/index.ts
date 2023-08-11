@@ -237,7 +237,7 @@ export async function $onEmit(context: EmitContext) {
     );
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
-      (option.generateMetadata === undefined && hasPackageFile);
+      (option.generateMetadata === undefined && !hasPackageFile);
     const commonBuilders = [
       buildEsLintConfig,
       buildRollupConfig,
@@ -285,7 +285,7 @@ export async function $onEmit(context: EmitContext) {
     );
     const shouldGenerateTest =
       option.generateTest === true ||
-      (option.generateTest === undefined && hasTestFolder);
+      (option.generateTest === undefined && !hasTestFolder);
     if (shouldGenerateTest) {
       await emitContentByBuilder(
         program,
