@@ -42,7 +42,6 @@ export async function transformRLCModel(
   dpgContext: SdkContext
 ): Promise<RLCModel> {
   const options: RLCOptions = dpgContext.rlcOptions!;
-  dpgContext.rlcOptions = options;
   const srcPath = join(
     dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
