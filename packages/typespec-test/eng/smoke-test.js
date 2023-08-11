@@ -6,17 +6,37 @@ import { fileURLToPath } from "url";
 
 const MAX_BUFFER = 10 * 1024 * 1024;
 function generate(path) {
-  let command = `cd ${path} && npx tsp compile ./spec`;
+  let generateCmd = `cd ${path} && npx tsp compile ./spec`;
   try {
+    // Clean up the folder before generation
+    const hasCustomization = hasCustomizationFolder(path);
+    if (existsSync(join(path, "generated", "typespec-ts"))) {
+      const cleanUpCmd = `rm -rf ${join(path, "generated", "typespec-ts")}`;
+      console.log("Run command:", cleanUpCmd);
+      execSync(cleanUpCmd, {
+        maxBuffer: MAX_BUFFER,
+      });
+    }
+    // Recovery the sources folder if we have
+    if (hasCustomization) {
+      const recoveryCmd = `mkdir ${join(path, "generated", "typespec-ts", "sources")}`;
+      console.log("Run command:", recoveryCmd);
+      execSync(recoveryCmd, {
+        maxBuffer: MAX_BUFFER,
+      });
+    }
+
+    // Find the tsp entry file
     if (existsSync(join(path, "spec", "client.tsp"))) {
-      command += "/client.tsp";
+      generateCmd += "/client.tsp";
     }
   } catch (e) {
     // do nothing
   }
-  console.log(command);
+
   try {
-    const result = execSync(command, {
+    console.log("Run command:", generateCmd);
+    const result = execSync(generateCmd, {
       maxBuffer: MAX_BUFFER,
     });
     console.log("Generated output:", result.toString("utf8"));
@@ -27,9 +47,9 @@ function generate(path) {
 }
 
 function copyFile(path) {
-  const customizationPath = join(path, "generated/typespec-ts/sources/generated/src");
-  const srcPath = join(path, "generated/typespec-ts");
-  if (existsSync(customizationPath)) {
+  if (hasCustomizationFolder(path)) {
+    const customizationPath = join(path, "generated/typespec-ts/sources/generated/src");
+    const srcPath = join(path, "generated/typespec-ts");
     const cp = `cp -rf ${customizationPath} ${srcPath}`;
     console.log(cp);
     const result = execSync(cp, {
@@ -51,6 +71,11 @@ function build(path) {
     console.log(Error(e.stdout.toString("utf8")));
     process.exitCode = 1;
   }
+}
+
+function hasCustomizationFolder(path) {
+  const customizationPath = join(path, "generated/typespec-ts/sources");
+  return existsSync(customizationPath);
 }
 
 async function main() {
