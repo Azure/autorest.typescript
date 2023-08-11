@@ -85,8 +85,28 @@ export async function $onEmit(context: EmitContext) {
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(
       unresolvedOptions,
-      dpgContext
+      metadataDir: projectRoot,
+      rlcSourcesDir: join(
+        sourcesRoot,
+        unresolvedOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
+      ),
+      modularSourcesDir: unresolvedOptions.isModularLibrary
+        ? sourcesRoot
+        : undefined
+    };
+  }
+
+  function clearSrcFolder() {
+    fsextra.emptyDirSync(
+      generationPathDetail.modularSourcesDir ??
+        generationPathDetail.rlcSourcesDir
     );
+  }
+
+  async function generateRLC() {
+    const clients = getRLCClients(dpgContext);
+        dpgContext
+      );
     dpgContext.rlcOptions = options;
   }
 
@@ -138,6 +158,7 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(program, buildPollingHelper, rlcModels);
       await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
     }
+    }
   }
 
   async function generateModularSources() {
@@ -147,8 +168,12 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.modularSourcesDir!;
       const project = new Project();
       modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, {
+        context,
+        serviceNameToRlcModelsMap,
+        {
         casing: "camel"
       });
+      );
       const rootIndexFile = project.createSourceFile(
         `${modularSourcesRoot}/index.ts`,
         "",
@@ -224,6 +249,7 @@ export async function $onEmit(context: EmitContext) {
       }
     }
   }
+}
 
   async function generateMetadataAndTest() {
     if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
