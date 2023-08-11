@@ -11,10 +11,6 @@ export function buildEnvFile(model: RLCModel) {
 }
 
 export function buildEnvBrowserFile(model: RLCModel) {
-  const generateTest = Boolean(model.options?.generateTest);
-  if (!generateTest) {
-    return;
-  }
   return {
     path: "test/public/utils/env.browser.ts",
     content: hbs.compile("", { noEscape: true })({})
