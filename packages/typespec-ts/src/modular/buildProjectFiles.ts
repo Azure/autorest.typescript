@@ -61,7 +61,7 @@ export function emitPackage(
     license: "MIT",
     type: "module",
     main: "dist/index.js",
-    module: generateTest ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
+    module: "./dist-esm/src/index.js",
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     exports: {
       ".": {
