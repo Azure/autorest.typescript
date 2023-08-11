@@ -6,6 +6,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
+  ModularCodeModel,
   Operation,
   Parameter,
   Property,
@@ -799,4 +800,25 @@ function serializeRequestValue(
 
 function needsDeserialize(type?: Type) {
   return type?.type === "datetime" || type?.type === "model";
+}
+
+export function hasLROOperation(codeModel: ModularCodeModel) {
+  return (codeModel.clients ?? []).some((c) =>
+    (c.operationGroups ?? []).some((og) =>
+      (og.operations ?? []).some(
+        (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
+      )
+    )
+  );
+}
+
+export function hasPagingOperation(codeModel: ModularCodeModel) {
+  return (codeModel.clients ?? []).some((c) =>
+    (c.operationGroups ?? []).some((og) =>
+      (og.operations ?? []).some(
+        (op) =>
+          op.discriminator === "paging" || op.discriminator === "lropaging"
+      )
+    )
+  );
 }

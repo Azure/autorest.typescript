@@ -17,7 +17,7 @@ import {
   StartGenerateImage202Response,
   StartGenerateImageDefaultResponse,
   StartGenerateImageLogicalResponse,
-} from "./responses";
+} from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.

@@ -6,9 +6,41 @@
   "description": "This package contains Microsoft Azure LoadTestingClient client library.",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "module": "./dist-esm/src/index.js",
   "types": "./types/load-testing.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/src/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist-esm/src/index.js"
+    },
+    "./loadTestAdministration": {
+      "types": "./types/src/loadTestAdministration/index.d.ts",
+      "import": "./dist-esm/src/loadTestAdministration/index.js"
+    },
+    "./loadTestAdministration/api": {
+      "types": "./types/src/loadTestAdministration/api/index.d.ts",
+      "import": "./dist-esm/src/loadTestAdministration/api/index.js"
+    },
+    "./loadTestAdministration/models": {
+      "types": "./types/src/loadTestAdministration/models/index.d.ts",
+      "import": "./dist-esm/src/loadTestAdministration/models/index.js"
+    },
+    "./loadTestRun": {
+      "types": "./types/src/loadTestRun/index.d.ts",
+      "import": "./dist-esm/src/loadTestRun/index.js"
+    },
+    "./loadTestRun/api": {
+      "types": "./types/src/loadTestRun/api/index.d.ts",
+      "import": "./dist-esm/src/loadTestRun/api/index.js"
+    },
+    "./loadTestRun/models": {
+      "types": "./types/src/loadTestRun/models/index.d.ts",
+      "import": "./dist-esm/src/loadTestRun/models/index.js"
+    }
+  },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [

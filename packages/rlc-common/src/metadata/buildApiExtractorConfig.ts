@@ -5,7 +5,9 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  const { generateTest, packageDetails } = model.options || {};
+  let { generateTest, packageDetails } = model.options || {};
+  // Take the undefined as true by default
+  generateTest = generateTest === true || generateTest === undefined;
   const project = new Project();
   const config = {
     $schema:

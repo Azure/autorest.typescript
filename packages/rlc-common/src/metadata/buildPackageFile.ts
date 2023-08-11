@@ -49,7 +49,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   hasPaging = hasPaging || hasPagingOperations(model);
   hasLRO = hasLRO || hasPollingOperations(model);
 
-  const {
+  let {
     packageDetails,
     generateTest,
     generateSample,
@@ -69,6 +69,11 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     return;
   }
 
+  // Take the undefined as true by default
+  generateTest = generateTest === true || generateTest === undefined;
+  generateSample =
+    (generateSample === true || generateSample === undefined) &&
+    hasSamplesGenerated;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
@@ -291,7 +296,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     };
   }
 
-  if (generateSample && hasSamplesGenerated) {
+  if (generateSample) {
     packageInfo["//sampleConfiguration"] = {
       productName: model.options.serviceInfo?.title ?? model.libraryName,
       productSlugs: ["azure"],
