@@ -3,7 +3,7 @@
 
 import { Recorder } from "@azure-tools/test-recorder";
 import { assert } from "chai";
-import { createRecorder } from "./utils/recordedClient";
+import { createRecorder } from "./utils/recordedClient.js";
 import { Context } from "mocha";
 
 describe("My test", () => {

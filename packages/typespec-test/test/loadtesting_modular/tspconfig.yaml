@@ -8,7 +8,6 @@ options:
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     title: Azure Load Testing
     description: Azure Load Testing Client
-    generateMetadata: true
     azureSdkForJs: false
     enableOperationGroup: true
     isModularLibrary: true
