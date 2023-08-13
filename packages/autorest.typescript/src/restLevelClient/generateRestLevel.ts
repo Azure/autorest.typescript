@@ -50,9 +50,15 @@ import {
 export async function generateRestLevelClient() {
   const host = getHost();
   const { model } = getSession();
-  const { outputPath, srcPath, generateSample } = getAutorestOptions();
-  const generateTest = shouldGenerateTest(),
-    generateMetadata = shouldGenerateMetadata();
+  const {
+    outputPath,
+    srcPath,
+    generateSample,
+    generateTest,
+    generateMetadata
+  } = getAutorestOptions();
+  // const generateTest = shouldGenerateTest(),
+  //   generateMetadata = shouldGenerateMetadata();
 
   const project = new Project({
     useInMemoryFileSystem: true,
