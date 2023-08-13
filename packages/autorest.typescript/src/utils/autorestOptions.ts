@@ -112,13 +112,9 @@ async function getGenerateSample(
     : Boolean(generateSample);
 }
 
-async function getGenerateTest(
-  host: AutorestExtensionHost
-): Promise<undefined | boolean> {
+async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
   const generateTest = await host.getValue("generate-test");
-  return generateTest === null || generateTest === undefined
-    ? undefined
-    : Boolean(generateTest);
+  return generateTest === null ? false : Boolean(generateTest);
 }
 
 async function getAzureSdkForJs(host: AutorestExtensionHost): Promise<boolean> {
@@ -160,13 +156,8 @@ async function getDisableAsyncOperators(
 async function getHideClients(host: AutorestExtensionHost): Promise<boolean> {
   return (await host.getValue("hide-clients")) || false;
 }
-async function getGenerateMetadata(
-  host: AutorestExtensionHost
-): Promise<undefined | boolean> {
-  const generateMetadata = await host.getValue("generate-metadata");
-  return generateMetadata === undefined || generateMetadata === null
-    ? undefined
-    : Boolean(generateMetadata);
+async function getGenerateMetadata(host: AutorestExtensionHost) {
+  return (await host.getValue("generate-metadata")) !== false;
 }
 
 async function getLicenseHeader(host: AutorestExtensionHost): Promise<boolean> {
