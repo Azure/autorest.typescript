@@ -57,8 +57,6 @@ export async function generateRestLevelClient() {
     generateTest,
     generateMetadata
   } = getAutorestOptions();
-  // const generateTest = shouldGenerateTest(),
-  //   generateMetadata = shouldGenerateMetadata();
 
   const project = new Project({
     useInMemoryFileSystem: true,
