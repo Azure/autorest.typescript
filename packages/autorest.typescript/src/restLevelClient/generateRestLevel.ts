@@ -177,25 +177,3 @@ export async function generateRestLevelClient() {
     });
   }
 }
-
-function shouldGenerateMetadata() {
-  const { outputPath, generateMetadata } = getAutorestOptions();
-  const packageFilePath = outputPath
-    ? path.join(outputPath, `package.json`)
-    : `package.json`;
-
-  return (
-    generateMetadata === true ||
-    (generateMetadata === undefined && !fsextra.existsSync(packageFilePath))
-  );
-}
-
-function shouldGenerateTest() {
-  const { outputPath, generateTest } = getAutorestOptions();
-  const testFilePath = outputPath ? path.join(outputPath, `test`) : `test`;
-
-  return (
-    generateTest === true ||
-    (generateTest === undefined && !fsextra.existsSync(testFilePath))
-  );
-}
