@@ -8,6 +8,9 @@ const MAX_BUFFER = 10 * 1024 * 1024;
 function generate(path) {
   let command = `cd ${path} && npx tsp compile ./spec`;
   try {
+    if (existsSync(join(path, "spec", "tspconfig.yaml"))) {
+      command = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`
+    }
     if (existsSync(join(path, "spec", "client.tsp"))) {
       command += "/client.tsp";
     }
