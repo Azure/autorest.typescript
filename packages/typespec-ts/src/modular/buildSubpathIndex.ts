@@ -7,7 +7,7 @@ export function buildSubpathIndexFile(
   subpath: string,
   subfolder: string
 ) {
-  const apiFilePattern = join(srcPath, subfolder, subpath, "**")
+  const apiFilePattern = join(srcPath, subfolder, subpath, "**");
   const apiFiles = project.getSourceFiles(apiFilePattern);
   const indexFile = project.createSourceFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
