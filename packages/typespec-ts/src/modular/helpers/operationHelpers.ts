@@ -756,12 +756,31 @@ function deserializeResponseValue(
       ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
       : ${restValue}`;
     case "combined":
-      const types = needUnionDeserialize(type);
-      const typeUnionNames =  getTypeUnionName(type);
-      const typePredictFunctions = types?.map((t) => {
+      const unionDeserializeTypes = needUnionDeserialize(type);
+      const typeUnionNames = getTypeUnionName(type);
+      // const unionPredictTypes = type.types?.filter((t) => {
+      //   return !unionDeserializeTypes?.includes(t);
+      // });
+      const typePredictFunctions = unionDeserializeTypes?.map((t) => {
         return getTypePredictFunction(t, typeUnionNames);
       });
-      return typePredictFunctions?.join("\n") ?? "";
+      const typeDeserializeFunctions = unionDeserializeTypes?.map((t) => {
+        return getTypeDeserializeFunction(t, importSet);
+      });
+      const deserializeFunctionName = `deserialize${toPascalCase(
+        typeUnionNames?.replace(/\[\]| /g, "").replace(/\|/g, "And") ?? ""
+      )}Union`;
+      const deserializeUnionFunction = deserializeUnionTypesFunction(
+        unionDeserializeTypes ?? [],
+        deserializeFunctionName,
+        typeUnionNames
+      );
+      return (
+        (typePredictFunctions?.join("\n") ?? "") +
+        (typeDeserializeFunctions?.join("\n") ?? "") +
+        (deserializeUnionFunction ?? "") +
+        `return ${deserializeFunctionName}(${restValue});`
+      );
     default:
       return restValue;
   }
@@ -789,6 +808,84 @@ function getTypeUnionName(type: Type) {
       return t.name;
     })
     .join(" | ");
+}
+
+function getTypeDeserializeFunction(
+  type: Type,
+  importSet: Map<string, Set<string>>
+) {
+  const statements: string[] = [];
+  if (type.type === "model" && type.name) {
+    statements.push(
+      `function deserialize${toPascalCase(type.name)}(obj: ${type.name}): ${
+        type.name
+      } {`
+    );
+    if (type.properties) {
+      statements.push(
+        `return {${getResponseMapping(type.properties, "obj", importSet)}};`
+      );
+    } else {
+      statements.push(`return {};`);
+    }
+    statements.push(`}`);
+  } else if (
+    type.type === "list" &&
+    type.elementType?.type === "model" &&
+    type.elementType.name
+  ) {
+    statements.push(
+      `function deserialize${toPascalCase(type.elementType.name)}Array(obj: ${
+        type.elementType.name
+      }[]): ${type.elementType.name}[] {`
+    );
+    statements.push(
+      `return (obj || []).map(item => { return {${getResponseMapping(
+        type.elementType.properties ?? [],
+        "item",
+        importSet
+      )}}})`
+    );
+    statements.push(`}`);
+  } else if (type.type === "datetime") {
+    statements.push(
+      `function deserialize${toPascalCase(type.name ?? "datetime")}(obj: ${
+        type.name
+      }): Date {`
+    );
+    statements.push(`return new Date(obj);`);
+    statements.push(`}`);
+  } else if (type.type === "byte-array") {
+    statements.push(
+      `function deserialize${toPascalCase(type.name ?? "byte-array")}(obj: ${
+        type.name
+      }): Uint8Array {`
+    );
+    statements.push(`return obj;`);
+    statements.push(`}`);
+  }
+  return statements.join("\n");
+}
+
+function deserializeUnionTypesFunction(
+  unionDeserializeTypes: Type[],
+  deserializeFunctionName: string,
+  typeUnionNames: string | undefined
+) {
+  const statements = [
+    `function ${deserializeFunctionName}(obj: ${typeUnionNames}): ${typeUnionNames} {`
+  ];
+  for (const type of unionDeserializeTypes) {
+    const functionName = toPascalCase(
+      type.name ?? type.elementType?.name ?? ""
+    );
+    statements.push(
+      `if (is${functionName}(obj)) { return deserialize${functionName}(obj); }`
+    );
+  }
+  statements.push("return obj;");
+  statements.push("}");
+  return statements.join("\n");
 }
 
 function getTypePredictFunction(

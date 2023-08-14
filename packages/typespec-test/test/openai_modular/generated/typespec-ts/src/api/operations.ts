@@ -37,6 +37,7 @@ import {
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
 } from "../models/options.js";
+import { deserializeImagePayloadAndImageLocationUnion } from "./utils.js";
 
 export function _getEmbeddingsSend(
   context: Client,
@@ -420,14 +421,7 @@ export async function _getAzureBatchImageGenerationOperationStatusDeserialize(
       ? undefined
       : {
           created: new Date(result.body.result?.["created"]),
-          data: function isImagePayload(
-            obj: ImageLocation[] | ImagePayload[]
-          ): obj is ImagePayload[] {
-            if (obj.length > 0) {
-              return (obj as ImagePayload)[0].b64_json !== undefined;
-            }
-            return false;
-          },
+          data: deserializeImagePayloadAndImageLocationUnion(result.body.result?.["data"])
         },
     status: result.body["status"],
     error: !result.body.error ? undefined : result.body.error,
@@ -491,14 +485,7 @@ export async function _beginAzureBatchImageGenerationDeserialize(
       ? undefined
       : {
           created: new Date(result.body.result?.["created"]),
-          data: function isImagePayload(
-            obj: ImageLocation[] | ImagePayload[]
-          ): obj is ImagePayload[] {
-            if (obj.length > 0) {
-              return (obj as ImagePayload)[0].b64_json !== undefined;
-            }
-            return false;
-          },
+          data: deserializeImagePayloadAndImageLocationUnion(result.body.result["data"])
         },
     status: result.body["status"],
     error: !result.body.error ? undefined : result.body.error,
