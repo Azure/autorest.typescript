@@ -232,7 +232,7 @@ export async function $onEmit(context: EmitContext) {
 
       emitPackage(project, generationPathDetail.metadataDir, modularCodeModel);
       emitTsConfig(project, generationPathDetail.metadataDir, modularCodeModel);
-      removeUnusedInterfaces(project, generationPathDetail.metadataDir);
+      removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {
         await emitContentByBuilder(
@@ -249,7 +249,7 @@ export async function $onEmit(context: EmitContext) {
 /**
  * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
  */
-export function removeUnusedInterfaces(project: Project, sourcesRoot: string) {
+export function removeUnusedInterfaces(project: Project) {
   const allInterfaces = project.getSourceFiles().flatMap((file) =>
     file.getInterfaces().map((interfaceDeclaration) => {
       return { interfaceDeclaration, filepath: file.getFilePath() };
@@ -284,7 +284,7 @@ export function removeUnusedInterfaces(project: Project, sourcesRoot: string) {
 
     // Get the index.ts file
     const indexFiles = project
-      .getSourceFiles(join(sourcesRoot, "**"))
+      .getSourceFiles()
       .filter((file) => {
         return file.getFilePath().endsWith("index.ts");
       }); // Adjust the path to your index.ts file
