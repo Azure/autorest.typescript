@@ -338,7 +338,9 @@ export function removeUnusedInterfaces(project: Project) {
     });
 
     // Get the index.ts file
-    const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+    const indexFiles = project.getSourceFiles().filter((file) => {
+      return file.getFilePath().endsWith("index.ts");
+    }); // Adjust the path to your index.ts file
     // to make sure the top level index file is in the last
     const sortedIndexFiles = indexFiles.sort((idx1, idx2) => {
       return (

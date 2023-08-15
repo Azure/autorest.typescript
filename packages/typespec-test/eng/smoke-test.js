@@ -11,6 +11,9 @@ function generate(path) {
     // Clean up the folder before generation
     const hasCustomization = hasCustomizationFolder(path);
     if (existsSync(join(path, "generated", "typespec-ts"))) {
+    if (existsSync(join(path, "spec", "tspconfig.yaml"))) {
+      command = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`
+    }
       const cleanUpCmd = `rm -rf ${join(path, "generated", "typespec-ts")}`;
       console.log("Run command:", cleanUpCmd);
       execSync(cleanUpCmd, {
