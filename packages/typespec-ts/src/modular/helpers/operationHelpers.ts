@@ -657,9 +657,6 @@ export function getResponseMapping(
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
-    if (property.type.type === "combined") {
-      propertyFullName;
-    }
     if (property.type.type === "model") {
       let definition;
       if (property.type.isCoreErrorType) {
