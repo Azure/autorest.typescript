@@ -8,12 +8,16 @@ const MAX_BUFFER = 10 * 1024 * 1024;
 function generate(path) {
   let generateCmd = `cd ${path} && npx tsp compile ./spec`;
   try {
+    // Prepare the generate command
+    if (existsSync(join(path, "spec", "tspconfig.yaml"))) {
+      generateCmd = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`
+    }
+    if (existsSync(join(path, "spec", "client.tsp"))) {
+      generateCmd += "/client.tsp";
+    }
     // Clean up the folder before generation
     const hasCustomization = hasCustomizationFolder(path);
     if (existsSync(join(path, "generated", "typespec-ts"))) {
-    if (existsSync(join(path, "spec", "tspconfig.yaml"))) {
-      command = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`
-    }
       const cleanUpCmd = `rm -rf ${join(path, "generated", "typespec-ts")}`;
       console.log("Run command:", cleanUpCmd);
       execSync(cleanUpCmd, {
@@ -27,11 +31,6 @@ function generate(path) {
       execSync(recoveryCmd, {
         maxBuffer: MAX_BUFFER,
       });
-    }
-
-    // Find the tsp entry file
-    if (existsSync(join(path, "spec", "client.tsp"))) {
-      generateCmd += "/client.tsp";
     }
   } catch (e) {
     // do nothing
