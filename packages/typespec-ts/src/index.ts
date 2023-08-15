@@ -52,6 +52,7 @@ import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
+import { buildOperationUtils } from "./modular/buildOperationUtils.js";
 
 export * from "./lib.js";
 export interface RLCSdkContext extends SdkContext {
@@ -144,6 +145,7 @@ export async function $onEmit(context: EmitContext) {
         overwrite: true
       }
     );
+    buildOperationUtils(modularCodeModel, project, srcPath);
     for (const subClient of modularCodeModel.clients) {
       let subfolder = "";
       if (modularCodeModel.clients.length > 1) {

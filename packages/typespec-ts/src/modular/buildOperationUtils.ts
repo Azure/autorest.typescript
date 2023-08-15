@@ -11,17 +11,22 @@ import { Project } from "ts-morph";
 export function buildOperationUtils(
   model: ModularCodeModel,
   project: Project,
-  srcPath: string = "src",
-  subfolder: string = ""
+  srcPath: string = "src"
 ) {
   const apiUtilsFile = project.createSourceFile(
-    `${srcPath}/src/${
-      subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }api/utils.ts`
+    `${srcPath}/src/utils/deserializeUtil.ts`
   );
   const importSet = new Map<string, Set<string>>();
   const specialUnions = model.types.filter(
-    (t) => t.type === "combined" && isSpecialUnionVariant(t)
+    (t) =>
+      (t.type === "combined" && isSpecialUnion(t)) ||
+      (t.type === "list" &&
+        t.elementType?.type === "combined" &&
+        isSpecialUnion(t.elementType)) ||
+      (t.type === "model" &&
+        t.properties?.some(
+          (p) => p.type.type === "combined" && isSpecialUnion(p.type)
+        ))
   );
   specialUnions.forEach((su) => {
     su.elementType?.types?.forEach((et) => {
@@ -59,6 +64,10 @@ function isSpecialUnionVariant(t: Type) {
       t.elementType?.type === "model" &&
       t.elementType?.properties?.some((p) => p.clientName !== p.restApiName))
   );
+}
+
+function isSpecialUnion(t: Type) { 
+  return t.type === "combined" && t.types?.some(isSpecialUnionVariant);
 }
 
 function getTypeUnionName(type: Type) {

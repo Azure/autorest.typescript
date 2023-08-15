@@ -137,7 +137,7 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
-        response.type.nullable ?? true
+        response.type.nullable !== undefined ? !response.type.nullable: false
       )}`
     );
   } else if (response?.type?.properties) {
@@ -699,7 +699,7 @@ export function getResponseMapping(
           property.type,
           restValue,
           importSet,
-          property.type.nullable ?? true
+          property.optional === undefined ? false : !property.optional
         )}`
       );
     }
@@ -758,7 +758,7 @@ function deserializeResponseValue(
       : ${restValue}`;
     case "combined":
       const deserializeFunctionName = getDeserializeFunctionName(type);
-      return `return ${deserializeFunctionName}(${restValue});`;
+      return `${deserializeFunctionName}(${restValue})`;
     default:
       return restValue;
   }
