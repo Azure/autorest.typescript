@@ -4,7 +4,6 @@ options:
   "@azure-tools/typespec-ts":
     title: EventGrid Service
     generateMetadata: true
-    generateTest: false
     azureSdkForJs: false
     isModularLibrary: true
     "emitter-output-dir": "{project-root}/generated/typespec-ts"

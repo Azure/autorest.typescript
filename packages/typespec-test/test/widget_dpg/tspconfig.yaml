@@ -2,8 +2,6 @@ emit:
   - "@azure-tools/typespec-ts"
 options:
   "@azure-tools/typespec-ts":
-    generateMetadata: true
-    generateTest: false
     multiClient: false
     azureSdkForJs: false
     isModularLibrary: true
