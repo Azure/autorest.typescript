@@ -255,7 +255,7 @@ export interface ListWidgets {
 // @public
 export interface ListWidgets200Response extends HttpResponse {
     // (undocumented)
-    body: WidgetListOutput;
+    body: PagedWidgetOutput;
     // (undocumented)
     status: "200";
 }
@@ -284,6 +284,9 @@ export interface OperationStatusOutput {
     id: string;
     status: string;
 }
+
+// @public
+export type PagedWidgetOutput = Paged<WidgetOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -320,9 +323,6 @@ export interface Widget {
     manufacturerId: string;
     sharedModel?: FakedSharedModel;
 }
-
-// @public
-export type WidgetListOutput = Paged<WidgetOutput>;
 
 // @public (undocumented)
 export type WidgetManagerClient = Client & {

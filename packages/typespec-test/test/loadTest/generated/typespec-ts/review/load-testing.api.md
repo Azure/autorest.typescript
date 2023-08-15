@@ -69,9 +69,6 @@ export interface DimensionFilter {
     values?: string[];
 }
 
-// @public
-export type DimensionValueListListOutput = Paged<DimensionValueListOutput>;
-
 // @public (undocumented)
 export interface DimensionValueListOutput {
     // (undocumented)
@@ -1000,7 +997,7 @@ export interface LoadTestRunListMetricDimensionValues {
 // @public
 export interface LoadTestRunListMetricDimensionValues200Response extends HttpResponse {
     // (undocumented)
-    body: DimensionValueListListOutput;
+    body: PagedDimensionValueListOutput;
     // (undocumented)
     status: "200";
 }
@@ -1289,6 +1286,9 @@ export interface OptionalLoadTestConfigOutput {
     rampUpTime?: number;
     virtualUsers?: number;
 }
+
+// @public
+export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;
 
 // @public
 export type PagedFileInfoOutput = Paged<FileInfoOutput>;

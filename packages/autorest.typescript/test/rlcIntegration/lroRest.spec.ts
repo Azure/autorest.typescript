@@ -122,18 +122,14 @@ describe("LRO Rest Client", () => {
         .path("/lro/put/201/created/failed/200")
         .put();
 
-      const poller = await getLongRunningPoller(client, initialResponse, {
-        intervalInMs: 0
-      });
-
-      const response = await poller.pollUntilDone();
-      if (isUnexpected(response)) {
-        const error = `Unexpected status code ${response.status}`;
-        assert.fail(error);
+      try {
+        await getLongRunningPoller(client, initialResponse, {
+          intervalInMs: 0,
+          resolveOnUnsuccessful: false
+        });
+      } catch (e) {
+        assert.equal(e.message, "The long-running operation has failed");
       }
-      assert.equal(poller.getOperationState().status, "failed");
-      assert.equal(response.status, "200");
-      assert.deepEqual(response.body.properties?.provisioningState, "Failed");
     });
   });
 

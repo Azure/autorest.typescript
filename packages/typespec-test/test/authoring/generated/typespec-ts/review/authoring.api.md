@@ -201,9 +201,6 @@ export interface DeploymentJobOutput {
 }
 
 // @public
-export type DeploymentListOutput = Paged<DeploymentOutput>;
-
-// @public
 export interface DeploymentOutput {
     readonly name: string;
 }
@@ -624,7 +621,7 @@ export interface ListDeployments {
 // @public
 export interface ListDeployments200Response extends HttpResponse {
     // (undocumented)
-    body: DeploymentListOutput;
+    body: PagedDeploymentOutput;
     // (undocumented)
     status: "200";
 }
@@ -655,7 +652,7 @@ export interface ListProjects {
 // @public
 export interface ListProjects200Response extends HttpResponse {
     // (undocumented)
-    body: ProjectListOutput;
+    body: PagedProjectOutput;
     // (undocumented)
     status: "200";
 }
@@ -730,6 +727,12 @@ export interface OperationStatusOutput {
 }
 
 // @public
+export type PagedDeploymentOutput = Paged<DeploymentOutput>;
+
+// @public
+export type PagedProjectOutput = Paged<ProjectOutput>;
+
+// @public
 export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
 
 // @public
@@ -759,9 +762,6 @@ export interface Project {
     settings?: Record<string, string>;
     storageInputContainerName: string;
 }
-
-// @public
-export type ProjectListOutput = Paged<ProjectOutput>;
 
 // @public
 export interface ProjectOutput {
