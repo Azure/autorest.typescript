@@ -16,7 +16,7 @@ import {
   SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@typespec/compiler";
+import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
