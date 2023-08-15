@@ -5,8 +5,8 @@ import {
   GetEmbeddingsParameters,
   GetCompletionsParameters,
   GetChatCompletionsParameters,
-  GetImageOperationStatusParameters,
-  StartGenerateImageParameters,
+  GetAzureBatchImageGenerationOperationStatusParameters,
+  BeginAzureBatchImageGenerationParameters,
 } from "./parameters.js";
 import {
   GetEmbeddings200Response,
@@ -15,10 +15,10 @@ import {
   GetCompletionsDefaultResponse,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
-  GetImageOperationStatus200Response,
-  GetImageOperationStatusDefaultResponse,
-  StartGenerateImage202Response,
-  StartGenerateImageDefaultResponse,
+  GetAzureBatchImageGenerationOperationStatus200Response,
+  GetAzureBatchImageGenerationOperationStatusDefaultResponse,
+  BeginAzureBatchImageGeneration202Response,
+  BeginAzureBatchImageGenerationDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -55,21 +55,23 @@ export interface GetChatCompletions {
   >;
 }
 
-export interface GetImageOperationStatus {
+export interface GetAzureBatchImageGenerationOperationStatus {
   /** Returns the status of the images operation */
   get(
-    options?: GetImageOperationStatusParameters
+    options?: GetAzureBatchImageGenerationOperationStatusParameters
   ): StreamableMethod<
-    GetImageOperationStatus200Response | GetImageOperationStatusDefaultResponse
+    | GetAzureBatchImageGenerationOperationStatus200Response
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse
   >;
 }
 
-export interface StartGenerateImage {
+export interface BeginAzureBatchImageGeneration {
   /** Starts the generation of a batch of images from a text caption */
   post(
-    options?: StartGenerateImageParameters
+    options?: BeginAzureBatchImageGenerationParameters
   ): StreamableMethod<
-    StartGenerateImage202Response | StartGenerateImageDefaultResponse
+    | BeginAzureBatchImageGeneration202Response
+    | BeginAzureBatchImageGenerationDefaultResponse
   >;
 }
 
@@ -93,9 +95,9 @@ export interface Routes {
   (
     path: "/operations/images/{operationId}",
     operationId: string
-  ): GetImageOperationStatus;
+  ): GetAzureBatchImageGenerationOperationStatus;
   /** Resource for '/images/generations:submit' has methods for the following verbs: post */
-  (path: "/images/generations:submit"): StartGenerateImage;
+  (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;
 }
 
 export type OpenAIContext = Client & {
