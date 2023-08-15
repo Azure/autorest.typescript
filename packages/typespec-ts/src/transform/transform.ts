@@ -37,10 +37,10 @@ import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
 import { SdkContext } from "../utils/interfaces.js";
 
 export async function transformRLCModel(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ): Promise<RLCModel> {
+  const program = dpgContext.program;
   const options: RLCOptions = dpgContext.rlcOptions!;
   const srcPath = join(
     dpgContext.generationPathDetail?.rlcSourcesDir ?? "",

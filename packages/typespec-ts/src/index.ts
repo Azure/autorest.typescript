@@ -121,7 +121,7 @@ export async function $onEmit(context: EmitContext) {
   async function generateRLCSources() {
     const clients = getRLCClients(dpgContext);
     for (const client of clients) {
-      const rlcModels = await transformRLCModel(program, client, dpgContext);
+      const rlcModels = await transformRLCModel(client, dpgContext);
       rlcCodeModels.push(rlcModels);
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
       needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
