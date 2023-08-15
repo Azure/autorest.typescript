@@ -59,7 +59,7 @@ export * from "./lib.js";
 export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
-  const unresolvedOptions: RLCOptions = context.options;
+  const emitterOptions: RLCOptions = context.options;
   const dpgContext = createSdkContext(context) as SdkContext;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -83,10 +83,7 @@ export async function $onEmit(context: EmitContext) {
     const generationPathDetail: GenerationDirDetail =
       await calculateGenerationDir();
     dpgContext.generationPathDetail = generationPathDetail;
-    const options: RLCOptions = transformRLCOptions(
-      unresolvedOptions,
-      dpgContext
-    );
+    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     dpgContext.rlcOptions = options;
   }
 
@@ -102,9 +99,9 @@ export async function $onEmit(context: EmitContext) {
       metadataDir: projectRoot,
       rlcSourcesDir: join(
         sourcesRoot,
-        unresolvedOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
+        emitterOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
       ),
-      modularSourcesDir: unresolvedOptions.isModularLibrary
+      modularSourcesDir: emitterOptions.isModularLibrary
         ? sourcesRoot
         : undefined
     };
@@ -142,7 +139,7 @@ export async function $onEmit(context: EmitContext) {
   }
 
   async function generateModularSources() {
-    if (unresolvedOptions.isModularLibrary) {
+    if (emitterOptions.isModularLibrary) {
       // TODO: Emit modular parts of the library
       const modularSourcesRoot =
         dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
