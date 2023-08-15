@@ -1,4 +1,4 @@
-## 6.0.8 (2023-08-14)
+## 6.0.8 (2023-08-15)
 
 - [Feature] Support custom http authentication in RLC, Please refer to pr [#1959](https://github.com/Azure/autorest.typescript/pull/1959).
 - [Feature] Add ts-node to dev dependencies, Please refer to pr [#1953](https://github.com/Azure/autorest.typescript/pull/1953).

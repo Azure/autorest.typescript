@@ -6,9 +6,9 @@ import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ProjectOutput,
   OperationStatusOutput,
-  ProjectListOutput,
+  PagedProjectOutput,
   DeploymentOutput,
-  DeploymentListOutput,
+  PagedDeploymentOutput,
   DeploymentJobOutput,
   SwapDeploymentsJobOutput,
   PagedSupportedLanguageOutput,
@@ -105,7 +105,7 @@ export interface DeleteLogicalResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListProjects200Response extends HttpResponse {
   status: "200";
-  body: ProjectListOutput;
+  body: PagedProjectOutput;
 }
 
 export interface ListProjectsDefaultHeaders {
@@ -290,7 +290,7 @@ export interface DeleteDeploymentLogicalResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListDeployments200Response extends HttpResponse {
   status: "200";
-  body: DeploymentListOutput;
+  body: PagedDeploymentOutput;
 }
 
 export interface ListDeploymentsDefaultHeaders {

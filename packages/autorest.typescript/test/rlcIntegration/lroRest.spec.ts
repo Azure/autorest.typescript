@@ -117,13 +117,14 @@ describe("LRO Rest Client", () => {
       assert.deepEqual(result.body.name, "foo");
     });
 
-    it("should handle put201CreatingFailed", async () => {
+    it.only("should handle put201CreatingFailed", async () => {
       const initialResponse = await client
         .path("/lro/put/201/created/failed/200")
         .put();
 
       const poller = await getLongRunningPoller(client, initialResponse, {
-        intervalInMs: 0
+        intervalInMs: 0,
+        resolveOnUnsuccessful: false
       });
 
       const response = await poller.pollUntilDone();

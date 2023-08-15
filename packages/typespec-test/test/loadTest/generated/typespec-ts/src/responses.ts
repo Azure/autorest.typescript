@@ -15,7 +15,7 @@ import {
   MetricNamespaceCollectionOutput,
   MetricDefinitionCollectionOutput,
   PagedTimeSeriesElementOutput,
-  DimensionValueListListOutput,
+  PagedDimensionValueListOutput,
   TestRunAppComponentsOutput,
   TestRunServerMetricConfigOutput,
 } from "./outputModels";
@@ -459,7 +459,7 @@ export interface LoadTestRunListMetricsDefaultResponse extends HttpResponse {
 export interface LoadTestRunListMetricDimensionValues200Response
   extends HttpResponse {
   status: "200";
-  body: DimensionValueListListOutput;
+  body: PagedDimensionValueListOutput;
 }
 
 export interface LoadTestRunListMetricDimensionValuesDefaultHeaders {
