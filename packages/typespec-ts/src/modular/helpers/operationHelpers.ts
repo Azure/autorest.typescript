@@ -692,7 +692,7 @@ export function getResponseMapping(
           property.type,
           restValue,
           importSet,
-          property.type.nullable !== undefined ? !property.type.nullable: false
+          property.optional !== undefined ? !property.optional: false
         )}`
       );
     }
