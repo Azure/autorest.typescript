@@ -6,6 +6,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
+  ModularCodeModel,
   Operation,
   Parameter,
   Property,
@@ -133,7 +134,7 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
-        response.type.nullable !== undefined ? !response.type.nullable: false
+        response.type.nullable !== undefined ? !response.type.nullable : false
       )}`
     );
   } else if (response?.type?.properties) {
@@ -692,7 +693,7 @@ export function getResponseMapping(
           property.type,
           restValue,
           importSet,
-          property.optional !== undefined ? !property.optional: false
+          property.optional !== undefined ? !property.optional : false
         )}`
       );
     }
@@ -718,6 +719,8 @@ function deserializeResponseValue(
       return required
         ? `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
+    case "combined":
+      return `${restValue} as any`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
@@ -805,4 +808,25 @@ function serializeRequestValue(
 
 function needsDeserialize(type?: Type) {
   return type?.type === "datetime" || type?.type === "model";
+}
+
+export function hasLROOperation(codeModel: ModularCodeModel) {
+  return (codeModel.clients ?? []).some((c) =>
+    (c.operationGroups ?? []).some((og) =>
+      (og.operations ?? []).some(
+        (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
+      )
+    )
+  );
+}
+
+export function hasPagingOperation(codeModel: ModularCodeModel) {
+  return (codeModel.clients ?? []).some((c) =>
+    (c.operationGroups ?? []).some((og) =>
+      (og.operations ?? []).some(
+        (op) =>
+          op.discriminator === "paging" || op.discriminator === "lropaging"
+      )
+    )
+  );
 }

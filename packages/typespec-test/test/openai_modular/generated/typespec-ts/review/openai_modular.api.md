@@ -11,7 +11,29 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export type AzureOpenAIOperationState = string;
+
+// @public
+export interface BatchImageGenerationOperationResponse {
+    created: Date;
+    error?: ErrorModel;
+    expires?: number;
+    id: string;
+    result?: ImageGenerations;
+    status: AzureOpenAIOperationState;
+}
+
+// @public (undocumented)
+export interface BeginAzureBatchImageGenerationOptions extends OperationOptions {
+    n?: number;
+    responseFormat?: ImageGenerationResponseFormat;
+    size?: ImageSize;
+    user?: string;
+}
+
+// @public
 export interface ChatChoice {
+    contentFilterResults?: ContentFilterResults;
     delta?: ChatMessage;
     finishReason: CompletionsFinishReason | null;
     index: number;
@@ -21,14 +43,17 @@ export interface ChatChoice {
 // @public
 export interface ChatCompletions {
     choices: ChatChoice[];
-    created: number;
+    created: Date;
     id: string;
+    promptFilterResults?: PromptFilterResult[];
     usage: CompletionsUsage;
 }
 
 // @public
 export interface ChatMessage {
-    content?: string;
+    content: string | null;
+    functionCall?: FunctionCall;
+    name?: string;
     role: ChatRole;
 }
 
@@ -37,6 +62,7 @@ export type ChatRole = string;
 
 // @public
 export interface Choice {
+    contentFilterResults?: ContentFilterResults;
     finishReason: CompletionsFinishReason | null;
     index: number;
     logprobs: CompletionsLogProbabilityModel | null;
@@ -46,8 +72,9 @@ export interface Choice {
 // @public
 export interface Completions {
     choices: Choice[];
-    created: number;
+    created: Date;
     id: string;
+    promptFilterResults?: PromptFilterResult[];
     usage: CompletionsUsage;
 }
 
@@ -78,6 +105,23 @@ export interface CompletionsUsage {
 }
 
 // @public
+export interface ContentFilterResult {
+    filtered: boolean;
+    severity: ContentFilterSeverity;
+}
+
+// @public
+export interface ContentFilterResults {
+    hate?: ContentFilterResult;
+    selfHarm?: ContentFilterResult;
+    sexual?: ContentFilterResult;
+    violence?: ContentFilterResult;
+}
+
+// @public
+export type ContentFilterSeverity = string;
+
+// @public
 export interface EmbeddingItem {
     embedding: number[];
     index: number;
@@ -95,9 +139,36 @@ export interface EmbeddingsUsage {
     totalTokens: number;
 }
 
+// @public
+export interface FunctionCall {
+    arguments: string;
+    name: string;
+}
+
+// @public
+export type FunctionCallPreset = string;
+
+// @public
+export interface FunctionDefinition {
+    description?: string;
+    name: string;
+    parameters?: any;
+}
+
+// @public
+export interface FunctionName {
+    name: string;
+}
+
+// @public (undocumented)
+export interface GetAzureBatchImageGenerationOperationStatusOptions extends OperationOptions {
+}
+
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends OperationOptions {
     frequencyPenalty?: number;
+    functionCall?: FunctionCallPreset | FunctionName;
+    functions?: FunctionDefinition[];
     logitBias?: Record<string, number>;
     maxTokens?: number;
     model?: string;
@@ -134,30 +205,23 @@ export interface GetEmbeddingsOptions extends OperationOptions {
     user?: string;
 }
 
-// @public (undocumented)
-export interface GetImageOperationStatusOptions extends OperationOptions {
+// @public
+export type ImageGenerationResponseFormat = string;
+
+// @public
+export interface ImageGenerations {
+    created: Date;
+    data: ImageLocation[] | ImagePayload[];
 }
 
 // @public
 export interface ImageLocation {
-    error?: ErrorModel;
-    url?: string;
+    url: string;
 }
 
 // @public
-export interface ImageOperationResponse {
-    created: number;
-    error?: ErrorModel;
-    expires?: number;
-    id: string;
-    result?: ImageResponse;
-    status: State;
-}
-
-// @public
-export interface ImageResponse {
-    created: number;
-    data: ImageLocation[];
+export interface ImagePayload {
+    base64Data: string;
 }
 
 // @public
@@ -166,26 +230,22 @@ export type ImageSize = string;
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
+    beginAzureBatchImageGeneration(prompt: string, options?: BeginAzureBatchImageGenerationOptions): Promise<BatchImageGenerationOperationResponse>;
+    getAzureBatchImageGenerationOperationStatus(operationId: string, options?: GetAzureBatchImageGenerationOperationStatusOptions): Promise<BatchImageGenerationOperationResponse>;
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
-    getImageOperationStatus(operationId: string, options?: GetImageOperationStatusOptions): Promise<ImageOperationResponse>;
-    startGenerateImage(prompt: string, options?: StartGenerateImageOptions): Promise<ImageOperationResponse>;
 }
 
 // @public (undocumented)
 export interface OpenAIClientOptions extends ClientOptions {
 }
 
-// @public (undocumented)
-export interface StartGenerateImageOptions extends OperationOptions {
-    n?: number;
-    size?: ImageSize;
-    user?: string;
-}
-
 // @public
-export type State = string;
+export interface PromptFilterResult {
+    contentFilterResults?: ContentFilterResults;
+    promptIndex: number;
+}
 
 // (No @packageDocumentation comment for this package)
 

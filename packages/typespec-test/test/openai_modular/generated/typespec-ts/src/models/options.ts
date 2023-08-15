@@ -2,7 +2,13 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { ImageSize } from "./models.js";
+import {
+  FunctionDefinition,
+  FunctionCallPreset,
+  FunctionName,
+  ImageSize,
+  ImageGenerationResponseFormat,
+} from "./models.js";
 
 export interface GetEmbeddingsOptions extends OperationOptions {
   /**
@@ -104,6 +110,15 @@ export interface GetCompletionsOptions extends OperationOptions {
 }
 
 export interface GetChatCompletionsOptions extends OperationOptions {
+  /** A list of functions the model may generate JSON inputs for. */
+  functions?: FunctionDefinition[];
+  /**
+   * Controls how the model responds to function calls. "none" means the model does not call a function,
+   * and responds to the end-user. "auto" means the model can pick between an end-user or calling a function.
+   *  Specifying a particular function via `{"name": "my_function"}` forces the model to call that function.
+   *  "none" is the default when no functions are present. "auto" is the default if functions are present.
+   */
+  functionCall?: FunctionCallPreset | FunctionName;
   /** The maximum number of tokens to generate. */
   maxTokens?: number;
   /**
@@ -169,13 +184,20 @@ export interface GetChatCompletionsOptions extends OperationOptions {
   model?: string;
 }
 
-export interface GetImageOperationStatusOptions extends OperationOptions {}
+export interface GetAzureBatchImageGenerationOperationStatusOptions
+  extends OperationOptions {}
 
-export interface StartGenerateImageOptions extends OperationOptions {
+export interface BeginAzureBatchImageGenerationOptions
+  extends OperationOptions {
   /** The number of images to generate (defaults to 1). */
   n?: number;
   /** The desired size of the generated images. Must be one of 256x256, 512x512, or 1024x1024 (defaults to 1024x1024). */
   size?: ImageSize;
+  /**
+   *   The format in which image generation response items should be presented.
+   *   Azure OpenAI only supports URL response items.
+   */
+  responseFormat?: ImageGenerationResponseFormat;
   /** A unique identifier representing your end-user, which can help to monitor and detect abuse. */
   user?: string;
 }

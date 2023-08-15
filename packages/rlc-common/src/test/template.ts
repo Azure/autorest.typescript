@@ -170,7 +170,7 @@ export async function createRecorder(context: Context): Promise<Recorder> {
 export const sampleTestContent = `
 import { Recorder } from "@azure-tools/test-recorder";
 import { assert } from "chai";
-import { createRecorder } from "./utils/recordedClient";
+import { createRecorder } from "./utils/recordedClient{{#if isModularLibrary}}.js{{/if}}";
 import { Context } from "mocha";
 
 describe("My test", () => {

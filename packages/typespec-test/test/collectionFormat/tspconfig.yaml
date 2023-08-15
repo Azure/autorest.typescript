@@ -4,7 +4,6 @@ options:
   "@azure-tools/typespec-ts":
     title: Collection Format Test Service
     generateMetadata: true
-    generateTest: true
     azureSdkForJs: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:

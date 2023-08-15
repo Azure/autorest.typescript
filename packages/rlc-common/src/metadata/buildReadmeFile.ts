@@ -122,11 +122,6 @@ interface Metadata {
 }
 
 export function buildReadmeFile(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
-
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(readmeTemplate, { noEscape: true });
   return {

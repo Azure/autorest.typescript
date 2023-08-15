@@ -16,7 +16,7 @@ import {
   SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@typespec/compiler";
+import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
@@ -31,20 +31,17 @@ import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
-import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
 import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
 import { SdkContext } from "../utils/interfaces.js";
 
 export async function transformRLCModel(
-  program: Program,
-  emitterOptions: RLCOptions,
   client: SdkClient,
   dpgContext: SdkContext
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
-  dpgContext.rlcOptions = options;
+  const program = dpgContext.program;
+  const options: RLCOptions = dpgContext.rlcOptions!;
   const srcPath = join(
     dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
