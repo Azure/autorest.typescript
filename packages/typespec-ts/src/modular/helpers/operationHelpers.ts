@@ -134,7 +134,7 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
-        response.type.nullable !== undefined ? !response.type.nullable: false
+        response.type.nullable !== undefined ? !response.type.nullable : false
       )}`
     );
   } else if (response?.type?.properties) {
@@ -693,7 +693,7 @@ export function getResponseMapping(
           property.type,
           restValue,
           importSet,
-          property.optional !== undefined ? !property.optional: false
+          property.optional !== undefined ? !property.optional : false
         )}`
       );
     }
@@ -719,6 +719,8 @@ function deserializeResponseValue(
       return required
         ? `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
+    case "combined":
+      return `${restValue} as any`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
