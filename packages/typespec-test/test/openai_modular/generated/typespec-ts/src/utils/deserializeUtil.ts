@@ -1,23 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-function deserializeUnion(obj: undefined): undefined {
-  if (isImageGenerations(obj)) {
-    return deserializeImageGenerations(obj);
+import { ImageLocationOutput, ImagePayloadOutput } from "../rest/index.js";
+import { ImageLocation, ImagePayload } from "../models/models.js";
+
+function isImagePayloadArray(
+  obj: ImageLocationOutput[] | ImagePayloadOutput[]
+): obj is ImagePayloadOutput[] {
+  if (obj.length > 0) {
+    return (obj as ImagePayloadOutput[])[0].b64_json !== undefined;
   }
-  if (is(obj)) {
-    return deserialize(obj);
-  }
-  return obj;
+  return false;
 }
-function deserializeImageLocationAndImagePayloadUnion(
-  obj: ImageLocation[] | ImagePayload[]
+function deserializeImagePayloadArray(
+  obj: ImagePayloadOutput[]
+): ImagePayload[] {
+  return (obj || []).map((item) => {
+    return { base64Data: item["b64_json"] };
+  });
+}
+export function deserializeImageLocationArrayAndImagePayloadArrayUnion(
+  obj: ImageLocationOutput[] | ImagePayloadOutput[]
 ): ImageLocation[] | ImagePayload[] {
-  if (isImageGenerations(obj)) {
-    return deserializeImageGenerations(obj);
-  }
-  if (is(obj)) {
-    return deserialize(obj);
+  if (isImagePayloadArray(obj)) {
+    return deserializeImagePayloadArray(obj);
   }
   return obj;
 }

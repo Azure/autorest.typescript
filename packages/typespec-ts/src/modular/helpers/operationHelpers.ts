@@ -718,6 +718,7 @@ function deserializeResponseValue(
   required: boolean
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
+  const deserializeUtils = importSet.get("../utils/deserializeUtil.js");
   switch (type.type) {
     case "datetime":
       return required
@@ -756,6 +757,14 @@ function deserializeResponseValue(
       : ${restValue}`;
     case "combined":
       const deserializeFunctionName = getDeserializeFunctionName(type);
+      if (!deserializeUtils) {
+        importSet.set(
+          "../utils/deserializeUtil.js",
+          new Set<string>().add(deserializeFunctionName)
+        );
+      } else {
+        deserializeUtils.add(deserializeFunctionName);
+      }
       return `${deserializeFunctionName}(${restValue})`;
     default:
       return restValue;

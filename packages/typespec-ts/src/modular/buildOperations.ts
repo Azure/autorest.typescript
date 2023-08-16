@@ -11,6 +11,7 @@ import { Client, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { importSettings } from "../utils/importUtils.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -101,16 +102,7 @@ export function buildOperationFiles(
         ]
       }
     ]);
-    if (importSet.size > 0) {
-      for (const [moduleName, imports] of importSet.entries()) {
-        operationGroupFile.addImportDeclarations([
-          {
-            moduleSpecifier: moduleName,
-            namedImports: [...imports.values()]
-          }
-        ]);
-      }
-    }
+    importSettings(importSet, operationGroupFile);
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();

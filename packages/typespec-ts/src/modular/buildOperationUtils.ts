@@ -1,4 +1,5 @@
 import { toPascalCase } from "../utils/casingUtils.js";
+import { importSettings } from "../utils/importUtils.js";
 import { getResponseMapping } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Type } from "./modularCodeModel.js";
 import { Project } from "ts-morph";
@@ -13,43 +14,58 @@ export function buildOperationUtils(
   project: Project,
   modularSourcesDir: string
 ) {
-  const apiUtilsFile = project.createSourceFile(
-    `${modularSourcesDir}/utils/deserializeUtil.ts`
-  );
-  const importSet = new Map<string, Set<string>>();
   const specialUnions = model.types.filter(
     (t) =>
       (t.type === "combined" && isSpecialUnion(t)) ||
       (t.type === "list" &&
         t.elementType?.type === "combined" &&
-        isSpecialUnion(t.elementType)) ||
-      (t.type === "model" &&
-        t.properties?.some(
-          (p) => p.type.type === "combined" && isSpecialUnion(p.type)
-        ))
+        isSpecialUnion(t.elementType))
   );
+  if (specialUnions.length === 0) {
+    return;
+  }
+  const apiUtilsFile = project.createSourceFile(
+    `${modularSourcesDir}/utils/deserializeUtil.ts`
+  );
+  const importSet = new Map<string, Set<string>>();
+
   specialUnions.forEach((su) => {
-    su.elementType?.types?.forEach((et) => {
+    let types = su.types;
+    if (su.type === "list") {
+      types = su.elementType?.types;
+    }
+    const unionDeserializeTypes = types?.filter((et) => {
+      return isSpecialUnionVariant(et);
+    });
+    unionDeserializeTypes?.forEach((et) => {
       apiUtilsFile.addStatements(
-        getTypePredictFunction(et, getTypeUnionName(et))
+        getTypePredictFunction(et, getTypeUnionName(su, true, importSet))
       );
       apiUtilsFile.addStatements(getTypeDeserializeFunction(et, importSet));
     });
-    const deserializeFUnctionName = getDeserializeFunctionName(su);
+    const deserializeFUnctionName = getDeserializeFunctionName(su, importSet);
     apiUtilsFile.addStatements(
       deserializeUnionTypesFunction(
-        specialUnions,
+        unionDeserializeTypes ?? [],
         deserializeFUnctionName,
-        getTypeUnionName(su)
+        getTypeUnionName(su, true, importSet),
+        getTypeUnionName(su, false, importSet)
       )
     );
   });
+  importSettings(importSet, apiUtilsFile);
 }
 
-export function getDeserializeFunctionName(type: Type) {
-  const typeUnionNames = getTypeUnionName(type);
+export function getDeserializeFunctionName(
+  type: Type,
+  importSet?: Map<string, Set<string>>
+) {
+  const typeUnionNames = getTypeUnionName(type, false, importSet);
   const deserializeFunctionName = `deserialize${toPascalCase(
-    typeUnionNames?.replace(/\[\]| /g, "").replace(/\|/g, "And") ?? ""
+    typeUnionNames
+      ?.replace(/\[\]/g, "Array")
+      .replace(/ /g, "")
+      .replace(/\|/g, "And") ?? ""
   )}Union`;
   return deserializeFunctionName;
 }
@@ -66,17 +82,52 @@ function isSpecialUnionVariant(t: Type) {
   );
 }
 
-function isSpecialUnion(t: Type) { 
+function isSpecialUnion(t: Type) {
   return t.type === "combined" && t.types?.some(isSpecialUnionVariant);
 }
 
-function getTypeUnionName(type: Type) {
-  return type.types
+function addImportSet(
+  importSet: Map<string, Set<string>>,
+  sourceFile: string,
+  importName: string
+) {
+  const set = importSet.get(sourceFile);
+  if (!set) {
+    importSet.set(sourceFile, new Set<string>().add(importName));
+  } else {
+    set.add(importName);
+  }
+}
+
+function getTypeUnionName(
+  type: Type,
+  fromRest: boolean,
+  importSet?: Map<string, Set<string>>
+) {
+  const types = type.types;
+  if (type.type === "list") {
+    types === type.elementType?.types;
+  }
+  return types
     ?.map((t) => {
       if (t.type === "list" && t.elementType?.type === "model") {
-        return t.elementType.name + "[]";
+        if (fromRest && t.elementType.name && importSet) {
+          addImportSet(
+            importSet,
+            "../rest/index.js",
+            t.elementType.name + "Output"
+          );
+        } else if (t.elementType.name && importSet) {
+          addImportSet(importSet, "../models/models.js", t.elementType.name);
+        }
+        return t.elementType.name + (fromRest ? "Output" : "") + "[]";
       }
-      return t.name;
+      if (fromRest && t.name && importSet) {
+        addImportSet(importSet, "../rest/index.js", t.name + "Output");
+      } else if (t.name && importSet) {
+        addImportSet(importSet, "../models/models.js", t.name);
+      }
+      return t.name + (fromRest ? "Output" : "");
     })
     .join(" | ");
 }
@@ -108,7 +159,7 @@ function getTypeDeserializeFunction(
     statements.push(
       `function deserialize${toPascalCase(type.elementType.name)}Array(obj: ${
         type.elementType.name
-      }[]): ${type.elementType.name}[] {`
+      }Output[]): ${type.elementType.name}[] {`
     );
     statements.push(
       `return (obj || []).map(item => { return {${getResponseMapping(
@@ -141,14 +192,16 @@ function getTypeDeserializeFunction(
 function deserializeUnionTypesFunction(
   unionDeserializeTypes: Type[],
   deserializeFunctionName: string,
+  typeUnionNamesOutput: string | undefined,
   typeUnionNames: string | undefined
 ) {
   const statements = [
-    `function ${deserializeFunctionName}(obj: ${typeUnionNames}): ${typeUnionNames} {`
+    `export function ${deserializeFunctionName}(obj: ${typeUnionNamesOutput}): ${typeUnionNames} {`
   ];
   for (const type of unionDeserializeTypes) {
     const functionName = toPascalCase(
-      type.name ?? type.elementType?.name ?? ""
+      type.name ??
+        (type.elementType?.name ? type.elementType.name + "Array" : "")
     );
     statements.push(
       `if (is${functionName}(obj)) { return deserialize${functionName}(obj); }`
@@ -193,7 +246,9 @@ function getTypePredictFunction(
     statements.push(
       `function is${toPascalCase(
         type.elementType.name
-      )}(obj: ${typeUnionNames}): obj is ${type.elementType.name}[] {`
+      )}Array(obj: ${typeUnionNames}): obj is ${
+        type.elementType.name
+      }Output[] {`
     );
     if (type.elementType?.type === "model") {
       if (
@@ -204,7 +259,7 @@ function getTypePredictFunction(
         statements.push(
           `return (${type.elementType.properties
             ?.map((p) => {
-              return `(obj as ${type.elementType?.name})[0].${p.restApiName} !== undefined`;
+              return `(obj as ${type.elementType?.name}Output[])[0].${p.restApiName} !== undefined`;
             })
             .join(" && ")});`
         );

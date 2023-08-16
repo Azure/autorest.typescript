@@ -28,6 +28,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { deserializeImageLocationArrayAndImagePayloadArrayUnion } from "../utils/deserializeUtil.js";
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
@@ -418,7 +419,7 @@ export async function _getAzureBatchImageGenerationOperationStatusDeserialize(
       ? undefined
       : {
           created: new Date(result.body.result?.["created"]),
-          data: deserializeImageLocationAndImagePayloadUnion(
+          data: deserializeImageLocationArrayAndImagePayloadArrayUnion(
             result.body.result?.["data"]
           ),
         },
@@ -484,7 +485,7 @@ export async function _beginAzureBatchImageGenerationDeserialize(
       ? undefined
       : {
           created: new Date(result.body.result?.["created"]),
-          data: deserializeImageLocationAndImagePayloadUnion(
+          data: deserializeImageLocationArrayAndImagePayloadArrayUnion(
             result.body.result?.["data"]
           ),
         },
