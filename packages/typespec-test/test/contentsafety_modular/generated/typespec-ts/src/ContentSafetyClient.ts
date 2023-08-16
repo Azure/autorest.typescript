@@ -8,20 +8,20 @@ import {
   AnalyzeImageResult,
   TextBlocklist,
   TextBlockItemInfo,
-  AddBlockItemsResult,
+  AddOrUpdateBlockItemsResult,
   TextBlockItem,
-  CustomPage,
+  TextBlockItemListResult,
+  TextBlocklistResult
 } from "./models/models.js";
 import {
-  AnalyzeTextOptions,
-  AnalyzeImageOptions,
+  AnalyzeTextOptions as AnalyzeTextOptionsOptions,
+  AnalyzeImageOptions as AnalyzeImageOptionsOptions,
   GetTextBlocklistOptions,
   CreateOrUpdateTextBlocklistOptions,
   DeleteTextBlocklistOptions,
   ListTextBlocklistsOptions,
-  AddBlockItemsOptions,
-  AddOrUpdateBlockItemsOptions,
-  RemoveBlockItemsOptions,
+  AddOrUpdateBlockItemsOptions as AddOrUpdateBlockItemsOptionsOptions,
+  RemoveBlockItemsOptions as RemoveBlockItemsOptionsOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./models/options.js";
@@ -35,7 +35,6 @@ import {
   createOrUpdateTextBlocklist,
   deleteTextBlocklist,
   listTextBlocklists,
-  addBlockItems,
   addOrUpdateBlockItems,
   removeBlockItems,
   getTextBlocklistItem,
@@ -59,7 +58,7 @@ export class ContentSafetyClient {
   /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeText(
     text: string,
-    options: AnalyzeTextOptions = { requestOptions: {} }
+    options: AnalyzeTextOptionsOptions = { requestOptions: {} }
   ): Promise<AnalyzeTextResult> {
     return analyzeText(this._client, text, options);
   }
@@ -67,7 +66,7 @@ export class ContentSafetyClient {
   /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeImage(
     image: ImageData,
-    options: AnalyzeImageOptions = { requestOptions: {} }
+    options: AnalyzeImageOptionsOptions = { requestOptions: {} }
   ): Promise<AnalyzeImageResult> {
     return analyzeImage(this._client, image, options);
   }
@@ -99,25 +98,16 @@ export class ContentSafetyClient {
   /** Get all text blocklists details. */
   listTextBlocklists(
     options: ListTextBlocklistsOptions = { requestOptions: {} }
-  ): Promise<CustomPage> {
+  ): Promise<TextBlocklistResult> {
     return listTextBlocklists(this._client, options);
-  }
-
-  /** Add blockItems to a text blocklist. You can add at most 100 BlockItems in one request. */
-  addBlockItems(
-    blockItems: TextBlockItemInfo[],
-    blocklistName: string,
-    options: AddBlockItemsOptions = { requestOptions: {} }
-  ): Promise<AddBlockItemsResult> {
-    return addBlockItems(this._client, blockItems, blocklistName, options);
   }
 
   /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
   addOrUpdateBlockItems(
     blockItems: TextBlockItemInfo[],
     blocklistName: string,
-    options: AddOrUpdateBlockItemsOptions = { requestOptions: {} }
-  ): Promise<AddBlockItemsResult> {
+    options: AddOrUpdateBlockItemsOptionsOptions = { requestOptions: {} }
+  ): Promise<AddOrUpdateBlockItemsResult> {
     return addOrUpdateBlockItems(
       this._client,
       blockItems,
@@ -130,7 +120,7 @@ export class ContentSafetyClient {
   removeBlockItems(
     blockItemIds: string[],
     blocklistName: string,
-    options: RemoveBlockItemsOptions = { requestOptions: {} }
+    options: RemoveBlockItemsOptionsOptions = { requestOptions: {} }
   ): Promise<void> {
     return removeBlockItems(this._client, blockItemIds, blocklistName, options);
   }
@@ -153,7 +143,7 @@ export class ContentSafetyClient {
   listTextBlocklistItems(
     blocklistName: string,
     options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-  ): Promise<CustomPage> {
+  ): Promise<TextBlockItemListResult> {
     return listTextBlocklistItems(this._client, blocklistName, options);
   }
 }

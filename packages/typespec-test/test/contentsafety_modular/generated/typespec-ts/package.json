@@ -6,9 +6,25 @@
   "description": "ContentSafety Service",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
-  "module": "./dist-esm/index.js",
+  "module": "./dist-esm/src/index.js",
   "types": "./types/ai-content-safety.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/src/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist-esm/src/index.js"
+    },
+    "./api": {
+      "types": "./types/src/api/index.d.ts",
+      "import": "./dist-esm/src/api/index.js"
+    },
+    "./models": {
+      "types": "./types/src/models/index.d.ts",
+      "import": "./dist-esm/src/models/index.js"
+    }
+  },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [

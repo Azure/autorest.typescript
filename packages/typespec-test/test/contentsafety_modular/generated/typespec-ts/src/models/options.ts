@@ -40,8 +40,6 @@ export interface DeleteTextBlocklistOptions extends OperationOptions {}
 
 export interface ListTextBlocklistsOptions extends OperationOptions {}
 
-export interface AddBlockItemsOptions extends OperationOptions {}
-
 export interface AddOrUpdateBlockItemsOptions extends OperationOptions {}
 
 export interface RemoveBlockItemsOptions extends OperationOptions {}

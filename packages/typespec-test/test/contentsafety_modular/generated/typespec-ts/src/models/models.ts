@@ -1,25 +1,31 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** The analysis request of the text. */
+export interface AnalyzeTextOptions {
+  /** The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request. */
+  text: string;
+  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
+  categories?: TextCategory[];
+  /** The names of blocklists. */
+  blocklistNames?: string[];
+  /** When set to true, further analyses of harmful content will not be performed in cases where blocklists are hit. When set to false, all analyses of harmful content will be performed, whether or not blocklists are hit. */
+  breakByBlocklists?: boolean;
+  /** The type of text analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeTextOutputType;
+}
+
 /** Text analyze category */
 /** "Hate", "SelfHarm", "Sexual", "Violence" */
 export type TextCategory = string;
 /** The type of text analysis output. */
-/** "FourLevels" */
+/** "FourLevels", "EightLevels" */
 export type AnalyzeTextOutputType = string;
 
 /** The analysis response of the text */
 export interface AnalyzeTextResult {
   /** The details of blocklist match. */
   blocklistsMatchResults?: TextBlocklistMatchResult[];
-  /** Analysis result for Hate category. */
-  hateResult?: TextAnalyzeSeverityResult;
-  /** Analysis result for SelfHarm category. */
-  selfHarmResult?: TextAnalyzeSeverityResult;
-  /** Analysis result for Sexual category. */
-  sexualResult?: TextAnalyzeSeverityResult;
-  /** Analysis result for Violence category. */
-  violenceResult?: TextAnalyzeSeverityResult;
   /** Analysis result for categories. */
   analyzeResults: TextAnalyzeSeverityResult[];
 }
@@ -32,10 +38,6 @@ export interface TextBlocklistMatchResult {
   blockItemId: string;
   /** The content of matched item. */
   blockItemText: string;
-  /** The character offset of matched text in original input. */
-  offset: number;
-  /** The length of matched text in original input. */
-  length: number;
 }
 
 /** Text analysis result. */
@@ -44,6 +46,16 @@ export interface TextAnalyzeSeverityResult {
   category: TextCategory;
   /** This field is decided by outputType in request, if choose "FourLevels", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is. */
   severity?: number;
+}
+
+/** The analysis request of the image. */
+export interface AnalyzeImageOptions {
+  /** The image needs to be analyzed. */
+  image: ImageData;
+  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
+  categories?: ImageCategory[];
+  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
+  outputType?: AnalyzeImageOutputType;
 }
 
 /** The content or blob url of image, could be base64 encoding bytes or blob url. You can choose only one of them. If both are given, the request will be refused. The maximum size of image is 2048 pixels * 2048 pixels, no larger than 4MB at the same time. The minimum size of image is 50 pixels * 50 pixels. */
@@ -63,14 +75,6 @@ export type AnalyzeImageOutputType = string;
 
 /** The analysis response of the image. */
 export interface AnalyzeImageResult {
-  /** Analysis result for Hate category. */
-  hateResult?: ImageAnalyzeSeverityResult;
-  /** Analysis result for SelfHarm category. */
-  selfHarmResult?: ImageAnalyzeSeverityResult;
-  /** Analysis result for Sexual category. */
-  sexualResult?: ImageAnalyzeSeverityResult;
-  /** Analysis result for Violence category. */
-  violenceResult?: ImageAnalyzeSeverityResult;
   /** Analysis result for categories. */
   analyzeResults: ImageAnalyzeSeverityResult[];
 }
@@ -91,6 +95,12 @@ export interface TextBlocklist {
   description?: string;
 }
 
+/** The request of adding blockItems to text blocklist. */
+export interface AddOrUpdateBlockItemsOptions {
+  /** Array of blockItemInfo to add. */
+  blockItems: TextBlockItemInfo[];
+}
+
 /** Block item info in text blocklist. */
 export interface TextBlockItemInfo {
   /** Block item description. */
@@ -100,7 +110,7 @@ export interface TextBlockItemInfo {
 }
 
 /** The response of adding blockItems to text blocklist. */
-export interface AddBlockItemsResult {
+export interface AddOrUpdateBlockItemsResult {
   /** Array of blockItems added. */
   value?: TextBlockItem[];
 }
@@ -115,16 +125,32 @@ export interface TextBlockItem {
   text: string;
 }
 
+/** The request of removing blockItems from text blocklist. */
+export interface RemoveBlockItemsOptions {
+  /** Array of blockItemIds to remove. */
+  blockItemIds: string[];
+}
+
 /** Paged collection of TextBlocklist items */
-export interface CustomPage {
+export interface TextBlocklistResult {
   /** The TextBlocklist items on this page */
   value: TextBlocklist[];
   /** The link to the next page of items */
   nextLink?: string;
 }
 
+export interface AddOrUpdateBlockItemsOptions {
+  /** Array of blockItemInfo to add. */
+  blockItems: TextBlockItemInfo[];
+}
+
+export interface RemoveBlockItemsOptions {
+  /** Array of blockItemIds to remove. */
+  blockItemIds: string[];
+}
+
 /** Paged collection of TextBlockItem items */
-export interface CustomPage {
+export interface TextBlockItemListResult {
   /** The TextBlockItem items on this page */
   value: TextBlockItem[];
   /** The link to the next page of items */

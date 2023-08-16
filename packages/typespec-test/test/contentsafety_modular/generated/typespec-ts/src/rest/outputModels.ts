@@ -4,7 +4,7 @@
 import { Paged } from "@azure/core-paging";
 
 /** The analysis request of the text. */
-export interface AnalyzeTextOutput {
+export interface AnalyzeTextOptionsOutput {
   /** The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request. */
   text: string;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
@@ -16,7 +16,7 @@ export interface AnalyzeTextOutput {
   /**
    * The type of text analysis output. If not assigned, the default value is "FourLevels".
    *
-   * Possible values: FourLevels
+   * Possible values: FourLevels, EightLevels
    */
   outputType?: string;
 }
@@ -25,14 +25,6 @@ export interface AnalyzeTextOutput {
 export interface AnalyzeTextResultOutput {
   /** The details of blocklist match. */
   blocklistsMatchResults?: Array<TextBlocklistMatchResultOutput>;
-  /** Analysis result for Hate category. */
-  hateResult?: TextAnalyzeSeverityResultOutput;
-  /** Analysis result for SelfHarm category. */
-  selfHarmResult?: TextAnalyzeSeverityResultOutput;
-  /** Analysis result for Sexual category. */
-  sexualResult?: TextAnalyzeSeverityResultOutput;
-  /** Analysis result for Violence category. */
-  violenceResult?: TextAnalyzeSeverityResultOutput;
   /** Analysis result for categories. */
   analyzeResults: Array<TextAnalyzeSeverityResultOutput>;
 }
@@ -45,10 +37,6 @@ export interface TextBlocklistMatchResultOutput {
   blockItemId: string;
   /** The content of matched item. */
   blockItemText: string;
-  /** The character offset of matched text in original input. */
-  offset: number;
-  /** The length of matched text in original input. */
-  length: number;
 }
 
 /** Text analysis result. */
@@ -64,7 +52,7 @@ export interface TextAnalyzeSeverityResultOutput {
 }
 
 /** The analysis request of the image. */
-export interface AnalyzeImageOutput {
+export interface AnalyzeImageOptionsOutput {
   /** The image needs to be analyzed. */
   image: ImageDataOutput;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
@@ -87,14 +75,6 @@ export interface ImageDataOutput {
 
 /** The analysis response of the image. */
 export interface AnalyzeImageResultOutput {
-  /** Analysis result for Hate category. */
-  hateResult?: ImageAnalyzeSeverityResultOutput;
-  /** Analysis result for SelfHarm category. */
-  selfHarmResult?: ImageAnalyzeSeverityResultOutput;
-  /** Analysis result for Sexual category. */
-  sexualResult?: ImageAnalyzeSeverityResultOutput;
-  /** Analysis result for Violence category. */
-  violenceResult?: ImageAnalyzeSeverityResultOutput;
   /** Analysis result for categories. */
   analyzeResults: Array<ImageAnalyzeSeverityResultOutput>;
 }
@@ -120,7 +100,7 @@ export interface TextBlocklistOutput {
 }
 
 /** The response of adding blockItems to text blocklist. */
-export interface AddBlockItemsResultOutput {
+export interface AddOrUpdateBlockItemsResultOutput {
   /** Array of blockItems added. */
   value?: Array<TextBlockItemOutput>;
 }
@@ -136,6 +116,6 @@ export interface TextBlockItemOutput {
 }
 
 /** Paged collection of TextBlocklist items */
-export type TextBlocklistListOutput = Paged<TextBlocklistOutput>;
+export type PagedTextBlocklistOutput = Paged<TextBlocklistOutput>;
 /** Paged collection of TextBlockItem items */
-export type TextBlockItemListOutput = Paged<TextBlockItemOutput>;
+export type PagedTextBlockItemOutput = Paged<TextBlockItemOutput>;

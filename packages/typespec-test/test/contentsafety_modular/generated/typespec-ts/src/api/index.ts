@@ -13,7 +13,6 @@ export {
   createOrUpdateTextBlocklist,
   deleteTextBlocklist,
   listTextBlocklists,
-  addBlockItems,
   addOrUpdateBlockItems,
   removeBlockItems,
   getTextBlocklistItem,

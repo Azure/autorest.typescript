@@ -15,8 +15,6 @@ import {
   DeleteTextBlocklistDefaultResponse,
   ListTextBlocklists200Response,
   ListTextBlocklistsDefaultResponse,
-  AddBlockItems200Response,
-  AddBlockItemsDefaultResponse,
   AddOrUpdateBlockItems200Response,
   AddOrUpdateBlockItemsDefaultResponse,
   RemoveBlockItems204Response,
@@ -34,7 +32,6 @@ const responseMap: Record<string, string[]> = {
   "PATCH /text/blocklists/{blocklistName}": ["200", "201"],
   "DELETE /text/blocklists/{blocklistName}": ["204"],
   "GET /text/blocklists": ["200"],
-  "POST /text/blocklists/{blocklistName}:addBlockItems": ["200"],
   "POST /text/blocklists/{blocklistName}:addOrUpdateBlockItems": ["200"],
   "POST /text/blocklists/{blocklistName}:removeBlockItems": ["204"],
   "GET /text/blocklists/{blocklistName}/blockItems/{blockItemId}": ["200"],
@@ -62,9 +59,6 @@ export function isUnexpected(
 export function isUnexpected(
   response: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
 ): response is ListTextBlocklistsDefaultResponse;
-export function isUnexpected(
-  response: AddBlockItems200Response | AddBlockItemsDefaultResponse
-): response is AddBlockItemsDefaultResponse;
 export function isUnexpected(
   response:
     | AddOrUpdateBlockItems200Response
@@ -98,8 +92,6 @@ export function isUnexpected(
     | DeleteTextBlocklistDefaultResponse
     | ListTextBlocklists200Response
     | ListTextBlocklistsDefaultResponse
-    | AddBlockItems200Response
-    | AddBlockItemsDefaultResponse
     | AddOrUpdateBlockItems200Response
     | AddOrUpdateBlockItemsDefaultResponse
     | RemoveBlockItems204Response
@@ -115,7 +107,6 @@ export function isUnexpected(
   | CreateOrUpdateTextBlocklistDefaultResponse
   | DeleteTextBlocklistDefaultResponse
   | ListTextBlocklistsDefaultResponse
-  | AddBlockItemsDefaultResponse
   | AddOrUpdateBlockItemsDefaultResponse
   | RemoveBlockItemsDefaultResponse
   | GetTextBlocklistItemDefaultResponse

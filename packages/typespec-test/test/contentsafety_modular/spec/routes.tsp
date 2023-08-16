@@ -20,7 +20,7 @@ interface TextOperations {
     {
       @body
       @doc("The request of text analysis.")
-      body: AnalyzeText;
+      body: AnalyzeTextOptions;
     },
     AnalyzeTextResult
   >;
@@ -35,7 +35,7 @@ interface ImageOperations {
     {
       @doc("The analysis request of the image.")
       @body
-      body: AnalyzeImage;
+      body: AnalyzeImageOptions;
     },
     AnalyzeImageResult
   >;
@@ -63,29 +63,19 @@ interface TextBlocklists {
   @doc("Get all text blocklists details.")
   listTextBlocklists is BlockOps.ResourceList<TextBlocklist>;
 
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @summary("Add BlockItems To Text Blocklist")
-  @doc("Add blockItems to a text blocklist. You can add at most 100 BlockItems in one request.")
-  addBlockItems is BlockOps.ResourceAction<
-    TextBlocklist,
-    AddBlockItems,
-    AddBlockItemsResult
-  >;
-
-  @added(ContentSafety.Versions.v2023_10_01)
   @summary("Add or update BlockItems To Text Blocklist")
   @doc("Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request.")
   addOrUpdateBlockItems is BlockOps.ResourceAction<
     TextBlocklist,
-    AddBlockItems,
-    AddBlockItemsResult
+    AddOrUpdateBlockItemsOptions,
+    AddOrUpdateBlockItemsResult
   >;
 
   @summary("Remove BlockItems From Text Blocklist")
   @doc("Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request.")
   removeBlockItems is BlockOps.ResourceAction<
     TextBlocklist,
-    RemoveBlockItems,
+    RemoveBlockItemsOptions,
     NoContentResponse
   >;
 

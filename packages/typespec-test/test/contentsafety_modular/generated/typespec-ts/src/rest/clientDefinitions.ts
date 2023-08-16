@@ -8,7 +8,6 @@ import {
   CreateOrUpdateTextBlocklistParameters,
   DeleteTextBlocklistParameters,
   ListTextBlocklistsParameters,
-  AddBlockItemsParameters,
   AddOrUpdateBlockItemsParameters,
   RemoveBlockItemsParameters,
   GetTextBlocklistItemParameters,
@@ -28,8 +27,6 @@ import {
   DeleteTextBlocklistDefaultResponse,
   ListTextBlocklists200Response,
   ListTextBlocklistsDefaultResponse,
-  AddBlockItems200Response,
-  AddBlockItemsDefaultResponse,
   AddOrUpdateBlockItems200Response,
   AddOrUpdateBlockItemsDefaultResponse,
   RemoveBlockItems204Response,
@@ -87,13 +84,6 @@ export interface ListTextBlocklists {
   >;
 }
 
-export interface AddBlockItems {
-  /** Add blockItems to a text blocklist. You can add at most 100 BlockItems in one request. */
-  post(
-    options?: AddBlockItemsParameters
-  ): StreamableMethod<AddBlockItems200Response | AddBlockItemsDefaultResponse>;
-}
-
 export interface AddOrUpdateBlockItems {
   /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
   post(
@@ -142,11 +132,6 @@ export interface Routes {
   ): GetTextBlocklist;
   /** Resource for '/text/blocklists' has methods for the following verbs: get */
   (path: "/text/blocklists"): ListTextBlocklists;
-  /** Resource for '/text/blocklists/\{blocklistName\}:addBlockItems' has methods for the following verbs: post */
-  (
-    path: "/text/blocklists/{blocklistName}:addBlockItems",
-    blocklistName: string
-  ): AddBlockItems;
   /** Resource for '/text/blocklists/\{blocklistName\}:addOrUpdateBlockItems' has methods for the following verbs: post */
   (
     path: "/text/blocklists/{blocklistName}:addOrUpdateBlockItems",

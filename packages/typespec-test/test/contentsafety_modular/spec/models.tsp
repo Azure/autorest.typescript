@@ -25,14 +25,15 @@ enum ImageCategory {
   Violence,
 }
 
-@added(ContentSafety.Versions.v2023_10_01)
 @doc("The type of text analysis output.")
 enum AnalyzeTextOutputType {
   @doc("Output severities in four levels, the value could be 0,2,4,6.")
   FourLevels,
+
+  @doc("Output severities in four levels, the value could be 0,1,2,3,4,5,6,7.")
+  EightLevels,
 }
 
-@added(ContentSafety.Versions.v2023_10_01)
 @doc("The type of image analysis output.")
 enum AnalyzeImageOutputType {
   @doc("Output severities in four levels, the value could be 0,2,4,6.")
@@ -40,7 +41,7 @@ enum AnalyzeImageOutputType {
 }
 
 @doc("The analysis request of the text.")
-model AnalyzeText {
+model AnalyzeTextOptions {
   // @doc("The text needs to be scanned. We support at most 1000 characters (unicode code points) in text of one request.")
   // @maxLength(1000)
   @doc("The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request.")
@@ -56,7 +57,6 @@ model AnalyzeText {
   @doc("When set to true, further analyses of harmful content will not be performed in cases where blocklists are hit. When set to false, all analyses of harmful content will be performed, whether or not blocklists are hit.")
   breakByBlocklists?: boolean;
 
-  @added(ContentSafety.Versions.v2023_10_01)
   @doc("The type of text analysis output. If not assigned, the default value is \"FourLevels\".")
   outputType?: AnalyzeTextOutputType = AnalyzeTextOutputType.FourLevels;
 }
@@ -66,23 +66,6 @@ model AnalyzeTextResult {
   @doc("The details of blocklist match.")
   blocklistsMatchResults?: TextBlocklistMatchResult[];
 
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for Hate category.")
-  hateResult?: TextAnalyzeSeverityResult;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for SelfHarm category.")
-  selfHarmResult?: TextAnalyzeSeverityResult;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for Sexual category.")
-  sexualResult?: TextAnalyzeSeverityResult;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for Violence category.")
-  violenceResult?: TextAnalyzeSeverityResult;
-
-  @added(ContentSafety.Versions.v2023_10_01)
   @doc("Analysis result for categories.")
   analyzeResults: TextAnalyzeSeverityResult[];
 }
@@ -100,14 +83,6 @@ model TextBlocklistMatchResult {
   @doc("The content of matched item.")
   @maxLength(128)
   blockItemText: string;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("The character offset of matched text in original input.")
-  offset: int32;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("The length of matched text in original input.")
-  length: int32;
 }
 
 @doc("Text analysis result.")
@@ -115,21 +90,18 @@ model TextAnalyzeSeverityResult {
   @doc("The text category.")
   category: TextCategory;
 
-  @madeOptional(ContentSafety.Versions.v2023_10_01)
-  //@doc("The higher the severity of input content, the larger this value is. The values could be: 0,2,4,6.")
   @doc("This field is decided by outputType in request, if choose \"FourLevels\", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is.")
   severity?: int32;
 }
 
 @doc("The analysis request of the image.")
-model AnalyzeImage {
+model AnalyzeImageOptions {
   @doc("The image needs to be analyzed.")
   image: ImageData;
 
   @doc("The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned.")
   categories?: ImageCategory[];
 
-  @added(ContentSafety.Versions.v2023_10_01)
   @doc("The type of image analysis output. If not assigned, the default value is \"FourLevels\".")
   outputType?: AnalyzeImageOutputType = AnalyzeImageOutputType.FourLevels;
 }
@@ -146,23 +118,6 @@ model ImageData {
 
 @doc("The analysis response of the image.")
 model AnalyzeImageResult {
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for Hate category.")
-  hateResult?: ImageAnalyzeSeverityResult;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for SelfHarm category.")
-  selfHarmResult?: ImageAnalyzeSeverityResult;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for Sexual category.")
-  sexualResult?: ImageAnalyzeSeverityResult;
-
-  @removed(ContentSafety.Versions.v2023_10_01)
-  @doc("Analysis result for Violence category.")
-  violenceResult?: ImageAnalyzeSeverityResult;
-
-  @added(ContentSafety.Versions.v2023_10_01)
   @doc("Analysis result for categories.")
   analyzeResults: ImageAnalyzeSeverityResult[];
 }
@@ -172,8 +127,6 @@ model ImageAnalyzeSeverityResult {
   @doc("The image category.")
   category: ImageCategory;
 
-  @madeOptional(ContentSafety.Versions.v2023_10_01)
-  //@doc("The higher the severity of input content, the larger this value, currently its value could be: 0,2,4,6.")
   @doc("This field is decided by outputType in request, if choose \"FourLevels\", the value could be 0,2,4,6. The higher the severity of input content, the larger this value is.")
   severity?: int32;
 }
@@ -224,19 +177,19 @@ model TextBlockItemInfo {
 }
 
 @doc("The request of adding blockItems to text blocklist.")
-model AddBlockItems {
+model AddOrUpdateBlockItemsOptions {
   @doc("Array of blockItemInfo to add.")
   blockItems: TextBlockItemInfo[];
 }
 
 @doc("The response of adding blockItems to text blocklist.")
-model AddBlockItemsResult {
+model AddOrUpdateBlockItemsResult {
   @doc("Array of blockItems added.")
   value?: TextBlockItem[];
 }
 
 @doc("The request of removing blockItems from text blocklist.")
-model RemoveBlockItems {
+model RemoveBlockItemsOptions {
   @doc("Array of blockItemIds to remove.")
   blockItemIds: string[];
 }

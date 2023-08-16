@@ -7,10 +7,10 @@ import {
   AnalyzeTextResultOutput,
   AnalyzeImageResultOutput,
   TextBlocklistOutput,
-  TextBlocklistListOutput,
-  AddBlockItemsResultOutput,
+  PagedTextBlocklistOutput,
+  AddOrUpdateBlockItemsResultOutput,
   TextBlockItemOutput,
-  TextBlockItemListOutput,
+  PagedTextBlockItemOutput,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -107,7 +107,7 @@ export interface DeleteTextBlocklistDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListTextBlocklists200Response extends HttpResponse {
   status: "200";
-  body: TextBlocklistListOutput;
+  body: PagedTextBlocklistOutput;
 }
 
 export interface ListTextBlocklistsDefaultHeaders {
@@ -122,26 +122,9 @@ export interface ListTextBlocklistsDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface AddBlockItems200Response extends HttpResponse {
-  status: "200";
-  body: AddBlockItemsResultOutput;
-}
-
-export interface AddBlockItemsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface AddBlockItemsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & AddBlockItemsDefaultHeaders;
-}
-
-/** The request has succeeded. */
 export interface AddOrUpdateBlockItems200Response extends HttpResponse {
   status: "200";
-  body: AddBlockItemsResultOutput;
+  body: AddOrUpdateBlockItemsResultOutput;
 }
 
 export interface AddOrUpdateBlockItemsDefaultHeaders {
@@ -191,7 +174,7 @@ export interface GetTextBlocklistItemDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListTextBlocklistItems200Response extends HttpResponse {
   status: "200";
-  body: TextBlockItemListOutput;
+  body: PagedTextBlockItemOutput;
 }
 
 export interface ListTextBlocklistItemsDefaultHeaders {

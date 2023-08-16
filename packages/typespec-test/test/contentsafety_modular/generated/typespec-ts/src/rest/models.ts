@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 /** The analysis request of the text. */
-export interface AnalyzeText {
+export interface AnalyzeTextOptions {
   /** The text needs to be scanned. We support at most 10k Unicode characters (unicode code points) in text of one request. */
   text: string;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
@@ -14,13 +14,13 @@ export interface AnalyzeText {
   /**
    * The type of text analysis output. If not assigned, the default value is "FourLevels".
    *
-   * Possible values: FourLevels
+   * Possible values: FourLevels, EightLevels
    */
   outputType?: string;
 }
 
 /** The analysis request of the image. */
-export interface AnalyzeImage {
+export interface AnalyzeImageOptions {
   /** The image needs to be analyzed. */
   image: ImageData;
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
@@ -50,7 +50,7 @@ export interface TextBlocklist {
 }
 
 /** The request of adding blockItems to text blocklist. */
-export interface AddBlockItems {
+export interface AddOrUpdateBlockItemsOptions {
   /** Array of blockItemInfo to add. */
   blockItems: Array<TextBlockItemInfo>;
 }
@@ -64,7 +64,7 @@ export interface TextBlockItemInfo {
 }
 
 /** The request of removing blockItems from text blocklist. */
-export interface RemoveBlockItems {
+export interface RemoveBlockItemsOptions {
   /** Array of blockItemIds to remove. */
   blockItemIds: string[];
 }
