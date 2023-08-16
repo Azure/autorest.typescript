@@ -719,6 +719,7 @@ function deserializeResponseValue(
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   const deserializeUtils = importSet.get("../utils/deserializeUtil.js");
+  let deserializeFunctionName;
   switch (type.type) {
     case "datetime":
       return required
@@ -756,7 +757,7 @@ function deserializeResponseValue(
       ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
       : ${restValue}`;
     case "combined":
-      const deserializeFunctionName = getDeserializeFunctionName(type);
+      deserializeFunctionName = getDeserializeFunctionName(type);
       if (!deserializeUtils) {
         importSet.set(
           "../utils/deserializeUtil.js",
