@@ -23,7 +23,7 @@ export function _twoSend(
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
-    .patch({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _twoDeserialize(_result: Two204Response): Promise<void> {
@@ -44,7 +44,7 @@ export function _fiveSend(
 ): StreamableMethod<Five204Response> {
   return context
     .path("/five")
-    .patch({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _fiveDeserialize(
@@ -67,7 +67,7 @@ export function _sixSend(
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
-    .patch({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _sixDeserialize(_result: Six204Response): Promise<void> {

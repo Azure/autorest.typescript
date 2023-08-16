@@ -34,12 +34,12 @@ import {
   getOperationLroOverload,
   getOperationName
 } from "../utils/operationUtil.js";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToResponseTypes(
   importDetails: Map<ImportKind, Set<string>>,
   client: SdkClient,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): OperationResponse[] {
   const program = dpgContext.program;
   const operationGroups = listOperationGroups(dpgContext, client);
@@ -114,7 +114,7 @@ export function transformToResponseTypes(
  * @returns rlc header shcema
  */
 function transformHeaders(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   response: HttpOperationResponse
 ): ResponseHeaderSchema[] | undefined {
   if (!response.responses.length) {
@@ -154,7 +154,7 @@ function transformHeaders(
 }
 
 function transformBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   response: HttpOperationResponse,
   importedModels: Set<string>
 ) {
@@ -210,7 +210,7 @@ function transformBody(
 }
 
 function transformLroLogicalResponse(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   route: HttpOperation,
   operationGroupName: string,
   existingResponses: ResponseMetadata[]

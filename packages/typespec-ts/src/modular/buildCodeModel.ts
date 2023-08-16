@@ -66,7 +66,6 @@ import {
   getDefaultApiVersion,
   getClientNamespaceString,
   createSdkContext,
-  SdkContext,
   getSdkUnion,
   getAllModels,
   SdkSimpleType,
@@ -91,6 +90,7 @@ import {
   getOperationGroupName,
   getOperationName
 } from "../utils/operationUtil.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1511,11 +1511,7 @@ export function emitCodeModel(
     getClientNamespaceString(dpgContext)?.toLowerCase();
   // Get types
   const codeModel: ModularCodeModel = {
-    options: transformRLCOptions(
-      context.options as any,
-      context.emitterOutputDir,
-      dpgContext
-    ),
+    options: transformRLCOptions(context.options as any, dpgContext),
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],

@@ -7,7 +7,7 @@ import {
   WidgetOutput,
   ResourceOperationStatusOutput,
   OperationStatusOutput,
-  WidgetListOutput,
+  PagedWidgetOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -123,7 +123,7 @@ export interface DeleteWidgetLogicalResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListWidgets200Response extends HttpResponse {
   status: "200";
-  body: WidgetListOutput;
+  body: PagedWidgetOutput;
 }
 
 export interface ListWidgetsDefaultHeaders {

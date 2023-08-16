@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  SdkClient,
-  SdkContext
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
   NameType,
@@ -19,7 +16,7 @@ import {
   SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@typespec/compiler";
+import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
@@ -34,33 +31,19 @@ import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
-import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
 import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
-
-export interface RLCSdkContext extends SdkContext {
-  options?: RLCOptions;
-}
+import { SdkContext } from "../utils/interfaces.js";
 
 export async function transformRLCModel(
-  program: Program,
-  emitterOptions: RLCOptions,
   client: SdkClient,
-  emitterOutputDir: string,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(
-    emitterOptions,
-    emitterOutputDir,
-    dpgContext
-  );
-  dpgContext.options = options;
+  const program = dpgContext.program;
+  const options: RLCOptions = dpgContext.rlcOptions!;
   const srcPath = join(
-    emitterOutputDir ?? "",
-    "src",
-    // When generating modular library, RLC has to go under rest folder
-    options.isModularLibrary ? "rest" : "",
+    dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
       : ""

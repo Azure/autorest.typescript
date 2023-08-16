@@ -1,8 +1,6 @@
-import {
-  SdkClient,
-  SdkContext
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import { listServices } from "@typespec/compiler";
+import { SdkContext } from "./interfaces.js";
 
 export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
   const services = listServices(dpgContext.program);

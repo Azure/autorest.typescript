@@ -1,3 +1,4 @@
+import { join } from "path";
 import { Project } from "ts-morph";
 
 export function buildSubpathIndexFile(
@@ -6,9 +7,15 @@ export function buildSubpathIndexFile(
   subpath: string,
   subfolder: string
 ) {
-  const apiFiles = project.getSourceFiles(`**/src/${subfolder}/${subpath}/**`);
+  const apiFilePattern = join(srcPath, subfolder, subpath);
+  const apiFiles = project.getSourceFiles().filter((file) => {
+    return file
+      .getFilePath()
+      .replace(/\\/g, "/")
+      .startsWith(apiFilePattern.replace(/\\/g, "/"));
+  });
   const indexFile = project.createSourceFile(
-    `${srcPath}/src/${subfolder}/${subpath}/index.ts`
+    `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
     const exports = [...file.getExportedDeclarations().keys()].filter(

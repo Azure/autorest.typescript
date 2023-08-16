@@ -1,32 +1,62 @@
 import { Project } from "ts-morph";
 import { ModularCodeModel } from "./modularCodeModel.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import {
+  hasLROOperation,
+  hasPagingOperation
+} from "./helpers/operationHelpers.js";
 
 export function emitPackage(
   project: Project,
-  srcPath: string,
-  codeModel: ModularCodeModel
+  metadataDir: string,
+  codeModel: ModularCodeModel,
+  hasSamplesGenerated = false
 ) {
   const packageJson = project.createSourceFile(
-    `${srcPath}/package-files/package.json`,
+    `${metadataDir}/package.json`,
     "",
     {
       overwrite: true
     }
   );
-  const content = {
-    name: `${
-      codeModel.options?.packageDetails?.name ?? "@msinternal/unamedpackage"
-    }`,
-    version: "1.0.0-beta.1",
-    description: `${codeModel.options?.packageDetails?.description}`,
+  const hasLRO = hasLROOperation(codeModel),
+    hasPaging = hasPagingOperation(codeModel);
+  const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
+    codeModel.options;
+  let { packageDetails, generateTest, generateSample } = codeModel.options;
+  if (packageDetails === undefined) {
+    packageDetails = {
+      name: "@msinternal/unamedpackage",
+      nameWithoutScope: "unamedpackage",
+      version: "1.0.0-beta.1"
+    };
+  }
+  // Take the undefined as true by default
+  generateTest = generateTest === true || generateTest === undefined;
+  generateSample =
+    (generateSample === true || generateSample === undefined) &&
+    hasSamplesGenerated;
+  const clientPackageName = packageDetails.name;
+  let apiRefUrlQueryParameter: string = "";
+  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
+  if (packageDetails.version.includes("beta")) {
+    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  }
+
+  const packageInfo = {
+    name: `${packageDetails.name}`,
     "sdk-type": "client",
-    main: "dist/index.js",
-    module: "dist-esm/src/index.js",
-    "react-native": {
-      "./dist/index.js": "./dist-esm/src/index.js"
-    },
+    author: "Microsoft Corporation",
+    version: `${packageDetails.version}`,
+    description:
+      `${packageDetails.description}` ||
+      `A generated SDK for ${codeModel.clients[0]?.name}.`,
+    keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+    license: "MIT",
     type: "module",
+    main: "dist/index.js",
+    module: "./dist-esm/src/index.js",
+    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     exports: {
       ".": {
         types: "./types/src/index.d.ts",
@@ -42,202 +72,339 @@ export function emitPackage(
         import: "./dist-esm/src/models/index.js"
       }
     },
-    "//metadata": {
-      constantPaths: [
-        {
-          path: "src/utils/constants.ts",
-          prefix: "SDK_VERSION"
-        }
-      ]
+    repository: "github:Azure/azure-sdk-for-js",
+    bugs: {
+      url: "https://github.com/Azure/azure-sdk-for-js/issues"
     },
-    types: `types/latest/${codeModel.options?.packageDetails?.nameWithoutScope}.d.ts`,
-    typesVersions: {
-      "<3.6": {
-        "*": [
-          `types/3.1/${codeModel.options?.packageDetails?.nameWithoutScope}.d.ts`
-        ]
-      }
+    files: [
+      "dist/",
+      generateTest ? "dist-esm/src/" : "dist-esm/",
+      `types/${packageDetails.nameWithoutScope}.d.ts`,
+      "README.md",
+      "LICENSE",
+      "review/*"
+    ],
+    engines: {
+      node: ">=14.0.0"
     },
     scripts: {
       audit:
         "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
-      "build:samples": "echo Obsolete",
-      "build:test:browser": "tsc -p . && rollup -c rollup.test.config.js 2>&1",
-      "build:test:node": "tsc -p . && dev-tool run bundle",
-      "build:test": "tsc -p . && rollup -c rollup.test.config.js 2>&1",
-      "build:types": "downlevel-dts types/latest/ types/3.1/",
-      "build:output": "node scripts/renameOutput.mjs",
-      build:
-        "npm run build:test && api-extractor run --local && npm run build:types && npm run build:output",
-      "check-format":
-        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "test/**/*.ts" "*.{js,json}"',
-      clean: "rimraf dist dist-* temp types *.tgz *.log",
-      "execute:samples": "dev-tool samples run samples-dev",
-      "extract-api": "tsc -p . && api-extractor run --local",
-      format:
-        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "test/**/*.ts" "samples-dev/**/*.ts" "*.{js,json}"',
+      "build:browser": "echo skipped.",
+      "build:node": "echo skipped.",
+      "build:samples": "echo skipped.",
+      "build:test": "echo skipped.",
+      "build:debug": "echo skipped.",
+      "check-format": `prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
+        generateTest,
+        generateSample
+      )}`,
+      clean:
+        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+      "execute:samples": "echo skipped",
+      "extract-api":
+        "rimraf review && mkdirp ./review && api-extractor run --local",
+      format: `prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ${appendPathWhenFormat(
+        generateTest,
+        generateSample
+      )}`,
+      "generate:client":
+        sourceFrom === "Swagger"
+          ? "autorest --typescript swagger/README.md && npm run format"
+          : "echo skipped",
       "integration-test:browser": "echo skipped",
-      "integration-test:node":
-        'nyc mocha --timeout 600000 "test/internal/**/*.spec.ts" "test/public/**/*.spec.ts"',
-      "integration-test":
-        "npm run integration-test:node && npm run integration-test:browser",
-      "lint:fix":
-        "eslint README.md package.json api-extractor.json src test --ext .ts,.javascript,.js --fix --fix-type [problem,suggestion]",
-      lint: "eslint README.md package.json api-extractor.json src test --ext .ts,.javascript,.js",
+      "integration-test:node": "echo skipped",
+      "integration-test": "echo skipped",
+      "lint:fix": `eslint package.json api-extractor.json src ${appednPathWhenLint(
+        generateTest
+      )} --ext .ts --fix --fix-type [problem,suggestion]`,
+      lint: `eslint package.json api-extractor.json src ${appednPathWhenLint(
+        generateTest
+      )} --ext .ts`,
       pack: "npm pack 2>&1",
-      "test:browser":
-        "npm run clean && npm run build:test && npm run integration-test:browser",
-      "test:node": "npm run clean && tsc -p . && npm run integration-test:node",
-      test: "npm run clean && tsc -p . && npm run unit-test:node && dev-tool run bundle && npm run unit-test:browser && npm run integration-test",
-      "unit-test:browser": "karma start karma.conf.cjs --single-run",
-      "unit-test:node":
-        'mocha --exclude  "test/**/browser/*.spec.ts" "test/internal/unit/{,!(browser)/**/}*.spec.ts" "test/public/unit/{,!(browser)/**/}*.spec.ts"',
-      "unit-test": "npm run unit-test:node && npm run unit-test:browser"
+      "test:browser": "echo skipped",
+      "test:node": "echo skipped",
+      test: 'echo "Error: no test specified" && exit 1',
+      "unit-test": "echo skipped",
+      "unit-test:node": "echo skipped",
+      "unit-test:browser": "echo skipped"
     },
-    files: [
-      "dist/",
-      "dist-esm/src/",
-      "types",
-      "types/src",
-      "types/latest/",
-      "types/3.1/",
-      "README.md",
-      "LICENSE"
-    ],
-    repository: "github:Azure/azure-sdk-for-js",
-    engines: {
-      node: ">=14.0.0"
-    },
-    keywords: ["azure", "cloud", "typescript"],
-    author: "Microsoft Corporation",
-    license: "MIT",
-    bugs: {
-      url: "https://github.com/Azure/azure-sdk-for-js/issues"
-    },
-    homepage: `https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/${(
-      codeModel.options?.packageDetails?.nameWithoutScope ?? ""
-    ).replace(/-/g, "")}/${
-      codeModel.options?.packageDetails?.nameWithoutScope
-    }/README.md`,
     sideEffects: false,
-    prettier: "@azure/eslint-plugin-azure-sdk/prettier.json",
-    devDependencies: {
-      "@azure/dev-tool": "^1.0.0",
-      "@azure/eslint-plugin-azure-sdk": "^3.0.0",
-      "@azure-tools/test-recorder": "^3.0.0",
-      "@azure/test-utils": "^1.0.0",
-      "@microsoft/api-extractor": "^7.31.1",
-      "@rollup/plugin-commonjs": "^24.0.0",
-      "@rollup/plugin-inject": "^5.0.0",
-      "@rollup/plugin-json": "^6.0.0",
-      "@rollup/plugin-multi-entry": "^6.0.0",
-      "@rollup/plugin-node-resolve": "^13.1.3",
-      "@rollup/plugin-replace": "^5.0.0",
-      "@rollup/plugin-typescript": "^11.0.0",
-      "@types/chai": "^4.3.1",
-      "@types/mocha": "^7.0.2",
-      "@types/node": "^14.0.0",
-      chai: "^4.3.6",
-      "cross-env": "^7.0.3",
-      dotenv: "^16.0.0",
-      "downlevel-dts": "^0.10.0",
-      eslint: "^8.16.0",
-      esm: "^3.2.25",
-      karma: "^6.4.0",
-      "karma-chrome-launcher": "^3.1.1",
-      "karma-coverage": "^2.2.0",
-      "karma-edge-launcher": "^0.4.2",
-      "karma-env-preprocessor": "^0.1.1",
-      "karma-firefox-launcher": "^2.1.2",
-      "karma-json-preprocessor": "^0.3.3",
-      "karma-json-to-file-reporter": "^1.0.1",
-      "karma-junit-reporter": "^2.0.1",
-      "karma-mocha": "^2.0.1",
-      "karma-mocha-reporter": "^2.2.5",
-      "karma-sourcemap-loader": "^0.4.0",
-      mocha: "^7.1.1",
-      "mocha-junit-reporter": "^2.0.2",
-      nyc: "^15.1.0",
-      prettier: "^2.5.1",
-      puppeteer: "^19.2.2",
-      rimraf: "^3.0.2",
-      rollup: "^2.0.0",
-      "rollup-plugin-shim": "^1.0.0",
-      "rollup-plugin-sourcemaps": "^0.6.3",
-      "ts-node": "^10.8.1",
-      typescript: "~5.0.0",
-      util: "^0.12.4"
-    },
+    autoPublish: false,
     dependencies: {
-      "@azure-rest/core-client": "^1.1.2",
-      "@azure/core-auth": "^1.4.1",
+      "@azure/core-auth": "^1.3.0",
+      "@azure-rest/core-client": "^1.1.4",
       "@azure/core-rest-pipeline": "^1.12.0",
-      "@azure/core-util": "^1.4.0",
-      "@azure/logger": "^1.0.3",
-      tslib: "^2.4.0"
+      "@azure/logger": "^1.0.0",
+      tslib: "^2.2.0",
+      ...(hasPaging && {
+        "@azure/core-paging": "^1.5.0"
+      }),
+      ...(hasLRO && {
+        "@azure/core-lro": "^2.5.4",
+        "@azure/abort-controller": "^1.0.0"
+      }),
+      ...(isModularLibrary && {
+        "@azure/core-util": "^1.4.0"
+      })
+    },
+    devDependencies: {
+      "@microsoft/api-extractor": "^7.31.1",
+      autorest: "latest",
+      "@types/node": "^14.0.0",
+      dotenv: "^16.0.0",
+      eslint: "^8.0.0",
+      mkdirp: "^2.1.2",
+      prettier: "^2.5.1",
+      rimraf: "^3.0.0",
+      "source-map-support": "^0.5.9",
+      typescript: "~5.0.0"
     }
   } as any;
 
+  if (azureOutputDirectory) {
+    packageInfo[
+      "homepage"
+    ] = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}/README.md`;
+  }
+
+  if (azureSdkForJs) {
+    packageInfo["//metadata"] = {
+      constantPaths: []
+    };
+    // TODO: remember to put the userAgent path into metadata
+    // Only generate this from Swagger spec
+    if (sourceFrom === "Swagger") {
+      packageInfo["//metadata"].constantPaths.push({
+        path: "swagger/README.md",
+        prefix: "package-version"
+      });
+    }
+    packageInfo.scripts["build"] =
+      "npm run clean && tsc -p . && dev-tool run bundle && mkdirp ./review && api-extractor run --local";
+    packageInfo.scripts["build:debug"] =
+      "tsc -p . && dev-tool run bundle && api-extractor run --local";
+    packageInfo.scripts["build:browser"] = "tsc -p . && dev-tool run bundle";
+    packageInfo.scripts["build:node"] = "tsc -p . && dev-tool run bundle";
+    packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    packageInfo.devDependencies["@azure/eslint-plugin-azure-sdk"] = "^3.0.0";
+  } else {
+    packageInfo.scripts["build"] =
+      "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api";
+    packageInfo.scripts[
+      "minify"
+    ] = `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
+    packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
+    packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
+    packageInfo.devDependencies["rollup"] = "^2.66.1";
+    packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
+    packageInfo.devDependencies["uglify-js"] = "^3.4.9";
+  }
+
+  if (generateTest) {
+    packageInfo.module = `./dist-esm/src/index.js`;
+    packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
+    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
+    packageInfo.devDependencies["mocha"] = "^7.1.1";
+    packageInfo.devDependencies["@types/mocha"] = "^7.0.2";
+    packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
+    packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["@types/chai"] = "^4.2.8";
+    packageInfo.devDependencies["chai"] = "^4.2.0";
+    packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.devDependencies["karma-chrome-launcher"] = "^3.0.0";
+    packageInfo.devDependencies["karma-coverage"] = "^2.0.0";
+    packageInfo.devDependencies["karma-env-preprocessor"] = "^0.1.1";
+    packageInfo.devDependencies["karma-firefox-launcher"] = "^2.1.2";
+    packageInfo.devDependencies["karma-junit-reporter"] = "^2.0.1";
+    packageInfo.devDependencies["karma-mocha-reporter"] = "^2.2.5";
+    packageInfo.devDependencies["karma-mocha"] = "^2.0.1";
+    packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
+    packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
+    packageInfo.devDependencies["karma"] = "^6.2.0";
+    packageInfo.devDependencies["nyc"] = "^15.0.0";
+    packageInfo.devDependencies["source-map-support"] = "^0.5.9";
+    packageInfo.devDependencies["ts-node"] = "^10.0.0";
+    packageInfo.scripts["test"] =
+      "npm run clean && npm run build:test && npm run unit-test";
+    packageInfo.scripts["test:node"] =
+      "npm run clean && npm run build:test && npm run unit-test:node";
+    packageInfo.scripts["test:browser"] =
+      "npm run clean && npm run build:test && npm run unit-test:browser";
+    packageInfo.scripts["build:browser"] =
+      "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1";
+    packageInfo.scripts["build:node"] =
+      "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1";
+    packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
+    packageInfo.scripts["unit-test"] =
+      "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts["unit-test:node"] =
+      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+    packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
+    packageInfo.scripts["integration-test:browser"] =
+      "karma start --single-run";
+    packageInfo.scripts["integration-test:node"] =
+      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+    packageInfo.scripts["integration-test"] =
+      "npm run integration-test:node && npm run integration-test:browser";
+    if (azureSdkForJs) {
+      packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
+      packageInfo.scripts["integration-test:browser"] =
+        "dev-tool run test:browser";
+      packageInfo.scripts["unit-test:browser"] = "dev-tool run test:browser";
+      packageInfo.scripts["unit-test:node"] =
+        "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'";
+      packageInfo.scripts["integration-test:node"] =
+        "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
+    }
+
+    packageInfo["browser"] = {
+      "./dist-esm/test/public/utils/env.js":
+        "./dist-esm/test/public/utils/env.browser.js"
+    };
+  }
+
+  if (generateSample) {
+    packageInfo["//sampleConfiguration"] = {
+      productName:
+        codeModel.options.serviceInfo?.title ?? codeModel.clients[0]?.name,
+      productSlugs: ["azure"],
+      disableDocsMs: true,
+      apiRefLink: `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+    };
+    if (azureSdkForJs) {
+      packageInfo.scripts["execute:samples"] =
+        "dev-tool samples run samples-dev";
+    }
+  }
+
   if (codeModel.clients.length > 1) {
-    delete content.exports["./api"];
-    delete content.exports["./models"];
+    delete packageInfo.exports["./api"];
+    delete packageInfo.exports["./models"];
     for (const client of codeModel.clients) {
       const subfolder = normalizeName(
         client.name.replace("Client", ""),
         NameType.File
       );
-      content.exports[`./${subfolder}`] = {
+      packageInfo.exports[`./${subfolder}`] = {
         types: `./types/src/${subfolder}/index.d.ts`,
         import: `./dist-esm/src/${subfolder}/index.js`
       };
-      content.exports[`./${subfolder}/api`] = {
+      packageInfo.exports[`./${subfolder}/api`] = {
         types: `./types/src/${subfolder}/api/index.d.ts`,
         import: `./dist-esm/src/${subfolder}/api/index.js`
       };
-      content.exports[`./${subfolder}/models`] = {
+      packageInfo.exports[`./${subfolder}/models`] = {
         types: `./types/src/${subfolder}/models/index.d.ts`,
         import: `./dist-esm/src/${subfolder}/models/index.js`
       };
     }
   }
 
-  packageJson.addStatements(JSON.stringify(content));
+  packageJson.addStatements(JSON.stringify(packageInfo));
 
   return packageJson;
 }
 
+const modularTsConfigInSDKRepo: Record<string, any> = {
+  extends: "../../../tsconfig.package",
+  compilerOptions: {
+    outDir: "./dist-esm",
+    declarationDir: "./types",
+    module: "NodeNext",
+    moduleResolution: "NodeNext",
+    lib: ["esnext", "dom"],
+    rootDir: "."
+  },
+  "ts-node": { esm: true },
+  include: ["src/**/*.ts"]
+};
+
+const modularTsConfigNotInSDKRepo: Record<string, any> = {
+  compilerOptions: {
+    target: "ES2017",
+    module: "NodeNext",
+    lib: ["esnext", "dom"],
+    declaration: true,
+    declarationMap: true,
+    inlineSources: true,
+    sourceMap: true,
+    importHelpers: true,
+    strict: true,
+    alwaysStrict: true,
+    noUnusedLocals: true,
+    noUnusedParameters: true,
+    noImplicitReturns: true,
+    noFallthroughCasesInSwitch: true,
+    forceConsistentCasingInFileNames: true,
+    moduleResolution: "NodeNext",
+    allowSyntheticDefaultImports: true,
+    esModuleInterop: true,
+    outDir: "./dist-esm",
+    declarationDir: "./types",
+    rootDir: "."
+  },
+  "ts-node": { esm: true },
+  include: ["./src/**/*.ts"]
+};
+
 export function emitTsConfig(
   project: Project,
   srcPath: string,
-  codeModel: ModularCodeModel
+  codeModel: ModularCodeModel,
+  hasSamplesGenerated = false
 ) {
-  const tsConfig = project.createSourceFile(
-    `${srcPath}/package-files/tsconfig.json`,
+  const tsConfigFile = project.createSourceFile(
+    `${srcPath}/tsconfig.json`,
     "",
     {
       overwrite: true
     }
   );
-  const content = {
-    extends: "../../../tsconfig.package",
-    compilerOptions: {
-      outDir: "./dist-esm",
-      declarationDir: "./types",
-      paths: {
-        [`${
-          codeModel.options?.packageDetails?.name ?? "@msinternal/unamedpackage"
-        }`]: ["./src/index.js"]
-      },
-      module: "NodeNext",
-      moduleResolution: "NodeNext",
-      rootDir: "."
-    },
-    "ts-node": {
-      esm: true
-    },
-    include: ["src/**/*.ts", "test/**/*.ts", "samples-dev/**/*.ts"]
-  };
-  tsConfig.addStatements(JSON.stringify(content));
 
-  return tsConfig;
+  const { packageDetails, azureSdkForJs } = codeModel.options || {};
+  let { generateTest, generateSample } = codeModel.options || {};
+  // Take the undefined as true by default
+  generateTest = generateTest === true || generateTest === undefined;
+  generateSample =
+    (generateSample === true || generateSample === undefined) &&
+    hasSamplesGenerated;
+  const clientPackageName = packageDetails?.name ?? "@msinternal/unamedpackage";
+  const tsConfig = (
+    azureSdkForJs ? modularTsConfigInSDKRepo : modularTsConfigNotInSDKRepo
+  ) as any;
+
+  if (generateTest) {
+    tsConfig.include.push("./test/**/*.ts");
+  }
+  if (generateSample) {
+    tsConfig.include.push("samples-dev/**/*.ts");
+    tsConfig.compilerOptions["paths"] = {};
+    tsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
+  }
+
+  tsConfigFile.addStatements(JSON.stringify(tsConfig));
+
+  return tsConfigFile;
+}
+
+function appendPathWhenFormat(
+  generateTest?: boolean,
+  generateSample?: boolean
+) {
+  let path = "";
+  if (generateTest) {
+    path = path + ` "test/**/*.ts"`;
+  }
+  if (generateSample) {
+    path = path + ` "samples-dev/**/*.ts"`;
+  }
+  return path;
+}
+
+function appednPathWhenLint(generateTest?: boolean) {
+  return generateTest ? "test" : "";
 }

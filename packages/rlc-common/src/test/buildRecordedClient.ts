@@ -4,10 +4,6 @@ import { RLCModel } from "../interfaces.js";
 import { recordedClientContent } from "./template.js";
 
 export function buildRecordedClientFile(model: RLCModel) {
-  const generateTest = Boolean(model.options?.generateTest);
-  if (!generateTest) {
-    return;
-  }
   const recordedClientFileContents = hbs.compile(recordedClientContent, {
     noEscape: true
   });

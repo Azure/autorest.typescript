@@ -4,9 +4,9 @@ import { importCredential } from "./helpers/credentialHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, Parameter } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { importModels } from "./buildOperations.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 /**
  * This function creates the file containing the modular client context
@@ -21,7 +21,7 @@ export function buildClientContext(
   const { description, parameters } = client;
   const name = getClientName(client);
   const clientContextFile = project.createSourceFile(
-    `${srcPath}/src/${
+    `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }/api/${name}Context.ts`
   );

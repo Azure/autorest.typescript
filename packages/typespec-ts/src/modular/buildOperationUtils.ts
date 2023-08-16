@@ -11,10 +11,10 @@ import { Project } from "ts-morph";
 export function buildOperationUtils(
   model: ModularCodeModel,
   project: Project,
-  srcPath: string = "src"
+  modularSourcesDir: string
 ) {
   const apiUtilsFile = project.createSourceFile(
-    `${srcPath}/src/utils/deserializeUtil.ts`
+    `${modularSourcesDir}/utils/deserializeUtil.ts`
   );
   const importSet = new Map<string, Set<string>>();
   const specialUnions = model.types.filter(

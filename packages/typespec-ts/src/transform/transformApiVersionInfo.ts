@@ -1,6 +1,5 @@
 import {
   SdkClient,
-  SdkContext,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup
@@ -19,6 +18,7 @@ import {
   getSchemaForType,
   trimUsage
 } from "../utils/modelUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformApiVersionInfo(
   client: SdkClient,

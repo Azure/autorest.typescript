@@ -6,6 +6,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
+  ModularCodeModel,
   Operation,
   Parameter,
   Property,
@@ -661,9 +662,6 @@ export function getResponseMapping(
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
-    if (property.type.type === "combined") {
-      propertyFullName;
-    }
     if (property.type.type === "model") {
       let definition;
       if (property.type.isCoreErrorType) {
@@ -699,7 +697,7 @@ export function getResponseMapping(
           property.type,
           restValue,
           importSet,
-          property.optional === undefined ? false : !property.optional
+          property.optional !== undefined ? !property.optional : false
         )}`
       );
     }
@@ -815,4 +813,25 @@ function serializeRequestValue(
 
 function needsDeserialize(type?: Type) {
   return type?.type === "datetime" || type?.type === "model";
+}
+
+export function hasLROOperation(codeModel: ModularCodeModel) {
+  return (codeModel.clients ?? []).some((c) =>
+    (c.operationGroups ?? []).some((og) =>
+      (og.operations ?? []).some(
+        (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
+      )
+    )
+  );
+}
+
+export function hasPagingOperation(codeModel: ModularCodeModel) {
+  return (codeModel.clients ?? []).some((c) =>
+    (c.operationGroups ?? []).some((og) =>
+      (og.operations ?? []).some(
+        (op) =>
+          op.discriminator === "paging" || op.discriminator === "lropaging"
+      )
+    )
+  );
 }

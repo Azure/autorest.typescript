@@ -6,9 +6,41 @@
   "description": "Client Structure MultiClient Test Service",
   "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
-  "module": "./dist-esm/index.js",
+  "module": "./dist-esm/src/index.js",
   "types": "./types/client-structure-multiclient.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/src/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist-esm/src/index.js"
+    },
+    "./a": {
+      "types": "./types/src/a/index.d.ts",
+      "import": "./dist-esm/src/a/index.js"
+    },
+    "./a/api": {
+      "types": "./types/src/a/api/index.d.ts",
+      "import": "./dist-esm/src/a/api/index.js"
+    },
+    "./a/models": {
+      "types": "./types/src/a/models/index.d.ts",
+      "import": "./dist-esm/src/a/models/index.js"
+    },
+    "./b": {
+      "types": "./types/src/b/index.d.ts",
+      "import": "./dist-esm/src/b/index.js"
+    },
+    "./b/api": {
+      "types": "./types/src/b/api/index.d.ts",
+      "import": "./dist-esm/src/b/api/index.js"
+    },
+    "./b/models": {
+      "types": "./types/src/b/models/index.d.ts",
+      "import": "./dist-esm/src/b/models/index.js"
+    }
+  },
   "repository": "github:Azure/azure-sdk-for-js",
   "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
   "files": [
@@ -76,6 +108,5 @@
     "rollup": "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9"
-  },
-  "type": "module"
+  }
 }

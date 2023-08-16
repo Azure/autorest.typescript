@@ -63,10 +63,10 @@ import {
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
-  SdkContext,
   getDefaultApiVersion,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "./interfaces.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
