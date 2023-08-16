@@ -7,7 +7,7 @@ import {
   EmbeddingsOutput,
   CompletionsOutput,
   ChatCompletionsOutput,
-  ImageOperationResponseOutput,
+  BatchImageGenerationOperationResponseOutput,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -62,53 +62,60 @@ export interface GetChatCompletionsDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetImageOperationStatus200Response extends HttpResponse {
+export interface GetAzureBatchImageGenerationOperationStatus200Response
+  extends HttpResponse {
   status: "200";
-  body: ImageOperationResponseOutput;
+  body: BatchImageGenerationOperationResponseOutput;
 }
 
-export interface GetImageOperationStatusDefaultHeaders {
+export interface GetAzureBatchImageGenerationOperationStatusDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface GetImageOperationStatusDefaultResponse extends HttpResponse {
+export interface GetAzureBatchImageGenerationOperationStatusDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & GetImageOperationStatusDefaultHeaders;
+  headers: RawHttpHeaders &
+    GetAzureBatchImageGenerationOperationStatusDefaultHeaders;
 }
 
-/** The final response for long-running getImageOperationStatus operation */
-export interface GetImageOperationStatusLogicalResponse extends HttpResponse {
+/** The final response for long-running getAzureBatchImageGenerationOperationStatus operation */
+export interface GetAzureBatchImageGenerationOperationStatusLogicalResponse
+  extends HttpResponse {
   status: "200";
-  body: ImageOperationResponseOutput;
+  body: BatchImageGenerationOperationResponseOutput;
 }
 
-export interface StartGenerateImage202Headers {
+export interface BeginAzureBatchImageGeneration202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface StartGenerateImage202Response extends HttpResponse {
+export interface BeginAzureBatchImageGeneration202Response
+  extends HttpResponse {
   status: "202";
-  body: ImageOperationResponseOutput;
-  headers: RawHttpHeaders & StartGenerateImage202Headers;
+  body: BatchImageGenerationOperationResponseOutput;
+  headers: RawHttpHeaders & BeginAzureBatchImageGeneration202Headers;
 }
 
-export interface StartGenerateImageDefaultHeaders {
+export interface BeginAzureBatchImageGenerationDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface StartGenerateImageDefaultResponse extends HttpResponse {
+export interface BeginAzureBatchImageGenerationDefaultResponse
+  extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & StartGenerateImageDefaultHeaders;
+  headers: RawHttpHeaders & BeginAzureBatchImageGenerationDefaultHeaders;
 }
 
-/** The final response for long-running startGenerateImage operation */
-export interface StartGenerateImageLogicalResponse extends HttpResponse {
+/** The final response for long-running beginAzureBatchImageGeneration operation */
+export interface BeginAzureBatchImageGenerationLogicalResponse
+  extends HttpResponse {
   status: "200";
-  body: ImageOperationResponseOutput;
+  body: BatchImageGenerationOperationResponseOutput;
 }

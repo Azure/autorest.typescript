@@ -267,8 +267,9 @@ async function getPackageDetails(
   const name = normalizeName(model.language.default.name, NameType.File);
   // TODO: Look for an existing package.json and
   const packageName: string = (await host.getValue("package-name")) || name;
-  const packageNameParts: RegExpMatchArray | null =
-    packageName.match(/(^@(.*)\/)?(.*)/);
+  const packageNameParts: RegExpMatchArray | null = packageName.match(
+    /(^@(.*)\/)?(.*)/
+  );
   if (!packageNameParts) {
     throw new Error("Expecting valid package name");
   }

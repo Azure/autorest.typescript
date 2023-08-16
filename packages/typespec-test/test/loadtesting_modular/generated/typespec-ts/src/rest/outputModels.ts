@@ -566,4 +566,4 @@ export type PagedTestRunOutput = Paged<TestRunOutput>;
 /** The response to a metrics query. */
 export type PagedTimeSeriesElementOutput = Paged<TimeSeriesElementOutput>;
 /** Paged collection of DimensionValueList items */
-export type DimensionValueListListOutput = Paged<DimensionValueListOutput>;
+export type PagedDimensionValueListOutput = Paged<DimensionValueListOutput>;

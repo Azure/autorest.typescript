@@ -36,8 +36,9 @@ function extractRLCOptions(
   const packageDetails = getPackageDetails(program, emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
-  const generateMetadata = getGenerateMetadata(emitterOptions);
-  const generateTest = getGenerateTest(emitterOptions);
+  const generateMetadata: undefined | boolean =
+    getGenerateMetadata(emitterOptions);
+  const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
   const enableOperationGroup = getEnableOperationGroup(emitterOptions);
@@ -162,17 +163,23 @@ function getAzureSdkForJs(emitterOptions: RLCOptions) {
 }
 
 function getGenerateMetadata(emitterOptions: RLCOptions) {
-  return emitterOptions.generateMetadata === undefined ||
+  if (
+    emitterOptions.generateMetadata === undefined ||
     emitterOptions.generateMetadata === null
-    ? true
-    : Boolean(emitterOptions.generateMetadata);
+  ) {
+    return undefined;
+  }
+  return Boolean(emitterOptions.generateMetadata);
 }
 
 function getGenerateTest(emitterOptions: RLCOptions) {
-  return emitterOptions.generateTest === undefined ||
+  if (
+    emitterOptions.generateTest === undefined ||
     emitterOptions.generateTest === null
-    ? true
-    : Boolean(emitterOptions.generateTest);
+  ) {
+    return undefined;
+  }
+  return Boolean(emitterOptions.generateTest);
 }
 
 export function getCredentialInfo(

@@ -8,12 +8,12 @@ import {
   GetCompletionsDefaultResponse,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
-  GetImageOperationStatus200Response,
-  GetImageOperationStatusLogicalResponse,
-  GetImageOperationStatusDefaultResponse,
-  StartGenerateImage202Response,
-  StartGenerateImageLogicalResponse,
-  StartGenerateImageDefaultResponse,
+  GetAzureBatchImageGenerationOperationStatus200Response,
+  GetAzureBatchImageGenerationOperationStatusLogicalResponse,
+  GetAzureBatchImageGenerationOperationStatusDefaultResponse,
+  BeginAzureBatchImageGeneration202Response,
+  BeginAzureBatchImageGenerationLogicalResponse,
+  BeginAzureBatchImageGenerationDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -36,16 +36,16 @@ export function isUnexpected(
 ): response is GetChatCompletionsDefaultResponse;
 export function isUnexpected(
   response:
-    | GetImageOperationStatus200Response
-    | GetImageOperationStatusLogicalResponse
-    | GetImageOperationStatusDefaultResponse
-): response is GetImageOperationStatusDefaultResponse;
+    | GetAzureBatchImageGenerationOperationStatus200Response
+    | GetAzureBatchImageGenerationOperationStatusLogicalResponse
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse
+): response is GetAzureBatchImageGenerationOperationStatusDefaultResponse;
 export function isUnexpected(
   response:
-    | StartGenerateImage202Response
-    | StartGenerateImageLogicalResponse
-    | StartGenerateImageDefaultResponse
-): response is StartGenerateImageDefaultResponse;
+    | BeginAzureBatchImageGeneration202Response
+    | BeginAzureBatchImageGenerationLogicalResponse
+    | BeginAzureBatchImageGenerationDefaultResponse
+): response is BeginAzureBatchImageGenerationDefaultResponse;
 export function isUnexpected(
   response:
     | GetEmbeddings200Response
@@ -54,18 +54,18 @@ export function isUnexpected(
     | GetCompletionsDefaultResponse
     | GetChatCompletions200Response
     | GetChatCompletionsDefaultResponse
-    | GetImageOperationStatus200Response
-    | GetImageOperationStatusLogicalResponse
-    | GetImageOperationStatusDefaultResponse
-    | StartGenerateImage202Response
-    | StartGenerateImageLogicalResponse
-    | StartGenerateImageDefaultResponse
+    | GetAzureBatchImageGenerationOperationStatus200Response
+    | GetAzureBatchImageGenerationOperationStatusLogicalResponse
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse
+    | BeginAzureBatchImageGeneration202Response
+    | BeginAzureBatchImageGenerationLogicalResponse
+    | BeginAzureBatchImageGenerationDefaultResponse
 ): response is
   | GetEmbeddingsDefaultResponse
   | GetCompletionsDefaultResponse
   | GetChatCompletionsDefaultResponse
-  | GetImageOperationStatusDefaultResponse
-  | StartGenerateImageDefaultResponse {
+  | GetAzureBatchImageGenerationOperationStatusDefaultResponse
+  | BeginAzureBatchImageGenerationDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
