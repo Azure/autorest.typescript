@@ -710,7 +710,7 @@ function getTrack2DefaultContent(
         });
         this.pipeline.addPolicy(
           coreRestPipeline.bearerTokenAuthenticationPolicy({
-            credential: credentials,
+            credential: options.credential,
             scopes: optionsWithDefaults.credentialScopes??\`$\{optionsWithDefaults.endpoint}/.default\`,
             challengeCallbacks: {
               authorizeRequestOnChallenge:
