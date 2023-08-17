@@ -393,6 +393,9 @@ function getParameterMap(
   param: Parameter | Property,
   importSet: Map<string, Set<string>>
 ): string {
+  if (param.restApiName === "outputType") {
+    param;
+  }
   if (isConstant(param)) {
     return getConstantValue(param);
   }
@@ -526,7 +529,10 @@ function getOptionalWithDefault(
 }
 
 function getQuotedValue(param: OptionalWithDefaultType) {
-  if (param.type.type === "string") {
+  if (
+    param.type.type === "string" ||
+    (param.type.type === "enum" && param.type.valueType?.type === "string")
+  ) {
     return `"${param.clientDefaultValue}"`;
   } else {
     return param.clientDefaultValue;

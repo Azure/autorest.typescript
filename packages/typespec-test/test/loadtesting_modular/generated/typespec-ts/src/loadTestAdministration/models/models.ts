@@ -272,7 +272,7 @@ export interface ResourceMetric {
 }
 
 /** Collection of files. */
-export interface FileInfoList {
+export interface PagedFileInfo {
   /** The FileInfo items on this page */
   value: FileInfo[];
   /** The link to the next page of items */
@@ -280,7 +280,7 @@ export interface FileInfoList {
 }
 
 /** Collection of tests */
-export interface TestsList {
+export interface PagedTest {
   /** The Test items on this page */
   value: Test[];
   /** The link to the next page of items */

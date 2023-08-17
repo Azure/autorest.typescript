@@ -420,9 +420,7 @@ function getSchemaForModel(
 ) {
   const program = dpgContext.program;
   const overridedModelName =
-    getProjectedName(program, model, "javascript") ??
-    getProjectedName(program, model, "client") ??
-    getFriendlyName(program, model);
+    getProjectedName(program, model, "json") ?? getFriendlyName(program, model);
   let name = model.name;
   if (
     !overridedModelName &&

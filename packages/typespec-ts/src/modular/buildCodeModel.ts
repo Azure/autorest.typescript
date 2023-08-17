@@ -845,6 +845,10 @@ function emitProperty(
     clientDefaultValue = property.default.value;
   }
 
+  if (propertyDefaultKind === "EnumMember") {
+    clientDefaultValue = property.default.value ?? property.default.name;
+  }
+
   // const [clientName, jsonName] = getPropertyNames(context, property);
   const clientName = property.name;
   const jsonName =

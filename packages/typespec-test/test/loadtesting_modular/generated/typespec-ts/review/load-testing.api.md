@@ -123,12 +123,6 @@ export interface FileInfo {
 }
 
 // @public
-export interface FileInfoList {
-    nextLink?: string;
-    value: FileInfo[];
-}
-
-// @public
 export type FileStatus = string;
 
 // @public
@@ -223,8 +217,8 @@ export class LoadTestAdministrationClient {
     getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
     getTest(testId: string, options?: GetTestOptions): Promise<Test>;
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptions): Promise<FileInfo>;
-    listTestFiles(testId: string, options?: ListTestFilesOptions): Promise<FileInfoList>;
-    listTests(options?: ListTestsOptions): Promise<TestsList>;
+    listTestFiles(testId: string, options?: ListTestFilesOptions): Promise<PagedFileInfo>;
+    listTests(options?: ListTestsOptions): Promise<PagedTest>;
     uploadTestFile(body: Uint8Array, testId: string, fileName: string, options?: UploadTestFileOptions): Promise<FileInfo>;
 }
 
@@ -254,14 +248,14 @@ export class LoadTestRunClient {
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptions): Promise<LoadTestRunClientFileInfo>;
     // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
     listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptions): Promise<MetricDefinitionCollection>;
-    // Warning: (ae-forgotten-export) The symbol "CustomPage" needs to be exported by the entry point index.d.ts
-    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): Promise<CustomPage>;
+    // Warning: (ae-forgotten-export) The symbol "PagedDimensionValueList" needs to be exported by the entry point index.d.ts
+    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): Promise<PagedDimensionValueList>;
     // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<MetricNamespaceCollection>;
-    // Warning: (ae-forgotten-export) The symbol "Metrics" needs to be exported by the entry point index.d.ts
-    listMetrics(testRunId: string, options?: ListMetricsOptions): Promise<Metrics>;
-    // Warning: (ae-forgotten-export) The symbol "TestRunsList" needs to be exported by the entry point index.d.ts
-    listTestRuns(options?: ListTestRunsOptions): Promise<TestRunsList>;
+    // Warning: (ae-forgotten-export) The symbol "PagedTimeSeriesElement" needs to be exported by the entry point index.d.ts
+    listMetrics(testRunId: string, options?: ListMetricsOptions): Promise<PagedTimeSeriesElement>;
+    // Warning: (ae-forgotten-export) The symbol "PagedTestRun" needs to be exported by the entry point index.d.ts
+    listTestRuns(options?: ListTestRunsOptions): Promise<PagedTestRun>;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
     testRun(testRunId: string, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
 }
@@ -630,6 +624,18 @@ export interface OptionalLoadTestConfig {
 }
 
 // @public
+export interface PagedFileInfo {
+    nextLink?: string;
+    value: FileInfo[];
+}
+
+// @public
+export interface PagedTest {
+    nextLink?: string;
+    value: Test[];
+}
+
+// @public
 export interface PassFailCriteria {
     passFailMetrics?: Record<string, PassFailMetric>;
 }
@@ -834,12 +840,6 @@ export interface TestServerMetricConfig {
     readonly lastModifiedDateTime?: any;
     metrics?: Record<string, ResourceMetric>;
     readonly testId?: string;
-}
-
-// @public
-export interface TestsList {
-    nextLink?: string;
-    value: Test[];
 }
 
 // @public

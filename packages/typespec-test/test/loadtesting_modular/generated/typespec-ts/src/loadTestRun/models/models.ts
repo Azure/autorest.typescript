@@ -481,7 +481,7 @@ export interface DimensionFilter {
 }
 
 /** The response to a metrics query. */
-export interface Metrics {
+export interface PagedTimeSeriesElement {
   /** The TimeSeriesElement items on this page */
   value: TimeSeriesElement[];
   /** The link to the next page of items */
@@ -513,7 +513,7 @@ export interface DimensionValue {
 }
 
 /** Collection of test runs */
-export interface TestRunsList {
+export interface PagedTestRun {
   /** The TestRun items on this page */
   value: TestRun[];
   /** The link to the next page of items */
@@ -524,7 +524,7 @@ export interface TestRunsList {
 export type Interval = string;
 
 /** Paged collection of DimensionValueList items */
-export interface CustomPage {
+export interface PagedDimensionValueList {
   /** The DimensionValueList items on this page */
   value: DimensionValueList[];
   /** The link to the next page of items */
