@@ -393,9 +393,6 @@ function getParameterMap(
   param: Parameter | Property,
   importSet: Map<string, Set<string>>
 ): string {
-  if (param.restApiName === "outputType") {
-    param;
-  }
   if (isConstant(param)) {
     return getConstantValue(param);
   }
