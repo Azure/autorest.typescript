@@ -69,7 +69,7 @@ export function _analyzeTextSend(
         categories: options?.categories,
         blocklistNames: options?.blocklistNames,
         breakByBlocklists: options?.breakByBlocklists,
-        outputType: options.outputType ?? "FourLevels",
+        outputType: options?.outputType,
       },
     });
 }
@@ -124,7 +124,7 @@ export function _analyzeImageSend(
           blobUrl: image["blobUrl"],
         },
         categories: options?.categories,
-        outputType: options.outputType ?? "FourLevels",
+        outputType: options?.outputType,
       },
     });
 }

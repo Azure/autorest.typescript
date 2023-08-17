@@ -397,12 +397,8 @@ function getParameterMap(
     return getConstantValue(param);
   }
 
-  if (isOptionalWithouDefault(param)) {
-    return getOptionalWithoutDefault(param, importSet);
-  }
-
-  if (isOptionalWithDefault(param)) {
-    return getOptionalWithDefault(param, importSet);
+  if (isOptional(param)) {
+    return getOptional(param, importSet);
   }
 
   if (isRequired(param)) {
@@ -478,16 +474,16 @@ function isConstant(param: Parameter | Property): param is ConstantType {
   );
 }
 
-type OptionalWithoutDefaultType = (Parameter | Property) & {
-  type: { optional: true; clientDefaultValue: never };
+type OptionalType = (Parameter | Property) & {
+  type: { optional: true };
 };
-function isOptionalWithouDefault(
+function isOptional(
   param: Parameter | Property
-): param is OptionalWithoutDefaultType {
-  return Boolean(param.optional && !param.clientDefaultValue);
+): param is OptionalType {
+  return Boolean(param.optional);
 }
-function getOptionalWithoutDefault(
-  param: OptionalWithoutDefaultType,
+function getOptional(
+  param: OptionalType,
   importSet: Map<string, Set<string>>
 ) {
   if (param.type.type === "model") {
@@ -498,42 +494,6 @@ function getOptionalWithoutDefault(
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": options?.${param.clientName}`;
-}
-
-type OptionalWithDefaultType = (Parameter | Property) & {
-  type: { optional: true; clientDefaultValue: string };
-};
-function isOptionalWithDefault(
-  param: Parameter | Property
-): param is OptionalWithDefaultType {
-  return Boolean(param.clientDefaultValue);
-}
-
-function getOptionalWithDefault(
-  param: OptionalWithDefaultType,
-  importSet: Map<string, Set<string>>
-) {
-  if (param.type.type === "model") {
-    return `"${param.restApiName}": {${getRequestModelMapping(
-      param.type,
-      "options?." + param.clientName,
-      importSet
-    ).join(", ")}} ?? ${getQuotedValue(param)}`;
-  }
-  return `"${param.restApiName}": options.${
-    param.clientName
-  } ?? ${getQuotedValue(param)}`;
-}
-
-function getQuotedValue(param: OptionalWithDefaultType) {
-  if (
-    param.type.type === "string" ||
-    (param.type.type === "enum" && param.type.valueType?.type === "string")
-  ) {
-    return `"${param.clientDefaultValue}"`;
-  } else {
-    return param.clientDefaultValue;
-  }
 }
 
 /**
