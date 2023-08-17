@@ -10,18 +10,18 @@ import {
   TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
-  TextBlockItemListResult,
-  TextBlocklistResult
+  PagedTextBlocklist,
+  PagedTextBlockItem,
 } from "./models/models.js";
 import {
-  AnalyzeTextOptions as AnalyzeTextOptionsOptions,
-  AnalyzeImageOptions as AnalyzeImageOptionsOptions,
+  AnalyzeTextOptionsOptions,
+  AnalyzeImageOptionsOptions,
   GetTextBlocklistOptions,
   CreateOrUpdateTextBlocklistOptions,
   DeleteTextBlocklistOptions,
   ListTextBlocklistsOptions,
-  AddOrUpdateBlockItemsOptions as AddOrUpdateBlockItemsOptionsOptions,
-  RemoveBlockItemsOptions as RemoveBlockItemsOptionsOptions,
+  AddOrUpdateBlockItemsOptionsOptions,
+  RemoveBlockItemsOptionsOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./models/options.js";
@@ -98,7 +98,7 @@ export class ContentSafetyClient {
   /** Get all text blocklists details. */
   listTextBlocklists(
     options: ListTextBlocklistsOptions = { requestOptions: {} }
-  ): Promise<TextBlocklistResult> {
+  ): Promise<PagedTextBlocklist> {
     return listTextBlocklists(this._client, options);
   }
 
@@ -143,7 +143,7 @@ export class ContentSafetyClient {
   listTextBlocklistItems(
     blocklistName: string,
     options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-  ): Promise<TextBlockItemListResult> {
+  ): Promise<PagedTextBlockItem> {
     return listTextBlocklistItems(this._client, blocklistName, options);
   }
 }

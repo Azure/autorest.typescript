@@ -9,14 +9,8 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
-// @public
-export interface AddOrUpdateBlockItemsOptions {
-    blockItems: TextBlockItemInfo[];
-}
-
 // @public (undocumented)
-export interface AddOrUpdateBlockItemsOptions {
-    blockItems: TextBlockItemInfo[];
+export interface AddOrUpdateBlockItemsOptionsOptions extends OperationOptions {
 }
 
 // @public
@@ -24,10 +18,9 @@ export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
 }
 
-// @public
-export interface AnalyzeImageOptions {
+// @public (undocumented)
+export interface AnalyzeImageOptionsOptions extends OperationOptions {
     categories?: ImageCategory[];
-    image: ImageData_2;
     outputType?: AnalyzeImageOutputType;
 }
 
@@ -39,13 +32,12 @@ export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
 }
 
-// @public
-export interface AnalyzeTextOptions {
+// @public (undocumented)
+export interface AnalyzeTextOptionsOptions extends OperationOptions {
     blocklistNames?: string[];
     breakByBlocklists?: boolean;
     categories?: TextCategory[];
     outputType?: AnalyzeTextOutputType;
-    text: string;
 }
 
 // @public
@@ -60,20 +52,16 @@ export interface AnalyzeTextResult {
 // @public (undocumented)
 export class ContentSafetyClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "AddOrUpdateBlockItemsOptions_2" needs to be exported by the entry point index.d.ts
-    addOrUpdateBlockItems(blockItems: TextBlockItemInfo[], blocklistName: string, options?: AddOrUpdateBlockItemsOptions_2): Promise<AddOrUpdateBlockItemsResult>;
-    // Warning: (ae-forgotten-export) The symbol "AnalyzeImageOptions_2" needs to be exported by the entry point index.d.ts
-    analyzeImage(image: ImageData_2, options?: AnalyzeImageOptions_2): Promise<AnalyzeImageResult>;
-    // Warning: (ae-forgotten-export) The symbol "AnalyzeTextOptions_2" needs to be exported by the entry point index.d.ts
-    analyzeText(text: string, options?: AnalyzeTextOptions_2): Promise<AnalyzeTextResult>;
+    addOrUpdateBlockItems(blockItems: TextBlockItemInfo[], blocklistName: string, options?: AddOrUpdateBlockItemsOptionsOptions): Promise<AddOrUpdateBlockItemsResult>;
+    analyzeImage(image: ImageData_2, options?: AnalyzeImageOptionsOptions): Promise<AnalyzeImageResult>;
+    analyzeText(text: string, options?: AnalyzeTextOptionsOptions): Promise<AnalyzeTextResult>;
     createOrUpdateTextBlocklist(blocklistName: string, options?: CreateOrUpdateTextBlocklistOptions): Promise<TextBlocklist>;
     deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptions): Promise<void>;
     getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
     getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
-    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): Promise<TextBlockItemListResult>;
-    listTextBlocklists(options?: ListTextBlocklistsOptions): Promise<TextBlocklistResult>;
-    // Warning: (ae-forgotten-export) The symbol "RemoveBlockItemsOptions_2" needs to be exported by the entry point index.d.ts
-    removeBlockItems(blockItemIds: string[], blocklistName: string, options?: RemoveBlockItemsOptions_2): Promise<void>;
+    listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): Promise<PagedTextBlockItem>;
+    listTextBlocklists(options?: ListTextBlocklistsOptions): Promise<PagedTextBlocklist>;
+    removeBlockItems(blockItemIds: string[], blocklistName: string, options?: RemoveBlockItemsOptionsOptions): Promise<void>;
 }
 
 // @public (undocumented)
@@ -126,13 +114,19 @@ export interface ListTextBlocklistsOptions extends OperationOptions {
 }
 
 // @public
-export interface RemoveBlockItemsOptions {
-    blockItemIds: string[];
+export interface PagedTextBlockItem {
+    nextLink?: string;
+    value: TextBlockItem[];
+}
+
+// @public
+export interface PagedTextBlocklist {
+    nextLink?: string;
+    value: TextBlocklist[];
 }
 
 // @public (undocumented)
-export interface RemoveBlockItemsOptions {
-    blockItemIds: string[];
+export interface RemoveBlockItemsOptionsOptions extends OperationOptions {
 }
 
 // @public
@@ -155,12 +149,6 @@ export interface TextBlockItemInfo {
 }
 
 // @public
-export interface TextBlockItemListResult {
-    nextLink?: string;
-    value: TextBlockItem[];
-}
-
-// @public
 export interface TextBlocklist {
     readonly blocklistName: string;
     description?: string;
@@ -171,12 +159,6 @@ export interface TextBlocklistMatchResult {
     blockItemId: string;
     blockItemText: string;
     blocklistName: string;
-}
-
-// @public
-export interface TextBlocklistResult {
-    nextLink?: string;
-    value: TextBlocklist[];
 }
 
 // @public

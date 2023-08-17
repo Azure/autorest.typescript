@@ -9,7 +9,7 @@ import {
   AnalyzeImageOutputType,
 } from "./models.js";
 
-export interface AnalyzeTextOptions extends OperationOptions {
+export interface AnalyzeTextOptionsOptions extends OperationOptions {
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
   categories?: TextCategory[];
   /** The names of blocklists. */
@@ -20,7 +20,7 @@ export interface AnalyzeTextOptions extends OperationOptions {
   outputType?: AnalyzeTextOutputType;
 }
 
-export interface AnalyzeImageOptions extends OperationOptions {
+export interface AnalyzeImageOptionsOptions extends OperationOptions {
   /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
   categories?: ImageCategory[];
   /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
@@ -40,9 +40,9 @@ export interface DeleteTextBlocklistOptions extends OperationOptions {}
 
 export interface ListTextBlocklistsOptions extends OperationOptions {}
 
-export interface AddOrUpdateBlockItemsOptions extends OperationOptions {}
+export interface AddOrUpdateBlockItemsOptionsOptions extends OperationOptions {}
 
-export interface RemoveBlockItemsOptions extends OperationOptions {}
+export interface RemoveBlockItemsOptionsOptions extends OperationOptions {}
 
 export interface GetTextBlocklistItemOptions extends OperationOptions {}
 

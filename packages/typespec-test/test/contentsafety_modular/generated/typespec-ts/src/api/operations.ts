@@ -9,8 +9,8 @@ import {
   TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
-  TextBlocklistResult,
-  TextBlockItemListResult
+  PagedTextBlocklist,
+  PagedTextBlockItem,
 } from "../models/models.js";
 import {
   isUnexpected,
@@ -43,14 +43,17 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
+  AnalyzeTextOptionsOptions,
+  AnalyzeImageOptionsOptions,
   GetTextBlocklistOptions,
   CreateOrUpdateTextBlocklistOptions,
   DeleteTextBlocklistOptions,
   ListTextBlocklistsOptions,
+  AddOrUpdateBlockItemsOptionsOptions,
+  RemoveBlockItemsOptionsOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "../models/options.js";
-import { AddOrUpdateBlockItemsOptionsOptions, AnalyzeImageOptionsOptions, AnalyzeTextOptionsOptions, RemoveBlockItemsOptionsOptions } from "../models/index.js";
 
 export function _analyzeTextSend(
   context: Client,
@@ -284,7 +287,7 @@ export function _listTextBlocklistsSend(
 
 export async function _listTextBlocklistsDeserialize(
   result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
-): Promise<TextBlocklistResult> {
+): Promise<PagedTextBlocklist> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -302,7 +305,7 @@ export async function _listTextBlocklistsDeserialize(
 export async function listTextBlocklists(
   context: Client,
   options: ListTextBlocklistsOptions = { requestOptions: {} }
-): Promise<TextBlocklistResult> {
+): Promise<PagedTextBlocklist> {
   const result = await _listTextBlocklistsSend(context, options);
   return _listTextBlocklistsDeserialize(result);
 }
@@ -472,7 +475,7 @@ export async function _listTextBlocklistItemsDeserialize(
   result:
     | ListTextBlocklistItems200Response
     | ListTextBlocklistItemsDefaultResponse
-): Promise<TextBlockItemListResult> {
+): Promise<PagedTextBlockItem> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -492,7 +495,7 @@ export async function listTextBlocklistItems(
   context: Client,
   blocklistName: string,
   options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-): Promise<TextBlockItemListResult> {
+): Promise<PagedTextBlockItem> {
   const result = await _listTextBlocklistItemsSend(
     context,
     blocklistName,

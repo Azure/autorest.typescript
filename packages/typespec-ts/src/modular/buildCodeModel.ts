@@ -896,9 +896,35 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     baseModel = getType(context, type.baseModel);
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
-  const modelName = effectiveName
-    ? effectiveName
-    : getName(context.program, type);
+  const overridedModelName =
+    getProjectedName(context.program, type, "javascript") ??
+    getProjectedName(context.program, type, "client") ??
+    getFriendlyName(context.program, type);
+  let modelName =
+    overridedModelName ??
+    (effectiveName ? effectiveName : getName(context.program, type));
+  if (
+    !overridedModelName &&
+    type.templateMapper &&
+    type.templateMapper.args &&
+    type.templateMapper.args.length > 0 &&
+    getPagedResult(context.program, type)
+  ) {
+    modelName =
+      type.templateMapper.args
+        .map((it) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("") + "List";
+  }
+
   return {
     type: "model",
     name: modelName,

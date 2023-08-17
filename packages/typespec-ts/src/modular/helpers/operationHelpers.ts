@@ -261,9 +261,13 @@ export function getOperationFunction(
 }
 
 export function getOperationOptionsName(operation: Operation) {
-  return `${toPascalCase(operation.groupName)}${toPascalCase(
+  const optionName = `${toPascalCase(operation.groupName)}${toPascalCase(
     operation.name
   )}Options`;
+  if (operation.bodyParameter?.type.name === optionName) {
+    return optionName + "Options";
+  }
+  return optionName;
 }
 
 /**
@@ -338,14 +342,18 @@ function buildBodyParameter(
 
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = [];
-    let hasSerializeBody = false;
+    let serializeBodyName = undefined;
     for (const param of bodyParameter?.type.properties?.filter(
       (p) => !p.readonly
     ) ?? []) {
       if (param.type.type === "model" && isRequired(param)) {
-        hasSerializeBody = true;
+        serializeBodyName = param.restApiName;
         bodyParts.push(
-          ...getRequestModelMapping(param.type, param.clientName, importSet)
+          `"${serializeBodyName}": {${getRequestModelMapping(
+            param.type,
+            param.clientName,
+            importSet
+          ).join(",\n")}}`
         );
       } else {
         bodyParts.push(getParameterMap(param, importSet));
@@ -353,13 +361,7 @@ function buildBodyParameter(
     }
 
     if (bodyParameter && bodyParameter.type.properties) {
-      if (hasSerializeBody) {
-        return `\nbody: {"${bodyParameter.restApiName}": {${bodyParts.join(
-          ",\n"
-        )}}},`;
-      } else {
-        return `\nbody: {${bodyParts.join(",\n")}},`;
-      }
+      return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }
 
