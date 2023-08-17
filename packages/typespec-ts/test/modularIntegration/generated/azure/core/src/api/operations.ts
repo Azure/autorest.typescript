@@ -13,6 +13,8 @@ import {
   CreateOrUpdateDefaultResponse,
   DeleteOperation204Response,
   DeleteOperationDefaultResponse,
+  ExportOperation200Response,
+  ExportOperationDefaultResponse,
   Get200Response,
   GetDefaultResponse,
   List200Response,
@@ -34,6 +36,7 @@ import {
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
   DeleteOptions,
+  ExportOptions,
 } from "../models/options.js";
 
 export function _createOrUpdateSend(
@@ -348,4 +351,54 @@ export async function deleteOperation(
 ): Promise<void> {
   const result = await _deleteOperationSend(context, id, options);
   return _deleteOperationDeserialize(result);
+}
+
+export function _exportOperationSend(
+  context: Client,
+  id: number,
+  format: string,
+  options: ExportOptions = { requestOptions: {} }
+): StreamableMethod<
+  ExportOperation200Response | ExportOperationDefaultResponse
+> {
+  return context
+    .path("/azure/core/basic/users/{id}:export", id)
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { format: format },
+    });
+}
+
+export async function _exportOperationDeserialize(
+  result: ExportOperation200Response | ExportOperationDefaultResponse
+): Promise<User> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    name: result.body["name"],
+    orders: (result.body["orders"] ?? []).map((p) => ({
+      id: p["id"],
+      userId: p["userId"],
+      detail: p["detail"],
+    })),
+    etag: result.body["etag"],
+  };
+}
+
+/** Exports a User */
+/**
+ *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
+ *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+ */
+export async function exportOperation(
+  context: Client,
+  id: number,
+  format: string,
+  options: ExportOptions = { requestOptions: {} }
+): Promise<User> {
+  const result = await _exportOperationSend(context, id, format, options);
+  return _exportOperationDeserialize(result);
 }

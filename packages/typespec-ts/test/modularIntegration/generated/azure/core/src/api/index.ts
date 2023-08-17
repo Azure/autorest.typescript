@@ -14,4 +14,5 @@ export {
   listWithPage,
   listWithCustomPageModel,
   deleteOperation,
+  exportOperation,
 } from "./operations.js";

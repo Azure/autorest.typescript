@@ -9,6 +9,7 @@ import {
   ListParameters,
   ListWithPageParameters,
   ListWithCustomPageModelParameters,
+  ExportParameters,
 } from "./parameters.js";
 import {
   CreateOrUpdate200Response,
@@ -27,6 +28,8 @@ import {
   ListWithPageDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
+  ExportOperation200Response,
+  ExportOperationDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -82,6 +85,15 @@ export interface ListWithCustomPageModel {
   >;
 }
 
+export interface Export {
+  /** Exports a User */
+  post(
+    options: ExportParameters
+  ): StreamableMethod<
+    ExportOperation200Response | ExportOperationDefaultResponse
+  >;
+}
+
 export interface Routes {
   /** Resource for '/azure/core/basic/users/\{id\}' has methods for the following verbs: patch, put, get, delete */
   (path: "/azure/core/basic/users/{id}", id: number): CreateOrUpdate;
@@ -91,6 +103,8 @@ export interface Routes {
   (path: "/azure/core/basic/page"): ListWithPage;
   /** Resource for '/azure/core/basic/custom-page' has methods for the following verbs: get */
   (path: "/azure/core/basic/custom-page"): ListWithCustomPageModel;
+  /** Resource for '/azure/core/basic/users/\{id\}:export' has methods for the following verbs: post */
+  (path: "/azure/core/basic/users/{id}:export", id: number): Export;
 }
 
 export type BasicContext = Client & {

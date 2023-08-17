@@ -18,6 +18,8 @@ import {
   ListWithPageDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
+  ExportOperation200Response,
+  ExportOperationDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -28,6 +30,7 @@ const responseMap: Record<string, string[]> = {
   "GET /azure/core/basic/users": ["200"],
   "GET /azure/core/basic/page": ["200"],
   "GET /azure/core/basic/custom-page": ["200"],
+  "POST /azure/core/basic/users/{id}:export": ["200"],
 };
 
 export function isUnexpected(
@@ -60,6 +63,9 @@ export function isUnexpected(
     | ListWithCustomPageModelDefaultResponse
 ): response is ListWithCustomPageModelDefaultResponse;
 export function isUnexpected(
+  response: ExportOperation200Response | ExportOperationDefaultResponse
+): response is ExportOperationDefaultResponse;
+export function isUnexpected(
   response:
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
@@ -77,6 +83,8 @@ export function isUnexpected(
     | ListWithPageDefaultResponse
     | ListWithCustomPageModel200Response
     | ListWithCustomPageModelDefaultResponse
+    | ExportOperation200Response
+    | ExportOperationDefaultResponse
 ): response is
   | CreateOrUpdateDefaultResponse
   | CreateOrReplaceDefaultResponse
@@ -84,7 +92,8 @@ export function isUnexpected(
   | DeleteOperationDefaultResponse
   | ListDefaultResponse
   | ListWithPageDefaultResponse
-  | ListWithCustomPageModelDefaultResponse {
+  | ListWithCustomPageModelDefaultResponse
+  | ExportOperationDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
