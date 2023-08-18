@@ -14,14 +14,14 @@ import {
   PagedTextBlockItem,
 } from "./models/models.js";
 import {
-  AnalyzeTextOptionsOptions,
-  AnalyzeImageOptionsOptions,
+  AnalyzeTextRequestOptions,
+  AnalyzeImageRequestOptions,
   GetTextBlocklistOptions,
   CreateOrUpdateTextBlocklistOptions,
   DeleteTextBlocklistOptions,
   ListTextBlocklistsOptions,
-  AddOrUpdateBlockItemsOptionsOptions,
-  RemoveBlockItemsOptionsOptions,
+  AddOrUpdateBlockItemsRequestOptions,
+  RemoveBlockItemsRequestOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./models/options.js";
@@ -58,7 +58,7 @@ export class ContentSafetyClient {
   /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeText(
     text: string,
-    options: AnalyzeTextOptionsOptions = { requestOptions: {} }
+    options: AnalyzeTextRequestOptions = { requestOptions: {} }
   ): Promise<AnalyzeTextResult> {
     return analyzeText(this._client, text, options);
   }
@@ -66,7 +66,7 @@ export class ContentSafetyClient {
   /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeImage(
     image: ImageData,
-    options: AnalyzeImageOptionsOptions = { requestOptions: {} }
+    options: AnalyzeImageRequestOptions = { requestOptions: {} }
   ): Promise<AnalyzeImageResult> {
     return analyzeImage(this._client, image, options);
   }
@@ -106,7 +106,7 @@ export class ContentSafetyClient {
   addOrUpdateBlockItems(
     blockItems: TextBlockItemInfo[],
     blocklistName: string,
-    options: AddOrUpdateBlockItemsOptionsOptions = { requestOptions: {} }
+    options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
   ): Promise<AddOrUpdateBlockItemsResult> {
     return addOrUpdateBlockItems(
       this._client,
@@ -120,7 +120,7 @@ export class ContentSafetyClient {
   removeBlockItems(
     blockItemIds: string[],
     blocklistName: string,
-    options: RemoveBlockItemsOptionsOptions = { requestOptions: {} }
+    options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
   ): Promise<void> {
     return removeBlockItems(this._client, blockItemIds, blocklistName, options);
   }

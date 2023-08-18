@@ -43,14 +43,14 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  AnalyzeTextOptionsOptions,
-  AnalyzeImageOptionsOptions,
+  AnalyzeTextRequestOptions,
+  AnalyzeImageRequestOptions,
   GetTextBlocklistOptions,
   CreateOrUpdateTextBlocklistOptions,
   DeleteTextBlocklistOptions,
   ListTextBlocklistsOptions,
-  AddOrUpdateBlockItemsOptionsOptions,
-  RemoveBlockItemsOptionsOptions,
+  AddOrUpdateBlockItemsRequestOptions,
+  RemoveBlockItemsRequestOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "../models/options.js";
@@ -58,7 +58,7 @@ import {
 export function _analyzeTextSend(
   context: Client,
   text: string,
-  options: AnalyzeTextOptionsOptions = { requestOptions: {} }
+  options: AnalyzeTextRequestOptions = { requestOptions: {} }
 ): StreamableMethod<AnalyzeText200Response | AnalyzeTextDefaultResponse> {
   return context
     .path("/text:analyze")
@@ -100,7 +100,7 @@ export async function _analyzeTextDeserialize(
 export async function analyzeText(
   context: Client,
   text: string,
-  options: AnalyzeTextOptionsOptions = { requestOptions: {} }
+  options: AnalyzeTextRequestOptions = { requestOptions: {} }
 ): Promise<AnalyzeTextResult> {
   const result = await _analyzeTextSend(context, text, options);
   return _analyzeTextDeserialize(result);
@@ -109,7 +109,7 @@ export async function analyzeText(
 export function _analyzeImageSend(
   context: Client,
   image: ImageData,
-  options: AnalyzeImageOptionsOptions = { requestOptions: {} }
+  options: AnalyzeImageRequestOptions = { requestOptions: {} }
 ): StreamableMethod<AnalyzeImage200Response | AnalyzeImageDefaultResponse> {
   return context
     .path("/image:analyze")
@@ -148,7 +148,7 @@ export async function _analyzeImageDeserialize(
 export async function analyzeImage(
   context: Client,
   image: ImageData,
-  options: AnalyzeImageOptionsOptions = { requestOptions: {} }
+  options: AnalyzeImageRequestOptions = { requestOptions: {} }
 ): Promise<AnalyzeImageResult> {
   const result = await _analyzeImageSend(context, image, options);
   return _analyzeImageDeserialize(result);
@@ -314,7 +314,7 @@ export function _addOrUpdateBlockItemsSend(
   context: Client,
   blockItems: TextBlockItemInfo[],
   blocklistName: string,
-  options: AddOrUpdateBlockItemsOptionsOptions = { requestOptions: {} }
+  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
 ): StreamableMethod<
   AddOrUpdateBlockItems200Response | AddOrUpdateBlockItemsDefaultResponse
 > {
@@ -352,7 +352,7 @@ export async function addOrUpdateBlockItems(
   context: Client,
   blockItems: TextBlockItemInfo[],
   blocklistName: string,
-  options: AddOrUpdateBlockItemsOptionsOptions = { requestOptions: {} }
+  options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
 ): Promise<AddOrUpdateBlockItemsResult> {
   const result = await _addOrUpdateBlockItemsSend(
     context,
@@ -367,7 +367,7 @@ export function _removeBlockItemsSend(
   context: Client,
   blockItemIds: string[],
   blocklistName: string,
-  options: RemoveBlockItemsOptionsOptions = { requestOptions: {} }
+  options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
 ): StreamableMethod<
   RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
 > {
@@ -394,7 +394,7 @@ export async function removeBlockItems(
   context: Client,
   blockItemIds: string[],
   blocklistName: string,
-  options: RemoveBlockItemsOptionsOptions = { requestOptions: {} }
+  options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _removeBlockItemsSend(
     context,

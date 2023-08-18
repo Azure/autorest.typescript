@@ -265,7 +265,7 @@ export function getOperationOptionsName(operation: Operation) {
     operation.name
   )}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
-    return optionName + "Options";
+    return optionName.replace(/Options$/, "RequestOptions");
   }
   return optionName;
 }

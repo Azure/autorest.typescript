@@ -20,14 +20,14 @@ export {
   PagedTextBlockItem,
 } from "./models.js";
 export {
-  AnalyzeTextOptionsOptions,
-  AnalyzeImageOptionsOptions,
+  AnalyzeTextRequestOptions,
+  AnalyzeImageRequestOptions,
   GetTextBlocklistOptions,
   CreateOrUpdateTextBlocklistOptions,
   DeleteTextBlocklistOptions,
   ListTextBlocklistsOptions,
-  AddOrUpdateBlockItemsOptionsOptions,
-  RemoveBlockItemsOptionsOptions,
+  AddOrUpdateBlockItemsRequestOptions,
+  RemoveBlockItemsRequestOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./options.js";
