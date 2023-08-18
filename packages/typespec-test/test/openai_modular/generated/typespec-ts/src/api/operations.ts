@@ -456,7 +456,7 @@ export function _beginAzureBatchImageGenerationSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         prompt: prompt,
-        n: options.n ?? 1,
+        n: options?.n,
         size: options?.size,
         response_format: options?.responseFormat,
         user: options?.user,
