@@ -39,6 +39,16 @@ import {
   DeleteOptions,
   ExportOptions
 } from "../models/options.js";
+import {
+  PagedAsyncIterableIterator,
+  PagedResult,
+  getPagedAsyncIterator
+} from "@azure/core-paging";
+import {
+  getElements,
+  getNextLink,
+  getPaginationProperties
+} from "../pageHelper.js";
 
 export function _createOrUpdateSend(
   context: Client,
@@ -260,12 +270,39 @@ export async function _listWithPageDeserialize(
 }
 
 /** List with Azure.Core.Page<>. */
-export async function listWithPage(
+export function listWithPage(
   context: Client,
   options: ListWithPageOptions = { requestOptions: {} }
-): Promise<Page> {
-  const result = await _listWithPageSend(context, options);
-  return _listWithPageDeserialize(result);
+): PagedAsyncIterableIterator<Page> {
+  return listWithPageGenerator(context, options);
+}
+
+function listWithPageGenerator(
+  context: Client,
+  options: ListWithPageOptions
+): PagedAsyncIterableIterator<Page> {
+  let firstRun = true;
+  const pagedResult: PagedResult<Page[]> = {
+    firstPageLink: "",
+    getPage: async (pageLink: string) => {
+      const result = firstRun
+        ? await _listWithPageSend(context, options)
+        : await context.pathUnchecked(pageLink).get();
+      const { itemName, nextLinkName } = getPaginationProperties(result);
+      firstRun = false;
+      const nextLink = getNextLink(result.body, nextLinkName);
+      const values = getElements<Page>(
+        await _listWithPageDeserialize(result),
+        itemName
+      );
+      return {
+        page: values,
+        nextPageLink: nextLink
+      };
+    }
+  };
+
+  return getPagedAsyncIterator(pagedResult);
 }
 
 export function _listWithCustomPageModelSend(

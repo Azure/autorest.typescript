@@ -10,7 +10,7 @@ import {
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
   DeleteOptions,
-  ExportOptions,
+  ExportOptions
 } from "./models/options.js";
 import {
   createBasic,
@@ -23,8 +23,9 @@ import {
   listWithPage,
   listWithCustomPageModel,
   deleteOperation,
-  exportOperation,
+  exportOperation
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
 
@@ -67,7 +68,7 @@ export class BasicClient {
   /** List with Azure.Core.Page<>. */
   listWithPage(
     options: ListWithPageOptions = { requestOptions: {} }
-  ): Promise<Page> {
+  ): PagedAsyncIterableIterator<Page> {
     return listWithPage(this._client, options);
   }
 
