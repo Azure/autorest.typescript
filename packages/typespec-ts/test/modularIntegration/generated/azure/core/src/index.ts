@@ -5,9 +5,8 @@ export { BasicClient, BasicClientOptions } from "./BasicClient.js";
 export {
   User,
   UserOrder,
-  CustomPageModel,
-  CustomPage,
-  Page,
+  UserListResults,
+  PagedUser,
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,

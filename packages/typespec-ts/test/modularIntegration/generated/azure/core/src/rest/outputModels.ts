@@ -33,6 +33,4 @@ export interface UserListResultsOutput {
 }
 
 /** Paged collection of User items */
-export type UserListOutput = Paged<UserOutput>;
-/** Paged collection of User items */
 export type PagedUserOutput = Paged<UserOutput>;

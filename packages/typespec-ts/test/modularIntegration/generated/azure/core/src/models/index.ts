@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  User,
-  UserOrder,
-  CustomPageModel,
-  CustomPage,
-  Page,
-} from "./models.js";
+export { User, UserOrder, UserListResults, PagedUser } from "./models.js";
 export {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,

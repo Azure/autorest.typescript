@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { User, CustomPageModel, CustomPage, Page } from "./models/models.js";
+import { User, UserListResults, PagedUser } from "./models/models.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
@@ -10,7 +10,7 @@ import {
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
   DeleteOptions,
-  ExportOptions
+  ExportOptions,
 } from "./models/options.js";
 import {
   createBasic,
@@ -23,9 +23,8 @@ import {
   listWithPage,
   listWithCustomPageModel,
   deleteOperation,
-  exportOperation
+  exportOperation,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
 
@@ -61,21 +60,21 @@ export class BasicClient {
   }
 
   /** Lists all Users */
-  list(options: ListOptions = { requestOptions: {} }): Promise<CustomPage> {
+  list(options: ListOptions = { requestOptions: {} }): Promise<PagedUser> {
     return list(this._client, options);
   }
 
   /** List with Azure.Core.Page<>. */
   listWithPage(
     options: ListWithPageOptions = { requestOptions: {} }
-  ): PagedAsyncIterableIterator<Page> {
+  ): Promise<PagedUser> {
     return listWithPage(this._client, options);
   }
 
   /** List with custom page model. */
   listWithCustomPageModel(
     options: ListWithCustomPageModelOptions = { requestOptions: {} }
-  ): Promise<CustomPageModel> {
+  ): Promise<UserListResults> {
     return listWithCustomPageModel(this._client, options);
   }
 

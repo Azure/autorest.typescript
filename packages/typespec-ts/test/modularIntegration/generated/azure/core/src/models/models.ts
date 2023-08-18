@@ -23,7 +23,7 @@ export interface UserOrder {
   detail: string;
 }
 
-export interface CustomPageModel {
+export interface UserListResults {
   /** List of items. */
   items: User[];
   /** Link to fetch more items. */
@@ -31,7 +31,7 @@ export interface CustomPageModel {
 }
 
 /** Paged collection of User items */
-export interface CustomPage {
+export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */
@@ -39,7 +39,7 @@ export interface CustomPage {
 }
 
 /** Paged collection of User items */
-export interface Page {
+export interface PagedUser {
   /** The User items on this page */
   value: User[];
   /** The link to the next page of items */

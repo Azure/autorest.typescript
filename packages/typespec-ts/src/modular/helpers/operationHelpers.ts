@@ -25,6 +25,10 @@ import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
 } from "./docsHelpers.js";
+import {
+  getCollectionFormatFunction,
+  hasCollectionFormatInfo
+} from "../../utils/operationUtil.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -395,6 +399,11 @@ function getParameterMap(
     return getConstantValue(param);
   }
 
+  if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
+    console.log(">>>>>>>>>>>>>>>>>hasCollectionFormatInfo", param);
+    return getCollectionFormatParamMap(param as Parameter, importSet);
+  }
+
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
     return getOptional(param, importSet);
@@ -405,6 +414,29 @@ function getParameterMap(
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
+}
+
+function getCollectionFormatParamMap(
+  param: Parameter,
+  importSet: Map<string, Set<string>>
+) {
+  const rlcUtilSet = importSet.get("../rest/index.js");
+  const collectionInfo = getCollectionFormatFunction(
+    param.location,
+    param.format ?? ""
+  );
+  console.log(">>>>>>>>>>>>>>>>>getCollectionFormatParamMap", collectionInfo);
+  if (!collectionInfo) {
+    throw "Has collection format info but without helper function detected";
+  }
+  const isOptional = param.optional ? "options?." : "";
+  const clientName = `${isOptional}${param.clientName}`;
+  if (!rlcUtilSet) {
+    importSet.set("../rest/index.js", new Set<string>().add(collectionInfo));
+  } else {
+    rlcUtilSet.add(collectionInfo);
+  }
+  return `"${param.restApiName}": ${clientName} !== undefined ? ${collectionInfo}(${clientName}, "${param.restApiName}"): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -477,16 +509,11 @@ type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
 
-function isOptional(
-  param: Parameter | Property
-): param is OptionalType {
+function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(
-  param: OptionalType,
-  importSet: Map<string, Set<string>>
-) {
+function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
