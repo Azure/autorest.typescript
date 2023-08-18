@@ -2,7 +2,12 @@ import { toPascalCase } from "../utils/casingUtils.js";
 import { importSettings } from "../utils/importUtils.js";
 import { getResponseMapping } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Type } from "./modularCodeModel.js";
-import { Project } from "ts-morph";
+import {
+  FunctionDeclarationStructure,
+  OptionalKind,
+  Project,
+  SourceFile
+} from "ts-morph";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -38,19 +43,20 @@ export function buildOperationUtils(
       return isSpecialUnionVariant(et);
     });
     unionDeserializeTypes?.forEach((et) => {
-      apiUtilsFile.addStatements(
-        getTypePredictFunction(et, getTypeUnionName(su, true, importSet))
+      getTypePredictFunction(
+        apiUtilsFile,
+        et,
+        getTypeUnionName(su, true, importSet)
       );
-      apiUtilsFile.addStatements(getTypeDeserializeFunction(et, importSet));
+      getTypeDeserializeFunction(apiUtilsFile, et, importSet);
     });
     const deserializeFUnctionName = getDeserializeFunctionName(su, importSet);
-    apiUtilsFile.addStatements(
-      deserializeUnionTypesFunction(
-        unionDeserializeTypes ?? [],
-        deserializeFUnctionName,
-        getTypeUnionName(su, true, importSet),
-        getTypeUnionName(su, false, importSet)
-      )
+    deserializeUnionTypesFunction(
+      apiUtilsFile,
+      unionDeserializeTypes ?? [],
+      deserializeFUnctionName,
+      getTypeUnionName(su, true, importSet),
+      getTypeUnionName(su, false, importSet)
     );
   });
   importSettings(importSet, apiUtilsFile);
@@ -133,16 +139,19 @@ function getTypeUnionName(
 }
 
 function getTypeDeserializeFunction(
+  sourceFile: SourceFile,
   type: Type,
   importSet: Map<string, Set<string>>
 ) {
   const statements: string[] = [];
+
   if (type.type === "model" && type.name) {
-    statements.push(
-      `function deserialize${toPascalCase(type.name)}(obj: ${type.name}): ${
-        type.name
-      } {`
-    );
+    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+      docs: [`deserialize function for ${type.name}`],
+      name: `deserialize${toPascalCase(type.name)}`,
+      parameters: [{ name: "obj", type: type.name }],
+      returnType: type.name
+    };
     if (type.properties) {
       statements.push(
         `return {${getResponseMapping(type.properties, "obj", importSet)}};`
@@ -150,17 +159,19 @@ function getTypeDeserializeFunction(
     } else {
       statements.push(`return {};`);
     }
-    statements.push(`}`);
+    functionStatement.statements = statements.join("\n");
+    sourceFile.addFunction(functionStatement);
   } else if (
     type.type === "list" &&
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
-    statements.push(
-      `function deserialize${toPascalCase(type.elementType.name)}Array(obj: ${
-        type.elementType.name
-      }Output[]): ${type.elementType.name}[] {`
-    );
+    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+      docs: [`deserialize function for ${type.elementType.name} array`],
+      name: `deserialize${toPascalCase(type.elementType.name)}Array`,
+      parameters: [{ name: "obj", type: type.elementType.name + "Output[]" }],
+      returnType: type.elementType.name + "[]"
+    };
     statements.push(
       `return (obj || []).map(item => { return {${getResponseMapping(
         type.elementType.properties ?? [],
@@ -168,36 +179,46 @@ function getTypeDeserializeFunction(
         importSet
       )}}})`
     );
-    statements.push(`}`);
+    functionStatement.statements = statements.join("\n");
+    sourceFile.addFunction(functionStatement);
   } else if (type.type === "datetime") {
-    statements.push(
-      `function deserialize${toPascalCase(type.name ?? "datetime")}(obj: ${
-        type.name
-      }): Date {`
-    );
+    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+      docs: [`deserialize function for ${type.name}`],
+      name: `deserialize${toPascalCase(type.name ?? "datetime")}`,
+      parameters: [{ name: "obj", type: type.name }],
+      returnType: "Date"
+    };
     statements.push(`return new Date(obj);`);
-    statements.push(`}`);
+    functionStatement.statements = statements.join("\n");
+    sourceFile.addFunction(functionStatement);
   } else if (type.type === "byte-array") {
-    statements.push(
-      `function deserialize${toPascalCase(type.name ?? "byte-array")}(obj: ${
-        type.name
-      }): Uint8Array {`
-    );
+    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+      docs: [`deserialize function for ${type.name}`],
+      name: `deserialize${toPascalCase(type.name ?? "byte-array")}`,
+      parameters: [{ name: "obj", type: type.name }],
+      returnType: "Uint8Array"
+    };
     statements.push(`return obj;`);
-    statements.push(`}`);
+    functionStatement.statements = statements.join("\n");
+    sourceFile.addFunction(functionStatement);
   }
-  return statements.join("\n");
 }
 
 function deserializeUnionTypesFunction(
+  sourceFile: SourceFile,
   unionDeserializeTypes: Type[],
   deserializeFunctionName: string,
   typeUnionNamesOutput: string | undefined,
   typeUnionNames: string | undefined
 ) {
-  const statements = [
-    `export function ${deserializeFunctionName}(obj: ${typeUnionNamesOutput}): ${typeUnionNames} {`
-  ];
+  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    docs: [`deserialize function for ${typeUnionNamesOutput}`],
+    name: deserializeFunctionName,
+    parameters: [{ name: "obj", type: typeUnionNamesOutput }],
+    returnType: typeUnionNames,
+    isExported: true
+  };
+  const statements: string[] = [];
   for (const type of unionDeserializeTypes) {
     const functionName = toPascalCase(
       type.name ??
@@ -208,24 +229,27 @@ function deserializeUnionTypesFunction(
     );
   }
   statements.push("return obj;");
-  statements.push("}");
-  return statements.join("\n");
+  functionStatement.statements = statements.join("\n");
+  sourceFile.addFunction(functionStatement);
 }
 
 function getTypePredictFunction(
+  sourceFile: SourceFile,
   type: Type,
   typeUnionNames: string | undefined
-): string {
+): void {
   if (typeUnionNames === undefined) {
-    return "";
+    return;
   }
+
   const statements: string[] = [];
   if (type.type === "model" && type.name) {
-    statements.push(
-      `function is${toPascalCase(type.name)}(obj: ${typeUnionNames}): obj is ${
-        type.name
-      } {`
-    );
+    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+      docs: [`type predict function fpr ${type.name}`],
+      name: `is${toPascalCase(typeUnionNames)}`,
+      parameters: [{ name: "obj", type: typeUnionNames }],
+      returnType: `obj is ${type.name}`
+    };
     if (type.properties) {
       statements.push(
         `return ${type.properties
@@ -237,19 +261,19 @@ function getTypePredictFunction(
     } else {
       statements.push(`return true;`);
     }
-    statements.push(`}`);
+    functionStatement.statements = statements.join("\n");
+    sourceFile.addFunction(functionStatement);
   } else if (
     type.type === "list" &&
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
-    statements.push(
-      `function is${toPascalCase(
-        type.elementType.name
-      )}Array(obj: ${typeUnionNames}): obj is ${
-        type.elementType.name
-      }Output[] {`
-    );
+    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+      docs: [`type predict function fpr ${type.elementType.name}Output array`],
+      name: `is${toPascalCase(type.elementType.name)}Array`,
+      parameters: [{ name: "obj", type: typeUnionNames }],
+      returnType: `obj is ${type.elementType.name}Output[]`
+    };
     if (type.elementType?.type === "model") {
       if (
         type.elementType.properties &&
@@ -268,8 +292,8 @@ function getTypePredictFunction(
       } else {
         statements.push(`return true;`);
       }
-      statements.push(`}`);
+      functionStatement.statements = statements;
     }
+    sourceFile.addFunction(functionStatement);
   }
-  return statements.join("\n");
 }

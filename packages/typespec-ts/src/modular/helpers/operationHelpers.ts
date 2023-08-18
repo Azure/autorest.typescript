@@ -86,9 +86,6 @@ export function getDeserializePrivateFunction(
   importSet: Map<string, Set<string>>
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
-  if (name === "beginAzureBatchImageGeneration") {
-    operation;
-  }
 
   let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
