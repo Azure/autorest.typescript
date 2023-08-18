@@ -395,6 +395,7 @@ function getParameterMap(
     return getConstantValue(param);
   }
 
+  // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
     return getOptional(param, importSet);
   }
@@ -475,10 +476,17 @@ function isConstant(param: Parameter | Property): param is ConstantType {
 type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
-function isOptional(param: Parameter | Property): param is OptionalType {
+
+function isOptional(
+  param: Parameter | Property
+): param is OptionalType {
   return Boolean(param.optional);
 }
-function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
+
+function getOptional(
+  param: OptionalType,
+  importSet: Map<string, Set<string>>
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
