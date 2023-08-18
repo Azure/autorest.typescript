@@ -10,9 +10,9 @@ import {
   TestRunServerMetricConfig,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
-  Metrics,
-  TestRunsList,
-  CustomPage,
+  PagedTimeSeriesElement,
+  PagedTestRun,
+  PagedDimensionValueList,
 } from "./models/models.js";
 import {
   TestRunOptions,
@@ -143,7 +143,7 @@ export class LoadTestRunClient {
     name: string,
     metricNamespace: string,
     options: ListMetricDimensionValuesOptions = { requestOptions: {} }
-  ): Promise<CustomPage> {
+  ): Promise<PagedDimensionValueList> {
     return listMetricDimensionValues(
       this._client,
       testRunId,
@@ -173,14 +173,14 @@ export class LoadTestRunClient {
   listMetrics(
     testRunId: string,
     options: ListMetricsOptions = { requestOptions: {} }
-  ): Promise<Metrics> {
+  ): Promise<PagedTimeSeriesElement> {
     return listMetrics(this._client, testRunId, options);
   }
 
   /** Get all test runs with given filters */
   listTestRuns(
     options: ListTestRunsOptions = { requestOptions: {} }
-  ): Promise<TestRunsList> {
+  ): Promise<PagedTestRun> {
     return listTestRuns(this._client, options);
   }
 
