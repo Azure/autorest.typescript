@@ -342,14 +342,12 @@ function buildBodyParameter(
 
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = [];
-    let serializeBodyName = undefined;
     for (const param of bodyParameter?.type.properties?.filter(
       (p) => !p.readonly
     ) ?? []) {
       if (param.type.type === "model" && isRequired(param)) {
-        serializeBodyName = param.restApiName;
         bodyParts.push(
-          `"${serializeBodyName}": {${getRequestModelMapping(
+          `"${param.restApiName}": {${getRequestModelMapping(
             param.type,
             param.clientName,
             importSet
@@ -477,15 +475,10 @@ function isConstant(param: Parameter | Property): param is ConstantType {
 type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
-function isOptional(
-  param: Parameter | Property
-): param is OptionalType {
+function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
-function getOptional(
-  param: OptionalType,
-  importSet: Map<string, Set<string>>
-) {
+function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
