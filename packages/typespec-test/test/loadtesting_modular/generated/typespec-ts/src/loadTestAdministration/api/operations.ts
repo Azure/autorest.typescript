@@ -7,8 +7,8 @@ import {
   TestAppComponents,
   AppComponent,
   TestServerMetricConfig,
-  FileInfoList,
-  TestsList,
+  PagedFileInfo,
+  PagedTest,
 } from "../models/models.js";
 import {
   isUnexpected,
@@ -747,7 +747,7 @@ export async function _listTestFilesDeserialize(
   result:
     | LoadTestAdministrationListTestFiles200Response
     | LoadTestAdministrationListTestFilesDefaultResponse
-): Promise<FileInfoList> {
+): Promise<PagedFileInfo> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -770,7 +770,7 @@ export async function listTestFiles(
   context: Client,
   testId: string,
   options: ListTestFilesOptions = { requestOptions: {} }
-): Promise<FileInfoList> {
+): Promise<PagedFileInfo> {
   const result = await _listTestFilesSend(context, testId, options);
   return _listTestFilesDeserialize(result);
 }
@@ -800,7 +800,7 @@ export async function _listTestsDeserialize(
   result:
     | LoadTestAdministrationListTests200Response
     | LoadTestAdministrationListTestsDefaultResponse
-): Promise<TestsList> {
+): Promise<PagedTest> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -950,7 +950,7 @@ export async function _listTestsDeserialize(
 export async function listTests(
   context: Client,
   options: ListTestsOptions = { requestOptions: {} }
-): Promise<TestsList> {
+): Promise<PagedTest> {
   const result = await _listTestsSend(context, options);
   return _listTestsDeserialize(result);
 }

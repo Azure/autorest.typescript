@@ -261,9 +261,13 @@ export function getOperationFunction(
 }
 
 export function getOperationOptionsName(operation: Operation) {
-  return `${toPascalCase(operation.groupName)}${toPascalCase(
+  const optionName = `${toPascalCase(operation.groupName)}${toPascalCase(
     operation.name
   )}Options`;
+  if (operation.bodyParameter?.type.name === optionName) {
+    return optionName.replace(/Options$/, "RequestOptions");
+  }
+  return optionName;
 }
 
 /**
@@ -338,14 +342,16 @@ function buildBodyParameter(
 
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = [];
-    let hasSerializeBody = false;
     for (const param of bodyParameter?.type.properties?.filter(
       (p) => !p.readonly
     ) ?? []) {
       if (param.type.type === "model" && isRequired(param)) {
-        hasSerializeBody = true;
         bodyParts.push(
-          ...getRequestModelMapping(param.type, param.clientName, importSet)
+          `"${param.restApiName}": {${getRequestModelMapping(
+            param.type,
+            param.clientName,
+            importSet
+          ).join(",\n")}}`
         );
       } else {
         bodyParts.push(getParameterMap(param, importSet));
@@ -353,13 +359,7 @@ function buildBodyParameter(
     }
 
     if (bodyParameter && bodyParameter.type.properties) {
-      if (hasSerializeBody) {
-        return `\nbody: {"${bodyParameter.restApiName}": {${bodyParts.join(
-          ",\n"
-        )}}},`;
-      } else {
-        return `\nbody: {${bodyParts.join(",\n")}},`;
-      }
+      return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }
 
@@ -395,7 +395,7 @@ function getParameterMap(
     return getConstantValue(param);
   }
 
-  // if the parameter or property is optional, we don't need to handle the 
+  // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
     return getOptional(param, importSet);
   }

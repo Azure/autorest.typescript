@@ -8,8 +8,8 @@ import {
   TestAppComponents,
   AppComponent,
   TestServerMetricConfig,
-  FileInfoList,
-  TestsList,
+  PagedFileInfo,
+  PagedTest,
 } from "./models/models.js";
 import {
   CreateOrUpdateTestOptions,
@@ -123,7 +123,7 @@ export class LoadTestAdministrationClient {
   listTestFiles(
     testId: string,
     options: ListTestFilesOptions = { requestOptions: {} }
-  ): Promise<FileInfoList> {
+  ): Promise<PagedFileInfo> {
     return listTestFiles(this._client, testId, options);
   }
 
@@ -133,7 +133,7 @@ export class LoadTestAdministrationClient {
    */
   listTests(
     options: ListTestsOptions = { requestOptions: {} }
-  ): Promise<TestsList> {
+  ): Promise<PagedTest> {
     return listTests(this._client, options);
   }
 
