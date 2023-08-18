@@ -9,9 +9,9 @@ import {
   TestRunServerMetricConfig,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
-  Metrics,
-  TestRunsList,
-  CustomPage,
+  PagedTimeSeriesElement,
+  PagedTestRun,
+  PagedDimensionValueList,
 } from "../models/models.js";
 import {
   isUnexpected,
@@ -941,7 +941,7 @@ export async function _listMetricDimensionValuesDeserialize(
   result:
     | LoadTestRunListMetricDimensionValues200Response
     | LoadTestRunListMetricDimensionValuesDefaultResponse
-): Promise<CustomPage> {
+): Promise<PagedDimensionValueList> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -959,7 +959,7 @@ export async function listMetricDimensionValues(
   name: string,
   metricNamespace: string,
   options: ListMetricDimensionValuesOptions = { requestOptions: {} }
-): Promise<CustomPage> {
+): Promise<PagedDimensionValueList> {
   const result = await _listMetricDimensionValuesSend(
     context,
     testRunId,
@@ -1090,7 +1090,7 @@ export async function _listMetricsDeserialize(
   result:
     | LoadTestRunListMetrics200Response
     | LoadTestRunListMetricsDefaultResponse
-): Promise<Metrics> {
+): Promise<PagedTimeSeriesElement> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1115,7 +1115,7 @@ export async function listMetrics(
   context: Client,
   testRunId: string,
   options: ListMetricsOptions = { requestOptions: {} }
-): Promise<Metrics> {
+): Promise<PagedTimeSeriesElement> {
   const result = await _listMetricsSend(context, testRunId, options);
   return _listMetricsDeserialize(result);
 }
@@ -1146,7 +1146,7 @@ export async function _listTestRunsDeserialize(
   result:
     | LoadTestRunListTestRuns200Response
     | LoadTestRunListTestRunsDefaultResponse
-): Promise<TestRunsList> {
+): Promise<PagedTestRun> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -1407,7 +1407,7 @@ export async function _listTestRunsDeserialize(
 export async function listTestRuns(
   context: Client,
   options: ListTestRunsOptions = { requestOptions: {} }
-): Promise<TestRunsList> {
+): Promise<PagedTestRun> {
   const result = await _listTestRunsSend(context, options);
   return _listTestRunsDeserialize(result);
 }

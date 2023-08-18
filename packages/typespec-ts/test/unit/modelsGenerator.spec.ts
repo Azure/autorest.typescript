@@ -1629,7 +1629,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should generate projected model name over friendly name", async () => {
+    it("should generate friendly name over projected model name", async () => {
       const cadlDefinition = `
       @projectedName("javascript", "CustomProjectedModelTS")
       @projectedName("json", "CustomProjectedModel")
@@ -1640,18 +1640,44 @@ describe("Input/output model type", () => {
       }
       `;
       const cadlType = "FooModel";
-      const inputModelName = "CustomProjectedModelTS";
+      const inputModelName = "CustomFriendlyModel";
       await verifyPropertyType(cadlType, inputModelName, {
         additionalCadlDefinition: cadlDefinition,
-        outputType: `CustomProjectedModelTSOutput`,
+        outputType: `CustomFriendlyModelOutput`,
         additionalInputContent: `
         /** This is a Foo model. */
-        export interface CustomProjectedModelTS {
+        export interface CustomFriendlyModel {
           x: number;
         }`,
         additionalOutputContent: `
         /** This is a Foo model. */
-        export interface CustomProjectedModelTSOutput {
+        export interface CustomFriendlyModelOutput {
+          x: number;
+        }`
+      });
+    });
+
+    it("should ignore projected javascript model name", async () => {
+      const cadlDefinition = `
+      @projectedName("javascript", "CustomProjectedModelTS")
+      @doc("This is a Foo model.")
+      model FooModel {
+        x: int32;
+      }
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "FooModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `FooModelOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface FooModel {
+          x: number;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface FooModelOutput {
           x: number;
         }`
       });

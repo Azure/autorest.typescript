@@ -41,13 +41,13 @@ export {
   MetricNamespaceCollection,
   MetricNamespace,
   DimensionFilter,
-  Metrics,
+  PagedTimeSeriesElement,
   TimeSeriesElement,
   MetricValue,
   DimensionValue,
-  TestRunsList,
+  PagedTestRun,
   Interval,
-  CustomPage,
+  PagedDimensionValueList,
   DimensionValueList,
 } from "./models.js";
 export {
