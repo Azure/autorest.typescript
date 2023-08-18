@@ -23,10 +23,11 @@ import {
   ListWithCustomPageModelDefaultResponse,
   ListWithPage200Response,
   ListWithPageDefaultResponse,
+  buildMultiCollection
 } from "../rest/index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 import {
   CreateOrUpdateOptions,
@@ -36,7 +37,7 @@ import {
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
   DeleteOptions,
-  ExportOptions,
+  ExportOptions
 } from "../models/options.js";
 
 export function _createOrUpdateSend(
@@ -49,14 +50,11 @@ export function _createOrUpdateSend(
   | CreateOrUpdate201Response
   | CreateOrUpdateDefaultResponse
 > {
-  return context
-    .path("/azure/core/basic/users/{id}", id)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ?? "application/merge-patch+json",
-      body: { name: name, orders: options?.orders },
-    });
+  return context.path("/azure/core/basic/users/{id}", id).patch({
+    ...operationOptionsToRequestParameters(options),
+    contentType: (options.contentType as any) ?? "application/merge-patch+json",
+    body: { name: name, orders: options?.orders }
+  });
 }
 
 export async function _createOrUpdateDeserialize(
@@ -75,9 +73,9 @@ export async function _createOrUpdateDeserialize(
     orders: (result.body["orders"] ?? []).map((p) => ({
       id: p["id"],
       userId: p["userId"],
-      detail: p["detail"],
+      detail: p["detail"]
     })),
-    etag: result.body["etag"],
+    etag: result.body["etag"]
   };
 }
 
@@ -102,12 +100,10 @@ export function _createOrReplaceSend(
   | CreateOrReplace201Response
   | CreateOrReplaceDefaultResponse
 > {
-  return context
-    .path("/azure/core/basic/users/{id}", id)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { name: name, orders: options?.orders },
-    });
+  return context.path("/azure/core/basic/users/{id}", id).put({
+    ...operationOptionsToRequestParameters(options),
+    body: { name: name, orders: options?.orders }
+  });
 }
 
 export async function _createOrReplaceDeserialize(
@@ -126,9 +122,9 @@ export async function _createOrReplaceDeserialize(
     orders: (result.body["orders"] ?? []).map((p) => ({
       id: p["id"],
       userId: p["userId"],
-      detail: p["detail"],
+      detail: p["detail"]
     })),
-    etag: result.body["etag"],
+    etag: result.body["etag"]
   };
 }
 
@@ -166,9 +162,9 @@ export async function _getDeserialize(
     orders: (result.body["orders"] ?? []).map((p) => ({
       id: p["id"],
       userId: p["userId"],
-      detail: p["detail"],
+      detail: p["detail"]
     })),
-    etag: result.body["etag"],
+    etag: result.body["etag"]
   };
 }
 
@@ -186,20 +182,19 @@ export function _listSend(
   context: Client,
   options: ListOptions = { requestOptions: {} }
 ): StreamableMethod<List200Response | ListDefaultResponse> {
-  return context
-    .path("/azure/core/basic/users")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: {
-        top: options?.top,
-        skip: options?.skip,
-        maxpagesize: options?.maxpagesize,
-        orderby: options?.orderby,
-        filter: options?.filter,
-        select: options?.select,
-        expand: options?.expand,
-      },
-    });
+  return context.path("/azure/core/basic/users").get({
+    ...operationOptionsToRequestParameters(options),
+    queryParameters: {
+      top: options?.top,
+      skip: options?.skip,
+      maxpagesize: options?.maxpagesize,
+      orderby:
+        options.orderby && buildMultiCollection(options.orderby, "orderBy"),
+      filter: options?.filter,
+      select: options.select && buildMultiCollection(options.select, "select"),
+      expand: options.expand && buildMultiCollection(options.expand, "expand")
+    }
+  });
 }
 
 export async function _listDeserialize(
@@ -216,11 +211,11 @@ export async function _listDeserialize(
       orders: (p["orders"] ?? []).map((p) => ({
         id: p["id"],
         userId: p["userId"],
-        detail: p["detail"],
+        detail: p["detail"]
       })),
-      etag: p["etag"],
+      etag: p["etag"]
     })),
-    nextLink: result.body["nextLink"],
+    nextLink: result.body["nextLink"]
   };
 }
 
@@ -256,11 +251,11 @@ export async function _listWithPageDeserialize(
       orders: (p["orders"] ?? []).map((p) => ({
         id: p["id"],
         userId: p["userId"],
-        detail: p["detail"],
+        detail: p["detail"]
       })),
-      etag: p["etag"],
+      etag: p["etag"]
     })),
-    nextLink: result.body["nextLink"],
+    nextLink: result.body["nextLink"]
   };
 }
 
@@ -300,11 +295,11 @@ export async function _listWithCustomPageModelDeserialize(
       orders: (p["orders"] ?? []).map((p) => ({
         id: p["id"],
         userId: p["userId"],
-        detail: p["detail"],
+        detail: p["detail"]
       })),
-      etag: p["etag"],
+      etag: p["etag"]
     })),
-    nextLink: result.body["nextLink"],
+    nextLink: result.body["nextLink"]
   };
 }
 
@@ -361,12 +356,10 @@ export function _exportOperationSend(
 ): StreamableMethod<
   ExportOperation200Response | ExportOperationDefaultResponse
 > {
-  return context
-    .path("/azure/core/basic/users/{id}:export", id)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      queryParameters: { format: format },
-    });
+  return context.path("/azure/core/basic/users/{id}:export", id).post({
+    ...operationOptionsToRequestParameters(options),
+    queryParameters: { format: format }
+  });
 }
 
 export async function _exportOperationDeserialize(
@@ -382,9 +375,9 @@ export async function _exportOperationDeserialize(
     orders: (result.body["orders"] ?? []).map((p) => ({
       id: p["id"],
       userId: p["userId"],
-      detail: p["detail"],
+      detail: p["detail"]
     })),
-    etag: result.body["etag"],
+    etag: result.body["etag"]
   };
 }
 
