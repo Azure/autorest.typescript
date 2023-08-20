@@ -313,9 +313,9 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${
-      parametersImplementation.header.join(",\n") + ","
-    },`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
+      ",\n"
+    )}},`;
   }
 
   if (parametersImplementation.query.length) {
@@ -477,16 +477,11 @@ type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
 
-function isOptional(
-  param: Parameter | Property
-): param is OptionalType {
+function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(
-  param: OptionalType,
-  importSet: Map<string, Set<string>>
-) {
+function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,

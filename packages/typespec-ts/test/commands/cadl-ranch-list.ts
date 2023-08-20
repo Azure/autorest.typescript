@@ -182,7 +182,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "client/structure/default",
-    inputPath: "client/structure/default",
+    inputPath: "client/structure/default"
   },
   {
     outputPath: "client/structure/multi-client",
@@ -195,5 +195,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "client/structure/two-operation-group",
     inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "headers/client-request-id",
+    inputPath: "special-headers/client-request-id",
+    debug: true
   }
 ];

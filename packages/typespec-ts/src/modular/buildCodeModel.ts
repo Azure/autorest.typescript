@@ -91,6 +91,7 @@ import {
   getOperationName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { isCustomClientRequestIdParam } from "../transform/transformTelemetryInfo.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -749,6 +750,9 @@ function emitBasicOperation(
   });
 
   for (const param of httpOperation.parameters.parameters) {
+    if (isCustomClientRequestIdParam(param)) {
+      continue;
+    }
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param) && apiVersionParam === undefined) {
       apiVersionParam = emittedParam;
