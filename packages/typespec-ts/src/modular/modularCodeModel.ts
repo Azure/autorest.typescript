@@ -137,6 +137,7 @@ export interface Response {
 
 export interface Operation {
   name: string;
+  oriName?: string;
   description: string;
   summary: string;
   url: string;

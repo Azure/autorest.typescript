@@ -430,7 +430,7 @@ export function hasCollectionFormatInfo(
   );
 }
 
-export function getCollectionFormatFunction(
+export function getCollectionFormatHelper(
   paramType: string,
   paramFormat: string
 ) {

@@ -26,7 +26,7 @@ import {
   getDocsFromDescription
 } from "./docsHelpers.js";
 import {
-  getCollectionFormatFunction,
+  getCollectionFormatHelper,
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
 
@@ -264,10 +264,12 @@ export function getOperationFunction(
   };
 }
 
-export function getOperationOptionsName(operation: Operation) {
-  const optionName = `${toPascalCase(operation.groupName)}${toPascalCase(
-    operation.name
-  )}Options`;
+export function getOperationOptionsName(
+  operation: Operation,
+  includeGroupName = false
+) {
+  const prefix = includeGroupName ? toPascalCase(operation.groupName) : "";
+  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");
   }
@@ -317,9 +319,9 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${
-      parametersImplementation.header.join(",\n") + ","
-    },`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
+      ",\n"
+    )}},`;
   }
 
   if (parametersImplementation.query.length) {
@@ -400,8 +402,7 @@ function getParameterMap(
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    console.log(">>>>>>>>>>>>>>>>>hasCollectionFormatInfo", param);
-    return getCollectionFormatParamMap(param as Parameter, importSet);
+    return getCollectionFormat(param as Parameter);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
@@ -416,27 +417,20 @@ function getParameterMap(
   throw new Error(`Parameter ${param.clientName} is not supported`);
 }
 
-function getCollectionFormatParamMap(
-  param: Parameter,
-  importSet: Map<string, Set<string>>
-) {
-  const rlcUtilSet = importSet.get("../rest/index.js");
-  const collectionInfo = getCollectionFormatFunction(
+function getCollectionFormat(param: Parameter) {
+  const collectionInfo = getCollectionFormatHelper(
     param.location,
     param.format ?? ""
   );
-  console.log(">>>>>>>>>>>>>>>>>getCollectionFormatParamMap", collectionInfo);
   if (!collectionInfo) {
     throw "Has collection format info but without helper function detected";
   }
-  const isOptional = param.optional ? "options?." : "";
-  const clientName = `${isOptional}${param.clientName}`;
-  if (!rlcUtilSet) {
-    importSet.set("../rest/index.js", new Set<string>().add(collectionInfo));
-  } else {
-    rlcUtilSet.add(collectionInfo);
+  const isMulti = (param.format ?? "").toLowerCase() === "multi";
+  const additionalParam = isMulti ? `, "${param.restApiName}"` : "";
+  if (!param.optional) {
+    return `"${param.restApiName}": ${collectionInfo}(${param.clientName}${additionalParam})`;
   }
-  return `"${param.restApiName}": ${clientName} !== undefined ? ${collectionInfo}(${clientName}, "${param.restApiName}"): undefined`;
+  return `"${param.restApiName}": options?.${param.clientName} !== undefined ? ${collectionInfo}(options?.${param.clientName}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {

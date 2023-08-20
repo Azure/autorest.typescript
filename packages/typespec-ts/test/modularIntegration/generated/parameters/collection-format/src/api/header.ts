@@ -1,0 +1,42 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import "../models/models.js";
+import {
+  buildCsvCollection,
+  CollectionFormatContext as Client,
+  HeaderCsv204Response,
+} from "../rest/index.js";
+import {
+  StreamableMethod,
+  operationOptionsToRequestParameters,
+} from "@azure-rest/core-client";
+import { HeaderCsvOptions } from "../models/options.js";
+
+export function _headerCsvSend(
+  context: Client,
+  colors: string[],
+  options: HeaderCsvOptions = { requestOptions: {} }
+): StreamableMethod<HeaderCsv204Response> {
+  return context
+    .path("/parameters/collection-format/header/csv")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: { colors: buildCsvCollection(colors) },
+    });
+}
+
+export async function _headerCsvDeserialize(
+  _result: HeaderCsv204Response
+): Promise<void> {
+  return;
+}
+
+export async function headerCsv(
+  context: Client,
+  colors: string[],
+  options: HeaderCsvOptions = { requestOptions: {} }
+): Promise<void> {
+  const result = await _headerCsvSend(context, colors, options);
+  return _headerCsvDeserialize(result);
+}

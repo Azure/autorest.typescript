@@ -151,6 +151,10 @@ function buildClientOperationGroups(
   clientClass: ClassDeclaration,
   subfolder: string
 ) {
+  const operationMap = new Map<
+    OptionalKind<FunctionDeclarationStructure>,
+    string | undefined
+  >();
   for (const operationGroup of client.operationGroups) {
     const operationGroupName = toCamelCase(operationGroup.propertyName);
     let clientType = "Client";
@@ -158,9 +162,11 @@ function buildClientOperationGroups(
       clientType = `Client.${clientClass.getName()}`;
     }
     const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-      operationGroup.operations.map((operation) =>
-        getOperationFunction(operation, clientType)
-      );
+      operationGroup.operations.map((operation) => {
+        const declarations = getOperationFunction(operation, clientType);
+        operationMap.set(declarations, operation.oriName);
+        return declarations;
+      });
 
     if (operationGroupName && operationGroupName !== "") {
       clientClass.addProperty({
@@ -168,7 +174,7 @@ function buildClientOperationGroups(
         initializer: `
       {
         ${operationDeclarations.map((d) => {
-          return `${d.name}: (${d.parameters
+          return `${getClassicalName(d)}: (${d.parameters
             ?.filter((p) => p.name !== "context")
             .map(
               (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
@@ -186,7 +192,7 @@ function buildClientOperationGroups(
         operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
             docs: d.docs,
-            name: d.name ?? "FIXME",
+            name: getClassicalName(d),
             kind: StructureKind.Method,
             returnType: d.returnType,
             parameters: d.parameters?.filter((p) => p.name !== "context"),
@@ -202,5 +208,11 @@ function buildClientOperationGroups(
         })
       );
     }
+  }
+
+  function getClassicalName(
+    declaration: OptionalKind<FunctionDeclarationStructure>
+  ) {
+    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
   }
 }

@@ -198,7 +198,11 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "azure/core",
-    inputPath: "azure/core/basic",
+    inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format",
     debug: true
   }
 ];
