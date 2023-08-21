@@ -355,11 +355,11 @@ export function getSpecialSerializeInfo(
   paramType: string,
   paramFormat: string
 ) {
-  let hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
-  let hasPipeCollection = getHasPipeCollection(paramType, paramFormat);
-  let hasSsvCollection = getHasSsvCollection(paramType, paramFormat);
-  let hasTsvCollection = getHasTsvCollection(paramType, paramFormat);
-  let hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
+  const hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
+  const hasPipeCollection = getHasPipeCollection(paramType, paramFormat);
+  const hasSsvCollection = getHasSsvCollection(paramType, paramFormat);
+  const hasTsvCollection = getHasTsvCollection(paramType, paramFormat);
+  const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
   const descriptions = [];
   const collectionInfo = [];
   if (hasMultiCollection) {
