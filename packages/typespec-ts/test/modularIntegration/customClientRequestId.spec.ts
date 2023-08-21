@@ -9,7 +9,7 @@ describe("RequestIdClient Classical Client", () => {
     });
   });
 
-  it("should put client-request-id in header", async () => {
+  it("should add client-request-id in header transparently", async () => {
     try {
       const result = await client.get();
       assert.isUndefined(result);
