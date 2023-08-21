@@ -1,15 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import "./models/models.js";
-import {
-  QueryMultiOptions,
-  QuerySsvOptions,
-  QueryTsvOptions,
-  QueryPipesOptions,
-  QueryCsvOptions,
-  HeaderCsvOptions,
-} from "./models/options.js";
 import {
   createCollectionFormat,
   CollectionFormatClientOptions,
@@ -21,6 +12,14 @@ import {
   queryPipes,
   queryCsv,
 } from "./api/index.js";
+import {
+  QueryMultiOptions,
+  QuerySsvOptions,
+  QueryTsvOptions,
+  QueryPipesOptions,
+  QueryCsvOptions,
+  HeaderCsvOptions,
+} from "./models/options.js";
 
 export { CollectionFormatClientOptions } from "./api/CollectionFormatContext.js";
 
