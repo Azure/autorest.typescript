@@ -631,7 +631,8 @@ export function getResponseMapping(
       } else if (
         (property.restApiName === "message" ||
           property.restApiName === "messages") &&
-        property.type.name === "ChatMessage"
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
       ) {
         definition = `"${property.clientName}": ${
           !property.optional
@@ -661,7 +662,8 @@ export function getResponseMapping(
       }["${property.restApiName}"]`;
       if (
         property.restApiName === "messages" &&
-        property.type.name === "ChatMessage"
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
       ) {
         props.push(
           `"${property.clientName}": ${
