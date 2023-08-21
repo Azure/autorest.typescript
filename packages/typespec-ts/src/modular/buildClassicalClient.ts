@@ -116,10 +116,12 @@ function importAllModels(
 
   const exported = [...apiModels.getExportedDeclarations().keys()];
 
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `./models/models.js`,
-    namedImports: exported
-  });
+  if (exported.length > 0) {
+    clientFile.addImportDeclaration({
+      moduleSpecifier: `./models/models.js`,
+      namedImports: exported
+    });
+  }
 
   const apiModelsOptions = project.getSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`

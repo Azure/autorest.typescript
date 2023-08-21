@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import "../models/models.js";
 import {
   buildCsvCollection,
   CollectionFormatContext as Client,
