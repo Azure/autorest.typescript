@@ -4,9 +4,9 @@ import { getResponseMapping } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Type } from "./modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
-  OptionalKind,
   Project,
-  SourceFile
+  SourceFile,
+  StructureKind
 } from "ts-morph";
 
 /**
@@ -150,10 +150,11 @@ function getTypeDeserializeFunction(
   const statements: string[] = [];
 
   if (type.type === "model" && type.name) {
-    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
       docs: [`deserialize function for ${type.name}`],
       name: `deserialize${toPascalCase(type.name)}`,
-      parameters: [{ name: "obj", type: type.name }],
+      parameters: [{ name: "obj", type: `${type.name}Output` }],
       returnType: type.name
     };
     if (type.properties) {
@@ -164,13 +165,29 @@ function getTypeDeserializeFunction(
       statements.push(`return {};`);
     }
     functionStatement.statements = statements.join("\n");
-    sourceFile.addFunction(functionStatement);
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
+          kind: StructureKind.FunctionOverload,
+          parameters: [{ name: "obj", type: `${type.name}Output` }],
+          docs: functionStatement.docs,
+          returnType: functionStatement.returnType
+        });
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
   } else if (
     type.type === "list" &&
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
-    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
       docs: [`deserialize function for ${type.elementType.name} array`],
       name: `deserialize${toPascalCase(type.elementType.name)}Array`,
       parameters: [{ name: "obj", type: type.elementType.name + "Output[]" }],
@@ -184,9 +201,30 @@ function getTypeDeserializeFunction(
       )}}})`
     );
     functionStatement.statements = statements.join("\n");
-    sourceFile.addFunction(functionStatement);
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
+          kind: StructureKind.FunctionOverload,
+          parameters: [
+            {
+              name: "obj",
+              type: type.elementType.name + "Output[]"
+            }
+          ],
+          docs: functionStatement.docs,
+          returnType: functionStatement.returnType
+        });
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
   } else if (type.type === "datetime") {
-    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
       docs: [`deserialize function for ${type.name}`],
       name: `deserialize${toPascalCase(type.name ?? "datetime")}`,
       parameters: [{ name: "obj", type: type.name }],
@@ -194,9 +232,30 @@ function getTypeDeserializeFunction(
     };
     statements.push(`return new Date(obj);`);
     functionStatement.statements = statements.join("\n");
-    sourceFile.addFunction(functionStatement);
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
+          kind: StructureKind.FunctionOverload,
+          parameters: [
+            {
+              name: "obj",
+              type: type.name
+            }
+          ],
+          docs: functionStatement.docs,
+          returnType: functionStatement.returnType
+        });
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
   } else if (type.type === "byte-array") {
-    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
       docs: [`deserialize function for ${type.name}`],
       name: `deserialize${toPascalCase(type.name ?? "byte-array")}`,
       parameters: [{ name: "obj", type: type.name }],
@@ -204,8 +263,47 @@ function getTypeDeserializeFunction(
     };
     statements.push(`return obj;`);
     functionStatement.statements = statements.join("\n");
-    sourceFile.addFunction(functionStatement);
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
+          kind: StructureKind.FunctionOverload,
+          parameters: [
+            {
+              name: "obj",
+              type: type.name
+            }
+          ],
+          docs: functionStatement.docs,
+          returnType: functionStatement.returnType
+        });
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
   }
+}
+
+function hasDuplicateFunction(
+  sourceFile: SourceFile,
+  functionStatement: FunctionDeclarationStructure
+) {
+  return sourceFile.getFunctions().some((f) => {
+    const paramTypes = f.getParameters().map((param) => {
+      return param.getName() + param.getType().getText();
+    });
+    const funcParamTypes = functionStatement.parameters?.map((param) => {
+      return param.name + param.type;
+    });
+    return (
+      f.getName() === functionStatement.name &&
+      f.getJsDocs().some((doc) => doc === functionStatement.docs?.[0]) &&
+      paramTypes.join() === funcParamTypes?.join()
+    );
+  });
 }
 
 function deserializeUnionTypesFunction(
@@ -215,7 +313,8 @@ function deserializeUnionTypesFunction(
   typeUnionNamesOutput: string | undefined,
   typeUnionNames: string | undefined
 ) {
-  const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
+  const functionStatement: FunctionDeclarationStructure = {
+    kind: StructureKind.Function,
     docs: [`deserialize function for ${typeUnionNamesOutput}`],
     name: deserializeFunctionName,
     parameters: [{ name: "obj", type: typeUnionNamesOutput }],
@@ -234,7 +333,9 @@ function deserializeUnionTypesFunction(
   }
   statements.push("return obj;");
   functionStatement.statements = statements.join("\n");
-  sourceFile.addFunction(functionStatement);
+  if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+    sourceFile.addFunction(functionStatement);
+  }
 }
 
 function getTypePredictFunction(
@@ -248,17 +349,18 @@ function getTypePredictFunction(
 
   const statements: string[] = [];
   if (type.type === "model" && type.name) {
-    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-      docs: [`type predict function fpr ${type.name}`],
-      name: `is${toPascalCase(formalizeTypeUnionName(typeUnionNames))}`,
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      docs: [`type predict function fpr ${type.name} from ${typeUnionNames}`],
+      name: `is${toPascalCase(formalizeTypeUnionName(type.name))}`,
       parameters: [{ name: "obj", type: typeUnionNames }],
-      returnType: `obj is ${type.name}`
+      returnType: `obj is ${type.name}Output`
     };
     if (type.properties) {
       statements.push(
         `return ${type.properties
           .map((p) => {
-            return `(obj as ${type.name}).${p.restApiName} !== undefined`;
+            return `(obj as ${type.name}Output).${p.restApiName} !== undefined`;
           })
           .join(" && ")};`
       );
@@ -266,14 +368,32 @@ function getTypePredictFunction(
       statements.push(`return true;`);
     }
     functionStatement.statements = statements.join("\n");
-    sourceFile.addFunction(functionStatement);
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
+          kind: StructureKind.FunctionOverload,
+          parameters: [{ name: "obj", type: typeUnionNames }],
+          docs: functionStatement.docs,
+          returnType: functionStatement.returnType
+        });
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
   } else if (
     type.type === "list" &&
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
-    const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
-      docs: [`type predict function fpr ${type.elementType.name}Output array`],
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      docs: [
+        `type predict function fpr ${type.elementType.name}Output array from ${typeUnionNames}`
+      ],
       name: `is${toPascalCase(
         formalizeTypeUnionName(type.elementType.name + "Array")
       )}`,
@@ -300,6 +420,21 @@ function getTypePredictFunction(
       }
       functionStatement.statements = statements;
     }
-    sourceFile.addFunction(functionStatement);
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
+          kind: StructureKind.FunctionOverload,
+          parameters: [{ name: "obj", type: typeUnionNames }],
+          docs: functionStatement.docs,
+          returnType: functionStatement.returnType
+        });
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
   }
 }
