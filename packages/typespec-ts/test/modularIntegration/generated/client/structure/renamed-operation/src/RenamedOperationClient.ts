@@ -3,9 +3,9 @@
 
 import { ClientType } from "./models/models.js";
 import {
-  GroupRenamedTwoOptions,
-  GroupRenamedFourOptions,
-  GroupRenamedSixOptions,
+  RenamedTwoOptions,
+  RenamedFourOptions,
+  RenamedSixOptions,
   RenamedOneOptions,
   RenamedThreeOptions,
   RenamedFiveOptions,
@@ -32,13 +32,13 @@ export class RenamedOperationClient {
   }
 
   group = {
-    renamedTwo: (options?: GroupRenamedTwoOptions): Promise<void> => {
+    renamedTwo: (options?: RenamedTwoOptions): Promise<void> => {
       return renamedTwo(this._client, options);
     },
-    renamedFour: (options?: GroupRenamedFourOptions): Promise<void> => {
+    renamedFour: (options?: RenamedFourOptions): Promise<void> => {
       return renamedFour(this._client, options);
     },
-    renamedSix: (options?: GroupRenamedSixOptions): Promise<void> => {
+    renamedSix: (options?: RenamedSixOptions): Promise<void> => {
       return renamedSix(this._client, options);
     },
   };

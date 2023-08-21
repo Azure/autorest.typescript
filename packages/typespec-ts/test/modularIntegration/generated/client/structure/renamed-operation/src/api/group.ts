@@ -12,18 +12,18 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  GroupRenamedTwoOptions,
-  GroupRenamedFourOptions,
-  GroupRenamedSixOptions,
+  RenamedTwoOptions,
+  RenamedFourOptions,
+  RenamedSixOptions,
 } from "../models/options.js";
 
 export function _renamedTwoSend(
   context: Client,
-  options: GroupRenamedTwoOptions = { requestOptions: {} }
+  options: RenamedTwoOptions = { requestOptions: {} }
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
-    .patch({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedTwoDeserialize(
@@ -34,7 +34,7 @@ export async function _renamedTwoDeserialize(
 
 export async function renamedTwo(
   context: Client,
-  options: GroupRenamedTwoOptions = { requestOptions: {} }
+  options: RenamedTwoOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _renamedTwoSend(context, options);
   return _renamedTwoDeserialize(result);
@@ -42,11 +42,11 @@ export async function renamedTwo(
 
 export function _renamedFourSend(
   context: Client,
-  options: GroupRenamedFourOptions = { requestOptions: {} }
+  options: RenamedFourOptions = { requestOptions: {} }
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
-    .patch({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFourDeserialize(
@@ -57,7 +57,7 @@ export async function _renamedFourDeserialize(
 
 export async function renamedFour(
   context: Client,
-  options: GroupRenamedFourOptions = { requestOptions: {} }
+  options: RenamedFourOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _renamedFourSend(context, options);
   return _renamedFourDeserialize(result);
@@ -65,11 +65,11 @@ export async function renamedFour(
 
 export function _renamedSixSend(
   context: Client,
-  options: GroupRenamedSixOptions = { requestOptions: {} }
+  options: RenamedSixOptions = { requestOptions: {} }
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
-    .patch({ ...operationOptionsToRequestParameters(options) });
+    .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedSixDeserialize(
@@ -80,7 +80,7 @@ export async function _renamedSixDeserialize(
 
 export async function renamedSix(
   context: Client,
-  options: GroupRenamedSixOptions = { requestOptions: {} }
+  options: RenamedSixOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _renamedSixSend(context, options);
   return _renamedSixDeserialize(result);

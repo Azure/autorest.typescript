@@ -20,41 +20,41 @@ import {
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface One {
-  patch(options?: OneParameters): StreamableMethod<One204Response>;
+  post(options?: OneParameters): StreamableMethod<One204Response>;
 }
 
 export interface Two {
-  patch(options?: TwoParameters): StreamableMethod<Two204Response>;
+  post(options?: TwoParameters): StreamableMethod<Two204Response>;
 }
 
 export interface Three {
-  patch(options?: ThreeParameters): StreamableMethod<Three204Response>;
+  post(options?: ThreeParameters): StreamableMethod<Three204Response>;
 }
 
 export interface Four {
-  patch(options?: FourParameters): StreamableMethod<Four204Response>;
+  post(options?: FourParameters): StreamableMethod<Four204Response>;
 }
 
 export interface Five {
-  patch(options?: FiveParameters): StreamableMethod<Five204Response>;
+  post(options?: FiveParameters): StreamableMethod<Five204Response>;
 }
 
 export interface Six {
-  patch(options?: SixParameters): StreamableMethod<Six204Response>;
+  post(options?: SixParameters): StreamableMethod<Six204Response>;
 }
 
 export interface Routes {
-  /** Resource for '/one' has methods for the following verbs: patch */
+  /** Resource for '/one' has methods for the following verbs: post */
   (path: "/one"): One;
-  /** Resource for '/two' has methods for the following verbs: patch */
+  /** Resource for '/two' has methods for the following verbs: post */
   (path: "/two"): Two;
-  /** Resource for '/three' has methods for the following verbs: patch */
+  /** Resource for '/three' has methods for the following verbs: post */
   (path: "/three"): Three;
-  /** Resource for '/four' has methods for the following verbs: patch */
+  /** Resource for '/four' has methods for the following verbs: post */
   (path: "/four"): Four;
-  /** Resource for '/five' has methods for the following verbs: patch */
+  /** Resource for '/five' has methods for the following verbs: post */
   (path: "/five"): Five;
-  /** Resource for '/six' has methods for the following verbs: patch */
+  /** Resource for '/six' has methods for the following verbs: post */
   (path: "/six"): Six;
 }
 
