@@ -68,12 +68,16 @@ export function getDeserializeFunctionName(
 ) {
   const typeUnionNames = getTypeUnionName(type, false, importSet);
   const deserializeFunctionName = `deserialize${toPascalCase(
-    typeUnionNames
-      ?.replace(/\[\]/g, "Array")
-      .replace(/ /g, "")
-      .replace(/\|/g, "And") ?? ""
+    formalizeTypeUnionName(typeUnionNames ?? "")
   )}Union`;
   return deserializeFunctionName;
+}
+
+function formalizeTypeUnionName(typeUnionName: string) {
+  return typeUnionName
+    .replace(/\[\]/g, "Array")
+    .replace(/ /g, "")
+    .replace(/\|/g, "And");
 }
 
 function isSpecialUnionVariant(t: Type) {
@@ -246,7 +250,7 @@ function getTypePredictFunction(
   if (type.type === "model" && type.name) {
     const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
       docs: [`type predict function fpr ${type.name}`],
-      name: `is${toPascalCase(typeUnionNames)}`,
+      name: `is${toPascalCase(formalizeTypeUnionName(typeUnionNames))}`,
       parameters: [{ name: "obj", type: typeUnionNames }],
       returnType: `obj is ${type.name}`
     };
@@ -270,7 +274,9 @@ function getTypePredictFunction(
   ) {
     const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
       docs: [`type predict function fpr ${type.elementType.name}Output array`],
-      name: `is${toPascalCase(type.elementType.name)}Array`,
+      name: `is${toPascalCase(
+        formalizeTypeUnionName(type.elementType.name + "Array")
+      )}`,
       parameters: [{ name: "obj", type: typeUnionNames }],
       returnType: `obj is ${type.elementType.name}Output[]`
     };
