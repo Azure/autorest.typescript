@@ -9,8 +9,7 @@ import {
 import {
   Client,
   createRestError,
-  PathUncheckedResponse,
-  StreamableMethod
+  PathUncheckedResponse
 } from "@azure-rest/core-client";
 
 /**
@@ -40,7 +39,7 @@ export interface PagingOptions<TResponse> {
   deserializeCallback?: (
     resp: TResponse | PathUncheckedResponse
   ) => Promise<unknown>;
-  initialCallArgs?: unknown[];
+  initialCallArgs?: any[];
 }
 
 /**
@@ -69,6 +68,23 @@ export type PaginateReturn<TResult> = TResult extends
  */
 export function paginate<TResponse extends PathUncheckedResponse>(
   client: Client,
+  initialResponse: TResponse,
+  options?: PagingOptions<TResponse>
+): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+/**
+ * Helper to paginate results from an initial response that follows the specification of Autorest `x-ms-pageable` extension
+ * @param client - Client to use for sending the next page requests
+ * @param initialCall - Initial call which could get responses with the nextLink and current page of elements
+ * @param customGetPage - Optional - Function to define how to extract the page and next link to be used to paginate the results
+ * @returns - PagedAsyncIterableIterator to iterate the elements
+ */
+export function paginate<TResponse extends PathUncheckedResponse>(
+  client: Client,
+  initialCall: (...args: any[]) => PromiseLike<TResponse>,
+  options?: PagingOptions<TResponse>
+): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+export function paginate<TResponse extends PathUncheckedResponse>(
+  client: Client,
   initialResponseOrCall:
     | TResponse
     | ((...args: unknown[]) => PromiseLike<TResponse>),
@@ -77,9 +93,9 @@ export function paginate<TResponse extends PathUncheckedResponse>(
   // Extract element type from initial response
   type TElement = PaginateReturn<TResponse>;
   let firstRun = true;
-  // We need to check the response for success before trying to inspect it looking for
-  // the properties to use for nextLink and itemName
   if (typeof initialResponseOrCall !== "function") {
+    // We need to check the response for success before trying to inspect it looking for
+    // the properties to use for nextLink and itemName
     checkPagingRequest(initialResponseOrCall);
   }
   let itemName: string, nextLinkName: string | undefined;
@@ -90,7 +106,7 @@ export function paginate<TResponse extends PathUncheckedResponse>(
       typeof customGetPage === "function"
         ? customGetPage
         : async (pageLink: string) => {
-            let result;
+            let result: TResponse | PathUncheckedResponse;
             if (firstRun) {
               result =
                 typeof initialResponseOrCall === "function"
