@@ -128,7 +128,7 @@ export function getDeserializePrivateFunction(
 
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
-  } else if (response?.type?.elementType) {
+  } else if (response?.type.elementType) {
     statements.push(
       `return ${deserializeResponseValue(
         response.type,
@@ -477,16 +477,11 @@ type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
 
-function isOptional(
-  param: Parameter | Property
-): param is OptionalType {
+function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(
-  param: OptionalType,
-  importSet: Map<string, Set<string>>
-) {
+function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
@@ -623,6 +618,9 @@ export function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
+    if (property.restApiName === "message") {
+      property;
+    }
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
     if (property.type.type === "model") {
       let definition;
@@ -633,6 +631,16 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
+      } else if (
+        (property.restApiName === "message" ||
+          property.restApiName === "messages") &&
+        property.type.name === "ChatMessage"
+      ) {
+        definition = `"${property.clientName}": ${
+          !property.optional
+            ? `${propertyFullName} as any`
+            : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+        }`;
       } else {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
@@ -654,14 +662,27 @@ export function getResponseMapping(
       const restValue = `${
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.restApiName}"]`;
-      props.push(
-        `"${property.clientName}": ${deserializeResponseValue(
-          property.type,
-          restValue,
-          importSet,
-          property.optional !== undefined ? !property.optional : false
-        )}`
-      );
+      if (
+        property.restApiName === "messages" &&
+        property.type.name === "ChatMessage"
+      ) {
+        props.push(
+          `"${property.clientName}": ${
+            !property.optional
+              ? `${propertyFullName} as any`
+              : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+          }`
+        );
+      } else {
+        props.push(
+          `"${property.clientName}": ${deserializeResponseValue(
+            property.type,
+            restValue,
+            importSet,
+            property.optional !== undefined ? !property.optional : false
+          )}`
+        );
+      }
     }
   }
 
@@ -731,7 +752,7 @@ function deserializeResponseValue(
 function serializeRequestValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
@@ -739,8 +760,8 @@ function serializeRequestValue(
       return `${restValue} !== undefined ? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
+        return `(${restValue} ?? []).map(p => ({${getRequestModelMapping(
+          type.elementType,
           "p",
           importSet
         )}}))`;
