@@ -177,6 +177,16 @@ function getTypeDeserializeFunction(
           docs: functionStatement.docs,
           returnType: functionStatement.returnType
         });
+        const implementationParameter = sourceFile
+          .getFunction(functionStatement.name ?? "")
+          ?.getParameters();
+        if (implementationParameter && implementationParameter.length > 0) {
+          implementationParameter[0]?.setType(
+            implementationParameter[0].getType().getText() +
+              " | " +
+              `${type.name}Output`
+          );
+        }
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -218,6 +228,17 @@ function getTypeDeserializeFunction(
           docs: functionStatement.docs,
           returnType: functionStatement.returnType
         });
+        const implementationParameter = sourceFile
+          .getFunction(functionStatement.name ?? "")
+          ?.getParameters();
+        if (implementationParameter && implementationParameter.length > 0) {
+          implementationParameter[0]?.setType(
+            implementationParameter[0].getType().getText() +
+              " | " +
+              type.elementType.name +
+              "Output[]"
+          );
+        }
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -249,6 +270,14 @@ function getTypeDeserializeFunction(
           docs: functionStatement.docs,
           returnType: functionStatement.returnType
         });
+        const implementationParameter = sourceFile
+          .getFunction(functionStatement.name ?? "")
+          ?.getParameters();
+        if (implementationParameter && implementationParameter.length > 0) {
+          implementationParameter[0]?.setType(
+            implementationParameter[0].getType().getText() + " | " + type.name
+          );
+        }
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -280,6 +309,14 @@ function getTypeDeserializeFunction(
           docs: functionStatement.docs,
           returnType: functionStatement.returnType
         });
+        const implementationParameter = sourceFile
+          .getFunction(functionStatement.name ?? "")
+          ?.getParameters();
+        if (implementationParameter && implementationParameter.length > 0) {
+          implementationParameter[0]?.setType(
+            implementationParameter[0].getType().getText() + " | " + type.name
+          );
+        }
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -300,7 +337,6 @@ function hasDuplicateFunction(
     });
     return (
       f.getName() === functionStatement.name &&
-      f.getJsDocs().some((doc) => doc === functionStatement.docs?.[0]) &&
       paramTypes.join() === funcParamTypes?.join()
     );
   });
@@ -380,6 +416,16 @@ function getTypePredictFunction(
           docs: functionStatement.docs,
           returnType: functionStatement.returnType
         });
+        const implementationParameter = sourceFile
+          .getFunction(functionStatement.name ?? "")
+          ?.getParameters();
+        if (implementationParameter && implementationParameter.length > 0) {
+          implementationParameter[0]?.setType(
+            implementationParameter[0].getType().getText() +
+              " | " +
+              typeUnionNames
+          );
+        }
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -432,6 +478,16 @@ function getTypePredictFunction(
           docs: functionStatement.docs,
           returnType: functionStatement.returnType
         });
+        const implementationParameter = sourceFile
+          .getFunction(functionStatement.name ?? "")
+          ?.getParameters();
+        if (implementationParameter && implementationParameter.length > 0) {
+          implementationParameter[0]?.setType(
+            implementationParameter[0].getType().getText() +
+              " | " +
+              typeUnionNames
+          );
+        }
       } else {
         sourceFile.addFunction(functionStatement);
       }

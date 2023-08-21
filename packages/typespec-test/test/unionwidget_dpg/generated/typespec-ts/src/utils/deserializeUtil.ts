@@ -36,21 +36,11 @@ function isWidgetData2(
 ): obj is WidgetData2Output;
 /** type predict function fpr WidgetData2 from WidgetData0Output | WidgetData2Output */
 function isWidgetData2(
-  obj: WidgetData0Output | WidgetData2Output
+  obj: any | WidgetData2Output | WidgetData3Output[]
 ): obj is WidgetData2Output {
   return (obj as WidgetData2Output).foo_prop !== undefined;
 }
 
-/** deserialize function for WidgetData2 */
-function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2;
-/** deserialize function for WidgetData2 */
-function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2;
-/** deserialize function for WidgetData2 */
-function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2;
-/** deserialize function for WidgetData2 */
-function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2;
-/** deserialize function for WidgetData2 */
-function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2;
 /** deserialize function for WidgetData2 */
 function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
   return { fooProp: obj["foo_prop"] };
@@ -82,13 +72,11 @@ function isWidgetData3(
 ): obj is WidgetData3Output;
 /** type predict function fpr WidgetData3 from WidgetData2Output | WidgetData3Output */
 function isWidgetData3(
-  obj: WidgetData2Output | WidgetData3Output
+  obj: any | WidgetData2Output[] | WidgetData3Output
 ): obj is WidgetData3Output {
   return (obj as WidgetData3Output).bar_prop !== undefined;
 }
 
-/** deserialize function for WidgetData3 */
-function deserializeWidgetData3(obj: WidgetData3Output): WidgetData3;
 /** deserialize function for WidgetData3 */
 function deserializeWidgetData3(obj: WidgetData3Output): WidgetData3 {
   return { barProp: obj["bar_prop"] };
@@ -129,7 +117,7 @@ function isWidgetData2Array(
 ): obj is WidgetData2Output[];
 /** type predict function fpr WidgetData2Output array from WidgetData0Output[] | WidgetData2Output[] */
 function isWidgetData2Array(
-  obj: WidgetData0Output[] | WidgetData2Output[]
+  obj: any | WidgetData2Output[] | WidgetData3Output
 ): obj is WidgetData2Output[] {
   if (obj.length > 0) {
     return (obj as WidgetData2Output[])[0].foo_prop !== undefined;
@@ -138,16 +126,6 @@ function isWidgetData2Array(
   return false;
 }
 
-/** deserialize function for WidgetData2 array */
-function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[];
-/** deserialize function for WidgetData2 array */
-function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[];
-/** deserialize function for WidgetData2 array */
-function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[];
-/** deserialize function for WidgetData2 array */
-function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[];
-/** deserialize function for WidgetData2 array */
-function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[];
 /** deserialize function for WidgetData2 array */
 function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[] {
   return (obj || []).map((item) => {
@@ -181,17 +159,19 @@ function isWidgetData3Array(
 ): obj is WidgetData3Output[];
 /** type predict function fpr WidgetData3Output array from WidgetData2Output[] | WidgetData3Output[] */
 function isWidgetData3Array(
-  obj: WidgetData2Output[] | WidgetData3Output[]
+  obj:
+    | WidgetData2Output[]
+    | WidgetData3Output[]
+    | WidgetData2Output
+    | WidgetData3Output[]
 ): obj is WidgetData3Output[] {
-  if (obj.length > 0) {
+  if (Array.isArray(obj) && obj.length > 0) {
     return (obj as WidgetData3Output[])[0].bar_prop !== undefined;
   }
 
   return false;
 }
 
-/** deserialize function for WidgetData3 array */
-function deserializeWidgetData3Array(obj: WidgetData3Output[]): WidgetData3[];
 /** deserialize function for WidgetData3 array */
 function deserializeWidgetData3Array(obj: WidgetData3Output[]): WidgetData3[] {
   return (obj || []).map((item) => {
