@@ -9,7 +9,6 @@ options:
     azureSdkForJs: false
     isCadlTest: true
     isModularLibrary: true
-    enableOperationGroup: true
     packageDetails:
       name: "@msinternal/azure-collection-format"
       description: "Azure Collection Format Test Service"
