@@ -174,7 +174,7 @@ function buildClientOperationGroups(
         initializer: `
       {
         ${operationDeclarations.map((d) => {
-          return `${getClassicalName(d)}: (${d.parameters
+          return `${getClassicalMethodName(d)}: (${d.parameters
             ?.filter((p) => p.name !== "context")
             .map(
               (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
@@ -192,7 +192,7 @@ function buildClientOperationGroups(
         operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
             docs: d.docs,
-            name: getClassicalName(d),
+            name: getClassicalMethodName(d),
             kind: StructureKind.Method,
             returnType: d.returnType,
             parameters: d.parameters?.filter((p) => p.name !== "context"),
@@ -210,7 +210,7 @@ function buildClientOperationGroups(
     }
   }
 
-  function getClassicalName(
+  function getClassicalMethodName(
     declaration: OptionalKind<FunctionDeclarationStructure>
   ) {
     return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
