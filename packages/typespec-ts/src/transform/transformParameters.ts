@@ -141,7 +141,10 @@ function getParameterMetadata(
     type === "number[]" ||
     type === "Array<number>"
   ) {
-    const serializeInfo = getSpecialSerializeInfo(parameter.type, (parameter as any).format);
+    const serializeInfo = getSpecialSerializeInfo(
+      parameter.type,
+      (parameter as any).format
+    );
     if (
       serializeInfo.hasMultiCollection ||
       serializeInfo.hasPipeCollection ||
@@ -154,10 +157,11 @@ function getParameterMetadata(
         ", "
       )} collection, we provide ${serializeInfo.descriptions.join(
         ", "
-      )} from serializeHelper.ts to help${serializeInfo.hasMultiCollection
-        ? ", you will probably need to set skipUrlEncoding as true when sending the request"
-        : ""
-        }`;
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }`;
     }
   }
   return {
