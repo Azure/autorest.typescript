@@ -3,12 +3,12 @@
 
 import { ClientType } from "./models/models.js";
 import {
-  OneOptions,
-  ThreeOptions,
-  FourOptions,
-  TwoOptions,
-  FiveOptions,
-  SixOptions,
+  Group1OneOptions,
+  Group1ThreeOptions,
+  Group1FourOptions,
+  Group2TwoOptions,
+  Group2FiveOptions,
+  Group2SixOptions,
 } from "./models/options.js";
 import {
   one,
@@ -35,24 +35,24 @@ export class TwoOperationGroupClient {
   }
 
   group1 = {
-    one: (options?: OneOptions): Promise<void> => {
+    one: (options?: Group1OneOptions): Promise<void> => {
       return one(this._client, options);
     },
-    three: (options?: ThreeOptions): Promise<void> => {
+    three: (options?: Group1ThreeOptions): Promise<void> => {
       return three(this._client, options);
     },
-    four: (options?: FourOptions): Promise<void> => {
+    four: (options?: Group1FourOptions): Promise<void> => {
       return four(this._client, options);
     },
   };
   group2 = {
-    two: (options?: TwoOptions): Promise<void> => {
+    two: (options?: Group2TwoOptions): Promise<void> => {
       return two(this._client, options);
     },
-    five: (options?: FiveOptions): Promise<void> => {
+    five: (options?: Group2FiveOptions): Promise<void> => {
       return five(this._client, options);
     },
-    six: (options?: SixOptions): Promise<void> => {
+    six: (options?: Group2SixOptions): Promise<void> => {
       return six(this._client, options);
     },
   };

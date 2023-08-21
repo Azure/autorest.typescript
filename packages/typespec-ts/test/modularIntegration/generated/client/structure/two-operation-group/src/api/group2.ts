@@ -11,11 +11,15 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { TwoOptions, FiveOptions, SixOptions } from "../models/options.js";
+import {
+  Group2TwoOptions,
+  Group2FiveOptions,
+  Group2SixOptions,
+} from "../models/options.js";
 
 export function _twoSend(
   context: Client,
-  options: TwoOptions = { requestOptions: {} }
+  options: Group2TwoOptions = { requestOptions: {} }
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
@@ -28,7 +32,7 @@ export async function _twoDeserialize(_result: Two204Response): Promise<void> {
 
 export async function two(
   context: Client,
-  options: TwoOptions = { requestOptions: {} }
+  options: Group2TwoOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _twoSend(context, options);
   return _twoDeserialize(result);
@@ -36,7 +40,7 @@ export async function two(
 
 export function _fiveSend(
   context: Client,
-  options: FiveOptions = { requestOptions: {} }
+  options: Group2FiveOptions = { requestOptions: {} }
 ): StreamableMethod<Five204Response> {
   return context
     .path("/five")
@@ -51,7 +55,7 @@ export async function _fiveDeserialize(
 
 export async function five(
   context: Client,
-  options: FiveOptions = { requestOptions: {} }
+  options: Group2FiveOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _fiveSend(context, options);
   return _fiveDeserialize(result);
@@ -59,7 +63,7 @@ export async function five(
 
 export function _sixSend(
   context: Client,
-  options: SixOptions = { requestOptions: {} }
+  options: Group2SixOptions = { requestOptions: {} }
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
@@ -72,7 +76,7 @@ export async function _sixDeserialize(_result: Six204Response): Promise<void> {
 
 export async function six(
   context: Client,
-  options: SixOptions = { requestOptions: {} }
+  options: Group2SixOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _sixSend(context, options);
   return _sixDeserialize(result);

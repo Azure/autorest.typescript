@@ -7,9 +7,9 @@ export {
 } from "./RenamedOperationClient.js";
 export {
   ClientType,
-  RenamedTwoOptions,
-  RenamedFourOptions,
-  RenamedSixOptions,
+  GroupRenamedTwoOptions,
+  GroupRenamedFourOptions,
+  GroupRenamedSixOptions,
   RenamedOneOptions,
   RenamedThreeOptions,
   RenamedFiveOptions,

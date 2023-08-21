@@ -18,10 +18,7 @@ export function _getSend(
 ): StreamableMethod<Get204Response> {
   return context
     .path("/special-headers/client-request-id")
-    .get({
-      ...operationOptionsToRequestParameters(options),
-      headers: { "client-request-id": options?.clientRequestId },
-    });
+    .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _getDeserialize(_result: Get204Response): Promise<void> {
