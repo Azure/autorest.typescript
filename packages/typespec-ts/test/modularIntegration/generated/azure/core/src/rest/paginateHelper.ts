@@ -4,12 +4,13 @@
 import {
   getPagedAsyncIterator,
   PagedAsyncIterableIterator,
-  PagedResult,
+  PagedResult
 } from "@azure/core-paging";
 import {
   Client,
   createRestError,
   PathUncheckedResponse,
+  StreamableMethod
 } from "@azure-rest/core-client";
 
 /**
@@ -36,6 +37,10 @@ export interface PagingOptions<TResponse> {
    * Custom function to extract pagination details for crating the PagedAsyncIterableIterator
    */
   customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+  deserializeCallback?: (
+    resp: TResponse | PathUncheckedResponse
+  ) => Promise<unknown>;
+  initialCallArgs?: unknown[];
 }
 
 /**
@@ -64,7 +69,9 @@ export type PaginateReturn<TResult> = TResult extends
  */
 export function paginate<TResponse extends PathUncheckedResponse>(
   client: Client,
-  initialResponse: TResponse,
+  initialResponseOrCall:
+    | TResponse
+    | ((...args: unknown[]) => PromiseLike<TResponse>),
   options: PagingOptions<TResponse> = {}
 ): PagedAsyncIterableIterator<PaginateReturn<TResponse>> {
   // Extract element type from initial response
@@ -72,8 +79,10 @@ export function paginate<TResponse extends PathUncheckedResponse>(
   let firstRun = true;
   // We need to check the response for success before trying to inspect it looking for
   // the properties to use for nextLink and itemName
-  checkPagingRequest(initialResponse);
-  const { itemName, nextLinkName } = getPaginationProperties(initialResponse);
+  if (typeof initialResponseOrCall !== "function") {
+    checkPagingRequest(initialResponseOrCall);
+  }
+  let itemName: string, nextLinkName: string | undefined;
   const { customGetPage } = options;
   const pagedResult: PagedResult<TElement[]> = {
     firstPageLink: "",
@@ -81,18 +90,32 @@ export function paginate<TResponse extends PathUncheckedResponse>(
       typeof customGetPage === "function"
         ? customGetPage
         : async (pageLink: string) => {
-            const result = firstRun
-              ? initialResponse
-              : await client.pathUnchecked(pageLink).get();
+            let result;
+            if (firstRun) {
+              result =
+                typeof initialResponseOrCall === "function"
+                  ? await initialResponseOrCall(
+                      ...(options.initialCallArgs ?? [])
+                    )
+                  : initialResponseOrCall;
+              const pageInfo = getPaginationProperties(result);
+              itemName = pageInfo.itemName;
+              nextLinkName = pageInfo.nextLinkName;
+            } else {
+              result = await client.pathUnchecked(pageLink).get();
+            }
             firstRun = false;
             checkPagingRequest(result);
             const nextLink = getNextLink(result.body, nextLinkName);
-            const values = getElements<TElement>(result.body, itemName);
+            const body = options.deserializeCallback
+              ? await options.deserializeCallback(result)
+              : result.body;
+            const values = getElements<TElement>(body, itemName);
             return {
               page: values,
-              nextPageLink: nextLink,
+              nextPageLink: nextLink
             };
-          },
+          }
   };
 
   return getPagedAsyncIterator(pagedResult);
@@ -149,7 +172,7 @@ function checkPagingRequest(response: PathUncheckedResponse): void {
     "206",
     "207",
     "208",
-    "226",
+    "226"
   ];
   if (!Http2xxStatusCodes.includes(response.status)) {
     throw createRestError(
@@ -195,7 +218,7 @@ function getPaginationProperties(initialResponse: PathUncheckedResponse) {
   if (!itemName) {
     throw new Error(
       `Couldn't paginate response\n Body doesn't contain an array property with name: ${[
-        ...itemNames,
+        ...itemNames
       ].join(" OR ")}`
     );
   }
