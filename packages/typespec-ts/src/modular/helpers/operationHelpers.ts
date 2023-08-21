@@ -128,7 +128,7 @@ export function getDeserializePrivateFunction(
 
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
-  } else if (response?.type.elementType) {
+  } else if (response?.type?.elementType) {
     statements.push(
       `return ${deserializeResponseValue(
         response.type,
@@ -618,9 +618,6 @@ export function getResponseMapping(
   const props: string[] = [];
   for (const property of properties) {
     // TODO: Do we need to also add headers in the result type?
-    if (property.restApiName === "message") {
-      property;
-    }
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
     if (property.type.type === "model") {
       let definition;
