@@ -19,9 +19,9 @@
     "format": "npm run -s prettier -- --write",
     "check-format": "npm run prettier -- --check",
     "prettier": "prettier --config ./.prettierrc src/**/*.ts",
-    "build": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
-    "build:cjs": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
-    "build:esm": "rimraf dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
+    "build": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
+    "build:cjs": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
+    "build:esm": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
