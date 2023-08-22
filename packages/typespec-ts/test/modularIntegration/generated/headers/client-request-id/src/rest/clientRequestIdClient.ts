@@ -12,6 +12,7 @@ import { RequestIdClientContext } from "./clientDefinitions.js";
 export default function createClient(
   options: ClientOptions = {}
 ): RequestIdClientContext {
+  console.log(options.telemetryOptions?.clientRequestIdHeaderName);
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-modular-model-usage-rest/1.0.0-beta.1`;
@@ -22,16 +23,16 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix,
+      userAgentPrefix
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info,
+      logger: options.loggingOptions?.logger ?? logger.info
     },
     telemetryOptions: {
       clientRequestIdHeaderName:
         options.telemetryOptions?.clientRequestIdHeaderName ??
-        "client-request-id",
-    },
+        "client-request-id"
+    }
   };
 
   const client = getClient(baseUrl, options) as RequestIdClientContext;

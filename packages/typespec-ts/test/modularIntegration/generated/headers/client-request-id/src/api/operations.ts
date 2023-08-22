@@ -4,11 +4,11 @@
 import "../models/models.js";
 import {
   Get204Response,
-  RequestIdClientContext as Client,
+  RequestIdClientContext as Client
 } from "../rest/index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 import { GetOptions } from "../models/options.js";
 
@@ -31,5 +31,6 @@ export async function get(
   options: GetOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _getSend(context, options);
+  console.log(result);
   return _getDeserialize(result);
 }
