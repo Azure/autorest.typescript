@@ -122,7 +122,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         generateSample
       )}`,
       clean:
-        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "execute:samples": "echo skipped",
       "extract-api":
         "rimraf review && mkdirp ./review && api-extractor run --local",

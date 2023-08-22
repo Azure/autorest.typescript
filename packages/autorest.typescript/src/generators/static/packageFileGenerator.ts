@@ -156,7 +156,7 @@ function regularAutorestPackage(
       lint: "echo skipped",
       audit: "echo skipped",
       clean:
-        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",
       "build:browser": "echo skipped",
       "build:test": "echo skipped",
