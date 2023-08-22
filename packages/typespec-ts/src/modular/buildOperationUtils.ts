@@ -367,7 +367,8 @@ function getTypePredictFunction(
     };
     if (type.properties) {
       statements.push(
-        `return ${type.properties.filter(p => !p.optional)
+        `return ${type.properties
+          .filter((p) => !p.optional)
           .map((p) => {
             return `(obj as ${type.name}Output).${p.restApiName} !== undefined`;
           })
@@ -411,7 +412,8 @@ function getTypePredictFunction(
       ) {
         statements.push("if (Array.isArray(obj) && obj.length > 0) {");
         statements.push(
-          `return (${type.elementType.properties.filter(p => !p.optional)
+          `return (${type.elementType.properties
+            .filter((p) => !p.optional)
             ?.map((p) => {
               return `(obj as ${type.elementType?.name}Output[])[0].${p.restApiName} !== undefined`;
             })

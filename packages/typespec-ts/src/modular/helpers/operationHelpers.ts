@@ -25,7 +25,10 @@ import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
 } from "./docsHelpers.js";
-import { getDeserializeFunctionName, isSpecialUnionVariant } from "../buildOperationUtils.js";
+import {
+  getDeserializeFunctionName,
+  isSpecialUnionVariant
+} from "../buildOperationUtils.js";
 import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
@@ -139,7 +142,7 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
-        response.type.nullable !== undefined ? !response.type.nullable: false
+        response.type.nullable !== undefined ? !response.type.nullable : false
       )}`
     );
   } else if (response?.type?.properties) {
