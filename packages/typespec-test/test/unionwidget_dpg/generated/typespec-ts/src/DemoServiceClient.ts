@@ -19,6 +19,14 @@ import {
   Widget14,
   Widget15,
   Widget16,
+  Widget17,
+  Widget18,
+  Widget19,
+  Widget20,
+  Widget21,
+  Widget22,
+  Widget23,
+  Widget24,
 } from "./models/models.js";
 import {
   CustomGetOptions,
@@ -38,6 +46,14 @@ import {
   CustomGet14Options,
   CustomGet15Options,
   CustomGet16Options,
+  CustomGet17Options,
+  CustomGet18Options,
+  CustomGet19Options,
+  CustomGet20Options,
+  CustomGet21Options,
+  CustomGet22Options,
+  CustomGet23Options,
+  CustomGet24Options,
 } from "./models/options.js";
 import {
   createDemoService,
@@ -60,6 +76,14 @@ import {
   customGet14,
   customGet15,
   customGet16,
+  customGet17,
+  customGet18,
+  customGet19,
+  customGet20,
+  customGet21,
+  customGet22,
+  customGet23,
+  customGet24,
 } from "./api/index.js";
 
 export { DemoServiceClientOptions } from "./api/DemoServiceContext.js";
@@ -171,5 +195,53 @@ export class DemoServiceClient {
     options: CustomGet16Options = { requestOptions: {} }
   ): Promise<Widget16> {
     return customGet16(this._client, options);
+  }
+
+  customGet17(
+    options: CustomGet17Options = { requestOptions: {} }
+  ): Promise<Widget17> {
+    return customGet17(this._client, options);
+  }
+
+  customGet18(
+    options: CustomGet18Options = { requestOptions: {} }
+  ): Promise<Widget18> {
+    return customGet18(this._client, options);
+  }
+
+  customGet19(
+    options: CustomGet19Options = { requestOptions: {} }
+  ): Promise<Widget19> {
+    return customGet19(this._client, options);
+  }
+
+  customGet20(
+    options: CustomGet20Options = { requestOptions: {} }
+  ): Promise<Widget20> {
+    return customGet20(this._client, options);
+  }
+
+  customGet21(
+    options: CustomGet21Options = { requestOptions: {} }
+  ): Promise<Widget21> {
+    return customGet21(this._client, options);
+  }
+
+  customGet22(
+    options: CustomGet22Options = { requestOptions: {} }
+  ): Promise<Widget22> {
+    return customGet22(this._client, options);
+  }
+
+  customGet23(
+    options: CustomGet23Options = { requestOptions: {} }
+  ): Promise<Widget23> {
+    return customGet23(this._client, options);
+  }
+
+  customGet24(
+    options: CustomGet24Options = { requestOptions: {} }
+  ): Promise<Widget24> {
+    return customGet24(this._client, options);
   }
 }

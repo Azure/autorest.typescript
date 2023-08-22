@@ -19,13 +19,7 @@ export function buildOperationUtils(
   project: Project,
   modularSourcesDir: string
 ) {
-  const specialUnions = model.types.filter(
-    (t) =>
-      (t.type === "combined" && isSpecialUnion(t)) ||
-      (t.type === "list" &&
-        t.elementType?.type === "combined" &&
-        isSpecialUnion(t.elementType))
-  );
+  const specialUnions = model.types.filter((t) => isSpecialUnion(t));
   if (specialUnions.length === 0) {
     return;
   }
@@ -80,20 +74,25 @@ function formalizeTypeUnionName(typeUnionName: string) {
     .replace(/\|/g, "And");
 }
 
-export function isSpecialUnionVariant(t: Type) {
-  return (
+export function isSpecialUnionVariant(t: Type): boolean {
+  if (
     t.type === "datetime" ||
     t.type === "byte-array" ||
     (t.type === "model" &&
-      t.properties?.some((p) => p.clientName !== p.restApiName)) ||
-    (t.type === "list" &&
-      t.elementType?.type === "model" &&
-      t.elementType?.properties?.some((p) => p.clientName !== p.restApiName))
-  );
+      t.properties?.some(
+        (p) => p.clientName !== p.restApiName || isSpecialUnionVariant(p.type)
+      )) ||
+    (t.type === "list" && t.elementType && isSpecialUnionVariant(t.elementType))
+  ) {
+    return true;
+  }
+  return false;
 }
 
-function isSpecialUnion(t: Type) {
-  return t.type === "combined" && t.types?.some(isSpecialUnionVariant);
+function isSpecialUnion(t: Type): boolean {
+  return (
+    t.type === "combined" && (t.types?.some(isSpecialUnionVariant) ?? false)
+  );
 }
 
 function addImportSet(
@@ -368,7 +367,7 @@ function getTypePredictFunction(
     };
     if (type.properties) {
       statements.push(
-        `return ${type.properties
+        `return ${type.properties.filter(p => !p.optional)
           .map((p) => {
             return `(obj as ${type.name}Output).${p.restApiName} !== undefined`;
           })
@@ -412,7 +411,7 @@ function getTypePredictFunction(
       ) {
         statements.push("if (Array.isArray(obj) && obj.length > 0) {");
         statements.push(
-          `return (${type.elementType.properties
+          `return (${type.elementType.properties.filter(p => !p.optional)
             ?.map((p) => {
               return `(obj as ${type.elementType?.name}Output[])[0].${p.restApiName} !== undefined`;
             })

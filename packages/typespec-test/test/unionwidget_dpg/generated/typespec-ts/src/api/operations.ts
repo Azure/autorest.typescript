@@ -19,6 +19,14 @@ import {
   Widget14,
   Widget15,
   Widget16,
+  Widget17,
+  Widget18,
+  Widget19,
+  Widget20,
+  Widget21,
+  Widget22,
+  Widget23,
+  Widget24,
 } from "../models/models.js";
 import {
   CustomGet10200Response,
@@ -29,8 +37,16 @@ import {
   CustomGet14200Response,
   CustomGet15200Response,
   CustomGet16200Response,
+  CustomGet17200Response,
+  CustomGet18200Response,
+  CustomGet19200Response,
   CustomGet200Response,
+  CustomGet20200Response,
+  CustomGet21200Response,
   CustomGet2200Response,
+  CustomGet22200Response,
+  CustomGet23200Response,
+  CustomGet24200Response,
   CustomGet3200Response,
   CustomGet4200Response,
   CustomGet5200Response,
@@ -48,15 +64,23 @@ import {
   deserializeWidgetData0AndWidgetData2Union,
   deserializeWidgetData1AndWidgetData2Union,
   deserializeWidgetData2AndWidgetData3Union,
+  deserializeWidgetData0AndWidgetData4Union,
+  deserializeWidgetData0AndWidgetData5Union,
   deserializeWidgetData0ArrayAndWidgetData2ArrayUnion,
   deserializeWidgetData1ArrayAndWidgetData2ArrayUnion,
   deserializeWidgetData2ArrayAndWidgetData3ArrayUnion,
+  deserializeWidgetData0ArrayAndWidgetData4ArrayUnion,
+  deserializeWidgetData0ArrayAndWidgetData5ArrayUnion,
   deserializeWidgetData0ArrayAndWidgetData2Union,
   deserializeWidgetData0AndWidgetData2ArrayUnion,
   deserializeWidgetData1ArrayAndWidgetData2Union,
   deserializeWidgetData1AndWidgetData2ArrayUnion,
   deserializeWidgetData2ArrayAndWidgetData3Union,
   deserializeWidgetData2AndWidgetData3ArrayUnion,
+  deserializeWidgetData0ArrayAndWidgetData4Union,
+  deserializeWidgetData0AndWidgetData4ArrayUnion,
+  deserializeWidgetData0ArrayAndWidgetData5Union,
+  deserializeWidgetData0AndWidgetData5ArrayUnion,
 } from "../utils/deserializeUtil.js";
 import {
   CustomGetOptions,
@@ -76,6 +100,14 @@ import {
   CustomGet14Options,
   CustomGet15Options,
   CustomGet16Options,
+  CustomGet17Options,
+  CustomGet18Options,
+  CustomGet19Options,
+  CustomGet20Options,
+  CustomGet21Options,
+  CustomGet22Options,
+  CustomGet23Options,
+  CustomGet24Options,
 } from "../models/options.js";
 
 export function _customGetSend(
@@ -218,7 +250,7 @@ export async function _customGet5Deserialize(
   result: CustomGet5200Response
 ): Promise<Widget5> {
   return {
-    data: result.body["data"],
+    data: deserializeWidgetData0AndWidgetData4Union(result.body["data"]),
   };
 }
 
@@ -243,9 +275,7 @@ export async function _customGet6Deserialize(
   result: CustomGet6200Response
 ): Promise<Widget6> {
   return {
-    data: deserializeWidgetData0ArrayAndWidgetData2ArrayUnion(
-      result.body["data"]
-    ),
+    data: deserializeWidgetData0AndWidgetData5Union(result.body["data"]),
   };
 }
 
@@ -270,9 +300,7 @@ export async function _customGet7Deserialize(
   result: CustomGet7200Response
 ): Promise<Widget7> {
   return {
-    data: deserializeWidgetData1ArrayAndWidgetData2ArrayUnion(
-      result.body["data"]
-    ),
+    data: result.body["data"],
   };
 }
 
@@ -297,7 +325,7 @@ export async function _customGet8Deserialize(
   result: CustomGet8200Response
 ): Promise<Widget8> {
   return {
-    data: deserializeWidgetData2ArrayAndWidgetData3ArrayUnion(
+    data: deserializeWidgetData0ArrayAndWidgetData2ArrayUnion(
       result.body["data"]
     ),
   };
@@ -324,7 +352,9 @@ export async function _customGet9Deserialize(
   result: CustomGet9200Response
 ): Promise<Widget9> {
   return {
-    data: result.body["data"],
+    data: deserializeWidgetData1ArrayAndWidgetData2ArrayUnion(
+      result.body["data"]
+    ),
   };
 }
 
@@ -349,7 +379,9 @@ export async function _customGet10Deserialize(
   result: CustomGet10200Response
 ): Promise<Widget10> {
   return {
-    data: result.body["data"],
+    data: deserializeWidgetData2ArrayAndWidgetData3ArrayUnion(
+      result.body["data"]
+    ),
   };
 }
 
@@ -374,7 +406,9 @@ export async function _customGet11Deserialize(
   result: CustomGet11200Response
 ): Promise<Widget11> {
   return {
-    data: deserializeWidgetData0ArrayAndWidgetData2Union(result.body["data"]),
+    data: deserializeWidgetData0ArrayAndWidgetData4ArrayUnion(
+      result.body["data"]
+    ),
   };
 }
 
@@ -399,7 +433,9 @@ export async function _customGet12Deserialize(
   result: CustomGet12200Response
 ): Promise<Widget12> {
   return {
-    data: deserializeWidgetData0AndWidgetData2ArrayUnion(result.body["data"]),
+    data: deserializeWidgetData0ArrayAndWidgetData5ArrayUnion(
+      result.body["data"]
+    ),
   };
 }
 
@@ -424,7 +460,7 @@ export async function _customGet13Deserialize(
   result: CustomGet13200Response
 ): Promise<Widget13> {
   return {
-    data: deserializeWidgetData1ArrayAndWidgetData2Union(result.body["data"]),
+    data: result.body["data"],
   };
 }
 
@@ -449,7 +485,7 @@ export async function _customGet14Deserialize(
   result: CustomGet14200Response
 ): Promise<Widget14> {
   return {
-    data: deserializeWidgetData1AndWidgetData2ArrayUnion(result.body["data"]),
+    data: result.body["data"],
   };
 }
 
@@ -474,7 +510,7 @@ export async function _customGet15Deserialize(
   result: CustomGet15200Response
 ): Promise<Widget15> {
   return {
-    data: deserializeWidgetData2ArrayAndWidgetData3Union(result.body["data"]),
+    data: deserializeWidgetData0ArrayAndWidgetData2Union(result.body["data"]),
   };
 }
 
@@ -499,7 +535,7 @@ export async function _customGet16Deserialize(
   result: CustomGet16200Response
 ): Promise<Widget16> {
   return {
-    data: deserializeWidgetData2AndWidgetData3ArrayUnion(result.body["data"]),
+    data: deserializeWidgetData0AndWidgetData2ArrayUnion(result.body["data"]),
   };
 }
 
@@ -509,4 +545,204 @@ export async function customGet16(
 ): Promise<Widget16> {
   const result = await _customGet16Send(context, options);
   return _customGet16Deserialize(result);
+}
+
+export function _customGet17Send(
+  context: Client,
+  options: CustomGet17Options = { requestOptions: {} }
+): StreamableMethod<CustomGet17200Response> {
+  return context
+    .path("/customGet17")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet17Deserialize(
+  result: CustomGet17200Response
+): Promise<Widget17> {
+  return {
+    data: deserializeWidgetData1ArrayAndWidgetData2Union(result.body["data"]),
+  };
+}
+
+export async function customGet17(
+  context: Client,
+  options: CustomGet17Options = { requestOptions: {} }
+): Promise<Widget17> {
+  const result = await _customGet17Send(context, options);
+  return _customGet17Deserialize(result);
+}
+
+export function _customGet18Send(
+  context: Client,
+  options: CustomGet18Options = { requestOptions: {} }
+): StreamableMethod<CustomGet18200Response> {
+  return context
+    .path("/customGet18")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet18Deserialize(
+  result: CustomGet18200Response
+): Promise<Widget18> {
+  return {
+    data: deserializeWidgetData1AndWidgetData2ArrayUnion(result.body["data"]),
+  };
+}
+
+export async function customGet18(
+  context: Client,
+  options: CustomGet18Options = { requestOptions: {} }
+): Promise<Widget18> {
+  const result = await _customGet18Send(context, options);
+  return _customGet18Deserialize(result);
+}
+
+export function _customGet19Send(
+  context: Client,
+  options: CustomGet19Options = { requestOptions: {} }
+): StreamableMethod<CustomGet19200Response> {
+  return context
+    .path("/customGet19")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet19Deserialize(
+  result: CustomGet19200Response
+): Promise<Widget19> {
+  return {
+    data: deserializeWidgetData2ArrayAndWidgetData3Union(result.body["data"]),
+  };
+}
+
+export async function customGet19(
+  context: Client,
+  options: CustomGet19Options = { requestOptions: {} }
+): Promise<Widget19> {
+  const result = await _customGet19Send(context, options);
+  return _customGet19Deserialize(result);
+}
+
+export function _customGet20Send(
+  context: Client,
+  options: CustomGet20Options = { requestOptions: {} }
+): StreamableMethod<CustomGet20200Response> {
+  return context
+    .path("/customGet20")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet20Deserialize(
+  result: CustomGet20200Response
+): Promise<Widget20> {
+  return {
+    data: deserializeWidgetData2AndWidgetData3ArrayUnion(result.body["data"]),
+  };
+}
+
+export async function customGet20(
+  context: Client,
+  options: CustomGet20Options = { requestOptions: {} }
+): Promise<Widget20> {
+  const result = await _customGet20Send(context, options);
+  return _customGet20Deserialize(result);
+}
+
+export function _customGet21Send(
+  context: Client,
+  options: CustomGet21Options = { requestOptions: {} }
+): StreamableMethod<CustomGet21200Response> {
+  return context
+    .path("/customGet21")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet21Deserialize(
+  result: CustomGet21200Response
+): Promise<Widget21> {
+  return {
+    data: deserializeWidgetData0ArrayAndWidgetData4Union(result.body["data"]),
+  };
+}
+
+export async function customGet21(
+  context: Client,
+  options: CustomGet21Options = { requestOptions: {} }
+): Promise<Widget21> {
+  const result = await _customGet21Send(context, options);
+  return _customGet21Deserialize(result);
+}
+
+export function _customGet22Send(
+  context: Client,
+  options: CustomGet22Options = { requestOptions: {} }
+): StreamableMethod<CustomGet22200Response> {
+  return context
+    .path("/customGet22")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet22Deserialize(
+  result: CustomGet22200Response
+): Promise<Widget22> {
+  return {
+    data: deserializeWidgetData0AndWidgetData4ArrayUnion(result.body["data"]),
+  };
+}
+
+export async function customGet22(
+  context: Client,
+  options: CustomGet22Options = { requestOptions: {} }
+): Promise<Widget22> {
+  const result = await _customGet22Send(context, options);
+  return _customGet22Deserialize(result);
+}
+
+export function _customGet23Send(
+  context: Client,
+  options: CustomGet23Options = { requestOptions: {} }
+): StreamableMethod<CustomGet23200Response> {
+  return context
+    .path("/customGet23")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet23Deserialize(
+  result: CustomGet23200Response
+): Promise<Widget23> {
+  return {
+    data: deserializeWidgetData0ArrayAndWidgetData5Union(result.body["data"]),
+  };
+}
+
+export async function customGet23(
+  context: Client,
+  options: CustomGet23Options = { requestOptions: {} }
+): Promise<Widget23> {
+  const result = await _customGet23Send(context, options);
+  return _customGet23Deserialize(result);
+}
+
+export function _customGet24Send(
+  context: Client,
+  options: CustomGet24Options = { requestOptions: {} }
+): StreamableMethod<CustomGet24200Response> {
+  return context
+    .path("/customGet24")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet24Deserialize(
+  result: CustomGet24200Response
+): Promise<Widget24> {
+  return {
+    data: deserializeWidgetData0AndWidgetData5ArrayUnion(result.body["data"]),
+  };
+}
+
+export async function customGet24(
+  context: Client,
+  options: CustomGet24Options = { requestOptions: {} }
+): Promise<Widget24> {
+  const result = await _customGet24Send(context, options);
+  return _customGet24Deserialize(result);
 }

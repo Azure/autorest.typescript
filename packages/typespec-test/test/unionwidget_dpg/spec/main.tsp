@@ -27,6 +27,15 @@ model WidgetData3 {
   barProp: string;
 }
 
+model WidgetData4 {
+  start: utcDateTime;
+  end?: utcDateTime;
+}
+
+model WidgetData5 {
+  data: bytes;
+}
+
 model Widget {
   @key id: string;
   weight: int32;
@@ -50,53 +59,84 @@ model Widget4 extends Widget {
 }
 
 model Widget5 extends Widget {
-  data: WidgetData0[] | WidgetData1[]
+  data: WidgetData0 | WidgetData4
 }
 
 model Widget6 extends Widget {
-  data: WidgetData0[] | WidgetData2[]
+  data: WidgetData0 | WidgetData5
 }
 
 model Widget7 extends Widget {
-  data: WidgetData1[] | WidgetData2[]
+  data: WidgetData0[] | WidgetData1[]
 }
 
 model Widget8 extends Widget {
-  data: WidgetData2[] | WidgetData3[]
+  data: WidgetData0[] | WidgetData2[]
 }
 
 model Widget9 extends Widget {
-  data: WidgetData0[] | WidgetData1;
+  data: WidgetData1[] | WidgetData2[]
 }
 
 model Widget10 extends Widget {
-  data: WidgetData0 | WidgetData1[];
+  data: WidgetData2[] | WidgetData3[]
 }
 
 model Widget11 extends Widget {
-  data: WidgetData0[] | WidgetData2;
+  data: WidgetData0[] | WidgetData4[]
 }
 
 model Widget12 extends Widget {
-  data: WidgetData0 | WidgetData2[];
+  data: WidgetData0[] | WidgetData5[]
 }
 
 model Widget13 extends Widget {
-  data: WidgetData1[] | WidgetData2;
+  data: WidgetData0[] | WidgetData1;
 }
 
 model Widget14 extends Widget {
-  data: WidgetData1 | WidgetData2[];
+  data: WidgetData0 | WidgetData1[];
 }
 
 model Widget15 extends Widget {
-  data: WidgetData2[] | WidgetData3;
+  data: WidgetData0[] | WidgetData2;
 }
 
 model Widget16 extends Widget {
+  data: WidgetData0 | WidgetData2[];
+}
+
+model Widget17 extends Widget {
+  data: WidgetData1[] | WidgetData2;
+}
+
+model Widget18 extends Widget {
+  data: WidgetData1 | WidgetData2[];
+}
+
+model Widget19 extends Widget {
+  data: WidgetData2[] | WidgetData3;
+}
+
+model Widget20 extends Widget {
   data: WidgetData2 | WidgetData3[];
 }
 
+model Widget21 extends Widget {
+  data: WidgetData0[] | WidgetData4
+}
+
+model Widget22 extends Widget {
+  data: WidgetData0 | WidgetData4[]
+}
+
+model Widget23 extends Widget {
+  data: WidgetData0[] | WidgetData5
+}
+
+model Widget24 extends Widget {
+  data: WidgetData0 | WidgetData5[]
+}
 
 @error
 model Error {
@@ -122,5 +162,13 @@ interface WidgetService {
   @get @route("customGet14") customGet14(): Widget14;
   @get @route("customGet15") customGet15(): Widget15;
   @get @route("customGet16") customGet16(): Widget16;  
+  @get @route("customGet17") customGet17(): Widget17;  
+  @get @route("customGet18") customGet18(): Widget18;
+  @get @route("customGet19") customGet19(): Widget19;
+  @get @route("customGet20") customGet20(): Widget20;
+  @get @route("customGet21") customGet21(): Widget21;
+  @get @route("customGet22") customGet22(): Widget22;
+  @get @route("customGet23") customGet23(): Widget23;
+  @get @route("customGet24") customGet24(): Widget24; 
 }
 

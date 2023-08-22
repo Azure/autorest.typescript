@@ -19,6 +19,14 @@ import {
   CustomGet14Parameters,
   CustomGet15Parameters,
   CustomGet16Parameters,
+  CustomGet17Parameters,
+  CustomGet18Parameters,
+  CustomGet19Parameters,
+  CustomGet20Parameters,
+  CustomGet21Parameters,
+  CustomGet22Parameters,
+  CustomGet23Parameters,
+  CustomGet24Parameters,
 } from "./parameters.js";
 import {
   CustomGet200Response,
@@ -38,6 +46,14 @@ import {
   CustomGet14200Response,
   CustomGet15200Response,
   CustomGet16200Response,
+  CustomGet17200Response,
+  CustomGet18200Response,
+  CustomGet19200Response,
+  CustomGet20200Response,
+  CustomGet21200Response,
+  CustomGet22200Response,
+  CustomGet23200Response,
+  CustomGet24200Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -123,6 +139,54 @@ export interface CustomGet16 {
   ): StreamableMethod<CustomGet16200Response>;
 }
 
+export interface CustomGet17 {
+  get(
+    options?: CustomGet17Parameters
+  ): StreamableMethod<CustomGet17200Response>;
+}
+
+export interface CustomGet18 {
+  get(
+    options?: CustomGet18Parameters
+  ): StreamableMethod<CustomGet18200Response>;
+}
+
+export interface CustomGet19 {
+  get(
+    options?: CustomGet19Parameters
+  ): StreamableMethod<CustomGet19200Response>;
+}
+
+export interface CustomGet20 {
+  get(
+    options?: CustomGet20Parameters
+  ): StreamableMethod<CustomGet20200Response>;
+}
+
+export interface CustomGet21 {
+  get(
+    options?: CustomGet21Parameters
+  ): StreamableMethod<CustomGet21200Response>;
+}
+
+export interface CustomGet22 {
+  get(
+    options?: CustomGet22Parameters
+  ): StreamableMethod<CustomGet22200Response>;
+}
+
+export interface CustomGet23 {
+  get(
+    options?: CustomGet23Parameters
+  ): StreamableMethod<CustomGet23200Response>;
+}
+
+export interface CustomGet24 {
+  get(
+    options?: CustomGet24Parameters
+  ): StreamableMethod<CustomGet24200Response>;
+}
+
 export interface Routes {
   /** Resource for '/customGet' has methods for the following verbs: get */
   (path: "/customGet"): CustomGet;
@@ -158,6 +222,22 @@ export interface Routes {
   (path: "/customGet15"): CustomGet15;
   /** Resource for '/customGet16' has methods for the following verbs: get */
   (path: "/customGet16"): CustomGet16;
+  /** Resource for '/customGet17' has methods for the following verbs: get */
+  (path: "/customGet17"): CustomGet17;
+  /** Resource for '/customGet18' has methods for the following verbs: get */
+  (path: "/customGet18"): CustomGet18;
+  /** Resource for '/customGet19' has methods for the following verbs: get */
+  (path: "/customGet19"): CustomGet19;
+  /** Resource for '/customGet20' has methods for the following verbs: get */
+  (path: "/customGet20"): CustomGet20;
+  /** Resource for '/customGet21' has methods for the following verbs: get */
+  (path: "/customGet21"): CustomGet21;
+  /** Resource for '/customGet22' has methods for the following verbs: get */
+  (path: "/customGet22"): CustomGet22;
+  /** Resource for '/customGet23' has methods for the following verbs: get */
+  (path: "/customGet23"): CustomGet23;
+  /** Resource for '/customGet24' has methods for the following verbs: get */
+  (path: "/customGet24"): CustomGet24;
 }
 
 export type DemoServiceContext = Client & {

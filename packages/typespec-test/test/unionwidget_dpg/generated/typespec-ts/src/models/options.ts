@@ -36,3 +36,19 @@ export interface CustomGet14Options extends OperationOptions {}
 export interface CustomGet15Options extends OperationOptions {}
 
 export interface CustomGet16Options extends OperationOptions {}
+
+export interface CustomGet17Options extends OperationOptions {}
+
+export interface CustomGet18Options extends OperationOptions {}
+
+export interface CustomGet19Options extends OperationOptions {}
+
+export interface CustomGet20Options extends OperationOptions {}
+
+export interface CustomGet21Options extends OperationOptions {}
+
+export interface CustomGet22Options extends OperationOptions {}
+
+export interface CustomGet23Options extends OperationOptions {}
+
+export interface CustomGet24Options extends OperationOptions {}

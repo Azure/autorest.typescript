@@ -24,4 +24,12 @@ export {
   customGet14,
   customGet15,
   customGet16,
+  customGet17,
+  customGet18,
+  customGet19,
+  customGet20,
+  customGet21,
+  customGet22,
+  customGet23,
+  customGet24,
 } from "./operations.js";

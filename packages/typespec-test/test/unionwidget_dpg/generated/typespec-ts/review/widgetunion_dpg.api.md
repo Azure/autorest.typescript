@@ -39,7 +39,39 @@ export interface CustomGet16Options extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface CustomGet17Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet18Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet19Options extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface CustomGet1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet20Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet21Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet22Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet23Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet24Options extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -100,7 +132,23 @@ export class DemoServiceClient {
     // (undocumented)
     customGet16(options?: CustomGet16Options): Promise<Widget16>;
     // (undocumented)
+    customGet17(options?: CustomGet17Options): Promise<Widget17>;
+    // (undocumented)
+    customGet18(options?: CustomGet18Options): Promise<Widget18>;
+    // (undocumented)
+    customGet19(options?: CustomGet19Options): Promise<Widget19>;
+    // (undocumented)
     customGet2(options?: CustomGet2Options): Promise<Widget2>;
+    // (undocumented)
+    customGet20(options?: CustomGet20Options): Promise<Widget20>;
+    // (undocumented)
+    customGet21(options?: CustomGet21Options): Promise<Widget21>;
+    // (undocumented)
+    customGet22(options?: CustomGet22Options): Promise<Widget22>;
+    // (undocumented)
+    customGet23(options?: CustomGet23Options): Promise<Widget23>;
+    // (undocumented)
+    customGet24(options?: CustomGet24Options): Promise<Widget24>;
     // (undocumented)
     customGet3(options?: CustomGet3Options): Promise<Widget3>;
     // (undocumented)
@@ -140,49 +188,97 @@ export interface Widget1 {
 // @public (undocumented)
 export interface Widget10 {
     // (undocumented)
-    data: WidgetData0 | WidgetData1[];
+    data: WidgetData2[] | WidgetData3[];
 }
 
 // @public (undocumented)
 export interface Widget11 {
     // (undocumented)
-    data: WidgetData0[] | WidgetData2;
+    data: WidgetData0[] | WidgetData4[];
 }
 
 // @public (undocumented)
 export interface Widget12 {
     // (undocumented)
-    data: WidgetData0 | WidgetData2[];
+    data: WidgetData0[] | WidgetData5[];
 }
 
 // @public (undocumented)
 export interface Widget13 {
     // (undocumented)
-    data: WidgetData1[] | WidgetData2;
+    data: WidgetData0[] | WidgetData1;
 }
 
 // @public (undocumented)
 export interface Widget14 {
     // (undocumented)
-    data: WidgetData1 | WidgetData2[];
+    data: WidgetData0 | WidgetData1[];
 }
 
 // @public (undocumented)
 export interface Widget15 {
     // (undocumented)
-    data: WidgetData2[] | WidgetData3;
+    data: WidgetData0[] | WidgetData2;
 }
 
 // @public (undocumented)
 export interface Widget16 {
     // (undocumented)
-    data: WidgetData2 | WidgetData3[];
+    data: WidgetData0 | WidgetData2[];
+}
+
+// @public (undocumented)
+export interface Widget17 {
+    // (undocumented)
+    data: WidgetData1[] | WidgetData2;
+}
+
+// @public (undocumented)
+export interface Widget18 {
+    // (undocumented)
+    data: WidgetData1 | WidgetData2[];
+}
+
+// @public (undocumented)
+export interface Widget19 {
+    // (undocumented)
+    data: WidgetData2[] | WidgetData3;
 }
 
 // @public (undocumented)
 export interface Widget2 {
     // (undocumented)
     data: WidgetData0 | WidgetData2;
+}
+
+// @public (undocumented)
+export interface Widget20 {
+    // (undocumented)
+    data: WidgetData2 | WidgetData3[];
+}
+
+// @public (undocumented)
+export interface Widget21 {
+    // (undocumented)
+    data: WidgetData0[] | WidgetData4;
+}
+
+// @public (undocumented)
+export interface Widget22 {
+    // (undocumented)
+    data: WidgetData0 | WidgetData4[];
+}
+
+// @public (undocumented)
+export interface Widget23 {
+    // (undocumented)
+    data: WidgetData0[] | WidgetData5;
+}
+
+// @public (undocumented)
+export interface Widget24 {
+    // (undocumented)
+    data: WidgetData0 | WidgetData5[];
 }
 
 // @public (undocumented)
@@ -200,31 +296,31 @@ export interface Widget4 {
 // @public (undocumented)
 export interface Widget5 {
     // (undocumented)
-    data: WidgetData0[] | WidgetData1[];
+    data: WidgetData0 | WidgetData4;
 }
 
 // @public (undocumented)
 export interface Widget6 {
     // (undocumented)
-    data: WidgetData0[] | WidgetData2[];
+    data: WidgetData0 | WidgetData5;
 }
 
 // @public (undocumented)
 export interface Widget7 {
     // (undocumented)
-    data: WidgetData1[] | WidgetData2[];
+    data: WidgetData0[] | WidgetData1[];
 }
 
 // @public (undocumented)
 export interface Widget8 {
     // (undocumented)
-    data: WidgetData2[] | WidgetData3[];
+    data: WidgetData0[] | WidgetData2[];
 }
 
 // @public (undocumented)
 export interface Widget9 {
     // (undocumented)
-    data: WidgetData0[] | WidgetData1;
+    data: WidgetData1[] | WidgetData2[];
 }
 
 // @public (undocumented)
@@ -249,6 +345,20 @@ export interface WidgetData2 {
 export interface WidgetData3 {
     // (undocumented)
     barProp: string;
+}
+
+// @public (undocumented)
+export interface WidgetData4 {
+    // (undocumented)
+    end?: Date;
+    // (undocumented)
+    start: Date;
+}
+
+// @public (undocumented)
+export interface WidgetData5 {
+    // (undocumented)
+    data: Uint8Array;
 }
 
 // (No @packageDocumentation comment for this package)

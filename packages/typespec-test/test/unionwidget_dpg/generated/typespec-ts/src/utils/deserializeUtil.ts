@@ -6,13 +6,18 @@ import {
   WidgetData2Output,
   WidgetData1Output,
   WidgetData3Output,
+  WidgetData4Output,
+  WidgetData5Output,
 } from "../rest/index.js";
 import {
   WidgetData0,
   WidgetData2,
   WidgetData1,
   WidgetData3,
+  WidgetData4,
+  WidgetData5,
 } from "../models/models.js";
+import { stringToUint8Array } from "@azure/core-util";
 
 /** type predict function fpr WidgetData2 from WidgetData0Output | WidgetData2Output */
 function isWidgetData2(
@@ -115,6 +120,82 @@ export function deserializeWidgetData2AndWidgetData3Union(
   }
   if (isWidgetData3(obj)) {
     return deserializeWidgetData3(obj);
+  }
+  return obj;
+}
+
+/** type predict function fpr WidgetData4 from WidgetData0Output | WidgetData4Output */
+function isWidgetData4(
+  obj: WidgetData0Output | WidgetData4Output
+): obj is WidgetData4Output;
+/** type predict function fpr WidgetData4 from WidgetData0Output[] | WidgetData4Output */
+function isWidgetData4(
+  obj: WidgetData0Output[] | WidgetData4Output
+): obj is WidgetData4Output;
+/** type predict function fpr WidgetData4 from WidgetData0Output | WidgetData4Output */
+function isWidgetData4(
+  obj:
+    | WidgetData0Output
+    | WidgetData4Output
+    | WidgetData0Output[]
+    | WidgetData4Output
+): obj is WidgetData4Output {
+  return (obj as WidgetData4Output).start !== undefined;
+}
+
+/** deserialize function for WidgetData4 */
+function deserializeWidgetData4(obj: WidgetData4Output): WidgetData4 {
+  return {
+    start: new Date(obj["start"]),
+    end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
+  };
+}
+
+/** deserialize function for WidgetData0Output | WidgetData4Output */
+export function deserializeWidgetData0AndWidgetData4Union(
+  obj: WidgetData0Output | WidgetData4Output
+): WidgetData0 | WidgetData4 {
+  if (isWidgetData4(obj)) {
+    return deserializeWidgetData4(obj);
+  }
+  return obj;
+}
+
+/** type predict function fpr WidgetData5 from WidgetData0Output | WidgetData5Output */
+function isWidgetData5(
+  obj: WidgetData0Output | WidgetData5Output
+): obj is WidgetData5Output;
+/** type predict function fpr WidgetData5 from WidgetData0Output[] | WidgetData5Output */
+function isWidgetData5(
+  obj: WidgetData0Output[] | WidgetData5Output
+): obj is WidgetData5Output;
+/** type predict function fpr WidgetData5 from WidgetData0Output | WidgetData5Output */
+function isWidgetData5(
+  obj:
+    | WidgetData0Output
+    | WidgetData5Output
+    | WidgetData0Output[]
+    | WidgetData5Output
+): obj is WidgetData5Output {
+  return (obj as WidgetData5Output).data !== undefined;
+}
+
+/** deserialize function for WidgetData5 */
+function deserializeWidgetData5(obj: WidgetData5Output): WidgetData5 {
+  return {
+    data:
+      typeof obj["data"] === "string"
+        ? stringToUint8Array(obj["data"], "base64")
+        : obj["data"],
+  };
+}
+
+/** deserialize function for WidgetData0Output | WidgetData5Output */
+export function deserializeWidgetData0AndWidgetData5Union(
+  obj: WidgetData0Output | WidgetData5Output
+): WidgetData0 | WidgetData5 {
+  if (isWidgetData5(obj)) {
+    return deserializeWidgetData5(obj);
   }
   return obj;
 }
@@ -236,6 +317,94 @@ export function deserializeWidgetData2ArrayAndWidgetData3ArrayUnion(
   return obj;
 }
 
+/** type predict function fpr WidgetData4Output array from WidgetData0Output[] | WidgetData4Output[] */
+function isWidgetData4Array(
+  obj: WidgetData0Output[] | WidgetData4Output[]
+): obj is WidgetData4Output[];
+/** type predict function fpr WidgetData4Output array from WidgetData0Output | WidgetData4Output[] */
+function isWidgetData4Array(
+  obj: WidgetData0Output | WidgetData4Output[]
+): obj is WidgetData4Output[];
+/** type predict function fpr WidgetData4Output array from WidgetData0Output[] | WidgetData4Output[] */
+function isWidgetData4Array(
+  obj:
+    | WidgetData0Output[]
+    | WidgetData4Output[]
+    | WidgetData0Output
+    | WidgetData4Output[]
+): obj is WidgetData4Output[] {
+  if (Array.isArray(obj) && obj.length > 0) {
+    return (obj as WidgetData4Output[])[0].start !== undefined;
+  }
+
+  return false;
+}
+
+/** deserialize function for WidgetData4 array */
+function deserializeWidgetData4Array(obj: WidgetData4Output[]): WidgetData4[] {
+  return (obj || []).map((item) => {
+    return {
+      start: new Date(item["start"]),
+      end: item["end"] !== undefined ? new Date(item["end"]) : undefined,
+    };
+  });
+}
+
+/** deserialize function for WidgetData0Output[] | WidgetData4Output[] */
+export function deserializeWidgetData0ArrayAndWidgetData4ArrayUnion(
+  obj: WidgetData0Output[] | WidgetData4Output[]
+): WidgetData0[] | WidgetData4[] {
+  if (isWidgetData4Array(obj)) {
+    return deserializeWidgetData4Array(obj);
+  }
+  return obj;
+}
+
+/** type predict function fpr WidgetData5Output array from WidgetData0Output[] | WidgetData5Output[] */
+function isWidgetData5Array(
+  obj: WidgetData0Output[] | WidgetData5Output[]
+): obj is WidgetData5Output[];
+/** type predict function fpr WidgetData5Output array from WidgetData0Output | WidgetData5Output[] */
+function isWidgetData5Array(
+  obj: WidgetData0Output | WidgetData5Output[]
+): obj is WidgetData5Output[];
+/** type predict function fpr WidgetData5Output array from WidgetData0Output[] | WidgetData5Output[] */
+function isWidgetData5Array(
+  obj:
+    | WidgetData0Output[]
+    | WidgetData5Output[]
+    | WidgetData0Output
+    | WidgetData5Output[]
+): obj is WidgetData5Output[] {
+  if (Array.isArray(obj) && obj.length > 0) {
+    return (obj as WidgetData5Output[])[0].data !== undefined;
+  }
+
+  return false;
+}
+
+/** deserialize function for WidgetData5 array */
+function deserializeWidgetData5Array(obj: WidgetData5Output[]): WidgetData5[] {
+  return (obj || []).map((item) => {
+    return {
+      data:
+        typeof item["data"] === "string"
+          ? stringToUint8Array(item["data"], "base64")
+          : item["data"],
+    };
+  });
+}
+
+/** deserialize function for WidgetData0Output[] | WidgetData5Output[] */
+export function deserializeWidgetData0ArrayAndWidgetData5ArrayUnion(
+  obj: WidgetData0Output[] | WidgetData5Output[]
+): WidgetData0[] | WidgetData5[] {
+  if (isWidgetData5Array(obj)) {
+    return deserializeWidgetData5Array(obj);
+  }
+  return obj;
+}
+
 /** deserialize function for WidgetData0Output[] | WidgetData2Output */
 export function deserializeWidgetData0ArrayAndWidgetData2Union(
   obj: WidgetData0Output[] | WidgetData2Output
@@ -298,6 +467,46 @@ export function deserializeWidgetData2AndWidgetData3ArrayUnion(
   }
   if (isWidgetData3Array(obj)) {
     return deserializeWidgetData3Array(obj);
+  }
+  return obj;
+}
+
+/** deserialize function for WidgetData0Output[] | WidgetData4Output */
+export function deserializeWidgetData0ArrayAndWidgetData4Union(
+  obj: WidgetData0Output[] | WidgetData4Output
+): WidgetData0[] | WidgetData4 {
+  if (isWidgetData4(obj)) {
+    return deserializeWidgetData4(obj);
+  }
+  return obj;
+}
+
+/** deserialize function for WidgetData0Output | WidgetData4Output[] */
+export function deserializeWidgetData0AndWidgetData4ArrayUnion(
+  obj: WidgetData0Output | WidgetData4Output[]
+): WidgetData0 | WidgetData4[] {
+  if (isWidgetData4Array(obj)) {
+    return deserializeWidgetData4Array(obj);
+  }
+  return obj;
+}
+
+/** deserialize function for WidgetData0Output[] | WidgetData5Output */
+export function deserializeWidgetData0ArrayAndWidgetData5Union(
+  obj: WidgetData0Output[] | WidgetData5Output
+): WidgetData0[] | WidgetData5 {
+  if (isWidgetData5(obj)) {
+    return deserializeWidgetData5(obj);
+  }
+  return obj;
+}
+
+/** deserialize function for WidgetData0Output | WidgetData5Output[] */
+export function deserializeWidgetData0AndWidgetData5ArrayUnion(
+  obj: WidgetData0Output | WidgetData5Output[]
+): WidgetData0 | WidgetData5[] {
+  if (isWidgetData5Array(obj)) {
+    return deserializeWidgetData5Array(obj);
   }
   return obj;
 }
