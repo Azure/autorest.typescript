@@ -130,12 +130,13 @@ const buildDefaultReturn = (hasDefault: boolean) => {
     : `options.apiVersion = options.apiVersion ?? "2022-05-15-preview";`;
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint type: string, The endpoint to use.
-   * @param options type: ClientOptions, the parameter for all optional parameters
+   * @param endpoint - The endpoint to use.
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
@@ -154,6 +155,9 @@ const buildDefaultReturn = (hasDefault: boolean) => {
       userAgentOptions: {
         userAgentPrefix,
       },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
+      },
     };
   
     const client = getClient(baseUrl, options) as testClient;
@@ -165,6 +169,7 @@ const buildDefaultReturn = (hasDefault: boolean) => {
 const buildPathReturn_WithDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
 
   export interface testClientOptions extends ClientOptions {
@@ -173,8 +178,8 @@ const buildPathReturn_WithDefault = () => {
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint type: string, The endpoint to use.
-   * @param options type: testClientOptions, the parameter for all optional parameters
+   * @param endpoint - The endpoint to use.
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
@@ -193,6 +198,9 @@ const buildPathReturn_WithDefault = () => {
       userAgentOptions: {
         userAgentPrefix,
       },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
+      },
     };
   
     const client = getClient(baseUrl, options) as testClient;
@@ -204,13 +212,14 @@ const buildPathReturn_WithDefault = () => {
 const buildPathReturn_WithoutDefault = () => {
   return `
   import { getClient, ClientOptions } from "@azure-rest/core-client";
+  import { logger } from "./logger";
   import { testClient } from "./clientDefinitions";
   
   /**
    * Initialize a new instance of \`testClient\`
-   * @param endpoint type: string, The endpoint to use.
-   * @param apiVersion type: string, Api Version Possible values: 2022-05-15-preview
-   * @param options type: ClientOptions, the parameter for all optional parameters
+   * @param endpoint - The endpoint to use.
+   * @param apiVersion - Api Version Possible values: 2022-05-15-preview
+   * @param options - the parameter for all optional parameters
    */
   export default function createClient(
     endpoint: string,
@@ -228,6 +237,9 @@ const buildPathReturn_WithoutDefault = () => {
       ...options,
       userAgentOptions: {
         userAgentPrefix,
+      },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
       },
     };
   

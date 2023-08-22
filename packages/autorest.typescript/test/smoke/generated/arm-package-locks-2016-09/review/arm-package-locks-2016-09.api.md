@@ -45,6 +45,7 @@ export class ManagementLockClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: ManagementLockClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -52,7 +53,7 @@ export class ManagementLockClient extends coreClient.ServiceClient {
     // (undocumented)
     managementLocks: ManagementLocks;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
 }
 
 // @public

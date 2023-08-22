@@ -84,6 +84,10 @@ export function hasTsvCollection(model: RLCModel) {
   return Boolean(model.helperDetails?.hasTsvCollection);
 }
 
+export function hasCsvCollection(model: RLCModel) {
+  return Boolean(model.helperDetails?.hasCsvCollection);
+}
+
 export function hasUnexpectedHelper(model: RLCModel) {
   const pathDictionary = model.paths;
   for (const details of Object.values(pathDictionary)) {

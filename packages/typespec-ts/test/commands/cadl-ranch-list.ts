@@ -1,10 +1,46 @@
-export interface CadlRanchConfig {
+export interface TypeSpecRanchConfig {
   outputPath: string;
   inputPath: string;
   debug?: boolean;
 }
 
-export const cadls: CadlRanchConfig[] = [
+export const rlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "union-body",
+    inputPath: "union-body"
+  },
+  {
+    outputPath: "headers/clientRequestId",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
+    outputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "sharedRoute",
+    inputPath: "shared-route"
+  },
+  {
+    outputPath: "mediaTypes",
+    inputPath: "media-types"
+  },
+  {
+    outputPath: "overload",
+    inputPath: "overload"
+  },
   {
     outputPath: "arrays/itemTypes",
     inputPath: "type/array"
@@ -12,6 +48,10 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "authentication/apiKey",
     inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
   },
   {
     outputPath: "authentication/oauth2",
@@ -39,11 +79,11 @@ export const cadls: CadlRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc"
+    inputPath: "azure/core/lro/rpc-legacy"
   },
   {
     outputPath: "models/inheritance",
-    inputPath: "type/model/inheritance"
+    inputPath: "type/model/inheritance/nested-discriminator"
   },
   {
     outputPath: "models/propertyOptional",
@@ -64,6 +104,10 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "models/empty",
+    inputPath: "type/model/empty"
   },
   {
     outputPath: "resiliency/srvDriven1",
@@ -112,5 +156,44 @@ export const cadls: CadlRanchConfig[] = [
   {
     outputPath: "azure/core-traits",
     inputPath: "azure/core/traits"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default"
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  }
+];
+
+export const modularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default",
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
   }
 ];

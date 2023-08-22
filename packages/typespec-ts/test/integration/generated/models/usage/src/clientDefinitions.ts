@@ -36,6 +36,6 @@ export interface Routes {
   (path: "/type/model/usage/input-output"): InputAndOutput;
 }
 
-export type TypeModelUsageClient = Client & {
+export type UsageClient = Client & {
   path: Routes;
 };

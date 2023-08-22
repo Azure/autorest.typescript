@@ -1,34 +1,30 @@
 import { OptionalKind, ParameterDeclarationStructure } from "ts-morph";
 import { Client } from "../modularCodeModel.js";
-import { getParameterType } from "./parameterHelpers.js";
+import { getType } from "./typeHelpers.js";
+import { getClientName } from "./namingHelpers.js";
 
 export function getClientParameters(
   client: Client
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const { name, parameters } = client;
-  let optionsParam = {
+  const { parameters } = client;
+  const name = getClientName(client);
+  const optionsParam = {
     name: "options",
-    type: `${name}Options`,
+    type: `${name}ClientOptions`,
     initializer: "{}"
   };
-  if (
-    !client.parameters
-      .filter((p) => p.implementation === "Client" && !p.isApiVersion)
-      .some((p) => p.optional || (!p.optional && p.clientDefaultValue))
-  ) {
-    optionsParam = {
-      name: "options",
-      type: `ClientOptions`,
-      initializer: "{}"
-    };
-  }
+
   const params: OptionalKind<ParameterDeclarationStructure>[] = [
     ...parameters
-      .filter((p) => p.type.type !== "constant")
+      .filter(
+        (p) =>
+          p.type.type !== "constant" &&
+          (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
+      )
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
         return {
           name: p.clientName,
-          type: getParameterType(p)
+          type: getType(p.type).name
         };
       }),
     optionsParam

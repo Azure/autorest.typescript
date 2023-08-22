@@ -9,6 +9,7 @@ options:
     azureSdkForJs: false
     isCadlTest: true
     title: DictClient
+    enableOperationGroup: true
     packageDetails:
       name: "@msinternal/dictionary"
       description: "Dictionary Test Service"

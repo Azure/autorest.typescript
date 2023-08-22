@@ -9,12 +9,3 @@ export interface CreateJobBodyParam {
 }
 
 export type CreateJobParameters = CreateJobBodyParam & RequestParameters;
-export type GetJobParameters = RequestParameters;
-
-export interface CreateJobFinalOnLocationBodyParam {
-  body?: JobData;
-}
-
-export type CreateJobFinalOnLocationParameters =
-  CreateJobFinalOnLocationBodyParam & RequestParameters;
-export type GetPollParameters = RequestParameters;

@@ -44,10 +44,10 @@
       "type": "oauth2",
       "flow": "implicit",
       "authorizationUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/authorize",
-      "tokenUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/token",
       "scopes": {
         "https://confidential-ledger.azure.com/.default": ""
-      }
+      },
+      "tokenUrl": "https://login.microsoftonline.com/common/v2.0/oauth2/token"
     }
   },
   "tags": [],
@@ -70,20 +70,19 @@
               "items": {
                 "$ref": "#/definitions/Collection"
               },
-              "x-ms-identifiers": [],
-              "x-typespec-name": "Collection[]"
+              "x-ms-identifiers": []
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -105,14 +104,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -134,14 +133,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -163,14 +162,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -195,14 +194,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         },
@@ -223,8 +222,8 @@
           {
             "name": "transactionId",
             "in": "path",
-            "required": true,
             "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -237,14 +236,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -262,8 +261,8 @@
           {
             "name": "transactionId",
             "in": "path",
-            "required": true,
             "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -276,14 +275,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -301,8 +300,8 @@
           {
             "name": "transactionId",
             "in": "path",
-            "required": true,
             "description": "A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it indicates the state from which the entry was read.",
+            "required": true,
             "type": "string"
           }
         ],
@@ -315,14 +314,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -350,14 +349,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -375,8 +374,8 @@
           {
             "name": "resource",
             "in": "body",
-            "required": true,
             "description": "The resource instance.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/LedgerEntry"
             }
@@ -387,63 +386,28 @@
             "description": "The request has succeeded and a new resource has been created as a result.",
             "headers": {
               "Location": {
-                "description": "The location of an instance of LedgerEntry",
                 "type": "string",
-                "format": "uri"
+                "format": "uri",
+                "description": "The location of an instance of LedgerEntry"
               }
             }
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
       }
     },
     "/app/users/{userId}": {
-      "delete": {
-        "operationId": "ConfidentialLedger_DeleteUser",
-        "summary": "Deletes a user from the Confidential Ledger.",
-        "description": "Delete a LedgerUser",
-        "parameters": [
-          {
-            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
-          },
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "description": "The user id, either an AAD object ID or certificate fingerprint.",
-            "x-ms-skip-url-encoding": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "There is no content to send for this request, but the headers may be useful. "
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "headers": {
-              "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
-            }
-          }
-        }
-      },
       "get": {
         "operationId": "ConfidentialLedger_GetUser",
         "summary": "Gets a user.",
@@ -455,10 +419,10 @@
           {
             "name": "userId",
             "in": "path",
-            "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
-            "x-ms-skip-url-encoding": true,
-            "type": "string"
+            "required": true,
+            "type": "string",
+            "x-ms-skip-url-encoding": true
           }
         ],
         "responses": {
@@ -470,14 +434,14 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
         }
@@ -486,6 +450,9 @@
         "operationId": "ConfidentialLedger_CreateOrUpdateUser",
         "summary": "Adds a user or updates a user's fields.",
         "description": "Creates or updates a LedgerUser",
+        "consumes": [
+          "application/merge-patch+json"
+        ],
         "parameters": [
           {
             "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
@@ -493,16 +460,16 @@
           {
             "name": "userId",
             "in": "path",
-            "required": true,
             "description": "The user id, either an AAD object ID or certificate fingerprint.",
-            "x-ms-skip-url-encoding": true,
-            "type": "string"
+            "required": true,
+            "type": "string",
+            "x-ms-skip-url-encoding": true
           },
           {
             "name": "resource",
             "in": "body",
-            "required": true,
             "description": "The resource instance.",
+            "required": true,
             "schema": {
               "$ref": "#/definitions/LedgerUserUpdate"
             }
@@ -523,26 +490,59 @@
           },
           "default": {
             "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
             "headers": {
               "x-ms-error-code": {
                 "description": "String error code indicating what went wrong.",
                 "type": "string"
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
             }
           }
-        },
-        "consumes": [
-          "application/merge-patch+json"
-        ]
+        }
+      },
+      "delete": {
+        "operationId": "ConfidentialLedger_DeleteUser",
+        "summary": "Deletes a user from the Confidential Ledger.",
+        "description": "Delete a LedgerUser",
+        "parameters": [
+          {
+            "$ref": "#/parameters/Azure.Core.Foundations.ApiVersionParameter"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user id, either an AAD object ID or certificate fingerprint.",
+            "required": true,
+            "type": "string",
+            "x-ms-skip-url-encoding": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "There is no content to send for this request, but the headers may be useful. "
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Azure.Core.Foundations.ErrorResponse"
+            },
+            "headers": {
+              "x-ms-error-code": {
+                "description": "String error code indicating what went wrong.",
+                "type": "string"
+              }
+            }
+          }
+        }
       }
     }
   },
   "definitions": {
     "Azure.Core.Foundations.Error": {
       "type": "object",
+      "description": "The error object.",
       "properties": {
         "code": {
           "type": "string",
@@ -558,40 +558,38 @@
         },
         "details": {
           "type": "array",
+          "description": "An array of details about specific errors that led to this reported error.",
           "items": {
             "$ref": "#/definitions/Azure.Core.Foundations.Error"
           },
-          "x-ms-identifiers": [],
-          "x-typespec-name": "Azure.Core.Foundations.Error[]",
-          "description": "An array of details about specific errors that led to this reported error."
+          "x-ms-identifiers": []
         },
         "innererror": {
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
           "description": "An object containing more specific information than the current object about the error."
         }
       },
-      "description": "The error object.",
       "required": [
         "code",
-        "message",
-        "details"
+        "message"
       ]
     },
     "Azure.Core.Foundations.ErrorResponse": {
       "type": "object",
+      "description": "A response containing error details.",
       "properties": {
         "error": {
           "$ref": "#/definitions/Azure.Core.Foundations.Error",
           "description": "The error object."
         }
       },
-      "description": "A response containing error details.",
       "required": [
         "error"
       ]
     },
     "Azure.Core.Foundations.InnerError": {
       "type": "object",
+      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.",
       "properties": {
         "code": {
           "type": "string",
@@ -601,14 +599,11 @@
           "$ref": "#/definitions/Azure.Core.Foundations.InnerError",
           "description": "Inner error."
         }
-      },
-      "description": "An object containing more specific information about the error. As per Microsoft One API guidelines - https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.",
-      "required": [
-        "code"
-      ]
+      }
     },
     "Collection": {
       "type": "object",
+      "description": "Identifier for collections.",
       "properties": {
         "collectionId": {
           "type": "string",
@@ -616,13 +611,13 @@
           "readOnly": true
         }
       },
-      "description": "Identifier for collections.",
       "required": [
         "collectionId"
       ]
     },
     "LedgerEntry": {
       "type": "object",
+      "description": "Details about a ledger entry.",
       "properties": {
         "contents": {
           "type": "string",
@@ -639,7 +634,6 @@
           "readOnly": true
         }
       },
-      "description": "Details about a ledger entry.",
       "required": [
         "contents",
         "collectionId",
@@ -660,19 +654,19 @@
     },
     "LedgerUser": {
       "type": "object",
+      "description": "Details about a Confidential ledger user.",
       "properties": {
         "userId": {
           "type": "string",
           "description": "The user id, either an AAD object ID or certificate fingerprint.",
-          "x-ms-skip-url-encoding": true,
-          "readOnly": true
+          "readOnly": true,
+          "x-ms-skip-url-encoding": true
         },
         "assignedRole": {
           "$ref": "#/definitions/LedgerUserRole",
           "description": "The user's assigned role."
         }
       },
-      "description": "Details about a Confidential ledger user.",
       "required": [
         "userId",
         "assignedRole"
@@ -693,52 +687,51 @@
     },
     "LedgerUserUpdate": {
       "type": "object",
+      "description": "Details about a Confidential ledger user.",
       "properties": {
         "assignedRole": {
           "$ref": "#/definitions/LedgerUserRole",
           "description": "The user's assigned role."
         }
-      },
-      "description": "Details about a Confidential ledger user."
+      }
     },
     "MyFlow": {
       "type": "object",
+      "description": "Define the auth flow",
       "properties": {
         "type": {
           "type": "string",
+          "description": "type of auth flow",
           "enum": [
             "implicit"
-          ],
-          "description": "type of auth flow"
+          ]
         },
         "authorizationUrl": {
           "type": "string",
+          "description": "authorizationUrl of auth flow",
           "enum": [
             "https://login.microsoftonline.com/common/v2.0/oauth2/authorize"
           ],
           "x-ms-enum": {
             "modelAsString": false
-          },
-          "description": "authorizationUrl of auth flow"
+          }
         },
         "tokenUrl": {
           "type": "string",
+          "description": "tokenUrl of auth flow",
           "enum": [
             "https://login.microsoftonline.com/common/v2.0/oauth2/token"
           ],
           "x-ms-enum": {
             "modelAsString": false
-          },
-          "description": "tokenUrl of auth flow"
+          }
         },
         "scopes": {
           "type": "array",
-          "items": {},
-          "x-typespec-name": "[https://confidential-ledger.azure.com/.default]",
-          "description": "scopes of auth flow"
+          "description": "scopes of auth flow",
+          "items": {}
         }
       },
-      "description": "Define the auth flow",
       "required": [
         "type",
         "authorizationUrl",
@@ -748,15 +741,15 @@
     },
     "PagedLedgerEntries": {
       "type": "object",
+      "description": "Paginated ledger entries returned in response to a query.",
       "properties": {
         "entries": {
           "type": "array",
+          "description": "Array of ledger entries.",
           "items": {
             "$ref": "#/definitions/LedgerEntry"
           },
-          "x-ms-identifiers": [],
-          "x-typespec-name": "LedgerEntry[]",
-          "description": "Array of ledger entries."
+          "x-ms-identifiers": []
         },
         "state": {
           "$ref": "#/definitions/LedgerQueryState",
@@ -765,11 +758,9 @@
         "nextLink": {
           "type": "string",
           "format": "uri",
-          "description": "Path from which to retrieve the next page of results.",
-          "x-typespec-name": "TypeSpec.Rest.ResourceLocation"
+          "description": "Path from which to retrieve the next page of results."
         }
       },
-      "description": "Paginated ledger entries returned in response to a query.",
       "required": [
         "entries",
         "state"
@@ -777,8 +768,8 @@
     },
     "ReceiptContents": {
       "type": "object",
-      "properties": {},
-      "description": "The contents of a receipt."
+      "description": "The contents of a receipt.",
+      "properties": {}
     },
     "TransactionId": {
       "type": "string",
@@ -786,6 +777,7 @@
     },
     "TransactionReceipt": {
       "type": "object",
+      "description": "A receipt certifying the transaction at the specified id.",
       "properties": {
         "receipt": {
           "$ref": "#/definitions/ReceiptContents",
@@ -800,7 +792,6 @@
           "description": "The transaction ID."
         }
       },
-      "description": "A receipt certifying the transaction at the specified id.",
       "required": [
         "receipt",
         "state",
@@ -821,6 +812,7 @@
     },
     "TransactionStatus": {
       "type": "object",
+      "description": "Response returned to a query for the transaction status.",
       "properties": {
         "state": {
           "$ref": "#/definitions/TransactionState",
@@ -831,7 +823,6 @@
           "description": "The transaction ID."
         }
       },
-      "description": "Response returned to a query for the transaction status.",
       "required": [
         "state",
         "transactionId"
@@ -842,18 +833,18 @@
     "Azure.Core.Foundations.ApiVersionParameter": {
       "name": "api-version",
       "in": "query",
-      "required": true,
       "description": "The API version to use for this operation.",
-      "x-ms-client-name": "apiVersion",
-      "minLength": 1,
+      "required": true,
       "type": "string",
-      "x-ms-parameter-location": "method"
+      "minLength": 1,
+      "x-ms-parameter-location": "method",
+      "x-ms-client-name": "apiVersion"
     },
     "CollectionIdParameter": {
       "name": "collectionId",
       "in": "query",
-      "required": false,
       "description": "The collection id.",
+      "required": false,
       "type": "string",
       "x-ms-parameter-location": "method"
     }

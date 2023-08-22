@@ -2,11 +2,12 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { DictClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `DictClient`
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(options: ClientOptions = {}): DictClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
@@ -20,6 +21,9 @@ export default function createClient(options: ClientOptions = {}): DictClient {
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

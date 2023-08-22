@@ -2,14 +2,15 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AzureAgriFoodPlatformDataPlaneServiceClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AzureAgriFoodPlatformDataPlaneServiceClient`
- * @param endpoint type: string, The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
- * @param credentials type: KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - The endpoint of your FarmBeats resource (protocol and hostname, for example: https://{resourceName}.farmbeats.azure.net).
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
@@ -21,7 +22,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "Authorization"
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Authorization"
     }
   };
 
@@ -34,6 +35,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info
     }
   };
 

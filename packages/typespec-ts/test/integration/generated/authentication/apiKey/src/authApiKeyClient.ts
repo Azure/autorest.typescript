@@ -2,13 +2,14 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
 import { AuthApiKeyClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AuthApiKeyClient`
- * @param credentials type: KeyCredential, uniquely identify client credential
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param credentials - uniquely identify client credential
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   credentials: KeyCredential,
@@ -19,7 +20,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
-      apiKeyHeaderName: "x-ms-api-key",
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
 
@@ -32,6 +33,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

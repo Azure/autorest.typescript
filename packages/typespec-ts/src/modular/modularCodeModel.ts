@@ -1,4 +1,4 @@
-import { RLCOptions } from "@azure-tools/rlc-common";
+import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
 
 export interface ModularCodeModel {
   options: RLCOptions;
@@ -52,6 +52,7 @@ export interface EnumValue {
   description: string;
 }
 export interface Type {
+  nullable?: boolean;
   name?: string;
   description?: string;
   type:
@@ -70,7 +71,8 @@ export interface Type {
     | "float"
     | "boolean"
     | "dict"
-    | "combined";
+    | "combined"
+    | "any";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
@@ -83,6 +85,7 @@ export interface Type {
   format?: string;
   properties?: Property[];
   types?: Type[];
+  isCoreErrorType?: boolean;
 }
 
 export interface Client {
@@ -92,6 +95,7 @@ export interface Client {
   operationGroups: OperationGroup[];
   url: string;
   apiVersions: any[];
+  rlcClientName: string;
 }
 
 export type ParameterLocation =
@@ -148,4 +152,5 @@ export interface Operation {
   itemName?: string;
   continuationTokenName?: string;
   addedOn?: string;
+  rlcResponse?: OperationResponse;
 }

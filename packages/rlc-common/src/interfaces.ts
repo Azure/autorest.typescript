@@ -12,6 +12,11 @@ export interface RLCModel {
   importSet?: Map<ImportKind, Set<string>>;
   helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
+  telemetryOptions?: TelemetryInfo;
+}
+
+export interface TelemetryInfo {
+  customRequestIdHeaderName?: string;
 }
 
 export interface PathTemplateApiVersion {
@@ -40,6 +45,7 @@ export interface HelperFunctionDetails {
   hasPipeCollection?: boolean;
   hasSsvCollection?: boolean;
   hasTsvCollection?: boolean;
+  hasCsvCollection?: boolean;
 }
 
 export interface PagingDetails {
@@ -78,6 +84,7 @@ export interface PathMetadata {
 export type Paths = Record<string, PathMetadata>;
 
 export type PathParameter = {
+  oriName?: string;
   name: string;
   type: string;
   description?: string;
@@ -109,7 +116,21 @@ export interface RLCOptions {
   addCredentials?: boolean;
   credentialScopes?: string[];
   credentialKeyHeaderName?: string;
+  customHttpAuthHeaderName?: string;
+  customHttpAuthSharedKeyPrefix?: string;
+  /**
+   * Three possible values:
+   * - undefined, the default behavior which means we would generate metadata if the package.json file is absent
+   * - true, which means we would always generate new files or override existing files
+   * - false, which means we would not generate any files no matter there exists or not
+   */
   generateMetadata?: boolean;
+  /**
+   * Three possible values:
+   * - undefined, the default behavior which means we would generate test if there is no `test` folder
+   * - true, which means we would always generate new files or override existing files
+   * - false, which means we would not generate any files no matter there exists or not
+   */
   generateTest?: boolean;
   generateSample?: boolean;
   azureSdkForJs?: boolean;
@@ -122,6 +143,7 @@ export interface RLCOptions {
   azureArm?: boolean;
   sourceFrom?: "Cadl" | "Swagger";
   isModularLibrary?: boolean;
+  enableOperationGroup?: boolean;
 }
 
 export interface ServiceInfo {
@@ -196,7 +218,7 @@ export interface PackageDetails {
   scopeName?: string;
   nameWithoutScope?: string;
   description?: string;
-  version: string;
+  version?: string;
 }
 export interface OperationParameter {
   operationGroup: string;
@@ -230,6 +252,7 @@ export interface ParameterMetadata {
 export interface OperationResponse {
   operationGroup: string;
   operationName: string;
+  path: string;
   responses: ResponseMetadata[];
 }
 export interface ResponseMetadata {

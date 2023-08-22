@@ -10,7 +10,8 @@ import {
   SealedChoiceSchema,
   SchemaType,
   OAuth2SecurityScheme,
-  KeySecurityScheme
+  KeySecurityScheme,
+  ParameterLocation
 } from "@autorest/codemodel";
 import { normalizeName, NameType } from "../utils/nameUtils";
 import { getStringForValue } from "../utils/valueHelpers";
@@ -26,6 +27,7 @@ import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
 import { getSchemaParents } from "../utils/schemaHelpers";
 import { sortObjectSchemasHierarchically } from "../utils/sortObjectSchemasHierarchically";
+import { OperationGroupDetails } from "../models/operationDetails";
 
 export async function transformChoices(codeModel: CodeModel) {
   const choices = [
@@ -127,7 +129,8 @@ export async function transformCodeModel(
     options,
     endpoint: baseUrl,
     allTypes: [],
-    security: codeModel.security
+    security: codeModel.security,
+    hasTenantLevelOperation: transformHasTenantLevel(operationGroups)
   };
 }
 
@@ -156,4 +159,26 @@ async function getUberParents(codeModel: CodeModel): Promise<ObjectDetails[]> {
   });
 
   return uberParents;
+}
+
+function transformHasTenantLevel(
+  operationGroups: OperationGroupDetails[]
+): boolean {
+  const hasClientLevelSubscription = operationGroups.some(opGroup => {
+    return opGroup.operations.some(op => {
+      return op.parameters.some(p => {
+        return (
+          p.language.default.name.toLowerCase() === "subscriptionid" &&
+          p.protocol.http?.in === ParameterLocation.Path &&
+          p.implementation === "Client"
+        );
+      });
+    });
+  });
+  const hasTenantLevelOperation = operationGroups.some(opGroup => {
+    return opGroup.operations.some(op => {
+      return op.isTenantLevel;
+    });
+  });
+  return hasTenantLevelOperation && hasClientLevelSubscription;
 }

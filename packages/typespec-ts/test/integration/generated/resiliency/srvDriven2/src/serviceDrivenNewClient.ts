@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { ServiceDrivenNewClient } from "./clientDefinitions";
 
 export interface ServiceDrivenNewClientOptions extends ClientOptions {
@@ -10,8 +11,8 @@ export interface ServiceDrivenNewClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `ServiceDrivenNewClient`
- * @param serviceDeploymentVersion type: string, Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.
- * @param options type: ServiceDrivenNewClientOptions, the parameter for all optional parameters
+ * @param serviceDeploymentVersion - Pass in either 'v1' or 'v2'. This represents a version of the service deployment in history. 'v1' is for the deployment when the service had only one api version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'.
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   serviceDeploymentVersion: string,
@@ -30,6 +31,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

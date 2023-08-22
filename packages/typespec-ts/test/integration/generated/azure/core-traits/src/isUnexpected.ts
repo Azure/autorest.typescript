@@ -1,18 +1,31 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { SmokeTest200Response, SmokeTestDefaultResponse } from "./responses";
+import {
+  SmokeTest200Response,
+  SmokeTestDefaultResponse,
+  RepeatableAction200Response,
+  RepeatableActionDefaultResponse,
+} from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /azure/core/traits/user/{id}": ["200"],
+  "POST /azure/core/traits/user/{id}:repeatableAction": ["200"],
 };
 
 export function isUnexpected(
   response: SmokeTest200Response | SmokeTestDefaultResponse
 ): response is SmokeTestDefaultResponse;
 export function isUnexpected(
-  response: SmokeTest200Response | SmokeTestDefaultResponse
-): response is SmokeTestDefaultResponse {
+  response: RepeatableAction200Response | RepeatableActionDefaultResponse
+): response is RepeatableActionDefaultResponse;
+export function isUnexpected(
+  response:
+    | SmokeTest200Response
+    | SmokeTestDefaultResponse
+    | RepeatableAction200Response
+    | RepeatableActionDefaultResponse
+): response is SmokeTestDefaultResponse | RepeatableActionDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

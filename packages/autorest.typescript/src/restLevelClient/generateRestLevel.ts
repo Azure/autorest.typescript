@@ -35,7 +35,8 @@ import {
   buildSampleTest,
   buildLicenseFile,
   buildReadmeFile,
-  buildSerializeHelper
+  buildSerializeHelper,
+  buildLogger
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -70,26 +71,30 @@ export async function generateRestLevelClient() {
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
 
-  // buildReadmeFile
-  generateFileByBuilder(project, buildReadmeFile, rlcModels);
-  // buildLicenseFile
-  generateFileByBuilder(project, buildLicenseFile, rlcModels);
-  // buildApiExtractorConfig
-  generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
-  // buildRollupConfig
-  generateFileByBuilder(project, buildRollupConfig, rlcModels);
-  // buildEsLintConfig
-  generateFileByBuilder(project, buildEsLintConfig, rlcModels);
-  // buildKarmaConfigFile
-  generateFileByBuilder(project, buildKarmaConfigFile, rlcModels);
-  // buildEnvFile
-  generateFileByBuilder(project, buildEnvFile, rlcModels);
-  // buildEnvBrowserFile
-  generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
-  // buildRecordedClientFile
-  generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
-  // buildSampleTest
-  generateFileByBuilder(project, buildSampleTest, rlcModels);
+  if (generateMetadata) {
+    // buildReadmeFile
+    generateFileByBuilder(project, buildReadmeFile, rlcModels);
+    // buildLicenseFile
+    generateFileByBuilder(project, buildLicenseFile, rlcModels);
+    // buildApiExtractorConfig
+    generateFileByBuilder(project, buildApiExtractorConfig, rlcModels);
+    // buildRollupConfig
+    generateFileByBuilder(project, buildRollupConfig, rlcModels);
+    // buildEsLintConfig
+    generateFileByBuilder(project, buildEsLintConfig, rlcModels);
+  }
+  if (generateTest) {
+    // buildKarmaConfigFile
+    generateFileByBuilder(project, buildKarmaConfigFile, rlcModels);
+    // buildEnvFile
+    generateFileByBuilder(project, buildEnvFile, rlcModels);
+    // buildEnvBrowserFile
+    generateFileByBuilder(project, buildEnvBrowserFile, rlcModels);
+    // buildRecordedClientFile
+    generateFileByBuilder(project, buildRecordedClientFile, rlcModels);
+    // buildSampleTest
+    generateFileByBuilder(project, buildSampleTest, rlcModels);
+  }
 
   // buildResponseTypes
   generateFileByBuilder(project, buildResponseTypes, rlcModels);
@@ -111,6 +116,7 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildPollingHelper, rlcModels);
   // buildSerializeHelper
   generateFileByBuilder(project, buildSerializeHelper, rlcModels);
+  generateFileByBuilder(project, buildLogger, rlcModels);
   generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
     generateRLCSamples(model, project);
@@ -122,20 +128,22 @@ export async function generateRestLevelClient() {
     generateSampleEnv(project);
   }
 
-  // buildPackageFile
-  generateFileByBuilder(
-    project,
-    buildPackageFile,
-    rlcModels,
-    hasRLCSamplesGenerated
-  );
-  // buildTsConfig
-  generateFileByBuilder(
-    project,
-    buildTsConfig,
-    rlcModels,
-    hasRLCSamplesGenerated
-  );
+  if (generateMetadata) {
+    // buildPackageFile
+    generateFileByBuilder(
+      project,
+      buildPackageFile,
+      rlcModels,
+      hasRLCSamplesGenerated
+    );
+    // buildTsConfig
+    generateFileByBuilder(
+      project,
+      buildTsConfig,
+      rlcModels,
+      hasRLCSamplesGenerated
+    );
+  }
 
   // Save the source files to the virtual filesystem
   project.saveSync();

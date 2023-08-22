@@ -2,20 +2,44 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { ModelOnlyUsedByInternalOperation } from "./models";
 
-export interface GetInternalQueryParamProperties {
+export interface SharedPublicQueryParamProperties {
   name: string;
 }
 
-export interface GetInternalQueryParam {
-  queryParameters: GetInternalQueryParamProperties;
+export interface SharedPublicQueryParam {
+  queryParameters: SharedPublicQueryParamProperties;
 }
 
-export type GetInternalParameters = GetInternalQueryParam & RequestParameters;
+export type SharedPublicParameters = SharedPublicQueryParam & RequestParameters;
 
-export interface PostInternalBodyParam {
-  body: ModelOnlyUsedByInternalOperation;
+export interface SharedInternalQueryParamProperties {
+  name: string;
 }
 
-export type PostInternalParameters = PostInternalBodyParam & RequestParameters;
+export interface SharedInternalQueryParam {
+  queryParameters: SharedInternalQueryParamProperties;
+}
+
+export type SharedInternalParameters = SharedInternalQueryParam &
+  RequestParameters;
+
+export interface PublicOnlyQueryParamProperties {
+  name: string;
+}
+
+export interface PublicOnlyQueryParam {
+  queryParameters: PublicOnlyQueryParamProperties;
+}
+
+export type PublicOnlyParameters = PublicOnlyQueryParam & RequestParameters;
+
+export interface InternalOnlyQueryParamProperties {
+  name: string;
+}
+
+export interface InternalOnlyQueryParam {
+  queryParameters: InternalOnlyQueryParamProperties;
+}
+
+export type InternalOnlyParameters = InternalOnlyQueryParam & RequestParameters;

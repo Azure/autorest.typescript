@@ -365,8 +365,7 @@ export class LROsImpl implements LROs {
       OperationState<LROsPatch201RetryWithAsyncHeaderResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "azure-async-operation"
+      intervalInMs: options?.updateIntervalInMs
     });
     await poller.poll();
     return poller;

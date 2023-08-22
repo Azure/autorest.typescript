@@ -1,31 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** The third level model in the normal multiple levels inheritance. */
-export interface SiameseOutput extends CatOutput {
-  smart: boolean;
-}
-
-/** The second level model in the normal multiple levels inheritance. */
-export interface CatOutput extends PetOutput {
-  age: number;
-}
-
-/** This is base model for non-discriminator normal multiple levels inheritance. */
-export interface PetOutput {
-  name: string;
-}
-
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
 export interface FishOutputParent {
   age: number;
-  kind: "Fish" | "shark" | "salmon";
+  kind: string;
 }
 
 /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
 export interface SharkOutputParent extends FishOutputParent {
   kind: "shark";
-  sharktype: "Shark" | "saw" | "goblin";
+  sharktype: string;
 }
 
 /** The third level model SawShark in polymorphic multiple levels inheritance. */

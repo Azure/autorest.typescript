@@ -3,7 +3,6 @@
 
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -15,7 +14,8 @@ import {
   includeDerivedModel,
   getBodyType,
   trimUsage
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformSchemas(
   program: Program,
@@ -36,17 +36,28 @@ export function transformSchemas(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       transformSchemaForRoute(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
     const bodyModel = getBodyType(program, route);
-    if (bodyModel && bodyModel.kind === "Model") {
+    if (
+      bodyModel &&
+      (bodyModel.kind === "Model" || bodyModel.kind === "Union")
+    ) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
@@ -68,7 +79,7 @@ export function transformSchemas(
     }
   }
   program.stateMap(modelKey).forEach((context, cadlModel) => {
-    const model = getSchemaForType(program, cadlModel, context);
+    const model = getSchemaForType(dpgContext, cadlModel, context);
     if (model) {
       model.usage = context;
     }

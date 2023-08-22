@@ -21,28 +21,32 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType,
   getFormattedPropertyDoc,
   getBodyType,
-  predictDefaultValue
-} from "../modelUtils.js";
+  predictDefaultValue,
+  getBinaryType,
+  enrichBinaryTypeInBody
+} from "../utils/modelUtils.js";
 
-import { getOperationGroupName, isBinaryPayload } from "../operationUtil.js";
+import {
+  getOperationGroupName,
+  getOperationName,
+  isBinaryPayload
+} from "../utils/operationUtil.js";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToParameterTypes(
-  program: Program,
   importDetails: Map<ImportKind, Set<string>>,
   client: SdkClient,
   dpgContext: SdkContext
 ): OperationParameter[] {
+  const program = dpgContext.program;
   const operationGroups = listOperationGroups(dpgContext, client);
   const rlcParameters: OperationParameter[] = [];
   const outputImportedSet = new Set<string>();
@@ -53,12 +57,20 @@ export function transformToParameterTypes(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformToParameterTypesForRoute(program, route, operationGroup);
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
+      transformToParameterTypesForRoute(program, route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     transformToParameterTypesForRoute(program, route);
   }
   if (outputImportedSet.size > 0) {
@@ -66,31 +78,26 @@ export function transformToParameterTypes(
   }
   function transformToParameterTypesForRoute(
     program: Program,
-    route: HttpOperation,
-    operationGroup?: SdkOperationGroup
+    route: HttpOperation
   ) {
     const parameters = route.parameters;
     const rlcParameter: OperationParameter = {
-      operationGroup: getOperationGroupName(operationGroup),
-      operationName: route.operation.name,
+      operationGroup: getOperationGroupName(dpgContext, route),
+      operationName: getOperationName(program, route.operation),
       parameters: []
     };
     // transform query param
-    const queryParams = transformQueryParameters(
-      program,
-      dpgContext,
-      parameters
-    );
+    const queryParams = transformQueryParameters(dpgContext, parameters);
     // transform path param
     const pathParams = transformPathParameters();
     // transform header param includeing content-type
-    const headerParams = transformHeaderParameters(program, parameters);
+    const headerParams = transformHeaderParameters(dpgContext, parameters);
     // transform body
     const bodyType = getBodyType(program, route);
     let bodyParameter = undefined;
     if (bodyType) {
       bodyParameter = transformBodyParameters(
-        program,
+        dpgContext,
         parameters,
         headerParams,
         outputImportedSet,
@@ -107,25 +114,39 @@ export function transformToParameterTypes(
 }
 
 function getParameterMetadata(
-  program: Program,
+  dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter
 ): ParameterMetadata {
-  const schema = getSchemaForType(program, parameter.param.type, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]) as Schema;
-  let type = getTypeName(schema);
+  const program = dpgContext.program;
+  const schemaContext = [SchemaContext.Exception, SchemaContext.Input];
+  const schema = getSchemaForType(
+    dpgContext,
+    parameter.param.type,
+    schemaContext,
+    false,
+    parameter.param
+  ) as Schema;
+  let type =
+    paramType === "query"
+      ? getTypeName(schema, schemaContext)
+      : getTypeName(schema);
   const name = getParameterName(parameter.name);
   let description =
     getFormattedPropertyDoc(program, parameter.param, schema) ?? "";
-  if (type === "string[]" || type === "Array<string>") {
+  if (
+    type === "string[]" ||
+    type === "Array<string>" ||
+    type === "number[]" ||
+    type === "Array<number>"
+  ) {
     const serializeInfo = getSpecialSerializeInfo(parameter);
     if (
       serializeInfo.hasMultiCollection ||
       serializeInfo.hasPipeCollection ||
       serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection
+      serializeInfo.hasTsvCollection ||
+      serializeInfo.hasCsvCollection
     ) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
@@ -159,23 +180,19 @@ function getParameterName(name: string) {
 }
 
 function transformQueryParameters(
-  program: Program,
   dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
     (p) =>
       p.type === "query" &&
-      !(
-        isApiVersion(dpgContext, p) &&
-        predictDefaultValue(program, dpgContext, p.param)
-      )
+      !(isApiVersion(dpgContext, p) && predictDefaultValue(dpgContext, p.param))
   );
   if (!queryParameters.length) {
     return [];
   }
   return queryParameters.map((qp) =>
-    getParameterMetadata(program, "query", qp)
+    getParameterMetadata(dpgContext, "query", qp)
   );
 }
 
@@ -190,7 +207,7 @@ function transformPathParameters() {
 }
 
 function transformHeaderParameters(
-  program: Program,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
@@ -200,12 +217,12 @@ function transformHeaderParameters(
     return [];
   }
   return headerParameters.map((qp) =>
-    getParameterMetadata(program, "header", qp)
+    getParameterMetadata(dpgContext, "header", qp)
   );
 }
 
 function transformBodyParameters(
-  program: Program,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
   importedModels: Set<string>,
@@ -218,24 +235,27 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  const { hasBinaryContent, hasFormContent } = getBodyDetail(bodyType, headers);
+  const { hasBinaryContent, hasFormContent } = getBodyDetail(
+    dpgContext,
+    bodyType,
+    headers
+  );
 
-  if (!hasBinaryContent && !hasFormContent) {
+  if (!hasFormContent) {
     // Case 1: Handle the normal case without binary or form data
+    // Case 2: Handle the binary body
     return transformNormalBody(
-      program,
+      dpgContext,
       bodyType,
       parameters,
       importedModels,
-      headers
+      headers,
+      hasBinaryContent
     );
-  } else if (hasBinaryContent) {
-    // Case 2: Handle the binary body
-    return transformBinaryBody(program, parameters);
   } else {
     // Case 3: Handle the form data
     return transformMultiFormBody(
-      program,
+      dpgContext,
       bodyType,
       parameters,
       importedModels
@@ -244,24 +264,33 @@ function transformBodyParameters(
 }
 
 function transformNormalBody(
-  program: Program,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
-  headers: ParameterMetadata[]
+  headers: ParameterMetadata[],
+  hasBinaryContent: boolean
 ) {
-  const description = extractDescriptionsFromBody(
-    program,
+  const descriptions = extractDescriptionsFromBody(
+    dpgContext,
     bodyType,
     parameters
-  ).join("\n\n");
+  );
+  if (hasBinaryContent) {
+    descriptions.push("Value may contain any sequence of octets");
+  }
   const type = extractNameFromCadlType(
-    program,
+    dpgContext,
     bodyType,
     importedModels,
     headers
   );
-  const schema = getSchemaForType(program, bodyType);
+  let schema = getSchemaForType(dpgContext, bodyType);
+  let overrideType = undefined;
+  if (hasBinaryContent) {
+    schema = enrichBinaryTypeInBody(schema);
+    overrideType = schema.typeName;
+  }
   return {
     isPartialBody: false,
     body: [
@@ -269,32 +298,7 @@ function transformNormalBody(
         properties: schema.properties,
         typeName: schema.name,
         name: "body",
-        type,
-        required: parameters?.bodyParameter?.optional === false,
-        description
-      }
-    ]
-  };
-}
-
-function transformBinaryBody(
-  program: Program,
-  parameters: HttpOperationParameters
-) {
-  const descriptions: string[] = [];
-  const description =
-    parameters.bodyParameter &&
-    getFormattedPropertyDoc(program, parameters.bodyParameter, {});
-  if (description) {
-    descriptions.push(description!);
-  }
-  descriptions.push("Value may contain any sequence of octets");
-  return {
-    isPartialBody: false,
-    body: [
-      {
-        name: "body",
-        type: getBinaryType([SchemaContext.Input, SchemaContext.Exception]),
+        type: overrideType ?? type,
         required: parameters?.bodyParameter?.optional === false,
         description: descriptions.join("\n\n")
       }
@@ -303,7 +307,7 @@ function transformBinaryBody(
 }
 
 function transformMultiFormBody(
-  program: Program,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>
@@ -311,9 +315,9 @@ function transformMultiFormBody(
   const isModelBody = bodyType.kind === "Model";
 
   if (!isModelBody) {
-    const type = extractNameFromCadlType(program, bodyType, importedModels);
+    const type = extractNameFromCadlType(dpgContext, bodyType, importedModels);
     const description = extractDescriptionsFromBody(
-      program,
+      dpgContext,
       bodyType,
       parameters
     ).join("\n\n");
@@ -338,10 +342,13 @@ function transformMultiFormBody(
 
   for (const [paramName, paramType] of bodyType.properties) {
     let type: string;
-    const bodySchema = getSchemaForType(program, paramType.type, [
-      SchemaContext.Input,
-      SchemaContext.Exception
-    ]) as any;
+    const bodySchema = getSchemaForType(
+      dpgContext,
+      paramType.type,
+      [SchemaContext.Exception, SchemaContext.Input],
+      false,
+      paramType
+    ) as any;
     if (bodySchema?.format === "byte") {
       type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
     } else if (bodySchema?.items?.format === "byte") {
@@ -350,7 +357,11 @@ function transformMultiFormBody(
         SchemaContext.Exception
       ])}>`;
     } else {
-      type = extractNameFromCadlType(program, paramType.type, importedModels);
+      type = extractNameFromCadlType(
+        dpgContext,
+        paramType.type,
+        importedModels
+      );
     }
     bodyParameters.body!.push({
       name: paramName,
@@ -362,24 +373,28 @@ function transformMultiFormBody(
   return bodyParameters;
 }
 
-function getBodyDetail(bodyType: Type, headers: ParameterMetadata[]) {
+function getBodyDetail(
+  dpgContext: SdkContext,
+  bodyType: Type,
+  headers: ParameterMetadata[]
+) {
   const contentTypes: string[] = headers
     .filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
   const hasBinaryContent = contentTypes.some((c) =>
-    isBinaryPayload(bodyType, c)
+    isBinaryPayload(dpgContext, bodyType, c)
   );
   const hasFormContent = contentTypes.includes(`"multipart/form-data"`);
   return { hasBinaryContent, hasFormContent };
 }
 
 function extractNameFromCadlType(
-  program: Program,
+  dpgContext: SdkContext,
   cadlType: Type,
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(program, cadlType, [
+  const bodySchema = getSchemaForType(dpgContext, cadlType, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
@@ -387,7 +402,10 @@ function extractNameFromCadlType(
   if (importedNames) {
     importedNames.forEach(importedModels.add, importedModels);
   }
-  let typeName = getTypeName(bodySchema);
+  let typeName = getTypeName(bodySchema, [
+    SchemaContext.Input,
+    SchemaContext.Exception
+  ]);
   if (isAnonymousModel(bodySchema)) {
     // Handle anonymous Model
     return generateAnomymousModelSigniture(bodySchema, importedModels);
@@ -436,16 +454,16 @@ function generateAnomymousModelSigniture(
 }
 
 function extractDescriptionsFromBody(
-  program: Program,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters
 ) {
   const description =
     parameters.bodyParameter &&
     getFormattedPropertyDoc(
-      program,
+      dpgContext.program,
       parameters.bodyParameter,
-      getSchemaForType(program, bodyType, [
+      getSchemaForType(dpgContext, bodyType, [
         SchemaContext.Input,
         SchemaContext.Exception
       ])
@@ -458,6 +476,7 @@ export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
+  let hasCsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
   if (
@@ -485,11 +504,18 @@ export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
     descriptions.push("buildPipeCollection");
     collectionInfo.push("pipe");
   }
+
+  if (parameter.type === "header" && (parameter as any).format === "csv") {
+    hasCsvCollection = true;
+    descriptions.push("buildCsvCollection");
+    collectionInfo.push("csv");
+  }
   return {
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,
     hasTsvCollection,
+    hasCsvCollection,
     descriptions,
     collectionInfo
   };

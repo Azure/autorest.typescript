@@ -2,11 +2,12 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { AzureCoreClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `AzureCoreClient`
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
@@ -22,6 +23,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

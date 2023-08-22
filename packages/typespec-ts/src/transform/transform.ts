@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  SdkClient,
-  SdkContext
-} from "@azure-tools/typespec-client-generator-core";
+import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import {
   ImportKind,
   NameType,
@@ -16,9 +13,10 @@ import {
   RLCModel,
   RLCOptions,
   Schema,
+  SchemaContext,
   UrlInfo
 } from "@azure-tools/rlc-common";
-import { Program, getDoc } from "@typespec/compiler";
+import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
 import { join } from "path";
 import {
@@ -27,34 +25,25 @@ import {
   getSchemaForType,
   getTypeName,
   predictDefaultValue
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
 import { transformHelperFunctionDetails } from "./transformHelperFunctionDetails.js";
 import { transformToParameterTypes } from "./transformParameters.js";
 import { transformPaths } from "./transformPaths.js";
 import { transformToResponseTypes } from "./transformResponses.js";
 import { transformSchemas } from "./transformSchemas.js";
-import { transformRLCOptions } from "./transfromRLCOptions.js";
 import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
-import { getClientLroOverload } from "../operationUtil.js";
+import { getClientLroOverload } from "../utils/operationUtil.js";
+import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export async function transformRLCModel(
-  program: Program,
-  emitterOptions: RLCOptions,
   client: SdkClient,
-  emitterOutputDir: string,
   dpgContext: SdkContext
 ): Promise<RLCModel> {
-  const options: RLCOptions = transformRLCOptions(
-    program,
-    emitterOptions,
-    emitterOutputDir,
-    dpgContext
-  );
+  const program = dpgContext.program;
+  const options: RLCOptions = dpgContext.rlcOptions!;
   const srcPath = join(
-    emitterOutputDir ?? "",
-    "src",
-    // When generating modular library, RLC has to go under rest folder
-    options.isModularLibrary ? "rest" : "",
+    dpgContext.generationPathDetail?.rlcSourcesDir ?? "",
     options.batch && options.batch.length > 1
       ? normalizeName(client.name.replace("Client", ""), NameType.File)
       : ""
@@ -62,7 +51,10 @@ export async function transformRLCModel(
   const libraryName = normalizeName(
     options.batch && (options.isModularLibrary || options.batch.length > 1)
       ? client.name
-      : options?.title ?? getDefaultService(program)?.title ?? "",
+      : options?.title ??
+          client.name ??
+          getDefaultService(program)?.title ??
+          "",
     NameType.Class
   );
   const importSet = new Map<ImportKind, Set<string>>();
@@ -70,31 +62,21 @@ export async function transformRLCModel(
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
 
   const responses: OperationResponse[] = transformToResponseTypes(
-    program,
     importSet,
     client,
     dpgContext
   );
   const parameters: OperationParameter[] = transformToParameterTypes(
-    program,
     importSet,
     client,
     dpgContext
   );
-  const helperDetails = transformHelperFunctionDetails(
-    program,
-    client,
-    dpgContext
-  );
+  const helperDetails = transformHelperFunctionDetails(client, dpgContext);
   // Enrich client-level annotation detail
   helperDetails.clientLroOverload = getClientLroOverload(paths);
-  const urlInfo = transformUrlInfo(program, dpgContext);
-  const apiVersionInfo = transformApiVersionInfo(
-    client,
-    program,
-    dpgContext,
-    urlInfo
-  );
+  const urlInfo = transformUrlInfo(dpgContext);
+  const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
+  const telemetryOptions = transformTelemetryInfo(dpgContext, client);
   return {
     srcPath,
     libraryName,
@@ -106,14 +88,13 @@ export async function transformRLCModel(
     apiVersionInfo,
     parameters,
     helperDetails,
-    urlInfo
+    urlInfo,
+    telemetryOptions
   };
 }
 
-export function transformUrlInfo(
-  program: Program,
-  dpgContext: SdkContext
-): UrlInfo | undefined {
+export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {
+  const program = dpgContext.program;
   const serviceNs = getDefaultService(program)?.type;
   let endpoint = undefined;
   const urlParameters: PathParameter[] = [];
@@ -128,24 +109,35 @@ export function transformUrlInfo(
         const property = host?.[0]?.parameters.get(key);
         const type = property?.type;
 
-        if (!type) {
+        if (!property || !type) {
           continue;
         }
 
-        const schema = getSchemaForType(program, type);
+        const schema = getSchemaForType(
+          dpgContext,
+          type,
+          [SchemaContext.Exception, SchemaContext.Input],
+          false,
+          property!
+        );
         urlParameters.push({
-          name: key,
+          oriName: key,
+          name: normalizeName(key, NameType.Parameter, true),
           type: getTypeName(schema),
           description:
             (getDoc(program, property) &&
               getFormattedPropertyDoc(program, property, schema, " ")) ??
             getFormattedPropertyDoc(program, type, schema, " " /* sperator*/),
-          value: predictDefaultValue(
-            program,
-            dpgContext,
-            host?.[0]?.parameters.get(key)
-          )
+          value: predictDefaultValue(dpgContext, host?.[0]?.parameters.get(key))
         });
+      }
+    }
+  }
+  if (endpoint && urlParameters.length > 0) {
+    for (const param of urlParameters) {
+      if (param.oriName) {
+        const regexp = new RegExp(`{${param.oriName}}`, "g");
+        endpoint = endpoint.replace(regexp, `{${param.name}}`);
       }
     }
   }

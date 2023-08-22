@@ -18,21 +18,21 @@ import {
 } from "@typespec/http";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup,
-  SdkOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { getSchemaForType } from "../modelUtils.js";
+import { getSchemaForType } from "../utils/modelUtils.js";
 import {
   extractOperationLroDetail,
   getOperationGroupName,
+  getOperationName,
   getOperationStatuscode,
   isDefaultStatusCode,
   isDefinedStatusCode,
   isPagingOperation
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformPaths(
   program: Program,
@@ -48,13 +48,21 @@ export function transformPaths(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
-      transformOperation(program, route, paths, dpgContext, operationGroup);
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
+      transformOperation(dpgContext, route, paths);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
-    transformOperation(program, route, paths, dpgContext);
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    transformOperation(dpgContext, route, paths);
   }
   return paths;
 }
@@ -64,8 +72,8 @@ export function transformPaths(
  * an operation can end up returning.
  */
 function getResponseTypes(
-  operation: HttpOperation,
-  operationGroup?: SdkOperationGroup
+  dpgContext: SdkContext,
+  operation: HttpOperation
 ): ResponseTypes {
   const returnTypes: ResponseTypes = {
     error: [],
@@ -77,8 +85,8 @@ function getResponseTypes(
       .map((r) => {
         const statusCode = getOperationStatuscode(r);
         const responseName = getResponseTypeName(
-          getOperationGroupName(operationGroup),
-          operation.operation.name,
+          getOperationGroupName(dpgContext, operation),
+          getOperationName(dpgContext.program, operation.operation),
           statusCode
         );
         return responseName;
@@ -96,31 +104,33 @@ function getResponseTypes(
 }
 
 function transformOperation(
-  program: Program,
-  route: HttpOperation,
-  paths: Paths,
   dpgContext: SdkContext,
-  operationGroup?: SdkOperationGroup
+  route: HttpOperation,
+  paths: Paths
 ) {
+  const program = dpgContext.program;
   const respNames = [];
-  const operationGroupName = getOperationGroupName(operationGroup);
+  const operationGroupName = getOperationGroupName(dpgContext, route);
   for (const resp of route.responses) {
     const respName = getResponseTypeName(
       operationGroupName,
-      route.operation.name,
+      getOperationName(program, route.operation),
       getOperationStatuscode(resp)
     );
     respNames.push(respName);
   }
-  const responseTypes = getResponseTypes(route, operationGroup);
+  const responseTypes = getResponseTypes(dpgContext, route);
   const method: OperationMethod = {
     description: getDoc(program, route.operation) ?? "",
     hasOptionalOptions: !hasRequiredOptions(dpgContext, route.parameters),
-    optionsName: getParameterTypeName(operationGroupName, route.operation.name),
+    optionsName: getParameterTypeName(
+      operationGroupName,
+      getOperationName(program, route.operation)
+    ),
     responseTypes,
     returnType: respNames.join(" | "),
     successStatus: gerOperationSuccessStatus(route),
-    operationName: route.operation.name,
+    operationName: getOperationName(program, route.operation),
     operationHelperDetail: {
       lroDetails: extractOperationLroDetail(
         program,
@@ -141,19 +151,21 @@ function transformOperation(
   } else {
     paths[route.path] = {
       description: getDoc(program, route.operation) ?? "",
-      name: escapeCoreName(route.operation.name || "Client"),
+      name: escapeCoreName(
+        getOperationName(program, route.operation) || "Client"
+      ),
       pathParameters: route.parameters.parameters
         .filter((p) => p.type === "path")
         .map((p) => {
           return {
             name: p.name,
             type: p.param.sourceProperty
-              ? getSchemaForType(program, p.param.sourceProperty?.type).type
-              : getSchemaForType(program, p.param.type).type,
+              ? getSchemaForType(dpgContext, p.param.sourceProperty?.type).type
+              : getSchemaForType(dpgContext, p.param.type).type,
             description: getDoc(program, p.param)
           };
         }),
-      operationGroupName: getOperationGroupName(operationGroup),
+      operationGroupName: getOperationGroupName(dpgContext, route),
       methods: {
         [route.verb]: [method]
       }

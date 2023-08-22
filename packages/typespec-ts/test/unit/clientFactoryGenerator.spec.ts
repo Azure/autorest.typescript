@@ -1,6 +1,7 @@
 import { assert } from "chai";
 import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
+import { Diagnostic } from "@typespec/compiler";
 
 describe("Client Factory generation", () => {
   describe("should handle url parameters", () => {
@@ -18,11 +19,12 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
@@ -36,6 +38,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -65,12 +70,13 @@ describe("Client Factory generation", () => {
         models!.content,
         `
           import { getClient, ClientOptions } from "@azure-rest/core-client";
+          import { logger } from "./logger";
           import { testClient } from "./clientDefinitions";
 
           /**
            * Initialize a new instance of \`testClient\`
-           * @param endpoint type: string, The endpoint to use.
-           * @param options type: ClientOptions, the parameter for all optional parameters
+           * @param endpoint - The endpoint to use.
+           * @param options - the parameter for all optional parameters
            */
           export default function createClient(
             endpoint: string,
@@ -87,6 +93,9 @@ describe("Client Factory generation", () => {
               ...options,
               userAgentOptions: {
                 userAgentPrefix,
+              },
+              loggingOptions: {
+                logger: options.loggingOptions?.logger ?? logger.info
               },
             };
           
@@ -115,6 +124,7 @@ describe("Client Factory generation", () => {
             scalar Endpoint extends string;
 
             #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+            #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
             @doc("The version to use")
             @fixed
             enum Version {
@@ -129,13 +139,14 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { logger } from "./logger";
             import { testClient } from "./clientDefinitions";
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint type: string, The endpoint to use.
-             * @param version type: "V1"|"V2", The version to use
-             * @param options type: ClientOptions, the parameter for all optional parameters
+             * @param endpoint - The endpoint to use.
+             * @param version - The version to use
+             * @param options - the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -153,6 +164,9 @@ describe("Client Factory generation", () => {
                 ...options,
                 userAgentOptions: {
                   userAgentPrefix,
+                },
+                loggingOptions: {
+                  logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
             
@@ -181,6 +195,7 @@ describe("Client Factory generation", () => {
 
             @doc("The version to use.")
             enum Versions {
+              @doc("v1.1")
               v1_1: "v1.1",
             }
             `,
@@ -191,13 +206,14 @@ describe("Client Factory generation", () => {
         models!.content,
         `
             import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { logger } from "./logger";
             import { testClient } from "./clientDefinitions";
             
             /**
              * Initialize a new instance of \`testClient\`
-             * @param endpoint type: string, The endpoint to use.
-             * @param version type: string, The version to use. Possible values: v1.1
-             * @param options type: ClientOptions, the parameter for all optional parameters
+             * @param endpoint - The endpoint to use.
+             * @param version - The version to use. Possible values: v1.1
+             * @param options - the parameter for all optional parameters
              */
             export default function createClient(
               endpoint: string,
@@ -215,6 +231,9 @@ describe("Client Factory generation", () => {
                 ...options,
                 userAgentOptions: {
                   userAgentPrefix,
+                },
+                loggingOptions: {
+                  logger: options.loggingOptions?.logger ?? logger.info
                 },
               };
             
@@ -238,12 +257,13 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { testClient } from "./clientDefinitions";
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint type: string, The parameter endpoint
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param endpoint - The parameter endpoint
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -257,6 +277,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         
@@ -271,7 +294,9 @@ describe("Client Factory generation", () => {
 
   describe("should handle different auth options", () => {
     it("should not generate credential if scope is empty", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      try {
+        await emitClientFactoryFromCadl(
+          `
       @useAuth(
         OAuth2Auth<[{
           type: OAuth2FlowType.implicit,
@@ -280,40 +305,19 @@ describe("Client Factory generation", () => {
         }]>)
       @service( {title: "PetStoreClient"})
       namespace PetStore;
-      `);
-      assert.ok(models);
-      assertEqualContent(
-        models!.content,
-        `
-        import { getClient, ClientOptions } from "@azure-rest/core-client";
-        import { testClient } from "./clientDefinitions";
-        
-        /**
-         * Initialize a new instance of \`testClient\`
-         * @param endpoint type: string, The parameter endpoint
-         * @param options type: ClientOptions, the parameter for all optional parameters
-         */
-        export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
-        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
-        
-        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
-        const userAgentPrefix =
-            options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-            ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
-            : \`\${userAgentInfo}\`;
-        options = {
-            ...options,
-            userAgentOptions: {
-            userAgentPrefix,
-            },
-        };
-        
-        const client = getClient(baseUrl, options) as testClient;
-        
-        return client;
-    }
-    `
-      );
+      `,
+          false,
+          false
+        );
+        assert.fail("Should throw diagnostic errors");
+      } catch (e) {
+        const diagnostics = e as Diagnostic[];
+        assert.equal(diagnostics.length, 1);
+        assert.equal(
+          diagnostics[0]?.code,
+          "@azure-tools/typespec-ts/no-credential-scopes"
+        );
+      }
     });
 
     it("should generate both credentials if both defined", async () => {
@@ -333,14 +337,15 @@ describe("Client Factory generation", () => {
         models!.content,
         `
         import { getClient, ClientOptions } from "@azure-rest/core-client";
+        import { logger } from "./logger";
         import { TokenCredential, KeyCredential } from "@azure/core-auth";
         import { testClient } from "./clientDefinitions";
         
         /**
          * Initialize a new instance of \`testClient\`
-         * @param endpoint type: string, The parameter endpoint
-         * @param credentials type: TokenCredential|KeyCredential, uniquely identify client credential
-         * @param options type: ClientOptions, the parameter for all optional parameters
+         * @param endpoint - The parameter endpoint
+         * @param credentials - uniquely identify client credential
+         * @param options - the parameter for all optional parameters
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
@@ -348,8 +353,8 @@ describe("Client Factory generation", () => {
         options = {
             ...options,
             credentials: {
-              scopes: ["https://petstor.com/default"],
-              apiKeyHeaderName: "apiKey",
+              scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
+              apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "apiKey",
             },
           };
         
@@ -362,6 +367,9 @@ describe("Client Factory generation", () => {
             ...options,
             userAgentOptions: {
             userAgentPrefix,
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
             },
         };
         

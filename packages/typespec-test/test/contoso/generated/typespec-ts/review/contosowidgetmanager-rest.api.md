@@ -19,13 +19,8 @@ import { RequestParameters } from '@azure-rest/core-client';
 import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 
-// @public (undocumented)
-export type ContosoWidgetManagerClient = Client & {
-    path: Routes;
-};
-
 // @public
-function createClient(endpoint: string, options?: ClientOptions): ContosoWidgetManagerClient;
+function createClient(endpoint: string, options?: ClientOptions): WidgetManagerClient;
 export default createClient;
 
 // @public (undocumented)
@@ -260,7 +255,7 @@ export interface ListWidgets {
 // @public
 export interface ListWidgets200Response extends HttpResponse {
     // (undocumented)
-    body: WidgetListOutput;
+    body: PagedWidgetOutput;
     // (undocumented)
     status: "200";
 }
@@ -289,6 +284,9 @@ export interface OperationStatusOutput {
     id: string;
     status: string;
 }
+
+// @public
+export type PagedWidgetOutput = Paged<WidgetOutput>;
 
 // @public
 export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
@@ -326,8 +324,10 @@ export interface Widget {
     sharedModel?: FakedSharedModel;
 }
 
-// @public
-export type WidgetListOutput = Paged<WidgetOutput>;
+// @public (undocumented)
+export type WidgetManagerClient = Client & {
+    path: Routes;
+};
 
 // @public
 export interface WidgetOutput {

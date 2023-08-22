@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export function buildPipeCollection(queryParameters: string[]): string {
-  return queryParameters.join("|");
+export function buildPipeCollection(items: string[] | number[]): string {
+  return items.join("|");
 }
 
-export function buildSsvCollection(queryParameters: string[]): string {
-  return queryParameters.join(" ");
+export function buildSsvCollection(items: string[] | number[]): string {
+  return items.join(" ");
 }
 
-export function buildTsvCollection(queryParameters: string[]) {
-  return queryParameters.join("\t");
+export function buildTsvCollection(items: string[] | number[]) {
+  return items.join("\t");
 }

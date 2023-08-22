@@ -1,10 +1,10 @@
 import TypePropertyOptionalClientFactory, {
-  TypePropertyOptionalClient
+  OptionalClient
 } from "./generated/models/propertyOptional/src/index.js";
 import { assert } from "chai";
 
 describe("ModelsPropertyOptional Rest Client", () => {
-  let client: TypePropertyOptionalClient;
+  let client: OptionalClient;
 
   beforeEach(() => {
     client = TypePropertyOptionalClientFactory({

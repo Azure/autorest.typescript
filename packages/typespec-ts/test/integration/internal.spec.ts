@@ -14,27 +14,60 @@ describe("Internal Rest Client", () => {
     });
   });
 
-  it("should get internal", async () => {
+  it("should get internal only", async () => {
     try {
-      const result = await client.path("/azure/client-generator-core/internal/getInternal").get({
-        queryParameters: {
-          name: "get internal"
-        }
-      });
+      const result = await client
+        .path("/azure/client-generator-core/internal/internal")
+        .get({
+          queryParameters: {
+            name: "any"
+          }
+        });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);
     }
   });
 
-  it("should post internal", async () => {
+  it("should get internal", async () => {
     try {
-      const result = await client.path("/azure/client-generator-core/internal/postInternal").post({
-        body: {
-          id: 1 as any,
-          name: "post internal name"
-        }
-      });
+      const result = await client
+        .path("/azure/client-generator-core/internal/public")
+        .get({
+          queryParameters: {
+            name: "any"
+          }
+        });
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get shared public", async () => {
+    try {
+      const result = await client
+        .path("/azure/client-generator-core/internal/shared/public")
+        .get({
+          queryParameters: {
+            name: "any"
+          }
+        });
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get shared internal", async () => {
+    try {
+      const result = await client
+        .path("/azure/client-generator-core/internal/shared/internal")
+        .get({
+          queryParameters: {
+            name: "any"
+          }
+        });
       assert.strictEqual(result.status, "200");
     } catch (err) {
       assert.fail(err as string);

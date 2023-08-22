@@ -3,7 +3,7 @@
 
 /** This is a base model has discriminator name containing dot. */
 export interface BaseModelParent {
-  "model.kind": "BaseModel" | "derived";
+  "model.kind": string;
 }
 
 /** This is a model has property names of special words or characters. */

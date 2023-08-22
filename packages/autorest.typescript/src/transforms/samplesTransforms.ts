@@ -162,12 +162,17 @@ export async function getAllExamples(
             clientParameterNames.push(parameterName);
           }
 
-          handleSubscriptionIdParameter(
-            subscriptionIdValue,
-            clientParameterNames,
-            sample.clientParamAssignments,
-            requiredParams
-          );
+          if (
+            !(opDetails.isTenantLevel && clientDetails.hasTenantLevelOperation)
+          ) {
+            handleSubscriptionIdParameter(
+              subscriptionIdValue,
+              clientParameterNames,
+              sample.clientParamAssignments,
+              requiredParams
+            );
+          }
+
           if (clientParameterNames.length > 0) {
             sample.clientParameterNames = clientParameterNames.join(", ");
           }

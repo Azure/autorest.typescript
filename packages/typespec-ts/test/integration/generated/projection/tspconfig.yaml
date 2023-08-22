@@ -9,6 +9,7 @@ options:
     azureSdkForJs: false
     isCadlTest: true
     title: ProjectionClient
+    enableOperationGroup: true
     packageDetails:
       name: "@msinternal/projection"
       description: "Projection Test Service"

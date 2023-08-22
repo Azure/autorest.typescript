@@ -1,9 +1,9 @@
 import { assert } from "chai";
 import TypeEnumFixedClientFactory, {
-  TypeEnumFixedClient
+  FixedClient
 } from "./generated/enums/fixed/src/index.js";
 describe("FixedEnums Rest Client", () => {
-  let client: TypeEnumFixedClient;
+  let client: FixedClient;
 
   beforeEach(() => {
     client = TypeEnumFixedClientFactory({

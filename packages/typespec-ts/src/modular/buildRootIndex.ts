@@ -5,90 +5,92 @@ import { Client } from "./modularCodeModel.js";
 export function buildRootIndex(
   client: Client,
   project: Project,
-  srcPath: string
+  rootIndexFile: SourceFile,
+  srcPath: string,
+  subfolder: string
 ) {
   const clientName = `${getClientName(client)}Client`;
-  const clientFile = project.getSourceFile(`${srcPath}/src/${clientName}.ts`);
+  const clientFile = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
+  );
 
   if (!clientFile) {
-    throw new Error(
-      `Couldn't find client file: ${srcPath}/src/${clientName}.ts`
-    );
+    throw new Error(`Couldn't find client file: ${srcPath}/${clientName}.ts`);
   }
 
-  const file = project.createSourceFile(`${srcPath}/src/index.ts`, "", {
-    overwrite: true
-  });
-
-  exportModels(file, srcPath);
-  exportOptionsInterfaces(client, file, srcPath);
-  exportClassicalClient(client, file);
-
-  file.addExportDeclarations([
-    {
-      moduleSpecifier: `./common/interfaces.js`,
-      namedExports: [`ClientOptions`, `RequestOptions`]
-    }
-  ]);
+  exportClassicalClient(client, rootIndexFile, subfolder);
+  exportModels(rootIndexFile, project, srcPath, clientName, subfolder, true);
 }
 
-function exportClassicalClient(client: Client, indexFile: SourceFile) {
-  const clientName = `${getClientName(client)}Client`;
-  indexFile.addExportDeclaration({
-    namedExports: [clientName],
-    moduleSpecifier: `./${clientName}.js`
-  });
-}
-
-function exportOptionsInterfaces(
+function exportClassicalClient(
   client: Client,
   indexFile: SourceFile,
-  srcPath: string
+  subfolder: string,
+  isSubClient: boolean = false
 ) {
-  const clientContextName = `${getClientName(client)}Context`;
-  const project = indexFile.getProject();
-  const files = project.getSourceFiles(`${srcPath}/src/api/**`);
-
-  for (const file of files) {
-    if (file.getBaseNameWithoutExtension() === clientContextName) {
-      continue;
-    }
-
-    if (file.getBaseNameWithoutExtension() === "models") {
-      continue;
-    }
-
-    if (file.getBaseNameWithoutExtension() === "index") {
-      continue;
-    }
-
-    const namedExports: string[] = [];
-    for (const [key, delaration] of file.getExportedDeclarations().entries()) {
-      if (
-        delaration[0]?.getKindName() === "InterfaceDeclaration" ||
-        delaration[0]?.getKindName() === "TypeAliasDeclaration"
-      ) {
-        namedExports.push(key);
-      }
-    }
-
-    if (namedExports.length > 0) {
-      const moduleSpecifier = `./api/${file.getBaseNameWithoutExtension()}.js`;
-      indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
-    }
-  }
+  const clientName = `${getClientName(client)}Client`;
+  indexFile.addExportDeclaration({
+    namedExports: [clientName, `${clientName}Options`],
+    moduleSpecifier: `./${
+      subfolder !== "" && !isSubClient ? subfolder + "/" : ""
+    }${clientName}.js`
+  });
 }
 
-function exportModels(indexFile: SourceFile, srcPath: string) {
-  const project = indexFile.getProject();
-  const modelsFile = project.getSourceFile(`${srcPath}/src/api/models.ts`);
-
+function exportModels(
+  indexFile: SourceFile,
+  project: Project,
+  srcPath: string,
+  clientName: string,
+  subfolder: string = "",
+  isTopLevel: boolean = false
+) {
+  const modelsFile = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/index.ts`
+  );
   if (!modelsFile) {
     return;
   }
 
-  const namedExports = [...modelsFile.getExportedDeclarations().keys()];
-  const moduleSpecifier = "./api/models.js";
+  const exported = [...indexFile.getExportedDeclarations().keys()];
+  const namedExports = [...modelsFile.getExportedDeclarations().keys()].map(
+    (modelName) => {
+      if (exported.indexOf(modelName) > -1) {
+        return `${modelName} as ${clientName}${modelName}`;
+      }
+      return modelName;
+    }
+  );
+  const moduleSpecifier = `./${
+    isTopLevel && subfolder !== "" ? subfolder + "/" : ""
+  }models/index.js`;
+  indexFile.addExportDeclaration({
+    moduleSpecifier,
+    namedExports
+  });
+}
 
-  indexFile.addExportDeclaration({ moduleSpecifier, namedExports });
+export function buildSubClientIndexFile(
+  client: Client,
+  project: Project,
+  srcPath: string,
+  subfolder: string
+) {
+  const subClientIndexFile = project.createSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
+    undefined,
+    { overwrite: true }
+  );
+  const clientName = `${getClientName(client)}Client`;
+  const clientFilePath = `${srcPath}/${
+    subfolder !== "" ? subfolder + "/" : ""
+  }${clientName}.ts`;
+  const clientFile = project.getSourceFile(clientFilePath);
+
+  if (!clientFile) {
+    throw new Error(`Couldn't find client file: ${clientFilePath}`);
+  }
+
+  exportClassicalClient(client, subClientIndexFile, subfolder, true);
+  exportModels(subClientIndexFile, project, srcPath, clientName, subfolder);
 }

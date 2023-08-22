@@ -122,11 +122,6 @@ interface Metadata {
 }
 
 export function buildReadmeFile(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
-
   const metadata = createMetadata(model) ?? {};
   const readmeFileContents = hbs.compile(readmeTemplate, { noEscape: true });
   return {
@@ -169,6 +164,7 @@ function createMetadata(model: RLCModel): Metadata | undefined {
   const clientClassName = getClientName(model);
   const serviceName = getServiceName(model);
   let apiRefUrlQueryParameter: string = "";
+  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
   if (packageDetails?.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }

@@ -13,13 +13,14 @@ export class FeatureClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: FeatureClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: FeatureClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
     features: Features;
     listOperations(options?: ListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
     // (undocumented)
-    subscriptionId: string;
+    subscriptionId?: string;
 }
 
 // @public

@@ -5,6 +5,7 @@ import { RestTestLibrary } from "@typespec/rest/testing";
 import { HttpTestLibrary } from "@typespec/http/testing";
 import { VersioningTestLibrary } from "@typespec/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
+import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { assert } from "chai";
 import { format } from "prettier";
@@ -16,7 +17,8 @@ export async function createRLCEmitterTestHost() {
       HttpTestLibrary,
       RestTestLibrary,
       VersioningTestLibrary,
-      AzureCoreTestLibrary
+      AzureCoreTestLibrary,
+      SdkTestLibrary
     ]
   });
 }
@@ -25,35 +27,40 @@ export async function rlcEmitterFor(
   code: string,
   needNamespaces: boolean = true,
   needAzureCore: boolean = false,
-  ignoreClientApiVersion: boolean = false
+  ignoreClientApiVersion: boolean = false,
+  needTCGC: boolean = false,
+  withRawContent: boolean = false
 ): Promise<TestHost> {
   const host: TestHost = await createRLCEmitterTestHost();
   const namespace = `
+  #suppress "@azure-tools/typespec-azure-core/auth-required" "for test"
   @service({
     title: "Azure TypeScript Testing",
     ${ignoreClientApiVersion ? "" : 'version: "2022-12-16-preview",'}
   })
 
+  ${needAzureCore ? "@useDependency(Azure.Core.Versions.v1_0_Preview_2)" : ""} 
   namespace Azure.TypeScript.Testing;
   `;
-  host.addTypeSpecFile(
-    "main.tsp",
-    `
-  import "@typespec/http";
-  import "@typespec/rest";
-  import "@typespec/versioning";
-  ${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
+  const content = withRawContent
+    ? code
+    : `
+import "@typespec/http";
+import "@typespec/rest";
+import "@typespec/versioning";
+${needTCGC ? 'import "@azure-tools/typespec-client-generator-core";' : ""} 
+${needAzureCore ? 'import "@azure-tools/typespec-azure-core";' : ""} 
 
-  using TypeSpec.Rest; 
-  using TypeSpec.Http;
-  using TypeSpec.Versioning;
-  ${needAzureCore ? "using Azure.Core;" : ""}
-  
-  ${needNamespaces ? namespace : ""}
+using TypeSpec.Rest; 
+using TypeSpec.Http;
+using TypeSpec.Versioning;
+${needAzureCore ? "using Azure.Core;" : ""}
 
-  ${code}
-  `
-  );
+${needNamespaces ? namespace : ""}
+
+${code}
+`;
+  host.addTypeSpecFile("main.tsp", content);
   await host.compile("./", {
     warningAsError: false
   });

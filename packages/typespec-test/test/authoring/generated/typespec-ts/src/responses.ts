@@ -6,9 +6,9 @@ import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   ProjectOutput,
   OperationStatusOutput,
-  ProjectListOutput,
+  PagedProjectOutput,
   DeploymentOutput,
-  DeploymentListOutput,
+  PagedDeploymentOutput,
   DeploymentJobOutput,
   SwapDeploymentsJobOutput,
   PagedSupportedLanguageOutput,
@@ -73,27 +73,27 @@ export interface GetDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetDefaultHeaders;
 }
 
-export interface Delete202Headers {
+export interface DeleteOperation202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface Delete202Response extends HttpResponse {
+export interface DeleteOperation202Response extends HttpResponse {
   status: "202";
   body: OperationStatusOutput;
-  headers: RawHttpHeaders & Delete202Headers;
+  headers: RawHttpHeaders & DeleteOperation202Headers;
 }
 
-export interface DeleteDefaultHeaders {
+export interface DeleteOperationDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface DeleteDefaultResponse extends HttpResponse {
+export interface DeleteOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & DeleteDefaultHeaders;
+  headers: RawHttpHeaders & DeleteOperationDefaultHeaders;
 }
 
 /** The final response for long-running delete operation */
@@ -105,7 +105,7 @@ export interface DeleteLogicalResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListProjects200Response extends HttpResponse {
   status: "200";
-  body: ProjectListOutput;
+  body: PagedProjectOutput;
 }
 
 export interface ListProjectsDefaultHeaders {
@@ -290,7 +290,7 @@ export interface DeleteDeploymentLogicalResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface ListDeployments200Response extends HttpResponse {
   status: "200";
-  body: DeploymentListOutput;
+  body: PagedDeploymentOutput;
 }
 
 export interface ListDeploymentsDefaultHeaders {

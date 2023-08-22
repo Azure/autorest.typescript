@@ -720,6 +720,60 @@ interface IdentityOutput {
     type?: "SystemAssigned";
 }
 
+// @public (undocumented)
+function isUnexpected(response: MetadataRolesList200Response | MetadataRolesListDefaultResponse): response is MetadataRolesListDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected(response: MetadataPolicyListAll200Response | MetadataPolicyListAllDefaultResponse): response is MetadataPolicyListAllDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected(response: MetadataPolicyUpdate200Response | MetadataPolicyUpdateDefaultResponse): response is MetadataPolicyUpdateDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected(response: MetadataPolicyGet200Response | MetadataPolicyGetDefaultResponse): response is MetadataPolicyGetDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: AccountsGetAccountProperties200Response | AccountsGetAccountPropertiesDefaultResponse): response is AccountsGetAccountPropertiesDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: AccountsUpdateAccountProperties200Response | AccountsUpdateAccountPropertiesDefaultResponse): response is AccountsUpdateAccountPropertiesDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: AccountsGetAccessKeys200Response | AccountsGetAccessKeysDefaultResponse): response is AccountsGetAccessKeysDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: AccountsRegenerateAccessKey200Response | AccountsRegenerateAccessKeyDefaultResponse): response is AccountsRegenerateAccessKeyDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: CollectionsGetCollection200Response | CollectionsGetCollectionDefaultResponse): response is CollectionsGetCollectionDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: CollectionsCreateOrUpdateCollection200Response | CollectionsCreateOrUpdateCollectionDefaultResponse): response is CollectionsCreateOrUpdateCollectionDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: CollectionsDeleteCollection204Response | CollectionsDeleteCollectionDefaultResponse): response is CollectionsDeleteCollectionDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: CollectionsListCollections200Response | CollectionsListCollectionsDefaultResponse): response is CollectionsListCollectionsDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: CollectionsListChildCollectionNames200Response | CollectionsListChildCollectionNamesDefaultResponse): response is CollectionsListChildCollectionNamesDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: CollectionsGetCollectionPath200Response | CollectionsGetCollectionPathDefaultResponse): response is CollectionsGetCollectionPathDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: ResourceSetRulesGetResourceSetRule200Response | ResourceSetRulesGetResourceSetRuleDefaultResponse): response is ResourceSetRulesGetResourceSetRuleDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: ResourceSetRulesCreateOrUpdateResourceSetRule200Response | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse): response is ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: ResourceSetRulesDeleteResourceSetRule200Response | ResourceSetRulesDeleteResourceSetRule204Response | ResourceSetRulesDeleteResourceSetRuleDefaultResponse): response is ResourceSetRulesDeleteResourceSetRuleDefaultResponse;
+
+// @public (undocumented)
+function isUnexpected_2(response: ResourceSetRulesListResourceSetRules200Response | ResourceSetRulesListResourceSetRulesDefaultResponse): response is ResourceSetRulesListResourceSetRulesDefaultResponse;
+
 // @public
 interface ManagedResourcesOutput {
     readonly eventHubNamespace?: string;
@@ -1263,7 +1317,8 @@ declare namespace PurviewAccount {
         Client_3 as Client,
         Models_2 as Models,
         OutputModels_2 as OutputModels,
-        PaginateHelper_2 as PaginateHelper
+        PaginateHelper_2 as PaginateHelper,
+        UnexpectedHelper_2 as UnexpectedHelper
     }
 }
 export { PurviewAccount }
@@ -1281,7 +1336,8 @@ declare namespace PurviewMetadataPolicies {
         Client_2 as Client,
         Models,
         OutputModels,
-        PaginateHelper
+        PaginateHelper,
+        UnexpectedHelper
     }
 }
 export { PurviewMetadataPolicies }
@@ -1609,6 +1665,18 @@ interface SystemDataOutput {
     readonly lastModifiedAt?: string;
     readonly lastModifiedBy?: string;
     readonly lastModifiedByType?: "User" | "Application" | "ManagedIdentity" | "Key";
+}
+
+declare namespace UnexpectedHelper {
+    export {
+        isUnexpected
+    }
+}
+
+declare namespace UnexpectedHelper_2 {
+    export {
+        isUnexpected_2 as isUnexpected
+    }
 }
 
 // (No @packageDocumentation comment for this package)

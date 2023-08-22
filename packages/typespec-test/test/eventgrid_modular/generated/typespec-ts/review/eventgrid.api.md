@@ -4,45 +4,31 @@
 
 ```ts
 
-import { AzureKeyCredential } from '@azure/core-auth';
-import { ClientOptions as ClientOptions_2 } from '@azure-rest/core-client';
-import { RawHttpHeadersInput } from '@azure/core-rest-pipeline';
-import { TokenCredential } from '@azure/core-auth';
+import { ClientOptions } from '@azure-rest/core-client';
+import { KeyCredential } from '@azure/core-auth';
+import { OperationOptions } from '@azure-rest/core-client';
 
 // @public (undocumented)
-export interface AcknowledgeBatchOfCloudEventsOptions extends RequestOptions {
-    accept?: "application/json";
+export interface AcknowledgeCloudEventsOptions extends OperationOptions {
     contentType?: string;
 }
 
-// @public (undocumented)
-export class AzureMessagingEventGridClient {
-    constructor(endpoint: string, credential: AzureKeyCredential | TokenCredential, options?: ClientOptions);
-    // (undocumented)
-    acknowledgeBatchOfCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeBatchOfCloudEventsOptions): Promise<LockTokensResponse>;
-    // (undocumented)
-    publishBatchOfCloudEvents(events: CloudEventEvent[], topicName: string, options?: PublishBatchOfCloudEventsOptions): Promise<void>;
-    // (undocumented)
-    publishCloudEvent(id: string, source: string, type: string, specversion: string, topicName: string, options?: PublishCloudEventOptions): Promise<void>;
-    // (undocumented)
-    receiveBatchOfCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveBatchOfCloudEventsOptions): Promise<ReceiveResponse>;
-    // (undocumented)
-    releaseBatchOfCloudEvents(tokens: LockToken[], topicName: string, eventSubscriptionName: string, options?: ReleaseBatchOfCloudEventsOptions): Promise<LockTokensResponse>;
+// @public
+export interface AcknowledgeResult {
+    failedLockTokens: FailedLockToken[];
+    succeededLockTokens: string[];
 }
 
 // @public
 export interface BrokerProperties {
-    lockToken: LockToken;
-}
-
-// @public (undocumented)
-export interface ClientOptions extends ClientOptions_2 {
+    deliveryCount: number;
+    lockToken: string;
 }
 
 // @public
-export interface CloudEventEvent {
-    data?: object;
-    dataBase64?: string;
+export interface CloudEvent {
+    data?: any;
+    dataBase64?: Uint8Array;
     datacontenttype?: string;
     dataschema?: string;
     id: string;
@@ -53,79 +39,75 @@ export interface CloudEventEvent {
     type: string;
 }
 
-// @public
-export interface FailedLockToken {
-    errorCode: number;
-    errorDescription: string;
-    lockToken: LockToken;
+// @public (undocumented)
+export class EventGridClient {
+    constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
+    acknowledgeCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
+    publishCloudEvent(event: CloudEvent, topicName: string, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
+    publishCloudEvents(events: CloudEvent[], topicName: string, options?: PublishCloudEventsOptions): Promise<Record<string, any>>;
+    receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
+    rejectCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: RejectCloudEventsOptions): Promise<RejectResult>;
+    releaseCloudEvents(lockTokens: string[], topicName: string, eventSubscriptionName: string, options?: ReleaseCloudEventsOptions): Promise<ReleaseResult>;
+}
+
+// @public (undocumented)
+export interface EventGridClientOptions extends ClientOptions {
 }
 
 // @public
-export interface LockToken {
+export interface FailedLockToken {
+    errorCode: string;
+    errorDescription: string;
     lockToken: string;
 }
 
-// @public
-export interface LockTokenInput {
-    lockTokens: string[];
-}
-
-// @public
-export interface LockTokensResponse {
-    failedLockTokens: FailedLockToken[];
-    succeededLockTokens: string[];
-}
-
 // @public (undocumented)
-export interface PublishBatchOfCloudEventsOptions extends RequestOptions {
+export interface PublishCloudEventOptions extends OperationOptions {
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface PublishCloudEventOptions extends RequestOptions {
+export interface PublishCloudEventsOptions extends OperationOptions {
     contentType?: string;
-    data?: object;
-    dataBase64?: string;
-    datacontenttype?: string;
-    dataschema?: string;
-    subject?: string;
-    time?: Date;
 }
 
 // @public (undocumented)
-export interface ReceiveBatchOfCloudEventsOptions extends RequestOptions {
-    accept?: "application/json";
+export interface ReceiveCloudEventsOptions extends OperationOptions {
     maxEvents?: number;
-    timeout?: number;
+    maxWaitTime?: number;
 }
 
 // @public
 export interface ReceiveDetails {
     brokerProperties: BrokerProperties;
-    event: CloudEventEvent;
+    event: CloudEvent;
 }
 
-// @public (undocumented)
-export interface ReceiveResponse {
+// @public
+export interface ReceiveResult {
     value: ReceiveDetails[];
 }
 
 // @public (undocumented)
-export interface ReleaseBatchOfCloudEventsOptions extends RequestOptions {
-    accept?: "application/json";
+export interface RejectCloudEventsOptions extends OperationOptions {
     contentType?: string;
 }
 
+// @public
+export interface RejectResult {
+    failedLockTokens: FailedLockToken[];
+    succeededLockTokens: string[];
+}
+
 // @public (undocumented)
-export interface RequestOptions {
-    // (undocumented)
-    requestOptions?: {
-        headers?: RawHttpHeadersInput;
-        body?: unknown;
-        queryParameters?: Record<string, unknown>;
-        allowInsecureConnection?: boolean;
-        skipUrlEncoding?: boolean;
-    };
+export interface ReleaseCloudEventsOptions extends OperationOptions {
+    contentType?: string;
+}
+
+// @public
+export interface ReleaseResult {
+    failedLockTokens: FailedLockToken[];
+    succeededLockTokens: string[];
 }
 
 // (No @packageDocumentation comment for this package)

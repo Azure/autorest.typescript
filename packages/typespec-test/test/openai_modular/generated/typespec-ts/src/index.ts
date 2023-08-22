@@ -1,27 +1,38 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export { OpenAIClient, OpenAIClientOptions } from "./OpenAIClient.js";
 export {
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
-  EmbeddingsOptions,
   Completions,
+  PromptFilterResult,
+  ContentFilterResults,
+  ContentFilterResult,
+  ContentFilterSeverity,
   Choice,
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
-  CompletionsOptions,
-  ChatCompletions,
-  ChatChoice,
   ChatMessage,
   ChatRole,
-  ChatCompletionsOptions,
-} from "./api/models.js";
-export {
+  FunctionCall,
+  FunctionDefinition,
+  FunctionCallPreset,
+  FunctionName,
+  ChatCompletions,
+  ChatChoice,
+  BatchImageGenerationOperationResponse,
+  ImageGenerations,
+  ImageLocation,
+  ImagePayload,
+  AzureOpenAIOperationState,
+  ImageSize,
+  ImageGenerationResponseFormat,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
-} from "./api/operations.js";
-export { OpenAIClient } from "./OpenAIClient.js";
-export { ClientOptions, RequestOptions } from "./common/interfaces.js";
+  GetAzureBatchImageGenerationOperationStatusOptions,
+  BeginAzureBatchImageGenerationOptions,
+} from "./models/index.js";

@@ -98,7 +98,7 @@ export interface BreakSentenceQueryParamProperties {
 }
 
 // @public (undocumented)
-export function buildMultiCollection(queryParameters: string[], parameterName: string): string;
+export function buildMultiCollection(items: string[], parameterName: string): string;
 
 // @public
 export interface CommonScriptModelOutput {
@@ -109,7 +109,7 @@ export interface CommonScriptModelOutput {
 }
 
 // @public
-function createClient(endpoint: string, options?: ClientOptions): TextTranslationClient;
+function createClient(endpoint: string, options?: ClientOptions): TranslatorClient;
 export default createClient;
 
 // @public (undocumented)
@@ -502,11 +502,6 @@ export interface TargetDictionaryLanguageOutput {
 }
 
 // @public (undocumented)
-export type TextTranslationClient = Client & {
-    path: Routes;
-};
-
-// @public (undocumented)
 export interface Translate {
     post(options: TranslateParameters): StreamableMethod<Translate200Response | TranslateDefaultResponse>;
 }
@@ -606,6 +601,11 @@ export interface TranslationOutput {
     to: string;
     transliteration: TransliterationOutput;
 }
+
+// @public (undocumented)
+export type TranslatorClient = Client & {
+    path: Routes;
+};
 
 // @public
 export interface TransliterableScriptOutput extends CommonScriptModelOutput {

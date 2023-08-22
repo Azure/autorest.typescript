@@ -30,9 +30,9 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
         scopeName: { type: "string", nullable: true },
         nameWithoutScope: { type: "string", nullable: true },
         description: { type: "string", nullable: true },
-        version: { type: "string", nullable: false }
+        version: { type: "string", nullable: true }
       },
-      required: ["name", "version"],
+      required: ["name"],
       nullable: true
     },
     addCredentials: { type: "boolean", nullable: true },
@@ -42,6 +42,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       items: { type: "string" }
     },
     credentialKeyHeaderName: { type: "string", nullable: true },
+    customHttpAuthHeaderName: { type: "string", nullable: true },
+    customHttpAuthSharedKeyPrefix: { type: "string", nullable: true },
     generateMetadata: { type: "boolean", nullable: true },
     generateTest: { type: "boolean", nullable: true },
     generateSample: { type: "boolean", nullable: true },
@@ -71,7 +73,8 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     },
     azureArm: { type: "boolean", nullable: true },
     sourceFrom: { type: "string", nullable: true },
-    isModularLibrary: { type: "boolean", nullable: true, default: false }
+    isModularLibrary: { type: "boolean", nullable: true, default: false },
+    enableOperationGroup: { type: "boolean", nullable: true }
   },
   required: []
 };

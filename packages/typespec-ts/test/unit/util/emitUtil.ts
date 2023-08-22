@@ -1,7 +1,7 @@
-import { listClients } from "@azure-tools/typespec-client-generator-core";
 import {
   buildClient,
   buildClientDefinitions,
+  buildPaginateHelper,
   buildParameterTypes,
   buildResponseTypes,
   buildSchemaTypes,
@@ -16,19 +16,59 @@ import { transformUrlInfo } from "../../../src/transform/transform.js";
 import { transformApiVersionInfo } from "../../../src/transform/transformApiVersionInfo.js";
 import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
 import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
+import { getRLCClients } from "../../../src/utils/clientUtils.js";
+import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
+import { transformHelperFunctionDetails } from "../../../src/transform/transformHelperFunctionDetails.js";
+
+export async function emitPageHelperFromCadl(
+  cadlContent: string,
+  needAzureCore: boolean = false,
+  needTCGC: boolean = false
+) {
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    needAzureCore,
+    false,
+    needTCGC
+  );
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = getRLCClients(dpgContext);
+  let helperDetail;
+  if (clients && clients[0]) {
+    helperDetail = transformHelperFunctionDetails(clients[0], dpgContext);
+  }
+  expectDiagnosticEmpty(program.diagnostics);
+  return buildPaginateHelper({
+    helperDetails: helperDetail,
+    srcPath: "",
+    paths: {},
+    libraryName: "test",
+    schemas: []
+  });
+}
 
 export async function emitModelsFromCadl(
   cadlContent: string,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  needTCGC: boolean = false
 ) {
-  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    needAzureCore,
+    false,
+    needTCGC
+  );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let rlcSchemas: Schema[] = [];
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
   }
+  expectDiagnosticEmpty(program.diagnostics);
   return buildSchemaTypes({
     schemas: rlcSchemas,
     srcPath: "",
@@ -40,27 +80,24 @@ export async function emitModelsFromCadl(
 export async function emitParameterFromCadl(
   cadlContent: string,
   needAzureCore: boolean = false,
-  ignoreClientApiVersion: boolean = false
+  ignoreClientApiVersion: boolean = false,
+  needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
     cadlContent,
     true,
     needAzureCore,
-    ignoreClientApiVersion
+    ignoreClientApiVersion,
+    needTCGC
   );
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   const importSet = new Map<ImportKind, Set<string>>();
   let parameters;
   if (clients && clients[0]) {
-    parameters = transformToParameterTypes(
-      program,
-      importSet,
-      clients[0],
-      dpgContext
-    );
+    parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
   }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildParameterTypes({
     srcPath: "",
     paths: {},
@@ -78,11 +115,12 @@ export async function emitClientDefinitionFromCadl(
   const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let paths = {};
   if (clients && clients[0]) {
     paths = transformPaths(program, clients[0], dpgContext);
   }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildClientDefinitions({
     srcPath: "",
     libraryName: "test",
@@ -93,22 +131,23 @@ export async function emitClientDefinitionFromCadl(
 
 export async function emitClientFactoryFromCadl(
   cadlContent: string,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  isEmptyDiagnostic = true
 ) {
   const context = await rlcEmitterFor(cadlContent, false, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
-  const urlInfo = transformUrlInfo(program, dpgContext);
+  const urlInfo = transformUrlInfo(dpgContext);
   const creadentialInfo = getCredentialInfo(program, {});
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let apiVersionInfo;
   if (clients && clients[0]) {
-    apiVersionInfo = transformApiVersionInfo(
-      clients[0],
-      program,
-      dpgContext,
-      urlInfo
-    );
+    apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
+  }
+  if (isEmptyDiagnostic) {
+    expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  } else {
+    throw dpgContext.program.diagnostics;
   }
 
   return buildClient({
@@ -133,19 +172,14 @@ export async function emitResponsesFromCadl(
   needAzureCore: boolean = false
 ) {
   const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
-  const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = new Map<ImportKind, Set<string>>();
-  const clients = listClients(dpgContext);
+  const clients = getRLCClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
-    responses = transformToResponseTypes(
-      program,
-      importSet,
-      clients[0],
-      dpgContext
-    );
+    responses = transformToResponseTypes(importSet, clients[0], dpgContext);
   }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return buildResponseTypes({
     srcPath: "",
     libraryName: "test",
@@ -154,4 +188,19 @@ export async function emitResponsesFromCadl(
     responses,
     importSet
   });
+}
+
+export async function getRLCClientsFromCadl(cadlContent: string) {
+  const context = await rlcEmitterFor(
+    cadlContent,
+    true,
+    false,
+    false,
+    true,
+    true
+  );
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = getRLCClients(dpgContext);
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  return clients;
 }

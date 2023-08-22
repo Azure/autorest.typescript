@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import SpecsAzureCoreLroRpc from "./specsAzureCoreLroRpc";
+import LegacyClient from "./legacyClient";
 
-export * from "./specsAzureCoreLroRpc";
+export * from "./legacyClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
@@ -12,4 +12,4 @@ export * from "./models";
 export * from "./outputModels";
 export * from "./pollingHelper";
 
-export default SpecsAzureCoreLroRpc;
+export default LegacyClient;

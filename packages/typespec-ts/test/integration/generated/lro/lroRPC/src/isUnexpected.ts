@@ -6,26 +6,13 @@ import {
   CreateJob202Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
-  GetJob200Response,
-  GetJobLogicalResponse,
-  GetJobDefaultResponse,
-  CreateJobFinalOnLocation200Response,
-  CreateJobFinalOnLocation202Response,
-  CreateJobFinalOnLocationLogicalResponse,
-  CreateJobFinalOnLocationDefaultResponse,
-  GetPoll200Response,
-  GetPollLogicalResponse,
-  GetPollDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "POST /azure/core/lro/rpc/same-poll-result/jobs": ["200", "202"],
-  "GET /azure/core/lro/rpc/same-poll-result/jobs": ["200", "202"],
-  "GET /azure/core/lro/rpc/same-poll-result/jobs/{jobId}": ["200"],
-  "POST /azure/core/lro/rpc/different-poll-result/jobs": ["200", "202"],
-  "GET /azure/core/lro/rpc/different-poll-result/jobs": ["200", "202"],
-  "GET /azure/core/lro/rpc/different-poll-result/jobs/operations/{operationId}":
-    ["200"],
+  "POST /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
+    ["200", "202"],
+  "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
+    ["200", "202"],
 };
 
 export function isUnexpected(
@@ -36,39 +23,12 @@ export function isUnexpected(
     | CreateJobDefaultResponse
 ): response is CreateJobDefaultResponse;
 export function isUnexpected(
-  response: GetJob200Response | GetJobLogicalResponse | GetJobDefaultResponse
-): response is GetJobDefaultResponse;
-export function isUnexpected(
-  response:
-    | CreateJobFinalOnLocation200Response
-    | CreateJobFinalOnLocation202Response
-    | CreateJobFinalOnLocationLogicalResponse
-    | CreateJobFinalOnLocationDefaultResponse
-): response is CreateJobFinalOnLocationDefaultResponse;
-export function isUnexpected(
-  response: GetPoll200Response | GetPollLogicalResponse | GetPollDefaultResponse
-): response is GetPollDefaultResponse;
-export function isUnexpected(
   response:
     | CreateJob200Response
     | CreateJob202Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse
-    | GetJob200Response
-    | GetJobLogicalResponse
-    | GetJobDefaultResponse
-    | CreateJobFinalOnLocation200Response
-    | CreateJobFinalOnLocation202Response
-    | CreateJobFinalOnLocationLogicalResponse
-    | CreateJobFinalOnLocationDefaultResponse
-    | GetPoll200Response
-    | GetPollLogicalResponse
-    | GetPollDefaultResponse
-): response is
-  | CreateJobDefaultResponse
-  | GetJobDefaultResponse
-  | CreateJobFinalOnLocationDefaultResponse
-  | GetPollDefaultResponse {
+): response is CreateJobDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

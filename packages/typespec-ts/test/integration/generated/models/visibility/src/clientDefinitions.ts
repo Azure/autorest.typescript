@@ -35,6 +35,6 @@ export interface Routes {
   (path: "/type/model/visibility"): GetModel;
 }
 
-export type TypeModelVisibilityClient = Client & {
+export type VisibilityClient = Client & {
   path: Routes;
 };

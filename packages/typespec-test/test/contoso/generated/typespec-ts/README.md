@@ -1,4 +1,4 @@
-# Azure ContosoWidgetManager REST client library for JavaScript
+# Azure WidgetManager REST client library for JavaScript
 
 Contoso WidgetManager Service
 
@@ -21,13 +21,13 @@ Key links:
 
 ### Install the `@azure-rest/contosowidgetmanager-rest` package
 
-Install the Azure ContosoWidgetManager REST client REST client library for JavaScript with `npm`:
+Install the Azure WidgetManager REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/contosowidgetmanager-rest
 ```
 
-### Create and authenticate a `ContosoWidgetManagerClient`
+### Create and authenticate a `WidgetManagerClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

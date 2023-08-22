@@ -2,12 +2,13 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
+import { logger } from "./logger";
 import { CollectionFormatTestServiceClient } from "./clientDefinitions";
 
 /**
  * Initialize a new instance of `CollectionFormatTestServiceClient`
- * @param endpoint type: string, The parameter endpoint
- * @param options type: ClientOptions, the parameter for all optional parameters
+ * @param endpoint - The parameter endpoint
+ * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
@@ -25,6 +26,9 @@ export default function createClient(
     ...options,
     userAgentOptions: {
       userAgentPrefix,
+    },
+    loggingOptions: {
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
   };
 

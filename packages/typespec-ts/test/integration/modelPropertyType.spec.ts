@@ -1,5 +1,5 @@
 import TypePropertyValueTypesClientFactory, {
-  TypePropertyValueTypesClient
+  ValueTypesClient
 } from "./generated/models/propertyTypes/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
@@ -71,10 +71,26 @@ const testedTypes: TypeDetail[] = [
   {
     type: "never",
     defaultValue: undefined
+  },
+  {
+    type: "unknown/string",
+    defaultValue: "hello"
+  },
+  {
+    type: "unknown/int",
+    defaultValue: 42
+  },
+  {
+    type: "unknown/dict",
+    defaultValue: { k1: "hello", k2: 42 }
+  },
+  {
+    type: "unknown/array",
+    defaultValue: ["hello", "world"]
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {
-  let client: TypePropertyValueTypesClient;
+  let client: ValueTypesClient;
 
   beforeEach(() => {
     client = TypePropertyValueTypesClientFactory({

@@ -86,7 +86,7 @@ function regularAutorestPackage(
       node: ">=14.0.0"
     },
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": "^2.5.0" }),
+      ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
       ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
@@ -95,7 +95,7 @@ function regularAutorestPackage(
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.8.0"
+        "@azure/core-rest-pipeline": "^1.12.0"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "^1.0.0"
@@ -199,6 +199,8 @@ function regularAutorestPackage(
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/node"] = "^14.0.0";
+    packageInfo.devDependencies["ts-node"] = "^10.0.0";
+
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";

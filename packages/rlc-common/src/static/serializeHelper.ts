@@ -1,9 +1,9 @@
 export const buildMultiCollectionContent = `
 export function buildMultiCollection(
-  queryParameters: string[],
+  items: string[],
   parameterName: string
 ) {
-  return queryParameters
+  return items
     .map((item, index) => {
       if (index === 0) {
         return item;
@@ -14,16 +14,21 @@ export function buildMultiCollection(
 }`;
 
 export const buildPipeCollectionContent = `
-export function buildPipeCollection(queryParameters: string[]): string {
-  return queryParameters.join("|");
+export function buildPipeCollection(items: string[] | number[]): string {
+  return items.join("|");
 }`;
 
 export const buildSsvCollectionContent = `
-export function buildSsvCollection(queryParameters: string[]): string {
-  return queryParameters.join(" ");
+export function buildSsvCollection(items: string[] | number[]): string {
+  return items.join(" ");
 }`;
 
 export const buildTsvCollectionContent = `
-export function buildTsvCollection(queryParameters: string[]) {
-  return queryParameters.join("\\t");
+export function buildTsvCollection(items: string[] | number[]) {
+  return items.join("\\t");
+}`;
+
+export const buildCsvCollectionContent = `
+export function buildCsvCollection(items: string[] | number[]) {
+  return items.join(",");
 }`;

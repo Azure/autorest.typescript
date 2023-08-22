@@ -6,6 +6,7 @@ import { RLCModel } from "./interfaces.js";
 import { Project } from "ts-morph";
 import * as path from "path";
 import { getRelativePartFromSrcPath } from "./helpers/pathUtils.js";
+import { getImportModuleName } from "./helpers/nameConstructors.js";
 
 const batchOutputFolder: [string, string, string][] = [];
 
@@ -15,11 +16,14 @@ export function buildTopLevelIndex(model: RLCModel) {
   }
   const project = new Project();
   const { srcPath } = model;
-  const { multiClient, batch } = model.options;
+  const { multiClient } = model.options;
+  const batch = model.options.batch;
   if (srcPath) {
     const clientName = model.libraryName;
     const moduleName = normalizeName(clientName, NameType.File);
-    const relativePath = "./" + getRelativePartFromSrcPath(srcPath);
+    const relativePath =
+      "./" +
+      getRelativePartFromSrcPath(srcPath, model.options.isModularLibrary);
     batchOutputFolder.push([relativePath, clientName, moduleName]);
   }
   if (
@@ -35,7 +39,13 @@ export function buildTopLevelIndex(model: RLCModel) {
     batchOutputFolder.forEach((item) => {
       indexFile.addImportDeclaration({
         namespaceImport: item[1],
-        moduleSpecifier: `${item[0]}`
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: `${item[0]}`,
+            esModulesName: `${item[0]}/index.js`
+          },
+          model
+        )
       });
       allModules.push(item[1]);
     });
@@ -44,7 +54,8 @@ export function buildTopLevelIndex(model: RLCModel) {
     });
     const content = indexFile.getFullText();
     const filePath = path.join(
-      srcPath.substring(0, srcPath.indexOf(path.sep + "src") + 4),
+      srcPath.substring(0, srcPath.lastIndexOf("src") + 4),
+      model.options.isModularLibrary ? "rest" : "",
       `index.ts`
     );
     return { path: filePath, content };

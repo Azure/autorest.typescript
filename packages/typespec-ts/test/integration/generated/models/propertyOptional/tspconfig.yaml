@@ -8,6 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isCadlTest: true
+    enableOperationGroup: true
     packageDetails:
       name: "@msinternal/optional-property"
       description: "Optional Property Test Service"

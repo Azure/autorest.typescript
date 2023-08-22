@@ -81,19 +81,27 @@ export function buildClient(model: RLCModel): File | undefined {
     return undefined;
   }
   const { multiClient, batch } = model.options;
-  const { addCredentials, credentialScopes, credentialKeyHeaderName } =
-    model.options;
+  const {
+    addCredentials,
+    credentialScopes,
+    credentialKeyHeaderName,
+    customHttpAuthHeaderName
+  } = model.options;
   const credentialTypes =
     credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
 
-  if (credentialKeyHeaderName) {
+  if (credentialKeyHeaderName || customHttpAuthHeaderName) {
     credentialTypes.push("KeyCredential");
   }
 
   const commonClientParams = [
     ...(urlParameters ?? []),
     ...(addCredentials === false ||
-    !isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
+    !isSecurityInfoDefined(
+      credentialScopes,
+      credentialKeyHeaderName,
+      customHttpAuthHeaderName
+    )
       ? []
       : [
           {
@@ -122,10 +130,7 @@ export function buildClient(model: RLCModel): File | undefined {
           `Initialize a new instance of \`${clientInterfaceName}\` \n` +
           allClientParams
             .map((param) => {
-              return `@param ${param.name} type: ${param.type
-                .split("=")[0]
-                .split(" ")
-                .join("")}, ${
+              return `@param ${param.name} - ${
                 param.description ?? "The parameter " + param.name
               }`;
             })
@@ -142,16 +147,42 @@ export function buildClient(model: RLCModel): File | undefined {
   }
   clientFile.addFunction(functionStatement);
 
+  const paths = srcPath.replace(/\//g, path.sep).split(path.sep);
+  while (paths.length > 0 && paths[paths.length - 1] === "") {
+    paths.pop();
+  }
+  const parentPath =
+    paths.lastIndexOf("src") > -1
+      ? paths.length - 1 - paths.lastIndexOf("src")
+      : 0;
+
+  const loggerPath = `${
+    parentPath > 0 ? "../".repeat(parentPath) : "./"
+  }logger`;
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
       moduleSpecifier: "@azure-rest/core-client"
+    },
+    {
+      namedImports: ["logger"],
+      moduleSpecifier: getImportModuleName(
+        {
+          cjsName: loggerPath,
+          esModulesName: `${loggerPath}.js`
+        },
+        model
+      )
     }
   ]);
 
   if (
     addCredentials &&
-    isSecurityInfoDefined(credentialScopes, credentialKeyHeaderName)
+    isSecurityInfoDefined(
+      credentialScopes,
+      credentialKeyHeaderName,
+      customHttpAuthHeaderName
+    )
   ) {
     clientFile.addImportDeclarations([
       {
@@ -177,14 +208,17 @@ export function buildClient(model: RLCModel): File | undefined {
 
 function isSecurityInfoDefined(
   credentialScopes?: string[],
-  credentialKeyHeaderName?: string
+  credentialKeyHeaderName?: string,
+  customHttpAuthHeaderName?: string
 ) {
   return (
-    (credentialScopes && credentialScopes.length > 0) || credentialKeyHeaderName
+    (credentialScopes && credentialScopes.length > 0) ||
+    credentialKeyHeaderName ||
+    customHttpAuthHeaderName
   );
 }
 
-function getClientFactoryBody(
+export function getClientFactoryBody(
   model: RLCModel,
   clientTypeName: string
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
@@ -250,11 +284,23 @@ function getClientFactoryBody(
     declarations: [{ name: "userAgentPrefix", initializer: userAgentPrefix }]
   };
 
-  const userAgentOptionsStatement = `options = {
+  const customHeaderOptions = model.telemetryOptions?.customRequestIdHeaderName
+    ? `,
+    telemetryOptions: {
+      clientRequestIdHeaderName:
+        options.telemetryOptions?.clientRequestIdHeaderName ??
+        "${model.telemetryOptions?.customRequestIdHeaderName}"
+    }`
+    : "";
+
+  const overrideOptionsStatement = `options = {
       ...options,
       userAgentOptions: {
         userAgentPrefix
-      }
+      },
+      loggingOptions: {
+        logger: options.loggingOptions?.logger ?? logger.info
+      }${customHeaderOptions}
     }`;
 
   const baseUrlStatement: VariableStatementStructure = {
@@ -269,10 +315,12 @@ function getClientFactoryBody(
     credentialScopes && credentialScopes.length
       ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
       : "";
-  const scopes = scopesString ? `scopes: [${scopesString}],` : "";
+  const scopes = scopesString
+    ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
+    : "";
 
   const apiKeyHeaderName = credentialKeyHeaderName
-    ? `apiKeyHeaderName: "${credentialKeyHeaderName}",`
+    ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
 
   const credentials =
@@ -290,7 +338,20 @@ function getClientFactoryBody(
         baseUrl, ${credentials ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
-
+  const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
+    model.options;
+  let customHttpAuthStatement = "";
+  if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
+    customHttpAuthStatement = `
+      client.pipeline.addPolicy({
+        name: "customKeyCredentialPolicy",
+        async sendRequest(request, next) {
+          request.headers.set("${customHttpAuthHeaderName}", "${customHttpAuthSharedKeyPrefix} " + credentials.key);
+          return next(request);
+        }
+      });`;
+    
+  }
   let returnStatement = `return client;`;
 
   if (includeShortcuts) {
@@ -315,8 +376,9 @@ function getClientFactoryBody(
     credentials,
     userAgentInfoStatement,
     userAgentStatement,
-    userAgentOptionsStatement,
+    overrideOptionsStatement,
     getClient,
+    customHttpAuthStatement,
     returnStatement
   ];
 }

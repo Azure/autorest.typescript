@@ -1,0 +1,17 @@
+emit:
+  # - "@azure-tools/typespec-autorest"
+  # Uncomment this line and add "@azure-tools/typespec-python" to your package.json to generate Python code
+  # - "@azure-tools/typespec-python"
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    "emitter-output-dir": "{project-root}/generated/typespec-ts"
+    title: Azure Load Testing
+    description: Azure Load Testing Client
+    azureSdkForJs: false
+    enableOperationGroup: true
+    isModularLibrary: true
+    packageDetails:
+      name: "@azure/load-testing"
+      description: This package contains Microsoft Azure LoadTestingClient client library.
+      version: 1.0.1

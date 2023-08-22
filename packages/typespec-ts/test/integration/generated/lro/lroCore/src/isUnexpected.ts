@@ -6,9 +6,9 @@ import {
   CreateOrReplace201Response,
   CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
-  Delete202Response,
+  DeleteOperation202Response,
   DeleteLogicalResponse,
-  DeleteDefaultResponse,
+  DeleteOperationDefaultResponse,
   Export202Response,
   ExportLogicalResponse,
   ExportDefaultResponse,
@@ -30,8 +30,11 @@ export function isUnexpected(
     | CreateOrReplaceDefaultResponse
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
-  response: Delete202Response | DeleteLogicalResponse | DeleteDefaultResponse
-): response is DeleteDefaultResponse;
+  response:
+    | DeleteOperation202Response
+    | DeleteLogicalResponse
+    | DeleteOperationDefaultResponse
+): response is DeleteOperationDefaultResponse;
 export function isUnexpected(
   response: Export202Response | ExportLogicalResponse | ExportDefaultResponse
 ): response is ExportDefaultResponse;
@@ -41,15 +44,15 @@ export function isUnexpected(
     | CreateOrReplace201Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
-    | Delete202Response
+    | DeleteOperation202Response
     | DeleteLogicalResponse
-    | DeleteDefaultResponse
+    | DeleteOperationDefaultResponse
     | Export202Response
     | ExportLogicalResponse
     | ExportDefaultResponse
 ): response is
   | CreateOrReplaceDefaultResponse
-  | DeleteDefaultResponse
+  | DeleteOperationDefaultResponse
   | ExportDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);

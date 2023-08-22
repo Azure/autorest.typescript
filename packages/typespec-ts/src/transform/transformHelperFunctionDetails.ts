@@ -1,7 +1,6 @@
 import { PagedResultMetadata } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -12,14 +11,15 @@ import {
   hasPagingOperations,
   extractPagedMetadataNested,
   hasPollingOperations
-} from "../operationUtil.js";
+} from "../utils/operationUtil.js";
 import { getSpecialSerializeInfo } from "./transformParameters.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformHelperFunctionDetails(
-  program: Program,
   client: SdkClient,
   dpgContext: SdkContext
 ): HelperFunctionDetails {
+  const program = dpgContext.program;
   // Extract paged metadata from Azure.Core.Page
   const annotationDetails = {
     hasLongRunning: hasPollingOperations(program, client, dpgContext)
@@ -47,6 +47,10 @@ export function transformHelperFunctionDetails(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       if (getPageable(program, route.operation)) {
         const nextLinkName =
           getPageable(program, route.operation) || "nextLink";
@@ -59,6 +63,10 @@ export function transformHelperFunctionDetails(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     if (getPageable(program, route.operation)) {
       const nextLinkName = getPageable(program, route.operation) || "nextLink";
       if (nextLinkName) {
@@ -112,12 +120,20 @@ function extractPageDetailFromCore(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       extractPageDetailFromCoreForRoute(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     extractPageDetailFromCoreForRoute(route);
   }
 
@@ -152,12 +168,7 @@ function extractPageDetailFromCore(
 }
 
 function parseNextLinkName(paged: PagedResultMetadata): string | undefined {
-  const pathComponents = paged.nextLinkPath?.split(".");
-  if (pathComponents) {
-    // TODO: This logic breaks down if there actually is a dotted path.
-    return pathComponents[pathComponents.length - 1];
-  }
-  return undefined;
+  return paged.nextLinkProperty?.name;
 }
 
 function parseItemName(paged: PagedResultMetadata): string | undefined {
@@ -178,6 +189,7 @@ function extractSpecialSerializeInfo(
   let hasPipeCollection = false;
   let hasTsvCollection = false;
   let hasSsvCollection = false;
+  let hasCsvCollection = false;
   const operationGroups = listOperationGroups(dpgContext, client);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
@@ -200,6 +212,9 @@ function extractSpecialSerializeInfo(
         hasSsvCollection = hasSsvCollection
           ? hasSsvCollection
           : serializeInfo.hasSsvCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
       });
     }
   }
@@ -220,12 +235,16 @@ function extractSpecialSerializeInfo(
       hasSsvCollection = hasSsvCollection
         ? hasSsvCollection
         : serializeInfo.hasSsvCollection;
+      hasCsvCollection = hasCsvCollection
+        ? hasCsvCollection
+        : serializeInfo.hasCsvCollection;
     });
   }
   return {
     hasMultiCollection,
     hasPipeCollection,
     hasTsvCollection,
-    hasSsvCollection
+    hasSsvCollection,
+    hasCsvCollection
   };
 }

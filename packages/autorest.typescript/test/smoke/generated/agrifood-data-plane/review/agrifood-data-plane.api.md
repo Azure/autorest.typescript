@@ -854,7 +854,7 @@ export interface BoundaryOverlapResponseOutput {
 export type BoundaryResourceMergeAndPatch = Partial<Boundary>;
 
 // @public (undocumented)
-export function buildMultiCollection(queryParameters: string[], parameterName: string): string;
+export function buildMultiCollection(items: string[], parameterName: string): string;
 
 // @public
 export interface CascadeDeleteJobOutput {
@@ -3713,7 +3713,7 @@ export interface ScenesListQueryParamProperties {
     farmerId: string;
     imageFormats?: string;
     imageNames?: string;
-    imageResolutions?: Array<number>;
+    imageResolutions?: string;
     maxCloudCoveragePercentage?: number;
     maxDarkPixelCoveragePercentage?: number;
     provider: string;
@@ -4206,7 +4206,7 @@ export interface SeasonsListQueryParamProperties {
     names?: string;
     propertyFilters?: string;
     statuses?: string;
-    years?: Array<number>;
+    years?: string;
 }
 
 // @public

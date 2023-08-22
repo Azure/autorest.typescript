@@ -1,6 +1,5 @@
 import {
   SdkClient,
-  SdkContext,
   isApiVersion,
   listOperationGroups,
   listOperationsInOperationGroup
@@ -10,21 +9,23 @@ import {
   ApiVersionInfo,
   UrlInfo,
   extractPathApiVersion,
-  extractDefinedPosition
+  extractDefinedPosition,
+  SchemaContext
 } from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
   getEnrichedDefaultApiVersion,
   getSchemaForType,
   trimUsage
-} from "../modelUtils.js";
+} from "../utils/modelUtils.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformApiVersionInfo(
   client: SdkClient,
-  program: Program,
   dpgContext: SdkContext,
   urlInfo?: UrlInfo
 ): ApiVersionInfo | undefined {
+  const program = dpgContext.program;
   const queryVersionDetail = getOperationQueryApiVersion(
     client,
     program,
@@ -67,11 +68,21 @@ function getOperationQueryApiVersion(
     );
     for (const op of operations) {
       const route = ignoreDiagnostics(getHttpOperation(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
       const params = route.parameters.parameters.filter(
         (p) => p.type === "query" && isApiVersion(dpgContext, p)
       );
       params.map((p) => {
-        const type = getSchemaForType(program, p.param.type);
+        const type = getSchemaForType(
+          dpgContext,
+          p.param.type,
+          [SchemaContext.Exception, SchemaContext.Input],
+          false,
+          p.param
+        );
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
@@ -83,11 +94,21 @@ function getOperationQueryApiVersion(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    // ignore overload base operation
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
     const params = route.parameters.parameters.filter(
       (p) => p.type === "query" && isApiVersion(dpgContext, p)
     );
     params.map((p) => {
-      const type = getSchemaForType(program, p.param.type);
+      const type = getSchemaForType(
+        dpgContext,
+        p.param.type,
+        [SchemaContext.Exception, SchemaContext.Input],
+        false,
+        p.param
+      );
       const typeString = JSON.stringify(trimUsage(type));
       apiVersionTypes.add(typeString);
     });

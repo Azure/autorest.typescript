@@ -12,7 +12,7 @@ export function importCredential(
     case "Key":
       clientSourceFile.addImportDeclaration({
         moduleSpecifier: "@azure/core-auth",
-        namedImports: ["AzureKeyCredential"]
+        namedImports: ["KeyCredential"]
       });
       return;
     case "OAuth2":

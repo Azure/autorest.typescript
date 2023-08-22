@@ -1,5 +1,9 @@
 import { assert } from "chai";
-import { emitModelsFromCadl, emitParameterFromCadl } from "./util/emitUtil.js";
+import {
+  emitModelsFromCadl,
+  emitParameterFromCadl,
+  emitResponsesFromCadl
+} from "./util/emitUtil.js";
 import { assertEqualContent } from "./util/testUtil.js";
 
 type VerifyPropertyConfig = {
@@ -165,7 +169,9 @@ describe("Input/output model type", () => {
       const schemaOutput = await emitModelsFromCadl(`
       @doc("Extensible enum model description")
       enum TranslationLanguageValues {
+        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
         English,
+        #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
         Chinese,
       }
       model InputOutputModel {
@@ -206,6 +212,7 @@ describe("Input/output model type", () => {
     it("should handle extensible_enum as body -> string", async () => {
       // When extensible_enum is comsumed as body property it should be string only
       const schemaOutput = await emitParameterFromCadl(`
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
       enum TranslationLanguage {
         English,
         Chinese,
@@ -232,25 +239,52 @@ describe("Input/output model type", () => {
       );
     });
 
-    // TODO: Is enum convered to string literals only? Do we need to generate enum instaed?
-    it("should handle enum -> string_literals", async () => {
-      const cadlTypeDefinition = `
-      #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
-      @fixed
-      enum TranslationLanguageValues {
-        English,
-        Chinese,
-      }`;
-      const cadlType = "TranslationLanguageValues";
-      const typeScriptType = `"English" | "Chinese"`;
-      await verifyPropertyType(
-        cadlType,
-        typeScriptType,
-        {
-          additionalCadlDefinition: cadlTypeDefinition
-        },
-        true
-      );
+    describe("fixed enum", () => {
+      it("should handle enum -> string_literals", async () => {
+        const cadlTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          English,
+          @doc("Chinese descriptions")
+          Chinese,
+        }`;
+        const cadlType = "TranslationLanguageValues";
+        const typeScriptType = `"English" | "Chinese"`;
+        await verifyPropertyType(
+          cadlType,
+          typeScriptType,
+          {
+            additionalCadlDefinition: cadlTypeDefinition
+          },
+          true
+        );
+      });
+
+      it("with enum value is xx.xx", async () => {
+        const cadlTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          \`English.Class\`,
+          @doc("Chinese descriptions")
+          \`Chinese.Class\`,
+        }`;
+        const cadlType = "TranslationLanguageValues";
+        const typeScriptType = `"English.Class" | "Chinese.Class"`;
+        await verifyPropertyType(
+          cadlType,
+          typeScriptType,
+          {
+            additionalCadlDefinition: cadlTypeDefinition
+          },
+          true
+        );
+      });
     });
 
     it("should handle type_literals:string -> string_literals", async () => {
@@ -538,7 +572,7 @@ describe("Input/output model type", () => {
           export interface PetOutputParent {
             name: string;
             weight?: number;
-            "kind": "Pet" | "cat" | "dog";
+            "kind": string;
           }
   
           export interface CatOutput extends PetOutputParent {
@@ -599,13 +633,13 @@ describe("Input/output model type", () => {
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
         export interface FishOutputParent {
           age: number;
-          kind: "Fish" | "shark" | "salmon";
+          kind: string;
         }
         
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
         export interface SharkOutputParent extends FishOutputParent {
           kind: "shark";
-          sharktype: "Shark" | "saw" | "goblin";
+          sharktype: string;
         }
         
         /** The third level model SawShark in polymorphic multiple levels inheritance. */
@@ -686,7 +720,7 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelParent {
-            "model.kind": "BaseModel" | "derived";
+            "model.kind": string;
           }
   
           /** This is a base model has discriminator name containing dot. */
@@ -702,12 +736,108 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelOutputParent {
-            "model.kind": "BaseModel" | "derived";
+            "model.kind": string;
           }
   
           /** This is a base model has discriminator name containing dot. */
           export type BaseModelOutput = ${inputModelName}Output;
           `
+        });
+      });
+
+      describe("enum and enum member as discriminator", () => {
+        describe("is string", () => {
+          const typespec = (hasDiscriminator: boolean) => `
+          enum A {
+            AA,
+            BB,
+          }
+          ${hasDiscriminator ? '@discriminator("a")' : ""}
+          model B {
+            a: A,
+          } 
+          model C extends B {
+            a: A.AA,
+          }
+          op read(): { @body body: C };
+          `;
+          it("with @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(true));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutputParent {
+              a: "AA";
+            }
+
+            export interface BOutputParent {
+              a: string;
+            }
+
+            export type BOutput = COutput;`
+            );
+          });
+
+          it("without @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(false));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutput {
+              a: "AA";
+            }
+    
+            export interface BOutput {
+              /** Possible values: AA, BB */
+              a: string;
+            }`
+            );
+          });
+        });
+
+        describe("is number", () => {
+          const typespec = (hasDiscriminator: boolean) => `
+          enum A {
+            AA: 1.1,
+            BB: 2.2,
+          }
+          ${hasDiscriminator ? '@discriminator("a")' : ""}
+          model B {
+            a: A,
+          }
+          model C extends B {
+            a: A.AA,
+          }
+          op read(): { @body body: C };
+          `;
+
+          it("without @discriminator", async () => {
+            const schemaOutput = await emitModelsFromCadl(typespec(false));
+            assert.ok(schemaOutput);
+            const { inputModelFile, outputModelFile } = schemaOutput!;
+            assert.ok(!inputModelFile?.content);
+            assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+            assertEqualContent(
+              outputModelFile?.content!,
+              `
+            export interface COutput extends BOutput {
+              a: 1.1;
+            }
+    
+            export interface BOutput {
+              /** Possible values: 1.1, 2.2 */
+              a: string;
+            }`
+            );
+          });
         });
       });
     });
@@ -718,8 +848,177 @@ describe("Input/output model type", () => {
     });
   });
   describe("duration generation", () => {
-    it("should handle duration -> string", async () => {
-      await verifyPropertyType("duration", "string");
+    const buildParameterDef = (type: string) => {
+      return `
+      import { RequestParameters } from "@azure-rest/core-client";
+      
+      export interface GetModelQueryParamProperties {
+        "input": ${type};
+      }
+
+      export interface GetModelQueryParam {
+        queryParameters: GetModelQueryParamProperties;
+      }
+      
+      export type GetModelParameters = GetModelQueryParam & RequestParameters;
+      `;
+    };
+
+    describe("as input and output model property", () => {
+      it("should handle duration without encode", async () => {
+        await verifyPropertyType("duration", "string");
+      });
+
+      it("should handle duration with encode `seconds`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        model SimpleModel {
+          @encode("seconds", float64)
+          prop: duration;
+        }
+        @route("/duration/prop/seconds")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": number;
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": number;
+        }
+        `
+        );
+      });
+
+      it("should handle duration with encode `iso8601`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        model SimpleModel {
+          @encode("ISO8601")
+          prop: duration;
+        }
+        @route("/duration/prop/iso8601")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": string;
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": string;
+        }
+        `
+        );
+      });
+
+      it("should handle duration in type with encode `float32`", async () => {
+        const schemaOutput = await emitModelsFromCadl(
+          `
+        @encode(DurationKnownEncoding.seconds, float32)
+        scalar Float32Duration extends duration;
+        model SimpleModel {
+          prop: Float32Duration[];
+        }
+        @route("/duration/prop/iso8601")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+        `,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assertEqualContent(
+          inputModelFile?.content!,
+          `
+        export interface SimpleModel { 
+          "prop": number[];
+        }
+        `
+        );
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+        export interface SimpleModelOutput { 
+          "prop": number[];
+        }
+        `
+        );
+      });
+    });
+
+    describe("as query parameter", () => {
+      it("should handle duration without encode", async () => {
+        const schemaOutput = await emitParameterFromCadl(`
+        @route("/duration/query/default")
+        @get
+        op getModel(@query input: duration): NoContentResponse;
+        `);
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+      });
+
+      it("should handle duration with encode `seconds`", async () => {
+        const schemaOutput = await emitParameterFromCadl(
+          `
+        @route("/duration/query/seconds")
+        @get
+        op getModel(
+          @query
+          @encode("seconds", float64)
+          input: duration): NoContentResponse;
+        `,
+          false,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("number"));
+      });
+
+      it("should handle duration with encode `iso8601`", async () => {
+        const schemaOutput = await emitParameterFromCadl(
+          `
+        @route("/duration/query/iso8601")
+        @get
+        op getModel(
+          @query
+          @encode("iso8601")
+          input: duration): NoContentResponse;
+        `,
+          false,
+          false,
+          true
+        );
+        assert.ok(schemaOutput);
+        assertEqualContent(schemaOutput?.content!, buildParameterDef("string"));
+      });
     });
   });
   describe("datetime generation", () => {
@@ -744,6 +1043,82 @@ describe("Input/output model type", () => {
         outputType
       });
     });
+
+    it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
+      const inputType = "Date | string";
+      const outputType = "string";
+      await verifyPropertyType("offsetDateTime ", inputType, {
+        outputType
+      });
+    });
+
+    it("should handle datetime with encode `unixTimestamp`", async () => {
+      const schemaOutput = await emitModelsFromCadl(
+        `
+      model SimpleModel {
+        @encode("unixTimestamp", int32)
+        createdAt: utcDateTime;
+      }
+      @route("/datetime/prop/unixTimestamp")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": number;
+      }
+      `
+      );
+    });
+
+    it("should handle datetime with encode `rfc3339`", async () => {
+      const schemaOutput = await emitModelsFromCadl(
+        `
+        model SimpleModel {
+          @encode("rfc3339")
+          createdAt: offsetDateTime;
+        }
+        @route("/datetime/prop/rfc3339")
+        @get
+        op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": Date | string;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": string;
+      }
+      `
+      );
+    });
   });
   describe("record generation", () => {
     it("should handle Record<int32> -> Record<string, number>", async () => {
@@ -759,6 +1134,27 @@ describe("Input/output model type", () => {
       const cadlType = "Record<unknown>";
       const inputType = "Record<string, unknown>";
       const outputType = "Record<string, any>";
+      await verifyPropertyType(cadlType, inputType, { outputType });
+    });
+
+    it("should handle record of empty object Record<{}> -> input Record<string, Record<string, unknown>>, output Record<string, Record<string, any>>", async () => {
+      const cadlType = "Record<{}>";
+      const inputType = "Record<string, Record<string, unknown>>";
+      const outputType = "Record<string, Record<string, any>>";
+      await verifyPropertyType(cadlType, inputType, { outputType });
+    });
+
+    it("should handle record of record of empty object Record<Record<{}>> -> input Record<string, Record<string, Record<string, unknown>>> output  Record<string, Record<string, Record<string, any>>>", async () => {
+      const cadlType = "Record<Record<{}>>";
+      const inputType = "Record<string, Record<string, Record<string, unknown>>>";
+      const outputType = "Record<string, Record<string, Record<string, any>>>";
+      await verifyPropertyType(cadlType, inputType, { outputType });
+    });
+    
+    it("should handle record of record of unknown Record<Record<unknown>> -> input Record<string, Record<string, unknown>>, output Record<string, Record<string, any>>", async () => {
+      const cadlType = "Record<Record<unknown>>";
+      const inputType = "Record<string, Record<string, unknown>>";
+      const outputType = "Record<string, Record<string, any>>";
       await verifyPropertyType(cadlType, inputType, { outputType });
     });
   });
@@ -1233,7 +1629,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should generate projected model name over friendly name", async () => {
+    it("should generate friendly name over projected model name", async () => {
       const cadlDefinition = `
       @projectedName("javascript", "CustomProjectedModelTS")
       @projectedName("json", "CustomProjectedModel")
@@ -1244,21 +1640,109 @@ describe("Input/output model type", () => {
       }
       `;
       const cadlType = "FooModel";
-      const inputModelName = "CustomProjectedModelTS";
+      const inputModelName = "CustomFriendlyModel";
       await verifyPropertyType(cadlType, inputModelName, {
         additionalCadlDefinition: cadlDefinition,
-        outputType: `CustomProjectedModelTSOutput`,
+        outputType: `CustomFriendlyModelOutput`,
         additionalInputContent: `
         /** This is a Foo model. */
-        export interface CustomProjectedModelTS {
+        export interface CustomFriendlyModel {
           x: number;
         }`,
         additionalOutputContent: `
         /** This is a Foo model. */
-        export interface CustomProjectedModelTSOutput {
+        export interface CustomFriendlyModelOutput {
           x: number;
         }`
       });
+    });
+
+    it("should ignore projected javascript model name", async () => {
+      const cadlDefinition = `
+      @projectedName("javascript", "CustomProjectedModelTS")
+      @doc("This is a Foo model.")
+      model FooModel {
+        x: int32;
+      }
+      `;
+      const cadlType = "FooModel";
+      const inputModelName = "FooModel";
+      await verifyPropertyType(cadlType, inputModelName, {
+        additionalCadlDefinition: cadlDefinition,
+        outputType: `FooModelOutput`,
+        additionalInputContent: `
+        /** This is a Foo model. */
+        export interface FooModel {
+          x: number;
+        }`,
+        additionalOutputContent: `
+        /** This is a Foo model. */
+        export interface FooModelOutput {
+          x: number;
+        }`
+      });
+    });
+
+    it("should generate projected operation name for parameter", async () => {
+      const parameters = await emitParameterFromCadl(
+        `
+        @projectedName("json", "testRunOperation")
+        op test(): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+          import { RequestParameters } from "@azure-rest/core-client";
+          
+          export type TestRunOperationParameters =  RequestParameters;
+          `
+      );
+    });
+
+    it("should generate projected operation name for response", async () => {
+      const parameters = await emitResponsesFromCadl(
+        `
+        @projectedName("json", "testRunOperation")
+        op test(): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+          
+        /** The request has succeeded. */
+        export interface TestRunOperation200Response extends HttpResponse {
+          status: "200";
+         body: string;
+        }
+          `
+      );
+    });
+
+    it("should not generate projected javascript name in RLC", async () => {
+      const parameters = await emitResponsesFromCadl(
+        `
+        @projectedName("javascript", "testRunOperation")
+        op test(): string;
+        `
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+          
+        /** The request has succeeded. */
+        export interface Test200Response extends HttpResponse {
+          status: "200";
+         body: string;
+        }
+          `
+      );
     });
   });
 

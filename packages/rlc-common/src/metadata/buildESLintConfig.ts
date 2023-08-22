@@ -13,11 +13,7 @@ const esLintConfig = {
   }
 };
 
-export function buildEsLintConfig(model: RLCModel) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
+export function buildEsLintConfig() {
   const project = new Project();
   const filePath = ".eslintrc.json";
   const configFile = project.createSourceFile(

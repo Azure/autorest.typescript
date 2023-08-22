@@ -53,4 +53,4 @@ export interface OperationStatusOutput {
 }
 
 /** Paged collection of Widget items */
-export type WidgetListOutput = Paged<WidgetOutput>;
+export type PagedWidgetOutput = Paged<WidgetOutput>;
