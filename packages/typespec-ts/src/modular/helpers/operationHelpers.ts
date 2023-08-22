@@ -654,6 +654,17 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
+      } else if (
+        (property.restApiName === "message" ||
+          property.restApiName === "messages") &&
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
+      ) {
+        definition = `"${property.clientName}": ${
+          !property.optional
+            ? `${propertyFullName} as any`
+            : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+        }`;
       } else {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
@@ -675,14 +686,28 @@ export function getResponseMapping(
       const restValue = `${
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.restApiName}"]`;
-      props.push(
-        `"${property.clientName}": ${deserializeResponseValue(
-          property.type,
-          restValue,
-          importSet,
-          property.optional !== undefined ? !property.optional : false
-        )}`
-      );
+      if (
+        property.restApiName === "messages" &&
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
+      ) {
+        props.push(
+          `"${property.clientName}": ${
+            !property.optional
+              ? `${propertyFullName} as any`
+              : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+          }`
+        );
+      } else {
+        props.push(
+          `"${property.clientName}": ${deserializeResponseValue(
+            property.type,
+            restValue,
+            importSet,
+            property.optional !== undefined ? !property.optional : false
+          )}`
+        );
+      }
     }
   }
 
@@ -752,7 +777,7 @@ function deserializeResponseValue(
 function serializeRequestValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
@@ -760,8 +785,8 @@ function serializeRequestValue(
       return `${restValue} !== undefined ? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
+        return `(${restValue} ?? []).map(p => ({${getRequestModelMapping(
+          type.elementType,
           "p",
           importSet
         )}}))`;
