@@ -5,12 +5,22 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import { getDoc, NoTarget, Program } from "@typespec/compiler";
-import { getAuthentication } from "@typespec/http";
+import {
+  getDoc,
+  ignoreDiagnostics,
+  NoTarget,
+  Program
+} from "@typespec/compiler";
+import { getAuthentication, getHttpOperation } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
+import { getOperationName } from "../utils/operationUtil.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
@@ -18,7 +28,7 @@ export function transformRLCOptions(
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(
-    dpgContext.program,
+    dpgContext,
     emitterOptions,
     dpgContext.generationPathDetail?.rootDir ?? ""
   );
@@ -28,10 +38,11 @@ export function transformRLCOptions(
 }
 
 function extractRLCOptions(
-  program: Program,
+  dpgContext: SdkContext,
   emitterOptions: RLCOptions,
   generationRootDir: string
 ): RLCOptions {
+  const program = dpgContext.program;
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const serviceInfo = getServiceInfo(program);
@@ -41,7 +52,10 @@ function extractRLCOptions(
   const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
   const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
-  const enableOperationGroup = getEnableOperationGroup(emitterOptions);
+  const enableOperationGroup = getEnableOperationGroup(
+    dpgContext,
+    emitterOptions
+  );
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -112,10 +126,54 @@ function processAuth(program: Program) {
   return securityInfo;
 }
 
-function getEnableOperationGroup(emitterOptions: RLCOptions) {
-  if (emitterOptions.enableOperationGroup === true) {
-    return true;
+function getEnableOperationGroup(
+  dpgContext: SdkContext,
+  emitterOptions: RLCOptions
+) {
+  if (
+    emitterOptions.enableOperationGroup === true ||
+    emitterOptions.enableOperationGroup === false
+  ) {
+    return emitterOptions.enableOperationGroup;
   }
+  // Detect if existing name conflicts if customers didn't set the option explicitly
+  return detectIfNameConflicts(dpgContext);
+}
+
+function detectIfNameConflicts(dpgContext: SdkContext) {
+  const clients = getRLCClients(dpgContext);
+  const program = dpgContext.program;
+  const nameSet = new Set<string>();
+  for (const client of clients) {
+    const operationGroups = listOperationGroups(dpgContext, client);
+    for (const operationGroup of operationGroups) {
+      const operations = listOperationsInOperationGroup(
+        dpgContext,
+        operationGroup
+      );
+      for (const op of operations) {
+        const route = ignoreDiagnostics(getHttpOperation(program, op));
+        const name = getOperationName(program, route.operation);
+        if (nameSet.has(name)) {
+          return true;
+        } else {
+          nameSet.add(name);
+        }
+      }
+    }
+    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+    for (const clientOp of clientOperations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+      const name = getOperationName(program, route.operation);
+      if (nameSet.has(name)) {
+        return true;
+      } else {
+        nameSet.add(name);
+      }
+    }
+  }
+
+  // No conflicts if we didn't detect any
   return false;
 }
 

@@ -461,7 +461,8 @@ function emitParameter(
     location: parameter.type,
     type: type,
     implementation: implementation,
-    skipUrlEncoding: parameter.type === "endpointPath"
+    skipUrlEncoding: parameter.type === "endpointPath",
+    format: (parameter as any).format
   };
 
   if (paramMap.type.type === "constant") {
@@ -1318,7 +1319,36 @@ function emitOperationGroups(
       operations: clientOperations
     });
   }
+  resolveConflictIfExist(operationGroups);
   return operationGroups;
+}
+
+function resolveConflictIfExist(operationGroups: OperationGroup[]) {
+  if (operationGroups.length < 2) {
+    return;
+  }
+
+  const nameSet = new Set<string>();
+  const hasConflict = operationGroups.some((g) =>
+    g.operations.some((op) => {
+      if (nameSet.has(op.name)) {
+        return true;
+      } else {
+        nameSet.add(op.name);
+        return false;
+      }
+    })
+  );
+  if (!hasConflict) {
+    return;
+  }
+  // Append operation group prefix
+  operationGroups.forEach((g) =>
+    g.operations.forEach((op) => {
+      op.oriName = op.name;
+      op.name = `${g.propertyName}_${op.name}`;
+    })
+  );
 }
 
 function getServerHelper(
