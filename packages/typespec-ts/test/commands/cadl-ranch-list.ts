@@ -199,5 +199,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/client-request-id",
     inputPath: "special-headers/client-request-id"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format",
+    debug: true
   }
 ];

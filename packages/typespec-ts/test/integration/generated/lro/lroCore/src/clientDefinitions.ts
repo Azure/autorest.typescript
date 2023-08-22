@@ -12,8 +12,8 @@ import {
   CreateOrReplaceDefaultResponse,
   DeleteOperation202Response,
   DeleteOperationDefaultResponse,
-  Export202Response,
-  ExportDefaultResponse,
+  ExportOperation202Response,
+  ExportOperationDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -38,7 +38,9 @@ export interface Export {
   /** Exports a User */
   post(
     options: ExportParameters
-  ): StreamableMethod<Export202Response | ExportDefaultResponse>;
+  ): StreamableMethod<
+    ExportOperation202Response | ExportOperationDefaultResponse
+  >;
 }
 
 export interface Routes {

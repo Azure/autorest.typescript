@@ -31,6 +31,7 @@ import {
 import {
   getOperationGroupName,
   getOperationName,
+  getSpecialSerializeInfo,
   isBinaryPayload
 } from "../utils/operationUtil.js";
 import {
@@ -140,7 +141,10 @@ function getParameterMetadata(
     type === "number[]" ||
     type === "Array<number>"
   ) {
-    const serializeInfo = getSpecialSerializeInfo(parameter);
+    const serializeInfo = getSpecialSerializeInfo(
+      parameter.type,
+      (parameter as any).format
+    );
     if (
       serializeInfo.hasMultiCollection ||
       serializeInfo.hasPipeCollection ||
@@ -469,54 +473,4 @@ function extractDescriptionsFromBody(
       ])
     );
   return description ? [description] : [];
-}
-
-export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
-  let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasSsvCollection = false;
-  let hasTsvCollection = false;
-  let hasCsvCollection = false;
-  const descriptions = [];
-  const collectionInfo = [];
-  if (
-    (parameter.type === "query" || parameter.type === "header") &&
-    (parameter as any).format === "multi"
-  ) {
-    hasMultiCollection = true;
-    descriptions.push("buildMultiCollection");
-    collectionInfo.push("multi");
-  }
-  if (parameter.type === "query" && (parameter as any).format === "ssv") {
-    hasSsvCollection = true;
-    descriptions.push("buildSsvCollection");
-    collectionInfo.push("ssv");
-  }
-
-  if (parameter.type === "query" && (parameter as any).format === "tsv") {
-    hasTsvCollection = true;
-    descriptions.push("buildTsvCollection");
-    collectionInfo.push("tsv");
-  }
-
-  if (parameter.type === "query" && (parameter as any).format === "pipes") {
-    hasPipeCollection = true;
-    descriptions.push("buildPipeCollection");
-    collectionInfo.push("pipe");
-  }
-
-  if (parameter.type === "header" && (parameter as any).format === "csv") {
-    hasCsvCollection = true;
-    descriptions.push("buildCsvCollection");
-    collectionInfo.push("csv");
-  }
-  return {
-    hasMultiCollection,
-    hasPipeCollection,
-    hasSsvCollection,
-    hasTsvCollection,
-    hasCsvCollection,
-    descriptions,
-    collectionInfo
-  };
 }
