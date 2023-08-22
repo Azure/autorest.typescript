@@ -26,6 +26,10 @@ import {
   getDocsFromDescription
 } from "./docsHelpers.js";
 import { getDeserializeFunctionName, isSpecialUnionVariant } from "../buildOperationUtils.js";
+import {
+  getCollectionFormatHelper,
+  hasCollectionFormatInfo
+} from "../../utils/operationUtil.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -261,10 +265,12 @@ export function getOperationFunction(
   };
 }
 
-export function getOperationOptionsName(operation: Operation) {
-  const optionName = `${toPascalCase(operation.groupName)}${toPascalCase(
-    operation.name
-  )}Options`;
+export function getOperationOptionsName(
+  operation: Operation,
+  includeGroupName = false
+) {
+  const prefix = includeGroupName ? toPascalCase(operation.groupName) : "";
+  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");
   }
@@ -314,9 +320,9 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${
-      parametersImplementation.header.join(",\n") + ","
-    },`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
+      ",\n"
+    )}},`;
   }
 
   if (parametersImplementation.query.length) {
@@ -396,6 +402,10 @@ function getParameterMap(
     return getConstantValue(param);
   }
 
+  if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
+    return getCollectionFormat(param as Parameter);
+  }
+
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
     return getOptional(param, importSet);
@@ -406,6 +416,22 @@ function getParameterMap(
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
+}
+
+function getCollectionFormat(param: Parameter) {
+  const collectionInfo = getCollectionFormatHelper(
+    param.location,
+    param.format ?? ""
+  );
+  if (!collectionInfo) {
+    throw "Has collection format info but without helper function detected";
+  }
+  const isMulti = (param.format ?? "").toLowerCase() === "multi";
+  const additionalParam = isMulti ? `, "${param.restApiName}"` : "";
+  if (!param.optional) {
+    return `"${param.restApiName}": ${collectionInfo}(${param.clientName}${additionalParam})`;
+  }
+  return `"${param.restApiName}": options?.${param.clientName} !== undefined ? ${collectionInfo}(options?.${param.clientName}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -478,16 +504,11 @@ type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
 
-function isOptional(
-  param: Parameter | Property
-): param is OptionalType {
+function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(
-  param: OptionalType,
-  importSet: Map<string, Set<string>>
-) {
+function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,

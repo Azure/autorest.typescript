@@ -126,10 +126,12 @@ export function importModels(
     models.push(entry[0]);
   }
 
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: "../models/models.js",
-    namedImports: models
-  });
+  if (models.length > 0) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: "../models/models.js",
+      namedImports: models
+    });
+  }
 
   // Import all models and then let ts-morph clean up the unused ones
   // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
