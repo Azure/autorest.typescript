@@ -2,11 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  GetParameters,
-  UpdateParameters,
-  DeleteParameters,
-  CreateParameters,
-  ListParameters,
   CustomGetParameters,
   CustomGet1Parameters,
   CustomGet2Parameters,
@@ -26,17 +21,6 @@ import {
   CustomGet16Parameters,
 } from "./parameters.js";
 import {
-  Get200Response,
-  GetDefaultResponse,
-  Update200Response,
-  UpdateDefaultResponse,
-  DeleteOperation200Response,
-  DeleteOperationDefaultResponse,
-  Create200Response,
-  Create201Response,
-  CreateDefaultResponse,
-  List200Response,
-  ListDefaultResponse,
   CustomGet200Response,
   CustomGet1200Response,
   CustomGet2200Response,
@@ -56,36 +40,6 @@ import {
   CustomGet16200Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
-
-export interface Get {
-  /** Gets an instance of the resource. */
-  get(
-    options?: GetParameters
-  ): StreamableMethod<Get200Response | GetDefaultResponse>;
-  /** Updates an existing instance of the resource. */
-  patch(
-    options: UpdateParameters
-  ): StreamableMethod<Update200Response | UpdateDefaultResponse>;
-  /** Deletes an existing instance of the resource. */
-  delete(
-    options?: DeleteParameters
-  ): StreamableMethod<
-    DeleteOperation200Response | DeleteOperationDefaultResponse
-  >;
-}
-
-export interface Create {
-  /** Creates a new instance of the resource. */
-  post(
-    options: CreateParameters
-  ): StreamableMethod<
-    Create200Response | Create201Response | CreateDefaultResponse
-  >;
-  /** Lists all instances of the resource. */
-  get(
-    options?: ListParameters
-  ): StreamableMethod<List200Response | ListDefaultResponse>;
-}
 
 export interface CustomGet {
   get(options?: CustomGetParameters): StreamableMethod<CustomGet200Response>;
@@ -170,10 +124,6 @@ export interface CustomGet16 {
 }
 
 export interface Routes {
-  /** Resource for '/\{id\}' has methods for the following verbs: get, patch, delete */
-  (path: "/{id}", id: string): Get;
-  /** Resource for '/' has methods for the following verbs: post, get */
-  (path: "/"): Create;
   /** Resource for '/customGet' has methods for the following verbs: get */
   (path: "/customGet"): CustomGet;
   /** Resource for '/customGet1' has methods for the following verbs: get */

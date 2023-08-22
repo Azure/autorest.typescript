@@ -25,7 +25,7 @@ import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
 } from "./docsHelpers.js";
-import { getDeserializeFunctionName } from "../buildOperationUtils.js";
+import { getDeserializeFunctionName, isSpecialUnionVariant } from "../buildOperationUtils.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -720,16 +720,20 @@ function deserializeResponseValue(
       ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
       : ${restValue}`;
     case "combined":
-      deserializeFunctionName = getDeserializeFunctionName(type);
-      if (!deserializeUtils) {
-        importSet.set(
-          "../utils/deserializeUtil.js",
-          new Set<string>().add(deserializeFunctionName)
-        );
+      if (type.types?.some((t) => isSpecialUnionVariant(t))) {
+        deserializeFunctionName = getDeserializeFunctionName(type);
+        if (!deserializeUtils) {
+          importSet.set(
+            "../utils/deserializeUtil.js",
+            new Set<string>().add(deserializeFunctionName)
+          );
+        } else {
+          deserializeUtils.add(deserializeFunctionName);
+        }
+        return `${deserializeFunctionName}(${restValue})`;
       } else {
-        deserializeUtils.add(deserializeFunctionName);
+        return `${restValue}`;
       }
-      return `${deserializeFunctionName}(${restValue})`;
     default:
       return restValue;
   }

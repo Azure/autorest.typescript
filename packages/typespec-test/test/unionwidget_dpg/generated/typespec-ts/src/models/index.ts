@@ -24,14 +24,8 @@ export {
   Widget14,
   Widget15,
   Widget16,
-  WidgetCollectionWithNextLink,
 } from "./models.js";
 export {
-  GetOptions,
-  UpdateOptions,
-  DeleteOptions,
-  CreateOptions,
-  ListOptions,
   CustomGetOptions,
   CustomGet1Options,
   CustomGet2Options,

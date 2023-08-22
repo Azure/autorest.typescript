@@ -3,16 +3,6 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface GetOptions extends OperationOptions {}
-
-export interface UpdateOptions extends OperationOptions {}
-
-export interface DeleteOptions extends OperationOptions {}
-
-export interface CreateOptions extends OperationOptions {}
-
-export interface ListOptions extends OperationOptions {}
-
 export interface CustomGetOptions extends OperationOptions {}
 
 export interface CustomGet1Options extends OperationOptions {}

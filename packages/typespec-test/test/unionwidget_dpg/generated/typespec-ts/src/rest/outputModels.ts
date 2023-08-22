@@ -86,16 +86,3 @@ export interface Widget15Output extends WidgetOutput {
 export interface Widget16Output extends WidgetOutput {
   data: WidgetData2Output | Array<WidgetData3Output>;
 }
-
-export interface ErrorModelOutput {
-  code: number;
-  message: string;
-}
-
-/** Paged response of Widget items */
-export interface WidgetCollectionWithNextLinkOutput {
-  /** The items on this page */
-  value: Array<WidgetOutput>;
-  /** The link to the next page of items */
-  nextLink?: string;
-}

@@ -3,7 +3,6 @@
 
 import {
   Widget,
-  ColorType,
   Widget1,
   Widget2,
   Widget3,
@@ -20,14 +19,8 @@ import {
   Widget14,
   Widget15,
   Widget16,
-  WidgetCollectionWithNextLink,
 } from "./models/models.js";
 import {
-  GetOptions,
-  UpdateOptions,
-  DeleteOptions,
-  CreateOptions,
-  ListOptions,
   CustomGetOptions,
   CustomGet1Options,
   CustomGet2Options,
@@ -50,11 +43,6 @@ import {
   createDemoService,
   DemoServiceClientOptions,
   DemoServiceContext,
-  get,
-  update,
-  deleteOperation,
-  create,
-  list,
   customGet,
   customGet1,
   customGet2,
@@ -81,52 +69,6 @@ export class DemoServiceClient {
 
   constructor(endpoint: string, options: DemoServiceClientOptions = {}) {
     this._client = createDemoService(endpoint, options);
-  }
-
-  /** Gets an instance of the resource. */
-  get(
-    id: string,
-    options: GetOptions = { requestOptions: {} }
-  ): Promise<Widget> {
-    return get(this._client, id, options);
-  }
-
-  /** Updates an existing instance of the resource. */
-  update(
-    weight: number,
-    color: ColorType,
-    id: string,
-    options: UpdateOptions = { requestOptions: {} }
-  ): Promise<Widget> {
-    return update(this._client, weight, color, id, options);
-  }
-
-  /** Deletes an existing instance of the resource. */
-  /**
-   *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
-  deleteOperation(
-    id: string,
-    options: DeleteOptions = { requestOptions: {} }
-  ): Promise<void> {
-    return deleteOperation(this._client, id, options);
-  }
-
-  /** Creates a new instance of the resource. */
-  create(
-    weight: number,
-    color: ColorType,
-    options: CreateOptions = { requestOptions: {} }
-  ): Promise<Widget> {
-    return create(this._client, weight, color, options);
-  }
-
-  /** Lists all instances of the resource. */
-  list(
-    options: ListOptions = { requestOptions: {} }
-  ): Promise<WidgetCollectionWithNextLink> {
-    return list(this._client, options);
   }
 
   customGet(

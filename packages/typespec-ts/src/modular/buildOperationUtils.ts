@@ -80,7 +80,7 @@ function formalizeTypeUnionName(typeUnionName: string) {
     .replace(/\|/g, "And");
 }
 
-function isSpecialUnionVariant(t: Type) {
+export function isSpecialUnionVariant(t: Type) {
   return (
     t.type === "datetime" ||
     t.type === "byte-array" ||
@@ -171,22 +171,7 @@ function getTypeDeserializeFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
-          kind: StructureKind.FunctionOverload,
-          parameters: [{ name: "obj", type: `${type.name}Output` }],
-          docs: functionStatement.docs,
-          returnType: functionStatement.returnType
-        });
-        const implementationParameter = sourceFile
-          .getFunction(functionStatement.name ?? "")
-          ?.getParameters();
-        if (implementationParameter && implementationParameter.length > 0) {
-          implementationParameter[0]?.setType(
-            implementationParameter[0].getType().getText() +
-              " | " +
-              `${type.name}Output`
-          );
-        }
+        addOverload(sourceFile, type.name + "Output", functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -217,28 +202,11 @@ function getTypeDeserializeFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
-          kind: StructureKind.FunctionOverload,
-          parameters: [
-            {
-              name: "obj",
-              type: type.elementType.name + "Output[]"
-            }
-          ],
-          docs: functionStatement.docs,
-          returnType: functionStatement.returnType
-        });
-        const implementationParameter = sourceFile
-          .getFunction(functionStatement.name ?? "")
-          ?.getParameters();
-        if (implementationParameter && implementationParameter.length > 0) {
-          implementationParameter[0]?.setType(
-            implementationParameter[0].getType().getText() +
-              " | " +
-              type.elementType.name +
-              "Output[]"
-          );
-        }
+        addOverload(
+          sourceFile,
+          type.elementType.name ?? "Output[]",
+          functionStatement
+        );
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -259,25 +227,7 @@ function getTypeDeserializeFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
-          kind: StructureKind.FunctionOverload,
-          parameters: [
-            {
-              name: "obj",
-              type: type.name
-            }
-          ],
-          docs: functionStatement.docs,
-          returnType: functionStatement.returnType
-        });
-        const implementationParameter = sourceFile
-          .getFunction(functionStatement.name ?? "")
-          ?.getParameters();
-        if (implementationParameter && implementationParameter.length > 0) {
-          implementationParameter[0]?.setType(
-            implementationParameter[0].getType().getText() + " | " + type.name
-          );
-        }
+        addOverload(sourceFile, type.name ?? "", functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -298,29 +248,53 @@ function getTypeDeserializeFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
-          kind: StructureKind.FunctionOverload,
-          parameters: [
-            {
-              name: "obj",
-              type: type.name
-            }
-          ],
-          docs: functionStatement.docs,
-          returnType: functionStatement.returnType
-        });
-        const implementationParameter = sourceFile
-          .getFunction(functionStatement.name ?? "")
-          ?.getParameters();
-        if (implementationParameter && implementationParameter.length > 0) {
-          implementationParameter[0]?.setType(
-            implementationParameter[0].getType().getText() + " | " + type.name
-          );
-        }
+        addOverload(sourceFile, type.name ?? "", functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }
     }
+  }
+}
+
+function addOverload(
+  sourceFile: SourceFile,
+  typeName: string,
+  functionStatement: FunctionDeclarationStructure
+) {
+  const existFunction = sourceFile.getFunction(functionStatement.name ?? "");
+  if (existFunction && existFunction.getOverloads().length === 0) {
+    existFunction.addOverload({
+      kind: StructureKind.FunctionOverload,
+      parameters: existFunction.getParameters().map((p) => {
+        return {
+          name: p.getName(),
+          type: p.getTypeNode()?.getText()
+        };
+      }),
+      returnType: existFunction.getReturnTypeNode()?.getText(),
+      docs: existFunction.getJsDocs().map((d) => {
+        return { description: d.getInnerText() };
+      })
+    });
+  }
+  existFunction?.addOverload({
+    kind: StructureKind.FunctionOverload,
+    parameters: [
+      {
+        name: "obj",
+        type: typeName
+      }
+    ],
+    docs: functionStatement.docs,
+    returnType: functionStatement.returnType
+  });
+  const implementationParameter = sourceFile
+    .getFunction(functionStatement.name ?? "")
+    ?.getParameters();
+  if (implementationParameter && implementationParameter.length > 0) {
+    const newTypeName =
+      implementationParameter[0]?.getTypeNode()?.getText() + " | " + typeName;
+    implementationParameter[0]?.setType(newTypeName);
   }
 }
 
@@ -337,7 +311,7 @@ function hasDuplicateFunction(
     });
     return (
       f.getName() === functionStatement.name &&
-      paramTypes.join() === funcParamTypes?.join()
+      paramTypes.join().includes(funcParamTypes?.join() ?? "")
     );
   });
 }
@@ -410,22 +384,7 @@ function getTypePredictFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
-          kind: StructureKind.FunctionOverload,
-          parameters: [{ name: "obj", type: typeUnionNames }],
-          docs: functionStatement.docs,
-          returnType: functionStatement.returnType
-        });
-        const implementationParameter = sourceFile
-          .getFunction(functionStatement.name ?? "")
-          ?.getParameters();
-        if (implementationParameter && implementationParameter.length > 0) {
-          implementationParameter[0]?.setType(
-            implementationParameter[0].getType().getText() +
-              " | " +
-              typeUnionNames
-          );
-        }
+        addOverload(sourceFile, typeUnionNames, functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -451,7 +410,7 @@ function getTypePredictFunction(
         type.elementType.properties &&
         type.elementType.properties.length > 0
       ) {
-        statements.push("if (obj.length > 0) {");
+        statements.push("if (Array.isArray(obj) && obj.length > 0) {");
         statements.push(
           `return (${type.elementType.properties
             ?.map((p) => {
@@ -472,22 +431,7 @@ function getTypePredictFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        sourceFile.getFunction(functionStatement.name ?? "")?.addOverload({
-          kind: StructureKind.FunctionOverload,
-          parameters: [{ name: "obj", type: typeUnionNames }],
-          docs: functionStatement.docs,
-          returnType: functionStatement.returnType
-        });
-        const implementationParameter = sourceFile
-          .getFunction(functionStatement.name ?? "")
-          ?.getParameters();
-        if (implementationParameter && implementationParameter.length > 0) {
-          implementationParameter[0]?.setType(
-            implementationParameter[0].getType().getText() +
-              " | " +
-              typeUnionNames
-          );
-        }
+        addOverload(sourceFile, typeUnionNames, functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }

@@ -104,7 +104,7 @@ model Error {
   message: string;
 }
 
-interface WidgetService extends Resource.ResourceOperations<Widget, Error> {
+interface WidgetService {
   @get @route("customGet") customGet(): Widget;
   @get @route("customGet1") customGet1(): Widget1;
   @get @route("customGet2") customGet2(): Widget2;

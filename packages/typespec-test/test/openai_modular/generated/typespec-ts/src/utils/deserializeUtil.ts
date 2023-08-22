@@ -4,11 +4,11 @@
 import { ImageLocationOutput, ImagePayloadOutput } from "../rest/index.js";
 import { ImageLocation, ImagePayload } from "../models/models.js";
 
-/** type predict function fpr ImagePayloadOutput array */
+/** type predict function fpr ImagePayloadOutput array from ImageLocationOutput[] | ImagePayloadOutput[] */
 function isImagePayloadArray(
   obj: ImageLocationOutput[] | ImagePayloadOutput[]
 ): obj is ImagePayloadOutput[] {
-  if (obj.length > 0) {
+  if (Array.isArray(obj) && obj.length > 0) {
     return (obj as ImagePayloadOutput[])[0].b64_json !== undefined;
   }
 

@@ -7,11 +7,6 @@ export {
   DemoServiceContext,
 } from "./DemoServiceContext.js";
 export {
-  get,
-  update,
-  deleteOperation,
-  create,
-  list,
   customGet,
   customGet1,
   customGet2,

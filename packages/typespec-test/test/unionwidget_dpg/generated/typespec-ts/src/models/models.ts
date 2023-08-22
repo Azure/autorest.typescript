@@ -90,11 +90,3 @@ export interface Widget15 {
 export interface Widget16 {
   data: WidgetData2 | WidgetData3[];
 }
-
-/** Paged response of Widget items */
-export interface WidgetCollectionWithNextLink {
-  /** The items on this page */
-  value: Widget[];
-  /** The link to the next page of items */
-  nextLink?: string;
-}

@@ -2,23 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { Widget } from "./models.js";
 
-export type GetParameters = RequestParameters;
-
-export interface UpdateBodyParam {
-  body: Widget;
-}
-
-export type UpdateParameters = UpdateBodyParam & RequestParameters;
-export type DeleteParameters = RequestParameters;
-
-export interface CreateBodyParam {
-  body: Widget;
-}
-
-export type CreateParameters = CreateBodyParam & RequestParameters;
-export type ListParameters = RequestParameters;
 export type CustomGetParameters = RequestParameters;
 export type CustomGet1Parameters = RequestParameters;
 export type CustomGet2Parameters = RequestParameters;

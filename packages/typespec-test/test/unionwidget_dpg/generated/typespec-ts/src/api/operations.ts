@@ -3,7 +3,6 @@
 
 import {
   Widget,
-  ColorType,
   Widget1,
   Widget2,
   Widget3,
@@ -20,14 +19,8 @@ import {
   Widget14,
   Widget15,
   Widget16,
-  WidgetCollectionWithNextLink,
 } from "../models/models.js";
 import {
-  isUnexpected,
-  DemoServiceContext as Client,
-  Create200Response,
-  Create201Response,
-  CreateDefaultResponse,
   CustomGet10200Response,
   CustomGet11200Response,
   CustomGet1200Response,
@@ -45,30 +38,19 @@ import {
   CustomGet7200Response,
   CustomGet8200Response,
   CustomGet9200Response,
-  DeleteOperation200Response,
-  DeleteOperationDefaultResponse,
-  Get200Response,
-  GetDefaultResponse,
-  List200Response,
-  ListDefaultResponse,
-  Update200Response,
-  UpdateDefaultResponse,
+  DemoServiceContext as Client,
 } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  deserializeWidgetData0AndWidgetData1Union,
   deserializeWidgetData0AndWidgetData2Union,
   deserializeWidgetData1AndWidgetData2Union,
   deserializeWidgetData2AndWidgetData3Union,
-  deserializeWidgetData0ArrayAndWidgetData1ArrayUnion,
   deserializeWidgetData0ArrayAndWidgetData2ArrayUnion,
   deserializeWidgetData1ArrayAndWidgetData2ArrayUnion,
   deserializeWidgetData2ArrayAndWidgetData3ArrayUnion,
-  deserializeWidgetData0ArrayAndWidgetData1Union,
-  deserializeWidgetData0AndWidgetData1ArrayUnion,
   deserializeWidgetData0ArrayAndWidgetData2Union,
   deserializeWidgetData0AndWidgetData2ArrayUnion,
   deserializeWidgetData1ArrayAndWidgetData2Union,
@@ -77,11 +59,6 @@ import {
   deserializeWidgetData2AndWidgetData3ArrayUnion,
 } from "../utils/deserializeUtil.js";
 import {
-  GetOptions,
-  UpdateOptions,
-  DeleteOptions,
-  CreateOptions,
-  ListOptions,
   CustomGetOptions,
   CustomGet1Options,
   CustomGet2Options,
@@ -101,193 +78,6 @@ import {
   CustomGet16Options,
 } from "../models/options.js";
 
-export function _getSend(
-  context: Client,
-  id: string,
-  options: GetOptions = { requestOptions: {} }
-): StreamableMethod<Get200Response | GetDefaultResponse> {
-  return context
-    .path("/{id}", id)
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _getDeserialize(
-  result: Get200Response | GetDefaultResponse
-): Promise<Widget> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
-}
-
-/** Gets an instance of the resource. */
-export async function get(
-  context: Client,
-  id: string,
-  options: GetOptions = { requestOptions: {} }
-): Promise<Widget> {
-  const result = await _getSend(context, id, options);
-  return _getDeserialize(result);
-}
-
-export function _updateSend(
-  context: Client,
-  weight: number,
-  color: ColorType,
-  id: string,
-  options: UpdateOptions = { requestOptions: {} }
-): StreamableMethod<Update200Response | UpdateDefaultResponse> {
-  return context
-    .path("/{id}", id)
-    .patch({
-      ...operationOptionsToRequestParameters(options),
-      body: { weight: weight, color: color },
-    });
-}
-
-export async function _updateDeserialize(
-  result: Update200Response | UpdateDefaultResponse
-): Promise<Widget> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
-}
-
-/** Updates an existing instance of the resource. */
-export async function update(
-  context: Client,
-  weight: number,
-  color: ColorType,
-  id: string,
-  options: UpdateOptions = { requestOptions: {} }
-): Promise<Widget> {
-  const result = await _updateSend(context, weight, color, id, options);
-  return _updateDeserialize(result);
-}
-
-export function _deleteOperationSend(
-  context: Client,
-  id: string,
-  options: DeleteOptions = { requestOptions: {} }
-): StreamableMethod<
-  DeleteOperation200Response | DeleteOperationDefaultResponse
-> {
-  return context
-    .path("/{id}", id)
-    .delete({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _deleteOperationDeserialize(
-  result: DeleteOperation200Response | DeleteOperationDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return;
-}
-
-/** Deletes an existing instance of the resource. */
-/**
- *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
-export async function deleteOperation(
-  context: Client,
-  id: string,
-  options: DeleteOptions = { requestOptions: {} }
-): Promise<void> {
-  const result = await _deleteOperationSend(context, id, options);
-  return _deleteOperationDeserialize(result);
-}
-
-export function _createSend(
-  context: Client,
-  weight: number,
-  color: ColorType,
-  options: CreateOptions = { requestOptions: {} }
-): StreamableMethod<
-  Create200Response | Create201Response | CreateDefaultResponse
-> {
-  return context
-    .path("/")
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      body: { weight: weight, color: color },
-    });
-}
-
-export async function _createDeserialize(
-  result: Create200Response | Create201Response | CreateDefaultResponse
-): Promise<Widget> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"],
-  };
-}
-
-/** Creates a new instance of the resource. */
-export async function create(
-  context: Client,
-  weight: number,
-  color: ColorType,
-  options: CreateOptions = { requestOptions: {} }
-): Promise<Widget> {
-  const result = await _createSend(context, weight, color, options);
-  return _createDeserialize(result);
-}
-
-export function _listSend(
-  context: Client,
-  options: ListOptions = { requestOptions: {} }
-): StreamableMethod<List200Response | ListDefaultResponse> {
-  return context
-    .path("/")
-    .get({ ...operationOptionsToRequestParameters(options) });
-}
-
-export async function _listDeserialize(
-  result: List200Response | ListDefaultResponse
-): Promise<WidgetCollectionWithNextLink> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"],
-    })),
-    nextLink: result.body["nextLink"],
-  };
-}
-
-/** Lists all instances of the resource. */
-export async function list(
-  context: Client,
-  options: ListOptions = { requestOptions: {} }
-): Promise<WidgetCollectionWithNextLink> {
-  const result = await _listSend(context, options);
-  return _listDeserialize(result);
-}
-
 export function _customGetSend(
   context: Client,
   options: CustomGetOptions = { requestOptions: {} }
@@ -300,10 +90,6 @@ export function _customGetSend(
 export async function _customGetDeserialize(
   result: CustomGet200Response
 ): Promise<Widget> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -331,12 +117,8 @@ export function _customGet1Send(
 export async function _customGet1Deserialize(
   result: CustomGet1200Response
 ): Promise<Widget1> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
-    data: deserializeWidgetData0AndWidgetData1Union(result.body["data"]),
+    data: result.body["data"],
   };
 }
 
@@ -360,10 +142,6 @@ export function _customGet2Send(
 export async function _customGet2Deserialize(
   result: CustomGet2200Response
 ): Promise<Widget2> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData0AndWidgetData2Union(result.body["data"]),
   };
@@ -389,10 +167,6 @@ export function _customGet3Send(
 export async function _customGet3Deserialize(
   result: CustomGet3200Response
 ): Promise<Widget3> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData1AndWidgetData2Union(result.body["data"]),
   };
@@ -418,10 +192,6 @@ export function _customGet4Send(
 export async function _customGet4Deserialize(
   result: CustomGet4200Response
 ): Promise<Widget4> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData2AndWidgetData3Union(result.body["data"]),
   };
@@ -447,14 +217,8 @@ export function _customGet5Send(
 export async function _customGet5Deserialize(
   result: CustomGet5200Response
 ): Promise<Widget5> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
-    data: deserializeWidgetData0ArrayAndWidgetData1ArrayUnion(
-      result.body["data"]
-    ),
+    data: result.body["data"],
   };
 }
 
@@ -478,10 +242,6 @@ export function _customGet6Send(
 export async function _customGet6Deserialize(
   result: CustomGet6200Response
 ): Promise<Widget6> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData0ArrayAndWidgetData2ArrayUnion(
       result.body["data"]
@@ -509,10 +269,6 @@ export function _customGet7Send(
 export async function _customGet7Deserialize(
   result: CustomGet7200Response
 ): Promise<Widget7> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData1ArrayAndWidgetData2ArrayUnion(
       result.body["data"]
@@ -540,10 +296,6 @@ export function _customGet8Send(
 export async function _customGet8Deserialize(
   result: CustomGet8200Response
 ): Promise<Widget8> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData2ArrayAndWidgetData3ArrayUnion(
       result.body["data"]
@@ -571,12 +323,8 @@ export function _customGet9Send(
 export async function _customGet9Deserialize(
   result: CustomGet9200Response
 ): Promise<Widget9> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
-    data: deserializeWidgetData0ArrayAndWidgetData1Union(result.body["data"]),
+    data: result.body["data"],
   };
 }
 
@@ -600,12 +348,8 @@ export function _customGet10Send(
 export async function _customGet10Deserialize(
   result: CustomGet10200Response
 ): Promise<Widget10> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
-    data: deserializeWidgetData0AndWidgetData1ArrayUnion(result.body["data"]),
+    data: result.body["data"],
   };
 }
 
@@ -629,10 +373,6 @@ export function _customGet11Send(
 export async function _customGet11Deserialize(
   result: CustomGet11200Response
 ): Promise<Widget11> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData0ArrayAndWidgetData2Union(result.body["data"]),
   };
@@ -658,10 +398,6 @@ export function _customGet12Send(
 export async function _customGet12Deserialize(
   result: CustomGet12200Response
 ): Promise<Widget12> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData0AndWidgetData2ArrayUnion(result.body["data"]),
   };
@@ -687,10 +423,6 @@ export function _customGet13Send(
 export async function _customGet13Deserialize(
   result: CustomGet13200Response
 ): Promise<Widget13> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData1ArrayAndWidgetData2Union(result.body["data"]),
   };
@@ -716,10 +448,6 @@ export function _customGet14Send(
 export async function _customGet14Deserialize(
   result: CustomGet14200Response
 ): Promise<Widget14> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData1AndWidgetData2ArrayUnion(result.body["data"]),
   };
@@ -745,10 +473,6 @@ export function _customGet15Send(
 export async function _customGet15Deserialize(
   result: CustomGet15200Response
 ): Promise<Widget15> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData2ArrayAndWidgetData3Union(result.body["data"]),
   };
@@ -774,10 +498,6 @@ export function _customGet16Send(
 export async function _customGet16Deserialize(
   result: CustomGet16200Response
 ): Promise<Widget16> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
   return {
     data: deserializeWidgetData2AndWidgetData3ArrayUnion(result.body["data"]),
   };
