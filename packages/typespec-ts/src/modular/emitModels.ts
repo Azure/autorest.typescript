@@ -13,15 +13,19 @@ export function buildModels(
   project: Project,
   srcPath: string = "src",
   subfolder: string = ""
-): SourceFile {
-  const modelsFile = project.createSourceFile(
-    path.join(`${srcPath}/`, subfolder, `models/models.ts`)
-  );
-
+): SourceFile | undefined {
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
   const models = codeModel.types.filter(
     (t) => (t.type === "model" || t.type === "enum") && !isAzureCoreError(t)
+  );
+
+  // Skip to generate models.ts if there is no any models
+  if (models.length === 0) {
+    return;
+  }
+  const modelsFile = project.createSourceFile(
+    path.join(`${srcPath}/`, subfolder, `models/models.ts`)
   );
 
   for (const model of codeModel.types) {

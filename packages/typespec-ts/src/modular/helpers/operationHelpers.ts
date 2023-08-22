@@ -25,6 +25,10 @@ import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
 } from "./docsHelpers.js";
+import {
+  getCollectionFormatHelper,
+  hasCollectionFormatInfo
+} from "../../utils/operationUtil.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -260,10 +264,12 @@ export function getOperationFunction(
   };
 }
 
-export function getOperationOptionsName(operation: Operation) {
-  const optionName = `${toPascalCase(operation.groupName)}${toPascalCase(
-    operation.name
-  )}Options`;
+export function getOperationOptionsName(
+  operation: Operation,
+  includeGroupName = false
+) {
+  const prefix = includeGroupName ? toPascalCase(operation.groupName) : "";
+  const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");
   }
@@ -313,9 +319,9 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${
-      parametersImplementation.header.join(",\n") + ","
-    },`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
+      ",\n"
+    )}},`;
   }
 
   if (parametersImplementation.query.length) {
@@ -395,6 +401,10 @@ function getParameterMap(
     return getConstantValue(param);
   }
 
+  if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
+    return getCollectionFormat(param as Parameter);
+  }
+
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
     return getOptional(param, importSet);
@@ -405,6 +415,22 @@ function getParameterMap(
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
+}
+
+function getCollectionFormat(param: Parameter) {
+  const collectionInfo = getCollectionFormatHelper(
+    param.location,
+    param.format ?? ""
+  );
+  if (!collectionInfo) {
+    throw "Has collection format info but without helper function detected";
+  }
+  const isMulti = (param.format ?? "").toLowerCase() === "multi";
+  const additionalParam = isMulti ? `, "${param.restApiName}"` : "";
+  if (!param.optional) {
+    return `"${param.restApiName}": ${collectionInfo}(${param.clientName}${additionalParam})`;
+  }
+  return `"${param.restApiName}": options?.${param.clientName} !== undefined ? ${collectionInfo}(options?.${param.clientName}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -477,16 +503,11 @@ type OptionalType = (Parameter | Property) & {
   type: { optional: true };
 };
 
-function isOptional(
-  param: Parameter | Property
-): param is OptionalType {
+function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(
-  param: OptionalType,
-  importSet: Map<string, Set<string>>
-) {
+function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
@@ -633,6 +654,17 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
+      } else if (
+        (property.restApiName === "message" ||
+          property.restApiName === "messages") &&
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
+      ) {
+        definition = `"${property.clientName}": ${
+          !property.optional
+            ? `${propertyFullName} as any`
+            : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+        }`;
       } else {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
@@ -654,14 +686,28 @@ export function getResponseMapping(
       const restValue = `${
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.restApiName}"]`;
-      props.push(
-        `"${property.clientName}": ${deserializeResponseValue(
-          property.type,
-          restValue,
-          importSet,
-          property.optional !== undefined ? !property.optional : false
-        )}`
-      );
+      if (
+        property.restApiName === "messages" &&
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
+      ) {
+        props.push(
+          `"${property.clientName}": ${
+            !property.optional
+              ? `${propertyFullName} as any`
+              : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+          }`
+        );
+      } else {
+        props.push(
+          `"${property.clientName}": ${deserializeResponseValue(
+            property.type,
+            restValue,
+            importSet,
+            property.optional !== undefined ? !property.optional : false
+          )}`
+        );
+      }
     }
   }
 
@@ -731,7 +777,7 @@ function deserializeResponseValue(
 function serializeRequestValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>> = new Map<string, Set<string>>()
+  importSet: Map<string, Set<string>>
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
@@ -739,8 +785,8 @@ function serializeRequestValue(
       return `${restValue} !== undefined ? new Date(${restValue}): undefined`;
     case "list":
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
+        return `(${restValue} ?? []).map(p => ({${getRequestModelMapping(
+          type.elementType,
           "p",
           importSet
         )}}))`;

@@ -124,6 +124,7 @@ export interface Parameter {
   inDocstring?: boolean;
   inOverriden?: boolean;
   isApiVersion?: boolean;
+  format?: string;
 }
 
 export interface Response {
@@ -136,6 +137,7 @@ export interface Response {
 
 export interface Operation {
   name: string;
+  oriName?: string;
   description: string;
   summary: string;
   url: string;
