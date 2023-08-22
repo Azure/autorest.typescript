@@ -17,6 +17,8 @@ import {
   GetAzureBatchImageGenerationOperationStatusLogicalResponse,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
+  GetChatCompletionsWithAzureExtensions200Response,
+  GetChatCompletionsWithAzureExtensionsDefaultResponse,
   GetCompletions200Response,
   GetCompletionsDefaultResponse,
   GetEmbeddings200Response,
@@ -32,6 +34,7 @@ import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
   GetChatCompletionsOptions,
+  GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
 } from "../models/options.js";
@@ -253,6 +256,7 @@ export function _getChatCompletionsSend(
         frequency_penalty: options?.frequencyPenalty,
         stream: options?.stream,
         model: options?.model,
+        dataSources: options?.dataSources,
       },
     });
 }
@@ -268,19 +272,7 @@ export async function _getChatCompletionsDeserialize(
     id: result.body["id"],
     created: new Date(result.body["created"]),
     choices: (result.body["choices"] ?? []).map((p) => ({
-      message: !p.message
-        ? undefined
-        : {
-            role: p.message?.["role"],
-            content: p.message?.["content"],
-            name: p.message?.["name"],
-            functionCall: !p.message?.function_call
-              ? undefined
-              : {
-                  name: p.message?.function_call?.["name"],
-                  arguments: p.message?.function_call?.["arguments"],
-                },
-          },
+      message: !p.message ? undefined : (p.message as any),
       index: p["index"],
       finishReason: p["finish_reason"],
       delta: !p.delta
@@ -294,6 +286,13 @@ export async function _getChatCompletionsDeserialize(
               : {
                   name: p.delta?.function_call?.["name"],
                   arguments: p.delta?.function_call?.["arguments"],
+                },
+            context: !p.delta?.context
+              ? undefined
+              : {
+                  messages: !p.delta?.context?.messages
+                    ? undefined
+                    : (p.delta?.context?.messages as any),
                 },
           },
       contentFilterResults: !p.content_filter_results
@@ -382,6 +381,166 @@ export async function getChatCompletions(
     options
   );
   return _getChatCompletionsDeserialize(result);
+}
+
+export function _getChatCompletionsWithAzureExtensionsSend(
+  context: Client,
+  messages: ChatMessage[],
+  deploymentId: string,
+  options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
+): StreamableMethod<
+  | GetChatCompletionsWithAzureExtensions200Response
+  | GetChatCompletionsWithAzureExtensionsDefaultResponse
+> {
+  return context
+    .path(
+      "/deployments/{deploymentId}/extensions/chat/completions",
+      deploymentId
+    )
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        messages: messages,
+        functions: options?.functions,
+        function_call: options?.functionCall,
+        max_tokens: options?.maxTokens,
+        temperature: options?.temperature,
+        top_p: options?.topP,
+        logit_bias: options?.logitBias,
+        user: options?.user,
+        n: options?.n,
+        stop: options?.stop,
+        presence_penalty: options?.presencePenalty,
+        frequency_penalty: options?.frequencyPenalty,
+        stream: options?.stream,
+        model: options?.model,
+        dataSources: options?.dataSources,
+      },
+    });
+}
+
+export async function _getChatCompletionsWithAzureExtensionsDeserialize(
+  result:
+    | GetChatCompletionsWithAzureExtensions200Response
+    | GetChatCompletionsWithAzureExtensionsDefaultResponse
+): Promise<ChatCompletions> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    created: new Date(result.body["created"]),
+    choices: (result.body["choices"] ?? []).map((p) => ({
+      message: !p.message ? undefined : (p.message as any),
+      index: p["index"],
+      finishReason: p["finish_reason"],
+      delta: !p.delta
+        ? undefined
+        : {
+            role: p.delta?.["role"],
+            content: p.delta?.["content"],
+            name: p.delta?.["name"],
+            functionCall: !p.delta?.function_call
+              ? undefined
+              : {
+                  name: p.delta?.function_call?.["name"],
+                  arguments: p.delta?.function_call?.["arguments"],
+                },
+            context: !p.delta?.context
+              ? undefined
+              : {
+                  messages: !p.delta?.context?.messages
+                    ? undefined
+                    : (p.delta?.context?.messages as any),
+                },
+          },
+      contentFilterResults: !p.content_filter_results
+        ? undefined
+        : {
+            sexual: !p.content_filter_results?.sexual
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.sexual?.["severity"],
+                  filtered: p.content_filter_results?.sexual?.["filtered"],
+                },
+            violence: !p.content_filter_results?.violence
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.violence?.["severity"],
+                  filtered: p.content_filter_results?.violence?.["filtered"],
+                },
+            hate: !p.content_filter_results?.hate
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.hate?.["severity"],
+                  filtered: p.content_filter_results?.hate?.["filtered"],
+                },
+            selfHarm: !p.content_filter_results?.self_harm
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.self_harm?.["severity"],
+                  filtered: p.content_filter_results?.self_harm?.["filtered"],
+                },
+          },
+    })),
+    promptFilterResults: (result.body["prompt_annotations"] ?? []).map((p) => ({
+      promptIndex: p["prompt_index"],
+      contentFilterResults: !p.content_filter_results
+        ? undefined
+        : {
+            sexual: !p.content_filter_results?.sexual
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.sexual?.["severity"],
+                  filtered: p.content_filter_results?.sexual?.["filtered"],
+                },
+            violence: !p.content_filter_results?.violence
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.violence?.["severity"],
+                  filtered: p.content_filter_results?.violence?.["filtered"],
+                },
+            hate: !p.content_filter_results?.hate
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.hate?.["severity"],
+                  filtered: p.content_filter_results?.hate?.["filtered"],
+                },
+            selfHarm: !p.content_filter_results?.self_harm
+              ? undefined
+              : {
+                  severity: p.content_filter_results?.self_harm?.["severity"],
+                  filtered: p.content_filter_results?.self_harm?.["filtered"],
+                },
+          },
+    })),
+    usage: {
+      completionTokens: result.body.usage["completion_tokens"],
+      promptTokens: result.body.usage["prompt_tokens"],
+      totalTokens: result.body.usage["total_tokens"],
+    },
+  };
+}
+
+/**
+ * Gets chat completions for the provided chat messages.
+ * This is an Azure-specific version of chat completions that supports integration with configured data sources and
+ * other augmentations to the base chat completions capabilities.
+ */
+export async function getChatCompletionsWithAzureExtensions(
+  context: Client,
+  messages: ChatMessage[],
+  deploymentId: string,
+  options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
+): Promise<ChatCompletions> {
+  const result = await _getChatCompletionsWithAzureExtensionsSend(
+    context,
+    messages,
+    deploymentId,
+    options
+  );
+  return _getChatCompletionsWithAzureExtensionsDeserialize(result);
 }
 
 export function _getAzureBatchImageGenerationOperationStatusSend(
