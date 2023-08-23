@@ -534,7 +534,10 @@ function isWidgetData6Array(
   obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
 ): obj is WidgetData6Output[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData6Output[])[0].data !== undefined;
+    return (
+      (obj as WidgetData6Output[])[0].data !== undefined &&
+      (obj as WidgetData6Output[])[0].data.data !== undefined
+    );
   }
 
   return false;

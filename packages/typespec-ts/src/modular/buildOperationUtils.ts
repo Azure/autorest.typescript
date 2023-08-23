@@ -1,7 +1,7 @@
 import { toPascalCase } from "../utils/casingUtils.js";
 import { importSettings } from "../utils/importUtils.js";
 import { getResponseMapping } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Type } from "./modularCodeModel.js";
+import { ModularCodeModel, Property, Type } from "./modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   Project,
@@ -369,14 +369,13 @@ function getTypePredictFunction(
       parameters: [{ name: "obj", type: typeUnionNames }],
       returnType: `obj is ${type.name}Output`
     };
-    if (type.properties) {
+    const typeProperties = getAllProperties(type);
+    if (typeProperties.length > 0) {
       statements.push(
-        `return ${type.properties
-          .filter((p) => !p.optional)
-          .map((p) => {
-            return `(obj as ${type.name}Output).${p.restApiName} !== undefined`;
-          })
-          .join(" && ")};`
+        `return ${buildTypePredictCondition(
+          type,
+          `(obj as ${type.name}Output)`
+        )};`
       );
     } else {
       statements.push(`return true;`);
@@ -410,18 +409,14 @@ function getTypePredictFunction(
       returnType: `obj is ${type.elementType.name}Output[]`
     };
     if (type.elementType?.type === "model") {
-      if (
-        type.elementType.properties &&
-        type.elementType.properties.length > 0
-      ) {
+      const properties = getAllProperties(type.elementType);
+      if (properties && properties.length > 0) {
         statements.push("if (Array.isArray(obj) && obj.length > 0) {");
         statements.push(
-          `return (${type.elementType.properties
-            .filter((p) => !p.optional)
-            ?.map((p) => {
-              return `(obj as ${type.elementType?.name}Output[])[0].${p.restApiName} !== undefined`;
-            })
-            .join(" && ")});`
+          `return ${buildTypePredictCondition(
+            type.elementType,
+            `(obj as ${type.elementType?.name}Output[])[0]`
+          )};`
         );
         statements.push("}");
         statements.push("return false;");
@@ -442,4 +437,36 @@ function getTypePredictFunction(
       }
     }
   }
+}
+
+function getAllProperties(type: Type): Property[] {
+  const properties = [];
+  type.parents?.forEach((p) => {
+    properties.push(...(p.properties ?? []));
+  });
+  properties.push(...(type.properties ?? []));
+  return properties;
+}
+
+function buildTypePredictCondition(type: Type, prefix: string): string {
+  const typeProperties = getAllProperties(type);
+  return typeProperties
+    .filter((p) => !p.optional)
+    .map((p) => {
+      const condition: string[] = [];
+      if (p.type.type === "model") {
+        const properties = [];
+        p.type.parents?.forEach((pp) => {
+          properties.push(...(pp.properties ?? []));
+        });
+        properties.push(...(p.type.properties ?? []));
+        condition.push(
+          buildTypePredictCondition(p.type, `${prefix}.${p.restApiName}`)
+        );
+      }
+      const result = [`${prefix}.${p.restApiName} !== undefined`];
+      result.push(...condition);
+      return result.join(" && ");
+    })
+    .join(" && ");
 }
