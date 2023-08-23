@@ -81,6 +81,7 @@ export interface Type {
   isFixed?: boolean;
   valueType?: Type;
   elementType?: Type;
+  parents?: Type[];
   xmlMetadata?: XmlMetadata;
   format?: string;
   properties?: Property[];

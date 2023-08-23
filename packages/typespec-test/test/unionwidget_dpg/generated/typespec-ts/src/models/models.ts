@@ -11,7 +11,7 @@ export interface Widget {
 /** */
 export type ColorType = "red" | "blue";
 
-export interface Widget1 {
+export interface Widget1 extends Widget {
   data: WidgetData0 | WidgetData1;
 }
 
@@ -23,7 +23,7 @@ export interface WidgetData1 {
   barProp: string;
 }
 
-export interface Widget2 {
+export interface Widget2 extends Widget {
   data: WidgetData0 | WidgetData2;
 }
 
@@ -31,11 +31,11 @@ export interface WidgetData2 {
   fooProp: string;
 }
 
-export interface Widget3 {
+export interface Widget3 extends Widget {
   data: WidgetData1 | WidgetData2;
 }
 
-export interface Widget4 {
+export interface Widget4 extends Widget {
   data: WidgetData2 | WidgetData3;
 }
 
@@ -43,7 +43,7 @@ export interface WidgetData3 {
   barProp: string;
 }
 
-export interface Widget5 {
+export interface Widget5 extends Widget {
   data: WidgetData0 | WidgetData4;
 }
 
@@ -52,7 +52,7 @@ export interface WidgetData4 {
   end?: Date;
 }
 
-export interface Widget6 {
+export interface Widget6 extends Widget {
   data: WidgetData0 | WidgetData5;
 }
 
@@ -60,74 +60,74 @@ export interface WidgetData5 {
   data: Uint8Array;
 }
 
-export interface Widget7 {
+export interface Widget7 extends Widget {
   data: WidgetData0[] | WidgetData1[];
 }
 
-export interface Widget8 {
+export interface Widget8 extends Widget {
   data: WidgetData0[] | WidgetData2[];
 }
 
-export interface Widget9 {
+export interface Widget9 extends Widget {
   data: WidgetData1[] | WidgetData2[];
 }
 
-export interface Widget10 {
+export interface Widget10 extends Widget {
   data: WidgetData2[] | WidgetData3[];
 }
 
-export interface Widget11 {
+export interface Widget11 extends Widget {
   data: WidgetData0[] | WidgetData4[];
 }
 
-export interface Widget12 {
+export interface Widget12 extends Widget {
   data: WidgetData0[] | WidgetData5[];
 }
 
-export interface Widget13 {
+export interface Widget13 extends Widget {
   data: WidgetData0[] | WidgetData1;
 }
 
-export interface Widget14 {
+export interface Widget14 extends Widget {
   data: WidgetData0 | WidgetData1[];
 }
 
-export interface Widget15 {
+export interface Widget15 extends Widget {
   data: WidgetData0[] | WidgetData2;
 }
 
-export interface Widget16 {
+export interface Widget16 extends Widget {
   data: WidgetData0 | WidgetData2[];
 }
 
-export interface Widget17 {
+export interface Widget17 extends Widget {
   data: WidgetData1[] | WidgetData2;
 }
 
-export interface Widget18 {
+export interface Widget18 extends Widget {
   data: WidgetData1 | WidgetData2[];
 }
 
-export interface Widget19 {
+export interface Widget19 extends Widget {
   data: WidgetData2[] | WidgetData3;
 }
 
-export interface Widget20 {
+export interface Widget20 extends Widget {
   data: WidgetData2 | WidgetData3[];
 }
 
-export interface Widget21 {
+export interface Widget21 extends Widget {
   data: WidgetData0[] | WidgetData4;
 }
 
-export interface Widget22 {
+export interface Widget22 extends Widget {
   data: WidgetData0 | WidgetData4[];
 }
 
-export interface Widget23 {
+export interface Widget23 extends Widget {
   data: WidgetData0[] | WidgetData5;
 }
 
-export interface Widget24 {
+export interface Widget24 extends Widget {
   data: WidgetData0 | WidgetData5[];
 }

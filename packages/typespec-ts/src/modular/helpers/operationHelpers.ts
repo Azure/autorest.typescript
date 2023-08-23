@@ -134,6 +134,11 @@ export function getDeserializePrivateFunction(
     );
   }
 
+  const properties = [];
+  response.type.parents?.forEach((p) => {
+    properties.push(...(p.properties ?? []));
+  });
+  properties.push(...(response.type.properties ?? []));
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
   } else if (response?.type?.elementType) {
@@ -145,14 +150,10 @@ export function getDeserializePrivateFunction(
         response.type.nullable !== undefined ? !response.type.nullable : false
       )}`
     );
-  } else if (response?.type?.properties) {
+  } else if (properties.length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(
-        response.type.properties ?? [],
-        "result.body",
-        importSet
-      ).join(","),
+      getResponseMapping(properties, "result.body", importSet).join(","),
       `}`
     );
   } else if (returnType.type === "void") {

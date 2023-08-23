@@ -71,10 +71,11 @@ export function buildModels(
       if (!model.name) {
         throw new Error("Can't generate a model that has no name");
       }
-      modelsFile.addInterface({
+      const modelInterface = {
         name: model.name,
         isExported: true,
         docs: getDocsFromDescription(model.description),
+        extends: [] as string[],
         properties: properties.map((p) => {
           const propertyMetadata = getType(p.type);
           let propertyTypeName = propertyMetadata.name;
@@ -94,7 +95,13 @@ export function buildModels(
             type: propertyTypeName
           };
         })
-      });
+      };
+      model.type === "model"
+        ? model.parents?.forEach((p) =>
+            modelInterface.extends.push(getType(p).name)
+          )
+        : undefined;
+      modelsFile.addInterface(modelInterface);
     }
   }
 

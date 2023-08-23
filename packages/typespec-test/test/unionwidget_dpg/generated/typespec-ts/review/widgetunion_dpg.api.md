@@ -180,145 +180,145 @@ export interface Widget {
 }
 
 // @public (undocumented)
-export interface Widget1 {
+export interface Widget1 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData1;
 }
 
 // @public (undocumented)
-export interface Widget10 {
+export interface Widget10 extends Widget {
     // (undocumented)
     data: WidgetData2[] | WidgetData3[];
 }
 
 // @public (undocumented)
-export interface Widget11 {
+export interface Widget11 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData4[];
 }
 
 // @public (undocumented)
-export interface Widget12 {
+export interface Widget12 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData5[];
 }
 
 // @public (undocumented)
-export interface Widget13 {
+export interface Widget13 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData1;
 }
 
 // @public (undocumented)
-export interface Widget14 {
+export interface Widget14 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData1[];
 }
 
 // @public (undocumented)
-export interface Widget15 {
+export interface Widget15 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData2;
 }
 
 // @public (undocumented)
-export interface Widget16 {
+export interface Widget16 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData2[];
 }
 
 // @public (undocumented)
-export interface Widget17 {
+export interface Widget17 extends Widget {
     // (undocumented)
     data: WidgetData1[] | WidgetData2;
 }
 
 // @public (undocumented)
-export interface Widget18 {
+export interface Widget18 extends Widget {
     // (undocumented)
     data: WidgetData1 | WidgetData2[];
 }
 
 // @public (undocumented)
-export interface Widget19 {
+export interface Widget19 extends Widget {
     // (undocumented)
     data: WidgetData2[] | WidgetData3;
 }
 
 // @public (undocumented)
-export interface Widget2 {
+export interface Widget2 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData2;
 }
 
 // @public (undocumented)
-export interface Widget20 {
+export interface Widget20 extends Widget {
     // (undocumented)
     data: WidgetData2 | WidgetData3[];
 }
 
 // @public (undocumented)
-export interface Widget21 {
+export interface Widget21 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData4;
 }
 
 // @public (undocumented)
-export interface Widget22 {
+export interface Widget22 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData4[];
 }
 
 // @public (undocumented)
-export interface Widget23 {
+export interface Widget23 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData5;
 }
 
 // @public (undocumented)
-export interface Widget24 {
+export interface Widget24 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData5[];
 }
 
 // @public (undocumented)
-export interface Widget3 {
+export interface Widget3 extends Widget {
     // (undocumented)
     data: WidgetData1 | WidgetData2;
 }
 
 // @public (undocumented)
-export interface Widget4 {
+export interface Widget4 extends Widget {
     // (undocumented)
     data: WidgetData2 | WidgetData3;
 }
 
 // @public (undocumented)
-export interface Widget5 {
+export interface Widget5 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData4;
 }
 
 // @public (undocumented)
-export interface Widget6 {
+export interface Widget6 extends Widget {
     // (undocumented)
     data: WidgetData0 | WidgetData5;
 }
 
 // @public (undocumented)
-export interface Widget7 {
+export interface Widget7 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData1[];
 }
 
 // @public (undocumented)
-export interface Widget8 {
+export interface Widget8 extends Widget {
     // (undocumented)
     data: WidgetData0[] | WidgetData2[];
 }
 
 // @public (undocumented)
-export interface Widget9 {
+export interface Widget9 extends Widget {
     // (undocumented)
     data: WidgetData1[] | WidgetData2[];
 }

@@ -150,6 +150,9 @@ export async function _customGet1Deserialize(
   result: CustomGet1200Response
 ): Promise<Widget1> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: result.body["data"],
   };
 }
@@ -175,6 +178,9 @@ export async function _customGet2Deserialize(
   result: CustomGet2200Response
 ): Promise<Widget2> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0AndWidgetData2Union(result.body["data"]),
   };
 }
@@ -200,6 +206,9 @@ export async function _customGet3Deserialize(
   result: CustomGet3200Response
 ): Promise<Widget3> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData1AndWidgetData2Union(result.body["data"]),
   };
 }
@@ -225,6 +234,9 @@ export async function _customGet4Deserialize(
   result: CustomGet4200Response
 ): Promise<Widget4> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData2AndWidgetData3Union(result.body["data"]),
   };
 }
@@ -250,6 +262,9 @@ export async function _customGet5Deserialize(
   result: CustomGet5200Response
 ): Promise<Widget5> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0AndWidgetData4Union(result.body["data"]),
   };
 }
@@ -275,6 +290,9 @@ export async function _customGet6Deserialize(
   result: CustomGet6200Response
 ): Promise<Widget6> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0AndWidgetData5Union(result.body["data"]),
   };
 }
@@ -300,6 +318,9 @@ export async function _customGet7Deserialize(
   result: CustomGet7200Response
 ): Promise<Widget7> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: result.body["data"],
   };
 }
@@ -325,6 +346,9 @@ export async function _customGet8Deserialize(
   result: CustomGet8200Response
 ): Promise<Widget8> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0ArrayAndWidgetData2ArrayUnion(
       result.body["data"]
     ),
@@ -352,6 +376,9 @@ export async function _customGet9Deserialize(
   result: CustomGet9200Response
 ): Promise<Widget9> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData1ArrayAndWidgetData2ArrayUnion(
       result.body["data"]
     ),
@@ -379,6 +406,9 @@ export async function _customGet10Deserialize(
   result: CustomGet10200Response
 ): Promise<Widget10> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData2ArrayAndWidgetData3ArrayUnion(
       result.body["data"]
     ),
@@ -406,6 +436,9 @@ export async function _customGet11Deserialize(
   result: CustomGet11200Response
 ): Promise<Widget11> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0ArrayAndWidgetData4ArrayUnion(
       result.body["data"]
     ),
@@ -433,6 +466,9 @@ export async function _customGet12Deserialize(
   result: CustomGet12200Response
 ): Promise<Widget12> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0ArrayAndWidgetData5ArrayUnion(
       result.body["data"]
     ),
@@ -460,6 +496,9 @@ export async function _customGet13Deserialize(
   result: CustomGet13200Response
 ): Promise<Widget13> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: result.body["data"],
   };
 }
@@ -485,6 +524,9 @@ export async function _customGet14Deserialize(
   result: CustomGet14200Response
 ): Promise<Widget14> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: result.body["data"],
   };
 }
@@ -510,6 +552,9 @@ export async function _customGet15Deserialize(
   result: CustomGet15200Response
 ): Promise<Widget15> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0ArrayAndWidgetData2Union(result.body["data"]),
   };
 }
@@ -535,6 +580,9 @@ export async function _customGet16Deserialize(
   result: CustomGet16200Response
 ): Promise<Widget16> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0AndWidgetData2ArrayUnion(result.body["data"]),
   };
 }
@@ -560,6 +608,9 @@ export async function _customGet17Deserialize(
   result: CustomGet17200Response
 ): Promise<Widget17> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData1ArrayAndWidgetData2Union(result.body["data"]),
   };
 }
@@ -585,6 +636,9 @@ export async function _customGet18Deserialize(
   result: CustomGet18200Response
 ): Promise<Widget18> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData1AndWidgetData2ArrayUnion(result.body["data"]),
   };
 }
@@ -610,6 +664,9 @@ export async function _customGet19Deserialize(
   result: CustomGet19200Response
 ): Promise<Widget19> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData2ArrayAndWidgetData3Union(result.body["data"]),
   };
 }
@@ -635,6 +692,9 @@ export async function _customGet20Deserialize(
   result: CustomGet20200Response
 ): Promise<Widget20> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData2AndWidgetData3ArrayUnion(result.body["data"]),
   };
 }
@@ -660,6 +720,9 @@ export async function _customGet21Deserialize(
   result: CustomGet21200Response
 ): Promise<Widget21> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0ArrayAndWidgetData4Union(result.body["data"]),
   };
 }
@@ -685,6 +748,9 @@ export async function _customGet22Deserialize(
   result: CustomGet22200Response
 ): Promise<Widget22> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0AndWidgetData4ArrayUnion(result.body["data"]),
   };
 }
@@ -710,6 +776,9 @@ export async function _customGet23Deserialize(
   result: CustomGet23200Response
 ): Promise<Widget23> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0ArrayAndWidgetData5Union(result.body["data"]),
   };
 }
@@ -735,6 +804,9 @@ export async function _customGet24Deserialize(
   result: CustomGet24200Response
 ): Promise<Widget24> {
   return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
     data: deserializeWidgetData0AndWidgetData5ArrayUnion(result.body["data"]),
   };
 }
