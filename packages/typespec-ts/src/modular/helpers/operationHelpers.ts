@@ -135,10 +135,10 @@ export function getDeserializePrivateFunction(
   }
 
   const properties = [];
-  response.type.parents?.forEach((p) => {
+  response.type?.parents?.forEach((p) => {
     properties.push(...(p.properties ?? []));
   });
-  properties.push(...(response.type.properties ?? []));
+  properties.push(...(response.type?.properties ?? []));
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
   } else if (response?.type?.elementType) {
