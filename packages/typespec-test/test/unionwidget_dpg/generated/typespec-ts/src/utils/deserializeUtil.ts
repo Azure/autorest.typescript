@@ -56,15 +56,10 @@ function isWidgetData2(
     | WidgetData2Output
     | WidgetData1Output
     | WidgetData2Output
-    | WidgetData2Output
     | WidgetData3Output
     | WidgetData0Output[]
-    | WidgetData2Output
     | WidgetData1Output[]
-    | WidgetData2Output
-    | WidgetData2Output
     | WidgetData3Output[]
-    | WidgetData2Output
     | WidgetData4Output
     | WidgetData6Output[]
 ): obj is WidgetData2Output {
@@ -114,7 +109,6 @@ function isWidgetData3(
     | WidgetData2Output
     | WidgetData3Output
     | WidgetData2Output[]
-    | WidgetData3Output
     | WidgetData0Output
     | WidgetData3Output
     | WidgetData5Output[]
@@ -158,7 +152,6 @@ function isWidgetData4(
     | WidgetData0Output
     | WidgetData4Output
     | WidgetData0Output[]
-    | WidgetData4Output
     | WidgetData2Output
     | WidgetData4Output
     | WidgetData6Output[]
@@ -194,11 +187,7 @@ function isWidgetData5(
 ): obj is WidgetData5Output;
 /** type predict function fpr WidgetData5 from WidgetData0Output | WidgetData5Output */
 function isWidgetData5(
-  obj:
-    | WidgetData0Output
-    | WidgetData5Output
-    | WidgetData0Output[]
-    | WidgetData5Output
+  obj: WidgetData0Output | WidgetData5Output | WidgetData0Output[]
 ): obj is WidgetData5Output {
   return (obj as WidgetData5Output).data !== undefined;
 }
@@ -254,13 +243,9 @@ function isWidgetData2Array(
     | WidgetData2Output[]
     | WidgetData1Output[]
     | WidgetData2Output[]
-    | WidgetData2Output[]
     | WidgetData3Output[]
     | WidgetData0Output
-    | WidgetData2Output[]
     | WidgetData1Output
-    | WidgetData2Output[]
-    | WidgetData2Output[]
     | WidgetData3Output
 ): obj is WidgetData2Output[] {
   if (Array.isArray(obj) && obj.length > 0) {
@@ -307,11 +292,7 @@ function isWidgetData3Array(
 ): obj is WidgetData3Output[];
 /** type predict function fpr WidgetData3Output array from WidgetData2Output[] | WidgetData3Output[] */
 function isWidgetData3Array(
-  obj:
-    | WidgetData2Output[]
-    | WidgetData3Output[]
-    | WidgetData2Output
-    | WidgetData3Output[]
+  obj: WidgetData2Output[] | WidgetData3Output[] | WidgetData2Output
 ): obj is WidgetData3Output[] {
   if (Array.isArray(obj) && obj.length > 0) {
     return (obj as WidgetData3Output[])[0].bar_prop !== undefined;
@@ -350,11 +331,7 @@ function isWidgetData4Array(
 ): obj is WidgetData4Output[];
 /** type predict function fpr WidgetData4Output array from WidgetData0Output[] | WidgetData4Output[] */
 function isWidgetData4Array(
-  obj:
-    | WidgetData0Output[]
-    | WidgetData4Output[]
-    | WidgetData0Output
-    | WidgetData4Output[]
+  obj: WidgetData0Output[] | WidgetData4Output[] | WidgetData0Output
 ): obj is WidgetData4Output[] {
   if (Array.isArray(obj) && obj.length > 0) {
     return (obj as WidgetData4Output[])[0].start !== undefined;
@@ -401,10 +378,8 @@ function isWidgetData5Array(
     | WidgetData0Output[]
     | WidgetData5Output[]
     | WidgetData0Output
-    | WidgetData5Output[]
     | WidgetData0Output
     | WidgetData3Output
-    | WidgetData5Output[]
 ): obj is WidgetData5Output[] {
   if (Array.isArray(obj) && obj.length > 0) {
     return (obj as WidgetData5Output[])[0].data !== undefined;

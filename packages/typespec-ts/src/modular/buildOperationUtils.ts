@@ -291,9 +291,13 @@ function addOverload(
     .getFunction(functionStatement.name ?? "")
     ?.getParameters();
   if (implementationParameter && implementationParameter.length > 0) {
-    const newTypeName =
-      implementationParameter[0]?.getTypeNode()?.getText() + " | " + typeName;
-    implementationParameter[0]?.setType(newTypeName);
+    const oldTypes = implementationParameter[0]
+      ?.getTypeNode()
+      ?.getText()
+      .split("|");
+    const newTypes = typeName.split("|");
+    const newTypeSet = new Set(oldTypes?.concat(newTypes));
+    implementationParameter[0]?.setType(Array.from(newTypeSet).join("|"));
   }
 }
 
