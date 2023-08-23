@@ -27,6 +27,8 @@ import {
   Widget22,
   Widget23,
   Widget24,
+  Widget25,
+  Widget26,
 } from "./models/models.js";
 import {
   CustomGetOptions,
@@ -54,6 +56,8 @@ import {
   CustomGet22Options,
   CustomGet23Options,
   CustomGet24Options,
+  CustomGet25Options,
+  CustomGet26Options,
 } from "./models/options.js";
 import {
   createDemoService,
@@ -84,6 +88,8 @@ import {
   customGet22,
   customGet23,
   customGet24,
+  customGet25,
+  customGet26,
 } from "./api/index.js";
 
 export { DemoServiceClientOptions } from "./api/DemoServiceContext.js";
@@ -243,5 +249,17 @@ export class DemoServiceClient {
     options: CustomGet24Options = { requestOptions: {} }
   ): Promise<Widget24> {
     return customGet24(this._client, options);
+  }
+
+  customGet25(
+    options: CustomGet25Options = { requestOptions: {} }
+  ): Promise<Widget25> {
+    return customGet25(this._client, options);
+  }
+
+  customGet26(
+    options: CustomGet26Options = { requestOptions: {} }
+  ): Promise<Widget26> {
+    return customGet26(this._client, options);
   }
 }

@@ -27,6 +27,8 @@ import {
   CustomGet22Parameters,
   CustomGet23Parameters,
   CustomGet24Parameters,
+  CustomGet25Parameters,
+  CustomGet26Parameters,
 } from "./parameters.js";
 import {
   CustomGet200Response,
@@ -54,6 +56,8 @@ import {
   CustomGet22200Response,
   CustomGet23200Response,
   CustomGet24200Response,
+  CustomGet25200Response,
+  CustomGet26200Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -187,6 +191,18 @@ export interface CustomGet24 {
   ): StreamableMethod<CustomGet24200Response>;
 }
 
+export interface CustomGet25 {
+  get(
+    options?: CustomGet25Parameters
+  ): StreamableMethod<CustomGet25200Response>;
+}
+
+export interface CustomGet26 {
+  get(
+    options?: CustomGet26Parameters
+  ): StreamableMethod<CustomGet26200Response>;
+}
+
 export interface Routes {
   /** Resource for '/customGet' has methods for the following verbs: get */
   (path: "/customGet"): CustomGet;
@@ -238,6 +254,10 @@ export interface Routes {
   (path: "/customGet23"): CustomGet23;
   /** Resource for '/customGet24' has methods for the following verbs: get */
   (path: "/customGet24"): CustomGet24;
+  /** Resource for '/customGet25' has methods for the following verbs: get */
+  (path: "/customGet25"): CustomGet25;
+  /** Resource for '/customGet26' has methods for the following verbs: get */
+  (path: "/customGet26"): CustomGet26;
 }
 
 export type DemoServiceContext = Client & {

@@ -131,3 +131,15 @@ export interface Widget23 extends Widget {
 export interface Widget24 extends Widget {
   data: WidgetData0 | WidgetData5[];
 }
+
+export interface Widget25 extends Widget {
+  data: WidgetData0 | WidgetData3 | WidgetData5[];
+}
+
+export interface Widget26 extends Widget {
+  data: WidgetData2 | WidgetData4 | WidgetData6[];
+}
+
+export interface WidgetData6 {
+  data: WidgetData5;
+}

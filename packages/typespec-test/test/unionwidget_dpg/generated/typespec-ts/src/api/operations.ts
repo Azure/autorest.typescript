@@ -27,6 +27,8 @@ import {
   Widget22,
   Widget23,
   Widget24,
+  Widget25,
+  Widget26,
 } from "../models/models.js";
 import {
   CustomGet10200Response,
@@ -47,6 +49,8 @@ import {
   CustomGet22200Response,
   CustomGet23200Response,
   CustomGet24200Response,
+  CustomGet25200Response,
+  CustomGet26200Response,
   CustomGet3200Response,
   CustomGet4200Response,
   CustomGet5200Response,
@@ -81,6 +85,8 @@ import {
   deserializeWidgetData0AndWidgetData4ArrayUnion,
   deserializeWidgetData0ArrayAndWidgetData5Union,
   deserializeWidgetData0AndWidgetData5ArrayUnion,
+  deserializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion,
+  deserializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion,
 } from "../utils/deserializeUtil.js";
 import {
   CustomGetOptions,
@@ -108,6 +114,8 @@ import {
   CustomGet22Options,
   CustomGet23Options,
   CustomGet24Options,
+  CustomGet25Options,
+  CustomGet26Options,
 } from "../models/options.js";
 
 export function _customGetSend(
@@ -817,4 +825,64 @@ export async function customGet24(
 ): Promise<Widget24> {
   const result = await _customGet24Send(context, options);
   return _customGet24Deserialize(result);
+}
+
+export function _customGet25Send(
+  context: Client,
+  options: CustomGet25Options = { requestOptions: {} }
+): StreamableMethod<CustomGet25200Response> {
+  return context
+    .path("/customGet25")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet25Deserialize(
+  result: CustomGet25200Response
+): Promise<Widget25> {
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: deserializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion(
+      result.body["data"]
+    ),
+  };
+}
+
+export async function customGet25(
+  context: Client,
+  options: CustomGet25Options = { requestOptions: {} }
+): Promise<Widget25> {
+  const result = await _customGet25Send(context, options);
+  return _customGet25Deserialize(result);
+}
+
+export function _customGet26Send(
+  context: Client,
+  options: CustomGet26Options = { requestOptions: {} }
+): StreamableMethod<CustomGet26200Response> {
+  return context
+    .path("/customGet26")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGet26Deserialize(
+  result: CustomGet26200Response
+): Promise<Widget26> {
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: deserializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion(
+      result.body["data"]
+    ),
+  };
+}
+
+export async function customGet26(
+  context: Client,
+  options: CustomGet26Options = { requestOptions: {} }
+): Promise<Widget26> {
+  const result = await _customGet26Send(context, options);
+  return _customGet26Deserialize(result);
 }

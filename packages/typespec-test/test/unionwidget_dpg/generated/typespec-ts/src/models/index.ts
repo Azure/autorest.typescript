@@ -34,6 +34,9 @@ export {
   Widget22,
   Widget23,
   Widget24,
+  Widget25,
+  Widget26,
+  WidgetData6,
 } from "./models.js";
 export {
   CustomGetOptions,
@@ -61,4 +64,6 @@ export {
   CustomGet22Options,
   CustomGet23Options,
   CustomGet24Options,
+  CustomGet25Options,
+  CustomGet26Options,
 } from "./options.js";

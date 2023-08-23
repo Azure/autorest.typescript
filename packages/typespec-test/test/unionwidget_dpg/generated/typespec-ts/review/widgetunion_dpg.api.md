@@ -75,6 +75,14 @@ export interface CustomGet24Options extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface CustomGet25Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CustomGet26Options extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface CustomGet2Options extends OperationOptions {
 }
 
@@ -149,6 +157,10 @@ export class DemoServiceClient {
     customGet23(options?: CustomGet23Options): Promise<Widget23>;
     // (undocumented)
     customGet24(options?: CustomGet24Options): Promise<Widget24>;
+    // (undocumented)
+    customGet25(options?: CustomGet25Options): Promise<Widget25>;
+    // (undocumented)
+    customGet26(options?: CustomGet26Options): Promise<Widget26>;
     // (undocumented)
     customGet3(options?: CustomGet3Options): Promise<Widget3>;
     // (undocumented)
@@ -282,6 +294,18 @@ export interface Widget24 extends Widget {
 }
 
 // @public (undocumented)
+export interface Widget25 extends Widget {
+    // (undocumented)
+    data: WidgetData0 | WidgetData3 | WidgetData5[];
+}
+
+// @public (undocumented)
+export interface Widget26 extends Widget {
+    // (undocumented)
+    data: WidgetData2 | WidgetData4 | WidgetData6[];
+}
+
+// @public (undocumented)
 export interface Widget3 extends Widget {
     // (undocumented)
     data: WidgetData1 | WidgetData2;
@@ -359,6 +383,12 @@ export interface WidgetData4 {
 export interface WidgetData5 {
     // (undocumented)
     data: Uint8Array;
+}
+
+// @public (undocumented)
+export interface WidgetData6 {
+    // (undocumented)
+    data: WidgetData5;
 }
 
 // (No @packageDocumentation comment for this package)

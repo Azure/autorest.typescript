@@ -52,3 +52,7 @@ export interface CustomGet22Options extends OperationOptions {}
 export interface CustomGet23Options extends OperationOptions {}
 
 export interface CustomGet24Options extends OperationOptions {}
+
+export interface CustomGet25Options extends OperationOptions {}
+
+export interface CustomGet26Options extends OperationOptions {}

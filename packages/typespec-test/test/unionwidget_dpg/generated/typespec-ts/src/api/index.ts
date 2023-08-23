@@ -32,4 +32,6 @@ export {
   customGet22,
   customGet23,
   customGet24,
+  customGet25,
+  customGet26,
 } from "./operations.js";

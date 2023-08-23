@@ -127,3 +127,15 @@ export interface Widget23Output extends WidgetOutput {
 export interface Widget24Output extends WidgetOutput {
   data: WidgetData0Output | Array<WidgetData5Output>;
 }
+
+export interface Widget25Output extends WidgetOutput {
+  data: WidgetData0Output | WidgetData3Output | Array<WidgetData5Output>;
+}
+
+export interface Widget26Output extends WidgetOutput {
+  data: WidgetData2Output | WidgetData4Output | Array<WidgetData6Output>;
+}
+
+export interface WidgetData6Output {
+  data: WidgetData5Output;
+}

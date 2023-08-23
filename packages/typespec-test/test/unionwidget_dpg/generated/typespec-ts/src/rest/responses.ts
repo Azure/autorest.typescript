@@ -28,6 +28,8 @@ import {
   Widget22Output,
   Widget23Output,
   Widget24Output,
+  Widget25Output,
+  Widget26Output,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -178,4 +180,16 @@ export interface CustomGet23200Response extends HttpResponse {
 export interface CustomGet24200Response extends HttpResponse {
   status: "200";
   body: Widget24Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGet25200Response extends HttpResponse {
+  status: "200";
+  body: Widget25Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGet26200Response extends HttpResponse {
+  status: "200";
+  body: Widget26Output;
 }

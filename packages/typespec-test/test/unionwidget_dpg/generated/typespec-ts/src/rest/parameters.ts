@@ -28,3 +28,5 @@ export type CustomGet21Parameters = RequestParameters;
 export type CustomGet22Parameters = RequestParameters;
 export type CustomGet23Parameters = RequestParameters;
 export type CustomGet24Parameters = RequestParameters;
+export type CustomGet25Parameters = RequestParameters;
+export type CustomGet26Parameters = RequestParameters;

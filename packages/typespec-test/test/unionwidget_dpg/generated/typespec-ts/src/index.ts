@@ -38,6 +38,9 @@ export {
   Widget22,
   Widget23,
   Widget24,
+  Widget25,
+  Widget26,
+  WidgetData6,
   CustomGetOptions,
   CustomGet1Options,
   CustomGet2Options,
@@ -63,4 +66,6 @@ export {
   CustomGet22Options,
   CustomGet23Options,
   CustomGet24Options,
+  CustomGet25Options,
+  CustomGet26Options,
 } from "./models/index.js";

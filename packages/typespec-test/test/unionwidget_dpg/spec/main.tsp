@@ -36,6 +36,10 @@ model WidgetData5 {
   data: bytes;
 }
 
+model WidgetData6 {
+  data: WidgetData5;
+}
+
 model Widget {
   @key id: string;
   weight: int32;
@@ -138,6 +142,14 @@ model Widget24 extends Widget {
   data: WidgetData0 | WidgetData5[]
 }
 
+model Widget25 extends Widget {
+  data: WidgetData0 | WidgetData3 | WidgetData5[]
+}
+
+model Widget26 extends Widget {
+  data: WidgetData2 | WidgetData4 | WidgetData6[]
+}
+
 @error
 model Error {
   code: int32;
@@ -170,5 +182,7 @@ interface WidgetService {
   @get @route("customGet22") customGet22(): Widget22;
   @get @route("customGet23") customGet23(): Widget23;
   @get @route("customGet24") customGet24(): Widget24; 
+  @get @route("customGet25") customGet25(): Widget25;
+  @get @route("customGet26") customGet26(): Widget26; 
 }
 
