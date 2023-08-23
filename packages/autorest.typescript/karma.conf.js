@@ -51,8 +51,7 @@ module.exports = function(config) {
         // base: "Chrome", // Use Chrome when you need to debug.
         flags: [
           "--disable-web-security", // disable cors
-          "--disk-cache-dir",
-          "null" // disable browser caching (note: If in regular Chrome, go to Devtools -> Network -> Disable Cache)
+          "--disk-cache-dir null", // disable browser caching (note: If in regular Chrome, go to Devtools -> Network -> Disable Cache)
         ]
       }
     },
