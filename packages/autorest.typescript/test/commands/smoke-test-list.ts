@@ -60,6 +60,21 @@ export const readmes: SpecDefinition[] = [
       `${__dirname}`,
       "..",
       "..",
+      "./.tmp/specs/specification/networkcloud/resource-manager/readme.md"
+    ),
+    branch: "0ab5469dc0d75594f5747493dcfe8774e22d728f",
+    params: [
+      AutorestParams.ModelDedup,
+      AutorestParams.AzureArm,
+      AutorestParams.AzureSdkForJs
+    ],
+    buildTag: "ci_1"
+  },
+  {
+    path: joinPath(
+      `${__dirname}`,
+      "..",
+      "..",
       "./.tmp/specs/specification/sql/resource-manager/readme.md"
     ),
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",

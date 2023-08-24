@@ -118,7 +118,7 @@ function regularAutorestPackage(
       "rollup-plugin-sourcemaps": "^0.6.3",
       typescript: "~5.0.0",
       "uglify-js": "^3.4.9",
-      rimraf: "^3.0.0",
+      rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
     repository: {
@@ -156,7 +156,7 @@ function regularAutorestPackage(
       lint: "echo skipped",
       audit: "echo skipped",
       clean:
-        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",
       "build:browser": "echo skipped",
       "build:test": "echo skipped",

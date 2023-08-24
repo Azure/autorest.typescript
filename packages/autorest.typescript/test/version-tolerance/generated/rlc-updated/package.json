@@ -72,7 +72,7 @@
     "eslint": "^7.15.0",
     "mkdirp": "^2.1.2",
     "prettier": "^2.5.1",
-    "rimraf": "^3.0.0",
+    "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",
     "typedoc": "0.15.2",
     "typescript": "~5.0.0",
