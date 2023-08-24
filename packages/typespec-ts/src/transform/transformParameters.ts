@@ -12,7 +12,6 @@ import {
 } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
 import {
-  getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
   HttpOperationParameters
@@ -29,6 +28,7 @@ import {
 } from "../utils/modelUtils.js";
 
 import {
+  getHttpOperationWithCache,
   getOperationGroupName,
   getOperationName,
   getSpecialSerializeInfo,
@@ -57,7 +57,7 @@ export function transformToParameterTypes(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -67,7 +67,9 @@ export function transformToParameterTypes(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = ignoreDiagnostics(
+      getHttpOperationWithCache(program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;

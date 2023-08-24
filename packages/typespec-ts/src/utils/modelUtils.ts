@@ -1106,7 +1106,6 @@ export function getFormattedPropertyDoc(
 
 export function getBodyType(
   program: Program,
-
   route: HttpOperation
 ): Type | undefined {
   let bodyModel = route.parameters.bodyType;

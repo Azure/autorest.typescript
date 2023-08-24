@@ -7,6 +7,7 @@ export * from "./collectionFormatClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
+export * from "./isUnexpected";
 export * from "./serializeHelper";
 
 export default CollectionFormatClient;

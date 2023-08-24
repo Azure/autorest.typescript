@@ -43,7 +43,6 @@ import {
 import {
   getAuthentication,
   getHeaderFieldName,
-  getHttpOperation,
   getPathParamName,
   getQueryParamName,
   getServers,
@@ -87,6 +86,7 @@ import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import { RLCModel, getClientName } from "@azure-tools/rlc-common";
 import {
+  getHttpOperationWithCache,
   getOperationGroupName,
   getOperationName
 } from "../utils/operationUtil.js";
@@ -723,7 +723,7 @@ function emitBasicOperation(
     }
   }
   const httpOperation = ignoreDiagnostics(
-    getHttpOperation(context.program, operation)
+    getHttpOperationWithCache(context.program, operation)
   );
   const sourceOperation =
     operation.sourceOperation &&
@@ -739,7 +739,7 @@ function emitBasicOperation(
     sourceOperation
   );
   const sourceRoutePath = ignoreDiagnostics(
-    getHttpOperation(context.program, operation)
+    getHttpOperationWithCache(context.program, operation)
   ).path;
   const rlcResponses = rlcModels.responses?.filter((op) => {
     return (

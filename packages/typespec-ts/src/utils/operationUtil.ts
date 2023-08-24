@@ -10,6 +10,7 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
+  Diagnostic,
   getProjectedName,
   ignoreDiagnostics,
   isGlobalNamespace,
@@ -20,7 +21,7 @@ import {
   Type
 } from "@typespec/compiler";
 import {
-  getHttpOperation,
+  getHttpOperationWithCache,
   HttpOperation,
   HttpOperationResponse,
   StatusCode
@@ -42,6 +43,12 @@ import {
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
+import { createTestHost } from "@typespec/compiler/testing";
+import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
+import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
+import { HttpTestLibrary } from "@typespec/http/testing";
+import { RestTestLibrary } from "@typespec/rest/testing";
+import { VersioningTestLibrary } from "@typespec/versioning/testing";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -119,11 +126,11 @@ export function isBinaryPayload(
 ) {
   contentType = `"${contentType}"`;
   if (
-    isByteOrByteUnion(dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"`
+    contentType !== `"text/plain" | "application/json"` &&
+    isByteOrByteUnion(dpgContext, body)
   ) {
     return true;
   }
@@ -250,7 +257,7 @@ export function hasPollingOperations(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -262,7 +269,9 @@ export function hasPollingOperations(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = ignoreDiagnostics(
+      getHttpOperationWithCache(program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -297,7 +306,7 @@ export function hasPagingOperations(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -309,7 +318,9 @@ export function hasPagingOperations(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = ignoreDiagnostics(
+      getHttpOperationWithCache(program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -436,4 +447,109 @@ export function getCollectionFormatHelper(
 ) {
   const detail = getSpecialSerializeInfo(paramType, paramFormat);
   return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+}
+
+export async function appendDefaultResponseIfAbsent(
+  dpgContext: SdkContext,
+  client: SdkClient
+) {
+  const operationGroups = listOperationGroups(dpgContext, client);
+  const program = dpgContext.program;
+  for (const operationGroup of operationGroups) {
+    const operations = listOperationsInOperationGroup(
+      dpgContext,
+      operationGroup
+    );
+
+    for (const op of operations) {
+      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      // ignore overload base operation
+      if (route.overloads && route.overloads?.length > 0) {
+        continue;
+      }
+      await appendDefaultResponseInRoute(route);
+    }
+  }
+  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+  for (const clientOp of clientOperations) {
+    const route = ignoreDiagnostics(
+      getHttpOperationWithCache(program, clientOp)
+    );
+    if (route.overloads && route.overloads?.length > 0) {
+      continue;
+    }
+    await appendDefaultResponseInRoute(route);
+  }
+}
+
+async function appendDefaultResponseInRoute(route: HttpOperation) {
+  const errors = route.responses.filter((r) =>
+    isDefaultStatusCode(r.statusCode)
+  );
+  if (errors.length === 0) {
+    route.responses.push(DEFAULT_ERROR_RESPONSE as any);
+  }
+}
+
+export async function createRLCEmitterTestHost() {
+  return createTestHost({
+    libraries: [
+      HttpTestLibrary,
+      RestTestLibrary,
+      VersioningTestLibrary,
+      AzureCoreTestLibrary,
+      SdkTestLibrary
+    ]
+  });
+}
+const DEFAULT_ERROR_RESPONSE = {
+  statusCode: "*",
+  type: {
+    kind: "Model",
+    name: "ErrorResponse",
+    namespace: {
+      kind: "Namespace",
+      name: "Foundations",
+      namespace: {
+        name: "Core"
+      }
+    },
+    sourceModel: {
+      kind: "Model",
+      name: "ErrorResponseBase"
+    }
+  },
+  responses: [
+    {
+      body: {
+        contentTypes: ["application/json"],
+        type: {
+          kind: "Model",
+          name: "ErrorResponse",
+          namespace: {
+            kind: "Namespace",
+            name: "Foundations",
+            namespace: {
+              name: "Core"
+            }
+          },
+          isFinished: true
+        }
+      }
+    }
+  ]
+};
+
+const _cache = new Map();
+export function getHttpOperationWithCache(
+  program: Program,
+  operation: Operation
+): [HttpOperation, readonly Diagnostic[]] {
+  const existing = _cache.get(operation);
+  if (existing) {
+    return existing;
+  }
+  const httpOperationRef = getHttpOperationWithCache(program, operation);
+  _cache.set(operation, httpOperationRef);
+  return httpOperationRef;
 }

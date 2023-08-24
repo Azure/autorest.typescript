@@ -6,11 +6,8 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics } from "@typespec/compiler";
-import {
-  getHttpOperation,
-  HttpOperation,
-  HttpOperationParameter
-} from "@typespec/http";
+import { HttpOperation, HttpOperationParameter } from "@typespec/http";
+import { getHttpOperationWithCache } from "../utils/operationUtil.js";
 
 export function transformTelemetryInfo(
   dpgContext: SdkContext,
@@ -41,7 +38,7 @@ function getCustomRequestHeaderNameForClient(
     );
     for (const op of operations) {
       const headerName = getCustomRequestHeaderNameForOperation(
-        ignoreDiagnostics(getHttpOperation(program, op))
+        ignoreDiagnostics(getHttpOperationWithCache(program, op))
       );
       if (headerName != undefined) {
         return headerName;
@@ -51,7 +48,7 @@ function getCustomRequestHeaderNameForClient(
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
     const headerName = getCustomRequestHeaderNameForOperation(
-      ignoreDiagnostics(getHttpOperation(program, clientOp))
+      ignoreDiagnostics(getHttpOperationWithCache(program, clientOp))
     );
     if (headerName != undefined) {
       return headerName;

@@ -53,6 +53,7 @@ import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
+import { appendDefaultResponseIfAbsent } from "./utils/operationUtil.js";
 
 export * from "./lib.js";
 
@@ -72,11 +73,13 @@ export async function $onEmit(context: EmitContext) {
   await enrichDpgContext();
   // 2. Clear sources folder
   await clearSrcFolder();
-  // 3. Generate RLC sources
+  // 3. Mutate context
+  await mutateSdkContext();
+  // 4. Generate RLC sources
   await generateRLCSources();
-  // 4. Generate Modular sources
+  // 5. Generate Modular sources
   await generateModularSources();
-  // 5. Generate metadata and test files
+  // 6. Generate metadata and test files
   await generateMetadataAndTest();
 
   async function enrichDpgContext() {
@@ -113,6 +116,13 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.rlcSourcesDir ??
         ""
     );
+  }
+
+  async function mutateSdkContext() {
+    const clients = getRLCClients(dpgContext);
+    for (const client of clients) {
+      await appendDefaultResponseIfAbsent(dpgContext, client);
+    }
   }
 
   async function generateRLCSources() {

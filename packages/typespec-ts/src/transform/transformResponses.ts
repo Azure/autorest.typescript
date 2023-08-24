@@ -16,11 +16,7 @@ import {
   getLroLogicalResponseName
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
-import {
-  getHttpOperation,
-  HttpOperation,
-  HttpOperationResponse
-} from "@typespec/http";
+import { HttpOperation, HttpOperationResponse } from "@typespec/http";
 import {
   getImportedModelName,
   getTypeName,
@@ -32,7 +28,8 @@ import {
   getOperationStatuscode,
   isBinaryPayload,
   getOperationLroOverload,
-  getOperationName
+  getOperationName,
+  getHttpOperationWithCache
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -51,7 +48,7 @@ export function transformToResponseTypes(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -61,7 +58,9 @@ export function transformToResponseTypes(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = ignoreDiagnostics(
+      getHttpOperationWithCache(program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -179,9 +178,26 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    const bodySchema = getSchemaForType(dpgContext, body!.type, [
-      SchemaContext.Output
-    ]) as Schema;
+    let bodySchema;
+    const model = body!.type;
+    if (
+      model.kind === "Model" &&
+      (model.name === "ErrorResponse" ||
+        model.name === "ErrorModel" ||
+        model.name === "Error") &&
+      model.namespace?.name === "Foundations" &&
+      model.namespace.namespace?.name === "Core"
+    ) {
+      bodySchema = {
+        name: model.name,
+        fromCore: true
+      } as Schema;
+    } else {
+      bodySchema = getSchemaForType(dpgContext, body!.type, [
+        SchemaContext.Output
+      ]) as Schema;
+    }
+
     if (bodySchema.fromCore) {
       fromCore = true;
     }

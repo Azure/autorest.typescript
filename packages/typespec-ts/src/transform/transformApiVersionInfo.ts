@@ -12,13 +12,13 @@ import {
   extractDefinedPosition,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { getHttpOperation } from "@typespec/http";
 import {
   getEnrichedDefaultApiVersion,
   getSchemaForType,
   trimUsage
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getHttpOperationWithCache } from "../utils/operationUtil.js";
 
 export function transformApiVersionInfo(
   client: SdkClient,
@@ -67,7 +67,7 @@ function getOperationQueryApiVersion(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, op));
+      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -93,7 +93,9 @@ function getOperationQueryApiVersion(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+    const route = ignoreDiagnostics(
+      getHttpOperationWithCache(program, clientOp)
+    );
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;

@@ -11,7 +11,7 @@ import {
   NoTarget,
   Program
 } from "@typespec/compiler";
-import { getAuthentication, getHttpOperation } from "@typespec/http";
+import { getAuthentication } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
@@ -20,7 +20,10 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { getOperationName } from "../utils/operationUtil.js";
+import {
+  getHttpOperationWithCache,
+  getOperationName
+} from "../utils/operationUtil.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
@@ -152,7 +155,7 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
         operationGroup
       );
       for (const op of operations) {
-        const route = ignoreDiagnostics(getHttpOperation(program, op));
+        const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
         const name = getOperationName(program, route.operation);
         if (nameSet.has(name)) {
           return true;
@@ -163,7 +166,9 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
     }
     const clientOperations = listOperationsInOperationGroup(dpgContext, client);
     for (const clientOp of clientOperations) {
-      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+      const route = ignoreDiagnostics(
+        getHttpOperationWithCache(program, clientOp)
+      );
       const name = getOperationName(program, route.operation);
       if (nameSet.has(name)) {
         return true;
