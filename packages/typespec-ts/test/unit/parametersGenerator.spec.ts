@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitParameterFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitParameterFromCadl } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Parameters.ts", () => {
   describe("query parameters", () => {

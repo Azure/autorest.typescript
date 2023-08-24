@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitClientDefinitionFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitClientDefinitionFromCadl } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Client definition generation", () => {
   it("should generate method-level parameter", async () => {

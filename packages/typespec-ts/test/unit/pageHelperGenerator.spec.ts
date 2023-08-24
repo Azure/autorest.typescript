@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { emitPageHelperFromCadl } from "./util/emitUtil.js";
+import { emitPageHelperFromCadl } from "../util/emitUtil.js";
 
 describe("Page helper", () => {
   it("could handle customized nextLinkName and itemName", async () => {

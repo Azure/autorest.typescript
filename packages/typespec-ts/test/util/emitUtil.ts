@@ -6,19 +6,26 @@ import {
   buildResponseTypes,
   buildSchemaTypes,
   ImportKind,
+  RLCModel,
   Schema
 } from "@azure-tools/rlc-common";
 import { createDpgContextTestHelper, rlcEmitterFor } from "./testUtil.js";
-import { transformToParameterTypes } from "../../../src/transform/transformParameters.js";
-import { transformSchemas } from "../../../src/transform/transformSchemas.js";
-import { transformPaths } from "../../../src/transform/transformPaths.js";
-import { transformUrlInfo } from "../../../src/transform/transform.js";
-import { transformApiVersionInfo } from "../../../src/transform/transformApiVersionInfo.js";
-import { transformToResponseTypes } from "../../../src/transform/transformResponses.js";
-import { getCredentialInfo } from "../../../src/transform/transfromRLCOptions.js";
-import { getRLCClients } from "../../../src/utils/clientUtils.js";
+import { transformToParameterTypes } from "../../src/transform/transformParameters.js";
+import { transformSchemas } from "../../src/transform/transformSchemas.js";
+import { transformPaths } from "../../src/transform/transformPaths.js";
+import {
+  transformRLCModel,
+  transformUrlInfo
+} from "../../src/transform/transform.js";
+import { transformApiVersionInfo } from "../../src/transform/transformApiVersionInfo.js";
+import { transformToResponseTypes } from "../../src/transform/transformResponses.js";
+import { getCredentialInfo } from "../../src/transform/transfromRLCOptions.js";
+import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
-import { transformHelperFunctionDetails } from "../../../src/transform/transformHelperFunctionDetails.js";
+import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
+import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
+import { buildModels } from "../../src/modular/emitModels.js";
+import { Project } from "ts-morph";
 
 export async function emitPageHelperFromCadl(
   cadlContent: string,
@@ -203,4 +210,39 @@ export async function getRLCClientsFromCadl(cadlContent: string) {
   const clients = getRLCClients(dpgContext);
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return clients;
+}
+
+export async function emitModularModelsFromCadl(cadlContent: string) {
+  const context = await rlcEmitterFor(cadlContent, true);
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
+  const project = new Project();
+  const clients = getRLCClients(dpgContext);
+  if (clients && clients[0]) {
+    dpgContext.rlcOptions!.isModularLibrary = true;
+    const rlcModels = await transformRLCModel(clients[0], dpgContext);
+    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
+    const modularCodeModel = emitCodeModel(
+      dpgContext,
+      serviceNameToRlcModelsMap,
+      "",
+      project,
+      {
+        casing: "camel"
+      }
+    );
+    if (
+      modularCodeModel &&
+      modularCodeModel.clients &&
+      modularCodeModel.clients.length > 0 &&
+      modularCodeModel.clients[0]
+    ) {
+      return buildModels(modularCodeModel, modularCodeModel.clients[0]);
+    }
+  }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  return undefined;
 }

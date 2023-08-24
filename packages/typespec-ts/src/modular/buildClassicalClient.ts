@@ -3,7 +3,6 @@ import {
   FunctionDeclarationStructure,
   MethodDeclarationStructure,
   OptionalKind,
-  Project,
   Scope,
   SourceFile,
   StructureKind
@@ -12,24 +11,24 @@ import { toCamelCase } from "../utils/casingUtils.js";
 import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
-import { Client } from "./modularCodeModel.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
+  codeModel: ModularCodeModel,
   client: Client,
-  project: Project,
-  srcPath: string,
-  subfolder: string
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
   const classicalClientname = `${getClientName(client)}Client`;
   const params = getClientParameters(client);
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subfolder = client.subfolder ?? "";
 
-  const clientFile = project.createSourceFile(
+  const clientFile = codeModel.project.createSourceFile(
     `${srcPath}/${
       subfolder !== "" ? subfolder + "/" : ""
     }${classicalClientname}.ts`

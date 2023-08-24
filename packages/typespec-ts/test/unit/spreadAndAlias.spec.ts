@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitParameterFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitParameterFromCadl } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Spread(...) and alias", () => {
   describe("Parameter generation", async () => {

@@ -1,4 +1,4 @@
-import { Project, SourceFile } from "ts-morph";
+import { SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
 import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
@@ -10,9 +10,7 @@ import { buildOperationOptions } from "./buildOperations.js";
  */
 export function buildModels(
   codeModel: ModularCodeModel,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = ""
+  subClient: Client
 ): SourceFile | undefined {
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
@@ -24,8 +22,9 @@ export function buildModels(
   if (models.length === 0) {
     return;
   }
-  const modelsFile = project.createSourceFile(
-    path.join(`${srcPath}/`, subfolder, `models/models.ts`)
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const modelsFile = codeModel.project.createSourceFile(
+    path.join(`${srcPath}/`, subClient.subfolder ?? "", `models/models.ts`)
   );
 
   for (const model of codeModel.types) {
@@ -71,10 +70,11 @@ export function buildModels(
       if (!model.name) {
         throw new Error("Can't generate a model that has no name");
       }
-      modelsFile.addInterface({
+      const modelInterface = {
         name: model.name,
         isExported: true,
         docs: getDocsFromDescription(model.description),
+        extends: [] as string[],
         properties: properties.map((p) => {
           const propertyMetadata = getType(p.type);
           let propertyTypeName = propertyMetadata.name;
@@ -94,7 +94,13 @@ export function buildModels(
             type: propertyTypeName
           };
         })
-      });
+      };
+      model.type === "model"
+        ? model.parents?.forEach((p) =>
+            modelInterface.extends.push(getType(p).name)
+          )
+        : undefined;
+      modelsFile.addInterface(modelInterface);
     }
   }
 
@@ -125,13 +131,12 @@ function isAzureCoreError(t: Type) {
 }
 
 export function buildModelsOptions(
+  codeModel: ModularCodeModel,
   client: Client,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = ""
 ) {
-  const modelOptionsFile = project.createSourceFile(
-    `${srcPath}/${subfolder}/models/options.ts`,
+
+  const modelOptionsFile = codeModel.project.createSourceFile(
+    `${codeModel.modularOptions.sourceRoot}/${client.subfolder}/models/options.ts`,
     undefined,
     {
       overwrite: true

@@ -1,6 +1,6 @@
 import { assert } from "chai";
-import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitClientFactoryFromCadl } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 interface DefinitionOptions {
   "@service"?: boolean;

@@ -30,7 +30,6 @@ import {
   getFormat,
   getMinItems,
   getMaxItems,
-  EmitContext,
   listServices,
   Union,
   Type,
@@ -65,7 +64,6 @@ import {
   isApiVersion,
   getDefaultApiVersion,
   getClientNamespaceString,
-  createSdkContext,
   getSdkUnion,
   getAllModels,
   SdkSimpleType,
@@ -82,15 +80,20 @@ import {
   Type as HrlcType,
   Header
 } from "./modularCodeModel.js";
-import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
 import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import { RLCModel, getClientName } from "@azure-tools/rlc-common";
+import {
+  RLCModel,
+  getClientName,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import {
   getOperationGroupName,
   getOperationName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { Project } from "ts-morph";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1528,7 +1531,8 @@ function emitClients(
       operationGroups: emitOperationGroups(context, client, rlcModels),
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name
+      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
+      subfolder: ""
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
@@ -1561,21 +1565,24 @@ function getNamespaces(context: SdkContext): Set<string> {
 }
 
 export function emitCodeModel(
-  context: EmitContext<EmitterOptions>,
+  dpgContext: SdkContext,
   rlcModelsMap: Map<string, RLCModel>,
+  modularSourcesRoot: string,
+  project: Project,
   options: { casing: "snake" | "camel" } = { casing: "snake" }
 ): ModularCodeModel {
   CASING = options.casing ?? CASING;
-  const dpgContext = createSdkContext(context);
   const clientNamespaceString =
     getClientNamespaceString(dpgContext)?.toLowerCase();
   // Get types
   const codeModel: ModularCodeModel = {
-    options: transformRLCOptions(context.options as any, dpgContext),
+    options: dpgContext.rlcOptions ?? {},
+    modularOptions: { sourceRoot: modularSourcesRoot },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
-    types: []
+    types: [],
+    project
   };
 
   const allModels = getAllModels(dpgContext);
@@ -1586,12 +1593,22 @@ export function emitCodeModel(
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
+      codeModel.clients.length > 1 &&
+        codeModel.clients.map((client) => {
+          client["subfolder"] = normalizeName(client.name, NameType.File);
+        });
     } else {
       codeModel["subnamespaceToClients"][namespace] = emitClients(
         dpgContext,
         namespace,
         rlcModelsMap
       );
+      codeModel["subnamespaceToClients"][namespace].length > 1 &&
+        (codeModel["subnamespaceToClients"][namespace] as HrlcClient[]).map(
+          (client) => {
+            client["subfolder"] = normalizeName(client.name, NameType.File);
+          }
+        );
     }
   }
 

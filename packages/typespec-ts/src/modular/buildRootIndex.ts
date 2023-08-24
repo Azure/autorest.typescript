@@ -1,14 +1,15 @@
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { Client } from "./modularCodeModel.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 export function buildRootIndex(
+  codeModel: ModularCodeModel,
   client: Client,
-  project: Project,
-  rootIndexFile: SourceFile,
-  srcPath: string,
-  subfolder: string
+  rootIndexFile: SourceFile
 ) {
+  const { project } = codeModel;
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subfolder = client.subfolder ?? "";
   const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
@@ -71,12 +72,12 @@ function exportModels(
 }
 
 export function buildSubClientIndexFile(
-  client: Client,
-  project: Project,
-  srcPath: string,
-  subfolder: string
+  codeModel: ModularCodeModel,
+  client: Client
 ) {
-  const subClientIndexFile = project.createSourceFile(
+  const subfolder = client.subfolder ?? "";
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subClientIndexFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
     undefined,
     { overwrite: true }
@@ -85,12 +86,12 @@ export function buildSubClientIndexFile(
   const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
   }${clientName}.ts`;
-  const clientFile = project.getSourceFile(clientFilePath);
+  const clientFile = codeModel.project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
     throw new Error(`Couldn't find client file: ${clientFilePath}`);
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportModels(subClientIndexFile, project, srcPath, clientName, subfolder);
+  exportModels(subClientIndexFile, codeModel.project, srcPath, clientName, subfolder);
 }

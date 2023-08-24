@@ -2,7 +2,7 @@ import { assert } from "chai";
 import {
   emitParameterFromCadl,
   emitResponsesFromCadl
-} from "./util/emitUtil.js";
+} from "../util/emitUtil.js";
 
 describe("typespec-azure-core: operation templates", () => {
   it("ResourceCreateWithServiceProvidedName", async () => {

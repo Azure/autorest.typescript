@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { getRLCClientsFromCadl } from "./util/emitUtil.js";
+import { getRLCClientsFromCadl } from "../util/emitUtil.js";
 
 describe("client utils get rlc clients", () => {
   it("should get the service client if no @client decorator", async () => {
