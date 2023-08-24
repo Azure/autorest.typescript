@@ -132,9 +132,8 @@ function isAzureCoreError(t: Type) {
 
 export function buildModelsOptions(
   codeModel: ModularCodeModel,
-  client: Client,
+  client: Client
 ) {
-
   const modelOptionsFile = codeModel.project.createSourceFile(
     `${codeModel.modularOptions.sourceRoot}/${client.subfolder}/models/options.ts`,
     undefined,

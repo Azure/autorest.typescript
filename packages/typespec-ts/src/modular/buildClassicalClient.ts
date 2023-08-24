@@ -19,7 +19,7 @@ import { SdkContext } from "../utils/interfaces.js";
 export function buildClassicalClient(
   dpgContext: SdkContext,
   codeModel: ModularCodeModel,
-  client: Client,
+  client: Client
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);

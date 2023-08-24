@@ -93,5 +93,11 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportModels(subClientIndexFile, codeModel.project, srcPath, clientName, subfolder);
+  exportModels(
+    subClientIndexFile,
+    codeModel.project,
+    srcPath,
+    clientName,
+    subfolder
+  );
 }
