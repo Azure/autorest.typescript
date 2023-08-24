@@ -137,11 +137,12 @@ describe("EncodeDatetimeClient Rest Client", () => {
               value: "Fri, 26 Aug 2022 14:38:00 GMT"
             }
           });
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
+
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(result.body.value, "Fri, 26 Aug 2022 14:38:00 GMT");
+        assert.strictEqual(
+          (result as any).body.value,
+          "Fri, 26 Aug 2022 14:38:00 GMT"
+        );
       } catch (err) {
         assert.fail(err as string);
       }
