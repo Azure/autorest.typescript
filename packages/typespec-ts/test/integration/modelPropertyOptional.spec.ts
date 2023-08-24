@@ -1,5 +1,6 @@
 import TypePropertyOptionalClientFactory, {
-  OptionalClient
+  OptionalClient,
+  isUnexpected
 } from "./generated/models/propertyOptional/src/index.js";
 import { assert } from "chai";
 
@@ -17,6 +18,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/string/all")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "hello");
     } catch (err) {
@@ -64,6 +68,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/bytes/all")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "aGVsbG8sIHdvcmxkIQ==");
     } catch (err) {
@@ -113,6 +120,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/datetime/all")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "2022-08-26T18:38:00Z");
     } catch (err) {
@@ -162,6 +172,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/duration/all")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "P123DT22H14M12.011S");
     } catch (err) {
@@ -211,6 +224,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/collections/bytes/all")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property?.length, 2);
     } catch (err) {
@@ -260,6 +276,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/collections/model/all")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property?.length, 2);
     } catch (err) {
@@ -310,6 +329,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/requiredAndOptional/all")
         .get();
       assert.strictEqual(result.status, "200");
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.body.optionalProperty, "hello");
       assert.strictEqual(result.body.requiredProperty, 42);
     } catch (err) {
@@ -322,6 +344,9 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/requiredAndOptional/requiredOnly")
         .get();
+      if (isUnexpected(result)) {
+        throw new Error("error");
+      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.requiredProperty, 42);
     } catch (err) {

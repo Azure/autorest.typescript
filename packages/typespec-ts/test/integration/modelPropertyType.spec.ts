@@ -1,5 +1,6 @@
 import TypePropertyValueTypesClientFactory, {
-  ValueTypesClient
+  ValueTypesClient,
+  isUnexpected
 } from "./generated/models/propertyTypes/src/index.js";
 import { assert } from "chai";
 import { matrix } from "../util/matrix.js";
@@ -104,6 +105,9 @@ describe("ModelsPropertyTypesClient Rest Client", () => {
         const result = await client
           .path(`/type/property/value-types/${params.type}` as any)
           .get();
+        if (isUnexpected(result)) {
+          throw new Error("error");
+        }
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body.property, params.defaultValue);
       } catch (err) {
