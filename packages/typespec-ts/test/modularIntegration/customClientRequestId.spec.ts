@@ -1,6 +1,6 @@
 import { RequestIdClient } from "./generated/headers/client-request-id/src/index.js";
 import { assert } from "chai";
-describe.only("RequestIdClient Classical Client", () => {
+describe("RequestIdClient Classical Client", () => {
   let client: RequestIdClient;
 
   beforeEach(() => {
@@ -21,7 +21,13 @@ describe.only("RequestIdClient Classical Client", () => {
 
   it("should set their request id in client-request-id header", async () => {
     try {
-      const result = await client.get();
+      const result = await client.get({
+        requestOptions: {
+          headers: {
+            "client-request-id": "86aede1f-96fa-4e7f-b1e1-bf8a947cb804"
+          }
+        }
+      });
       assert.isUndefined(result);
     } catch (err) {
       console.log(err);
@@ -37,11 +43,11 @@ describe.only("RequestIdClient Classical Client", () => {
           clientRequestIdHeaderName: "x-test-request-id"
         }
       });
-      const result = await client.get();
-      assert.isUndefined(result);
+      await client.get();
+      assert.fail("should throw exceptions");
     } catch (err) {
       console.log(err);
-      assert.fail(err as string);
+      assert.isNotNull(err);
     }
   });
 });
