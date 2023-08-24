@@ -7,20 +7,26 @@ import {
 } from "./parameters";
 import {
   RequestUnionBody200Response,
+  RequestUnionBodyDefaultResponse,
   ResponseUnionBody200Response,
+  ResponseUnionBodyDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface RequestUnionBody {
   post(
     options: RequestUnionBodyParameters
-  ): StreamableMethod<RequestUnionBody200Response>;
+  ): StreamableMethod<
+    RequestUnionBody200Response | RequestUnionBodyDefaultResponse
+  >;
 }
 
 export interface ResponseUnionBody {
   get(
     options?: ResponseUnionBodyParameters
-  ): StreamableMethod<ResponseUnionBody200Response>;
+  ): StreamableMethod<
+    ResponseUnionBody200Response | ResponseUnionBodyDefaultResponse
+  >;
 }
 
 export interface Routes {

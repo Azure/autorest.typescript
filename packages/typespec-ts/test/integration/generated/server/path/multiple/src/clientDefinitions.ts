@@ -7,20 +7,26 @@ import {
 } from "./parameters";
 import {
   NoOperationParams204Response,
+  NoOperationParamsDefaultResponse,
   WithOperationPathParam204Response,
+  WithOperationPathParamDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface NoOperationParams {
   get(
     options?: NoOperationParamsParameters
-  ): StreamableMethod<NoOperationParams204Response>;
+  ): StreamableMethod<
+    NoOperationParams204Response | NoOperationParamsDefaultResponse
+  >;
 }
 
 export interface WithOperationPathParam {
   get(
     options?: WithOperationPathParamParameters
-  ): StreamableMethod<WithOperationPathParam204Response>;
+  ): StreamableMethod<
+    WithOperationPathParam204Response | WithOperationPathParamDefaultResponse
+  >;
 }
 
 export interface Routes {

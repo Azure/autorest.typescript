@@ -13,13 +13,21 @@ import {
 } from "./parameters";
 import {
   ListByResourceGroup200Response,
+  ListByResourceGroupDefaultResponse,
   ListBySubscription200Response,
+  ListBySubscriptionDefaultResponse,
   UpdateInt204Response,
+  UpdateIntDefaultResponse,
   UpdateString204Response,
+  UpdateStringDefaultResponse,
   ReturnsInt200Response,
+  ReturnsIntDefaultResponse,
   ReturnsString200Response,
+  ReturnsStringDefaultResponse,
   ProcessInt200Response,
+  ProcessIntDefaultResponse,
   ProcessString200Response,
+  ProcessStringDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -27,34 +35,44 @@ export interface ListByResourceGroup {
   /** different query & header parameters */
   post(
     options: ListByResourceGroupParameters
-  ): StreamableMethod<ListByResourceGroup200Response>;
+  ): StreamableMethod<
+    ListByResourceGroup200Response | ListByResourceGroupDefaultResponse
+  >;
   post(
     options: ListBySubscriptionParameters
-  ): StreamableMethod<ListBySubscription200Response>;
+  ): StreamableMethod<
+    ListBySubscription200Response | ListBySubscriptionDefaultResponse
+  >;
 }
 
 export interface UpdateInt {
   /** different request bodies */
-  post(options: UpdateIntParameters): StreamableMethod<UpdateInt204Response>;
+  post(
+    options: UpdateIntParameters
+  ): StreamableMethod<UpdateInt204Response | UpdateIntDefaultResponse>;
   post(
     options: UpdateStringParameters
-  ): StreamableMethod<UpdateString204Response>;
+  ): StreamableMethod<UpdateString204Response | UpdateStringDefaultResponse>;
 }
 
 export interface ReturnsInt {
   /** different responses */
-  post(options: ReturnsIntParameters): StreamableMethod<ReturnsInt200Response>;
+  post(
+    options: ReturnsIntParameters
+  ): StreamableMethod<ReturnsInt200Response | ReturnsIntDefaultResponse>;
   post(
     options: ReturnsStringParameters
-  ): StreamableMethod<ReturnsString200Response>;
+  ): StreamableMethod<ReturnsString200Response | ReturnsStringDefaultResponse>;
 }
 
 export interface ProcessInt {
   /** different request and response bodies */
-  post(options: ProcessIntParameters): StreamableMethod<ProcessInt200Response>;
+  post(
+    options: ProcessIntParameters
+  ): StreamableMethod<ProcessInt200Response | ProcessIntDefaultResponse>;
   post(
     options: ProcessStringParameters
-  ): StreamableMethod<ProcessString200Response>;
+  ): StreamableMethod<ProcessString200Response | ProcessStringDefaultResponse>;
 }
 
 export interface Routes {

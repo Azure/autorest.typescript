@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import "../models/models.js";
 import { ClientOptions } from "@azure-rest/core-client";
 import { RequestIdClientContext } from "../rest/index.js";
 import getClient from "../rest/index.js";

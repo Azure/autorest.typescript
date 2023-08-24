@@ -1,6 +1,6 @@
 import { RequestIdClient } from "./generated/headers/client-request-id/src/index.js";
 import { assert } from "chai";
-describe("RequestIdClient Classical Client", () => {
+describe.only("RequestIdClient Classical Client", () => {
   let client: RequestIdClient;
 
   beforeEach(() => {

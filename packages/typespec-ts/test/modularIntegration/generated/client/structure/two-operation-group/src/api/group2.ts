@@ -3,9 +3,13 @@
 
 import {
   Five204Response,
+  FiveDefaultResponse,
+  isUnexpected,
   ServiceContext as Client,
   Six204Response,
+  SixDefaultResponse,
   Two204Response,
+  TwoDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -16,13 +20,19 @@ import { TwoOptions, FiveOptions, SixOptions } from "../models/options.js";
 export function _twoSend(
   context: Client,
   options: TwoOptions = { requestOptions: {} }
-): StreamableMethod<Two204Response> {
+): StreamableMethod<Two204Response | TwoDefaultResponse> {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _twoDeserialize(_result: Two204Response): Promise<void> {
+export async function _twoDeserialize(
+  result: Two204Response | TwoDefaultResponse
+): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -37,15 +47,19 @@ export async function two(
 export function _fiveSend(
   context: Client,
   options: FiveOptions = { requestOptions: {} }
-): StreamableMethod<Five204Response> {
+): StreamableMethod<Five204Response | FiveDefaultResponse> {
   return context
     .path("/five")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _fiveDeserialize(
-  _result: Five204Response
+  result: Five204Response | FiveDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -60,13 +74,19 @@ export async function five(
 export function _sixSend(
   context: Client,
   options: SixOptions = { requestOptions: {} }
-): StreamableMethod<Six204Response> {
+): StreamableMethod<Six204Response | SixDefaultResponse> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _sixDeserialize(_result: Six204Response): Promise<void> {
+export async function _sixDeserialize(
+  result: Six204Response | SixDefaultResponse
+): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 

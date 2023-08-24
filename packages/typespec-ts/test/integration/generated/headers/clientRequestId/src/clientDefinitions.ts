@@ -2,12 +2,14 @@
 // Licensed under the MIT license.
 
 import { GetParameters } from "./parameters";
-import { Get204Response } from "./responses";
+import { Get204Response, GetDefaultResponse } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Get {
   /** Get operation with azure client request id header. */
-  get(options?: GetParameters): StreamableMethod<Get204Response>;
+  get(
+    options?: GetParameters
+  ): StreamableMethod<Get204Response | GetDefaultResponse>;
 }
 
 export interface Routes {

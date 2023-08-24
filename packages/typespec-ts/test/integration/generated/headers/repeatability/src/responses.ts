@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse } from "@azure-rest/core-client";
+import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 
 export interface ImmediateSuccess204Headers {
   /** Indicates whether the repeatable request was accepted or rejected. */
@@ -13,4 +13,9 @@ export interface ImmediateSuccess204Headers {
 export interface ImmediateSuccess204Response extends HttpResponse {
   status: "204";
   headers: RawHttpHeaders & ImmediateSuccess204Headers;
+}
+
+export interface ImmediateSuccessDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
 }

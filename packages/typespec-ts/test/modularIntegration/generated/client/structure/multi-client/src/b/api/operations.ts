@@ -3,9 +3,13 @@
 
 import {
   Four204Response,
+  FourDefaultResponse,
+  isUnexpected,
   ServiceContext as Client,
   Six204Response,
+  SixDefaultResponse,
   Two204Response,
+  TwoDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -20,15 +24,19 @@ import {
 export function _renamedTwoSend(
   context: Client,
   options: RenamedTwoOptions = { requestOptions: {} }
-): StreamableMethod<Two204Response> {
+): StreamableMethod<Two204Response | TwoDefaultResponse> {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedTwoDeserialize(
-  _result: Two204Response
+  result: Two204Response | TwoDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -43,15 +51,19 @@ export async function renamedTwo(
 export function _renamedFourSend(
   context: Client,
   options: RenamedFourOptions = { requestOptions: {} }
-): StreamableMethod<Four204Response> {
+): StreamableMethod<Four204Response | FourDefaultResponse> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFourDeserialize(
-  _result: Four204Response
+  result: Four204Response | FourDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -66,15 +78,19 @@ export async function renamedFour(
 export function _renamedSixSend(
   context: Client,
   options: RenamedSixOptions = { requestOptions: {} }
-): StreamableMethod<Six204Response> {
+): StreamableMethod<Six204Response | SixDefaultResponse> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedSixDeserialize(
-  _result: Six204Response
+  result: Six204Response | SixDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 

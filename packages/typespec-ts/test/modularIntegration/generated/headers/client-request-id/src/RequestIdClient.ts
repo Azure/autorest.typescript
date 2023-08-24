@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import "./models/models.js";
-import { GetOptions } from "./models/options.js";
 import {
   get,
   createRequestId,
   RequestIdClientOptions,
   RequestIdClientContext,
 } from "./api/index.js";
+import { GetOptions } from "./models/options.js";
 
 export { RequestIdClientOptions } from "./api/RequestIdContext.js";
 

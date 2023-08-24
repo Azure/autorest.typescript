@@ -27,127 +27,181 @@ import {
 } from "./parameters";
 import {
   Int32ValueGet200Response,
+  Int32ValueGetDefaultResponse,
   Int32ValuePut204Response,
+  Int32ValuePutDefaultResponse,
   Int64ValueGet200Response,
+  Int64ValueGetDefaultResponse,
   Int64ValuePut204Response,
+  Int64ValuePutDefaultResponse,
   BooleanValueGet200Response,
+  BooleanValueGetDefaultResponse,
   BooleanValuePut204Response,
+  BooleanValuePutDefaultResponse,
   StringValueGet200Response,
+  StringValueGetDefaultResponse,
   StringValuePut204Response,
+  StringValuePutDefaultResponse,
   Float32ValueGet200Response,
+  Float32ValueGetDefaultResponse,
   Float32ValuePut204Response,
+  Float32ValuePutDefaultResponse,
   DatetimeValueGet200Response,
+  DatetimeValueGetDefaultResponse,
   DatetimeValuePut204Response,
+  DatetimeValuePutDefaultResponse,
   DurationValueGet200Response,
+  DurationValueGetDefaultResponse,
   DurationValuePut204Response,
+  DurationValuePutDefaultResponse,
   UnknownValueGet200Response,
+  UnknownValueGetDefaultResponse,
   UnknownValuePut204Response,
+  UnknownValuePutDefaultResponse,
   ModelValueGet200Response,
+  ModelValueGetDefaultResponse,
   ModelValuePut204Response,
+  ModelValuePutDefaultResponse,
   RecursiveModelValueGet200Response,
+  RecursiveModelValueGetDefaultResponse,
   RecursiveModelValuePut204Response,
+  RecursiveModelValuePutDefaultResponse,
   NullableFloatValueGet200Response,
+  NullableFloatValueGetDefaultResponse,
   NullableFloatValuePut204Response,
+  NullableFloatValuePutDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Int32ValueGet {
   get(
     options?: Int32ValueGetParameters
-  ): StreamableMethod<Int32ValueGet200Response>;
+  ): StreamableMethod<Int32ValueGet200Response | Int32ValueGetDefaultResponse>;
   put(
     options: Int32ValuePutParameters
-  ): StreamableMethod<Int32ValuePut204Response>;
+  ): StreamableMethod<Int32ValuePut204Response | Int32ValuePutDefaultResponse>;
 }
 
 export interface Int64ValueGet {
   get(
     options?: Int64ValueGetParameters
-  ): StreamableMethod<Int64ValueGet200Response>;
+  ): StreamableMethod<Int64ValueGet200Response | Int64ValueGetDefaultResponse>;
   put(
     options: Int64ValuePutParameters
-  ): StreamableMethod<Int64ValuePut204Response>;
+  ): StreamableMethod<Int64ValuePut204Response | Int64ValuePutDefaultResponse>;
 }
 
 export interface BooleanValueGet {
   get(
     options?: BooleanValueGetParameters
-  ): StreamableMethod<BooleanValueGet200Response>;
+  ): StreamableMethod<
+    BooleanValueGet200Response | BooleanValueGetDefaultResponse
+  >;
   put(
     options: BooleanValuePutParameters
-  ): StreamableMethod<BooleanValuePut204Response>;
+  ): StreamableMethod<
+    BooleanValuePut204Response | BooleanValuePutDefaultResponse
+  >;
 }
 
 export interface StringValueGet {
   get(
     options?: StringValueGetParameters
-  ): StreamableMethod<StringValueGet200Response>;
+  ): StreamableMethod<
+    StringValueGet200Response | StringValueGetDefaultResponse
+  >;
   put(
     options: StringValuePutParameters
-  ): StreamableMethod<StringValuePut204Response>;
+  ): StreamableMethod<
+    StringValuePut204Response | StringValuePutDefaultResponse
+  >;
 }
 
 export interface Float32ValueGet {
   get(
     options?: Float32ValueGetParameters
-  ): StreamableMethod<Float32ValueGet200Response>;
+  ): StreamableMethod<
+    Float32ValueGet200Response | Float32ValueGetDefaultResponse
+  >;
   put(
     options: Float32ValuePutParameters
-  ): StreamableMethod<Float32ValuePut204Response>;
+  ): StreamableMethod<
+    Float32ValuePut204Response | Float32ValuePutDefaultResponse
+  >;
 }
 
 export interface DatetimeValueGet {
   get(
     options?: DatetimeValueGetParameters
-  ): StreamableMethod<DatetimeValueGet200Response>;
+  ): StreamableMethod<
+    DatetimeValueGet200Response | DatetimeValueGetDefaultResponse
+  >;
   put(
     options: DatetimeValuePutParameters
-  ): StreamableMethod<DatetimeValuePut204Response>;
+  ): StreamableMethod<
+    DatetimeValuePut204Response | DatetimeValuePutDefaultResponse
+  >;
 }
 
 export interface DurationValueGet {
   get(
     options?: DurationValueGetParameters
-  ): StreamableMethod<DurationValueGet200Response>;
+  ): StreamableMethod<
+    DurationValueGet200Response | DurationValueGetDefaultResponse
+  >;
   put(
     options: DurationValuePutParameters
-  ): StreamableMethod<DurationValuePut204Response>;
+  ): StreamableMethod<
+    DurationValuePut204Response | DurationValuePutDefaultResponse
+  >;
 }
 
 export interface UnknownValueGet {
   get(
     options?: UnknownValueGetParameters
-  ): StreamableMethod<UnknownValueGet200Response>;
+  ): StreamableMethod<
+    UnknownValueGet200Response | UnknownValueGetDefaultResponse
+  >;
   put(
     options: UnknownValuePutParameters
-  ): StreamableMethod<UnknownValuePut204Response>;
+  ): StreamableMethod<
+    UnknownValuePut204Response | UnknownValuePutDefaultResponse
+  >;
 }
 
 export interface ModelValueGet {
   get(
     options?: ModelValueGetParameters
-  ): StreamableMethod<ModelValueGet200Response>;
+  ): StreamableMethod<ModelValueGet200Response | ModelValueGetDefaultResponse>;
   put(
     options: ModelValuePutParameters
-  ): StreamableMethod<ModelValuePut204Response>;
+  ): StreamableMethod<ModelValuePut204Response | ModelValuePutDefaultResponse>;
 }
 
 export interface RecursiveModelValueGet {
   get(
     options?: RecursiveModelValueGetParameters
-  ): StreamableMethod<RecursiveModelValueGet200Response>;
+  ): StreamableMethod<
+    RecursiveModelValueGet200Response | RecursiveModelValueGetDefaultResponse
+  >;
   put(
     options: RecursiveModelValuePutParameters
-  ): StreamableMethod<RecursiveModelValuePut204Response>;
+  ): StreamableMethod<
+    RecursiveModelValuePut204Response | RecursiveModelValuePutDefaultResponse
+  >;
 }
 
 export interface NullableFloatValueGet {
   get(
     options?: NullableFloatValueGetParameters
-  ): StreamableMethod<NullableFloatValueGet200Response>;
+  ): StreamableMethod<
+    NullableFloatValueGet200Response | NullableFloatValueGetDefaultResponse
+  >;
   put(
     options: NullableFloatValuePutParameters
-  ): StreamableMethod<NullableFloatValuePut204Response>;
+  ): StreamableMethod<
+    NullableFloatValuePut204Response | NullableFloatValuePutDefaultResponse
+  >;
 }
 
 export interface Routes {

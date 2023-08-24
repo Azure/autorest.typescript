@@ -5,7 +5,11 @@ import { OutputRecord, InputOutputRecord } from "../models/models.js";
 import {
   Input204Response,
   InputAndOutput200Response,
+  InputAndOutputDefaultResponse,
+  InputDefaultResponse,
+  isUnexpected,
   Output200Response,
+  OutputDefaultResponse,
   UsageContext as Client,
 } from "../rest/index.js";
 import {
@@ -22,7 +26,7 @@ export function _inputSend(
   context: Client,
   requiredProp: string,
   options: InputOptions = { requestOptions: {} }
-): StreamableMethod<Input204Response> {
+): StreamableMethod<Input204Response | InputDefaultResponse> {
   return context
     .path("/type/model/usage/input")
     .post({
@@ -32,8 +36,12 @@ export function _inputSend(
 }
 
 export async function _inputDeserialize(
-  _result: Input204Response
+  result: Input204Response | InputDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -49,15 +57,19 @@ export async function input(
 export function _outputSend(
   context: Client,
   options: OutputOptions = { requestOptions: {} }
-): StreamableMethod<Output200Response> {
+): StreamableMethod<Output200Response | OutputDefaultResponse> {
   return context
     .path("/type/model/usage/output")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _outputDeserialize(
-  result: Output200Response
+  result: Output200Response | OutputDefaultResponse
 ): Promise<OutputRecord> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return {
     requiredProp: result.body["requiredProp"],
   };
@@ -75,7 +87,7 @@ export function _inputAndOutputSend(
   context: Client,
   requiredProp: string,
   options: InputAndOutputOptions = { requestOptions: {} }
-): StreamableMethod<InputAndOutput200Response> {
+): StreamableMethod<InputAndOutput200Response | InputAndOutputDefaultResponse> {
   return context
     .path("/type/model/usage/input-output")
     .post({
@@ -85,8 +97,12 @@ export function _inputAndOutputSend(
 }
 
 export async function _inputAndOutputDeserialize(
-  result: InputAndOutput200Response
+  result: InputAndOutput200Response | InputAndOutputDefaultResponse
 ): Promise<InputOutputRecord> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return {
     requiredProp: result.body["requiredProp"],
   };

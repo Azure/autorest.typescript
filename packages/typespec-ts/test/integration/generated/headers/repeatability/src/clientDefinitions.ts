@@ -2,14 +2,19 @@
 // Licensed under the MIT license.
 
 import { ImmediateSuccessParameters } from "./parameters";
-import { ImmediateSuccess204Response } from "./responses";
+import {
+  ImmediateSuccess204Response,
+  ImmediateSuccessDefaultResponse,
+} from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ImmediateSuccess {
   /** Check we recognize Repeatability-Request-ID and Repeatability-First-Sent. */
   post(
     options: ImmediateSuccessParameters
-  ): StreamableMethod<ImmediateSuccess204Response>;
+  ): StreamableMethod<
+    ImmediateSuccess204Response | ImmediateSuccessDefaultResponse
+  >;
 }
 
 export interface Routes {

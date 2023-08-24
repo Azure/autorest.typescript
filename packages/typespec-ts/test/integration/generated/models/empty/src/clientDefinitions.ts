@@ -8,20 +8,29 @@ import {
 } from "./parameters";
 import {
   PutEmpty204Response,
+  PutEmptyDefaultResponse,
   GetEmpty200Response,
+  GetEmptyDefaultResponse,
   PostRoundTripEmpty200Response,
+  PostRoundTripEmptyDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface PutEmpty {
-  put(options: PutEmptyParameters): StreamableMethod<PutEmpty204Response>;
-  get(options?: GetEmptyParameters): StreamableMethod<GetEmpty200Response>;
+  put(
+    options: PutEmptyParameters
+  ): StreamableMethod<PutEmpty204Response | PutEmptyDefaultResponse>;
+  get(
+    options?: GetEmptyParameters
+  ): StreamableMethod<GetEmpty200Response | GetEmptyDefaultResponse>;
 }
 
 export interface PostRoundTripEmpty {
   post(
     options: PostRoundTripEmptyParameters
-  ): StreamableMethod<PostRoundTripEmpty200Response>;
+  ): StreamableMethod<
+    PostRoundTripEmpty200Response | PostRoundTripEmptyDefaultResponse
+  >;
 }
 
 export interface Routes {

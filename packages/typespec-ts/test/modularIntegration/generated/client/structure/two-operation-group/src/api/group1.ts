@@ -3,9 +3,13 @@
 
 import {
   Four204Response,
+  FourDefaultResponse,
+  isUnexpected,
   One204Response,
+  OneDefaultResponse,
   ServiceContext as Client,
   Three204Response,
+  ThreeDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -16,13 +20,19 @@ import { OneOptions, ThreeOptions, FourOptions } from "../models/options.js";
 export function _oneSend(
   context: Client,
   options: OneOptions = { requestOptions: {} }
-): StreamableMethod<One204Response> {
+): StreamableMethod<One204Response | OneDefaultResponse> {
   return context
     .path("/one")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _oneDeserialize(_result: One204Response): Promise<void> {
+export async function _oneDeserialize(
+  result: One204Response | OneDefaultResponse
+): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -37,15 +47,19 @@ export async function one(
 export function _threeSend(
   context: Client,
   options: ThreeOptions = { requestOptions: {} }
-): StreamableMethod<Three204Response> {
+): StreamableMethod<Three204Response | ThreeDefaultResponse> {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _threeDeserialize(
-  _result: Three204Response
+  result: Three204Response | ThreeDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -60,15 +74,19 @@ export async function three(
 export function _fourSend(
   context: Client,
   options: FourOptions = { requestOptions: {} }
-): StreamableMethod<Four204Response> {
+): StreamableMethod<Four204Response | FourDefaultResponse> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _fourDeserialize(
-  _result: Four204Response
+  result: Four204Response | FourDefaultResponse
 ): Promise<void> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
   return;
 }
 

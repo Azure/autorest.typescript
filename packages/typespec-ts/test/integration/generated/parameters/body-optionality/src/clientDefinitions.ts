@@ -9,34 +9,47 @@ import {
 } from "./parameters";
 import {
   OptionalExplicitSetModel204Response,
+  OptionalExplicitSetModelDefaultResponse,
   OptionalExplicitOmit204Response,
+  OptionalExplicitOmitDefaultResponse,
   RequiredExplicit204Response,
+  RequiredExplicitDefaultResponse,
   RequiredImplicit204Response,
+  RequiredImplicitDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface SetModel {
   post(
     options?: OptionalExplicitSetModelParameters
-  ): StreamableMethod<OptionalExplicitSetModel204Response>;
+  ): StreamableMethod<
+    | OptionalExplicitSetModel204Response
+    | OptionalExplicitSetModelDefaultResponse
+  >;
 }
 
 export interface Omit {
   post(
     options?: OptionalExplicitOmitParameters
-  ): StreamableMethod<OptionalExplicitOmit204Response>;
+  ): StreamableMethod<
+    OptionalExplicitOmit204Response | OptionalExplicitOmitDefaultResponse
+  >;
 }
 
 export interface RequiredExplicit {
   post(
     options: RequiredExplicitParameters
-  ): StreamableMethod<RequiredExplicit204Response>;
+  ): StreamableMethod<
+    RequiredExplicit204Response | RequiredExplicitDefaultResponse
+  >;
 }
 
 export interface RequiredImplicit {
   post(
     options?: RequiredImplicitParameters
-  ): StreamableMethod<RequiredImplicit204Response>;
+  ): StreamableMethod<
+    RequiredImplicit204Response | RequiredImplicitDefaultResponse
+  >;
 }
 
 export interface Routes {

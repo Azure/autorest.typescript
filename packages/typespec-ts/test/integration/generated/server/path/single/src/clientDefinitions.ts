@@ -2,11 +2,13 @@
 // Licensed under the MIT license.
 
 import { MyOpParameters } from "./parameters";
-import { MyOp200Response } from "./responses";
+import { MyOp200Response, MyOpDefaultResponse } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface MyOp {
-  head(options?: MyOpParameters): StreamableMethod<MyOp200Response>;
+  head(
+    options?: MyOpParameters
+  ): StreamableMethod<MyOp200Response | MyOpDefaultResponse>;
 }
 
 export interface Routes {

@@ -54,6 +54,7 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { appendDefaultResponseIfAbsent } from "./utils/operationUtil.js";
+import { getClientName } from "@azure-tools/rlc-common";
 
 export * from "./lib.js";
 
@@ -131,7 +132,10 @@ export async function $onEmit(context: EmitContext) {
       const rlcModels = await transformRLCModel(client, dpgContext);
       rlcCodeModels.push(rlcModels);
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
-      needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
+      needUnexpectedHelper.set(
+        getClientName(rlcModels),
+        hasUnexpectedHelper(rlcModels)
+      );
 
       await emitModels(rlcModels, program);
       await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
@@ -176,9 +180,7 @@ export async function $onEmit(context: EmitContext) {
         buildModels(modularCodeModel, project, modularSourcesRoot, subfolder);
         buildModelsOptions(subClient, project, modularSourcesRoot, subfolder);
         const hasClientUnexpectedHelper =
-          needUnexpectedHelper.get(
-            subClient.rlcClientName.replace("Context", "Client")
-          ) ?? false;
+          needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildOperationFiles(
           dpgContext,
           subClient,

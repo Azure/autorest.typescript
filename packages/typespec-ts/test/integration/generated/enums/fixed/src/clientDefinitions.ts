@@ -8,8 +8,11 @@ import {
 } from "./parameters";
 import {
   GetKnownValue200Response,
+  GetKnownValueDefaultResponse,
   PutKnownValue204Response,
+  PutKnownValueDefaultResponse,
   PutUnknownValue204Response,
+  PutUnknownValueDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -17,18 +20,20 @@ export interface GetKnownValue {
   /** getKnownValue */
   get(
     options?: GetKnownValueParameters
-  ): StreamableMethod<GetKnownValue200Response>;
+  ): StreamableMethod<GetKnownValue200Response | GetKnownValueDefaultResponse>;
   /** putKnownValue */
   put(
     options: PutKnownValueParameters
-  ): StreamableMethod<PutKnownValue204Response>;
+  ): StreamableMethod<PutKnownValue204Response | PutKnownValueDefaultResponse>;
 }
 
 export interface PutUnknownValue {
   /** putUnknownValue */
   put(
     options: PutUnknownValueParameters
-  ): StreamableMethod<PutUnknownValue204Response>;
+  ): StreamableMethod<
+    PutUnknownValue204Response | PutUnknownValueDefaultResponse
+  >;
 }
 
 export interface Routes {

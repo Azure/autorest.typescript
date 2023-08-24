@@ -4,21 +4,27 @@
 import { ValidParameters, InvalidParameters } from "./parameters";
 import {
   Valid204Response,
+  ValidDefaultResponse,
   Invalid204Response,
   Invalid403Response,
+  InvalidDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Valid {
   /** Check whether client is authenticated */
-  get(options?: ValidParameters): StreamableMethod<Valid204Response>;
+  get(
+    options?: ValidParameters
+  ): StreamableMethod<Valid204Response | ValidDefaultResponse>;
 }
 
 export interface Invalid {
   /** Check whether client is authenticated. Will return an invalid bearer error. */
   get(
     options?: InvalidParameters
-  ): StreamableMethod<Invalid204Response | Invalid403Response>;
+  ): StreamableMethod<
+    Invalid204Response | Invalid403Response | InvalidDefaultResponse
+  >;
 }
 
 export interface Routes {

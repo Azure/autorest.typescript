@@ -2,17 +2,26 @@
 // Licensed under the MIT license.
 
 import { ValidKeyParameters, ValidTokenParameters } from "./parameters";
-import { ValidKey204Response, ValidToken204Response } from "./responses";
+import {
+  ValidKey204Response,
+  ValidKeyDefaultResponse,
+  ValidToken204Response,
+  ValidTokenDefaultResponse,
+} from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ValidKey {
   /** Check whether client is authenticated */
-  get(options?: ValidKeyParameters): StreamableMethod<ValidKey204Response>;
+  get(
+    options?: ValidKeyParameters
+  ): StreamableMethod<ValidKey204Response | ValidKeyDefaultResponse>;
 }
 
 export interface ValidToken {
   /** Check whether client is authenticated */
-  get(options?: ValidTokenParameters): StreamableMethod<ValidToken204Response>;
+  get(
+    options?: ValidTokenParameters
+  ): StreamableMethod<ValidToken204Response | ValidTokenDefaultResponse>;
 }
 
 export interface Routes {

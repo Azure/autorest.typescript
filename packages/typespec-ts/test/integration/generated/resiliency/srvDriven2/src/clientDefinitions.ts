@@ -9,9 +9,13 @@ import {
 } from "./parameters";
 import {
   AddOperation204Response,
+  AddOperationDefaultResponse,
   FromNone204Response,
+  FromNoneDefaultResponse,
   FromOneRequired204Response,
+  FromOneRequiredDefaultResponse,
   FromOneOptional204Response,
+  FromOneOptionalDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -19,26 +23,32 @@ export interface AddOperation {
   /** Added operation */
   delete(
     options?: AddOperationParameters
-  ): StreamableMethod<AddOperation204Response>;
+  ): StreamableMethod<AddOperation204Response | AddOperationDefaultResponse>;
 }
 
 export interface FromNone {
   /** Test that grew up from accepting no parameters to an optional input parameter */
-  head(options?: FromNoneParameters): StreamableMethod<FromNone204Response>;
+  head(
+    options?: FromNoneParameters
+  ): StreamableMethod<FromNone204Response | FromNoneDefaultResponse>;
 }
 
 export interface FromOneRequired {
   /** Operation that grew up from accepting one required parameter to accepting a required parameter and an optional parameter. */
   get(
     options: FromOneRequiredParameters
-  ): StreamableMethod<FromOneRequired204Response>;
+  ): StreamableMethod<
+    FromOneRequired204Response | FromOneRequiredDefaultResponse
+  >;
 }
 
 export interface FromOneOptional {
   /** Tests that we can grow up an operation from accepting one optional parameter to accepting two optional parameters. */
   get(
     options?: FromOneOptionalParameters
-  ): StreamableMethod<FromOneOptional204Response>;
+  ): StreamableMethod<
+    FromOneOptional204Response | FromOneOptionalDefaultResponse
+  >;
 }
 
 export interface Routes {
