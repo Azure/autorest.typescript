@@ -1595,7 +1595,10 @@ export function emitCodeModel(
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
       codeModel.clients.length > 1 &&
         codeModel.clients.map((client) => {
-          client["subfolder"] = normalizeName(client.name, NameType.File);
+          client["subfolder"] = normalizeName(
+            client.name.replace("Client", ""),
+            NameType.File
+          );
         });
     } else {
       codeModel["subnamespaceToClients"][namespace] = emitClients(
