@@ -21,9 +21,14 @@ describe("CollectionFormatClient Classical Client", () => {
 
   it("should send multi format in query", async () => {
     try {
-      const result = await client.query.multi(["blue", "red", "green"]);
+      const result = await client.query.multi(["blue", "red", "green"], {
+        requestOptions: {
+          skipUrlEncoding: true
+        }
+      });
       assert.strictEqual(result, undefined);
     } catch (err) {
+      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -33,6 +38,7 @@ describe("CollectionFormatClient Classical Client", () => {
       const result = await client.query.pipes(["blue", "red", "green"]);
       assert.strictEqual(result, undefined);
     } catch (err) {
+      console.log(err);
       assert.fail(err as string);
     }
   });
