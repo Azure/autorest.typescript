@@ -119,7 +119,7 @@ export function buildModels(
 function isAzureCoreError(t: Type) {
   return (
     t.name &&
-    ["Error", "InnerError"].includes(t.name) &&
+    ["Error", "InnerError", "ErrorResponse"].includes(t.name) &&
     t.isCoreErrorType === true
   );
 }

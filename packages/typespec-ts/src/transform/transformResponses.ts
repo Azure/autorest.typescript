@@ -182,14 +182,13 @@ function transformBody(
     const model = body!.type;
     if (
       model.kind === "Model" &&
-      (model.name === "ErrorResponse" ||
-        model.name === "ErrorModel" ||
-        model.name === "Error") &&
+      model.name === "ErrorResponse" &&
       model.namespace?.name === "Foundations" &&
       model.namespace.namespace?.name === "Core"
     ) {
       bodySchema = {
-        name: model.name,
+        type: "object",
+        name: "ErrorResponseOutput",
         fromCore: true
       } as Schema;
     } else {
@@ -203,7 +202,7 @@ function transformBody(
     }
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
-    if (importedNames) {
+    if (importedNames && !fromCore) {
       importedNames
         .filter((name) => {
           return name !== "any";

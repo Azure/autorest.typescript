@@ -21,10 +21,10 @@ import {
   Type
 } from "@typespec/compiler";
 import {
-  getHttpOperationWithCache,
   HttpOperation,
   HttpOperationResponse,
-  StatusCode
+  StatusCode,
+  getHttpOperation
 } from "@typespec/http";
 import {
   getLroMetadata,
@@ -511,9 +511,15 @@ const DEFAULT_ERROR_RESPONSE = {
       kind: "Namespace",
       name: "Foundations",
       namespace: {
-        name: "Core"
+        kind: "Namespace",
+        name: "Core",
+        namespace: {
+          kind: "Namespace",
+          name: "Azure"
+        }
       }
     },
+    properties: [],
     sourceModel: {
       kind: "Model",
       name: "ErrorResponseBase"
@@ -530,9 +536,15 @@ const DEFAULT_ERROR_RESPONSE = {
             kind: "Namespace",
             name: "Foundations",
             namespace: {
-              name: "Core"
+              kind: "Namespace",
+              name: "Core",
+              namespace: {
+                kind: "Namespace",
+                name: "Azure"
+              }
             }
           },
+          properties: [],
           isFinished: true
         }
       }
@@ -549,7 +561,7 @@ export function getHttpOperationWithCache(
   if (existing) {
     return existing;
   }
-  const httpOperationRef = getHttpOperationWithCache(program, operation);
+  const httpOperationRef = getHttpOperation(program, operation);
   _cache.set(operation, httpOperationRef);
   return httpOperationRef;
 }
