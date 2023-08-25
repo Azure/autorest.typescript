@@ -1,3 +1,4 @@
+import { PipelinePolicy } from "@azure/core-rest-pipeline";
 import { RequestIdClient } from "./generated/headers/client-request-id/src/index.js";
 import { assert } from "chai";
 describe("RequestIdClient Classical Client", () => {
@@ -19,12 +20,30 @@ describe("RequestIdClient Classical Client", () => {
     }
   });
 
-  it("should set their request id in client-request-id header", async () => {
+  it("should override request id with client setting one", async () => {
     try {
+      const overrideId = "86aede1f-96fa-4e7f-b1e1-bf8a947cb804";
+      const checkClientRequestIdPolicy: PipelinePolicy = {
+        sendRequest: (req, next) => {
+          assert.equal(overrideId, req.headers.get("client-request-id"));
+          return next(req);
+        },
+        name: "preventCachingPolicy"
+      };
+      client = new RequestIdClient({
+        allowInsecureConnection: true,
+        additionalPolicies: [
+          {
+            policy: checkClientRequestIdPolicy,
+            position: "perCall"
+          }
+        ]
+      });
+
       const result = await client.get({
         requestOptions: {
           headers: {
-            "client-request-id": "86aede1f-96fa-4e7f-b1e1-bf8a947cb804"
+            "client-request-id": overrideId
           }
         }
       });

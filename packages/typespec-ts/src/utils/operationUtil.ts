@@ -467,7 +467,7 @@ export async function appendDefaultResponseIfAbsent(
       if (route.overloads && route.overloads?.length > 0) {
         continue;
       }
-      await appendDefaultResponseInRoute(route);
+      await appendIfAbsent(route);
     }
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
@@ -478,11 +478,11 @@ export async function appendDefaultResponseIfAbsent(
     if (route.overloads && route.overloads?.length > 0) {
       continue;
     }
-    await appendDefaultResponseInRoute(route);
+    await appendIfAbsent(route);
   }
 }
 
-async function appendDefaultResponseInRoute(route: HttpOperation) {
+async function appendIfAbsent(route: HttpOperation) {
   const errors = route.responses.filter((r) =>
     isDefaultStatusCode(r.statusCode)
   );
@@ -502,51 +502,35 @@ export async function createRLCEmitterTestHost() {
     ]
   });
 }
-const DEFAULT_ERROR_RESPONSE = {
-  statusCode: "*",
-  type: {
-    kind: "Model",
-    name: "ErrorResponse",
+const FAKE_CORE_ERROR_TYPE = {
+  kind: "Model",
+  name: "ErrorResponse",
+  namespace: {
+    kind: "Namespace",
+    name: "Foundations",
     namespace: {
       kind: "Namespace",
-      name: "Foundations",
+      name: "Core",
       namespace: {
         kind: "Namespace",
-        name: "Core",
-        namespace: {
-          kind: "Namespace",
-          name: "Azure"
-        }
+        name: "Azure"
       }
-    },
-    properties: [],
-    sourceModel: {
-      kind: "Model",
-      name: "ErrorResponseBase"
     }
   },
+  properties: [],
+  sourceModel: {
+    kind: "Model",
+    name: "ErrorResponseBase"
+  }
+};
+const DEFAULT_ERROR_RESPONSE = {
+  statusCode: "*",
+  type: FAKE_CORE_ERROR_TYPE,
   responses: [
     {
       body: {
         contentTypes: ["application/json"],
-        type: {
-          kind: "Model",
-          name: "ErrorResponse",
-          namespace: {
-            kind: "Namespace",
-            name: "Foundations",
-            namespace: {
-              kind: "Namespace",
-              name: "Core",
-              namespace: {
-                kind: "Namespace",
-                name: "Azure"
-              }
-            }
-          },
-          properties: [],
-          isFinished: true
-        }
+        type: FAKE_CORE_ERROR_TYPE
       }
     }
   ]
