@@ -28,12 +28,12 @@ import { buildModels } from "../../src/modular/emitModels.js";
 import { Project } from "ts-morph";
 
 export async function emitPageHelperFromTypeSpec(
-  cadlContent: string,
+  tspContent: string,
   needAzureCore: boolean = false,
   needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
-    cadlContent,
+    tspContent,
     true,
     needAzureCore,
     false,
@@ -57,12 +57,12 @@ export async function emitPageHelperFromTypeSpec(
 }
 
 export async function emitModelsFromTypeSpec(
-  cadlContent: string,
+  tspContent: string,
   needAzureCore: boolean = false,
   needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
-    cadlContent,
+    tspContent,
     true,
     needAzureCore,
     false,
@@ -85,13 +85,13 @@ export async function emitModelsFromTypeSpec(
 }
 
 export async function emitParameterFromTypeSpec(
-  cadlContent: string,
+  tspContent: string,
   needAzureCore: boolean = false,
   ignoreClientApiVersion: boolean = false,
   needTCGC: boolean = false
 ) {
   const context = await rlcEmitterFor(
-    cadlContent,
+    tspContent,
     true,
     needAzureCore,
     ignoreClientApiVersion,
@@ -116,10 +116,10 @@ export async function emitParameterFromTypeSpec(
 }
 
 export async function emitClientDefinitionFromTypeSpec(
-  cadlContent: string,
+  tspContent: string,
   needAzureCore: boolean = false
 ) {
-  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const context = await rlcEmitterFor(tspContent, true, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
@@ -137,11 +137,11 @@ export async function emitClientDefinitionFromTypeSpec(
 }
 
 export async function emitClientFactoryFromTypeSpec(
-  cadlContent: string,
+  tspContent: string,
   needAzureCore: boolean = false,
   isEmptyDiagnostic = true
 ) {
-  const context = await rlcEmitterFor(cadlContent, false, needAzureCore);
+  const context = await rlcEmitterFor(tspContent, false, needAzureCore);
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const urlInfo = transformUrlInfo(dpgContext);
@@ -175,10 +175,10 @@ export async function emitClientFactoryFromTypeSpec(
 }
 
 export async function emitResponsesFromTypeSpec(
-  cadlContent: string,
+  tspContent: string,
   needAzureCore: boolean = false
 ) {
-  const context = await rlcEmitterFor(cadlContent, true, needAzureCore);
+  const context = await rlcEmitterFor(tspContent, true, needAzureCore);
   const dpgContext = createDpgContextTestHelper(context.program);
   const importSet = new Map<ImportKind, Set<string>>();
   const clients = getRLCClients(dpgContext);
@@ -197,9 +197,9 @@ export async function emitResponsesFromTypeSpec(
   });
 }
 
-export async function getRLCClientsFromTypeSpec(cadlContent: string) {
+export async function getRLCClientsFromTypeSpec(tspContent: string) {
   const context = await rlcEmitterFor(
-    cadlContent,
+    tspContent,
     true,
     false,
     false,
@@ -212,8 +212,8 @@ export async function getRLCClientsFromTypeSpec(cadlContent: string) {
   return clients;
 }
 
-export async function emitModularModelsFromTypeSpec(cadlContent: string) {
-  const context = await rlcEmitterFor(cadlContent, true);
+export async function emitModularModelsFromTypeSpec(tspContent: string) {
+  const context = await rlcEmitterFor(tspContent, true);
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
