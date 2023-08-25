@@ -319,7 +319,11 @@ function transformMultiFormBody(
   const isModelBody = bodyType.kind === "Model";
 
   if (!isModelBody) {
-    const type = extractNameFromTypeSpecType(dpgContext, bodyType, importedModels);
+    const type = extractNameFromTypeSpecType(
+      dpgContext,
+      bodyType,
+      importedModels
+    );
     const description = extractDescriptionsFromBody(
       dpgContext,
       bodyType,
