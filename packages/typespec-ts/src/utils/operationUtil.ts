@@ -551,7 +551,6 @@ export function getHttpOperationWithCache(
   return httpOperationRef;
 }
 
-const _CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
 export function getCustomRequestHeaderNameForOperation(
   route: HttpOperation
 ): string | undefined {
@@ -559,7 +558,7 @@ export function getCustomRequestHeaderNameForOperation(
     isCustomClientRequestIdParam
   );
   if (params.length > 0) {
-    return _CUSTOM_REQUEST_HEADER_NAME;
+    return "client-request-id";
   }
 
   return undefined;
@@ -567,8 +566,7 @@ export function getCustomRequestHeaderNameForOperation(
 
 export function isCustomClientRequestIdParam(param: HttpOperationParameter) {
   return (
-    param.type === "header" &&
-    param.name.toLowerCase() == _CUSTOM_REQUEST_HEADER_NAME
+    param.type === "header" && param.name.toLowerCase() === "client-request-id"
   );
 }
 

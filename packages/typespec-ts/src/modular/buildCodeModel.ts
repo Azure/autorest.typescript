@@ -82,7 +82,10 @@ import {
   Header
 } from "./modularCodeModel.js";
 import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
-import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
+import {
+  getEnrichedDefaultApiVersion,
+  isAzureCoreErrorType
+} from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import { RLCModel, getClientName } from "@azure-tools/rlc-common";
 import {
@@ -550,23 +553,6 @@ function emitResponseHeaders(
     });
   }
   return retval;
-}
-
-function isAzureCoreErrorType(t?: Type): boolean {
-  if (
-    t?.kind !== "Model" ||
-    !["Error", "ErrorResponse", "InnerError"].includes(t.name)
-  )
-    return false;
-  const namespaces = ".Azure.Core.Foundations".split(".");
-  while (
-    namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Namespace") &&
-    t.namespace?.name === namespaces.pop()
-  ) {
-    t = t.namespace;
-  }
-  return namespaces.length == 0;
 }
 
 function emitResponse(

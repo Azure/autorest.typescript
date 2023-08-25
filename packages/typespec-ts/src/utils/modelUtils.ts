@@ -457,14 +457,7 @@ function getSchemaForModel(
 
   modelSchema.typeName = modelSchema.name;
 
-  if (
-    (model.name === "ErrorResponse" ||
-      model.name === "ErrorModel" ||
-      model.name === "Error") &&
-    model.kind === "Model" &&
-    model.namespace?.name === "Foundations" &&
-    model.namespace.namespace?.name === "Core"
-  ) {
+  if (isAzureCoreErrorType(model)) {
     modelSchema.fromCore = true;
   }
 
@@ -1253,4 +1246,21 @@ export function trimUsage(model: any) {
     return obj;
   }, {});
   return ordered;
+}
+
+export function isAzureCoreErrorType(t?: Type): boolean {
+  if (
+    t?.kind !== "Model" ||
+    !["Error", "ErrorResponse", "InnerError"].includes(t.name)
+  )
+    return false;
+  const namespaces = ".Azure.Core.Foundations".split(".");
+  while (
+    namespaces.length > 0 &&
+    (t?.kind === "Model" || t?.kind === "Namespace") &&
+    t.namespace?.name === namespaces.pop()
+  ) {
+    t = t.namespace;
+  }
+  return namespaces.length == 0;
 }

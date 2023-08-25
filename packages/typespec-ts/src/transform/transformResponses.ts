@@ -21,7 +21,8 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType
+  getBinaryType,
+  isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
@@ -180,15 +181,10 @@ function transformBody(
     }
     let bodySchema;
     const model = body!.type;
-    if (
-      model.kind === "Model" &&
-      model.name === "ErrorResponse" &&
-      model.namespace?.name === "Foundations" &&
-      model.namespace.namespace?.name === "Core"
-    ) {
+    if (isAzureCoreErrorType(model)) {
       bodySchema = {
         type: "object",
-        name: "ErrorResponseOutput",
+        name: `${(model as any).name}Output`,
         fromCore: true
       } as Schema;
     } else {
