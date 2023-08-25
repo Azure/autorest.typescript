@@ -70,7 +70,7 @@ export async function $onEmit(context: EmitContext) {
   >();
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
-  // 1. Mutate context
+  // 1. Mutate context 
   await mutateSdkContext();
   // 2. Enrich the dpg context with path detail and common options
   await enrichDpgContext();
