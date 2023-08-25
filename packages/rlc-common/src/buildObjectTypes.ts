@@ -421,11 +421,11 @@ export function getPropertySignature(
   importedModels: Set<string>
 ): PropertySignatureStructure {
   const propertyName = property.name;
-
   const description = property.description;
   let type;
   if (
     property.type === "array" &&
+    (property as any).items &&
     (property as any).items.fromCore &&
     property.typeName
   ) {
