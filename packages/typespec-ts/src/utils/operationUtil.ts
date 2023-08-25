@@ -44,12 +44,6 @@ import {
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
-import { createTestHost } from "@typespec/compiler/testing";
-import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
-import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
-import { HttpTestLibrary } from "@typespec/http/testing";
-import { RestTestLibrary } from "@typespec/rest/testing";
-import { VersioningTestLibrary } from "@typespec/versioning/testing";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -492,17 +486,6 @@ async function appendIfAbsent(route: HttpOperation) {
   }
 }
 
-export async function createRLCEmitterTestHost() {
-  return createTestHost({
-    libraries: [
-      HttpTestLibrary,
-      RestTestLibrary,
-      VersioningTestLibrary,
-      AzureCoreTestLibrary,
-      SdkTestLibrary
-    ]
-  });
-}
 const FAKE_CORE_ERROR_RESPONSE_TYPE = {
   kind: "Model",
   name: "ErrorResponse",
