@@ -98,7 +98,7 @@
       "runtimeArgs": [
         "ts-node",
         "./test/commands/gen-cadl-ranch.ts",
-        "--tag=rlc",
+        "--tag=modular",
         "--debug"
       ],
       "runtimeExecutable": "npx",
