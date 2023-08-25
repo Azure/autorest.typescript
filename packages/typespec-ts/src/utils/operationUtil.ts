@@ -22,6 +22,7 @@ import {
 } from "@typespec/compiler";
 import {
   HttpOperation,
+  HttpOperationParameter,
   HttpOperationResponse,
   StatusCode,
   getHttpOperation
@@ -487,7 +488,7 @@ async function appendIfAbsent(route: HttpOperation) {
     isDefaultStatusCode(r.statusCode)
   );
   if (errors.length === 0) {
-    route.responses.push(DEFAULT_ERROR_RESPONSE as any);
+    route.responses.push(FAKE_CORE_ERROR_RESPONSE as any);
   }
 }
 
@@ -502,7 +503,7 @@ export async function createRLCEmitterTestHost() {
     ]
   });
 }
-const FAKE_CORE_ERROR_TYPE = {
+const FAKE_CORE_ERROR_RESPONSE_TYPE = {
   kind: "Model",
   name: "ErrorResponse",
   namespace: {
@@ -523,14 +524,14 @@ const FAKE_CORE_ERROR_TYPE = {
     name: "ErrorResponseBase"
   }
 };
-const DEFAULT_ERROR_RESPONSE = {
+const FAKE_CORE_ERROR_RESPONSE = {
   statusCode: "*",
-  type: FAKE_CORE_ERROR_TYPE,
+  type: FAKE_CORE_ERROR_RESPONSE_TYPE,
   responses: [
     {
       body: {
         contentTypes: ["application/json"],
-        type: FAKE_CORE_ERROR_TYPE
+        type: FAKE_CORE_ERROR_RESPONSE_TYPE
       }
     }
   ]
@@ -548,4 +549,35 @@ export function getHttpOperationWithCache(
   const httpOperationRef = getHttpOperation(program, operation);
   _cache.set(operation, httpOperationRef);
   return httpOperationRef;
+}
+
+const _CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
+export function getCustomRequestHeaderNameForOperation(
+  route: HttpOperation
+): string | undefined {
+  const params = route.parameters.parameters.filter(
+    isCustomClientRequestIdParam
+  );
+  if (params.length > 0) {
+    return _CUSTOM_REQUEST_HEADER_NAME;
+  }
+
+  return undefined;
+}
+
+export function isCustomClientRequestIdParam(param: HttpOperationParameter) {
+  return (
+    param.type === "header" &&
+    param.name.toLowerCase() == _CUSTOM_REQUEST_HEADER_NAME
+  );
+}
+
+export function isIgnoredHeaderParam(param: HttpOperationParameter) {
+  return (
+    isCustomClientRequestIdParam(param) ||
+    (param.type === "header" &&
+      ["return-client-request-id", "ocp-date"].includes(
+        param.name.toLowerCase()
+      ))
+  );
 }

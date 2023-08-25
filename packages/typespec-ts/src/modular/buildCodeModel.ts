@@ -88,10 +88,10 @@ import { RLCModel, getClientName } from "@azure-tools/rlc-common";
 import {
   getHttpOperationWithCache,
   getOperationGroupName,
-  getOperationName
+  getOperationName,
+  isIgnoredHeaderParam
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { isCustomClientRequestIdParam } from "../transform/transformTelemetryInfo.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -751,7 +751,7 @@ function emitBasicOperation(
   });
 
   for (const param of httpOperation.parameters.parameters) {
-    if (isCustomClientRequestIdParam(param)) {
+    if (isIgnoredHeaderParam(param)) {
       continue;
     }
     const emittedParam = emitParameter(context, param, "Method");

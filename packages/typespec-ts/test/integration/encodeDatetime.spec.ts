@@ -97,7 +97,6 @@ describe("EncodeDatetimeClient Rest Client", () => {
               value: "2022-08-26T18:38:00.000Z"
             }
           });
-        console.log(result);
         assert.strictEqual(result.status, "200");
         assert.strictEqual(
           (result as any).body.value,

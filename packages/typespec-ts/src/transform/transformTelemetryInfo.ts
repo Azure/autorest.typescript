@@ -6,8 +6,10 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics } from "@typespec/compiler";
-import { HttpOperation, HttpOperationParameter } from "@typespec/http";
-import { getHttpOperationWithCache } from "../utils/operationUtil.js";
+import {
+  getCustomRequestHeaderNameForOperation,
+  getHttpOperationWithCache
+} from "../utils/operationUtil.js";
 
 export function transformTelemetryInfo(
   dpgContext: SdkContext,
@@ -55,25 +57,4 @@ function getCustomRequestHeaderNameForClient(
     }
   }
   return undefined;
-}
-
-const CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
-function getCustomRequestHeaderNameForOperation(
-  route: HttpOperation
-): string | undefined {
-  const params = route.parameters.parameters.filter(
-    isCustomClientRequestIdParam
-  );
-  if (params.length > 0) {
-    return CUSTOM_REQUEST_HEADER_NAME;
-  }
-
-  return undefined;
-}
-
-export function isCustomClientRequestIdParam(param: HttpOperationParameter) {
-  return (
-    param.type === "header" &&
-    param.name.toLowerCase() == CUSTOM_REQUEST_HEADER_NAME
-  );
 }
