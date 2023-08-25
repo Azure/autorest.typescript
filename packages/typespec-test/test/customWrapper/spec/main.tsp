@@ -66,7 +66,7 @@ interface Deployments {
   @doc("Gets the details of a deployment.")
   getDeployment is ResourceRead<Deployment>;
   
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new deployment or replaces an existing one.")
   deployProject is CustomResourceCreateOrReplace<
     Deployment,

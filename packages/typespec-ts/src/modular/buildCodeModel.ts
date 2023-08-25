@@ -190,7 +190,7 @@ function handleDiscriminator(context: SdkContext, type: Model, model: any) {
         }
       }
     }
-    // it is not included in properties of cadl but needed by python codegen
+    // it is not included in properties of typespec but needed by python codegen
     if (discriminatorProperty) {
       const discriminatorType = { ...discriminatorProperty.type };
       discriminatorType.value = null;
@@ -772,7 +772,7 @@ function emitBasicOperation(
         innerResponse
       );
       if (isErrorModel(context.program, response.type)) {
-        // * is valid status code in cadl but invalid for autorest.python
+        // * is valid status code in typespec but invalid for autorest.python
         if (response.statusCode === "*") {
           exceptions.push(emittedResponse);
         }
@@ -824,7 +824,7 @@ function emitBasicOperation(
 }
 
 function isReadOnly(program: Program, type: ModelProperty): boolean {
-  // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
+  // https://microsoft.github.io/typespec/standard-library/http/operations#automatic-visibility
   // Only "read" should be readOnly
   const visibility = getVisibility(program, type);
   if (visibility) {
@@ -1161,7 +1161,7 @@ function emitListOrDict(
   return undefined;
 }
 
-function mapCadlType(context: SdkContext, type: Type): any {
+function mapTypeSpecType(context: SdkContext, type: Type): any {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -1262,7 +1262,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapCadlType(context, type);
+  const builtinType = mapTypeSpecType(context, type);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);

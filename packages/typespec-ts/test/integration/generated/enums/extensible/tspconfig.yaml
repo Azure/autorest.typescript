@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     packageDetails:
       name: "@msinternal/extensible-enums"
       description: "Extensible Enums Test Service"

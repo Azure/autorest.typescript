@@ -1,12 +1,10 @@
 import { assert } from "chai";
-import {
-  emitModularModelsFromCadl,
-} from "../util/emitUtil.js";
+import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("modular model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
-    const schemaOutput = await emitModularModelsFromCadl(`
+    const schemaOutput = await emitModularModelsFromTypeSpec(`
       model Test {
         prop: string;
       }
@@ -17,7 +15,7 @@ describe("modular model type", () => {
 
 describe("inheritance & polymorphism", () => {
   it("should handle inheritance model", async () => {
-    const modelFile = await emitModularModelsFromCadl(`
+    const modelFile = await emitModularModelsFromTypeSpec(`
     model Pet {
       name: string;
       weight?: float32;

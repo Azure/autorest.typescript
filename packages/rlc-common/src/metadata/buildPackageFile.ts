@@ -55,7 +55,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     generateSample,
     azureOutputDirectory,
     azureSdkForJs,
-    isCadlTest,
+    isTypeSpecTest,
     sourceFrom,
     multiClient,
     batch
@@ -228,7 +228,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
 
-  if (isCadlTest) {
+  if (isTypeSpecTest) {
     packageInfo["type"] = "module";
   }
 

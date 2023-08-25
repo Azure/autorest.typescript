@@ -1,6 +1,6 @@
 # Contributing
 
-we have a [interfaces.ts](./src/interfaces.ts) to define the RLCModel And RLCOptions that is export for both Autorest RLC generator and Cadl emitters.
+we have a [interfaces.ts](./src/interfaces.ts) to define the RLCModel And RLCOptions that is export for both Autorest RLC generator and TypeSpec emitters.
 
 The generated Typescript/Javascript Rest Level Client has the following structure:
 

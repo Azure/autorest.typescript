@@ -283,7 +283,7 @@ function transformNormalBody(
   if (hasBinaryContent) {
     descriptions.push("Value may contain any sequence of octets");
   }
-  const type = extractNameFromCadlType(
+  const type = extractNameFromTypeSpecType(
     dpgContext,
     bodyType,
     importedModels,
@@ -319,7 +319,7 @@ function transformMultiFormBody(
   const isModelBody = bodyType.kind === "Model";
 
   if (!isModelBody) {
-    const type = extractNameFromCadlType(dpgContext, bodyType, importedModels);
+    const type = extractNameFromTypeSpecType(dpgContext, bodyType, importedModels);
     const description = extractDescriptionsFromBody(
       dpgContext,
       bodyType,
@@ -361,7 +361,7 @@ function transformMultiFormBody(
         SchemaContext.Exception
       ])}>`;
     } else {
-      type = extractNameFromCadlType(
+      type = extractNameFromTypeSpecType(
         dpgContext,
         paramType.type,
         importedModels
@@ -392,13 +392,13 @@ function getBodyDetail(
   return { hasBinaryContent, hasFormContent };
 }
 
-function extractNameFromCadlType(
+function extractNameFromTypeSpecType(
   dpgContext: SdkContext,
-  cadlType: Type,
+  type: Type,
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(dpgContext, cadlType, [
+  const bodySchema = getSchemaForType(dpgContext, type, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;

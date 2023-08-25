@@ -7,7 +7,7 @@ options:
     generateTest: true
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: AuthOauth2Client
     packageDetails:
       name: "@msinternal/auth-oauth2"

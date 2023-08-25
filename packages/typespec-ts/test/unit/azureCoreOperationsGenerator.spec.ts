@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import {
-  emitParameterFromCadl,
-  emitResponsesFromCadl
+  emitParameterFromTypeSpec,
+  emitResponsesFromTypeSpec
 } from "../util/emitUtil.js";
 
 describe("typespec-azure-core: operation templates", () => {
@@ -64,8 +64,8 @@ async function compileResourceOperation(code: string) {
     #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
     ${code}
     `;
-  const parameters = await emitParameterFromCadl(content, true);
-  const responses = await emitResponsesFromCadl(content, true);
+  const parameters = await emitParameterFromTypeSpec(content, true);
+  const responses = await emitResponsesFromTypeSpec(content, true);
 
   return { parameters, responses };
 }

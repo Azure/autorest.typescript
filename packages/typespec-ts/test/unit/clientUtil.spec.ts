@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { getRLCClientsFromCadl } from "../util/emitUtil.js";
+import { getRLCClientsFromTypeSpec } from "../util/emitUtil.js";
 
 describe("client utils get rlc clients", () => {
   it("should get the service client if no @client decorator", async () => {
@@ -19,7 +19,7 @@ describe("client utils get rlc clients", () => {
         op1(): void
     }
     `;
-    const clients = await getRLCClientsFromCadl(content);
+    const clients = await getRLCClientsFromTypeSpec(content);
     assert.equal(clients.length, 1);
     assert.equal(clients[0]?.name, "MyServiceClient");
   });
@@ -48,7 +48,7 @@ describe("client utils get rlc clients", () => {
     interface MySecondInterface {
       op2(): void
     }`;
-    const clients = await getRLCClientsFromCadl(content);
+    const clients = await getRLCClientsFromTypeSpec(content);
     assert.equal(clients.length, 1);
     assert.equal(clients[0]?.name, "MyServiceClient");
   });
@@ -70,7 +70,7 @@ describe("client utils get rlc clients", () => {
       op1(): void
     }
     `;
-    const clients = await getRLCClientsFromCadl(content);
+    const clients = await getRLCClientsFromTypeSpec(content);
     assert.equal(clients.length, 1);
     assert.equal(clients[0]?.name, "MyServiceClient");
   });
@@ -103,7 +103,7 @@ describe("client utils get rlc clients", () => {
       }
     }
     `;
-    const clients = await getRLCClientsFromCadl(content);
+    const clients = await getRLCClientsFromTypeSpec(content);
     assert.equal(clients.length, 2);
     assert.equal(clients[0]?.name, "MyServiceClient");
     assert.equal(clients[1]?.name, "MySecondServiceClient");
@@ -144,7 +144,7 @@ describe("client utils get rlc clients", () => {
       }
     }
     `;
-    const clients = await getRLCClientsFromCadl(content);
+    const clients = await getRLCClientsFromTypeSpec(content);
     assert.equal(clients.length, 2);
     assert.equal(clients[0]?.name, "MyServiceClient");
     assert.equal(clients[1]?.name, "MySecondServiceClient");

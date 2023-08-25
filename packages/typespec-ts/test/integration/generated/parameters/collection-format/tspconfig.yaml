@@ -8,7 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     enableOperationGroup: true
-    isCadlTest: true
+    isTypeSpecTest: true
     title: CollectionFormatClient
     packageDetails:
       name: "@msinternal/collectionFormat"

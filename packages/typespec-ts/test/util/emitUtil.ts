@@ -27,7 +27,7 @@ import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
 import { buildModels } from "../../src/modular/emitModels.js";
 import { Project } from "ts-morph";
 
-export async function emitPageHelperFromCadl(
+export async function emitPageHelperFromTypeSpec(
   cadlContent: string,
   needAzureCore: boolean = false,
   needTCGC: boolean = false
@@ -56,7 +56,7 @@ export async function emitPageHelperFromCadl(
   });
 }
 
-export async function emitModelsFromCadl(
+export async function emitModelsFromTypeSpec(
   cadlContent: string,
   needAzureCore: boolean = false,
   needTCGC: boolean = false
@@ -84,7 +84,7 @@ export async function emitModelsFromCadl(
   });
 }
 
-export async function emitParameterFromCadl(
+export async function emitParameterFromTypeSpec(
   cadlContent: string,
   needAzureCore: boolean = false,
   ignoreClientApiVersion: boolean = false,
@@ -115,7 +115,7 @@ export async function emitParameterFromCadl(
   });
 }
 
-export async function emitClientDefinitionFromCadl(
+export async function emitClientDefinitionFromTypeSpec(
   cadlContent: string,
   needAzureCore: boolean = false
 ) {
@@ -136,7 +136,7 @@ export async function emitClientDefinitionFromCadl(
   });
 }
 
-export async function emitClientFactoryFromCadl(
+export async function emitClientFactoryFromTypeSpec(
   cadlContent: string,
   needAzureCore: boolean = false,
   isEmptyDiagnostic = true
@@ -174,7 +174,7 @@ export async function emitClientFactoryFromCadl(
   });
 }
 
-export async function emitResponsesFromCadl(
+export async function emitResponsesFromTypeSpec(
   cadlContent: string,
   needAzureCore: boolean = false
 ) {
@@ -197,7 +197,7 @@ export async function emitResponsesFromCadl(
   });
 }
 
-export async function getRLCClientsFromCadl(cadlContent: string) {
+export async function getRLCClientsFromTypeSpec(cadlContent: string) {
   const context = await rlcEmitterFor(
     cadlContent,
     true,
@@ -212,7 +212,7 @@ export async function getRLCClientsFromCadl(cadlContent: string) {
   return clients;
 }
 
-export async function emitModularModelsFromCadl(cadlContent: string) {
+export async function emitModularModelsFromTypeSpec(cadlContent: string) {
   const context = await rlcEmitterFor(cadlContent, true);
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
