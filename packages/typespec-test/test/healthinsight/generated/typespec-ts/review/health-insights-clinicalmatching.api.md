@@ -7,6 +7,7 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
@@ -235,15 +236,6 @@ export interface DocumentContent {
 }
 
 // @public
-export interface ErrorModelOutput {
-    code: string;
-    details?: Array<ErrorModelOutput>;
-    innererror?: InnerErrorOutput;
-    message: string;
-    target?: string;
-}
-
-// @public
 export interface ExtendedClinicalCodedElementOutput {
     category?: string;
     code: string;
@@ -305,12 +297,6 @@ export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | 
 export type HealthInsightsClinicalMatchingClient = Client & {
     path: Routes;
 };
-
-// @public
-export interface InnerErrorOutput {
-    code?: string;
-    innererror?: InnerErrorOutput;
-}
 
 // @public (undocumented)
 export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse): response is GetJobDefaultResponse;
@@ -391,7 +377,7 @@ export interface TrialMatcherPatientResultOutput {
 // @public
 export interface TrialMatcherResultOutput {
     readonly createdDateTime: string;
-    readonly errors?: Array<ErrorModelOutput>;
+    readonly errors?: Array<ErrorModel>;
     readonly expirationDateTime: string;
     readonly jobId: string;
     readonly lastUpdateDateTime: string;

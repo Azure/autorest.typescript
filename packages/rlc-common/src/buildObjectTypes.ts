@@ -33,7 +33,11 @@ export function buildObjectInterfaces(
   const objectInterfaces: InterfaceDeclarationStructure[] = [];
 
   for (const objectSchema of objectSchemas) {
-    if (objectSchema.alias || objectSchema.outputAlias) {
+    if (
+      objectSchema.alias ||
+      objectSchema.outputAlias ||
+      objectSchema.fromCore
+    ) {
       continue;
     }
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
@@ -419,16 +423,29 @@ export function getPropertySignature(
   const propertyName = property.name;
 
   const description = property.description;
-  let type =
-    generateForOutput(schemaUsage, property.usage) && property.outputTypeName
-      ? property.outputTypeName
-      : property.typeName
-      ? property.typeName
-      : property.type;
-  if (property.typeName && property.fromCore) {
-    importedModels.add(property.typeName);
+  let type;
+  if (
+    property.type === "array" &&
+    (property as any).items.fromCore &&
+    property.typeName
+  ) {
     type = property.typeName;
+    importedModels.add(
+      (property as any).items.typeName ?? (property as any).items.name
+    );
+  } else {
+    type =
+      generateForOutput(schemaUsage, property.usage) && property.outputTypeName
+        ? property.outputTypeName
+        : property.typeName
+        ? property.typeName
+        : property.type;
+    if (property.typeName && property.fromCore) {
+      importedModels.add(property.typeName);
+      type = property.typeName;
+    }
   }
+
   return {
     name: propertyName,
     ...(description && { docs: [{ description }] }),

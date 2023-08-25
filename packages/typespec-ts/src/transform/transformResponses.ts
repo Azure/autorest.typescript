@@ -181,7 +181,10 @@ function transformBody(
     }
     let bodySchema;
     const model = body!.type;
-    if (isAzureCoreErrorType(model)) {
+    if (
+      isAzureCoreErrorType(model) &&
+      (model as any).name === "ErrorResponse"
+    ) {
       bodySchema = {
         type: "object",
         name: `${(model as any).name}Output`,
@@ -193,9 +196,7 @@ function transformBody(
       ]) as Schema;
     }
 
-    if (bodySchema.fromCore) {
-      fromCore = true;
-    }
+    fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
     if (importedNames && !fromCore) {
