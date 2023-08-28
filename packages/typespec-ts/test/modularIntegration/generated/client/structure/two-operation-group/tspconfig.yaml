@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     isModularLibrary: true
     packageDetails:
       name: "@msinternal/client-structure-twoopgroup"

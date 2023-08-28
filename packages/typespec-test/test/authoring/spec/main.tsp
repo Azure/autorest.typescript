@@ -235,14 +235,14 @@ model SwapDeploymentsParams {
 }
 
 interface Projects {
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new project or updates an existing one.")
   createOrUpdate is LongRunningResourceCreateOrUpdate<Project>;
 
   @doc("Gets the details of a project.")
   get is ResourceRead<Project>;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Deletes a project.")
   delete is LongRunningResourceDelete<Project>;
 
@@ -254,7 +254,7 @@ interface Projects {
     }
   >;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Triggers a job to export a project's data.")
   export is ResourceAction<
     Project,
@@ -262,7 +262,7 @@ interface Projects {
     TypeSpec.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
   >;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   // NOTE: `import` is a reserved keyword
   @doc("Triggers a job to export a project's data.")
   importx is ResourceAction<
@@ -271,7 +271,7 @@ interface Projects {
     TypeSpec.Http.AcceptedResponse & Foundations.LongRunningStatusLocation
   >;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Triggers a training job for a project.")
   train is ResourceAction<
     Project,
@@ -288,18 +288,18 @@ interface Deployments {
   @doc("Gets the details of a deployment.")
   getDeployment is ResourceRead<Deployment>;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Creates a new deployment or replaces an existing one.")
   deployProject is LongRunningResourceCreateOrReplace<Deployment>;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Deletes a project deployment.")
   deleteDeployment is LongRunningResourceDelete<Deployment>;
 
   @doc("Lists the existing deployments.")
   listDeployments is ResourceList<Deployment>;
 
-  #suppress "@azure-tools/cadl-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
+  #suppress "@azure-tools/typespec-azure-core/long-running-polling-operation-required" "This operation does not follow the standard long-running operation pattern."
   @doc("Swaps two existing deployments with each other.")
   @collectionAction(Deployment, "swap")
   swapDeployments is ResourceCollectionAction<
@@ -319,13 +319,13 @@ interface Jobs {
 
 @route("projects/global/")
 interface Global {
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get
   @route("languages")
   @doc("Gets the supported languages.")
   getSupportedLanguages is Foundations.Operation<StandardListQueryParameters, SupportedLanguages>;
 
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service that cannot be changed."
   @get
   @doc("Lists training configuration versions.")
   @route("training-config-versions")

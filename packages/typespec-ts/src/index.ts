@@ -28,8 +28,6 @@ import {
   buildSerializeHelper,
   buildLogger,
   RLCOptions,
-  normalizeName,
-  NameType,
   hasUnexpectedHelper,
   RLCModel
 } from "@azure-tools/rlc-common";
@@ -158,9 +156,15 @@ export async function $onEmit(context: EmitContext) {
       const modularSourcesRoot =
         dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
       const project = new Project();
-      modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, {
-        casing: "camel"
-      });
+      modularCodeModel = emitCodeModel(
+        dpgContext,
+        serviceNameToRlcModelsMap,
+        modularSourcesRoot,
+        project,
+        {
+          casing: "camel"
+        }
+      );
       const rootIndexFile = project.createSourceFile(
         `${modularSourcesRoot}/index.ts`,
         "",
@@ -169,57 +173,24 @@ export async function $onEmit(context: EmitContext) {
         }
       );
       for (const subClient of modularCodeModel.clients) {
-        let subfolder = "";
-        if (modularCodeModel.clients.length > 1) {
-          subfolder = normalizeName(
-            subClient.name.replace("Client", ""),
-            NameType.File
-          );
-        }
-
-        buildModels(modularCodeModel, project, modularSourcesRoot, subfolder);
-        buildModelsOptions(subClient, project, modularSourcesRoot, subfolder);
+        buildModels(modularCodeModel, subClient);
+        buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildOperationFiles(
           dpgContext,
+          modularCodeModel,
           subClient,
-          project,
-          modularSourcesRoot,
-          subfolder,
           hasClientUnexpectedHelper
         );
-        buildClientContext(
-          dpgContext,
-          subClient,
-          project,
-          modularSourcesRoot,
-          subfolder
-        );
-        buildSubpathIndexFile(project, modularSourcesRoot, "models", subfolder);
-        buildSubpathIndexFile(project, modularSourcesRoot, "api", subfolder);
-        buildClassicalClient(
-          dpgContext,
-          subClient,
-          project,
-          modularSourcesRoot,
-          subfolder
-        );
+        buildClientContext(dpgContext, modularCodeModel, subClient);
+        buildSubpathIndexFile(modularCodeModel, subClient, "models");
+        buildSubpathIndexFile(modularCodeModel, subClient, "api");
+        buildClassicalClient(dpgContext, modularCodeModel, subClient);
         if (modularCodeModel.clients.length > 1) {
-          buildSubClientIndexFile(
-            subClient,
-            project,
-            modularSourcesRoot,
-            subfolder
-          );
+          buildSubClientIndexFile(modularCodeModel, subClient);
         }
-        buildRootIndex(
-          subClient,
-          project,
-          rootIndexFile,
-          modularSourcesRoot,
-          subfolder
-        );
+        buildRootIndex(modularCodeModel, subClient, rootIndexFile);
       }
 
       removeUnusedInterfaces(project);

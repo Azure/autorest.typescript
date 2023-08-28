@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: MediaTypesClient
     packageDetails:
       name: "@msinternal/media-types"

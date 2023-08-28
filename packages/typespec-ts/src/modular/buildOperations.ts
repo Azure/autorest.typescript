@@ -7,7 +7,7 @@ import {
   getDeserializePrivateFunction,
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
-import { Client, Operation } from "./modularCodeModel.js";
+import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
@@ -19,10 +19,8 @@ import { SdkContext } from "../utils/interfaces.js";
  */
 export function buildOperationFiles(
   dpgContext: SdkContext,
+  codeModel: ModularCodeModel,
   client: Client,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = "",
   needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
@@ -33,7 +31,9 @@ export function buildOperationFiles(
         // into a nameless operation group. We'll call this operations.
         "operations";
 
-    const operationGroupFile = project.createSourceFile(
+    const subfolder = client.subfolder;
+    const srcPath = codeModel.modularOptions.sourceRoot;
+    const operationGroupFile = codeModel.project.createSourceFile(
       `${srcPath}/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${fileName}.ts`
@@ -41,7 +41,7 @@ export function buildOperationFiles(
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(srcPath, operationGroupFile, project, subfolder);
+    importModels(srcPath, operationGroupFile, codeModel.project, subfolder);
 
     const namedImports: string[] = [];
     let clientType = "Client";

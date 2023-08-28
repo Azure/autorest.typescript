@@ -5,7 +5,7 @@ options:
     "emitter-output-dir": "{project-root}"
     azureSdkForJs: false
     addCredentials: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: AuthApiKeyClient
     packageDetails:
       name: "@msinternal/auth-apikey"

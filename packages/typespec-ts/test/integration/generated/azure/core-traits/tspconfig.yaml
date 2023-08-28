@@ -6,7 +6,7 @@ options:
     generateMetadata: true
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: AzureCoreTraitsClient
     packageDetails:
       name: "@msinternal/azurecoretraits"

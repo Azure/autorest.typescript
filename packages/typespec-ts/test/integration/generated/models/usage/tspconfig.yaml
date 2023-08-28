@@ -6,7 +6,7 @@ options:
     generateMetadata: true
     generateTest: false
     addCredentials: false
-    isCadlTest: true
+    isTypeSpecTest: true
     azureSdkForJs: false
     packageDetails:
       name: "@msinternal/usage"

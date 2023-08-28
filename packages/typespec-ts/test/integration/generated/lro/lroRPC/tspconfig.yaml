@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     packageDetails:
       name: "@msinternal/lro-rpc"
       description: "LRO RPC Test Service"

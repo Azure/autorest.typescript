@@ -44,7 +44,7 @@ In order contribute to this project, You will need to install some prerequisite 
   - Rush will automatically manage the specific version needed by this repo as long as you have any v5 version installed.
   - If you're unable to install a global tool, you can instead call the wrapper script `node <repo root>/common/scripts/install-run-rush.js` any time the guide instructs you to run `rush`. The wrapper script will install a managed copy of Rush in a temporary directory for you.
 - [Autorest](https://www.npmjs.com/package/autorest), if you're planning contribute to the generator code from swagger either for high level client or for rest level client.
-- [Cadl Compiler](https://www.npmjs.com/package/@cadl-lang/compiler), if you're planning contribute to the generator code from cadl.
+- [TypeSpec Compiler](https://www.npmjs.com/package/@typespec/compiler), if you're planning contribute to the generator code from TypeSpec.
 
 ### Things to keep in mind when contributing
 
