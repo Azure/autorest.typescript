@@ -51,7 +51,6 @@ import { join } from "path";
 import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
-import { appendDefaultResponseIfAbsent } from "./utils/operationUtil.js";
 import { getClientName } from "@azure-tools/rlc-common";
 
 export * from "./lib.js";
@@ -68,8 +67,6 @@ export async function $onEmit(context: EmitContext) {
   >();
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
-  // 1. Mutate context 
-  await mutateSdkContext();
   // 2. Enrich the dpg context with path detail and common options
   await enrichDpgContext();
   // 3. Clear sources folder
@@ -115,13 +112,6 @@ export async function $onEmit(context: EmitContext) {
         dpgContext.generationPathDetail?.rlcSourcesDir ??
         ""
     );
-  }
-
-  async function mutateSdkContext() {
-    const clients = getRLCClients(dpgContext);
-    for (const client of clients) {
-      await appendDefaultResponseIfAbsent(dpgContext, client);
-    }
   }
 
   async function generateRLCSources() {

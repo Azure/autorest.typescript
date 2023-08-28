@@ -6,13 +6,12 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { HelperFunctionDetails } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import { HttpOperation } from "@typespec/http";
+import { HttpOperation, getHttpOperation } from "@typespec/http";
 import {
   hasPagingOperations,
   extractPagedMetadataNested,
   hasPollingOperations,
-  getSpecialSerializeInfo,
-  getHttpOperationWithCache
+  getSpecialSerializeInfo
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -47,7 +46,7 @@ export function transformHelperFunctionDetails(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -63,9 +62,7 @@ export function transformHelperFunctionDetails(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -122,7 +119,7 @@ function extractPageDetailFromCore(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -132,9 +129,7 @@ function extractPageDetailFromCore(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -202,7 +197,7 @@ function extractSpecialSerializeInfo(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       route.parameters.parameters.forEach((parameter) => {
         const serializeInfo = getSpecialSerializeInfo(
           parameter.type,
@@ -228,9 +223,7 @@ function extractSpecialSerializeInfo(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     route.parameters.parameters.forEach((parameter) => {
       const serializeInfo = getSpecialSerializeInfo(
         parameter.type,

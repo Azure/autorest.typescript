@@ -10,7 +10,6 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
-  Diagnostic,
   getProjectedName,
   ignoreDiagnostics,
   isGlobalNamespace,
@@ -252,7 +251,7 @@ export function hasPollingOperations(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -264,9 +263,7 @@ export function hasPollingOperations(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -301,7 +298,7 @@ export function hasPagingOperations(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -313,9 +310,7 @@ export function hasPagingOperations(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
@@ -442,96 +437,6 @@ export function getCollectionFormatHelper(
 ) {
   const detail = getSpecialSerializeInfo(paramType, paramFormat);
   return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
-}
-
-export async function appendDefaultResponseIfAbsent(
-  dpgContext: SdkContext,
-  client: SdkClient
-) {
-  const operationGroups = listOperationGroups(dpgContext, client);
-  const program = dpgContext.program;
-  for (const operationGroup of operationGroups) {
-    const operations = listOperationsInOperationGroup(
-      dpgContext,
-      operationGroup
-    );
-
-    for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
-      // ignore overload base operation
-      if (route.overloads && route.overloads?.length > 0) {
-        continue;
-      }
-      await appendIfAbsent(route);
-    }
-  }
-  const clientOperations = listOperationsInOperationGroup(dpgContext, client);
-  for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
-    if (route.overloads && route.overloads?.length > 0) {
-      continue;
-    }
-    await appendIfAbsent(route);
-  }
-}
-
-async function appendIfAbsent(route: HttpOperation) {
-  const errors = route.responses.filter((r) =>
-    isDefaultStatusCode(r.statusCode)
-  );
-  if (errors.length === 0) {
-    route.responses.push(FAKE_CORE_ERROR_RESPONSE as any);
-  }
-}
-
-const FAKE_CORE_ERROR_RESPONSE_TYPE = {
-  kind: "Model",
-  name: "ErrorResponse",
-  namespace: {
-    kind: "Namespace",
-    name: "Foundations",
-    namespace: {
-      kind: "Namespace",
-      name: "Core",
-      namespace: {
-        kind: "Namespace",
-        name: "Azure"
-      }
-    }
-  },
-  properties: [],
-  sourceModel: {
-    kind: "Model",
-    name: "ErrorResponseBase"
-  }
-};
-const FAKE_CORE_ERROR_RESPONSE = {
-  statusCode: "*",
-  type: FAKE_CORE_ERROR_RESPONSE_TYPE,
-  responses: [
-    {
-      body: {
-        contentTypes: ["application/json"],
-        type: FAKE_CORE_ERROR_RESPONSE_TYPE
-      }
-    }
-  ]
-};
-
-const _cache = new Map();
-export function getHttpOperationWithCache(
-  program: Program,
-  operation: Operation
-): [HttpOperation, readonly Diagnostic[]] {
-  const existing = _cache.get(operation);
-  if (existing) {
-    return existing;
-  }
-  const httpOperationRef = getHttpOperation(program, operation);
-  _cache.set(operation, httpOperationRef);
-  return httpOperationRef;
 }
 
 export function getCustomRequestHeaderNameForOperation(

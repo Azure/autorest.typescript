@@ -8,7 +8,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import { HttpOperation } from "@typespec/http";
+import { HttpOperation, getHttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,
@@ -17,7 +17,6 @@ import {
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getHttpOperationWithCache } from "../utils/operationUtil.js";
 
 export function transformSchemas(
   program: Program,
@@ -37,7 +36,7 @@ export function transformSchemas(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -47,9 +46,7 @@ export function transformSchemas(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;

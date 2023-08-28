@@ -16,7 +16,11 @@ import {
   getLroLogicalResponseName
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
-import { HttpOperation, HttpOperationResponse } from "@typespec/http";
+import {
+  HttpOperation,
+  HttpOperationResponse,
+  getHttpOperation
+} from "@typespec/http";
 import {
   getImportedModelName,
   getTypeName,
@@ -29,8 +33,7 @@ import {
   getOperationStatuscode,
   isBinaryPayload,
   getOperationLroOverload,
-  getOperationName,
-  getHttpOperationWithCache
+  getOperationName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -49,7 +52,7 @@ export function transformToResponseTypes(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -59,9 +62,7 @@ export function transformToResponseTypes(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;

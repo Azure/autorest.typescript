@@ -52,7 +52,8 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  isHeader
+  isHeader,
+  getHttpOperation
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -91,7 +92,6 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
-  getHttpOperationWithCache,
   getOperationGroupName,
   getOperationName,
   isIgnoredHeaderParam
@@ -712,7 +712,7 @@ function emitBasicOperation(
     }
   }
   const httpOperation = ignoreDiagnostics(
-    getHttpOperationWithCache(context.program, operation)
+    getHttpOperation(context.program, operation)
   );
   const sourceOperation =
     operation.sourceOperation &&
@@ -728,7 +728,7 @@ function emitBasicOperation(
     sourceOperation
   );
   const sourceRoutePath = ignoreDiagnostics(
-    getHttpOperationWithCache(context.program, operation)
+    getHttpOperation(context.program, operation)
   ).path;
   const rlcResponses = rlcModels.responses?.filter((op) => {
     return (

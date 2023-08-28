@@ -18,7 +18,7 @@ import {
   trimUsage
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getHttpOperationWithCache } from "../utils/operationUtil.js";
+import { getHttpOperation } from "@typespec/http";
 
 export function transformApiVersionInfo(
   client: SdkClient,
@@ -67,7 +67,7 @@ function getOperationQueryApiVersion(
       operationGroup
     );
     for (const op of operations) {
-      const route = ignoreDiagnostics(getHttpOperationWithCache(program, op));
+      const route = ignoreDiagnostics(getHttpOperation(program, op));
       // ignore overload base operation
       if (route.overloads && route.overloads?.length > 0) {
         continue;
@@ -93,9 +93,7 @@ function getOperationQueryApiVersion(
   }
   const clientOperations = listOperationsInOperationGroup(dpgContext, client);
   for (const clientOp of clientOperations) {
-    const route = ignoreDiagnostics(
-      getHttpOperationWithCache(program, clientOp)
-    );
+    const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
     // ignore overload base operation
     if (route.overloads && route.overloads?.length > 0) {
       continue;
