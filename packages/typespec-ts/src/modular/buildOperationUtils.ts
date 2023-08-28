@@ -4,7 +4,6 @@ import { getResponseMapping } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Property, Type } from "./modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
-  Project,
   SourceFile,
   StructureKind
 } from "ts-morph";
@@ -14,12 +13,12 @@ import {
  * If there is no operation group in the TypeSpec program, we create a single
  * file called operations.ts where all operations are generated.
  */
-export function buildOperationUtils(model: ModularCodeModel, project: Project) {
+export function buildOperationUtils(model: ModularCodeModel) {
   const specialUnions = model.types.filter((t) => isSpecialUnion(t));
   if (specialUnions.length === 0) {
     return;
   }
-  const apiUtilsFile = project.createSourceFile(
+  const apiUtilsFile = model.project.createSourceFile(
     `${model.modularOptions.sourceRoot}/utils/deserializeUtil.ts`
   );
   const importSet = new Map<string, Set<string>>();
@@ -50,6 +49,7 @@ export function buildOperationUtils(model: ModularCodeModel, project: Project) {
     );
   });
   importSettings(importSet, apiUtilsFile);
+  return apiUtilsFile;
 }
 
 export function getDeserializeFunctionName(

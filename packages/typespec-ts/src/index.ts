@@ -172,7 +172,7 @@ export async function $onEmit(context: EmitContext) {
           subClient,
           hasClientUnexpectedHelper
         );
-        buildOperationUtils(modularCodeModel, project);
+        buildOperationUtils(modularCodeModel);
         buildClientContext(dpgContext, modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "models");
         buildSubpathIndexFile(modularCodeModel, subClient, "api");
