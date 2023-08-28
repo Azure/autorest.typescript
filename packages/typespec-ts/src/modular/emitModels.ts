@@ -1,4 +1,4 @@
-import { Project, SourceFile } from "ts-morph";
+import { SourceFile } from "ts-morph";
 import { getType } from "./helpers/typeHelpers.js";
 import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
@@ -10,9 +10,7 @@ import { buildOperationOptions } from "./buildOperations.js";
  */
 export function buildModels(
   codeModel: ModularCodeModel,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = ""
+  subClient: Client
 ): SourceFile | undefined {
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
@@ -24,8 +22,9 @@ export function buildModels(
   if (models.length === 0) {
     return;
   }
-  const modelsFile = project.createSourceFile(
-    path.join(`${srcPath}/`, subfolder, `models/models.ts`)
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const modelsFile = codeModel.project.createSourceFile(
+    path.join(`${srcPath}/`, subClient.subfolder ?? "", `models/models.ts`)
   );
 
   for (const model of codeModel.types) {
@@ -132,13 +131,11 @@ function isAzureCoreError(t: Type) {
 }
 
 export function buildModelsOptions(
-  client: Client,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = ""
+  codeModel: ModularCodeModel,
+  client: Client
 ) {
-  const modelOptionsFile = project.createSourceFile(
-    `${srcPath}/${subfolder}/models/options.ts`,
+  const modelOptionsFile = codeModel.project.createSourceFile(
+    `${codeModel.modularOptions.sourceRoot}/${client.subfolder}/models/options.ts`,
     undefined,
     {
       overwrite: true

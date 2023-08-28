@@ -135,13 +135,13 @@ export interface RLCOptions {
   generateSample?: boolean;
   azureSdkForJs?: boolean;
   azureOutputDirectory?: string;
-  isCadlTest?: boolean;
+  isTypeSpecTest?: boolean;
   title?: string;
   dependencyInfo?: DependencyInfo;
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
-  sourceFrom?: "Cadl" | "Swagger";
+  sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
 }

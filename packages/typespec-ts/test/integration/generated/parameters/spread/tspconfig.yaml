@@ -8,6 +8,6 @@ options:
     addCredentials: false
     azureSdkForJs: false
     enableOperationGroup: true
-    isCadlTest: true
+    isTypeSpecTest: true
     packageDetails:
       name: "@msinternal/parameterSpread"

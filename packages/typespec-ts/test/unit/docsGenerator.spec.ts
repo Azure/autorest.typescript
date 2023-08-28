@@ -1,15 +1,15 @@
 import { assert } from "chai";
 import {
-  emitClientDefinitionFromCadl,
-  emitModelsFromCadl,
-  emitParameterFromCadl
-} from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+  emitClientDefinitionFromTypeSpec,
+  emitModelsFromTypeSpec,
+  emitParameterFromTypeSpec
+} from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Doc generation testing", () => {
   describe("docs in models.ts & outputModels.ts", () => {
     it("should generate model-level and property-level docs in input model", async () => {
-      const models = await emitModelsFromCadl(`
+      const models = await emitModelsFromTypeSpec(`
         @doc("A simple model with doc")  
         model SimpleModel {
             @doc("A test property.")
@@ -33,7 +33,7 @@ describe("Doc generation testing", () => {
 
   describe("docs in parameters.ts", () => {
     it("should generate body description", async () => {
-      const parameters = await emitParameterFromCadl(
+      const parameters = await emitParameterFromTypeSpec(
         `
         model UserDetailsParameter {
           @body
@@ -59,7 +59,7 @@ describe("Doc generation testing", () => {
       );
     });
     it("shouldn't generate type description as body property description", async () => {
-      const parameters = await emitParameterFromCadl(
+      const parameters = await emitParameterFromTypeSpec(
         `
         @doc("Body type details")
         model UserDetailsParameter {
@@ -84,7 +84,7 @@ describe("Doc generation testing", () => {
       );
     });
     it("should generate query description", async () => {
-      const parameters = await emitParameterFromCadl(
+      const parameters = await emitParameterFromTypeSpec(
         `
         @doc("The filter query parameter.")
         model FilterParameter {
@@ -115,7 +115,7 @@ describe("Doc generation testing", () => {
       );
     });
     it("should generate header description with custom name", async () => {
-      const parameters = await emitParameterFromCadl(
+      const parameters = await emitParameterFromTypeSpec(
         `
         op test(@doc("test header") @header("x-my-header") MyHeader: string): string;
         `
@@ -141,7 +141,7 @@ describe("Doc generation testing", () => {
       );
     });
     it("should generate contentType description", async () => {
-      const parameters = await emitParameterFromCadl(
+      const parameters = await emitParameterFromTypeSpec(
         `
         #suppress "@typespec/http/content-type-ignored" "for test"
         op test(@doc("content type") @header contentType: "application/octet-stream"): string;
@@ -166,7 +166,7 @@ describe("Doc generation testing", () => {
 
   describe("docs in clientDefinitions.ts", () => {
     it("should generate operation description", async () => {
-      const clientDef = await emitClientDefinitionFromCadl(
+      const clientDef = await emitClientDefinitionFromTypeSpec(
         `
         @summary("This is a summary")
         @doc("This is the longer description")

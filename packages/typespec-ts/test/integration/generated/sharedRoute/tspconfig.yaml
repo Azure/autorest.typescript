@@ -6,6 +6,6 @@ options:
     generateMetadata: false
     generateTest: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     packageDetails:
       name: "@msinternal/media-types"

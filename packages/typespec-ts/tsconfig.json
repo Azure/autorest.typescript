@@ -32,5 +32,5 @@
     "esm": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["dist", "node_modules", "cadl-output"]
+  "exclude": ["dist", "node_modules", "typespec-output"]
 }

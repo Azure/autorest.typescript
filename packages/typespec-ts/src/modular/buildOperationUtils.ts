@@ -14,17 +14,13 @@ import {
  * If there is no operation group in the TypeSpec program, we create a single
  * file called operations.ts where all operations are generated.
  */
-export function buildOperationUtils(
-  model: ModularCodeModel,
-  project: Project,
-  modularSourcesDir: string
-) {
+export function buildOperationUtils(model: ModularCodeModel, project: Project) {
   const specialUnions = model.types.filter((t) => isSpecialUnion(t));
   if (specialUnions.length === 0) {
     return;
   }
   const apiUtilsFile = project.createSourceFile(
-    `${modularSourcesDir}/utils/deserializeUtil.ts`
+    `${model.modularOptions.sourceRoot}/utils/deserializeUtil.ts`
   );
   const importSet = new Map<string, Set<string>>();
 

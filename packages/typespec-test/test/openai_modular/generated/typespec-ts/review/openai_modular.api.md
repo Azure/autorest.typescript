@@ -11,6 +11,20 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
+export interface AzureChatExtensionConfiguration {
+    parameters: any;
+    type: AzureChatExtensionType;
+}
+
+// @public
+export interface AzureChatExtensionsMessageContext {
+    messages?: ChatMessage[];
+}
+
+// @public
+export type AzureChatExtensionType = string;
+
+// @public
 export type AzureOpenAIOperationState = string;
 
 // @public
@@ -52,6 +66,7 @@ export interface ChatCompletions {
 // @public
 export interface ChatMessage {
     content: string | null;
+    context?: AzureChatExtensionsMessageContext;
     functionCall?: FunctionCall;
     name?: string;
     role: ChatRole;
@@ -166,6 +181,25 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions extends Oper
 
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends OperationOptions {
+    dataSources?: AzureChatExtensionConfiguration[];
+    frequencyPenalty?: number;
+    functionCall?: FunctionCallPreset | FunctionName;
+    functions?: FunctionDefinition[];
+    logitBias?: Record<string, number>;
+    maxTokens?: number;
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsWithAzureExtensionsOptions extends OperationOptions {
+    dataSources?: AzureChatExtensionConfiguration[];
     frequencyPenalty?: number;
     functionCall?: FunctionCallPreset | FunctionName;
     functions?: FunctionDefinition[];
@@ -233,6 +267,7 @@ export class OpenAIClient {
     beginAzureBatchImageGeneration(prompt: string, options?: BeginAzureBatchImageGenerationOptions): Promise<BatchImageGenerationOperationResponse>;
     getAzureBatchImageGenerationOperationStatus(operationId: string, options?: GetAzureBatchImageGenerationOperationStatusOptions): Promise<BatchImageGenerationOperationResponse>;
     getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
+    getChatCompletionsWithAzureExtensions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsWithAzureExtensionsOptions): Promise<ChatCompletions>;
     getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
 }

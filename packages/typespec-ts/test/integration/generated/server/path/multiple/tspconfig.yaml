@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: MultipleParamInServerPathClient
     packageDetails:
       name: "@msinternal/multipleparam"

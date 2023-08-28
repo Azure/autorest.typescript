@@ -1,20 +1,22 @@
 import { join } from "path";
-import { Project } from "ts-morph";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 export function buildSubpathIndexFile(
-  project: Project,
-  srcPath: string,
-  subpath: string,
-  subfolder: string
+  codeModel: ModularCodeModel,
+  client: Client,
+  subpath: string
 ) {
-  const apiFilePattern = join(srcPath, subfolder, subpath);
-  const apiFiles = project.getSourceFiles().filter((file) => {
+  const { subfolder } = client;
+  const srcPath = codeModel.modularOptions.sourceRoot;
+
+  const apiFilePattern = join(srcPath, client.subfolder ?? "", subpath);
+  const apiFiles = codeModel.project.getSourceFiles().filter((file) => {
     return file
       .getFilePath()
       .replace(/\\/g, "/")
       .startsWith(apiFilePattern.replace(/\\/g, "/"));
   });
-  const indexFile = project.createSourceFile(
+  const indexFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {

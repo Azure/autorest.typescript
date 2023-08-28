@@ -7,7 +7,7 @@ options:
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     packageDetails:
       name: "@msinternal/client-structure-multiclient"
       description: "Client Structure MultiClient Test Service"

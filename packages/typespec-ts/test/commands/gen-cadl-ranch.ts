@@ -4,7 +4,7 @@ import pkg from "chalk";
 const { bold } = pkg;
 const logError = (str: string) => console.error(bold.red(str));
 // tag could be "rlc" | "modular"
-async function generateCadls(tag: string = "rlc", isDebugging?: boolean) {
+async function generateTypeSpecs(tag: string = "rlc", isDebugging?: boolean) {
   let list = rlcTsps;
   if (tag === "modular") {
     list = modularTsps;
@@ -21,7 +21,7 @@ async function main() {
   const isDebugging = process.argv.indexOf("--debug") !== -1;
   const tagOptions = process.argv.filter((s) => s.startsWith("--tag="));
   const tag = tagOptions[0]?.split("=")[1];
-  await generateCadls(tag, isDebugging);
+  await generateTypeSpecs(tag, isDebugging);
 }
 
 main().catch((error) => {

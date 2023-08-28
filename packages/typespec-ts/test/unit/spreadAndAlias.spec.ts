@@ -1,11 +1,11 @@
 import { assert } from "chai";
-import { emitParameterFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitParameterFromTypeSpec } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Spread(...) and alias", () => {
   describe("Parameter generation", async () => {
     it("should flatten query and body properties with spread top-level model", async () => {
-      const parameters = await emitParameterFromCadl(`
+      const parameters = await emitParameterFromTypeSpec(`
           model User {
             name: string;
           }
@@ -42,7 +42,7 @@ describe("Spread(...) and alias", () => {
     });
 
     it("should NOT flatten model properties with no other parts defined and top-level spread", async () => {
-      const parameters = await emitParameterFromCadl(`
+      const parameters = await emitParameterFromTypeSpec(`
           model SimpleModel {
             id: string;
             prop: string;
@@ -66,7 +66,7 @@ describe("Spread(...) and alias", () => {
     });
 
     it("should flatten query and body properties with alias group properties", async () => {
-      const parameters = await emitParameterFromCadl(`
+      const parameters = await emitParameterFromTypeSpec(`
           model User {
             name: string;
           }
@@ -104,7 +104,7 @@ describe("Spread(...) and alias", () => {
     });
 
     it("should flatten properties with one property in alias group and without position decorator", async () => {
-      const parameters = await emitParameterFromCadl(`
+      const parameters = await emitParameterFromTypeSpec(`
         alias SimpleModel = {
             name: string;
             value?: int32;
@@ -127,7 +127,7 @@ describe("Spread(...) and alias", () => {
     });
 
     it("should flatten properties with more than one properties in alias group with no position decorator", async () => {
-      const parameters = await emitParameterFromCadl(`
+      const parameters = await emitParameterFromTypeSpec(`
         model User {
           name: string;
         }    
@@ -164,7 +164,7 @@ describe("Spread(...) and alias", () => {
     });
 
     it("should flatten properties without any spread", async () => {
-      const parameters = await emitParameterFromCadl(`
+      const parameters = await emitParameterFromTypeSpec(`
         model User {
           name: string;
         }    
