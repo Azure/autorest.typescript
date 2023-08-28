@@ -90,7 +90,7 @@ export function getDeserializePrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
       type: getRLCResponseType(operation.rlcResponse)
