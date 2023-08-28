@@ -7,7 +7,7 @@ options:
     generateTest: true
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: AuthUnionClient
     packageDetails:
       name: "@msinternal/auth-union"

@@ -1,8 +1,8 @@
-import { FunctionDeclaration, Project, SourceFile } from "ts-morph";
+import { FunctionDeclaration, SourceFile } from "ts-morph";
 import { getClientParameters } from "./helpers/clientHelpers.js";
 import { importCredential } from "./helpers/credentialHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { Client, Parameter } from "./modularCodeModel.js";
+import { Client, ModularCodeModel, Parameter } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { importModels } from "./buildOperations.js";
@@ -13,21 +13,20 @@ import { SdkContext } from "../utils/interfaces.js";
  */
 export function buildClientContext(
   dpgContext: SdkContext,
-  client: Client,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = ""
+  codeModel: ModularCodeModel,
+  client: Client
 ): SourceFile {
-  const { description, parameters } = client;
+  const { description, parameters, subfolder } = client;
   const name = getClientName(client);
-  const clientContextFile = project.createSourceFile(
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }/api/${name}Context.ts`
   );
 
   let factoryFunction;
-  importModels(srcPath, clientContextFile, project, subfolder);
+  importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier: "@azure-rest/core-client",
     namedImports: ["ClientOptions"]

@@ -6,7 +6,7 @@ using Azure.Core.Foundations;
 namespace Azure.Core.Foundations.Extensions;
 
 /*
- This CADL file was created to customize the existing implementation from the foundations library.
+ This TypeSpec file was created to customize the existing implementation from the foundations library.
  In this file we have addressed the following issues:
  1. Avoid inlining of the models - required by ADP backend and also by the AutoRest. All models must be references and have schema definitions in the OpenApi spec.
  2. In ADP we are using slightly different model for LRO. It has additional state [Created] and the operation type property.

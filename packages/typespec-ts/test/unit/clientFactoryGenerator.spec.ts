@@ -1,12 +1,12 @@
 import { assert } from "chai";
-import { emitClientFactoryFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitClientFactoryFromTypeSpec } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 import { Diagnostic } from "@typespec/compiler";
 
 describe("Client Factory generation", () => {
   describe("should handle url parameters", () => {
     it("should handle zero parameter", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromTypeSpec(`
       @server(
         "localhost",
         "Language Service"
@@ -52,7 +52,7 @@ describe("Client Factory generation", () => {
       );
     });
     it("should handle one parameter", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromTypeSpec(`
           @server(
             "{Endpoint}/language",
             "Language Service",
@@ -108,7 +108,7 @@ describe("Client Factory generation", () => {
     });
 
     it("should handle two parameters", async () => {
-      const models = await emitClientFactoryFromCadl(
+      const models = await emitClientFactoryFromTypeSpec(
         `
             @server(
               "{Endpoint}/language/{Version}",
@@ -178,7 +178,7 @@ describe("Client Factory generation", () => {
       );
     });
     it("should handle extensible enums in host parameters", async () => {
-      const models = await emitClientFactoryFromCadl(
+      const models = await emitClientFactoryFromTypeSpec(
         `
             @server(
               "{Endpoint}/language/{Version}",
@@ -248,7 +248,7 @@ describe("Client Factory generation", () => {
 
   describe("should handle no @server definition", () => {
     it("should set default endpoint parameter when no @server", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromTypeSpec(`
       @service( {title: "PetStoreClient"})
       namespace PetStore;
       `);
@@ -295,7 +295,7 @@ describe("Client Factory generation", () => {
   describe("should handle different auth options", () => {
     it("should not generate credential if scope is empty", async () => {
       try {
-        await emitClientFactoryFromCadl(
+        await emitClientFactoryFromTypeSpec(
           `
       @useAuth(
         OAuth2Auth<[{
@@ -321,7 +321,7 @@ describe("Client Factory generation", () => {
     });
 
     it("should generate both credentials if both defined", async () => {
-      const models = await emitClientFactoryFromCadl(`
+      const models = await emitClientFactoryFromTypeSpec(`
       @useAuth(
         ApiKeyAuth<ApiKeyLocation.header, "apiKey"> |
           OAuth2Auth<[{

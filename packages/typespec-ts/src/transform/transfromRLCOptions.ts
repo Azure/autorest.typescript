@@ -66,7 +66,7 @@ function extractRLCOptions(
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
-    sourceFrom: "Cadl",
+    sourceFrom: "TypeSpec",
     enableOperationGroup
   };
 }

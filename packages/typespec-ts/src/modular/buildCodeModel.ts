@@ -30,7 +30,6 @@ import {
   getFormat,
   getMinItems,
   getMaxItems,
-  EmitContext,
   listServices,
   Union,
   Type,
@@ -65,7 +64,6 @@ import {
   isApiVersion,
   getDefaultApiVersion,
   getClientNamespaceString,
-  createSdkContext,
   getSdkUnion,
   getAllModels,
   SdkSimpleType,
@@ -82,15 +80,20 @@ import {
   Type as HrlcType,
   Header
 } from "./modularCodeModel.js";
-import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
 import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import { RLCModel, getClientName } from "@azure-tools/rlc-common";
+import {
+  RLCModel,
+  getClientName,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import {
   getOperationGroupName,
   getOperationName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { Project } from "ts-morph";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -187,7 +190,7 @@ function handleDiscriminator(context: SdkContext, type: Model, model: any) {
         }
       }
     }
-    // it is not included in properties of cadl but needed by python codegen
+    // it is not included in properties of typespec but needed by python codegen
     if (discriminatorProperty) {
       const discriminatorType = { ...discriminatorProperty.type };
       discriminatorType.value = null;
@@ -769,7 +772,7 @@ function emitBasicOperation(
         innerResponse
       );
       if (isErrorModel(context.program, response.type)) {
-        // * is valid status code in cadl but invalid for autorest.python
+        // * is valid status code in typespec but invalid for autorest.python
         if (response.statusCode === "*") {
           exceptions.push(emittedResponse);
         }
@@ -821,7 +824,7 @@ function emitBasicOperation(
 }
 
 function isReadOnly(program: Program, type: ModelProperty): boolean {
-  // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
+  // https://microsoft.github.io/typespec/standard-library/http/operations#automatic-visibility
   // Only "read" should be readOnly
   const visibility = getVisibility(program, type);
   if (visibility) {
@@ -1158,7 +1161,7 @@ function emitListOrDict(
   return undefined;
 }
 
-function mapCadlType(context: SdkContext, type: Type): any {
+function mapTypeSpecType(context: SdkContext, type: Type): any {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -1259,7 +1262,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapCadlType(context, type);
+  const builtinType = mapTypeSpecType(context, type);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);
@@ -1528,7 +1531,8 @@ function emitClients(
       operationGroups: emitOperationGroups(context, client, rlcModels),
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name
+      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
+      subfolder: ""
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
@@ -1561,21 +1565,24 @@ function getNamespaces(context: SdkContext): Set<string> {
 }
 
 export function emitCodeModel(
-  context: EmitContext<EmitterOptions>,
+  dpgContext: SdkContext,
   rlcModelsMap: Map<string, RLCModel>,
+  modularSourcesRoot: string,
+  project: Project,
   options: { casing: "snake" | "camel" } = { casing: "snake" }
 ): ModularCodeModel {
   CASING = options.casing ?? CASING;
-  const dpgContext = createSdkContext(context);
   const clientNamespaceString =
     getClientNamespaceString(dpgContext)?.toLowerCase();
   // Get types
   const codeModel: ModularCodeModel = {
-    options: transformRLCOptions(context.options as any, dpgContext),
+    options: dpgContext.rlcOptions ?? {},
+    modularOptions: { sourceRoot: modularSourcesRoot },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
-    types: []
+    types: [],
+    project
   };
 
   const allModels = getAllModels(dpgContext);
@@ -1586,12 +1593,25 @@ export function emitCodeModel(
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
+      codeModel.clients.length > 1 &&
+        codeModel.clients.map((client) => {
+          client["subfolder"] = normalizeName(
+            client.name.replace("Client", ""),
+            NameType.File
+          );
+        });
     } else {
       codeModel["subnamespaceToClients"][namespace] = emitClients(
         dpgContext,
         namespace,
         rlcModelsMap
       );
+      codeModel["subnamespaceToClients"][namespace].length > 1 &&
+        (codeModel["subnamespaceToClients"][namespace] as HrlcClient[]).map(
+          (client) => {
+            client["subfolder"] = normalizeName(client.name, NameType.File);
+          }
+        );
     }
   }
 

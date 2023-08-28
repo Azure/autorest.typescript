@@ -6,10 +6,10 @@ import { HttpTestLibrary } from "@typespec/http/testing";
 import { VersioningTestLibrary } from "@typespec/versioning/testing";
 import { AzureCoreTestLibrary } from "@azure-tools/typespec-azure-core/testing";
 import { SdkTestLibrary } from "@azure-tools/typespec-client-generator-core/testing";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "../../src/utils/interfaces.js";
 import { assert } from "chai";
 import { format } from "prettier";
-import { prettierTypeScriptOptions } from "../../../src/lib.js";
+import { prettierTypeScriptOptions } from "../../src/lib.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -78,7 +78,9 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
   return {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
-    generateConvenienceMethods: resolvedOptions.generateConvenienceMethods
+    generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
+    rlcOptions: {},
+    generationPathDetail: {}
   } as SdkContext;
 }
 

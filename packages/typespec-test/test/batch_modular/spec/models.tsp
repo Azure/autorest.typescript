@@ -531,7 +531,7 @@ model ApplicationListResult {
   @items
   value?: Application[];
 
-  #suppress "@azure-tools/cadl-azure-core/casing-style" "The names of Property types must use camelCase"
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
   @nextLink
   "odata.nextLink"?: string;
@@ -594,7 +594,7 @@ model PoolListUsageMetricsResult {
   @items
   value?: PoolUsageMetrics[];
 
-  #suppress "@azure-tools/cadl-azure-core/casing-style" "The names of Property types must use camelCase"
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
   @nextLink
   "odata.nextLink"?: string;
@@ -633,7 +633,7 @@ model AccountListSupportedImagesResult {
   @items
   value?: ImageInformation[];
 
-  #suppress "@azure-tools/cadl-azure-core/casing-style" "The names of Property types must use camelCase"
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The URL to get the next set of results.")
   @nextLink
   "odata.nextLink"?: string;
@@ -645,7 +645,7 @@ information about the Image.
 """)
 @resource("supportedimages")
 model ImageInformation {
-  #suppress "@azure-tools/cadl-azure-core/casing-style" "The names of Property types must use camelCase"
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Property types must use camelCase"
   @doc("The ID of the Compute Node agent SKU which the Image supports.")
   // FIXME: (resource-key-guessing) - Verify that this property is the resource key, if not please update the model with the right one
   @visibility("read")
