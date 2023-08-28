@@ -1,7 +1,6 @@
 import { assert } from "chai";
 import TypePropertyNullableClientFactory, {
-  NullableClient,
-  isUnexpected
+  NullableClient
 } from "./generated/models/propertyNullable/src/index.js";
 import { matrix } from "../util/matrix.js";
 
@@ -53,9 +52,6 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
           .path(`/type/property/nullable/${params.type}/null` as any)
           .get();
         assert.strictEqual(result.status, "200");
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.strictEqual(result.body.nullableProperty, null);
         assert.deepEqual(result.body.requiredProperty, "foo");
       } catch (err) {
@@ -69,9 +65,6 @@ describe("ModelsPropertyNullableClient Rest Client", () => {
           .path(`/type/property/nullable/${params.type}/non-null` as any)
           .get();
         assert.strictEqual(result.status, "200");
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.deepEqual(result.body.nullableProperty, params.defaultValue);
         assert.deepEqual(result.body.requiredProperty, "foo");
       } catch (err) {

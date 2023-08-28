@@ -98,10 +98,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(
-          (result as any).body.value,
-          "2022-08-26T18:38:00.000Z"
-        );
+        assert.strictEqual(result.body.value, "2022-08-26T18:38:00.000Z");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -117,10 +114,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(
-          (result as any).body.value,
-          "2022-08-26T18:38:00.000Z"
-        );
+        assert.strictEqual(result.body.value, "2022-08-26T18:38:00.000Z");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -137,10 +131,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
           });
 
         assert.strictEqual(result.status, "200");
-        assert.strictEqual(
-          (result as any).body.value,
-          "Fri, 26 Aug 2022 14:38:00 GMT"
-        );
+        assert.strictEqual(result.body.value, "Fri, 26 Aug 2022 14:38:00 GMT");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -156,7 +147,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.strictEqual((result as any).body.value, 1686566864);
+        assert.strictEqual(result.body.value, 1686566864);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -172,7 +163,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
             }
           });
         assert.strictEqual(result.status, "200");
-        assert.deepEqual((result as any).body.value, [1686566864, 1686734256]);
+        assert.deepEqual(result.body.value, [1686566864, 1686734256]);
       } catch (err) {
         assert.fail(err as string);
       }
