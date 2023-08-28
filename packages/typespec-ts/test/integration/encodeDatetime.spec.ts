@@ -224,7 +224,6 @@ describe("EncodeDatetimeClient Rest Client", () => {
               value: 1686566864
             }
           });
-
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
