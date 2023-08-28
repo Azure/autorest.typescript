@@ -11,60 +11,44 @@ import {
 } from "./parameters";
 import {
   PropertyJson204Response,
-  PropertyJsonDefaultResponse,
   PropertyClient204Response,
-  PropertyClientDefaultResponse,
   PropertyLanguage204Response,
-  PropertyLanguageDefaultResponse,
   PropertyJsonAndClient204Response,
-  PropertyJsonAndClientDefaultResponse,
   Operation204Response,
-  OperationDefaultResponse,
   Parameter204Response,
-  ParameterDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Json {
   post(
     options?: PropertyJsonParameters
-  ): StreamableMethod<PropertyJson204Response | PropertyJsonDefaultResponse>;
+  ): StreamableMethod<PropertyJson204Response>;
 }
 
 export interface _Client {
   post(
     options?: PropertyClientParameters
-  ): StreamableMethod<
-    PropertyClient204Response | PropertyClientDefaultResponse
-  >;
+  ): StreamableMethod<PropertyClient204Response>;
 }
 
 export interface Language {
   post(
     options?: PropertyLanguageParameters
-  ): StreamableMethod<
-    PropertyLanguage204Response | PropertyLanguageDefaultResponse
-  >;
+  ): StreamableMethod<PropertyLanguage204Response>;
 }
 
 export interface JsonAndClient {
   post(
     options?: PropertyJsonAndClientParameters
-  ): StreamableMethod<
-    PropertyJsonAndClient204Response | PropertyJsonAndClientDefaultResponse
-  >;
+  ): StreamableMethod<PropertyJsonAndClient204Response>;
 }
 
 export interface Operation {
-  post(
-    options?: OperationParameters
-  ): StreamableMethod<Operation204Response | OperationDefaultResponse>;
+  post(options?: OperationParameters): StreamableMethod<Operation204Response>;
 }
 
 export interface Parameter {
-  post(
-    options: ParameterParameters
-  ): StreamableMethod<Parameter204Response | ParameterDefaultResponse>;
+  post(options: ParameterParameters): StreamableMethod<Parameter204Response>;
 }
 
 export interface Routes {

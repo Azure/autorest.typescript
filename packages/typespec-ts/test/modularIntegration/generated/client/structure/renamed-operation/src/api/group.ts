@@ -3,13 +3,9 @@
 
 import {
   Four204Response,
-  FourDefaultResponse,
-  isUnexpected,
   ServiceContext as Client,
   Six204Response,
-  SixDefaultResponse,
   Two204Response,
-  TwoDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -24,16 +20,16 @@ import {
 export function _renamedTwoSend(
   context: Client,
   options: RenamedTwoOptions = { requestOptions: {} }
-): StreamableMethod<Two204Response | TwoDefaultResponse> {
+): StreamableMethod<Two204Response> {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedTwoDeserialize(
-  result: Two204Response | TwoDefaultResponse
+  result: Two204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -51,16 +47,16 @@ export async function renamedTwo(
 export function _renamedFourSend(
   context: Client,
   options: RenamedFourOptions = { requestOptions: {} }
-): StreamableMethod<Four204Response | FourDefaultResponse> {
+): StreamableMethod<Four204Response> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFourDeserialize(
-  result: Four204Response | FourDefaultResponse
+  result: Four204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -78,16 +74,16 @@ export async function renamedFour(
 export function _renamedSixSend(
   context: Client,
   options: RenamedSixOptions = { requestOptions: {} }
-): StreamableMethod<Six204Response | SixDefaultResponse> {
+): StreamableMethod<Six204Response> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedSixDeserialize(
-  result: Six204Response | SixDefaultResponse
+  result: Six204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  if ("204" !== result.status) {
     throw result.body;
   }
 

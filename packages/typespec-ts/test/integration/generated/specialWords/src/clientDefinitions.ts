@@ -10,50 +10,37 @@ import {
 } from "./parameters";
 import {
   OperationFor204Response,
-  OperationForDefaultResponse,
   ParameterGetWithIf204Response,
-  ParameterGetWithIfDefaultResponse,
   ParameterGetWithFilter204Response,
-  ParameterGetWithFilterDefaultResponse,
   ModelGet200Response,
-  ModelGetDefaultResponse,
   ModelPut204Response,
-  ModelPutDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface OperationFor {
   get(
     options?: OperationForParameters
-  ): StreamableMethod<OperationFor204Response | OperationForDefaultResponse>;
+  ): StreamableMethod<OperationFor204Response>;
 }
 
 export interface ParameterGetWithIf {
   get(
     options: ParameterGetWithIfParameters
-  ): StreamableMethod<
-    ParameterGetWithIf204Response | ParameterGetWithIfDefaultResponse
-  >;
+  ): StreamableMethod<ParameterGetWithIf204Response>;
 }
 
 export interface ParameterGetWithFilter {
   get(
     options: ParameterGetWithFilterParameters
-  ): StreamableMethod<
-    ParameterGetWithFilter204Response | ParameterGetWithFilterDefaultResponse
-  >;
+  ): StreamableMethod<ParameterGetWithFilter204Response>;
 }
 
 export interface ModelGet {
-  get(
-    options?: ModelGetParameters
-  ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
+  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
 }
 
 export interface ModelPut {
-  put(
-    options: ModelPutParameters
-  ): StreamableMethod<ModelPut204Response | ModelPutDefaultResponse>;
+  put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
 
 export interface Routes {

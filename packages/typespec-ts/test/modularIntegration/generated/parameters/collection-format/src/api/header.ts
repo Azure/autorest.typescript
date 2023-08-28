@@ -2,11 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  isUnexpected,
-  CollectionFormatContext as Client,
   buildCsvCollection,
+  CollectionFormatContext as Client,
   HeaderCsv204Response,
-  HeaderCsvDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -18,7 +16,7 @@ export function _headerCsvSend(
   context: Client,
   colors: string[],
   options: HeaderCsvOptions = { requestOptions: {} }
-): StreamableMethod<HeaderCsv204Response | HeaderCsvDefaultResponse> {
+): StreamableMethod<HeaderCsv204Response> {
   return context
     .path("/parameters/collection-format/header/csv")
     .get({
@@ -28,9 +26,9 @@ export function _headerCsvSend(
 }
 
 export async function _headerCsvDeserialize(
-  result: HeaderCsv204Response | HeaderCsvDefaultResponse
+  result: HeaderCsv204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  if ("204" !== result.status) {
     throw result.body;
   }
 

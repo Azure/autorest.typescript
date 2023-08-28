@@ -29,53 +29,29 @@ import {
 } from "./parameters";
 import {
   StringModelGetNonNull200Response,
-  StringModelGetNonNullDefaultResponse,
   StringModelPatchNonNull204Response,
-  StringModelPatchNonNullDefaultResponse,
   StringModelGetNull200Response,
-  StringModelGetNullDefaultResponse,
   StringModelPatchNull204Response,
-  StringModelPatchNullDefaultResponse,
   BytesGetNonNull200Response,
-  BytesGetNonNullDefaultResponse,
   BytesPatchNonNull204Response,
-  BytesPatchNonNullDefaultResponse,
   BytesGetNull200Response,
-  BytesGetNullDefaultResponse,
   BytesPatchNull204Response,
-  BytesPatchNullDefaultResponse,
   DatetimeGetNonNull200Response,
-  DatetimeGetNonNullDefaultResponse,
   DatetimePatchNonNull204Response,
-  DatetimePatchNonNullDefaultResponse,
   DatetimeGetNull200Response,
-  DatetimeGetNullDefaultResponse,
   DatetimePatchNull204Response,
-  DatetimePatchNullDefaultResponse,
   DurationGetNonNull200Response,
-  DurationGetNonNullDefaultResponse,
   DurationPatchNonNull204Response,
-  DurationPatchNonNullDefaultResponse,
   DurationGetNull200Response,
-  DurationGetNullDefaultResponse,
   DurationPatchNull204Response,
-  DurationPatchNullDefaultResponse,
   CollectionsByteGetNonNull200Response,
-  CollectionsByteGetNonNullDefaultResponse,
   CollectionsBytePatchNonNull204Response,
-  CollectionsBytePatchNonNullDefaultResponse,
   CollectionsByteGetNull200Response,
-  CollectionsByteGetNullDefaultResponse,
   CollectionsBytePatchNull204Response,
-  CollectionsBytePatchNullDefaultResponse,
   CollectionsModelGetNonNull200Response,
-  CollectionsModelGetNonNullDefaultResponse,
   CollectionsModelPatchNonNull204Response,
-  CollectionsModelPatchNonNullDefaultResponse,
   CollectionsModelGetNull200Response,
-  CollectionsModelGetNullDefaultResponse,
   CollectionsModelPatchNull204Response,
-  CollectionsModelPatchNullDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -83,184 +59,132 @@ export interface StringModelGetNonNull {
   /** Get models that will return all properties in the model */
   get(
     options?: StringModelGetNonNullParameters
-  ): StreamableMethod<
-    StringModelGetNonNull200Response | StringModelGetNonNullDefaultResponse
-  >;
+  ): StreamableMethod<StringModelGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
     options: StringModelPatchNonNullParameters
-  ): StreamableMethod<
-    StringModelPatchNonNull204Response | StringModelPatchNonNullDefaultResponse
-  >;
+  ): StreamableMethod<StringModelPatchNonNull204Response>;
 }
 
 export interface StringModelGetNull {
   /** Get models that will return the default object */
   get(
     options?: StringModelGetNullParameters
-  ): StreamableMethod<
-    StringModelGetNull200Response | StringModelGetNullDefaultResponse
-  >;
+  ): StreamableMethod<StringModelGetNull200Response>;
   /** Put a body with default properties. */
   patch(
     options: StringModelPatchNullParameters
-  ): StreamableMethod<
-    StringModelPatchNull204Response | StringModelPatchNullDefaultResponse
-  >;
+  ): StreamableMethod<StringModelPatchNull204Response>;
 }
 
 export interface BytesGetNonNull {
   /** Get models that will return all properties in the model */
   get(
     options?: BytesGetNonNullParameters
-  ): StreamableMethod<
-    BytesGetNonNull200Response | BytesGetNonNullDefaultResponse
-  >;
+  ): StreamableMethod<BytesGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
     options: BytesPatchNonNullParameters
-  ): StreamableMethod<
-    BytesPatchNonNull204Response | BytesPatchNonNullDefaultResponse
-  >;
+  ): StreamableMethod<BytesPatchNonNull204Response>;
 }
 
 export interface BytesGetNull {
   /** Get models that will return the default object */
   get(
     options?: BytesGetNullParameters
-  ): StreamableMethod<BytesGetNull200Response | BytesGetNullDefaultResponse>;
+  ): StreamableMethod<BytesGetNull200Response>;
   /** Put a body with default properties. */
   patch(
     options: BytesPatchNullParameters
-  ): StreamableMethod<
-    BytesPatchNull204Response | BytesPatchNullDefaultResponse
-  >;
+  ): StreamableMethod<BytesPatchNull204Response>;
 }
 
 export interface DatetimeGetNonNull {
   /** Get models that will return all properties in the model */
   get(
     options?: DatetimeGetNonNullParameters
-  ): StreamableMethod<
-    DatetimeGetNonNull200Response | DatetimeGetNonNullDefaultResponse
-  >;
+  ): StreamableMethod<DatetimeGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
     options: DatetimePatchNonNullParameters
-  ): StreamableMethod<
-    DatetimePatchNonNull204Response | DatetimePatchNonNullDefaultResponse
-  >;
+  ): StreamableMethod<DatetimePatchNonNull204Response>;
 }
 
 export interface DatetimeGetNull {
   /** Get models that will return the default object */
   get(
     options?: DatetimeGetNullParameters
-  ): StreamableMethod<
-    DatetimeGetNull200Response | DatetimeGetNullDefaultResponse
-  >;
+  ): StreamableMethod<DatetimeGetNull200Response>;
   /** Put a body with default properties. */
   patch(
     options: DatetimePatchNullParameters
-  ): StreamableMethod<
-    DatetimePatchNull204Response | DatetimePatchNullDefaultResponse
-  >;
+  ): StreamableMethod<DatetimePatchNull204Response>;
 }
 
 export interface DurationGetNonNull {
   /** Get models that will return all properties in the model */
   get(
     options?: DurationGetNonNullParameters
-  ): StreamableMethod<
-    DurationGetNonNull200Response | DurationGetNonNullDefaultResponse
-  >;
+  ): StreamableMethod<DurationGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
     options: DurationPatchNonNullParameters
-  ): StreamableMethod<
-    DurationPatchNonNull204Response | DurationPatchNonNullDefaultResponse
-  >;
+  ): StreamableMethod<DurationPatchNonNull204Response>;
 }
 
 export interface DurationGetNull {
   /** Get models that will return the default object */
   get(
     options?: DurationGetNullParameters
-  ): StreamableMethod<
-    DurationGetNull200Response | DurationGetNullDefaultResponse
-  >;
+  ): StreamableMethod<DurationGetNull200Response>;
   /** Put a body with default properties. */
   patch(
     options: DurationPatchNullParameters
-  ): StreamableMethod<
-    DurationPatchNull204Response | DurationPatchNullDefaultResponse
-  >;
+  ): StreamableMethod<DurationPatchNull204Response>;
 }
 
 export interface CollectionsByteGetNonNull {
   /** Get models that will return all properties in the model */
   get(
     options?: CollectionsByteGetNonNullParameters
-  ): StreamableMethod<
-    | CollectionsByteGetNonNull200Response
-    | CollectionsByteGetNonNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsByteGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
     options: CollectionsBytePatchNonNullParameters
-  ): StreamableMethod<
-    | CollectionsBytePatchNonNull204Response
-    | CollectionsBytePatchNonNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsBytePatchNonNull204Response>;
 }
 
 export interface CollectionsByteGetNull {
   /** Get models that will return the default object */
   get(
     options?: CollectionsByteGetNullParameters
-  ): StreamableMethod<
-    CollectionsByteGetNull200Response | CollectionsByteGetNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsByteGetNull200Response>;
   /** Put a body with default properties. */
   patch(
     options: CollectionsBytePatchNullParameters
-  ): StreamableMethod<
-    | CollectionsBytePatchNull204Response
-    | CollectionsBytePatchNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsBytePatchNull204Response>;
 }
 
 export interface CollectionsModelGetNonNull {
   /** Get models that will return all properties in the model */
   get(
     options?: CollectionsModelGetNonNullParameters
-  ): StreamableMethod<
-    | CollectionsModelGetNonNull200Response
-    | CollectionsModelGetNonNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsModelGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
     options: CollectionsModelPatchNonNullParameters
-  ): StreamableMethod<
-    | CollectionsModelPatchNonNull204Response
-    | CollectionsModelPatchNonNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsModelPatchNonNull204Response>;
 }
 
 export interface CollectionsModelGetNull {
   /** Get models that will return the default object */
   get(
     options?: CollectionsModelGetNullParameters
-  ): StreamableMethod<
-    CollectionsModelGetNull200Response | CollectionsModelGetNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsModelGetNull200Response>;
   /** Put a body with default properties. */
   patch(
     options: CollectionsModelPatchNullParameters
-  ): StreamableMethod<
-    | CollectionsModelPatchNull204Response
-    | CollectionsModelPatchNullDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsModelPatchNull204Response>;
 }
 
 export interface Routes {

@@ -20,146 +20,111 @@ import {
 } from "./parameters";
 import {
   QueryDefault204Response,
-  QueryDefaultDefaultResponse,
   QueryRfc3339204Response,
-  QueryRfc3339DefaultResponse,
   QueryRfc7231204Response,
-  QueryRfc7231DefaultResponse,
   QueryUnixTimestamp204Response,
-  QueryUnixTimestampDefaultResponse,
   QueryUnixTimestampArray204Response,
-  QueryUnixTimestampArrayDefaultResponse,
   PropertyDefault200Response,
-  PropertyDefaultDefaultResponse,
   PropertyRfc3339200Response,
-  PropertyRfc3339DefaultResponse,
   PropertyRfc7231200Response,
-  PropertyRfc7231DefaultResponse,
   PropertyUnixTimestamp200Response,
-  PropertyUnixTimestampDefaultResponse,
   PropertyUnixTimestampArray200Response,
-  PropertyUnixTimestampArrayDefaultResponse,
   HeaderDefault204Response,
-  HeaderDefaultDefaultResponse,
   HeaderRfc3339204Response,
-  HeaderRfc3339DefaultResponse,
   HeaderRfc7231204Response,
-  HeaderRfc7231DefaultResponse,
   HeaderUnixTimestamp204Response,
-  HeaderUnixTimestampDefaultResponse,
   HeaderUnixTimestampArray204Response,
-  HeaderUnixTimestampArrayDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryDefault {
   get(
     options: QueryDefaultParameters
-  ): StreamableMethod<QueryDefault204Response | QueryDefaultDefaultResponse>;
+  ): StreamableMethod<QueryDefault204Response>;
 }
 
 export interface QueryRfc3339 {
   get(
     options: QueryRfc3339Parameters
-  ): StreamableMethod<QueryRfc3339204Response | QueryRfc3339DefaultResponse>;
+  ): StreamableMethod<QueryRfc3339204Response>;
 }
 
 export interface QueryRfc7231 {
   get(
     options: QueryRfc7231Parameters
-  ): StreamableMethod<QueryRfc7231204Response | QueryRfc7231DefaultResponse>;
+  ): StreamableMethod<QueryRfc7231204Response>;
 }
 
 export interface QueryUnixTimestamp {
   get(
     options: QueryUnixTimestampParameters
-  ): StreamableMethod<
-    QueryUnixTimestamp204Response | QueryUnixTimestampDefaultResponse
-  >;
+  ): StreamableMethod<QueryUnixTimestamp204Response>;
 }
 
 export interface QueryUnixTimestampArray {
   get(
     options: QueryUnixTimestampArrayParameters
-  ): StreamableMethod<
-    QueryUnixTimestampArray204Response | QueryUnixTimestampArrayDefaultResponse
-  >;
+  ): StreamableMethod<QueryUnixTimestampArray204Response>;
 }
 
 export interface PropertyDefault {
   post(
     options: PropertyDefaultParameters
-  ): StreamableMethod<
-    PropertyDefault200Response | PropertyDefaultDefaultResponse
-  >;
+  ): StreamableMethod<PropertyDefault200Response>;
 }
 
 export interface PropertyRfc3339 {
   post(
     options: PropertyRfc3339Parameters
-  ): StreamableMethod<
-    PropertyRfc3339200Response | PropertyRfc3339DefaultResponse
-  >;
+  ): StreamableMethod<PropertyRfc3339200Response>;
 }
 
 export interface PropertyRfc7231 {
   post(
     options: PropertyRfc7231Parameters
-  ): StreamableMethod<
-    PropertyRfc7231200Response | PropertyRfc7231DefaultResponse
-  >;
+  ): StreamableMethod<PropertyRfc7231200Response>;
 }
 
 export interface PropertyUnixTimestamp {
   post(
     options: PropertyUnixTimestampParameters
-  ): StreamableMethod<
-    PropertyUnixTimestamp200Response | PropertyUnixTimestampDefaultResponse
-  >;
+  ): StreamableMethod<PropertyUnixTimestamp200Response>;
 }
 
 export interface PropertyUnixTimestampArray {
   post(
     options: PropertyUnixTimestampArrayParameters
-  ): StreamableMethod<
-    | PropertyUnixTimestampArray200Response
-    | PropertyUnixTimestampArrayDefaultResponse
-  >;
+  ): StreamableMethod<PropertyUnixTimestampArray200Response>;
 }
 
 export interface HeaderDefault {
   get(
     options: HeaderDefaultParameters
-  ): StreamableMethod<HeaderDefault204Response | HeaderDefaultDefaultResponse>;
+  ): StreamableMethod<HeaderDefault204Response>;
 }
 
 export interface HeaderRfc3339 {
   get(
     options: HeaderRfc3339Parameters
-  ): StreamableMethod<HeaderRfc3339204Response | HeaderRfc3339DefaultResponse>;
+  ): StreamableMethod<HeaderRfc3339204Response>;
 }
 
 export interface HeaderRfc7231 {
   get(
     options: HeaderRfc7231Parameters
-  ): StreamableMethod<HeaderRfc7231204Response | HeaderRfc7231DefaultResponse>;
+  ): StreamableMethod<HeaderRfc7231204Response>;
 }
 
 export interface HeaderUnixTimestamp {
   get(
     options: HeaderUnixTimestampParameters
-  ): StreamableMethod<
-    HeaderUnixTimestamp204Response | HeaderUnixTimestampDefaultResponse
-  >;
+  ): StreamableMethod<HeaderUnixTimestamp204Response>;
 }
 
 export interface HeaderUnixTimestampArray {
   get(
     options: HeaderUnixTimestampArrayParameters
-  ): StreamableMethod<
-    | HeaderUnixTimestampArray204Response
-    | HeaderUnixTimestampArrayDefaultResponse
-  >;
+  ): StreamableMethod<HeaderUnixTimestampArray204Response>;
 }
 
 export interface Routes {

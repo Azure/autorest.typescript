@@ -43,81 +43,43 @@ import {
 } from "./parameters";
 import {
   BooleanModelGet200Response,
-  BooleanModelGetDefaultResponse,
   BooleanModelPut204Response,
-  BooleanModelPutDefaultResponse,
   StringModelGet200Response,
-  StringModelGetDefaultResponse,
   StringModelPut204Response,
-  StringModelPutDefaultResponse,
   BytesGet200Response,
-  BytesGetDefaultResponse,
   BytesPut204Response,
-  BytesPutDefaultResponse,
   IntGet200Response,
-  IntGetDefaultResponse,
   IntPut204Response,
-  IntPutDefaultResponse,
   FloatGet200Response,
-  FloatGetDefaultResponse,
   FloatPut204Response,
-  FloatPutDefaultResponse,
   DatetimeGet200Response,
-  DatetimeGetDefaultResponse,
   DatetimePut204Response,
-  DatetimePutDefaultResponse,
   DurationGet200Response,
-  DurationGetDefaultResponse,
   DurationPut204Response,
-  DurationPutDefaultResponse,
   EnumGet200Response,
-  EnumGetDefaultResponse,
   EnumPut204Response,
-  EnumPutDefaultResponse,
   ExtensibleEnumGet200Response,
-  ExtensibleEnumGetDefaultResponse,
   ExtensibleEnumPut204Response,
-  ExtensibleEnumPutDefaultResponse,
   ModelGet200Response,
-  ModelGetDefaultResponse,
   ModelPut204Response,
-  ModelPutDefaultResponse,
   CollectionsStringGet200Response,
-  CollectionsStringGetDefaultResponse,
   CollectionsStringPut204Response,
-  CollectionsStringPutDefaultResponse,
   CollectionsIntGet200Response,
-  CollectionsIntGetDefaultResponse,
   CollectionsIntPut204Response,
-  CollectionsIntPutDefaultResponse,
   CollectionsModelGet200Response,
-  CollectionsModelGetDefaultResponse,
   CollectionsModelPut204Response,
-  CollectionsModelPutDefaultResponse,
   DictionaryStringGet200Response,
-  DictionaryStringGetDefaultResponse,
   DictionaryStringPut204Response,
-  DictionaryStringPutDefaultResponse,
   NeverGet200Response,
-  NeverGetDefaultResponse,
   NeverPut204Response,
-  NeverPutDefaultResponse,
   UnknownStringGet200Response,
-  UnknownStringGetDefaultResponse,
   UnknownStringPut204Response,
-  UnknownStringPutDefaultResponse,
   UnknownIntGet200Response,
-  UnknownIntGetDefaultResponse,
   UnknownIntPut204Response,
-  UnknownIntPutDefaultResponse,
   UnknownDictGet200Response,
-  UnknownDictGetDefaultResponse,
   UnknownDictPut204Response,
-  UnknownDictPutDefaultResponse,
   UnknownArrayGet200Response,
-  UnknownArrayGetDefaultResponse,
   UnknownArrayPut204Response,
-  UnknownArrayPutDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -125,249 +87,181 @@ export interface BooleanModelGet {
   /** Get call */
   get(
     options?: BooleanModelGetParameters
-  ): StreamableMethod<
-    BooleanModelGet200Response | BooleanModelGetDefaultResponse
-  >;
+  ): StreamableMethod<BooleanModelGet200Response>;
   /** Put operation */
   put(
     options: BooleanModelPutParameters
-  ): StreamableMethod<
-    BooleanModelPut204Response | BooleanModelPutDefaultResponse
-  >;
+  ): StreamableMethod<BooleanModelPut204Response>;
 }
 
 export interface StringModelGet {
   /** Get call */
   get(
     options?: StringModelGetParameters
-  ): StreamableMethod<
-    StringModelGet200Response | StringModelGetDefaultResponse
-  >;
+  ): StreamableMethod<StringModelGet200Response>;
   /** Put operation */
   put(
     options: StringModelPutParameters
-  ): StreamableMethod<
-    StringModelPut204Response | StringModelPutDefaultResponse
-  >;
+  ): StreamableMethod<StringModelPut204Response>;
 }
 
 export interface BytesGet {
   /** Get call */
-  get(
-    options?: BytesGetParameters
-  ): StreamableMethod<BytesGet200Response | BytesGetDefaultResponse>;
+  get(options?: BytesGetParameters): StreamableMethod<BytesGet200Response>;
   /** Put operation */
-  put(
-    options: BytesPutParameters
-  ): StreamableMethod<BytesPut204Response | BytesPutDefaultResponse>;
+  put(options: BytesPutParameters): StreamableMethod<BytesPut204Response>;
 }
 
 export interface IntGet {
   /** Get call */
-  get(
-    options?: IntGetParameters
-  ): StreamableMethod<IntGet200Response | IntGetDefaultResponse>;
+  get(options?: IntGetParameters): StreamableMethod<IntGet200Response>;
   /** Put operation */
-  put(
-    options: IntPutParameters
-  ): StreamableMethod<IntPut204Response | IntPutDefaultResponse>;
+  put(options: IntPutParameters): StreamableMethod<IntPut204Response>;
 }
 
 export interface FloatGet {
   /** Get call */
-  get(
-    options?: FloatGetParameters
-  ): StreamableMethod<FloatGet200Response | FloatGetDefaultResponse>;
+  get(options?: FloatGetParameters): StreamableMethod<FloatGet200Response>;
   /** Put operation */
-  put(
-    options: FloatPutParameters
-  ): StreamableMethod<FloatPut204Response | FloatPutDefaultResponse>;
+  put(options: FloatPutParameters): StreamableMethod<FloatPut204Response>;
 }
 
 export interface DatetimeGet {
   /** Get call */
   get(
     options?: DatetimeGetParameters
-  ): StreamableMethod<DatetimeGet200Response | DatetimeGetDefaultResponse>;
+  ): StreamableMethod<DatetimeGet200Response>;
   /** Put operation */
-  put(
-    options: DatetimePutParameters
-  ): StreamableMethod<DatetimePut204Response | DatetimePutDefaultResponse>;
+  put(options: DatetimePutParameters): StreamableMethod<DatetimePut204Response>;
 }
 
 export interface DurationGet {
   /** Get call */
   get(
     options?: DurationGetParameters
-  ): StreamableMethod<DurationGet200Response | DurationGetDefaultResponse>;
+  ): StreamableMethod<DurationGet200Response>;
   /** Put operation */
-  put(
-    options: DurationPutParameters
-  ): StreamableMethod<DurationPut204Response | DurationPutDefaultResponse>;
+  put(options: DurationPutParameters): StreamableMethod<DurationPut204Response>;
 }
 
 export interface EnumGet {
   /** Get call */
-  get(
-    options?: EnumGetParameters
-  ): StreamableMethod<EnumGet200Response | EnumGetDefaultResponse>;
+  get(options?: EnumGetParameters): StreamableMethod<EnumGet200Response>;
   /** Put operation */
-  put(
-    options: EnumPutParameters
-  ): StreamableMethod<EnumPut204Response | EnumPutDefaultResponse>;
+  put(options: EnumPutParameters): StreamableMethod<EnumPut204Response>;
 }
 
 export interface ExtensibleEnumGet {
   /** Get call */
   get(
     options?: ExtensibleEnumGetParameters
-  ): StreamableMethod<
-    ExtensibleEnumGet200Response | ExtensibleEnumGetDefaultResponse
-  >;
+  ): StreamableMethod<ExtensibleEnumGet200Response>;
   /** Put operation */
   put(
     options: ExtensibleEnumPutParameters
-  ): StreamableMethod<
-    ExtensibleEnumPut204Response | ExtensibleEnumPutDefaultResponse
-  >;
+  ): StreamableMethod<ExtensibleEnumPut204Response>;
 }
 
 export interface ModelGet {
   /** Get call */
-  get(
-    options?: ModelGetParameters
-  ): StreamableMethod<ModelGet200Response | ModelGetDefaultResponse>;
+  get(options?: ModelGetParameters): StreamableMethod<ModelGet200Response>;
   /** Put operation */
-  put(
-    options: ModelPutParameters
-  ): StreamableMethod<ModelPut204Response | ModelPutDefaultResponse>;
+  put(options: ModelPutParameters): StreamableMethod<ModelPut204Response>;
 }
 
 export interface CollectionsStringGet {
   /** Get call */
   get(
     options?: CollectionsStringGetParameters
-  ): StreamableMethod<
-    CollectionsStringGet200Response | CollectionsStringGetDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsStringGet200Response>;
   /** Put operation */
   put(
     options: CollectionsStringPutParameters
-  ): StreamableMethod<
-    CollectionsStringPut204Response | CollectionsStringPutDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsStringPut204Response>;
 }
 
 export interface CollectionsIntGet {
   /** Get call */
   get(
     options?: CollectionsIntGetParameters
-  ): StreamableMethod<
-    CollectionsIntGet200Response | CollectionsIntGetDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsIntGet200Response>;
   /** Put operation */
   put(
     options: CollectionsIntPutParameters
-  ): StreamableMethod<
-    CollectionsIntPut204Response | CollectionsIntPutDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsIntPut204Response>;
 }
 
 export interface CollectionsModelGet {
   /** Get call */
   get(
     options?: CollectionsModelGetParameters
-  ): StreamableMethod<
-    CollectionsModelGet200Response | CollectionsModelGetDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsModelGet200Response>;
   /** Put operation */
   put(
     options: CollectionsModelPutParameters
-  ): StreamableMethod<
-    CollectionsModelPut204Response | CollectionsModelPutDefaultResponse
-  >;
+  ): StreamableMethod<CollectionsModelPut204Response>;
 }
 
 export interface DictionaryStringGet {
   /** Get call */
   get(
     options?: DictionaryStringGetParameters
-  ): StreamableMethod<
-    DictionaryStringGet200Response | DictionaryStringGetDefaultResponse
-  >;
+  ): StreamableMethod<DictionaryStringGet200Response>;
   /** Put operation */
   put(
     options: DictionaryStringPutParameters
-  ): StreamableMethod<
-    DictionaryStringPut204Response | DictionaryStringPutDefaultResponse
-  >;
+  ): StreamableMethod<DictionaryStringPut204Response>;
 }
 
 export interface NeverGet {
   /** Get call */
-  get(
-    options?: NeverGetParameters
-  ): StreamableMethod<NeverGet200Response | NeverGetDefaultResponse>;
+  get(options?: NeverGetParameters): StreamableMethod<NeverGet200Response>;
   /** Put operation */
-  put(
-    options: NeverPutParameters
-  ): StreamableMethod<NeverPut204Response | NeverPutDefaultResponse>;
+  put(options: NeverPutParameters): StreamableMethod<NeverPut204Response>;
 }
 
 export interface UnknownStringGet {
   /** Get call */
   get(
     options?: UnknownStringGetParameters
-  ): StreamableMethod<
-    UnknownStringGet200Response | UnknownStringGetDefaultResponse
-  >;
+  ): StreamableMethod<UnknownStringGet200Response>;
   /** Put operation */
   put(
     options: UnknownStringPutParameters
-  ): StreamableMethod<
-    UnknownStringPut204Response | UnknownStringPutDefaultResponse
-  >;
+  ): StreamableMethod<UnknownStringPut204Response>;
 }
 
 export interface UnknownIntGet {
   /** Get call */
   get(
     options?: UnknownIntGetParameters
-  ): StreamableMethod<UnknownIntGet200Response | UnknownIntGetDefaultResponse>;
+  ): StreamableMethod<UnknownIntGet200Response>;
   /** Put operation */
   put(
     options: UnknownIntPutParameters
-  ): StreamableMethod<UnknownIntPut204Response | UnknownIntPutDefaultResponse>;
+  ): StreamableMethod<UnknownIntPut204Response>;
 }
 
 export interface UnknownDictGet {
   /** Get call */
   get(
     options?: UnknownDictGetParameters
-  ): StreamableMethod<
-    UnknownDictGet200Response | UnknownDictGetDefaultResponse
-  >;
+  ): StreamableMethod<UnknownDictGet200Response>;
   /** Put operation */
   put(
     options: UnknownDictPutParameters
-  ): StreamableMethod<
-    UnknownDictPut204Response | UnknownDictPutDefaultResponse
-  >;
+  ): StreamableMethod<UnknownDictPut204Response>;
 }
 
 export interface UnknownArrayGet {
   /** Get call */
   get(
     options?: UnknownArrayGetParameters
-  ): StreamableMethod<
-    UnknownArrayGet200Response | UnknownArrayGetDefaultResponse
-  >;
+  ): StreamableMethod<UnknownArrayGet200Response>;
   /** Put operation */
   put(
     options: UnknownArrayPutParameters
-  ): StreamableMethod<
-    UnknownArrayPut204Response | UnknownArrayPutDefaultResponse
-  >;
+  ): StreamableMethod<UnknownArrayPut204Response>;
 }
 
 export interface Routes {

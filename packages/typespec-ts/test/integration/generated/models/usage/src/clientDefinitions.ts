@@ -8,32 +8,23 @@ import {
 } from "./parameters";
 import {
   Input204Response,
-  InputDefaultResponse,
   Output200Response,
-  OutputDefaultResponse,
   InputAndOutput200Response,
-  InputAndOutputDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Input {
-  post(
-    options: InputParameters
-  ): StreamableMethod<Input204Response | InputDefaultResponse>;
+  post(options: InputParameters): StreamableMethod<Input204Response>;
 }
 
 export interface Output {
-  get(
-    options?: OutputParameters
-  ): StreamableMethod<Output200Response | OutputDefaultResponse>;
+  get(options?: OutputParameters): StreamableMethod<Output200Response>;
 }
 
 export interface InputAndOutput {
   post(
     options: InputAndOutputParameters
-  ): StreamableMethod<
-    InputAndOutput200Response | InputAndOutputDefaultResponse
-  >;
+  ): StreamableMethod<InputAndOutput200Response>;
 }
 
 export interface Routes {

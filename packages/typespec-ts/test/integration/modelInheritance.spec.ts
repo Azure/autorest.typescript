@@ -1,8 +1,7 @@
 import NestedDiscriminatorClientFactory, {
   GoblinShark,
   NestedDiscriminatorClient,
-  Salmon,
-  isUnexpected
+  Salmon
 } from "./generated/models/inheritance/src/index.js";
 import { assert } from "chai";
 
@@ -25,9 +24,6 @@ describe("NestedDiscriminatorClient Rest Client", () => {
       const result = await client
         .path("/type/model/inheritance/nested-discriminator/model")
         .get();
-      if (isUnexpected(result)) {
-        throw new Error("error");
-      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
       if (result.body.kind === "shark") {
@@ -118,9 +114,6 @@ describe("NestedDiscriminatorClient Rest Client", () => {
         JSON.stringify(result.body),
         JSON.stringify(validRecursiveBody)
       );
-      if (isUnexpected(result)) {
-        throw new Error("error");
-      }
       if (result.body.kind === "salmon") {
         assert.strictEqual(
           result.body.partner?.kind,
@@ -152,9 +145,6 @@ describe("NestedDiscriminatorClient Rest Client", () => {
           "/type/model/inheritance/nested-discriminator/missingdiscriminator"
         )
         .get();
-      if (isUnexpected(result)) {
-        throw new Error("error");
-      }
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
     } catch (err) {
@@ -168,9 +158,6 @@ describe("NestedDiscriminatorClient Rest Client", () => {
         .path("/type/model/inheritance/nested-discriminator/wrongdiscriminator")
         .get();
       assert.strictEqual(result.status, "200");
-      if (isUnexpected(result)) {
-        throw new Error("error");
-      }
       assert.strictEqual(result.body.age, 1);
       assert.strictEqual(result.body.kind, "wrongKind");
     } catch (err) {

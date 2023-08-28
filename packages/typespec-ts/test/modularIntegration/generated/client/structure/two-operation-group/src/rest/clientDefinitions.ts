@@ -11,54 +11,36 @@ import {
 } from "./parameters.js";
 import {
   One204Response,
-  OneDefaultResponse,
   Two204Response,
-  TwoDefaultResponse,
   Three204Response,
-  ThreeDefaultResponse,
   Four204Response,
-  FourDefaultResponse,
   Five204Response,
-  FiveDefaultResponse,
   Six204Response,
-  SixDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface One {
-  post(
-    options?: OneParameters
-  ): StreamableMethod<One204Response | OneDefaultResponse>;
+  post(options?: OneParameters): StreamableMethod<One204Response>;
 }
 
 export interface Two {
-  post(
-    options?: TwoParameters
-  ): StreamableMethod<Two204Response | TwoDefaultResponse>;
+  post(options?: TwoParameters): StreamableMethod<Two204Response>;
 }
 
 export interface Three {
-  post(
-    options?: ThreeParameters
-  ): StreamableMethod<Three204Response | ThreeDefaultResponse>;
+  post(options?: ThreeParameters): StreamableMethod<Three204Response>;
 }
 
 export interface Four {
-  post(
-    options?: FourParameters
-  ): StreamableMethod<Four204Response | FourDefaultResponse>;
+  post(options?: FourParameters): StreamableMethod<Four204Response>;
 }
 
 export interface Five {
-  post(
-    options?: FiveParameters
-  ): StreamableMethod<Five204Response | FiveDefaultResponse>;
+  post(options?: FiveParameters): StreamableMethod<Five204Response>;
 }
 
 export interface Six {
-  post(
-    options?: SixParameters
-  ): StreamableMethod<Six204Response | SixDefaultResponse>;
+  post(options?: SixParameters): StreamableMethod<Six204Response>;
 }
 
 export interface Routes {

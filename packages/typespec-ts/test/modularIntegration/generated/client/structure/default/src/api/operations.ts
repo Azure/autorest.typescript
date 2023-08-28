@@ -3,19 +3,12 @@
 
 import {
   Five204Response,
-  FiveDefaultResponse,
   Four204Response,
-  FourDefaultResponse,
-  isUnexpected,
   One204Response,
-  OneDefaultResponse,
   ServiceContext as Client,
   Six204Response,
-  SixDefaultResponse,
   Three204Response,
-  ThreeDefaultResponse,
   Two204Response,
-  TwoDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -33,16 +26,14 @@ import {
 export function _oneSend(
   context: Client,
   options: OneOptions = { requestOptions: {} }
-): StreamableMethod<One204Response | OneDefaultResponse> {
+): StreamableMethod<One204Response> {
   return context
     .path("/one")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _oneDeserialize(
-  result: One204Response | OneDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _oneDeserialize(result: One204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -60,16 +51,14 @@ export async function one(
 export function _twoSend(
   context: Client,
   options: TwoOptions = { requestOptions: {} }
-): StreamableMethod<Two204Response | TwoDefaultResponse> {
+): StreamableMethod<Two204Response> {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _twoDeserialize(
-  result: Two204Response | TwoDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _twoDeserialize(result: Two204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -87,16 +76,16 @@ export async function two(
 export function _threeSend(
   context: Client,
   options: ThreeOptions = { requestOptions: {} }
-): StreamableMethod<Three204Response | ThreeDefaultResponse> {
+): StreamableMethod<Three204Response> {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _threeDeserialize(
-  result: Three204Response | ThreeDefaultResponse
+  result: Three204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -114,16 +103,14 @@ export async function three(
 export function _fourSend(
   context: Client,
   options: FourOptions = { requestOptions: {} }
-): StreamableMethod<Four204Response | FourDefaultResponse> {
+): StreamableMethod<Four204Response> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fourDeserialize(
-  result: Four204Response | FourDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _fourDeserialize(result: Four204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -141,16 +128,14 @@ export async function four(
 export function _fiveSend(
   context: Client,
   options: FiveOptions = { requestOptions: {} }
-): StreamableMethod<Five204Response | FiveDefaultResponse> {
+): StreamableMethod<Five204Response> {
   return context
     .path("/five")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fiveDeserialize(
-  result: Five204Response | FiveDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _fiveDeserialize(result: Five204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -168,16 +153,14 @@ export async function five(
 export function _sixSend(
   context: Client,
   options: SixOptions = { requestOptions: {} }
-): StreamableMethod<Six204Response | SixDefaultResponse> {
+): StreamableMethod<Six204Response> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _sixDeserialize(
-  result: Six204Response | SixDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _sixDeserialize(result: Six204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 

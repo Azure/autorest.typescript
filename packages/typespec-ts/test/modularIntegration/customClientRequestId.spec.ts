@@ -15,7 +15,6 @@ describe("RequestIdClient Classical Client", () => {
       const result = await client.get();
       assert.isUndefined(result);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -49,7 +48,6 @@ describe("RequestIdClient Classical Client", () => {
       });
       assert.isUndefined(result);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -65,7 +63,6 @@ describe("RequestIdClient Classical Client", () => {
       await client.get();
       assert.fail("should throw exceptions");
     } catch (err) {
-      console.log(err);
       assert.isNotNull(err);
     }
   });

@@ -3,13 +3,9 @@
 
 import {
   Five204Response,
-  FiveDefaultResponse,
-  isUnexpected,
   ServiceContext as Client,
   Six204Response,
-  SixDefaultResponse,
   Two204Response,
-  TwoDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -20,16 +16,14 @@ import { TwoOptions, FiveOptions, SixOptions } from "../models/options.js";
 export function _twoSend(
   context: Client,
   options: TwoOptions = { requestOptions: {} }
-): StreamableMethod<Two204Response | TwoDefaultResponse> {
+): StreamableMethod<Two204Response> {
   return context
     .path("/two")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _twoDeserialize(
-  result: Two204Response | TwoDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _twoDeserialize(result: Two204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -47,16 +41,14 @@ export async function two(
 export function _fiveSend(
   context: Client,
   options: FiveOptions = { requestOptions: {} }
-): StreamableMethod<Five204Response | FiveDefaultResponse> {
+): StreamableMethod<Five204Response> {
   return context
     .path("/five")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fiveDeserialize(
-  result: Five204Response | FiveDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _fiveDeserialize(result: Five204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -74,16 +66,14 @@ export async function five(
 export function _sixSend(
   context: Client,
   options: SixOptions = { requestOptions: {} }
-): StreamableMethod<Six204Response | SixDefaultResponse> {
+): StreamableMethod<Six204Response> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _sixDeserialize(
-  result: Six204Response | SixDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _sixDeserialize(result: Six204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 

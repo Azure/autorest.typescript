@@ -1,7 +1,6 @@
 import { assert } from "chai";
 import EncodeDurationClientFactory, {
-  DurationClient,
-  isUnexpected
+  DurationClient
 } from "./generated/encode/duration/src/index.js";
 import { buildCsvCollection } from "./generated/encode/duration/src/serializeHelper.js";
 describe("EncodeDurationClient Rest Client", () => {
@@ -26,9 +25,6 @@ describe("EncodeDurationClient Rest Client", () => {
               value: "P40D"
             }
           });
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body.value, "P40D");
       } catch (err) {
@@ -45,9 +41,6 @@ describe("EncodeDurationClient Rest Client", () => {
               value: 35.621
             }
           });
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body.value, 35.621);
       } catch (err) {
@@ -64,9 +57,6 @@ describe("EncodeDurationClient Rest Client", () => {
               value: 36
             }
           });
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body.value, 36);
       } catch (err) {
@@ -83,9 +73,6 @@ describe("EncodeDurationClient Rest Client", () => {
               value: "P40D"
             }
           });
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.strictEqual(result.status, "200");
         assert.strictEqual(result.body.value, "P40D");
       } catch (err) {
@@ -102,9 +89,6 @@ describe("EncodeDurationClient Rest Client", () => {
               value: [35.621, 46.781]
             }
           });
-        if (isUnexpected(result)) {
-          throw new Error("error");
-        }
         assert.strictEqual(result.status, "200");
         assert.deepEqual(result.body.value, [35.621, 46.781]);
       } catch (err) {

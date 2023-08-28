@@ -8,37 +8,28 @@ import {
 } from "./parameters";
 import {
   FromNone204Response,
-  FromNoneDefaultResponse,
   FromOneRequired204Response,
-  FromOneRequiredDefaultResponse,
   FromOneOptional204Response,
-  FromOneOptionalDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface FromNone {
   /** Test that currently accepts no parameters, will be updated in next spec to accept a new optional parameter as well */
-  head(
-    options?: FromNoneParameters
-  ): StreamableMethod<FromNone204Response | FromNoneDefaultResponse>;
+  head(options?: FromNoneParameters): StreamableMethod<FromNone204Response>;
 }
 
 export interface FromOneRequired {
   /** Test that currently accepts one required parameter, will be updated in next spec to accept a new optional parameter as well */
   get(
     options: FromOneRequiredParameters
-  ): StreamableMethod<
-    FromOneRequired204Response | FromOneRequiredDefaultResponse
-  >;
+  ): StreamableMethod<FromOneRequired204Response>;
 }
 
 export interface FromOneOptional {
   /** Test that currently accepts one optional parameter, will be updated in next spec to accept a new optional parameter as well */
   get(
     options?: FromOneOptionalParameters
-  ): StreamableMethod<
-    FromOneOptional204Response | FromOneOptionalDefaultResponse
-  >;
+  ): StreamableMethod<FromOneOptional204Response>;
 }
 
 export interface Routes {

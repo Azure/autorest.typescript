@@ -8,33 +8,24 @@ import {
 } from "./parameters";
 import {
   GetThing200Response,
-  GetThingDefaultResponse,
   Upload204Response,
-  UploadDefaultResponse,
   Process204Response,
-  ProcessDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetThing {
   /** Overload with same routes */
-  post(
-    options: GetThingParameters
-  ): StreamableMethod<GetThing200Response | GetThingDefaultResponse>;
+  post(options: GetThingParameters): StreamableMethod<GetThing200Response>;
 }
 
 export interface Upload {
   /** Overload with different routes */
-  put(
-    options: UploadParameters
-  ): StreamableMethod<Upload204Response | UploadDefaultResponse>;
+  put(options: UploadParameters): StreamableMethod<Upload204Response>;
 }
 
 export interface Process {
   /** Overloads with different actions */
-  put(
-    options: ProcessParameters
-  ): StreamableMethod<Process204Response | ProcessDefaultResponse>;
+  put(options: ProcessParameters): StreamableMethod<Process204Response>;
 }
 
 export interface Routes {

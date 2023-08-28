@@ -9,44 +9,32 @@ import {
 } from "./parameters";
 import {
   SendInt200Response,
-  SendIntDefaultResponse,
   SendIntArray200Response,
-  SendIntArrayDefaultResponse,
   SendFirstNamedUnionValue200Response,
-  SendFirstNamedUnionValueDefaultResponse,
   SendSecondNamedUnionValue200Response,
-  SendSecondNamedUnionValueDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface SendInt {
-  post(
-    options: SendIntParameters
-  ): StreamableMethod<SendInt200Response | SendIntDefaultResponse>;
+  post(options: SendIntParameters): StreamableMethod<SendInt200Response>;
 }
 
 export interface SendIntArray {
   post(
     options: SendIntArrayParameters
-  ): StreamableMethod<SendIntArray200Response | SendIntArrayDefaultResponse>;
+  ): StreamableMethod<SendIntArray200Response>;
 }
 
 export interface SendFirstNamedUnionValue {
   post(
     options: SendFirstNamedUnionValueParameters
-  ): StreamableMethod<
-    | SendFirstNamedUnionValue200Response
-    | SendFirstNamedUnionValueDefaultResponse
-  >;
+  ): StreamableMethod<SendFirstNamedUnionValue200Response>;
 }
 
 export interface SendSecondNamedUnionValue {
   post(
     options: SendSecondNamedUnionValueParameters
-  ): StreamableMethod<
-    | SendSecondNamedUnionValue200Response
-    | SendSecondNamedUnionValueDefaultResponse
-  >;
+  ): StreamableMethod<SendSecondNamedUnionValue200Response>;
 }
 
 export interface Routes {

@@ -3,8 +3,6 @@
 
 import {
   Get204Response,
-  GetDefaultResponse,
-  isUnexpected,
   RequestIdClientContext as Client,
 } from "../rest/index.js";
 import {
@@ -16,16 +14,14 @@ import { GetOptions } from "../models/options.js";
 export function _getSend(
   context: Client,
   options: GetOptions = { requestOptions: {} }
-): StreamableMethod<Get204Response | GetDefaultResponse> {
+): StreamableMethod<Get204Response> {
   return context
     .path("/special-headers/client-request-id")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _getDeserialize(
-  result: Get204Response | GetDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _getDeserialize(result: Get204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 

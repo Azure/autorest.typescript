@@ -11,56 +11,38 @@ import {
 } from "./parameters";
 import {
   GetModel200Response,
-  GetModelDefaultResponse,
   PutModel204Response,
-  PutModelDefaultResponse,
   GetRecursiveModel200Response,
-  GetRecursiveModelDefaultResponse,
   PutRecursiveModel204Response,
-  PutRecursiveModelDefaultResponse,
   GetMissingDiscriminator200Response,
-  GetMissingDiscriminatorDefaultResponse,
   GetWrongDiscriminator200Response,
-  GetWrongDiscriminatorDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetModel {
-  get(
-    options?: GetModelParameters
-  ): StreamableMethod<GetModel200Response | GetModelDefaultResponse>;
-  put(
-    options: PutModelParameters
-  ): StreamableMethod<PutModel204Response | PutModelDefaultResponse>;
+  get(options?: GetModelParameters): StreamableMethod<GetModel200Response>;
+  put(options: PutModelParameters): StreamableMethod<PutModel204Response>;
 }
 
 export interface GetRecursiveModel {
   get(
     options?: GetRecursiveModelParameters
-  ): StreamableMethod<
-    GetRecursiveModel200Response | GetRecursiveModelDefaultResponse
-  >;
+  ): StreamableMethod<GetRecursiveModel200Response>;
   put(
     options: PutRecursiveModelParameters
-  ): StreamableMethod<
-    PutRecursiveModel204Response | PutRecursiveModelDefaultResponse
-  >;
+  ): StreamableMethod<PutRecursiveModel204Response>;
 }
 
 export interface GetMissingDiscriminator {
   get(
     options?: GetMissingDiscriminatorParameters
-  ): StreamableMethod<
-    GetMissingDiscriminator200Response | GetMissingDiscriminatorDefaultResponse
-  >;
+  ): StreamableMethod<GetMissingDiscriminator200Response>;
 }
 
 export interface GetWrongDiscriminator {
   get(
     options?: GetWrongDiscriminatorParameters
-  ): StreamableMethod<
-    GetWrongDiscriminator200Response | GetWrongDiscriminatorDefaultResponse
-  >;
+  ): StreamableMethod<GetWrongDiscriminator200Response>;
 }
 
 export interface Routes {

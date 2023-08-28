@@ -126,7 +126,7 @@ export function buildModels(
 function isAzureCoreErrorSdkType(t: Type) {
   return (
     t.name &&
-    ["Error", "InnerError", "ErrorResponse"].includes(t.name) &&
+    ["error", "innererror", "errorresponse"].includes(t.name.toLowerCase()) &&
     t.isCoreErrorType === true
   );
 }

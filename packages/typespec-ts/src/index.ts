@@ -67,15 +67,15 @@ export async function $onEmit(context: EmitContext) {
   >();
   const rlcCodeModels: RLCModel[] = [];
   let modularCodeModel: ModularCodeModel;
-  // 2. Enrich the dpg context with path detail and common options
+  // 1. Enrich the dpg context with path detail and common options
   await enrichDpgContext();
-  // 3. Clear sources folder
+  // 2. Clear sources folder
   await clearSrcFolder();
-  // 4. Generate RLC sources
+  // 3. Generate RLC sources
   await generateRLCSources();
-  // 5. Generate Modular sources
+  // 4. Generate Modular sources
   await generateModularSources();
-  // 6. Generate metadata and test files
+  // 5. Generate metadata and test files
   await generateMetadataAndTest();
 
   async function enrichDpgContext() {

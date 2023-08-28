@@ -11,54 +11,36 @@ import {
 } from "./parameters";
 import {
   QueryMulti204Response,
-  QueryMultiDefaultResponse,
   QuerySsv204Response,
-  QuerySsvDefaultResponse,
   QueryTsv204Response,
-  QueryTsvDefaultResponse,
   QueryPipes204Response,
-  QueryPipesDefaultResponse,
   QueryCsv204Response,
-  QueryCsvDefaultResponse,
   HeaderCsv204Response,
-  HeaderCsvDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface QueryMulti {
-  get(
-    options: QueryMultiParameters
-  ): StreamableMethod<QueryMulti204Response | QueryMultiDefaultResponse>;
+  get(options: QueryMultiParameters): StreamableMethod<QueryMulti204Response>;
 }
 
 export interface QuerySsv {
-  get(
-    options: QuerySsvParameters
-  ): StreamableMethod<QuerySsv204Response | QuerySsvDefaultResponse>;
+  get(options: QuerySsvParameters): StreamableMethod<QuerySsv204Response>;
 }
 
 export interface QueryTsv {
-  get(
-    options: QueryTsvParameters
-  ): StreamableMethod<QueryTsv204Response | QueryTsvDefaultResponse>;
+  get(options: QueryTsvParameters): StreamableMethod<QueryTsv204Response>;
 }
 
 export interface QueryPipes {
-  get(
-    options: QueryPipesParameters
-  ): StreamableMethod<QueryPipes204Response | QueryPipesDefaultResponse>;
+  get(options: QueryPipesParameters): StreamableMethod<QueryPipes204Response>;
 }
 
 export interface QueryCsv {
-  get(
-    options: QueryCsvParameters
-  ): StreamableMethod<QueryCsv204Response | QueryCsvDefaultResponse>;
+  get(options: QueryCsvParameters): StreamableMethod<QueryCsv204Response>;
 }
 
 export interface HeaderCsv {
-  get(
-    options: HeaderCsvParameters
-  ): StreamableMethod<HeaderCsv204Response | HeaderCsvDefaultResponse>;
+  get(options: HeaderCsvParameters): StreamableMethod<HeaderCsv204Response>;
 }
 
 export interface Routes {

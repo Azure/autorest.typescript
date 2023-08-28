@@ -103,14 +103,6 @@ export function getDeserializePrivateFunction(
   if (response?.type?.type) {
     returnType = buildType(response.type.name, response.type);
   } else {
-    if (!needUnexpectedHelper) {
-      parameters = [
-        {
-          name: "_result",
-          type: getRLCResponseType(operation.rlcResponse)
-        }
-      ];
-    }
     returnType = { name: "", type: "void" };
   }
 
@@ -128,6 +120,24 @@ export function getDeserializePrivateFunction(
       "throw result.body",
       "}"
     );
+  } else {
+    const validStatus = [
+      ...new Set(
+        operation.responses
+          .flatMap((r) => r.statusCodes)
+          .filter((s) => s !== "default")
+      )
+    ];
+
+    if (validStatus.length > 0) {
+      statements.push(
+        `if(${validStatus
+          .map((s) => `"${s}" !== result.status`)
+          .join(" || ")}){`,
+        "throw result.body",
+        "}"
+      );
+    }
   }
 
   if (response?.type?.type === "any") {

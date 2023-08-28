@@ -7,6 +7,5 @@ export * from "./clientRequestIdClient.js";
 export * from "./parameters.js";
 export * from "./responses.js";
 export * from "./clientDefinitions.js";
-export * from "./isUnexpected.js";
 
 export default ClientRequestIdClient;

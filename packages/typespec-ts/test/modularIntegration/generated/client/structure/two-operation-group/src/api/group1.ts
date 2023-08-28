@@ -3,13 +3,9 @@
 
 import {
   Four204Response,
-  FourDefaultResponse,
-  isUnexpected,
   One204Response,
-  OneDefaultResponse,
   ServiceContext as Client,
   Three204Response,
-  ThreeDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -20,16 +16,14 @@ import { OneOptions, ThreeOptions, FourOptions } from "../models/options.js";
 export function _oneSend(
   context: Client,
   options: OneOptions = { requestOptions: {} }
-): StreamableMethod<One204Response | OneDefaultResponse> {
+): StreamableMethod<One204Response> {
   return context
     .path("/one")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _oneDeserialize(
-  result: One204Response | OneDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _oneDeserialize(result: One204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -47,16 +41,16 @@ export async function one(
 export function _threeSend(
   context: Client,
   options: ThreeOptions = { requestOptions: {} }
-): StreamableMethod<Three204Response | ThreeDefaultResponse> {
+): StreamableMethod<Three204Response> {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _threeDeserialize(
-  result: Three204Response | ThreeDefaultResponse
+  result: Three204Response
 ): Promise<void> {
-  if (isUnexpected(result)) {
+  if ("204" !== result.status) {
     throw result.body;
   }
 
@@ -74,16 +68,14 @@ export async function three(
 export function _fourSend(
   context: Client,
   options: FourOptions = { requestOptions: {} }
-): StreamableMethod<Four204Response | FourDefaultResponse> {
+): StreamableMethod<Four204Response> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fourDeserialize(
-  result: Four204Response | FourDefaultResponse
-): Promise<void> {
-  if (isUnexpected(result)) {
+export async function _fourDeserialize(result: Four204Response): Promise<void> {
+  if ("204" !== result.status) {
     throw result.body;
   }
 

@@ -9,40 +9,32 @@ import {
 } from "./parameters";
 import {
   SharedPublic200Response,
-  SharedPublicDefaultResponse,
   SharedInternal200Response,
-  SharedInternalDefaultResponse,
   PublicOnly200Response,
-  PublicOnlyDefaultResponse,
   InternalOnly200Response,
-  InternalOnlyDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Public {
   get(
     options: SharedPublicParameters
-  ): StreamableMethod<SharedPublic200Response | SharedPublicDefaultResponse>;
+  ): StreamableMethod<SharedPublic200Response>;
 }
 
 export interface Internal {
   get(
     options: SharedInternalParameters
-  ): StreamableMethod<
-    SharedInternal200Response | SharedInternalDefaultResponse
-  >;
+  ): StreamableMethod<SharedInternal200Response>;
 }
 
 export interface PublicOnly {
-  get(
-    options: PublicOnlyParameters
-  ): StreamableMethod<PublicOnly200Response | PublicOnlyDefaultResponse>;
+  get(options: PublicOnlyParameters): StreamableMethod<PublicOnly200Response>;
 }
 
 export interface InternalOnly {
   get(
     options: InternalOnlyParameters
-  ): StreamableMethod<InternalOnly200Response | InternalOnlyDefaultResponse>;
+  ): StreamableMethod<InternalOnly200Response>;
 }
 
 export interface Routes {

@@ -9,50 +9,34 @@ import {
 } from "./parameters";
 import {
   ModelSpreadAsRequestBody204Response,
-  ModelSpreadAsRequestBodyDefaultResponse,
   AliasSpreadAsRequestBody204Response,
-  AliasSpreadAsRequestBodyDefaultResponse,
   AliasSpreadAsRequestParameter204Response,
-  AliasSpreadAsRequestParameterDefaultResponse,
   AliasSpreadWithMultipleParameters204Response,
-  AliasSpreadWithMultipleParametersDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface ModelSpreadAsRequestBody {
   put(
     options?: ModelSpreadAsRequestBodyParameters
-  ): StreamableMethod<
-    | ModelSpreadAsRequestBody204Response
-    | ModelSpreadAsRequestBodyDefaultResponse
-  >;
+  ): StreamableMethod<ModelSpreadAsRequestBody204Response>;
 }
 
 export interface AliasSpreadAsRequestBody {
   put(
     options?: AliasSpreadAsRequestBodyParameters
-  ): StreamableMethod<
-    | AliasSpreadAsRequestBody204Response
-    | AliasSpreadAsRequestBodyDefaultResponse
-  >;
+  ): StreamableMethod<AliasSpreadAsRequestBody204Response>;
 }
 
 export interface AliasSpreadAsRequestParameter {
   put(
     options: AliasSpreadAsRequestParameterParameters
-  ): StreamableMethod<
-    | AliasSpreadAsRequestParameter204Response
-    | AliasSpreadAsRequestParameterDefaultResponse
-  >;
+  ): StreamableMethod<AliasSpreadAsRequestParameter204Response>;
 }
 
 export interface AliasSpreadWithMultipleParameters {
   put(
     options: AliasSpreadWithMultipleParametersParameters
-  ): StreamableMethod<
-    | AliasSpreadWithMultipleParameters204Response
-    | AliasSpreadWithMultipleParametersDefaultResponse
-  >;
+  ): StreamableMethod<AliasSpreadWithMultipleParameters204Response>;
 }
 
 export interface Routes {
