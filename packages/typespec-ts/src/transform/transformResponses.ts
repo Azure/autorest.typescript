@@ -25,8 +25,7 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType,
-  isAzureCoreErrorType
+  getBinaryType
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
@@ -180,23 +179,9 @@ function transformBody(
       descriptions.add("Value may contain any sequence of octets");
       continue;
     }
-    let bodySchema;
-    const model = body!.type;
-    if (
-      isAzureCoreErrorType(model) &&
-      (model as any).name === "ErrorResponse"
-    ) {
-      bodySchema = {
-        type: "object",
-        name: `${(model as any).name}Output`,
-        fromCore: true
-      } as Schema;
-    } else {
-      bodySchema = getSchemaForType(dpgContext, body!.type, [
-        SchemaContext.Output
-      ]) as Schema;
-    }
-
+    const bodySchema = getSchemaForType(dpgContext, body!.type, [
+      SchemaContext.Output
+    ]) as Schema;
     fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
