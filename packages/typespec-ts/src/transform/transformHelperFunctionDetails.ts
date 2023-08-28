@@ -6,7 +6,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { HelperFunctionDetails } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import { HttpOperation, getHttpOperation } from "@typespec/http";
+import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
   hasPagingOperations,
   extractPagedMetadataNested,

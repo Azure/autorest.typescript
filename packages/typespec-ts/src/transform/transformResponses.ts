@@ -17,9 +17,9 @@ import {
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
+  getHttpOperation,
   HttpOperation,
-  HttpOperationResponse,
-  getHttpOperation
+  HttpOperationResponse
 } from "@typespec/http";
 import {
   getImportedModelName,

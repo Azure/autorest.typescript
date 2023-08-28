@@ -12,13 +12,13 @@ import {
   extractDefinedPosition,
   SchemaContext
 } from "@azure-tools/rlc-common";
+import { getHttpOperation } from "@typespec/http";
 import {
   getEnrichedDefaultApiVersion,
   getSchemaForType,
   trimUsage
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getHttpOperation } from "@typespec/http";
 
 export function transformApiVersionInfo(
   client: SdkClient,

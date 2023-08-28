@@ -11,10 +11,10 @@ import {
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics, Program } from "@typespec/compiler";
 import {
+  getHttpOperation,
   HttpOperation,
   HttpOperationParameters,
-  HttpOperationResponse,
-  getHttpOperation
+  HttpOperationResponse
 } from "@typespec/http";
 import {
   SdkClient,

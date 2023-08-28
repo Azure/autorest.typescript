@@ -12,10 +12,10 @@ import {
 } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Program, Type } from "@typespec/compiler";
 import {
+  getHttpOperation,
   HttpOperation,
   HttpOperationParameter,
-  HttpOperationParameters,
-  getHttpOperation
+  HttpOperationParameters
 } from "@typespec/http";
 import {
   getImportedModelName,
