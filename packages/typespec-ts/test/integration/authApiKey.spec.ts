@@ -19,7 +19,6 @@ describe("AuthApiKeyClient Rest Client", () => {
       const result = await client.path("/authentication/api-key/valid").get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });

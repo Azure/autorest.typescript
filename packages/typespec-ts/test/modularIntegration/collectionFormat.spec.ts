@@ -28,7 +28,6 @@ describe("CollectionFormatClient Classical Client", () => {
       });
       assert.strictEqual(result, undefined);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -38,7 +37,6 @@ describe("CollectionFormatClient Classical Client", () => {
       const result = await client.query.pipes(["blue", "red", "green"]);
       assert.strictEqual(result, undefined);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });

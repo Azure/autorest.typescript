@@ -423,15 +423,24 @@ export function getPropertySignature(
   const propertyName = property.name;
   const description = property.description;
   let type;
-  if (
+  const hasCoreInArray =
     property.type === "array" &&
     (property as any).items &&
-    (property as any).items.fromCore &&
-    property.typeName
-  ) {
+    (property as any).items.fromCore;
+  const hasCoreInRecord =
+    property.type === "dictionary" &&
+    (property as any).additionalProperties &&
+    (property as any).additionalProperties.fromCore;
+  if (hasCoreInArray && property.typeName) {
     type = property.typeName;
     importedModels.add(
       (property as any).items.typeName ?? (property as any).items.name
+    );
+  } else if (hasCoreInRecord && property.typeName) {
+    type = property.typeName;
+    importedModels.add(
+      (property as any).additionalProperties.typeName ??
+        (property as any).additionalProperties.name
     );
   } else {
     type =

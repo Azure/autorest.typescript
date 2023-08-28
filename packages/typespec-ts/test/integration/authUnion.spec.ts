@@ -54,7 +54,6 @@ describe("AuthUnionClient Rest Client", () => {
         .get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -65,7 +64,6 @@ describe("AuthUnionClient Rest Client", () => {
       const result = await client.path("/authentication/union/validkey").get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });

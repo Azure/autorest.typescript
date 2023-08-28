@@ -1251,7 +1251,7 @@ export function trimUsage(model: any) {
 export function isAzureCoreErrorType(t?: Type): boolean {
   if (
     t?.kind !== "Model" ||
-    !["Error", "ErrorResponse", "InnerError", "ErrorModel"].includes(t.name)
+    !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
   )
     return false;
   const namespaces = ".Azure.Core.Foundations".split(".");
