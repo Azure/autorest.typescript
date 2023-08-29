@@ -24,6 +24,7 @@ export function buildOperationFiles(
   client: Client,
   needUnexpectedHelper: boolean = true
 ) {
+  const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
     const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
     const fileName = operationGroup.className
@@ -106,7 +107,9 @@ export function buildOperationFiles(
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();
+    operationFiles.push(operationGroupFile);
   }
+  return operationFiles;
 }
 
 export function importModels(

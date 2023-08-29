@@ -71,10 +71,16 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
   const defaultOptions = {
     generateProtocolMethods: true,
     generateConvenienceMethods: true,
-    emitters: []
+    emitters: [
+      {
+        main: "@azure-tools/typespec-ts",
+        metadata: { name: "@azure-tools/typespec-ts" }
+      }
+    ]
   };
   const resolvedOptions = { ...defaultOptions };
   program.emitters = resolvedOptions.emitters as any;
+  
   return {
     program: program,
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
