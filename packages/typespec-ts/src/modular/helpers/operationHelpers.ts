@@ -245,12 +245,17 @@ export function getOperationFunction(
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
-  const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type)
-    : { name: "", type: "void" };
+  let returnType = { name: "", type: "void" };
+  if (response.type?.type) {
+    let type = response.type;
+    if (isPaging) {
+      type = extractPagingType(type, operation.itemName) ?? type;
+    }
+    returnType = buildType(type.name, type);
+  }
   // TODO: calculate the page return
   const operationReturnType = isPaging
-    ? `PagedAsyncIterableIterator<User>`
+    ? `PagedAsyncIterableIterator<${returnType.type}>`
     : `Promise<${returnType.type}>`;
 
   const { name, fixme = [] } = getOperationName(operation);
@@ -286,6 +291,21 @@ export function getOperationFunction(
     ...functionStatement,
     statements
   };
+}
+
+function extractPagingType(type: Type, itemName?: string): Type | undefined {
+  if (!itemName) {
+    return undefined;
+  }
+  const prop = (type.properties ?? [])
+    ?.filter((prop) => prop.restApiName === itemName)
+    .map((prop) => prop.type);
+  if (prop.length === 0) {
+    return undefined;
+  }
+  return prop[0]?.type === "list" && prop[0].elementType
+    ? prop[0].elementType
+    : undefined;
 }
 
 export function getOperationOptionsName(
