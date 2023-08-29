@@ -290,10 +290,10 @@ function addOverload(
     const oldTypes = implementationParameter[0]
       ?.getTypeNode()
       ?.getText()
-      .split("|");
-    const newTypes = typeName.split("|");
-    const newTypeSet = new Set(oldTypes?.concat(newTypes));
-    implementationParameter[0]?.setType(Array.from(newTypeSet).join("|"));
+      .split(" | ");
+    const newTypes = typeName.split(" | ").concat(oldTypes ?? []);
+    const newTypeSet = new Set(newTypes);
+    implementationParameter[0]?.setType(Array.from(newTypeSet).join(" | "));
   }
 }
 
