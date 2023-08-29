@@ -130,6 +130,10 @@ export function _customGetSend(
 export async function _customGetDeserialize(
   result: CustomGet200Response
 ): Promise<Widget> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -157,6 +161,10 @@ export function _customGet1Send(
 export async function _customGet1Deserialize(
   result: CustomGet1200Response
 ): Promise<Widget1> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -185,6 +193,10 @@ export function _customGet2Send(
 export async function _customGet2Deserialize(
   result: CustomGet2200Response
 ): Promise<Widget2> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -213,6 +225,10 @@ export function _customGet3Send(
 export async function _customGet3Deserialize(
   result: CustomGet3200Response
 ): Promise<Widget3> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -241,6 +257,10 @@ export function _customGet4Send(
 export async function _customGet4Deserialize(
   result: CustomGet4200Response
 ): Promise<Widget4> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -269,6 +289,10 @@ export function _customGet5Send(
 export async function _customGet5Deserialize(
   result: CustomGet5200Response
 ): Promise<Widget5> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -297,6 +321,10 @@ export function _customGet6Send(
 export async function _customGet6Deserialize(
   result: CustomGet6200Response
 ): Promise<Widget6> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -325,6 +353,10 @@ export function _customGet7Send(
 export async function _customGet7Deserialize(
   result: CustomGet7200Response
 ): Promise<Widget7> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -353,6 +385,10 @@ export function _customGet8Send(
 export async function _customGet8Deserialize(
   result: CustomGet8200Response
 ): Promise<Widget8> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -383,6 +419,10 @@ export function _customGet9Send(
 export async function _customGet9Deserialize(
   result: CustomGet9200Response
 ): Promise<Widget9> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -413,6 +453,10 @@ export function _customGet10Send(
 export async function _customGet10Deserialize(
   result: CustomGet10200Response
 ): Promise<Widget10> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -443,6 +487,10 @@ export function _customGet11Send(
 export async function _customGet11Deserialize(
   result: CustomGet11200Response
 ): Promise<Widget11> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -473,6 +521,10 @@ export function _customGet12Send(
 export async function _customGet12Deserialize(
   result: CustomGet12200Response
 ): Promise<Widget12> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -503,6 +555,10 @@ export function _customGet13Send(
 export async function _customGet13Deserialize(
   result: CustomGet13200Response
 ): Promise<Widget13> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -531,6 +587,10 @@ export function _customGet14Send(
 export async function _customGet14Deserialize(
   result: CustomGet14200Response
 ): Promise<Widget14> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -559,6 +619,10 @@ export function _customGet15Send(
 export async function _customGet15Deserialize(
   result: CustomGet15200Response
 ): Promise<Widget15> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -587,6 +651,10 @@ export function _customGet16Send(
 export async function _customGet16Deserialize(
   result: CustomGet16200Response
 ): Promise<Widget16> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -615,6 +683,10 @@ export function _customGet17Send(
 export async function _customGet17Deserialize(
   result: CustomGet17200Response
 ): Promise<Widget17> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -643,6 +715,10 @@ export function _customGet18Send(
 export async function _customGet18Deserialize(
   result: CustomGet18200Response
 ): Promise<Widget18> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -671,6 +747,10 @@ export function _customGet19Send(
 export async function _customGet19Deserialize(
   result: CustomGet19200Response
 ): Promise<Widget19> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -699,6 +779,10 @@ export function _customGet20Send(
 export async function _customGet20Deserialize(
   result: CustomGet20200Response
 ): Promise<Widget20> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -727,6 +811,10 @@ export function _customGet21Send(
 export async function _customGet21Deserialize(
   result: CustomGet21200Response
 ): Promise<Widget21> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -755,6 +843,10 @@ export function _customGet22Send(
 export async function _customGet22Deserialize(
   result: CustomGet22200Response
 ): Promise<Widget22> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -783,6 +875,10 @@ export function _customGet23Send(
 export async function _customGet23Deserialize(
   result: CustomGet23200Response
 ): Promise<Widget23> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -811,6 +907,10 @@ export function _customGet24Send(
 export async function _customGet24Deserialize(
   result: CustomGet24200Response
 ): Promise<Widget24> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -839,6 +939,10 @@ export function _customGet25Send(
 export async function _customGet25Deserialize(
   result: CustomGet25200Response
 ): Promise<Widget25> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
@@ -869,6 +973,10 @@ export function _customGet26Send(
 export async function _customGet26Deserialize(
   result: CustomGet26200Response
 ): Promise<Widget26> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     id: result.body["id"],
     weight: result.body["weight"],
