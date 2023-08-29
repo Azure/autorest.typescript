@@ -42,7 +42,6 @@ describe("AuthOauth2Client Rest Client", () => {
       const result = await client.path("/authentication/oauth2/valid").get();
       assert.strictEqual(result.status, "204");
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -58,7 +57,6 @@ describe("AuthOauth2Client Rest Client", () => {
         assert.strictEqual(result.body.error, "invalid-grant");
       }
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });

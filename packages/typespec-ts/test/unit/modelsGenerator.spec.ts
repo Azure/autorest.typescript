@@ -31,7 +31,8 @@ describe("Input/output model type", () => {
     tspType: string,
     inputType: string,
     options?: VerifyPropertyConfig,
-    needAzureCore: boolean = false
+    needAzureCore: boolean = false,
+    additionalImports: string = ""
   ) {
     const defaultOption: VerifyPropertyConfig = {
       additionalTypeSpecDefinition: "",
@@ -69,6 +70,8 @@ describe("Input/output model type", () => {
     assertEqualContent(
       inputModelFile?.content!,
       `
+    ${additionalImports}
+
     export interface InputOutputModel {
         prop: ${inputType};
     }
@@ -79,6 +82,8 @@ describe("Input/output model type", () => {
     assertEqualContent(
       outputModelFile?.content!,
       `
+    ${additionalImports}
+
     export interface InputOutputModelOutput {
       prop: ${outputType};
     }
@@ -1799,6 +1804,188 @@ describe("Input/output model type", () => {
         export interface BaseModelOutput {}
         `
       });
+    });
+  });
+
+  describe("core error model", () => {
+    it("Azure.Core.Foundations.ErrorResponse -> ErrorResponse", async () => {
+      const tspDefinition = `
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.ErrorResponse;
+       }
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `AOutput`,
+          additionalInputContent: `
+        /** testing */
+        export interface A{
+          /** testing */
+          errors?: ErrorResponse;
+        }
+        `,
+          additionalOutputContent: `
+          /** testing */
+          export interface AOutput{
+            /** testing */
+            errors?: ErrorResponse;
+          }
+          `
+        },
+        true,
+        `import { ErrorResponse } from "@azure-rest/core-client"`
+      );
+    });
+
+    it("Azure.Core.Foundations.InnerError -> InnerError", async () => {
+      const tspDefinition = `
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.InnerError;
+       }
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `AOutput`,
+          additionalInputContent: `
+        /** testing */
+        export interface A{
+          /** testing */
+          errors?: InnerError;
+        }
+        `,
+          additionalOutputContent: `
+          /** testing */
+          export interface AOutput{
+            /** testing */
+            errors?: InnerError;
+          }
+          `
+        },
+        true,
+        `import { InnerError } from "@azure-rest/core-client"`
+      );
+    });
+
+    it("Azure.Core.Foundations.Error -> ErrorModel", async () => {
+      const tspDefinition = `
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.Error;
+       }
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `AOutput`,
+          additionalInputContent: `
+        /** testing */
+        export interface A{
+          /** testing */
+          errors?: ErrorModel;
+        }
+        `,
+          additionalOutputContent: `
+          /** testing */
+          export interface AOutput{
+            /** testing */
+            errors?: ErrorModel;
+          }
+          `
+        },
+        true,
+        `import { ErrorModel } from "@azure-rest/core-client"`
+      );
+    });
+
+    it("Azure.Core.Foundations.Error[] -> Array<ErrorModel>", async () => {
+      const tspDefinition = `
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Azure.Core.Foundations.Error[];
+       }
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `AOutput`,
+          additionalInputContent: `
+        /** testing */
+        export interface A{
+          /** testing */
+          errors?: Array<ErrorModel>;
+        }
+        `,
+          additionalOutputContent: `
+          /** testing */
+          export interface AOutput{
+            /** testing */
+            errors?: Array<ErrorModel>;
+          }
+          `
+        },
+        true,
+        `import { ErrorModel } from "@azure-rest/core-client"`
+      );
+    });
+
+    it("Record<Azure.Core.Foundations.Error> -> Record<ErrorModel>", async () => {
+      const tspDefinition = `
+      @doc("testing")
+      model A {
+        @doc("testing")
+        errors?: Record<Azure.Core.Foundations.Error>;
+       }
+      `;
+      const tspType = "A";
+      const inputModelName = "A";
+      await verifyPropertyType(
+        tspType,
+        inputModelName,
+        {
+          additionalTypeSpecDefinition: tspDefinition,
+          outputType: `AOutput`,
+          additionalInputContent: `
+        /** testing */
+        export interface A{
+          /** testing */
+          errors?: Record<string, ErrorModel>
+        }
+        `,
+          additionalOutputContent: `
+          /** testing */
+          export interface AOutput{
+            /** testing */
+            errors?: Record<string, ErrorModel>
+          }
+          `
+        },
+        true,
+        `import { ErrorModel } from "@azure-rest/core-client"`
+      );
     });
   });
 });

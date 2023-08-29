@@ -90,7 +90,7 @@ export function getDeserializePrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
-  let parameters: OptionalKind<ParameterDeclarationStructure>[] = [
+  const parameters: OptionalKind<ParameterDeclarationStructure>[] = [
     {
       name: "result",
       type: getRLCResponseType(operation.rlcResponse)
@@ -103,14 +103,6 @@ export function getDeserializePrivateFunction(
   if (response?.type?.type) {
     returnType = buildType(response.type.name, response.type);
   } else {
-    if (!needUnexpectedHelper) {
-      parameters = [
-        {
-          name: "_result",
-          type: getRLCResponseType(operation.rlcResponse)
-        }
-      ];
-    }
     returnType = { name: "", type: "void" };
   }
 
@@ -128,6 +120,24 @@ export function getDeserializePrivateFunction(
       "throw result.body",
       "}"
     );
+  } else {
+    const validStatus = [
+      ...new Set(
+        operation.responses
+          .flatMap((r) => r.statusCodes)
+          .filter((s) => s !== "default")
+      )
+    ];
+
+    if (validStatus.length > 0) {
+      statements.push(
+        `if(${validStatus
+          .map((s) => `result.status !== "${s}"`)
+          .join(" || ")}){`,
+        "throw result.body",
+        "}"
+      );
+    }
   }
 
   if (response?.type?.type === "any") {

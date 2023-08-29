@@ -20,10 +20,11 @@ import {
   Type
 } from "@typespec/compiler";
 import {
-  getHttpOperation,
   HttpOperation,
+  HttpOperationParameter,
   HttpOperationResponse,
-  StatusCode
+  StatusCode,
+  getHttpOperation
 } from "@typespec/http";
 import {
   getLroMetadata,
@@ -119,11 +120,11 @@ export function isBinaryPayload(
 ) {
   contentType = `"${contentType}"`;
   if (
-    isByteOrByteUnion(dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"`
+    contentType !== `"text/plain" | "application/json"` &&
+    isByteOrByteUnion(dpgContext, body)
   ) {
     return true;
   }
@@ -436,4 +437,33 @@ export function getCollectionFormatHelper(
 ) {
   const detail = getSpecialSerializeInfo(paramType, paramFormat);
   return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+}
+
+export function getCustomRequestHeaderNameForOperation(
+  route: HttpOperation
+): string | undefined {
+  const params = route.parameters.parameters.filter(
+    isCustomClientRequestIdParam
+  );
+  if (params.length > 0) {
+    return "client-request-id";
+  }
+
+  return undefined;
+}
+
+export function isCustomClientRequestIdParam(param: HttpOperationParameter) {
+  return (
+    param.type === "header" && param.name.toLowerCase() === "client-request-id"
+  );
+}
+
+export function isIgnoredHeaderParam(param: HttpOperationParameter) {
+  return (
+    isCustomClientRequestIdParam(param) ||
+    (param.type === "header" &&
+      ["return-client-request-id", "ocp-date"].includes(
+        param.name.toLowerCase()
+      ))
+  );
 }

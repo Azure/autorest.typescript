@@ -15,7 +15,8 @@ export function buildModels(
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
   const models = codeModel.types.filter(
-    (t) => (t.type === "model" || t.type === "enum") && !isAzureCoreError(t)
+    (t) =>
+      (t.type === "model" || t.type === "enum") && !isAzureCoreErrorSdkType(t)
   );
 
   // Skip to generate models.ts if there is no any models
@@ -78,8 +79,8 @@ export function buildModels(
         properties: properties.map((p) => {
           const propertyMetadata = getType(p.type);
           let propertyTypeName = propertyMetadata.name;
-          if (isAzureCoreError(p.type)) {
-            propertyTypeName = isAzureCoreError(p.type)
+          if (isAzureCoreErrorSdkType(p.type)) {
+            propertyTypeName = isAzureCoreErrorSdkType(p.type)
               ? getCoreClientErrorType(propertyTypeName)
               : propertyTypeName;
           }
@@ -122,10 +123,12 @@ export function buildModels(
   return modelsFile;
 }
 
-function isAzureCoreError(t: Type) {
+function isAzureCoreErrorSdkType(t: Type) {
   return (
     t.name &&
-    ["Error", "InnerError"].includes(t.name) &&
+    ["error", "errormodel", "innererror", "errorresponse"].includes(
+      t.name.toLowerCase()
+    ) &&
     t.isCoreErrorType === true
   );
 }

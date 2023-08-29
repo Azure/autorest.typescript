@@ -13,7 +13,8 @@ import {
   getSchemaForType,
   includeDerivedModel,
   getBodyType,
-  trimUsage
+  trimUsage,
+  isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -61,12 +62,7 @@ export function transformSchemas(
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
-      if (
-        resp.type.kind === "Model" &&
-        resp.type.name === "ErrorResponse" &&
-        resp.type.namespace?.name === "Foundations" &&
-        resp.type.namespace.namespace?.name === "Core"
-      ) {
+      if (isAzureCoreErrorType(resp.type)) {
         continue;
       }
       for (const resps of resp.responses) {

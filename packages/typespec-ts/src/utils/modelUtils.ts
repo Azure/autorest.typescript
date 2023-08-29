@@ -457,14 +457,7 @@ function getSchemaForModel(
 
   modelSchema.typeName = modelSchema.name;
 
-  if (
-    (model.name === "ErrorResponse" ||
-      model.name === "ErrorModel" ||
-      model.name === "Error") &&
-    model.kind === "Model" &&
-    model.namespace?.name === "Foundations" &&
-    model.namespace.namespace?.name === "Core"
-  ) {
+  if (isAzureCoreErrorType(model)) {
     modelSchema.fromCore = true;
   }
 
@@ -1106,7 +1099,6 @@ export function getFormattedPropertyDoc(
 
 export function getBodyType(
   program: Program,
-
   route: HttpOperation
 ): Type | undefined {
   let bodyModel = route.parameters.bodyType;
@@ -1254,4 +1246,21 @@ export function trimUsage(model: any) {
     return obj;
   }, {});
   return ordered;
+}
+
+export function isAzureCoreErrorType(t?: Type): boolean {
+  if (
+    t?.kind !== "Model" ||
+    !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
+  )
+    return false;
+  const namespaces = ".Azure.Core.Foundations".split(".");
+  while (
+    namespaces.length > 0 &&
+    (t?.kind === "Model" || t?.kind === "Namespace") &&
+    t.namespace?.name === namespaces.pop()
+  ) {
+    t = t.namespace;
+  }
+  return namespaces.length == 0;
 }

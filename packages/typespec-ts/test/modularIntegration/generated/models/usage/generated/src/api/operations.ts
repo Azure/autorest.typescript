@@ -32,8 +32,12 @@ export function _inputSend(
 }
 
 export async function _inputDeserialize(
-  _result: Input204Response
+  result: Input204Response
 ): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -58,6 +62,10 @@ export function _outputSend(
 export async function _outputDeserialize(
   result: Output200Response
 ): Promise<OutputRecord> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     requiredProp: result.body["requiredProp"],
   };
@@ -87,6 +95,10 @@ export function _inputAndOutputSend(
 export async function _inputAndOutputDeserialize(
   result: InputAndOutput200Response
 ): Promise<InputOutputRecord> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
   return {
     requiredProp: result.body["requiredProp"],
   };

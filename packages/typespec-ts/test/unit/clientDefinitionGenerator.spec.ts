@@ -12,7 +12,6 @@ describe("Client definition generation", () => {
       `
     );
     assert.ok(clientDef);
-    // console.log(clientDef);
     assertEqualContent(
       clientDef?.content!,
       `
@@ -46,7 +45,6 @@ describe("Client definition generation", () => {
       `
     );
     assert.ok(clientDef);
-    // console.log(clientDef);
     assertEqualContent(
       clientDef?.content!,
       `

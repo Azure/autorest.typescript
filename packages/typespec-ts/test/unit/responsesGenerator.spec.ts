@@ -202,6 +202,37 @@ describe("Responses.ts", () => {
       `
       );
     });
+
+    it("core error response", async () => {
+      const parameters = await emitResponsesFromTypeSpec(
+        `
+      #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for testing"
+      #suppress "@azure-tools/typespec-azure-core/use-standard-names" "for testing"
+      @doc("testing")
+      @get op read(): Azure.Core.Foundations.ErrorResponse;
+      `,
+        true
+      );
+      assert.ok(parameters);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+    
+        export interface ReadDefaultHeaders {
+          /** String error code indicating what went wrong. */
+          "x-ms-error-code"?: string; 
+        }
+
+        export interface ReadDefaultResponse extends HttpResponse {
+          status: string;
+          body: ErrorResponse;
+          headers: RawHttpHeaders & ReadDefaultHeaders;
+        }
+      `
+      );
+    });
   });
 
   describe("headers generation", () => {

@@ -6,7 +6,8 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { ignoreDiagnostics } from "@typespec/compiler";
-import { getHttpOperation, HttpOperation } from "@typespec/http";
+import { getCustomRequestHeaderNameForOperation } from "../utils/operationUtil.js";
+import { getHttpOperation } from "@typespec/http";
 
 export function transformTelemetryInfo(
   dpgContext: SdkContext,
@@ -39,7 +40,7 @@ function getCustomRequestHeaderNameForClient(
       const headerName = getCustomRequestHeaderNameForOperation(
         ignoreDiagnostics(getHttpOperation(program, op))
       );
-      if (headerName != undefined) {
+      if (headerName !== undefined) {
         return headerName;
       }
     }
@@ -49,24 +50,9 @@ function getCustomRequestHeaderNameForClient(
     const headerName = getCustomRequestHeaderNameForOperation(
       ignoreDiagnostics(getHttpOperation(program, clientOp))
     );
-    if (headerName != undefined) {
+    if (headerName !== undefined) {
       return headerName;
     }
   }
-  return undefined;
-}
-
-function getCustomRequestHeaderNameForOperation(
-  route: HttpOperation
-): string | undefined {
-  const CUSTOM_REQUEST_HEADER_NAME = "client-request-id";
-  const params = route.parameters.parameters.filter(
-    (p) =>
-      p.type === "header" && p.name.toLowerCase() === CUSTOM_REQUEST_HEADER_NAME
-  );
-  if (params.length > 0) {
-    return CUSTOM_REQUEST_HEADER_NAME;
-  }
-
   return undefined;
 }

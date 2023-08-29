@@ -197,12 +197,15 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "client/structure/two-operation-group"
   },
   {
-    outputPath: "azure/core",
-    inputPath: "azure/core/basic"
+    outputPath: "headers/client-request-id",
+    inputPath: "special-headers/client-request-id"
   },
   {
     outputPath: "parameters/collection-format",
-    inputPath: "parameters/collection-format",
-    debug: true
+    inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "azure/core",
+    inputPath: "azure/core/basic"
   }
 ];
