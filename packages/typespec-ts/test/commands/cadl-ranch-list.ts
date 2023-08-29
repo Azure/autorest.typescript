@@ -87,7 +87,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "models/propertyOptional",
-    inputPath: "type/property/optional"
+    inputPath: "type/property/optionality"
   },
   {
     outputPath: "models/propertyNullable",
