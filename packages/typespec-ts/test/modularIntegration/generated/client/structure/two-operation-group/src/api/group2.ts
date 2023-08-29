@@ -23,7 +23,7 @@ export function _twoSend(
 }
 
 export async function _twoDeserialize(result: Two204Response): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 
@@ -48,7 +48,7 @@ export function _fiveSend(
 }
 
 export async function _fiveDeserialize(result: Five204Response): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 
@@ -73,7 +73,7 @@ export function _sixSend(
 }
 
 export async function _sixDeserialize(result: Six204Response): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 

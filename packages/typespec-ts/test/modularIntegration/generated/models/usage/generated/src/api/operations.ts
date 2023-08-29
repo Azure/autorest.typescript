@@ -34,7 +34,7 @@ export function _inputSend(
 export async function _inputDeserialize(
   result: Input204Response
 ): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 
@@ -62,7 +62,7 @@ export function _outputSend(
 export async function _outputDeserialize(
   result: Output200Response
 ): Promise<OutputRecord> {
-  if ("200" !== result.status) {
+  if (result.status !== "200") {
     throw result.body;
   }
 
@@ -95,7 +95,7 @@ export function _inputAndOutputSend(
 export async function _inputAndOutputDeserialize(
   result: InputAndOutput200Response
 ): Promise<InputOutputRecord> {
-  if ("200" !== result.status) {
+  if (result.status !== "200") {
     throw result.body;
   }
 

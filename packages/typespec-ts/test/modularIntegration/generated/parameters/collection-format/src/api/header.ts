@@ -28,7 +28,7 @@ export function _headerCsvSend(
 export async function _headerCsvDeserialize(
   result: HeaderCsv204Response
 ): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 

@@ -29,7 +29,7 @@ export function _renamedTwoSend(
 export async function _renamedTwoDeserialize(
   result: Two204Response
 ): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 
@@ -56,7 +56,7 @@ export function _renamedFourSend(
 export async function _renamedFourDeserialize(
   result: Four204Response
 ): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 
@@ -83,7 +83,7 @@ export function _renamedSixSend(
 export async function _renamedSixDeserialize(
   result: Six204Response
 ): Promise<void> {
-  if ("204" !== result.status) {
+  if (result.status !== "204") {
     throw result.body;
   }
 
