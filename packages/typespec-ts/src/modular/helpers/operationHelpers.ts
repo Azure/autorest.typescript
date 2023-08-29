@@ -132,7 +132,7 @@ export function getDeserializePrivateFunction(
     if (validStatus.length > 0) {
       statements.push(
         `if(${validStatus
-          .map((s) => `"${s}" !== result.status`)
+          .map((s) => `result.status !== "${s}"`)
           .join(" || ")}){`,
         "throw result.body",
         "}"
