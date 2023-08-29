@@ -344,6 +344,211 @@ describe.only("modular special union deserialization", () => {
     );
   });
 
+  it("should generate operation util if there's a special union variant of an array with model element which has datatime properties", async () => {
+    const tspContent = `
+    model WidgetData0 {
+      fooProp: string;
+    }
+    
+    model WidgetData1 {
+      start: utcDateTime;
+      end?: utcDateTime;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData0 | WidgetData1[]
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
+    assert.ok(operationUtil);
+    assertEqualContent(
+      operationUtil?.getFullText()!,
+      `
+      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
+      import { WidgetData0, WidgetData1 } from "../models/models.js";
+      
+      /** type predict function fpr WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      function isWidgetData1Array(
+        obj: WidgetData0Output | WidgetData1Output[]
+      ): obj is WidgetData1Output[] {
+        if (Array.isArray(obj) && obj.length > 0) {
+          return (obj as WidgetData1Output[])[0].start !== undefined;
+        }
+
+        return false;
+      }
+      
+      
+      /** deserialize function for WidgetData1 array */
+      function deserializeWidgetData1Array(obj: WidgetData1Output[]): WidgetData1[] {
+        return (obj || []).map((item) => {
+          return {
+            start: new Date(item["start"]),
+            end: item["end"] !== undefined ? new Date(item["end"]) : undefined,
+          };
+        });
+      }
+      
+      /** deserialize function for WidgetData0Output | WidgetData1Output[] */
+      export function deserializeWidgetData0AndWidgetData1ArrayUnion(
+        obj: WidgetData0Output | WidgetData1Output[]
+      ): WidgetData0 | WidgetData1[] {
+        if (isWidgetData1Array(obj)) {
+          return deserializeWidgetData1Array(obj);
+        }
+        return obj;
+      }`
+    );
+  });
+
+  it("should generate deserialize util if there's a special union variant of an array with model element which has a byte array property", async () => {
+    const tspContent = `
+    model WidgetData0 {
+      fooProp: string;
+    }
+    
+    model WidgetData1 {
+      data: bytes;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData0 | WidgetData1[]
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
+    assert.ok(operationUtil);
+    assertEqualContent(
+      operationUtil?.getFullText()!,
+      `
+      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
+      import { stringToUint8Array } from "@azure/core-util";
+      import { WidgetData0, WidgetData1 } from "../models/models.js";
+      
+      /** type predict function fpr WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      function isWidgetData1Array(
+        obj: WidgetData0Output | WidgetData1Output[]
+      ): obj is WidgetData1Output[] {
+        if (Array.isArray(obj) && obj.length > 0) {
+          return (obj as WidgetData1Output[])[0].data !== undefined;
+        }
+
+        return false;
+      }
+      
+      
+      /** deserialize function for WidgetData1 array */
+      function deserializeWidgetData1Array(obj: WidgetData1Output[]): WidgetData1[] {
+        return (obj || []).map((item) => {
+          return {
+            data:
+              typeof item["data"] === "string"
+                ? stringToUint8Array(item["data"], "base64")
+                : item["data"],
+          };
+        });
+      }
+      
+      /** deserialize function for WidgetData0Output | WidgetData1Output[] */
+      export function deserializeWidgetData0AndWidgetData1ArrayUnion(
+        obj: WidgetData0Output | WidgetData1Output[]
+      ): WidgetData0 | WidgetData1[] {
+        if (isWidgetData1Array(obj)) {
+          return deserializeWidgetData1Array(obj);
+        }
+        return obj;
+      }`
+    );
+  });
+
+  it("should generate deserialize util if there's a special union variant of an array with model element which has different property name between rest api and client", async () => {
+    const tspContent = `
+    model WidgetData0 {
+      fooProp: string;
+    }
+    
+    model WidgetData1 {
+      @projectedName("json", "bar_prop")
+      barProp: string;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData0 | WidgetData1[]
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
+    assert.ok(operationUtil);
+    assertEqualContent(
+      operationUtil?.getFullText()!,
+      `
+      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
+      import { WidgetData0, WidgetData1 } from "../models/models.js";
+      
+      /** type predict function fpr WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      function isWidgetData1Array(
+        obj: WidgetData0Output | WidgetData1Output[]
+      ): obj is WidgetData1Output[] {
+        if (Array.isArray(obj) && obj.length > 0) {
+          return (obj as WidgetData1Output[])[0].bar_prop !== undefined;
+        }
+      
+        return false;
+      }
+      
+      /** deserialize function for WidgetData1 array */
+      function deserializeWidgetData1Array(obj: WidgetData1Output[]): WidgetData1[] {
+        return (obj || []).map((item) => {
+          return { barProp: item["bar_prop"] };
+        });
+      }
+      
+      /** deserialize function for WidgetData0Output | WidgetData1Output[] */
+      export function deserializeWidgetData0AndWidgetData1ArrayUnion(
+        obj: WidgetData0Output | WidgetData1Output[]
+      ): WidgetData0 | WidgetData1[] {
+        if (isWidgetData1Array(obj)) {
+          return deserializeWidgetData1Array(obj);
+        }
+        return obj;
+      }`
+    );
+  });
+
   it("should generate deserialize util if there're special union variants of both model with different property name between rest api and client and model with datetime property", async () => {
     const tspContent = `
     
