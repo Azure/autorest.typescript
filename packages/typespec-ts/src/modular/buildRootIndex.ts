@@ -1,6 +1,7 @@
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
+import { hasPagingOperation } from "./helpers/operationHelpers.js";
 
 export function buildRootIndex(
   codeModel: ModularCodeModel,
@@ -81,11 +82,7 @@ function exportPagingUtil(
   if (client !== codeModel.clients[0]) {
     return;
   }
-  const hasPaging = codeModel.clients.some((client) =>
-    client.operationGroups.some((group) =>
-      group.operations.some((op) => op.discriminator === "paging")
-    )
-  );
+  const hasPaging = hasPagingOperation(codeModel);
   if (!hasPaging) {
     return;
   }

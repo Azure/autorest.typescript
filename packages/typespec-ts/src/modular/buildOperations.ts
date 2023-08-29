@@ -5,7 +5,8 @@ import {
   getOperationFunction,
   getSendPrivateFunction,
   getDeserializePrivateFunction,
-  getOperationOptionsName
+  getOperationOptionsName,
+  hasPagingOperation
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -110,6 +111,14 @@ export function buildOperationFiles(
           }
         ]);
       }
+    }
+    if (hasPagingOperation(codeModel)) {
+      operationGroupFile.addImportDeclarations([
+        {
+          moduleSpecifier: "@azure/core-paging",
+          namedImports: ["PagedAsyncIterableIterator"]
+        }
+      ]);
     }
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.

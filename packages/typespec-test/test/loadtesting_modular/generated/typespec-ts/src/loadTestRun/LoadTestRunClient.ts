@@ -10,9 +10,8 @@ import {
   TestRunServerMetricConfig,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
-  PagedTimeSeriesElement,
-  PagedTestRun,
-  PagedDimensionValueList,
+  TimeSeriesElement,
+  DimensionValueList,
 } from "./models/models.js";
 import {
   TestRunOptions,
@@ -49,6 +48,7 @@ import {
   listTestRuns,
   stopTestRun,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
 
@@ -143,7 +143,7 @@ export class LoadTestRunClient {
     name: string,
     metricNamespace: string,
     options: ListMetricDimensionValuesOptions = { requestOptions: {} }
-  ): Promise<PagedDimensionValueList> {
+  ): PagedAsyncIterableIterator<DimensionValueList> {
     return listMetricDimensionValues(
       this._client,
       testRunId,
@@ -173,14 +173,14 @@ export class LoadTestRunClient {
   listMetrics(
     testRunId: string,
     options: ListMetricsOptions = { requestOptions: {} }
-  ): Promise<PagedTimeSeriesElement> {
+  ): PagedAsyncIterableIterator<TimeSeriesElement> {
     return listMetrics(this._client, testRunId, options);
   }
 
   /** Get all test runs with given filters */
   listTestRuns(
     options: ListTestRunsOptions = { requestOptions: {} }
-  ): Promise<PagedTestRun> {
+  ): PagedAsyncIterableIterator<TestRun> {
     return listTestRuns(this._client, options);
   }
 

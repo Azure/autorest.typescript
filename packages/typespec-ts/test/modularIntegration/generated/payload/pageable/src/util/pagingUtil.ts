@@ -72,9 +72,7 @@ export function buildPagedAsyncIterator<
 >(
   client: Client,
   initialSendFunction: (...args: any[]) => PromiseLike<TResponse>,
-  deserializeFunction: (
-    resp: TResponse | PathUncheckedResponse
-  ) => Promise<unknown>,
+  deserializeFunction: (result: TResponse) => Promise<unknown>,
   sendFunctionArgs: any[] = []
 ): PagedAsyncIterableIterator<TElement> {
   let firstRun = true;
@@ -97,9 +95,10 @@ export function buildPagedAsyncIterator<
       }
       firstRun = false;
       checkPagingRequest(result);
-      const results = await deserializeFunction(result);
+      const results = await deserializeFunction(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
       const values = getElements<TElement>(results, itemName);
+      setContinuationToken(values, nextLink);
       return {
         page: values,
         nextPageLink: nextLink,

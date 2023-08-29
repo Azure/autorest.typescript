@@ -45,6 +45,8 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { buildPagedAsyncIterator } from "../../util/pagingUtil.js";
 import {
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,
@@ -766,13 +768,17 @@ export async function _listTestFilesDeserialize(
 }
 
 /** Get all test files. */
-export async function listTestFiles(
+export function listTestFiles(
   context: Client,
   testId: string,
   options: ListTestFilesOptions = { requestOptions: {} }
-): Promise<PagedFileInfo> {
-  const result = await _listTestFilesSend(context, testId, options);
-  return _listTestFilesDeserialize(result);
+): PagedAsyncIterableIterator<FileInfo> {
+  return buildPagedAsyncIterator(
+    context,
+    _listTestFilesSend,
+    _listTestFilesDeserialize,
+    [context, testId, options]
+  );
 }
 
 export function _listTestsSend(
@@ -947,12 +953,16 @@ export async function _listTestsDeserialize(
  * Get all load tests by the fully qualified resource Id e.g
  * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
  */
-export async function listTests(
+export function listTests(
   context: Client,
   options: ListTestsOptions = { requestOptions: {} }
-): Promise<PagedTest> {
-  const result = await _listTestsSend(context, options);
-  return _listTestsDeserialize(result);
+): PagedAsyncIterableIterator<Test> {
+  return buildPagedAsyncIterator(
+    context,
+    _listTestsSend,
+    _listTestsDeserialize,
+    [context, options]
+  );
 }
 
 export function _uploadTestFileSend(

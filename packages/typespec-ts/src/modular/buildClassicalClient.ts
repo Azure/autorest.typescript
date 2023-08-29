@@ -10,7 +10,10 @@ import {
 import { toCamelCase } from "../utils/casingUtils.js";
 import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { getOperationFunction } from "./helpers/operationHelpers.js";
+import {
+  getOperationFunction,
+  hasPagingOperation
+} from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
@@ -73,6 +76,14 @@ export function buildClassicalClient(
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(client, clientClass, subfolder);
   importAllApis(clientFile, srcPath, subfolder);
+  if (hasPagingOperation(codeModel)) {
+    clientFile.addImportDeclarations([
+      {
+        moduleSpecifier: "@azure/core-paging",
+        namedImports: ["PagedAsyncIterableIterator"]
+      }
+    ]);
+  }
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
 }

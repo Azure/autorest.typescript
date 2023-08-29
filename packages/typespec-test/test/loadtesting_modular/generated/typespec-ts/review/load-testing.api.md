@@ -6,6 +6,7 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -132,6 +133,9 @@ export type FileType = string;
 export interface GetAppComponentsOptions extends OperationOptions {
 }
 
+// @public
+export function getContinuationToken(page: unknown): string | undefined;
+
 // @public (undocumented)
 export interface GetServerMetricsConfigOptions extends OperationOptions {
 }
@@ -217,8 +221,8 @@ export class LoadTestAdministrationClient {
     getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
     getTest(testId: string, options?: GetTestOptions): Promise<Test>;
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptions): Promise<FileInfo>;
-    listTestFiles(testId: string, options?: ListTestFilesOptions): Promise<PagedFileInfo>;
-    listTests(options?: ListTestsOptions): Promise<PagedTest>;
+    listTestFiles(testId: string, options?: ListTestFilesOptions): PagedAsyncIterableIterator<FileInfo>;
+    listTests(options?: ListTestsOptions): PagedAsyncIterableIterator<Test>;
     uploadTestFile(body: Uint8Array, testId: string, fileName: string, options?: UploadTestFileOptions): Promise<FileInfo>;
 }
 
@@ -248,14 +252,11 @@ export class LoadTestRunClient {
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptions): Promise<LoadTestRunClientFileInfo>;
     // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
     listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptions): Promise<MetricDefinitionCollection>;
-    // Warning: (ae-forgotten-export) The symbol "PagedDimensionValueList" needs to be exported by the entry point index.d.ts
-    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): Promise<PagedDimensionValueList>;
+    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): PagedAsyncIterableIterator<LoadTestRunClientDimensionValueList>;
     // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<MetricNamespaceCollection>;
-    // Warning: (ae-forgotten-export) The symbol "PagedTimeSeriesElement" needs to be exported by the entry point index.d.ts
-    listMetrics(testRunId: string, options?: ListMetricsOptions): Promise<PagedTimeSeriesElement>;
-    // Warning: (ae-forgotten-export) The symbol "PagedTestRun" needs to be exported by the entry point index.d.ts
-    listTestRuns(options?: ListTestRunsOptions): Promise<PagedTestRun>;
+    listMetrics(testRunId: string, options?: ListMetricsOptions): PagedAsyncIterableIterator<LoadTestRunClientTimeSeriesElement>;
+    listTestRuns(options?: ListTestRunsOptions): PagedAsyncIterableIterator<LoadTestRunClientTestRun>;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
     testRun(testRunId: string, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
 }
@@ -687,6 +688,9 @@ export interface Secret {
 
 // @public
 export type SecretType = string;
+
+// @public (undocumented)
+export function setContinuationToken(page: unknown, continuationToken: string | undefined): void;
 
 // @public
 export type Status = string;

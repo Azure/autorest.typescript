@@ -10,8 +10,6 @@ import {
   TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
-  PagedTextBlocklist,
-  PagedTextBlockItem,
 } from "./models/models.js";
 import {
   AnalyzeTextRequestOptions,
@@ -40,6 +38,7 @@ import {
   getTextBlocklistItem,
   listTextBlocklistItems,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export { ContentSafetyClientOptions } from "./api/ContentSafetyContext.js";
 
@@ -98,7 +97,7 @@ export class ContentSafetyClient {
   /** Get all text blocklists details. */
   listTextBlocklists(
     options: ListTextBlocklistsOptions = { requestOptions: {} }
-  ): Promise<PagedTextBlocklist> {
+  ): PagedAsyncIterableIterator<TextBlocklist> {
     return listTextBlocklists(this._client, options);
   }
 
@@ -143,7 +142,7 @@ export class ContentSafetyClient {
   listTextBlocklistItems(
     blocklistName: string,
     options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-  ): Promise<PagedTextBlockItem> {
+  ): PagedAsyncIterableIterator<TextBlockItem> {
     return listTextBlocklistItems(this._client, blocklistName, options);
   }
 }

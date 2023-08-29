@@ -42,6 +42,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   AnalyzeTextRequestOptions,
   AnalyzeImageRequestOptions,
@@ -54,6 +55,7 @@ import {
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "../models/options.js";
+import { buildPagedAsyncIterator } from "../util/pagingUtil.js";
 
 export function _analyzeTextSend(
   context: Client,
@@ -302,12 +304,16 @@ export async function _listTextBlocklistsDeserialize(
 }
 
 /** Get all text blocklists details. */
-export async function listTextBlocklists(
+export function listTextBlocklists(
   context: Client,
   options: ListTextBlocklistsOptions = { requestOptions: {} }
-): Promise<PagedTextBlocklist> {
-  const result = await _listTextBlocklistsSend(context, options);
-  return _listTextBlocklistsDeserialize(result);
+): PagedAsyncIterableIterator<TextBlocklist> {
+  return buildPagedAsyncIterator(
+    context,
+    _listTextBlocklistsSend,
+    _listTextBlocklistsDeserialize,
+    [context, options]
+  );
 }
 
 export function _addOrUpdateBlockItemsSend(
@@ -491,15 +497,15 @@ export async function _listTextBlocklistItemsDeserialize(
 }
 
 /** Get all blockItems in a text blocklist */
-export async function listTextBlocklistItems(
+export function listTextBlocklistItems(
   context: Client,
   blocklistName: string,
   options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-): Promise<PagedTextBlockItem> {
-  const result = await _listTextBlocklistItemsSend(
+): PagedAsyncIterableIterator<TextBlockItem> {
+  return buildPagedAsyncIterator(
     context,
-    blocklistName,
-    options
+    _listTextBlocklistItemsSend,
+    _listTextBlocklistItemsDeserialize,
+    [context, blocklistName, options]
   );
-  return _listTextBlocklistItemsDeserialize(result);
 }
