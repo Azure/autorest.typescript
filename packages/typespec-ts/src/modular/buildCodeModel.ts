@@ -42,7 +42,6 @@ import {
 import {
   getAuthentication,
   getHeaderFieldName,
-  getHttpOperation,
   getPathParamName,
   getQueryParamName,
   getServers,
@@ -53,7 +52,8 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  isHeader
+  isHeader,
+  getHttpOperation
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -80,7 +80,10 @@ import {
   Type as HrlcType,
   Header
 } from "./modularCodeModel.js";
-import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
+import {
+  getEnrichedDefaultApiVersion,
+  isAzureCoreErrorType
+} from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
 import {
   RLCModel,
@@ -90,7 +93,8 @@ import {
 } from "@azure-tools/rlc-common";
 import {
   getOperationGroupName,
-  getOperationName
+  getOperationName,
+  isIgnoredHeaderParam
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
@@ -554,23 +558,6 @@ function emitResponseHeaders(
   return retval;
 }
 
-function isAzureCoreErrorType(t?: Type): boolean {
-  if (
-    t?.kind !== "Model" ||
-    !["Error", "ErrorResponse", "InnerError"].includes(t.name)
-  )
-    return false;
-  const namespaces = ".Azure.Core.Foundations".split(".");
-  while (
-    namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Namespace") &&
-    t.namespace?.name === namespaces.pop()
-  ) {
-    t = t.namespace;
-  }
-  return namespaces.length == 0;
-}
-
 function emitResponse(
   context: SdkContext,
   response: HttpOperationResponse,
@@ -753,6 +740,9 @@ function emitBasicOperation(
   });
 
   for (const param of httpOperation.parameters.parameters) {
+    if (isIgnoredHeaderParam(param)) {
+      continue;
+    }
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param) && apiVersionParam === undefined) {
       apiVersionParam = emittedParam;

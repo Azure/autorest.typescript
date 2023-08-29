@@ -182,12 +182,10 @@ function transformBody(
     const bodySchema = getSchemaForType(dpgContext, body!.type, [
       SchemaContext.Output
     ]) as Schema;
-    if (bodySchema.fromCore) {
-      fromCore = true;
-    }
+    fromCore = bodySchema.fromCore ?? false;
     const bodyType = getTypeName(bodySchema);
     const importedNames = getImportedModelName(bodySchema);
-    if (importedNames) {
+    if (importedNames && !fromCore) {
       importedNames
         .filter((name) => {
           return name !== "any";

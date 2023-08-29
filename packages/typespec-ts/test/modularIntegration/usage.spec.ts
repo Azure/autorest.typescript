@@ -22,7 +22,6 @@ describe("UsageContext Classical Client", () => {
       const result = await client.input(EXPECTED_VALUE);
       assert.isUndefined(result);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -33,7 +32,6 @@ describe("UsageContext Classical Client", () => {
       assert.isNotNull(result);
       assert.strictEqual(result.requiredProp, EXPECTED_VALUE);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -44,7 +42,6 @@ describe("UsageContext Classical Client", () => {
       assert.isNotNull(result);
       assert.strictEqual(result.requiredProp, EXPECTED_VALUE);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -64,7 +61,6 @@ describe("UsageContext API Operations", () => {
       const result = await input(context, EXPECTED_VALUE);
       assert.isUndefined(result);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -75,7 +71,6 @@ describe("UsageContext API Operations", () => {
       assert.isNotNull(result);
       assert.strictEqual(result.requiredProp, EXPECTED_VALUE);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });
@@ -86,7 +81,6 @@ describe("UsageContext API Operations", () => {
       assert.isNotNull(result);
       assert.strictEqual(result.requiredProp, EXPECTED_VALUE);
     } catch (err) {
-      console.log(err);
       assert.fail(err as string);
     }
   });

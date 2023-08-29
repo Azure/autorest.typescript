@@ -17,6 +17,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
       const result = await client
         .path("/type/property/optional/string/all")
         .get();
+
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.property, "hello");
     } catch (err) {

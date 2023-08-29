@@ -22,7 +22,11 @@ export function _oneSend(
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _oneDeserialize(_result: One204Response): Promise<void> {
+export async function _oneDeserialize(result: One204Response): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -44,8 +48,12 @@ export function _threeSend(
 }
 
 export async function _threeDeserialize(
-  _result: Three204Response
+  result: Three204Response
 ): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
   return;
 }
 
@@ -66,9 +74,11 @@ export function _fourSend(
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fourDeserialize(
-  _result: Four204Response
-): Promise<void> {
+export async function _fourDeserialize(result: Four204Response): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
   return;
 }
 
