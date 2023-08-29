@@ -29,6 +29,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
@@ -39,6 +40,7 @@ import {
   DeleteOptions,
   ExportOptions,
 } from "../models/options.js";
+import { buildPagedAsyncIterator } from "../util/pagingUtil.js";
 
 export function _createOrUpdateSend(
   context: Client,
@@ -235,12 +237,14 @@ export async function _listDeserialize(
 }
 
 /** Lists all Users */
-export async function list(
+export function list(
   context: Client,
   options: ListOptions = { requestOptions: {} }
-): Promise<PagedUser> {
-  const result = await _listSend(context, options);
-  return _listDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(context, _listSend, _listDeserialize, [
+    context,
+    options,
+  ]);
 }
 
 export function _listWithPageSend(
@@ -275,12 +279,16 @@ export async function _listWithPageDeserialize(
 }
 
 /** List with Azure.Core.Page<>. */
-export async function listWithPage(
+export function listWithPage(
   context: Client,
   options: ListWithPageOptions = { requestOptions: {} }
-): Promise<PagedUser> {
-  const result = await _listWithPageSend(context, options);
-  return _listWithPageDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(
+    context,
+    _listWithPageSend,
+    _listWithPageDeserialize,
+    [context, options]
+  );
 }
 
 export function _listWithCustomPageModelSend(
@@ -319,12 +327,16 @@ export async function _listWithCustomPageModelDeserialize(
 }
 
 /** List with custom page model. */
-export async function listWithCustomPageModel(
+export function listWithCustomPageModel(
   context: Client,
   options: ListWithCustomPageModelOptions = { requestOptions: {} }
-): Promise<UserListResults> {
-  const result = await _listWithCustomPageModelSend(context, options);
-  return _listWithCustomPageModelDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(
+    context,
+    _listWithCustomPageModelSend,
+    _listWithCustomPageModelDeserialize,
+    [context, options]
+  );
 }
 
 export function _deleteOperationSend(

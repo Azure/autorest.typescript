@@ -52,6 +52,7 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
+import { buildPagingUtils } from "./modular/buildPagingUtils.js";
 
 export * from "./lib.js";
 
@@ -162,6 +163,8 @@ export async function $onEmit(context: EmitContext) {
           overwrite: true
         }
       );
+      // Build the shared paging utils
+      await buildPagingUtils(modularCodeModel, rlcCodeModels);
       for (const subClient of modularCodeModel.clients) {
         buildModels(modularCodeModel, subClient);
         buildModelsOptions(modularCodeModel, subClient);

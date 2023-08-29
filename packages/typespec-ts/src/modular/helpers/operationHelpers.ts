@@ -241,12 +241,17 @@ export function getOperationFunction(
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
+  const isPaging = operation.discriminator === "paging";
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
   const returnType = response?.type?.type
     ? buildType(response.type.name, response.type)
     : { name: "", type: "void" };
+  // TODO: calculate the page return
+  const operationReturnType = isPaging
+    ? `PagedAsyncIterableIterator<User>`
+    : `Promise<${returnType.type}>`;
 
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
@@ -254,20 +259,29 @@ export function getOperationFunction(
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
-    isAsync: true,
+    isAsync: !isPaging,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
-    returnType: `Promise<${returnType.type}>`
+    returnType: operationReturnType
   };
 
   const statements: string[] = [];
-  statements.push(
-    `const result = await _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")});`
-  );
-  statements.push(`return _${name}Deserialize(result);`);
+  if (isPaging) {
+    statements.push(
+      `return buildPagedAsyncIterator(context, _${name}Send, _${name}Deserialize, [${parameters
+        .map((p) => p.name)
+        .join(", ")}])  ;`
+    );
+  } else {
+    statements.push(
+      `const result = await _${name}Send(${parameters
+        .map((p) => p.name)
+        .join(", ")});`
+    );
+    statements.push(`return _${name}Deserialize(result);`);
+  }
+
   return {
     ...functionStatement,
     statements

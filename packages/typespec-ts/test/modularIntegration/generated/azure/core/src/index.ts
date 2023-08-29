@@ -16,3 +16,7 @@ export {
   DeleteOptions,
   ExportOptions,
 } from "./models/index.js";
+export {
+  getContinuationToken,
+  setContinuationToken,
+} from "./util/pagingUtil.js";

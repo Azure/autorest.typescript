@@ -21,6 +21,7 @@ export function buildRootIndex(
 
   exportClassicalClient(client, rootIndexFile, subfolder);
   exportModels(rootIndexFile, project, srcPath, clientName, subfolder, true);
+  exportPagingUtil(codeModel, rootIndexFile, client);
 }
 
 function exportClassicalClient(
@@ -68,6 +69,29 @@ function exportModels(
   indexFile.addExportDeclaration({
     moduleSpecifier,
     namedExports
+  });
+}
+
+function exportPagingUtil(
+  codeModel: ModularCodeModel,
+  indexFile: SourceFile,
+  client: Client
+) {
+  // Only import the paging helper once
+  if (client !== codeModel.clients[0]) {
+    return;
+  }
+  const hasPaging = codeModel.clients.some((client) =>
+    client.operationGroups.some((group) =>
+      group.operations.some((op) => op.discriminator === "paging")
+    )
+  );
+  if (!hasPaging) {
+    return;
+  }
+  indexFile.addExportDeclaration({
+    moduleSpecifier: `./util/pagingUtil.js`,
+    namedExports: ["getContinuationToken", "setContinuationToken"] // Only export the getContinuationToken and setContinuationToken to public
   });
 }
 
