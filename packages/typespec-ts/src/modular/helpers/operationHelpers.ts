@@ -253,11 +253,6 @@ export function getOperationFunction(
     }
     returnType = buildType(type.name, type);
   }
-  // TODO: calculate the page return
-  const operationReturnType = isPaging
-    ? `PagedAsyncIterableIterator<${returnType.type}>`
-    : `Promise<${returnType.type}>`;
-
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     docs: [
@@ -268,7 +263,9 @@ export function getOperationFunction(
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
-    returnType: operationReturnType
+    returnType: isPaging
+      ? `PagedAsyncIterableIterator<${returnType.type}>`
+      : `Promise<${returnType.type}>`
   };
 
   const statements: string[] = [];
