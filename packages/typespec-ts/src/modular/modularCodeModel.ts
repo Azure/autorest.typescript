@@ -1,11 +1,17 @@
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import { Project } from "ts-morph";
 
+export interface ModularOptions {
+  sourceRoot: string;
+}
 export interface ModularCodeModel {
   options: RLCOptions;
+  modularOptions: ModularOptions;
   namespace?: string;
   subnamespaceToClients?: any;
   clients: Client[];
   types: Type[];
+  project: Project;
 }
 
 export interface Header {
@@ -81,6 +87,7 @@ export interface Type {
   isFixed?: boolean;
   valueType?: Type;
   elementType?: Type;
+  parents?: Type[];
   xmlMetadata?: XmlMetadata;
   format?: string;
   properties?: Property[];
@@ -96,6 +103,7 @@ export interface Client {
   url: string;
   apiVersions: any[];
   rlcClientName: string;
+  subfolder?: string;
 }
 
 export type ParameterLocation =
@@ -124,6 +132,7 @@ export interface Parameter {
   inDocstring?: boolean;
   inOverriden?: boolean;
   isApiVersion?: boolean;
+  format?: string;
 }
 
 export interface Response {
@@ -136,6 +145,7 @@ export interface Response {
 
 export interface Operation {
   name: string;
+  oriName?: string;
   description: string;
   summary: string;
   url: string;

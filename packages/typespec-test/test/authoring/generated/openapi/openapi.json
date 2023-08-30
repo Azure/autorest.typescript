@@ -58,26 +58,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "description": "Paged collection of Project items",
-              "properties": {
-                "value": {
-                  "type": "array",
-                  "description": "The Project items on this page",
-                  "items": {
-                    "$ref": "#/definitions/Project"
-                  },
-                  "x-ms-identifiers": []
-                },
-                "nextLink": {
-                  "type": "string",
-                  "format": "uri",
-                  "description": "The link to the next page of items"
-                }
-              },
-              "required": [
-                "value"
-              ]
+              "$ref": "#/definitions/PagedProject"
             }
           },
           "default": {
@@ -201,7 +182,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       },
       "delete": {
         "operationId": "Projects_Delete",
@@ -263,7 +245,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       }
     },
     "/authoring/analyze-text/projects/{projectName}:export": {
@@ -308,7 +291,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       }
     },
     "/authoring/analyze-text/projects/{projectName}:importx": {
@@ -350,7 +334,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       }
     },
     "/authoring/analyze-text/projects/{projectName}:train": {
@@ -401,7 +386,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       }
     },
     "/authoring/analyze-text/projects/{projectName}/deployments": {
@@ -424,26 +410,7 @@
           "200": {
             "description": "The request has succeeded.",
             "schema": {
-              "type": "object",
-              "description": "Paged collection of Deployment items",
-              "properties": {
-                "value": {
-                  "type": "array",
-                  "description": "The Deployment items on this page",
-                  "items": {
-                    "$ref": "#/definitions/Deployment"
-                  },
-                  "x-ms-identifiers": []
-                },
-                "nextLink": {
-                  "type": "string",
-                  "format": "uri",
-                  "description": "The link to the next page of items"
-                }
-              },
-              "required": [
-                "value"
-              ]
+              "$ref": "#/definitions/PagedDeployment"
             }
           },
           "default": {
@@ -578,7 +545,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       },
       "delete": {
         "operationId": "Deployments_DeleteDeployment",
@@ -647,7 +615,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       }
     },
     "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}/jobs/{jobId}": {
@@ -796,7 +765,8 @@
               }
             }
           }
-        }
+        },
+        "x-ms-long-running-operation": true
       }
     },
     "/authoring/analyze-text/projects/global/languages": {
@@ -1152,6 +1122,50 @@
       "required": [
         "code",
         "message"
+      ]
+    },
+    "PagedDeployment": {
+      "type": "object",
+      "description": "Paged collection of Deployment items",
+      "properties": {
+        "value": {
+          "type": "array",
+          "description": "The Deployment items on this page",
+          "items": {
+            "$ref": "#/definitions/Deployment"
+          },
+          "x-ms-identifiers": []
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PagedProject": {
+      "type": "object",
+      "description": "Paged collection of Project items",
+      "properties": {
+        "value": {
+          "type": "array",
+          "description": "The Project items on this page",
+          "items": {
+            "$ref": "#/definitions/Project"
+          },
+          "x-ms-identifiers": []
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items"
+        }
+      },
+      "required": [
+        "value"
       ]
     },
     "PagedSupportedLanguage": {

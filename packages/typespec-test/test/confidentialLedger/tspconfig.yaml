@@ -4,6 +4,8 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     azureSdkForJs: false
+    generateMetadata: true
+    generateTest: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@msinternal/confidential-ledger"

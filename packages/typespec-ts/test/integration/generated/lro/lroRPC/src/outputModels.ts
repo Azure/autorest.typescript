@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { ErrorModel } from "@azure-rest/core-client";
+import { ErrorResponse } from "@azure-rest/core-client";
 
 /** Result of the job */
 export interface JobResultOutput {
@@ -16,13 +16,7 @@ export interface JobResultOutput {
    */
   readonly status: string;
   /** Error objects that describes the error when status is "Failed". */
-  readonly errors?: Array<ErrorResponseOutput>;
+  readonly errors?: Array<ErrorResponse>;
   /** The results. */
   readonly results?: string[];
-}
-
-/** A response containing error details. */
-export interface ErrorResponseOutput {
-  /** The error object. */
-  error: ErrorModel;
 }

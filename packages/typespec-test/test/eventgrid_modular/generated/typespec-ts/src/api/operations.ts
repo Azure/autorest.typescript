@@ -28,6 +28,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
@@ -52,7 +53,24 @@ export function _publishCloudEventSend(
       contentType:
         (options.contentType as any) ??
         "application/cloudevents+json; charset=utf-8",
-      body: { event: event },
+      body: {
+        event: {
+          id: event["id"],
+          source: event["source"],
+          data: event["data"],
+          data_base64:
+            event["dataBase64"] !== undefined
+              ? uint8ArrayToString(event["dataBase64"], "base64")
+              : undefined,
+          type: event["type"],
+          time:
+            event["time"] !== undefined ? new Date(event["time"]) : undefined,
+          specversion: event["specversion"],
+          dataschema: event["dataschema"],
+          datacontenttype: event["datacontenttype"],
+          subject: event["subject"],
+        },
+      },
     });
 }
 
@@ -90,15 +108,29 @@ export function _publishCloudEventsSend(
 ): StreamableMethod<
   PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 > {
-  return context
-    .path("/topics/{topicName}:publish", topicName)
-    .post({
-      ...operationOptionsToRequestParameters(options),
-      contentType:
-        (options.contentType as any) ??
-        "application/cloudevents-batch+json; charset=utf-8",
-      body: events,
-    });
+  return context.path("/topics/{topicName}:publish", topicName).post({
+    ...operationOptionsToRequestParameters(options),
+    contentType:
+      (options.contentType as any) ??
+      "application/cloudevents-batch+json; charset=utf-8",
+    body: (events ?? []).map((p) => {
+      return {
+        id: p["id"],
+        source: p["source"],
+        data: p["data"],
+        data_base64:
+          p["dataBase64"] !== undefined
+            ? uint8ArrayToString(p["dataBase64"], "base64")
+            : undefined,
+        type: p["type"],
+        time: p["time"] !== undefined ? new Date(p["time"]) : undefined,
+        specversion: p["specversion"],
+        dataschema: p["dataschema"],
+        datacontenttype: p["datacontenttype"],
+        subject: p["subject"],
+      };
+    }),
+  });
 }
 
 export async function _publishCloudEventsDeserialize(
@@ -167,9 +199,13 @@ export async function _receiveCloudEventsDeserialize(
         id: p.event["id"],
         source: p.event["source"],
         data: p.event["data"],
-        dataBase64: Buffer.from(p.event["data_base64"] ?? ""),
+        dataBase64:
+          typeof p.event["data_base64"] === "string"
+            ? stringToUint8Array(p.event["data_base64"], "base64")
+            : p.event["data_base64"],
         type: p.event["type"],
-        time: new Date(p.event["time"] ?? ""),
+        time:
+          p.event["time"] !== undefined ? new Date(p.event["time"]) : undefined,
         specversion: p.event["specversion"],
         dataschema: p.event["dataschema"],
         datacontenttype: p.event["datacontenttype"],

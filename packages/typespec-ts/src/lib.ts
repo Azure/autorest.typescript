@@ -3,7 +3,7 @@
 
 import {
   paramMessage,
-  createCadlLibrary,
+  createTypeSpecLibrary,
   JSONSchemaType
 } from "@typespec/compiler";
 import { RLCOptions } from "@azure-tools/rlc-common";
@@ -42,12 +42,14 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
       items: { type: "string" }
     },
     credentialKeyHeaderName: { type: "string", nullable: true },
+    customHttpAuthHeaderName: { type: "string", nullable: true },
+    customHttpAuthSharedKeyPrefix: { type: "string", nullable: true },
     generateMetadata: { type: "boolean", nullable: true },
     generateTest: { type: "boolean", nullable: true },
     generateSample: { type: "boolean", nullable: true },
     azureSdkForJs: { type: "boolean", nullable: true },
     azureOutputDirectory: { type: "string", nullable: true },
-    isCadlTest: { type: "boolean", nullable: true },
+    isTypeSpecTest: { type: "boolean", nullable: true },
     title: { type: "string", nullable: true },
     dependencyInfo: {
       type: "object",
@@ -187,7 +189,7 @@ const libDef = {
   }
 } as const;
 
-export const $lib = createCadlLibrary(libDef);
+export const $lib = createTypeSpecLibrary(libDef);
 export const { reportDiagnostic } = $lib;
 
 export const prettierTypeScriptOptions: Options = {

@@ -5,7 +5,6 @@ import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import {
   UserOutput,
-  UserListOutput,
   PagedUserOutput,
   UserListResultsOutput,
 } from "./outputModels";
@@ -76,7 +75,7 @@ export interface GetDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface List200Response extends HttpResponse {
   status: "200";
-  body: UserListOutput;
+  body: PagedUserOutput;
 }
 
 export interface ListDefaultHeaders {
@@ -141,18 +140,18 @@ export interface DeleteOperationDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface Export200Response extends HttpResponse {
+export interface ExportOperation200Response extends HttpResponse {
   status: "200";
   body: UserOutput;
 }
 
-export interface ExportDefaultHeaders {
+export interface ExportOperationDefaultHeaders {
   /** String error code indicating what went wrong. */
   "x-ms-error-code"?: string;
 }
 
-export interface ExportDefaultResponse extends HttpResponse {
+export interface ExportOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
-  headers: RawHttpHeaders & ExportDefaultHeaders;
+  headers: RawHttpHeaders & ExportOperationDefaultHeaders;
 }

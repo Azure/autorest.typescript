@@ -30,19 +30,18 @@ import {
   getFormat,
   getMinItems,
   getMaxItems,
-  EmitContext,
   listServices,
   Union,
   Type,
   IntrinsicType,
   getProjectedName,
   isNullType,
+  getEncode,
   isTemplateDeclarationOrInstance
 } from "@typespec/compiler";
 import {
   getAuthentication,
   getHeaderFieldName,
-  getHttpOperation,
   getPathParamName,
   getQueryParamName,
   getServers,
@@ -53,7 +52,8 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  isHeader
+  isHeader,
+  getHttpOperation
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -64,8 +64,6 @@ import {
   isApiVersion,
   getDefaultApiVersion,
   getClientNamespaceString,
-  createSdkContext,
-  SdkContext,
   getSdkUnion,
   getAllModels,
   SdkSimpleType,
@@ -82,14 +80,24 @@ import {
   Type as HrlcType,
   Header
 } from "./modularCodeModel.js";
-import { transformRLCOptions } from "../transform/transfromRLCOptions.js";
-import { getEnrichedDefaultApiVersion } from "../utils/modelUtils.js";
+import {
+  getEnrichedDefaultApiVersion,
+  isAzureCoreErrorType
+} from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
-import { RLCModel, getClientName } from "@azure-tools/rlc-common";
+import {
+  RLCModel,
+  getClientName,
+  NameType,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import {
   getOperationGroupName,
-  getOperationName
+  getOperationName,
+  isIgnoredHeaderParam
 } from "../utils/operationUtil.js";
+import { SdkContext } from "../utils/interfaces.js";
+import { Project } from "ts-morph";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -186,7 +194,7 @@ function handleDiscriminator(context: SdkContext, type: Model, model: any) {
         }
       }
     }
-    // it is not included in properties of cadl but needed by python codegen
+    // it is not included in properties of typespec but needed by python codegen
     if (discriminatorProperty) {
       const discriminatorType = { ...discriminatorProperty.type };
       discriminatorType.value = null;
@@ -460,7 +468,8 @@ function emitParameter(
     location: parameter.type,
     type: type,
     implementation: implementation,
-    skipUrlEncoding: parameter.type === "endpointPath"
+    skipUrlEncoding: parameter.type === "endpointPath",
+    format: (parameter as any).format
   };
 
   if (paramMap.type.type === "constant") {
@@ -547,23 +556,6 @@ function emitResponseHeaders(
     });
   }
   return retval;
-}
-
-function isAzureCoreErrorType(t?: Type): boolean {
-  if (
-    t?.kind !== "Model" ||
-    !["Error", "ErrorResponse", "InnerError"].includes(t.name)
-  )
-    return false;
-  const namespaces = ".Azure.Core.Foundations".split(".");
-  while (
-    namespaces.length > 0 &&
-    (t?.kind === "Model" || t?.kind === "Namespace") &&
-    t.namespace?.name === namespaces.pop()
-  ) {
-    t = t.namespace;
-  }
-  return namespaces.length == 0;
 }
 
 function emitResponse(
@@ -748,6 +740,9 @@ function emitBasicOperation(
   });
 
   for (const param of httpOperation.parameters.parameters) {
+    if (isIgnoredHeaderParam(param)) {
+      continue;
+    }
     const emittedParam = emitParameter(context, param, "Method");
     if (isApiVersion(context, param) && apiVersionParam === undefined) {
       apiVersionParam = emittedParam;
@@ -767,7 +762,7 @@ function emitBasicOperation(
         innerResponse
       );
       if (isErrorModel(context.program, response.type)) {
-        // * is valid status code in cadl but invalid for autorest.python
+        // * is valid status code in typespec but invalid for autorest.python
         if (response.statusCode === "*") {
           exceptions.push(emittedResponse);
         }
@@ -819,7 +814,7 @@ function emitBasicOperation(
 }
 
 function isReadOnly(program: Program, type: ModelProperty): boolean {
-  // https://microsoft.github.io/cadl/standard-library/rest/operations#automatic-visibility
+  // https://microsoft.github.io/typespec/standard-library/http/operations#automatic-visibility
   // Only "read" should be readOnly
   const visibility = getVisibility(program, type);
   if (visibility) {
@@ -842,6 +837,10 @@ function emitProperty(
       propertyDefaultKind === "Boolean")
   ) {
     clientDefaultValue = property.default.value;
+  }
+
+  if (propertyDefaultKind === "EnumMember") {
+    clientDefaultValue = property.default.value ?? property.default.name;
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
@@ -895,9 +894,35 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     baseModel = getType(context, type.baseModel);
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
-  const modelName = effectiveName
-    ? effectiveName
-    : getName(context.program, type);
+  const overridedModelName =
+    getProjectedName(context.program, type, "javascript") ??
+    getProjectedName(context.program, type, "client") ??
+    getFriendlyName(context.program, type);
+  let modelName =
+    overridedModelName ??
+    (effectiveName ? effectiveName : getName(context.program, type));
+  if (
+    !overridedModelName &&
+    type.templateMapper &&
+    type.templateMapper.args &&
+    type.templateMapper.args.length > 0 &&
+    getPagedResult(context.program, type)
+  ) {
+    modelName =
+      type.templateMapper.args
+        .map((it) => {
+          switch (it.kind) {
+            case "Model":
+              return it.name;
+            case "String":
+              return it.value;
+            default:
+              return "";
+          }
+        })
+        .join("") + "List";
+  }
+
   return {
     type: "model",
     name: modelName,
@@ -996,11 +1021,12 @@ function emitCredentialUnion(cred_types: CredentialTypeUnion) {
 }
 
 function emitStdScalar(
+  program: Program,
   scalar: Scalar & { name: IntrinsicScalarName }
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "byte-array", format: "byte" };
+      return { type: "byte-array", format: getEncode(program, scalar) };
     case "int8":
     case "int16":
     case "int32":
@@ -1095,7 +1121,7 @@ function applyIntrinsicDecorators(
 function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
   let result: Record<string, any> = {};
   if (program.checker.isStdType(scalar)) {
-    result = emitStdScalar(scalar);
+    result = emitStdScalar(program, scalar);
   } else if (scalar.baseScalar) {
     result = emitScalar(program, scalar.baseScalar);
   }
@@ -1125,7 +1151,7 @@ function emitListOrDict(
   return undefined;
 }
 
-function mapCadlType(context: SdkContext, type: Type): any {
+function mapTypeSpecType(context: SdkContext, type: Type): any {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -1226,7 +1252,7 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapCadlType(context, type);
+  const builtinType = mapTypeSpecType(context, type);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);
@@ -1286,7 +1312,36 @@ function emitOperationGroups(
       operations: clientOperations
     });
   }
+  resolveConflictIfExist(operationGroups);
   return operationGroups;
+}
+
+function resolveConflictIfExist(operationGroups: OperationGroup[]) {
+  if (operationGroups.length < 2) {
+    return;
+  }
+
+  const nameSet = new Set<string>();
+  const hasConflict = operationGroups.some((g) =>
+    g.operations.some((op) => {
+      if (nameSet.has(op.name)) {
+        return true;
+      } else {
+        nameSet.add(op.name);
+        return false;
+      }
+    })
+  );
+  if (!hasConflict) {
+    return;
+  }
+  // Append operation group prefix
+  operationGroups.forEach((g) =>
+    g.operations.forEach((op) => {
+      op.oriName = op.name;
+      op.name = `${g.propertyName}_${op.name}`;
+    })
+  );
 }
 
 function getServerHelper(
@@ -1466,7 +1521,8 @@ function emitClients(
       operationGroups: emitOperationGroups(context, client, rlcModels),
       url: server ? server.url : "",
       apiVersions: [],
-      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name
+      rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
+      subfolder: ""
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
@@ -1499,25 +1555,24 @@ function getNamespaces(context: SdkContext): Set<string> {
 }
 
 export function emitCodeModel(
-  context: EmitContext<EmitterOptions>,
+  dpgContext: SdkContext,
   rlcModelsMap: Map<string, RLCModel>,
+  modularSourcesRoot: string,
+  project: Project,
   options: { casing: "snake" | "camel" } = { casing: "snake" }
 ): ModularCodeModel {
   CASING = options.casing ?? CASING;
-  const dpgContext = createSdkContext(context);
   const clientNamespaceString =
     getClientNamespaceString(dpgContext)?.toLowerCase();
   // Get types
   const codeModel: ModularCodeModel = {
-    options: transformRLCOptions(
-      context.options as any,
-      context.emitterOutputDir,
-      dpgContext
-    ),
+    options: dpgContext.rlcOptions ?? {},
+    modularOptions: { sourceRoot: modularSourcesRoot },
     namespace: clientNamespaceString,
     subnamespaceToClients: {},
     clients: [],
-    types: []
+    types: [],
+    project
   };
 
   const allModels = getAllModels(dpgContext);
@@ -1528,12 +1583,25 @@ export function emitCodeModel(
   for (const namespace of getNamespaces(dpgContext)) {
     if (namespace === clientNamespaceString) {
       codeModel.clients = emitClients(dpgContext, namespace, rlcModelsMap);
+      codeModel.clients.length > 1 &&
+        codeModel.clients.map((client) => {
+          client["subfolder"] = normalizeName(
+            client.name.replace("Client", ""),
+            NameType.File
+          );
+        });
     } else {
       codeModel["subnamespaceToClients"][namespace] = emitClients(
         dpgContext,
         namespace,
         rlcModelsMap
       );
+      codeModel["subnamespaceToClients"][namespace].length > 1 &&
+        (codeModel["subnamespaceToClients"][namespace] as HrlcClient[]).map(
+          (client) => {
+            client["subfolder"] = normalizeName(client.name, NameType.File);
+          }
+        );
     }
   }
 

@@ -23,6 +23,12 @@ export function getType(type: Type): TypeMetadata {
         originModule: "@azure/core-auth",
         isRelative: false
       };
+    case "OAuth2":
+      return {
+        name: "TokenCredential",
+        originModule: "@azure/core-auth",
+        isRelative: false
+      };
     case "boolean":
       return { name: getNullableType(type.type, type) };
     case "constant": {

@@ -11,13 +11,13 @@ import {
   createHttpPoller,
 } from "@azure/core-lro";
 import {
-  GetImageOperationStatus200Response,
-  GetImageOperationStatusDefaultResponse,
-  GetImageOperationStatusLogicalResponse,
-  StartGenerateImage202Response,
-  StartGenerateImageDefaultResponse,
-  StartGenerateImageLogicalResponse,
-} from "./responses";
+  GetAzureBatchImageGenerationOperationStatus200Response,
+  GetAzureBatchImageGenerationOperationStatusDefaultResponse,
+  GetAzureBatchImageGenerationOperationStatusLogicalResponse,
+  BeginAzureBatchImageGeneration202Response,
+  BeginAzureBatchImageGenerationDefaultResponse,
+  BeginAzureBatchImageGenerationLogicalResponse,
+} from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
  * @param client - Client to use for sending the request to get additional pages.
@@ -27,24 +27,24 @@ import {
  */
 export async function getLongRunningPoller<
   TResult extends
-    | StartGenerateImageLogicalResponse
-    | StartGenerateImageDefaultResponse
+    | BeginAzureBatchImageGenerationLogicalResponse
+    | BeginAzureBatchImageGenerationDefaultResponse
 >(
   client: Client,
   initialResponse:
-    | StartGenerateImage202Response
-    | StartGenerateImageDefaultResponse,
+    | BeginAzureBatchImageGeneration202Response
+    | BeginAzureBatchImageGenerationDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<
   TResult extends
-    | GetImageOperationStatusLogicalResponse
-    | GetImageOperationStatusDefaultResponse
+    | GetAzureBatchImageGenerationOperationStatusLogicalResponse
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse
 >(
   client: Client,
   initialResponse:
-    | GetImageOperationStatus200Response
-    | GetImageOperationStatusDefaultResponse,
+    | GetAzureBatchImageGenerationOperationStatus200Response
+    | GetAzureBatchImageGenerationOperationStatusDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 export async function getLongRunningPoller<TResult extends HttpResponse>(

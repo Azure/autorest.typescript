@@ -33,7 +33,11 @@ export function buildObjectInterfaces(
   const objectInterfaces: InterfaceDeclarationStructure[] = [];
 
   for (const objectSchema of objectSchemas) {
-    if (objectSchema.alias || objectSchema.outputAlias) {
+    if (
+      objectSchema.alias ||
+      objectSchema.outputAlias ||
+      objectSchema.fromCore
+    ) {
       continue;
     }
     const baseName = getObjectBaseName(objectSchema, schemaUsage);
@@ -417,18 +421,40 @@ export function getPropertySignature(
   importedModels: Set<string>
 ): PropertySignatureStructure {
   const propertyName = property.name;
-
   const description = property.description;
-  let type =
-    generateForOutput(schemaUsage, property.usage) && property.outputTypeName
-      ? property.outputTypeName
-      : property.typeName
-      ? property.typeName
-      : property.type;
-  if (property.typeName && property.fromCore) {
-    importedModels.add(property.typeName);
+  let type;
+  const hasCoreInArray =
+    property.type === "array" &&
+    (property as any).items &&
+    (property as any).items.fromCore;
+  const hasCoreInRecord =
+    property.type === "dictionary" &&
+    (property as any).additionalProperties &&
+    (property as any).additionalProperties.fromCore;
+  if (hasCoreInArray && property.typeName) {
     type = property.typeName;
+    importedModels.add(
+      (property as any).items.typeName ?? (property as any).items.name
+    );
+  } else if (hasCoreInRecord && property.typeName) {
+    type = property.typeName;
+    importedModels.add(
+      (property as any).additionalProperties.typeName ??
+        (property as any).additionalProperties.name
+    );
+  } else {
+    type =
+      generateForOutput(schemaUsage, property.usage) && property.outputTypeName
+        ? property.outputTypeName
+        : property.typeName
+        ? property.typeName
+        : property.type;
+    if (property.typeName && property.fromCore) {
+      importedModels.add(property.typeName);
+      type = property.typeName;
+    }
   }
+
   return {
     name: propertyName,
     ...(description && { docs: [{ description }] }),

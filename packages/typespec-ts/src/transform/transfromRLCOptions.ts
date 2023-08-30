@@ -5,23 +5,32 @@ import {
   RLCOptions,
   ServiceInfo
 } from "@azure-tools/rlc-common";
-import { getDoc, NoTarget, Program } from "@typespec/compiler";
-import { getAuthentication } from "@typespec/http";
+import {
+  getDoc,
+  ignoreDiagnostics,
+  NoTarget,
+  Program
+} from "@typespec/compiler";
+import { getAuthentication, getHttpOperation } from "@typespec/http";
 import { reportDiagnostic } from "../lib.js";
 import { getDefaultService } from "../utils/modelUtils.js";
 import { getRLCClients } from "../utils/clientUtils.js";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
+import {
+  listOperationGroups,
+  listOperationsInOperationGroup
+} from "@azure-tools/typespec-client-generator-core";
+import { getOperationName } from "../utils/operationUtil.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
-  emitterOutputDir: string,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): RLCOptions {
   // Extract the options from emitter option
   const options = extractRLCOptions(
-    dpgContext.program,
+    dpgContext,
     emitterOptions,
-    emitterOutputDir
+    dpgContext.generationPathDetail?.rootDir ?? ""
   );
   const batch = getRLCClients(dpgContext);
   options.batch = batch;
@@ -29,19 +38,24 @@ export function transformRLCOptions(
 }
 
 function extractRLCOptions(
-  program: Program,
+  dpgContext: SdkContext,
   emitterOptions: RLCOptions,
-  emitterOutputDir: string
+  generationRootDir: string
 ): RLCOptions {
+  const program = dpgContext.program;
   const includeShortcuts = getIncludeShortcuts(emitterOptions);
   const packageDetails = getPackageDetails(program, emitterOptions);
   const serviceInfo = getServiceInfo(program);
   const azureSdkForJs = getAzureSdkForJs(emitterOptions);
-  const generateMetadata = getGenerateMetadata(emitterOptions);
-  const generateTest = getGenerateTest(emitterOptions);
+  const generateMetadata: undefined | boolean =
+    getGenerateMetadata(emitterOptions);
+  const generateTest: undefined | boolean = getGenerateTest(emitterOptions);
   const credentialInfo = getCredentialInfo(program, emitterOptions);
-  const azureOutputDirectory = getAzureOutputDirectory(emitterOutputDir);
-  const enableOperationGroup = getEnableOperationGroup(emitterOptions);
+  const azureOutputDirectory = getAzureOutputDirectory(generationRootDir);
+  const enableOperationGroup = getEnableOperationGroup(
+    dpgContext,
+    emitterOptions
+  );
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -52,7 +66,7 @@ function extractRLCOptions(
     azureSdkForJs,
     serviceInfo,
     azureOutputDirectory,
-    sourceFrom: "Cadl",
+    sourceFrom: "TypeSpec",
     enableOperationGroup
   };
 }
@@ -71,6 +85,9 @@ function processAuth(program: Program) {
     for (const auth of option.schemes) {
       switch (auth.type) {
         case "http":
+          securityInfo.addCredentials = true;
+          securityInfo.customHttpAuthHeaderName = "Authorization";
+          securityInfo.customHttpAuthSharedKeyPrefix = auth.scheme;
           break;
         case "apiKey":
           if (auth.in === "cookie") {
@@ -109,10 +126,54 @@ function processAuth(program: Program) {
   return securityInfo;
 }
 
-function getEnableOperationGroup(emitterOptions: RLCOptions) {
-  if (emitterOptions.enableOperationGroup === true) {
-    return true;
+function getEnableOperationGroup(
+  dpgContext: SdkContext,
+  emitterOptions: RLCOptions
+) {
+  if (
+    emitterOptions.enableOperationGroup === true ||
+    emitterOptions.enableOperationGroup === false
+  ) {
+    return emitterOptions.enableOperationGroup;
   }
+  // Detect if existing name conflicts if customers didn't set the option explicitly
+  return detectIfNameConflicts(dpgContext);
+}
+
+function detectIfNameConflicts(dpgContext: SdkContext) {
+  const clients = getRLCClients(dpgContext);
+  const program = dpgContext.program;
+  const nameSet = new Set<string>();
+  for (const client of clients) {
+    const operationGroups = listOperationGroups(dpgContext, client);
+    for (const operationGroup of operationGroups) {
+      const operations = listOperationsInOperationGroup(
+        dpgContext,
+        operationGroup
+      );
+      for (const op of operations) {
+        const route = ignoreDiagnostics(getHttpOperation(program, op));
+        const name = getOperationName(program, route.operation);
+        if (nameSet.has(name)) {
+          return true;
+        } else {
+          nameSet.add(name);
+        }
+      }
+    }
+    const clientOperations = listOperationsInOperationGroup(dpgContext, client);
+    for (const clientOp of clientOperations) {
+      const route = ignoreDiagnostics(getHttpOperation(program, clientOp));
+      const name = getOperationName(program, route.operation);
+      if (nameSet.has(name)) {
+        return true;
+      } else {
+        nameSet.add(name);
+      }
+    }
+  }
+
+  // No conflicts if we didn't detect any
   return false;
 }
 
@@ -160,17 +221,23 @@ function getAzureSdkForJs(emitterOptions: RLCOptions) {
 }
 
 function getGenerateMetadata(emitterOptions: RLCOptions) {
-  return emitterOptions.generateMetadata === undefined ||
+  if (
+    emitterOptions.generateMetadata === undefined ||
     emitterOptions.generateMetadata === null
-    ? true
-    : Boolean(emitterOptions.generateMetadata);
+  ) {
+    return undefined;
+  }
+  return Boolean(emitterOptions.generateMetadata);
 }
 
 function getGenerateTest(emitterOptions: RLCOptions) {
-  return emitterOptions.generateTest === undefined ||
+  if (
+    emitterOptions.generateTest === undefined ||
     emitterOptions.generateTest === null
-    ? true
-    : Boolean(emitterOptions.generateTest);
+  ) {
+    return undefined;
+  }
+  return Boolean(emitterOptions.generateTest);
 }
 
 export function getCredentialInfo(
@@ -192,10 +259,20 @@ export function getCredentialInfo(
     securityInfo && securityInfo.credentialKeyHeaderName
       ? securityInfo.credentialKeyHeaderName
       : emitterOptions.credentialKeyHeaderName;
+  const customHttpAuthHeaderName =
+    securityInfo && securityInfo.customHttpAuthHeaderName
+      ? securityInfo.customHttpAuthHeaderName
+      : emitterOptions.customHttpAuthHeaderName;
+  const customHttpAuthSharedKeyPrefix =
+    securityInfo && securityInfo.customHttpAuthSharedKeyPrefix
+      ? securityInfo.customHttpAuthSharedKeyPrefix
+      : emitterOptions.customHttpAuthSharedKeyPrefix;
   return {
     addCredentials,
     credentialScopes,
-    credentialKeyHeaderName
+    credentialKeyHeaderName,
+    customHttpAuthHeaderName,
+    customHttpAuthSharedKeyPrefix
   };
 }
 

@@ -1,23 +1,22 @@
 import { Project, SourceFile } from "ts-morph";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { Client } from "./modularCodeModel.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 export function buildRootIndex(
+  codeModel: ModularCodeModel,
   client: Client,
-  project: Project,
-  rootIndexFile: SourceFile,
-  srcPath: string,
-  subfolder: string
+  rootIndexFile: SourceFile
 ) {
+  const { project } = codeModel;
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subfolder = client.subfolder ?? "";
   const clientName = `${getClientName(client)}Client`;
   const clientFile = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}${clientName}.ts`
   );
 
   if (!clientFile) {
-    throw new Error(
-      `Couldn't find client file: ${srcPath}/src/${clientName}.ts`
-    );
+    throw new Error(`Couldn't find client file: ${srcPath}/${clientName}.ts`);
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder);
@@ -48,7 +47,7 @@ function exportModels(
   isTopLevel: boolean = false
 ) {
   const modelsFile = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/index.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/index.ts`
   );
   if (!modelsFile) {
     return;
@@ -73,26 +72,32 @@ function exportModels(
 }
 
 export function buildSubClientIndexFile(
-  client: Client,
-  project: Project,
-  srcPath: string,
-  subfolder: string
+  codeModel: ModularCodeModel,
+  client: Client
 ) {
-  const subClientIndexFile = project.createSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
+  const subfolder = client.subfolder ?? "";
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subClientIndexFile = codeModel.project.createSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}index.ts`,
     undefined,
     { overwrite: true }
   );
   const clientName = `${getClientName(client)}Client`;
-  const clientFilePath = `${srcPath}/src/${
+  const clientFilePath = `${srcPath}/${
     subfolder !== "" ? subfolder + "/" : ""
   }${clientName}.ts`;
-  const clientFile = project.getSourceFile(clientFilePath);
+  const clientFile = codeModel.project.getSourceFile(clientFilePath);
 
   if (!clientFile) {
     throw new Error(`Couldn't find client file: ${clientFilePath}`);
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportModels(subClientIndexFile, project, srcPath, clientName, subfolder);
+  exportModels(
+    subClientIndexFile,
+    codeModel.project,
+    srcPath,
+    clientName,
+    subfolder
+  );
 }

@@ -7,8 +7,8 @@ import {
   TestAppComponents,
   AppComponent,
   TestServerMetricConfig,
-  FileInfoList,
-  TestsList,
+  PagedFileInfo,
+  PagedTest,
 } from "../models/models.js";
 import {
   isUnexpected,
@@ -76,11 +76,42 @@ export function _createOrUpdateTestSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
-        passFailCriteria: options?.passFailCriteria,
+        passFailCriteria: {
+          passFailMetrics: options?.passFailCriteria?.["passFailMetrics"],
+        },
         secrets: options?.secrets,
-        certificate: options?.certificate,
+        certificate: {
+          value: options?.certificate?.["value"],
+          type: options?.certificate?.["type"],
+          name: options?.certificate?.["name"],
+        },
         environmentVariables: options?.environmentVariables,
-        loadTestConfiguration: options?.loadTestConfiguration,
+        loadTestConfiguration: {
+          engineInstances: options?.loadTestConfiguration?.["engineInstances"],
+          splitAllCSVs: options?.loadTestConfiguration?.["splitAllCSVs"],
+          quickStartTest: options?.loadTestConfiguration?.["quickStartTest"],
+          optionalLoadTestConfig: !options?.loadTestConfiguration
+            ?.optionalLoadTestConfig
+            ? undefined
+            : {
+                endpointUrl:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "endpointUrl"
+                  ],
+                virtualUsers:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "virtualUsers"
+                  ],
+                rampUpTime:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "rampUpTime"
+                  ],
+                duration:
+                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
+                    "duration"
+                  ],
+              },
+        },
         description: options?.description,
         displayName: options?.displayName,
         subnetId: options?.subnetId,
@@ -716,7 +747,7 @@ export async function _listTestFilesDeserialize(
   result:
     | LoadTestAdministrationListTestFiles200Response
     | LoadTestAdministrationListTestFilesDefaultResponse
-): Promise<FileInfoList> {
+): Promise<PagedFileInfo> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -739,7 +770,7 @@ export async function listTestFiles(
   context: Client,
   testId: string,
   options: ListTestFilesOptions = { requestOptions: {} }
-): Promise<FileInfoList> {
+): Promise<PagedFileInfo> {
   const result = await _listTestFilesSend(context, testId, options);
   return _listTestFilesDeserialize(result);
 }
@@ -769,7 +800,7 @@ export async function _listTestsDeserialize(
   result:
     | LoadTestAdministrationListTests200Response
     | LoadTestAdministrationListTestsDefaultResponse
-): Promise<TestsList> {
+): Promise<PagedTest> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -919,7 +950,7 @@ export async function _listTestsDeserialize(
 export async function listTests(
   context: Client,
   options: ListTestsOptions = { requestOptions: {} }
-): Promise<TestsList> {
+): Promise<PagedTest> {
   const result = await _listTestsSend(context, options);
   return _listTestsDeserialize(result);
 }

@@ -63,10 +63,10 @@ import {
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
 import {
-  SdkContext,
   getDefaultApiVersion,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext } from "./interfaces.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -134,7 +134,7 @@ export function getSchemaForType(
   const program = dpgContext.program;
   const type = getEffectiveModelFromType(program, typeInput);
 
-  const builtinType = mapCadlTypeToTypeScript(dpgContext, type, usage);
+  const builtinType = mapTypeSpecTypeToTypeScript(dpgContext, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(program, type);
@@ -284,7 +284,7 @@ function getSchemaForUnionVariant(
   return getSchemaForType(dpgContext, variant, usage);
 }
 
-// An openapi "string" can be defined in several different ways in Cadl
+// An openapi "string" can be defined in several different ways in typespec
 function isOasString(type: Type): boolean {
   if (type.kind === "String") {
     // A string literal
@@ -402,7 +402,7 @@ function validateDiscriminator(
  * A "schema property" here is a property that is emitted to OpenAPI schema.
  *
  * Headers, parameters, status codes are not schema properties even they are
- * represented as properties in Cadl.
+ * represented as properties in typespec.
  */
 function isSchemaProperty(program: Program, property: ModelProperty) {
   const headerInfo = getHeaderFieldName(program, property);
@@ -420,9 +420,7 @@ function getSchemaForModel(
 ) {
   const program = dpgContext.program;
   const overridedModelName =
-    getProjectedName(program, model, "javascript") ??
-    getProjectedName(program, model, "client") ??
-    getFriendlyName(program, model);
+    getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
   let name = model.name;
   if (
     !overridedModelName &&
@@ -459,14 +457,7 @@ function getSchemaForModel(
 
   modelSchema.typeName = modelSchema.name;
 
-  if (
-    (model.name === "ErrorResponse" ||
-      model.name === "ErrorModel" ||
-      model.name === "Error") &&
-    model.kind === "Model" &&
-    model.namespace?.name === "Foundations" &&
-    model.namespace.namespace?.name === "Core"
-  ) {
+  if (isAzureCoreErrorType(model)) {
     modelSchema.fromCore = true;
   }
 
@@ -654,86 +645,86 @@ function getSchemaForModel(
   }
   return modelSchema;
 }
-// Map an Cadl type to an OA schema. Returns undefined when the resulting
+// Map an typespec type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
-function mapCadlTypeToTypeScript(
+function mapTypeSpecTypeToTypeScript(
   dpgContext: SdkContext,
-  cadlType: Type,
+  type: Type,
   usage?: SchemaContext[]
 ): any {
-  switch (cadlType.kind) {
+  switch (type.kind) {
     case "Number":
-      return { type: `${cadlType.value}` };
+      return { type: `${type.value}` };
     case "String":
-      return { type: `"${cadlType.value}"` };
+      return { type: `"${type.value}"` };
     case "Boolean":
-      return { type: `${cadlType.value}` };
+      return { type: `${type.value}` };
     case "Model":
-      return mapCadlStdTypeToTypeScript(dpgContext, cadlType, usage);
+      return mapTypeSpecStdTypeToTypeScript(dpgContext, type, usage);
   }
-  if (cadlType.kind === undefined) {
-    if (typeof cadlType === "string") {
-      return { type: `"${cadlType}"` };
-    } else if (typeof cadlType === "number" || typeof cadlType === "boolean") {
-      return { type: `${cadlType}` };
+  if (type.kind === undefined) {
+    if (typeof type === "string") {
+      return { type: `"${type}"` };
+    } else if (typeof type === "number" || typeof type === "boolean") {
+      return { type: `${type}` };
     }
   }
 }
 function applyIntrinsicDecorators(
   program: Program,
-  cadlType: Scalar | ModelProperty,
+  type: Scalar | ModelProperty,
   target: any
 ): any {
   const newTarget = { ...target };
-  const docStr = getDoc(program, cadlType);
-  const isString = isStringType(program, getPropertyType(cadlType));
-  const isNumeric = isNumericType(program, getPropertyType(cadlType));
+  const docStr = getDoc(program, type);
+  const isString = isStringType(program, getPropertyType(type));
+  const isNumeric = isNumericType(program, getPropertyType(type));
 
   if (isString && !target.documentation && docStr) {
     newTarget.description = docStr;
   }
 
-  const restApiName = getProjectedName(program, cadlType, "json");
+  const restApiName = getProjectedName(program, type, "json");
   if (restApiName) {
     newTarget.name = restApiName;
   }
 
-  const summaryStr = getSummary(program, cadlType);
+  const summaryStr = getSummary(program, type);
   if (isString && !target.summary && summaryStr) {
     newTarget.summary = summaryStr;
   }
 
-  const formatStr = getFormat(program, cadlType);
+  const formatStr = getFormat(program, type);
   if (isString && !target.format && formatStr) {
     newTarget.format = formatStr;
   }
 
-  const pattern = getPattern(program, cadlType);
+  const pattern = getPattern(program, type);
   if (isString && !target.pattern && pattern) {
     newTarget.pattern = pattern;
   }
 
-  const minLength = getMinLength(program, cadlType);
+  const minLength = getMinLength(program, type);
   if (isString && !target.minLength && minLength !== undefined) {
     newTarget.minLength = minLength;
   }
 
-  const maxLength = getMaxLength(program, cadlType);
+  const maxLength = getMaxLength(program, type);
   if (isString && !target.maxLength && maxLength !== undefined) {
     newTarget.maxLength = maxLength;
   }
 
-  const minValue = getMinValue(program, cadlType);
+  const minValue = getMinValue(program, type);
   if (isNumeric && !target.minimum && minValue !== undefined) {
     newTarget.minimum = minValue;
   }
 
-  const maxValue = getMaxValue(program, cadlType);
+  const maxValue = getMaxValue(program, type);
   if (isNumeric && !target.maximum && maxValue !== undefined) {
     newTarget.maximum = maxValue;
   }
 
-  if (isSecret(program, cadlType)) {
+  if (isSecret(program, type)) {
     newTarget.format = "password";
     newTarget["x-ms-secret"] = true;
   }
@@ -781,15 +772,15 @@ function enumMemberType(member: EnumMember) {
   return "string";
 }
 /**
- * Map Cadl intrinsic models to open api definitions
+ * Map TypeSpec intrinsic models to open api definitions
  */
-function mapCadlStdTypeToTypeScript(
+function mapTypeSpecStdTypeToTypeScript(
   dpgContext: SdkContext,
-  cadlType: Model,
+  type: Model,
   usage?: SchemaContext[]
 ): any | undefined {
   const program = dpgContext.program;
-  const indexer = (cadlType as Model).indexer;
+  const indexer = (type as Model).indexer;
   if (indexer !== undefined) {
     if (!isNeverType(indexer.key)) {
       const name = indexer.key.name;
@@ -804,7 +795,7 @@ function mapCadlStdTypeToTypeScript(
         schema = {
           type: "dictionary",
           additionalProperties: valueType,
-          description: getDoc(program, cadlType)
+          description: getDoc(program, type)
         };
         if (
           !program.checker.isStdType(indexer.value) &&
@@ -838,7 +829,7 @@ function mapCadlStdTypeToTypeScript(
         schema = {
           type: "array",
           items: getSchemaForType(dpgContext, indexer.value!, usage, true),
-          description: getDoc(program, cadlType)
+          description: getDoc(program, type)
         };
         if (
           !program.checker.isStdType(indexer.value) &&
@@ -897,10 +888,10 @@ function isUnionType(type: Type) {
 
 function getSchemaForStdScalar(
   program: Program,
-  cadlType: Scalar,
+  type: Scalar,
   relevantProperty?: ModelProperty
 ) {
-  if (!program.checker.isStdType(cadlType)) {
+  if (!program.checker.isStdType(type)) {
     return undefined;
   }
 
@@ -911,81 +902,81 @@ function getSchemaForStdScalar(
    */
   if (relevantProperty) {
     const encodeData = getEncode(program, relevantProperty);
-    if (encodeData && isEncodeTypeEffective(cadlType, encodeData)) {
-      cadlType = encodeData.type;
+    if (encodeData && isEncodeTypeEffective(type, encodeData)) {
+      type = encodeData.type;
     }
   }
-  const name = cadlType.name;
-  const description = getSummary(program, cadlType);
+  const name = type.name;
+  const description = getSummary(program, type);
   switch (name) {
     case "bytes":
       return { type: "string", format: "byte", description };
     case "integer":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number"
       });
     case "int8":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "int8"
       });
     case "int16":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "int16"
       });
     case "int32":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "int32"
       });
     case "int64":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "int64"
       });
     case "safeint":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "int64"
       });
     case "uint8":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "uint8"
       });
     case "uint16":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "uint16"
       });
     case "uint32":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "uint32"
       });
     case "uint64":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "uint64"
       });
     case "float64":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "double"
       });
     case "float32":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
       });
     case "float":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
       });
     case "string":
-      return applyIntrinsicDecorators(program, cadlType, {
+      return applyIntrinsicDecorators(program, type, {
         type: "string"
       });
     case "boolean":
@@ -1094,11 +1085,11 @@ function getEnumStringDescription(type: any) {
 
 export function getFormattedPropertyDoc(
   program: Program,
-  cadlType: ModelProperty | Type,
+  type: ModelProperty | Type,
   schemaType: any,
   sperator: string = "\n\n"
 ) {
-  const propertyDoc = getDoc(program, cadlType);
+  const propertyDoc = getDoc(program, type);
   const enhancedDocFromType = getEnumStringDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
@@ -1108,7 +1099,6 @@ export function getFormattedPropertyDoc(
 
 export function getBodyType(
   program: Program,
-
   route: HttpOperation
 ): Type | undefined {
   let bodyModel = route.parameters.bodyType;
@@ -1256,4 +1246,21 @@ export function trimUsage(model: any) {
     return obj;
   }, {});
   return ordered;
+}
+
+export function isAzureCoreErrorType(t?: Type): boolean {
+  if (
+    t?.kind !== "Model" ||
+    !["error", "errorresponse", "innererror"].includes(t.name.toLowerCase())
+  )
+    return false;
+  const namespaces = ".Azure.Core.Foundations".split(".");
+  while (
+    namespaces.length > 0 &&
+    (t?.kind === "Model" || t?.kind === "Namespace") &&
+    t.namespace?.name === namespaces.pop()
+  ) {
+    t = t.namespace;
+  }
+  return namespaces.length == 0;
 }

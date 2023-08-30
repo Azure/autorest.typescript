@@ -12,6 +12,11 @@ export interface RLCModel {
   importSet?: Map<ImportKind, Set<string>>;
   helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
+  telemetryOptions?: TelemetryInfo;
+}
+
+export interface TelemetryInfo {
+  customRequestIdHeaderName?: string;
 }
 
 export interface PathTemplateApiVersion {
@@ -79,6 +84,7 @@ export interface PathMetadata {
 export type Paths = Record<string, PathMetadata>;
 
 export type PathParameter = {
+  oriName?: string;
   name: string;
   type: string;
   description?: string;
@@ -110,18 +116,32 @@ export interface RLCOptions {
   addCredentials?: boolean;
   credentialScopes?: string[];
   credentialKeyHeaderName?: string;
+  customHttpAuthHeaderName?: string;
+  customHttpAuthSharedKeyPrefix?: string;
+  /**
+   * Three possible values:
+   * - undefined, the default behavior which means we would generate metadata if the package.json file is absent
+   * - true, which means we would always generate new files or override existing files
+   * - false, which means we would not generate any files no matter there exists or not
+   */
   generateMetadata?: boolean;
+  /**
+   * Three possible values:
+   * - undefined, the default behavior which means we would generate test if there is no `test` folder
+   * - true, which means we would always generate new files or override existing files
+   * - false, which means we would not generate any files no matter there exists or not
+   */
   generateTest?: boolean;
   generateSample?: boolean;
   azureSdkForJs?: boolean;
   azureOutputDirectory?: string;
-  isCadlTest?: boolean;
+  isTypeSpecTest?: boolean;
   title?: string;
   dependencyInfo?: DependencyInfo;
   productDocLink?: string;
   serviceInfo?: ServiceInfo;
   azureArm?: boolean;
-  sourceFrom?: "Cadl" | "Swagger";
+  sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
 }

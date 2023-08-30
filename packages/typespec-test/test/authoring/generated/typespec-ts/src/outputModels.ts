@@ -132,9 +132,9 @@ export interface TrainingConfigVersionOutput {
 }
 
 /** Paged collection of Project items */
-export type ProjectListOutput = Paged<ProjectOutput>;
+export type PagedProjectOutput = Paged<ProjectOutput>;
 /** Paged collection of Deployment items */
-export type DeploymentListOutput = Paged<DeploymentOutput>;
+export type PagedDeploymentOutput = Paged<DeploymentOutput>;
 /** A collection of SupportedLanguage resources. */
 export type PagedSupportedLanguageOutput = Paged<SupportedLanguageOutput>;
 /** A collection of TrainingConfigVersion resources. */

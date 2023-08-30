@@ -3,7 +3,6 @@ import {
   FunctionDeclarationStructure,
   MethodDeclarationStructure,
   OptionalKind,
-  Project,
   Scope,
   SourceFile,
   StructureKind
@@ -12,25 +11,25 @@ import { toCamelCase } from "../utils/casingUtils.js";
 import { getClientParameters } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
-import { Client } from "./modularCodeModel.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
-  client: Client,
-  project: Project,
-  srcPath: string,
-  subfolder: string
+  codeModel: ModularCodeModel,
+  client: Client
 ) {
   const { description } = client;
   const modularClientName = getClientName(client);
   const classicalClientname = `${getClientName(client)}Client`;
   const params = getClientParameters(client);
+  const srcPath = codeModel.modularOptions.sourceRoot;
+  const subfolder = client.subfolder ?? "";
 
-  const clientFile = project.createSourceFile(
-    `${srcPath}/src/${
+  const clientFile = codeModel.project.createSourceFile(
+    `${srcPath}/${
       subfolder !== "" ? subfolder + "/" : ""
     }${classicalClientname}.ts`
   );
@@ -85,7 +84,7 @@ function importAllApis(
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/index.ts`
   );
 
   if (!apiModels) {
@@ -107,7 +106,7 @@ function importAllModels(
 ) {
   const project = clientFile.getProject();
   const apiModels = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/models.ts`
   );
 
   if (!apiModels) {
@@ -116,13 +115,15 @@ function importAllModels(
 
   const exported = [...apiModels.getExportedDeclarations().keys()];
 
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `./models/models.js`,
-    namedImports: exported
-  });
+  if (exported.length > 0) {
+    clientFile.addImportDeclaration({
+      moduleSpecifier: `./models/models.js`,
+      namedImports: exported
+    });
+  }
 
   const apiModelsOptions = project.getSourceFile(
-    `${srcPath}/src/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
   );
 
   if (!apiModelsOptions) {
@@ -151,6 +152,10 @@ function buildClientOperationGroups(
   clientClass: ClassDeclaration,
   subfolder: string
 ) {
+  const operationMap = new Map<
+    OptionalKind<FunctionDeclarationStructure>,
+    string | undefined
+  >();
   for (const operationGroup of client.operationGroups) {
     const operationGroupName = toCamelCase(operationGroup.propertyName);
     let clientType = "Client";
@@ -158,9 +163,11 @@ function buildClientOperationGroups(
       clientType = `Client.${clientClass.getName()}`;
     }
     const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-      operationGroup.operations.map((operation) =>
-        getOperationFunction(operation, clientType)
-      );
+      operationGroup.operations.map((operation) => {
+        const declarations = getOperationFunction(operation, clientType);
+        operationMap.set(declarations, operation.oriName);
+        return declarations;
+      });
 
     if (operationGroupName && operationGroupName !== "") {
       clientClass.addProperty({
@@ -168,9 +175,11 @@ function buildClientOperationGroups(
         initializer: `
       {
         ${operationDeclarations.map((d) => {
-          return `${d.name}: (${d.parameters
+          return `${getClassicalMethodName(d)}: (${d.parameters
             ?.filter((p) => p.name !== "context")
-            .map((p) => p.name + ": " + p.type)
+            .map(
+              (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+            )
             .join(",")}): ${d.returnType} => {return ${d.name}(${[
             "this._client",
             ...[d.parameters?.map((p) => p.name).filter((p) => p !== "context")]
@@ -184,7 +193,7 @@ function buildClientOperationGroups(
         operationDeclarations.map((d) => {
           const method: MethodDeclarationStructure = {
             docs: d.docs,
-            name: d.name ?? "FIXME",
+            name: getClassicalMethodName(d),
             kind: StructureKind.Method,
             returnType: d.returnType,
             parameters: d.parameters?.filter((p) => p.name !== "context"),
@@ -200,5 +209,11 @@ function buildClientOperationGroups(
         })
       );
     }
+  }
+
+  function getClassicalMethodName(
+    declaration: OptionalKind<FunctionDeclarationStructure>
+  ) {
+    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
   }
 }

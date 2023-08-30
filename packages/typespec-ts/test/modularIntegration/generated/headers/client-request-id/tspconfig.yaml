@@ -1,0 +1,11 @@
+emit:
+  - "@azure-tools/typespec-ts"
+options:
+  "@azure-tools/typespec-ts":
+    generateMetadata: false
+    generateTest: false
+    azureSdkForJs: false
+    isModularLibrary: true
+    "emitter-output-dir": "{project-root}"
+    packageDetails:
+      name: "@msinternal/modular-model-usage"

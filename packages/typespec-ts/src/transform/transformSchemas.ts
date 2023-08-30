@@ -13,14 +13,15 @@ import {
   getSchemaForType,
   includeDerivedModel,
   getBodyType,
-  trimUsage
+  trimUsage,
+  isAzureCoreErrorType
 } from "../utils/modelUtils.js";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformSchemas(
   program: Program,
   client: SdkClient,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ) {
   const schemas: Map<string, SchemaContext[]> = new Map<
     string,
@@ -61,12 +62,7 @@ export function transformSchemas(
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
-      if (
-        resp.type.kind === "Model" &&
-        resp.type.name === "ErrorResponse" &&
-        resp.type.namespace?.name === "Foundations" &&
-        resp.type.namespace.namespace?.name === "Core"
-      ) {
+      if (isAzureCoreErrorType(resp.type)) {
         continue;
       }
       for (const resps of resp.responses) {
@@ -78,8 +74,8 @@ export function transformSchemas(
       }
     }
   }
-  program.stateMap(modelKey).forEach((context, cadlModel) => {
-    const model = getSchemaForType(dpgContext, cadlModel, context);
+  program.stateMap(modelKey).forEach((context, tspModel) => {
+    const model = getSchemaForType(dpgContext, tspModel, context);
     if (model) {
       model.usage = context;
     }

@@ -1,4 +1,5 @@
 import { Project, SourceFile } from "ts-morph";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { buildType } from "./helpers/typeHelpers.js";
 import {
   getOperationFunction,
@@ -6,10 +7,10 @@ import {
   getDeserializePrivateFunction,
   getOperationOptionsName
 } from "./helpers/operationHelpers.js";
-import { Client, Operation } from "./modularCodeModel.js";
+import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -18,28 +19,29 @@ import { getDocsFromDescription } from "./helpers/docsHelpers.js";
  */
 export function buildOperationFiles(
   dpgContext: SdkContext,
+  codeModel: ModularCodeModel,
   client: Client,
-  project: Project,
-  srcPath: string = "src",
-  subfolder: string = "",
   needUnexpectedHelper: boolean = true
 ) {
   for (const operationGroup of client.operationGroups) {
+    const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
     const fileName = operationGroup.className
-      ? `${operationGroup.className}`
+      ? `${normalizeName(operationGroup.className, NameType.File)}`
       : // When the program has no operation groups defined all operations are put
         // into a nameless operation group. We'll call this operations.
         "operations";
 
-    const operationGroupFile = project.createSourceFile(
-      `${srcPath}/src/${
+    const subfolder = client.subfolder;
+    const srcPath = codeModel.modularOptions.sourceRoot;
+    const operationGroupFile = codeModel.project.createSourceFile(
+      `${srcPath}/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
       }api/${fileName}.ts`
     );
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(srcPath, operationGroupFile, project, subfolder);
+    importModels(srcPath, operationGroupFile, codeModel.project, subfolder);
 
     const namedImports: string[] = [];
     let clientType = "Client";
@@ -70,17 +72,18 @@ export function buildOperationFiles(
         }
       ]);
     }
-    const modelOptionsFile = project.createSourceFile(
-      `${srcPath}/src/${subfolder}/models/options.ts`
-    );
     operationGroup.operations.forEach((o) => {
-      buildOperationOptions(o, modelOptionsFile);
       const operationDeclaration = getOperationFunction(o, clientType);
-      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const sendOperationDeclaration = getSendPrivateFunction(
+        o,
+        clientType,
+        importSet
+      );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
-        needUnexpectedHelper
+        needUnexpectedHelper,
+        importSet
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -98,41 +101,30 @@ export function buildOperationFiles(
         ]
       }
     ]);
-    modelOptionsFile.addImportDeclarations([
-      {
-        moduleSpecifier: "@azure-rest/core-client",
-        namedImports: ["OperationOptions"]
+    if (importSet.size > 0) {
+      for (const [moduleName, imports] of importSet.entries()) {
+        operationGroupFile.addImportDeclarations([
+          {
+            moduleSpecifier: moduleName,
+            namedImports: [...imports.values()]
+          }
+        ]);
       }
-    ]);
-
-    modelOptionsFile.fixMissingImports();
-    modelOptionsFile
-      .getImportDeclarations()
-      .filter((id) => {
-        return (
-          id.isModuleSpecifierRelative() &&
-          !id.getModuleSpecifierValue().endsWith(".js")
-        );
-      })
-      .map((id) => {
-        id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
-        return id;
-      });
-
+    }
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();
   }
 }
 
-function importModels(
+export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,
   subfolder: string = ""
 ) {
   const modelsFile = project.getSourceFile(
-    `${srcPath}/src/${
+    `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
     }models/models.ts`
   );
@@ -142,10 +134,12 @@ function importModels(
     models.push(entry[0]);
   }
 
-  sourceFile.addImportDeclaration({
-    moduleSpecifier: "../models/models.js",
-    namedImports: models
-  });
+  if (models.length > 0) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: "../models/models.js",
+      namedImports: models
+    });
+  }
 
   // Import all models and then let ts-morph clean up the unused ones
   // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.

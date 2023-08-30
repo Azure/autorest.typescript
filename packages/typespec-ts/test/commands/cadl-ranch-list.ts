@@ -10,6 +10,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "union-body"
   },
   {
+    outputPath: "headers/clientRequestId",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
   },
@@ -46,6 +50,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "authentication/api-key"
   },
   {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
     outputPath: "authentication/oauth2",
     inputPath: "authentication/oauth2"
   },
@@ -71,11 +79,11 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "lro/lroRPC",
-    inputPath: "azure/core/lro/rpc/legacy"
+    inputPath: "azure/core/lro/rpc-legacy"
   },
   {
     outputPath: "models/inheritance",
-    inputPath: "type/model/inheritance"
+    inputPath: "type/model/inheritance/nested-discriminator"
   },
   {
     outputPath: "models/propertyOptional",
@@ -148,6 +156,22 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core-traits",
     inputPath: "azure/core/traits"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default"
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
   }
 ];
 
@@ -155,5 +179,33 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default"
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "headers/client-request-id",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "azure/core",
+    inputPath: "azure/core/basic"
   }
 ];

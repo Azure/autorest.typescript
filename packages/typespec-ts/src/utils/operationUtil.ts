@@ -20,10 +20,11 @@ import {
   Type
 } from "@typespec/compiler";
 import {
-  getHttpOperation,
   HttpOperation,
+  HttpOperationParameter,
   HttpOperationResponse,
-  StatusCode
+  StatusCode,
+  getHttpOperation
 } from "@typespec/http";
 import {
   getLroMetadata,
@@ -32,7 +33,6 @@ import {
 } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
-  SdkContext,
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
@@ -42,7 +42,7 @@ import {
   OPERATION_LRO_HIGH_PRIORITY
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
-import { RLCSdkContext } from "../transform/transform.js";
+import { SdkContext } from "./interfaces.js";
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
@@ -56,18 +56,18 @@ export function getOperationStatuscode(
 }
 
 export function getOperationGroupName(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   route?: HttpOperation
 ): string;
 export function getOperationGroupName(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   operation?: Operation
 ): string;
 export function getOperationGroupName(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   operationOrRoute?: Operation | HttpOperation
 ) {
-  if (!dpgContext.options?.enableOperationGroup || !operationOrRoute) {
+  if (!dpgContext.rlcOptions?.enableOperationGroup || !operationOrRoute) {
     return "";
   }
   const program = dpgContext.program;
@@ -120,11 +120,11 @@ export function isBinaryPayload(
 ) {
   contentType = `"${contentType}"`;
   if (
-    isByteOrByteUnion(dpgContext, body) &&
     contentType !== `"application/json"` &&
     contentType !== `"text/plain"` &&
     contentType !== `"application/json" | "text/plain"` &&
-    contentType !== `"text/plain" | "application/json"`
+    contentType !== `"text/plain" | "application/json"` &&
+    isByteOrByteUnion(dpgContext, body)
   ) {
     return true;
   }
@@ -350,4 +350,120 @@ export function extractPagedMetadataNested(
     }
   }
   return paged;
+}
+
+export function getSpecialSerializeInfo(
+  paramType: string,
+  paramFormat: string
+) {
+  const hasMultiCollection = getHasMultiCollection(paramType, paramFormat);
+  const hasPipeCollection = getHasPipeCollection(paramType, paramFormat);
+  const hasSsvCollection = getHasSsvCollection(paramType, paramFormat);
+  const hasTsvCollection = getHasTsvCollection(paramType, paramFormat);
+  const hasCsvCollection = getHasCsvCollection(paramType, paramFormat);
+  const descriptions = [];
+  const collectionInfo = [];
+  if (hasMultiCollection) {
+    descriptions.push("buildMultiCollection");
+    collectionInfo.push("multi");
+  }
+  if (hasSsvCollection) {
+    descriptions.push("buildSsvCollection");
+    collectionInfo.push("ssv");
+  }
+
+  if (hasTsvCollection) {
+    descriptions.push("buildTsvCollection");
+    collectionInfo.push("tsv");
+  }
+
+  if (hasPipeCollection) {
+    descriptions.push("buildPipeCollection");
+    collectionInfo.push("pipe");
+  }
+
+  if (hasCsvCollection) {
+    descriptions.push("buildCsvCollection");
+    collectionInfo.push("csv");
+  }
+  return {
+    hasMultiCollection,
+    hasPipeCollection,
+    hasSsvCollection,
+    hasTsvCollection,
+    hasCsvCollection,
+    descriptions,
+    collectionInfo
+  };
+}
+
+function getHasMultiCollection(paramType: string, paramFormat: string) {
+  return (
+    (paramType === "query" || paramType === "header") && paramFormat === "multi"
+  );
+}
+function getHasSsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "ssv";
+}
+
+function getHasTsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "tsv";
+}
+
+function getHasCsvCollection(paramType: string, paramFormat: string) {
+  return paramType === "header" && paramFormat === "csv";
+}
+
+function getHasPipeCollection(paramType: string, paramFormat: string) {
+  return paramType === "query" && paramFormat === "pipes";
+}
+
+export function hasCollectionFormatInfo(
+  paramType: string,
+  paramFormat: string
+) {
+  return (
+    getHasMultiCollection(paramType, paramFormat) ||
+    getHasSsvCollection(paramType, paramFormat) ||
+    getHasTsvCollection(paramType, paramFormat) ||
+    getHasCsvCollection(paramType, paramFormat) ||
+    getHasPipeCollection(paramType, paramFormat)
+  );
+}
+
+export function getCollectionFormatHelper(
+  paramType: string,
+  paramFormat: string
+) {
+  const detail = getSpecialSerializeInfo(paramType, paramFormat);
+  return detail.descriptions.length > 0 ? detail.descriptions[0] : undefined;
+}
+
+export function getCustomRequestHeaderNameForOperation(
+  route: HttpOperation
+): string | undefined {
+  const params = route.parameters.parameters.filter(
+    isCustomClientRequestIdParam
+  );
+  if (params.length > 0) {
+    return "client-request-id";
+  }
+
+  return undefined;
+}
+
+export function isCustomClientRequestIdParam(param: HttpOperationParameter) {
+  return (
+    param.type === "header" && param.name.toLowerCase() === "client-request-id"
+  );
+}
+
+export function isIgnoredHeaderParam(param: HttpOperationParameter) {
+  return (
+    isCustomClientRequestIdParam(param) ||
+    (param.type === "header" &&
+      ["return-client-request-id", "ocp-date"].includes(
+        param.name.toLowerCase()
+      ))
+  );
 }

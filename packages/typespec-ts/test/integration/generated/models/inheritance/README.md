@@ -1,6 +1,6 @@
-# Inheritance REST client library for JavaScript
+# NestedDiscriminator REST client library for JavaScript
 
-Illustrates inheritance and polymorphic model.
+Illustrates multiple level inheritance with multiple discriminators.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
@@ -20,13 +20,13 @@ Key links:
 
 ### Install the `@msinternal/model-inheritance` package
 
-Install the Inheritance REST client REST client library for JavaScript with `npm`:
+Install the NestedDiscriminator REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @msinternal/model-inheritance
 ```
 
-### Create and authenticate a `InheritanceClient`
+### Create and authenticate a `NestedDiscriminatorClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

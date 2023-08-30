@@ -38,7 +38,7 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "else", reservedFor: [NameType.Parameter] },
   { name: "enum", reservedFor: [NameType.Parameter] },
   { name: "error", reservedFor: [NameType.Parameter, ...Newable] },
-  { name: "export", reservedFor: [NameType.Parameter] },
+  { name: "export", reservedFor: [NameType.Parameter, NameType.Operation] },
   { name: "extends", reservedFor: [NameType.Parameter] },
   { name: "false", reservedFor: [NameType.Parameter] },
   { name: "finally", reservedFor: [NameType.Parameter] },
@@ -82,7 +82,9 @@ export const ReservedModelNames: ReservedName[] = [
   { name: "while", reservedFor: [NameType.Parameter] },
   { name: "with", reservedFor: [NameType.Parameter] },
   { name: "yield", reservedFor: [NameType.Parameter] },
-  { name: "arguments", reservedFor: [NameType.Parameter] }
+  { name: "arguments", reservedFor: [NameType.Parameter] },
+  // reserve client for codegen
+  { name: "client", reservedFor: [NameType.Parameter] }
 ];
 
 export enum CasingConvention {

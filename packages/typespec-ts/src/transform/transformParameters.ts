@@ -31,6 +31,7 @@ import {
 import {
   getOperationGroupName,
   getOperationName,
+  getSpecialSerializeInfo,
   isBinaryPayload
 } from "../utils/operationUtil.js";
 import {
@@ -39,12 +40,12 @@ import {
   listOperationsInOperationGroup,
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
-import { RLCSdkContext } from "./transform.js";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToParameterTypes(
   importDetails: Map<ImportKind, Set<string>>,
   client: SdkClient,
-  dpgContext: RLCSdkContext
+  dpgContext: SdkContext
 ): OperationParameter[] {
   const program = dpgContext.program;
   const operationGroups = listOperationGroups(dpgContext, client);
@@ -114,7 +115,7 @@ export function transformToParameterTypes(
 }
 
 function getParameterMetadata(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   paramType: "query" | "path" | "header",
   parameter: HttpOperationParameter
 ): ParameterMetadata {
@@ -140,7 +141,10 @@ function getParameterMetadata(
     type === "number[]" ||
     type === "Array<number>"
   ) {
-    const serializeInfo = getSpecialSerializeInfo(parameter);
+    const serializeInfo = getSpecialSerializeInfo(
+      parameter.type,
+      (parameter as any).format
+    );
     if (
       serializeInfo.hasMultiCollection ||
       serializeInfo.hasPipeCollection ||
@@ -180,7 +184,7 @@ function getParameterName(name: string) {
 }
 
 function transformQueryParameters(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const queryParameters = parameters.parameters.filter(
@@ -207,7 +211,7 @@ function transformPathParameters() {
 }
 
 function transformHeaderParameters(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters
 ): ParameterMetadata[] {
   const headerParameters = parameters.parameters.filter(
@@ -222,7 +226,7 @@ function transformHeaderParameters(
 }
 
 function transformBodyParameters(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   parameters: HttpOperationParameters,
   headers: ParameterMetadata[],
   importedModels: Set<string>,
@@ -264,7 +268,7 @@ function transformBodyParameters(
 }
 
 function transformNormalBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>,
@@ -279,7 +283,7 @@ function transformNormalBody(
   if (hasBinaryContent) {
     descriptions.push("Value may contain any sequence of octets");
   }
-  const type = extractNameFromCadlType(
+  const type = extractNameFromTypeSpecType(
     dpgContext,
     bodyType,
     importedModels,
@@ -307,7 +311,7 @@ function transformNormalBody(
 }
 
 function transformMultiFormBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters,
   importedModels: Set<string>
@@ -315,7 +319,11 @@ function transformMultiFormBody(
   const isModelBody = bodyType.kind === "Model";
 
   if (!isModelBody) {
-    const type = extractNameFromCadlType(dpgContext, bodyType, importedModels);
+    const type = extractNameFromTypeSpecType(
+      dpgContext,
+      bodyType,
+      importedModels
+    );
     const description = extractDescriptionsFromBody(
       dpgContext,
       bodyType,
@@ -357,7 +365,7 @@ function transformMultiFormBody(
         SchemaContext.Exception
       ])}>`;
     } else {
-      type = extractNameFromCadlType(
+      type = extractNameFromTypeSpecType(
         dpgContext,
         paramType.type,
         importedModels
@@ -374,7 +382,7 @@ function transformMultiFormBody(
 }
 
 function getBodyDetail(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   headers: ParameterMetadata[]
 ) {
@@ -388,13 +396,13 @@ function getBodyDetail(
   return { hasBinaryContent, hasFormContent };
 }
 
-function extractNameFromCadlType(
-  dpgContext: RLCSdkContext,
-  cadlType: Type,
+function extractNameFromTypeSpecType(
+  dpgContext: SdkContext,
+  type: Type,
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
-  const bodySchema = getSchemaForType(dpgContext, cadlType, [
+  const bodySchema = getSchemaForType(dpgContext, type, [
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
@@ -454,7 +462,7 @@ function generateAnomymousModelSigniture(
 }
 
 function extractDescriptionsFromBody(
-  dpgContext: RLCSdkContext,
+  dpgContext: SdkContext,
   bodyType: Type,
   parameters: HttpOperationParameters
 ) {
@@ -469,54 +477,4 @@ function extractDescriptionsFromBody(
       ])
     );
   return description ? [description] : [];
-}
-
-export function getSpecialSerializeInfo(parameter: HttpOperationParameter) {
-  let hasMultiCollection = false;
-  let hasPipeCollection = false;
-  let hasSsvCollection = false;
-  let hasTsvCollection = false;
-  let hasCsvCollection = false;
-  const descriptions = [];
-  const collectionInfo = [];
-  if (
-    (parameter.type === "query" || parameter.type === "header") &&
-    (parameter as any).format === "multi"
-  ) {
-    hasMultiCollection = true;
-    descriptions.push("buildMultiCollection");
-    collectionInfo.push("multi");
-  }
-  if (parameter.type === "query" && (parameter as any).format === "ssv") {
-    hasSsvCollection = true;
-    descriptions.push("buildSsvCollection");
-    collectionInfo.push("ssv");
-  }
-
-  if (parameter.type === "query" && (parameter as any).format === "tsv") {
-    hasTsvCollection = true;
-    descriptions.push("buildTsvCollection");
-    collectionInfo.push("tsv");
-  }
-
-  if (parameter.type === "query" && (parameter as any).format === "pipes") {
-    hasPipeCollection = true;
-    descriptions.push("buildPipeCollection");
-    collectionInfo.push("pipe");
-  }
-
-  if (parameter.type === "header" && (parameter as any).format === "csv") {
-    hasCsvCollection = true;
-    descriptions.push("buildCsvCollection");
-    collectionInfo.push("csv");
-  }
-  return {
-    hasMultiCollection,
-    hasPipeCollection,
-    hasSsvCollection,
-    hasTsvCollection,
-    hasCsvCollection,
-    descriptions,
-    collectionInfo
-  };
 }

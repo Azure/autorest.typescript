@@ -1,10 +1,10 @@
 import { assert } from "chai";
-import { emitClientDefinitionFromCadl } from "./util/emitUtil.js";
-import { assertEqualContent } from "./util/testUtil.js";
+import { emitClientDefinitionFromTypeSpec } from "../util/emitUtil.js";
+import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Client definition generation", () => {
   it("should generate method-level parameter", async () => {
-    const clientDef = await emitClientDefinitionFromCadl(
+    const clientDef = await emitClientDefinitionFromTypeSpec(
       `
       @route("/{id}")
       @doc("This is the longer description")
@@ -12,7 +12,6 @@ describe("Client definition generation", () => {
       `
     );
     assert.ok(clientDef);
-    // console.log(clientDef);
     assertEqualContent(
       clientDef?.content!,
       `
@@ -38,7 +37,7 @@ describe("Client definition generation", () => {
   });
 
   it("should normalize method-level parameter", async () => {
-    const clientDef = await emitClientDefinitionFromCadl(
+    const clientDef = await emitClientDefinitionFromTypeSpec(
       `
       @route("/{TransactionID}")
       @doc("This is the longer description")
@@ -46,7 +45,6 @@ describe("Client definition generation", () => {
       `
     );
     assert.ok(clientDef);
-    // console.log(clientDef);
     assertEqualContent(
       clientDef?.content!,
       `

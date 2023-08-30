@@ -15,10 +15,6 @@ let hasLRO = false;
 let clientFilePaths: string[] = [];
 
 export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
-  const generateMetadata = Boolean(model.options?.generateMetadata);
-  if (!generateMetadata) {
-    return;
-  }
   const project = new Project();
   const filePath = "package.json";
   const packageJsonContents = restLevelPackage(model, hasSamplesGenerated);
@@ -53,13 +49,13 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   hasPaging = hasPaging || hasPagingOperations(model);
   hasLRO = hasLRO || hasPollingOperations(model);
 
-  const {
+  let {
     packageDetails,
     generateTest,
     generateSample,
     azureOutputDirectory,
     azureSdkForJs,
-    isCadlTest,
+    isTypeSpecTest,
     sourceFrom,
     multiClient,
     batch
@@ -73,6 +69,11 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     return;
   }
 
+  // Take the undefined as true by default
+  generateTest = generateTest === true || generateTest === undefined;
+  generateSample =
+    (generateSample === true || generateSample === undefined) &&
+    hasSamplesGenerated;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
@@ -121,7 +122,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         generateSample
       )}`,
       clean:
-        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "execute:samples": "echo skipped",
       "extract-api":
         "rimraf review && mkdirp ./review && api-extractor run --local",
@@ -155,7 +156,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     dependencies: {
       "@azure/core-auth": "^1.3.0",
       "@azure-rest/core-client": "^1.1.4",
-      "@azure/core-rest-pipeline": "^1.8.0",
+      "@azure/core-rest-pipeline": "^1.12.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
       ...(hasPaging && {
@@ -164,6 +165,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       ...(hasLRO && {
         "@azure/core-lro": "^2.5.4",
         "@azure/abort-controller": "^1.0.0"
+      }),
+      ...(model.options.isModularLibrary && {
+        "@azure/core-util": "^1.4.0"
       })
     },
     devDependencies: {
@@ -174,7 +178,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
       prettier: "^2.5.1",
-      rimraf: "^3.0.0",
+      rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
       typescript: "~5.0.0"
     }
@@ -224,7 +228,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["uglify-js"] = "^3.4.9";
   }
 
-  if (isCadlTest) {
+  if (isTypeSpecTest) {
     packageInfo["type"] = "module";
   }
 
@@ -252,6 +256,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma"] = "^6.2.0";
     packageInfo.devDependencies["nyc"] = "^15.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
+    packageInfo.devDependencies["ts-node"] = "^10.0.0";
     packageInfo.scripts["test"] =
       "npm run clean && npm run build:test && npm run unit-test";
     packageInfo.scripts["test:node"] =
@@ -291,7 +296,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     };
   }
 
-  if (generateSample && hasSamplesGenerated) {
+  if (generateSample) {
     packageInfo["//sampleConfiguration"] = {
       productName: model.options.serviceInfo?.title ?? model.libraryName,
       productSlugs: ["azure"],

@@ -34,7 +34,7 @@ npm run test
 Running the command above will do the following things:
 
 - Start TestServer
-- Build Cadl Typescript
+- Build TypeSpec TS
 - Generate all scenarios in parallel (i.e. Dictionary, Extensible Enums, Models, Resiliency)
 - Run all the tests under test/integration
 - Stop TestServer
@@ -52,11 +52,11 @@ npm run smoke-test
 
 Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
 
-1. Pick up a cadl as your test input in cadl-ranch. Below are some examples
+1. Pick up a typespec as your test input in cadl-ranch. Below are some examples
 
-   Let us say your test input is `authentication/api-key/main.cadl` in @azure-tools/cadl-ranch-specs.
+   Let us say your test input is `authentication/api-key/main.tsp` in @azure-tools/cadl-ranch-specs.
 
-1. Now add an entry to the CadlRanchConfig to the file [`cadl-ranch-list.ts`](./test/commands/cadl-ranch-list.ts). In the file, add the following to the array.
+1. Now add an entry to the TypeSpecRanchConfig to the file [`cadl-ranch-list.ts`](./test/commands/cadl-ranch-list.ts). In the file, add the following to the array.
 
    ```typescript
      {
@@ -78,7 +78,7 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
        includeShortcuts: true
        azureSdkForJs: false
        addCredentials: false
-       isCadlTest: true
+       isTypeSpecTest: true
        title: AuthApiKeyClient
        packageDetails:
          name: "@msinternal/auth-apikey"
@@ -89,16 +89,16 @@ Whenever you work on adding a feature/fixing a bug, this would probably be your 
 1. Now, You can generate the RLC for your test case with the following command: (Initially, during your development, you do not want to run all the cases during every step of your development, you can comment out other test cases. But, once your code changes are complete for your case, then you need to run the entire suite to ensure that your changes did not cause any unwanted changes.)
 
    ```shell
-   npm run generate-cadl-only
+   npm run generate-tsp-only
    ```
 
 1. Once you are satisfied with the generated code, you can add a spec file such as `testUserCaseRest.spec.ts` file [here](./test/integration). You can find several examples in the same place.
 
 ## How to debug
 
-### `generate-cadl-only` step
+### `generate-tsp-only` step
 
-If you would like to debug the `generate-cadl-only` step for our test input, Open the repository in VS Code -> Select `Generate code for CadlEmitter` section -> Click `Attach`.
+If you would like to debug the `generate-tsp-only` step for our test input, Open the repository in VS Code -> Select `Generate code for TypeSpec Emitter` section -> Click `Attach`.
 
 ### Spec file
 
@@ -109,7 +109,7 @@ If you would like to debug the `testUserCase.spec.ts` file (after the SDK is gen
 - In VS Code, We have created a Debugging profile for UnitTests to start debugging:
 
   1. Go to the debugger tab
-  2. Select the "[CADL] - Unit Test" Profile
+  2. Select the "[TypeSpec] - Unit Test" Profile
   3. Click the "Play" button
 
 - Your breakpoints will start hitting, you can set breakpoints in either Test or Generator code
@@ -123,15 +123,15 @@ If you would like to debug the `testUserCase.spec.ts` file (after the SDK is gen
 - Once the Test Server is running
 
   1. In VSCode go to the debugger tab
-  2. Select the "[CADL] - Integration Test" profile from the drop down
+  2. Select the "[TypeSpec] - Integration Test" profile from the drop down
   3. Click the "Play" button
 
 - **\*\***IMPORTANT**\*\***: Running Integration Tests for debugging, does not re-generate the test clients so make sure that after each change you do:
 
   - Re-generate all the test swaggers
 
-        npm run generate-cadl-only -- --build
+        npm run generate-tsp-only -- --build
 
   - Re-generate a specific swagger
 
-        npm run generate-cadl-only -- -i bodyComplexRest -b
+        npm run generate-tsp-only -- -i bodyComplexRest -b

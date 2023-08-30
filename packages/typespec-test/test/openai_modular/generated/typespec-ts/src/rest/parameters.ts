@@ -29,11 +29,19 @@ export interface GetChatCompletionsBodyParam {
 
 export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
   RequestParameters;
-export type GetImageOperationStatusParameters = RequestParameters;
 
-export interface StartGenerateImageBodyParam {
+export interface GetChatCompletionsWithAzureExtensionsBodyParam {
+  body?: ChatCompletionsOptions;
+}
+
+export type GetChatCompletionsWithAzureExtensionsParameters =
+  GetChatCompletionsWithAzureExtensionsBodyParam & RequestParameters;
+export type GetAzureBatchImageGenerationOperationStatusParameters =
+  RequestParameters;
+
+export interface BeginAzureBatchImageGenerationBodyParam {
   body?: ImageGenerationOptions;
 }
 
-export type StartGenerateImageParameters = StartGenerateImageBodyParam &
-  RequestParameters;
+export type BeginAzureBatchImageGenerationParameters =
+  BeginAzureBatchImageGenerationBodyParam & RequestParameters;

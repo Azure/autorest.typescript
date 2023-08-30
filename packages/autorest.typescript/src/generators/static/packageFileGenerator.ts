@@ -95,7 +95,7 @@ function regularAutorestPackage(
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.8.0"
+        "@azure/core-rest-pipeline": "^1.12.0"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "^1.0.0"
@@ -118,7 +118,7 @@ function regularAutorestPackage(
       "rollup-plugin-sourcemaps": "^0.6.3",
       typescript: "~5.0.0",
       "uglify-js": "^3.4.9",
-      rimraf: "^3.0.0",
+      rimraf: "^5.0.0",
       dotenv: "^16.0.0"
     },
     repository: {
@@ -156,7 +156,7 @@ function regularAutorestPackage(
       lint: "echo skipped",
       audit: "echo skipped",
       clean:
-        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",
       "build:browser": "echo skipped",
       "build:test": "echo skipped",
@@ -199,6 +199,8 @@ function regularAutorestPackage(
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/node"] = "^14.0.0";
+    packageInfo.devDependencies["ts-node"] = "^10.0.0";
+
     packageInfo.scripts["test"] = "npm run integration-test";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";

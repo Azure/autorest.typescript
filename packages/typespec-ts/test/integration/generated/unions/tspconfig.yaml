@@ -3,11 +3,10 @@ emit:
 options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
-    generateMetadata: false
     generateTest: false
     addCredentials: false
     azureSdkForJs: false
-    isCadlTest: true
+    isTypeSpecTest: true
     title: UnionsClient
     packageDetails:
       name: "@msinternal/unions"

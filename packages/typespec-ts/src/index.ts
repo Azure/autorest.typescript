@@ -3,6 +3,7 @@
 
 import { Program, EmitContext } from "@typespec/compiler";
 import * as fsextra from "fs-extra";
+import { existsSync } from "fs";
 import {
   buildClientDefinitions,
   buildResponseTypes,
@@ -27,18 +28,12 @@ import {
   buildSerializeHelper,
   buildLogger,
   RLCOptions,
-  normalizeName,
-  NameType,
   hasUnexpectedHelper,
   RLCModel
 } from "@azure-tools/rlc-common";
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
-import {
-  SdkContext,
-  createSdkContext
-} from "@azure-tools/typespec-client-generator-core";
-import * as path from "path";
+import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
 import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
@@ -46,143 +41,235 @@ import {
   buildRootIndex,
   buildSubClientIndexFile
 } from "./modular/buildRootIndex.js";
-import { buildModels } from "./modular/emitModels.js";
+import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
+import { join } from "path";
+import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
+import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
+import { ModularCodeModel } from "./modular/modularCodeModel.js";
+import { getClientName } from "@azure-tools/rlc-common";
 
 export * from "./lib.js";
-export interface RLCSdkContext extends SdkContext {
-  options: RLCOptions;
-}
 
 export async function $onEmit(context: EmitContext) {
+  /** Shared status */
   const program: Program = context.program;
-  const options: RLCOptions = context.options;
-  const dpgContext = createSdkContext(context);
-  const clients = getRLCClients(dpgContext);
-  const srcPath: string = context.emitterOutputDir;
-  let count = -1;
-
+  const emitterOptions: RLCOptions = context.options;
+  const dpgContext = createSdkContext(context) as SdkContext;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
     RLCModel
   >();
-  for (const client of clients) {
-    count++;
-    const rlcModels = await transformRLCModel(
-      program,
-      options,
-      client,
-      context.emitterOutputDir,
-      dpgContext
-    );
-    serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
-    const pathToClear = rlcModels.srcPath;
-    needUnexpectedHelper.set(client.name, hasUnexpectedHelper(rlcModels));
-    clearSrcFolder(
-      pathToClear,
-      count,
-      options.multiClient,
-      options.isModularLibrary
-    );
-    await emitModels(rlcModels, program);
-    await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
-    await emitContentByBuilder(program, buildResponseTypes, rlcModels);
-    await emitContentByBuilder(program, buildClient, rlcModels);
-    await emitContentByBuilder(program, buildParameterTypes, rlcModels);
-    await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
-    await emitContentByBuilder(program, buildIndexFile, rlcModels);
-    await emitContentByBuilder(program, buildLogger, rlcModels);
-    await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-    await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
-    await emitContentByBuilder(program, buildPollingHelper, rlcModels);
-    // buildSerializeHelper
-    await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
-    // build metadata relevant files
-    await emitContentByBuilder(
-      program,
-      [
-        buildEsLintConfig,
-        buildRollupConfig,
-        buildApiExtractorConfig,
-        buildReadmeFile,
-        buildPackageFile,
-        buildTsConfig
-      ],
-      rlcModels,
-      context.emitterOutputDir
-    );
-    // build test relevant files
-    await emitContentByBuilder(
-      program,
-      [
-        buildKarmaConfigFile,
-        buildEnvFile,
-        buildEnvBrowserFile,
-        buildRecordedClientFile,
-        buildSampleTest
-      ],
-      rlcModels,
-      context.emitterOutputDir
+  const rlcCodeModels: RLCModel[] = [];
+  let modularCodeModel: ModularCodeModel;
+  // 1. Enrich the dpg context with path detail and common options
+  await enrichDpgContext();
+  // 2. Clear sources folder
+  await clearSrcFolder();
+  // 3. Generate RLC sources
+  await generateRLCSources();
+  // 4. Generate Modular sources
+  await generateModularSources();
+  // 5. Generate metadata and test files
+  await generateMetadataAndTest();
+
+  async function enrichDpgContext() {
+    const generationPathDetail: GenerationDirDetail =
+      await calculateGenerationDir();
+    dpgContext.generationPathDetail = generationPathDetail;
+    const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
+    dpgContext.rlcOptions = options;
+  }
+
+  async function calculateGenerationDir(): Promise<GenerationDirDetail> {
+    const projectRoot = context.emitterOutputDir ?? "";
+    let sourcesRoot = join(projectRoot, "src");
+    const customizationFolder = join(projectRoot, "sources");
+    if (await fsextra.pathExists(customizationFolder)) {
+      sourcesRoot = join(customizationFolder, "generated", "src");
+    }
+    return {
+      rootDir: projectRoot,
+      metadataDir: projectRoot,
+      rlcSourcesDir: join(
+        sourcesRoot,
+        emitterOptions.isModularLibrary ? "rest" : "" // When generating modular library, RLC has to go under rest folder
+      ),
+      modularSourcesDir: emitterOptions.isModularLibrary
+        ? sourcesRoot
+        : undefined
+    };
+  }
+
+  async function clearSrcFolder() {
+    await fsextra.emptyDir(
+      dpgContext.generationPathDetail?.modularSourcesDir ??
+        dpgContext.generationPathDetail?.rlcSourcesDir ??
+        ""
     );
   }
 
-  if (options.isModularLibrary) {
-    // TODO: Emit modular parts of the library
-    const project = new Project();
-    const modularCodeModel = emitCodeModel(context, serviceNameToRlcModelsMap, {
-      casing: "camel"
-    });
-    const rootIndexFile = project.createSourceFile(
-      `${srcPath}/src/index.ts`,
-      "",
-      {
-        overwrite: true
-      }
-    );
-    for (const subClient of modularCodeModel.clients) {
-      let subfolder = "";
-      if (modularCodeModel.clients.length > 1) {
-        subfolder = normalizeName(
-          subClient.name.replace("Client", ""),
-          NameType.File
-        );
-      }
-
-      buildClientContext(dpgContext, subClient, project, srcPath, subfolder);
-      buildModels(modularCodeModel, project, srcPath, subfolder);
-      buildOperationFiles(
-        dpgContext,
-        subClient,
-        project,
-        srcPath,
-        subfolder,
-        needUnexpectedHelper.get(subClient.name + "Client")
+  async function generateRLCSources() {
+    const clients = getRLCClients(dpgContext);
+    for (const client of clients) {
+      const rlcModels = await transformRLCModel(client, dpgContext);
+      rlcCodeModels.push(rlcModels);
+      serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
+      needUnexpectedHelper.set(
+        getClientName(rlcModels),
+        hasUnexpectedHelper(rlcModels)
       );
-      buildSubpathIndexFile(project, srcPath, "models", subfolder);
-      buildSubpathIndexFile(project, srcPath, "api", subfolder);
-      buildClassicalClient(dpgContext, subClient, project, srcPath, subfolder);
-      if (modularCodeModel.clients.length > 1) {
-        buildSubClientIndexFile(subClient, project, srcPath, subfolder);
-      }
-      buildRootIndex(subClient, project, rootIndexFile, srcPath, subfolder);
+
+      await emitModels(rlcModels, program);
+      await emitContentByBuilder(program, buildClientDefinitions, rlcModels);
+      await emitContentByBuilder(program, buildResponseTypes, rlcModels);
+      await emitContentByBuilder(program, buildClient, rlcModels);
+      await emitContentByBuilder(program, buildParameterTypes, rlcModels);
+      await emitContentByBuilder(program, buildIsUnexpectedHelper, rlcModels);
+      await emitContentByBuilder(program, buildIndexFile, rlcModels);
+      await emitContentByBuilder(program, buildLogger, rlcModels);
+      await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
+      await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
+      await emitContentByBuilder(program, buildPollingHelper, rlcModels);
+      await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
     }
+  }
 
-    emitPackage(project, srcPath, modularCodeModel);
-    emitTsConfig(project, srcPath, modularCodeModel);
-    removeUnusedInterfaces(project);
+  async function generateModularSources() {
+    if (emitterOptions.isModularLibrary) {
+      // TODO: Emit modular parts of the library
+      const modularSourcesRoot =
+        dpgContext.generationPathDetail?.modularSourcesDir ?? "src";
+      const project = new Project();
+      modularCodeModel = emitCodeModel(
+        dpgContext,
+        serviceNameToRlcModelsMap,
+        modularSourcesRoot,
+        project,
+        {
+          casing: "camel"
+        }
+      );
+      const rootIndexFile = project.createSourceFile(
+        `${modularSourcesRoot}/index.ts`,
+        "",
+        {
+          overwrite: true
+        }
+      );
+      for (const subClient of modularCodeModel.clients) {
+        buildModels(modularCodeModel, subClient);
+        buildModelsOptions(modularCodeModel, subClient);
+        const hasClientUnexpectedHelper =
+          needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildOperationFiles(
+          dpgContext,
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper
+        );
+        buildClientContext(dpgContext, modularCodeModel, subClient);
+        buildSubpathIndexFile(modularCodeModel, subClient, "models");
+        buildSubpathIndexFile(modularCodeModel, subClient, "api");
+        buildClassicalClient(dpgContext, modularCodeModel, subClient);
+        if (modularCodeModel.clients.length > 1) {
+          buildSubClientIndexFile(modularCodeModel, subClient);
+        }
+        buildRootIndex(modularCodeModel, subClient, rootIndexFile);
+      }
 
-    for (const file of project.getSourceFiles()) {
+      removeUnusedInterfaces(project);
+
+      for (const file of project.getSourceFiles()) {
+        await emitContentByBuilder(
+          program,
+          () => ({ content: file.getFullText(), path: file.getFilePath() }),
+          modularCodeModel as any
+        );
+        // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
+      }
+    }
+  }
+
+  async function generateMetadataAndTest() {
+    if (rlcCodeModels.length === 0 || !rlcCodeModels[0]) {
+      return;
+    }
+    const rlcClient: RLCModel = rlcCodeModels[0];
+    const option = dpgContext.rlcOptions!;
+    // Generate metadata
+    const hasPackageFile = await existsSync(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
+    );
+    const shouldGenerateMetadata =
+      option.generateMetadata === true ||
+      (option.generateMetadata === undefined && !hasPackageFile);
+    const commonBuilders = [
+      buildEsLintConfig,
+      buildRollupConfig,
+      buildApiExtractorConfig,
+      buildReadmeFile
+    ];
+    if (!option.isModularLibrary) {
+      commonBuilders.push(buildPackageFile);
+      commonBuilders.push(buildTsConfig);
+    }
+    if (shouldGenerateMetadata) {
+      // build metadata relevant files
       await emitContentByBuilder(
         program,
-        () => ({ content: file.getFullText(), path: file.getFilePath() }),
-        modularCodeModel as any
+        commonBuilders,
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
       );
-      // emitFile(program, { content: hrlcClient.content, path: hrlcClient.path });
+
+      if (option.isModularLibrary) {
+        const project = new Project();
+        emitPackage(
+          project,
+          dpgContext.generationPathDetail?.metadataDir ?? "",
+          modularCodeModel
+        );
+        emitTsConfig(
+          project,
+          dpgContext.generationPathDetail?.metadataDir ?? "",
+          modularCodeModel
+        );
+        for (const file of project.getSourceFiles()) {
+          await emitContentByBuilder(
+            program,
+            () => ({ content: file.getFullText(), path: file.getFilePath() }),
+            modularCodeModel as any
+          );
+        }
+      }
+    }
+
+    // Generate test relevant files
+    const hasTestFolder = await fsextra.pathExists(
+      join(dpgContext.generationPathDetail?.metadataDir ?? "", "test")
+    );
+    const shouldGenerateTest =
+      option.generateTest === true ||
+      (option.generateTest === undefined && !hasTestFolder);
+    if (shouldGenerateTest) {
+      await emitContentByBuilder(
+        program,
+        [
+          buildKarmaConfigFile,
+          buildEnvFile,
+          buildEnvBrowserFile,
+          buildRecordedClientFile,
+          buildSampleTest
+        ],
+        rlcClient,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
   }
 }
@@ -224,7 +311,9 @@ export function removeUnusedInterfaces(project: Project) {
     });
 
     // Get the index.ts file
-    const indexFiles = project.getSourceFiles("**/index.ts"); // Adjust the path to your index.ts file
+    const indexFiles = project.getSourceFiles().filter((file) => {
+      return file.getFilePath().endsWith("index.ts");
+    }); // Adjust the path to your index.ts file
     // to make sure the top level index file is in the last
     const sortedIndexFiles = indexFiles.sort((idx1, idx2) => {
       return (
@@ -267,19 +356,4 @@ export function removeUnusedInterfaces(project: Project) {
     }
     interfaceDeclaration.interfaceDeclaration.remove();
   });
-}
-
-function clearSrcFolder(
-  srcPath: string,
-  count: number,
-  isMultiClient: boolean = false,
-  isModularLibrary: boolean = false
-) {
-  fsextra.emptyDirSync(srcPath);
-  if ((isMultiClient || isModularLibrary) && count === 0) {
-    const folderPath = path.join(
-      srcPath.substring(0, srcPath.lastIndexOf(path.sep + "src") + 4)
-    );
-    fsextra.emptyDirSync(folderPath);
-  }
 }

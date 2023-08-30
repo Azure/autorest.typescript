@@ -168,13 +168,13 @@ model PagedLedgerEntries {
 
 @route("/app")
 namespace ConfidentialLedger {
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
   @summary("Retrieves a list of collection ids present in the Confidential Ledger")
   @doc("Collection ids are user-created collections of ledger entries")
   op listCollections is Azure.Core.Foundations.NonPagedResourceList<Collection>;
 
   // TODO: add return model
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
   @route("/enclaveQuotes")
   @summary("Gets quotes for all nodes of the Confidential Ledger.")
   @doc("A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.")
@@ -182,7 +182,7 @@ namespace ConfidentialLedger {
   op getEnclaveQuotes is Azure.Core.Foundations.Operation<{}, OkResponse>;
 
   // TODO: add return model
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
   @route("/governance/constitution")
   @summary("Gets the constitution used for governance.")
   @doc("The constitution is a script that assesses and applies proposals from consortium members.")
@@ -190,14 +190,14 @@ namespace ConfidentialLedger {
   op getConstitution is Azure.Core.Foundations.Operation<{}, OkResponse>;
 
   // TODO: add return model
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service, we have a non-conforming operation."
   @route("/governance/members")
   @summary("Gets the consortium members.")
   @doc("Consortium members can manage the Confidential Ledger.")
   @get
   op getConsortiumMembers is Azure.Core.Foundations.Operation<{}, OkResponse>;
 
-  #suppress "@azure-tools/cadl-azure-core/use-standard-operations" "This is an existing service with a non-standard list operation."
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "This is an existing service with a non-standard list operation."
   @summary("Gets ledger entries from a collection corresponding to a range.")
   @doc("A collection id may optionally be specified. Only entries in the specified (or default) collection will be returned.")
   op listLedgerEntries is Azure.Core.Foundations.ResourceList<LedgerEntry, {}, PagedLedgerEntries>;
