@@ -22,7 +22,7 @@ export function _getSend(
 
 export async function _getDeserialize(result: Get204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;

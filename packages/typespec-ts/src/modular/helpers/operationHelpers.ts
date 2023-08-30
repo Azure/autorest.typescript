@@ -117,7 +117,9 @@ export function getDeserializePrivateFunction(
   if (needUnexpectedHelper) {
     statements.push(
       `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
-      "throw result.body",
+      response.type?.isCoreErrorType
+        ? "throw result.body.error"
+        : "throw result.body",
       "}"
     );
   } else {
@@ -134,7 +136,9 @@ export function getDeserializePrivateFunction(
         `if(${validStatus
           .map((s) => `result.status !== "${s}"`)
           .join(" || ")}){`,
-        "throw result.body",
+        response.type?.isCoreErrorType
+          ? "throw result.body.error"
+          : "throw result.body",
         "}"
       );
     }

@@ -30,7 +30,7 @@ export async function _renamedOneDeserialize(
   result: One204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -57,7 +57,7 @@ export async function _renamedThreeDeserialize(
   result: Three204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -84,7 +84,7 @@ export async function _renamedFiveDeserialize(
   result: Five204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;

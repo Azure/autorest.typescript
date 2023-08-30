@@ -67,7 +67,7 @@ export async function _createOrUpdateDeserialize(
     | CreateOrUpdateDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {
@@ -118,7 +118,7 @@ export async function _createOrReplaceDeserialize(
     | CreateOrReplaceDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {
@@ -158,7 +158,7 @@ export async function _getDeserialize(
   result: Get200Response | GetDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {
@@ -216,7 +216,7 @@ export async function _listDeserialize(
   result: List200Response | ListDefaultResponse
 ): Promise<PagedUser> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {
@@ -256,7 +256,7 @@ export async function _listWithPageDeserialize(
   result: ListWithPage200Response | ListWithPageDefaultResponse
 ): Promise<PagedUser> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {
@@ -300,7 +300,7 @@ export async function _listWithCustomPageModelDeserialize(
     | ListWithCustomPageModelDefaultResponse
 ): Promise<UserListResults> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {
@@ -343,7 +343,7 @@ export async function _deleteOperationDeserialize(
   result: DeleteOperation204Response | DeleteOperationDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -383,7 +383,7 @@ export async function _exportOperationDeserialize(
   result: ExportOperation200Response | ExportOperationDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw result.body.error;
   }
 
   return {

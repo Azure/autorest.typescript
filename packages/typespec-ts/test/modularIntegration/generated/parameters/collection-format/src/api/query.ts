@@ -42,7 +42,7 @@ export async function _queryMultiDeserialize(
   result: QueryMulti204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -74,7 +74,7 @@ export async function _querySsvDeserialize(
   result: QuerySsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -106,7 +106,7 @@ export async function _queryTsvDeserialize(
   result: QueryTsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -138,7 +138,7 @@ export async function _queryPipesDeserialize(
   result: QueryPipes204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
@@ -170,7 +170,7 @@ export async function _queryCsvDeserialize(
   result: QueryCsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw result.body.error;
   }
 
   return;
