@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitModularDeserializeUtilsFromTypeSpec, emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe.only("modular special union deserialization", () => {
+describe("modular special union deserialization", () => {
   it("shouldn't generate operation util if there's no special union variant", async () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(`
       model WidgetData0 {
