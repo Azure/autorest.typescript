@@ -1,5 +1,6 @@
 import * as coreClient from "@azure/core-client";
 import * as coreHttpCompat from "@azure/core-http-compat";
+import * as coreAuth from "@azure/core-auth";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import {
@@ -43,15 +44,24 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
 
   /**
    * Initializes a new instance of the PetStore class.
+   * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param options The parameter options
    */
-  constructor(options?: PetStoreOptionalParams) {
+  constructor(
+    credentials: coreAuth.TokenCredential,
+    options?: PetStoreOptionalParams
+  ) {
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+
     // Initializing default values for options
     if (!options) {
       options = {};
     }
     const defaults: PetStoreOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
     };
 
     const packageDetails = `azsdk-js-petstore/1.0.0-preview1`;
@@ -60,6 +70,9 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
 
+    if (!options.credentialScopes) {
+      options.credentialScopes = ["https://management.azure.com/.default"];
+    }
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -862,7 +862,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "petstore",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false,
+    addCredentials: true,
     isTestPackage: true,
     coreHttpCompatMode: true
   },
