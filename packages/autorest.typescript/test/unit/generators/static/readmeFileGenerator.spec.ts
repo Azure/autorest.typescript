@@ -88,7 +88,7 @@ describe("readmeFileGenerator", () => {
       assert.strictEqual(actualContents, expectedContends);
     });
 
-    it("should generate readme if no subscriptionid param is specified", async () => {
+    it("should generate readme if no subscriptionid param in samples", async () => {
       const autorestOption = {
         srcPath: ".",
         azureOutputDirectory: "sdk/kusto/arm-kusto",
