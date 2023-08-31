@@ -220,7 +220,12 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     apiVersionParams && apiVersionParams.length === 1
       ? apiVersionParams[0]
       : undefined;
-  writeClassProperties(clientClass, clientParams, importedModels, clientDetails.hasTenantLevelOperation);
+  writeClassProperties(
+    clientClass,
+    clientParams,
+    importedModels,
+    clientDetails.hasTenantLevelOperation
+  );
   writeConstructor(clientDetails, clientClass, importedModels, apiVersionParam);
   if (useCoreV2 && apiVersionParam) {
     writeCustomApiVersion(clientClass);
@@ -349,7 +354,7 @@ function writeConstructor(
         type: optionsParameterType
       }
     ]
-  }
+  };
 
   let clientConstructor;
   if (clientDetails.hasTenantLevelOperation) {
@@ -376,7 +381,7 @@ function writeConstructor(
         }
       ]
     });
-    clientConstructor.addOverload(clientConstructorInitial)
+    clientConstructor.addOverload(clientConstructorInitial);
     clientConstructor.addOverload({
       parameters: [
         ...requiredParams
@@ -396,7 +401,9 @@ function writeConstructor(
       ]
     });
   } else {
-    clientConstructor = classDeclaration.addConstructor(clientConstructorInitial);
+    clientConstructor = classDeclaration.addConstructor(
+      clientConstructorInitial
+    );
   }
 
   const { useCoreV2 } = getAutorestOptions();
@@ -647,11 +654,8 @@ function getTrack2DefaultContent(
   packageDetails: PackageDetails,
   clientDetails: ClientDetails
 ) {
-  const {
-    azureArm,
-    allowInsecureConnection,
-    addCredentials
-  } = getAutorestOptions();
+  const { azureArm, allowInsecureConnection } = getAutorestOptions();
+  const { addCredentials } = getSecurityInfoFromModel(clientDetails.security);
 
   const overloadDefaults = `
   let subscriptionId: string | undefined;
@@ -663,7 +667,9 @@ function getTrack2DefaultContent(
   }
   `;
 
-  const defaultContent = `${clientDetails.hasTenantLevelOperation ? overloadDefaults: ""}
+  const defaultContent = `${
+    clientDetails.hasTenantLevelOperation ? overloadDefaults : ""
+  }
   // Initializing default values for options
   if (!options) {
     options = {};
@@ -731,8 +737,10 @@ function writeDefaultOptions(
   hasLro: boolean,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, packageDetails, addCredentials } = getAutorestOptions();
-  const { credentialScopes } = getSecurityInfoFromModel(clientDetails.security);
+  const { useCoreV2, packageDetails } = getAutorestOptions();
+  const { credentialScopes, addCredentials } = getSecurityInfoFromModel(
+    clientDetails.security
+  );
 
   const credentialScopesValues = getCredentialScopesValue(
     credentialScopes,
