@@ -132,9 +132,22 @@ function getTypeUnionName(
       } else if (t.name && importSet) {
         addImportSet(importSet, "../models/models.js", t.name);
       }
-      return t.name + (fromRest ? "Output" : "");
+      return t.name
+        ? t.name + (fromRest ? "Output" : "")
+        : getMappedType(t.type, fromRest);
     })
     .join(" | ");
+}
+
+function getMappedType(modularType: string, fromRest?: boolean) {
+  switch (modularType) {
+    case "datetime":
+      return fromRest ? "string" : "Date";
+    case "byte-array":
+      return fromRest ? "string" : "Uint8Array";
+    default:
+      return modularType;
+  }
 }
 
 function getTypeDeserializeFunction(
@@ -209,9 +222,9 @@ function getTypeDeserializeFunction(
   } else if (type.type === "datetime") {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`deserialize function for ${type.name}`],
-      name: `deserialize${toPascalCase(type.name ?? "datetime")}`,
-      parameters: [{ name: "obj", type: type.name }],
+      docs: [`deserialize function for ${type.type}`],
+      name: `deserialize${toPascalCase("datetime")}`,
+      parameters: [{ name: "obj", type: "string" }],
       returnType: "Date"
     };
     statements.push(`return new Date(obj);`);
@@ -230,12 +243,13 @@ function getTypeDeserializeFunction(
   } else if (type.type === "byte-array") {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`deserialize function for ${type.name}`],
+      docs: [`deserialize function for ${type.type}`],
       name: `deserialize${toPascalCase(type.name ?? "byte-array")}`,
-      parameters: [{ name: "obj", type: type.name }],
+      parameters: [{ name: "obj", type: "string" }],
       returnType: "Uint8Array"
     };
-    statements.push(`return obj;`);
+    statements.push(`return stringToUint8Array(obj);`);
+    addImportSet(importSet, "@azure-rest/core-util", "stringToUint8Array");
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
       if (
@@ -334,7 +348,7 @@ function deserializeUnionTypesFunction(
   for (const type of unionDeserializeTypes) {
     const functionName = toPascalCase(
       type.name ??
-        (type.elementType?.name ? type.elementType.name + "Array" : "")
+        (type.elementType?.name ? type.elementType.name + "Array" : type.type)
     );
     statements.push(
       `if (is${functionName}(obj)) { return deserialize${functionName}(obj); }`
@@ -344,6 +358,38 @@ function deserializeUnionTypesFunction(
   functionStatement.statements = statements.join("\n");
   if (!hasDuplicateFunction(sourceFile, functionStatement)) {
     sourceFile.addFunction(functionStatement);
+  }
+}
+
+function getTypePredictFunctionForBasicType(
+  sourceFile: SourceFile,
+  type: Type,
+  typeUnionNames: string | undefined
+) {
+  if (typeUnionNames === undefined) {
+    return;
+  }
+  const statements: string[] = [];
+  const functionStatement: FunctionDeclarationStructure = {
+    kind: StructureKind.Function,
+    docs: [`type predict function fpr ${type.type} from ${typeUnionNames}`],
+    name: `is${toPascalCase(formalizeTypeUnionName(type.type))}`,
+    parameters: [{ name: "obj", type: typeUnionNames }],
+    returnType: `obj is ${getMappedType(type.type, true)}`
+  };
+  statements.push(`if (typeof obj === "string") { return true;}`);
+  statements.push("return false;");
+  functionStatement.statements = statements.join("\n");
+  if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+    if (
+      sourceFile
+        .getFunctions()
+        .some((f) => f.getName() === functionStatement.name)
+    ) {
+      addOverload(sourceFile, typeUnionNames, functionStatement);
+    } else {
+      sourceFile.addFunction(functionStatement);
+    }
   }
 }
 
@@ -357,7 +403,9 @@ function getTypePredictFunction(
   }
 
   const statements: string[] = [];
-  if (type.type === "model" && type.name) {
+  if (type.type === "datetime" || type.type === "byte-array") {
+    getTypePredictFunctionForBasicType(sourceFile, type, typeUnionNames);
+  } else if (type.type === "model" && type.name) {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`type predict function fpr ${type.name} from ${typeUnionNames}`],

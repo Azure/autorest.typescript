@@ -3,7 +3,7 @@ import { emitModularDeserializeUtilsFromTypeSpec, emitModularOperationsFromTypeS
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("modular special union deserialization", () => {
-  it("shouldn't generate operation util if there's no special union variant", async () => {
+  it("shouldn't generate deserialize util if there's no special union variant", async () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(`
       model WidgetData0 {
         fooProp: string;
@@ -30,7 +30,210 @@ describe("modular special union deserialization", () => {
     assert.ok(operationUtil === undefined);
   });
 
-  it("should generate operation util if there's a special union variant of model with datatime property", async () => {
+  it("should generate deserialize util if there's a special union variant of datatime", async () => {
+    const tspContent = `
+    model WidgetData0 {
+      fooProp: string;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData0 | utcDateTime;
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
+    assert.ok(operationUtil);
+    assertEqualContent(
+      operationUtil?.getFullText()!,
+      `
+      import { WidgetData0Output } from "../rest/index.js";
+      import { WidgetData0 } from "../models/models.js";
+      
+      /** type predict function fpr datetime from WidgetData0Output | string */
+      function isDatetime(obj: WidgetData0Output | string): obj is string {
+        if (typeof obj === "string") {
+          return true;
+        }
+        return false;
+      }
+      
+      /** deserialize function for datetime */
+      function deserializeDatetime(obj: string): Date {
+        return new Date(obj);
+      }
+      
+      /** deserialize function for WidgetData0Output | string */
+      export function deserializeWidgetData0AndDateUnion(
+        obj: WidgetData0Output | string
+      ): WidgetData0 | Date {
+        if (isDatetime(obj)) {
+          return deserializeDatetime(obj);
+        }
+        return obj;
+      }`
+    );
+
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      import { deserializeWidgetData0AndDateUnion } from "../utils/deserializeUtil.js";
+      
+      export function _customGet1Send(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} }
+      ): StreamableMethod<CustomGet1200Response> {
+        return context
+          .path("/customGet1")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      
+      export async function _customGet1Deserialize(
+        result: CustomGet1200Response
+      ): Promise<Widget1> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+
+        return {
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData0AndDateUnion(result.body["data"]),
+        };
+      }
+      
+      export async function customGet1(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} }
+      ): Promise<Widget1> {
+        const result = await _customGet1Send(context, options);
+        return _customGet1Deserialize(result);
+      }`
+    );
+  });
+
+  it("should generate deserialize util if there's a special union variant of bytes", async () => {
+    const tspContent = `
+    model WidgetData0 {
+      fooProp: string;
+    }
+    
+    model Widget {
+      @key id: string;
+      weight: int32;
+      color: "red" | "blue";
+    }
+    
+    model Widget1 extends Widget {
+      data: WidgetData0 | bytes;
+    }
+
+    interface WidgetService {
+      @get @route("customGet1") customGet1(): Widget1;
+    }
+    `;
+
+    // to test the generated deserialized utils for union variant of model with datetime properties.
+    const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
+    assert.ok(operationUtil);
+    assertEqualContent(
+      operationUtil?.getFullText()!,
+      `
+      import { WidgetData0Output } from "../rest/index.js";
+      import { stringToUint8Array } from "@azure-rest/core-util";
+      import { WidgetData0 } from "../models/models.js";
+      
+      /** type predict function fpr byte-array from WidgetData0Output | string */
+      function isByteArray(obj: WidgetData0Output | string): obj is string {
+        if (typeof obj === "string") {
+          return true;
+        }
+        return false;
+      }
+      
+      /** deserialize function for byte-array */
+      function deserializeByteArray(obj: string): Uint8Array {
+        return stringToUint8Array(obj);
+      }
+      
+      /** deserialize function for WidgetData0Output | string */
+      export function deserializeWidgetData0AndUint8ArrayUnion(
+        obj: WidgetData0Output | string
+      ): WidgetData0 | Uint8Array {
+        if (isByteArray(obj)) {
+          return deserializeByteArray(obj);
+        }
+        return obj;
+      }`
+    );
+
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      import { deserializeWidgetData0AndUint8ArrayUnion } from "../utils/deserializeUtil.js";
+      
+      export function _customGet1Send(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} }
+      ): StreamableMethod<CustomGet1200Response> {
+        return context
+          .path("/customGet1")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      
+      export async function _customGet1Deserialize(
+        result: CustomGet1200Response
+      ): Promise<Widget1> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+
+        return {
+          id: result.body["id"],
+          weight: result.body["weight"],
+          color: result.body["color"],
+          data: deserializeWidgetData0AndUint8ArrayUnion(result.body["data"]),
+        };
+      }
+      
+      export async function customGet1(
+        context: Client,
+        options: CustomGet1Options = { requestOptions: {} }
+      ): Promise<Widget1> {
+        const result = await _customGet1Send(context, options);
+        return _customGet1Deserialize(result);
+      }`
+    );
+  });
+
+  it("should generate deserialize util if there's a special union variant of model with datatime property", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -430,7 +633,7 @@ describe("modular special union deserialization", () => {
     );
   });
 
-  it("should generate operation util if there's a special union variant of an array with model element which has datatime properties", async () => {
+  it("should generate deserialize util if there's a special union variant of an array with model element which has datatime properties", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
