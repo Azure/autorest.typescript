@@ -78,7 +78,7 @@ export async function _publishCloudEventDeserialize(
   result: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
-    throw result.body.error;
+    throw result.body;
   }
 
   return result.body;
@@ -137,7 +137,7 @@ export async function _publishCloudEventsDeserialize(
   result: PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
-    throw result.body.error;
+    throw result.body;
   }
 
   return result.body;
@@ -186,7 +186,7 @@ export async function _receiveCloudEventsDeserialize(
   result: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
 ): Promise<ReceiveResult> {
   if (isUnexpected(result)) {
-    throw result.body.error;
+    throw result.body;
   }
 
   return {
@@ -260,7 +260,7 @@ export async function _acknowledgeCloudEventsDeserialize(
     | AcknowledgeCloudEventsDefaultResponse
 ): Promise<AcknowledgeResult> {
   if (isUnexpected(result)) {
-    throw result.body.error;
+    throw result.body;
   }
 
   return {
@@ -318,7 +318,7 @@ export async function _releaseCloudEventsDeserialize(
   result: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
 ): Promise<ReleaseResult> {
   if (isUnexpected(result)) {
-    throw result.body.error;
+    throw result.body;
   }
 
   return {
@@ -376,7 +376,7 @@ export async function _rejectCloudEventsDeserialize(
   result: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
 ): Promise<RejectResult> {
   if (isUnexpected(result)) {
-    throw result.body.error;
+    throw result.body;
   }
 
   return {
