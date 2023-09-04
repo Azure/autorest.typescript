@@ -29,8 +29,6 @@ import { transformPaths } from "../../restLevelClient/transforms/transformPaths"
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
 
-export let hasRLCSamplesGenerated = false;
-
 export function transformRLCSampleData(
   model: TestCodeModel
 ): RLCSampleGroup[] | undefined {

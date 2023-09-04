@@ -39,14 +39,14 @@ const restLevelTsConfigNotInAzureSdkForJs: Record<string, any> = {
   include: ["./src/**/*.ts"]
 };
 
-export function buildTsConfig(model: RLCModel, hasSamplesGenerated = false) {
+export function buildTsConfig(model: RLCModel) {
   let { generateTest, packageDetails, generateSample, azureSdkForJs } =
     model.options || {};
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
-    (generateSample === true || generateSample === undefined) &&
-    hasSamplesGenerated;
+    generateSample === true ||
+    (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
   const clientPackageName = packageDetails?.name ?? "";
   const project = new Project();
 

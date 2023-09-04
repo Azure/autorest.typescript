@@ -304,5 +304,4 @@ export type ResponseBodySchema = Schema;
 
 export type ContentBuilder = {
   (model: RLCModel): File | File[] | undefined;
-  (model: RLCModel, hasSampleGenerated?: boolean): File | File[] | undefined;
 };

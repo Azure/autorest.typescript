@@ -9,7 +9,6 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
-import { hasRLCSamplesGenerated } from "../generators/samples/rlcSampleGenerator";
 import { transform } from "./transforms/transform";
 import {
   buildApiExtractorConfig,
@@ -41,6 +40,7 @@ import {
   generateSchemaTypes,
   generateTopLevelIndexFile
 } from "./helpers/generatorHelpers";
+import { buildSamplesOnFakeContent } from "@azure-tools/rlc-common";
 
 /**
  * Generates a Rest Level Client library
@@ -68,6 +68,9 @@ export async function generateRestLevelClient() {
 
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
+  if (generateSample === true && (rlcModels.sampleGroups ?? []).length === 0) {
+    rlcModels.sampleGroups = buildSamplesOnFakeContent(rlcModels);
+  }
 
   if (generateMetadata) {
     // buildReadmeFile
@@ -116,31 +119,16 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildSerializeHelper, rlcModels);
   generateFileByBuilder(project, buildLogger, rlcModels);
   generateTopLevelIndexFile(rlcModels, project);
-  if (generateSample && generateMetadata) {
-    generateFileByBuilder(project, buildSamples, rlcModels);
-  }
-  if (
-    ((generateSample && hasRLCSamplesGenerated) || generateTest) &&
-    generateMetadata
-  ) {
+  generateFileByBuilder(project, buildSamples, rlcModels);
+  if ((generateSample || generateTest) && generateMetadata) {
     generateSampleEnv(project);
   }
 
   if (generateMetadata) {
     // buildPackageFile
-    generateFileByBuilder(
-      project,
-      buildPackageFile,
-      rlcModels,
-      hasRLCSamplesGenerated
-    );
+    generateFileByBuilder(project, buildPackageFile, rlcModels);
     // buildTsConfig
-    generateFileByBuilder(
-      project,
-      buildTsConfig,
-      rlcModels,
-      hasRLCSamplesGenerated
-    );
+    generateFileByBuilder(project, buildTsConfig, rlcModels);
   }
 
   // Save the source files to the virtual filesystem

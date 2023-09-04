@@ -9,14 +9,13 @@ import { buildSchemaTypes } from "@azure-tools/rlc-common";
 export function generateFileByBuilder(
   project: Project,
   buildFnOrList: ContentBuilder | ContentBuilder[],
-  rlcModels: RLCModel,
-  hasSampleGenerated?: boolean
+  rlcModels: RLCModel
 ) {
   if (!Array.isArray(buildFnOrList)) {
     buildFnOrList = [buildFnOrList];
   }
   for (const buildFn of buildFnOrList) {
-    generateFile(buildFn(rlcModels, hasSampleGenerated), project);
+    generateFile(buildFn(rlcModels), project);
   }
 }
 

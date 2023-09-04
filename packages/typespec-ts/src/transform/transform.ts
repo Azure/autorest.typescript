@@ -60,7 +60,6 @@ export async function transformRLCModel(
   const importSet = new Map<ImportKind, Set<string>>();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
-
   const responses: OperationResponse[] = transformToResponseTypes(
     importSet,
     client,
