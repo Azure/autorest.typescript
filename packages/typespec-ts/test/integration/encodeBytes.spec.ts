@@ -55,15 +55,14 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it(`should get unix-timestamp query`, async () => {
+    it(`should get bytes base64url-array`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/query/base64url-array`)
           .get({
             queryParameters: {
               value: ["dGVzdA", "dGVzdA"]
-            },
-            skipUrlEncoding: true
+            }
           });
         assert.strictEqual(result.status, "204");
       } catch (err) {
@@ -114,15 +113,14 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it(`should post unix-timestamp query`, async () => {
+    it(`should post bytes base64url array`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/property/base64url-array`)
           .post({
             body: {
               value: ["dGVzdA", "dGVzdA"]
-            },
-            skipUrlEncoding: true
+            }
           });
         assert.strictEqual(result.status, "200");
       } catch (err) {
@@ -172,15 +170,14 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it(`should get base64url-array query`, async () => {
+    it(`should get bytes  base64url-array`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/header/base64url-array`)
           .get({
             headers: {
               value: buildCsvCollection(["dGVzdA", "dGVzdA"])
-            },
-            skipUrlEncoding: true
+            }
           });
         assert.strictEqual(result.status, "204");
       } catch (err) {
