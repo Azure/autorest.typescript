@@ -33,10 +33,10 @@ export function transformRLCSampleData(
   model: TestCodeModel
 ): RLCSampleGroup[] | undefined {
   const { generateSample, multiClient } = getAutorestOptions();
-  const session = getSession();
   if (!generateSample || !model?.testModel?.mockTest?.exampleGroups) {
     return;
   }
+  const session = getSession();
   // Currently only support single client
   if (multiClient) {
     session.info(
