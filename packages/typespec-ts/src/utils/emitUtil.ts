@@ -29,16 +29,16 @@ export async function emitContentByBuilder(
     builderFnOrList = [builderFnOrList];
   }
   for (const builderFn of builderFnOrList) {
-    let contentFiles = builderFn(rlcModels);
+    let contentFiles: File[] | File | undefined = builderFn(rlcModels);
     if (!contentFiles) {
       continue;
     }
     if (!Array.isArray(contentFiles)) {
       contentFiles = [contentFiles];
     }
-    contentFiles.forEach(
-      async (file) => await emitFile(file, program, emitterOutputDir)
-    );
+    for (const file of contentFiles) {
+      await emitFile(file, program, emitterOutputDir);
+    }
   }
 }
 
