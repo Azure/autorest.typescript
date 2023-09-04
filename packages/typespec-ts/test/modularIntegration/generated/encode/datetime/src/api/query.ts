@@ -30,7 +30,7 @@ export function _queryDefaultSend(
     .path("/encode/datetime/query/default")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: value.toISOString() },
     });
 }
 
@@ -62,7 +62,7 @@ export function _queryRfc3339Send(
     .path("/encode/datetime/query/rfc3339")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: value.toISOString() },
     });
 }
 
@@ -94,7 +94,7 @@ export function _queryRfc7231Send(
     .path("/encode/datetime/query/rfc7231")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: value.toISOString() },
     });
 }
 
@@ -126,7 +126,7 @@ export function _queryUnixTimestampSend(
     .path("/encode/datetime/query/unix-timestamp")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: value.toISOString() },
     });
 }
 
@@ -158,7 +158,7 @@ export function _queryUnixTimestampArraySend(
     .path("/encode/datetime/query/unix-timestamp-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: (value ?? []).map((p) => p.toISOString()) },
     });
 }
 

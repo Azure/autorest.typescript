@@ -12,6 +12,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   QueryDefaultOptions,
   QueryBase64Options,
@@ -28,7 +29,7 @@ export function _queryDefaultSend(
     .path("/encode/bytes/query/default")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: uint8ArrayToString(value, "base64") },
     });
 }
 
@@ -60,7 +61,7 @@ export function _queryBase64Send(
     .path("/encode/bytes/query/base64")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: uint8ArrayToString(value, "base64") },
     });
 }
 
@@ -92,7 +93,7 @@ export function _queryBase64urlSend(
     .path("/encode/bytes/query/base64url")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: { value: uint8ArrayToString(value, "base64") },
     });
 }
 

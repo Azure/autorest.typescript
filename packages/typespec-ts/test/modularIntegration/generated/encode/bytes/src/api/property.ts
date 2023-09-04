@@ -18,7 +18,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 import {
   PropertyDefaultOptions,
   PropertyBase64Options,
@@ -35,7 +35,7 @@ export function _propertyDefaultSend(
     .path("/encode/bytes/property/default")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value },
+      body: { value: uint8ArrayToString(value, "base64") },
     });
 }
 
@@ -72,7 +72,7 @@ export function _propertyBase64Send(
     .path("/encode/bytes/property/base64")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value },
+      body: { value: uint8ArrayToString(value, "base64") },
     });
 }
 
@@ -109,7 +109,7 @@ export function _propertyBase64urlSend(
     .path("/encode/bytes/property/base64url")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value },
+      body: { value: uint8ArrayToString(value, "base64") },
     });
 }
 

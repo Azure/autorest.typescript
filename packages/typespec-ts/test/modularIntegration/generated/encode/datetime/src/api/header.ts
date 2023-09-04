@@ -30,7 +30,7 @@ export function _headerDefaultSend(
     .path("/encode/datetime/header/default")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: value.toISOString() },
     });
 }
 
@@ -62,7 +62,7 @@ export function _headerRfc3339Send(
     .path("/encode/datetime/header/rfc3339")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: value.toISOString() },
     });
 }
 
@@ -94,7 +94,7 @@ export function _headerRfc7231Send(
     .path("/encode/datetime/header/rfc7231")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: value.toISOString() },
     });
 }
 
@@ -126,7 +126,7 @@ export function _headerUnixTimestampSend(
     .path("/encode/datetime/header/unix-timestamp")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: value.toISOString() },
     });
 }
 

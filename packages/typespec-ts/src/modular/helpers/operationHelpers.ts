@@ -483,7 +483,12 @@ function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
       importSet
     ).join(",")}`;
   }
-  return `"${param.restApiName}": ${param.clientName}`;
+  return `"${param.restApiName}": ${serializeRequestValue(
+    param.type,
+    param.restApiName,
+    importSet,
+    true
+  )}`;
 }
 
 type ConstantType = (Parameter | Property) & {
@@ -525,7 +530,12 @@ function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
       importSet
     ).join(", ")}}`;
   }
-  return `"${param.restApiName}": options?.${param.clientName}`;
+  return `"${param.restApiName}": ${serializeRequestValue(
+    param.type,
+    `options?.${param.restApiName}`,
+    importSet,
+    false
+  )}`;
 }
 
 /**
@@ -633,7 +643,8 @@ function getRequestModelMapping(
         `"${property.restApiName}": ${serializeRequestValue(
           property.type,
           restValue,
-          importSet
+          importSet,
+          !propertyPath.endsWith("?")
         )}`
       );
     }
@@ -787,12 +798,21 @@ function deserializeResponseValue(
 function serializeRequestValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  required: boolean
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      return `${restValue} !== undefined ? new Date(${restValue}): undefined`;
+      if (type.format === "ISO8601") {
+        return `${restValue}.toISOString()`;
+      } if (type.format === "RFC1123") {
+        new Date().getTime()
+        return `${restValue}.toLo()`;
+      } if (type.format === "UnixTime") {
+        return `${restValue}.getTime()`;
+      }
+      return `${restValue}.toISOString()`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getRequestModelMapping(
@@ -801,12 +821,15 @@ function serializeRequestValue(
           importSet
         )}}))`;
       } else if (
-        type.elementType?.properties?.some((p) => needsDeserialize(p.type))
+        needsDeserialize(type.elementType)
       ) {
         return `(${restValue} ?? []).map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
-          importSet
+          importSet,
+          type.elementType?.nullable !== undefined
+            ? !type.elementType.nullable
+            : false
         )})`;
       } else {
         return restValue;
@@ -820,9 +843,11 @@ function serializeRequestValue(
       } else {
         coreUtilSet.add("uint8ArrayToString");
       }
-      return `${restValue} !== undefined ? uint8ArrayToString(${restValue}, "${
-        type.format ?? "base64"
-      }"): undefined`;
+      return required
+        ? `uint8ArrayToString(${restValue}, "${type.format ?? "base64"}")`
+        : `${restValue} !== undefined ? uint8ArrayToString(${restValue}, "${
+            type.format ?? "base64"
+          }"): undefined`;
     default:
       return restValue;
   }

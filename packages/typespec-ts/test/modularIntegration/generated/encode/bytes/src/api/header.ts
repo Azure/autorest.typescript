@@ -12,6 +12,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   HeaderDefaultOptions,
   HeaderBase64Options,
@@ -28,7 +29,7 @@ export function _headerDefaultSend(
     .path("/encode/bytes/header/default")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: uint8ArrayToString(value, "base64") },
     });
 }
 
@@ -60,7 +61,7 @@ export function _headerBase64Send(
     .path("/encode/bytes/header/base64")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: uint8ArrayToString(value, "base64") },
     });
 }
 
@@ -92,7 +93,7 @@ export function _headerBase64urlSend(
     .path("/encode/bytes/header/base64url")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value },
+      headers: { value: uint8ArrayToString(value, "base64") },
     });
 }
 

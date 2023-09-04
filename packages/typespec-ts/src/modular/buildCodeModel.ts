@@ -27,7 +27,6 @@ import {
   isStringType,
   getPropertyType,
   isNumericType,
-  getFormat,
   getMinItems,
   getMaxItems,
   listServices,
@@ -1076,7 +1075,7 @@ function applyIntrinsicDecorators(
     newResult.description = docStr;
   }
 
-  const formatStr = getFormat(program, type);
+  const formatStr = getEncode(program, type);
   if (isString && !result.format && formatStr) {
     newResult.format = formatStr;
   }
