@@ -34,6 +34,7 @@ import {
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
+import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenerator";
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
@@ -53,7 +54,8 @@ export function transform(model: CodeModel): RLCModel {
     parameters: transformParameterTypes(model, importDetails),
     helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
-    apiVersionInfo: transformApiVersion(model, urlInfo)
+    apiVersionInfo: transformApiVersion(model, urlInfo),
+    sampleGroups: transformRLCSampleData(model)
   };
   return rlcModel;
 }

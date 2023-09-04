@@ -9,10 +9,7 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import * as path from "path";
 import * as fsextra from "fs-extra";
 import { generateSampleEnv } from "../generators/samples/sampleEnvGenerator";
-import {
-  generateRLCSamples,
-  hasRLCSamplesGenerated
-} from "../generators/samples/rlcSampleGenerator";
+import { hasRLCSamplesGenerated } from "../generators/samples/rlcSampleGenerator";
 import { transform } from "./transforms/transform";
 import {
   buildApiExtractorConfig,
@@ -36,7 +33,8 @@ import {
   buildLicenseFile,
   buildReadmeFile,
   buildSerializeHelper,
-  buildLogger
+  buildLogger,
+  buildSamples
 } from "@azure-tools/rlc-common";
 import {
   generateFileByBuilder,
@@ -119,7 +117,7 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildLogger, rlcModels);
   generateTopLevelIndexFile(rlcModels, project);
   if (generateSample && generateMetadata) {
-    generateRLCSamples(model, project);
+    generateFileByBuilder(project, buildSamples, rlcModels);
   }
   if (
     ((generateSample && hasRLCSamplesGenerated) || generateTest) &&

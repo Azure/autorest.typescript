@@ -30,3 +30,4 @@ export * from "./metadata/buildLicenseFile.js";
 export * from "./buildSerializeHelper.js";
 export * from "./helpers/apiVersionUtil.js";
 export * from "./buildLogger.js";
+export * from "./buildSamples.js";

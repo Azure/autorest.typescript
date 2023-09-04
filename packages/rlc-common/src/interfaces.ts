@@ -13,6 +13,42 @@ export interface RLCModel {
   helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
   telemetryOptions?: TelemetryInfo;
+  sampleGroups?: RLCSampleGroup[];
+}
+
+/**
+ * A group of samples in operation_id level and they are used to generate in a sample file
+ */
+export interface RLCSampleGroup {
+  filename: string;
+  clientPackageName: string;
+  defaultFactoryName: string;
+  samples: RLCSampleDetail[];
+  importedTypes?: string[];
+}
+
+/**
+ * An independent sample detail and it will be wrapped as a func
+ */
+export interface RLCSampleDetail {
+  /**
+   * metadata for comments
+   */
+  description: string;
+  originalFileLocation?: string;
+  name: string;
+  path: string;
+  defaultFactoryName: string;
+  clientParamAssignments: string[];
+  pathParamAssignments: string[];
+  methodParamAssignments: string[];
+  clientParamNames: string;
+  pathParamNames: string;
+  methodParamNames: "options" | "";
+  method: string;
+  isLRO: boolean;
+  isPaging: boolean;
+  useLegacyLro: boolean;
 }
 
 export interface TelemetryInfo {
@@ -267,6 +303,6 @@ export type ResponseHeaderSchema = Schema;
 export type ResponseBodySchema = Schema;
 
 export type ContentBuilder = {
-  (model: RLCModel): File | undefined;
-  (model: RLCModel, hasSampleGenerated?: boolean): File | undefined;
+  (model: RLCModel): File | File[] | undefined;
+  (model: RLCModel, hasSampleGenerated?: boolean): File | File[] | undefined;
 };

@@ -16,11 +16,7 @@ export function generateFileByBuilder(
     buildFnOrList = [buildFnOrList];
   }
   for (const buildFn of buildFnOrList) {
-    const preparedFile: RLCFile | undefined = buildFn(
-      rlcModels,
-      hasSampleGenerated
-    );
-    generateFile(preparedFile, project);
+    generateFile(buildFn(rlcModels, hasSampleGenerated), project);
   }
 }
 
@@ -30,8 +26,17 @@ export function generateSchemaTypes(project: Project, rlcModels: RLCModel) {
   generateFile(outputModelFile, project);
 }
 
-function generateFile(file: RLCFile | undefined, project: Project) {
-  if (file) {
+function generateFile(
+  files: RLCFile[] | RLCFile | undefined,
+  project: Project
+) {
+  if (!files) {
+    return;
+  }
+  if (!Array.isArray(files)) {
+    files = [files];
+  }
+  for (const file of files) {
     project.createSourceFile(file.path, file.content, {
       overwrite: true
     });

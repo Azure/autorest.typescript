@@ -11,8 +11,6 @@ import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
 import {
-  RLCSampleDetail,
-  RLCSampleGroup,
   SampleParameter,
   SampleParameters,
   TestSampleParameters,
@@ -32,7 +30,9 @@ const apiKeyCredentialPackage = "@azure/core-auth";
 
 export let hasRLCSamplesGenerated = false;
 
-export function generateRLCSamples(model: TestCodeModel, project: Project) {
+export function transformRLCSampleData(
+  model: TestCodeModel
+): RLCSampleGroup[] | undefined {
   const { generateSample, multiClient } = getAutorestOptions();
   const session = getSession();
   if (!generateSample || !model?.testModel?.mockTest?.exampleGroups) {
@@ -45,43 +45,11 @@ export function generateRLCSamples(model: TestCodeModel, project: Project) {
     );
     return;
   }
-  const sampleGroups: RLCSampleGroup[] = transformRLCSampleData(model);
-  if (sampleGroups.length > 0) {
-    hasRLCSamplesGenerated = true;
-  }
-  for (const sampleGroup of sampleGroups) {
-    try {
-      const file = fs.readFileSync(path.join(__dirname, "rlcSamples.ts.hbs"), {
-        encoding: "utf-8"
-      });
-      const sampleGroupFileContents = hbs.compile(file, { noEscape: true });
-      project.createSourceFile(
-        `samples-dev/${sampleGroup.filename}.ts`,
-        sampleGroupFileContents(sampleGroup),
-        {
-          overwrite: true
-        }
-      );
-    } catch (error) {
-      session.error(
-        "An error was encountered while handling sample generation",
-        [sampleGroup.filename]
-      );
-      session.error(
-        "Stop generating samples and please inform the developers of codegen the detailed errors",
-        []
-      );
-    }
-  }
-}
-
-export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
   const rlcSampleGroups: RLCSampleGroup[] = [];
   if (!model?.testModel?.mockTest?.exampleGroups) {
     return rlcSampleGroups;
   }
   // Get all paths
-  const session = getSession();
   const paths: Paths = transformPaths(model);
   const clientName = getLanguageMetadata(model.language).name;
   const clientInterfaceName = clientName.endsWith("Client")
