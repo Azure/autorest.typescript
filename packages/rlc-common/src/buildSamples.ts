@@ -1,5 +1,5 @@
-import { RLCModel, RLCSampleGroup, File as RLCFile } from "./interfaces";
-import { sampleTemplate } from "./static/sampleTemplate";
+import { RLCModel, RLCSampleGroup, File as RLCFile } from "./interfaces.js";
+import { sampleTemplate } from "./static/sampleTemplate.js";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 
@@ -11,7 +11,7 @@ export function buildSamples(model: RLCModel) {
   generateSample =
     generateSample === true ||
     (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
-  if (generateSample) {
+  if (!generateSample) {
     return;
   }
   const sampleGroups: RLCSampleGroup[] | undefined = model.sampleGroups;
