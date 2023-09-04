@@ -2,11 +2,7 @@ import {
   ExampleParameter,
   TestCodeModel
 } from "@autorest/testmodeler/dist/src/core/model";
-import { Project } from "ts-morph";
 import { getAutorestOptions, getSession } from "../../autorestSession";
-import * as fs from "fs";
-import * as path from "path";
-import * as hbs from "handlebars";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -22,7 +18,12 @@ import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPolling
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 import { getParameterAssignment } from "../../utils/valueHelpers";
-import { Paths, PathMetadata } from "@azure-tools/rlc-common";
+import {
+  Paths,
+  PathMetadata,
+  RLCSampleGroup,
+  RLCSampleDetail
+} from "@azure-tools/rlc-common";
 import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
 
 const tokenCredentialPackage = "@azure/identity";
