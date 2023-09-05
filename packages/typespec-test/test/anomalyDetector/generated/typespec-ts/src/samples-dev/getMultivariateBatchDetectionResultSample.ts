@@ -19,9 +19,10 @@ async function getMultivariateBatchDetectionResultSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
   const resultId = "{Your resultId}";
+  const options: GetMultivariateBatchDetectionResultParameters = {};
   const result = await client
     .path("/multivariate/detect-batch/{resultId}", resultId)
-    .get();
+    .get(options);
   console.log(result);
 }
 

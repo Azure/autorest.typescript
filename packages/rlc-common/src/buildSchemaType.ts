@@ -36,7 +36,6 @@ export function generateModelFiles(
 ) {
   // Track models that need to be imported
   const importedModels = new Set<string>();
-
   const objectsDefinitions = buildObjectInterfaces(
     model,
     importedModels,

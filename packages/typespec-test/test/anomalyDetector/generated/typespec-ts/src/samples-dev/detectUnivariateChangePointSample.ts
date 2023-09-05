@@ -18,7 +18,19 @@ async function detectUnivariateChangePointSample() {
   const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const result = await client.path("/timeseries/changepoint/detect").post();
+  const options: DetectUnivariateChangePointParameters = {
+    body: {
+      series: [] as any,
+      granularity: "yearly",
+      customInterval: 123,
+      period: 123,
+      stableTrendWindow: 123,
+      threshold: 123,
+    },
+  };
+  const result = await client
+    .path("/timeseries/changepoint/detect")
+    .post(options);
   console.log(result);
 }
 

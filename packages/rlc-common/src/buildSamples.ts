@@ -12,12 +12,16 @@ import {
   SampleParameter,
   PathMetadata,
   ParameterMetadatas,
-  OperationParameter
+  OperationParameter,
+  ObjectSchema,
+  SchemaContext,
+  Schema
 } from "./interfaces.js";
 import { sampleTemplate } from "./static/sampleTemplate.js";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import * as path from "path";
+import { isObjectSchema } from "./helpers/schemaHelpers.js";
 
 export function buildSamples(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
@@ -64,6 +68,7 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
   const defaultFactoryName = camelCase(`create ${clientInterfaceName}`);
   const packageName = model.options?.packageDetails?.name ?? "";
   const methodParameterMap = buildMethodParamMap(model);
+  const schemaObjectMap = buildSchemaObjectMap(model);
   for (const path in paths) {
     const importedDict: Record<string, Set<string>> = {};
     const pathDetails = paths[path];
@@ -100,14 +105,18 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
       };
       // client-level, path-level and method-level parameter preparation
       const parameters: SampleParameters = {
-        client: convertClientLevelParameters(model, importedDict),
-        path: convertPathLevelParameters(pathDetails, path),
-        // method: convertMethodLevelParameters(
-        //   methodParameterMap.get(operatonConcante),
-        //   methods[method],
-        //   importedDict
-        // )
-        method: []
+        client: convertClientLevelParameters(
+          model,
+          importedDict,
+          schemaObjectMap
+        ),
+        path: convertPathLevelParameters(pathDetails, path, schemaObjectMap),
+        method: convertMethodLevelParameters(
+          methods[method],
+          importedDict,
+          schemaObjectMap,
+          methodParameterMap.get(operatonConcante)
+        )
       };
       // enrich parameter details
       enrichParameterInSample(sample, parameters);
@@ -199,7 +208,8 @@ function getContactParameterNames(parameters: SampleParameter[]) {
 
 function convertClientLevelParameters(
   model: RLCModel,
-  importedDict: Record<string, Set<string>>
+  importedDict: Record<string, Set<string>>,
+  schemaMap: Map<string, Schema>
 ): SampleParameter[] {
   if (!model.options) {
     return [];
@@ -222,7 +232,8 @@ function convertClientLevelParameters(
     const clientParamAssignments = urlParameters.map((urlParameter) => {
       const urlValue = mockParameterTypeValue(
         urlParameter.type,
-        urlParameter.name
+        urlParameter.name,
+        schemaMap
       );
       const normalizedName = normalizeName(
         urlParameter.name,
@@ -265,7 +276,8 @@ function convertClientLevelParameters(
 
 function convertPathLevelParameters(
   pathDetail: PathMetadata,
-  path: string
+  path: string,
+  schemaMap: Map<string, Schema>
 ): SampleParameter[] {
   const pathItself = {
     name: `"${path}"`
@@ -274,82 +286,92 @@ function convertPathLevelParameters(
     const pathParam: SampleParameter = {
       name: normalizeName(p.name, NameType.Parameter)
     };
-    const value = mockParameterTypeValue(p.type, p.name);
+    const value = mockParameterTypeValue(p.type, p.name, schemaMap);
     pathParam.assignment = `const ${pathParam.name} =` + value + `;`;
     return pathParam;
   });
   return [pathItself].concat(pathParams);
 }
 
-// function convertMethodLevelParameters(
-//   operationParameter?: OperationParameter,
-//   methods?: OperationMethod[],
-//   importedDict?: Record<string, Set<string>>
-// ): SampleParameter[] {
-//   if (!methods || methods.length == 0 || !operationParameter) {
-//     return [];
-//   }
-//   const rawMethodParams = operationParameter.parameters;
-//   const method = methods[0];
-//   const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
-//     requireParam = !method.hasOptionalOptions;
-//   if (!hasInputParams && !requireParam) {
-//     return [];
-//   }
+function convertMethodLevelParameters(
+  methods: OperationMethod[],
+  importedDict: Record<string, Set<string>>,
+  schemaMap: Map<string, Schema>,
+  operationParameter?: OperationParameter
+): SampleParameter[] {
+  if (!methods || methods.length == 0 || !operationParameter) {
+    return [];
+  }
+  const rawMethodParams = operationParameter.parameters;
+  if (rawMethodParams.length !== 1) {
+    // TODO: handle multi-part form data
+    return [];
+  }
+  const method = methods[0];
+  const requestParameter = rawMethodParams[0];
+  const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
+    requireParam = !method.hasOptionalOptions;
+  if (!hasInputParams && !requireParam) {
+    return [];
+  }
 
-//   const allSideAssignments = [],
-//     querySideAssignments: string[] = [],
-//     headerSideAssignments: string[] = [];
-//   rawMethodParams
-//     .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Body)
-//     .forEach((p) => {
-//       allSideAssignments.push(
-//         ` body: ` + getParameterAssignment(p.exampleValue, true)
-//       );
-//     });
-//   rawMethodParams
-//     .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Query)
-//     .forEach((p) => {
-//       const name = `"${
-//         getLanguageMetadata(p.parameter.language).serializedName ||
-//         p.parameter.language.default.name
-//       }"`;
+  const allSideAssignments = [],
+    querySideAssignments: string[] = [],
+    headerSideAssignments: string[] = [];
+  if (
+    !!requestParameter.body &&
+    requestParameter.body &&
+    requestParameter.body.body &&
+    requestParameter.body.body?.length > 0
+  ) {
+    allSideAssignments.push(
+      ` body: ` +
+        mockParameterTypeValue(
+          requestParameter.body.body[0].type,
+          "body",
+          schemaMap
+        )
+    );
+  }
 
-//       querySideAssignments.push(
-//         `${name}: ` + getParameterAssignment(p.exampleValue, true)
-//       );
-//     });
-//   if (querySideAssignments.length > 0) {
-//     allSideAssignments.push(
-//       ` queryParameters: { ` + querySideAssignments.join(", ") + `}`
-//     );
-//   }
-//   rawMethodParams
-//     .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Header)
-//     .forEach((p) => {
-//       const name = `"${
-//         getLanguageMetadata(p.parameter.language).serializedName
-//       }"`;
-//       headerSideAssignments.push(
-//         `${name}: ` + getParameterAssignment(p.exampleValue, true)
-//       );
-//     });
-//   if (headerSideAssignments.length > 0) {
-//     allSideAssignments.push(
-//       ` headers: { ` + headerSideAssignments.join(", ") + `}`
-//     );
-//   }
-//   let value: string = `{}`;
-//   if (allSideAssignments.length > 0) {
-//     value = `{ ` + allSideAssignments.join(", ") + `}`;
-//   }
-//   const optionParam: SampleParameter = {
-//     name: "options",
-//     assignment: `const options: ${method.optionsName} =` + value + `;`
-//   };
-//   addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
-//   return [optionParam];
-// }
+  requestParameter.parameters
+    ?.filter((p) => p.type === "query")
+    .forEach((p) => {
+      const name = `"${p.name}"`;
+      querySideAssignments.push(
+        `${name}: ` + mockParameterTypeValue(p.param.type, name, schemaMap)
+      );
+    });
+
+  if (querySideAssignments.length > 0) {
+    allSideAssignments.push(
+      ` queryParameters: { ` + querySideAssignments.join(", ") + `}`
+    );
+  }
+  requestParameter.parameters
+    ?.filter((p) => p.type === "header")
+    .forEach((p) => {
+      const name = `"${p.name}"`;
+      querySideAssignments.push(
+        `${name}: ` + mockParameterTypeValue(p.param.type, name, schemaMap)
+      );
+    });
+  if (headerSideAssignments.length > 0) {
+    allSideAssignments.push(
+      ` headers: { ` + headerSideAssignments.join(", ") + `}`
+    );
+  }
+  let value: string = `{}`;
+  if (allSideAssignments.length > 0) {
+    value = `{ ` + allSideAssignments.join(", ") + `}`;
+  }
+  const optionParam: SampleParameter = {
+    name: "options",
+    assignment: `const options: ${method.optionsName} =` + value + `;`
+  };
+  // addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
+  return [optionParam];
+}
 
 function addValueInImportedDict(
   key: string,
@@ -371,12 +393,63 @@ function buildMethodParamMap(model: RLCModel): Map<string, OperationParameter> {
   return map;
 }
 
-function mockParameterTypeValue(type: string, parameterName: string) {
+function buildSchemaObjectMap(model: RLCModel) {
+  const map = new Map<string, Schema>();
+  (model.schemas ?? [])
+    .filter(
+      (o) =>
+        isObjectSchema(o) &&
+        (o as ObjectSchema).usage?.some((u) =>
+          [SchemaContext.Input].includes(u)
+        )
+    )
+    .forEach((o) => {
+      map.set(o.name, o);
+    });
+  return map;
+}
+
+function mockParameterTypeValue(
+  type: string,
+  parameterName: string,
+  schemaMap: Map<string, ObjectSchema>
+) {
   if (type === "string") {
     return `"{Your ${parameterName}}"`;
   } else if (type === "number") {
     return "123";
   } else if (type === "boolean") {
     return "true";
+  } else if (schemaMap.get(type)) {
+    // object
+    const values: string[] = [];
+    const schema = schemaMap.get(type);
+    const properties = schema?.properties ?? {};
+    console.log("object>>>>>>>>>", properties);
+    for (const prop in properties) {
+      const propName = prop;
+      const property = properties[prop];
+      let propRetValue =
+        `${propName}: ` +
+        mockParameterTypeValue(property.type, propName, schemaMap);
+      values.push(propRetValue);
+    }
+    return `{${values.join(", ")}}`;
+  } else if (isArray(type) || type === "array") {
+    return `[] as any`;
+  } else if (isStringUnion(type)) {
+    return `${type.split("|").map((m) => m.trim())[0]}`;
   }
+}
+
+function isArray(type: string) {
+  const reg1 = /Array<([a-zA-Z].+)>/g;
+  console.log(type, reg1.test(type));
+  return reg1.test(type);
+}
+
+function isStringUnion(type: string) {
+  const members = type.split("|").map((m) => m.trim());
+  const reg = /"([a-zA-Z].+)"/g;
+  return members.length > 0 && reg.test(members[0]);
 }
