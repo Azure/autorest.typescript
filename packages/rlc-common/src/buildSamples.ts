@@ -1,3 +1,4 @@
+import { mock } from "node:test";
 import { getClientName } from "./helpers/nameConstructors.js";
 import { NameType, camelCase, normalizeName } from "./helpers/nameUtils.js";
 import {
@@ -16,12 +17,14 @@ import {
 import { sampleTemplate } from "./static/sampleTemplate.js";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
+import * as path from "path";
 
 export function buildSamples(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
     return;
   }
   let { generateSample } = model.options;
+  const srcPath = model.srcPath;
   generateSample =
     generateSample === true ||
     (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
@@ -37,8 +40,13 @@ export function buildSamples(model: RLCModel) {
     const sampleGroupFileContents = hbs.compile(sampleTemplate, {
       noEscape: true
     });
+    const filePath = path.join(
+      srcPath,
+      "samples-dev",
+      `${sampleGroup.filename}.ts`
+    );
     sampleFiles.push({
-      path: `samples-dev/${sampleGroup.filename}.ts`,
+      path: filePath,
       content: sampleGroupFileContents(sampleGroup)
     });
   }
@@ -55,7 +63,7 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
     : `${clientName}Client`;
   const defaultFactoryName = camelCase(`create ${clientInterfaceName}`);
   const packageName = model.options?.packageDetails?.name ?? "";
-  const methodParameterMap = constructMethodParamMap(model);
+  const methodParameterMap = buildMethodParamMap(model);
   for (const path in paths) {
     const importedDict: Record<string, Set<string>> = {};
     const pathDetails = paths[path];
@@ -75,8 +83,7 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
 
       // initialize the sample
       const sample: RLCSampleDetail = {
-        description: `Auto generated sample for operation ${pathDetails.operationGroupName} ${detail.operationName}`,
-        originalFileLocation: `NA`,
+        description: `call operation ${detail.operationName}`,
         name: `${operationPrefix}Sample`,
         path,
         defaultFactoryName,
@@ -95,11 +102,12 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
       const parameters: SampleParameters = {
         client: convertClientLevelParameters(model, importedDict),
         path: convertPathLevelParameters(pathDetails, path),
-        method: convertMethodLevelParameters(
-          methodParameterMap.get(operatonConcante),
-          methods[method],
-          importedDict
-        )
+        // method: convertMethodLevelParameters(
+        //   methodParameterMap.get(operatonConcante),
+        //   methods[method],
+        //   importedDict
+        // )
+        method: []
       };
       // enrich parameter details
       enrichParameterInSample(sample, parameters);
@@ -193,7 +201,66 @@ function convertClientLevelParameters(
   model: RLCModel,
   importedDict: Record<string, Set<string>>
 ): SampleParameter[] {
-  return [];
+  if (!model.options) {
+    return [];
+  }
+  const clientParams: SampleParameter[] = [];
+  const urlParameters = model?.urlInfo?.urlParameters?.filter(
+    // Do not include parameters with constant values in the signature, these should go in the options bag
+    (p) => p.value === undefined
+  );
+  const { addCredentials, credentialScopes, credentialKeyHeaderName } =
+    model.options;
+  const hasUrlParameter = !!urlParameters,
+    hasCredentials =
+      addCredentials &&
+      ((credentialScopes && credentialScopes.length > 0) ||
+        credentialKeyHeaderName);
+
+  if (hasUrlParameter) {
+    // convert the host parameters in url
+    const clientParamAssignments = urlParameters.map((urlParameter) => {
+      const urlValue = mockParameterTypeValue(
+        urlParameter.type,
+        urlParameter.name
+      );
+      const normalizedName = normalizeName(
+        urlParameter.name,
+        NameType.Parameter
+      );
+      return {
+        name: normalizedName,
+        assignment: `const ${normalizedName} = ` + urlValue + `;`
+      };
+    });
+
+    clientParams.push(...clientParamAssignments);
+  }
+  if (hasCredentials) {
+    // Currently only support token credential
+    if (credentialKeyHeaderName) {
+      clientParams.push({
+        name: "credential",
+        assignment: `const credential = new AzureKeyCredential("{Your API key}");`
+      });
+      addValueInImportedDict(
+        apiKeyCredentialPackage,
+        "AzureKeyCredential",
+        importedDict
+      );
+    } else {
+      clientParams.push({
+        name: "credential",
+        assignment: "const credential = new DefaultAzureCredential();"
+      });
+      addValueInImportedDict(
+        tokenCredentialPackage,
+        "DefaultAzureCredential",
+        importedDict
+      );
+    }
+  }
+  return clientParams;
 }
 
 function convertPathLevelParameters(
@@ -207,84 +274,82 @@ function convertPathLevelParameters(
     const pathParam: SampleParameter = {
       name: normalizeName(p.name, NameType.Parameter)
     };
-    // path params are mandatory we'll leave it empty if no input
-    // TODO: moke the values here
-    const value = `""`;
+    const value = mockParameterTypeValue(p.type, p.name);
     pathParam.assignment = `const ${pathParam.name} =` + value + `;`;
     return pathParam;
   });
   return [pathItself].concat(pathParams);
 }
 
-function convertMethodLevelParameters(
-  operationParameter?: OperationParameter,
-  methods?: OperationMethod[],
-  importedDict?: Record<string, Set<string>>
-): SampleParameter[] {
-  if (!methods || methods.length == 0 || !operationParameter) {
-    return [];
-  }
-  const rawMethodParams = operationParameter.parameters;
-  const method = methods[0];
-  const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
-    requireParam = !method.hasOptionalOptions;
-  if (!hasInputParams && !requireParam) {
-    return [];
-  }
+// function convertMethodLevelParameters(
+//   operationParameter?: OperationParameter,
+//   methods?: OperationMethod[],
+//   importedDict?: Record<string, Set<string>>
+// ): SampleParameter[] {
+//   if (!methods || methods.length == 0 || !operationParameter) {
+//     return [];
+//   }
+//   const rawMethodParams = operationParameter.parameters;
+//   const method = methods[0];
+//   const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
+//     requireParam = !method.hasOptionalOptions;
+//   if (!hasInputParams && !requireParam) {
+//     return [];
+//   }
 
-  const allSideAssignments = [],
-    querySideAssignments: string[] = [],
-    headerSideAssignments: string[] = [];
-  rawMethodParams
-    .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Body)
-    .forEach((p) => {
-      allSideAssignments.push(
-        ` body: ` + getParameterAssignment(p.exampleValue, true)
-      );
-    });
-  rawMethodParams
-    .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Query)
-    .forEach((p) => {
-      const name = `"${
-        getLanguageMetadata(p.parameter.language).serializedName ||
-        p.parameter.language.default.name
-      }"`;
+//   const allSideAssignments = [],
+//     querySideAssignments: string[] = [],
+//     headerSideAssignments: string[] = [];
+//   rawMethodParams
+//     .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Body)
+//     .forEach((p) => {
+//       allSideAssignments.push(
+//         ` body: ` + getParameterAssignment(p.exampleValue, true)
+//       );
+//     });
+//   rawMethodParams
+//     .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Query)
+//     .forEach((p) => {
+//       const name = `"${
+//         getLanguageMetadata(p.parameter.language).serializedName ||
+//         p.parameter.language.default.name
+//       }"`;
 
-      querySideAssignments.push(
-        `${name}: ` + getParameterAssignment(p.exampleValue, true)
-      );
-    });
-  if (querySideAssignments.length > 0) {
-    allSideAssignments.push(
-      ` queryParameters: { ` + querySideAssignments.join(", ") + `}`
-    );
-  }
-  rawMethodParams
-    .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Header)
-    .forEach((p) => {
-      const name = `"${
-        getLanguageMetadata(p.parameter.language).serializedName
-      }"`;
-      headerSideAssignments.push(
-        `${name}: ` + getParameterAssignment(p.exampleValue, true)
-      );
-    });
-  if (headerSideAssignments.length > 0) {
-    allSideAssignments.push(
-      ` headers: { ` + headerSideAssignments.join(", ") + `}`
-    );
-  }
-  let value: string = `{}`;
-  if (allSideAssignments.length > 0) {
-    value = `{ ` + allSideAssignments.join(", ") + `}`;
-  }
-  const optionParam: SampleParameter = {
-    name: "options",
-    assignment: `const options: ${method.optionsName} =` + value + `;`
-  };
-  addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
-  return [optionParam];
-}
+//       querySideAssignments.push(
+//         `${name}: ` + getParameterAssignment(p.exampleValue, true)
+//       );
+//     });
+//   if (querySideAssignments.length > 0) {
+//     allSideAssignments.push(
+//       ` queryParameters: { ` + querySideAssignments.join(", ") + `}`
+//     );
+//   }
+//   rawMethodParams
+//     .filter((p) => p.parameter.protocol.http?.in == ParameterLocation.Header)
+//     .forEach((p) => {
+//       const name = `"${
+//         getLanguageMetadata(p.parameter.language).serializedName
+//       }"`;
+//       headerSideAssignments.push(
+//         `${name}: ` + getParameterAssignment(p.exampleValue, true)
+//       );
+//     });
+//   if (headerSideAssignments.length > 0) {
+//     allSideAssignments.push(
+//       ` headers: { ` + headerSideAssignments.join(", ") + `}`
+//     );
+//   }
+//   let value: string = `{}`;
+//   if (allSideAssignments.length > 0) {
+//     value = `{ ` + allSideAssignments.join(", ") + `}`;
+//   }
+//   const optionParam: SampleParameter = {
+//     name: "options",
+//     assignment: `const options: ${method.optionsName} =` + value + `;`
+//   };
+//   addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
+//   return [optionParam];
+// }
 
 function addValueInImportedDict(
   key: string,
@@ -297,13 +362,21 @@ function addValueInImportedDict(
   importedDict[key].add(val);
 }
 
-function constructMethodParamMap(
-  model: RLCModel
-): Map<string, OperationParameter> {
+function buildMethodParamMap(model: RLCModel): Map<string, OperationParameter> {
   const map = new Map<string, OperationParameter>();
   (model.parameters ?? []).forEach((p) => {
     const operatonConcante = `${p.operationGroup}_${p.operationName}`;
     map.set(operatonConcante, p);
   });
   return map;
+}
+
+function mockParameterTypeValue(type: string, parameterName: string) {
+  if (type === "string") {
+    return `"{Your ${parameterName}}"`;
+  } else if (type === "number") {
+    return "123";
+  } else if (type === "boolean") {
+    return "true";
+  }
 }

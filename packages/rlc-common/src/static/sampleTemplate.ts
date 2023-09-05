@@ -13,7 +13,9 @@ dotenv.config();
  * This sample demonstrates how to {{this.description}}
  *
  * @summary {{this.description}}
+ {{#if this.originalFileLocation}}
  * x-ms-original-file: {{this.originalFileLocation}}
+ {{/if}}
  */
 async function {{name}}() {
   {{#each this.clientParamAssignments}}
