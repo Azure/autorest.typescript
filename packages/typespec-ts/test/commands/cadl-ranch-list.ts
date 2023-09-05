@@ -7,7 +7,8 @@ export interface TypeSpecRanchConfig {
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "union-body",
-    inputPath: "union-body"
+    inputPath: "union-body",
+    debug: true
   },
   {
     outputPath: "headers/clientRequestId",

@@ -6,12 +6,6 @@ import { getAutorestOptions, getSession } from "../../autorestSession";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
-import {
-  SampleParameter,
-  SampleParameters,
-  TestSampleParameters,
-  OperationMethod
-} from "../../restLevelClient/interfaces";
 import { camelCase } from "@azure-tools/codegen";
 import { Operation, ParameterLocation } from "@autorest/codemodel";
 import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPollingOperations";
@@ -22,9 +16,15 @@ import {
   Paths,
   PathMetadata,
   RLCSampleGroup,
-  RLCSampleDetail
+  RLCSampleDetail,
+  SampleParameter,
+  SampleParameters,
+  OperationMethod,
+  SampleParameterPosition
 } from "@azure-tools/rlc-common";
 import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
+
+type TestSampleParameters = Record<SampleParameterPosition, ExampleParameter[]>;
 
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";

@@ -305,3 +305,15 @@ export type ResponseBodySchema = Schema;
 export type ContentBuilder = {
   (model: RLCModel): File | File[] | undefined;
 };
+
+export type SampleParameterPosition = "client" | "path" | "method";
+
+export type SampleParameters = Record<
+  SampleParameterPosition,
+  SampleParameter[]
+>;
+
+export interface SampleParameter {
+  name: string;
+  assignment?: string;
+}
