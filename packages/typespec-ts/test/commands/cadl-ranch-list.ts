@@ -22,6 +22,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "parameters/body-optionality"
   },
   {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
     outputPath: "encode/duration",
     inputPath: "encode/duration"
   },
