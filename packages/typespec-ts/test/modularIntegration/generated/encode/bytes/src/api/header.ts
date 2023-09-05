@@ -13,6 +13,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
+import { buildCsvCollection } from "../rest/serializeHelper.js";
 import {
   HeaderDefaultOptions,
   HeaderBase64Options,
@@ -93,7 +94,7 @@ export function _headerBase64urlSend(
     .path("/encode/bytes/header/base64url")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: uint8ArrayToString(value, "base64") },
+      headers: { value: uint8ArrayToString(value, "base64url") },
     });
 }
 
@@ -125,7 +126,11 @@ export function _headerBase64urlArraySend(
     .path("/encode/bytes/header/base64url-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: buildCsvCollection(value) },
+      headers: {
+        value: buildCsvCollection(
+          (value ?? []).map((p) => uint8ArrayToString(p, "base64url"))
+        ),
+      },
     });
 }
 

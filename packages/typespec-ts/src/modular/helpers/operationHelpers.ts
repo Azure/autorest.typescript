@@ -298,7 +298,9 @@ function getRequestParameters(
   if (!operation.parameters) {
     return "";
   }
-
+  if (operation.name.endsWith("unixTimestamp") && operation.groupName === "Property") {
+    operation;
+  }
   const operationParameters = operation.parameters.filter(
     (p) => p.implementation !== "Client" && !isContentType(p)
   );
@@ -412,7 +414,7 @@ function getParameterMap(
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(param as Parameter);
+    return getCollectionFormat(param as Parameter, importSet);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
@@ -427,7 +429,10 @@ function getParameterMap(
   throw new Error(`Parameter ${param.clientName} is not supported`);
 }
 
-function getCollectionFormat(param: Parameter) {
+function getCollectionFormat(
+  param: Parameter,
+  importSet: Map<string, Set<string>>
+) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
     param.format ?? ""
@@ -437,10 +442,33 @@ function getCollectionFormat(param: Parameter) {
   }
   const isMulti = (param.format ?? "").toLowerCase() === "multi";
   const additionalParam = isMulti ? `, "${param.restApiName}"` : "";
-  if (!param.optional) {
-    return `"${param.restApiName}": ${collectionInfo}(${param.clientName}${additionalParam})`;
+  const serializeHelperImport = importSet.get("../rest/index.js");
+  if (serializeHelperImport) {
+    serializeHelperImport.add(collectionInfo);
+  } else {
+    importSet.set(
+      "../rest/index.js",
+      new Set<string>().add(collectionInfo)
+    );
   }
-  return `"${param.restApiName}": options?.${param.clientName} !== undefined ? ${collectionInfo}(options?.${param.clientName}${additionalParam}): undefined`;
+  if (!param.optional) {
+    return `"${param.restApiName}": ${collectionInfo}(${serializeRequestValue(
+      param.type,
+      param.clientName,
+      importSet,
+      true,
+      param.format
+    )}${additionalParam})`;
+  }
+  return `"${param.restApiName}": options?.${
+    param.clientName
+  } !== undefined ? ${collectionInfo}(${serializeRequestValue(
+    param.type,
+    "options?." + param.clientName,
+    importSet,
+    true,
+    param.format
+  )}${additionalParam}): undefined`;
 }
 
 function isContentType(param: Parameter): boolean {
@@ -487,7 +515,8 @@ function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
     param.type,
     param.restApiName,
     importSet,
-    true
+    true,
+    param.format
   )}`;
 }
 
@@ -534,7 +563,8 @@ function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
     param.type,
     `options?.${param.restApiName}`,
     importSet,
-    false
+    false,
+    param.format
   )}`;
 }
 
@@ -644,7 +674,8 @@ function getRequestModelMapping(
           property.type,
           restValue,
           importSet,
-          !propertyPath.endsWith("?")
+          !propertyPath.endsWith("?"),
+          property.format
         )}`
       );
     }
@@ -761,9 +792,7 @@ function deserializeResponseValue(
           "p",
           importSet
         )}}))`;
-      } else if (
-        type.elementType?.properties?.some((p) => needsDeserialize(p.type))
-      ) {
+      } else if (needsDeserialize(type.elementType)) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
@@ -799,17 +828,19 @@ function serializeRequestValue(
   type: Type,
   restValue: string,
   importSet: Map<string, Set<string>>,
-  required: boolean
+  required: boolean,
+  format?: string
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      if (type.format === "ISO8601") {
+      if (format === "date-time") {
         return `${restValue}.toISOString()`;
-      } if (type.format === "RFC1123") {
-        new Date().getTime()
-        return `${restValue}.toLo()`;
-      } if (type.format === "UnixTime") {
+      }
+      if (format === "utc-date") {
+        return `${restValue}.toUTCString()`;
+      }
+      if (format === "unixtime") {
         return `${restValue}.getTime()`;
       }
       return `${restValue}.toISOString()`;
@@ -820,16 +851,13 @@ function serializeRequestValue(
           "p",
           importSet
         )}}))`;
-      } else if (
-        needsDeserialize(type.elementType)
-      ) {
+      } else if (needsDeserialize(type.elementType)) {
         return `(${restValue} ?? []).map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet,
-          type.elementType?.nullable !== undefined
-            ? !type.elementType.nullable
-            : false
+          required,
+          type.elementType?.format
         )})`;
       } else {
         return restValue;
@@ -844,9 +872,9 @@ function serializeRequestValue(
         coreUtilSet.add("uint8ArrayToString");
       }
       return required
-        ? `uint8ArrayToString(${restValue}, "${type.format ?? "base64"}")`
+        ? `uint8ArrayToString(${restValue}, "${format ?? "base64"}")`
         : `${restValue} !== undefined ? uint8ArrayToString(${restValue}, "${
-            type.format ?? "base64"
+            format ?? "base64"
           }"): undefined`;
     default:
       return restValue;
@@ -854,7 +882,12 @@ function serializeRequestValue(
 }
 
 function needsDeserialize(type?: Type) {
-  return type?.type === "datetime" || type?.type === "model";
+  return (
+    type?.type === "datetime" ||
+    type?.type === "model" ||
+    type?.type === "list" ||
+    type?.type === "byte-array"
+  );
 }
 
 export function hasLROOperation(codeModel: ModularCodeModel) {

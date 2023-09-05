@@ -2,10 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  buildMultiCollection,
-  buildPipeCollection,
-  buildSsvCollection,
-  buildTsvCollection,
   CollectionFormatContext as Client,
   QueryCsv204Response,
   QueryMulti204Response,
@@ -17,6 +13,12 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import {
+  buildMultiCollection,
+  buildSsvCollection,
+  buildTsvCollection,
+  buildPipeCollection,
+} from "../rest/serializeHelper.js";
 import {
   QueryMultiOptions,
   QuerySsvOptions,

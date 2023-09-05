@@ -13,6 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { buildCsvCollection } from "../rest/index.js";
 import {
   HeaderDefaultOptions,
   HeaderRfc3339Options,
@@ -94,7 +95,7 @@ export function _headerRfc7231Send(
     .path("/encode/datetime/header/rfc7231")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value.toISOString() },
+      headers: { value: value.toUTCString() },
     });
 }
 
@@ -126,7 +127,7 @@ export function _headerUnixTimestampSend(
     .path("/encode/datetime/header/unix-timestamp")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value.toISOString() },
+      headers: { value: value.getTime() },
     });
 }
 
@@ -158,7 +159,9 @@ export function _headerUnixTimestampArraySend(
     .path("/encode/datetime/header/unix-timestamp-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: buildCsvCollection(value) },
+      headers: {
+        value: buildCsvCollection((value ?? []).map((p) => p.getTime())),
+      },
     });
 }
 

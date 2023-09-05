@@ -146,7 +146,9 @@ export function _propertyBase64urlArraySend(
     .path("/encode/bytes/property/base64url-array")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value },
+      body: {
+        value: (value ?? []).map((p) => uint8ArrayToString(p, "base64url")),
+      },
     });
 }
 
@@ -158,7 +160,9 @@ export async function _propertyBase64urlArrayDeserialize(
   }
 
   return {
-    value: result.body["value"],
+    value: (result.body["value"] ?? []).map((p) =>
+      typeof p === "string" ? stringToUint8Array(p, "base64url") : p
+    ),
   };
 }
 

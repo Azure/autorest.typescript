@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  buildCsvCollection,
   CollectionFormatContext as Client,
   HeaderCsv204Response,
 } from "../rest/index.js";
@@ -10,6 +9,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { buildCsvCollection } from "../rest/serializeHelper.js";
 import { HeaderCsvOptions } from "../models/options.js";
 
 export function _headerCsvSend(

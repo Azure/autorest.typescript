@@ -93,7 +93,7 @@ export function _queryBase64urlSend(
     .path("/encode/bytes/query/base64url")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: uint8ArrayToString(value, "base64") },
+      queryParameters: { value: uint8ArrayToString(value, "base64url") },
     });
 }
 
@@ -125,7 +125,9 @@ export function _queryBase64urlArraySend(
     .path("/encode/bytes/query/base64url-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value },
+      queryParameters: {
+        value: (value ?? []).map((p) => uint8ArrayToString(p, "base64url")),
+      },
     });
 }
 

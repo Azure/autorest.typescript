@@ -13,6 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { buildCsvCollection } from "../rest/serializeHelper.js";
 import {
   HeaderDefaultOptions,
   HeaderIso8601Options,

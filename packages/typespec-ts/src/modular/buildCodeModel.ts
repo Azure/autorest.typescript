@@ -154,7 +154,8 @@ function isSimpleType(
       getMaxValue,
       getMinLength,
       getMaxLength,
-      getPattern
+      getPattern,
+      getEncode
     ];
     for (const func of funcs) {
       if (func(program, type)) {
@@ -276,8 +277,7 @@ function getType(
   options: { disableEffectiveModel?: boolean } = {}
 ): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
-  const enableCache =
-    !isSimpleType(context.program, type) && !isEmptyModel(type);
+  const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
     !options.disableEffectiveModel &&
     (type.kind === "Model" || type.kind === "Union")
@@ -297,6 +297,9 @@ function getType(
     newValue = emitType(context, type);
   }
 
+  if (type.kind === "ModelProperty" || type.kind === "Scalar") {
+    newValue.format = applyEncoding(context.program, type);
+  }
   if (enableCache) {
     typesMap.set(effectiveModel, newValue);
     if (type.kind === "Union") {
@@ -309,14 +312,6 @@ function getType(
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type);
-    }
-  } else {
-    const key = JSON.stringify(newValue);
-    const value = simpleTypesMap.get(key);
-    if (value) {
-      newValue = value;
-    } else {
-      simpleTypesMap.set(key, newValue);
     }
   }
 
@@ -334,6 +329,7 @@ type ParamBase = {
   addedOn: string | undefined;
   clientName: string;
   inOverload: boolean;
+  format?: string;
 };
 function emitParamBase(
   program: Program,
@@ -343,12 +339,14 @@ function emitParamBase(
   let name: string;
   let description: string = "";
   let addedOn: string | undefined;
+  let format: string | undefined;
 
   if (parameter.kind === "ModelProperty") {
     optional = parameter.optional;
     name = parameter.name;
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
+    format = applyEncoding(program, parameter);
   } else {
     optional = false;
     name = "body";
@@ -359,7 +357,8 @@ function emitParamBase(
     description,
     addedOn,
     clientName: applyCasing(name, { casing: CASING }),
-    inOverload: false
+    inOverload: false,
+    format
   };
 }
 
@@ -427,7 +426,6 @@ function emitBodyParameter(
   const type = getType(context, getBodyType(context.program, httpOperation), {
     disableEffectiveModel: true
   });
-
   if (type.type === "model" && type.name === "") {
     type.name = capitalize(httpOperation.operation.name) + "Request";
   }
@@ -451,6 +449,9 @@ function emitParameter(
   implementation: string
 ): Parameter {
   const base = emitParamBase(context.program, parameter.param);
+  if (base.format === "base64url") {
+    base;
+  }
   let type = getType(context, parameter.param.type);
   let clientDefaultValue = undefined;
   if (
@@ -468,7 +469,7 @@ function emitParameter(
     type: type,
     implementation: implementation,
     skipUrlEncoding: parameter.type === "endpointPath",
-    format: (parameter as any).format
+    format: (parameter as any).format ?? base.format
   };
 
   if (paramMap.type.type === "constant") {
@@ -859,7 +860,8 @@ function emitProperty(
     addedOn: getAddedOnVersion(context.program, property),
     readonly:
       isReadOnly(context.program, property) || isKey(context.program, property),
-    clientDefaultValue: clientDefaultValue
+    clientDefaultValue: clientDefaultValue,
+    format: applyEncoding(context.program, property)
   };
 }
 
@@ -1025,7 +1027,7 @@ function emitStdScalar(
 ): Record<string, any> {
   switch (scalar.name) {
     case "bytes":
-      return { type: "byte-array", format: getEncode(program, scalar) };
+      return { type: "byte-array", format: applyEncoding(program, scalar) };
     case "int8":
     case "int16":
     case "int32":
@@ -1049,7 +1051,7 @@ function emitStdScalar(
     case "plainDate":
       return { type: "date" };
     case "utcDateTime":
-      return { type: "datetime", format: "date-time" };
+      return { type: "datetime", format: applyEncoding(program, scalar) };
     case "plainTime":
       return { type: "time" };
     case "duration":
@@ -1058,6 +1060,33 @@ function emitStdScalar(
       return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
     default:
       return {};
+  }
+}
+
+function applyEncoding(program: Program, type: Scalar | ModelProperty) {
+  const encodeData = getEncode(program, type);
+  if (encodeData) {
+    return mergeFormatAndEncoding(encodeData.encoding);
+    // const newTarget = { ...result };
+    // const newType = emitScalar(program, encodeData.type);
+    // newTarget.type = newType["type"];
+    // // If the target already has a format it takes priority. (e.g. int32)
+    // newTarget.format =
+    // return newTarget;
+  }
+  return undefined;
+}
+
+function mergeFormatAndEncoding(encoding: string): string {
+  switch (encoding) {
+
+    case "rfc7231":
+      return "utc-date"
+    case "unixTimestamp":
+      return "unixtime";
+    case "rfc3339":
+    default:
+        return "date-time";
   }
 }
 
@@ -1075,7 +1104,7 @@ function applyIntrinsicDecorators(
     newResult.description = docStr;
   }
 
-  const formatStr = getEncode(program, type);
+  const formatStr = applyEncoding(program, type);
   if (isString && !result.format && formatStr) {
     newResult.format = formatStr;
   }
@@ -1119,7 +1148,8 @@ function applyIntrinsicDecorators(
 
 function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
   let result: Record<string, any> = {};
-  if (program.checker.isStdType(scalar)) {
+  const isStd = program.checker.isStdType(scalar);
+  if (isStd) {
     result = emitStdScalar(program, scalar);
   } else if (scalar.baseScalar) {
     result = emitScalar(program, scalar.baseScalar);

@@ -27,6 +27,7 @@ export interface Property {
   optional?: boolean;
   description: string;
   readonly?: boolean;
+  format?: string;
 }
 
 export interface BodyParameter {
