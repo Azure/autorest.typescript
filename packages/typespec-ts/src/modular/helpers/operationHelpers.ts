@@ -298,9 +298,6 @@ function getRequestParameters(
   if (!operation.parameters) {
     return "";
   }
-  if (operation.name.endsWith("unixTimestamp") && operation.groupName === "Property") {
-    operation;
-  }
   const operationParameters = operation.parameters.filter(
     (p) => p.implementation !== "Client" && !isContentType(p)
   );

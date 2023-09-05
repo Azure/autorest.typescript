@@ -298,7 +298,7 @@ function getType(
   }
 
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
-    newValue.format = applyEncoding(context.program, type);
+    newValue.format = applyEncoding(context.program, type, newValue).format;
   }
   if (enableCache) {
     typesMap.set(effectiveModel, newValue);
@@ -346,7 +346,7 @@ function emitParamBase(
     name = parameter.name;
     description = getDocStr(program, parameter);
     addedOn = getAddedOnVersion(program, parameter);
-    format = applyEncoding(program, parameter);
+    format = applyEncoding(program, parameter).format;
   } else {
     optional = false;
     name = "body";
@@ -861,7 +861,7 @@ function emitProperty(
     readonly:
       isReadOnly(context.program, property) || isKey(context.program, property),
     clientDefaultValue: clientDefaultValue,
-    format: applyEncoding(context.program, property)
+    format: applyEncoding(context.program, property).format
   };
 }
 
@@ -1025,9 +1025,10 @@ function emitStdScalar(
   program: Program,
   scalar: Scalar & { name: IntrinsicScalarName }
 ): Record<string, any> {
-  switch (scalar.name) {
+  const newScalar = applyEncoding(program, scalar);
+  switch (newScalar.name) {
     case "bytes":
-      return { type: "byte-array", format: applyEncoding(program, scalar) };
+      return { type: "byte-array", format: newScalar.format };
     case "int8":
     case "int16":
     case "int32":
@@ -1051,11 +1052,11 @@ function emitStdScalar(
     case "plainDate":
       return { type: "date" };
     case "utcDateTime":
-      return { type: "datetime", format: applyEncoding(program, scalar) };
+      return { type: "datetime", format: newScalar.format };
     case "plainTime":
       return { type: "time" };
     case "duration":
-      return { type: "duration" };
+      return { type: "duration", format: newScalar.format };
     case "numeric":
       return {}; // Waiting on design for more precise type https://github.com/microsoft/cadl/issues/1260
     default:
@@ -1063,30 +1064,55 @@ function emitStdScalar(
   }
 }
 
-function applyEncoding(program: Program, type: Scalar | ModelProperty) {
-  const encodeData = getEncode(program, type);
+function applyEncoding(
+  program: Program,
+  typespecType: Scalar | ModelProperty,
+  target: any = {}
+) {
+  const encodeData = getEncode(program, typespecType);
   if (encodeData) {
-    return mergeFormatAndEncoding(encodeData.encoding);
-    // const newTarget = { ...result };
-    // const newType = emitScalar(program, encodeData.type);
-    // newTarget.type = newType["type"];
-    // // If the target already has a format it takes priority. (e.g. int32)
-    // newTarget.format =
-    // return newTarget;
+    const newTarget = { ...target };
+    const newType = emitScalar(program, encodeData.type);
+    newTarget["type"] = newType["type"];
+    // If the target already has a format it takes priority. (e.g. int32)
+    newTarget["format"] = mergeFormatAndEncoding(
+      newTarget.format,
+      encodeData.encoding,
+      newType["format"]
+    );
+    return newTarget;
   }
-  return undefined;
+  return target;
 }
 
-function mergeFormatAndEncoding(encoding: string): string {
-  switch (encoding) {
-
-    case "rfc7231":
-      return "utc-date"
-    case "unixTimestamp":
-      return "unixtime";
-    case "rfc3339":
+function mergeFormatAndEncoding(
+  format: string | undefined,
+  encoding: string,
+  encodeAsFormat: string | undefined
+): string {
+  switch (format) {
+    case undefined:
+      return encodeAsFormat ?? encoding;
+    case "date-time":
+      switch (encoding) {
+        case "rfc3339":
+          return "date-time";
+        case "unixTimestamp":
+          return "unixtime";
+        case "rfc7231":
+          return "utc-date";
+        default:
+          return encoding;
+      }
+    case "duration":
+      switch (encoding) {
+        case "ISO8601":
+          return "duration";
+        default:
+          return encodeAsFormat ?? encoding;
+      }
     default:
-        return "date-time";
+      return encodeAsFormat ?? encoding;
   }
 }
 
@@ -1104,7 +1130,7 @@ function applyIntrinsicDecorators(
     newResult.description = docStr;
   }
 
-  const formatStr = applyEncoding(program, type);
+  const formatStr = applyEncoding(program, type, newResult).format;
   if (isString && !result.format && formatStr) {
     newResult.format = formatStr;
   }

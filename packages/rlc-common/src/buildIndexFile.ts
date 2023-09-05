@@ -311,7 +311,8 @@ function generateRLCIndex(file: SourceFile, model: RLCModel) {
     hasMultiCollection(model) ||
     hasSsvCollection(model) ||
     hasPipeCollection(model) ||
-    hasTsvCollection(model)
+    hasTsvCollection(model) || 
+    hasCsvCollection(model)
   ) {
     file.addExportDeclarations([
       {

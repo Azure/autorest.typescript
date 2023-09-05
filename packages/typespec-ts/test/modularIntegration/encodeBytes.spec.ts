@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { BytesClient } from "./generated/encode/bytes/src/index";
 import { stringToUint8Array } from "@azure/core-util";
-describe("EncodeDatetimeClient Rest Client", () => {
+describe.only("EncodeDatetimeClient Rest Client", () => {
   let client: BytesClient;
 
   beforeEach(() => {
