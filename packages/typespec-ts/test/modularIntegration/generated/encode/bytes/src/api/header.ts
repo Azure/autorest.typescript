@@ -13,7 +13,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { buildCsvCollection } from "../rest/serializeHelper.js";
+import { buildCsvCollection } from "../rest/index.js";
 import {
   HeaderDefaultOptions,
   HeaderBase64Options,

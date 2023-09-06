@@ -9,5 +9,6 @@ export * from "./responses.js";
 export * from "./clientDefinitions.js";
 export * from "./models.js";
 export * from "./outputModels.js";
+export * from "./serializeHelper.js";
 
 export default BytesClient;

@@ -9,7 +9,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { buildCsvCollection } from "../rest/serializeHelper.js";
+import { buildCsvCollection } from "../rest/index.js";
 import { HeaderCsvOptions } from "../models/options.js";
 
 export function _headerCsvSend(

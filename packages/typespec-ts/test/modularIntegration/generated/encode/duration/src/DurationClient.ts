@@ -57,26 +57,26 @@ export class DurationClient {
   }
 
   query = {
-    default: (input: any, options?: QueryDefaultOptions): Promise<void> => {
+    default: (input: string, options?: QueryDefaultOptions): Promise<void> => {
       return queryDefault(this._client, input, options);
     },
-    iso8601: (input: any, options?: QueryIso8601Options): Promise<void> => {
+    iso8601: (input: string, options?: QueryIso8601Options): Promise<void> => {
       return queryIso8601(this._client, input, options);
     },
     int32Seconds: (
-      input: any,
+      input: string,
       options?: QueryInt32SecondsOptions
     ): Promise<void> => {
       return queryInt32Seconds(this._client, input, options);
     },
     floatSeconds: (
-      input: any,
+      input: string,
       options?: QueryFloatSecondsOptions
     ): Promise<void> => {
       return queryFloatSeconds(this._client, input, options);
     },
     int32SecondsArray: (
-      input: any[],
+      input: number[],
       options?: QueryInt32SecondsArrayOptions
     ): Promise<void> => {
       return queryInt32SecondsArray(this._client, input, options);
@@ -84,57 +84,63 @@ export class DurationClient {
   };
   property = {
     default: (
-      value: any,
+      value: string,
       options?: PropertyDefaultOptions
     ): Promise<DefaultDurationProperty> => {
       return propertyDefault(this._client, value, options);
     },
     iso8601: (
-      value: any,
+      value: string,
       options?: PropertyIso8601Options
     ): Promise<ISO8601DurationProperty> => {
       return propertyIso8601(this._client, value, options);
     },
     int32Seconds: (
-      value: any,
+      value: string,
       options?: PropertyInt32SecondsOptions
     ): Promise<Int32SecondsDurationProperty> => {
       return propertyInt32Seconds(this._client, value, options);
     },
     floatSeconds: (
-      value: any,
+      value: string,
       options?: PropertyFloatSecondsOptions
     ): Promise<FloatSecondsDurationProperty> => {
       return propertyFloatSeconds(this._client, value, options);
     },
     floatSecondsArray: (
-      value: any[],
+      value: number[],
       options?: PropertyFloatSecondsArrayOptions
     ): Promise<FloatSecondsDurationArrayProperty> => {
       return propertyFloatSecondsArray(this._client, value, options);
     },
   };
   header = {
-    default: (duration: any, options?: HeaderDefaultOptions): Promise<void> => {
+    default: (
+      duration: string,
+      options?: HeaderDefaultOptions
+    ): Promise<void> => {
       return headerDefault(this._client, duration, options);
     },
-    iso8601: (duration: any, options?: HeaderIso8601Options): Promise<void> => {
+    iso8601: (
+      duration: string,
+      options?: HeaderIso8601Options
+    ): Promise<void> => {
       return headerIso8601(this._client, duration, options);
     },
     iso8601Array: (
-      duration: any[],
+      duration: string[],
       options?: HeaderIso8601ArrayOptions
     ): Promise<void> => {
       return headerIso8601Array(this._client, duration, options);
     },
     int32Seconds: (
-      duration: any,
+      duration: string,
       options?: HeaderInt32SecondsOptions
     ): Promise<void> => {
       return headerInt32Seconds(this._client, duration, options);
     },
     floatSeconds: (
-      duration: any,
+      duration: string,
       options?: HeaderFloatSecondsOptions
     ): Promise<void> => {
       return headerFloatSeconds(this._client, duration, options);

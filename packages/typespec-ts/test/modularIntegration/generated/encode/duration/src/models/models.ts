@@ -2,21 +2,21 @@
 // Licensed under the MIT license.
 
 export interface DefaultDurationProperty {
-  value: any;
+  value: string;
 }
 
 export interface ISO8601DurationProperty {
-  value: any;
+  value: string;
 }
 
 export interface Int32SecondsDurationProperty {
-  value: any;
+  value: string;
 }
 
 export interface FloatSecondsDurationProperty {
-  value: any;
+  value: string;
 }
 
 export interface FloatSecondsDurationArrayProperty {
-  value: any[];
+  value: number[];
 }

@@ -94,7 +94,7 @@ export function _queryRfc7231Send(
     .path("/encode/datetime/query/rfc7231")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value.toUTCString() },
+      queryParameters: { value: value.toISOString() },
     });
 }
 
@@ -126,7 +126,7 @@ export function _queryUnixTimestampSend(
     .path("/encode/datetime/query/unix-timestamp")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: value.getTime() },
+      queryParameters: { value: value.toISOString() },
     });
 }
 
@@ -158,7 +158,7 @@ export function _queryUnixTimestampArraySend(
     .path("/encode/datetime/query/unix-timestamp-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: (value ?? []).map((p) => p.getTime()) },
+      queryParameters: { value: (value ?? []).map((p) => p.toISOString()) },
     });
 }
 

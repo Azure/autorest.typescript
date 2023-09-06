@@ -298,8 +298,9 @@ function getType(
   }
 
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
-    newValue.format = applyEncoding(context.program, type, newValue).format;
+    newValue = applyEncoding(context.program, type, newValue);
   }
+
   if (enableCache) {
     typesMap.set(effectiveModel, newValue);
     if (type.kind === "Union") {
@@ -342,11 +343,12 @@ function emitParamBase(
   let format: string | undefined;
 
   if (parameter.kind === "ModelProperty") {
-    optional = parameter.optional;
-    name = parameter.name;
-    description = getDocStr(program, parameter);
-    addedOn = getAddedOnVersion(program, parameter);
-    format = applyEncoding(program, parameter).format;
+    const newParameter = applyEncoding(program, parameter, parameter);
+    optional = newParameter.optional;
+    name = newParameter.name;
+    description = getDocStr(program, newParameter);
+    addedOn = getAddedOnVersion(program, newParameter);
+    format = newParameter.format;
   } else {
     optional = false;
     name = "body";
@@ -449,9 +451,6 @@ function emitParameter(
   implementation: string
 ): Parameter {
   const base = emitParamBase(context.program, parameter.param);
-  if (base.format === "base64url") {
-    base;
-  }
   let type = getType(context, parameter.param.type);
   let clientDefaultValue = undefined;
   if (
@@ -466,7 +465,7 @@ function emitParameter(
   const paramMap: any = {
     restApiName: parameter.name,
     location: parameter.type,
-    type: type,
+    type,
     implementation: implementation,
     skipUrlEncoding: parameter.type === "endpointPath",
     format: (parameter as any).format ?? base.format
@@ -828,40 +827,42 @@ function emitProperty(
   context: SdkContext,
   property: ModelProperty
 ): Record<string, any> {
+  const newProperty = applyEncoding(context.program, property, property);
   let clientDefaultValue = undefined;
-  const propertyDefaultKind = property.default?.kind;
+  const propertyDefaultKind = newProperty.default?.kind;
   if (
-    property.default &&
+    newProperty.default &&
     (propertyDefaultKind === "Number" ||
       propertyDefaultKind === "String" ||
       propertyDefaultKind === "Boolean")
   ) {
-    clientDefaultValue = property.default.value;
+    clientDefaultValue = newProperty.default.value;
   }
 
   if (propertyDefaultKind === "EnumMember") {
-    clientDefaultValue = property.default.value ?? property.default.name;
+    clientDefaultValue = newProperty.default.value ?? newProperty.default.name;
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = property.name;
+  const clientName = newProperty.name;
   const jsonName =
-    getProjectedName(context.program, property, "json") ?? property.name;
+    getProjectedName(context.program, newProperty, "json") ?? newProperty.name;
 
-  if (property.model) {
-    getType(context, property.model);
+  if (newProperty.model) {
+    getType(context, newProperty.model);
   }
   return {
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
     type: getType(context, property.type),
-    optional: property.optional,
-    description: getDocStr(context.program, property),
-    addedOn: getAddedOnVersion(context.program, property),
+    optional: newProperty.optional,
+    description: getDocStr(context.program, newProperty),
+    addedOn: getAddedOnVersion(context.program, newProperty),
     readonly:
-      isReadOnly(context.program, property) || isKey(context.program, property),
+      isReadOnly(context.program, newProperty) ||
+      isKey(context.program, newProperty),
     clientDefaultValue: clientDefaultValue,
-    format: applyEncoding(context.program, property).format
+    format: newProperty.format
   };
 }
 
@@ -1025,8 +1026,8 @@ function emitStdScalar(
   program: Program,
   scalar: Scalar & { name: IntrinsicScalarName }
 ): Record<string, any> {
-  const newScalar = applyEncoding(program, scalar);
-  switch (newScalar.name) {
+  const newScalar = applyEncoding(program, scalar, scalar);
+  switch (scalar.name) {
     case "bytes":
       return { type: "byte-array", format: newScalar.format };
     case "int8":
@@ -1073,7 +1074,7 @@ function applyEncoding(
   if (encodeData) {
     const newTarget = { ...target };
     const newType = emitScalar(program, encodeData.type);
-    newTarget["type"] = newType["type"];
+    // newTarget["type"] = newType["type"];
     // If the target already has a format it takes priority. (e.g. int32)
     newTarget["format"] = mergeFormatAndEncoding(
       newTarget.format,
@@ -1121,7 +1122,7 @@ function applyIntrinsicDecorators(
   type: Scalar | ModelProperty,
   result: any
 ): Record<string, any> {
-  const newResult = { ...result };
+  let newResult = { ...result };
   const docStr = getDoc(program, type);
   const isString = isStringType(program, getPropertyType(type));
   const isNumeric = isNumericType(program, getPropertyType(type));
@@ -1130,10 +1131,7 @@ function applyIntrinsicDecorators(
     newResult.description = docStr;
   }
 
-  const formatStr = applyEncoding(program, type, newResult).format;
-  if (isString && !result.format && formatStr) {
-    newResult.format = formatStr;
-  }
+  newResult = applyEncoding(program, type, newResult);
 
   const pattern = getPattern(program, type);
   if (isString && !result.pattern && pattern) {

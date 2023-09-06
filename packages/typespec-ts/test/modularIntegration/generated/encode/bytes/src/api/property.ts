@@ -109,7 +109,7 @@ export function _propertyBase64urlSend(
     .path("/encode/bytes/property/base64url")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: uint8ArrayToString(value, "base64") },
+      body: { value: uint8ArrayToString(value, "base64url") },
     });
 }
 
@@ -123,7 +123,7 @@ export async function _propertyBase64urlDeserialize(
   return {
     value:
       typeof result.body["value"] === "string"
-        ? stringToUint8Array(result.body["value"], "base64")
+        ? stringToUint8Array(result.body["value"], "base64url")
         : result.body["value"],
   };
 }

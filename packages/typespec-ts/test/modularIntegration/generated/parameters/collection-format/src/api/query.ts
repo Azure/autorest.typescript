@@ -18,7 +18,7 @@ import {
   buildSsvCollection,
   buildTsvCollection,
   buildPipeCollection,
-} from "../rest/serializeHelper.js";
+} from "../rest/index.js";
 import {
   QueryMultiOptions,
   QuerySsvOptions,

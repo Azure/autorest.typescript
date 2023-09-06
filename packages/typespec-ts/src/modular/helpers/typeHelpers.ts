@@ -73,7 +73,13 @@ export function getType(type: Type): TypeMetadata {
       };
     case "string":
     case "duration":
-      return { name: getNullableType("string", type) };
+      switch (type.format) {
+        case "seconds":
+          return { name: getNullableType("number", type) };
+        case "ISO8601":
+        default:
+          return { name: getNullableType("string", type) };
+      }
     case "combined": {
       if (!type.types) {
         throw new Error("Unable to process combined without combinedTypes");

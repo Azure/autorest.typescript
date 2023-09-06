@@ -105,7 +105,7 @@ export function _propertyRfc7231Send(
     .path("/encode/datetime/property/rfc7231")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value.toUTCString() },
+      body: { value: value.toISOString() },
     });
 }
 
@@ -139,7 +139,7 @@ export function _propertyUnixTimestampSend(
     .path("/encode/datetime/property/unix-timestamp")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value.getTime() },
+      body: { value: value.toISOString() },
     });
 }
 
@@ -173,7 +173,7 @@ export function _propertyUnixTimestampArraySend(
     .path("/encode/datetime/property/unix-timestamp-array")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: (value ?? []).map((p) => p.getTime()) },
+      body: { value: (value ?? []).map((p) => p.toISOString()) },
     });
 }
 

@@ -28,7 +28,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { buildMultiCollection } from "../rest/serializeHelper.js";
+import { buildMultiCollection } from "../rest/index.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,

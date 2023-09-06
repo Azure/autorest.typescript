@@ -23,7 +23,7 @@ import {
 
 export function _queryDefaultSend(
   context: Client,
-  input: any,
+  input: string,
   options: QueryDefaultOptions = { requestOptions: {} }
 ): StreamableMethod<QueryDefault204Response> {
   return context
@@ -46,7 +46,7 @@ export async function _queryDefaultDeserialize(
 
 export async function queryDefault(
   context: Client,
-  input: any,
+  input: string,
   options: QueryDefaultOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryDefaultSend(context, input, options);
@@ -55,7 +55,7 @@ export async function queryDefault(
 
 export function _queryIso8601Send(
   context: Client,
-  input: any,
+  input: string,
   options: QueryIso8601Options = { requestOptions: {} }
 ): StreamableMethod<QueryIso8601204Response> {
   return context
@@ -78,7 +78,7 @@ export async function _queryIso8601Deserialize(
 
 export async function queryIso8601(
   context: Client,
-  input: any,
+  input: string,
   options: QueryIso8601Options = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryIso8601Send(context, input, options);
@@ -87,7 +87,7 @@ export async function queryIso8601(
 
 export function _queryInt32SecondsSend(
   context: Client,
-  input: any,
+  input: string,
   options: QueryInt32SecondsOptions = { requestOptions: {} }
 ): StreamableMethod<QueryInt32Seconds204Response> {
   return context
@@ -110,7 +110,7 @@ export async function _queryInt32SecondsDeserialize(
 
 export async function queryInt32Seconds(
   context: Client,
-  input: any,
+  input: string,
   options: QueryInt32SecondsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryInt32SecondsSend(context, input, options);
@@ -119,7 +119,7 @@ export async function queryInt32Seconds(
 
 export function _queryFloatSecondsSend(
   context: Client,
-  input: any,
+  input: string,
   options: QueryFloatSecondsOptions = { requestOptions: {} }
 ): StreamableMethod<QueryFloatSeconds204Response> {
   return context
@@ -142,7 +142,7 @@ export async function _queryFloatSecondsDeserialize(
 
 export async function queryFloatSeconds(
   context: Client,
-  input: any,
+  input: string,
   options: QueryFloatSecondsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryFloatSecondsSend(context, input, options);
@@ -151,7 +151,7 @@ export async function queryFloatSeconds(
 
 export function _queryInt32SecondsArraySend(
   context: Client,
-  input: any[],
+  input: number[],
   options: QueryInt32SecondsArrayOptions = { requestOptions: {} }
 ): StreamableMethod<QueryInt32SecondsArray204Response> {
   return context
@@ -174,7 +174,7 @@ export async function _queryInt32SecondsArrayDeserialize(
 
 export async function queryInt32SecondsArray(
   context: Client,
-  input: any[],
+  input: number[],
   options: QueryInt32SecondsArrayOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryInt32SecondsArraySend(context, input, options);

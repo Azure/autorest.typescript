@@ -95,7 +95,7 @@ export function _headerRfc7231Send(
     .path("/encode/datetime/header/rfc7231")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value.toUTCString() },
+      headers: { value: value.toISOString() },
     });
 }
 
@@ -127,7 +127,7 @@ export function _headerUnixTimestampSend(
     .path("/encode/datetime/header/unix-timestamp")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value.getTime() },
+      headers: { value: value.toISOString() },
     });
 }
 
@@ -160,7 +160,7 @@ export function _headerUnixTimestampArraySend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        value: buildCsvCollection((value ?? []).map((p) => p.getTime())),
+        value: buildCsvCollection((value ?? []).map((p) => p.toISOString())),
       },
     });
 }

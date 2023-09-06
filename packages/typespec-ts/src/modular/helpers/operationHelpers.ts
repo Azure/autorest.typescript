@@ -148,7 +148,8 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
-        response.type.nullable !== undefined ? !response.type.nullable : false
+        response.type.nullable !== undefined ? !response.type.nullable : false,
+        response.type.format
       )}`
     );
   } else if (response?.type?.properties) {
@@ -295,6 +296,9 @@ function getRequestParameters(
   operation: Operation,
   importSet: Map<string, Set<string>>
 ): string {
+  if (operation.name.endsWith("int32Seconds") && operation.groupName === "Header") {
+    operation;
+  }
   if (!operation.parameters) {
     return "";
   }
@@ -753,7 +757,8 @@ export function getResponseMapping(
             property.type,
             restValue,
             importSet,
-            property.optional !== undefined ? !property.optional : false
+            property.optional !== undefined ? !property.optional : false,
+            property.format
           )}`
         );
       }
@@ -772,7 +777,8 @@ function deserializeResponseValue(
   type: Type,
   restValue: string,
   importSet: Map<string, Set<string>>,
-  required: boolean
+  required: boolean,
+  format?: string
 ): string {
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
@@ -794,7 +800,8 @@ function deserializeResponseValue(
           type.elementType!,
           "p",
           importSet,
-          required
+          required,
+          type.elementType?.format
         )})`;
       } else {
         return restValue;
@@ -809,7 +816,7 @@ function deserializeResponseValue(
         coreUtilSet.add("stringToUint8Array");
       }
       return `typeof ${restValue} === 'string'
-      ? stringToUint8Array(${restValue}, "${type.format ?? "base64"}")
+      ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
       : ${restValue}`;
     default:
       return restValue;
