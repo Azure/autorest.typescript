@@ -3,19 +3,23 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+import createUnionBodyClient, {
+  RequestUnionBodyParameters,
+} from "@msinternal/union-body";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
 /**
- * This sample demonstrates how to Auto generated sample for operation  RequestUnionBody
+ * This sample demonstrates how to call operation RequestUnionBody
  *
- * @summary Auto generated sample for operation  RequestUnionBody
- * x-ms-original-file: NA
+ * @summary call operation RequestUnionBody
  */
 async function requestUnionBodySample() {
-  const client = createUnionBodyClient();
-  const result = await client.path().post();
+  const endpoint = "{Your endpoint}";
+  const client = createUnionBodyClient(endpoint);
+  const options: RequestUnionBodyParameters = { body: { payMethod: "01" } };
+  const result = await client.path("/request-union-body").post(options);
   console.log(result);
 }
 

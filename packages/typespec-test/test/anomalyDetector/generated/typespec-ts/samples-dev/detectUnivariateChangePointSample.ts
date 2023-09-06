@@ -22,7 +22,7 @@ async function detectUnivariateChangePointSample() {
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: DetectUnivariateChangePointParameters = {
     body: {
-      series: [],
+      series: [{ timestamp: new Date(), value: 123 }],
       granularity: "yearly",
       customInterval: 123,
       period: 123,

@@ -36,12 +36,20 @@ async function trainMultivariateModelSample() {
       status: "CREATED",
       diagnosticsInfo: {
         modelState: {
-          epochIds: [],
-          trainLosses: [],
-          validationLosses: [],
-          latenciesInSeconds: [],
+          epochIds: [123],
+          trainLosses: [123],
+          validationLosses: [123],
+          latenciesInSeconds: [123],
         },
-        variableStates: [],
+        variableStates: [
+          {
+            variable: '{Your "variable"}',
+            filledNARatio: 123,
+            effectiveCount: 123,
+            firstTimestamp: new Date(),
+            lastTimestamp: new Date(),
+          },
+        ],
       },
     },
   };

@@ -7,8 +7,7 @@ export interface TypeSpecRanchConfig {
 export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "union-body",
-    inputPath: "union-body",
-    debug: true
+    inputPath: "union-body"
   },
   {
     outputPath: "headers/clientRequestId",
@@ -48,7 +47,8 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "arrays/itemTypes",
-    inputPath: "type/array"
+    inputPath: "type/array",
+    debug: true
   },
   {
     outputPath: "authentication/apiKey",
@@ -68,7 +68,8 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "dictionary",
-    inputPath: "type/dictionary"
+    inputPath: "type/dictionary",
+    debug: true
   },
   {
     outputPath: "enums/extensible",

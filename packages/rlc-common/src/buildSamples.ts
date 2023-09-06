@@ -339,12 +339,7 @@ function convertMethodLevelParameters(
   ) {
     const type = requestParameter.body.body[0].type;
     allSideAssignments.push(
-      ` body: ` +
-        mockParameterTypeValue(
-          type,
-          "_", // expect to not use this name
-          schemaMap
-        )
+      ` body: ` + mockParameterTypeValue(type, "body", schemaMap)
     );
   }
 
@@ -429,17 +424,27 @@ function buildSchemaObjectMap(model: RLCModel) {
 function mockParameterTypeValue(
   type: string,
   parameterName: string,
-  schemaMap: Map<string, ObjectSchema>
-) {
+  schemaMap: Map<string, ObjectSchema>,
+  path: Set<string> = new Set()
+): string | undefined {
   if (type === "string") {
     return `'{Your ${parameterName}}'`;
   } else if (type === "number") {
     return "123";
   } else if (type === "boolean") {
     return "true";
-  } else if (type === "Date | string") {
+  } else if (type === "Date") {
     return "new Date()";
-  } else if (schemaMap.get(type)) {
+  } else if (type === "unknown") {
+    return `"Unknown Type"`;
+  } else if (containsStringLiteral(type)) {
+    return `"${getStringLiteral(type)}"`;
+  } else if (isObject(type, schemaMap)) {
+    if (path.has(type)) {
+      // skip generating if self references
+      return `{} as any`;
+    }
+    path.add(type);
     // object
     const values: string[] = [];
     const schema = schemaMap.get(type);
@@ -458,32 +463,100 @@ function mockParameterTypeValue(
         mockParameterTypeValue(
           property.typeName ?? property.type,
           propName,
-          schemaMap
+          schemaMap,
+          path
         );
       values.push(propRetValue);
     }
+
     return `{${values.join(", ")}}`;
-  } else if (isObjectArray(type) || isPrimitiveArray(type)) {
-    return `[]`;
-  } else if (isStringUnion(type)) {
-    return `${type.split("|").map((m) => m.trim())[0]}`;
+  } else if (isArray(type)) {
+    let arrayType;
+    if (isArrayObject(type)) {
+      arrayType = getArrayObjectType(type);
+    } else if (isNativeArray(type)) {
+      arrayType = getNativeArrayType(type);
+    }
+    const itemValue = arrayType
+      ? mockParameterTypeValue(arrayType, parameterName, schemaMap, path)
+      : undefined;
+    return itemValue ? `[${itemValue}]` : `[]`;
+  } else if (isRecord(type)) {
+    const recordType = getRecordType(type);
+    console.log(">>>>>>>>>>recordType", recordType);
+    return recordType
+      ? `{"key": ${mockParameterTypeValue(
+          recordType,
+          parameterName,
+          schemaMap,
+          path
+        )}}`
+      : `{}`;
+  } else if (isUnion(type, schemaMap)) {
+    const unionType = getUnionType(type);
+    return mockParameterTypeValue(unionType, parameterName, schemaMap, path);
   }
+  path.add(type);
 }
 
-function isObjectArray(type: string) {
-  const reg1 = /Array<([a-zA-Z].+)>/g;
-  const ret = reg1.test(type);
+function containsStringLiteral(type: string) {
+  console.log(">>>>>>>>>>>type", type);
+  const reg = /^"([a-zA-Z0-9\s]*)"$/g;
+  return reg.test(type);
+}
+
+function getStringLiteral(type: string) {
+  const reg = /^"(?<first>[a-zA-Z0-9\s]*)"$/g;
+  return reg.exec(type)?.groups?.first;
+}
+
+function isObject(type: string, schemaMap: Map<string, ObjectSchema>) {
+  return Boolean(schemaMap.get(type));
+}
+
+function isRecord(type: string) {
+  const reg = /Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>/g;
+  return reg.test(type);
+}
+
+function getRecordType(type: string) {
+  const reg = /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g;
+  return reg.exec(type)?.groups?.type;
+}
+
+function isArray(type: string) {
+  return isArrayObject(type) || isNativeArray(type);
+}
+
+function isArrayObject(type: string) {
+  const reg = /Array<([a-zA-Z].+)>/g;
+  const ret = reg.test(type);
   return ret;
 }
 
-function isPrimitiveArray(type: string) {
+function getArrayObjectType(type: string) {
+  const reg = /Array<(?<type>[a-zA-Z].+)>/g;
+  const ret = reg.exec(type);
+  console.log(">>>>>>>>>>>>array", ret?.groups);
+  return ret?.groups?.type;
+}
+
+function isNativeArray(type: string) {
   const reg1 = /([a-zA-Z].+)\[\]/g;
   const ret = reg1.test(type);
   return ret;
 }
 
-function isStringUnion(type: string) {
+function getNativeArrayType(type: string) {
+  const reg = /(?<type>[a-zA-Z].+)\[\]/g;
+  return reg.exec(type)?.groups?.type;
+}
+
+function isUnion(type: string, schemaMap: Map<string, ObjectSchema>) {
   const members = type.split("|").map((m) => m.trim());
-  const reg = /"([a-zA-Z].+)"/g;
-  return members.length > 0 && reg.test(members[0]);
+  return members.length > 1;
+}
+
+function getUnionType(type: string) {
+  return type.split("|").map((m) => m.trim())[0];
 }

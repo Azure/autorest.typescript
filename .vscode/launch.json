@@ -84,7 +84,7 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/openai_modular",
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/anomalyDetector",
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -98,7 +98,7 @@
       "runtimeArgs": [
         "ts-node",
         "./test/commands/gen-cadl-ranch.ts",
-        "--tag=modular",
+        "--tag=rlc",
         "--debug"
       ],
       "runtimeExecutable": "npx",

@@ -22,7 +22,16 @@ async function detectMultivariateLastAnomalySample() {
   const client = createAnomalyDetectorClient(endpoint, credential);
   const modelId = "{Your modelId}";
   const options: DetectMultivariateLastAnomalyParameters = {
-    body: { variables: [], topContributorCount: 123 },
+    body: {
+      variables: [
+        {
+          variable: '{Your "variable"}',
+          timestamps: ['{Your "timestamps"}'],
+          values: [123],
+        },
+      ],
+      topContributorCount: 123,
+    },
   };
   const result = await client
     .path("/multivariate/models/{modelId}:detect-last", modelId)
