@@ -1096,23 +1096,8 @@ function mergeFormatAndEncoding(
     case undefined:
       return encodeAsFormat ?? encoding;
     case "date-time":
-      switch (encoding) {
-        case "rfc3339":
-          return "date-time";
-        case "unixTimestamp":
-          return "unixtime";
-        case "rfc7231":
-          return "utc-date";
-        default:
-          return encoding;
-      }
+      return encoding;
     case "duration":
-      switch (encoding) {
-        case "ISO8601":
-          return "duration";
-        default:
-          return encodeAsFormat ?? encoding;
-      }
     default:
       return encodeAsFormat ?? encoding;
   }

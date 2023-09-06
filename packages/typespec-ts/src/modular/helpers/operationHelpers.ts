@@ -839,16 +839,15 @@ function serializeRequestValue(
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      if (format === "date-time") {
-        return `${restValue}.toISOString()`;
+      switch(format) {
+        case "rfc7231":
+          return `${restValue}.toUTCString()`;
+        case "unixTimestamp":
+          return `${restValue}.getTime()`;
+        case "rfc3339":
+        default:
+          return `${restValue}.toISOString()`;
       }
-      if (format === "utc-date") {
-        return `${restValue}.toUTCString()`;
-      }
-      if (format === "unixtime") {
-        return `${restValue}.getTime()`;
-      }
-      return `${restValue}.toISOString()`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getRequestModelMapping(
