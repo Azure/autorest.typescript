@@ -87,7 +87,7 @@ export async function queryIso8601(
 
 export function _queryInt32SecondsSend(
   context: Client,
-  input: string,
+  input: number,
   options: QueryInt32SecondsOptions = { requestOptions: {} }
 ): StreamableMethod<QueryInt32Seconds204Response> {
   return context
@@ -110,7 +110,7 @@ export async function _queryInt32SecondsDeserialize(
 
 export async function queryInt32Seconds(
   context: Client,
-  input: string,
+  input: number,
   options: QueryInt32SecondsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryInt32SecondsSend(context, input, options);
@@ -119,7 +119,7 @@ export async function queryInt32Seconds(
 
 export function _queryFloatSecondsSend(
   context: Client,
-  input: string,
+  input: number,
   options: QueryFloatSecondsOptions = { requestOptions: {} }
 ): StreamableMethod<QueryFloatSeconds204Response> {
   return context
@@ -142,7 +142,7 @@ export async function _queryFloatSecondsDeserialize(
 
 export async function queryFloatSeconds(
   context: Client,
-  input: string,
+  input: number,
   options: QueryFloatSecondsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryFloatSecondsSend(context, input, options);

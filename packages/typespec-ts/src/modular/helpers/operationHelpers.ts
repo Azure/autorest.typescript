@@ -101,7 +101,7 @@ export function getDeserializePrivateFunction(
   const response = operation.responses[0]!;
   let returnType;
   if (response?.type?.type) {
-    returnType = buildType(response.type.name, response.type);
+    returnType = buildType(response.type.name, response.type, response.type.format);
   } else {
     returnType = { name: "", type: "void" };
   }
@@ -186,20 +186,21 @@ function getOperationSignatureParameters(
     (operation.bodyParameter?.type.properties ?? [])
       .filter((p) => !p.optional)
       .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type))
+      .map((p) => buildType(p.clientName, p.type, p.format))
       .forEach((p) => parameters.set(p.name, p));
   } else if (operation.bodyParameter?.type.type === "list") {
     const bodyArray = operation.bodyParameter;
     parameters.set(
       bodyArray.clientName,
-      buildType(bodyArray.clientName, bodyArray.type)
+      buildType(bodyArray.clientName, bodyArray.type, bodyArray.type.format)
     );
   } else if (operation.bodyParameter?.type.type === "byte-array") {
     parameters.set(
       operation.bodyParameter.clientName,
       buildType(
         operation.bodyParameter.clientName,
-        operation.bodyParameter.type
+        operation.bodyParameter.type,
+        operation.bodyParameter.type.format
       )
     );
   }
@@ -212,7 +213,7 @@ function getOperationSignatureParameters(
         p.clientDefaultValue === undefined &&
         !p.optional
     )
-    .map((p) => buildType(p.clientName, p.type))
+    .map((p) => buildType(p.clientName, p.type, p.format))
     .forEach((p) => {
       parameters.set(p.name, p);
     });
@@ -246,7 +247,7 @@ export function getOperationFunction(
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
   const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type)
+    ? buildType(response.type.name, response.type, response.type.format)
     : { name: "", type: "void" };
 
   const { name, fixme = [] } = getOperationName(operation);

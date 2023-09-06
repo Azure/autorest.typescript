@@ -24,7 +24,7 @@ export function getClientParameters(
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
         return {
           name: p.clientName,
-          type: getType(p.type).name
+          type: getType(p.type, p.format).name
         };
       }),
     optionsParam

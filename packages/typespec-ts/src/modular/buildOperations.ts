@@ -171,7 +171,7 @@ export function buildOperationOptions(
       return {
         docs: getDocsFromDescription(p.description),
         hasQuestionToken: true,
-        ...buildType(p.clientName, p.type)
+        ...buildType(p.clientName, p.type, p.format)
       };
     })
   });

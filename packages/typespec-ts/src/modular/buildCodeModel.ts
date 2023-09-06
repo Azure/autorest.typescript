@@ -851,10 +851,11 @@ function emitProperty(
   if (newProperty.model) {
     getType(context, newProperty.model);
   }
+  const type = getType(context, property.type);
   return {
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
-    type: getType(context, property.type),
+    type,
     optional: newProperty.optional,
     description: getDocStr(context.program, newProperty),
     addedOn: getAddedOnVersion(context.program, newProperty),

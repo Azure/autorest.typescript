@@ -10,11 +10,11 @@ export interface ISO8601DurationProperty {
 }
 
 export interface Int32SecondsDurationProperty {
-  value: string;
+  value: number;
 }
 
 export interface FloatSecondsDurationProperty {
-  value: string;
+  value: number;
 }
 
 export interface FloatSecondsDurationArrayProperty {

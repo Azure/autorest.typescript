@@ -120,7 +120,7 @@ export async function headerIso8601Array(
 
 export function _headerInt32SecondsSend(
   context: Client,
-  duration: string,
+  duration: number,
   options: HeaderInt32SecondsOptions = { requestOptions: {} }
 ): StreamableMethod<HeaderInt32Seconds204Response> {
   return context
@@ -143,7 +143,7 @@ export async function _headerInt32SecondsDeserialize(
 
 export async function headerInt32Seconds(
   context: Client,
-  duration: string,
+  duration: number,
   options: HeaderInt32SecondsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerInt32SecondsSend(context, duration, options);
@@ -152,7 +152,7 @@ export async function headerInt32Seconds(
 
 export function _headerFloatSecondsSend(
   context: Client,
-  duration: string,
+  duration: number,
   options: HeaderFloatSecondsOptions = { requestOptions: {} }
 ): StreamableMethod<HeaderFloatSeconds204Response> {
   return context
@@ -175,7 +175,7 @@ export async function _headerFloatSecondsDeserialize(
 
 export async function headerFloatSeconds(
   context: Client,
-  duration: string,
+  duration: number,
   options: HeaderFloatSecondsOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerFloatSecondsSend(context, duration, options);

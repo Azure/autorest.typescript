@@ -98,7 +98,7 @@ export async function propertyIso8601(
 
 export function _propertyInt32SecondsSend(
   context: Client,
-  value: string,
+  value: number,
   options: PropertyInt32SecondsOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyInt32Seconds200Response> {
   return context
@@ -123,7 +123,7 @@ export async function _propertyInt32SecondsDeserialize(
 
 export async function propertyInt32Seconds(
   context: Client,
-  value: string,
+  value: number,
   options: PropertyInt32SecondsOptions = { requestOptions: {} }
 ): Promise<Int32SecondsDurationProperty> {
   const result = await _propertyInt32SecondsSend(context, value, options);
@@ -132,7 +132,7 @@ export async function propertyInt32Seconds(
 
 export function _propertyFloatSecondsSend(
   context: Client,
-  value: string,
+  value: number,
   options: PropertyFloatSecondsOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyFloatSeconds200Response> {
   return context
@@ -157,7 +157,7 @@ export async function _propertyFloatSecondsDeserialize(
 
 export async function propertyFloatSeconds(
   context: Client,
-  value: string,
+  value: number,
   options: PropertyFloatSecondsOptions = { requestOptions: {} }
 ): Promise<FloatSecondsDurationProperty> {
   const result = await _propertyFloatSecondsSend(context, value, options);

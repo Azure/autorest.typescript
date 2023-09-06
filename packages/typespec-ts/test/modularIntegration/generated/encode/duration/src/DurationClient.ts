@@ -64,13 +64,13 @@ export class DurationClient {
       return queryIso8601(this._client, input, options);
     },
     int32Seconds: (
-      input: string,
+      input: number,
       options?: QueryInt32SecondsOptions
     ): Promise<void> => {
       return queryInt32Seconds(this._client, input, options);
     },
     floatSeconds: (
-      input: string,
+      input: number,
       options?: QueryFloatSecondsOptions
     ): Promise<void> => {
       return queryFloatSeconds(this._client, input, options);
@@ -96,13 +96,13 @@ export class DurationClient {
       return propertyIso8601(this._client, value, options);
     },
     int32Seconds: (
-      value: string,
+      value: number,
       options?: PropertyInt32SecondsOptions
     ): Promise<Int32SecondsDurationProperty> => {
       return propertyInt32Seconds(this._client, value, options);
     },
     floatSeconds: (
-      value: string,
+      value: number,
       options?: PropertyFloatSecondsOptions
     ): Promise<FloatSecondsDurationProperty> => {
       return propertyFloatSeconds(this._client, value, options);
@@ -134,13 +134,13 @@ export class DurationClient {
       return headerIso8601Array(this._client, duration, options);
     },
     int32Seconds: (
-      duration: string,
+      duration: number,
       options?: HeaderInt32SecondsOptions
     ): Promise<void> => {
       return headerInt32Seconds(this._client, duration, options);
     },
     floatSeconds: (
-      duration: string,
+      duration: number,
       options?: HeaderFloatSecondsOptions
     ): Promise<void> => {
       return headerFloatSeconds(this._client, duration, options);
