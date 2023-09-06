@@ -10,32 +10,23 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * This sample demonstrates how to call operation DetectUnivariateLastPoint
+ * This sample demonstrates how to call operation GetMultivariateBatchDetectionResult
  *
- * @summary call operation DetectUnivariateLastPoint
+ * @summary call operation GetMultivariateBatchDetectionResult
  */
-async function detectUnivariateLastPointSample() {
+async function getMultivariateBatchDetectionResultSample() {
   const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const options: DetectUnivariateLastPointParameters = {
-    body: {
-      series: [] as any,
-      granularity: "yearly",
-      customInterval: 123,
-      period: 123,
-      maxAnomalyRatio: 123,
-      sensitivity: 123,
-      imputeMode: "auto",
-      imputeFixedValue: 123,
-    },
-  };
-  const result = await client.path("/timeseries/last/detect").post(options);
+  const resultId = "{Your resultId}";
+  const result = await client
+    .path("/multivariate/detect-batch/{resultId}", resultId)
+    .get();
   console.log(result);
 }
 
 async function main() {
-  detectUnivariateLastPointSample();
+  getMultivariateBatchDetectionResultSample();
 }
 
 main().catch(console.error);

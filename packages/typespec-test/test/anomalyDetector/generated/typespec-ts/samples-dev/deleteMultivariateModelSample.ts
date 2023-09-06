@@ -10,24 +10,23 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * This sample demonstrates how to call operation GetMultivariateBatchDetectionResult
+ * This sample demonstrates how to call operation DeleteMultivariateModel
  *
- * @summary call operation GetMultivariateBatchDetectionResult
+ * @summary call operation DeleteMultivariateModel
  */
-async function getMultivariateBatchDetectionResultSample() {
+async function deleteMultivariateModelSample() {
   const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const resultId = "{Your resultId}";
-  const options: GetMultivariateBatchDetectionResultParameters = {};
+  const modelId = "{Your modelId}";
   const result = await client
-    .path("/multivariate/detect-batch/{resultId}", resultId)
-    .get(options);
+    .path("/multivariate/models/{modelId}", modelId)
+    .delete();
   console.log(result);
 }
 
 async function main() {
-  getMultivariateBatchDetectionResultSample();
+  deleteMultivariateModelSample();
 }
 
 main().catch(console.error);

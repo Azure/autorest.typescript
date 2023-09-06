@@ -3,39 +3,35 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createAnomalyDetectorClient from "@msinternal/ai-anomaly-detector";
+import createAnomalyDetectorClient, {
+  DetectMultivariateLastAnomalyParameters,
+} from "@msinternal/ai-anomaly-detector";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
 /**
- * This sample demonstrates how to call operation DetectUnivariateChangePoint
+ * This sample demonstrates how to call operation DetectMultivariateLastAnomaly
  *
- * @summary call operation DetectUnivariateChangePoint
+ * @summary call operation DetectMultivariateLastAnomaly
  */
-async function detectUnivariateChangePointSample() {
+async function detectMultivariateLastAnomalySample() {
   const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const options: DetectUnivariateChangePointParameters = {
-    body: {
-      series: [] as any,
-      granularity: "yearly",
-      customInterval: 123,
-      period: 123,
-      stableTrendWindow: 123,
-      threshold: 123,
-    },
+  const modelId = "{Your modelId}";
+  const options: DetectMultivariateLastAnomalyParameters = {
+    body: { variables: [], topContributorCount: 123 },
   };
   const result = await client
-    .path("/timeseries/changepoint/detect")
+    .path("/multivariate/models/{modelId}:detect-last", modelId)
     .post(options);
   console.log(result);
 }
 
 async function main() {
-  detectUnivariateChangePointSample();
+  detectMultivariateLastAnomalySample();
 }
 
 main().catch(console.error);

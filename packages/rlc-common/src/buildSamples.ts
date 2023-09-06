@@ -1,4 +1,3 @@
-import { mock } from "node:test";
 import { getClientName } from "./helpers/nameConstructors.js";
 import { NameType, camelCase, normalizeName } from "./helpers/nameUtils.js";
 import {
@@ -11,7 +10,6 @@ import {
   SampleParameters,
   SampleParameter,
   PathMetadata,
-  ParameterMetadatas,
   OperationParameter,
   ObjectSchema,
   SchemaContext,
@@ -28,7 +26,6 @@ export function buildSamples(model: RLCModel) {
     return;
   }
   let { generateSample } = model.options;
-  const srcPath = model.srcPath;
   generateSample =
     generateSample === true ||
     (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
@@ -44,11 +41,7 @@ export function buildSamples(model: RLCModel) {
     const sampleGroupFileContents = hbs.compile(sampleTemplate, {
       noEscape: true
     });
-    const filePath = path.join(
-      srcPath,
-      "samples-dev",
-      `${sampleGroup.filename}.ts`
-    );
+    const filePath = path.join("samples-dev", `${sampleGroup.filename}.ts`);
     sampleFiles.push({
       path: filePath,
       content: sampleGroupFileContents(sampleGroup)
@@ -70,10 +63,10 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
   const methodParameterMap = buildMethodParamMap(model);
   const schemaObjectMap = buildSchemaObjectMap(model);
   for (const path in paths) {
-    const importedDict: Record<string, Set<string>> = {};
     const pathDetails = paths[path];
     const methods = pathDetails.methods;
     for (const method in methods) {
+      const importedDict: Record<string, Set<string>> = {};
       const detail: OperationMethod = methods[method][0];
       const operatonConcante = `${pathDetails.operationGroupName}_${detail.operationName}`;
       const operationPrefix = camelCase(
@@ -115,13 +108,14 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
           methods[method],
           importedDict,
           schemaObjectMap,
+          packageName,
           methodParameterMap.get(operatonConcante)
         )
       };
       // enrich parameter details
       enrichParameterInSample(sample, parameters);
       // enrich LRO and pagination info
-      // enrichLROAndPagingInSample(sample, operation, importedDict);
+      enrichLROAndPagingInSample(detail, importedDict, packageName);
       sampleGroup.samples.push(sample);
       rlcSampleGroups.push(sampleGroup);
       enrichImportedString(
@@ -133,6 +127,24 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
     }
   }
   return rlcSampleGroups;
+}
+
+function enrichLROAndPagingInSample(
+  operation: OperationMethod,
+  importedDict: Record<string, Set<string>>,
+  packageName: string
+) {
+  const isLRO =
+      operation.operationHelperDetail?.lroDetails?.isLongRunning ?? false,
+    isPaging = operation.operationHelperDetail?.isPageable ?? false;
+  if (isPaging) {
+    if (isLRO) {
+      // TODO: report warning this is not supported
+    }
+    addValueInImportedDict(packageName, "paginate", importedDict);
+  } else if (isLRO) {
+    addValueInImportedDict(packageName, "getLongRunningPoller", importedDict);
+  }
 }
 
 function transformSpecialLetterToSpace(str: string) {
@@ -156,7 +168,7 @@ function enrichImportedString(
   packageName: string
 ) {
   const importedTypes: string[] = [];
-  if (!!importedDict[packageName]) {
+  if (!!importedDict[packageName] && importedDict[packageName].size > 0) {
     const otherTypes = Array.from(importedDict[packageName]).join(", ");
     importedTypes.push(
       `import ${defaultFactoryName}, { ${otherTypes} } from "${packageName}";`
@@ -297,6 +309,7 @@ function convertMethodLevelParameters(
   methods: OperationMethod[],
   importedDict: Record<string, Set<string>>,
   schemaMap: Map<string, Schema>,
+  packageName: string,
   operationParameter?: OperationParameter
 ): SampleParameter[] {
   if (!methods || methods.length == 0 || !operationParameter) {
@@ -324,11 +337,12 @@ function convertMethodLevelParameters(
     requestParameter.body.body &&
     requestParameter.body.body?.length > 0
   ) {
+    const type = requestParameter.body.body[0].type;
     allSideAssignments.push(
       ` body: ` +
         mockParameterTypeValue(
-          requestParameter.body.body[0].type,
-          "body",
+          type,
+          "_", // expect to not use this name
           schemaMap
         )
     );
@@ -337,7 +351,7 @@ function convertMethodLevelParameters(
   requestParameter.parameters
     ?.filter((p) => p.type === "query")
     .forEach((p) => {
-      const name = `"${p.name}"`;
+      const name = `${p.name}`;
       querySideAssignments.push(
         `${name}: ` + mockParameterTypeValue(p.param.type, name, schemaMap)
       );
@@ -351,7 +365,7 @@ function convertMethodLevelParameters(
   requestParameter.parameters
     ?.filter((p) => p.type === "header")
     .forEach((p) => {
-      const name = `"${p.name}"`;
+      const name = `${p.name}`;
       querySideAssignments.push(
         `${name}: ` + mockParameterTypeValue(p.param.type, name, schemaMap)
       );
@@ -364,12 +378,15 @@ function convertMethodLevelParameters(
   let value: string = `{}`;
   if (allSideAssignments.length > 0) {
     value = `{ ` + allSideAssignments.join(", ") + `}`;
+  } else {
+    return [];
   }
+
   const optionParam: SampleParameter = {
     name: "options",
     assignment: `const options: ${method.optionsName} =` + value + `;`
   };
-  // addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
+  addValueInImportedDict(packageName, method.optionsName, importedDict);
   return [optionParam];
 }
 
@@ -415,37 +432,54 @@ function mockParameterTypeValue(
   schemaMap: Map<string, ObjectSchema>
 ) {
   if (type === "string") {
-    return `"{Your ${parameterName}}"`;
+    return `'{Your ${parameterName}}'`;
   } else if (type === "number") {
     return "123";
   } else if (type === "boolean") {
     return "true";
+  } else if (type === "Date | string") {
+    return "new Date()";
   } else if (schemaMap.get(type)) {
     // object
     const values: string[] = [];
     const schema = schemaMap.get(type);
     const properties = schema?.properties ?? {};
-    console.log("object>>>>>>>>>", properties);
     for (const prop in properties) {
       const propName = prop;
       const property = properties[prop];
+      if (property.readOnly) {
+        continue;
+      }
+      if (property.type === "never") {
+        continue;
+      }
       let propRetValue =
         `${propName}: ` +
-        mockParameterTypeValue(property.type, propName, schemaMap);
+        mockParameterTypeValue(
+          property.typeName ?? property.type,
+          propName,
+          schemaMap
+        );
       values.push(propRetValue);
     }
     return `{${values.join(", ")}}`;
-  } else if (isArray(type) || type === "array") {
-    return `[] as any`;
+  } else if (isObjectArray(type) || isPrimitiveArray(type)) {
+    return `[]`;
   } else if (isStringUnion(type)) {
     return `${type.split("|").map((m) => m.trim())[0]}`;
   }
 }
 
-function isArray(type: string) {
+function isObjectArray(type: string) {
   const reg1 = /Array<([a-zA-Z].+)>/g;
-  console.log(type, reg1.test(type));
-  return reg1.test(type);
+  const ret = reg1.test(type);
+  return ret;
+}
+
+function isPrimitiveArray(type: string) {
+  const reg1 = /([a-zA-Z].+)\[\]/g;
+  const ret = reg1.test(type);
+  return ret;
 }
 
 function isStringUnion(type: string) {

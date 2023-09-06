@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createAnomalyDetectorClient from "@msinternal/ai-anomaly-detector";
+import createAnomalyDetectorClient, {
+  DetectUnivariateEntireSeriesParameters,
+} from "@msinternal/ai-anomaly-detector";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -20,13 +22,13 @@ async function detectUnivariateEntireSeriesSample() {
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: DetectUnivariateEntireSeriesParameters = {
     body: {
-      series: [] as any,
+      series: [],
       granularity: "yearly",
       customInterval: 123,
       period: 123,
       maxAnomalyRatio: 123,
       sensitivity: 123,
-      imputeMode: "auto",
+      imputeMode: '{Your "imputeMode"}',
       imputeFixedValue: 123,
     },
   };

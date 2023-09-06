@@ -145,7 +145,12 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
       await emitContentByBuilder(program, buildPollingHelper, rlcModels);
       await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
-      await emitContentByBuilder(program, buildSamples, rlcModels);
+      await emitContentByBuilder(
+        program,
+        buildSamples,
+        rlcModels,
+        dpgContext.generationPathDetail?.metadataDir
+      );
     }
   }
 
