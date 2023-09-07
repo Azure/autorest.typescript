@@ -469,6 +469,7 @@ function mockParameterTypeValue(
     const values: string[] = [];
     const schema = schemaMap.get(type);
     const properties = schema?.properties ?? {};
+    const propSet = new Set<string>();
     for (const prop in properties) {
       const propName = prop;
       const property = properties[prop];
@@ -478,6 +479,10 @@ function mockParameterTypeValue(
       if (property.type === "never") {
         continue;
       }
+      if (propSet.has(propName)) {
+        continue;
+      }
+      propSet.add(propName);
       let propRetValue =
         `${propName}: ` +
         mockParameterTypeValue(
@@ -505,6 +510,10 @@ function mockParameterTypeValue(
           if (property.type === "never") {
             continue;
           }
+          if (propSet.has(propName)) {
+            continue;
+          }
+          propSet.add(propName);
           let propRetValue =
             `${propName}: ` +
             mockParameterTypeValue(
