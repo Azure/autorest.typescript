@@ -314,6 +314,14 @@ function getType(
       // need to do properties after insertion to avoid infinite recursion
       processModelProperties(context, newValue, type);
     }
+  } else {
+    const key = JSON.stringify(newValue);
+    const value = simpleTypesMap.get(key);
+    if (value) {
+      newValue = value;
+    } else {
+      simpleTypesMap.set(key, newValue);
+    }
   }
 
   return newValue;
@@ -829,33 +837,32 @@ function emitProperty(
 ): Record<string, any> {
   const newProperty = applyEncoding(context.program, property, property);
   let clientDefaultValue = undefined;
-  const propertyDefaultKind = newProperty.default?.kind;
+  const propertyDefaultKind = property.default?.kind;
   if (
-    newProperty.default &&
+    property.default &&
     (propertyDefaultKind === "Number" ||
       propertyDefaultKind === "String" ||
       propertyDefaultKind === "Boolean")
   ) {
-    clientDefaultValue = newProperty.default.value;
+    clientDefaultValue = property.default.value;
   }
 
   if (propertyDefaultKind === "EnumMember") {
-    clientDefaultValue = newProperty.default.value ?? newProperty.default.name;
+    clientDefaultValue = property.default.value ?? property.default.name;
   }
 
   // const [clientName, jsonName] = getPropertyNames(context, property);
-  const clientName = newProperty.name;
+  const clientName = property.name;
   const jsonName =
-    getProjectedName(context.program, newProperty, "json") ?? newProperty.name;
+    getProjectedName(context.program, property, "json") ?? property.name;
 
-  if (newProperty.model) {
-    getType(context, newProperty.model);
+  if (property.model) {
+    getType(context, property.model);
   }
-  const type = getType(context, property.type);
   return {
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
-    type,
+    type: getType(context, property.type),
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),

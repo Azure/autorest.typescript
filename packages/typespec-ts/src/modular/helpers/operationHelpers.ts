@@ -301,12 +301,6 @@ function getRequestParameters(
   operation: Operation,
   importSet: Map<string, Set<string>>
 ): string {
-  if (
-    operation.name.endsWith("int32Seconds") &&
-    operation.groupName === "Header"
-  ) {
-    operation;
-  }
   if (!operation.parameters) {
     return "";
   }
