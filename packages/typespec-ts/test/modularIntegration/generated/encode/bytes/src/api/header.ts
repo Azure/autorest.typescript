@@ -30,7 +30,7 @@ export function _headerDefaultSend(
     .path("/encode/bytes/header/default")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: uint8ArrayToString(value, "base64") },
+      headers: { value: uint8ArrayToString(value, "headerDefault") },
     });
 }
 

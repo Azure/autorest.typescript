@@ -516,7 +516,9 @@ function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
     param.clientName,
     importSet,
     true,
-    param.format
+    param.format === undefined && (param as Parameter).location === "header"
+    ? "headerDefault"
+    : param.format
   )}`;
 }
 
@@ -564,7 +566,9 @@ function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
     `options?.${param.clientName}`,
     importSet,
     false,
-    param.format
+    param.format === undefined && (param as Parameter).location === "header"
+      ? "headerDefault"
+      : param.format
   )}`;
 }
 
@@ -863,6 +867,7 @@ function serializeRequestValue(
     case "datetime":
       switch (format) {
         case "rfc7231":
+        case "headerDefault":
           return `${clientValue}${required ? "" : "?"}.toUTCString()`;
         case "unixTimestamp":
           return `${clientValue}${required ? "" : "?"}.getTime()`;

@@ -31,7 +31,7 @@ export function _headerDefaultSend(
     .path("/encode/datetime/header/default")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: value.toISOString() },
+      headers: { value: value.toUTCString() },
     });
 }
 

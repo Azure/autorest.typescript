@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { DurationClient } from "./generated/encode/duration/src/index";
-describe("EncodeDatetimeClient Rest Client", () => {
+describe("EncodeDurationClient Rest Client", () => {
   let client: DurationClient;
 
   beforeEach(() => {
@@ -63,7 +63,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get default duration`, async () => {
       try {
         const result = await client.property.default("P40D");
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, "P40D");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -72,7 +72,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get iso8601 duration`, async () => {
       try {
         const result = await client.property.iso8601("P40D");
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, "P40D");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -81,7 +81,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get float seconds`, async () => {
       try {
         const result = await client.property.floatSeconds(35.621);
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, 35.621);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -90,7 +90,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get int32 seconds`, async () => {
       try {
         const result = await client.property.int32Seconds(36);
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, 36);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -101,7 +101,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.floatSecondsArray([
           35.621, 46.781
         ]);
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, [35.621, 46.781]);
       } catch (err) {
         assert.fail(err as string);
       }

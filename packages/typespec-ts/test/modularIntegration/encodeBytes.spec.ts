@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { BytesClient } from "./generated/encode/bytes/src/index";
 import { stringToUint8Array } from "@azure/core-util";
-describe.only("EncodeDatetimeClient Rest Client", () => {
+describe("EncodeBytesClient Rest Client", () => {
   let client: BytesClient;
 
   beforeEach(() => {
@@ -66,7 +66,7 @@ describe.only("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.default(
           stringToUint8Array("dGVzdA==", "base64")
         );
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, stringToUint8Array("dGVzdA==", "base64"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -77,7 +77,7 @@ describe.only("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.base64(
           stringToUint8Array("dGVzdA==", "base64")
         );
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, stringToUint8Array("dGVzdA==", "base64"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -88,7 +88,7 @@ describe.only("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.base64url(
           stringToUint8Array("dGVzdA", "base64url")
         );
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, stringToUint8Array("dGVzdA", "base64url"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -100,7 +100,10 @@ describe.only("EncodeDatetimeClient Rest Client", () => {
           stringToUint8Array("dGVzdA", "base64url"),
           stringToUint8Array("dGVzdA", "base64url")
         ]);
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, [
+          stringToUint8Array("dGVzdA", "base64url"),
+          stringToUint8Array("dGVzdA", "base64url")
+        ]);
       } catch (err) {
         assert.fail(err as string);
       }

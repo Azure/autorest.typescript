@@ -74,7 +74,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.default(
           new Date("2022-08-26T18:38:00.000Z")
         );
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, new Date("2022-08-26T18:38:00.000Z"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -85,7 +85,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.rfc3339(
           new Date("2022-08-26T18:38:00.000Z")
         );
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, new Date("2022-08-26T18:38:00.000Z"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -96,7 +96,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
         const result = await client.property.rfc7231(
           new Date("Fri, 26 Aug 2022 14:38:00 GMT")
         );
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, new Date("Fri, 26 Aug 2022 14:38:00 GMT"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -105,7 +105,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get unix timestamp`, async () => {
       try {
         const result = await client.property.unixTimestamp(new Date(1686566864));
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, new Date(1686566864));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -117,7 +117,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
           new Date(1686566864),
           new Date(1686734256)
         ]);
-        assert.isUndefined(result);
+        assert.deepEqual(result.value, [new Date(1686566864), new Date(1686734256)]);
       } catch (err) {
         assert.fail(err as string);
       }
@@ -128,7 +128,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get default datetime`, async () => {
       try {
         const result = await client.header.default(
-          new Date("2022-08-26T18:38:00.000Z")
+          new Date("Fri, 26 Aug 2022 14:38:00 GMT")
         );
         assert.isUndefined(result);
       } catch (err) {
