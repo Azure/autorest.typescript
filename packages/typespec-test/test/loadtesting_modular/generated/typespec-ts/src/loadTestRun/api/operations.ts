@@ -1082,7 +1082,12 @@ export function _listMetricsSend(
         metricNamespace: options?.metricNamespace,
         timespan: options?.timespan,
       },
-      body: { filters: options?.filters },
+      body: {
+        filters: (options?.filters ?? []).map((p) => ({
+          name: p["name"],
+          values: p["values"],
+        })),
+      },
     });
 }
 

@@ -33,7 +33,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get float seconds`, async () => {
       try {
-        const result = await client.query.floatSeconds("35.621");
+        const result = await client.query.floatSeconds(35.621);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);
@@ -42,7 +42,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get int32 seconds`, async () => {
       try {
-        const result = await client.query.int32Seconds("36");
+        const result = await client.query.int32Seconds(36);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);
@@ -51,7 +51,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get int32 seconds array`, async () => {
       try {
-        const result = await client.query.int32SecondsArray(["36", "47"]);
+        const result = await client.query.int32SecondsArray([36, 47]);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);
@@ -80,7 +80,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get float seconds`, async () => {
       try {
-        const result = await client.property.floatSeconds("35.621");
+        const result = await client.property.floatSeconds(35.621);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);
@@ -89,7 +89,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get int32 seconds`, async () => {
       try {
-        const result = await client.property.int32Seconds("36");
+        const result = await client.property.int32Seconds(36);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);
@@ -99,8 +99,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
     it(`should get int32 seconds array`, async () => {
       try {
         const result = await client.property.floatSecondsArray([
-          "35.621",
-          "46.781"
+          35.621, 46.781
         ]);
         assert.isUndefined(result);
       } catch (err) {
@@ -130,7 +129,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get float seconds`, async () => {
       try {
-        const result = await client.header.floatSeconds("35.621");
+        const result = await client.header.floatSeconds(35.621);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);
@@ -139,7 +138,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get int32 seconds`, async () => {
       try {
-        const result = await client.header.int32Seconds("36");
+        const result = await client.header.int32Seconds(36);
         assert.isUndefined(result);
       } catch (err) {
         assert.fail(err as string);

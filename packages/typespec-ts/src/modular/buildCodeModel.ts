@@ -344,10 +344,10 @@ function emitParamBase(
 
   if (parameter.kind === "ModelProperty") {
     const newParameter = applyEncoding(program, parameter, parameter);
-    optional = newParameter.optional;
-    name = newParameter.name;
-    description = getDocStr(program, newParameter);
-    addedOn = getAddedOnVersion(program, newParameter);
+    optional = parameter.optional;
+    name = parameter.name;
+    description = getDocStr(program, parameter);
+    addedOn = getAddedOnVersion(program, parameter);
     format = newParameter.format;
   } else {
     optional = false;
@@ -856,12 +856,11 @@ function emitProperty(
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
     type,
-    optional: newProperty.optional,
-    description: getDocStr(context.program, newProperty),
-    addedOn: getAddedOnVersion(context.program, newProperty),
+    optional: property.optional,
+    description: getDocStr(context.program, property),
+    addedOn: getAddedOnVersion(context.program, property),
     readonly:
-      isReadOnly(context.program, newProperty) ||
-      isKey(context.program, newProperty),
+      isReadOnly(context.program, property) || isKey(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };

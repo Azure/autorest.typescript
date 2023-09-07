@@ -101,7 +101,11 @@ export function getDeserializePrivateFunction(
   const response = operation.responses[0]!;
   let returnType;
   if (response?.type?.type) {
-    returnType = buildType(response.type.name, response.type, response.type.format);
+    returnType = buildType(
+      response.type.name,
+      response.type,
+      response.type.format
+    );
   } else {
     returnType = { name: "", type: "void" };
   }
@@ -297,7 +301,10 @@ function getRequestParameters(
   operation: Operation,
   importSet: Map<string, Set<string>>
 ): string {
-  if (operation.name.endsWith("int32Seconds") && operation.groupName === "Header") {
+  if (
+    operation.name.endsWith("int32Seconds") &&
+    operation.groupName === "Header"
+  ) {
     operation;
   }
   if (!operation.parameters) {
@@ -448,10 +455,7 @@ function getCollectionFormat(
   if (serializeHelperImport) {
     serializeHelperImport.add(collectionInfo);
   } else {
-    importSet.set(
-      "../rest/index.js",
-      new Set<string>().add(collectionInfo)
-    );
+    importSet.set("../rest/index.js", new Set<string>().add(collectionInfo));
   }
   if (!param.optional) {
     return `"${param.restApiName}": ${collectionInfo}(${serializeRequestValue(
@@ -468,7 +472,7 @@ function getCollectionFormat(
     param.type,
     "options?." + param.clientName,
     importSet,
-    true,
+    false,
     param.format
   )}${additionalParam}): undefined`;
 }
@@ -515,7 +519,7 @@ function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
-    param.restApiName,
+    param.clientName,
     importSet,
     true,
     param.format
@@ -563,7 +567,7 @@ function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
-    `options?.${param.restApiName}`,
+    `options?.${param.clientName}`,
     importSet,
     false,
     param.format
@@ -640,7 +644,7 @@ function getRequestModelMapping(
     if (property.readonly) {
       continue;
     }
-    const propertyFullName = `${propertyPath}.${property.restApiName}`;
+    const propertyFullName = `${propertyPath}.${property.clientName}`;
     if (property.type.type === "model") {
       let definition;
       if (property.type.isCoreErrorType) {
@@ -650,6 +654,17 @@ function getRequestModelMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
+      } else if (
+        (property.restApiName === "message" ||
+          property.restApiName === "messages") &&
+        (property.type.name === "ChatMessage" ||
+          property.type.elementType?.name === "ChatMessage")
+      ) {
+        definition = `"${property.restApiName}": ${
+          !property.optional
+            ? `${propertyFullName} as any`
+            : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+        }`;
       } else {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
@@ -658,7 +673,7 @@ function getRequestModelMapping(
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } {${getRequestModelMapping(
           property.type,
-          `${propertyPath}.${property.restApiName}${
+          `${propertyPath}.${property.clientName}${
             property.optional ? "?" : ""
           }`,
           importSet
@@ -666,17 +681,29 @@ function getRequestModelMapping(
       }
 
       props.push(definition);
+    } else if (
+      (property.restApiName === "message" ||
+        property.restApiName === "messages") &&
+      (property.type.name === "ChatMessage" ||
+        property.type.elementType?.name === "ChatMessage")
+    ) {
+      const definition = `"${property.restApiName}": ${
+        !property.optional
+          ? `${propertyFullName} as any`
+          : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
+      }`;
+      props.push(definition);
     } else {
       const dot = propertyPath.endsWith("?") ? "." : "";
-      const restValue = `${
+      const clientValue = `${
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.clientName}"]`;
       props.push(
         `"${property.restApiName}": ${serializeRequestValue(
           property.type,
-          restValue,
+          clientValue,
           importSet,
-          !propertyPath.endsWith("?"),
+          !property.optional,
           property.format
         )}`
       );
@@ -741,7 +768,8 @@ export function getResponseMapping(
         propertyPath ? `${propertyPath}${dot}` : `${dot}`
       }["${property.restApiName}"]`;
       if (
-        property.restApiName === "messages" &&
+        (property.restApiName === "message" ||
+          property.restApiName === "messages") &&
         (property.type.name === "ChatMessage" ||
           property.type.elementType?.name === "ChatMessage")
       ) {
@@ -831,7 +859,7 @@ function deserializeResponseValue(
  */
 function serializeRequestValue(
   type: Type,
-  restValue: string,
+  clientValue: string,
   importSet: Map<string, Set<string>>,
   required: boolean,
   format?: string
@@ -839,24 +867,24 @@ function serializeRequestValue(
   const coreUtilSet = importSet.get("@azure/core-util");
   switch (type.type) {
     case "datetime":
-      switch(format) {
+      switch (format) {
         case "rfc7231":
-          return `${restValue}.toUTCString()`;
+          return `${clientValue}${required ? "" : "?"}.toUTCString()`;
         case "unixTimestamp":
-          return `${restValue}.getTime()`;
+          return `${clientValue}${required ? "" : "?"}.getTime()`;
         case "rfc3339":
         default:
-          return `${restValue}.toISOString()`;
+          return `${clientValue}${required ? "" : "?"}.toISOString()`;
       }
     case "list":
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getRequestModelMapping(
+        return `(${clientValue} ?? []).map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
           importSet
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
-        return `(${restValue} ?? []).map(p => ${serializeRequestValue(
+        return `(${clientValue} ?? []).map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet,
@@ -864,7 +892,7 @@ function serializeRequestValue(
           type.elementType?.format
         )})`;
       } else {
-        return restValue;
+        return clientValue;
       }
     case "byte-array":
       if (!coreUtilSet) {
@@ -876,12 +904,12 @@ function serializeRequestValue(
         coreUtilSet.add("uint8ArrayToString");
       }
       return required
-        ? `uint8ArrayToString(${restValue}, "${format ?? "base64"}")`
-        : `${restValue} !== undefined ? uint8ArrayToString(${restValue}, "${
+        ? `uint8ArrayToString(${clientValue}, "${format ?? "base64"}")`
+        : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
             format ?? "base64"
           }"): undefined`;
     default:
-      return restValue;
+      return clientValue;
   }
 }
 
