@@ -516,9 +516,11 @@ function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
     param.clientName,
     importSet,
     true,
-    param.format === undefined && (param as Parameter).location === "header"
-    ? "headerDefault"
-    : param.format
+    param.format === undefined &&
+      (param as Parameter).location === "header" &&
+      param.type.type === "datetime"
+      ? "headerDefault"
+      : param.format
   )}`;
 }
 
@@ -566,7 +568,9 @@ function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
     `options?.${param.clientName}`,
     importSet,
     false,
-    param.format === undefined && (param as Parameter).location === "header"
+    param.format === undefined &&
+      (param as Parameter).location === "header" &&
+      param.type.type === "datetime"
       ? "headerDefault"
       : param.format
   )}`;
