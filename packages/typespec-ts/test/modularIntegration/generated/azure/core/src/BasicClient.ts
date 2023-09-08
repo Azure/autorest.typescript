@@ -10,7 +10,7 @@ import {
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
   DeleteOptions,
-  ExportOptions,
+  ExportOptions
 } from "./models/options.js";
 import {
   createBasic,
@@ -23,9 +23,9 @@ import {
   listWithPage,
   listWithCustomPageModel,
   deleteOperation,
-  exportOperation,
+  exportOperation
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "./util/pagingUtil.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
 
