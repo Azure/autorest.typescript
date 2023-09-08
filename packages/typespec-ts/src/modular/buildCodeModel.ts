@@ -1625,6 +1625,8 @@ export function emitCodeModel(
     project
   };
 
+  typesMap.clear();
+  simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
     getType(dpgContext, model);

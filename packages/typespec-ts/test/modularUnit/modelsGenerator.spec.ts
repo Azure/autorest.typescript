@@ -91,7 +91,8 @@ describe("modular encode test for property type datetime", () => {
       ): Promise<Foo> {
         const result = await _readSend(context, prop1, prop2, prop3, prop4, options);
         return _readDeserialize(result);
-      }`
+      }`,
+      true
     );
   });
 });

@@ -44,11 +44,11 @@ export interface CreateOrUpdateTestOptions extends OperationOptions {
   /** Resource Id of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
+  createdDateTime?: Date;
   /** The user that created. */
   createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
+  lastModifiedDateTime?: Date;
   /** The user that last modified. */
   lastModifiedBy?: string;
   contentType?: string;
@@ -58,11 +58,11 @@ export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
   /** Test identifier */
   testId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
+  createdDateTime?: Date;
   /** The user that created. */
   createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
+  lastModifiedDateTime?: Date;
   /** The user that last modified. */
   lastModifiedBy?: string;
   contentType?: string;
@@ -79,11 +79,11 @@ export interface CreateOrUpdateServerMetricsConfigOptions
    */
   metrics?: Record<string, ResourceMetric>;
   /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
+  createdDateTime?: Date;
   /** The user that created. */
   createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
+  lastModifiedDateTime?: Date;
   /** The user that last modified. */
   lastModifiedBy?: string;
   contentType?: string;
@@ -115,12 +115,12 @@ export interface ListTestsOptions extends OperationOptions {
    * Start DateTime(ISO 8601 literal format) of the last updated time range to
    * filter tests.
    */
-  lastModifiedStartTime?: any;
+  lastModifiedStartTime?: Date;
   /**
    * End DateTime(ISO 8601 literal format) of the last updated time range to filter
    * tests.
    */
-  lastModifiedEndTime?: any;
+  lastModifiedEndTime?: Date;
   /** Number of results in response. */
   maxpagesize?: number;
 }
