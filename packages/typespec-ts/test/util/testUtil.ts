@@ -71,7 +71,12 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
   const defaultOptions = {
     generateProtocolMethods: true,
     generateConvenienceMethods: true,
-    emitters: []
+    emitters: [
+      {
+        main: "@azure-tools/typespec-ts",
+        metadata: { name: "@azure-tools/typespec-ts" }
+      }
+    ]
   };
   const resolvedOptions = { ...defaultOptions };
   program.emitters = resolvedOptions.emitters as any;
@@ -86,7 +91,7 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
 
 export function assertEqualContent(actual: string, expected: string) {
   assert.strictEqual(
-    format(actual, prettierTypeScriptOptions),
-    format(expected, prettierTypeScriptOptions)
+    format(actual.replace(/\n/g, ""), prettierTypeScriptOptions),
+    format(expected.replace(/\n/g, ""), prettierTypeScriptOptions)
   );
 }

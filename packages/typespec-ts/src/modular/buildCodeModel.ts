@@ -36,7 +36,8 @@ import {
   getProjectedName,
   isNullType,
   getEncode,
-  isTemplateDeclarationOrInstance
+  isTemplateDeclarationOrInstance,
+  getFormat
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -1058,11 +1059,13 @@ function emitStdScalar(
     case "boolean":
       return { type: "boolean" };
     case "plainDate":
-      return { type: "date" };
+      return { type: "datetime", format: newScalar.format ?? "date" };
     case "utcDateTime":
       return { type: "datetime", format: newScalar.format };
     case "plainTime":
-      return { type: "time" };
+      return { type: "datetime", format: newScalar.format ?? "time" };
+    case "offsetDateTime":
+      return { type: "datetime", format: newScalar.format ?? "rfc7231" };
     case "duration":
       return { type: "duration", format: newScalar.format };
     case "numeric":
@@ -1078,6 +1081,8 @@ function applyEncoding(
   target: any = {}
 ) {
   const encodeData = getEncode(program, typespecType);
+  const formatData = getFormat(program, typespecType);
+  formatData;
   if (encodeData) {
     const newTarget = { ...target };
     const newType = emitScalar(program, encodeData.type);

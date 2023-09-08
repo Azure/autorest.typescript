@@ -200,7 +200,8 @@ export const prettierTypeScriptOptions: Options = {
   printWidth: 80,
   semi: true,
   singleQuote: false,
-  tabWidth: 2
+  tabWidth: 2,
+  useTabs: false
 };
 
 export const prettierJSONOptions: Options = {
