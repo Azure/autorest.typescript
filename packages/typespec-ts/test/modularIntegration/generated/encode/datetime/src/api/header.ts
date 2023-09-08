@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import {
+  buildCsvCollection,
   DatetimeContext as Client,
   HeaderDefault204Response,
   HeaderRfc3339204Response,
@@ -13,7 +14,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { buildCsvCollection } from "../rest/index.js";
 import {
   HeaderDefaultOptions,
   HeaderRfc3339Options,

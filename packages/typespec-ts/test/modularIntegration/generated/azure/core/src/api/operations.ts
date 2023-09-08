@@ -5,6 +5,7 @@ import { User, UserListResults, PagedUser } from "../models/models.js";
 import {
   isUnexpected,
   BasicContext as Client,
+  buildMultiCollection,
   CreateOrReplace200Response,
   CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
@@ -28,7 +29,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { buildMultiCollection } from "../rest/index.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,

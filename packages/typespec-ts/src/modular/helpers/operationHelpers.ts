@@ -445,12 +445,6 @@ function getCollectionFormat(
   }
   const isMulti = (param.format ?? "").toLowerCase() === "multi";
   const additionalParam = isMulti ? `, "${param.restApiName}"` : "";
-  const serializeHelperImport = importSet.get("../rest/index.js");
-  if (serializeHelperImport) {
-    serializeHelperImport.add(collectionInfo);
-  } else {
-    importSet.set("../rest/index.js", new Set<string>().add(collectionInfo));
-  }
   if (!param.optional) {
     return `"${param.restApiName}": ${collectionInfo}(${serializeRequestValue(
       param.type,
