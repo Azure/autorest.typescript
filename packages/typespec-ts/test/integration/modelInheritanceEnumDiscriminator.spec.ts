@@ -59,7 +59,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
     }
   });
 
-  it("should get extensible enum if missing discriminator", async () => {
+  it("should get extensible enum if wrong discriminator", async () => {
     try {
       const result = await client
         .path(
@@ -110,7 +110,7 @@ describe("EnumDiscriminatorClient Rest Client", () => {
     }
   });
 
-  it("should get fixed enum if missing discriminator", async () => {
+  it("should get fixed enum if wrong discriminator", async () => {
     try {
       const result = await client
         .path(

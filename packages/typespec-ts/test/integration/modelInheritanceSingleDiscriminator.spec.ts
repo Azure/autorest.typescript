@@ -98,7 +98,7 @@ describe("SingleDiscriminatorClient Rest Client", () => {
     }
   });
 
-  it("should get if missing discriminator", async () => {
+  it("should get if wrong discriminator", async () => {
     try {
       const result = await client
         .path(
