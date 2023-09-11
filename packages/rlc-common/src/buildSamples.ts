@@ -26,13 +26,6 @@ export function buildSamples(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
     return;
   }
-  let { generateSample } = model.options;
-  generateSample =
-    generateSample === true ||
-    (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
-  if (!generateSample) {
-    return;
-  }
   const sampleGroups: RLCSampleGroup[] | undefined = model.sampleGroups;
   if (!sampleGroups || sampleGroups.length === 0) {
     return;
@@ -452,6 +445,7 @@ function mockParameterTypeValue(
   schemaMap: Map<string, ObjectSchema>,
   path: Set<string> = new Set()
 ): string | undefined {
+  type = leaveBracket(type.trim());
   if (type === "string") {
     return `'{Your ${parameterName}}'`;
   } else if (type === "number") {
@@ -586,7 +580,7 @@ function isRecord(type: string) {
 
 function getRecordType(type: string) {
   const reg = /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g;
-  return leaveBracket(reg.exec(type)?.groups?.type);
+  return reg.exec(type)?.groups?.type;
 }
 
 function isArray(type: string) {
@@ -603,7 +597,7 @@ function getArrayObjectType(type: string) {
   const reg = /Array<(?<type>[a-zA-Z].+)>/g;
   const ret = reg.exec(type);
   console.log(">>>>>>>>>>>>array", ret?.groups);
-  return leaveBracket(ret?.groups?.type);
+  return ret?.groups?.type;
 }
 
 function isNativeArray(type: string) {
@@ -614,25 +608,19 @@ function isNativeArray(type: string) {
 
 function getNativeArrayType(type: string) {
   const reg = /(?<type>[a-zA-Z].+)\[\]$/g;
-  return leaveBracket(reg.exec(type)?.groups?.type);
+  return reg.exec(type)?.groups?.type;
 }
 
 function isUnion(type: string, schemaMap: Map<string, ObjectSchema>) {
   const members = type.split("|").map((m) => m.trim());
-  return (
-    members.length > 1 &&
-    !type.startsWith("(") &&
-    !type.startsWith("Record") &&
-    !type.startsWith("Array") &&
-    !type.endsWith("[]")
-  );
+  return members.length > 1;
 }
 
 function getUnionType(type: string) {
   return leaveBracket(type.split("|").map((m) => m.trim())[0]);
 }
 
-function leaveBracket(type?: string) {
+function leaveBracket(type: string) {
   if (!type || type.length < 2) {
     return type;
   } else if (type.startsWith("(") && type.endsWith(")")) {
