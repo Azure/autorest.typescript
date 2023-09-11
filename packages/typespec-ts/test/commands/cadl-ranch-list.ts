@@ -47,8 +47,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "arrays/itemTypes",
-    inputPath: "type/array",
-    debug: true
+    inputPath: "type/array"
   },
   {
     outputPath: "authentication/apiKey",
@@ -68,8 +67,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "dictionary",
-    inputPath: "type/dictionary",
-    debug: true
+    inputPath: "type/dictionary"
   },
   {
     outputPath: "enums/extensible",
@@ -141,8 +139,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "unions",
-    inputPath: "type/union",
-    debug: true
+    inputPath: "type/union"
   },
   {
     outputPath: "parameters/collection-format",

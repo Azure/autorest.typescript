@@ -343,12 +343,12 @@ function convertMethodLevelParameters(
     requestParameter.body.body?.length > 0
   ) {
     const body = requestParameter.body.body[0];
+    const bodyTypeName = body.typeName ?? body.type;
     if (body.oriSchema) {
-      schemaMap.set(body.typeName ?? body.type, body.oriSchema);
+      schemaMap.set(bodyTypeName, body.oriSchema);
     }
     allSideAssignments.push(
-      ` body: ` +
-        mockParameterTypeValue(body.typeName ?? body.type, "body", schemaMap)
+      ` body: ` + mockParameterTypeValue(bodyTypeName, "body", schemaMap)
     );
   }
 
@@ -740,7 +740,9 @@ function toTypeScriptTypeFromSchema(
   ) {
     return TypeScriptType.date;
   } else if (
-    (schema.type === "string" || schema.type === "number") &&
+    (schema.type === "string" ||
+      schema.type === "number" ||
+      schema.type === "object") &&
     schema.enum &&
     schema.enum.length > 0
   ) {
