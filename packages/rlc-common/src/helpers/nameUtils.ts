@@ -13,7 +13,8 @@ export enum NameType {
   Property,
   Parameter,
   Operation,
-  OperationGroup
+  OperationGroup,
+  Method
 }
 
 const Newable = [NameType.Class, NameType.Interface, NameType.OperationGroup];
@@ -118,6 +119,7 @@ function getSuffix(nameType?: NameType) {
       return "Param";
     case NameType.Class:
     case NameType.Interface:
+    case NameType.Method:
     default:
       return "Model";
   }
@@ -138,6 +140,7 @@ export function normalizeName(
   const parts = getNameParts(sanitizedName);
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
+  console.log("firstPart", firstPart, normalizedFirstPart);
   const normalizedParts = (otherParts || [])
     .map((part) =>
       part === "null" ? part : toCasing(part, CasingConvention.Pascal)
@@ -182,6 +185,7 @@ function getCasingConvention(nameType: NameType) {
     case NameType.Property:
     case NameType.Operation:
     case NameType.Parameter:
+    case NameType.Method:
       return CasingConvention.Camel;
   }
 }
@@ -205,45 +209,26 @@ function toCasing(str: string, casing: CasingConvention): string {
 }
 
 function getNameParts(name: string) {
-  const parts = name.split(/[-._ ]+/);
+  const parts = name.split(/[-._ ]+/).filter((part) => part.trim().length > 0);
 
   return parts.length > 0 ? parts : [name];
 }
 
-export function pascalCase(name: string) {
-  let str = name;
-  // Handle snake case or dash-separated words
-  str = str.replace(/[-_]+/g, " ");
-
-  // Handle pascal case or camel case
-  str = str.replace(/([a-z])([A-Z])/g, (_match, p1, p2) => {
-    return p1 + " " + p2.toLowerCase();
-  });
-
-  // Convert to camel case
-  str = str.replace(/\s(.)/g, (_match, p1) => {
-    return p1.toUpperCase();
-  });
-
-  // Lowercase the first character
+export function pascalCase(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function camelCase(name: string) {
-  let str = name;
-  // Handle snake case or dash-separated words
-  str = str.replace(/[-_]+/g, " ");
+export function camelCase(
+  str: string,
+  options: { uppercaseThreshold?: number } = {}
+) {
+  const { uppercaseThreshold = 4 } = options;
+  const thresholdRegex = new RegExp(
+    `^(?<![A-Z])[A-Z]{1,${uppercaseThreshold}}(?![A-Z])`
+  );
+  if (!thresholdRegex.test(str)) {
+    return str;
+  }
 
-  // Handle pascal case or camel case
-  str = str.replace(/([a-z])([A-Z])/g, (_match, p1, p2) => {
-    return p1 + " " + p2.toLowerCase();
-  });
-
-  // Convert to camel case
-  str = str.replace(/\s(.)/g, (_match, p1) => {
-    return p1.toUpperCase();
-  });
-
-  // Lowercase the first character
   return str.charAt(0).toLowerCase() + str.slice(1);
 }

@@ -59,7 +59,10 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
   const clientInterfaceName = clientName.endsWith("Client")
     ? `${clientName}`
     : `${clientName}Client`;
-  const defaultFactoryName = camelCase(`create ${clientInterfaceName}`);
+  const defaultFactoryName = normalizeName(
+    camelCase(`create ${clientInterfaceName}`),
+    NameType.Method
+  );
   const packageName = model.options?.packageDetails?.name ?? "";
   const methodParameterMap = buildMethodParamMap(model);
   const schemaObjectMap = buildSchemaObjectMap(model);
@@ -70,9 +73,11 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
       const importedDict: Record<string, Set<string>> = {};
       const detail: OperationMethod = methods[method][0];
       const operatonConcante = `${pathDetails.operationGroupName}_${detail.operationName}`;
-      const operationPrefix = camelCase(
-        transformSpecialLetterToSpace(operatonConcante)
+      const operationPrefix = normalizeName(
+        camelCase(transformSpecialLetterToSpace(operatonConcante)),
+        NameType.Method
       );
+      console.log("after normaliztion", operationPrefix);
       const sampleGroup: RLCSampleGroup = {
         filename: `${operationPrefix}Sample`,
         defaultFactoryName,
@@ -459,9 +464,6 @@ function mockParameterTypeValue(
     return `"Unknown Type"`;
   } else if (containsStringLiteral(type)) {
     return `"${getStringLiteral(type)}"`;
-  } else if (isUnion(type, schemaMap)) {
-    const unionType = getUnionType(type);
-    return mockParameterTypeValue(unionType, parameterName, schemaMap, path);
   } else if (isObject(type, schemaMap)) {
     if (path.has(type)) {
       // skip generating if self references
@@ -553,6 +555,11 @@ function mockParameterTypeValue(
           path
         )}}`
       : `{}`;
+  } else if (isUnion(type, schemaMap)) {
+    const unionType = getUnionType(type);
+    return mockParameterTypeValue(unionType!, parameterName, schemaMap, path);
+  } else {
+    console.log("unhandled type", type);
   }
   path.add(type);
 }
@@ -573,13 +580,13 @@ function isObject(type: string, schemaMap: Map<string, ObjectSchema>) {
 }
 
 function isRecord(type: string) {
-  const reg = /Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>/g;
+  const reg = /^Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>$/g;
   return reg.test(type);
 }
 
 function getRecordType(type: string) {
   const reg = /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g;
-  return reg.exec(type)?.groups?.type;
+  return leaveBracket(reg.exec(type)?.groups?.type);
 }
 
 function isArray(type: string) {
@@ -587,7 +594,7 @@ function isArray(type: string) {
 }
 
 function isArrayObject(type: string) {
-  const reg = /Array<([a-zA-Z].+)>/g;
+  const reg = /^(Array<([a-zA-Z].+)>$)/g;
   const ret = reg.test(type);
   return ret;
 }
@@ -596,25 +603,40 @@ function getArrayObjectType(type: string) {
   const reg = /Array<(?<type>[a-zA-Z].+)>/g;
   const ret = reg.exec(type);
   console.log(">>>>>>>>>>>>array", ret?.groups);
-  return ret?.groups?.type;
+  return leaveBracket(ret?.groups?.type);
 }
 
 function isNativeArray(type: string) {
-  const reg1 = /([a-zA-Z].+)\[\]/g;
+  const reg1 = /([a-zA-Z].+)\[\]$/g;
   const ret = reg1.test(type);
   return ret;
 }
 
 function getNativeArrayType(type: string) {
-  const reg = /(?<type>[a-zA-Z].+)\[\]/g;
-  return reg.exec(type)?.groups?.type;
+  const reg = /(?<type>[a-zA-Z].+)\[\]$/g;
+  return leaveBracket(reg.exec(type)?.groups?.type);
 }
 
 function isUnion(type: string, schemaMap: Map<string, ObjectSchema>) {
   const members = type.split("|").map((m) => m.trim());
-  return members.length > 1;
+  return (
+    members.length > 1 &&
+    !type.startsWith("(") &&
+    !type.startsWith("Record") &&
+    !type.startsWith("Array") &&
+    !type.endsWith("[]")
+  );
 }
 
 function getUnionType(type: string) {
-  return type.split("|").map((m) => m.trim())[0];
+  return leaveBracket(type.split("|").map((m) => m.trim())[0]);
+}
+
+function leaveBracket(type?: string) {
+  if (!type || type.length < 2) {
+    return type;
+  } else if (type.startsWith("(") && type.endsWith(")")) {
+    return type.slice(1, type.length - 1);
+  }
+  return type;
 }
