@@ -26,7 +26,7 @@ async function getEmbeddingsSample() {
       user: '{Your "user"}',
       input_type: '{Your "input_type"}',
       model: '{Your "model"}',
-      input: ['{Your "input"}'],
+      input: '{Your "input"}',
     },
   };
   const result = await client
