@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.15.0",
+  "version": "0.16.0",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -30,7 +30,9 @@
     "integration-test:alone:rlc": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 4000 ./test/integration/*.spec.ts",
     "integration-test:alone:modular": "cross-env TS_NODE_PROJECT=tsconfig.test.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 4000 ./test/modularIntegration/*.spec.ts",
     "stop-test-server": "npx cadl-ranch server stop",
-    "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 4000 './test/unit/**/*.spec.ts' './test/modularUnit/**/*.spec.ts'"
+    "unit-test": "npm run unit-test:rlc && npm run unit-test:modular",
+    "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 4000 './test/unit/**/*.spec.ts'",
+    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
@@ -74,7 +76,7 @@
   "dependencies": {
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "workspace:^0.15.0",
+    "@azure-tools/rlc-common": "workspace:^0.16.0",
     "ts-morph": "^15.1.0",
     "fs-extra": "^11.1.0"
   },

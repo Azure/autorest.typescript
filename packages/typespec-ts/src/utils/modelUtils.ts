@@ -900,10 +900,12 @@ function getSchemaForStdScalar(
    *  if absent use typespec type (or default way of serializing that type)
    *  if present respect type provided in @encode
    */
+  let format = undefined;
   if (relevantProperty) {
     const encodeData = getEncode(program, relevantProperty);
     if (encodeData && isEncodeTypeEffective(type, encodeData)) {
       type = encodeData.type;
+      format = encodeData.encoding;
     }
   }
   const name = type.name;
@@ -984,7 +986,7 @@ function getSchemaForStdScalar(
     case "plainDate":
       return {
         type: "string",
-        format: "date",
+        format,
         description,
         typeName: "Date | string",
         outputTypeName: "string"
@@ -992,7 +994,7 @@ function getSchemaForStdScalar(
     case "utcDateTime":
       return {
         type: "string",
-        format: "date-time",
+        format,
         description,
         typeName: "Date | string",
         outputTypeName: "string"
@@ -1014,7 +1016,7 @@ function getSchemaForStdScalar(
         outputTypeName: "string"
       };
     case "duration":
-      return { type: "string", format: "duration", description };
+      return { type: "string", format, description };
   }
 }
 
