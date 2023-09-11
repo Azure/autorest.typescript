@@ -140,7 +140,6 @@ export function normalizeName(
   const parts = getNameParts(sanitizedName);
   const [firstPart, ...otherParts] = parts;
   const normalizedFirstPart = toCasing(firstPart, casingConvention);
-  console.log("firstPart", firstPart, normalizedFirstPart);
   const normalizedParts = (otherParts || [])
     .map((part) =>
       part === "null" ? part : toCasing(part, CasingConvention.Pascal)
