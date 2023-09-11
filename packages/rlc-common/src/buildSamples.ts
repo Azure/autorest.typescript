@@ -459,6 +459,9 @@ function mockParameterTypeValue(
     return `"Unknown Type"`;
   } else if (containsStringLiteral(type)) {
     return `"${getStringLiteral(type)}"`;
+  } else if (isUnion(type, schemaMap)) {
+    const unionType = getUnionType(type);
+    return mockParameterTypeValue(unionType, parameterName, schemaMap, path);
   } else if (isObject(type, schemaMap)) {
     if (path.has(type)) {
       // skip generating if self references
@@ -550,9 +553,6 @@ function mockParameterTypeValue(
           path
         )}}`
       : `{}`;
-  } else if (isUnion(type, schemaMap)) {
-    const unionType = getUnionType(type);
-    return mockParameterTypeValue(unionType, parameterName, schemaMap, path);
   }
   path.add(type);
 }
