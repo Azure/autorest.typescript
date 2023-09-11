@@ -96,6 +96,56 @@ describe("modular encode test for property type datetime", () => {
     );
   });
 
+  it("should handle header parameter type utcDateTime with default encoding", async () => {
+    const tspContent = `
+    op read(@header prop: utcDateTime): OkResponse;
+    `
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,`
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      
+      export function _readSend(
+        context: Client,
+        prop: Date,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/")
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            headers: {
+              prop: prop.toUTCString(),
+            },
+          });
+      }
+      
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+      
+        return;
+      }
+      
+      export async function read(
+        context: Client,
+        prop: Date,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(context, prop, options);
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
   it("should handle property type utcDateTime, offsetDateTime with rfc3339 encoding", async () => {
     const tspContent = `
     model Foo {
