@@ -470,11 +470,15 @@ function mockParameterTypeValue(
   schemaMap: Map<string, Schema>,
   path: Set<string> = new Set()
 ): string | undefined {
+  if (type === undefined) {
+    return `undefined /**FIXME */`;
+  }
   type = leaveBracket(type.trim());
   let tsType: TypeScriptType | undefined;
   if (schemaMap.has(type)) {
     tsType = toTypeScriptTypeFromSchema(schemaMap.get(type)!);
-  } else {
+  }
+  if (!tsType) {
     tsType = toTypeScriptTypeFromName(type);
   }
   switch (tsType) {
@@ -506,7 +510,7 @@ function mockParameterTypeValue(
     case TypeScriptType.constant:
       return type;
   }
-  return `/**FIXME */`;
+  return `undefined /**FIXME */`;
 }
 
 function mockUnionValues(
@@ -518,8 +522,15 @@ function mockUnionValues(
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
     const first = schema.enum[0];
+    if ((schema.typeName ?? schema.type) === "string") {
+      return `"${first}"`;
+    } else if ((schema.typeName ?? schema.type) === "number") {
+      return `${first}`;
+    } else if ((first.typeName ?? first.type) === undefined) {
+      return `"${first}"`;
+    }
     return mockParameterTypeValue(
-      first.typeName ?? first.type,
+      first.typeName ?? first.type ?? first,
       parameterName,
       schemaMap,
       path
@@ -610,7 +621,7 @@ function mockObjectValues(
       continue;
     }
     const propType = propertySchema.typeName ?? propertySchema.type;
-    if (!schemaMap.has(propType)) {
+    if (propType !== "string" && !schemaMap.has(propType)) {
       schemaMap.set(propType, propertySchema);
     }
     allPropNames.add(propName);
@@ -640,7 +651,7 @@ function mockObjectValues(
           continue;
         }
         const propType = propertySchema.typeName ?? propertySchema.type;
-        if (!schemaMap.has(propType)) {
+        if (propType !== "string" && !schemaMap.has(propType)) {
           schemaMap.set(propType, propertySchema);
         }
         allPropNames.add(propName);
@@ -657,7 +668,8 @@ function mockObjectValues(
 
 function containsStringLiteral(type: string) {
   const reg = /^"([a-zA-Z0-9\/\+\-\s]*)"$/g;
-  return reg.test(type);
+  const reg2 = /^'([a-zA-Z0-9\/\+\-\s]*)'$/g;
+  return reg.test(type) || reg2.test(type);
 }
 
 function isRecord(type: string) {
@@ -739,13 +751,7 @@ function toTypeScriptTypeFromSchema(
     ["date-time", "date"].includes(schema?.format ?? "")
   ) {
     return TypeScriptType.date;
-  } else if (
-    (schema.type === "string" ||
-      schema.type === "number" ||
-      schema.type === "object") &&
-    schema.enum &&
-    schema.enum.length > 0
-  ) {
+  } else if (schema.type !== "union" && schema.enum && schema.enum.length > 0) {
     return TypeScriptType.enum;
   } else if (schema.isConstant === true) {
     return TypeScriptType.constant;
@@ -795,5 +801,7 @@ function toTypeScriptTypeFromName(
     return TypeScriptType.array;
   } else if (isUnion(typeName)) {
     return TypeScriptType.union;
+  } else if (containsStringLiteral(typeName)) {
+    return TypeScriptType.constant;
   }
 }
