@@ -243,8 +243,29 @@ export function _getChatCompletionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: messages,
-        functions: options?.functions,
+        messages: (messages ?? []).map((p) => ({
+          role: p["role"],
+          content: p["content"],
+          name: p["name"],
+          function_call: !p.functionCall
+            ? undefined
+            : {
+                name: p.functionCall?.["name"],
+                arguments: p.functionCall?.["arguments"],
+              },
+          context: !p.context
+            ? undefined
+            : {
+                messages: !p.context?.messages
+                  ? undefined
+                  : (p.context?.messages as any),
+              },
+        })),
+        functions: (options?.functions ?? []).map((p) => ({
+          name: p["name"],
+          description: p["description"],
+          parameters: p["parameters"],
+        })),
         function_call: options?.functionCall,
         max_tokens: options?.maxTokens,
         temperature: options?.temperature,
@@ -257,7 +278,10 @@ export function _getChatCompletionsSend(
         frequency_penalty: options?.frequencyPenalty,
         stream: options?.stream,
         model: options?.model,
-        dataSources: options?.dataSources,
+        dataSources: (options?.dataSources ?? []).map((p) => ({
+          type: p["type"],
+          parameters: p["parameters"],
+        })),
       },
     });
 }
@@ -401,8 +425,29 @@ export function _getChatCompletionsWithAzureExtensionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: messages,
-        functions: options?.functions,
+        messages: (messages ?? []).map((p) => ({
+          role: p["role"],
+          content: p["content"],
+          name: p["name"],
+          function_call: !p.functionCall
+            ? undefined
+            : {
+                name: p.functionCall?.["name"],
+                arguments: p.functionCall?.["arguments"],
+              },
+          context: !p.context
+            ? undefined
+            : {
+                messages: !p.context?.messages
+                  ? undefined
+                  : (p.context?.messages as any),
+              },
+        })),
+        functions: (options?.functions ?? []).map((p) => ({
+          name: p["name"],
+          description: p["description"],
+          parameters: p["parameters"],
+        })),
         function_call: options?.functionCall,
         max_tokens: options?.maxTokens,
         temperature: options?.temperature,
@@ -415,7 +460,10 @@ export function _getChatCompletionsWithAzureExtensionsSend(
         frequency_penalty: options?.frequencyPenalty,
         stream: options?.stream,
         model: options?.model,
-        dataSources: options?.dataSources,
+        dataSources: (options?.dataSources ?? []).map((p) => ({
+          type: p["type"],
+          parameters: p["parameters"],
+        })),
       },
     });
 }

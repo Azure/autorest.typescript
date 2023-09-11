@@ -25,6 +25,7 @@ import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
 import { buildModels } from "../../src/modular/emitModels.js";
+import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { Project } from "ts-morph";
 import { buildOperationUtils } from "../../src/modular/buildOperationUtils.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";

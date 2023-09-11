@@ -22,6 +22,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "parameters/body-optionality"
   },
   {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
     outputPath: "encode/duration",
     inputPath: "encode/duration"
   },
@@ -84,6 +88,18 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/inheritance",
     inputPath: "type/model/inheritance/nested-discriminator"
+  },
+  {
+    outputPath: "models/inheritance-not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "models/inheritance-enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "models/inheritance-single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
   },
   {
     outputPath: "models/propertyOptional",
@@ -207,5 +223,17 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
   }
 ];
