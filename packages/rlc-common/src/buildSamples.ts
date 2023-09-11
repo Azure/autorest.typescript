@@ -65,7 +65,11 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
     for (const method in methods) {
       const importedDict: Record<string, Set<string>> = {};
       const detail: OperationMethod = methods[method][0];
-      const operatonConcante = `${pathDetails.operationGroupName}_${detail.operationName}`;
+      const operatonConcante = getOperationConcate(
+        detail.operationName,
+        pathDetails.operationGroupName,
+        model.options?.sourceFrom
+      );
       const operationPrefix = normalizeName(
         camelCase(transformSpecialLetterToSpace(operatonConcante)),
         NameType.Method
@@ -416,10 +420,26 @@ function addValueInImportedDict(
 function buildMethodParamMap(model: RLCModel): Map<string, OperationParameter> {
   const map = new Map<string, OperationParameter>();
   (model.parameters ?? []).forEach((p) => {
-    const operatonConcante = `${p.operationGroup}_${p.operationName}`;
+    const operatonConcante = getOperationConcate(
+      p.operationName,
+      p.operationGroup,
+      model.options?.sourceFrom
+    );
     map.set(operatonConcante, p);
   });
   return map;
+}
+
+function getOperationConcate(
+  opName: string,
+  opGroup: string,
+  sourceFrom?: string
+) {
+  return sourceFrom === "Swagger"
+    ? opGroup === ""
+      ? opName
+      : `${opGroup}${opName}`
+    : `${opGroup}_${opName}`;
 }
 
 function buildSchemaObjectMap(model: RLCModel) {
@@ -451,6 +471,8 @@ function mockParameterTypeValue(
     return "123";
   } else if (type === "boolean") {
     return "true";
+  } else if (type === "true" || type === "false") {
+    return type;
   } else if (type === "Date") {
     return "new Date()";
   } else if (type === "unknown") {

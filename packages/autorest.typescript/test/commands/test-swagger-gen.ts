@@ -1016,7 +1016,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",
@@ -1029,7 +1029,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",

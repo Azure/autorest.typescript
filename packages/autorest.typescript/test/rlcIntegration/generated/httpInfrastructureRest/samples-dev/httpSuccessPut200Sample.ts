@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpSuccessPut200Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpSuccessPut200Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/success/200").put();
+  const options: HttpSuccessPut200Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/success/200").put(options);
   console.log(result);
 }
 

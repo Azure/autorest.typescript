@@ -3,7 +3,10 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createPagingClient, { paginate } from "@msinternal/paging-service";
+import createPagingClient, {
+  PagingGetMultiplePagesFragmentWithGroupingNextLinkParameters,
+  paginate
+} from "@msinternal/paging-service";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -16,9 +19,12 @@ dotenv.config();
 async function pagingGetMultiplePagesFragmentWithGroupingNextLinkSample() {
   const client = createPagingClient();
   const tenant = "{Your tenant}";
+  const options: PagingGetMultiplePagesFragmentWithGroupingNextLinkParameters = {
+    queryParameters: { api_version: '{Your "api_version"}' }
+  };
   const initialResponse = await client
     .path("/paging/multiple/fragmentwithgrouping/{tenant}", tenant)
-    .get();
+    .get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpClientFailurePatch414Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpClientFailurePatch414Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/failure/client/414").patch();
+  const options: HttpClientFailurePatch414Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/failure/client/414").patch(options);
   console.log(result);
 }
 

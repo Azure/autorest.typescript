@@ -4,6 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createLRORestClient, {
+  LrosaDsPost202NoLocationParameters,
   getLongRunningPoller
 } from "@msinternal/lro-rest";
 import * as dotenv from "dotenv";
@@ -17,9 +18,17 @@ dotenv.config();
  */
 async function lrosaDsPost202NoLocationSample() {
   const client = createLRORestClient();
+  const options: LrosaDsPost202NoLocationParameters = {
+    body: {
+      properties: { provisioningState: '{Your "provisioningState"}' },
+      tags: { key: '{Your "tags"}' },
+      location: '{Your "location"}'
+    },
+    contentType: "application/json"
+  };
   const initialResponse = await client
     .path("/lro/error/post/202/nolocation")
-    .post();
+    .post(options);
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

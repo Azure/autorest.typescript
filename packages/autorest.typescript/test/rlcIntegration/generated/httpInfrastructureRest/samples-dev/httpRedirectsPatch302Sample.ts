@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpRedirectsPatch302Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpRedirectsPatch302Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/redirect/302").patch();
+  const options: HttpRedirectsPatch302Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/redirect/302").patch(options);
   console.log(result);
 }
 

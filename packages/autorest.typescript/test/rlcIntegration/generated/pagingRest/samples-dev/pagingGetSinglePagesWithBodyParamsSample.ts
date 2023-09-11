@@ -3,7 +3,10 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createPagingClient, { paginate } from "@msinternal/paging-service";
+import createPagingClient, {
+  PagingGetSinglePagesWithBodyParamsParameters,
+  paginate
+} from "@msinternal/paging-service";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,9 +18,13 @@ dotenv.config();
  */
 async function pagingGetSinglePagesWithBodyParamsSample() {
   const client = createPagingClient();
+  const options: PagingGetSinglePagesWithBodyParamsParameters = {
+    body: { name: '{Your "name"}' },
+    contentType: "application/json"
+  };
   const initialResponse = await client
     .path("/paging/single/getWithBodyParams")
-    .get();
+    .get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

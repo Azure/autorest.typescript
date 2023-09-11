@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpSuccessPost204Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpSuccessPost204Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/success/204").post();
+  const options: HttpSuccessPost204Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/success/204").post(options);
   console.log(result);
 }
 

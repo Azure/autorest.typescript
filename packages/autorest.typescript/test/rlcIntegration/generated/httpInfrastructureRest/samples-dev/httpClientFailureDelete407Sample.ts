@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpClientFailureDelete407Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpClientFailureDelete407Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/failure/client/407").delete();
+  const options: HttpClientFailureDelete407Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/failure/client/407").delete(options);
   console.log(result);
 }
 

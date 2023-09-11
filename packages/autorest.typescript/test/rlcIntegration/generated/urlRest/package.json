@@ -27,11 +27,11 @@
     "build:samples": "echo skipped.",
     "build:test": "echo skipped.",
     "build:debug": "echo skipped.",
-    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"samples-dev/**/*.ts\"",
+    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": "echo skipped",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
-    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"samples-dev/**/*.ts\"",
+    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
     "generate:client": "autorest --typescript swagger/README.md && npm run format",
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
@@ -75,11 +75,5 @@
     "rollup": "^2.66.1",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9"
-  },
-  "//sampleConfiguration": {
-    "productName": "UrlRestClient",
-    "productSlugs": ["azure"],
-    "disableDocsMs": true,
-    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/url-rest"
   }
 }

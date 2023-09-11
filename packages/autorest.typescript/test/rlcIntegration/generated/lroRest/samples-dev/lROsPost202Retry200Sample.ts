@@ -4,6 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createLRORestClient, {
+  LROsPost202Retry200Parameters,
   getLongRunningPoller
 } from "@msinternal/lro-rest";
 import * as dotenv from "dotenv";
@@ -17,7 +18,17 @@ dotenv.config();
  */
 async function lROsPost202Retry200Sample() {
   const client = createLRORestClient();
-  const initialResponse = await client.path("/lro/post/202/retry/200").post();
+  const options: LROsPost202Retry200Parameters = {
+    body: {
+      properties: { provisioningState: '{Your "provisioningState"}' },
+      tags: { key: '{Your "tags"}' },
+      location: '{Your "location"}'
+    },
+    contentType: "application/json"
+  };
+  const initialResponse = await client
+    .path("/lro/post/202/retry/200")
+    .post(options);
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

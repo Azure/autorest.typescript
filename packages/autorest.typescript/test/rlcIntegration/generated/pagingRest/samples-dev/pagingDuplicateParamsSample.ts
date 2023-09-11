@@ -3,7 +3,10 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createPagingClient, { paginate } from "@msinternal/paging-service";
+import createPagingClient, {
+  PagingDuplicateParamsParameters,
+  paginate
+} from "@msinternal/paging-service";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,9 +18,12 @@ dotenv.config();
  */
 async function pagingDuplicateParamsSample() {
   const client = createPagingClient();
+  const options: PagingDuplicateParamsParameters = {
+    queryParameters: { $filter: '{Your "$filter"}' }
+  };
   const initialResponse = await client
     .path("/paging/multiple/duplicateParams/1")
-    .get();
+    .get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

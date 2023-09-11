@@ -28,6 +28,24 @@
       ]
     },
     {
+      "name": "[Autorest] Run Debug Integration Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "runtimeArgs": [
+        "ts-node",
+        "./test/commands/test-swagger-gen.ts",
+        "--",
+        "rlc"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "[Autorest] Debug Unit Tests",

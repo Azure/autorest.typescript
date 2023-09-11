@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpRedirectsPost303Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpRedirectsPost303Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/redirect/303").post();
+  const options: HttpRedirectsPost303Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/redirect/303").post(options);
   console.log(result);
 }
 

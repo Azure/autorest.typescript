@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpRetryDelete503Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpRetryDelete503Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/retry/503").delete();
+  const options: HttpRetryDelete503Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/retry/503").delete(options);
   console.log(result);
 }
 

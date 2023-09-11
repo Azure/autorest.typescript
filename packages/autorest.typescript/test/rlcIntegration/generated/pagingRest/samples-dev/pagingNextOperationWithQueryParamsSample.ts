@@ -3,7 +3,10 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createPagingClient, { paginate } from "@msinternal/paging-service";
+import createPagingClient, {
+  PagingNextOperationWithQueryParamsParameters,
+  paginate
+} from "@msinternal/paging-service";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,9 +18,12 @@ dotenv.config();
  */
 async function pagingNextOperationWithQueryParamsSample() {
   const client = createPagingClient();
+  const options: PagingNextOperationWithQueryParamsParameters = {
+    queryParameters: { queryConstant: true }
+  };
   const initialResponse = await client
     .path("/paging/multiple/nextOperationWithQueryParams")
-    .get();
+    .get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

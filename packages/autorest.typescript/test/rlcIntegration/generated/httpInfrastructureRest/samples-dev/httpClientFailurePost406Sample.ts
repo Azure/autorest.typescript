@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpClientFailurePost406Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpClientFailurePost406Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/failure/client/406").post();
+  const options: HttpClientFailurePost406Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/failure/client/406").post(options);
   console.log(result);
 }
 

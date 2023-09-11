@@ -3,7 +3,10 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createPagingClient, { paginate } from "@msinternal/paging-service";
+import createPagingClient, {
+  PagingPageWithMaxPageSizeParameters,
+  paginate
+} from "@msinternal/paging-service";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +18,10 @@ dotenv.config();
  */
 async function pagingPageWithMaxPageSizeSample() {
   const client = createPagingClient();
-  const initialResponse = await client.path("/paging/maxPageSize").get();
+  const options: PagingPageWithMaxPageSizeParameters = {
+    queryParameters: { $maxpagesize: "5" }
+  };
+  const initialResponse = await client.path("/paging/maxPageSize").get(options);
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

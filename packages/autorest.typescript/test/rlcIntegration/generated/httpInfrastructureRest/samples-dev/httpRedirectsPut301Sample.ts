@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpRedirectsPut301Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpRedirectsPut301Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/redirect/301").put();
+  const options: HttpRedirectsPut301Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/redirect/301").put(options);
   console.log(result);
 }
 

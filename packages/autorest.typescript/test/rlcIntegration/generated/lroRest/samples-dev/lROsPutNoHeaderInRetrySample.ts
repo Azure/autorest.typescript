@@ -4,6 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createLRORestClient, {
+  LROsPutNoHeaderInRetryParameters,
   getLongRunningPoller
 } from "@msinternal/lro-rest";
 import * as dotenv from "dotenv";
@@ -17,7 +18,17 @@ dotenv.config();
  */
 async function lROsPutNoHeaderInRetrySample() {
   const client = createLRORestClient();
-  const initialResponse = await client.path("/lro/put/noheader/202/200").put();
+  const options: LROsPutNoHeaderInRetryParameters = {
+    body: {
+      properties: { provisioningState: '{Your "provisioningState"}' },
+      tags: { key: '{Your "tags"}' },
+      location: '{Your "location"}'
+    },
+    contentType: "application/json"
+  };
+  const initialResponse = await client
+    .path("/lro/put/noheader/202/200")
+    .put(options);
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

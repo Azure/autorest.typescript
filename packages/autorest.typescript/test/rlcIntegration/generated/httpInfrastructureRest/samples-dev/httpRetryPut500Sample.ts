@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createHttpInfrastructureRestClient from "@msinternal/http-infrastructure-rest";
+import createHttpInfrastructureRestClient, {
+  HttpRetryPut500Parameters
+} from "@msinternal/http-infrastructure-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +17,11 @@ dotenv.config();
  */
 async function httpRetryPut500Sample() {
   const client = createHttpInfrastructureRestClient();
-  const result = await client.path("/http/retry/500").put();
+  const options: HttpRetryPut500Parameters = {
+    body: true,
+    contentType: "application/json"
+  };
+  const result = await client.path("/http/retry/500").put(options);
   console.log(result);
 }
 

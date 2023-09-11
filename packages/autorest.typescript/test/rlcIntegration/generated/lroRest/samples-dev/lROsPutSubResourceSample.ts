@@ -4,6 +4,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 import createLRORestClient, {
+  LROsPutSubResourceParameters,
   getLongRunningPoller
 } from "@msinternal/lro-rest";
 import * as dotenv from "dotenv";
@@ -17,9 +18,13 @@ dotenv.config();
  */
 async function lROsPutSubResourceSample() {
   const client = createLRORestClient();
+  const options: LROsPutSubResourceParameters = {
+    body: { properties: { provisioningState: '{Your "provisioningState"}' } },
+    contentType: "application/json"
+  };
   const initialResponse = await client
     .path("/lro/putsubresource/202/200")
-    .put();
+    .put(options);
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);
