@@ -20,6 +20,7 @@ import { sampleTemplate } from "./static/sampleTemplate.js";
 import hbs from "handlebars";
 import * as path from "path";
 import { isObjectSchema } from "./helpers/schemaHelpers.js";
+import { getImmediateParentsNames } from "./buildObjectTypes.js";
 
 export function buildSamples(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
@@ -339,7 +340,12 @@ function convertMethodLevelParameters(
   ) {
     const type = requestParameter.body.body[0].type;
     allSideAssignments.push(
-      ` body: ` + mockParameterTypeValue(type, "body", schemaMap)
+      ` body: ` +
+        mockParameterTypeValue(
+          requestParameter.body.body[0].typeName ?? type,
+          "body",
+          schemaMap
+        )
     );
   }
 
@@ -359,15 +365,29 @@ function convertMethodLevelParameters(
   }
   requestParameter.parameters
     ?.filter((p) => p.type === "header")
+    .filter((p) => p.name.toLowerCase() !== "contenttype")
     .forEach((p) => {
       const name = `${p.name}`;
-      querySideAssignments.push(
+      headerSideAssignments.push(
         `${name}: ` + mockParameterTypeValue(p.param.type, name, schemaMap)
       );
     });
   if (headerSideAssignments.length > 0) {
     allSideAssignments.push(
       ` headers: { ` + headerSideAssignments.join(", ") + `}`
+    );
+  }
+  const contentType = requestParameter.parameters
+    ?.filter((p) => p.type === "header")
+    .filter((p) => p.name.toLowerCase() === "contenttype");
+  if (contentType && contentType.length > 0) {
+    allSideAssignments.push(
+      ` ${contentType[0].name}: ` +
+        mockParameterTypeValue(
+          contentType[0].param.type,
+          contentType[0].name,
+          schemaMap
+        )
     );
   }
   let value: string = `{}`;
@@ -449,6 +469,7 @@ function mockParameterTypeValue(
     const values: string[] = [];
     const schema = schemaMap.get(type);
     const properties = schema?.properties ?? {};
+    const propSet = new Set<string>();
     for (const prop in properties) {
       const propName = prop;
       const property = properties[prop];
@@ -458,6 +479,10 @@ function mockParameterTypeValue(
       if (property.type === "never") {
         continue;
       }
+      if (propSet.has(propName)) {
+        continue;
+      }
+      propSet.add(propName);
       let propRetValue =
         `${propName}: ` +
         mockParameterTypeValue(
@@ -467,6 +492,39 @@ function mockParameterTypeValue(
           path
         );
       values.push(propRetValue);
+    }
+
+    // add parents' properties
+    if (schema) {
+      const parents = getImmediateParentsNames(schema, [SchemaContext.Input])
+        .filter((p) => schemaMap.get(p) !== undefined)
+        .map((p) => schemaMap.get(p)!);
+      for (let parent of parents) {
+        const properties = parent?.properties ?? {};
+        for (const prop in properties) {
+          const propName = prop;
+          const property = properties[prop];
+          if (property.readOnly) {
+            continue;
+          }
+          if (property.type === "never") {
+            continue;
+          }
+          if (propSet.has(propName)) {
+            continue;
+          }
+          propSet.add(propName);
+          let propRetValue =
+            `${propName}: ` +
+            mockParameterTypeValue(
+              property.typeName ?? property.type,
+              propName,
+              schemaMap,
+              path
+            );
+          values.push(propRetValue);
+        }
+      }
     }
 
     return `{${values.join(", ")}}`;
@@ -501,12 +559,12 @@ function mockParameterTypeValue(
 
 function containsStringLiteral(type: string) {
   console.log(">>>>>>>>>>>type", type);
-  const reg = /^"([a-zA-Z0-9\s]*)"$/g;
+  const reg = /^"([a-zA-Z0-9\/\+\-\s]*)"$/g;
   return reg.test(type);
 }
 
 function getStringLiteral(type: string) {
-  const reg = /^"(?<first>[a-zA-Z0-9\s]*)"$/g;
+  const reg = /^"(?<first>[a-zA-Z0-9\/\+\-\s]*)"$/g;
   return reg.exec(type)?.groups?.first;
 }
 
