@@ -70,7 +70,6 @@ export function buildSamplesOnFakeContent(model: RLCModel) {
         camelCase(transformSpecialLetterToSpace(operatonConcante)),
         NameType.Method
       );
-      console.log("after normaliztion", operationPrefix);
       const sampleGroup: RLCSampleGroup = {
         filename: `${operationPrefix}Sample`,
         defaultFactoryName,
@@ -540,7 +539,6 @@ function mockParameterTypeValue(
     return itemValue ? `[${itemValue}]` : `[]`;
   } else if (isRecord(type)) {
     const recordType = getRecordType(type);
-    console.log(">>>>>>>>>>recordType", recordType);
     return recordType
       ? `{"key": ${mockParameterTypeValue(
           recordType,
@@ -553,13 +551,12 @@ function mockParameterTypeValue(
     const unionType = getUnionType(type);
     return mockParameterTypeValue(unionType!, parameterName, schemaMap, path);
   } else {
-    console.log("unhandled type", type);
+    // console.log("unhandled type", type);
   }
   path.add(type);
 }
 
 function containsStringLiteral(type: string) {
-  console.log(">>>>>>>>>>>type", type);
   const reg = /^"([a-zA-Z0-9\/\+\-\s]*)"$/g;
   return reg.test(type);
 }
@@ -596,7 +593,6 @@ function isArrayObject(type: string) {
 function getArrayObjectType(type: string) {
   const reg = /Array<(?<type>[a-zA-Z].+)>/g;
   const ret = reg.exec(type);
-  console.log(">>>>>>>>>>>>array", ret?.groups);
   return ret?.groups?.type;
 }
 
