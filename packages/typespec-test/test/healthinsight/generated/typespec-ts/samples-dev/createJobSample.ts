@@ -68,7 +68,7 @@ async function createJobSample() {
                 acceptedSex: '{Your "acceptedSex"}',
                 acceptedAgeRange: {
                   minimumAge: { unit: '{Your "unit"}', value: 123 },
-                  maximumAge: {} as any,
+                  maximumAge: {} as any /**FIXME */,
                 },
               },
               metadata: {
@@ -124,6 +124,10 @@ async function createJobSample() {
           ],
         },
       },
+    },
+    headers: {
+      "Repeatability-Request-ID": '{Your "Repeatability-Request-ID"}',
+      "Repeatability-First-Sent": '{Your "Repeatability-First-Sent"}',
     },
   };
   const initialResponse = await client.path("/trialmatcher/jobs").post(options);

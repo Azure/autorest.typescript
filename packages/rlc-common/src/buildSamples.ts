@@ -344,7 +344,7 @@ function convertMethodLevelParameters(
   ) {
     const body = requestParameter.body.body[0];
     const bodyTypeName = body.typeName ?? body.type;
-    if (body.oriSchema) {
+    if (bodyTypeName !== "string" && body.oriSchema) {
       schemaMap.set(bodyTypeName, body.oriSchema);
     }
     allSideAssignments.push(
@@ -551,7 +551,7 @@ function mockRecordValues(
   if (schema && schema.additionalProperties) {
     recordType =
       schema.additionalProperties.typeName ?? schema.additionalProperties.type;
-    if (!schemaMap.has(recordType)) {
+    if (recordType !== "string" && !schemaMap.has(recordType)) {
       schemaMap.set(recordType, schema.additionalProperties);
     }
   } else {
@@ -578,7 +578,7 @@ function mockArrayValues(
   const schema = schemaMap.get(type) as ArraySchema;
   if (schema && schema.items) {
     arrayType = schema.items.typeName ?? schema.items.type;
-    if (!schemaMap.has(arrayType)) {
+    if (arrayType !== "string" && !schemaMap.has(arrayType)) {
       schemaMap.set(arrayType, schema.items);
     }
   } else if (isArrayObject(type)) {
