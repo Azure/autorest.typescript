@@ -25,6 +25,7 @@ import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
 import { buildModels } from "../../src/modular/emitModels.js";
+import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { Project } from "ts-morph";
 
 export async function emitPageHelperFromTypeSpec(
@@ -245,4 +246,40 @@ export async function emitModularModelsFromTypeSpec(tspContent: string) {
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;
+}
+
+export async function emitModularOperationsFromTypeSpec(tspContent: string) {
+  const context = await rlcEmitterFor(tspContent);
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
+    string,
+    RLCModel
+  >();
+  const project = new Project();
+  const clients = getRLCClients(dpgContext);
+  if (clients && clients[0]) {
+    dpgContext.rlcOptions!.isModularLibrary = true;
+    const rlcModels = await transformRLCModel(clients[0], dpgContext);
+    serviceNameToRlcModelsMap.set(clients[0].service.name, rlcModels);
+    const modularCodeModel = emitCodeModel(
+      dpgContext,
+      serviceNameToRlcModelsMap,
+      "",
+      project,
+      {
+        casing: "camel"
+      }
+    );
+    if (
+      modularCodeModel &&
+      modularCodeModel.clients &&
+      modularCodeModel.clients.length > 0 &&
+      modularCodeModel.clients[0]
+    ) {
+      return buildOperationFiles(dpgContext, modularCodeModel, modularCodeModel.clients[0], false);
+    }
+  }
+  expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  return undefined;
+
 }

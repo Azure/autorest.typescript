@@ -63,8 +63,7 @@ export function _publishCloudEventSend(
               ? uint8ArrayToString(event["dataBase64"], "base64")
               : undefined,
           type: event["type"],
-          time:
-            event["time"] !== undefined ? new Date(event["time"]) : undefined,
+          time: event["time"]?.toISOString(),
           specversion: event["specversion"],
           dataschema: event["dataschema"],
           datacontenttype: event["datacontenttype"],
@@ -123,7 +122,7 @@ export function _publishCloudEventsSend(
             ? uint8ArrayToString(p["dataBase64"], "base64")
             : undefined,
         type: p["type"],
-        time: p["time"] !== undefined ? new Date(p["time"]) : undefined,
+        time: p["time"]?.toISOString(),
         specversion: p["specversion"],
         dataschema: p["dataschema"],
         datacontenttype: p["datacontenttype"],

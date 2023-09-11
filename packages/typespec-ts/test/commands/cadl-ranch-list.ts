@@ -223,5 +223,17 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
   }
 ];

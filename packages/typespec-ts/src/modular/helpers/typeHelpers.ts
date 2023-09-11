@@ -15,7 +15,7 @@ function getNullableType(name: string, type: Type): string {
   return name;
 }
 
-export function getType(type: Type): TypeMetadata {
+export function getType(type: Type, format?: string): TypeMetadata {
   switch (type.type) {
     case "Key":
       return {
@@ -58,7 +58,7 @@ export function getType(type: Type): TypeMetadata {
         throw new Error("Unable to process Array with no elementType");
       }
       return {
-        name: getNullableType(getType(type.elementType).name, type),
+        name: getNullableType(getType(type.elementType, type.elementType.format).name, type),
         modifier: "Array",
         originModule:
           type.elementType?.type === "model" ? "models.js" : undefined
@@ -73,14 +73,20 @@ export function getType(type: Type): TypeMetadata {
       };
     case "string":
     case "duration":
-      return { name: getNullableType("string", type) };
+      switch (format) {
+        case "seconds":
+          return { name: getNullableType("number", type) };
+        case "ISO8601":
+        default:
+          return { name: getNullableType("string", type) };
+      }
     case "combined": {
       if (!type.types) {
         throw new Error("Unable to process combined without combinedTypes");
       }
       const name = type.types
         .map((t) => {
-          const sdkType = getTypeName(getType(t));
+          const sdkType = getTypeName(getType(t, t.format));
           return `${sdkType}`;
         })
         .join(" | ");
@@ -91,7 +97,7 @@ export function getType(type: Type): TypeMetadata {
         throw new Error("Unable to process dict without elemetType info");
       }
       return {
-        name: `Record<string, ${getTypeName(getType(type.elementType))}>`
+        name: `Record<string, ${getTypeName(getType(type.elementType, type.elementType.format))}>`
       };
     case "any":
       return {
@@ -118,13 +124,14 @@ function getTypeName(typeMetadata: TypeMetadata) {
  */
 export function buildType(
   clientName: string | undefined,
-  type: Type | undefined
+  type: Type | undefined,
+  format: string | undefined
 ) {
   if (!type) {
     throw new Error("Type should be defined");
   }
 
-  const typeMetadata = getType(type);
+  const typeMetadata = getType(type, format);
   let typeName = typeMetadata.name;
   if (typeMetadata.modifier === "Array") {
     typeName = `${typeName}[]`;
