@@ -19,7 +19,10 @@ async function recursiveModelValuePutSample() {
   const client = createDictClient();
   const options: RecursiveModelValuePutParameters = {
     body: {
-      key: { property: '{Your "property"}', children: { key: {} as any } },
+      key: {
+        property: '{Your "property"}',
+        children: { key: {} as any /**FIXME */ },
+      },
     },
   };
   const result = await client

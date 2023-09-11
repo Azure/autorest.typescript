@@ -19,7 +19,10 @@ async function modelValuePutSample() {
   const client = createDictClient();
   const options: ModelValuePutParameters = {
     body: {
-      key: { property: '{Your "property"}', children: { key: {} as any } },
+      key: {
+        property: '{Your "property"}',
+        children: { key: {} as any /**FIXME */ },
+      },
     },
   };
   const result = await client.path("/type/dictionary/model").put(options);

@@ -17,7 +17,7 @@ dotenv.config();
  */
 async function datetimeValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: DatetimeValuePutParameters = { body: [[]] };
+  const options: DatetimeValuePutParameters = { body: [new Date()] };
   const result = await client.path("/type/array/datetime").put(options);
   console.log(result);
 }

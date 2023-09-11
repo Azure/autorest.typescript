@@ -654,11 +654,11 @@ function mapTypeSpecTypeToTypeScript(
 ): any {
   switch (type.kind) {
     case "Number":
-      return { type: `${type.value}` };
+      return { type: `${type.value}`, isConstant: true };
     case "String":
-      return { type: `"${type.value}"` };
+      return { type: `"${type.value}"`, isConstant: true };
     case "Boolean":
-      return { type: `${type.value}` };
+      return { type: `${type.value}`, isConstant: true };
     case "Model":
       return mapTypeSpecStdTypeToTypeScript(dpgContext, type, usage);
   }
@@ -735,7 +735,7 @@ function applyIntrinsicDecorators(
 function getSchemaForEnumMember(program: Program, e: EnumMember) {
   const value = e.value ?? e.name;
   const type = enumMemberType(e) === "string" ? `"${value}"` : `${value}`;
-  return { type, description: getDoc(program, e) };
+  return { type, description: getDoc(program, e), isConstant: true };
 }
 
 function getSchemaForEnum(program: Program, e: Enum) {

@@ -13,7 +13,9 @@ import {
   OperationParameter,
   ObjectSchema,
   SchemaContext,
-  Schema
+  Schema,
+  ArraySchema,
+  DictionarySchema
 } from "./interfaces.js";
 import { sampleTemplate } from "./static/sampleTemplate.js";
 // @ts-ignore: to fix the handlebars issue
@@ -21,6 +23,7 @@ import hbs from "handlebars";
 import * as path from "path";
 import { isObjectSchema } from "./helpers/schemaHelpers.js";
 import { getImmediateParentsNames } from "./buildObjectTypes.js";
+import { Type } from "ts-morph";
 
 export function buildSamples(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
@@ -339,14 +342,13 @@ function convertMethodLevelParameters(
     requestParameter.body.body &&
     requestParameter.body.body?.length > 0
   ) {
-    const type = requestParameter.body.body[0].type;
+    const body = requestParameter.body.body[0];
+    if (body.oriSchema) {
+      schemaMap.set(body.typeName ?? body.type, body.oriSchema);
+    }
     allSideAssignments.push(
       ` body: ` +
-        mockParameterTypeValue(
-          requestParameter.body.body[0].typeName ?? type,
-          "body",
-          schemaMap
-        )
+        mockParameterTypeValue(body.typeName ?? body.type, "body", schemaMap)
     );
   }
 
@@ -443,153 +445,219 @@ function getOperationConcate(
 }
 
 function buildSchemaObjectMap(model: RLCModel) {
+  // include interfaces
   const map = new Map<string, Schema>();
-  (model.schemas ?? [])
-    .filter(
-      (o) =>
-        isObjectSchema(o) &&
-        (o as ObjectSchema).usage?.some((u) =>
-          [SchemaContext.Input].includes(u)
-        )
-    )
-    .forEach((o) => {
-      map.set(o.name, o);
-    });
+  const allSchemas = (model.schemas ?? []).filter(
+    (o) =>
+      isObjectSchema(o) &&
+      (o as ObjectSchema).usage?.some((u) => [SchemaContext.Input].includes(u))
+  );
+  allSchemas.forEach((o) => {
+    map.set(o.name, o);
+  });
+
+  // include alias
+  allSchemas
+    .filter((s) => s.alias && s.typeName)
+    .forEach((s) => map.set(s.typeName!, s));
+
   return map;
 }
 
 function mockParameterTypeValue(
   type: string,
   parameterName: string,
-  schemaMap: Map<string, ObjectSchema>,
+  schemaMap: Map<string, Schema>,
   path: Set<string> = new Set()
 ): string | undefined {
   type = leaveBracket(type.trim());
-  if (type === "string") {
-    return `'{Your ${parameterName}}'`;
-  } else if (type === "number") {
-    return "123";
-  } else if (type === "boolean") {
-    return "true";
-  } else if (type === "true" || type === "false") {
-    return type;
-  } else if (type === "Date") {
-    return "new Date()";
-  } else if (type === "unknown") {
-    return `"Unknown Type"`;
-  } else if (containsStringLiteral(type)) {
-    return `"${getStringLiteral(type)}"`;
-  } else if (isObject(type, schemaMap)) {
-    if (path.has(type)) {
-      // skip generating if self references
-      return `{} as any`;
-    }
-    path.add(type);
-    // object
-    const values: string[] = [];
-    const schema = schemaMap.get(type);
-    const properties = schema?.properties ?? {};
-    const propSet = new Set<string>();
-    for (const prop in properties) {
-      const propName = prop;
-      const property = properties[prop];
-      if (property.readOnly) {
-        continue;
-      }
-      if (property.type === "never") {
-        continue;
-      }
-      if (propSet.has(propName)) {
-        continue;
-      }
-      propSet.add(propName);
-      let propRetValue =
-        `${propName}: ` +
-        mockParameterTypeValue(
-          property.typeName ?? property.type,
-          propName,
-          schemaMap,
-          path
-        );
-      values.push(propRetValue);
-    }
-
-    // add parents' properties
-    if (schema) {
-      const parents = getImmediateParentsNames(schema, [SchemaContext.Input])
-        .filter((p) => schemaMap.get(p) !== undefined)
-        .map((p) => schemaMap.get(p)!);
-      for (let parent of parents) {
-        const properties = parent?.properties ?? {};
-        for (const prop in properties) {
-          const propName = prop;
-          const property = properties[prop];
-          if (property.readOnly) {
-            continue;
-          }
-          if (property.type === "never") {
-            continue;
-          }
-          if (propSet.has(propName)) {
-            continue;
-          }
-          propSet.add(propName);
-          let propRetValue =
-            `${propName}: ` +
-            mockParameterTypeValue(
-              property.typeName ?? property.type,
-              propName,
-              schemaMap,
-              path
-            );
-          values.push(propRetValue);
-        }
-      }
-    }
-
-    return `{${values.join(", ")}}`;
-  } else if (isArray(type)) {
-    let arrayType;
-    if (isArrayObject(type)) {
-      arrayType = getArrayObjectType(type);
-    } else if (isNativeArray(type)) {
-      arrayType = getNativeArrayType(type);
-    }
-    const itemValue = arrayType
-      ? mockParameterTypeValue(arrayType, parameterName, schemaMap, path)
-      : undefined;
-    return itemValue ? `[${itemValue}]` : `[]`;
-  } else if (isRecord(type)) {
-    const recordType = getRecordType(type);
-    return recordType
-      ? `{"key": ${mockParameterTypeValue(
-          recordType,
-          parameterName,
-          schemaMap,
-          path
-        )}}`
-      : `{}`;
-  } else if (isUnion(type, schemaMap)) {
-    const unionType = getUnionType(type);
-    return mockParameterTypeValue(unionType!, parameterName, schemaMap, path);
+  let tsType: TypeScriptType | undefined;
+  if (schemaMap.has(type)) {
+    tsType = toTypeScriptTypeFromSchema(schemaMap.get(type)!);
   } else {
-    // console.log("unhandled type", type);
+    tsType = toTypeScriptTypeFromName(type);
+  }
+  switch (tsType) {
+    case TypeScriptType.string:
+      return `'{Your ${parameterName}}'`;
+    case TypeScriptType.number:
+      return "123";
+    case TypeScriptType.boolean:
+      return "true";
+    case TypeScriptType.date:
+      return "new Date()";
+    case TypeScriptType.unknown:
+      return `"Unknown Type"`;
+    case TypeScriptType.null:
+      return "null";
+    case TypeScriptType.object: {
+      return mockObjectValues(type, parameterName, schemaMap, path);
+    }
+    case TypeScriptType.array: {
+      return mockArrayValues(type, parameterName, schemaMap, path);
+    }
+    case TypeScriptType.record: {
+      return mockRecordValues(type, parameterName, schemaMap, path);
+    }
+    case TypeScriptType.enum:
+    case TypeScriptType.union: {
+      return mockUnionValues(type, parameterName, schemaMap, path);
+    }
+    case TypeScriptType.constant:
+      return type;
+  }
+  return `/**FIXME */`;
+}
+
+function mockUnionValues(
+  type: string,
+  parameterName: string,
+  schemaMap: Map<string, Schema>,
+  path: Set<string> = new Set()
+) {
+  const schema = schemaMap.get(type);
+  if (schema && schema.enum && schema.enum.length > 0) {
+    const first = schema.enum[0];
+    return mockParameterTypeValue(
+      first.typeName ?? first.type,
+      parameterName,
+      schemaMap,
+      path
+    );
+  }
+  const unionType = getUnionType(type);
+  return mockParameterTypeValue(unionType!, parameterName, schemaMap, path);
+}
+
+function mockRecordValues(
+  type: string,
+  parameterName: string,
+  schemaMap: Map<string, Schema>,
+  path: Set<string> = new Set()
+) {
+  let recordType;
+  const schema = schemaMap.get(type) as DictionarySchema;
+  if (schema && schema.additionalProperties) {
+    recordType =
+      schema.additionalProperties.typeName ?? schema.additionalProperties.type;
+    if (!schemaMap.has(recordType)) {
+      schemaMap.set(recordType, schema.additionalProperties);
+    }
+  } else {
+    recordType = getRecordType(type);
+  }
+
+  return recordType
+    ? `{"key": ${mockParameterTypeValue(
+        recordType,
+        parameterName,
+        schemaMap,
+        path
+      )}}`
+    : `{}`;
+}
+
+function mockArrayValues(
+  type: string,
+  parameterName: string,
+  schemaMap: Map<string, Schema>,
+  path: Set<string> = new Set()
+) {
+  let arrayType;
+  const schema = schemaMap.get(type) as ArraySchema;
+  if (schema && schema.items) {
+    arrayType = schema.items.typeName ?? schema.items.type;
+    if (!schemaMap.has(arrayType)) {
+      schemaMap.set(arrayType, schema.items);
+    }
+  } else if (isArrayObject(type)) {
+    arrayType = getArrayObjectType(type);
+  } else if (isNativeArray(type)) {
+    arrayType = getNativeArrayType(type);
+  }
+  const itemValue = arrayType
+    ? mockParameterTypeValue(arrayType, parameterName, schemaMap, path)
+    : undefined;
+  return itemValue ? `[${itemValue}]` : `[]`;
+}
+
+function mockObjectValues(
+  type: string,
+  parameterName: string,
+  schemaMap: Map<string, Schema>,
+  path: Set<string> = new Set()
+) {
+  if (path.has(type)) {
+    // skip generating if self references
+    return `{} as any /**FIXME */`;
   }
   path.add(type);
+  // object
+  const values: string[] = [];
+  const schema = schemaMap.get(type) as ObjectSchema;
+  const properties = schema?.properties ?? {};
+  const allPropNames = new Set<string>();
+  for (const prop in properties) {
+    const propName = prop;
+    const propertySchema = properties[prop];
+    if (propertySchema.readOnly) {
+      continue;
+    }
+    if (propertySchema.type === "never") {
+      continue;
+    }
+    if (allPropNames.has(propName)) {
+      continue;
+    }
+    const propType = propertySchema.typeName ?? propertySchema.type;
+    if (!schemaMap.has(propType)) {
+      schemaMap.set(propType, propertySchema);
+    }
+    allPropNames.add(propName);
+    let propRetValue =
+      `${propName}: ` +
+      mockParameterTypeValue(propType, propName, schemaMap, path);
+    values.push(propRetValue);
+  }
+
+  // add parents' properties
+  if (schema) {
+    const parents = getImmediateParentsNames(schema, [SchemaContext.Input])
+      .filter((p) => schemaMap.get(p) !== undefined)
+      .map((p) => schemaMap.get(p)!);
+    for (let parent of parents) {
+      const properties = (parent as ObjectSchema)?.properties ?? {};
+      for (const prop in properties) {
+        const propName = prop;
+        const propertySchema = properties[prop];
+        if (propertySchema.readOnly) {
+          continue;
+        }
+        if (propertySchema.type === "never") {
+          continue;
+        }
+        if (allPropNames.has(propName)) {
+          continue;
+        }
+        const propType = propertySchema.typeName ?? propertySchema.type;
+        if (!schemaMap.has(propType)) {
+          schemaMap.set(propType, propertySchema);
+        }
+        allPropNames.add(propName);
+        let propRetValue =
+          `${propName}: ` +
+          mockParameterTypeValue(propType, propName, schemaMap, path);
+        values.push(propRetValue);
+      }
+    }
+  }
+
+  return `{${values.join(", ")}}`;
 }
 
 function containsStringLiteral(type: string) {
   const reg = /^"([a-zA-Z0-9\/\+\-\s]*)"$/g;
   return reg.test(type);
-}
-
-function getStringLiteral(type: string) {
-  const reg = /^"(?<first>[a-zA-Z0-9\/\+\-\s]*)"$/g;
-  return reg.exec(type)?.groups?.first;
-}
-
-function isObject(type: string, schemaMap: Map<string, ObjectSchema>) {
-  return Boolean(schemaMap.get(type));
 }
 
 function isRecord(type: string) {
@@ -607,7 +675,7 @@ function isArray(type: string) {
 }
 
 function isArrayObject(type: string) {
-  const reg = /^(Array<([a-zA-Z].+)>$)/g;
+  const reg = /(^Array<([a-zA-Z].+)>$)/g;
   const ret = reg.test(type);
   return ret;
 }
@@ -619,17 +687,17 @@ function getArrayObjectType(type: string) {
 }
 
 function isNativeArray(type: string) {
-  const reg1 = /([a-zA-Z].+)\[\]$/g;
+  const reg1 = /(^[a-zA-Z].+)\[\]$/g;
   const ret = reg1.test(type);
   return ret;
 }
 
 function getNativeArrayType(type: string) {
-  const reg = /(?<type>[a-zA-Z].+)\[\]$/g;
+  const reg = /(?<type>[a-zA-Z].+)\[\]/g;
   return reg.exec(type)?.groups?.type;
 }
 
-function isUnion(type: string, schemaMap: Map<string, ObjectSchema>) {
+function isUnion(type: string) {
   const members = type.split("|").map((m) => m.trim());
   return members.length > 1;
 }
@@ -645,4 +713,85 @@ function leaveBracket(type: string) {
     return type.slice(1, type.length - 1);
   }
   return type;
+}
+
+export enum TypeScriptType {
+  string,
+  date,
+  number,
+  boolean,
+  constant,
+  record,
+  array,
+  object,
+  union,
+  unknown,
+  never,
+  null,
+  enum
+}
+
+function toTypeScriptTypeFromSchema(
+  schema: Schema
+): TypeScriptType | undefined {
+  if (
+    schema.type === "string" &&
+    ["date-time", "date"].includes(schema?.format ?? "")
+  ) {
+    return TypeScriptType.date;
+  } else if (
+    (schema.type === "string" || schema.type === "number") &&
+    schema.enum &&
+    schema.enum.length > 0
+  ) {
+    return TypeScriptType.enum;
+  } else if (schema.isConstant === true) {
+    return TypeScriptType.constant;
+  } else if (schema.type === "number") {
+    return TypeScriptType.number;
+  } else if (schema.type === "boolean") {
+    return TypeScriptType.boolean;
+  } else if (schema.type === "string") {
+    return TypeScriptType.string;
+  } else if (schema.type === "never") {
+    return TypeScriptType.never;
+  } else if (schema.type === "unknown") {
+    return TypeScriptType.unknown;
+  } else if (schema.type === "null") {
+    return TypeScriptType.null;
+  } else if (schema.type === "union") {
+    return TypeScriptType.union;
+  } else if (schema.type === "dictionary") {
+    return TypeScriptType.record;
+  } else if (schema.type === "array") {
+    return TypeScriptType.array;
+  } else if (schema.type === "object") {
+    return TypeScriptType.object;
+  }
+}
+
+function toTypeScriptTypeFromName(
+  typeName: string
+): TypeScriptType | undefined {
+  if (typeName === "Date") {
+    return TypeScriptType.date;
+  } else if (typeName === "string") {
+    return TypeScriptType.string;
+  } else if (typeName === "number") {
+    return TypeScriptType.number;
+  } else if (typeName === "boolean") {
+    return TypeScriptType.boolean;
+  } else if (typeName === "never") {
+    return TypeScriptType.never;
+  } else if (typeName === "unknown") {
+    return TypeScriptType.unknown;
+  } else if (typeName === "null") {
+    return TypeScriptType.null;
+  } else if (isRecord(typeName)) {
+    return TypeScriptType.record;
+  } else if (isArray(typeName)) {
+    return TypeScriptType.array;
+  } else if (isUnion(typeName)) {
+    return TypeScriptType.union;
+  }
 }

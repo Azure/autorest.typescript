@@ -15,7 +15,7 @@ dotenv.config();
  */
 async function sendIntArraySample() {
   const client = createUnionsClient();
-  const options: SendIntArrayParameters = { body: { simpleUnion: [123] } };
+  const options: SendIntArrayParameters = { body: { simpleUnion: 123 } };
   const result = await client.path("/type/union/int-array").post(options);
   console.log(result);
 }

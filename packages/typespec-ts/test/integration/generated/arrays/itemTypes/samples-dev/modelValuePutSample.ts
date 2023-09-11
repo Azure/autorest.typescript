@@ -18,7 +18,9 @@ dotenv.config();
 async function modelValuePutSample() {
   const client = createArrayItemTypesClient();
   const options: ModelValuePutParameters = {
-    body: [{ property: '{Your "property"}', children: [{} as any] }],
+    body: [
+      { property: '{Your "property"}', children: [{} as any /**FIXME */] },
+    ],
   };
   const result = await client.path("/type/array/model").put(options);
   console.log(result);

@@ -223,6 +223,9 @@ export interface Schema {
   alias?: string;
   outputAlias?: string;
   fromCore?: boolean;
+  format?: string;
+  enum?: any[];
+  isConstant?: boolean;
 }
 
 export interface ObjectSchema extends Schema {
@@ -243,6 +246,11 @@ export interface ObjectSchema extends Schema {
 export interface DictionarySchema extends Schema {
   valueTypeName?: string;
   outputValueTypeName?: string;
+  additionalProperties?: Schema;
+}
+
+export interface ArraySchema extends Schema {
+  items?: Schema;
 }
 
 export interface Property extends Schema {}
@@ -278,7 +286,9 @@ export interface ParameterBodyMetadata {
   body?: ParameterBodySchema[];
 }
 
-export type ParameterBodySchema = Schema;
+export interface ParameterBodySchema extends Schema {
+  oriSchema?: Schema;
+}
 export interface ParameterMetadata {
   type: "query" | "path" | "header";
   name: string;
