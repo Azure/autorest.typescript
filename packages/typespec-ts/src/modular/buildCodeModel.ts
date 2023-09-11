@@ -474,7 +474,7 @@ function emitParameter(
   const paramMap: any = {
     restApiName: parameter.name,
     location: parameter.type,
-    type,
+    type: base.format ? { ...type, format: base.format } : type,
     implementation: implementation,
     skipUrlEncoding: parameter.type === "endpointPath",
     format: (parameter as any).format ?? base.format
@@ -860,10 +860,11 @@ function emitProperty(
   if (property.model) {
     getType(context, property.model);
   }
+  const type = getType(context, property.type);
   return {
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
-    type: getType(context, property.type),
+    type: newProperty.format ? { ...type, format: newProperty.format } : type,
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
