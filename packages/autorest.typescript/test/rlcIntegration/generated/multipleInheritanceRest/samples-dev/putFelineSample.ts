@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMultipleInheritanceRestClient from "@msinternal/multiple-inheritance-rest";
+import createMultipleInheritanceRestClient, {
+  PutFelineParameters
+} from "@msinternal/multiple-inheritance-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,14 +15,18 @@ dotenv.config();
  *
  * @summary call operation PutFeline
  */
-async function clientPutFelineSample() {
+async function putFelineSample() {
   const client = createMultipleInheritanceRestClient();
-  const result = await client.path("/multipleInheritance/feline").put();
+  const options: PutFelineParameters = {
+    body: { meows: true, hisses: true },
+    contentType: "application/json"
+  };
+  const result = await client.path("/multipleInheritance/feline").put(options);
   console.log(result);
 }
 
 async function main() {
-  clientPutFelineSample();
+  putFelineSample();
 }
 
 main().catch(console.error);

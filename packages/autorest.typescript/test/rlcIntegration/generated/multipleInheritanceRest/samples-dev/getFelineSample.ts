@@ -13,14 +13,14 @@ dotenv.config();
  *
  * @summary call operation GetFeline
  */
-async function clientGetFelineSample() {
+async function getFelineSample() {
   const client = createMultipleInheritanceRestClient();
   const result = await client.path("/multipleInheritance/feline").get();
   console.log(result);
 }
 
 async function main() {
-  clientGetFelineSample();
+  getFelineSample();
 }
 
 main().catch(console.error);

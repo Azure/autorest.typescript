@@ -10,7 +10,7 @@ import {
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
   DeleteOptions,
-  ExportOptions,
+  ExportOptions
 } from "./models/options.js";
 import {
   createBasic,
@@ -23,7 +23,7 @@ import {
   listWithPage,
   listWithCustomPageModel,
   deleteOperation,
-  exportOperation,
+  exportOperation
 } from "./api/index.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";

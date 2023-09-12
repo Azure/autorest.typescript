@@ -9,18 +9,18 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 /**
- * This sample demonstrates how to call operation PutHorse
+ * This sample demonstrates how to call operation GetKitten
  *
- * @summary call operation PutHorse
+ * @summary call operation GetKitten
  */
-async function clientPutHorseSample() {
+async function getKittenSample() {
   const client = createMultipleInheritanceRestClient();
-  const result = await client.path("/multipleInheritance/horse").put();
+  const result = await client.path("/multipleInheritance/kitten").get();
   console.log(result);
 }
 
 async function main() {
-  clientPutHorseSample();
+  getKittenSample();
 }
 
 main().catch(console.error);

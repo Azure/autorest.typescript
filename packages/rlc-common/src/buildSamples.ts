@@ -597,7 +597,7 @@ function mockArrayValues(
 
 function mockObjectValues(
   type: string,
-  parameterName: string,
+  _parameterName: string,
   schemaMap: Map<string, Schema>,
   path: Set<string> = new Set()
 ) {
@@ -606,11 +606,68 @@ function mockObjectValues(
     return `{} as any /**FIXME */`;
   }
   path.add(type);
-  // object
+  // add object's properties
   const values: string[] = [];
   const schema = schemaMap.get(type) as ObjectSchema;
-  const properties = schema?.properties ?? {};
   const allPropNames = new Set<string>();
+  extractObjectProperties(
+    schema?.properties ?? {},
+    schemaMap,
+    allPropNames,
+    values,
+    path
+  );
+
+  // add parents' properties
+  const parents = getAllParents(schema, schemaMap);
+  for (let parent of parents) {
+    extractObjectProperties(
+      (parent as ObjectSchema)?.properties ?? {},
+      schemaMap,
+      allPropNames,
+      values,
+      path
+    );
+  }
+
+  return `{${values.join(", ")}}`;
+}
+
+function getAllParents(
+  schema: ObjectSchema,
+  schemaMap: Map<string, Schema>
+): Schema[] {
+  if (!schema) {
+    return [];
+  }
+  const isVisited = new Set<string>();
+  dfs(schema);
+  return Array.from(isVisited)
+    .filter((p) => schemaMap.get(p) !== undefined)
+    .map((p) => schemaMap.get(p)!);
+
+  function dfs(root?: Schema) {
+    if (!root) {
+      return;
+    }
+    const parents = getImmediateParentsNames(root, [SchemaContext.Input]);
+    for (let parent of parents) {
+      if (isVisited.has(parent)) {
+        continue;
+      }
+      dfs(schemaMap.get(parent));
+      isVisited.add(parent);
+    }
+  }
+}
+
+function extractObjectProperties(
+  properties: Record<string, Schema>,
+  schemaMap: Map<string, Schema>,
+  allPropNames: Set<string>,
+  values: string[],
+  path: Set<string>
+) {
   for (const prop in properties) {
     const propName = prop;
     const propertySchema = properties[prop];
@@ -633,40 +690,6 @@ function mockObjectValues(
       mockParameterTypeValue(propType, propName, schemaMap, path);
     values.push(propRetValue);
   }
-
-  // add parents' properties
-  if (schema) {
-    const parents = getImmediateParentsNames(schema, [SchemaContext.Input])
-      .filter((p) => schemaMap.get(p) !== undefined)
-      .map((p) => schemaMap.get(p)!);
-    for (let parent of parents) {
-      const properties = (parent as ObjectSchema)?.properties ?? {};
-      for (const prop in properties) {
-        const propName = prop;
-        const propertySchema = properties[prop];
-        if (propertySchema.readOnly) {
-          continue;
-        }
-        if (propertySchema.type === "never") {
-          continue;
-        }
-        if (allPropNames.has(propName)) {
-          continue;
-        }
-        const propType = propertySchema.typeName ?? propertySchema.type;
-        if (propType !== "string" && !schemaMap.has(propType)) {
-          schemaMap.set(propType, propertySchema);
-        }
-        allPropNames.add(propName);
-        let propRetValue =
-          `${propName}: ` +
-          mockParameterTypeValue(propType, propName, schemaMap, path);
-        values.push(propRetValue);
-      }
-    }
-  }
-
-  return `{${values.join(", ")}}`;
 }
 
 function containsStringLiteral(type: string) {
