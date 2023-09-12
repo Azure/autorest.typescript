@@ -6,7 +6,6 @@ options:
     generateMetadata: true
     generateTest: true
     generateSample: true
-    multiClient: true
     azureSdkForJs: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
