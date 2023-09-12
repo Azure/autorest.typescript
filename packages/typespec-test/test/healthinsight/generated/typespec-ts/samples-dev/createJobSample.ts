@@ -28,29 +28,29 @@ async function createJobSample() {
     body: {
       patients: [
         {
-          id: '{Your "id"}',
+          id: "{Your id}",
           info: {
-            sex: '{Your "sex"}',
+            sex: "{Your sex}",
             birthDate: new Date(),
             clinicalInfo: [
               {
-                system: '{Your "system"}',
-                code: '{Your "code"}',
-                name: '{Your "name"}',
-                value: '{Your "value"}',
+                system: "{Your system}",
+                code: "{Your code}",
+                name: "{Your name}",
+                value: "{Your value}",
               },
             ],
           },
           data: [
             {
-              type: '{Your "type"}',
-              clinicalType: '{Your "clinicalType"}',
-              id: '{Your "id"}',
-              language: '{Your "language"}',
+              type: "{Your type}",
+              clinicalType: "{Your clinicalType}",
+              id: "{Your id}",
+              language: "{Your language}",
               createdDateTime: new Date(),
               content: {
-                sourceType: '{Your "sourceType"}',
-                value: '{Your "value"}',
+                sourceType: "{Your sourceType}",
+                value: "{Your value}",
               },
             },
           ],
@@ -62,34 +62,34 @@ async function createJobSample() {
         clinicalTrials: {
           customTrials: [
             {
-              id: '{Your "id"}',
-              eligibilityCriteriaText: '{Your "eligibilityCriteriaText"}',
+              id: "{Your id}",
+              eligibilityCriteriaText: "{Your eligibilityCriteriaText}",
               demographics: {
-                acceptedSex: '{Your "acceptedSex"}',
+                acceptedSex: "{Your acceptedSex}",
                 acceptedAgeRange: {
-                  minimumAge: { unit: '{Your "unit"}', value: 123 },
+                  minimumAge: { unit: "{Your unit}", value: 123 },
                   maximumAge: {} as any /**FIXME */,
                 },
               },
               metadata: {
-                phases: ['{Your "phases"}'],
-                studyType: '{Your "studyType"}',
-                recruitmentStatus: '{Your "recruitmentStatus"}',
-                conditions: ['{Your "conditions"}'],
-                sponsors: ['{Your "sponsors"}'],
+                phases: ["{Your phases}"],
+                studyType: "{Your studyType}",
+                recruitmentStatus: "{Your recruitmentStatus}",
+                conditions: ["{Your conditions}"],
+                sponsors: ["{Your sponsors}"],
                 contacts: [
                   {
-                    name: '{Your "name"}',
-                    email: '{Your "email"}',
-                    phone: '{Your "phone"}',
+                    name: "{Your name}",
+                    email: "{Your email}",
+                    phone: "{Your phone}",
                   },
                 ],
                 facilities: [
                   {
-                    name: '{Your "name"}',
-                    city: '{Your "city"}',
-                    state: '{Your "state"}',
-                    countryOrRegion: '{Your "countryOrRegion"}',
+                    name: "{Your name}",
+                    city: "{Your city}",
+                    state: "{Your state}",
+                    countryOrRegion: "{Your countryOrRegion}",
                   },
                 ],
               },
@@ -97,27 +97,27 @@ async function createJobSample() {
           ],
           registryFilters: [
             {
-              conditions: ['{Your "conditions"}'],
-              studyTypes: ['{Your "studyTypes"}'],
-              recruitmentStatuses: ['{Your "recruitmentStatuses"}'],
-              sponsors: ['{Your "sponsors"}'],
-              phases: ['{Your "phases"}'],
-              purposes: ['{Your "purposes"}'],
-              ids: ['{Your "ids"}'],
-              sources: ['{Your "sources"}'],
-              facilityNames: ['{Your "facilityNames"}'],
+              conditions: ["{Your conditions}"],
+              studyTypes: ["{Your studyTypes}"],
+              recruitmentStatuses: ["{Your recruitmentStatuses}"],
+              sponsors: ["{Your sponsors}"],
+              phases: ["{Your phases}"],
+              purposes: ["{Your purposes}"],
+              ids: ["{Your ids}"],
+              sources: ["{Your sources}"],
+              facilityNames: ["{Your facilityNames}"],
               facilityLocations: [
                 {
-                  city: '{Your "city"}',
-                  state: '{Your "state"}',
-                  countryOrRegion: '{Your "countryOrRegion"}',
+                  city: "{Your city}",
+                  state: "{Your state}",
+                  countryOrRegion: "{Your countryOrRegion}",
                 },
               ],
               facilityAreas: [
                 {
-                  type: '{Your "type"}',
-                  geometry: { type: '{Your "type"}', coordinates: [123] },
-                  properties: { subType: '{Your "subType"}', radius: 123 },
+                  type: "{Your type}",
+                  geometry: { type: "{Your type}", coordinates: [123] },
+                  properties: { subType: "{Your subType}", radius: 123 },
                 },
               ],
             },
@@ -126,8 +126,8 @@ async function createJobSample() {
       },
     },
     headers: {
-      "Repeatability-Request-ID": '{Your "Repeatability-Request-ID"}',
-      "Repeatability-First-Sent": '{Your "Repeatability-First-Sent"}',
+      "Repeatability-Request-ID": "{Your Repeatability-Request-ID}",
+      "Repeatability-First-Sent": "{Your Repeatability-First-Sent}",
     },
   };
   const initialResponse = await client.path("/trialmatcher/jobs").post(options);

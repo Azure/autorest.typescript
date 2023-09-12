@@ -20,7 +20,7 @@ async function listCollectionsSample() {
   const credential = new DefaultAzureCredential();
   const client = createParametrizedHostClient(credential);
   const options: ListCollectionsParameters = {
-    queryParameters: { "api-version": '{Your "api-version"}' },
+    queryParameters: { "api-version": "{Your api-version}" },
   };
   const result = await client.path("/app/collections").get(options);
   console.log(result);

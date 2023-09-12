@@ -23,7 +23,7 @@ async function detectMultivariateBatchAnomalySample() {
   const modelId = "{Your modelId}";
   const options: DetectMultivariateBatchAnomalyParameters = {
     body: {
-      dataSource: '{Your "dataSource"}',
+      dataSource: "{Your dataSource}",
       topContributorCount: 123,
       startTime: new Date(),
       endTime: new Date(),

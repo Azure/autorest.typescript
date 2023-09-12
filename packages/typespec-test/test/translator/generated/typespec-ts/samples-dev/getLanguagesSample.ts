@@ -19,11 +19,11 @@ async function getLanguagesSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: GetLanguagesParameters = {
-    queryParameters: { scope: '{Your "scope"}' },
+    queryParameters: { scope: "{Your scope}" },
     headers: {
-      "X-ClientTraceId": '{Your "X-ClientTraceId"}',
-      "Accept-Language": '{Your "Accept-Language"}',
-      "If-None-Match": '{Your "If-None-Match"}',
+      "X-ClientTraceId": "{Your X-ClientTraceId}",
+      "Accept-Language": "{Your Accept-Language}",
+      "If-None-Match": "{Your If-None-Match}",
     },
   };
   const result = await client.path("/languages").get(options);

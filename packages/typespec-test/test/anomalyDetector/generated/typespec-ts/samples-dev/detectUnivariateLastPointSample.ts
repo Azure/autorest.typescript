@@ -28,7 +28,7 @@ async function detectUnivariateLastPointSample() {
       period: 123,
       maxAnomalyRatio: 123,
       sensitivity: 123,
-      imputeMode: '{Your "imputeMode"}',
+      imputeMode: "{Your imputeMode}",
       imputeFixedValue: 123,
     },
   };

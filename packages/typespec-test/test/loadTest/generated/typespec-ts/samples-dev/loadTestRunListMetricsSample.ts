@@ -23,13 +23,13 @@ async function loadTestRunListMetricsSample() {
   const client = createAzureLoadTestingClient(endpoint, credential);
   const testRunId = "{Your testRunId}";
   const options: LoadTestRunListMetricsParameters = {
-    body: { filters: [{ name: '{Your "name"}', values: ['{Your "values"}'] }] },
+    body: { filters: [{ name: "{Your name}", values: ["{Your values}"] }] },
     queryParameters: {
-      aggregation: '{Your "aggregation"}',
-      interval: '{Your "interval"}',
-      metricName: '{Your "metricName"}',
-      metricNamespace: '{Your "metricNamespace"}',
-      timespan: '{Your "timespan"}',
+      aggregation: "{Your aggregation}",
+      interval: "{Your interval}",
+      metricName: "{Your metricName}",
+      metricNamespace: "{Your metricNamespace}",
+      timespan: "{Your timespan}",
     },
   };
   const initialResponse = await client

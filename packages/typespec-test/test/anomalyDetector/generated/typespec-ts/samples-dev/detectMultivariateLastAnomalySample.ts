@@ -25,8 +25,8 @@ async function detectMultivariateLastAnomalySample() {
     body: {
       variables: [
         {
-          variable: '{Your "variable"}',
-          timestamps: ['{Your "timestamps"}'],
+          variable: "{Your variable}",
+          timestamps: ["{Your timestamps}"],
           values: [123],
         },
       ],

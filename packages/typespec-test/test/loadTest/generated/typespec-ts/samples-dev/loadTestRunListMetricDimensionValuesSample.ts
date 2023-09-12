@@ -25,10 +25,10 @@ async function loadTestRunListMetricDimensionValuesSample() {
   const name = "{Your name}";
   const options: LoadTestRunListMetricDimensionValuesParameters = {
     queryParameters: {
-      interval: '{Your "interval"}',
-      metricName: '{Your "metricName"}',
-      metricNamespace: '{Your "metricNamespace"}',
-      timespan: '{Your "timespan"}',
+      interval: "{Your interval}",
+      metricName: "{Your metricName}",
+      metricNamespace: "{Your metricNamespace}",
+      timespan: "{Your timespan}",
     },
   };
   const initialResponse = await client

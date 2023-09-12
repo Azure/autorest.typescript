@@ -19,13 +19,13 @@ async function transliterateSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: TransliterateParameters = {
-    body: [{ text: '{Your "text"}' }],
+    body: [{ text: "{Your text}" }],
     queryParameters: {
-      language: '{Your "language"}',
-      fromScript: '{Your "fromScript"}',
-      toScript: '{Your "toScript"}',
+      language: "{Your language}",
+      fromScript: "{Your fromScript}",
+      toScript: "{Your toScript}",
     },
-    headers: { "X-ClientTraceId": '{Your "X-ClientTraceId"}' },
+    headers: { "X-ClientTraceId": "{Your X-ClientTraceId}" },
   };
   const result = await client.path("/transliterate").post(options);
   console.log(result);

@@ -20,7 +20,7 @@ async function modelValuePutSample() {
   const options: ModelValuePutParameters = {
     body: {
       key: {
-        property: '{Your "property"}',
+        property: "{Your property}",
         children: { key: {} as any /**FIXME */ },
       },
     },

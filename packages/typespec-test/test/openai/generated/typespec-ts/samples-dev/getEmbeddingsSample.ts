@@ -23,10 +23,10 @@ async function getEmbeddingsSample() {
   const deploymentId = "{Your deploymentId}";
   const options: GetEmbeddingsParameters = {
     body: {
-      user: '{Your "user"}',
+      user: "{Your user}",
       input_type: '{Your "input_type"}',
-      model: '{Your "model"}',
-      input: '{Your "input"}',
+      model: "{Your model}",
+      input: "{Your input}",
     },
   };
   const result = await client

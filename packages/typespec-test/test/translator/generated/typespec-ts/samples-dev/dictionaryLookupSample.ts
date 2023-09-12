@@ -19,9 +19,9 @@ async function dictionaryLookupSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: DictionaryLookupParameters = {
-    body: [{ text: '{Your "text"}' }],
-    queryParameters: { from: '{Your "from"}', to: '{Your "to"}' },
-    headers: { "X-ClientTraceId": '{Your "X-ClientTraceId"}' },
+    body: [{ text: "{Your text}" }],
+    queryParameters: { from: "{Your from}", to: "{Your to}" },
+    headers: { "X-ClientTraceId": "{Your X-ClientTraceId}" },
   };
   const result = await client.path("/dictionary/lookup").post(options);
   console.log(result);

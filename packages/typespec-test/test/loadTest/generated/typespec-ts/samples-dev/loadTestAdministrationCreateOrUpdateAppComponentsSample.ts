@@ -25,10 +25,10 @@ async function loadTestAdministrationCreateOrUpdateAppComponentsSample() {
     body: {
       components: {
         key: {
-          resourceName: '{Your "resourceName"}',
-          resourceType: '{Your "resourceType"}',
-          displayName: '{Your "displayName"}',
-          kind: '{Your "kind"}',
+          resourceName: "{Your resourceName}",
+          resourceType: "{Your resourceType}",
+          displayName: "{Your displayName}",
+          kind: "{Your kind}",
         },
       },
     },

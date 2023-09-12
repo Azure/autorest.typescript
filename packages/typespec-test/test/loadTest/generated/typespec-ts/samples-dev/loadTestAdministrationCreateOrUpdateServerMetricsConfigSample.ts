@@ -26,13 +26,13 @@ async function loadTestAdministrationCreateOrUpdateServerMetricsConfigSample() {
       body: {
         metrics: {
           key: {
-            resourceId: '{Your "resourceId"}',
-            metricNamespace: '{Your "metricNamespace"}',
-            displayDescription: '{Your "displayDescription"}',
-            name: '{Your "name"}',
-            aggregation: '{Your "aggregation"}',
-            unit: '{Your "unit"}',
-            resourceType: '{Your "resourceType"}',
+            resourceId: "{Your resourceId}",
+            metricNamespace: "{Your metricNamespace}",
+            displayDescription: "{Your displayDescription}",
+            name: "{Your name}",
+            aggregation: "{Your aggregation}",
+            unit: "{Your unit}",
+            resourceType: "{Your resourceType}",
           },
         },
       },

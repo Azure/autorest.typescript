@@ -24,8 +24,8 @@ async function swapDeploymentsSample() {
   const projectName = "{Your projectName}";
   const options: SwapDeploymentsParameters = {
     body: {
-      firstDeploymentName: '{Your "firstDeploymentName"}',
-      secondDeploymentName: '{Your "secondDeploymentName"}',
+      firstDeploymentName: "{Your firstDeploymentName}",
+      secondDeploymentName: "{Your secondDeploymentName}",
     },
   };
   const initialResponse = await client

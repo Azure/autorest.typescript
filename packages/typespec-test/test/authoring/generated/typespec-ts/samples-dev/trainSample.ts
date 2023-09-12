@@ -23,7 +23,7 @@ async function trainSample() {
   const client = createAuthoringClient(endpoint, credential);
   const projectName = "{Your projectName}";
   const options: TrainParameters = {
-    body: { modelLabel: '{Your "modelLabel"}' },
+    body: { modelLabel: "{Your modelLabel}" },
   };
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}:train", projectName)

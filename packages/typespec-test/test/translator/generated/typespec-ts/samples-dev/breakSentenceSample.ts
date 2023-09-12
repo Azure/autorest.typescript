@@ -19,12 +19,9 @@ async function breakSentenceSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: BreakSentenceParameters = {
-    body: [{ text: '{Your "text"}' }],
-    queryParameters: {
-      language: '{Your "language"}',
-      script: '{Your "script"}',
-    },
-    headers: { "X-ClientTraceId": '{Your "X-ClientTraceId"}' },
+    body: [{ text: "{Your text}" }],
+    queryParameters: { language: "{Your language}", script: "{Your script}" },
+    headers: { "X-ClientTraceId": "{Your X-ClientTraceId}" },
   };
   const result = await client.path("/breaksentence").post(options);
   console.log(result);

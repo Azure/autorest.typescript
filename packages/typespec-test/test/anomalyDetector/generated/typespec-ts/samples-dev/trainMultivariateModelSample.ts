@@ -22,15 +22,15 @@ async function trainMultivariateModelSample() {
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: TrainMultivariateModelParameters = {
     body: {
-      dataSource: '{Your "dataSource"}',
-      dataSchema: '{Your "dataSchema"}',
+      dataSource: "{Your dataSource}",
+      dataSchema: "{Your dataSchema}",
       startTime: new Date(),
       endTime: new Date(),
-      displayName: '{Your "displayName"}',
+      displayName: "{Your displayName}",
       slidingWindow: 123,
       alignPolicy: {
         alignMode: "Inner",
-        fillNAMethod: '{Your "fillNAMethod"}',
+        fillNAMethod: "{Your fillNAMethod}",
         paddingValue: 123,
       },
       status: "CREATED",
@@ -43,7 +43,7 @@ async function trainMultivariateModelSample() {
         },
         variableStates: [
           {
-            variable: '{Your "variable"}',
+            variable: "{Your variable}",
             filledNARatio: 123,
             effectiveCount: 123,
             firstTimestamp: new Date(),

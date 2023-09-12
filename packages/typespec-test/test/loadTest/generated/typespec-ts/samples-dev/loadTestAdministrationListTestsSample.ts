@@ -23,8 +23,8 @@ async function loadTestAdministrationListTestsSample() {
   const client = createAzureLoadTestingClient(endpoint, credential);
   const options: LoadTestAdministrationListTestsParameters = {
     queryParameters: {
-      orderby: '{Your "orderby"}',
-      search: '{Your "search"}',
+      orderby: "{Your orderby}",
+      search: "{Your search}",
       lastModifiedStartTime: new Date(),
       lastModifiedEndTime: new Date(),
       maxpagesize: 123,

@@ -21,7 +21,7 @@ async function createLedgerEntrySample() {
   const credential = new DefaultAzureCredential();
   const client = createConfidentialLedgerClient(ledgerUri, credential);
   const options: CreateLedgerEntryParameters = {
-    body: { contents: '{Your "contents"}' },
+    body: { contents: "{Your contents}" },
   };
   const result = await client
     .path("/app/transactions/transactions")

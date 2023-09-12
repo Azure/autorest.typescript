@@ -22,7 +22,7 @@ async function loadTestRunListMetricDefinitionsSample() {
   const client = createAzureLoadTestingClient(endpoint, credential);
   const testRunId = "{Your testRunId}";
   const options: LoadTestRunListMetricDefinitionsParameters = {
-    queryParameters: { metricNamespace: '{Your "metricNamespace"}' },
+    queryParameters: { metricNamespace: "{Your metricNamespace}" },
   };
   const result = await client
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)

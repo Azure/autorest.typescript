@@ -25,11 +25,11 @@ async function createOrUpdateSample() {
   const options: CreateOrUpdateParameters = {
     body: {
       projectKind: "CustomSingleLabelClassification",
-      storageInputContainerName: '{Your "storageInputContainerName"}',
-      settings: { key: '{Your "settings"}' },
+      storageInputContainerName: "{Your storageInputContainerName}",
+      settings: { key: "{Your settings}" },
       multilingual: true,
-      description: '{Your "description"}',
-      language: '{Your "language"}',
+      description: "{Your description}",
+      language: "{Your language}",
     },
     contentType: "application/merge-patch+json",
   };

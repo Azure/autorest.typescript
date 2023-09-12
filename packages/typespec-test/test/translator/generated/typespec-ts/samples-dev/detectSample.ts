@@ -19,8 +19,8 @@ async function detectSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: DetectParameters = {
-    body: [{ text: '{Your "text"}' }],
-    headers: { "X-ClientTraceId": '{Your "X-ClientTraceId"}' },
+    body: [{ text: "{Your text}" }],
+    headers: { "X-ClientTraceId": "{Your X-ClientTraceId}" },
   };
   const result = await client.path("/detect").post(options);
   console.log(result);

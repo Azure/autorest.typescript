@@ -20,7 +20,7 @@ async function recursiveModelValuePutSample() {
   const options: RecursiveModelValuePutParameters = {
     body: {
       key: {
-        property: '{Your "property"}',
+        property: "{Your property}",
         children: { key: {} as any /**FIXME */ },
       },
     },

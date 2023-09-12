@@ -23,12 +23,12 @@ async function loadTestRunListTestRunsSample() {
   const client = createAzureLoadTestingClient(endpoint, credential);
   const options: LoadTestRunListTestRunsParameters = {
     queryParameters: {
-      orderby: '{Your "orderby"}',
-      search: '{Your "search"}',
-      testId: '{Your "testId"}',
+      orderby: "{Your orderby}",
+      search: "{Your search}",
+      testId: "{Your testId}",
       executionFrom: new Date(),
       executionTo: new Date(),
-      status: '{Your "status"}',
+      status: "{Your status}",
       maxpagesize: 123,
     },
   };

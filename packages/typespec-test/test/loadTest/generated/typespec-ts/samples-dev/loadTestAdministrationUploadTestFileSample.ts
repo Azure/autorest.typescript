@@ -24,7 +24,7 @@ async function loadTestAdministrationUploadTestFileSample() {
   const fileName = "{Your fileName}";
   const options: LoadTestAdministrationUploadTestFileParameters = {
     body: "{Your body}",
-    queryParameters: { fileType: '{Your "fileType"}' },
+    queryParameters: { fileType: "{Your fileType}" },
     contentType: "application/octet-stream",
   };
   const result = await client

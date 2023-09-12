@@ -19,22 +19,22 @@ async function translateSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: TranslateParameters = {
-    body: [{ text: '{Your "text"}' }],
+    body: [{ text: "{Your text}" }],
     queryParameters: {
-      to: '{Your "to"}',
-      from: '{Your "from"}',
+      to: "{Your to}",
+      from: "{Your from}",
       textType: "plain",
-      category: '{Your "category"}',
+      category: "{Your category}",
       profanityAction: "NoAction",
       profanityMarker: "Asterisk",
       includeAlignment: true,
       includeSentenceLength: true,
-      suggestedFrom: '{Your "suggestedFrom"}',
-      fromScript: '{Your "fromScript"}',
-      toScript: '{Your "toScript"}',
+      suggestedFrom: "{Your suggestedFrom}",
+      fromScript: "{Your fromScript}",
+      toScript: "{Your toScript}",
       allowFallback: true,
     },
-    headers: { "X-ClientTraceId": '{Your "X-ClientTraceId"}' },
+    headers: { "X-ClientTraceId": "{Your X-ClientTraceId}" },
   };
   const result = await client.path("/translate").post(options);
   console.log(result);

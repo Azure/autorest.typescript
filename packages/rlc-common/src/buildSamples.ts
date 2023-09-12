@@ -23,7 +23,6 @@ import hbs from "handlebars";
 import * as path from "path";
 import { isObjectSchema } from "./helpers/schemaHelpers.js";
 import { getImmediateParentsNames } from "./buildObjectTypes.js";
-import { Type } from "ts-morph";
 
 export function buildSamples(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
@@ -47,9 +46,10 @@ export function buildSamples(model: RLCModel) {
   return sampleFiles;
 }
 
-export function buildSamplesOnFakeContent(model: RLCModel) {
-  if (model.options?.multiClient) {
-    // Not support to generate with multi client
+export function buildSamplesOnMockContent(model: RLCModel) {
+  if (model.options?.multiClient || model.options?.isModularLibrary) {
+    // Not support to generate if multiple clients
+    // Not support to generate if modular libraries
     return;
   }
   const rlcSampleGroups: RLCSampleGroup[] = [];
@@ -470,20 +470,19 @@ function mockParameterTypeValue(
   schemaMap: Map<string, Schema>,
   path: Set<string> = new Set()
 ): string | undefined {
-  if (type === undefined) {
-    return `undefined /**FIXME */`;
-  }
-  type = leaveBracket(type.trim());
+  type = leaveBracket(type?.trim());
   let tsType: TypeScriptType | undefined;
+  // Give priority to suggest the ts-type from schema
   if (schemaMap.has(type)) {
     tsType = toTypeScriptTypeFromSchema(schemaMap.get(type)!);
   }
+  // Fall back to suggest ts-type from the type iteself
   if (!tsType) {
     tsType = toTypeScriptTypeFromName(type);
   }
   switch (tsType) {
     case TypeScriptType.string:
-      return `'{Your ${leaveStringQuotes(parameterName)}}'`;
+      return `"{Your ${leaveStringQuotes(parameterName)}}"`;
     case TypeScriptType.number:
       return "123";
     case TypeScriptType.boolean:
@@ -520,12 +519,11 @@ function mockUnionValues(
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
     const first = schema.enum[0];
-    if ((schema.typeName ?? schema.type) === "string") {
+    const itemType = schema.typeName ?? schema.type;
+    if (itemType === "string" || itemType === undefined) {
       return `"${first}"`;
-    } else if ((schema.typeName ?? schema.type) === "number") {
+    } else if (itemType === "number") {
       return `${first}`;
-    } else if ((first.typeName ?? first.type) === undefined) {
-      return `"${first}"`;
     }
     return mockParameterTypeValue(
       first.typeName ?? first.type ?? first,
@@ -535,7 +533,7 @@ function mockUnionValues(
     );
   }
   const unionType = getUnionType(type);
-  return mockParameterTypeValue(unionType!, parameterName, schemaMap, path);
+  return mockParameterTypeValue(unionType, parameterName, schemaMap, path);
 }
 
 function mockRecordValues(
@@ -597,7 +595,7 @@ function mockObjectValues(
   path: Set<string> = new Set()
 ) {
   if (path.has(type)) {
-    // skip generating if self references
+    // skip generating if self referenced
     return `{} as any /**FIXME */`;
   }
   path.add(type);
@@ -688,19 +686,19 @@ function extractObjectProperties(
 }
 
 function isQuotedString(type: string) {
-  const reg = /^"([a-zA-Z0-9=;\/\+\-\s]*)"$/g;
-  const reg2 = /^'([a-zA-Z0-9=;\/\+\-\s]*)'$/g;
-  return reg.test(type) || reg2.test(type);
+  return (
+    /^"([a-zA-Z0-9=;\/\+\-\s]*)"$/g.test(type) ||
+    /^'([a-zA-Z0-9=;\/\+\-\s]*)'$/g.test(type)
+  );
 }
 
 function isRecord(type: string) {
-  const reg = /^Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>$/g;
-  return reg.test(type);
+  return /^Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>$/g.test(type);
 }
 
 function getRecordType(type: string) {
-  const reg = /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g;
-  return reg.exec(type)?.groups?.type;
+  return /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g.exec(type)?.groups
+    ?.type;
 }
 
 function isArray(type: string) {
@@ -708,26 +706,19 @@ function isArray(type: string) {
 }
 
 function isArrayObject(type: string) {
-  const reg = /(^Array<([a-zA-Z].+)>$)/g;
-  const ret = reg.test(type);
-  return ret;
+  return /(^Array<([a-zA-Z].+)>$)/g.test(type);
 }
 
 function getArrayObjectType(type: string) {
-  const reg = /Array<(?<type>[a-zA-Z].+)>/g;
-  const ret = reg.exec(type);
-  return ret?.groups?.type;
+  return /Array<(?<type>[a-zA-Z].+)>/g.exec(type)?.groups?.type;
 }
 
 function isNativeArray(type: string) {
-  const reg1 = /(^[a-zA-Z].+)\[\]$/g;
-  const ret = reg1.test(type);
-  return ret;
+  return /(^[a-zA-Z].+)\[\]$/g.test(type);
 }
 
 function getNativeArrayType(type: string) {
-  const reg = /(?<type>[a-zA-Z].+)\[\]/g;
-  return reg.exec(type)?.groups?.type;
+  return /(?<type>[a-zA-Z].+)\[\]/g.exec(type)?.groups?.type;
 }
 
 function isUnion(type: string) {
@@ -749,12 +740,14 @@ function leaveBracket(type: string) {
 }
 
 function leaveStringQuotes(str: string) {
-  const reg = /^"(?<str>[a-zA-Z0-9=;\/\+\-\s]*)"$/g;
-  const reg2 = /^'(?<str>[a-zA-Z0-9=;\/\+\-\s]*)'$/g;
+  const doubleQuotes = /^"(?<str>[a-zA-Z0-9=;\/\+\-\s]*)"$/g;
+  const singleQuote = /^'(?<str>[a-zA-Z0-9=;\/\+\-\s]*)'$/g;
 
-  const ret = reg.exec(str),
-    ret2 = reg2.exec(str);
-  return ret?.groups?.str ?? ret2?.groups?.str ?? str;
+  return (
+    doubleQuotes.exec(str)?.groups?.str ??
+    singleQuote.exec(str)?.groups?.str ??
+    str
+  );
 }
 
 export enum TypeScriptType {
@@ -837,6 +830,6 @@ function isConstant(typeName: string) {
 }
 
 function isNumeric(str: string) {
-  if (typeof str !== "string") return false; // we only process strings!
+  if (typeof str !== "string") return false;
   return !isNaN(Number(str)) && !isNaN(parseFloat(str));
 }

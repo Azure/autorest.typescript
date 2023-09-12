@@ -21,7 +21,7 @@ async function getCurrentLedgerEntrySample() {
   const credential = new DefaultAzureCredential();
   const client = createConfidentialLedgerClient(ledgerUri, credential);
   const options: GetCurrentLedgerEntryParameters = {
-    queryParameters: { collectionId: '{Your "collectionId"}' },
+    queryParameters: { collectionId: "{Your collectionId}" },
   };
   const result = await client
     .path("/app/transactions/getCurrentLedgerEntry")

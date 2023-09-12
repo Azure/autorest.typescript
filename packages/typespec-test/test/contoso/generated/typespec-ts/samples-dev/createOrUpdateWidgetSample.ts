@@ -22,8 +22,8 @@ async function createOrUpdateWidgetSample() {
   const widgetName = "{Your widgetName}";
   const options: CreateOrUpdateWidgetParameters = {
     body: {
-      manufacturerId: '{Your "manufacturerId"}',
-      sharedModel: { tag: '{Your "tag"}', createdDate: new Date() },
+      manufacturerId: "{Your manufacturerId}",
+      sharedModel: { tag: "{Your tag}", createdDate: new Date() },
     },
     contentType: "application/merge-patch+json",
   };

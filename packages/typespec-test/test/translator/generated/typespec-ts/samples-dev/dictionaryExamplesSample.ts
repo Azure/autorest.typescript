@@ -19,9 +19,9 @@ async function dictionaryExamplesSample() {
   const endpoint = "{Your endpoint}";
   const client = createTranslatorClient(endpoint);
   const options: DictionaryExamplesParameters = {
-    body: [{ translation: '{Your "translation"}', text: '{Your "text"}' }],
-    queryParameters: { from: '{Your "from"}', to: '{Your "to"}' },
-    headers: { "X-ClientTraceId": '{Your "X-ClientTraceId"}' },
+    body: [{ translation: "{Your translation}", text: "{Your text}" }],
+    queryParameters: { from: "{Your from}", to: "{Your to}" },
+    headers: { "X-ClientTraceId": "{Your X-ClientTraceId}" },
   };
   const result = await client.path("/dictionary/examples").post(options);
   console.log(result);
