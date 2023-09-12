@@ -520,7 +520,7 @@ function mockUnionValues(
   if (schema && schema.enum && schema.enum.length > 0) {
     const first = schema.enum[0];
     const itemType = schema.typeName ?? schema.type;
-    if (itemType === "string" || itemType === undefined) {
+    if (itemType === "string" || (first.typeName ?? first.type) === undefined) {
       return `"${first}"`;
     } else if (itemType === "number") {
       return `${first}`;
