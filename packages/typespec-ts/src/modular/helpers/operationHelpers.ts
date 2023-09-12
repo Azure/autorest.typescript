@@ -945,7 +945,10 @@ export function hasPagingOperation(codeModel: ModularCodeModel) {
 }
 
 function getAllProperties(type: Type): Property[] {
-  const properties = [];
+  const properties: Property[] = [];
+  if (!type) {
+    return properties;
+  }
   type.parents?.forEach((p) => {
     properties.push(...(p.properties ?? []));
   });
