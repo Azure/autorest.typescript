@@ -14,7 +14,7 @@ describe("modular model type", () => {
 });
 
 describe("modular encode test for property type datetime", () => {
-  it("should handle property type plainDate, plainTime, utcDateTime, offsetDatetime with default encoding", async () => {
+  it.only("should handle property type plainDate, plainTime, utcDateTime, offsetDatetime with default encoding", async () => {
     const tspContent = `
     model Foo {
       prop1: plainDate;

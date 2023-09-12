@@ -186,28 +186,6 @@ function getOperationSignatureParameters(
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
-  if (operation.bodyParameter?.type.type === "model") {
-    (operation.bodyParameter?.type.properties ?? [])
-      .filter((p) => !p.optional)
-      .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type, p.format))
-      .forEach((p) => parameters.set(p.name, p));
-  } else if (operation.bodyParameter?.type.type === "list") {
-    const bodyArray = operation.bodyParameter;
-    parameters.set(
-      bodyArray.clientName,
-      buildType(bodyArray.clientName, bodyArray.type, bodyArray.type.format)
-    );
-  } else if (operation.bodyParameter?.type.type === "byte-array") {
-    parameters.set(
-      operation.bodyParameter.clientName,
-      buildType(
-        operation.bodyParameter.clientName,
-        operation.bodyParameter.type,
-        operation.bodyParameter.type.format
-      )
-    );
-  }
 
   operation.parameters
     .filter(
@@ -222,6 +200,16 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
+  if (operation.bodyParameter) {
+    parameters.set(
+      operation.bodyParameter?.clientName,
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type,
+        operation.bodyParameter.type.format
+      )
+    );
+  }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 

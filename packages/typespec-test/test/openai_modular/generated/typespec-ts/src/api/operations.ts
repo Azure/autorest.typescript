@@ -2,11 +2,14 @@
 // Licensed under the MIT license.
 
 import {
+  EmbeddingsOptions,
   Embeddings,
+  CompletionsOptions,
   Completions,
-  ChatMessage,
+  ChatCompletionsOptions,
   ChatCompletions,
   BatchImageGenerationOperationResponse,
+  ImageGenerationOptions,
 } from "../models/models.js";
 import {
   BeginAzureBatchImageGeneration202Response,
@@ -41,8 +44,8 @@ import {
 
 export function _getEmbeddingsSend(
   context: Client,
-  input: string[],
   deploymentId: string,
+  body: EmbeddingsOptions,
   options: GetEmbeddingsOptions = { requestOptions: {} }
 ): StreamableMethod<GetEmbeddings200Response | GetEmbeddingsDefaultResponse> {
   return context
@@ -75,23 +78,18 @@ export async function _getEmbeddingsDeserialize(
 /** Return the embeddings for a given prompt. */
 export async function getEmbeddings(
   context: Client,
-  input: string[],
   deploymentId: string,
+  body: EmbeddingsOptions,
   options: GetEmbeddingsOptions = { requestOptions: {} }
 ): Promise<Embeddings> {
-  const result = await _getEmbeddingsSend(
-    context,
-    input,
-    deploymentId,
-    options
-  );
+  const result = await _getEmbeddingsSend(context, deploymentId, body, options);
   return _getEmbeddingsDeserialize(result);
 }
 
 export function _getCompletionsSend(
   context: Client,
-  prompt: string[],
   deploymentId: string,
+  body: CompletionsOptions,
   options: GetCompletionsOptions = { requestOptions: {} }
 ): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse> {
   return context
@@ -216,14 +214,14 @@ export async function _getCompletionsDeserialize(
  */
 export async function getCompletions(
   context: Client,
-  prompt: string[],
   deploymentId: string,
+  body: CompletionsOptions,
   options: GetCompletionsOptions = { requestOptions: {} }
 ): Promise<Completions> {
   const result = await _getCompletionsSend(
     context,
-    prompt,
     deploymentId,
+    body,
     options
   );
   return _getCompletionsDeserialize(result);
@@ -231,8 +229,8 @@ export async function getCompletions(
 
 export function _getChatCompletionsSend(
   context: Client,
-  messages: ChatMessage[],
   deploymentId: string,
+  body: ChatCompletionsOptions,
   options: GetChatCompletionsOptions = { requestOptions: {} }
 ): StreamableMethod<
   GetChatCompletions200Response | GetChatCompletionsDefaultResponse
@@ -394,14 +392,14 @@ export async function _getChatCompletionsDeserialize(
  */
 export async function getChatCompletions(
   context: Client,
-  messages: ChatMessage[],
   deploymentId: string,
+  body: ChatCompletionsOptions,
   options: GetChatCompletionsOptions = { requestOptions: {} }
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsSend(
     context,
-    messages,
     deploymentId,
+    body,
     options
   );
   return _getChatCompletionsDeserialize(result);
@@ -409,8 +407,8 @@ export async function getChatCompletions(
 
 export function _getChatCompletionsWithAzureExtensionsSend(
   context: Client,
-  messages: ChatMessage[],
   deploymentId: string,
+  body: ChatCompletionsOptions,
   options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
 ): StreamableMethod<
   | GetChatCompletionsWithAzureExtensions200Response
@@ -578,14 +576,14 @@ export async function _getChatCompletionsWithAzureExtensionsDeserialize(
  */
 export async function getChatCompletionsWithAzureExtensions(
   context: Client,
-  messages: ChatMessage[],
   deploymentId: string,
+  body: ChatCompletionsOptions,
   options: GetChatCompletionsWithAzureExtensionsOptions = { requestOptions: {} }
 ): Promise<ChatCompletions> {
   const result = await _getChatCompletionsWithAzureExtensionsSend(
     context,
-    messages,
     deploymentId,
+    body,
     options
   );
   return _getChatCompletionsWithAzureExtensionsDeserialize(result);
@@ -650,7 +648,7 @@ export async function getAzureBatchImageGenerationOperationStatus(
 
 export function _beginAzureBatchImageGenerationSend(
   context: Client,
-  prompt: string,
+  body: ImageGenerationOptions,
   options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} }
 ): StreamableMethod<
   | BeginAzureBatchImageGeneration202Response
@@ -699,12 +697,12 @@ export async function _beginAzureBatchImageGenerationDeserialize(
 /** Starts the generation of a batch of images from a text caption */
 export async function beginAzureBatchImageGeneration(
   context: Client,
-  prompt: string,
+  body: ImageGenerationOptions,
   options: BeginAzureBatchImageGenerationOptions = { requestOptions: {} }
 ): Promise<BatchImageGenerationOperationResponse> {
   const result = await _beginAzureBatchImageGenerationSend(
     context,
-    prompt,
+    body,
     options
   );
   return _beginAzureBatchImageGenerationDeserialize(result);
