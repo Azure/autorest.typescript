@@ -496,8 +496,6 @@ function mockParameterTypeValue(
       return "new Date()";
     case TypeScriptType.unknown:
       return `"Unknown Type"`;
-    case TypeScriptType.null:
-      return "null";
     case TypeScriptType.object: {
       return mockObjectValues(type, parameterName, schemaMap, path);
     }
@@ -742,8 +740,6 @@ export enum TypeScriptType {
   object,
   union,
   unknown,
-  never,
-  null,
   enum
 }
 
@@ -757,7 +753,10 @@ function toTypeScriptTypeFromSchema(
     return TypeScriptType.date;
   } else if (schema.type !== "union" && schema.enum && schema.enum.length > 0) {
     return TypeScriptType.enum;
-  } else if (schema.isConstant === true) {
+  } else if (
+    schema.isConstant === true ||
+    isConstant(schema.typeName ?? schema.type)
+  ) {
     return TypeScriptType.constant;
   } else if (schema.type === "number") {
     return TypeScriptType.number;
@@ -765,12 +764,8 @@ function toTypeScriptTypeFromSchema(
     return TypeScriptType.boolean;
   } else if (schema.type === "string") {
     return TypeScriptType.string;
-  } else if (schema.type === "never") {
-    return TypeScriptType.never;
   } else if (schema.type === "unknown") {
     return TypeScriptType.unknown;
-  } else if (schema.type === "null") {
-    return TypeScriptType.null;
   } else if (schema.type === "union") {
     return TypeScriptType.union;
   } else if (schema.type === "dictionary") {
@@ -793,19 +788,29 @@ function toTypeScriptTypeFromName(
     return TypeScriptType.number;
   } else if (typeName === "boolean") {
     return TypeScriptType.boolean;
-  } else if (typeName === "never") {
-    return TypeScriptType.never;
   } else if (typeName === "unknown") {
     return TypeScriptType.unknown;
-  } else if (typeName === "null") {
-    return TypeScriptType.null;
+  } else if (isConstant(typeName)) {
+    return TypeScriptType.constant;
   } else if (isRecord(typeName)) {
     return TypeScriptType.record;
   } else if (isArray(typeName)) {
     return TypeScriptType.array;
   } else if (isUnion(typeName)) {
     return TypeScriptType.union;
-  } else if (containsStringLiteral(typeName)) {
-    return TypeScriptType.constant;
   }
+}
+
+function isConstant(typeName: string) {
+  const constantSet = new Set(["true", "false", "never", "null"]);
+  return (
+    constantSet.has(typeName) ||
+    isNumeric(typeName) ||
+    containsStringLiteral(typeName)
+  );
+}
+
+function isNumeric(str: string) {
+  if (typeof str !== "string") return false; // we only process strings!
+  return !isNaN(Number(str)) && !isNaN(parseFloat(str));
 }
