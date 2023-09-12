@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMediaTypesClient from "@msinternal/media-types-service-rest";
+import createMediaTypesClient, {
+  ContentTypeWithEncodingParameters
+} from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,16 +15,20 @@ dotenv.config();
  *
  * @summary call operation ContentTypeWithEncoding
  */
-async function clientContentTypeWithEncodingSample() {
+async function contentTypeWithEncodingSample() {
   const client = createMediaTypesClient();
+  const options: ContentTypeWithEncodingParameters = {
+    body: "{Your body}",
+    contentType: undefined /**FIXME */
+  };
   const result = await client
     .path("/mediatypes/contentTypeWithEncoding")
-    .post();
+    .post(options);
   console.log(result);
 }
 
 async function main() {
-  clientContentTypeWithEncodingSample();
+  contentTypeWithEncodingSample();
 }
 
 main().catch(console.error);

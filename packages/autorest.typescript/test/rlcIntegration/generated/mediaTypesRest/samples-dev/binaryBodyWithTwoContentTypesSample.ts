@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMediaTypesClient from "@msinternal/media-types-service-rest";
+import createMediaTypesClient, {
+  BinaryBodyWithTwoContentTypesParameters
+} from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,16 +15,20 @@ dotenv.config();
  *
  * @summary call operation BinaryBodyWithTwoContentTypes
  */
-async function clientBinaryBodyWithTwoContentTypesSample() {
+async function binaryBodyWithTwoContentTypesSample() {
   const client = createMediaTypesClient();
+  const options: BinaryBodyWithTwoContentTypesParameters = {
+    body: "{Your body}",
+    contentType: "application/json"
+  };
   const result = await client
     .path("/mediatypes/binaryBodyTwoContentTypes")
-    .post();
+    .post(options);
   console.log(result);
 }
 
 async function main() {
-  clientBinaryBodyWithTwoContentTypesSample();
+  binaryBodyWithTwoContentTypesSample();
 }
 
 main().catch(console.error);

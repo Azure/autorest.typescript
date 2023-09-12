@@ -321,14 +321,15 @@ function convertMethodLevelParameters(
   packageName: string,
   operationParameter?: OperationParameter
 ): SampleParameter[] {
-  if (!methods || methods.length == 0 || !operationParameter) {
+  if (
+    !methods ||
+    methods.length === 0 ||
+    !operationParameter ||
+    operationParameter.parameters.length === 0
+  ) {
     return [];
   }
   const rawMethodParams = operationParameter.parameters;
-  if (rawMethodParams.length !== 1) {
-    // TODO: handle multi-part form data
-    return [];
-  }
   const method = methods[0];
   const requestParameter = rawMethodParams[0];
   const hasInputParams = !!rawMethodParams && rawMethodParams.length > 0,
@@ -442,7 +443,7 @@ function getOperationConcate(
   sourceFrom?: string
 ) {
   return sourceFrom === "Swagger"
-    ? opGroup === ""
+    ? opGroup === "" || opGroup === "Client"
       ? opName
       : `${opGroup}${opName}`
     : `${opGroup}_${opName}`;

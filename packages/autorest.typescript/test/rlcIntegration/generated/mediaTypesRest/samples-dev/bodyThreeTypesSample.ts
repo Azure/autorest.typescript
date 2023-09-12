@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMediaTypesClient from "@msinternal/media-types-service-rest";
+import createMediaTypesClient, {
+  BodyThreeTypesParameters
+} from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,14 +15,18 @@ dotenv.config();
  *
  * @summary call operation BodyThreeTypes
  */
-async function clientBodyThreeTypesSample() {
+async function bodyThreeTypesSample() {
   const client = createMediaTypesClient();
-  const result = await client.path("/mediatypes/bodyThreeTypes").post();
+  const options: BodyThreeTypesParameters = {
+    body: "{Your body}",
+    contentType: "application/octet-stream"
+  };
+  const result = await client.path("/mediatypes/bodyThreeTypes").post(options);
   console.log(result);
 }
 
 async function main() {
-  clientBodyThreeTypesSample();
+  bodyThreeTypesSample();
 }
 
 main().catch(console.error);

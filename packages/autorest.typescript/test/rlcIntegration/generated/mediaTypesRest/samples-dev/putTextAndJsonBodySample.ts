@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMediaTypesClient from "@msinternal/media-types-service-rest";
+import createMediaTypesClient, {
+  PutTextAndJsonBodyParameters
+} from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,14 +15,18 @@ dotenv.config();
  *
  * @summary call operation PutTextAndJsonBody
  */
-async function clientPutTextAndJsonBodySample() {
+async function putTextAndJsonBodySample() {
   const client = createMediaTypesClient();
-  const result = await client.path("/mediatypes/textAndJson").post();
+  const options: PutTextAndJsonBodyParameters = {
+    body: "{Your body}",
+    contentType: "text/plain"
+  };
+  const result = await client.path("/mediatypes/textAndJson").post(options);
   console.log(result);
 }
 
 async function main() {
-  clientPutTextAndJsonBodySample();
+  putTextAndJsonBodySample();
 }
 
 main().catch(console.error);

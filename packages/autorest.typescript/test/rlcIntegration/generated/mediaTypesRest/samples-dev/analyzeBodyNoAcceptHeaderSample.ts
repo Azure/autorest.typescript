@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMediaTypesClient from "@msinternal/media-types-service-rest";
+import createMediaTypesClient, {
+  AnalyzeBodyNoAcceptHeaderParameters
+} from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,14 +15,18 @@ dotenv.config();
  *
  * @summary call operation AnalyzeBodyNoAcceptHeader
  */
-async function clientAnalyzeBodyNoAcceptHeaderSample() {
+async function analyzeBodyNoAcceptHeaderSample() {
   const client = createMediaTypesClient();
-  const result = await client.path("/mediatypes/analyzeNoAccept").post();
+  const options: AnalyzeBodyNoAcceptHeaderParameters = {
+    body: "{Your body}",
+    contentType: "application/pdf"
+  };
+  const result = await client.path("/mediatypes/analyzeNoAccept").post(options);
   console.log(result);
 }
 
 async function main() {
-  clientAnalyzeBodyNoAcceptHeaderSample();
+  analyzeBodyNoAcceptHeaderSample();
 }
 
 main().catch(console.error);

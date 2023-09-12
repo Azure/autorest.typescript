@@ -3,7 +3,9 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createMediaTypesClient from "@msinternal/media-types-service-rest";
+import createMediaTypesClient, {
+  AnalyzeBodyParameters
+} from "@msinternal/media-types-service-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -13,14 +15,18 @@ dotenv.config();
  *
  * @summary call operation AnalyzeBody
  */
-async function clientAnalyzeBodySample() {
+async function analyzeBodySample() {
   const client = createMediaTypesClient();
-  const result = await client.path("/mediatypes/analyze").post();
+  const options: AnalyzeBodyParameters = {
+    body: "{Your body}",
+    contentType: "application/pdf"
+  };
+  const result = await client.path("/mediatypes/analyze").post(options);
   console.log(result);
 }
 
 async function main() {
-  clientAnalyzeBodySample();
+  analyzeBodySample();
 }
 
 main().catch(console.error);
