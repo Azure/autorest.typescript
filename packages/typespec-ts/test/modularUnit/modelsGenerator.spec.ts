@@ -804,4 +804,83 @@ describe("inheritance & polymorphism", () => {
       }`
     );
   });
+
+  it.only("should handle inheritance model in operations", async () => {
+    const tspContent = `
+    model Pet {
+      name: string;
+      weight?: float32;
+    }
+    model Cat extends Pet {
+      kind: "cat";
+      meow: int32;
+    }
+    model Dog extends Pet {
+      kind: "dog";
+      bark: string;
+    }
+    op read(): { @body body: Cat };
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Pet {
+        name: string;
+        weight?: number;
+      }
+
+      export interface Cat extends Pet {
+        kind: "cat";
+        meow: number;
+      }
+
+      export interface Dog extends Pet {
+        kind: "dog";
+        bark: string;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,`
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      
+      export function _readSend(
+        context: Client,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      
+      export async function _readDeserialize(result: Read200Response): Promise<Cat> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+      
+        return {
+          name: result.body["name"],
+          weight: result.body["weight"],
+          kind: result.body["kind"],
+          meow: result.body["meow"],
+        };
+      }
+      
+      export async function read(
+        context: Client,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<Cat> {
+        const result = await _readSend(context, options);
+        return _readDeserialize(result);
+      }      
+      `);
+  });
 });
