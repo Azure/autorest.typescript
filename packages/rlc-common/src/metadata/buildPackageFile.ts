@@ -72,8 +72,8 @@ function restLevelPackage(model: RLCModel) {
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
-    generateSample === true ||
-    (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
+    (generateSample === true || generateSample === undefined) &&
+    (model.sampleGroups ?? []).length > 0;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";

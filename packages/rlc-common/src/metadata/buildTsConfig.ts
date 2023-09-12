@@ -45,8 +45,8 @@ export function buildTsConfig(model: RLCModel) {
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
-    generateSample === true ||
-    (generateSample === undefined && (model.sampleGroups ?? []).length > 0);
+    (generateSample === true || generateSample === undefined) &&
+    (model.sampleGroups ?? []).length > 0;
   const clientPackageName = packageDetails?.name ?? "";
   const project = new Project();
 

@@ -75,6 +75,7 @@ export async function generateRestLevelClient() {
   ) {
     rlcModels.sampleGroups = buildSamplesOnFakeContent(rlcModels);
   }
+  const hasSampleGenerated = (rlcModels.sampleGroups ?? []).length > 0;
 
   if (generateMetadata) {
     // buildReadmeFile
@@ -123,10 +124,10 @@ export async function generateRestLevelClient() {
   generateFileByBuilder(project, buildSerializeHelper, rlcModels);
   generateFileByBuilder(project, buildLogger, rlcModels);
   generateTopLevelIndexFile(rlcModels, project);
-  if (generateSample && generateMetadata) {
+  if (hasSampleGenerated && generateMetadata) {
     generateFileByBuilder(project, buildSamples, rlcModels);
   }
-  if ((generateSample || generateTest) && generateMetadata) {
+  if ((hasSampleGenerated || generateTest) && generateMetadata) {
     generateSampleEnv(project);
   }
 

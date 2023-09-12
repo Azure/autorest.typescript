@@ -48,6 +48,10 @@ export function buildSamples(model: RLCModel) {
 }
 
 export function buildSamplesOnFakeContent(model: RLCModel) {
+  if (model.options?.multiClient) {
+    // Not support to generate with multi client
+    return;
+  }
   const rlcSampleGroups: RLCSampleGroup[] = [];
   // Get all paths
   const paths: Paths = model.paths;
