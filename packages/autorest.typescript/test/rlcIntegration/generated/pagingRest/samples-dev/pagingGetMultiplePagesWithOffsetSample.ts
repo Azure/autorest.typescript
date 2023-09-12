@@ -21,7 +21,7 @@ async function pagingGetMultiplePagesWithOffsetSample() {
   const offset = 123;
   const options: PagingGetMultiplePagesWithOffsetParameters = {
     headers: {
-      "client-request-id": '{Your "client-request-id"}',
+      "client-request-id": "{Your client-request-id}",
       maxresults: 123,
       timeout: 123
     }

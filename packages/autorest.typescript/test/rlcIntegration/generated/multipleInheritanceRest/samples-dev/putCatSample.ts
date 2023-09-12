@@ -18,7 +18,7 @@ dotenv.config();
 async function putCatSample() {
   const client = createMultipleInheritanceRestClient();
   const options: PutCatParameters = {
-    body: { likesMilk: true, name: '{Your "name"}', meows: true, hisses: true },
+    body: { likesMilk: true, name: "{Your name}", meows: true, hisses: true },
     contentType: "application/json"
   };
   const result = await client.path("/multipleInheritance/cat").put(options);

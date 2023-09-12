@@ -20,9 +20,9 @@ async function lrosaDsPutError201NoProvisioningStatePayloadSample() {
   const client = createLRORestClient();
   const options: LrosaDsPutError201NoProvisioningStatePayloadParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

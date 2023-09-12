@@ -40,7 +40,7 @@ import {
   generateSchemaTypes,
   generateTopLevelIndexFile
 } from "./helpers/generatorHelpers";
-import { buildSamplesOnFakeContent } from "@azure-tools/rlc-common";
+import { buildSamplesOnMockContent } from "@azure-tools/rlc-common";
 
 /**
  * Generates a Rest Level Client library
@@ -73,7 +73,7 @@ export async function generateRestLevelClient() {
     generateMetadata === true &&
     (rlcModels.sampleGroups ?? []).length === 0
   ) {
-    rlcModels.sampleGroups = buildSamplesOnFakeContent(rlcModels);
+    rlcModels.sampleGroups = buildSamplesOnMockContent(rlcModels);
   }
   const hasSampleGenerated = (rlcModels.sampleGroups ?? []).length > 0;
 

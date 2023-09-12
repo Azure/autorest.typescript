@@ -20,9 +20,9 @@ async function lROsPut201SucceededSample() {
   const client = createLRORestClient();
   const options: LROsPut201SucceededParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

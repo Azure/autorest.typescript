@@ -19,7 +19,7 @@ dotenv.config();
 async function lROsPutAsyncNonResourceSample() {
   const client = createLRORestClient();
   const options: LROsPutAsyncNonResourceParameters = {
-    body: { name: '{Your "name"}', id: '{Your "id"}' },
+    body: { name: "{Your name}", id: "{Your id}" },
     contentType: "application/json"
   };
   const initialResponse = await client

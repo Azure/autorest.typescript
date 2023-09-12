@@ -20,7 +20,7 @@ async function putKittenSample() {
   const options: PutKittenParameters = {
     body: {
       eatsMiceYet: true,
-      name: '{Your "name"}',
+      name: "{Your name}",
       meows: true,
       hisses: true,
       likesMilk: true

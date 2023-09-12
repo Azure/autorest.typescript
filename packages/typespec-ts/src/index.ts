@@ -53,7 +53,7 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
-import { buildSamplesOnFakeContent } from "@azure-tools/rlc-common";
+import { buildSamplesOnMockContent } from "@azure-tools/rlc-common";
 
 export * from "./lib.js";
 
@@ -124,7 +124,7 @@ export async function $onEmit(context: EmitContext) {
         rlcModels.options?.generateSample === true &&
         (rlcModels.sampleGroups ?? []).length === 0
       ) {
-        rlcModels.sampleGroups = buildSamplesOnFakeContent(rlcModels);
+        rlcModels.sampleGroups = buildSamplesOnMockContent(rlcModels);
       }
       rlcCodeModels.push(rlcModels);
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);

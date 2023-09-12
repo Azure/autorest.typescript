@@ -19,7 +19,7 @@ dotenv.config();
 async function lROsPutSubResourceSample() {
   const client = createLRORestClient();
   const options: LROsPutSubResourceParameters = {
-    body: { properties: { provisioningState: '{Your "provisioningState"}' } },
+    body: { properties: { provisioningState: "{Your provisioningState}" } },
     contentType: "application/json"
   };
   const initialResponse = await client

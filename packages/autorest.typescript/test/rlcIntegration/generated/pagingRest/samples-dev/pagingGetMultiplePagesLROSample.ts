@@ -20,7 +20,7 @@ async function pagingGetMultiplePagesLROSample() {
   const client = createPagingClient();
   const options: PagingGetMultiplePagesLROParameters = {
     headers: {
-      "client-request-id": '{Your "client-request-id"}',
+      "client-request-id": "{Your client-request-id}",
       maxresults: 123,
       timeout: 123
     }

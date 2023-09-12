@@ -20,9 +20,9 @@ async function lrosaDsPostAsyncRelativeRetryInvalidHeaderSample() {
   const client = createLRORestClient();
   const options: LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

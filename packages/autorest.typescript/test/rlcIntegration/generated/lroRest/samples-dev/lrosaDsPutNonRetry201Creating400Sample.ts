@@ -20,9 +20,9 @@ async function lrosaDsPutNonRetry201Creating400Sample() {
   const client = createLRORestClient();
   const options: LrosaDsPutNonRetry201Creating400Parameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

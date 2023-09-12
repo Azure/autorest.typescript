@@ -20,9 +20,9 @@ async function lROsPostAsyncRetryFailedSample() {
   const client = createLRORestClient();
   const options: LROsPostAsyncRetryFailedParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

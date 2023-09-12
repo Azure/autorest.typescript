@@ -20,9 +20,9 @@ async function lrosaDsPost202NoLocationSample() {
   const client = createLRORestClient();
   const options: LrosaDsPost202NoLocationParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

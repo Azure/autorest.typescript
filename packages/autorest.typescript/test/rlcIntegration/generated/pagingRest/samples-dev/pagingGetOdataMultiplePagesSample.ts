@@ -20,7 +20,7 @@ async function pagingGetOdataMultiplePagesSample() {
   const client = createPagingClient();
   const options: PagingGetOdataMultiplePagesParameters = {
     headers: {
-      "client-request-id": '{Your "client-request-id"}',
+      "client-request-id": "{Your client-request-id}",
       maxresults: 123,
       timeout: 123
     }

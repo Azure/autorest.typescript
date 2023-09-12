@@ -20,9 +20,9 @@ async function lRORetrysPost202Retry200Sample() {
   const client = createLRORestClient();
   const options: LRORetrysPost202Retry200Parameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

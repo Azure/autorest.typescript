@@ -18,7 +18,7 @@ dotenv.config();
 async function putPetSample() {
   const client = createMultipleInheritanceRestClient();
   const options: PutPetParameters = {
-    body: { name: '{Your "name"}' },
+    body: { name: "{Your name}" },
     contentType: "application/json"
   };
   const result = await client.path("/multipleInheritance/pet").put(options);

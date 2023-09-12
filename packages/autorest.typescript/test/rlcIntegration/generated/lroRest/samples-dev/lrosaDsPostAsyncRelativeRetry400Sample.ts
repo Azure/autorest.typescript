@@ -20,9 +20,9 @@ async function lrosaDsPostAsyncRelativeRetry400Sample() {
   const client = createLRORestClient();
   const options: LrosaDsPostAsyncRelativeRetry400Parameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

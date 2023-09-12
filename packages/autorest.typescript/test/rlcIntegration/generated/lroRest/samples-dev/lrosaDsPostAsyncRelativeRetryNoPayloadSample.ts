@@ -20,9 +20,9 @@ async function lrosaDsPostAsyncRelativeRetryNoPayloadSample() {
   const client = createLRORestClient();
   const options: LrosaDsPostAsyncRelativeRetryNoPayloadParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

@@ -20,9 +20,9 @@ async function lrosaDsPutAsyncRelativeRetryInvalidJsonPollingSample() {
   const client = createLRORestClient();
   const options: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters = {
     body: {
-      properties: { provisioningState: '{Your "provisioningState"}' },
-      tags: { key: '{Your "tags"}' },
-      location: '{Your "location"}'
+      properties: { provisioningState: "{Your provisioningState}" },
+      tags: { key: "{Your tags}" },
+      location: "{Your location}"
     },
     contentType: "application/json"
   };

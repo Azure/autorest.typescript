@@ -19,7 +19,7 @@ dotenv.config();
 async function pagingGetSinglePagesWithBodyParamsSample() {
   const client = createPagingClient();
   const options: PagingGetSinglePagesWithBodyParamsParameters = {
-    body: { name: '{Your "name"}' },
+    body: { name: "{Your name}" },
     contentType: "application/json"
   };
   const initialResponse = await client
