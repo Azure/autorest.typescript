@@ -19,7 +19,7 @@ async function contentTypeWithEncodingSample() {
   const client = createMediaTypesClient();
   const options: ContentTypeWithEncodingParameters = {
     body: "{Your body}",
-    contentType: undefined /**FIXME */
+    contentType: "text/plain; charset=UTF-8"
   };
   const result = await client
     .path("/mediatypes/contentTypeWithEncoding")

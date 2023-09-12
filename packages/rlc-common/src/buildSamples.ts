@@ -461,11 +461,6 @@ function buildSchemaObjectMap(model: RLCModel) {
     map.set(o.name, o);
   });
 
-  // include alias
-  allSchemas
-    .filter((s) => s.alias && s.typeName)
-    .forEach((s) => map.set(s.typeName!, s));
-
   return map;
 }
 
@@ -488,7 +483,7 @@ function mockParameterTypeValue(
   }
   switch (tsType) {
     case TypeScriptType.string:
-      return `'{Your ${parameterName}}'`;
+      return `'{Your ${leaveStringQuotes(parameterName)}}'`;
     case TypeScriptType.number:
       return "123";
     case TypeScriptType.boolean:
@@ -692,9 +687,9 @@ function extractObjectProperties(
   }
 }
 
-function containsStringLiteral(type: string) {
-  const reg = /^"([a-zA-Z0-9\/\+\-\s]*)"$/g;
-  const reg2 = /^'([a-zA-Z0-9\/\+\-\s]*)'$/g;
+function isQuotedString(type: string) {
+  const reg = /^"([a-zA-Z0-9=;\/\+\-\s]*)"$/g;
+  const reg2 = /^'([a-zA-Z0-9=;\/\+\-\s]*)'$/g;
   return reg.test(type) || reg2.test(type);
 }
 
@@ -751,6 +746,15 @@ function leaveBracket(type: string) {
     return type.slice(1, type.length - 1);
   }
   return type;
+}
+
+function leaveStringQuotes(str: string) {
+  const reg = /^"(?<str>[a-zA-Z0-9=;\/\+\-\s]*)"$/g;
+  const reg2 = /^'(?<str>[a-zA-Z0-9=;\/\+\-\s]*)'$/g;
+
+  const ret = reg.exec(str),
+    ret2 = reg2.exec(str);
+  return ret?.groups?.str ?? ret2?.groups?.str ?? str;
 }
 
 export enum TypeScriptType {
@@ -828,9 +832,7 @@ function toTypeScriptTypeFromName(
 function isConstant(typeName: string) {
   const constantSet = new Set(["true", "false", "never", "null"]);
   return (
-    constantSet.has(typeName) ||
-    isNumeric(typeName) ||
-    containsStringLiteral(typeName)
+    constantSet.has(typeName) || isNumeric(typeName) || isQuotedString(typeName)
   );
 }
 
