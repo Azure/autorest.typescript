@@ -1326,6 +1326,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
       return {};
     case "Enum":
       return emitEnum(context.program, type);
+    case "EnumMember":
+      return emitEnumMember(type);
     default:
       throw Error(`Not supported ${type.kind}`);
   }

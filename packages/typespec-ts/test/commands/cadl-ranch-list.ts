@@ -235,5 +235,21 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "encode/datetime",
     inputPath: "encode/datetime"
-  }
+  },
+  {
+    outputPath: "models/inheritance/nested-discriminator",
+    inputPath: "type/model/inheritance/nested-discriminator"
+  },
+  {
+    outputPath: "models/inheritance/not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "models/inheritance/enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "models/inheritance/single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
+  },
 ];
