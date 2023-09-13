@@ -950,7 +950,7 @@ function getAllProperties(type: Type): Property[] {
     return properties;
   }
   type.parents?.forEach((p) => {
-    properties.push(...(p.properties ?? []));
+    properties.push(...getAllProperties(p));
   });
   properties.push(...(type.properties ?? []));
   return properties;
