@@ -331,7 +331,12 @@ export function _addOrUpdateBlockItemsSend(
     )
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { blockItems: blockItems },
+      body: {
+        blockItems: (blockItems ?? []).map((p) => ({
+          description: p["description"],
+          text: p["text"],
+        })),
+      },
     });
 }
 

@@ -58,6 +58,12 @@ export function _createOrUpdateSend(
     ...operationOptionsToRequestParameters(options),
     contentType: (options.contentType as any) ?? "application/merge-patch+json",
     body: { name: name, orders: options?.orders }
+        name: name,
+        orders: (options?.orders ?? []).map((p) => ({
+          userId: p["userId"],
+          detail: p["detail"],
+        })),
+      },
   });
 }
 
@@ -107,6 +113,12 @@ export function _createOrReplaceSend(
   return context.path("/azure/core/basic/users/{id}", id).put({
     ...operationOptionsToRequestParameters(options),
     body: { name: name, orders: options?.orders }
+        name: name,
+        orders: (options?.orders ?? []).map((p) => ({
+          userId: p["userId"],
+          detail: p["detail"],
+        })),
+      },
   });
 }
 
