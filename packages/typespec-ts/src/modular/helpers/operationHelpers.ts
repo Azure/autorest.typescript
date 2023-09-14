@@ -257,7 +257,7 @@ export function getOperationFunction(
     if (isPaging) {
       type = extractPagingType(type, operation.itemName) ?? type;
     }
-    returnType = buildType(type.name, type);
+    returnType = buildType(type.name, type, type.format);
   }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
