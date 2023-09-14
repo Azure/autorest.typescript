@@ -48,7 +48,7 @@ import {
 import {
   PagedAsyncIterableIterator,
   buildPagedAsyncIterator,
-} from "../util/pagingUtil.js";
+} from "../../util/pagingUtil.js";
 import {
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,

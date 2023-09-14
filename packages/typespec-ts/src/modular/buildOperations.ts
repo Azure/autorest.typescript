@@ -116,7 +116,9 @@ export function buildOperationFiles(
     if (hasPagingOperation(codeModel)) {
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: "../util/pagingUtil.js",
+          moduleSpecifier: `${
+            subfolder && subfolder !== "" ? "../" : ""
+          }../util/pagingUtil.js`,
           namedImports: [
             "PagedAsyncIterableIterator",
             "buildPagedAsyncIterator"

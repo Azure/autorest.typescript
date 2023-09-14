@@ -84,9 +84,7 @@ function importAllUtils(
   subfolder: string
 ) {
   const project = clientFile.getProject();
-  const utils = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}util/pagingUtil.ts`
-  );
+  const utils = project.getSourceFile(`${srcPath}/util/pagingUtil.ts`);
 
   if (!utils) {
     return;
@@ -95,7 +93,7 @@ function importAllUtils(
   const exported = [...utils.getExportedDeclarations().keys()];
 
   clientFile.addImportDeclaration({
-    moduleSpecifier: `./util/pagingUtil.js`,
+    moduleSpecifier: `${subfolder !== "" ? "." : ""}./util/pagingUtil.js`,
     namedImports: exported
   });
 }
