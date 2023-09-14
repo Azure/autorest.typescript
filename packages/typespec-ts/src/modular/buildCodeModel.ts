@@ -195,7 +195,7 @@ function isDiscriminator(
 function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
-    let discriminatorValues: string[] = [];
+    const discriminatorValues: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
       for (const property of modelType.properties) {
