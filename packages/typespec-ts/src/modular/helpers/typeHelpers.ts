@@ -58,7 +58,10 @@ export function getType(type: Type, format?: string): TypeMetadata {
         throw new Error("Unable to process Array with no elementType");
       }
       return {
-        name: getNullableType(getType(type.elementType, type.elementType.format).name, type),
+        name: getNullableType(
+          getType(type.elementType, type.elementType.format).name,
+          type
+        ),
         modifier: "Array",
         originModule:
           type.elementType?.type === "model" ? "models.js" : undefined
@@ -97,7 +100,9 @@ export function getType(type: Type, format?: string): TypeMetadata {
         throw new Error("Unable to process dict without elemetType info");
       }
       return {
-        name: `Record<string, ${getTypeName(getType(type.elementType, type.elementType.format))}>`
+        name: `Record<string, ${getTypeName(
+          getType(type.elementType, type.elementType.format)
+        )}>`
       };
     case "any":
       return {
