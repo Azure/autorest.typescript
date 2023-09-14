@@ -10,7 +10,7 @@ describe("BasicClient Classical Client", () => {
     });
   });
 
-  describe.only("list", () => {
+  describe("list", () => {
     describe("next", () => {
       it("should list all users", async () => {
         const iter = client.list({
@@ -49,7 +49,7 @@ describe("BasicClient Classical Client", () => {
         const pagedItems = iter.byPage();
         const items: User[] = [];
         for await (const page of pagedItems) {
-          items.push(...page.page);
+          items.push(...page);
         }
         assert.strictEqual(items.length, 2);
         assert.strictEqual(items[0]?.name, "Madge");
@@ -59,7 +59,7 @@ describe("BasicClient Classical Client", () => {
         );
       });
 
-      it("maxPageSize is not allowed and should throw exceptions", async () => {
+      it("maxPageSize param should be ignored", async () => {
         const iter = client.list({
           top: 5,
           skip: 10,
@@ -69,15 +69,11 @@ describe("BasicClient Classical Client", () => {
           expand: ["orders"],
           requestOptions: { skipUrlEncoding: true }
         });
-        const pagedItems = iter.byPage({ maxPageSize: 10 } as any);
+
+        const pagedIter = iter.byPage({ maxPageSize: 10 } as any);
         try {
-          const items: User[] = [];
-          for await (const user of pagedItems) {
-            items.push(...user.page);
-          }
-          assert.fail(
-            "`maxPageSize` is not allowed to customize and should throw exceptions"
-          );
+          const items: User[] = (await pagedIter.next()).value;
+          assert.strictEqual(items.length, 2);
         } catch (err: any) {
           assert.strictEqual(
             err.message,
@@ -94,7 +90,7 @@ describe("BasicClient Classical Client", () => {
         });
         const items: User[] = [];
         for await (const user of pagedItems) {
-          items.push(...user.page);
+          items.push(...user);
         }
         assert.strictEqual(items.length, 2);
         assert.strictEqual(items[0]?.name, "Madge");

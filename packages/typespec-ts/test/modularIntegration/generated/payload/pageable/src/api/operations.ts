@@ -7,9 +7,11 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../util/pagingUtil.js";
 import { ListOptions } from "../models/options.js";
-import { buildPagedAsyncIterator } from "../util/pagingUtil.js";
 
 export function _listSend(
   context: Client,

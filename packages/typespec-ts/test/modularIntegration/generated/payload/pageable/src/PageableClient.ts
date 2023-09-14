@@ -9,7 +9,7 @@ import {
   PageableClientOptions,
   PageableContext,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "./util/pagingUtil.js";
 
 export { PageableClientOptions } from "./api/PageableContext.js";
 

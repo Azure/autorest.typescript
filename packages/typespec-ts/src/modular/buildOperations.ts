@@ -116,8 +116,11 @@ export function buildOperationFiles(
     if (hasPagingOperation(codeModel)) {
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: "@azure/core-paging",
-          namedImports: ["PagedAsyncIterableIterator"]
+          moduleSpecifier: "../util/pagingUtil.js",
+          namedImports: [
+            "PagedAsyncIterableIterator",
+            "buildPagedAsyncIterator"
+          ]
         }
       ]);
     }

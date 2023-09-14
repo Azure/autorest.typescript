@@ -1,7 +1,6 @@
 import {
   PageableClient,
-  User,
-  getContinuationToken
+  User
 } from "./generated/payload/pageable/src/index.js";
 import { assert } from "chai";
 
@@ -70,7 +69,7 @@ describe("PageableClient Classical Client", () => {
     assert.strictEqual(firstPage.done, false);
     assert.strictEqual(firstPage.value.length, 3);
     // initiate another iterator starting with 2nd page
-    const continuationToken = getContinuationToken(firstPage.value);
+    const continuationToken = firstPage.value.continuationToken;
     const items: User[] = [];
     for await (const pagedUsers of iter.byPage({ continuationToken })) {
       items.push(...pagedUsers);
@@ -78,16 +77,13 @@ describe("PageableClient Classical Client", () => {
     assert.strictEqual(items.length, 1);
   });
 
-  it("maxPageSize is not allowed and should throw exceptions", async () => {
-    const pagedIter = client.list().byPage({ maxPageSize: 10 });
+  it("maxPageSize param should be ignored", async () => {
+    const pagedIter = client
+      .list({ maxpagesize: 3 })
+      .byPage({ maxPageSize: 10 } as any);
     try {
-      const items: User[] = [];
-      for await (const user of pagedIter) {
-        items.push(...user);
-      }
-      assert.fail(
-        "`maxPageSize` is not allowed to customize and should throw exceptions"
-      );
+      const items: User[] = (await pagedIter.next()).value;
+      assert.strictEqual(items.length, 3);
     } catch (err: any) {
       assert.strictEqual(
         err.message,

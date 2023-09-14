@@ -141,13 +141,15 @@ async function* getPageAsyncIterator<TPage>(
   if (!response) {
     return;
   }
-  yield { ...response.page, continuationToken: response.nextPageLink };
+  (response.page as any).continuationToken = response.nextPageLink;
+  yield response.page as any;
   while (response.nextPageLink) {
     response = await pagedResult.getPage(response.nextPageLink);
     if (!response) {
       return;
     }
-    yield { ...response.page, continuationToken: response.nextPageLink };
+    (response.page as any).continuationToken = response.nextPageLink;
+    yield response.page as any;
   }
 }
 
