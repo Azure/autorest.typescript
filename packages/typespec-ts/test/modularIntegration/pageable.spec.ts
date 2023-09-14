@@ -4,6 +4,11 @@ import {
 } from "./generated/payload/pageable/src/index.js";
 import { assert } from "chai";
 
+/**
+ * Add test cases to test the iterable and iterator
+ * Add test cases to test error handling
+ */
+
 describe("PageableClient Classical Client", () => {
   let client: PageableClient;
 
