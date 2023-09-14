@@ -945,13 +945,17 @@ export function hasPagingOperation(codeModel: ModularCodeModel) {
 }
 
 function getAllProperties(type: Type): Property[] {
-  const properties: Property[] = [];
+  const propertiesMap: Map<string, Property> = new Map();
   if (!type) {
-    return properties;
+    return [];
   }
   type.parents?.forEach((p) => {
-    properties.push(...getAllProperties(p));
+    getAllProperties(p).forEach((prop) => {
+      propertiesMap.set(prop.clientName, prop);
+    });
   });
-  properties.push(...(type.properties ?? []));
-  return properties;
+  type.properties?.forEach((p) => {
+    propertiesMap.set(p.clientName, p);
+  });
+  return [...propertiesMap.values()];
 }
