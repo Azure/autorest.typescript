@@ -48,7 +48,7 @@ import {
   listTestRuns,
   stopTestRun,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "../util/pagingUtil.js";
 
 export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
 

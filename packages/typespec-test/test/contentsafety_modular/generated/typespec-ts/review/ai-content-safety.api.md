@@ -7,7 +7,6 @@
 import { ClientOptions } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
-import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
@@ -61,6 +60,7 @@ export class ContentSafetyClient {
     getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
     getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
     listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): PagedAsyncIterableIterator<TextBlockItem>;
+    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listTextBlocklists(options?: ListTextBlocklistsOptions): PagedAsyncIterableIterator<TextBlocklist>;
     removeBlockItems(blockItemIds: string[], blocklistName: string, options?: RemoveBlockItemsRequestOptions): Promise<void>;
 }
@@ -78,9 +78,6 @@ export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
 // @public (undocumented)
 export interface DeleteTextBlocklistOptions extends OperationOptions {
 }
-
-// @public
-export function getContinuationToken(page: unknown): string | undefined;
 
 // @public (undocumented)
 export interface GetTextBlocklistItemOptions extends OperationOptions {
@@ -132,9 +129,6 @@ export interface PagedTextBlocklist {
 // @public (undocumented)
 export interface RemoveBlockItemsRequestOptions extends OperationOptions {
 }
-
-// @public (undocumented)
-export function setContinuationToken(page: unknown, continuationToken: string | undefined): void;
 
 // @public
 export interface TextAnalyzeSeverityResult {

@@ -64,10 +64,6 @@ export {
   DeleteTestOptions,
 } from "./loadTestAdministration/models/index.js";
 export {
-  getContinuationToken,
-  setContinuationToken,
-} from "./util/pagingUtil.js";
-export {
   LoadTestRunClient,
   LoadTestRunClientOptions,
 } from "./loadTestRun/LoadTestRunClient.js";

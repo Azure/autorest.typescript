@@ -42,7 +42,10 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../util/pagingUtil.js";
 import {
   AnalyzeTextRequestOptions,
   AnalyzeImageRequestOptions,
@@ -55,7 +58,6 @@ import {
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "../models/options.js";
-import { buildPagedAsyncIterator } from "../util/pagingUtil.js";
 
 export function _analyzeTextSend(
   context: Client,

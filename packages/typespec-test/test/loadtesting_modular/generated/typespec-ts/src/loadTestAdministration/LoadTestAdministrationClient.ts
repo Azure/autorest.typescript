@@ -40,7 +40,7 @@ import {
   deleteTestFile,
   deleteTest,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "../util/pagingUtil.js";
 
 export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministrationContext.js";
 

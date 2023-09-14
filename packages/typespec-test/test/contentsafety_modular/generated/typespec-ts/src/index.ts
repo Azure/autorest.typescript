@@ -33,7 +33,3 @@ export {
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./models/index.js";
-export {
-  getContinuationToken,
-  setContinuationToken,
-} from "./util/pagingUtil.js";

@@ -38,7 +38,7 @@ import {
   getTextBlocklistItem,
   listTextBlocklistItems,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "./util/pagingUtil.js";
 
 export { ContentSafetyClientOptions } from "./api/ContentSafetyContext.js";
 

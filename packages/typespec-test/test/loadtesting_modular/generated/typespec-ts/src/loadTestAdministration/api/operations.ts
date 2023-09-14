@@ -45,8 +45,10 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { buildPagedAsyncIterator } from "../../util/pagingUtil.js";
+import {
+  PagedAsyncIterableIterator,
+  buildPagedAsyncIterator,
+} from "../util/pagingUtil.js";
 import {
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,
