@@ -53,11 +53,11 @@ export interface TestRunOptions extends OperationOptions {
   /** The test run status. */
   status?: Status;
   /** The test run start DateTime(ISO 8601 literal format). */
-  startDateTime?: Date;
+  startDateTime?: string;
   /** The test run end DateTime(ISO 8601 literal format). */
-  endDateTime?: Date;
+  endDateTime?: string;
   /** Test run initiated time. */
-  executedDateTime?: Date;
+  executedDateTime?: string;
   /** Portal url. */
   portalUrl?: string;
   /** Test run duration in milliseconds. */
@@ -65,11 +65,11 @@ export interface TestRunOptions extends OperationOptions {
   /** Subnet ID on which the load test instances should run. */
   subnetId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: Date;
+  createdDateTime?: string;
   /** The user that created. */
   createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: Date;
+  lastModifiedDateTime?: string;
   /** The user that last modified. */
   lastModifiedBy?: string;
   /** This request has a JSON Merge Patch body. */
@@ -87,11 +87,11 @@ export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
   /** Test run identifier */
   testRunId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: Date;
+  createdDateTime?: string;
   /** The user that created. */
   createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: Date;
+  lastModifiedDateTime?: string;
   /** The user that last modified. */
   lastModifiedBy?: string;
   contentType?: string;
@@ -108,11 +108,11 @@ export interface CreateOrUpdateServerMetricsConfigOptions
    */
   metrics?: Record<string, ResourceMetric>;
   /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: Date;
+  createdDateTime?: string;
   /** The user that created. */
   createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: Date;
+  lastModifiedDateTime?: string;
   /** The user that last modified. */
   lastModifiedBy?: string;
   contentType?: string;
@@ -185,9 +185,9 @@ export interface ListTestRunsOptions extends OperationOptions {
   /** Unique name of an existing load test. */
   testId?: string;
   /** Start DateTime(ISO 8601 literal format) of test-run execution time filter range. */
-  executionFrom?: Date;
+  executionFrom?: string;
   /** End DateTime(ISO 8601 literal format) of test-run execution time filter range. */
-  executionTo?: Date;
+  executionTo?: string;
   /** Comma separated list of test run status. */
   status?: string;
   /** Number of results in response. */
