@@ -156,11 +156,11 @@ export function getDeserializePrivateFunction(
         response.type.format
       )}`
     );
-  } else if (response?.type?.properties) {
+  } else if (getAllProperties(response?.type).length > 0) {
     statements.push(
       `return {`,
       getResponseMapping(
-        response.type.properties ?? [],
+        getAllProperties(response.type) ?? [],
         "result.body",
         importSet
       ).join(","),
@@ -351,7 +351,7 @@ function buildBodyParameter(
 
   if (bodyParameter.type.type === "model") {
     const bodyParts: string[] = [];
-    for (const param of bodyParameter?.type.properties?.filter(
+    for (const param of getAllProperties(bodyParameter?.type).filter(
       (p) => !p.readonly
     ) ?? []) {
       if (param.type.type === "model" && isRequired(param)) {
@@ -367,7 +367,7 @@ function buildBodyParameter(
       }
     }
 
-    if (bodyParameter && bodyParameter.type.properties) {
+    if (bodyParameter && getAllProperties(bodyParameter.type).length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }
@@ -619,11 +619,11 @@ function getRequestModelMapping(
   propertyPath: string = "body",
   importSet: Map<string, Set<string>>
 ) {
-  if (!modelPropertyType.properties || !modelPropertyType.properties) {
+  if (getAllProperties(modelPropertyType).length <= 0) {
     return [];
   }
   const props: string[] = [];
-  const properties: Property[] = modelPropertyType.properties;
+  const properties: Property[] = getAllProperties(modelPropertyType) ?? [];
   for (const property of properties) {
     if (property.readonly) {
       continue;
@@ -737,7 +737,7 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } {${getResponseMapping(
-          property.type.properties ?? [],
+          getAllProperties(property.type) ?? [],
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
@@ -804,7 +804,7 @@ function deserializeResponseValue(
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
+          getAllProperties(type.elementType) ?? [],
           "p",
           importSet
         )}}))`;
@@ -930,4 +930,20 @@ export function hasPagingOperation(codeModel: ModularCodeModel) {
       )
     )
   );
+}
+
+function getAllProperties(type: Type): Property[] {
+  const propertiesMap: Map<string, Property> = new Map();
+  if (!type) {
+    return [];
+  }
+  type.parents?.forEach((p) => {
+    getAllProperties(p).forEach((prop) => {
+      propertiesMap.set(prop.clientName, prop);
+    });
+  });
+  type.properties?.forEach((p) => {
+    propertiesMap.set(p.clientName, p);
+  });
+  return [...propertiesMap.values()];
 }
