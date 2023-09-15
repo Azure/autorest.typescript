@@ -3,13 +3,17 @@
 
 export { EventGridClient, EventGridClientOptions } from "./EventGridClient.js";
 export {
+  PublishCloudEventRequest,
   CloudEvent,
   ReceiveResult,
   ReceiveDetails,
   BrokerProperties,
+  AcknowledgeOptions,
   AcknowledgeResult,
   FailedLockToken,
+  ReleaseOptions,
   ReleaseResult,
+  RejectOptions,
   RejectResult,
   PublishCloudEventOptions,
   PublishCloudEventsOptions,

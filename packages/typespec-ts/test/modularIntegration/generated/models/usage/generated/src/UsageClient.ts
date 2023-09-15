@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OutputRecord, InputOutputRecord } from "./models/models.js";
+import {
+  InputRecord,
+  OutputRecord,
+  InputOutputRecord,
+} from "./models/models.js";
 import {
   InputOptions,
   OutputOptions,
@@ -27,10 +31,10 @@ export class UsageClient {
   }
 
   input(
-    requiredProp: string,
+    inputParameter: InputRecord,
     options: InputOptions = { requestOptions: {} }
   ): Promise<void> {
-    return input(this._client, requiredProp, options);
+    return input(this._client, inputParameter, options);
   }
 
   output(
@@ -40,9 +44,9 @@ export class UsageClient {
   }
 
   inputAndOutput(
-    requiredProp: string,
+    body: InputOutputRecord,
     options: InputAndOutputOptions = { requestOptions: {} }
   ): Promise<InputOutputRecord> {
-    return inputAndOutput(this._client, requiredProp, options);
+    return inputAndOutput(this._client, body, options);
   }
 }

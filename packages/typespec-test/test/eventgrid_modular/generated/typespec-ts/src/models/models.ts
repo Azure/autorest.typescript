@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+export interface PublishCloudEventRequest {
+  event: CloudEvent;
+}
+
 /** Properties of an event published to an Azure Messaging EventGrid Namespace topic using the CloudEvent 1.0 Schema. */
 export interface CloudEvent {
   /** An identifier for the event. The combination of id and source must be unique for each distinct event. */
@@ -47,6 +51,12 @@ export interface BrokerProperties {
   deliveryCount: number;
 }
 
+/** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
+export interface AcknowledgeOptions {
+  /** String array of lock tokens. */
+  lockTokens: string[];
+}
+
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -65,12 +75,24 @@ export interface FailedLockToken {
   errorDescription: string;
 }
 
+/** Array of lock token strings for the corresponding received Cloud Events to be released. */
+export interface ReleaseOptions {
+  /** String array of lock tokens. */
+  lockTokens: string[];
+}
+
 /** The result of the Release operation. */
 export interface ReleaseResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: FailedLockToken[];
   /** Array of lock tokens values for the successfully released cloud events. */
   succeededLockTokens: string[];
+}
+
+/** Array of lock token strings for the corresponding received Cloud Events to be rejected. */
+export interface RejectOptions {
+  /** String array of lock tokens. */
+  lockTokens: string[];
 }
 
 /** The result of the Reject operation. */

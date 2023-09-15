@@ -9,6 +9,16 @@ import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
+// @public
+export interface AddOrUpdateBlockItemsOptions {
+    blockItems: TextBlockItemInfo[];
+}
+
+// @public (undocumented)
+export interface AddOrUpdateBlockItemsOptions {
+    blockItems: TextBlockItemInfo[];
+}
+
 // @public (undocumented)
 export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
 }
@@ -16,6 +26,13 @@ export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
 // @public
 export interface AddOrUpdateBlockItemsResult {
     value?: TextBlockItem[];
+}
+
+// @public
+export interface AnalyzeImageOptions {
+    categories?: ImageCategory[];
+    image: ImageData_2;
+    outputType?: AnalyzeImageOutputType;
 }
 
 // @public
@@ -30,6 +47,15 @@ export interface AnalyzeImageRequestOptions extends OperationOptions {
 // @public
 export interface AnalyzeImageResult {
     analyzeResults: ImageAnalyzeSeverityResult[];
+}
+
+// @public
+export interface AnalyzeTextOptions {
+    blocklistNames?: string[];
+    breakByBlocklists?: boolean;
+    categories?: TextCategory[];
+    outputType?: AnalyzeTextOutputType;
+    text: string;
 }
 
 // @public
@@ -52,16 +78,16 @@ export interface AnalyzeTextResult {
 // @public (undocumented)
 export class ContentSafetyClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: ContentSafetyClientOptions);
-    addOrUpdateBlockItems(blockItems: TextBlockItemInfo[], blocklistName: string, options?: AddOrUpdateBlockItemsRequestOptions): Promise<AddOrUpdateBlockItemsResult>;
-    analyzeImage(image: ImageData_2, options?: AnalyzeImageRequestOptions): Promise<AnalyzeImageResult>;
-    analyzeText(text: string, options?: AnalyzeTextRequestOptions): Promise<AnalyzeTextResult>;
-    createOrUpdateTextBlocklist(blocklistName: string, options?: CreateOrUpdateTextBlocklistOptions): Promise<TextBlocklist>;
+    addOrUpdateBlockItems(blocklistName: string, body: AddOrUpdateBlockItemsOptions, options?: AddOrUpdateBlockItemsRequestOptions): Promise<AddOrUpdateBlockItemsResult>;
+    analyzeImage(body: AnalyzeImageOptions, options?: AnalyzeImageRequestOptions): Promise<AnalyzeImageResult>;
+    analyzeText(body: AnalyzeTextOptions, options?: AnalyzeTextRequestOptions): Promise<AnalyzeTextResult>;
+    createOrUpdateTextBlocklist(blocklistName: string, resource: TextBlocklist, options?: CreateOrUpdateTextBlocklistOptions): Promise<TextBlocklist>;
     deleteTextBlocklist(blocklistName: string, options?: DeleteTextBlocklistOptions): Promise<void>;
     getTextBlocklist(blocklistName: string, options?: GetTextBlocklistOptions): Promise<TextBlocklist>;
     getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
     listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): Promise<PagedTextBlockItem>;
     listTextBlocklists(options?: ListTextBlocklistsOptions): Promise<PagedTextBlocklist>;
-    removeBlockItems(blockItemIds: string[], blocklistName: string, options?: RemoveBlockItemsRequestOptions): Promise<void>;
+    removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsRequestOptions): Promise<void>;
 }
 
 // @public (undocumented)
@@ -123,6 +149,16 @@ export interface PagedTextBlockItem {
 export interface PagedTextBlocklist {
     nextLink?: string;
     value: TextBlocklist[];
+}
+
+// @public
+export interface RemoveBlockItemsOptions {
+    blockItemIds: string[];
+}
+
+// @public (undocumented)
+export interface RemoveBlockItemsOptions {
+    blockItemIds: string[];
 }
 
 // @public (undocumented)

@@ -8,6 +8,8 @@ export {
 export {
   Widget,
   ColorType,
+  CreateWidget,
+  UpdateWidget,
   AnalyzeResult,
   ListWidgetsOptions,
   GetWidgetOptions,

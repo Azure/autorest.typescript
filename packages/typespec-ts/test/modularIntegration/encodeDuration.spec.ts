@@ -62,7 +62,7 @@ describe("EncodeDurationClient Rest Client", () => {
   describe("property", () => {
     it(`should get default duration`, async () => {
       try {
-        const result = await client.property.default("P40D");
+        const result = await client.property.default({value: "P40D"});
         assert.deepEqual(result.value, "P40D");
       } catch (err) {
         assert.fail(err as string);
@@ -71,7 +71,7 @@ describe("EncodeDurationClient Rest Client", () => {
 
     it(`should get iso8601 duration`, async () => {
       try {
-        const result = await client.property.iso8601("P40D");
+        const result = await client.property.iso8601({value: "P40D"});
         assert.deepEqual(result.value, "P40D");
       } catch (err) {
         assert.fail(err as string);
@@ -80,7 +80,7 @@ describe("EncodeDurationClient Rest Client", () => {
 
     it(`should get float seconds`, async () => {
       try {
-        const result = await client.property.floatSeconds(35.621);
+        const result = await client.property.floatSeconds({value: 35.621});
         assert.deepEqual(result.value, 35.621);
       } catch (err) {
         assert.fail(err as string);
@@ -89,7 +89,7 @@ describe("EncodeDurationClient Rest Client", () => {
 
     it(`should get int32 seconds`, async () => {
       try {
-        const result = await client.property.int32Seconds(36);
+        const result = await client.property.int32Seconds({value: 36});
         assert.deepEqual(result.value, 36);
       } catch (err) {
         assert.fail(err as string);
@@ -98,9 +98,10 @@ describe("EncodeDurationClient Rest Client", () => {
 
     it(`should get int32 seconds array`, async () => {
       try {
-        const result = await client.property.floatSecondsArray([
+        const result = await client.property.floatSecondsArray({
+          value: [
           35.621, 46.781
-        ]);
+        ]});
         assert.deepEqual(result.value, [35.621, 46.781]);
       } catch (err) {
         assert.fail(err as string);

@@ -71,9 +71,9 @@ describe("EncodeDatetimeClient Rest Client", () => {
   describe("property", () => {
     it(`should get default datetime`, async () => {
       try {
-        const result = await client.property.default(
-          new Date("2022-08-26T18:38:00.000Z")
-        );
+        const result = await client.property.default({
+          value: new Date("2022-08-26T18:38:00.000Z")
+        });
         assert.deepEqual(result.value, new Date("2022-08-26T18:38:00.000Z"));
       } catch (err) {
         assert.fail(err as string);
@@ -82,9 +82,9 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get rfc3339`, async () => {
       try {
-        const result = await client.property.rfc3339(
-          new Date("2022-08-26T18:38:00.000Z")
-        );
+        const result = await client.property.rfc3339({
+          value: new Date("2022-08-26T18:38:00.000Z")
+        });
         assert.deepEqual(result.value, new Date("2022-08-26T18:38:00.000Z"));
       } catch (err) {
         assert.fail(err as string);
@@ -93,10 +93,13 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get rfc7231`, async () => {
       try {
-        const result = await client.property.rfc7231(
+        const result = await client.property.rfc7231({
+          value: new Date("Fri, 26 Aug 2022 14:38:00 GMT")
+        });
+        assert.deepEqual(
+          result.value,
           new Date("Fri, 26 Aug 2022 14:38:00 GMT")
         );
-        assert.deepEqual(result.value, new Date("Fri, 26 Aug 2022 14:38:00 GMT"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -104,7 +107,9 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get unix timestamp`, async () => {
       try {
-        const result = await client.property.unixTimestamp(new Date(1686566864));
+        const result = await client.property.unixTimestamp({
+          value: new Date(1686566864)
+        });
         assert.deepEqual(result.value, new Date(1686566864));
       } catch (err) {
         assert.fail(err as string);
@@ -113,11 +118,13 @@ describe("EncodeDatetimeClient Rest Client", () => {
 
     it(`should get unix timestamp-array`, async () => {
       try {
-        const result = await client.property.unixTimestampArray([
+        const result = await client.property.unixTimestampArray({
+          value: [new Date(1686566864), new Date(1686734256)]
+        });
+        assert.deepEqual(result.value, [
           new Date(1686566864),
           new Date(1686734256)
         ]);
-        assert.deepEqual(result.value, [new Date(1686566864), new Date(1686734256)]);
       } catch (err) {
         assert.fail(err as string);
       }
