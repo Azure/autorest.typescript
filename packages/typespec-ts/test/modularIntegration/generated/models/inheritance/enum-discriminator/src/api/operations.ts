@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Dog, Snake } from "../models/models.js";
+import { Dog, DogKind, Snake, SnakeKind } from "../models/models.js";
 import {
   EnumDiscriminatorContext as Client,
   GetExtensibleModel200Response,
@@ -47,7 +47,6 @@ export async function _getExtensibleModelDeserialize(
   return {
     kind: result.body["kind"],
     weight: result.body["weight"],
-    kind: result.body["kind"],
   };
 }
 
@@ -62,7 +61,7 @@ export async function getExtensibleModel(
 
 export function _putExtensibleModelSend(
   context: Client,
-  kind: any,
+  kind: DogKind,
   weight: number,
   options: PutExtensibleModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutExtensibleModel204Response> {
@@ -70,7 +69,7 @@ export function _putExtensibleModelSend(
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, weight: weight, kind: kind },
+      body: { kind: kind, weight: weight },
     });
 }
 
@@ -87,7 +86,7 @@ export async function _putExtensibleModelDeserialize(
 /** Send model with extensible enum discriminator type. */
 export async function putExtensibleModel(
   context: Client,
-  kind: any,
+  kind: DogKind,
   weight: number,
   options: PutExtensibleModelOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -118,7 +117,6 @@ export async function _getExtensibleModelMissingDiscriminatorDeserialize(
   return {
     kind: result.body["kind"],
     weight: result.body["weight"],
-    kind: result.body["kind"],
   };
 }
 
@@ -157,7 +155,6 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
   return {
     kind: result.body["kind"],
     weight: result.body["weight"],
-    kind: result.body["kind"],
   };
 }
 
@@ -192,7 +189,6 @@ export async function _getFixedModelDeserialize(
   return {
     kind: result.body["kind"],
     length: result.body["length"],
-    kind: result.body["kind"],
   };
 }
 
@@ -207,7 +203,7 @@ export async function getFixedModel(
 
 export function _putFixedModelSend(
   context: Client,
-  kind: any,
+  kind: SnakeKind,
   length: number,
   options: PutFixedModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutFixedModel204Response> {
@@ -215,7 +211,7 @@ export function _putFixedModelSend(
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, length: length, kind: kind },
+      body: { kind: kind, length: length },
     });
 }
 
@@ -232,7 +228,7 @@ export async function _putFixedModelDeserialize(
 /** Send model with fixed enum discriminator type. */
 export async function putFixedModel(
   context: Client,
-  kind: any,
+  kind: SnakeKind,
   length: number,
   options: PutFixedModelOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -261,7 +257,6 @@ export async function _getFixedModelMissingDiscriminatorDeserialize(
   return {
     kind: result.body["kind"],
     length: result.body["length"],
-    kind: result.body["kind"],
   };
 }
 
@@ -295,7 +290,6 @@ export async function _getFixedModelWrongDiscriminatorDeserialize(
   return {
     kind: result.body["kind"],
     length: result.body["length"],
-    kind: result.body["kind"],
   };
 }
 

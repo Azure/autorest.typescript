@@ -39,7 +39,7 @@ export class SingleDiscriminatorClient {
   }
 
   putModel(
-    kind: undefined,
+    kind: string,
     wingspan: number,
     options: PutModelOptions = { requestOptions: {} }
   ): Promise<void> {
@@ -53,7 +53,7 @@ export class SingleDiscriminatorClient {
   }
 
   putRecursiveModel(
-    kind: undefined,
+    kind: string,
     wingspan: number,
     options: PutRecursiveModelOptions = { requestOptions: {} }
   ): Promise<void> {

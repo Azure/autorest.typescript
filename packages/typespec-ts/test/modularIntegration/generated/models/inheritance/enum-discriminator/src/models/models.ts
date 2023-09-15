@@ -3,11 +3,10 @@
 
 /** Test extensible enum type for discriminator */
 export interface Dog {
-  /** discriminator property */
+  /** the discriminator possible values golden */
   kind: DogKind;
   /** Weight of the dog */
   weight: number;
-  kind: any;
 }
 
 /** extensible enum type for discriminator */
@@ -16,11 +15,10 @@ export type DogKind = string;
 
 /** Test fixed enum type for discriminator */
 export interface Snake {
-  /** discriminator property */
+  /** the discriminator possible values cobra */
   kind: SnakeKind;
   /** Length of the snake */
   length: number;
-  kind: any;
 }
 
 /** fixed enum type for discriminator */

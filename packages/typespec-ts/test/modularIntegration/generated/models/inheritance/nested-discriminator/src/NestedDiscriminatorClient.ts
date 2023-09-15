@@ -38,10 +38,9 @@ export class NestedDiscriminatorClient {
 
   putModel(
     age: number,
-    kind: undefined,
     options: PutModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putModel(this._client, age, kind, options);
+    return putModel(this._client, age, options);
   }
 
   getRecursiveModel(
@@ -52,10 +51,9 @@ export class NestedDiscriminatorClient {
 
   putRecursiveModel(
     age: number,
-    kind: undefined,
     options: PutRecursiveModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putRecursiveModel(this._client, age, kind, options);
+    return putRecursiveModel(this._client, age, options);
   }
 
   getMissingDiscriminator(

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Dog, Snake } from "./models/models.js";
+import { Dog, DogKind, Snake, SnakeKind } from "./models/models.js";
 import {
   GetExtensibleModelOptions,
   PutExtensibleModelOptions,
@@ -45,7 +45,7 @@ export class EnumDiscriminatorClient {
 
   /** Send model with extensible enum discriminator type. */
   putExtensibleModel(
-    kind: any,
+    kind: DogKind,
     weight: number,
     options: PutExtensibleModelOptions = { requestOptions: {} }
   ): Promise<void> {
@@ -79,7 +79,7 @@ export class EnumDiscriminatorClient {
 
   /** Send model with fixed enum discriminator type. */
   putFixedModel(
-    kind: any,
+    kind: SnakeKind,
     length: number,
     options: PutFixedModelOptions = { requestOptions: {} }
   ): Promise<void> {

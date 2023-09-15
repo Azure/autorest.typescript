@@ -45,7 +45,6 @@ export async function _getModelDeserialize(
   return {
     kind: result.body["kind"],
     wingspan: result.body["wingspan"],
-    kind: result.body["kind"],
   };
 }
 
@@ -59,7 +58,7 @@ export async function getModel(
 
 export function _putModelSend(
   context: Client,
-  kind: undefined,
+  kind: string,
   wingspan: number,
   options: PutModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutModel204Response> {
@@ -67,7 +66,7 @@ export function _putModelSend(
     .path("/type/model/inheritance/single-discriminator/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, wingspan: wingspan, kind: kind },
+      body: { kind: kind, wingspan: wingspan },
     });
 }
 
@@ -83,7 +82,7 @@ export async function _putModelDeserialize(
 
 export async function putModel(
   context: Client,
-  kind: undefined,
+  kind: string,
   wingspan: number,
   options: PutModelOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -110,7 +109,6 @@ export async function _getRecursiveModelDeserialize(
   return {
     kind: result.body["kind"],
     wingspan: result.body["wingspan"],
-    kind: result.body["kind"],
   };
 }
 
@@ -124,7 +122,7 @@ export async function getRecursiveModel(
 
 export function _putRecursiveModelSend(
   context: Client,
-  kind: undefined,
+  kind: string,
   wingspan: number,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutRecursiveModel204Response> {
@@ -132,7 +130,7 @@ export function _putRecursiveModelSend(
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, wingspan: wingspan, kind: kind },
+      body: { kind: kind, wingspan: wingspan },
     });
 }
 
@@ -148,7 +146,7 @@ export async function _putRecursiveModelDeserialize(
 
 export async function putRecursiveModel(
   context: Client,
-  kind: undefined,
+  kind: string,
   wingspan: number,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -175,7 +173,6 @@ export async function _getMissingDiscriminatorDeserialize(
   return {
     kind: result.body["kind"],
     wingspan: result.body["wingspan"],
-    kind: result.body["kind"],
   };
 }
 
@@ -206,7 +203,6 @@ export async function _getWrongDiscriminatorDeserialize(
   return {
     kind: result.body["kind"],
     wingspan: result.body["wingspan"],
-    kind: result.body["kind"],
   };
 }
 
@@ -236,7 +232,6 @@ export async function _getLegacyModelDeserialize(
 
   return {
     size: result.body["size"],
-    kind: result.body["kind"],
   };
 }
 

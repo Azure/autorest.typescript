@@ -42,7 +42,6 @@ export async function _getModelDeserialize(
 
   return {
     age: result.body["age"],
-    kind: result.body["kind"],
   };
 }
 
@@ -57,14 +56,13 @@ export async function getModel(
 export function _putModelSend(
   context: Client,
   age: number,
-  kind: undefined,
   options: PutModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: age, kind: kind },
+      body: { age: age },
     });
 }
 
@@ -81,10 +79,9 @@ export async function _putModelDeserialize(
 export async function putModel(
   context: Client,
   age: number,
-  kind: undefined,
   options: PutModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putModelSend(context, age, kind, options);
+  const result = await _putModelSend(context, age, options);
   return _putModelDeserialize(result);
 }
 
@@ -106,7 +103,6 @@ export async function _getRecursiveModelDeserialize(
 
   return {
     age: result.body["age"],
-    kind: result.body["kind"],
   };
 }
 
@@ -121,14 +117,13 @@ export async function getRecursiveModel(
 export function _putRecursiveModelSend(
   context: Client,
   age: number,
-  kind: undefined,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: age, kind: kind },
+      body: { age: age },
     });
 }
 
@@ -145,10 +140,9 @@ export async function _putRecursiveModelDeserialize(
 export async function putRecursiveModel(
   context: Client,
   age: number,
-  kind: undefined,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putRecursiveModelSend(context, age, kind, options);
+  const result = await _putRecursiveModelSend(context, age, options);
   return _putRecursiveModelDeserialize(result);
 }
 
@@ -170,7 +164,6 @@ export async function _getMissingDiscriminatorDeserialize(
 
   return {
     age: result.body["age"],
-    kind: result.body["kind"],
   };
 }
 
@@ -200,7 +193,6 @@ export async function _getWrongDiscriminatorDeserialize(
 
   return {
     age: result.body["age"],
-    kind: result.body["kind"],
   };
 }
 

@@ -31,4 +31,4 @@ export interface Eagle extends BirdParent {
 }
 
 /** This is base model for polymorphic single level inheritance with a discriminator. */
-export type Bird = SeaGull | Sparrow | Goose | Eagle;
+export type Bird = SeaGull | Sparrow | Goose | Eagle | BirdParent;
