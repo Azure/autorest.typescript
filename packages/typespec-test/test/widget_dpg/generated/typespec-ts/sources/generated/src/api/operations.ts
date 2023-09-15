@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Widget, ColorType, AnalyzeResult } from "../models/models.js";
+import {
+  Widget,
+  CreateWidget,
+  UpdateWidget,
+  AnalyzeResult,
+} from "../models/models.js";
 import {
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
@@ -103,15 +108,14 @@ export async function getWidget(
 
 export function _createWidgetSend(
   context: Client,
-  weight: number,
-  color: ColorType,
+  body: CreateWidget,
   options: CreateWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse> {
   return context
     .path("/widgets")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { weight: weight, color: color },
+      body: { weight: body["weight"], color: body["color"] },
     });
 }
 
@@ -137,24 +141,24 @@ export async function _createWidgetDeserialize(
  */
 export async function createWidget(
   context: Client,
-  weight: number,
-  color: ColorType,
+  body: CreateWidget,
   options: CreateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
-  const result = await _createWidgetSend(context, weight, color, options);
+  const result = await _createWidgetSend(context, body, options);
   return _createWidgetDeserialize(result);
 }
 
 export function _updateWidgetSend(
   context: Client,
   id: string,
+  body: UpdateWidget,
   options: UpdateWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<UpdateWidget200Response | UpdateWidgetDefaultResponse> {
   return context
     .path("/widgets/{id}", id)
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: { weight: options?.weight, color: options?.color },
+      body: { weight: body["weight"], color: body["color"] },
     });
 }
 
@@ -179,9 +183,10 @@ export async function _updateWidgetDeserialize(
 export async function updateWidget(
   context: Client,
   id: string,
+  body: UpdateWidget,
   options: UpdateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
-  const result = await _updateWidgetSend(context, id, options);
+  const result = await _updateWidgetSend(context, id, body, options);
   return _updateWidgetDeserialize(result);
 }
 

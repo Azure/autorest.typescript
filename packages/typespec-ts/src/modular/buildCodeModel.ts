@@ -815,6 +815,21 @@ function emitBasicOperation(
     }
   }
   const name = applyCasing(operation.name, { casing: CASING });
+
+  /** handle name collision between operation name and parameter signature */
+  if (bodyParameter) {
+    bodyParameter.clientName =
+      bodyParameter.clientName === name
+        ? bodyParameter.clientName + "Parameter"
+        : bodyParameter.clientName;
+  }
+  parameters
+    .filter((param) => {
+      return param.clientName === name && !param.isReadOnly && param.required;
+    })
+    .forEach((param) => {
+      param.clientName = param.clientName + "Parameter";
+    });
   return {
     name: name,
     description: getDocStr(context.program, operation),

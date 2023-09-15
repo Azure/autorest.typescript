@@ -3,6 +3,7 @@
 
 export { UsageClient, UsageClientOptions } from "./UsageClient.js";
 export {
+  InputRecord,
   OutputRecord,
   InputOutputRecord,
   InputOptions,

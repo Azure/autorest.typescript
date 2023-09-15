@@ -4,12 +4,12 @@
 import { TokenCredential } from "@azure/core-auth";
 import {
   FileInfo,
-  AppComponent,
   TestRun,
   TestRunAppComponents,
   TestRunServerMetricConfig,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
+  MetricRequestPayload,
   PagedTimeSeriesElement,
   PagedTestRun,
   PagedDimensionValueList,
@@ -66,31 +66,33 @@ export class LoadTestRunClient {
   /** Create and start a new test run with the given name. */
   testRun(
     testRunId: string,
+    resource: TestRun,
     options: TestRunOptions = { requestOptions: {} }
   ): Promise<TestRun> {
-    return testRun(this._client, testRunId, options);
+    return testRun(this._client, testRunId, resource, options);
   }
 
   /** Associate an app component (collection of azure resources) to a test run */
   createOrUpdateAppComponents(
-    components: Record<string, AppComponent>,
     testRunId: string,
+    body: TestRunAppComponents,
     options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
   ): Promise<TestRunAppComponents> {
-    return createOrUpdateAppComponents(
-      this._client,
-      components,
-      testRunId,
-      options
-    );
+    return createOrUpdateAppComponents(this._client, testRunId, body, options);
   }
 
   /** Configure server metrics for a test run */
   createOrUpdateServerMetricsConfig(
     testRunId: string,
+    body: TestRunServerMetricConfig,
     options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
   ): Promise<TestRunServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(this._client, testRunId, options);
+    return createOrUpdateServerMetricsConfig(
+      this._client,
+      testRunId,
+      body,
+      options
+    );
   }
 
   /** Delete a test run by its name. */
@@ -172,9 +174,10 @@ export class LoadTestRunClient {
   /** List the metric values for a load test run. */
   listMetrics(
     testRunId: string,
+    body: MetricRequestPayload,
     options: ListMetricsOptions = { requestOptions: {} }
   ): Promise<PagedTimeSeriesElement> {
-    return listMetrics(this._client, testRunId, options);
+    return listMetrics(this._client, testRunId, body, options);
   }
 
   /** Get all test runs with given filters */

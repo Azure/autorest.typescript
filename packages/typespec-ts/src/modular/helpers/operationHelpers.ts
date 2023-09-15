@@ -350,24 +350,13 @@ function buildBodyParameter(
   }
 
   if (bodyParameter.type.type === "model") {
-    const bodyParts: string[] = [];
-    for (const param of getAllProperties(bodyParameter?.type).filter(
-      (p) => !p.readonly
-    ) ?? []) {
-      if (param.type.type === "model" && isRequired(param)) {
-        bodyParts.push(
-          `"${param.restApiName}": {${getRequestModelMapping(
-            param.type,
-            param.clientName,
-            importSet
-          ).join(",\n")}}`
-        );
-      } else {
-        bodyParts.push(getParameterMap(param, importSet));
-      }
-    }
+    const bodyParts: string[] = getRequestModelMapping(
+      bodyParameter.type,
+      bodyParameter.clientName,
+      importSet
+    );
 
-    if (bodyParameter && getAllProperties(bodyParameter.type).length > 0) {
+    if (bodyParameter && bodyParts.length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }

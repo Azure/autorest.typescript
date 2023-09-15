@@ -2,20 +2,24 @@
 // Licensed under the MIT license.
 
 export {
+  AnalyzeTextOptions,
   TextCategory,
   AnalyzeTextOutputType,
   AnalyzeTextResult,
   TextBlocklistMatchResult,
   TextAnalyzeSeverityResult,
+  AnalyzeImageOptions,
   ImageData,
   ImageCategory,
   AnalyzeImageOutputType,
   AnalyzeImageResult,
   ImageAnalyzeSeverityResult,
   TextBlocklist,
+  AddOrUpdateBlockItemsOptions,
   TextBlockItemInfo,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
+  RemoveBlockItemsOptions,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "./models.js";

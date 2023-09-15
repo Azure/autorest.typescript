@@ -14,7 +14,7 @@ describe("modular model type", () => {
 });
 
 describe("modular encode test for property type datetime", () => {
-  it.only("should handle property type plainDate, plainTime, utcDateTime, offsetDatetime with default encoding", async () => {
+  it("should handle property type plainDate, plainTime, utcDateTime, offsetDatetime with default encoding", async () => {
     const tspContent = `
     model Foo {
       prop1: plainDate;
@@ -49,10 +49,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
-        prop2: Date,
-        prop3: Date,
-        prop4: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -60,10 +57,10 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.toDateString(),
-              prop2: prop2.toTimeString(),
-              prop3: prop3.toISOString(),
-              prop4: prop4.toUTCString(),
+              prop1: body["prop1"].toDateString(),
+              prop2: body["prop2"].toTimeString(),
+              prop3: body["prop3"].toISOString(),
+              prop4: body["prop4"].toUTCString(),
             },
           });
       }
@@ -83,13 +80,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
-        prop2: Date,
-        prop3: Date,
-        prop4: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, prop3, prop4, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -179,8 +173,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
-        prop2: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -188,8 +181,8 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.toISOString(),
-              prop2: prop2.toISOString(),
+              prop1: body["prop1"].toISOString(),
+              prop2: body["prop2"].toISOString(),
             },
           });
       }
@@ -207,11 +200,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
-        prop2: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -251,8 +243,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
-        prop2: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -260,8 +251,8 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.toUTCString(),
-              prop2: prop2.toUTCString(),
+              prop1: body["prop1"].toUTCString(),
+              prop2: body["prop2"].toUTCString(),
             },
           });
       }
@@ -279,11 +270,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
-        prop2: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -320,7 +310,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -328,7 +318,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.getTime(),
+              prop1: body["prop1"].getTime()
             },
           });
       }
@@ -345,10 +335,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -386,7 +376,7 @@ describe("modular encode test for property type duration", () => {
       
       export function _readSend(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -394,7 +384,7 @@ describe("modular encode test for property type duration", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1,
+              prop1: body["prop1"],
             },
           });
       }
@@ -411,10 +401,10 @@ describe("modular encode test for property type duration", () => {
       
       export async function read(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -451,7 +441,7 @@ describe("modular encode test for property type duration", () => {
       
       export function _readSend(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -459,7 +449,7 @@ describe("modular encode test for property type duration", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1,
+              prop1: body["prop1"],
             },
           });
       }
@@ -476,10 +466,10 @@ describe("modular encode test for property type duration", () => {
       
       export async function read(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -519,8 +509,7 @@ describe("modular encode test for property type duration", () => {
       
       export function _readSend(
         context: Client,
-        prop1: number,
-        prop2: number,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -528,8 +517,8 @@ describe("modular encode test for property type duration", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1,
-              prop2: prop2,
+              prop1: body["prop1"], 
+              prop2: body["prop2"],
             },
           });
       }
@@ -547,11 +536,10 @@ describe("modular encode test for property type duration", () => {
       
       export async function read(
         context: Client,
-        prop1: number,
-        prop2: number,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -590,7 +578,7 @@ describe("modular encode test for property type bytes", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -598,7 +586,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(prop1, "base64"),
+              prop1: uint8ArrayToString(body["prop1"], "base64"),
             },
           });
       }
@@ -618,10 +606,10 @@ describe("modular encode test for property type bytes", () => {
       
       export async function read(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -659,7 +647,7 @@ describe("modular encode test for property type bytes", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -667,7 +655,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(prop1, "base64"),
+              prop1: uint8ArrayToString(body["prop1"], "base64"),
             },
           });
       }
@@ -687,10 +675,10 @@ describe("modular encode test for property type bytes", () => {
       
       export async function read(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -728,7 +716,7 @@ describe("modular encode test for property type bytes", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -736,7 +724,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(prop1, "base64url"),
+              prop1: uint8ArrayToString(body["prop1"], "base64url"),
             },
           });
       }
@@ -756,10 +744,10 @@ describe("modular encode test for property type bytes", () => {
       
       export async function read(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true

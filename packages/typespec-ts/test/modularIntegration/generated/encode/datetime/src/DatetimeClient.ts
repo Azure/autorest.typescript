@@ -81,34 +81,34 @@ export class DatetimeClient {
   };
   property = {
     default: (
-      value: Date,
+      body: DefaultDatetimeProperty,
       options?: PropertyDefaultOptions
     ): Promise<DefaultDatetimeProperty> => {
-      return propertyDefault(this._client, value, options);
+      return propertyDefault(this._client, body, options);
     },
     rfc3339: (
-      value: Date,
+      body: Rfc3339DatetimeProperty,
       options?: PropertyRfc3339Options
     ): Promise<Rfc3339DatetimeProperty> => {
-      return propertyRfc3339(this._client, value, options);
+      return propertyRfc3339(this._client, body, options);
     },
     rfc7231: (
-      value: Date,
+      body: Rfc7231DatetimeProperty,
       options?: PropertyRfc7231Options
     ): Promise<Rfc7231DatetimeProperty> => {
-      return propertyRfc7231(this._client, value, options);
+      return propertyRfc7231(this._client, body, options);
     },
     unixTimestamp: (
-      value: Date,
+      body: UnixTimestampDatetimeProperty,
       options?: PropertyUnixTimestampOptions
     ): Promise<UnixTimestampDatetimeProperty> => {
-      return propertyUnixTimestamp(this._client, value, options);
+      return propertyUnixTimestamp(this._client, body, options);
     },
     unixTimestampArray: (
-      value: Date[],
+      body: UnixTimestampArrayDatetimeProperty,
       options?: PropertyUnixTimestampArrayOptions
     ): Promise<UnixTimestampArrayDatetimeProperty> => {
-      return propertyUnixTimestampArray(this._client, value, options);
+      return propertyUnixTimestampArray(this._client, body, options);
     },
   };
   header = {

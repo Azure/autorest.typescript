@@ -5,7 +5,6 @@ import {
   Test,
   FileInfo,
   TestAppComponents,
-  AppComponent,
   TestServerMetricConfig,
   PagedFileInfo,
   PagedTest,
@@ -63,6 +62,7 @@ import {
 export function _createOrUpdateTestSend(
   context: Client,
   testId: string,
+  body: Test,
   options: CreateOrUpdateTestOptions = { requestOptions: {} }
 ): StreamableMethod<
   | LoadTestAdministrationCreateOrUpdateTest200Response
@@ -76,47 +76,51 @@ export function _createOrUpdateTestSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
-        passFailCriteria: {
-          passFailMetrics: options?.passFailCriteria?.["passFailMetrics"],
-        },
-        secrets: options?.secrets,
-        certificate: {
-          value: options?.certificate?.["value"],
-          type: options?.certificate?.["type"],
-          name: options?.certificate?.["name"],
-        },
-        environmentVariables: options?.environmentVariables,
-        loadTestConfiguration: {
-          engineInstances: options?.loadTestConfiguration?.["engineInstances"],
-          splitAllCSVs: options?.loadTestConfiguration?.["splitAllCSVs"],
-          quickStartTest: options?.loadTestConfiguration?.["quickStartTest"],
-          optionalLoadTestConfig: !options?.loadTestConfiguration
-            ?.optionalLoadTestConfig
-            ? undefined
-            : {
-                endpointUrl:
-                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
-                    "endpointUrl"
-                  ],
-                virtualUsers:
-                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
-                    "virtualUsers"
-                  ],
-                rampUpTime:
-                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
-                    "rampUpTime"
-                  ],
-                duration:
-                  options?.loadTestConfiguration?.optionalLoadTestConfig?.[
-                    "duration"
-                  ],
-              },
-        },
-        description: options?.description,
-        displayName: options?.displayName,
-        subnetId: options?.subnetId,
-        keyvaultReferenceIdentityType: options?.keyvaultReferenceIdentityType,
-        keyvaultReferenceIdentityId: options?.keyvaultReferenceIdentityId,
+        passFailCriteria: !body.passFailCriteria
+          ? undefined
+          : { passFailMetrics: body.passFailCriteria?.["passFailMetrics"] },
+        secrets: body["secrets"],
+        certificate: !body.certificate
+          ? undefined
+          : {
+              value: body.certificate?.["value"],
+              type: body.certificate?.["type"],
+              name: body.certificate?.["name"],
+            },
+        environmentVariables: body["environmentVariables"],
+        loadTestConfiguration: !body.loadTestConfiguration
+          ? undefined
+          : {
+              engineInstances: body.loadTestConfiguration?.["engineInstances"],
+              splitAllCSVs: body.loadTestConfiguration?.["splitAllCSVs"],
+              quickStartTest: body.loadTestConfiguration?.["quickStartTest"],
+              optionalLoadTestConfig: !body.loadTestConfiguration
+                ?.optionalLoadTestConfig
+                ? undefined
+                : {
+                    endpointUrl:
+                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
+                        "endpointUrl"
+                      ],
+                    virtualUsers:
+                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
+                        "virtualUsers"
+                      ],
+                    rampUpTime:
+                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
+                        "rampUpTime"
+                      ],
+                    duration:
+                      body.loadTestConfiguration?.optionalLoadTestConfig?.[
+                        "duration"
+                      ],
+                  },
+            },
+        description: body["description"],
+        displayName: body["displayName"],
+        subnetId: body["subnetId"],
+        keyvaultReferenceIdentityType: body["keyvaultReferenceIdentityType"],
+        keyvaultReferenceIdentityId: body["keyvaultReferenceIdentityId"],
       },
     });
 }
@@ -328,16 +332,17 @@ export async function _createOrUpdateTestDeserialize(
 export async function createOrUpdateTest(
   context: Client,
   testId: string,
+  body: Test,
   options: CreateOrUpdateTestOptions = { requestOptions: {} }
 ): Promise<Test> {
-  const result = await _createOrUpdateTestSend(context, testId, options);
+  const result = await _createOrUpdateTestSend(context, testId, body, options);
   return _createOrUpdateTestDeserialize(result);
 }
 
 export function _createOrUpdateAppComponentsSend(
   context: Client,
-  components: Record<string, AppComponent>,
   testId: string,
+  body: TestAppComponents,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
   | LoadTestAdministrationCreateOrUpdateAppComponents200Response
@@ -350,7 +355,7 @@ export function _createOrUpdateAppComponentsSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { components: components },
+      body: { components: body["components"] },
     });
 }
 
@@ -383,14 +388,14 @@ export async function _createOrUpdateAppComponentsDeserialize(
 /** Associate an app component (collection of azure resources) to a test */
 export async function createOrUpdateAppComponents(
   context: Client,
-  components: Record<string, AppComponent>,
   testId: string,
+  body: TestAppComponents,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
 ): Promise<TestAppComponents> {
   const result = await _createOrUpdateAppComponentsSend(
     context,
-    components,
     testId,
+    body,
     options
   );
   return _createOrUpdateAppComponentsDeserialize(result);
@@ -399,6 +404,7 @@ export async function createOrUpdateAppComponents(
 export function _createOrUpdateServerMetricsConfigSend(
   context: Client,
   testId: string,
+  body: TestServerMetricConfig,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
   | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
@@ -411,7 +417,7 @@ export function _createOrUpdateServerMetricsConfigSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { metrics: options?.metrics },
+      body: { metrics: body["metrics"] },
     });
 }
 
@@ -445,11 +451,13 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
 export async function createOrUpdateServerMetricsConfig(
   context: Client,
   testId: string,
+  body: TestServerMetricConfig,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): Promise<TestServerMetricConfig> {
   const result = await _createOrUpdateServerMetricsConfigSend(
     context,
     testId,
+    body,
     options
   );
   return _createOrUpdateServerMetricsConfigDeserialize(result);
@@ -1085,9 +1093,9 @@ export async function listTests(
 
 export function _uploadTestFileSend(
   context: Client,
-  body: Uint8Array,
   testId: string,
   fileName: string,
+  body: Uint8Array,
   options: UploadTestFileOptions = { requestOptions: {} }
 ): StreamableMethod<
   | LoadTestAdministrationUploadTestFile201Response
@@ -1132,16 +1140,16 @@ export async function _uploadTestFileDeserialize(
  */
 export async function uploadTestFile(
   context: Client,
-  body: Uint8Array,
   testId: string,
   fileName: string,
+  body: Uint8Array,
   options: UploadTestFileOptions = { requestOptions: {} }
 ): Promise<FileInfo> {
   const result = await _uploadTestFileSend(
     context,
-    body,
     testId,
     fileName,
+    body,
     options
   );
   return _uploadTestFileDeserialize(result);

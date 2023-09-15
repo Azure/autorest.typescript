@@ -52,7 +52,7 @@ export function _getEmbeddingsSend(
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { user: options?.user, model: options?.model, input: input },
+      body: { user: body["user"], model: body["model"], input: body["input"] },
     });
 }
 
@@ -97,21 +97,21 @@ export function _getCompletionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        prompt: prompt,
-        max_tokens: options?.maxTokens,
-        temperature: options?.temperature,
-        top_p: options?.topP,
-        logit_bias: options?.logitBias,
-        user: options?.user,
-        n: options?.n,
-        logprobs: options?.logprobs,
-        echo: options?.echo,
-        stop: options?.stop,
-        presence_penalty: options?.presencePenalty,
-        frequency_penalty: options?.frequencyPenalty,
-        best_of: options?.bestOf,
-        stream: options?.stream,
-        model: options?.model,
+        prompt: body["prompt"],
+        max_tokens: body["maxTokens"],
+        temperature: body["temperature"],
+        top_p: body["topP"],
+        logit_bias: body["logitBias"],
+        user: body["user"],
+        n: body["n"],
+        logprobs: body["logprobs"],
+        echo: body["echo"],
+        stop: body["stop"],
+        presence_penalty: body["presencePenalty"],
+        frequency_penalty: body["frequencyPenalty"],
+        best_of: body["bestOf"],
+        stream: body["stream"],
+        model: body["model"],
       },
     });
 }
@@ -240,42 +240,25 @@ export function _getChatCompletionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: (messages ?? []).map((p) => ({
-          role: p["role"],
-          content: p["content"],
-          name: p["name"],
-          function_call: !p.functionCall
-            ? undefined
-            : {
-                name: p.functionCall?.["name"],
-                arguments: p.functionCall?.["arguments"],
-              },
-          context: !p.context
-            ? undefined
-            : {
-                messages: !p.context?.messages
-                  ? undefined
-                  : (p.context?.messages as any),
-              },
-        })),
-        functions: (options?.functions ?? []).map((p) => ({
+        messages: body.messages as any,
+        functions: (body["functions"] ?? []).map((p) => ({
           name: p["name"],
           description: p["description"],
           parameters: p["parameters"],
         })),
-        function_call: options?.functionCall,
-        max_tokens: options?.maxTokens,
-        temperature: options?.temperature,
-        top_p: options?.topP,
-        logit_bias: options?.logitBias,
-        user: options?.user,
-        n: options?.n,
-        stop: options?.stop,
-        presence_penalty: options?.presencePenalty,
-        frequency_penalty: options?.frequencyPenalty,
-        stream: options?.stream,
-        model: options?.model,
-        dataSources: (options?.dataSources ?? []).map((p) => ({
+        function_call: body["functionCall"],
+        max_tokens: body["maxTokens"],
+        temperature: body["temperature"],
+        top_p: body["topP"],
+        logit_bias: body["logitBias"],
+        user: body["user"],
+        n: body["n"],
+        stop: body["stop"],
+        presence_penalty: body["presencePenalty"],
+        frequency_penalty: body["frequencyPenalty"],
+        stream: body["stream"],
+        model: body["model"],
+        dataSources: (body["dataSources"] ?? []).map((p) => ({
           type: p["type"],
           parameters: p["parameters"],
         })),
@@ -422,42 +405,25 @@ export function _getChatCompletionsWithAzureExtensionsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        messages: (messages ?? []).map((p) => ({
-          role: p["role"],
-          content: p["content"],
-          name: p["name"],
-          function_call: !p.functionCall
-            ? undefined
-            : {
-                name: p.functionCall?.["name"],
-                arguments: p.functionCall?.["arguments"],
-              },
-          context: !p.context
-            ? undefined
-            : {
-                messages: !p.context?.messages
-                  ? undefined
-                  : (p.context?.messages as any),
-              },
-        })),
-        functions: (options?.functions ?? []).map((p) => ({
+        messages: body.messages as any,
+        functions: (body["functions"] ?? []).map((p) => ({
           name: p["name"],
           description: p["description"],
           parameters: p["parameters"],
         })),
-        function_call: options?.functionCall,
-        max_tokens: options?.maxTokens,
-        temperature: options?.temperature,
-        top_p: options?.topP,
-        logit_bias: options?.logitBias,
-        user: options?.user,
-        n: options?.n,
-        stop: options?.stop,
-        presence_penalty: options?.presencePenalty,
-        frequency_penalty: options?.frequencyPenalty,
-        stream: options?.stream,
-        model: options?.model,
-        dataSources: (options?.dataSources ?? []).map((p) => ({
+        function_call: body["functionCall"],
+        max_tokens: body["maxTokens"],
+        temperature: body["temperature"],
+        top_p: body["topP"],
+        logit_bias: body["logitBias"],
+        user: body["user"],
+        n: body["n"],
+        stop: body["stop"],
+        presence_penalty: body["presencePenalty"],
+        frequency_penalty: body["frequencyPenalty"],
+        stream: body["stream"],
+        model: body["model"],
+        dataSources: (body["dataSources"] ?? []).map((p) => ({
           type: p["type"],
           parameters: p["parameters"],
         })),
@@ -660,11 +626,11 @@ export function _beginAzureBatchImageGenerationSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        prompt: prompt,
-        n: options?.n,
-        size: options?.size,
-        response_format: options?.responseFormat,
-        user: options?.user,
+        prompt: body["prompt"],
+        n: body["n"],
+        size: body["size"],
+        response_format: body["responseFormat"],
+        user: body["user"],
       },
     });
 }

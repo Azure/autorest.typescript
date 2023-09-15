@@ -84,34 +84,34 @@ export class DurationClient {
   };
   property = {
     default: (
-      value: string,
+      body: DefaultDurationProperty,
       options?: PropertyDefaultOptions
     ): Promise<DefaultDurationProperty> => {
-      return propertyDefault(this._client, value, options);
+      return propertyDefault(this._client, body, options);
     },
     iso8601: (
-      value: string,
+      body: ISO8601DurationProperty,
       options?: PropertyIso8601Options
     ): Promise<ISO8601DurationProperty> => {
-      return propertyIso8601(this._client, value, options);
+      return propertyIso8601(this._client, body, options);
     },
     int32Seconds: (
-      value: number,
+      body: Int32SecondsDurationProperty,
       options?: PropertyInt32SecondsOptions
     ): Promise<Int32SecondsDurationProperty> => {
-      return propertyInt32Seconds(this._client, value, options);
+      return propertyInt32Seconds(this._client, body, options);
     },
     floatSeconds: (
-      value: number,
+      body: FloatSecondsDurationProperty,
       options?: PropertyFloatSecondsOptions
     ): Promise<FloatSecondsDurationProperty> => {
-      return propertyFloatSeconds(this._client, value, options);
+      return propertyFloatSeconds(this._client, body, options);
     },
     floatSecondsArray: (
-      value: number[],
+      body: FloatSecondsDurationArrayProperty,
       options?: PropertyFloatSecondsArrayOptions
     ): Promise<FloatSecondsDurationArrayProperty> => {
-      return propertyFloatSecondsArray(this._client, value, options);
+      return propertyFloatSecondsArray(this._client, body, options);
     },
   };
   header = {
