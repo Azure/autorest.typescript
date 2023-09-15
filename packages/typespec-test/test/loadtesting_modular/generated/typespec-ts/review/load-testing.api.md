@@ -37,9 +37,9 @@ export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
     createdBy?: string;
-    createdDateTime?: Date;
+    createdDateTime?: string;
     lastModifiedBy?: string;
-    lastModifiedDateTime?: Date;
+    lastModifiedDateTime?: string;
     testId?: string;
 }
 
@@ -48,9 +48,9 @@ export interface CreateOrUpdateServerMetricsConfigOptions extends OperationOptio
     // (undocumented)
     contentType?: string;
     createdBy?: string;
-    createdDateTime?: Date;
+    createdDateTime?: string;
     lastModifiedBy?: string;
-    lastModifiedDateTime?: Date;
+    lastModifiedDateTime?: string;
     metrics?: Record<string, ResourceMetric>;
     testId?: string;
 }
@@ -61,7 +61,7 @@ export interface CreateOrUpdateTestOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
     createdBy?: string;
-    createdDateTime?: Date;
+    createdDateTime?: string;
     description?: string;
     displayName?: string;
     environmentVariables?: Record<string, string>;
@@ -69,7 +69,7 @@ export interface CreateOrUpdateTestOptions extends OperationOptions {
     keyvaultReferenceIdentityId?: string;
     keyvaultReferenceIdentityType?: string;
     lastModifiedBy?: string;
-    lastModifiedDateTime?: Date;
+    lastModifiedDateTime?: string;
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
     secrets?: Record<string, Secret>;
@@ -114,7 +114,7 @@ export interface ErrorDetails {
 
 // @public
 export interface FileInfo {
-    expireDateTime?: Date;
+    expireDateTime?: string;
     fileName?: string;
     fileType?: FileType;
     url?: string;
@@ -187,8 +187,8 @@ export interface ListTestFilesOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListTestRunsOptions extends OperationOptions {
-    executionFrom?: Date;
-    executionTo?: Date;
+    executionFrom?: string;
+    executionTo?: string;
     maxpagesize?: number;
     orderby?: string;
     search?: string;
@@ -198,8 +198,8 @@ export interface ListTestRunsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListTestsOptions extends OperationOptions {
-    lastModifiedEndTime?: Date;
-    lastModifiedStartTime?: Date;
+    lastModifiedEndTime?: string;
+    lastModifiedStartTime?: string;
     maxpagesize?: number;
     orderby?: string;
     search?: string;
@@ -289,9 +289,9 @@ export interface LoadTestRunClientCreateOrUpdateAppComponentsOptions extends Ope
     // (undocumented)
     contentType?: string;
     createdBy?: string;
-    createdDateTime?: Date;
+    createdDateTime?: string;
     lastModifiedBy?: string;
-    lastModifiedDateTime?: Date;
+    lastModifiedDateTime?: string;
     testRunId?: string;
 }
 
@@ -300,9 +300,9 @@ export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptions exten
     // (undocumented)
     contentType?: string;
     createdBy?: string;
-    createdDateTime?: Date;
+    createdDateTime?: string;
     lastModifiedBy?: string;
-    lastModifiedDateTime?: Date;
+    lastModifiedDateTime?: string;
     metrics?: Record<string, LoadTestRunClientResourceMetric>;
     testRunId?: string;
 }
@@ -332,7 +332,7 @@ export interface LoadTestRunClientErrorDetails {
 
 // @public
 export interface LoadTestRunClientFileInfo {
-    expireDateTime?: Date;
+    expireDateTime?: string;
     fileName?: string;
     fileType?: LoadTestRunClientFileType;
     url?: string;
@@ -475,7 +475,7 @@ export type LoadTestRunClientStatus = string;
 export interface LoadTestRunClientTest {
     certificate?: LoadTestRunClientCertificateMetadata;
     readonly createdBy?: string;
-    readonly createdDateTime?: Date;
+    readonly createdDateTime?: string;
     description?: string;
     displayName?: string;
     environmentVariables?: Record<string, string>;
@@ -483,7 +483,7 @@ export interface LoadTestRunClientTest {
     keyvaultReferenceIdentityId?: string;
     keyvaultReferenceIdentityType?: string;
     readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: Date;
+    readonly lastModifiedDateTime?: string;
     loadTestConfiguration?: LoadTestRunClientLoadTestConfiguration;
     passFailCriteria?: LoadTestRunClientPassFailCriteria;
     secrets?: Record<string, LoadTestRunClientSecret>;
@@ -504,21 +504,21 @@ export interface LoadTestRunClientTestInputArtifacts {
 export interface LoadTestRunClientTestRun {
     certificate?: LoadTestRunClientCertificateMetadata;
     readonly createdBy?: string;
-    readonly createdDateTime?: Date;
+    readonly createdDateTime?: string;
     description?: string;
     displayName?: string;
     readonly duration?: number;
-    readonly endDateTime?: Date;
+    readonly endDateTime?: string;
     environmentVariables?: Record<string, string>;
     readonly errorDetails?: LoadTestRunClientErrorDetails[];
-    readonly executedDateTime?: Date;
+    readonly executedDateTime?: string;
     readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: Date;
+    readonly lastModifiedDateTime?: string;
     loadTestConfiguration?: LoadTestRunClientLoadTestConfiguration;
     passFailCriteria?: LoadTestRunClientPassFailCriteria;
     readonly portalUrl?: string;
     secrets?: Record<string, LoadTestRunClientSecret>;
-    readonly startDateTime?: Date;
+    readonly startDateTime?: string;
     readonly status?: LoadTestRunClientStatus;
     readonly subnetId?: string;
     readonly testArtifacts?: LoadTestRunClientTestRunArtifacts;
@@ -699,7 +699,7 @@ export interface StopTestRunOptions extends OperationOptions {
 export interface Test {
     certificate?: CertificateMetadata;
     readonly createdBy?: string;
-    readonly createdDateTime?: Date;
+    readonly createdDateTime?: string;
     description?: string;
     displayName?: string;
     environmentVariables?: Record<string, string>;
@@ -707,7 +707,7 @@ export interface Test {
     keyvaultReferenceIdentityId?: string;
     keyvaultReferenceIdentityType?: string;
     readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: Date;
+    readonly lastModifiedDateTime?: string;
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
     secrets?: Record<string, Secret>;
@@ -719,9 +719,9 @@ export interface Test {
 export interface TestAppComponents {
     components: Record<string, AppComponent>;
     readonly createdBy?: string;
-    readonly createdDateTime?: Date;
+    readonly createdDateTime?: string;
     readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: Date;
+    readonly lastModifiedDateTime?: string;
     readonly testId?: string;
 }
 
@@ -738,21 +738,21 @@ export interface TestInputArtifacts {
 export interface TestRun {
     certificate?: CertificateMetadata;
     readonly createdBy?: string;
-    readonly createdDateTime?: Date;
+    readonly createdDateTime?: string;
     description?: string;
     displayName?: string;
     readonly duration?: number;
-    readonly endDateTime?: Date;
+    readonly endDateTime?: string;
     environmentVariables?: Record<string, string>;
     readonly errorDetails?: ErrorDetails[];
-    readonly executedDateTime?: Date;
+    readonly executedDateTime?: string;
     readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: Date;
+    readonly lastModifiedDateTime?: string;
     loadTestConfiguration?: LoadTestConfiguration;
     passFailCriteria?: PassFailCriteria;
     readonly portalUrl?: string;
     secrets?: Record<string, Secret>;
-    readonly startDateTime?: Date;
+    readonly startDateTime?: string;
     readonly status?: Status;
     readonly subnetId?: string;
     readonly testArtifacts?: TestRunArtifacts;
@@ -783,22 +783,22 @@ export interface TestRunOptions extends OperationOptions {
     certificate?: LoadTestRunClientCertificateMetadata;
     contentType?: string;
     createdBy?: string;
-    createdDateTime?: Date;
+    createdDateTime?: string;
     description?: string;
     displayName?: string;
     duration?: number;
-    endDateTime?: Date;
+    endDateTime?: string;
     environmentVariables?: Record<string, string>;
     errorDetails?: LoadTestRunClientErrorDetails[];
-    executedDateTime?: Date;
+    executedDateTime?: string;
     lastModifiedBy?: string;
-    lastModifiedDateTime?: Date;
+    lastModifiedDateTime?: string;
     loadTestConfiguration?: LoadTestRunClientLoadTestConfiguration;
     oldTestRunId?: string;
     passFailCriteria?: LoadTestRunClientPassFailCriteria;
     portalUrl?: string;
     secrets?: Record<string, LoadTestRunClientSecret>;
-    startDateTime?: Date;
+    startDateTime?: string;
     status?: LoadTestRunClientStatus;
     subnetId?: string;
     testArtifacts?: LoadTestRunClientTestRunArtifacts;
@@ -835,9 +835,9 @@ export interface TestRunStatistics {
 // @public
 export interface TestServerMetricConfig {
     readonly createdBy?: string;
-    readonly createdDateTime?: Date;
+    readonly createdDateTime?: string;
     readonly lastModifiedBy?: string;
-    readonly lastModifiedDateTime?: Date;
+    readonly lastModifiedDateTime?: string;
     metrics?: Record<string, ResourceMetric>;
     readonly testId?: string;
 }
