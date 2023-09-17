@@ -40,8 +40,8 @@ const restLevelTsConfigNotInAzureSdkForJs: Record<string, any> = {
 };
 
 export function buildTsConfig(model: RLCModel, hasSamplesGenerated = false) {
-  let { generateTest, packageDetails, generateSample, azureSdkForJs } =
-    model.options || {};
+  const { packageDetails, azureSdkForJs } = model.options || {};
+  let { generateTest, generateSample } = model.options || {};
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
