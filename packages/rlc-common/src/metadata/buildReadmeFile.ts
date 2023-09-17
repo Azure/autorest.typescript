@@ -191,9 +191,6 @@ function createMetadata(model: RLCModel): Metadata | undefined {
 }
 
 function getServiceName(model: RLCModel) {
-  if (!model.options || !model.options.packageDetails) {
-    return;
-  }
   const azureHuh =
     model?.options?.packageDetails?.scopeName === "azure" ||
     model?.options?.packageDetails?.scopeName === "azure-rest";
@@ -203,7 +200,7 @@ function getServiceName(model: RLCModel) {
     packageDetails = model?.options?.packageDetails;
   let simpleServiceName =
     batch && batch.length > 1
-      ? normalizeName(packageDetails.nameWithoutScope || "", NameType.Class)
+      ? normalizeName(packageDetails!.nameWithoutScope || "", NameType.Class)
       : normalizeName(serviceTitle, NameType.Class);
   simpleServiceName =
     /**
