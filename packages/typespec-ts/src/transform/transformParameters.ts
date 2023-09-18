@@ -150,6 +150,7 @@ function getParameterMetadata(
       serializeInfo.hasPipeCollection ||
       serializeInfo.hasSsvCollection ||
       serializeInfo.hasTsvCollection ||
+      serializeInfo.hasCsvCollection ||
       serializeInfo.hasCsvCollection
     ) {
       type = "string";
