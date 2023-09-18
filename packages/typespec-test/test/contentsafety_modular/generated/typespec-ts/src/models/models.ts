@@ -139,16 +139,6 @@ export interface PagedTextBlocklist {
   nextLink?: string;
 }
 
-export interface AddOrUpdateBlockItemsOptions {
-  /** Array of blockItemInfo to add. */
-  blockItems: TextBlockItemInfo[];
-}
-
-export interface RemoveBlockItemsOptions {
-  /** Array of blockItemIds to remove. */
-  blockItemIds: string[];
-}
-
 /** Paged collection of TextBlockItem items */
 export interface PagedTextBlockItem {
   /** The TextBlockItem items on this page */

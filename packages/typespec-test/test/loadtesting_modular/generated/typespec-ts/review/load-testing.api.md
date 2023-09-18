@@ -36,45 +36,18 @@ export type CertificateType = string;
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    testId?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    metrics?: Record<string, ResourceMetric>;
-    testId?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateTestOptions extends OperationOptions {
-    certificate?: CertificateMetadata;
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    description?: string;
-    displayName?: string;
-    environmentVariables?: Record<string, string>;
-    inputArtifacts?: TestInputArtifacts;
-    keyvaultReferenceIdentityId?: string;
-    keyvaultReferenceIdentityType?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    loadTestConfiguration?: LoadTestConfiguration;
-    passFailCriteria?: PassFailCriteria;
-    secrets?: Record<string, Secret>;
-    subnetId?: string;
-    testId?: string;
 }
 
 // @public (undocumented)
@@ -174,7 +147,6 @@ export interface ListMetricNamespacesOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListMetricsOptions extends OperationOptions {
     aggregation?: string;
-    filters?: LoadTestRunClientDimensionFilter[];
     interval?: LoadTestRunClientInterval;
     metricName?: string;
     metricNamespace?: string;
@@ -289,23 +261,12 @@ export type LoadTestRunClientCertificateType = string;
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    testRunId?: string;
 }
 
 // @public (undocumented)
 export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    metrics?: Record<string, LoadTestRunClientResourceMetric>;
-    testRunId?: string;
 }
 
 // @public
@@ -781,32 +742,8 @@ export interface TestRunInputArtifacts {
 
 // @public (undocumented)
 export interface TestRunOptions extends OperationOptions {
-    certificate?: LoadTestRunClientCertificateMetadata;
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    description?: string;
-    displayName?: string;
-    duration?: number;
-    endDateTime?: string;
-    environmentVariables?: Record<string, string>;
-    errorDetails?: LoadTestRunClientErrorDetails[];
-    executedDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    loadTestConfiguration?: LoadTestRunClientLoadTestConfiguration;
     oldTestRunId?: string;
-    passFailCriteria?: LoadTestRunClientPassFailCriteria;
-    portalUrl?: string;
-    secrets?: Record<string, LoadTestRunClientSecret>;
-    startDateTime?: string;
-    status?: LoadTestRunClientStatus;
-    subnetId?: string;
-    testArtifacts?: LoadTestRunClientTestRunArtifacts;
-    testId?: string;
-    testResult?: LoadTestRunClientPFTestResult;
-    testRunStatistics?: Record<string, LoadTestRunClientTestRunStatistics>;
-    virtualUsers?: number;
 }
 
 // @public

@@ -52,7 +52,6 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  isHeader,
   getHttpOperation
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
@@ -220,15 +219,15 @@ function handleDiscriminator(context: SdkContext, type: Model) {
   return undefined;
 }
 
-function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
-  function isSchemaProperty(property: ModelProperty) {
-    const headerInfo = getHeaderFieldName(program, property);
-    const queryInfo = getQueryParamName(program, property);
-    const pathInfo = getPathParamName(program, property);
-    const statusCodeinfo = isStatusCode(program, property);
-    return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-  }
+function isSchemaProperty(program: Program, property: ModelProperty): boolean {
+  const headerInfo = getHeaderFieldName(program, property);
+  const queryInfo = getQueryParamName(program, property);
+  const pathInfo = getPathParamName(program, property);
+  const statusCodeinfo = isStatusCode(program, property);
+  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
+}
 
+function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
   let effective: Model;
   if (type.kind === "Union") {
     const nonNullOptions = [...type.variants.values()]
@@ -240,6 +239,13 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
     return type as any;
   } else {
     effective = getEffectiveModelType(program, type, isSchemaProperty);
+    function isSchemaProperty(property: ModelProperty): boolean {
+      const headerInfo = getHeaderFieldName(program, property);
+      const queryInfo = getQueryParamName(program, property);
+      const pathInfo = getPathParamName(program, property);
+      const statusCodeinfo = isStatusCode(program, property);
+      return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
+    }
   }
 
   if (effective.name) {
@@ -266,11 +272,7 @@ function processModelProperties(
 ) {
   // need to do properties after insertion to avoid infinite recursion
   for (const property of model.properties.values()) {
-    if (
-      isStatusCode(context.program, property) ||
-      isNeverType(property.type) ||
-      isHeader(context.program, property)
-    ) {
+    if (isSchemaProperty(context.program, property)) {
       continue;
     }
     if (newValue.properties === undefined || newValue.properties === null) {
@@ -286,16 +288,11 @@ function processModelProperties(
   // handleDiscriminator(context, model, newValue);
 }
 
-function getType(
-  context: SdkContext,
-  type: EmitterType,
-  options: { disableEffectiveModel?: boolean } = {}
-): any {
+function getType(context: SdkContext, type: EmitterType): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
   const effectiveModel =
-    !options.disableEffectiveModel &&
-    (type.kind === "Model" || type.kind === "Union")
+    type.kind === "Model" || type.kind === "Union"
       ? getEffectiveSchemaType(context.program, type)
       : type;
   if (enableCache) {
@@ -448,9 +445,7 @@ function emitBodyParameter(
   if (contentTypes.length !== 1) {
     throw Error("Currently only one kind of content-type!");
   }
-  const type = getType(context, getBodyType(context.program, httpOperation), {
-    disableEffectiveModel: true
-  });
+  const type = getType(context, getBodyType(context.program, httpOperation));
   if (type.type === "model" && type.name === "") {
     type.name = capitalize(httpOperation.operation.name) + "Request";
   }

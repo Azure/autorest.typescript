@@ -39,10 +39,6 @@ export interface BatchImageGenerationOperationResponse {
 
 // @public (undocumented)
 export interface BeginAzureBatchImageGenerationOptions extends OperationOptions {
-    n?: number;
-    responseFormat?: ImageGenerationResponseFormat;
-    size?: ImageSize;
-    user?: string;
 }
 
 // @public
@@ -64,44 +60,6 @@ export interface ChatCompletions {
 }
 
 // @public
-export interface ChatCompletionsOptions {
-    dataSources?: AzureChatExtensionConfiguration[];
-    frequencyPenalty?: number;
-    functionCall?: FunctionCallPreset | FunctionName;
-    functions?: FunctionDefinition[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    messages: ChatMessage[];
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
-// @public (undocumented)
-export interface ChatCompletionsOptions {
-    dataSources?: AzureChatExtensionConfiguration[];
-    frequencyPenalty?: number;
-    functionCall?: FunctionCallPreset | FunctionName;
-    functions?: FunctionDefinition[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    messages: ChatMessage[];
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
-// @public (undocumented)
 export interface ChatCompletionsOptions {
     dataSources?: AzureChatExtensionConfiguration[];
     frequencyPenalty?: number;
@@ -188,25 +146,6 @@ export interface CompletionsOptions {
     user?: string;
 }
 
-// @public (undocumented)
-export interface CompletionsOptions {
-    bestOf?: number;
-    echo?: boolean;
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    logprobs?: number;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    prompt: string[];
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
-}
-
 // @public
 export interface CompletionsUsage {
     completionTokens: number;
@@ -250,13 +189,6 @@ export interface EmbeddingsOptions {
     user?: string;
 }
 
-// @public (undocumented)
-export interface EmbeddingsOptions {
-    input: string[];
-    model?: string;
-    user?: string;
-}
-
 // @public
 export interface EmbeddingsUsage {
     promptTokens: number;
@@ -290,74 +222,21 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions extends Oper
 
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends OperationOptions {
-    dataSources?: AzureChatExtensionConfiguration[];
-    frequencyPenalty?: number;
-    functionCall?: FunctionCallPreset | FunctionName;
-    functions?: FunctionDefinition[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
 }
 
 // @public (undocumented)
 export interface GetChatCompletionsWithAzureExtensionsOptions extends OperationOptions {
-    dataSources?: AzureChatExtensionConfiguration[];
-    frequencyPenalty?: number;
-    functionCall?: FunctionCallPreset | FunctionName;
-    functions?: FunctionDefinition[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
 }
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends OperationOptions {
-    bestOf?: number;
-    echo?: boolean;
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    logprobs?: number;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
 }
 
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends OperationOptions {
-    model?: string;
-    user?: string;
 }
 
 // @public
-export interface ImageGenerationOptions {
-    n?: number;
-    prompt: string;
-    responseFormat?: ImageGenerationResponseFormat;
-    size?: ImageSize;
-    user?: string;
-}
-
-// @public (undocumented)
 export interface ImageGenerationOptions {
     n?: number;
     prompt: string;

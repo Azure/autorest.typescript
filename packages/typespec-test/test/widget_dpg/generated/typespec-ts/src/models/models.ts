@@ -33,17 +33,3 @@ export interface UpdateWidget {
 export interface AnalyzeResult {
   summary: string;
 }
-
-export interface CreateWidget {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight: number;
-  /** The color of the widget. */
-  color: ColorType;
-}
-
-export interface UpdateWidget {
-  /** The weight of the widget. This is an int32, but must be greater than zero. */
-  weight?: number;
-  /** The color of the widget. */
-  color?: ColorType;
-}

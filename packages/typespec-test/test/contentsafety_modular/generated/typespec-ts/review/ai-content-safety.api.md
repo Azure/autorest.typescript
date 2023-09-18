@@ -15,11 +15,6 @@ export interface AddOrUpdateBlockItemsOptions {
 }
 
 // @public (undocumented)
-export interface AddOrUpdateBlockItemsOptions {
-    blockItems: TextBlockItemInfo[];
-}
-
-// @public (undocumented)
 export interface AddOrUpdateBlockItemsRequestOptions extends OperationOptions {
 }
 
@@ -40,8 +35,6 @@ export type AnalyzeImageOutputType = string;
 
 // @public (undocumented)
 export interface AnalyzeImageRequestOptions extends OperationOptions {
-    categories?: ImageCategory[];
-    outputType?: AnalyzeImageOutputType;
 }
 
 // @public
@@ -63,10 +56,6 @@ export type AnalyzeTextOutputType = string;
 
 // @public (undocumented)
 export interface AnalyzeTextRequestOptions extends OperationOptions {
-    blocklistNames?: string[];
-    breakByBlocklists?: boolean;
-    categories?: TextCategory[];
-    outputType?: AnalyzeTextOutputType;
 }
 
 // @public
@@ -97,7 +86,6 @@ export interface ContentSafetyClientOptions extends ClientOptions {
 // @public (undocumented)
 export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
     contentType?: string;
-    description?: string;
 }
 
 // @public (undocumented)
@@ -152,11 +140,6 @@ export interface PagedTextBlocklist {
 }
 
 // @public
-export interface RemoveBlockItemsOptions {
-    blockItemIds: string[];
-}
-
-// @public (undocumented)
 export interface RemoveBlockItemsOptions {
     blockItemIds: string[];
 }

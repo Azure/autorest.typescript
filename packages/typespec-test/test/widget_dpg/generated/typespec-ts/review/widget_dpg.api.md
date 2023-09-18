@@ -27,12 +27,6 @@ export interface CreateWidget {
 }
 
 // @public (undocumented)
-export interface CreateWidget {
-    color: ColorType;
-    weight: number;
-}
-
-// @public (undocumented)
 export interface CreateWidgetOptions extends OperationOptions {
 }
 
@@ -56,15 +50,7 @@ export interface UpdateWidget {
 }
 
 // @public (undocumented)
-export interface UpdateWidget {
-    color?: ColorType;
-    weight?: number;
-}
-
-// @public (undocumented)
 export interface UpdateWidgetOptions extends OperationOptions {
-    color?: ColorType;
-    weight?: number;
 }
 
 // @public (undocumented)
