@@ -13,9 +13,8 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
-import { isConstantSchema } from "./helpers/schemaHelpers.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
-import { RLCModel, Schema, File, PathParameter } from "./interfaces.js";
+import { RLCModel, File, PathParameter } from "./interfaces.js";
 import {
   getClientName,
   getImportModuleName
@@ -47,7 +46,7 @@ function getClientOptionsInterface(
 
 export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
-  const { srcPath, options } = model;
+  const { srcPath } = model;
   const project = new Project();
   const filePath = path.join(srcPath, `${name}.ts`);
   const clientFile = project.createSourceFile(filePath, undefined, {
@@ -350,7 +349,6 @@ export function getClientFactoryBody(
           return next(request);
         }
       });`;
-    
   }
   let returnStatement = `return client;`;
 
