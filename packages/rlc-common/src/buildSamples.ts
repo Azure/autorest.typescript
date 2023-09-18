@@ -177,28 +177,15 @@ function enrichImportedString(
   packageName: string
 ) {
   const importedTypes: string[] = [];
-  if (!!importedDict[packageName] && importedDict[packageName].size > 0) {
-    const otherTypes = Array.from(importedDict[packageName]).join(", ");
-    importedTypes.push(
-      `import ${defaultFactoryName}, { ${otherTypes} } from "${packageName}";`
-    );
-  } else {
+  if (!importedDict[packageName] || importedDict[packageName].size === 0) {
     importedTypes.push(`import ${defaultFactoryName} from "${packageName}";`);
   }
-  if (importedDict[tokenCredentialPackage]) {
-    const otherTypes = Array.from(importedDict[tokenCredentialPackage]).join(
-      ", "
-    );
+  for (const key in importedDict) {
+    const values = Array.from(importedDict[packageName]).join(", ");
+    const hasDefaultFactory =
+      key === packageName ? `${defaultFactoryName},` : "";
     importedTypes.push(
-      `import { ${otherTypes} } from "${tokenCredentialPackage}";`
-    );
-  }
-  if (importedDict[apiKeyCredentialPackage]) {
-    const otherTypes = Array.from(importedDict[apiKeyCredentialPackage]).join(
-      ", "
-    );
-    importedTypes.push(
-      `import { ${otherTypes} } from "${apiKeyCredentialPackage}";`
+      `import ${hasDefaultFactory} { ${values} } from "${key}";`
     );
   }
   sampleGroup.importedTypes = importedTypes;
