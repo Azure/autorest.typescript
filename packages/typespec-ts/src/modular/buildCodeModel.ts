@@ -180,34 +180,44 @@ function isLro(_program: Program, operation: Operation): boolean {
   return false;
 }
 
-function handleDiscriminator(context: SdkContext, type: Model, model: any) {
+function isDiscriminator(
+  context: SdkContext,
+  type: Model,
+  propertyName: string
+): boolean {
+  const discriminator = getDiscriminator(context.program, type);
+  if (discriminator && discriminator.propertyName === propertyName) {
+    return true;
+  }
+  return false;
+}
+
+function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
-    let discriminatorProperty;
+    const discriminatorValues: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
-          property.isDiscriminator = true;
-          model.discriminatedSubtypes[property.type.value] = modelType;
-          discriminatorProperty = property;
+          discriminatorValues.push(modelType.discriminatorValue);
         }
       }
     }
     // it is not included in properties of typespec but needed by python codegen
-    if (discriminatorProperty) {
-      const discriminatorType = { ...discriminatorProperty.type };
-      discriminatorType.value = null;
-      const propertyCopy = {
-        ...discriminatorProperty,
+    if (discriminatorValues.length > 0) {
+      const discriminatorInfo = {
+        description: `the discriminator possible values ${discriminatorValues.join(
+          ", "
+        )}`,
         isPolymorphic: true,
-        type: discriminatorType
+        isDiscriminator: true
       };
-      propertyCopy.description = "";
-      model.properties.push(propertyCopy);
+      return discriminatorInfo;
     }
   }
+  return undefined;
 }
 
 function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
@@ -266,10 +276,14 @@ function processModelProperties(
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
-    newValue.properties.push(emitProperty(context, property));
+    let newProperty = emitProperty(context, property);
+    if (isDiscriminator(context, model, property.name)) {
+      newProperty = { ...newProperty, ...handleDiscriminator(context, model) };
+    }
+    newValue.properties.push(newProperty);
   }
   // need to do discriminator outside `emitModel` to avoid infinite recursion
-  handleDiscriminator(context, model, newValue);
+  // handleDiscriminator(context, model, newValue);
 }
 
 function getType(
@@ -1066,7 +1080,7 @@ function emitStdScalar(
     case "plainTime":
       return { type: "datetime", format: newScalar.format ?? "time" };
     case "offsetDateTime":
-      return { type: "datetime", format: newScalar.format ?? "rfc7231" };
+      return { type: "string" };
     case "duration":
       return { type: "duration", format: newScalar.format };
     case "numeric":
