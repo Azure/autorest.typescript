@@ -181,7 +181,7 @@ function enrichImportedString(
     importedTypes.push(`import ${defaultFactoryName} from "${packageName}";`);
   }
   for (const key in importedDict) {
-    const values = Array.from(importedDict[packageName]).join(", ");
+    const values = Array.from(importedDict[key]).join(", ");
     const hasDefaultFactory =
       key === packageName ? `${defaultFactoryName},` : "";
     importedTypes.push(
