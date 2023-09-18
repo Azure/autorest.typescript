@@ -289,11 +289,16 @@ function processModelProperties(
   // handleDiscriminator(context, model, newValue);
 }
 
-function getType(context: SdkContext, type: EmitterType, options: { disableEffectiveModel?: boolean } = {}): any {
+function getType(
+  context: SdkContext,
+  type: EmitterType,
+  options: { disableEffectiveModel?: boolean } = {}
+): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
-  const effectiveModel = !options.disableEffectiveModel &&
-    type.kind === "Model" || type.kind === "Union"
+  const effectiveModel =
+    !options.disableEffectiveModel &&
+    (type.kind === "Model" || type.kind === "Union")
       ? getEffectiveSchemaType(context.program, type)
       : type;
   if (enableCache) {
