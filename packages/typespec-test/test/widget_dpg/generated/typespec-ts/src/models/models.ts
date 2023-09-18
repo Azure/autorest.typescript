@@ -22,8 +22,6 @@ export interface CreateWidget {
 }
 
 export interface UpdateWidget {
-  /** The UUID of this widget. This is generated automatically by the service. */
-  id: string;
   /** The weight of the widget. This is an int32, but must be greater than zero. */
   weight?: number;
   /** The color of the widget. */

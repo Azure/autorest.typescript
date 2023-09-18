@@ -45,7 +45,6 @@ export interface ListWidgetsOptions extends OperationOptions {
 // @public (undocumented)
 export interface UpdateWidget {
     color?: ColorType;
-    id: string;
     weight?: number;
 }
 

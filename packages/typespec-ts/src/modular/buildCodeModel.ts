@@ -228,6 +228,14 @@ function isSchemaProperty(program: Program, property: ModelProperty): boolean {
 }
 
 function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
+  function isSchemaProperty(property: ModelProperty): boolean {
+    const headerInfo = getHeaderFieldName(program, property);
+    const queryInfo = getQueryParamName(program, property);
+    const pathInfo = getPathParamName(program, property);
+    const statusCodeinfo = isStatusCode(program, property);
+    return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
+  }
+
   let effective: Model;
   if (type.kind === "Union") {
     const nonNullOptions = [...type.variants.values()]
@@ -239,13 +247,6 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
     return type as any;
   } else {
     effective = getEffectiveModelType(program, type, isSchemaProperty);
-    function isSchemaProperty(property: ModelProperty): boolean {
-      const headerInfo = getHeaderFieldName(program, property);
-      const queryInfo = getQueryParamName(program, property);
-      const pathInfo = getPathParamName(program, property);
-      const statusCodeinfo = isStatusCode(program, property);
-      return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
-    }
   }
 
   if (effective.name) {
@@ -272,7 +273,7 @@ function processModelProperties(
 ) {
   // need to do properties after insertion to avoid infinite recursion
   for (const property of model.properties.values()) {
-    if (isSchemaProperty(context.program, property)) {
+    if (!isSchemaProperty(context.program, property)) {
       continue;
     }
     if (newValue.properties === undefined || newValue.properties === null) {
@@ -288,10 +289,10 @@ function processModelProperties(
   // handleDiscriminator(context, model, newValue);
 }
 
-function getType(context: SdkContext, type: EmitterType): any {
+function getType(context: SdkContext, type: EmitterType, options: { disableEffectiveModel?: boolean } = {}): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
-  const effectiveModel =
+  const effectiveModel = !options.disableEffectiveModel &&
     type.kind === "Model" || type.kind === "Union"
       ? getEffectiveSchemaType(context.program, type)
       : type;
@@ -314,7 +315,9 @@ function getType(context: SdkContext, type: EmitterType): any {
   }
 
   if (enableCache) {
-    typesMap.set(effectiveModel, newValue);
+    if (!options.disableEffectiveModel) {
+      typesMap.set(effectiveModel, newValue);
+    }
     if (type.kind === "Union") {
       for (const t of type.variants.values()) {
         if (t.type.kind === "Model") {
@@ -445,7 +448,9 @@ function emitBodyParameter(
   if (contentTypes.length !== 1) {
     throw Error("Currently only one kind of content-type!");
   }
-  const type = getType(context, getBodyType(context.program, httpOperation));
+  const type = getType(context, getBodyType(context.program, httpOperation), {
+    disableEffectiveModel: true
+  });
   if (type.type === "model" && type.name === "") {
     type.name = capitalize(httpOperation.operation.name) + "Request";
   }

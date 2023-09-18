@@ -52,7 +52,11 @@ export async function _listWidgetsDeserialize(
     throw result.body;
   }
 
-  return (result.body ?? []).map(() => ({}));
+  return (result.body ?? []).map((p) => ({
+    id: p["id"],
+    weight: p["weight"],
+    color: p["color"],
+  }));
 }
 
 /**
@@ -85,7 +89,11 @@ export async function _getWidgetDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+  };
 }
 
 /** Get a widget by ID. */
@@ -105,7 +113,10 @@ export function _createWidgetSend(
 ): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse> {
   return context
     .path("/widgets")
-    .post({ ...operationOptionsToRequestParameters(options) });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: { weight: body["weight"], color: body["color"] },
+    });
 }
 
 export async function _createWidgetDeserialize(
@@ -115,7 +126,11 @@ export async function _createWidgetDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+  };
 }
 
 /**
@@ -143,7 +158,7 @@ export function _updateWidgetSend(
     .path("/widgets/{id}", id)
     .patch({
       ...operationOptionsToRequestParameters(options),
-      body: { id: body["id"] },
+      body: { weight: body["weight"], color: body["color"] },
     });
 }
 
@@ -154,7 +169,11 @@ export async function _updateWidgetDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+  };
 }
 
 /**
@@ -218,7 +237,9 @@ export async function _analyzeWidgetDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return {
+    summary: result.body["summary"],
+  };
 }
 
 /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */
