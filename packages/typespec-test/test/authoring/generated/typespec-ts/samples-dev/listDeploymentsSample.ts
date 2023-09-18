@@ -3,8 +3,8 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
-import createAuthoringClient, { paginate } from "@msinternal/authoring";
 import { AzureKeyCredential } from "@azure/core-auth";
+import createAuthoringClient, { paginate } from "@msinternal/authoring";
 import * as dotenv from "dotenv";
 
 dotenv.config();

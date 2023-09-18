@@ -3,10 +3,10 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+import { AzureKeyCredential } from "@azure/core-auth";
 import createAnomalyDetectorClient, {
   TrainMultivariateModelParameters,
 } from "@msinternal/ai-anomaly-detector";
-import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();

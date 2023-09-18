@@ -3,11 +3,11 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+import { AzureKeyCredential } from "@azure/core-auth";
 import createHealthInsightsClinicalMatchingClient, {
   CreateJobParameters,
   getLongRunningPoller,
 } from "@azure-rest/health-insights-clinicalmatching";
-import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();

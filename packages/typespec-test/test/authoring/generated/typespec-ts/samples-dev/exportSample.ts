@@ -3,11 +3,11 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
   ExportParameters,
   getLongRunningPoller,
 } from "@msinternal/authoring";
-import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
 dotenv.config();

@@ -3,11 +3,11 @@
 
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
+import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
   LoadTestRunCreateOrUpdateTestRunParameters,
   getLongRunningPoller,
 } from "@azure-rest/load-testing";
-import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
 
 dotenv.config();
