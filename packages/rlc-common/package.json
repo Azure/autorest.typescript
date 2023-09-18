@@ -22,7 +22,7 @@
     "build": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:cjs": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:esm": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
-    "test": "mocha"
+    "test": "mocha test/**/*.spec.ts"
   },
   "keywords": [],
   "author": "",
@@ -52,10 +52,7 @@
       "ts",
       "tsx"
     ],
-    "loader": "ts-node/esm",
-    "spec": [
-      "test/**/*.spec.ts"
-    ]
+    "loader": "ts-node/esm"
   },
   "bugs": {
     "url": "https://github.com/Azure/autorest.typescript/issues"
