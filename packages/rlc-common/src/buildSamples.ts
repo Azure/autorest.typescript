@@ -79,7 +79,7 @@ export function buildSamplesOnMockContent(model: RLCModel) {
       );
       const operationPrefix = normalizeName(
         camelCase(transformSpecialLetterToSpace(operatonConcante)),
-        NameType.Method
+        NameType.Operation
       );
       const sampleGroup: RLCSampleGroup = {
         filename: `${operationPrefix}Sample`,
