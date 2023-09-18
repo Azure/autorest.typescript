@@ -236,8 +236,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
-    packageInfo.devDependencies["mocha"] = "^7.1.1";
-    packageInfo.devDependencies["@types/mocha"] = "^7.0.2";
+    packageInfo.devDependencies["mocha"] = "^10.0.0";
+    packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
@@ -270,7 +270,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] =
-      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+      `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
@@ -287,6 +287,19 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         "dev-tool run test:node-ts-input -- --timeout 1200000 --exclude 'test/**/browser/*.spec.ts' 'test/**/*.spec.ts'";
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
+    }
+    if (isTypeSpecTest) {
+      packageInfo["mocha"] = {
+        "extension": [
+          "ts"
+        ],
+        "timeout": "1200000",
+        "loader": "ts-node/esm"
+      };
+      packageInfo.scripts["unit-test:node"] =
+        'mocha --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+      packageInfo.scripts["integration-test:node"] =
+        'nyc mocha --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     }
 
     packageInfo["browser"] = {
