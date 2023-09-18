@@ -12,7 +12,7 @@ import { RLCModel } from "../interfaces.js";
 
 let hasPaging = false;
 let hasLRO = false;
-let clientFilePaths: string[] = [];
+const clientFilePaths: string[] = [];
 
 export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
   const project = new Project();
@@ -49,10 +49,8 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   hasPaging = hasPaging || hasPagingOperations(model);
   hasLRO = hasLRO || hasPollingOperations(model);
 
-  let {
+  const {
     packageDetails,
-    generateTest,
-    generateSample,
     azureOutputDirectory,
     azureSdkForJs,
     isTypeSpecTest,
@@ -60,6 +58,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     multiClient,
     batch
   } = model.options;
+  let { generateTest, generateSample } = model.options;
   if (
     multiClient &&
     batch &&

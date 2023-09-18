@@ -154,6 +154,7 @@ importers:
       '@types/mocha': ^10.0.1
       '@types/node': ^18.0.0
       chai: ^4.3.7
+      '@typescript-eslint/parser': ^5.58.0
       eslint: ^8.9.0
       fs-extra: ^10.0.0
       handlebars: ^4.7.7
@@ -175,6 +176,7 @@ importers:
       '@types/mocha': 10.0.1
       '@types/node': 18.17.3
       chai: 4.3.7
+      '@typescript-eslint/parser': 5.62.0_qjkw45b3tljvcusgfgkwdbduhu
       eslint: 8.46.0
       fs-extra: 10.1.0
       mocha: 10.2.0
