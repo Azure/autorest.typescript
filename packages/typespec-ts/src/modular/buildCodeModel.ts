@@ -66,8 +66,8 @@ import {
   getClientNamespaceString,
   getSdkUnion,
   getAllModels,
-  SdkSimpleType,
-  getSdkSimpleType
+  SdkBuiltInType,
+  getSdkBuiltInType
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -1256,7 +1256,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       description: sdkType.doc || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
-      valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(x)),
       isFixed: sdkType.isFixed === false ? false : true,
       xmlMetadata: {}
@@ -1276,11 +1276,11 @@ function emitEnumMember(type: any): Record<string, any> {
 
 function emitSimpleType(
   context: SdkContext,
-  type: Scalar | IntrinsicType | SdkSimpleType
+  type: Scalar | IntrinsicType | SdkBuiltInType
 ): Record<string, any> {
-  let sdkType: SdkSimpleType;
+  let sdkType: SdkBuiltInType;
   if (type.kind === "Scalar" || type.kind === "Intrinsic") {
-    sdkType = getSdkSimpleType(context, type);
+    sdkType = getSdkBuiltInType(context, type);
   } else {
     sdkType = type;
   }
