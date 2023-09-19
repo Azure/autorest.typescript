@@ -22,7 +22,8 @@
     "build": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:cjs": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:esm": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run unit-test",
+    "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --loader=ts-node/esm --experimental-specifier-resolution=node  test/**/*.spec.ts"
   },
   "keywords": [],
   "author": "",
@@ -42,8 +43,13 @@
     "fs-extra": "^10.0.0",
     "@types/fs-extra": "^8.1.0",
     "ts-node": "^10.7.0",
+    "mocha": "^10.2.0",
+    "chai": "^4.3.7",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
-    "@typescript-eslint/parser": "^5.58.0"
+    "@typescript-eslint/parser": "^5.58.0",
+    "cross-env": "7.0.3"
   },
   "bugs": {
     "url": "https://github.com/Azure/autorest.typescript/issues"
