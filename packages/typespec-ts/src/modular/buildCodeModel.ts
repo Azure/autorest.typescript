@@ -1285,28 +1285,13 @@ function emitSimpleType(
     sdkType = type;
   }
 
-  const extraInformation: Record<string, any> = {};
-  if (sdkType.kind === "string") {
-    extraInformation["pattern"] = sdkType.pattern;
-    extraInformation["minLength"] = sdkType.minLength;
-    extraInformation["maxLength"] = sdkType.maxLength;
-  } else if (
-    sdkType.kind === "int32" ||
-    sdkType.kind === "int64" ||
-    sdkType.kind === "float32" ||
-    sdkType.kind === "float64"
-  ) {
-    extraInformation["minValue"] = sdkType.minValue;
-    extraInformation["maxValue"] = sdkType.maxValue;
-  }
   return {
     nullable: sdkType.nullable,
     type: "number", // TODO: switch to kind
-    doc: sdkType.doc,
-    apiVersions: sdkType.apiVersions,
-    sdkDefaultValue: sdkType.sdkDefaultValue,
-    format: sdkType.format,
-    ...extraInformation
+    doc: "",
+    apiVersions: [],
+    sdkDefaultValue: undefined,
+    format: undefined
   };
 }
 
@@ -1644,7 +1629,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model);
+    getType(dpgContext, model.__raw);
   }
 
   for (const namespace of getNamespaces(dpgContext)) {
