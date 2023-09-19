@@ -22,9 +22,8 @@
     "build": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:cjs": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig-cjs.json && node publishPackage.js",
     "build:esm": "rimraf --glob dist/* dist-esm/* types/* && tsc -p tsconfig.json && node publishPackage.js",
-    "test": "npm run unit-test:cjs && npm run unit-test:esm",
-    "unit-test:cjs": "cross-env TS_NODE_PROJECT=tsconfig-cjs.json mocha -r ts-node/register test/**/*.spec.ts",
-    "unit-test:esm": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --loader=ts-node/esm --experimental-specifier-resolution=node  test/**/*.spec.ts"
+    "test": "npm run unit-test",
+    "unit-test": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --loader=ts-node/esm --experimental-specifier-resolution=node  test/**/*.spec.ts"
   },
   "keywords": [],
   "author": "",
