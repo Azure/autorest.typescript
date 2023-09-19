@@ -279,6 +279,9 @@ stages:
           - script: npm run lint
             workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
             displayName: "Lint check for rlc common lib"
+          - script: npm run test
+            workingDirectory: $(Build.SourcesDirectory)/packages/rlc-common
+            displayName: "Run test cases for rlc common lib"
           - script: npm run lint
             workingDirectory: $(Build.SourcesDirectory)/packages/typespec-ts
             displayName: "Lint check for TypeSpec emitter"

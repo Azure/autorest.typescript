@@ -82,6 +82,16 @@
       "protocol": "inspector"
     },
     {
+      "name": "[RLC-Common] Debug Unit Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/rlc-common",
+      "runtimeArgs": ["mocha", "test/**/*.spec.ts"],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
+    },
+    {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-test/test/openai_modular",
