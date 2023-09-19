@@ -1246,23 +1246,23 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw)),
+      types: sdkType.values.map((x) => getType(context, x.__raw!)),
       xmlMetadata: {}
     };
   } else if (sdkType.kind === "enum") {
     return {
       name: sdkType.name,
       nullable: sdkType.nullable,
-      description: sdkType.doc || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(x)),
-      isFixed: sdkType.isFixed === false ? false : true,
+      isFixed: sdkType.isFixed,
       xmlMetadata: {}
     };
   } else {
-    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw) };
+    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
   }
 }
 
@@ -1629,7 +1629,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw);
+    getType(dpgContext, model.__raw!);
   }
 
   for (const namespace of getNamespaces(dpgContext)) {
