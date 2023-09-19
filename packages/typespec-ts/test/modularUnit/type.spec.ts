@@ -14,8 +14,10 @@ describe("model type", () => {
     assertEqualContent(
       modelFile!.getFullText()!,
       `
+      /** Type of ColorType */
+      export type ColorType = "red" | "blue";
       export interface Test {
-        color: "red" | "blue";
+        color: ColorType;
       }`
     );
   });
