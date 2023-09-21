@@ -19,4 +19,21 @@ describe("model type", () => {
       }`
     );
   });
+
+  it.only("nullable string", async () => {
+    const modelFile = await emitModularModelsFromTypeSpec(`
+      model Test {
+        content: string | null;
+      }
+      op read(@body body: Test): void;
+      `);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile!.getFullText()!,
+      `
+      export interface Test {
+        content: string | null;
+      }`
+    );
+  });
 });
