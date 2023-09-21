@@ -18,9 +18,6 @@ export interface AnalyzeWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export type ColorType = "red" | "blue";
-
-// @public (undocumented)
 export interface CreateWidgetOptions extends OperationOptions {
 }
 
@@ -38,13 +35,13 @@ export interface ListWidgetsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdateWidgetOptions extends OperationOptions {
-    color?: ColorType;
+    color?: "red" | "blue";
     weight?: number;
 }
 
 // @public (undocumented)
 export interface Widget {
-    color: ColorType;
+    color: "red" | "blue";
     id: string;
     weight: number;
 }
@@ -53,7 +50,7 @@ export interface Widget {
 export class WidgetServiceClient {
     constructor(endpoint: string, options?: WidgetServiceClientOptions);
     analyzeWidget(id: string, options?: AnalyzeWidgetOptions): Promise<AnalyzeResult>;
-    createWidget(weight: number, color: ColorType, options?: CreateWidgetOptions): Promise<Widget>;
+    createWidget(weight: number, color: "red" | "blue", options?: CreateWidgetOptions): Promise<Widget>;
     deleteWidget(id: string, options?: DeleteWidgetOptions): Promise<void>;
     getWidget(id: string, options?: GetWidgetOptions): Promise<Widget>;
     listWidgets(options?: ListWidgetsOptions): Promise<Widget[]>;
