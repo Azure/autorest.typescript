@@ -45,8 +45,11 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "datetime":
       return { name: getNullableType("Date", type) };
     case "enum":
-      if (!type.name && type?.valueType?.type! !== "string") {
-        console.log(type, !type.name && type?.valueType?.name! !== "string");
+      if (
+        !type.name &&
+        (type?.valueType?.type === undefined ||
+          type?.valueType?.type !== "string")
+      ) {
         throw new Error("Unable to process enum without name");
       }
       return {
