@@ -806,6 +806,7 @@ function emitBasicOperation(
         for (const param of bodyParameter.type.properties) {
           // const emittedParam = emitParameter(context, param.type, "Method");
           param.implementation = "Method";
+          param.location = param.location ?? "body";
           parameters.push(param);
         }
       }

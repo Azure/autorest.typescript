@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import {
-  PublishCloudEventRequest,
   CloudEvent,
   ReceiveResult,
   AcknowledgeOptions,
@@ -45,7 +44,7 @@ import {
 export function _publishCloudEventSend(
   context: Client,
   topicName: string,
-  event: PublishCloudEventRequest,
+  event: CloudEvent,
   options: PublishCloudEventOptions = { requestOptions: {} }
 ): StreamableMethod<
   PublishCloudEvent200Response | PublishCloudEventDefaultResponse
@@ -59,19 +58,19 @@ export function _publishCloudEventSend(
         "application/cloudevents+json; charset=utf-8",
       body: {
         event: {
-          id: event.event["id"],
-          source: event.event["source"],
-          data: event.event["data"],
+          id: event["id"],
+          source: event["source"],
+          data: event["data"],
           data_base64:
-            event.event["dataBase64"] !== undefined
-              ? uint8ArrayToString(event.event["dataBase64"], "base64")
+            event["dataBase64"] !== undefined
+              ? uint8ArrayToString(event["dataBase64"], "base64")
               : undefined,
-          type: event.event["type"],
-          time: event.event["time"]?.toISOString(),
-          specversion: event.event["specversion"],
-          dataschema: event.event["dataschema"],
-          datacontenttype: event.event["datacontenttype"],
-          subject: event.event["subject"],
+          type: event["type"],
+          time: event["time"]?.toISOString(),
+          specversion: event["specversion"],
+          dataschema: event["dataschema"],
+          datacontenttype: event["datacontenttype"],
+          subject: event["subject"],
         },
       },
     });
@@ -91,7 +90,7 @@ export async function _publishCloudEventDeserialize(
 export async function publishCloudEvent(
   context: Client,
   topicName: string,
-  event: PublishCloudEventRequest,
+  event: CloudEvent,
   options: PublishCloudEventOptions = { requestOptions: {} }
 ): Promise<Record<string, any>> {
   const result = await _publishCloudEventSend(

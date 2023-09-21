@@ -48,7 +48,7 @@ export interface CloudEvent {
 export class EventGridClient {
     constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
-    publishCloudEvent(topicName: string, event: PublishCloudEventRequest, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
+    publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
     publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptions): Promise<Record<string, any>>;
     receiveCloudEvents(topicName: string, eventSubscriptionName: string, options?: ReceiveCloudEventsOptions): Promise<ReceiveResult>;
     rejectCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: RejectOptions, options?: RejectCloudEventsOptions): Promise<RejectResult>;
@@ -69,12 +69,6 @@ export interface FailedLockToken {
 // @public (undocumented)
 export interface PublishCloudEventOptions extends OperationOptions {
     contentType?: string;
-}
-
-// @public (undocumented)
-export interface PublishCloudEventRequest {
-    // (undocumented)
-    event: CloudEvent;
 }
 
 // @public (undocumented)

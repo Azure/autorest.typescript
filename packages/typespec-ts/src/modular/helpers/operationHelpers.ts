@@ -308,7 +308,11 @@ function getRequestParameters(
   };
 
   for (const param of operationParameters) {
-    if (param.location === "header" || param.location === "query") {
+    if (
+      param.location === "header" ||
+      param.location === "query" ||
+      param.location === "body"
+    ) {
       parametersImplementation[param.location].push(
         getParameterMap(param, importSet)
       );
@@ -332,12 +336,19 @@ function getRequestParameters(
       ",\n"
     )}},`;
   }
-
-  paramStr = `${paramStr}${buildBodyParameter(
-    operation.bodyParameter,
-    importSet
-  )}`;
-
+  if (
+    operation.bodyParameter === undefined &&
+    parametersImplementation.body.length
+  ) {
+    paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
+      ",\n"
+    )}}`;
+  } else if (operation.bodyParameter !== undefined) {
+    paramStr = `${paramStr}${buildBodyParameter(
+      operation.bodyParameter,
+      importSet
+    )}`;
+  }
   return paramStr;
 }
 
@@ -476,11 +487,11 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": ${getRequestModelMapping(
+    return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
       importSet
-    ).join(",")}`;
+    ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,

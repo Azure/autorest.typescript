@@ -1193,6 +1193,13 @@ describe("flatten alias if spread", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             queryParameters: { queryParam: queryParam },
+            body: {
+              prop1: prop1,
+              prop2: prop2,
+              prop3: prop3.toISOString(),
+              prop4: prop4,
+              prop5: { prop1: prop5["prop1"], prop2: prop5["prop2"] },
+            },
           });
       }
       export async function _readDeserialize(result: Read200Response): Promise<void> {
@@ -1291,6 +1298,16 @@ describe("flatten alias if spread", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             queryParameters: { queryParam: queryParam },
+            body: {
+              prop1: prop1,
+              prop2: prop2,
+              prop3: options?.prop3?.toISOString(),
+              prop4: prop4,
+              prop5: {
+                prop1: options?.prop5?.["prop1"],
+                prop2: options?.prop5?.["prop2"],
+              },
+            },
           });
       }
       export async function _readDeserialize(result: Read200Response): Promise<void> {
@@ -1387,6 +1404,14 @@ describe("flatten alias if spread", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             queryParameters: { prop4: prop4, queryParam: queryParam },
+            body: {
+              prop2: prop2,
+              prop3: options?.prop3?.toISOString(),
+              prop5: {
+                prop1: options?.prop5?.["prop1"],
+                prop2: options?.prop5?.["prop2"],
+              },
+            },
           });
       }
       export async function _readDeserialize(result: Read200Response): Promise<void> {
