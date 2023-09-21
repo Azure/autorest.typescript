@@ -67,7 +67,8 @@ import {
   getSdkUnion,
   getAllModels,
   SdkBuiltInType,
-  getSdkBuiltInType
+  getSdkBuiltInType,
+  getClientType
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -1263,18 +1264,24 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
     };
   } else if (sdkType.kind === "string") {
     return {
-      name: sdkType.name,
+      name: undefined, // string union will be mapped as fixed enum without a name
       nullable: sdkType.nullable,
       internal: true,
-      type: sdkType.kind,
-      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
-      values: sdkType.values.map((x) => emitEnumMember(x)),
+      type: "enum",
+      valueType: emitSimpleType(context, sdkType),
+      values: getNonNullOptions(type).map((x) => getClientType(context, x)),
       isFixed: true,
       xmlMetadata: {}
     };
   } else {
     return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
   }
+}
+
+function getNonNullOptions(type: Union) {
+  return [...type.variants.values()]
+    .map((x) => x.type)
+    .filter((t) => !isNullType(t));
 }
 
 function emitEnumMember(type: any): Record<string, any> {
@@ -1298,7 +1305,7 @@ function emitSimpleType(
 
   return {
     nullable: sdkType.nullable,
-    type: "number", // TODO: switch to kind
+    type: sdkType.kind,
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,

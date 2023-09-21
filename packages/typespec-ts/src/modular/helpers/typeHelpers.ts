@@ -15,6 +15,10 @@ function getNullableType(name: string, type: Type): string {
   return name;
 }
 
+function getAnonymousEnumName(enumValues: string[]): string {
+  return enumValues.map((v) => `"${v}"`).join(" | ");
+}
+
 export function getType(type: Type, format?: string): TypeMetadata {
   switch (type.type) {
     case "Key":
@@ -41,11 +45,14 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "datetime":
       return { name: getNullableType("Date", type) };
     case "enum":
-      if (!type.name) {
+      if (!type.name && type?.valueType?.type! !== "string") {
+        console.log(type, !type.name && type?.valueType?.name! !== "string");
         throw new Error("Unable to process enum without name");
       }
       return {
-        name: getNullableType(type.name, type),
+        name: type.name
+          ? getNullableType(type.name, type)
+          : getAnonymousEnumName(type.values!.map((v) => v.value)),
         originModule: "models.js"
       };
     case "float":
