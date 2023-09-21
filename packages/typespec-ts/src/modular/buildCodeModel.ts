@@ -1261,6 +1261,17 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       isFixed: sdkType.isFixed,
       xmlMetadata: {}
     };
+  } else if (sdkType.kind === "string") {
+    return {
+      name: sdkType.name,
+      nullable: sdkType.nullable,
+      internal: true,
+      type: sdkType.kind,
+      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
+      values: sdkType.values.map((x) => emitEnumMember(x)),
+      isFixed: true,
+      xmlMetadata: {}
+    };
   } else {
     return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
   }

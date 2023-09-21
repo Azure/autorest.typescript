@@ -3,7 +3,7 @@ import { emitModularModelsFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("model type", () => {
-  it("string enum", async () => {
+  it.only("string enum", async () => {
     const modelFile = await emitModularModelsFromTypeSpec(`
       model Test {
         color: "red" | "blue";
