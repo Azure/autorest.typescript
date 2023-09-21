@@ -180,7 +180,7 @@ export interface ChatMessage {
   /** The role associated with this message payload. */
   role: ChatRole;
   /** The text associated with this message payload. */
-  content: string | null;
+  content: "undefined";
   /**
    * The name of the author of this message. `name` is required if role is `function`, and it should be the name of the
    * function whose response is in the `content`. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of
