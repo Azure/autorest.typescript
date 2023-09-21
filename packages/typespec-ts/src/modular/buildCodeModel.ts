@@ -456,9 +456,6 @@ function emitBodyParameter(
   const type = getType(context, getBodyType(context.program, httpOperation), {
     disableEffectiveModel: true
   });
-  if (type.type === "model" && type.name === "") {
-    type.name = capitalize(httpOperation.operation.name) + "Request";
-  }
 
   return {
     contentTypes,
@@ -804,7 +801,16 @@ function emitBasicOperation(
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
-    if (
+    if (bodyParameter.type.type === "model" && bodyParameter.type.name === "") {
+      if (bodyParameter.type.properties.length > 0) {
+        for (const param of bodyParameter.type.properties) {
+          // const emittedParam = emitParameter(context, param.type, "Method");
+          param.implementation = "Method";
+          parameters.push(param);
+        }
+      }
+      bodyParameter = undefined;
+    } else if (
       bodyParameter.type.type === "model" &&
       bodyParameter.type.base === "json"
     ) {
@@ -1247,10 +1253,6 @@ function mapTypeSpecType(context: SdkContext, type: Type): any {
     case "Model":
       return emitListOrDict(context, type);
   }
-}
-
-function capitalize(name: string): string {
-  return name[0]!.toUpperCase() + name.slice(1);
 }
 
 function emitUnion(context: SdkContext, type: Union): Record<string, any> {

@@ -1,5 +1,8 @@
 import { assert } from "chai";
-import { emitModularModelsFromTypeSpec, emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitModularModelsFromTypeSpec,
+  emitModularOperationsFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("modular model type", () => {
@@ -23,7 +26,7 @@ describe("modular encode test for property type datetime", () => {
       prop4: offsetDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -40,7 +43,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -93,12 +97,13 @@ describe("modular encode test for property type datetime", () => {
   it("should handle header parameter type utcDateTime with default encoding", async () => {
     const tspContent = `
     op read(@header prop: utcDateTime): OkResponse;
-    `
+    `;
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -149,7 +154,7 @@ describe("modular encode test for property type datetime", () => {
       prop2: offsetDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -164,7 +169,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -219,7 +225,7 @@ describe("modular encode test for property type datetime", () => {
       prop2: offsetDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -234,7 +240,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -287,7 +294,7 @@ describe("modular encode test for property type datetime", () => {
       prop1: utcDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -301,7 +308,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -353,7 +361,7 @@ describe("modular encode test for property type duration", () => {
       prop1: duration;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -367,7 +375,8 @@ describe("modular encode test for property type duration", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -418,7 +427,7 @@ describe("modular encode test for property type duration", () => {
       prop1: duration;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -432,7 +441,8 @@ describe("modular encode test for property type duration", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -485,7 +495,7 @@ describe("modular encode test for property type duration", () => {
       prop2: duration;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -500,7 +510,8 @@ describe("modular encode test for property type duration", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -554,7 +565,7 @@ describe("modular encode test for property type bytes", () => {
       prop1: bytes;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -568,7 +579,8 @@ describe("modular encode test for property type bytes", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -623,7 +635,7 @@ describe("modular encode test for property type bytes", () => {
       prop1: bytes;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -637,7 +649,8 @@ describe("modular encode test for property type bytes", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -692,7 +705,7 @@ describe("modular encode test for property type bytes", () => {
       prop1: bytes;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -706,7 +719,8 @@ describe("modular encode test for property type bytes", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -833,7 +847,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -869,7 +884,8 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }      
-      `);
+      `
+    );
   });
 
   it("should handle multi level inheritance model in operations", async () => {
@@ -909,7 +925,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -945,7 +962,8 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }
-      `);
+      `
+    );
   });
 
   it("should handle inheritance model with discriminator in operations", async () => {
@@ -992,7 +1010,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -1028,7 +1047,8 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }      
-      `);
+      `
+    );
   });
   /**
    * TODO: This test is skipped because typespec has some issues. https://github.com/microsoft/typespec/issues/2411
@@ -1077,7 +1097,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -1114,6 +1135,287 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }
-      `);
+      `
+    );
+  });
+});
+
+describe.only("flatten alias if spread", () => {
+  it("should flatten alias if spread in the payload with required parameters", async () => {
+    const tspContent = `
+    alias Foo = {
+      prop1: string;
+      prop2: int64;
+      prop3: utcDateTime;
+      prop4: offsetDateTime;
+      prop5: Bar;
+    };
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop3: Date,
+        prop4: string,
+        prop5: Bar,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}", pathParam)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { queryParam: queryParam },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop3: Date,
+        prop4: string,
+        prop5: Bar,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          queryParam,
+          prop1,
+          prop2,
+          prop3,
+          prop4,
+          prop5,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
+  it("should flatten alias if spread in the payload with optional parameters", async () => {
+    const tspContent = `
+    alias Foo = {
+      prop1: string;
+      prop2: int64;
+      prop3?: utcDateTime;
+      prop4: offsetDateTime;
+      prop5?: Bar;
+    };
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }`
+    );
+    const optionFile = await emitModularModelsFromTypeSpec(tspContent, true);
+    assert.ok(optionFile);
+    assertEqualContent(
+      optionFile?.getFullText()!,
+      `
+      import { OperationOptions } from "@azure-rest/core-client";
+      
+      export interface ReadOptions extends OperationOptions {
+        prop3?: Date;
+        prop5?: Bar;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop4: string,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}", pathParam)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { queryParam: queryParam },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop4: string,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          queryParam,
+          prop1,
+          prop2,
+          prop4,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
+  it("should flatten alias if spread in the payload with optional parameters", async () => {
+    const tspContent = `
+    alias Foo = {
+      @path
+      prop1: string;
+      prop2: int64;
+      prop3?: utcDateTime;
+      @query
+      prop4: offsetDateTime;
+      prop5?: Bar;
+    };
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, ...Foo, @query queryParam: string): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }`
+    );
+    const optionFile = await emitModularModelsFromTypeSpec(tspContent, true);
+    assert.ok(optionFile);
+    assertEqualContent(
+      optionFile?.getFullText()!,
+      `
+      import { OperationOptions } from "@azure-rest/core-client";
+      
+      export interface ReadOptions extends OperationOptions {
+        prop3?: Date;
+        prop5?: Bar;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        prop1: string,
+        prop4: string,
+        queryParam: string,
+        prop2: number,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}/{prop1}", pathParam, prop1)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { prop4: prop4, queryParam: queryParam },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        prop1: string,
+        prop4: string,
+        queryParam: string,
+        prop2: number,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          prop1,
+          prop4,
+          queryParam,
+          prop2,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
   });
 });

@@ -67,11 +67,8 @@ export function getType(type: Type, format?: string): TypeMetadata {
           type.elementType?.type === "model" ? "models.js" : undefined
       };
     case "model":
-      if (!type.name) {
-        throw new Error("Unable to process model without name");
-      }
       return {
-        name: getNullableType(type.name, type),
+        name: getNullableType(type.name!, type),
         originModule: "models.js"
       };
     case "string":
