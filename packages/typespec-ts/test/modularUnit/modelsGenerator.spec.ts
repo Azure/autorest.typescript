@@ -1140,7 +1140,7 @@ describe("inheritance & polymorphism", () => {
   });
 });
 
-describe.only("flatten alias if spread", () => {
+describe("flatten alias if spread", () => {
   it("should flatten alias if spread in the payload with required parameters", async () => {
     const tspContent = `
     alias Foo = {
@@ -1411,6 +1411,97 @@ describe.only("flatten alias if spread", () => {
           prop4,
           queryParam,
           prop2,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
+  it("should not flatten model if spread in the payload with required parameters", async () => {
+    const tspContent = `
+    model Foo {
+      prop1: string;
+      prop2: int64;
+      prop3: utcDateTime;
+      prop4: offsetDateTime;
+      prop5: Bar;
+    }
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Foo {
+        prop1: string;
+        prop2: number;
+        prop3: Date;
+        prop4: string;
+        prop5: Bar;
+      }
+
+      export interface Bar {
+        prop1: string;
+        prop2: number;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        body: Foo,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}", pathParam)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { queryParam: queryParam },
+            body: {
+              prop1: body["prop1"],
+              prop2: body["prop2"],
+              prop3: body["prop3"].toISOString(),
+              prop4: body["prop4"],
+              prop5: { prop1: body.prop5["prop1"], prop2: body.prop5["prop2"] },
+            },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        body: Foo,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          queryParam,
+          body,
           options
         );
         return _readDeserialize(result);
