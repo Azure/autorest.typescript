@@ -13,6 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { stringToUint8Array } from "@azure/core-util";
 import {
   ResponseBodyDefaultOptions,
   ResponseBodyOctetStreamOptions,
@@ -37,7 +38,9 @@ export async function _responseBodyDefaultDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 export async function responseBodyDefault(
@@ -64,7 +67,9 @@ export async function _responseBodyOctetStreamDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 export async function responseBodyOctetStream(
@@ -91,7 +96,9 @@ export async function _responseBodyCustomContentTypeDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 export async function responseBodyCustomContentType(
@@ -118,7 +125,9 @@ export async function _responseBodyBase64Deserialize(
     throw result.body;
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64")
+    : result.body;
 }
 
 export async function responseBodyBase64(
@@ -145,7 +154,9 @@ export async function _responseBodyBase64urlDeserialize(
     throw result.body;
   }
 
-  return result.body;
+  return typeof result.body === "string"
+    ? stringToUint8Array(result.body, "base64url")
+    : result.body;
 }
 
 export async function responseBodyBase64url(

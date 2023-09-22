@@ -146,16 +146,6 @@ export function getDeserializePrivateFunction(
 
   if (response?.type?.type === "any") {
     statements.push(`return result.body`);
-  } else if (response?.type?.elementType) {
-    statements.push(
-      `return ${deserializeResponseValue(
-        response.type,
-        "result.body",
-        importSet,
-        response.type.nullable !== undefined ? !response.type.nullable : false,
-        response.type.format
-      )}`
-    );
   } else if (getAllProperties(response?.type).length > 0) {
     statements.push(
       `return {`,
@@ -169,7 +159,15 @@ export function getDeserializePrivateFunction(
   } else if (returnType.type === "void") {
     statements.push(`return;`);
   } else {
-    statements.push(`return result.body;`);
+    statements.push(
+      `return ${deserializeResponseValue(
+        response.type,
+        "result.body",
+        importSet,
+        response.type.nullable !== undefined ? !response.type.nullable : false,
+        response.type.format
+      )}`
+    );
   }
   return {
     ...functionStatement,
@@ -399,7 +397,24 @@ function buildBodyParameter(
   }
 
   if (bodyParameter.type.type === "byte-array") {
-    return `\nbody: ${bodyParameter.clientName},`;
+    const coreUtilSet = importSet.get("@azure/core-util");
+    if (!coreUtilSet) {
+      importSet.set(
+        "@azure/core-util",
+        new Set<string>().add("uint8ArrayToString")
+      );
+    } else {
+      coreUtilSet.add("uint8ArrayToString");
+    }
+    return bodyParameter.optional
+      ? `body: typeof ${bodyParameter.clientName} === 'string'
+    ? uint8ArrayToString(${bodyParameter.clientName}, "${
+          bodyParameter.type.format ?? "base64"
+        }")
+    : ${bodyParameter.clientName}`
+      : `body: uint8ArrayToString(${bodyParameter.clientName}, "${
+          bodyParameter.type.format ?? "base64"
+        }")`;
   }
 
   return "";

@@ -29,7 +29,10 @@ export function _requestBodyDefaultSend(
 ): StreamableMethod<RequestBodyDefault204Response> {
   return context
     .path("/encode/bytes/body/request/default")
-    .post({ ...operationOptionsToRequestParameters(options), body: value });
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      body: uint8ArrayToString(value, "base64"),
+    });
 }
 
 export async function _requestBodyDefaultDeserialize(
@@ -61,7 +64,7 @@ export function _requestBodyOctetStreamSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
-      body: value,
+      body: uint8ArrayToString(value, "base64"),
     });
 }
 
@@ -94,7 +97,7 @@ export function _requestBodyCustomContentTypeSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
-      body: value,
+      body: uint8ArrayToString(value, "base64"),
     });
 }
 
