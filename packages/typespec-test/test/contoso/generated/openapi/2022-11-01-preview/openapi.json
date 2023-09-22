@@ -43,8 +43,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -84,8 +84,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -114,7 +114,7 @@
             "description": "The resource instance.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/WidgetUpdate"
+              "$ref": "#/definitions/WidgetCreateOrUpdate"
             }
           }
         ],
@@ -152,8 +152,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -215,8 +215,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -284,8 +284,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -410,7 +410,7 @@
         "createdDate"
       ]
     },
-    "FakedSharedModelUpdate": {
+    "FakedSharedModelCreateOrUpdate": {
       "type": "object",
       "description": "Faked shared model",
       "properties": {
@@ -486,7 +486,7 @@
         "manufacturerId"
       ]
     },
-    "WidgetUpdate": {
+    "WidgetCreateOrUpdate": {
       "type": "object",
       "description": "A widget.",
       "properties": {
@@ -495,7 +495,7 @@
           "description": "The ID of the widget's manufacturer."
         },
         "sharedModel": {
-          "$ref": "#/definitions/FakedSharedModelUpdate",
+          "$ref": "#/definitions/FakedSharedModelCreateOrUpdate",
           "description": "The faked shared model."
         }
       }
