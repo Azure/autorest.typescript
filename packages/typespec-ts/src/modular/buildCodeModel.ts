@@ -1264,9 +1264,8 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else if (
-    ["string", "int32", "int64", "float32", "float64"].includes(sdkType.kind) &&
-    nonNullOptions.length > 0 &&
-    ["string", "number"].includes(nonNullOptions[0]!.kind.toLowerCase())
+    isStringOrNumerKind(context.program, sdkType.kind) &&
+    isStringOrNumerKind(context.program, nonNullOptions[0]?.kind)
   ) {
     return {
       name: undefined, // string/number union will be mapped as fixed enum without name
@@ -1274,12 +1273,28 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       internal: true,
       type: "enum",
       valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
-      values: nonNullOptions.map((x) => getClientType(context, x)),
+      values: nonNullOptions
+        .map((x) => getClientType(context, x))
+        .map((x) => emitEnumMember(x)),
       isFixed: true,
       xmlMetadata: {}
     };
   } else {
     return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
+  }
+}
+
+function isStringOrNumerKind(program: Program, kind?: string): boolean {
+  if (!kind) {
+    return false;
+  }
+  try {
+    const type = emitStdScalar(program, { name: kind } as any);
+    kind = type["type"] ?? kind;
+  } finally {
+    return ["string", "number", "integer", "float"].includes(
+      kind!.toLowerCase()
+    );
   }
 }
 
@@ -1291,7 +1306,7 @@ function getNonNullOptions(type: Union) {
 
 function emitEnumMember(type: any): Record<string, any> {
   return {
-    name: enumName(type.name),
+    name: type.name ? enumName(type.name) : undefined,
     value: type.value,
     description: type.doc
   };

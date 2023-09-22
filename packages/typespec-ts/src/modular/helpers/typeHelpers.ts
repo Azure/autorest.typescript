@@ -17,7 +17,7 @@ function getNullableType(name: string, type: Type): string {
 
 function getAnonymousEnumName(values: EnumValue[]): string {
   return values
-    .map((v) => (v.name === "string" ? `"${v.value}"` : `${v.value}`))
+    .map((v) => (typeof v.value === "string" ? `"${v.value}"` : `${v.value}`))
     .join(" | ");
 }
 
@@ -49,7 +49,7 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "enum":
       if (
         !type.name &&
-        (type?.valueType?.type === undefined ||
+        (!type?.valueType?.type ||
           !["string", "number"].includes(type?.valueType?.type))
       ) {
         throw new Error("Unable to process enum without name");
