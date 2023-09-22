@@ -1050,7 +1050,7 @@ describe("Input/output model type", () => {
     });
 
     it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
-      const inputType = "Date | string";
+      const inputType = "string";
       const outputType = "string";
       await verifyPropertyType("offsetDateTime ", inputType, {
         outputType
@@ -1111,7 +1111,7 @@ describe("Input/output model type", () => {
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
-        "createdAt": Date | string;
+        "createdAt": string;
       }
       `
       );
