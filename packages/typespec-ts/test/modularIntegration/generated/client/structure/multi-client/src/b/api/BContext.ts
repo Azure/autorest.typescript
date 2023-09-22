@@ -11,10 +11,10 @@ export interface BClientOptions extends ClientOptions {}
 export { ServiceContext } from "../../rest/index.js";
 
 export function createB(
+  endpoint: string,
   client: ClientType,
   options: BClientOptions = {}
 ): ServiceContext {
-  const baseUrl = client;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(endpoint, client, options);
   return clientContext;
 }
