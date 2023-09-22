@@ -95,7 +95,8 @@ import {
 import {
   getOperationGroupName,
   getOperationName,
-  isIgnoredHeaderParam
+  isIgnoredHeaderParam,
+  isLongRunningOperation
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
@@ -170,15 +171,6 @@ function isSimpleType(
 
 function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
-}
-
-function isLro(_program: Program, operation: Operation): boolean {
-  for (const decorator of operation.decorators) {
-    if (decorator.decorator.name === "$pollingOperation") {
-      return true;
-    }
-  }
-  return false;
 }
 
 function isDiscriminator(
@@ -629,7 +621,10 @@ function emitOperation(
   operationGroupName: string,
   rlcModels: RLCModel
 ): HrlcOperation {
-  const lro = isLro(context.program, operation);
+  const lro = isLongRunningOperation(
+    context.program,
+    ignoreDiagnostics(getHttpOperation(context.program, operation))
+  );
   const paging = getPagedResult(context.program, operation);
   if (lro && paging) {
     return emitLroPagingOperation(
