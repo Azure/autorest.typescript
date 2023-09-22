@@ -267,11 +267,9 @@ export function emitPackage(
     };
 
     packageInfo["mocha"] = {
-      "extension": [
-        "ts"
-      ],
-        "timeout": "1200000",
-          "loader": "ts-node/esm"
+      extension: ["ts"],
+      timeout: "1200000",
+      loader: "ts-node/esm"
     };
   }
 

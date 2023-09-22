@@ -270,8 +270,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts["unit-test:node"] =
-      `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
+    packageInfo.scripts[
+      "unit-test:node"
+    ] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
@@ -291,11 +292,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     }
     if (isTypeSpecTest) {
       packageInfo["mocha"] = {
-        "extension": [
-          "ts"
-        ],
-        "timeout": "1200000",
-        "loader": "ts-node/esm"
+        extension: ["ts"],
+        timeout: "1200000",
+        loader: "ts-node/esm"
       };
       packageInfo.scripts["unit-test:node"] =
         'mocha --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
