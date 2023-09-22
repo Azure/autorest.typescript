@@ -1288,14 +1288,14 @@ function isStringOrNumerKind(program: Program, kind?: string): boolean {
   if (!kind) {
     return false;
   }
+  kind = kind.toLowerCase();
   try {
     const type = emitStdScalar(program, { name: kind } as any);
     kind = type["type"] ?? kind;
-  } finally {
-    return ["string", "number", "integer", "float"].includes(
-      kind!.toLowerCase()
-    );
+  } catch (e: any) {
+    // ignore
   }
+  return ["string", "number", "integer", "float"].includes(kind!);
 }
 
 function getNonNullOptions(type: Union) {
