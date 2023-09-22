@@ -272,6 +272,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts[
       "unit-test:node"
+      // eslint-disable-next-line no-useless-escape
     ] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
