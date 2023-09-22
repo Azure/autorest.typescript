@@ -1,5 +1,6 @@
 import { OPERATION_LRO_HIGH_PRIORITY, RLCModel } from "./interfaces.js";
 import * as path from "path";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import { hasPollingOperations } from "./helpers/operationHelpers.js";
@@ -22,7 +23,7 @@ export function buildPollingHelper(model: RLCModel) {
   if (!hasPollingOperations(model)) {
     return;
   }
-  let lroDetail: LroDetail = buildLroHelperDetail(model);
+  const lroDetail: LroDetail = buildLroHelperDetail(model);
   const readmeFileContents = hbs.compile(pollingContent, { noEscape: true });
   const { srcPath } = model;
   return {

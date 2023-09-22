@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Paths, RLCModel } from "./interfaces.js";
+import { RLCModel } from "./interfaces.js";
 import * as path from "path";
 import {
   FunctionDeclarationOverloadStructure,
@@ -66,8 +66,8 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           ?.success
       ) {
         successTypes.push(
-          ...methodDetails[0].operationHelperDetail?.lroDetails
-            ?.logicalResponseTypes.success
+          ...methodDetails[0].operationHelperDetail.lroDetails
+            .logicalResponseTypes.success!
         );
       }
 

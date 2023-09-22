@@ -1080,7 +1080,7 @@ function emitStdScalar(
     case "plainTime":
       return { type: "datetime", format: newScalar.format ?? "time" };
     case "offsetDateTime":
-      return { type: "datetime", format: newScalar.format ?? "rfc7231" };
+      return { type: "string" };
     case "duration":
       return { type: "duration", format: newScalar.format };
     case "numeric":
