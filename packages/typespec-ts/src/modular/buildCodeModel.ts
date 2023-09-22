@@ -1236,6 +1236,7 @@ function capitalize(name: string): string {
 
 function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   const sdkType = getSdkUnion(context, type);
+  const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
   }
@@ -1262,14 +1263,18 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       isFixed: sdkType.isFixed,
       xmlMetadata: {}
     };
-  } else if (sdkType.kind === "string") {
+  } else if (
+    ["string", "int32", "int64", "float32", "float64"].includes(sdkType.kind) &&
+    nonNullOptions.length > 0 &&
+    ["string", "number"].includes(nonNullOptions[0]!.kind.toLowerCase())
+  ) {
     return {
-      name: undefined, // string union will be mapped as fixed enum without a name
+      name: undefined, // string/number union will be mapped as fixed enum without name
       nullable: sdkType.nullable,
       internal: true,
       type: "enum",
-      valueType: emitSimpleType(context, sdkType),
-      values: getNonNullOptions(type).map((x) => getClientType(context, x)),
+      valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
+      values: nonNullOptions.map((x) => getClientType(context, x)),
       isFixed: true,
       xmlMetadata: {}
     };
@@ -1305,7 +1310,7 @@ function emitSimpleType(
 
   return {
     nullable: sdkType.nullable,
-    type: sdkType.kind,
+    type: "number", // TODO: switch to kind
     doc: "",
     apiVersions: [],
     sdkDefaultValue: undefined,
