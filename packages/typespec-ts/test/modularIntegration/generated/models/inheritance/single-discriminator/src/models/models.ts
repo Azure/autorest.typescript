@@ -8,7 +8,37 @@ export interface Bird {
   wingspan: number;
 }
 
+/** The second level model in polymorphic single level inheritance. */
+export interface SeaGull extends Bird {
+  kind: "seagull";
+}
+
+/** The second level model in polymorphic single level inheritance. */
+export interface Sparrow extends Bird {
+  kind: "sparrow";
+}
+
+/** The second level model in polymorphic single level inheritance. */
+export interface Goose extends Bird {
+  kind: "goose";
+}
+
+/** The second level model in polymorphic single levels inheritance which contains references to other polymorphic instances. */
+export interface Eagle extends Bird {
+  kind: "eagle";
+  friends?: Bird[];
+  hate?: Record<string, Bird>;
+  partner?: Bird;
+}
+
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */
 export interface Dinosaur {
   size: number;
+  /** the discriminator possible values t-rex */
+  kind?: string;
+}
+
+/** The second level legacy model in polymorphic single level inheritance. */
+export interface TRex extends Dinosaur {
+  kind: "t-rex";
 }

@@ -194,7 +194,7 @@ function isDiscriminator(
 
 function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
-  if (discriminator) {
+  if (discriminator?.propertyName) {
     const discriminatorValues: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
@@ -205,17 +205,18 @@ function handleDiscriminator(context: SdkContext, type: Model) {
         }
       }
     }
-    // it is not included in properties of typespec but needed by python codegen
-    if (discriminatorValues.length > 0) {
-      const discriminatorInfo = {
-        description: `the discriminator possible values ${discriminatorValues.join(
-          ", "
-        )}`,
-        isPolymorphic: true,
-        isDiscriminator: true
-      };
-      return discriminatorInfo;
-    }
+    const discriminatorInfo = {
+      description: discriminatorValues.length > 0 ? `the discriminator possible values ${discriminatorValues.join(
+        ", "
+      )}`: "discriminator property",
+      type: { type: "string" },
+      restApiName: discriminator.propertyName,
+      clientName: discriminator.propertyName,
+      name: discriminator.propertyName,
+      isPolymorphic: true,
+      isDiscriminator: true
+    };
+    return discriminatorInfo;
   }
   return undefined;
 }
@@ -265,6 +266,8 @@ function processModelProperties(
   model: Model
 ) {
   // need to do properties after insertion to avoid infinite recursion
+  const discriminatorInfo = handleDiscriminator(context, model);
+  let hasDiscriminator = false;
   for (const property of model.properties.values()) {
     if (
       isStatusCode(context.program, property) ||
@@ -278,12 +281,14 @@ function processModelProperties(
     }
     let newProperty = emitProperty(context, property);
     if (isDiscriminator(context, model, property.name)) {
-      newProperty = { ...newProperty, ...handleDiscriminator(context, model) };
+      hasDiscriminator = true;
+      newProperty = { ...newProperty, ...discriminatorInfo };
     }
     newValue.properties.push(newProperty);
   }
-  // need to do discriminator outside `emitModel` to avoid infinite recursion
-  // handleDiscriminator(context, model, newValue);
+  if (!hasDiscriminator && discriminatorInfo) {
+    newValue.properties.push({...discriminatorInfo, optional: true});
+  }
 }
 
 function getType(

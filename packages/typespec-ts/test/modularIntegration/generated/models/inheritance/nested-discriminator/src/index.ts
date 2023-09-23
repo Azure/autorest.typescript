@@ -8,6 +8,9 @@ export {
 export {
   Fish,
   Shark,
+  SawShark,
+  GoblinShark,
+  Salmon,
   GetModelOptions,
   PutModelOptions,
   GetRecursiveModelOptions,

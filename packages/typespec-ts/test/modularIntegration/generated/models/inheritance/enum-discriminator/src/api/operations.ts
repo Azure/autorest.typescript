@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Dog, DogKind, Snake, SnakeKind } from "../models/models.js";
+import { Dog, Snake } from "../models/models.js";
 import {
   EnumDiscriminatorContext as Client,
   GetExtensibleModel200Response,
@@ -61,7 +61,7 @@ export async function getExtensibleModel(
 
 export function _putExtensibleModelSend(
   context: Client,
-  kind: DogKind,
+  kind: string,
   weight: number,
   options: PutExtensibleModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutExtensibleModel204Response> {
@@ -86,7 +86,7 @@ export async function _putExtensibleModelDeserialize(
 /** Send model with extensible enum discriminator type. */
 export async function putExtensibleModel(
   context: Client,
-  kind: DogKind,
+  kind: string,
   weight: number,
   options: PutExtensibleModelOptions = { requestOptions: {} }
 ): Promise<void> {
@@ -203,7 +203,7 @@ export async function getFixedModel(
 
 export function _putFixedModelSend(
   context: Client,
-  kind: SnakeKind,
+  kind: string,
   length: number,
   options: PutFixedModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutFixedModel204Response> {
@@ -228,7 +228,7 @@ export async function _putFixedModelDeserialize(
 /** Send model with fixed enum discriminator type. */
 export async function putFixedModel(
   context: Client,
-  kind: SnakeKind,
+  kind: string,
   length: number,
   options: PutFixedModelOptions = { requestOptions: {} }
 ): Promise<void> {

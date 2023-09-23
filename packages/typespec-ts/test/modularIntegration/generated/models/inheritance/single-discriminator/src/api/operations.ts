@@ -232,6 +232,7 @@ export async function _getLegacyModelDeserialize(
 
   return {
     size: result.body["size"],
+    kind: result.body["kind"],
   };
 }
 

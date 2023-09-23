@@ -7,7 +7,12 @@ export {
 } from "./SingleDiscriminatorClient.js";
 export {
   Bird,
+  SeaGull,
+  Sparrow,
+  Goose,
+  Eagle,
   Dinosaur,
+  TRex,
   GetModelOptions,
   PutModelOptions,
   GetRecursiveModelOptions,

@@ -42,6 +42,7 @@ export async function _getModelDeserialize(
 
   return {
     age: result.body["age"],
+    kind: result.body["kind"],
   };
 }
 
@@ -62,7 +63,7 @@ export function _putModelSend(
     .path("/type/model/inheritance/nested-discriminator/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: age },
+      body: { age: age, kind: options?.kind },
     });
 }
 
@@ -103,6 +104,7 @@ export async function _getRecursiveModelDeserialize(
 
   return {
     age: result.body["age"],
+    kind: result.body["kind"],
   };
 }
 
@@ -123,7 +125,7 @@ export function _putRecursiveModelSend(
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: age },
+      body: { age: age, kind: options?.kind },
     });
 }
 
@@ -164,6 +166,7 @@ export async function _getMissingDiscriminatorDeserialize(
 
   return {
     age: result.body["age"],
+    kind: result.body["kind"],
   };
 }
 
@@ -193,6 +196,7 @@ export async function _getWrongDiscriminatorDeserialize(
 
   return {
     age: result.body["age"],
+    kind: result.body["kind"],
   };
 }
 

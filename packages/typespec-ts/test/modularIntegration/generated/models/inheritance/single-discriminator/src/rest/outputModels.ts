@@ -33,7 +33,7 @@ export interface EagleOutput extends BirdOutputParent {
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */
 export interface DinosaurOutputParent {
   size: number;
-  kind: string;
+  kind?: string;
 }
 
 /** The second level legacy model in polymorphic single level inheritance. */

@@ -7,8 +7,10 @@ export {
 } from "./EnumDiscriminatorClient.js";
 export {
   Dog,
+  Golden,
   DogKind,
   Snake,
+  Cobra,
   SnakeKind,
   GetExtensibleModelOptions,
   PutExtensibleModelOptions,

@@ -34,7 +34,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
 
   it("should put valid", async () => {
     try {
-      const result = await client.putModel(validBody.age, validBody.kind, { sharktype: validBody.sharktype });
+      const result = await client.putModel(validBody.age, { kind: validBody.kind });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);

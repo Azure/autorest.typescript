@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Fish, Shark } from "./models.js";
+export { Fish, Shark, SawShark, GoblinShark, Salmon } from "./models.js";
 export {
   GetModelOptions,
   PutModelOptions,

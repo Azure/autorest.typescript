@@ -41,7 +41,7 @@ import {
   listServices,
   Program,
   getEncode,
-  EncodeData
+  EncodeData,
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
@@ -534,7 +534,6 @@ function getSchemaForModel(
     modelSchema.discriminator = {
       name: propertyName,
       type: "string",
-      required: true,
       description: `Discriminator property for ${model.name}.`
     };
 
@@ -571,7 +570,7 @@ function getSchemaForModel(
       propSchema
     );
     propSchema.usage = usage;
-    // Use the description from ModelProperty not devired from Model Type
+    // Use the description from ModelProperty not derived from Model Type
     propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
@@ -585,7 +584,6 @@ function getSchemaForModel(
     // Apply decorators on the property to the type's schema
     const newPropSchema = applyIntrinsicDecorators(
       program,
-
       prop,
       propSchema
     );

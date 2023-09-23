@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Bird, Dinosaur } from "./models.js";
+export {
+  Bird,
+  SeaGull,
+  Sparrow,
+  Goose,
+  Eagle,
+  Dinosaur,
+  TRex,
+} from "./models.js";
 export {
   GetModelOptions,
   PutModelOptions,

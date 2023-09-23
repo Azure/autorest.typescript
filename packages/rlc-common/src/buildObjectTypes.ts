@@ -238,6 +238,10 @@ function addDiscriminatorProperty(
     const filteredProperties = properties.filter(
       (p) => p.name !== polymorphicProperty.name
     );
+    const existingDiscriminator = properties.filter(
+      (p) => p.name === polymorphicProperty.name
+    );
+    polymorphicProperty.hasQuestionToken = existingDiscriminator[0]?.hasQuestionToken ?? true;
     return [...filteredProperties, polymorphicProperty];
   }
 
