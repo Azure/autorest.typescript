@@ -89,7 +89,7 @@ export function buildClientContext(
     paramNames.pop();
     paramNames.push("credential", "options");
   }
-  let getClientStatement = `const clientContext = getClient(${paramNames.join(
+  const getClientStatement = `const clientContext = getClient(${paramNames.join(
     ","
   )})`;
 
