@@ -168,26 +168,18 @@ export type RequestBodyCustomContentTypeParameters =
     RequestBodyCustomContentTypeBodyParam &
     RequestParameters;
 
-export interface RequestBodyBase64Headers {
-  value: string;
+export interface RequestBodyBase64BodyParam {
+  body: string;
 }
 
-export interface RequestBodyBase64HeaderParam {
-  headers: RawHttpHeadersInput & RequestBodyBase64Headers;
-}
-
-export type RequestBodyBase64Parameters = RequestBodyBase64HeaderParam &
+export type RequestBodyBase64Parameters = RequestBodyBase64BodyParam &
   RequestParameters;
 
-export interface RequestBodyBase64urlHeaders {
-  value: string;
+export interface RequestBodyBase64urlBodyParam {
+  body: string;
 }
 
-export interface RequestBodyBase64urlHeaderParam {
-  headers: RawHttpHeadersInput & RequestBodyBase64urlHeaders;
-}
-
-export type RequestBodyBase64urlParameters = RequestBodyBase64urlHeaderParam &
+export type RequestBodyBase64urlParameters = RequestBodyBase64urlBodyParam &
   RequestParameters;
 export type ResponseBodyDefaultParameters = RequestParameters;
 export type ResponseBodyOctetStreamParameters = RequestParameters;

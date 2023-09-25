@@ -131,9 +131,9 @@ export function _requestBodyBase64Send(
 ): StreamableMethod<RequestBodyBase64204Response> {
   return context
     .path("/encode/bytes/body/request/base64")
-    .get({
+    .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: uint8ArrayToString(value, "base64") },
+      body: uint8ArrayToString(value, "base64"),
     });
 }
 
@@ -163,9 +163,9 @@ export function _requestBodyBase64urlSend(
 ): StreamableMethod<RequestBodyBase64url204Response> {
   return context
     .path("/encode/bytes/body/request/base64url")
-    .get({
+    .post({
       ...operationOptionsToRequestParameters(options),
-      headers: { value: uint8ArrayToString(value, "base64url") },
+      body: uint8ArrayToString(value, "base64"),
     });
 }
 

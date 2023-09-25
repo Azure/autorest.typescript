@@ -140,13 +140,13 @@ export interface RequestBodyCustomContentType {
 }
 
 export interface RequestBodyBase64 {
-  get(
+  post(
     options: RequestBodyBase64Parameters
   ): StreamableMethod<RequestBodyBase64204Response>;
 }
 
 export interface RequestBodyBase64url {
-  get(
+  post(
     options: RequestBodyBase64urlParameters
   ): StreamableMethod<RequestBodyBase64url204Response>;
 }
@@ -214,9 +214,9 @@ export interface Routes {
   (
     path: "/encode/bytes/body/request/custom-content-type"
   ): RequestBodyCustomContentType;
-  /** Resource for '/encode/bytes/body/request/base64' has methods for the following verbs: get */
+  /** Resource for '/encode/bytes/body/request/base64' has methods for the following verbs: post */
   (path: "/encode/bytes/body/request/base64"): RequestBodyBase64;
-  /** Resource for '/encode/bytes/body/request/base64url' has methods for the following verbs: get */
+  /** Resource for '/encode/bytes/body/request/base64url' has methods for the following verbs: post */
   (path: "/encode/bytes/body/request/base64url"): RequestBodyBase64url;
   /** Resource for '/encode/bytes/body/response/default' has methods for the following verbs: get */
   (path: "/encode/bytes/body/response/default"): ResponseBodyDefault;

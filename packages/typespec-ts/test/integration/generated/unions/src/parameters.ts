@@ -32,3 +32,7 @@ export interface SendSecondNamedUnionValueBodyParam {
 
 export type SendSecondNamedUnionValueParameters =
   SendSecondNamedUnionValueBodyParam & RequestParameters;
+export type ReceiveStringParameters = RequestParameters;
+export type ReceiveIntArrayParameters = RequestParameters;
+export type ReceiveFirstNamedUnionValueParameters = RequestParameters;
+export type ReceiveSecondNamedUnionValueParameters = RequestParameters;
