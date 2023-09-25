@@ -89,7 +89,9 @@ export function buildClientContext(
     paramNames.pop();
     paramNames.push("credential", "options");
   }
-  let getClientStatement = `const clientContext = getClient(${paramNames.join(",")})`;
+  let getClientStatement = `const clientContext = getClient(${paramNames.join(
+    ","
+  )})`;
 
   factoryFunction.addStatements([getClientStatement, "return clientContext;"]);
 
