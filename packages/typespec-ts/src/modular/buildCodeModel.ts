@@ -1259,8 +1259,8 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else if (
-    isStringOrNumerKind(context.program, sdkType.kind) &&
-    isStringOrNumerKind(context.program, nonNullOptions[0]?.kind)
+    isStringOrNumberKind(context.program, sdkType.kind) &&
+    isStringOrNumberKind(context.program, nonNullOptions[0]?.kind)
   ) {
     return {
       name: undefined, // string/number union will be mapped as fixed enum without name
