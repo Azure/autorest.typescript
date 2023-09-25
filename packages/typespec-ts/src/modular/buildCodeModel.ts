@@ -1279,7 +1279,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   }
 }
 
-function isStringOrNumerKind(program: Program, kind?: string): boolean {
+function isStringOrNumberKind(program: Program, kind?: string): boolean {
   if (!kind) {
     return false;
   }
