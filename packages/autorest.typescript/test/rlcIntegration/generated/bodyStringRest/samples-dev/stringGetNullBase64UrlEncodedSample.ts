@@ -14,14 +14,14 @@ dotenv.config();
  * @summary Get null value that is expected to be base64url encoded
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_getNullBase64UrlEncoded.json
  */
-async function stringPutNull() {
+async function stringGetNullBase64UrlEncoded() {
   const client = createBodyStringRestClient();
   const result = await client.path("/string/nullBase64UrlEncoding").get();
   console.log(result);
 }
 
 async function main() {
-  stringPutNull();
+  stringGetNullBase64UrlEncoded();
 }
 
 main().catch(console.error);
