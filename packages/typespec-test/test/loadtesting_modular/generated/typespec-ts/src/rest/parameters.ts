@@ -47,12 +47,12 @@ export interface LoadTestAdministrationListTestsQueryParamProperties {
    * Start DateTime(ISO 8601 literal format) of the last updated time range to
    * filter tests.
    */
-  lastModifiedStartTime?: Date | string;
+  lastModifiedStartTime?: string;
   /**
    * End DateTime(ISO 8601 literal format) of the last updated time range to filter
    * tests.
    */
-  lastModifiedEndTime?: Date | string;
+  lastModifiedEndTime?: string;
   /** Number of results in response. */
   maxpagesize?: number;
 }
@@ -190,9 +190,9 @@ export interface LoadTestRunListTestRunsQueryParamProperties {
   /** Unique name of an existing load test. */
   testId?: string;
   /** Start DateTime(ISO 8601 literal format) of test-run execution time filter range. */
-  executionFrom?: Date | string;
+  executionFrom?: string;
   /** End DateTime(ISO 8601 literal format) of test-run execution time filter range. */
-  executionTo?: Date | string;
+  executionTo?: string;
   /** Comma separated list of test run status. */
   status?: string;
   /** Number of results in response. */

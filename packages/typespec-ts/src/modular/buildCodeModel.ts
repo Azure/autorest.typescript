@@ -65,8 +65,9 @@ import {
   getClientNamespaceString,
   getSdkUnion,
   getAllModels,
-  SdkSimpleType,
-  getSdkSimpleType
+  SdkBuiltInType,
+  getSdkBuiltInType,
+  getClientType
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -93,7 +94,8 @@ import {
 import {
   getOperationGroupName,
   getOperationName,
-  isIgnoredHeaderParam
+  isIgnoredHeaderParam,
+  isLongRunningOperation
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
@@ -168,15 +170,6 @@ function isSimpleType(
 
 function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
-}
-
-function isLro(_program: Program, operation: Operation): boolean {
-  for (const decorator of operation.decorators) {
-    if (decorator.decorator.name === "$pollingOperation") {
-      return true;
-    }
-  }
-  return false;
 }
 
 function isDiscriminator(
@@ -630,7 +623,10 @@ function emitOperation(
   operationGroupName: string,
   rlcModels: RLCModel
 ): HrlcOperation {
-  const lro = isLro(context.program, operation);
+  const lro = isLongRunningOperation(
+    context.program,
+    ignoreDiagnostics(getHttpOperation(context.program, operation))
+  );
   const paging = getPagedResult(context.program, operation);
   if (lro && paging) {
     return emitLroPagingOperation(
@@ -1258,6 +1254,7 @@ function mapTypeSpecType(context: SdkContext, type: Type): any {
 
 function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   const sdkType = getSdkUnion(context, type);
+  const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
   }
@@ -1269,29 +1266,65 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw)),
+      types: sdkType.values.map((x) => getType(context, x.__raw!)),
       xmlMetadata: {}
     };
   } else if (sdkType.kind === "enum") {
     return {
       name: sdkType.name,
       nullable: sdkType.nullable,
-      description: sdkType.doc || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
-      valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
+      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(x)),
-      isFixed: sdkType.isFixed === false ? false : true,
+      isFixed: sdkType.isFixed,
+      xmlMetadata: {}
+    };
+  } else if (
+    isStringOrNumberKind(context.program, sdkType.kind) &&
+    isStringOrNumberKind(context.program, nonNullOptions[0]?.kind)
+  ) {
+    return {
+      name: undefined, // string/number union will be mapped as fixed enum without name
+      nullable: sdkType.nullable,
+      internal: true,
+      type: "enum",
+      valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
+      values: nonNullOptions
+        .map((x) => getClientType(context, x))
+        .map((x) => emitEnumMember(x)),
+      isFixed: true,
       xmlMetadata: {}
     };
   } else {
-    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw) };
+    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
   }
+}
+
+function isStringOrNumberKind(program: Program, kind?: string): boolean {
+  if (!kind) {
+    return false;
+  }
+  kind = kind.toLowerCase();
+  try {
+    const type = emitStdScalar(program, { name: kind } as any);
+    kind = type["type"] ?? kind;
+  } catch (e: any) {
+    // ignore
+  }
+  return ["string", "number", "integer", "float"].includes(kind!);
+}
+
+function getNonNullOptions(type: Union) {
+  return [...type.variants.values()]
+    .map((x) => x.type)
+    .filter((t) => !isNullType(t));
 }
 
 function emitEnumMember(type: any): Record<string, any> {
   return {
-    name: enumName(type.name),
+    name: type.name ? enumName(type.name) : undefined,
     value: type.value,
     description: type.doc
   };
@@ -1299,37 +1332,22 @@ function emitEnumMember(type: any): Record<string, any> {
 
 function emitSimpleType(
   context: SdkContext,
-  type: Scalar | IntrinsicType | SdkSimpleType
+  type: Scalar | IntrinsicType | SdkBuiltInType
 ): Record<string, any> {
-  let sdkType: SdkSimpleType;
+  let sdkType: SdkBuiltInType;
   if (type.kind === "Scalar" || type.kind === "Intrinsic") {
-    sdkType = getSdkSimpleType(context, type);
+    sdkType = getSdkBuiltInType(context, type);
   } else {
     sdkType = type;
   }
 
-  const extraInformation: Record<string, any> = {};
-  if (sdkType.kind === "string") {
-    extraInformation["pattern"] = sdkType.pattern;
-    extraInformation["minLength"] = sdkType.minLength;
-    extraInformation["maxLength"] = sdkType.maxLength;
-  } else if (
-    sdkType.kind === "int32" ||
-    sdkType.kind === "int64" ||
-    sdkType.kind === "float32" ||
-    sdkType.kind === "float64"
-  ) {
-    extraInformation["minValue"] = sdkType.minValue;
-    extraInformation["maxValue"] = sdkType.maxValue;
-  }
   return {
     nullable: sdkType.nullable,
     type: "number", // TODO: switch to kind
-    doc: sdkType.doc,
-    apiVersions: sdkType.apiVersions,
-    sdkDefaultValue: sdkType.sdkDefaultValue,
-    format: sdkType.format,
-    ...extraInformation
+    doc: "",
+    apiVersions: [],
+    sdkDefaultValue: undefined,
+    format: undefined
   };
 }
 
@@ -1667,7 +1685,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model);
+    getType(dpgContext, model.__raw!);
   }
 
   for (const namespace of getNamespaces(dpgContext)) {

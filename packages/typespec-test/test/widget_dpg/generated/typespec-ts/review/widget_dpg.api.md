@@ -18,11 +18,8 @@ export interface AnalyzeWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export type ColorType = "red" | "blue";
-
-// @public (undocumented)
 export interface CreateWidget {
-    color: ColorType;
+    color: "red" | "blue";
     weight: number;
 }
 
@@ -44,7 +41,7 @@ export interface ListWidgetsOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface UpdateWidget {
-    color?: ColorType;
+    color?: "red" | "blue";
     weight?: number;
 }
 
@@ -54,7 +51,7 @@ export interface UpdateWidgetOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface Widget {
-    color: ColorType;
+    color: "red" | "blue";
     id: string;
     weight: number;
 }

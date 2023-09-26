@@ -92,7 +92,7 @@ export interface ErrorDetailsOutput {
 
 // @public
 export interface FileInfo {
-    expireDateTime?: Date | string;
+    expireDateTime?: string;
     fileName?: string;
     fileType?: string;
     url?: string;
@@ -576,8 +576,8 @@ export interface LoadTestAdministrationListTestsQueryParam {
 
 // @public (undocumented)
 export interface LoadTestAdministrationListTestsQueryParamProperties {
-    lastModifiedEndTime?: Date | string;
-    lastModifiedStartTime?: Date | string;
+    lastModifiedEndTime?: string;
+    lastModifiedStartTime?: string;
     maxpagesize?: number;
     orderby?: string;
     search?: string;
@@ -1155,8 +1155,8 @@ export interface LoadTestRunListTestRunsQueryParam {
 
 // @public (undocumented)
 export interface LoadTestRunListTestRunsQueryParamProperties {
-    executionFrom?: Date | string;
-    executionTo?: Date | string;
+    executionFrom?: string;
+    executionTo?: string;
     maxpagesize?: number;
     orderby?: string;
     search?: string;

@@ -10,7 +10,6 @@ import {
   Methods,
   ObjectSchema,
   PathParameter,
-  Paths,
   RLCModel,
   SchemaContext
 } from "../interfaces.js";
