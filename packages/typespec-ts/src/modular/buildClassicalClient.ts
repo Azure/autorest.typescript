@@ -8,7 +8,10 @@ import {
   StructureKind
 } from "ts-morph";
 import { toCamelCase } from "../utils/casingUtils.js";
-import { getClientParameters, importCredential } from "./helpers/clientHelpers.js";
+import {
+  getClientParameters,
+  importCredential
+} from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";

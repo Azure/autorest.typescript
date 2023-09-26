@@ -1,4 +1,8 @@
-import { OptionalKind, ParameterDeclarationStructure, SourceFile } from "ts-morph";
+import {
+  OptionalKind,
+  ParameterDeclarationStructure,
+  SourceFile
+} from "ts-morph";
 import { Client } from "../modularCodeModel.js";
 import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
