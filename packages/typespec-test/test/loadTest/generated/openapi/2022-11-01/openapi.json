@@ -127,8 +127,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -169,8 +169,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -207,7 +207,7 @@
             "description": "The resource instance.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/TestRunUpdate"
+              "$ref": "#/definitions/TestRunCreateOrUpdate"
             }
           }
         ],
@@ -245,8 +245,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -280,8 +280,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -319,8 +319,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -358,8 +358,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -413,8 +413,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -459,8 +459,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -505,8 +505,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -563,8 +563,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -605,8 +605,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -726,8 +726,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -768,8 +768,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -823,8 +823,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -893,8 +893,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -935,8 +935,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -990,8 +990,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1024,8 +1024,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1063,8 +1063,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1118,8 +1118,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1157,8 +1157,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1206,8 +1206,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1296,8 +1296,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1337,8 +1337,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1376,8 +1376,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1431,8 +1431,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -1644,8 +1644,7 @@
       }
     },
     "Dimension": {
-      "type": "object",
-      "properties": {}
+      "type": "object"
     },
     "DimensionFilter": {
       "type": "object",
@@ -3097,6 +3096,50 @@
         }
       }
     },
+    "TestRunCreateOrUpdate": {
+      "type": "object",
+      "description": "Load test run model",
+      "properties": {
+        "passFailCriteria": {
+          "$ref": "#/definitions/PassFailCriteria",
+          "description": "Pass fail criteria for a test."
+        },
+        "secrets": {
+          "type": "object",
+          "description": "Secrets can be stored in an Azure Key Vault or any other secret store. If the\nsecret is stored in an Azure Key Vault, the value should be the secret\nidentifier and the type should be AKV_SECRET_URI. If the secret is stored\nelsewhere, the secret value should be provided directly and the type should be\nSECRET_VALUE.",
+          "additionalProperties": {
+            "$ref": "#/definitions/Secret"
+          }
+        },
+        "certificate": {
+          "$ref": "#/definitions/CertificateMetadata",
+          "description": "Certificates metadata"
+        },
+        "environmentVariables": {
+          "type": "object",
+          "description": "Environment variables which are defined as a set of <name,value> pairs.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "loadTestConfiguration": {
+          "$ref": "#/definitions/LoadTestConfiguration",
+          "description": "The load test configuration."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of a testRun."
+        },
+        "testId": {
+          "type": "string",
+          "description": "Associated test Id."
+        },
+        "description": {
+          "type": "string",
+          "description": "The test run description."
+        }
+      }
+    },
     "TestRunInputArtifacts": {
       "type": "object",
       "description": "The input artifacts for the test run.",
@@ -3268,50 +3311,6 @@
           "format": "float",
           "description": "Send network bytes.",
           "readOnly": true
-        }
-      }
-    },
-    "TestRunUpdate": {
-      "type": "object",
-      "description": "Load test run model",
-      "properties": {
-        "passFailCriteria": {
-          "$ref": "#/definitions/PassFailCriteria",
-          "description": "Pass fail criteria for a test."
-        },
-        "secrets": {
-          "type": "object",
-          "description": "Secrets can be stored in an Azure Key Vault or any other secret store. If the\nsecret is stored in an Azure Key Vault, the value should be the secret\nidentifier and the type should be AKV_SECRET_URI. If the secret is stored\nelsewhere, the secret value should be provided directly and the type should be\nSECRET_VALUE.",
-          "additionalProperties": {
-            "$ref": "#/definitions/Secret"
-          }
-        },
-        "certificate": {
-          "$ref": "#/definitions/CertificateMetadata",
-          "description": "Certificates metadata"
-        },
-        "environmentVariables": {
-          "type": "object",
-          "description": "Environment variables which are defined as a set of <name,value> pairs.",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "loadTestConfiguration": {
-          "$ref": "#/definitions/LoadTestConfiguration",
-          "description": "The load test configuration."
-        },
-        "displayName": {
-          "type": "string",
-          "description": "Display name of a testRun."
-        },
-        "testId": {
-          "type": "string",
-          "description": "Associated test Id."
-        },
-        "description": {
-          "type": "string",
-          "description": "The test run description."
         }
       }
     },

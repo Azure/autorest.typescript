@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Widget, ColorType, AnalyzeResult } from "./models/models.js";
+import { Widget, AnalyzeResult } from "./models/models.js";
 import {
   ListWidgetsOptions,
   GetWidgetOptions,
@@ -58,7 +58,7 @@ export class WidgetServiceClient {
    */
   createWidget(
     weight: number,
-    color: ColorType,
+    color: "red" | "blue",
     options: CreateWidgetOptions = { requestOptions: {} }
   ): Promise<Widget> {
     return createWidget(this._client, weight, color, options);

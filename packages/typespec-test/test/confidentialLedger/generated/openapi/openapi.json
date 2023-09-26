@@ -80,8 +80,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -109,8 +109,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -138,8 +138,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -167,8 +167,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -199,8 +199,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -241,8 +241,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -280,8 +280,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -319,8 +319,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -354,8 +354,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -399,8 +399,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -439,8 +439,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -471,7 +471,7 @@
             "description": "The resource instance.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/LedgerUserUpdate"
+              "$ref": "#/definitions/LedgerUserCreateOrUpdate"
             }
           }
         ],
@@ -495,8 +495,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -530,8 +530,8 @@
             },
             "headers": {
               "x-ms-error-code": {
-                "description": "String error code indicating what went wrong.",
-                "type": "string"
+                "type": "string",
+                "description": "String error code indicating what went wrong."
               }
             }
           }
@@ -672,6 +672,16 @@
         "assignedRole"
       ]
     },
+    "LedgerUserCreateOrUpdate": {
+      "type": "object",
+      "description": "Details about a Confidential ledger user.",
+      "properties": {
+        "assignedRole": {
+          "$ref": "#/definitions/LedgerUserRole",
+          "description": "The user's assigned role."
+        }
+      }
+    },
     "LedgerUserRole": {
       "type": "string",
       "description": "Represents an assignable role.",
@@ -683,16 +693,6 @@
       "x-ms-enum": {
         "name": "LedgerUserRole",
         "modelAsString": false
-      }
-    },
-    "LedgerUserUpdate": {
-      "type": "object",
-      "description": "Details about a Confidential ledger user.",
-      "properties": {
-        "assignedRole": {
-          "$ref": "#/definitions/LedgerUserRole",
-          "description": "The user's assigned role."
-        }
       }
     },
     "MyFlow": {
@@ -768,8 +768,7 @@
     },
     "ReceiptContents": {
       "type": "object",
-      "description": "The contents of a receipt.",
-      "properties": {}
+      "description": "The contents of a receipt."
     },
     "TransactionId": {
       "type": "string",
