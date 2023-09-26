@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "@typespec/compiler": ">=0.48.0 <1.0.0",
-    "@azure-tools/typespec-ts": "workspace:^0.16.0",
+    "@azure-tools/typespec-ts": "workspace:^0.17.0",
     "@typespec/http": ">=0.48.0 <1.0.0",
     "@typespec/rest": ">=0.48.0 <1.0.0",
     "@typespec/openapi": ">=0.48.0 <1.0.0",
