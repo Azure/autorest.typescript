@@ -1,8 +1,8 @@
 ## 0.17.0 (2023-09-26)
 
 - [Feature] Upgrade TypeSpec compiler version to v0.48.0. Please refer to pr [#2029](https://github.com/Azure/autorest.typescript/pull/2029).
-- [Feature] Take the typespec offsetDateTime as string in Modular and RLC. Please refer to pr [#2019]https://github.com/Azure/autorest.typescript/pull/2019 and [#2031]https://github.com/Azure/autorest.typescript/pull/2031.
-- [Bugfix] Fix the parent properties missing issue. Please refer to pr[#2017]https://github.com/Azure/autorest.typescript/pull/2017.
+- [Feature] Take the typespec offsetDateTime as string in Modular and RLC. Please refer to pr [#2019](https://github.com/Azure/autorest.typescript/pull/2019) and [#2031](https://github.com/Azure/autorest.typescript/pull/2031).
+- [Bugfix] Fix the parent properties missing issue. Please refer to pr[#2017](https://github.com/Azure/autorest.typescript/pull/2017).
 
 ## 0.16.0 (2023-09-11)
 
