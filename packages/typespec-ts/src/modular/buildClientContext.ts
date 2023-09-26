@@ -1,5 +1,5 @@
 import { SourceFile } from "ts-morph";
-import { getClientParameters } from "./helpers/clientHelpers.js";
+import { getClientParameters, importCredential } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -26,6 +26,7 @@ export function buildClientContext(
   );
 
   let factoryFunction;
+  importCredential(clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier: "@azure-rest/core-client",

@@ -14,7 +14,6 @@ import {
   BeginAzureBatchImageGenerationLogicalResponse,
   GetAzureBatchImageGenerationOperationStatus200Response,
   GetAzureBatchImageGenerationOperationStatusDefaultResponse,
-  GetAzureBatchImageGenerationOperationStatusLogicalResponse,
   GetChatCompletions200Response,
   GetChatCompletionsDefaultResponse,
   GetChatCompletionsWithAzureExtensions200Response,
@@ -600,7 +599,6 @@ export function _getAzureBatchImageGenerationOperationStatusSend(
 ): StreamableMethod<
   | GetAzureBatchImageGenerationOperationStatus200Response
   | GetAzureBatchImageGenerationOperationStatusDefaultResponse
-  | GetAzureBatchImageGenerationOperationStatusLogicalResponse
 > {
   return context
     .path("/operations/images/{operationId}", operationId)
@@ -611,7 +609,6 @@ export async function _getAzureBatchImageGenerationOperationStatusDeserialize(
   result:
     | GetAzureBatchImageGenerationOperationStatus200Response
     | GetAzureBatchImageGenerationOperationStatusDefaultResponse
-    | GetAzureBatchImageGenerationOperationStatusLogicalResponse
 ): Promise<BatchImageGenerationOperationResponse> {
   if (isUnexpected(result)) {
     throw result.body;

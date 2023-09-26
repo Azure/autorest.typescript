@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Widget, ColorType, AnalyzeResult } from "../models/models.js";
+import { Widget, AnalyzeResult } from "../models/models.js";
 import {
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
@@ -104,7 +104,7 @@ export async function getWidget(
 export function _createWidgetSend(
   context: Client,
   weight: number,
-  color: ColorType,
+  color: "red" | "blue",
   options: CreateWidgetOptions = { requestOptions: {} }
 ): StreamableMethod<CreateWidget201Response | CreateWidgetDefaultResponse> {
   return context
@@ -138,7 +138,7 @@ export async function _createWidgetDeserialize(
 export async function createWidget(
   context: Client,
   weight: number,
-  color: ColorType,
+  color: "red" | "blue",
   options: CreateWidgetOptions = { requestOptions: {} }
 ): Promise<Widget> {
   const result = await _createWidgetSend(context, weight, color, options);

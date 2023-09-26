@@ -1,5 +1,8 @@
 import { assert } from "chai";
-import { emitModularModelsFromTypeSpec, emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitModularModelsFromTypeSpec,
+  emitModularOperationsFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("modular model type", () => {
@@ -23,7 +26,7 @@ describe("modular encode test for property type datetime", () => {
       prop4: offsetDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -40,7 +43,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -99,12 +103,13 @@ describe("modular encode test for property type datetime", () => {
   it("should handle header parameter type utcDateTime with default encoding", async () => {
     const tspContent = `
     op read(@header prop: utcDateTime): OkResponse;
-    `
+    `;
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -155,7 +160,7 @@ describe("modular encode test for property type datetime", () => {
       prop2: offsetDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -170,7 +175,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -227,7 +233,7 @@ describe("modular encode test for property type datetime", () => {
       prop2: offsetDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -242,7 +248,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -297,7 +304,7 @@ describe("modular encode test for property type datetime", () => {
       prop1: utcDateTime;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -311,7 +318,8 @@ describe("modular encode test for property type datetime", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -363,7 +371,7 @@ describe("modular encode test for property type duration", () => {
       prop1: duration;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -377,7 +385,8 @@ describe("modular encode test for property type duration", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -428,7 +437,7 @@ describe("modular encode test for property type duration", () => {
       prop1: duration;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -442,7 +451,8 @@ describe("modular encode test for property type duration", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -495,7 +505,7 @@ describe("modular encode test for property type duration", () => {
       prop2: duration;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -510,7 +520,8 @@ describe("modular encode test for property type duration", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -566,7 +577,7 @@ describe("modular encode test for property type bytes", () => {
       prop1: bytes;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -580,7 +591,8 @@ describe("modular encode test for property type bytes", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -635,7 +647,7 @@ describe("modular encode test for property type bytes", () => {
       prop1: bytes;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -649,7 +661,8 @@ describe("modular encode test for property type bytes", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -704,7 +717,7 @@ describe("modular encode test for property type bytes", () => {
       prop1: bytes;
     }
     op read(@body body: Foo): { @body body: Foo };
-    `
+    `;
     const modelFile = await emitModularModelsFromTypeSpec(tspContent);
     assert.ok(modelFile);
     assertEqualContent(
@@ -718,7 +731,8 @@ describe("modular encode test for property type bytes", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -782,7 +796,7 @@ describe("inheritance & polymorphism", () => {
       kind: "dog";
       bark: string;
     }
-    op read(): { @body body: Pet };
+    op read(): { @body body: Cat | Dog };
     `);
     assert.ok(modelFile);
     assertEqualContent(
@@ -834,18 +848,14 @@ describe("inheritance & polymorphism", () => {
       export interface Cat extends Pet {
         kind: "cat";
         meow: number;
-      }
-
-      export interface Dog extends Pet {
-        kind: "dog";
-        bark: string;
       }`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -881,7 +891,8 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }      
-      `);
+      `
+    );
   });
 
   it("should handle multi level inheritance model in operations", async () => {
@@ -921,7 +932,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -957,7 +969,8 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }
-      `);
+      `
+    );
   });
 
   it("should handle inheritance model with discriminator in operations", async () => {
@@ -1004,7 +1017,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -1040,7 +1054,92 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }      
-      `);
+      `
+    );
+  });
+
+  it("should handle base model with discriminator in operations", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    model Pet {
+      kind: string;
+      name: string;
+      weight?: float32;
+    }
+    model Cat extends Pet {
+      kind: "cat";
+      meow: int32;
+    }
+    model Dog extends Pet {
+      kind: "dog";
+      bark: string;
+    }
+    op read(): { @body body: Pet };
+    `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Pet {
+        /** the discriminator possible values cat, dog */
+        kind: string;
+        name: string;
+        weight?: number;
+      }
+
+      export interface Cat extends Pet {
+        kind: "cat";
+        meow: number;
+      }
+
+      export interface Dog extends Pet {
+        kind: "dog";
+        bark: string;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      
+      export function _readSend(
+        context: Client,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/")
+          .get({ ...operationOptionsToRequestParameters(options) });
+      }
+      
+      export async function _readDeserialize(result: Read200Response): Promise<Pet> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+      
+        return {
+          kind: result.body["kind"],
+          name: result.body["name"],
+          weight: result.body["weight"]
+        };
+      }
+      
+      export async function read(
+        context: Client,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<Pet> {
+        const result = await _readSend(context, options);
+        return _readDeserialize(result);
+      }      
+      `
+    );
   });
   /**
    * TODO: This test is skipped because typespec has some issues. https://github.com/microsoft/typespec/issues/2411
@@ -1089,7 +1188,8 @@ describe("inheritance & polymorphism", () => {
     assert.ok(operationFiles);
     assert.equal(operationFiles?.length, 1);
     assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,`
+      operationFiles?.[0]?.getFullText()!,
+      `
       import { TestingContext as Client } from "../rest/index.js";
       import {
         StreamableMethod,
@@ -1126,6 +1226,7 @@ describe("inheritance & polymorphism", () => {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }
-      `);
+      `
+    );
   });
 });

@@ -8,7 +8,7 @@ import {
   StructureKind
 } from "ts-morph";
 import { toCamelCase } from "../utils/casingUtils.js";
-import { getClientParameters } from "./helpers/clientHelpers.js";
+import { getClientParameters, importCredential } from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
@@ -137,13 +137,6 @@ function importAllModels(
   clientFile.addImportDeclaration({
     moduleSpecifier: `./models/options.js`,
     namedImports: exportedOptions
-  });
-}
-
-function importCredential(clientSourceFile: SourceFile): void {
-  clientSourceFile.addImportDeclaration({
-    moduleSpecifier: "@azure/core-auth",
-    namedImports: ["TokenCredential", "KeyCredential"]
   });
 }
 

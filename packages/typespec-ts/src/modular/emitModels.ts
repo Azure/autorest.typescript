@@ -46,8 +46,9 @@ export function buildModels(
       typeName = `${typeName}[]`;
     }
     if (model.type === "enum") {
-      if (modelsFile.getTypeAlias(model.name!)) {
+      if (!model.name || modelsFile.getTypeAlias(model.name!)) {
         // If the enum is already defined, we don't need to do anything
+        // If the enum is anonymous, we don't build any type alias for it
         continue;
       }
       modelsFile.addTypeAlias({
