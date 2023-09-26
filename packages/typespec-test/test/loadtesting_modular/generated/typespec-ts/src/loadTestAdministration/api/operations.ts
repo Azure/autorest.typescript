@@ -45,6 +45,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,
@@ -971,7 +972,7 @@ export function _uploadTestFileSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
       queryParameters: { fileType: options?.fileType },
-      body: body,
+      body: uint8ArrayToString(body, "base64"),
     });
 }
 

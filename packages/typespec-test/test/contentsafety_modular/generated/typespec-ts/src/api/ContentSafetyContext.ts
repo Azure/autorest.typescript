@@ -3,8 +3,6 @@
 
 import { ClientOptions } from "@azure-rest/core-client";
 import { ContentSafetyContext } from "../rest/index.js";
-import { KeyCredential } from "@azure/core-auth";
-import { TokenCredential } from "@azure/core-auth";
 import getClient from "../rest/index.js";
 
 export interface ContentSafetyClientOptions extends ClientOptions {}
@@ -17,7 +15,6 @@ export function createContentSafety(
   credential: KeyCredential | TokenCredential,
   options: ContentSafetyClientOptions = {}
 ): ContentSafetyContext {
-  const baseUrl = endpoint;
-  const clientContext = getClient(baseUrl, credential, options);
+  const clientContext = getClient(endpoint, credential, options);
   return clientContext;
 }

@@ -13,7 +13,6 @@ export function createWidgetService(
   endpoint: string,
   options: WidgetServiceClientOptions = {}
 ): WidgetServiceContext {
-  const baseUrl = endpoint;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(endpoint, options);
   return clientContext;
 }

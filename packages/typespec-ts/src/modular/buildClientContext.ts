@@ -75,20 +75,12 @@ export function buildClientContext(
       docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `${rlcClientName}`,
-      parameters: getClientParameters(client),
+      parameters: params,
       isExported: true
     });
   }
 
-  const credentialsParam = client.parameters.find(
-    (p) => p.clientName === "credential"
-  );
-
   const paramNames = params.map((p) => p.name);
-  if (credentialsParam) {
-    paramNames.pop();
-    paramNames.push("credential", "options");
-  }
   const getClientStatement = `const clientContext = getClient(${paramNames.join(
     ","
   )})`;

@@ -4,7 +4,8 @@ import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
 
 export function getClientParameters(
-  client: Client
+  client: Client,
+  importSet: Map<string, Set<string>>
 ): OptionalKind<ParameterDeclarationStructure>[] {
   const { parameters } = client;
   const name = getClientName(client);
