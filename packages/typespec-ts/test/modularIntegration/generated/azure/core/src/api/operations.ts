@@ -42,8 +42,8 @@ import {
 
 export function _createOrUpdateSend(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrUpdateOptions = { requestOptions: {} }
 ): StreamableMethod<
   | CreateOrUpdate200Response
@@ -57,8 +57,8 @@ export function _createOrUpdateSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
-        name: name,
-        orders: (options?.orders ?? []).map((p) => ({
+        name: resource["name"],
+        orders: (resource["orders"] ?? []).map((p) => ({
           userId: p["userId"],
           detail: p["detail"],
         })),
@@ -91,18 +91,18 @@ export async function _createOrUpdateDeserialize(
 /** Creates or updates a User */
 export async function createOrUpdate(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrUpdateOptions = { requestOptions: {} }
 ): Promise<User> {
-  const result = await _createOrUpdateSend(context, name, id, options);
+  const result = await _createOrUpdateSend(context, id, resource, options);
   return _createOrUpdateDeserialize(result);
 }
 
 export function _createOrReplaceSend(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
 ): StreamableMethod<
   | CreateOrReplace200Response
@@ -114,8 +114,8 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        name: name,
-        orders: (options?.orders ?? []).map((p) => ({
+        name: resource["name"],
+        orders: (resource["orders"] ?? []).map((p) => ({
           userId: p["userId"],
           detail: p["detail"],
         })),
@@ -148,11 +148,11 @@ export async function _createOrReplaceDeserialize(
 /** Creates or replaces a User */
 export async function createOrReplace(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
 ): Promise<User> {
-  const result = await _createOrReplaceSend(context, name, id, options);
+  const result = await _createOrReplaceSend(context, id, resource, options);
   return _createOrReplaceDeserialize(result);
 }
 

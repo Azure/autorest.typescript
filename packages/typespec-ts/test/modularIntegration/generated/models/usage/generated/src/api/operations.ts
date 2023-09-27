@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OutputRecord, InputOutputRecord } from "../models/models.js";
+import {
+  InputRecord,
+  OutputRecord,
+  InputOutputRecord,
+} from "../models/models.js";
 import {
   Input204Response,
   InputAndOutput200Response,
@@ -20,14 +24,14 @@ import {
 
 export function _inputSend(
   context: Client,
-  requiredProp: string,
+  inputParameter: InputRecord,
   options: InputOptions = { requestOptions: {} }
 ): StreamableMethod<Input204Response> {
   return context
     .path("/type/model/usage/input")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { requiredProp: requiredProp },
+      body: { requiredProp: inputParameter["requiredProp"] },
     });
 }
 
@@ -43,10 +47,10 @@ export async function _inputDeserialize(
 
 export async function input(
   context: Client,
-  requiredProp: string,
+  inputParameter: InputRecord,
   options: InputOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _inputSend(context, requiredProp, options);
+  const result = await _inputSend(context, inputParameter, options);
   return _inputDeserialize(result);
 }
 
@@ -81,14 +85,14 @@ export async function output(
 
 export function _inputAndOutputSend(
   context: Client,
-  requiredProp: string,
+  body: InputOutputRecord,
   options: InputAndOutputOptions = { requestOptions: {} }
 ): StreamableMethod<InputAndOutput200Response> {
   return context
     .path("/type/model/usage/input-output")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { requiredProp: requiredProp },
+      body: { requiredProp: body["requiredProp"] },
     });
 }
 
@@ -106,9 +110,9 @@ export async function _inputAndOutputDeserialize(
 
 export async function inputAndOutput(
   context: Client,
-  requiredProp: string,
+  body: InputOutputRecord,
   options: InputAndOutputOptions = { requestOptions: {} }
 ): Promise<InputOutputRecord> {
-  const result = await _inputAndOutputSend(context, requiredProp, options);
+  const result = await _inputAndOutputSend(context, body, options);
   return _inputAndOutputDeserialize(result);
 }

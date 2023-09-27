@@ -53,10 +53,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
-        prop2: Date,
-        prop3: Date,
-        prop4: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -64,10 +61,10 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.toDateString(),
-              prop2: prop2.toTimeString(),
-              prop3: prop3.toISOString(),
-              prop4: prop4,
+              prop1: body["prop1"].toDateString(),
+              prop2: body["prop2"].toTimeString(),
+              prop3: body["prop3"].toISOString(),
+              prop4: body["prop4"],
             },
           });
       }
@@ -87,13 +84,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
-        prop2: Date,
-        prop3: Date,
-        prop4: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, prop3, prop4, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -185,8 +179,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
-        prop2: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -194,8 +187,8 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.toISOString(),
-              prop2: prop2,
+              prop1: body["prop1"].toISOString(),
+              prop2: body["prop2"],
             },
           });
       }
@@ -213,11 +206,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
-        prop2: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -258,8 +250,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
-        prop2: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -267,8 +258,8 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.toUTCString(),
-              prop2: prop2,
+              prop1: body["prop1"].toUTCString(),
+              prop2: body["prop2"],
             },
           });
       }
@@ -286,11 +277,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
-        prop2: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -328,7 +318,7 @@ describe("modular encode test for property type datetime", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -336,7 +326,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1.getTime(),
+              prop1: body["prop1"].getTime()
             },
           });
       }
@@ -353,10 +343,10 @@ describe("modular encode test for property type datetime", () => {
       
       export async function read(
         context: Client,
-        prop1: Date,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -395,7 +385,7 @@ describe("modular encode test for property type duration", () => {
       
       export function _readSend(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -403,7 +393,7 @@ describe("modular encode test for property type duration", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1,
+              prop1: body["prop1"],
             },
           });
       }
@@ -420,10 +410,10 @@ describe("modular encode test for property type duration", () => {
       
       export async function read(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -461,7 +451,7 @@ describe("modular encode test for property type duration", () => {
       
       export function _readSend(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -469,7 +459,7 @@ describe("modular encode test for property type duration", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1,
+              prop1: body["prop1"],
             },
           });
       }
@@ -486,10 +476,10 @@ describe("modular encode test for property type duration", () => {
       
       export async function read(
         context: Client,
-        prop1: string,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -530,8 +520,7 @@ describe("modular encode test for property type duration", () => {
       
       export function _readSend(
         context: Client,
-        prop1: number,
-        prop2: number,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -539,8 +528,8 @@ describe("modular encode test for property type duration", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: prop1,
-              prop2: prop2,
+              prop1: body["prop1"], 
+              prop2: body["prop2"],
             },
           });
       }
@@ -558,11 +547,10 @@ describe("modular encode test for property type duration", () => {
       
       export async function read(
         context: Client,
-        prop1: number,
-        prop2: number,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, prop2, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -602,7 +590,7 @@ describe("modular encode test for property type bytes", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -610,7 +598,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(prop1, "base64"),
+              prop1: uint8ArrayToString(body["prop1"], "base64"),
             },
           });
       }
@@ -630,10 +618,10 @@ describe("modular encode test for property type bytes", () => {
       
       export async function read(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -672,7 +660,7 @@ describe("modular encode test for property type bytes", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -680,7 +668,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(prop1, "base64"),
+              prop1: uint8ArrayToString(body["prop1"], "base64"),
             },
           });
       }
@@ -700,10 +688,10 @@ describe("modular encode test for property type bytes", () => {
       
       export async function read(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -742,7 +730,7 @@ describe("modular encode test for property type bytes", () => {
       
       export function _readSend(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): StreamableMethod<Read200Response> {
         return context
@@ -750,7 +738,7 @@ describe("modular encode test for property type bytes", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: uint8ArrayToString(prop1, "base64url"),
+              prop1: uint8ArrayToString(body["prop1"], "base64url"),
             },
           });
       }
@@ -770,10 +758,10 @@ describe("modular encode test for property type bytes", () => {
       
       export async function read(
         context: Client,
-        prop1: Uint8Array,
+        body: Foo,
         options: ReadOptions = { requestOptions: {} }
       ): Promise<Foo> {
-        const result = await _readSend(context, prop1, options);
+        const result = await _readSend(context, body, options);
         return _readDeserialize(result);
       }`,
       true
@@ -1227,6 +1215,402 @@ describe("inheritance & polymorphism", () => {
         return _readDeserialize(result);
       }
       `
+    );
+  });
+});
+
+describe("flatten alias if spread", () => {
+  it("should flatten alias if spread in the payload with required parameters", async () => {
+    const tspContent = `
+    alias Foo = {
+      prop1: string;
+      prop2: int64;
+      prop3: utcDateTime;
+      prop4: offsetDateTime;
+      prop5: Bar;
+    };
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop3: Date,
+        prop4: string,
+        prop5: Bar,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}", pathParam)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { queryParam: queryParam },
+            body: {
+              prop1: prop1,
+              prop2: prop2,
+              prop3: prop3.toISOString(),
+              prop4: prop4,
+              prop5: { prop1: prop5["prop1"], prop2: prop5["prop2"] },
+            },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop3: Date,
+        prop4: string,
+        prop5: Bar,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          queryParam,
+          prop1,
+          prop2,
+          prop3,
+          prop4,
+          prop5,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
+  it("should flatten alias if spread in the payload with optional parameters", async () => {
+    const tspContent = `
+    alias Foo = {
+      prop1: string;
+      prop2: int64;
+      prop3?: utcDateTime;
+      prop4: offsetDateTime;
+      prop5?: Bar;
+    };
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }`
+    );
+    const optionFile = await emitModularModelsFromTypeSpec(tspContent, true);
+    assert.ok(optionFile);
+    assertEqualContent(
+      optionFile?.getFullText()!,
+      `
+      import { OperationOptions } from "@azure-rest/core-client";
+      
+      export interface ReadOptions extends OperationOptions {
+        prop3?: Date;
+        prop5?: Bar;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop4: string,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}", pathParam)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { queryParam: queryParam },
+            body: {
+              prop1: prop1,
+              prop2: prop2,
+              prop3: options?.prop3?.toISOString(),
+              prop4: prop4,
+              prop5: {
+                prop1: options?.prop5?.["prop1"],
+                prop2: options?.prop5?.["prop2"],
+              },
+            },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        prop1: string,
+        prop2: number,
+        prop4: string,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          queryParam,
+          prop1,
+          prop2,
+          prop4,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
+  it("should flatten alias if spread in the payload with optional parameters", async () => {
+    const tspContent = `
+    alias Foo = {
+      @path
+      prop1: string;
+      prop2: int64;
+      prop3?: utcDateTime;
+      @query
+      prop4: offsetDateTime;
+      prop5?: Bar;
+    };
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, ...Foo, @query queryParam: string): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+        export interface Bar {
+          prop1: string;
+          prop2: number;
+        }`
+    );
+    const optionFile = await emitModularModelsFromTypeSpec(tspContent, true);
+    assert.ok(optionFile);
+    assertEqualContent(
+      optionFile?.getFullText()!,
+      `
+      import { OperationOptions } from "@azure-rest/core-client";
+      
+      export interface ReadOptions extends OperationOptions {
+        prop3?: Date;
+        prop5?: Bar;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        prop1: string,
+        prop4: string,
+        queryParam: string,
+        prop2: number,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}/{prop1}", pathParam, prop1)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { prop4: prop4, queryParam: queryParam },
+            body: {
+              prop2: prop2,
+              prop3: options?.prop3?.toISOString(),
+              prop5: {
+                prop1: options?.prop5?.["prop1"],
+                prop2: options?.prop5?.["prop2"],
+              },
+            },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        prop1: string,
+        prop4: string,
+        queryParam: string,
+        prop2: number,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          prop1,
+          prop4,
+          queryParam,
+          prop2,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
+    );
+  });
+
+  it("should not flatten model if spread in the payload with required parameters", async () => {
+    const tspContent = `
+    model Foo {
+      prop1: string;
+      prop2: int64;
+      prop3: utcDateTime;
+      prop4: offsetDateTime;
+      prop5: Bar;
+    }
+    model Bar {
+      prop1: string;
+      prop2: int64;
+    }
+    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
+      `;
+    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+    assert.ok(modelFile);
+    assertEqualContent(
+      modelFile?.getFullText()!,
+      `
+      export interface Foo {
+        prop1: string;
+        prop2: number;
+        prop3: Date;
+        prop4: string;
+        prop5: Bar;
+      }
+
+      export interface Bar {
+        prop1: string;
+        prop2: number;
+      }`
+    );
+    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+    assert.ok(operationFiles);
+    assert.equal(operationFiles?.length, 1);
+    assertEqualContent(
+      operationFiles?.[0]?.getFullText()!,
+      `
+      import { TestingContext as Client } from "../rest/index.js";
+      import {
+        StreamableMethod,
+        operationOptionsToRequestParameters,
+      } from "@azure-rest/core-client";
+      export function _readSend(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        body: Foo,
+        options: ReadOptions = { requestOptions: {} }
+      ): StreamableMethod<Read200Response> {
+        return context
+          .path("/{pathParam}", pathParam)
+          .post({
+            ...operationOptionsToRequestParameters(options),
+            queryParameters: { queryParam: queryParam },
+            body: {
+              prop1: body["prop1"],
+              prop2: body["prop2"],
+              prop3: body["prop3"].toISOString(),
+              prop4: body["prop4"],
+              prop5: { prop1: body.prop5["prop1"], prop2: body.prop5["prop2"] },
+            },
+          });
+      }
+      export async function _readDeserialize(result: Read200Response): Promise<void> {
+        if (result.status !== "200") {
+          throw result.body;
+        }
+        return;
+      }
+      export async function read(
+        context: Client,
+        pathParam: string,
+        queryParam: string,
+        body: Foo,
+        options: ReadOptions = { requestOptions: {} }
+      ): Promise<void> {
+        const result = await _readSend(
+          context,
+          pathParam,
+          queryParam,
+          body,
+          options
+        );
+        return _readDeserialize(result);
+      }`,
+      true
     );
   });
 });

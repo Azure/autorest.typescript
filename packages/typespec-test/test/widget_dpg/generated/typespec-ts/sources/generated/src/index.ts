@@ -7,6 +7,8 @@ export {
 } from "./WidgetServiceClient.js";
 export {
   Widget,
+  CreateWidget,
+  UpdateWidget,
   AnalyzeResult,
   ListWidgetsOptions,
   GetWidgetOptions,

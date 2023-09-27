@@ -97,28 +97,28 @@ export class BytesClient {
   };
   property = {
     default: (
-      value: Uint8Array,
+      body: DefaultBytesProperty,
       options?: PropertyDefaultOptions
     ): Promise<DefaultBytesProperty> => {
-      return propertyDefault(this._client, value, options);
+      return propertyDefault(this._client, body, options);
     },
     base64: (
-      value: Uint8Array,
+      body: Base64BytesProperty,
       options?: PropertyBase64Options
     ): Promise<Base64BytesProperty> => {
-      return propertyBase64(this._client, value, options);
+      return propertyBase64(this._client, body, options);
     },
     base64url: (
-      value: Uint8Array,
+      body: Base64urlBytesProperty,
       options?: PropertyBase64urlOptions
     ): Promise<Base64urlBytesProperty> => {
-      return propertyBase64url(this._client, value, options);
+      return propertyBase64url(this._client, body, options);
     },
     base64urlArray: (
-      value: Uint8Array[],
+      body: Base64urlArrayBytesProperty,
       options?: PropertyBase64urlArrayOptions
     ): Promise<Base64urlArrayBytesProperty> => {
-      return propertyBase64urlArray(this._client, value, options);
+      return propertyBase64urlArray(this._client, body, options);
     },
   };
   header = {

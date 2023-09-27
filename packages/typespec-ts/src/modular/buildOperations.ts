@@ -159,10 +159,7 @@ export function buildOperationOptions(
   const optionalParameters = operation.parameters
     .filter((p) => p.implementation === "Method")
     .filter((p) => p.optional || p.clientDefaultValue);
-  const optionalBodyParams = (
-    operation.bodyParameter?.type.properties ?? []
-  ).filter((p) => p.optional);
-  const options = [...optionalBodyParams, ...optionalParameters];
+  const options = [...optionalParameters];
 
   const name = getOperationOptionsName(operation);
 

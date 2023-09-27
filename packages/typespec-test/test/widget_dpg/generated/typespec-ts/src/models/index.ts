@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Widget, AnalyzeResult } from "./models.js";
+export { Widget, CreateWidget, UpdateWidget, AnalyzeResult } from "./models.js";
 export {
   ListWidgetsOptions,
   GetWidgetOptions,
