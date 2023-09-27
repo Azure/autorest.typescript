@@ -30,14 +30,14 @@ import {
 
 export function _propertyDefaultSend(
   context: Client,
-  value: Date,
+  body: DefaultDatetimeProperty,
   options: PropertyDefaultOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyDefault200Response> {
   return context
     .path("/encode/datetime/property/default")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value.toISOString() },
+      body: { value: body["value"].toISOString() },
     });
 }
 
@@ -55,23 +55,23 @@ export async function _propertyDefaultDeserialize(
 
 export async function propertyDefault(
   context: Client,
-  value: Date,
+  body: DefaultDatetimeProperty,
   options: PropertyDefaultOptions = { requestOptions: {} }
 ): Promise<DefaultDatetimeProperty> {
-  const result = await _propertyDefaultSend(context, value, options);
+  const result = await _propertyDefaultSend(context, body, options);
   return _propertyDefaultDeserialize(result);
 }
 
 export function _propertyRfc3339Send(
   context: Client,
-  value: Date,
+  body: Rfc3339DatetimeProperty,
   options: PropertyRfc3339Options = { requestOptions: {} }
 ): StreamableMethod<PropertyRfc3339200Response> {
   return context
     .path("/encode/datetime/property/rfc3339")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value.toISOString() },
+      body: { value: body["value"].toISOString() },
     });
 }
 
@@ -89,23 +89,23 @@ export async function _propertyRfc3339Deserialize(
 
 export async function propertyRfc3339(
   context: Client,
-  value: Date,
+  body: Rfc3339DatetimeProperty,
   options: PropertyRfc3339Options = { requestOptions: {} }
 ): Promise<Rfc3339DatetimeProperty> {
-  const result = await _propertyRfc3339Send(context, value, options);
+  const result = await _propertyRfc3339Send(context, body, options);
   return _propertyRfc3339Deserialize(result);
 }
 
 export function _propertyRfc7231Send(
   context: Client,
-  value: Date,
+  body: Rfc7231DatetimeProperty,
   options: PropertyRfc7231Options = { requestOptions: {} }
 ): StreamableMethod<PropertyRfc7231200Response> {
   return context
     .path("/encode/datetime/property/rfc7231")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value.toUTCString() },
+      body: { value: body["value"].toUTCString() },
     });
 }
 
@@ -123,23 +123,23 @@ export async function _propertyRfc7231Deserialize(
 
 export async function propertyRfc7231(
   context: Client,
-  value: Date,
+  body: Rfc7231DatetimeProperty,
   options: PropertyRfc7231Options = { requestOptions: {} }
 ): Promise<Rfc7231DatetimeProperty> {
-  const result = await _propertyRfc7231Send(context, value, options);
+  const result = await _propertyRfc7231Send(context, body, options);
   return _propertyRfc7231Deserialize(result);
 }
 
 export function _propertyUnixTimestampSend(
   context: Client,
-  value: Date,
+  body: UnixTimestampDatetimeProperty,
   options: PropertyUnixTimestampOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyUnixTimestamp200Response> {
   return context
     .path("/encode/datetime/property/unix-timestamp")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: value.getTime() },
+      body: { value: body["value"].getTime() },
     });
 }
 
@@ -157,23 +157,23 @@ export async function _propertyUnixTimestampDeserialize(
 
 export async function propertyUnixTimestamp(
   context: Client,
-  value: Date,
+  body: UnixTimestampDatetimeProperty,
   options: PropertyUnixTimestampOptions = { requestOptions: {} }
 ): Promise<UnixTimestampDatetimeProperty> {
-  const result = await _propertyUnixTimestampSend(context, value, options);
+  const result = await _propertyUnixTimestampSend(context, body, options);
   return _propertyUnixTimestampDeserialize(result);
 }
 
 export function _propertyUnixTimestampArraySend(
   context: Client,
-  value: Date[],
+  body: UnixTimestampArrayDatetimeProperty,
   options: PropertyUnixTimestampArrayOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyUnixTimestampArray200Response> {
   return context
     .path("/encode/datetime/property/unix-timestamp-array")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: (value ?? []).map((p) => p.getTime()) },
+      body: { value: (body["value"] ?? []).map((p) => p.getTime()) },
     });
 }
 
@@ -191,9 +191,9 @@ export async function _propertyUnixTimestampArrayDeserialize(
 
 export async function propertyUnixTimestampArray(
   context: Client,
-  value: Date[],
+  body: UnixTimestampArrayDatetimeProperty,
   options: PropertyUnixTimestampArrayOptions = { requestOptions: {} }
 ): Promise<UnixTimestampArrayDatetimeProperty> {
-  const result = await _propertyUnixTimestampArraySend(context, value, options);
+  const result = await _propertyUnixTimestampArraySend(context, body, options);
   return _propertyUnixTimestampArrayDeserialize(result);
 }

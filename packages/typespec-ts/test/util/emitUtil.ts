@@ -24,7 +24,7 @@ import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
-import { buildModels } from "../../src/modular/emitModels.js";
+import { buildModels, buildModelsOptions } from "../../src/modular/emitModels.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { Project } from "ts-morph";
 
@@ -213,7 +213,7 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
   return clients;
 }
 
-export async function emitModularModelsFromTypeSpec(tspContent: string) {
+export async function emitModularModelsFromTypeSpec(tspContent: string, needOptions: boolean = false) {
   const context = await rlcEmitterFor(tspContent, true);
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -241,6 +241,9 @@ export async function emitModularModelsFromTypeSpec(tspContent: string) {
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
+      if (needOptions) {
+        return buildModelsOptions(modularCodeModel, modularCodeModel.clients[0]);
+      }
       return buildModels(modularCodeModel, modularCodeModel.clients[0]);
     }
   }
@@ -276,10 +279,14 @@ export async function emitModularOperationsFromTypeSpec(tspContent: string) {
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildOperationFiles(dpgContext, modularCodeModel, modularCodeModel.clients[0], false);
+      return buildOperationFiles(
+        dpgContext,
+        modularCodeModel,
+        modularCodeModel.clients[0],
+        false
+      );
     }
   }
   expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;
-
 }
