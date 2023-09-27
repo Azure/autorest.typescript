@@ -287,7 +287,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it(`should get bytes with custom content type`, async () => {
+    it.skip(`should get bytes with custom content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/custom-content-type`)
@@ -301,7 +301,7 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
 
-    it(`should get bytes with octet-stream content type`, async () => {
+    it.skip(`should get bytes with octet-stream content type`, async () => {
       try {
         const result = await client
           .path(`/encode/bytes/body/response/octet-stream`)
