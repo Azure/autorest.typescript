@@ -38,20 +38,20 @@ export class BasicClient {
 
   /** Creates or updates a User */
   createOrUpdate(
-    name: string,
     id: number,
+    resource: User,
     options: CreateOrUpdateOptions = { requestOptions: {} }
   ): Promise<User> {
-    return createOrUpdate(this._client, name, id, options);
+    return createOrUpdate(this._client, id, resource, options);
   }
 
   /** Creates or replaces a User */
   createOrReplace(
-    name: string,
     id: number,
+    resource: User,
     options: CreateOrReplaceOptions = { requestOptions: {} }
   ): Promise<User> {
-    return createOrReplace(this._client, name, id, options);
+    return createOrReplace(this._client, id, resource, options);
   }
 
   /** Gets a User */

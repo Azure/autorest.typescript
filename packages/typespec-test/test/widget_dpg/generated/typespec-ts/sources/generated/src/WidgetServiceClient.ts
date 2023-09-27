@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Widget, AnalyzeResult } from "./models/models.js";
+import {
+  Widget,
+  CreateWidget,
+  UpdateWidget,
+  AnalyzeResult,
+} from "./models/models.js";
 import {
   ListWidgetsOptions,
   GetWidgetOptions,
@@ -57,11 +62,10 @@ export class WidgetServiceClient {
    * result in an error.
    */
   createWidget(
-    weight: number,
-    color: "red" | "blue",
+    body: CreateWidget,
     options: CreateWidgetOptions = { requestOptions: {} }
   ): Promise<Widget> {
-    return createWidget(this._client, weight, color, options);
+    return createWidget(this._client, body, options);
   }
 
   /**
@@ -70,9 +74,10 @@ export class WidgetServiceClient {
    */
   updateWidget(
     id: string,
+    body: UpdateWidget,
     options: UpdateWidgetOptions = { requestOptions: {} }
   ): Promise<Widget> {
-    return updateWidget(this._client, id, options);
+    return updateWidget(this._client, id, body, options);
   }
 
   /** Delete a widget by ID. */

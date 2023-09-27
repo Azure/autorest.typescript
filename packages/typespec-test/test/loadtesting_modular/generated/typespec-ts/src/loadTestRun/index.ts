@@ -44,6 +44,7 @@ export {
   TimeGrain,
   MetricNamespaceCollection,
   MetricNamespace,
+  MetricRequestPayload,
   DimensionFilter,
   PagedTimeSeriesElement,
   TimeSeriesElement,

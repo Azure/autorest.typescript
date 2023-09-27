@@ -112,6 +112,7 @@ export type ParameterLocation =
   | "header"
   | "query"
   | "path"
+  | "body"
   | "other";
 
 export interface Parameter {

@@ -2,36 +2,14 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import {
-  TextCategory,
-  AnalyzeTextOutputType,
-  ImageCategory,
-  AnalyzeImageOutputType,
-} from "./models.js";
 
-export interface AnalyzeTextRequestOptions extends OperationOptions {
-  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: TextCategory[];
-  /** The names of blocklists. */
-  blocklistNames?: string[];
-  /** When set to true, further analyses of harmful content will not be performed in cases where blocklists are hit. When set to false, all analyses of harmful content will be performed, whether or not blocklists are hit. */
-  breakByBlocklists?: boolean;
-  /** The type of text analysis output. If not assigned, the default value is "FourLevels". */
-  outputType?: AnalyzeTextOutputType;
-}
+export interface AnalyzeTextRequestOptions extends OperationOptions {}
 
-export interface AnalyzeImageRequestOptions extends OperationOptions {
-  /** The categories will be analyzed. If not assigned, a default set of the categories' analysis results will be returned. */
-  categories?: ImageCategory[];
-  /** The type of image analysis output. If not assigned, the default value is "FourLevels". */
-  outputType?: AnalyzeImageOutputType;
-}
+export interface AnalyzeImageRequestOptions extends OperationOptions {}
 
 export interface GetTextBlocklistOptions extends OperationOptions {}
 
 export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
-  /** Text blocklist description. */
-  description?: string;
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
 }

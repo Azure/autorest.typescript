@@ -52,7 +52,6 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  isHeader,
   getHttpOperation
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
@@ -213,8 +212,16 @@ function handleDiscriminator(context: SdkContext, type: Model) {
   return undefined;
 }
 
+function isSchemaProperty(program: Program, property: ModelProperty): boolean {
+  const headerInfo = getHeaderFieldName(program, property);
+  const queryInfo = getQueryParamName(program, property);
+  const pathInfo = getPathParamName(program, property);
+  const statusCodeinfo = isStatusCode(program, property);
+  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
+}
+
 function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
-  function isSchemaProperty(property: ModelProperty) {
+  function isSchemaProperty(property: ModelProperty): boolean {
     const headerInfo = getHeaderFieldName(program, property);
     const queryInfo = getQueryParamName(program, property);
     const pathInfo = getPathParamName(program, property);
@@ -259,11 +266,7 @@ function processModelProperties(
 ) {
   // need to do properties after insertion to avoid infinite recursion
   for (const property of model.properties.values()) {
-    if (
-      isStatusCode(context.program, property) ||
-      isNeverType(property.type) ||
-      isHeader(context.program, property)
-    ) {
+    if (!isSchemaProperty(context.program, property)) {
       continue;
     }
     if (newValue.properties === undefined || newValue.properties === null) {
@@ -310,7 +313,9 @@ function getType(
   }
 
   if (enableCache) {
-    typesMap.set(effectiveModel, newValue);
+    if (!options.disableEffectiveModel) {
+      typesMap.set(effectiveModel, newValue);
+    }
     if (type.kind === "Union") {
       for (const t of type.variants.values()) {
         if (t.type.kind === "Model") {
@@ -444,9 +449,6 @@ function emitBodyParameter(
   const type = getType(context, getBodyType(context.program, httpOperation), {
     disableEffectiveModel: true
   });
-  if (type.type === "model" && type.name === "") {
-    type.name = capitalize(httpOperation.operation.name) + "Request";
-  }
 
   return {
     contentTypes,
@@ -795,7 +797,17 @@ function emitBasicOperation(
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
-    if (
+    if (bodyParameter.type.type === "model" && bodyParameter.type.name === "") {
+      if (bodyParameter.type.properties.length > 0) {
+        for (const param of bodyParameter.type.properties) {
+          // const emittedParam = emitParameter(context, param.type, "Method");
+          param.implementation = "Method";
+          param.location = param.location ?? "body";
+          parameters.push(param);
+        }
+      }
+      bodyParameter = undefined;
+    } else if (
       bodyParameter.type.type === "model" &&
       bodyParameter.type.base === "json"
     ) {
@@ -811,6 +823,21 @@ function emitBasicOperation(
     }
   }
   const name = applyCasing(operation.name, { casing: CASING });
+
+  /** handle name collision between operation name and parameter signature */
+  if (bodyParameter) {
+    bodyParameter.clientName =
+      bodyParameter.clientName === name
+        ? bodyParameter.clientName + "Parameter"
+        : bodyParameter.clientName;
+  }
+  parameters
+    .filter((param) => {
+      return param.clientName === name && !param.isReadOnly && param.required;
+    })
+    .forEach((param) => {
+      param.clientName = param.clientName + "Parameter";
+    });
   return {
     name: name,
     description: getDocStr(context.program, operation),
@@ -1223,10 +1250,6 @@ function mapTypeSpecType(context: SdkContext, type: Type): any {
     case "Model":
       return emitListOrDict(context, type);
   }
-}
-
-function capitalize(name: string): string {
-  return name[0]!.toUpperCase() + name.slice(1);
 }
 
 function emitUnion(context: SdkContext, type: Union): Record<string, any> {

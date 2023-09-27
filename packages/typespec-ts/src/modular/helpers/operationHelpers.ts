@@ -186,28 +186,6 @@ function getOperationSignatureParameters(
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
-  if (operation.bodyParameter?.type.type === "model") {
-    (getAllProperties(operation.bodyParameter?.type) ?? [])
-      .filter((p) => !p.optional)
-      .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type, p.format))
-      .forEach((p) => parameters.set(p.name, p));
-  } else if (operation.bodyParameter?.type.type === "list") {
-    const bodyArray = operation.bodyParameter;
-    parameters.set(
-      bodyArray.clientName,
-      buildType(bodyArray.clientName, bodyArray.type, bodyArray.type.format)
-    );
-  } else if (operation.bodyParameter?.type.type === "byte-array") {
-    parameters.set(
-      operation.bodyParameter.clientName,
-      buildType(
-        operation.bodyParameter.clientName,
-        operation.bodyParameter.type,
-        operation.bodyParameter.type.format
-      )
-    );
-  }
 
   operation.parameters
     .filter(
@@ -222,6 +200,16 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
+  if (operation.bodyParameter) {
+    parameters.set(
+      operation.bodyParameter?.clientName,
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type,
+        operation.bodyParameter.type.format
+      )
+    );
+  }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
@@ -320,7 +308,11 @@ function getRequestParameters(
   };
 
   for (const param of operationParameters) {
-    if (param.location === "header" || param.location === "query") {
+    if (
+      param.location === "header" ||
+      param.location === "query" ||
+      param.location === "body"
+    ) {
       parametersImplementation[param.location].push(
         getParameterMap(param, importSet)
       );
@@ -344,12 +336,19 @@ function getRequestParameters(
       ",\n"
     )}},`;
   }
-
-  paramStr = `${paramStr}${buildBodyParameter(
-    operation.bodyParameter,
-    importSet
-  )}`;
-
+  if (
+    operation.bodyParameter === undefined &&
+    parametersImplementation.body.length
+  ) {
+    paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
+      ",\n"
+    )}}`;
+  } else if (operation.bodyParameter !== undefined) {
+    paramStr = `${paramStr}${buildBodyParameter(
+      operation.bodyParameter,
+      importSet
+    )}`;
+  }
   return paramStr;
 }
 
@@ -362,24 +361,13 @@ function buildBodyParameter(
   }
 
   if (bodyParameter.type.type === "model") {
-    const bodyParts: string[] = [];
-    for (const param of getAllProperties(bodyParameter?.type).filter(
-      (p) => !p.readonly
-    ) ?? []) {
-      if (param.type.type === "model" && isRequired(param)) {
-        bodyParts.push(
-          `"${param.restApiName}": {${getRequestModelMapping(
-            param.type,
-            param.clientName,
-            importSet
-          ).join(",\n")}}`
-        );
-      } else {
-        bodyParts.push(getParameterMap(param, importSet));
-      }
-    }
+    const bodyParts: string[] = getRequestModelMapping(
+      bodyParameter.type,
+      bodyParameter.clientName,
+      importSet
+    );
 
-    if (bodyParameter && getAllProperties(bodyParameter.type).length > 0) {
+    if (bodyParameter && bodyParts.length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }
@@ -499,11 +487,11 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": ${getRequestModelMapping(
+    return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
       importSet
-    ).join(",")}`;
+    ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,

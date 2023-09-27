@@ -70,7 +70,7 @@ export function buildModels(
       });
     } else {
       if (!model.name) {
-        throw new Error("Can't generate a model that has no name");
+        continue;
       }
       const modelInterface = {
         name: model.name,
@@ -170,4 +170,5 @@ export function buildModelsOptions(
       id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
       return id;
     });
+  return modelOptionsFile;
 }

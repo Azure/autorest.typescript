@@ -472,6 +472,17 @@ export interface MetricNamespace {
   name?: string;
 }
 
+/** Filters to fetch the set of metric */
+export interface MetricRequestPayload {
+  /**
+   * Get metrics for specific dimension values. Example: Metric contains dimension
+   * like SamplerName, Error. To retrieve all the time series data where SamplerName
+   * is equals to HTTPRequest1 or HTTPRequest2, the DimensionFilter value will be
+   * {"SamplerName", ["HTTPRequest1", "HTTPRequest2"}
+   */
+  filters?: DimensionFilter[];
+}
+
 /** Dimension name and values to filter */
 export interface DimensionFilter {
   /** The dimension name */

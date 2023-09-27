@@ -235,5 +235,9 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "encode/datetime",
     inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
   }
 ];
