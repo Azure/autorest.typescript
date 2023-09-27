@@ -242,12 +242,12 @@ export function emitPackage(
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] =
-      'mocha --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+      'mocha --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
     packageInfo.scripts["integration-test:node"] =
-      'nyc mocha --require source-map-support/register.js --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+      'nyc mocha --require source-map-support/register.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {

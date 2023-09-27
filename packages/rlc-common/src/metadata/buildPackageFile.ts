@@ -273,12 +273,12 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.scripts[
       "unit-test:node"
       // eslint-disable-next-line no-useless-escape
-    ] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
+    ] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
     packageInfo.scripts["integration-test:node"] =
-      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+      'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {
@@ -298,9 +298,9 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
         loader: "ts-node/esm"
       };
       packageInfo.scripts["unit-test:node"] =
-        'mocha --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+        'mocha --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
       packageInfo.scripts["integration-test:node"] =
-        'nyc mocha --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+        'nyc mocha --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     }
 
     packageInfo["browser"] = {
