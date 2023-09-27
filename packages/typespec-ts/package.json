@@ -20,7 +20,7 @@
     "start-test-server": "mkdirp -p coverage && npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript.json",
     "start-test-server:rlc": "mkdirp -p coverage && npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript-rlc.json",
     "start-test-server:modular": "mkdirp -p coverage && npx cadl-ranch serve ./node_modules/@azure-tools/cadl-ranch-specs/http  --coverageFile ./coverage/cadl-ranch-coverage-typescript-modular.json",
-    "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/http ./temp && cp -r ./test/integration/typespec/* ./temp/http",
+    "copy:typespec": "rm -rf temp && mkdirp -p temp && cp -r ./node_modules/@azure-tools/cadl-ranch-specs/* ./temp && cp -r ./test/integration/typespec/* ./temp/http",
     "generate-and-run:rlc": "npm run generate-tsp-only:rlc && npm run integration-test:alone:rlc && npm run stop-test-server",
     "generate-and-run:modular": "npm run generate-tsp-only:modular && npm run integration-test:alone:modular && npm run stop-test-server",
     "generate-tsp-only": "npm run generate-tsp-only:rlc && npm run generate-tsp-only:modular",
