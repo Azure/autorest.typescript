@@ -12,7 +12,6 @@ import {
   DeleteWidgetLogicalResponse,
   DeleteWidgetDefaultResponse,
   GetWidgetOperationStatus200Response,
-  GetWidgetOperationStatusLogicalResponse,
   GetWidgetOperationStatusDefaultResponse,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
@@ -45,7 +44,6 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | GetWidgetOperationStatus200Response
-    | GetWidgetOperationStatusLogicalResponse
     | GetWidgetOperationStatusDefaultResponse
 ): response is GetWidgetOperationStatusDefaultResponse;
 export function isUnexpected(
@@ -63,7 +61,6 @@ export function isUnexpected(
     | DeleteWidgetLogicalResponse
     | DeleteWidgetDefaultResponse
     | GetWidgetOperationStatus200Response
-    | GetWidgetOperationStatusLogicalResponse
     | GetWidgetOperationStatusDefaultResponse
     | ListWidgets200Response
     | ListWidgetsDefaultResponse

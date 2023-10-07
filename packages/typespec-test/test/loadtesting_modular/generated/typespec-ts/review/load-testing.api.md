@@ -36,45 +36,18 @@ export type CertificateType = string;
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    testId?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    metrics?: Record<string, ResourceMetric>;
-    testId?: string;
 }
 
 // @public (undocumented)
 export interface CreateOrUpdateTestOptions extends OperationOptions {
-    certificate?: CertificateMetadata;
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    description?: string;
-    displayName?: string;
-    environmentVariables?: Record<string, string>;
-    inputArtifacts?: TestInputArtifacts;
-    keyvaultReferenceIdentityId?: string;
-    keyvaultReferenceIdentityType?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    loadTestConfiguration?: LoadTestConfiguration;
-    passFailCriteria?: PassFailCriteria;
-    secrets?: Record<string, Secret>;
-    subnetId?: string;
-    testId?: string;
 }
 
 // @public (undocumented)
@@ -174,7 +147,6 @@ export interface ListMetricNamespacesOptions extends OperationOptions {
 // @public (undocumented)
 export interface ListMetricsOptions extends OperationOptions {
     aggregation?: string;
-    filters?: LoadTestRunClientDimensionFilter[];
     interval?: LoadTestRunClientInterval;
     metricName?: string;
     metricNamespace?: string;
@@ -208,9 +180,9 @@ export interface ListTestsOptions extends OperationOptions {
 // @public (undocumented)
 export class LoadTestAdministrationClient {
     constructor(endpoint: string, credential: TokenCredential, options?: LoadTestAdministrationClientOptions);
-    createOrUpdateAppComponents(components: Record<string, AppComponent>, testId: string, options?: CreateOrUpdateAppComponentsOptions): Promise<TestAppComponents>;
-    createOrUpdateServerMetricsConfig(testId: string, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
-    createOrUpdateTest(testId: string, options?: CreateOrUpdateTestOptions): Promise<Test>;
+    createOrUpdateAppComponents(testId: string, body: TestAppComponents, options?: CreateOrUpdateAppComponentsOptions): Promise<TestAppComponents>;
+    createOrUpdateServerMetricsConfig(testId: string, body: TestServerMetricConfig, options?: CreateOrUpdateServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
+    createOrUpdateTest(testId: string, body: Test, options?: CreateOrUpdateTestOptions): Promise<Test>;
     deleteTest(testId: string, options?: DeleteTestOptions): Promise<void>;
     deleteTestFile(testId: string, fileName: string, options?: DeleteTestFileOptions): Promise<void>;
     getAppComponents(testId: string, options?: GetAppComponentsOptions): Promise<TestAppComponents>;
@@ -219,7 +191,7 @@ export class LoadTestAdministrationClient {
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptions): Promise<FileInfo>;
     listTestFiles(testId: string, options?: ListTestFilesOptions): Promise<PagedFileInfo>;
     listTests(options?: ListTestsOptions): Promise<PagedTest>;
-    uploadTestFile(body: Uint8Array, testId: string, fileName: string, options?: UploadTestFileOptions): Promise<FileInfo>;
+    uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptions): Promise<FileInfo>;
 }
 
 // @public (undocumented)
@@ -238,9 +210,9 @@ export interface LoadTestConfiguration {
 export class LoadTestRunClient {
     constructor(endpoint: string, credential: TokenCredential, options?: LoadTestRunClientOptions);
     // Warning: (ae-forgotten-export) The symbol "TestRunAppComponents" needs to be exported by the entry point index.d.ts
-    createOrUpdateAppComponents(components: Record<string, LoadTestRunClientAppComponent>, testRunId: string, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptions): Promise<TestRunAppComponents>;
+    createOrUpdateAppComponents(testRunId: string, body: TestRunAppComponents, options?: LoadTestRunClientCreateOrUpdateAppComponentsOptions): Promise<TestRunAppComponents>;
     // Warning: (ae-forgotten-export) The symbol "TestRunServerMetricConfig" needs to be exported by the entry point index.d.ts
-    createOrUpdateServerMetricsConfig(testRunId: string, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
+    createOrUpdateServerMetricsConfig(testRunId: string, body: TestRunServerMetricConfig, options?: LoadTestRunClientCreateOrUpdateServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
     deleteTestRun(testRunId: string, options?: DeleteTestRunOptions): Promise<void>;
     getAppComponents(testRunId: string, options?: LoadTestRunClientGetAppComponentsOptions): Promise<TestRunAppComponents>;
     getServerMetricsConfig(testRunId: string, options?: LoadTestRunClientGetServerMetricsConfigOptions): Promise<TestRunServerMetricConfig>;
@@ -252,12 +224,13 @@ export class LoadTestRunClient {
     listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): Promise<PagedDimensionValueList>;
     // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<MetricNamespaceCollection>;
+    // Warning: (ae-forgotten-export) The symbol "MetricRequestPayload" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "PagedTimeSeriesElement" needs to be exported by the entry point index.d.ts
-    listMetrics(testRunId: string, options?: ListMetricsOptions): Promise<PagedTimeSeriesElement>;
+    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptions): Promise<PagedTimeSeriesElement>;
     // Warning: (ae-forgotten-export) The symbol "PagedTestRun" needs to be exported by the entry point index.d.ts
     listTestRuns(options?: ListTestRunsOptions): Promise<PagedTestRun>;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
-    testRun(testRunId: string, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
+    testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
 }
 
 // @public
@@ -288,23 +261,12 @@ export type LoadTestRunClientCertificateType = string;
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    testRunId?: string;
 }
 
 // @public (undocumented)
 export interface LoadTestRunClientCreateOrUpdateServerMetricsConfigOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    metrics?: Record<string, LoadTestRunClientResourceMetric>;
-    testRunId?: string;
 }
 
 // @public
@@ -780,32 +742,8 @@ export interface TestRunInputArtifacts {
 
 // @public (undocumented)
 export interface TestRunOptions extends OperationOptions {
-    certificate?: LoadTestRunClientCertificateMetadata;
     contentType?: string;
-    createdBy?: string;
-    createdDateTime?: string;
-    description?: string;
-    displayName?: string;
-    duration?: number;
-    endDateTime?: string;
-    environmentVariables?: Record<string, string>;
-    errorDetails?: LoadTestRunClientErrorDetails[];
-    executedDateTime?: string;
-    lastModifiedBy?: string;
-    lastModifiedDateTime?: string;
-    loadTestConfiguration?: LoadTestRunClientLoadTestConfiguration;
     oldTestRunId?: string;
-    passFailCriteria?: LoadTestRunClientPassFailCriteria;
-    portalUrl?: string;
-    secrets?: Record<string, LoadTestRunClientSecret>;
-    startDateTime?: string;
-    status?: LoadTestRunClientStatus;
-    subnetId?: string;
-    testArtifacts?: LoadTestRunClientTestRunArtifacts;
-    testId?: string;
-    testResult?: LoadTestRunClientPFTestResult;
-    testRunStatistics?: Record<string, LoadTestRunClientTestRunStatistics>;
-    virtualUsers?: number;
 }
 
 // @public

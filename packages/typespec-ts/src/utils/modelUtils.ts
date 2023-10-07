@@ -1004,7 +1004,7 @@ function getSchemaForStdScalar(
         type: "string",
         format: "date-time",
         description,
-        typeName: "Date | string",
+        typeName: "string",
         outputTypeName: "string"
       };
     case "plainTime":

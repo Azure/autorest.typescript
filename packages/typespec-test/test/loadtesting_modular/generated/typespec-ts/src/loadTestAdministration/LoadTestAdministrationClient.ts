@@ -6,7 +6,6 @@ import {
   Test,
   FileInfo,
   TestAppComponents,
-  AppComponent,
   TestServerMetricConfig,
   PagedFileInfo,
   PagedTest,
@@ -59,31 +58,33 @@ export class LoadTestAdministrationClient {
   /** Create a new test or update an existing test. */
   createOrUpdateTest(
     testId: string,
+    body: Test,
     options: CreateOrUpdateTestOptions = { requestOptions: {} }
   ): Promise<Test> {
-    return createOrUpdateTest(this._client, testId, options);
+    return createOrUpdateTest(this._client, testId, body, options);
   }
 
   /** Associate an app component (collection of azure resources) to a test */
   createOrUpdateAppComponents(
-    components: Record<string, AppComponent>,
     testId: string,
+    body: TestAppComponents,
     options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
   ): Promise<TestAppComponents> {
-    return createOrUpdateAppComponents(
-      this._client,
-      components,
-      testId,
-      options
-    );
+    return createOrUpdateAppComponents(this._client, testId, body, options);
   }
 
   /** Configure server metrics for a test */
   createOrUpdateServerMetricsConfig(
     testId: string,
+    body: TestServerMetricConfig,
     options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
   ): Promise<TestServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(this._client, testId, options);
+    return createOrUpdateServerMetricsConfig(
+      this._client,
+      testId,
+      body,
+      options
+    );
   }
 
   /** Get associated app component (collection of azure resources) for the given test. */
@@ -143,12 +144,12 @@ export class LoadTestAdministrationClient {
    * should be provided in the request body as application/octet-stream.
    */
   uploadTestFile(
-    body: Uint8Array,
     testId: string,
     fileName: string,
+    body: Uint8Array,
     options: UploadTestFileOptions = { requestOptions: {} }
   ): Promise<FileInfo> {
-    return uploadTestFile(this._client, body, testId, fileName, options);
+    return uploadTestFile(this._client, testId, fileName, body, options);
   }
 
   /** Delete file by the file name for a test */

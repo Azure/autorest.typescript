@@ -1,4 +1,4 @@
-import { Type } from "../modularCodeModel.js";
+import { EnumValue, Type } from "../modularCodeModel.js";
 
 export interface TypeMetadata {
   name: string;
@@ -13,6 +13,12 @@ function getNullableType(name: string, type: Type): string {
   }
 
   return name;
+}
+
+function getAnonymousEnumName(values: EnumValue[]): string {
+  return values
+    .map((v) => (typeof v.value === "string" ? `"${v.value}"` : `${v.value}`))
+    .join(" | ");
 }
 
 export function getType(type: Type, format?: string): TypeMetadata {
@@ -41,11 +47,18 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "datetime":
       return { name: getNullableType("Date", type) };
     case "enum":
-      if (!type.name) {
+      if (
+        !type.name &&
+        (!type?.valueType?.type ||
+          !["string", "number"].includes(type?.valueType?.type))
+      ) {
         throw new Error("Unable to process enum without name");
       }
       return {
-        name: getNullableType(type.name, type),
+        name: getNullableType(
+          type.name ?? getAnonymousEnumName(type.values ?? []),
+          type
+        ),
         originModule: "models.js"
       };
     case "float":
@@ -67,11 +80,8 @@ export function getType(type: Type, format?: string): TypeMetadata {
           type.elementType?.type === "model" ? "models.js" : undefined
       };
     case "model":
-      if (!type.name) {
-        throw new Error("Unable to process model without name");
-      }
       return {
-        name: getNullableType(type.name, type),
+        name: getNullableType(type.name!, type),
         originModule: "models.js"
       };
     case "string":

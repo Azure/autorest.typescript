@@ -87,7 +87,7 @@ describe("Parameters.ts", () => {
         );
       });
 
-      it("should generate offsetDateTime as Date | string", async () => {
+      it("should generate offsetDateTime as string", async () => {
         const parameters = await emitParameterFromTypeSpec(
           `
           model QueryParameter {
@@ -104,7 +104,7 @@ describe("Parameters.ts", () => {
             import { RequestParameters } from "@azure-rest/core-client";
             
             export interface TestQueryParamProperties {
-              executionTo?: Date | string;
+              executionTo?: string;
             }
   
             export interface TestQueryParam {

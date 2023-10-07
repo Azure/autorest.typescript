@@ -28,14 +28,14 @@ import {
 
 export function _propertyDefaultSend(
   context: Client,
-  value: Uint8Array,
+  body: DefaultBytesProperty,
   options: PropertyDefaultOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyDefault200Response> {
   return context
     .path("/encode/bytes/property/default")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: uint8ArrayToString(value, "base64") },
+      body: { value: uint8ArrayToString(body["value"], "base64") },
     });
 }
 
@@ -56,23 +56,23 @@ export async function _propertyDefaultDeserialize(
 
 export async function propertyDefault(
   context: Client,
-  value: Uint8Array,
+  body: DefaultBytesProperty,
   options: PropertyDefaultOptions = { requestOptions: {} }
 ): Promise<DefaultBytesProperty> {
-  const result = await _propertyDefaultSend(context, value, options);
+  const result = await _propertyDefaultSend(context, body, options);
   return _propertyDefaultDeserialize(result);
 }
 
 export function _propertyBase64Send(
   context: Client,
-  value: Uint8Array,
+  body: Base64BytesProperty,
   options: PropertyBase64Options = { requestOptions: {} }
 ): StreamableMethod<PropertyBase64200Response> {
   return context
     .path("/encode/bytes/property/base64")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: uint8ArrayToString(value, "base64") },
+      body: { value: uint8ArrayToString(body["value"], "base64") },
     });
 }
 
@@ -93,23 +93,23 @@ export async function _propertyBase64Deserialize(
 
 export async function propertyBase64(
   context: Client,
-  value: Uint8Array,
+  body: Base64BytesProperty,
   options: PropertyBase64Options = { requestOptions: {} }
 ): Promise<Base64BytesProperty> {
-  const result = await _propertyBase64Send(context, value, options);
+  const result = await _propertyBase64Send(context, body, options);
   return _propertyBase64Deserialize(result);
 }
 
 export function _propertyBase64urlSend(
   context: Client,
-  value: Uint8Array,
+  body: Base64urlBytesProperty,
   options: PropertyBase64urlOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyBase64url200Response> {
   return context
     .path("/encode/bytes/property/base64url")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: uint8ArrayToString(value, "base64url") },
+      body: { value: uint8ArrayToString(body["value"], "base64url") },
     });
 }
 
@@ -130,16 +130,16 @@ export async function _propertyBase64urlDeserialize(
 
 export async function propertyBase64url(
   context: Client,
-  value: Uint8Array,
+  body: Base64urlBytesProperty,
   options: PropertyBase64urlOptions = { requestOptions: {} }
 ): Promise<Base64urlBytesProperty> {
-  const result = await _propertyBase64urlSend(context, value, options);
+  const result = await _propertyBase64urlSend(context, body, options);
   return _propertyBase64urlDeserialize(result);
 }
 
 export function _propertyBase64urlArraySend(
   context: Client,
-  value: Uint8Array[],
+  body: Base64urlArrayBytesProperty,
   options: PropertyBase64urlArrayOptions = { requestOptions: {} }
 ): StreamableMethod<PropertyBase64urlArray200Response> {
   return context
@@ -147,7 +147,9 @@ export function _propertyBase64urlArraySend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        value: (value ?? []).map((p) => uint8ArrayToString(p, "base64url")),
+        value: (body["value"] ?? []).map((p) =>
+          uint8ArrayToString(p, "base64url")
+        ),
       },
     });
 }
@@ -168,9 +170,9 @@ export async function _propertyBase64urlArrayDeserialize(
 
 export async function propertyBase64urlArray(
   context: Client,
-  value: Uint8Array[],
+  body: Base64urlArrayBytesProperty,
   options: PropertyBase64urlArrayOptions = { requestOptions: {} }
 ): Promise<Base64urlArrayBytesProperty> {
-  const result = await _propertyBase64urlArraySend(context, value, options);
+  const result = await _propertyBase64urlArraySend(context, body, options);
   return _propertyBase64urlArrayDeserialize(result);
 }

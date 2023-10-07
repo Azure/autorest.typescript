@@ -46,8 +46,9 @@ export function buildModels(
       typeName = `${typeName}[]`;
     }
     if (model.type === "enum") {
-      if (modelsFile.getTypeAlias(model.name!)) {
+      if (!model.name || modelsFile.getTypeAlias(model.name!)) {
         // If the enum is already defined, we don't need to do anything
+        // If the enum is anonymous, we don't build any type alias for it
         continue;
       }
       modelsFile.addTypeAlias({
@@ -69,7 +70,7 @@ export function buildModels(
       });
     } else {
       if (!model.name) {
-        throw new Error("Can't generate a model that has no name");
+        continue;
       }
       const modelInterface = {
         name: model.name,
@@ -169,4 +170,5 @@ export function buildModelsOptions(
       id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
       return id;
     });
+  return modelOptionsFile;
 }

@@ -63,10 +63,13 @@ describe("EncodeBytesClient Rest Client", () => {
   describe("property", () => {
     it(`should post bytes`, async () => {
       try {
-        const result = await client.property.default(
+        const result = await client.property.default({
+          value: stringToUint8Array("dGVzdA==", "base64")
+        });
+        assert.deepEqual(
+          result.value,
           stringToUint8Array("dGVzdA==", "base64")
         );
-        assert.deepEqual(result.value, stringToUint8Array("dGVzdA==", "base64"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -74,10 +77,13 @@ describe("EncodeBytesClient Rest Client", () => {
 
     it(`should post bytes base64 encoding`, async () => {
       try {
-        const result = await client.property.base64(
+        const result = await client.property.base64({
+          value: stringToUint8Array("dGVzdA==", "base64")
+        });
+        assert.deepEqual(
+          result.value,
           stringToUint8Array("dGVzdA==", "base64")
         );
-        assert.deepEqual(result.value, stringToUint8Array("dGVzdA==", "base64"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -85,10 +91,13 @@ describe("EncodeBytesClient Rest Client", () => {
 
     it(`should post bytes base64url encoding`, async () => {
       try {
-        const result = await client.property.base64url(
+        const result = await client.property.base64url({
+          value: stringToUint8Array("dGVzdA", "base64url")
+        });
+        assert.deepEqual(
+          result.value,
           stringToUint8Array("dGVzdA", "base64url")
         );
-        assert.deepEqual(result.value, stringToUint8Array("dGVzdA", "base64url"));
       } catch (err) {
         assert.fail(err as string);
       }
@@ -96,10 +105,12 @@ describe("EncodeBytesClient Rest Client", () => {
 
     it(`should post bytes base64url array`, async () => {
       try {
-        const result = await client.property.base64urlArray([
-          stringToUint8Array("dGVzdA", "base64url"),
-          stringToUint8Array("dGVzdA", "base64url")
-        ]);
+        const result = await client.property.base64urlArray({
+          value: [
+            stringToUint8Array("dGVzdA", "base64url"),
+            stringToUint8Array("dGVzdA", "base64url")
+          ]
+        });
         assert.deepEqual(result.value, [
           stringToUint8Array("dGVzdA", "base64url"),
           stringToUint8Array("dGVzdA", "base64url")

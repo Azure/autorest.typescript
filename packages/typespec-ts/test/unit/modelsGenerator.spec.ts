@@ -1050,7 +1050,7 @@ describe("Input/output model type", () => {
     });
 
     it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
-      const inputType = "Date | string";
+      const inputType = "string";
       const outputType = "string";
       await verifyPropertyType("offsetDateTime ", inputType, {
         outputType
@@ -1111,7 +1111,7 @@ describe("Input/output model type", () => {
         inputModelFile?.content!,
         `
       export interface SimpleModel { 
-        "createdAt": Date | string;
+        "createdAt": string;
       }
       `
       );
@@ -1613,9 +1613,9 @@ describe("Input/output model type", () => {
         x: int32;
       }
 
-      @@projectedName(FooModel.x, "client", "NotToUseMeAsName") // Should be ignored
-      @@projectedName(FooModel.x, "javascript", "MadeForTS")
-      @@projectedName(FooModel.x, "json", "xJson")
+      @@projectedName(FooModel.x, "client", "NotToUseMeAsName"); // Should be ignored
+      @@projectedName(FooModel.x, "javascript", "MadeForTS");
+      @@projectedName(FooModel.x, "json", "xJson");
       `;
       const tspType = "FooModel";
       const inputModelName = "FooModel";
