@@ -251,12 +251,12 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/default`)
-          .get({
-            headers: {
-              value: "Fri, 26 Aug 2022 14:38:00 GMT"
-            }
-          });
+          .get();
         assert.strictEqual(result.status, "204");
+        assert.strictEqual(
+          result.headers.value,
+          "Fri, 26 Aug 2022 14:38:00 GMT"
+        );
       } catch (err) {
         assert.fail(err as string);
       }
@@ -266,12 +266,9 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/rfc3339`)
-          .get({
-            headers: {
-              value: "2022-08-26T18:38:00.000Z"
-            }
-          });
+          .get();
         assert.strictEqual(result.status, "204");
+        assert.strictEqual(result.headers.value, "2022-08-26T18:38:00.000Z");
       } catch (err) {
         assert.fail(err as string);
       }
@@ -281,12 +278,12 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/rfc7231`)
-          .get({
-            headers: {
-              value: "Fri, 26 Aug 2022 14:38:00 GMT"
-            }
-          });
+          .get();
         assert.strictEqual(result.status, "204");
+        assert.strictEqual(
+          result.headers.value,
+          "Fri, 26 Aug 2022 14:38:00 GMT"
+        );
       } catch (err) {
         assert.fail(err as string);
       }
@@ -296,12 +293,9 @@ describe("EncodeDatetimeClient Rest Client", () => {
       try {
         const result = await client
           .path(`/encode/datetime/responseheader/unix-timestamp`)
-          .get({
-            headers: {
-              value: 1686566864
-            }
-          });
+          .get();
         assert.strictEqual(result.status, "204");
+        assert.strictEqual(result.headers.value, "1686566864");
       } catch (err) {
         assert.fail(err as string);
       }
