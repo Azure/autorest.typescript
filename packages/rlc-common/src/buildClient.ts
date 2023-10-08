@@ -225,7 +225,8 @@ export function getClientFactoryBody(
     return "";
   }
   const { includeShortcuts, packageDetails } = model.options;
-  let clientPackageName = packageDetails.nameWithoutScope ?? "";
+  let clientPackageName =
+    packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
   const packageVersion = packageDetails.version;
   const { endpoint, urlParameters } = model.urlInfo;
 
