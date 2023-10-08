@@ -845,6 +845,49 @@ describe("Input/output model type", () => {
           });
         });
       });
+
+      it.only("should handle model extends from record", async () => {
+        const schemaOutput = await emitModelsFromTypeSpec(`
+        model VegetableCarrot extends Record<Carrots[]> {}
+        model VegetableBeans extends Record<Beans[]> {}
+        
+        model Vegetables {
+          carrots: VegetableCarrot,
+          beans: VegetableBeans
+        }
+        model Carrots {
+          color: string,
+          id: string
+        }
+        model Beans {
+          expiry: string,
+          id: string
+        }
+        op read(): { @body body: Vegetables };
+        `);
+        assert.ok(schemaOutput);
+        const { inputModelFile, outputModelFile } = schemaOutput!;
+        assert.ok(!inputModelFile?.content);
+        assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+        assertEqualContent(
+          outputModelFile?.content!,
+          `
+          export interface VegetablesOutput {
+            carrots: VegetableCarrotOutput;
+            beans: VegetableBeansOutput;
+          }
+          
+          export interface CarrotsOutput {
+            color: string;
+            id: string;
+          }
+          
+          export interface BeansOutput {
+            expiry: string;
+            id: string;
+          }`
+        );
+      });
     });
   });
   describe("bytes generation as property", () => {

@@ -634,6 +634,7 @@ function getSchemaForModel(
     // that we set before
     const baseSchema = getSchemaForType(dpgContext, model.baseModel, usage);
     modelSchema = {
+      ...modelSchema,
       ...baseSchema,
       description: modelSchema.description
     };
