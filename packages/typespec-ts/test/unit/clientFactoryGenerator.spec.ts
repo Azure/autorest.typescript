@@ -29,7 +29,7 @@ describe("Client Factory generation", () => {
         export default function createClient(options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`localhost\`;
         
-        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+        const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
             ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -84,7 +84,7 @@ describe("Client Factory generation", () => {
           ): testClient {
             const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
           
-            const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+            const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
             const userAgentPrefix =
               options.userAgentOptions && options.userAgentOptions.userAgentPrefix
                 ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -155,7 +155,7 @@ describe("Client Factory generation", () => {
             ): testClient {
               const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
-              const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+              const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
                 options.userAgentOptions && options.userAgentOptions.userAgentPrefix
                   ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -222,7 +222,7 @@ describe("Client Factory generation", () => {
             ): testClient {
               const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
-              const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+              const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
                 options.userAgentOptions && options.userAgentOptions.userAgentPrefix
                   ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -268,7 +268,7 @@ describe("Client Factory generation", () => {
         export default function createClient(endpoint: string, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
         
-        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+        const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
             ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -358,7 +358,7 @@ describe("Client Factory generation", () => {
             },
           };
         
-        const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+        const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
             options.userAgentOptions && options.userAgentOptions.userAgentPrefix
             ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
