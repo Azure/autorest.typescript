@@ -1,0 +1,153 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+import { Schema } from "../interfaces";
+
+export function isQuotedString(type: string) {
+  return (
+    /^"([a-zA-Z0-9=;\/\+\-\s]*)"$/g.test(type) ||
+    /^'([a-zA-Z0-9=;\/\+\-\s]*)'$/g.test(type)
+  );
+}
+
+export function isRecord(type: string) {
+  return /^Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>$/g.test(type);
+}
+
+export function getRecordType(type: string) {
+  return /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g.exec(type)?.groups
+    ?.type;
+}
+
+export function isArray(type: string) {
+  return isArrayObject(type) || isNativeArray(type);
+}
+
+export function isArrayObject(type: string) {
+  return /(^Array<([a-zA-Z].+)>$)/g.test(type);
+}
+
+export function getArrayObjectType(type: string) {
+  return /Array<(?<type>[a-zA-Z].+)>/g.exec(type)?.groups?.type;
+}
+
+export function isNativeArray(type: string) {
+  return /(^[a-zA-Z].+)\[\]$/g.test(type);
+}
+
+export function getNativeArrayType(type: string) {
+  return /(?<type>[a-zA-Z].+)\[\]/g.exec(type)?.groups?.type;
+}
+
+export function isUnion(type: string) {
+  const members = type.split("|").map((m) => m.trim());
+  return members.length > 1;
+}
+
+export function getUnionType(type: string) {
+  return leaveBracket(type.split("|").map((m) => m.trim())[0]);
+}
+
+export function leaveBracket(type: string) {
+  if (!type || type.length < 2) {
+    return type;
+  } else if (type.startsWith("(") && type.endsWith(")")) {
+    return type.slice(1, type.length - 1);
+  }
+  return type;
+}
+
+export function leaveStringQuotes(str: string) {
+  const doubleQuotes = /^"(?<str>[a-zA-Z0-9=;\/\+\-\s]*)"$/g;
+  const singleQuote = /^'(?<str>[a-zA-Z0-9=;\/\+\-\s]*)'$/g;
+
+  return (
+    doubleQuotes.exec(str)?.groups?.str ??
+    singleQuote.exec(str)?.groups?.str ??
+    str
+  );
+}
+
+export enum TypeScriptType {
+  string,
+  date,
+  number,
+  boolean,
+  constant,
+  record,
+  array,
+  object,
+  union,
+  unknown,
+  enum
+}
+
+export function toTypeScriptTypeFromSchema(
+  schema: Schema
+): TypeScriptType | undefined {
+  if (
+    schema.type === "string" &&
+    ["date-time", "date"].includes(schema?.format ?? "")
+  ) {
+    return TypeScriptType.date;
+  } else if (schema.type !== "union" && schema.enum && schema.enum.length > 0) {
+    return TypeScriptType.enum;
+  } else if (
+    schema.isConstant === true ||
+    isConstant(schema.typeName ?? schema.type)
+  ) {
+    return TypeScriptType.constant;
+  } else if (schema.type === "number") {
+    return TypeScriptType.number;
+  } else if (schema.type === "boolean") {
+    return TypeScriptType.boolean;
+  } else if (schema.type === "string") {
+    return TypeScriptType.string;
+  } else if (schema.type === "unknown") {
+    return TypeScriptType.unknown;
+  } else if (schema.type === "union") {
+    return TypeScriptType.union;
+  } else if (schema.type === "dictionary") {
+    return TypeScriptType.record;
+  } else if (schema.type === "array") {
+    return TypeScriptType.array;
+  } else if (schema.type === "object") {
+    return TypeScriptType.object;
+  }
+}
+
+export function toTypeScriptTypeFromName(
+  typeName: string
+): TypeScriptType | undefined {
+  if (typeName === "Date") {
+    return TypeScriptType.date;
+  } else if (typeName === "string") {
+    return TypeScriptType.string;
+  } else if (typeName === "number") {
+    return TypeScriptType.number;
+  } else if (typeName === "boolean") {
+    return TypeScriptType.boolean;
+  } else if (typeName === "unknown") {
+    return TypeScriptType.unknown;
+  } else if (isConstant(typeName)) {
+    return TypeScriptType.constant;
+  } else if (isRecord(typeName)) {
+    return TypeScriptType.record;
+  } else if (isArray(typeName)) {
+    return TypeScriptType.array;
+  } else if (isUnion(typeName)) {
+    return TypeScriptType.union;
+  }
+}
+
+export function isConstant(typeName: string) {
+  const constantSet = new Set(["true", "false", "never", "null"]);
+  return (
+    constantSet.has(typeName) || isNumeric(typeName) || isQuotedString(typeName)
+  );
+}
+
+export function isNumeric(str: string) {
+  if (typeof str !== "string") return false;
+  return !isNaN(Number(str)) && !isNaN(parseFloat(str));
+}
