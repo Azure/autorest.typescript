@@ -3,20 +3,12 @@
 
 import { Schema } from "../interfaces";
 
-export function isQuotedString(type: string) {
-  return (
-    /^"([a-zA-Z0-9=;\/\+\-\s]*)"$/g.test(type) ||
-    /^'([a-zA-Z0-9=;\/\+\-\s]*)'$/g.test(type)
-  );
-}
-
 export function isRecord(type: string) {
-  return /^Record<([a-zA-Z].+),(\s*)([a-zA-Z].+)>$/g.test(type);
+  return /^Record<([a-zA-Z]+),(\s*)(?<type>.+)>$/.test(type);
 }
 
 export function getRecordType(type: string) {
-  return /Record<([a-zA-Z].+),(\s*)(?<type>[a-zA-Z].+)>/g.exec(type)?.groups
-    ?.type;
+  return /^Record<([a-zA-Z]+),(\s*)(?<type>.+)>$/.exec(type)?.groups?.type;
 }
 
 export function isArray(type: string) {
@@ -24,7 +16,7 @@ export function isArray(type: string) {
 }
 
 export function isArrayObject(type: string) {
-  return /(^Array<([a-zA-Z].+)>$)/g.test(type);
+  return /(^Array<(.+)>$)/g.test(type);
 }
 
 export function getArrayObjectType(type: string) {
@@ -41,7 +33,7 @@ export function getNativeArrayType(type: string) {
 
 export function isUnion(type: string) {
   const members = type.split("|").map((m) => m.trim());
-  return members.length > 1;
+  return members.length > 1 && !isStringLiteral(type) && !isRecord(type);
 }
 
 export function getUnionType(type: string) {
@@ -141,13 +133,28 @@ export function toTypeScriptTypeFromName(
 }
 
 export function isConstant(typeName: string) {
-  const constantSet = new Set(["true", "false", "never", "null"]);
   return (
-    constantSet.has(typeName) || isNumeric(typeName) || isQuotedString(typeName)
+    ["never", "null"].includes(typeName) ||
+    isBoolLiteral(typeName) ||
+    isNumericLiteral(typeName) ||
+    isStringLiteral(typeName)
   );
 }
 
-export function isNumeric(str: string) {
+export function isNumericLiteral(str: string) {
   if (typeof str !== "string") return false;
   return !isNaN(Number(str)) && !isNaN(parseFloat(str));
+}
+
+export function isBoolLiteral(str: string) {
+  return str === "true" || str === "false";
+}
+
+export function isStringLiteral(type: string) {
+  if (type.length < 2) {
+    return false;
+  }
+  const first = type[0],
+    last = type[type.length - 1];
+  return first === last && (first === '"' || first === "'");
 }

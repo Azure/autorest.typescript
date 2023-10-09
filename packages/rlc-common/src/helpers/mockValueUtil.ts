@@ -35,7 +35,7 @@ export function mockParameterTypeValue(
   if (schemaMap.has(type)) {
     tsType = toTypeScriptTypeFromSchema(schemaMap.get(type)!);
   }
-  // Fall back to suggest ts-type from the type iteself
+  // Fallback to suggest ts-type from the type iteself
   if (!tsType) {
     tsType = toTypeScriptTypeFromName(type);
   }
