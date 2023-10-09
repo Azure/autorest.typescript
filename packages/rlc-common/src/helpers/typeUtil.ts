@@ -150,7 +150,11 @@ export function isStringLiteral(type: string) {
   if (type.length < 2) {
     return false;
   }
-  const first = type[0],
-    last = type[type.length - 1];
-  return first === last && (first === '"' || first === "'");
+  const first = type[0];
+  const lastPos = type.length - 1;
+  return (
+    first === type[lastPos] &&
+    (first === '"' || first === "'") &&
+    type.indexOf(first, 1) === lastPos
+  );
 }

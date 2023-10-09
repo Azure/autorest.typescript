@@ -14,6 +14,7 @@ import {
   isStringLiteral,
   isUnion,
   leaveBracket,
+  leaveStringQuotes,
   toTypeScriptTypeFromName,
   toTypeScriptTypeFromSchema
 } from "../../src/helpers/typeUtil.js";
@@ -24,6 +25,7 @@ describe("#isStringLiteral", () => {
     expect(isStringLiteral(`""`)).to.be.true;
     expect(isStringLiteral(`"'xxx'"`)).to.be.true;
     expect(isStringLiteral(`"string"`)).to.be.true;
+    expect(isStringLiteral(`"string|test|aaa "`)).to.be.true;
     expect(isStringLiteral(`'string'`)).to.be.true;
     expect(isStringLiteral(`'   string  ssss '`)).to.be.true;
     expect(
@@ -36,6 +38,11 @@ describe("#isStringLiteral", () => {
   it("should return false if the string is not quoted", () => {
     expect(isStringLiteral(`string`)).to.be.false;
     expect(isStringLiteral(`true`)).to.be.false;
+    expect(isStringLiteral(`123`)).to.be.false;
+    expect(isStringLiteral(`null`)).to.be.false;
+    expect(isStringLiteral(`undefined`)).to.be.false;
+    expect(isStringLiteral(`"application/json" | "application/octet-stream"`))
+      .to.be.false;
   });
 });
 
@@ -129,11 +136,15 @@ describe("#isUnion", () => {
     expect(isUnion(`1 | "a"`)).to.be.true;
     expect(isUnion(`Record<string, string> | string`)).to.be.true;
     expect(isUnion(`string[] | string`)).to.be.true;
+    expect(isUnion(`"application/json" | "application/octet-stream"`)).to.be
+      .true;
   });
 
   it("should return false if the string is not union", () => {
     expect(isUnion(`Record<string, string | "sss">`)).to.be.false;
     expect(isUnion(`"sss | tt"`)).to.be.false;
+    expect(isUnion(`"application/json | application/octet-stream"`)).to.be
+      .false;
   });
 });
 
@@ -150,6 +161,21 @@ describe("#leaveBracket", () => {
 
   it("should return the string without bracket", () => {
     expect(leaveBracket(`" include (not in)"`)).to.equal(`" include (not in)"`);
+  });
+});
+
+describe("#leaveStringQuotes", () => {
+  it("should return the string without quotes", () => {
+    expect(leaveStringQuotes(`"string"`)).to.equal("string");
+    expect(leaveStringQuotes(`'string'`)).to.equal("string");
+  });
+
+  it("should return the string without quotes", () => {
+    expect(leaveStringQuotes(`"s" | "b"`)).to.equal(`"s" | "b"`);
+    expect(leaveStringQuotes(`'s' | 'b'`)).to.equal(`'s' | 'b'`);
+    expect(leaveStringQuotes(`"s" | 'b'`)).to.equal(`"s" | 'b'`);
+    expect(leaveStringQuotes(`true`)).to.equal(`true`);
+    expect(leaveStringQuotes(`'sss"`)).to.equal(`'sss"`);
   });
 });
 
