@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { getImmediateParentsNames } from "../buildObjectTypes";
+import { getImmediateParentsNames } from "../buildObjectTypes.js";
 import {
   ArraySchema,
   DictionarySchema,
   ObjectSchema,
   Schema,
   SchemaContext
-} from "../interfaces";
+} from "../interfaces.js";
 import {
   TypeScriptType,
   getArrayObjectType,
@@ -21,7 +21,7 @@ import {
   leaveStringQuotes,
   toTypeScriptTypeFromName,
   toTypeScriptTypeFromSchema
-} from "./typeUtil";
+} from "./typeUtil.js";
 
 export function mockParameterTypeValue(
   type: string,
@@ -172,7 +172,7 @@ function mockObjectValues(
 
   // add parents' properties
   const parents = getAllParents(schema, schemaMap);
-  for (let parent of parents) {
+  for (const parent of parents) {
     extractObjectProperties(
       (parent as ObjectSchema)?.properties ?? {},
       schemaMap,
@@ -203,7 +203,7 @@ function getAllParents(
       return;
     }
     const parents = getImmediateParentsNames(root, [SchemaContext.Input]);
-    for (let parent of parents) {
+    for (const parent of parents) {
       if (isVisited.has(parent)) {
         continue;
       }
@@ -237,7 +237,7 @@ function extractObjectProperties(
       schemaMap.set(propType, propertySchema);
     }
     allPropNames.add(propName);
-    let propRetValue =
+    const propRetValue =
       `${propName}: ` +
       mockParameterTypeValue(propType, propName, schemaMap, path);
     values.push(propRetValue);

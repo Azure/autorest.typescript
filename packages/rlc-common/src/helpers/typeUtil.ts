@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Schema } from "../interfaces";
+import { Schema } from "../interfaces.js";
 
 export function isRecord(type: string) {
   return /^Record<([a-zA-Z]+),(\s*)(?<type>.+)>$/.test(type);
@@ -50,14 +50,10 @@ export function leaveBracket(type: string) {
 }
 
 export function leaveStringQuotes(str: string) {
-  const doubleQuotes = /^"(?<str>[a-zA-Z0-9=;\/\+\-\s]*)"$/g;
-  const singleQuote = /^'(?<str>[a-zA-Z0-9=;\/\+\-\s]*)'$/g;
-
-  return (
-    doubleQuotes.exec(str)?.groups?.str ??
-    singleQuote.exec(str)?.groups?.str ??
-    str
-  );
+  if (isStringLiteral(str)) {
+    return str.slice(1, str.length - 1);
+  }
+  return str;
 }
 
 export enum TypeScriptType {
