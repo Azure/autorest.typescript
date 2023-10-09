@@ -259,7 +259,6 @@ describe("Responses.ts", () => {
       const parameters = await emitResponsesFromTypeSpec(tsp, false);
       const models = await emitModelsFromTypeSpec(tsp, false);
       assert.ok(parameters);
-      // console.log(models);
       assertEqualContent(
         models?.outputModelFile?.content!,
         `
