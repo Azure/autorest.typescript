@@ -239,5 +239,21 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "parameters/spread",
     inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
   }
 ];
