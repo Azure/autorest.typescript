@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import "mocha";
 import {
+  TypeScriptType,
   getArrayObjectType,
   getNativeArrayType,
   getRecordType,
@@ -12,7 +13,9 @@ import {
   isRecord,
   isStringLiteral,
   isUnion,
-  leaveBracket
+  leaveBracket,
+  toTypeScriptTypeFromName,
+  toTypeScriptTypeFromSchema
 } from "../../src/helpers/typeUtil.js";
 
 describe("#isStringLiteral", () => {
@@ -147,5 +150,87 @@ describe("#leaveBracket", () => {
 
   it("should return the string without bracket", () => {
     expect(leaveBracket(`" include (not in)"`)).to.equal(`" include (not in)"`);
+  });
+});
+
+describe("#toTypeScriptTypeFromName", () => {
+  it("should return the typeScriptType from the type name", () => {
+    expect(toTypeScriptTypeFromName("string")).to.equal(TypeScriptType.string);
+    expect(toTypeScriptTypeFromName("number")).to.equal(TypeScriptType.number);
+    expect(toTypeScriptTypeFromName("boolean")).to.equal(
+      TypeScriptType.boolean
+    );
+    expect(toTypeScriptTypeFromName("Date")).to.equal(TypeScriptType.date);
+    expect(toTypeScriptTypeFromName("string[]")).to.equal(TypeScriptType.array);
+    expect(toTypeScriptTypeFromName("Record<string, string>")).to.equal(
+      TypeScriptType.record
+    );
+    expect(toTypeScriptTypeFromName("Date | string")).to.equal(
+      TypeScriptType.union
+    );
+    expect(toTypeScriptTypeFromName(`"constant"`)).to.equal(
+      TypeScriptType.constant
+    );
+    expect(toTypeScriptTypeFromName("unknown")).to.equal(
+      TypeScriptType.unknown
+    );
+  });
+
+  it("should return undefined if the type name is not supported", () => {
+    expect(toTypeScriptTypeFromName("unknownType")).to.be.undefined;
+  });
+});
+
+describe("#toTypeScriptTypeFromSchema", () => {
+  it("should return the typeScriptType from the schema", () => {
+    expect(
+      toTypeScriptTypeFromSchema({ type: "string", name: "foo" })
+    ).to.equal(TypeScriptType.string);
+    expect(
+      toTypeScriptTypeFromSchema({ type: "number", name: "foo" })
+    ).to.equal(TypeScriptType.number);
+    expect(
+      toTypeScriptTypeFromSchema({ type: "boolean", name: "foo" })
+    ).to.equal(TypeScriptType.boolean);
+    expect(
+      toTypeScriptTypeFromSchema({
+        type: "string",
+        format: "date",
+        name: "foo"
+      })
+    ).to.equal(TypeScriptType.date);
+    expect(
+      toTypeScriptTypeFromSchema({ type: "object", name: "foo" })
+    ).to.equal(TypeScriptType.object);
+    expect(toTypeScriptTypeFromSchema({ type: "array", name: "foo" })).to.equal(
+      TypeScriptType.array
+    );
+    expect(
+      toTypeScriptTypeFromSchema({ type: "dictionary", name: "foo" })
+    ).to.equal(TypeScriptType.record);
+    expect(toTypeScriptTypeFromSchema({ type: "union", name: "foo" })).to.equal(
+      TypeScriptType.union
+    );
+    expect(
+      toTypeScriptTypeFromSchema({
+        type: "string",
+        enum: ["val1", "val2"],
+        name: "foo"
+      })
+    ).to.equal(TypeScriptType.enum);
+    expect(
+      toTypeScriptTypeFromSchema({
+        isConstant: true,
+        name: "foo",
+        type: `"test"`
+      })
+    ).to.equal(TypeScriptType.constant);
+    expect(
+      toTypeScriptTypeFromSchema({ type: "unknown", name: "foo" })
+    ).to.equal(TypeScriptType.unknown);
+  });
+  it("should return undefined if the schema is not supported", () => {
+    expect(toTypeScriptTypeFromSchema({ type: "unknownType", name: "foo" })).to
+      .be.undefined;
   });
 });
