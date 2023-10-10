@@ -28,10 +28,11 @@ export class TwoOperationGroupClient {
   private _client: ServiceContext;
 
   constructor(
+    endpoint: string,
     client: ClientType,
     options: TwoOperationGroupClientOptions = {}
   ) {
-    this._client = createTwoOperationGroup(client, options);
+    this._client = createTwoOperationGroup(endpoint, client, options);
   }
 
   group1 = {

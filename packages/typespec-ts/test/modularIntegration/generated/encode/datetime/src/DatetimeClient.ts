@@ -24,6 +24,10 @@ import {
   HeaderRfc7231Options,
   HeaderUnixTimestampOptions,
   HeaderUnixTimestampArrayOptions,
+  ResponseHeaderDefaultOptions,
+  ResponseHeaderRfc3339Options,
+  ResponseHeaderRfc7231Options,
+  ResponseHeaderUnixTimestampOptions,
 } from "./models/options.js";
 import {
   createDatetime,
@@ -44,6 +48,10 @@ import {
   queryRfc7231,
   queryUnixTimestamp,
   queryUnixTimestampArray,
+  responseHeaderDefault,
+  responseHeaderRfc3339,
+  responseHeaderRfc7231,
+  responseHeaderUnixTimestamp,
 } from "./api/index.js";
 
 export { DatetimeClientOptions } from "./api/DatetimeContext.js";
@@ -132,6 +140,22 @@ export class DatetimeClient {
       options?: HeaderUnixTimestampArrayOptions
     ): Promise<void> => {
       return headerUnixTimestampArray(this._client, value, options);
+    },
+  };
+  responseHeader = {
+    default: (options?: ResponseHeaderDefaultOptions): Promise<void> => {
+      return responseHeaderDefault(this._client, options);
+    },
+    rfc3339: (options?: ResponseHeaderRfc3339Options): Promise<void> => {
+      return responseHeaderRfc3339(this._client, options);
+    },
+    rfc7231: (options?: ResponseHeaderRfc7231Options): Promise<void> => {
+      return responseHeaderRfc7231(this._client, options);
+    },
+    unixTimestamp: (
+      options?: ResponseHeaderUnixTimestampOptions
+    ): Promise<void> => {
+      return responseHeaderUnixTimestamp(this._client, options);
     },
   };
 }

@@ -21,8 +21,12 @@ export { AClientOptions } from "./api/AContext.js";
 export class AClient {
   private _client: ServiceContext;
 
-  constructor(client: ClientType, options: AClientOptions = {}) {
-    this._client = createA(client, options);
+  constructor(
+    endpoint: string,
+    client: ClientType,
+    options: AClientOptions = {}
+  ) {
+    this._client = createA(endpoint, client, options);
   }
 
   renamedOne(

@@ -21,8 +21,12 @@ export { BClientOptions } from "./api/BContext.js";
 export class BClient {
   private _client: ServiceContext;
 
-  constructor(client: ClientType, options: BClientOptions = {}) {
-    this._client = createB(client, options);
+  constructor(
+    endpoint: string,
+    client: ClientType,
+    options: BClientOptions = {}
+  ) {
+    this._client = createB(endpoint, client, options);
   }
 
   renamedTwo(

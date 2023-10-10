@@ -124,3 +124,65 @@ export interface HeaderBase64urlArrayHeaderParam {
 
 export type HeaderBase64urlArrayParameters = HeaderBase64urlArrayHeaderParam &
   RequestParameters;
+
+export interface RequestBodyDefaultBodyParam {
+  body: string;
+}
+
+export type RequestBodyDefaultParameters = RequestBodyDefaultBodyParam &
+  RequestParameters;
+
+export interface RequestBodyOctetStreamBodyParam {
+  /** Value may contain any sequence of octets */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface RequestBodyOctetStreamMediaTypesParam {
+  contentType: "application/octet-stream";
+}
+
+export type RequestBodyOctetStreamParameters =
+  RequestBodyOctetStreamMediaTypesParam &
+    RequestBodyOctetStreamBodyParam &
+    RequestParameters;
+
+export interface RequestBodyCustomContentTypeBodyParam {
+  /** Value may contain any sequence of octets */
+  body:
+    | string
+    | Uint8Array
+    | ReadableStream<Uint8Array>
+    | NodeJS.ReadableStream;
+}
+
+export interface RequestBodyCustomContentTypeMediaTypesParam {
+  contentType: "image/png";
+}
+
+export type RequestBodyCustomContentTypeParameters =
+  RequestBodyCustomContentTypeMediaTypesParam &
+    RequestBodyCustomContentTypeBodyParam &
+    RequestParameters;
+
+export interface RequestBodyBase64BodyParam {
+  body: string;
+}
+
+export type RequestBodyBase64Parameters = RequestBodyBase64BodyParam &
+  RequestParameters;
+
+export interface RequestBodyBase64urlBodyParam {
+  body: string;
+}
+
+export type RequestBodyBase64urlParameters = RequestBodyBase64urlBodyParam &
+  RequestParameters;
+export type ResponseBodyDefaultParameters = RequestParameters;
+export type ResponseBodyOctetStreamParameters = RequestParameters;
+export type ResponseBodyCustomContentTypeParameters = RequestParameters;
+export type ResponseBodyBase64Parameters = RequestParameters;
+export type ResponseBodyBase64urlParameters = RequestParameters;
