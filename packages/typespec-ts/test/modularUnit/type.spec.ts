@@ -110,7 +110,7 @@ describe("model type", () => {
   });
 
   describe.only("anonymous model", () => {
-    it("number enum", async () => {
+    it("property with anonymous model", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
           color: {
