@@ -106,7 +106,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "review/*"
     ],
     engines: {
-      node: ">=14.0.0"
+      node: ">=16.0.0"
     },
     scripts: {
       audit:
@@ -172,7 +172,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
-      "@types/node": "^14.0.0",
+      "@types/node": "^16.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
