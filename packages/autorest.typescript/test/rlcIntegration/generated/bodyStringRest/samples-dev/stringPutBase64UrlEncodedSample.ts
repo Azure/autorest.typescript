@@ -16,7 +16,7 @@ dotenv.config();
  * @summary Put value that is base64url encoded
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_putBase64UrlEncoded.json
  */
-async function stringPutNull() {
+async function stringPutBase64UrlEncoded() {
   const client = createBodyStringRestClient();
   const options: StringPutBase64UrlEncodedParameters = {
     body: "YSBzdHJpbmcgdGhhdCBnZXRzIGVuY29kZWQgd2l0aCBiYXNlNjR1cmw"
@@ -26,7 +26,7 @@ async function stringPutNull() {
 }
 
 async function main() {
-  stringPutNull();
+  stringPutBase64UrlEncoded();
 }
 
 main().catch(console.error);

@@ -36,8 +36,12 @@ export class ServiceClient {
    * 5. have two clients with operations come from different interfaces
    * 6. have two clients with a hierarchy relation.
    */
-  constructor(client: ClientType, options: ServiceClientOptions = {}) {
-    this._client = createService(client, options);
+  constructor(
+    endpoint: string,
+    client: ClientType,
+    options: ServiceClientOptions = {}
+  ) {
+    this._client = createService(endpoint, client, options);
   }
 
   one(options: OneOptions = { requestOptions: {} }): Promise<void> {
