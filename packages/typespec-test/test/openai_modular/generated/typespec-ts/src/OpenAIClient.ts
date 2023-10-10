@@ -37,6 +37,7 @@ export { OpenAIClientOptions } from "./api/OpenAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Azure OpenAI APIs for completions and search */

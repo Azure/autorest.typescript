@@ -48,6 +48,7 @@ export { ContentSafetyClientOptions } from "./api/ContentSafetyContext.js";
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Analyze harmful content */

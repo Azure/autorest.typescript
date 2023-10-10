@@ -65,7 +65,6 @@ export class WidgetServiceClient {
     deleteWidget(id: string, options?: DeleteWidgetOptions): Promise<void>;
     getWidget(id: string, options?: GetWidgetOptions): Promise<Widget>;
     listWidgets(options?: ListWidgetsOptions): Promise<Widget[]>;
-    // (undocumented)
     readonly pipeline: Pipeline;
     updateWidget(id: string, body: UpdateWidget, options?: UpdateWidgetOptions): Promise<Widget>;
 }

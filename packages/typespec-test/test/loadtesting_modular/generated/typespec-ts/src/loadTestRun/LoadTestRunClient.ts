@@ -55,6 +55,7 @@ export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
 
 export class LoadTestRunClient {
   private _client: AzureLoadTestingContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   constructor(

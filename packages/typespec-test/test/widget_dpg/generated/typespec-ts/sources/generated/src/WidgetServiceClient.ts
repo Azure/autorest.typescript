@@ -32,6 +32,7 @@ export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   constructor(endpoint: string, options: WidgetServiceClientOptions = {}) {

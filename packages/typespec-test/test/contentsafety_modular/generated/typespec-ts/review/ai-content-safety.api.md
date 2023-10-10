@@ -77,7 +77,6 @@ export class ContentSafetyClient {
     getTextBlocklistItem(blocklistName: string, blockItemId: string, options?: GetTextBlocklistItemOptions): Promise<TextBlockItem>;
     listTextBlocklistItems(blocklistName: string, options?: ListTextBlocklistItemsOptions): Promise<PagedTextBlockItem>;
     listTextBlocklists(options?: ListTextBlocklistsOptions): Promise<PagedTextBlocklist>;
-    // (undocumented)
     readonly pipeline: Pipeline;
     removeBlockItems(blocklistName: string, body: RemoveBlockItemsOptions, options?: RemoveBlockItemsRequestOptions): Promise<void>;
 }

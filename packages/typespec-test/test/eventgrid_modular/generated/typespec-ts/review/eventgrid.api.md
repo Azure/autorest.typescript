@@ -49,7 +49,6 @@ export interface CloudEvent {
 export class EventGridClient {
     constructor(endpoint: string, credential: KeyCredential, options?: EventGridClientOptions);
     acknowledgeCloudEvents(topicName: string, eventSubscriptionName: string, lockTokens: AcknowledgeOptions, options?: AcknowledgeCloudEventsOptions): Promise<AcknowledgeResult>;
-    // (undocumented)
     readonly pipeline: Pipeline;
     publishCloudEvent(topicName: string, event: CloudEvent, options?: PublishCloudEventOptions): Promise<Record<string, any>>;
     publishCloudEvents(topicName: string, events: CloudEvent[], options?: PublishCloudEventsOptions): Promise<Record<string, any>>;

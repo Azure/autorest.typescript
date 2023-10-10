@@ -47,6 +47,7 @@ export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministratio
 
 export class LoadTestAdministrationClient {
   private _client: AzureLoadTestingContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   constructor(

@@ -277,7 +277,6 @@ export class OpenAIClient {
     getChatCompletionsWithAzureExtensions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsWithAzureExtensionsOptions): Promise<ChatCompletions>;
     getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptions): Promise<Embeddings>;
-    // (undocumented)
     readonly pipeline: Pipeline;
 }
 

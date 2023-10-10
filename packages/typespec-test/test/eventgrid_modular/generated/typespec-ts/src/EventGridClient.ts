@@ -37,6 +37,7 @@ export { EventGridClientOptions } from "./api/EventGridContext.js";
 
 export class EventGridClient {
   private _client: EventGridContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Azure Messaging EventGrid Client */
