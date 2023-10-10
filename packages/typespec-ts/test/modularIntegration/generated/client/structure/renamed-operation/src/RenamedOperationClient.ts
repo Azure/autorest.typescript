@@ -29,9 +29,12 @@ export class RenamedOperationClient {
   private _client: ServiceContext;
   public readonly pipeline: Pipeline;
 
-  constructor(client: ClientType, options: RenamedOperationClientOptions = {}) {
-    this._client = createRenamedOperation(client, options);
+  constructor(
+    endpoint: string,
     this.pipeline = this._client.pipeline;
+    options: RenamedOperationClientOptions = {}
+  ) {
+    this._client = createRenamedOperation(endpoint, client, options);
   }
 
   group = {

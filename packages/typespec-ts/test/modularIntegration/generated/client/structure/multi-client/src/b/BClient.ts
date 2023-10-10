@@ -23,9 +23,11 @@ export class BClient {
   private _client: ServiceContext;
   public readonly pipeline: Pipeline;
 
-  constructor(client: ClientType, options: BClientOptions = {}) {
-    this._client = createB(client, options);
-    this.pipeline = this._client.pipeline;
+  constructor(
+    endpoint: string,
+    options: BClientOptions = {}
+  ) {
+    this._client = createB(endpoint, client, options);
   }
 
   renamedTwo(

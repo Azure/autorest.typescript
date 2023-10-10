@@ -20,10 +20,10 @@ export { ServiceContext } from "../rest/index.js";
  * 6. have two clients with a hierarchy relation.
  */
 export function createService(
+  endpoint: string,
   client: ClientType,
   options: ServiceClientOptions = {}
 ): ServiceContext {
-  const baseUrl = client;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(endpoint, client, options);
   return clientContext;
 }

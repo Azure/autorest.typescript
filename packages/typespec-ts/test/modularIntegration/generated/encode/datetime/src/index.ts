@@ -23,4 +23,8 @@ export {
   HeaderRfc7231Options,
   HeaderUnixTimestampOptions,
   HeaderUnixTimestampArrayOptions,
+  ResponseHeaderDefaultOptions,
+  ResponseHeaderRfc3339Options,
+  ResponseHeaderRfc7231Options,
+  ResponseHeaderUnixTimestampOptions,
 } from "./models/index.js";

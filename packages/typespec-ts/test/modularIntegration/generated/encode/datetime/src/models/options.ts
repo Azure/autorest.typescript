@@ -32,3 +32,11 @@ export interface HeaderRfc7231Options extends OperationOptions {}
 export interface HeaderUnixTimestampOptions extends OperationOptions {}
 
 export interface HeaderUnixTimestampArrayOptions extends OperationOptions {}
+
+export interface ResponseHeaderDefaultOptions extends OperationOptions {}
+
+export interface ResponseHeaderRfc3339Options extends OperationOptions {}
+
+export interface ResponseHeaderRfc7231Options extends OperationOptions {}
+
+export interface ResponseHeaderUnixTimestampOptions extends OperationOptions {}

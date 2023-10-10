@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { KeyCredential } from "@azure/core-auth";
 import { ClientOptions } from "@azure-rest/core-client";
 import { EventGridContext } from "../rest/index.js";
-import { KeyCredential } from "@azure/core-auth";
 import getClient from "../rest/index.js";
 
 export interface EventGridClientOptions extends ClientOptions {}
@@ -16,11 +16,6 @@ export function createEventGrid(
   credential: KeyCredential,
   options: EventGridClientOptions = {}
 ): EventGridContext {
-  const baseUrl = endpoint;
-  options.credentials = {
-    ...options.credentials,
-    apiKeyHeaderName: "SharedAccessKey",
-  };
-  const clientContext = getClient(baseUrl, credential, options);
+  const clientContext = getClient(endpoint, credential, options);
   return clientContext;
 }

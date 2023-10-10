@@ -103,7 +103,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "models/propertyOptional",
-    inputPath: "type/property/optional"
+    inputPath: "type/property/optionality"
   },
   {
     outputPath: "models/propertyNullable",
@@ -243,10 +243,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "authentication/api-key",
     inputPath: "authentication/api-key"
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
   },
   {
     outputPath: "authentication/http-custom",
     inputPath: "authentication/http/custom"
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
   },
   {
     outputPath: "authentication/oauth2",

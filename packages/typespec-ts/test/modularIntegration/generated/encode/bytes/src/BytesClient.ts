@@ -21,6 +21,16 @@ import {
   HeaderBase64Options,
   HeaderBase64urlOptions,
   HeaderBase64urlArrayOptions,
+  RequestBodyDefaultOptions,
+  RequestBodyOctetStreamOptions,
+  RequestBodyCustomContentTypeOptions,
+  RequestBodyBase64Options,
+  RequestBodyBase64urlOptions,
+  ResponseBodyDefaultOptions,
+  ResponseBodyOctetStreamOptions,
+  ResponseBodyCustomContentTypeOptions,
+  ResponseBodyBase64Options,
+  ResponseBodyBase64urlOptions,
 } from "./models/options.js";
 import {
   createBytes,
@@ -38,6 +48,16 @@ import {
   queryBase64,
   queryBase64url,
   queryBase64urlArray,
+  requestBodyDefault,
+  requestBodyOctetStream,
+  requestBodyCustomContentType,
+  requestBodyBase64,
+  requestBodyBase64url,
+  responseBodyDefault,
+  responseBodyOctetStream,
+  responseBodyCustomContentType,
+  responseBodyBase64,
+  responseBodyBase64url,
 } from "./api/index.js";
 
 export { BytesClientOptions } from "./api/BytesContext.js";
@@ -128,6 +148,61 @@ export class BytesClient {
       options?: HeaderBase64urlArrayOptions
     ): Promise<void> => {
       return headerBase64urlArray(this._client, value, options);
+    },
+  };
+  requestBody = {
+    default: (
+      value: Uint8Array,
+      options?: RequestBodyDefaultOptions
+    ): Promise<void> => {
+      return requestBodyDefault(this._client, value, options);
+    },
+    octetStream: (
+      value: Uint8Array,
+      options?: RequestBodyOctetStreamOptions
+    ): Promise<void> => {
+      return requestBodyOctetStream(this._client, value, options);
+    },
+    customContentType: (
+      value: Uint8Array,
+      options?: RequestBodyCustomContentTypeOptions
+    ): Promise<void> => {
+      return requestBodyCustomContentType(this._client, value, options);
+    },
+    base64: (
+      value: Uint8Array,
+      options?: RequestBodyBase64Options
+    ): Promise<void> => {
+      return requestBodyBase64(this._client, value, options);
+    },
+    base64url: (
+      value: Uint8Array,
+      options?: RequestBodyBase64urlOptions
+    ): Promise<void> => {
+      return requestBodyBase64url(this._client, value, options);
+    },
+  };
+  responseBody = {
+    default: (options?: ResponseBodyDefaultOptions): Promise<Uint8Array> => {
+      return responseBodyDefault(this._client, options);
+    },
+    octetStream: (
+      options?: ResponseBodyOctetStreamOptions
+    ): Promise<Uint8Array> => {
+      return responseBodyOctetStream(this._client, options);
+    },
+    customContentType: (
+      options?: ResponseBodyCustomContentTypeOptions
+    ): Promise<Uint8Array> => {
+      return responseBodyCustomContentType(this._client, options);
+    },
+    base64: (options?: ResponseBodyBase64Options): Promise<Uint8Array> => {
+      return responseBodyBase64(this._client, options);
+    },
+    base64url: (
+      options?: ResponseBodyBase64urlOptions
+    ): Promise<Uint8Array> => {
+      return responseBodyBase64url(this._client, options);
     },
   };
 }
