@@ -293,7 +293,7 @@ describe("Client Factory generation", () => {
               const endpoint = options.endpoint ?? "http://localhost:3000";
               const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
             
-              const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+              const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
               const userAgentPrefix =
                 options.userAgentOptions && options.userAgentOptions.userAgentPrefix
                   ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
