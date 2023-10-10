@@ -67,7 +67,8 @@ export function buildClassicalClient(
     name: "pipeline",
     type: "Pipeline",
     scope: Scope.Public,
-    isReadonly: true
+    isReadonly: true,
+    docs: ["The pipeline used by this client to make requests"]
   });
 
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.

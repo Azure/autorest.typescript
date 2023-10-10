@@ -16,6 +16,7 @@ export { OAuth2ClientOptions } from "./api/OAuth2Context.js";
 
 export class OAuth2Client {
   private _client: OAuth2Context;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with OAuth2 authentication. */

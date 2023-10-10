@@ -23,6 +23,7 @@ export { SpreadClientOptions } from "./api/SpreadContext.js";
 
 export class SpreadClient {
   private _client: SpreadContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Test for the spread operator. */

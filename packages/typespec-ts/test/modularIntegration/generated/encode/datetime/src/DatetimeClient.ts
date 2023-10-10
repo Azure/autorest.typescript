@@ -59,6 +59,7 @@ export { DatetimeClientOptions } from "./api/DatetimeContext.js";
 
 export class DatetimeClient {
   private _client: DatetimeContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on datetime. */

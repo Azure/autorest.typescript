@@ -14,6 +14,7 @@ export { RequestIdClientOptions } from "./api/RequestIdContext.js";
 
 export class RequestIdClient {
   private _client: RequestIdClientContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Azure client request id header configurations. */

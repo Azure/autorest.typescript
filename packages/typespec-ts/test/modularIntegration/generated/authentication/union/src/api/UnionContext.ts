@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { ClientOptions } from "@azure-rest/core-client";
 import { UnionContext } from "../rest/index.js";
-import { KeyCredential } from "@azure/core-auth";
-import { TokenCredential } from "@azure/core-auth";
 import getClient from "../rest/index.js";
 
 export interface UnionClientOptions extends ClientOptions {}

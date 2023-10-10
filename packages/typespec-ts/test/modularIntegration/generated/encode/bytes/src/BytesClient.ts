@@ -64,6 +64,7 @@ export { BytesClientOptions } from "./api/BytesContext.js";
 
 export class BytesClient {
   private _client: BytesContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on bytes. */

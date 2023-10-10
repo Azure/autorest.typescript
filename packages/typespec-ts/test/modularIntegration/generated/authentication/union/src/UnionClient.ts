@@ -16,6 +16,7 @@ export { UnionClientOptions } from "./api/UnionContext.js";
 
 export class UnionClient {
   private _client: UnionContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with ApiKey and OAuth2 authentication. */

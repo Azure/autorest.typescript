@@ -16,6 +16,7 @@ export { CustomClientOptions } from "./api/CustomContext.js";
 
 export class CustomClient {
   private _client: CustomContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with generic HTTP auth. */

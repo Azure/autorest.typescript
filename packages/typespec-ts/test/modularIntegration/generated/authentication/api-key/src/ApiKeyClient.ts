@@ -16,6 +16,7 @@ export { ApiKeyClientOptions } from "./api/ApiKeyContext.js";
 
 export class ApiKeyClient {
   private _client: ApiKeyContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with ApiKey authentication. */

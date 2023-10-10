@@ -31,6 +31,7 @@ export { BasicClientOptions } from "./api/BasicContext.js";
 
 export class BasicClient {
   private _client: BasicContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Illustrates bodies templated with Azure Core */

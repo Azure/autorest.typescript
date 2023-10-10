@@ -27,6 +27,7 @@ export { ServiceClientOptions } from "./api/ServiceContext.js";
 
 export class ServiceClient {
   private _client: ServiceContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /**
@@ -40,10 +41,11 @@ export class ServiceClient {
    */
   constructor(
     endpoint: string,
-    this.pipeline = this._client.pipeline;
+    client: ClientType,
     options: ServiceClientOptions = {}
   ) {
     this._client = createService(endpoint, client, options);
+    this.pipeline = this._client.pipeline;
   }
 
   one(options: OneOptions = { requestOptions: {} }): Promise<void> {

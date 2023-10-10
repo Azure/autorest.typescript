@@ -25,6 +25,7 @@ export { UsageClientOptions } from "./api/UsageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Illustrates usage of Record in different places(Operation parameters, return type or both). */

@@ -51,6 +51,7 @@ export { DurationClientOptions } from "./api/DurationContext.js";
 
 export class DurationClient {
   private _client: DurationContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on duration. */

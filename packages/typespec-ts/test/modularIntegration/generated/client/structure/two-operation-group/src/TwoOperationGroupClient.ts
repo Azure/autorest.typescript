@@ -27,6 +27,7 @@ export { TwoOperationGroupClientOptions } from "./api/TwoOperationGroupContext.j
 
 export class TwoOperationGroupClient {
   private _client: ServiceContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   constructor(

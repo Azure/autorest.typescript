@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { TokenCredential } from "@azure/core-auth";
 import { ClientOptions } from "@azure-rest/core-client";
 import { OAuth2Context } from "../rest/index.js";
-import { TokenCredential } from "@azure/core-auth";
 import getClient from "../rest/index.js";
 
 export interface OAuth2ClientOptions extends ClientOptions {}

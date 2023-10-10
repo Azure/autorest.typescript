@@ -26,6 +26,7 @@ export { CollectionFormatClientOptions } from "./api/CollectionFormatContext.js"
 
 export class CollectionFormatClient {
   private _client: CollectionFormatContext;
+  /** The pipeline used by this client to make requests */
   public readonly pipeline: Pipeline;
 
   /** Test for collectionFormat. */
