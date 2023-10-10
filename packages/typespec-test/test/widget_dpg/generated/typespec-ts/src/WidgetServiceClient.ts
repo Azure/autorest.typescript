@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   Widget,
   CreateWidget,
@@ -31,9 +32,11 @@ export { WidgetServiceClientOptions } from "./api/WidgetServiceContext.js";
 
 export class WidgetServiceClient {
   private _client: WidgetServiceContext;
+  public readonly pipeline: Pipeline;
 
   constructor(endpoint: string, options: WidgetServiceClientOptions = {}) {
     this._client = createWidgetService(endpoint, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /**

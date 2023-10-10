@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   FileInfo,
   TestRun,
@@ -54,6 +55,7 @@ export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
 
 export class LoadTestRunClient {
   private _client: AzureLoadTestingContext;
+  public readonly pipeline: Pipeline;
 
   constructor(
     endpoint: string,
@@ -61,6 +63,7 @@ export class LoadTestRunClient {
     options: LoadTestRunClientOptions = {}
   ) {
     this._client = createLoadTestRun(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Create and start a new test run with the given name. */

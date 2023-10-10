@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   Test,
   FileInfo,
@@ -46,6 +47,7 @@ export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministratio
 
 export class LoadTestAdministrationClient {
   private _client: AzureLoadTestingContext;
+  public readonly pipeline: Pipeline;
 
   constructor(
     endpoint: string,
@@ -53,6 +55,7 @@ export class LoadTestAdministrationClient {
     options: LoadTestAdministrationClientOptions = {}
   ) {
     this._client = createLoadTestAdministration(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Create a new test or update an existing test. */

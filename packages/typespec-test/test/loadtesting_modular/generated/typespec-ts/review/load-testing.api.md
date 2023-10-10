@@ -6,6 +6,7 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
@@ -191,6 +192,8 @@ export class LoadTestAdministrationClient {
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptions): Promise<FileInfo>;
     listTestFiles(testId: string, options?: ListTestFilesOptions): Promise<PagedFileInfo>;
     listTests(options?: ListTestsOptions): Promise<PagedTest>;
+    // (undocumented)
+    readonly pipeline: Pipeline;
     uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptions): Promise<FileInfo>;
 }
 
@@ -229,6 +232,8 @@ export class LoadTestRunClient {
     listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptions): Promise<PagedTimeSeriesElement>;
     // Warning: (ae-forgotten-export) The symbol "PagedTestRun" needs to be exported by the entry point index.d.ts
     listTestRuns(options?: ListTestRunsOptions): Promise<PagedTestRun>;
+    // (undocumented)
+    readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
     testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
 }

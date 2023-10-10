@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   AnalyzeTextOptions,
   AnalyzeTextResult,
@@ -47,6 +48,7 @@ export { ContentSafetyClientOptions } from "./api/ContentSafetyContext.js";
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;
+  public readonly pipeline: Pipeline;
 
   /** Analyze harmful content */
   constructor(
@@ -55,6 +57,7 @@ export class ContentSafetyClient {
     options: ContentSafetyClientOptions = {}
   ) {
     this._client = createContentSafety(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
