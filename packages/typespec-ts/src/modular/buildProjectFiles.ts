@@ -242,7 +242,7 @@ export function emitPackage(
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] =
-      'mocha --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+      'mocha --full-trace "test/{,!(browser)/**/}*.spec.ts"';
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";

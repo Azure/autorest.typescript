@@ -153,7 +153,3 @@ export interface HeaderUnixTimestampArrayHeaderParam {
 
 export type HeaderUnixTimestampArrayParameters =
   HeaderUnixTimestampArrayHeaderParam & RequestParameters;
-export type ResponseHeaderDefaultParameters = RequestParameters;
-export type ResponseHeaderRfc3339Parameters = RequestParameters;
-export type ResponseHeaderRfc7231Parameters = RequestParameters;
-export type ResponseHeaderUnixTimestampParameters = RequestParameters;

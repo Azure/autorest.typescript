@@ -281,6 +281,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       'nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
+
     if (azureSdkForJs) {
       packageInfo.scripts["build:test"] = "tsc -p . && dev-tool run bundle";
       packageInfo.scripts["integration-test:browser"] =
@@ -291,14 +292,16 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-js-input -- --timeout 5000000 'dist-esm/test/**/*.spec.js'";
     }
+
     if (isTypeSpecTest) {
+      // for ESM packages we use ts-node/esm loader and don't need '-r esm --require ts-node/register'
       packageInfo["mocha"] = {
         extension: ["ts"],
         timeout: "1200000",
         loader: "ts-node/esm"
       };
       packageInfo.scripts["unit-test:node"] =
-        'mocha --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+        'mocha --full-trace "test/{,!(browser)/**/}*.spec.ts"';
       packageInfo.scripts["integration-test:node"] =
         'nyc mocha --require source-map-support/register --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     }
