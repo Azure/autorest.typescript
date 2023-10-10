@@ -59,6 +59,14 @@ export function buildClassicalClient(
     });
   }
 
+  // Add the pipeline member. This will be the pipeline from /api
+  clientClass.addProperty({
+    name: "pipeline",
+    type: "Pipeline",
+    scope: Scope.Public,
+    isReadonly: true
+  });
+
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: getDocsFromDescription(description),
@@ -69,7 +77,9 @@ export function buildClassicalClient(
       .map((p) => p.name)
       .join(",")})`
   ]);
+  constructor.addStatements(`this.pipeline = this._client.pipeline`);
   importCredential(clientFile);
+  importPipeline(clientFile);
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(client, clientClass, subfolder);
   importAllApis(clientFile, srcPath, subfolder);
@@ -144,6 +154,13 @@ function importCredential(clientSourceFile: SourceFile): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier: "@azure/core-auth",
     namedImports: ["TokenCredential", "KeyCredential"]
+  });
+}
+
+function importPipeline(clientSourceFile: SourceFile): void {
+  clientSourceFile.addImportDeclaration({
+    moduleSpecifier: "@azure/core-rest-pipeline",
+    namedImports: ["Pipeline"]
   });
 }
 

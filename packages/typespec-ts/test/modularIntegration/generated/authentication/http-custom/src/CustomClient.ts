@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ValidOptions, InvalidOptions } from "./models/options.js";
 import {
   createCustom,
@@ -15,10 +16,12 @@ export { CustomClientOptions } from "./api/CustomContext.js";
 
 export class CustomClient {
   private _client: CustomContext;
+  public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with generic HTTP auth. */
   constructor(credential: KeyCredential, options: CustomClientOptions = {}) {
     this._client = createCustom(credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Check whether client is authenticated */

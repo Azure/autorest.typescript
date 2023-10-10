@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   createCollectionFormat,
   CollectionFormatClientOptions,
@@ -25,10 +26,12 @@ export { CollectionFormatClientOptions } from "./api/CollectionFormatContext.js"
 
 export class CollectionFormatClient {
   private _client: CollectionFormatContext;
+  public readonly pipeline: Pipeline;
 
   /** Test for collectionFormat. */
   constructor(options: CollectionFormatClientOptions = {}) {
     this._client = createCollectionFormat(options);
+    this.pipeline = this._client.pipeline;
   }
 
   query = {

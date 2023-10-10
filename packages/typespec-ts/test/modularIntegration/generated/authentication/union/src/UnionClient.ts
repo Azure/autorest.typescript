@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   validKey,
   validToken,
@@ -15,6 +16,7 @@ export { UnionClientOptions } from "./api/UnionContext.js";
 
 export class UnionClient {
   private _client: UnionContext;
+  public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with ApiKey and OAuth2 authentication. */
   constructor(
@@ -22,6 +24,7 @@ export class UnionClient {
     options: UnionClientOptions = {}
   ) {
     this._client = createUnion(credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Check whether client is authenticated */

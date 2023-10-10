@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
   RenamedOneOptions,
@@ -20,9 +21,11 @@ export { AClientOptions } from "./api/AContext.js";
 
 export class AClient {
   private _client: ServiceContext;
+  public readonly pipeline: Pipeline;
 
   constructor(client: ClientType, options: AClientOptions = {}) {
     this._client = createA(client, options);
+    this.pipeline = this._client.pipeline;
   }
 
   renamedOne(

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
   RenamedTwoOptions,
@@ -26,9 +27,11 @@ export { RenamedOperationClientOptions } from "./api/RenamedOperationContext.js"
 
 export class RenamedOperationClient {
   private _client: ServiceContext;
+  public readonly pipeline: Pipeline;
 
   constructor(client: ClientType, options: RenamedOperationClientOptions = {}) {
     this._client = createRenamedOperation(client, options);
+    this.pipeline = this._client.pipeline;
   }
 
   group = {

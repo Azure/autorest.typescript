@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ValidOptions, InvalidOptions } from "./models/options.js";
 import {
   createApiKey,
@@ -15,10 +16,12 @@ export { ApiKeyClientOptions } from "./api/ApiKeyContext.js";
 
 export class ApiKeyClient {
   private _client: ApiKeyContext;
+  public readonly pipeline: Pipeline;
 
   /** Illustrates clients generated with ApiKey authentication. */
   constructor(credential: KeyCredential, options: ApiKeyClientOptions = {}) {
     this._client = createApiKey(credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Check whether client is authenticated */

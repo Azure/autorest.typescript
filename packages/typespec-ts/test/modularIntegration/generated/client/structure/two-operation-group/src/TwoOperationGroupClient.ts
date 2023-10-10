@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
   OneOptions,
@@ -26,12 +27,14 @@ export { TwoOperationGroupClientOptions } from "./api/TwoOperationGroupContext.j
 
 export class TwoOperationGroupClient {
   private _client: ServiceContext;
+  public readonly pipeline: Pipeline;
 
   constructor(
     client: ClientType,
     options: TwoOperationGroupClientOptions = {}
   ) {
     this._client = createTwoOperationGroup(client, options);
+    this.pipeline = this._client.pipeline;
   }
 
   group1 = {
