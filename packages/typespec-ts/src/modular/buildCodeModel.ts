@@ -264,6 +264,9 @@ function processModelProperties(
   newValue: any,
   model: Model
 ) {
+  if (model.name === "") {
+    return;
+  }
   // need to do properties after insertion to avoid infinite recursion
   for (const property of model.properties.values()) {
     if (!isSchemaProperty(context.program, property)) {
@@ -969,6 +972,13 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
           }
         })
         .join("") + "List";
+  }
+  // Handle anonymous model
+  if (modelName === "") {
+    return {
+      type: "any",
+      name: `Record<string, any>`
+    };
   }
 
   return {

@@ -108,4 +108,29 @@ describe("model type", () => {
       );
     });
   });
+
+  describe("anonymous model", () => {
+    it("number enum", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+        model Test {
+          color: {
+            /** A human-readable error message. */
+            message?: string; // likely should be required, but spec doesn't say so.
+        
+            /** A machine-readable error code. */
+            code?: string;
+          };
+        }
+        op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: Record<string, any>;
+        }`
+      );
+    });
+  });
 });
