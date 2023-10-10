@@ -877,10 +877,14 @@ describe("Input/output model type", () => {
             beans: VegetableBeansOutput;
           }
           
+          export interface VegetableCarrotOutput extends Record<string, unknown> {}
+
           export interface CarrotsOutput {
             color: string;
             id: string;
           }
+          
+          export interface VegetableBeansOutput extends Record<string, unknown> {}
           
           export interface BeansOutput {
             expiry: string;
