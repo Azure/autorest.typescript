@@ -244,6 +244,77 @@ describe("Client Factory generation", () => {
           `
       );
     });
+
+    it("should handle with default value in host parameters", async () => {
+      const models = await emitClientFactoryFromTypeSpec(
+        `
+            @server(
+              "{Endpoint}/language/{Version}",
+              "Language Service",
+              {
+                Endpoint: Endpoint = "http://localhost:3000",
+                Version: Versions
+              }
+            )
+            @service( {title: "PetStoreClient"})
+            namespace PetStore;
+            @doc("The endpoint to use.")
+            scalar Endpoint extends string;
+
+            @doc("The version to use.")
+            enum Versions {
+              @doc("v1.1")
+              v1_1: "v1.1",
+            }
+            `,
+        true
+      );
+      assert.ok(models);
+      assertEqualContent(
+        models!.content,
+        `
+            import { getClient, ClientOptions } from "@azure-rest/core-client";
+            import { logger } from "./logger";
+            import { testClient } from "./clientDefinitions";
+
+            export interface testClientOptions extends ClientOptions {
+              endpoint?: string;
+            }
+
+            /**
+             * Initialize a new instance of \`testClient\`
+             * @param version - The version to use. Possible values: v1.1
+             * @param options - the parameter for all optional parameters
+             */
+            export default function createClient(
+              version: string,
+              options: testClientOptions = {}
+            ): testClient {
+              const endpoint = options.endpoint ?? "http://localhost:3000";
+              const baseUrl = options.baseUrl ?? \`\${endpoint}/language/\${version}\`;
+            
+              const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+              const userAgentPrefix =
+                options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+                  ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
+                  : \`\${userAgentInfo}\`;
+              options = {
+                ...options,
+                userAgentOptions: {
+                  userAgentPrefix,
+                },
+                loggingOptions: {
+                  logger: options.loggingOptions?.logger ?? logger.info
+                },
+              };
+            
+              const client = getClient(baseUrl, options) as testClient;
+            
+              return client;
+          }
+          `
+      );
+    });
   });
 
   describe("should handle no @server definition", () => {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
 import {
   DefaultDatetimePropertyOutput,
@@ -88,4 +89,44 @@ export interface HeaderUnixTimestamp204Response extends HttpResponse {
 /** There is no content to send for this request, but the headers may be useful. */
 export interface HeaderUnixTimestampArray204Response extends HttpResponse {
   status: "204";
+}
+
+export interface ResponseHeaderDefault204Headers {
+  value: string;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ResponseHeaderDefault204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & ResponseHeaderDefault204Headers;
+}
+
+export interface ResponseHeaderRfc3339204Headers {
+  value: string;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ResponseHeaderRfc3339204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & ResponseHeaderRfc3339204Headers;
+}
+
+export interface ResponseHeaderRfc7231204Headers {
+  value: string;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ResponseHeaderRfc7231204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & ResponseHeaderRfc7231204Headers;
+}
+
+export interface ResponseHeaderUnixTimestamp204Headers {
+  value: string;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ResponseHeaderUnixTimestamp204Response extends HttpResponse {
+  status: "204";
+  headers: RawHttpHeaders & ResponseHeaderUnixTimestamp204Headers;
 }

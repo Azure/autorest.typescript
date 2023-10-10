@@ -27,3 +27,9 @@ export {
   queryUnixTimestamp,
   queryUnixTimestampArray,
 } from "./query.js";
+export {
+  responseHeaderDefault,
+  responseHeaderRfc3339,
+  responseHeaderRfc7231,
+  responseHeaderUnixTimestamp,
+} from "./responseHeader.js";

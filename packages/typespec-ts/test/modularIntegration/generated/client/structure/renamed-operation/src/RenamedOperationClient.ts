@@ -27,8 +27,12 @@ export { RenamedOperationClientOptions } from "./api/RenamedOperationContext.js"
 export class RenamedOperationClient {
   private _client: ServiceContext;
 
-  constructor(client: ClientType, options: RenamedOperationClientOptions = {}) {
-    this._client = createRenamedOperation(client, options);
+  constructor(
+    endpoint: string,
+    client: ClientType,
+    options: RenamedOperationClientOptions = {}
+  ) {
+    this._client = createRenamedOperation(endpoint, client, options);
   }
 
   group = {
