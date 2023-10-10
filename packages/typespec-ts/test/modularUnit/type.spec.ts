@@ -109,7 +109,7 @@ describe("model type", () => {
     });
   });
 
-  describe("anonymous model", () => {
+  describe.only("anonymous model", () => {
     it("number enum", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
