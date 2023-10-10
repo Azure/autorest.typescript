@@ -216,7 +216,7 @@ function regularAutorestPackage(
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
-      packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace --reporter ../../../common/tools/mocha-multi-reporter.js test/*.ts`;
+      packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
     }
   }
   if (
