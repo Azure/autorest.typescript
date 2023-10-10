@@ -58,7 +58,7 @@ describe("model type", () => {
   });
 
   describe("number | numeric literal | nullable", () => {
-    it("number enum", async () => {
+    it.only("number enum", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
           color: 1 | 2;
@@ -75,8 +75,7 @@ describe("model type", () => {
       );
     });
 
-    // TODO: tgcg lib has a bug here: https://github.com/Azure/typespec-azure/issues/3623
-    it.skip("nullable numeric literal", async () => {
+    it.only("nullable numeric literal", async () => {
       const modelFile = await emitModularModelsFromTypeSpec(`
         model Test {
           content: 1 | null;

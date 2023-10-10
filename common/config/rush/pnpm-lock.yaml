@@ -234,7 +234,7 @@ importers:
       '@azure-tools/cadl-ranch-specs': ^0.22.2
       '@azure-tools/rlc-common': workspace:^0.17.0
       '@azure-tools/typespec-azure-core': '>=0.34.0 <1.0.0'
-      '@azure-tools/typespec-client-generator-core': 0.35.0-dev.9
+      '@azure-tools/typespec-client-generator-core': 0.35.0-dev.15
       '@azure/core-auth': ^1.3.2
       '@azure/core-lro': ^2.5.4
       '@azure/core-paging': ^1.5.0
@@ -268,7 +268,7 @@ importers:
     dependencies:
       '@azure-tools/rlc-common': link:../rlc-common
       '@azure-tools/typespec-azure-core': 0.34.0_rrr67ktvtl5sjmdurmdq3vcwqa
-      '@azure-tools/typespec-client-generator-core': 0.35.0-dev.9_vjfuylwjy63akxo42b2aelnak4
+      '@azure-tools/typespec-client-generator-core': 0.35.0-dev.15_vjfuylwjy63akxo42b2aelnak4
       '@typespec/compiler': 0.48.1
       '@typespec/http': 0.48.0_@typespec+compiler@0.48.1
       '@typespec/rest': 0.48.0_@typespec+compiler@0.48.1
@@ -515,6 +515,22 @@ packages:
       '@typespec/compiler': 0.48.1
       '@typespec/http': 0.48.0_@typespec+compiler@0.48.1
       '@typespec/rest': 0.48.0_@typespec+compiler@0.48.1
+
+  /@azure-tools/typespec-client-generator-core/0.35.0-dev.15_vjfuylwjy63akxo42b2aelnak4:
+    resolution: {integrity: sha512-yPZSXvAeuGw2CQefGyc4JOgj9Yrh/sgSpFHWKV7FfYj1ribgy59GH3FVuDoVuTqbrL+WXWrBmN6DKOBXOGfkMQ==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.48.1 || >=0.49.0-dev <0.49.0
+      '@typespec/http': ~0.48.0 || >=0.49.0-dev <0.49.0
+      '@typespec/rest': ~0.48.0 || >=0.49.0-dev <0.49.0
+      '@typespec/versioning': ~0.48.0 || >=0.49.0-dev <0.49.0
+    dependencies:
+      '@typespec/compiler': 0.48.1
+      '@typespec/http': 0.48.0_@typespec+compiler@0.48.1
+      '@typespec/lint': 0.48.0_@typespec+compiler@0.48.1
+      '@typespec/rest': 0.48.0_@typespec+compiler@0.48.1
+      '@typespec/versioning': 0.48.0_@typespec+compiler@0.48.1
+    dev: false
 
   /@azure-tools/typespec-client-generator-core/0.35.0-dev.9_vjfuylwjy63akxo42b2aelnak4:
     resolution: {integrity: sha512-pwFVaKBixTzXd1c/6MBMWdhBgK1Q7sQPXc8wcLsxZQ8iThu02tMc/qCQIvX6l6i7fIwOMvwEIhnRjyErsTzaug==}

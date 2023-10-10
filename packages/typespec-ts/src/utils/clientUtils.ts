@@ -11,7 +11,8 @@ export function getRLCClients(dpgContext: SdkContext): SdkClient[] {
       name: service.type.name + "Client",
       service: service.type,
       type: service.type,
-      arm: isArm(service.type)
+      arm: isArm(service.type),
+      crossLanguageDefinitionId: service.type.name
     };
   });
 }
