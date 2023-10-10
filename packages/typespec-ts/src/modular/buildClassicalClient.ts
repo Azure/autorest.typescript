@@ -153,13 +153,12 @@ function importAllModels(
   });
 }
 
-  });
-}
-
 function importPipeline(clientSourceFile: SourceFile): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier: "@azure/core-rest-pipeline",
     namedImports: ["Pipeline"]
+  });
+}
 function buildClientOperationGroups(
   client: Client,
   clientClass: ClassDeclaration,
