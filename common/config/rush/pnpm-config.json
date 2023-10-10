@@ -1,5 +1,14 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/pnpm-config.schema.json",
   "useWorkspaces": true,
-  "strictPeerDependencies": false
+  "strictPeerDependencies": false,
+  "globalOverrides": {
+    "@typespec/compiler": "0.49.0-dev.24",
+    "@typespec/rest": "0.49.0-dev.5",
+    "@typespec/http": "0.49.0-dev.6",
+    "@typespec/versioning": "0.49.0-dev.4",
+    "@azure-tools/typespec-client-generator-core": "0.35.0-dev.15",
+    "@azure-tools/typespec-azure-core": "0.35.0-dev.11",
+    "@typespec/eslint-config-typespec": "0.49.0-dev.1"
+  }
 }
