@@ -145,7 +145,7 @@ const buildDefaultReturn = (hasDefault: boolean) => {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
     ${defaultDef}
     
-    const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+    const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -188,7 +188,7 @@ const buildPathReturn_WithDefault = () => {
     const apiVersion = options.apiVersion ?? "2022-05-15-preview";
     const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
 
-    const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+    const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`
@@ -228,7 +228,7 @@ const buildPathReturn_WithoutDefault = () => {
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/anomalydetector/\${apiVersion}\`;
 
-    const userAgentInfo = \`azsdk-js--rest/1.0.0-beta.1\`;
+    const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`

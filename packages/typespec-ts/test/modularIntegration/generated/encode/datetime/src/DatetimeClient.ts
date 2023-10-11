@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   DefaultDatetimeProperty,
   Rfc3339DatetimeProperty,
@@ -58,10 +59,13 @@ export { DatetimeClientOptions } from "./api/DatetimeContext.js";
 
 export class DatetimeClient {
   private _client: DatetimeContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on datetime. */
   constructor(options: DatetimeClientOptions = {}) {
     this._client = createDatetime(options);
+    this.pipeline = this._client.pipeline;
   }
 
   query = {
