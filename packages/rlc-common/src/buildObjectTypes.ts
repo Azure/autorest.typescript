@@ -375,13 +375,22 @@ function getImmediateParentsNames(
   const parents = objectSchema.parents.immediate
     .filter((p) => !isDictionarySchema(p, true))
     .map((parent) => {
-      const name = `${normalizeName(
-        (schemaUsage.includes(SchemaContext.Output)
-          ? parent.outputTypeName
-          : parent.typeName) ?? parent.name,
-        NameType.Interface,
-        true /** shouldGuard */
-      )}`;
+      const nameSuffix = schemaUsage.includes(SchemaContext.Output)
+        ? "Output"
+        : "";
+      const name = isDictionarySchema(parent)
+        ? `${normalizeName(
+            (schemaUsage.includes(SchemaContext.Output)
+              ? parent.outputTypeName
+              : parent.typeName) ?? parent.name,
+            NameType.Interface,
+            true /** shouldGuard */
+          )}`
+        : `${normalizeName(
+            parent.name,
+            NameType.Interface,
+            true /** shouldGuard */
+          )}${nameSuffix}`;
 
       return isObjectSchema(parent) && isPolymorphicParent(parent)
         ? `${name}Parent`

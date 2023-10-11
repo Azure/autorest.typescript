@@ -139,7 +139,11 @@ export function buildModelsOptions(
   client: Client
 ) {
   const modelOptionsFile = codeModel.project.createSourceFile(
-    path.join(codeModel.modularOptions.sourceRoot, client.subfolder?? "", `models/options.ts`),
+    path.join(
+      codeModel.modularOptions.sourceRoot,
+      client.subfolder ?? "",
+      `models/options.ts`
+    ),
     undefined,
     {
       overwrite: true

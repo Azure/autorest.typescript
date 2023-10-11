@@ -443,7 +443,7 @@ function getSchemaForModel(
         })
         .join("") + "List";
   }
-  let modelSchema: ObjectSchema = {
+  const modelSchema: ObjectSchema = {
     name: overridedModelName ?? name,
     type: "object",
     description: getDoc(program, model) ?? ""
@@ -616,7 +616,7 @@ function getSchemaForModel(
     }
     modelSchema.properties[name] = newPropSchema;
   }
- 
+
   if (model.baseModel) {
     modelSchema.parents = {
       all: [getSchemaForType(dpgContext, model.baseModel, usage, true)],

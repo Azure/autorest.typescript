@@ -3,9 +3,12 @@
 
 import { Schema } from "../interfaces.js";
 
-export function isDictionarySchema(schema: Schema, empty: boolean = false) {
+export function isDictionarySchema(
+  schema: Schema,
+  filterEmpty: boolean = false
+) {
   if (schema.type === "dictionary") {
-    if (!empty || (empty && !schema.typeName)) {
+    if (!filterEmpty || (filterEmpty && !schema.typeName)) {
       return true;
     }
   }
