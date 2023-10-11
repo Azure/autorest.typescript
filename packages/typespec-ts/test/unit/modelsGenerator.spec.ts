@@ -846,7 +846,7 @@ describe("Input/output model type", () => {
         });
       });
 
-      it.only("should handle model extends from record", async () => {
+      it("should handle model extends from record", async () => {
         const schemaOutput = await emitModelsFromTypeSpec(`
         model VegetableCarrot extends Record<Carrots[]> {}
         model VegetableBeans extends Record<Beans[]> {}
@@ -877,14 +877,14 @@ describe("Input/output model type", () => {
             beans: VegetableBeansOutput;
           }
           
-          export interface VegetableCarrotOutput extends Record<string, unknown> {}
+          export interface VegetableCarrotOutput extends Record<string, Array<CarrotsOutput>> {}
 
           export interface CarrotsOutput {
             color: string;
             id: string;
           }
           
-          export interface VegetableBeansOutput extends Record<string, unknown> {}
+          export interface VegetableBeansOutput extends Record<string, Array<BeansOutput>> {}
           
           export interface BeansOutput {
             expiry: string;
