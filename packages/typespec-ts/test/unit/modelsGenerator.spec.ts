@@ -4,14 +4,7 @@ import {
   emitParameterFromTypeSpec,
   emitResponsesFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
-
-type VerifyPropertyConfig = {
-  additionalTypeSpecDefinition?: string;
-  outputType?: string;
-  additionalInputContent?: string;
-  additionalOutputContent?: string;
-};
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
 
 describe("Input/output model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
