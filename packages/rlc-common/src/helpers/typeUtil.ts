@@ -73,6 +73,7 @@ export enum TypeScriptType {
 export function toTypeScriptTypeFromSchema(
   schema: Schema
 ): TypeScriptType | undefined {
+  schema.type = schema.type.trim();
   if (
     schema.type === "string" &&
     ["date-time", "date"].includes(schema?.format ?? "")
@@ -107,6 +108,7 @@ export function toTypeScriptTypeFromSchema(
 export function toTypeScriptTypeFromName(
   typeName: string
 ): TypeScriptType | undefined {
+  typeName = typeName.trim();
   if (typeName === "Date") {
     return TypeScriptType.date;
   } else if (typeName === "string") {

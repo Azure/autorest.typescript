@@ -25,8 +25,8 @@ async function loadTestAdministrationListTestsSample() {
     queryParameters: {
       orderby: "{Your orderby}",
       search: "{Your search}",
-      lastModifiedStartTime: new Date(),
-      lastModifiedEndTime: new Date(),
+      lastModifiedStartTime: "{Your lastModifiedStartTime}",
+      lastModifiedEndTime: "{Your lastModifiedEndTime}",
       maxpagesize: 123,
     },
   };

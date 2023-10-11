@@ -24,7 +24,7 @@ async function getEmbeddingsSample() {
   const options: GetEmbeddingsParameters = {
     body: {
       user: "{Your user}",
-      input_type: '{Your "input_type"}',
+      input_type: "{Your input_type}",
       model: "{Your model}",
       input: "{Your input}",
     },

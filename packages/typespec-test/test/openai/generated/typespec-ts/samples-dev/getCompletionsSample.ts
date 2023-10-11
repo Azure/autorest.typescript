@@ -34,7 +34,7 @@ async function getCompletionsSample() {
       model: "{Your model}",
       echo: true,
       stop: ["{Your stop}"],
-      completion_config: '{Your "completion_config"}',
+      completion_config: "{Your completion_config}",
       cache_level: 123,
       presence_penalty: 123,
       frequency_penalty: 123,
