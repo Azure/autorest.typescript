@@ -200,7 +200,10 @@ function getServiceName(model: RLCModel) {
     packageDetails = model?.options?.packageDetails;
   let simpleServiceName =
     batch && batch.length > 1
-      ? normalizeName(packageDetails!.nameWithoutScope || "", NameType.Class)
+      ? normalizeName(
+          packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "",
+          NameType.Class
+        )
       : normalizeName(serviceTitle, NameType.Class);
   simpleServiceName =
     /**

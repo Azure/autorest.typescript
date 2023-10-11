@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   DefaultBytesProperty,
   Base64BytesProperty,
@@ -63,10 +64,13 @@ export { BytesClientOptions } from "./api/BytesContext.js";
 
 export class BytesClient {
   private _client: BytesContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on bytes. */
   constructor(options: BytesClientOptions = {}) {
     this._client = createBytes(options);
+    this.pipeline = this._client.pipeline;
   }
 
   query = {

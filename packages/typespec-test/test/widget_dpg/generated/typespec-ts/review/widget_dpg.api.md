@@ -6,6 +6,7 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
 export interface AnalyzeResult {
@@ -64,6 +65,7 @@ export class WidgetServiceClient {
     deleteWidget(id: string, options?: DeleteWidgetOptions): Promise<void>;
     getWidget(id: string, options?: GetWidgetOptions): Promise<Widget>;
     listWidgets(options?: ListWidgetsOptions): Promise<Widget[]>;
+    readonly pipeline: Pipeline;
     updateWidget(id: string, body: UpdateWidget, options?: UpdateWidgetOptions): Promise<Widget>;
 }
 

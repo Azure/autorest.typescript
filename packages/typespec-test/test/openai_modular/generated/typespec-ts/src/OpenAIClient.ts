@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   EmbeddingsOptions,
   Embeddings,
@@ -36,6 +37,8 @@ export { OpenAIClientOptions } from "./api/OpenAIContext.js";
 
 export class OpenAIClient {
   private _client: OpenAIContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Azure OpenAI APIs for completions and search */
   constructor(
@@ -44,6 +47,7 @@ export class OpenAIClient {
     options: OpenAIClientOptions = {}
   ) {
     this._client = createOpenAI(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Return the embeddings for a given prompt. */
