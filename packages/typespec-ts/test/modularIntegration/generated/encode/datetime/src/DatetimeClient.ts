@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   DefaultDatetimeProperty,
   Rfc3339DatetimeProperty,
@@ -24,6 +25,10 @@ import {
   HeaderRfc7231Options,
   HeaderUnixTimestampOptions,
   HeaderUnixTimestampArrayOptions,
+  ResponseHeaderDefaultOptions,
+  ResponseHeaderRfc3339Options,
+  ResponseHeaderRfc7231Options,
+  ResponseHeaderUnixTimestampOptions,
 } from "./models/options.js";
 import {
   createDatetime,
@@ -44,16 +49,23 @@ import {
   queryRfc7231,
   queryUnixTimestamp,
   queryUnixTimestampArray,
+  responseHeaderDefault,
+  responseHeaderRfc3339,
+  responseHeaderRfc7231,
+  responseHeaderUnixTimestamp,
 } from "./api/index.js";
 
 export { DatetimeClientOptions } from "./api/DatetimeContext.js";
 
 export class DatetimeClient {
   private _client: DatetimeContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on datetime. */
   constructor(options: DatetimeClientOptions = {}) {
     this._client = createDatetime(options);
+    this.pipeline = this._client.pipeline;
   }
 
   query = {
@@ -132,6 +144,22 @@ export class DatetimeClient {
       options?: HeaderUnixTimestampArrayOptions
     ): Promise<void> => {
       return headerUnixTimestampArray(this._client, value, options);
+    },
+  };
+  responseHeader = {
+    default: (options?: ResponseHeaderDefaultOptions): Promise<void> => {
+      return responseHeaderDefault(this._client, options);
+    },
+    rfc3339: (options?: ResponseHeaderRfc3339Options): Promise<void> => {
+      return responseHeaderRfc3339(this._client, options);
+    },
+    rfc7231: (options?: ResponseHeaderRfc7231Options): Promise<void> => {
+      return responseHeaderRfc7231(this._client, options);
+    },
+    unixTimestamp: (
+      options?: ResponseHeaderUnixTimestampOptions
+    ): Promise<void> => {
+      return responseHeaderUnixTimestamp(this._client, options);
     },
   };
 }

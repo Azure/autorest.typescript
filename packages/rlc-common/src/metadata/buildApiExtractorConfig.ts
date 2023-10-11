@@ -26,7 +26,9 @@ export function buildApiExtractorConfig(model: RLCModel) {
     dtsRollup: {
       enabled: true,
       untrimmedFilePath: "",
-      publicTrimmedFilePath: `./types/${packageDetails?.nameWithoutScope}.d.ts`
+      publicTrimmedFilePath: `./types/${
+        packageDetails?.nameWithoutScope ?? packageDetails?.name
+      }.d.ts`
     },
     messages: {
       tsdocMessageReporting: {

@@ -92,7 +92,9 @@ function restLevelPackage(model: RLCModel) {
     license: "MIT",
     main: "dist/index.js",
     module: generateTest ? "./dist-esm/src/index.js" : "./dist-esm/index.js",
-    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
+    types: `./types/${
+      packageDetails.nameWithoutScope ?? packageDetails.name
+    }.d.ts`,
     repository: "github:Azure/azure-sdk-for-js",
     bugs: {
       url: "https://github.com/Azure/azure-sdk-for-js/issues"
@@ -100,13 +102,13 @@ function restLevelPackage(model: RLCModel) {
     files: [
       "dist/",
       generateTest ? "dist-esm/src/" : "dist-esm/",
-      `types/${packageDetails.nameWithoutScope}.d.ts`,
+      `types/${packageDetails.nameWithoutScope ?? packageDetails.name}.d.ts`,
       "README.md",
       "LICENSE",
       "review/*"
     ],
     engines: {
-      node: ">=14.0.0"
+      node: ">=16.0.0"
     },
     scripts: {
       audit:
@@ -172,7 +174,7 @@ function restLevelPackage(model: RLCModel) {
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
-      "@types/node": "^14.0.0",
+      "@types/node": "^16.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",

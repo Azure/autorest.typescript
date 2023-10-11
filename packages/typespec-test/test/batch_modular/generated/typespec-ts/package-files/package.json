@@ -67,7 +67,7 @@
     "LICENSE"
   ],
   "repository": "github:Azure/azure-sdk-for-js",
-  "engines": { "node": ">=14.0.0" },
+  "engines": { "node": ">=16.0.0" },
   "keywords": ["azure", "cloud", "typescript"],
   "author": "Microsoft Corporation",
   "license": "MIT",
@@ -90,7 +90,7 @@
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^14.0.0",
+    "@types/node": "^16.0.0",
     "chai": "^4.3.6",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",

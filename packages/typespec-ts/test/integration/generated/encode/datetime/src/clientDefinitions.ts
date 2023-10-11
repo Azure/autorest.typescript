@@ -17,6 +17,10 @@ import {
   HeaderRfc7231Parameters,
   HeaderUnixTimestampParameters,
   HeaderUnixTimestampArrayParameters,
+  ResponseHeaderDefaultParameters,
+  ResponseHeaderRfc3339Parameters,
+  ResponseHeaderRfc7231Parameters,
+  ResponseHeaderUnixTimestampParameters,
 } from "./parameters";
 import {
   QueryDefault204Response,
@@ -34,6 +38,10 @@ import {
   HeaderRfc7231204Response,
   HeaderUnixTimestamp204Response,
   HeaderUnixTimestampArray204Response,
+  ResponseHeaderDefault204Response,
+  ResponseHeaderRfc3339204Response,
+  ResponseHeaderRfc7231204Response,
+  ResponseHeaderUnixTimestamp204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -127,6 +135,30 @@ export interface HeaderUnixTimestampArray {
   ): StreamableMethod<HeaderUnixTimestampArray204Response>;
 }
 
+export interface ResponseHeaderDefault {
+  get(
+    options?: ResponseHeaderDefaultParameters
+  ): StreamableMethod<ResponseHeaderDefault204Response>;
+}
+
+export interface ResponseHeaderRfc3339 {
+  get(
+    options?: ResponseHeaderRfc3339Parameters
+  ): StreamableMethod<ResponseHeaderRfc3339204Response>;
+}
+
+export interface ResponseHeaderRfc7231 {
+  get(
+    options?: ResponseHeaderRfc7231Parameters
+  ): StreamableMethod<ResponseHeaderRfc7231204Response>;
+}
+
+export interface ResponseHeaderUnixTimestamp {
+  get(
+    options?: ResponseHeaderUnixTimestampParameters
+  ): StreamableMethod<ResponseHeaderUnixTimestamp204Response>;
+}
+
 export interface Routes {
   /** Resource for '/encode/datetime/query/default' has methods for the following verbs: get */
   (path: "/encode/datetime/query/default"): QueryDefault;
@@ -164,6 +196,16 @@ export interface Routes {
   (
     path: "/encode/datetime/header/unix-timestamp-array"
   ): HeaderUnixTimestampArray;
+  /** Resource for '/encode/datetime/responseheader/default' has methods for the following verbs: get */
+  (path: "/encode/datetime/responseheader/default"): ResponseHeaderDefault;
+  /** Resource for '/encode/datetime/responseheader/rfc3339' has methods for the following verbs: get */
+  (path: "/encode/datetime/responseheader/rfc3339"): ResponseHeaderRfc3339;
+  /** Resource for '/encode/datetime/responseheader/rfc7231' has methods for the following verbs: get */
+  (path: "/encode/datetime/responseheader/rfc7231"): ResponseHeaderRfc7231;
+  /** Resource for '/encode/datetime/responseheader/unix-timestamp' has methods for the following verbs: get */
+  (
+    path: "/encode/datetime/responseheader/unix-timestamp"
+  ): ResponseHeaderUnixTimestamp;
 }
 
 export type DatetimeClient = Client & {

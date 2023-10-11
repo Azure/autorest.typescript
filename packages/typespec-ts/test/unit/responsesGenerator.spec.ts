@@ -1,5 +1,8 @@
 import { assert } from "chai";
-import { emitResponsesFromTypeSpec } from "../util/emitUtil.js";
+import {
+  emitModelsFromTypeSpec,
+  emitResponsesFromTypeSpec
+} from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("Responses.ts", () => {
@@ -229,6 +232,56 @@ describe("Responses.ts", () => {
           status: string;
           body: ErrorResponse;
           headers: RawHttpHeaders & ReadDefaultHeaders;
+        }
+      `
+      );
+    });
+
+    it("error response not in core", async () => {
+      const tsp = `
+      model Error {
+        type: string;
+        message: string;
+        param: string | null;
+        code: string | null;
+      }
+      
+      @error
+      model ErrorResponse {
+        error: Error;
+      }
+
+      #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for testing"
+      #suppress "@azure-tools/typespec-azure-core/use-standard-names" "for testing"
+      @doc("testing")
+      @get op read(): ErrorResponse;
+    `;
+      const parameters = await emitResponsesFromTypeSpec(tsp, false);
+      const models = await emitModelsFromTypeSpec(tsp, false);
+      assert.ok(parameters);
+      assertEqualContent(
+        models?.outputModelFile?.content!,
+        `
+      export interface ErrorResponseOutput {
+        error: ErrorModelOutput;
+      }
+      
+      export interface ErrorModelOutput {
+        type: string;
+        message: string;
+        param: string | null;
+        code: string | null;
+      } `
+      );
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { HttpResponse } from "@azure-rest/core-client";
+        import { ErrorResponseOutput } from "./outputModels";
+
+        export interface ReadDefaultResponse extends HttpResponse {
+          status: string;
+          body: ErrorResponseOutput;
         }
       `
       );

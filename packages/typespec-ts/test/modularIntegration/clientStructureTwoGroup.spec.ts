@@ -6,7 +6,7 @@ import {
     let client: TwoOperationGroupClient
   
     beforeEach(() => {
-      client = new TwoOperationGroupClient("two-operation-group", {
+      client = new TwoOperationGroupClient("http://localhost:3000", "two-operation-group", {
         allowInsecureConnection: true
       });
     });
