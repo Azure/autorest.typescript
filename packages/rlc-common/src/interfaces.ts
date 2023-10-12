@@ -223,7 +223,6 @@ export interface Schema {
   alias?: string;
   outputAlias?: string;
   fromCore?: boolean;
-  format?: string;
   enum?: any[];
   isConstant?: boolean;
 }

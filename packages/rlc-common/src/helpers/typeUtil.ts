@@ -76,7 +76,8 @@ export function toTypeScriptTypeFromSchema(
   schema.type = schema.type.trim();
   if (
     schema.type === "string" &&
-    ["date-time", "date"].includes(schema?.format ?? "")
+    schema.typeName === "Date | string" &&
+    schema.outputTypeName === "string"
   ) {
     return TypeScriptType.date;
   } else if (schema.type !== "union" && schema.enum && schema.enum.length > 0) {
