@@ -20,15 +20,15 @@ export function isArrayObject(type: string) {
 }
 
 export function getArrayObjectType(type: string) {
-  return /Array<(?<type>[a-zA-Z].+)>/g.exec(type)?.groups?.type;
+  return /^Array<(?<type>.+)>$/g.exec(type)?.groups?.type;
 }
 
 export function isNativeArray(type: string) {
-  return /(^[a-zA-Z].+)\[\]$/g.test(type);
+  return /(^.+)\[\]$/g.test(type);
 }
 
 export function getNativeArrayType(type: string) {
-  return /(?<type>[a-zA-Z].+)\[\]/g.exec(type)?.groups?.type;
+  return /(?<type>.+)\[\]/g.exec(type)?.groups?.type;
 }
 
 export function isUnion(type: string) {

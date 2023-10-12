@@ -41,7 +41,7 @@ export function mockParameterTypeValue(
   }
   switch (tsType) {
     case TypeScriptType.string:
-      return `'{Your ${leaveStringQuotes(parameterName)}}'`;
+      return `"{Your ${leaveStringQuotes(parameterName)}}"`;
     case TypeScriptType.number:
       return "123";
     case TypeScriptType.boolean:
@@ -182,6 +182,7 @@ function mockObjectValues(
     );
   }
 
+  path.delete(type);
   return `{${values.join(", ")}}`;
 }
 

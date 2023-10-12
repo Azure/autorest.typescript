@@ -107,6 +107,7 @@ describe("#isArray", () => {
     expect(isArray(`string[]`)).to.be.true;
     expect(isArray(`Array<Model>`)).to.be.true;
     expect(isArray(`Array<string | number>`)).to.be.true;
+    expect(isArray(`Array<A>`)).to.be.true;
   });
 
   it("should return false if the string is not array", () => {
@@ -117,6 +118,7 @@ describe("#isArray", () => {
 describe("#getArrayObjectType", () => {
   it("should return the type of the array", () => {
     expect(getArrayObjectType(`Array<Model>`)).to.equal("Model");
+    expect(getArrayObjectType(`Array<A>`)).to.equal("A");
     expect(getArrayObjectType(`Array<string | number>`)).to.equal(
       "string | number"
     );
@@ -126,6 +128,7 @@ describe("#getArrayObjectType", () => {
 describe("#getNativeArrayType", () => {
   it("should return the type of the array", () => {
     expect(getNativeArrayType(`string[]`)).to.equal("string");
+    expect(getNativeArrayType(`"t"[]`)).to.equal(`"t"`);
   });
 });
 
@@ -221,8 +224,9 @@ describe("#toTypeScriptTypeFromSchema", () => {
     expect(
       toTypeScriptTypeFromSchema({
         type: "string",
-        format: "date",
-        name: "foo"
+        name: "string",
+        typeName: "Date | string",
+        outputTypeName: "string"
       })
     ).to.equal(TypeScriptType.date);
     expect(

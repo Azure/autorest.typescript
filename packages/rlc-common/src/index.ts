@@ -10,6 +10,8 @@ export * from "./buildResponseTypes.js";
 export * from "./helpers/shortcutMethods.js";
 export * from "./helpers/nameUtils.js";
 export * from "./helpers/operationHelpers.js";
+export * from "./helpers/mockValueUtil.js";
+export * from "./helpers/schemaHelpers.js";
 export * from "./buildParameterTypes.js";
 export * from "./buildIsUnexpectedHelper.js";
 export * from "./buildTopLevelIndexFile.js";

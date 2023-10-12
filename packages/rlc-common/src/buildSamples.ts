@@ -23,7 +23,7 @@ import { sampleTemplate } from "./static/sampleTemplate.js";
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import * as path from "path";
-import { isObjectSchema } from "./helpers/schemaHelpers.js";
+import { buildSchemaObjectMap } from "./helpers/schemaHelpers.js";
 import { mockParameterTypeValue } from "./helpers/mockValueUtil.js";
 
 export function buildSamples(model: RLCModel) {
@@ -436,19 +436,4 @@ function getOperationConcate(
       ? opName
       : `${opGroup}${opName}`
     : `${opGroup}_${opName}`;
-}
-
-function buildSchemaObjectMap(model: RLCModel) {
-  // include interfaces
-  const map = new Map<string, Schema>();
-  const allSchemas = (model.schemas ?? []).filter(
-    (o) =>
-      isObjectSchema(o) &&
-      (o as ObjectSchema).usage?.some((u) => [SchemaContext.Input].includes(u))
-  );
-  allSchemas.forEach((o) => {
-    map.set(o.name, o);
-  });
-
-  return map;
 }
