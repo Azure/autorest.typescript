@@ -14,8 +14,6 @@ import {
   SampleParameter,
   PathMetadata,
   OperationParameter,
-  ObjectSchema,
-  SchemaContext,
   Schema
 } from "./interfaces.js";
 import { sampleTemplate } from "./static/sampleTemplate.js";
