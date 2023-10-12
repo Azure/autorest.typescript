@@ -68,7 +68,7 @@ async function createJobSample() {
                 acceptedSex: "{Your acceptedSex}",
                 acceptedAgeRange: {
                   minimumAge: { unit: "{Your unit}", value: 123 },
-                  maximumAge: {} as any /**FIXME */,
+                  maximumAge: { unit: "{Your unit}", value: 123 },
                 },
               },
               metadata: {
