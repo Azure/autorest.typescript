@@ -99,12 +99,6 @@ function mockUnionValues(
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
     const first = schema.enum[0];
-    // const itemType = schema.typeName ?? schema.type;
-    // if (itemType === "string" || (first.typeName ?? first.type) === undefined) {
-    //   return `"${first}"`;
-    // } else if (itemType === "number") {
-    //   return `${first}`;
-    // }
     return mockParameterTypeValue(
       first.typeName ?? first.type ?? first,
       parameterName,
@@ -255,7 +249,10 @@ function extractObjectProperties(
       continue;
     }
     const propType = propertySchema.typeName ?? propertySchema.type;
-    if (propType !== "string" && !schemaMap.has(propType)) {
+    if (
+      !schemaMap.has(propType) &&
+      !["string", "number", "boolean"].includes(propertySchema.type)
+    ) {
       schemaMap.set(propType, propertySchema);
     }
     allPropNames.add(propName);

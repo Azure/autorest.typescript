@@ -181,7 +181,7 @@ describe("Integration test for mocking sample", () => {
         console.log(mockStr);
         const res = {
           fixedEnum: "English",
-          extensibleEnum: "{Your extensibleEnum}"
+          extensibleEnum: "English"
         };
         assert.deepEqual(JSON.parse(mockStr!), res);
       });
@@ -221,39 +221,81 @@ describe("Integration test for mocking sample", () => {
         assert.deepEqual(JSON.parse(mockStr!), res);
       });
 
-      it("union", async () => {
-        const schemaMap = await emitSchemasFromTypeSpec(
-          `
-        model A {
-          foo: string;
-        }
-        model B {
-          bar: string;
-        }
-        model Test {
-          modelUnion: A | B;
-          stringUnion: "string1" | "string2";
-          complexUnion: "string1" | 1 | true | A;
-          unionOfUnion: (A | B) | (1 | 2);
-        }
-        op getModel(@body input: Test): void;
-        `,
-          true
-        );
-        const mockStr = mockParameterTypeValue(
-          "Test",
-          "input",
-          buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
-        );
-        assert.isNotNull(mockStr);
-        const res = {
-          modelUnion: { foo: "{Your foo}" },
-          stringUnion: "string1",
-          complexUnion: "string1",
-          unionOfUnion: { foo: "{Your foo}" }
-        };
-        // console.log(mockStr);
-        assert.deepEqual(JSON.parse(mockStr!), res);
+      describe("union", () => {
+        it("|", async () => {
+          const schemaMap = await emitSchemasFromTypeSpec(
+            `
+          model A {
+            foo: string;
+          }
+          model B {
+            bar: string;
+          }
+          model Test {
+            modelUnion: A | B;
+            stringUnion: "string1" | "string2";
+            complexUnion: "string1" | 1 | true | A;
+            unionOfUnion: (A | B) | (1 | 2);
+          }
+          op getModel(@body input: Test): void;
+          `,
+            true
+          );
+          const mockStr = mockParameterTypeValue(
+            "Test",
+            "input",
+            buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
+          );
+          assert.isNotNull(mockStr);
+          const res = {
+            modelUnion: { foo: "{Your foo}" },
+            stringUnion: "string1",
+            complexUnion: "string1",
+            unionOfUnion: { foo: "{Your foo}" }
+          };
+          // console.log(mockStr);
+          assert.deepEqual(JSON.parse(mockStr!), res);
+        });
+
+        it("named union", async () => {
+          const schemaMap = await emitSchemasFromTypeSpec(
+            `
+          @doc("This is a base model.")
+          model BaseModel {
+            name: string;
+          }
+          
+          @doc("The first one of the unioned model type.")
+          model Model1 extends BaseModel {
+            prop1: int32;
+          }
+          
+          @doc("The second one of the unioned model type.")
+          model Model2 extends BaseModel {
+            prop2: int32;
+          }
+          
+          union MyNamedUnion {
+            one: Model1,
+            two: Model2,
+          }
+          model Test {
+            namedUnion: MyNamedUnion;
+          }
+          op getModel(@body input: Test): void;
+          `,
+            true
+          );
+          const mockStr = mockParameterTypeValue(
+            "Test",
+            "input",
+            buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
+          );
+          assert.isNotNull(mockStr);
+          const res = { namedUnion: { prop1: 123, name: "{Your name}" } };
+          // console.log(mockStr);
+          assert.deepEqual(JSON.parse(mockStr!), res);
+        });
       });
 
       it("record", async () => {

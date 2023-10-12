@@ -80,8 +80,14 @@ export function toTypeScriptTypeFromSchema(
     schema.outputTypeName === "string"
   ) {
     return TypeScriptType.date;
-  } else if (schema.type !== "union" && schema.enum && schema.enum.length > 0) {
-    return TypeScriptType.enum;
+  } else if (schema.enum && schema.enum.length > 0) {
+    if (schema.type === "union" || schema.type === "object") {
+      // Include both union and named union
+      return TypeScriptType.union;
+    } else {
+      // Include both extensible and fixed enum
+      return TypeScriptType.enum;
+    }
   } else if (
     schema.isConstant === true ||
     isConstant(schema.typeName ?? schema.type)
@@ -95,8 +101,6 @@ export function toTypeScriptTypeFromSchema(
     return TypeScriptType.string;
   } else if (schema.type === "unknown") {
     return TypeScriptType.unknown;
-  } else if (schema.type === "union") {
-    return TypeScriptType.union;
   } else if (schema.type === "dictionary") {
     return TypeScriptType.record;
   } else if (schema.type === "array") {

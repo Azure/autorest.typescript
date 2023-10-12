@@ -7,7 +7,6 @@ export interface ModelWithSimpleUnionProperty {
 
 export interface ModelWithNamedUnionProperty {
   namedUnion: MyNamedUnion;
-  lastModifiedStartTime?: Date | string;
 }
 
 /** The first one of the unioned model type. */
