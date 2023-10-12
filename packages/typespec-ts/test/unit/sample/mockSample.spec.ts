@@ -17,7 +17,8 @@ describe("Integration test for mocking sample", () => {
         "input",
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
       );
-      assert.strictEqual(mockStr, `'{Your input}'`);
+      const res = "{Your input}";
+      assert.deepEqual(JSON.parse(mockStr!), res);
     });
 
     it("boolean", async () => {
@@ -43,7 +44,8 @@ describe("Integration test for mocking sample", () => {
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel),
         new Set()
       );
-      assert.strictEqual(mockStr, `['{Your prop}']`);
+      const res = ["{Your prop}"];
+      assert.deepEqual(JSON.parse(mockStr!), res);
     });
 
     it("simple model", async () => {
@@ -61,7 +63,8 @@ describe("Integration test for mocking sample", () => {
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel),
         new Set()
       );
-      assert.strictEqual(mockStr, `{"prop": '{Your prop}'}`);
+      const res = { prop: "{Your prop}" };
+      assert.deepEqual(JSON.parse(mockStr!), res);
     });
 
     describe("complex model", () => {
