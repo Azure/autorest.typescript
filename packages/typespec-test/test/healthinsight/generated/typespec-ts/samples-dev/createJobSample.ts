@@ -30,7 +30,7 @@ async function createJobSample() {
         {
           id: "{Your id}",
           info: {
-            sex: "{Your sex}",
+            sex: "female",
             birthDate: new Date(),
             clinicalInfo: [
               {
@@ -43,15 +43,12 @@ async function createJobSample() {
           },
           data: [
             {
-              type: "{Your type}",
-              clinicalType: "{Your clinicalType}",
+              type: "note",
+              clinicalType: "consultation",
               id: "{Your id}",
               language: "{Your language}",
               createdDateTime: new Date(),
-              content: {
-                sourceType: "{Your sourceType}",
-                value: "{Your value}",
-              },
+              content: { sourceType: "inline", value: "{Your value}" },
             },
           ],
         },
@@ -65,18 +62,18 @@ async function createJobSample() {
               id: "{Your id}",
               eligibilityCriteriaText: "{Your eligibilityCriteriaText}",
               demographics: {
-                acceptedSex: "{Your acceptedSex}",
+                acceptedSex: "all",
                 acceptedAgeRange: {
-                  minimumAge: { unit: "{Your unit}", value: 123 },
-                  maximumAge: { unit: "{Your unit}", value: 123 },
+                  minimumAge: { unit: "years", value: 123 },
+                  maximumAge: { unit: "years", value: 123 },
                 },
               },
               metadata: {
-                phases: ["{Your phases}"],
-                studyType: "{Your studyType}",
-                recruitmentStatus: "{Your recruitmentStatus}",
-                conditions: ["{Your conditions}"],
-                sponsors: ["{Your sponsors}"],
+                phases: ["notApplicable"],
+                studyType: "interventional",
+                recruitmentStatus: "unknownStatus",
+                conditions: ["notApplicable"],
+                sponsors: ["notApplicable"],
                 contacts: [
                   {
                     name: "{Your name}",
@@ -97,15 +94,15 @@ async function createJobSample() {
           ],
           registryFilters: [
             {
-              conditions: ["{Your conditions}"],
-              studyTypes: ["{Your studyTypes}"],
-              recruitmentStatuses: ["{Your recruitmentStatuses}"],
-              sponsors: ["{Your sponsors}"],
-              phases: ["{Your phases}"],
-              purposes: ["{Your purposes}"],
-              ids: ["{Your ids}"],
-              sources: ["{Your sources}"],
-              facilityNames: ["{Your facilityNames}"],
+              conditions: ["notApplicable"],
+              studyTypes: ["notApplicable"],
+              recruitmentStatuses: ["notApplicable"],
+              sponsors: ["notApplicable"],
+              phases: ["notApplicable"],
+              purposes: ["notApplicable"],
+              ids: ["notApplicable"],
+              sources: ["notApplicable"],
+              facilityNames: ["notApplicable"],
               facilityLocations: [
                 {
                   city: "{Your city}",
@@ -115,9 +112,9 @@ async function createJobSample() {
               ],
               facilityAreas: [
                 {
-                  type: "{Your type}",
-                  geometry: { type: "{Your type}", coordinates: [123] },
-                  properties: { subType: "{Your subType}", radius: 123 },
+                  type: "Feature",
+                  geometry: { type: "Point", coordinates: [123] },
+                  properties: { subType: "Circle", radius: 123 },
                 },
               ],
             },

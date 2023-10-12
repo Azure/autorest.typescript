@@ -172,7 +172,7 @@ describe("#transformSchemas", () => {
         `string | int32 | boolean | utcDateTime`
       );
       assert.isNotNull(property);
-      console.log(property);
+      // console.log(property);
       assert.deepEqual(property, {
         enum: [
           {
@@ -222,7 +222,7 @@ describe("#transformSchemas", () => {
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
       const property = first.properties![`"prop"`];
-      console.log(first, property, property?.enum);
+      // console.log(first, property, property?.enum);
       assert.isNotNull(property);
       assert.deepEqual(property, {
         type: '"English"|"Chinese"',
@@ -352,7 +352,7 @@ describe("#transformSchemas", () => {
       assert.isNotNull(schemaOutput);
       const first = schemaOutput?.[0] as ObjectSchema;
       const property = first.properties![`"prop"`];
-      console.log(first, property, property?.enum);
+      // console.log(first, property, property?.enum);
       assert.isNotNull(property);
       assert.deepEqual(property, {
         type: "array",

@@ -100,7 +100,7 @@ function mockUnionValues(
   if (schema && schema.enum && schema.enum.length > 0) {
     const first = schema.enum[0];
     return mockParameterTypeValue(
-      first.typeName ?? first.type ?? first,
+      getAccurateTypeName(first) ?? first,
       parameterName,
       schemaMap,
       path
@@ -119,8 +119,7 @@ function mockRecordValues(
   let recordType;
   const schema = schemaMap.get(type) as DictionarySchema;
   if (schema && schema.additionalProperties) {
-    recordType =
-      schema.additionalProperties.typeName ?? schema.additionalProperties.type;
+    recordType = getAccurateTypeName(schema.additionalProperties);
     if (recordType !== "string" && !schemaMap.has(recordType)) {
       schemaMap.set(recordType, schema.additionalProperties);
     }
@@ -147,7 +146,7 @@ function mockArrayValues(
   let arrayType;
   const schema = schemaMap.get(type) as ArraySchema;
   if (schema && schema.items) {
-    arrayType = schema.items.typeName ?? schema.items.type;
+    arrayType = getAccurateTypeName(schema.items);
     if (arrayType !== "string" && !schemaMap.has(arrayType)) {
       schemaMap.set(arrayType, schema.items);
     }
@@ -248,7 +247,7 @@ function extractObjectProperties(
     if (allPropNames.has(propName)) {
       continue;
     }
-    const propType = propertySchema.typeName ?? propertySchema.type;
+    const propType = getAccurateTypeName(propertySchema);
     if (
       !schemaMap.has(propType) &&
       !["string", "number", "boolean"].includes(propertySchema.type)
@@ -261,4 +260,12 @@ function extractObjectProperties(
       mockParameterTypeValue(propType, propName, schemaMap, path);
     values.push(propRetValue);
   }
+}
+
+function getAccurateTypeName(schema: Schema) {
+  // For extensible enum, fallback to use the type
+  if (schema.typeName === "string" && schema.enum && schema.enum.length > 0) {
+    return schema.type;
+  }
+  return schema.typeName ?? schema.type;
 }

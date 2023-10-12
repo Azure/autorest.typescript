@@ -15,10 +15,10 @@ dotenv.config();
  * @summary call operation GetMultivariateBatchDetectionResult
  */
 async function getMultivariateBatchDetectionResultSample() {
-  const endpoint = "auto";
+  const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const resultId = "auto";
+  const resultId = "{Your resultId}";
   const result = await client
     .path("/multivariate/detect-batch/{resultId}", resultId)
     .get();

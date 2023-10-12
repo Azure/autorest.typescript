@@ -17,7 +17,7 @@ dotenv.config();
  * @summary call operation DetectUnivariateLastPoint
  */
 async function detectUnivariateLastPointSample() {
-  const endpoint = "auto";
+  const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: DetectUnivariateLastPointParameters = {

@@ -167,6 +167,11 @@ describe("Integration test for mocking sample", () => {
         model Test {
           fixedEnum: FixedEnum;
           extensibleEnum: ExtensibleEnum;
+          otherStringEnum: "Chinese";
+          otherLiteralUnion: "string1" | "string2";
+          otherString: string;
+          testExtensibleEnum: ExtensibleEnum;
+          testFixedEnum: FixedEnum;
         }
         op getModel(@body input: Test): void;
         `,
@@ -178,10 +183,15 @@ describe("Integration test for mocking sample", () => {
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
         );
         assert.isNotNull(mockStr);
-        console.log(mockStr);
+        // console.log(mockStr);
         const res = {
           fixedEnum: "English",
-          extensibleEnum: "English"
+          extensibleEnum: "English",
+          otherStringEnum: "Chinese",
+          otherLiteralUnion: "string1",
+          otherString: "{Your otherString}",
+          testExtensibleEnum: "English",
+          testFixedEnum: "English"
         };
         assert.deepEqual(JSON.parse(mockStr!), res);
       });

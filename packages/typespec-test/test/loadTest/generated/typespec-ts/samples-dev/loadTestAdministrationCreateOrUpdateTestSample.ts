@@ -26,19 +26,19 @@ async function loadTestAdministrationCreateOrUpdateTestSample() {
       passFailCriteria: {
         passFailMetrics: {
           key: {
-            clientMetric: "{Your clientMetric}",
-            aggregate: "{Your aggregate}",
+            clientMetric: "response_time_ms",
+            aggregate: "count",
             condition: "{Your condition}",
             requestName: "{Your requestName}",
             value: 123,
-            action: "{Your action}",
+            action: "continue",
           },
         },
       },
-      secrets: { key: { value: "{Your value}", type: "{Your type}" } },
+      secrets: { key: { value: "{Your value}", type: "AKV_SECRET_URI" } },
       certificate: {
         value: "{Your value}",
-        type: "{Your type}",
+        type: "AKV_CERT_URI",
         name: "{Your name}",
       },
       environmentVariables: { key: "{Your environmentVariables}" },

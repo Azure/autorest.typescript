@@ -17,20 +17,20 @@ dotenv.config();
  * @summary call operation TrainMultivariateModel
  */
 async function trainMultivariateModelSample() {
-  const endpoint = "auto";
+  const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: TrainMultivariateModelParameters = {
     body: {
-      dataSource: "auto",
-      dataSchema: "auto",
+      dataSource: "{Your dataSource}",
+      dataSchema: "OneTable",
       startTime: new Date(),
       endTime: new Date(),
-      displayName: "auto",
+      displayName: "{Your displayName}",
       slidingWindow: 123,
       alignPolicy: {
         alignMode: "Inner",
-        fillNAMethod: "auto",
+        fillNAMethod: "Previous",
         paddingValue: 123,
       },
       status: "CREATED",
@@ -43,7 +43,7 @@ async function trainMultivariateModelSample() {
         },
         variableStates: [
           {
-            variable: "auto",
+            variable: "{Your variable}",
             filledNARatio: 123,
             effectiveCount: 123,
             firstTimestamp: new Date(),
