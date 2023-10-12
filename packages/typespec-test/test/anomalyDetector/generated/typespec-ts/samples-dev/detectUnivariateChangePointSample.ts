@@ -17,7 +17,7 @@ dotenv.config();
  * @summary call operation DetectUnivariateChangePoint
  */
 async function detectUnivariateChangePointSample() {
-  const endpoint = "{Your endpoint}";
+  const endpoint = "auto";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: DetectUnivariateChangePointParameters = {

@@ -18,7 +18,7 @@ dotenv.config();
  * @summary call operation ListMultivariateModels
  */
 async function listMultivariateModelsSample() {
-  const endpoint = "{Your endpoint}";
+  const endpoint = "auto";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: ListMultivariateModelsParameters = {

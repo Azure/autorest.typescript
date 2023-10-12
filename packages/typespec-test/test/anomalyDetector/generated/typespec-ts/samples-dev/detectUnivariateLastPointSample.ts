@@ -17,7 +17,7 @@ dotenv.config();
  * @summary call operation DetectUnivariateLastPoint
  */
 async function detectUnivariateLastPointSample() {
-  const endpoint = "{Your endpoint}";
+  const endpoint = "auto";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
   const options: DetectUnivariateLastPointParameters = {
@@ -28,7 +28,7 @@ async function detectUnivariateLastPointSample() {
       period: 123,
       maxAnomalyRatio: 123,
       sensitivity: 123,
-      imputeMode: "{Your imputeMode}",
+      imputeMode: "auto",
       imputeFixedValue: 123,
     },
   };

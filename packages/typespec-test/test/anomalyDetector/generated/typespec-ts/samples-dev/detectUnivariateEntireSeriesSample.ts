@@ -28,7 +28,7 @@ async function detectUnivariateEntireSeriesSample() {
       period: 123,
       maxAnomalyRatio: 123,
       sensitivity: 123,
-      imputeMode: "{Your imputeMode}",
+      imputeMode: "auto",
       imputeFixedValue: 123,
     },
   };

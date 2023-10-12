@@ -15,10 +15,10 @@ dotenv.config();
  * @summary call operation GetMultivariateModel
  */
 async function getMultivariateModelSample() {
-  const endpoint = "{Your endpoint}";
+  const endpoint = "auto";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const modelId = "{Your modelId}";
+  const modelId = "auto";
   const result = await client
     .path("/multivariate/models/{modelId}", modelId)
     .get();

@@ -17,19 +17,13 @@ dotenv.config();
  * @summary call operation DetectMultivariateLastAnomaly
  */
 async function detectMultivariateLastAnomalySample() {
-  const endpoint = "{Your endpoint}";
+  const endpoint = "auto";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const modelId = "{Your modelId}";
+  const modelId = "auto";
   const options: DetectMultivariateLastAnomalyParameters = {
     body: {
-      variables: [
-        {
-          variable: "{Your variable}",
-          timestamps: ["{Your timestamps}"],
-          values: [123],
-        },
-      ],
+      variables: [{ variable: "auto", timestamps: ["auto"], values: [123] }],
       topContributorCount: 123,
     },
   };

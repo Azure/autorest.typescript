@@ -17,13 +17,13 @@ dotenv.config();
  * @summary call operation DetectMultivariateBatchAnomaly
  */
 async function detectMultivariateBatchAnomalySample() {
-  const endpoint = "{Your endpoint}";
+  const endpoint = "auto";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const modelId = "{Your modelId}";
+  const modelId = "auto";
   const options: DetectMultivariateBatchAnomalyParameters = {
     body: {
-      dataSource: "{Your dataSource}",
+      dataSource: "auto",
       topContributorCount: 123,
       startTime: new Date(),
       endTime: new Date(),
