@@ -379,13 +379,11 @@ function getImmediateParentsNames(
         ? "Output"
         : "";
       const name = isDictionarySchema(parent)
-        ? `${normalizeName(
+        ? `${
             (schemaUsage.includes(SchemaContext.Output)
               ? parent.outputTypeName
-              : parent.typeName) ?? parent.name,
-            NameType.Interface,
-            true /** shouldGuard */
-          )}`
+              : parent.typeName) ?? parent.name
+          }`
         : `${normalizeName(
             parent.name,
             NameType.Interface,
