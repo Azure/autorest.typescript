@@ -178,6 +178,7 @@ describe("Integration test for mocking sample", () => {
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
         );
         assert.isNotNull(mockStr);
+        console.log(mockStr);
         const res = {
           fixedEnum: "English",
           extensibleEnum: "{Your extensibleEnum}"

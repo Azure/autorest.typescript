@@ -59,7 +59,9 @@ export function mockParameterTypeValue(
     case TypeScriptType.record: {
       return mockRecordValues(type, parameterName, schemaMap, path);
     }
-    case TypeScriptType.enum:
+    case TypeScriptType.enum: {
+      return mockEnumValues(type, parameterName, schemaMap, path);
+    }
     case TypeScriptType.union: {
       return mockUnionValues(type, parameterName, schemaMap, path);
     }
@@ -67,6 +69,25 @@ export function mockParameterTypeValue(
       return type;
   }
   return `undefined /**FIXME */`;
+}
+
+function mockEnumValues(
+  type: string,
+  parameterName: string,
+  schemaMap: Map<string, Schema>,
+  path: Set<string> = new Set()
+) {
+  const schema = schemaMap.get(type);
+  if (schema && schema.enum && schema.enum.length > 0) {
+    const first = schema.enum[0];
+    return typeof first === "string" ? `"${first}"` : `${first}`;
+  }
+  return mockParameterTypeValue(
+    getUnionType(type),
+    parameterName,
+    schemaMap,
+    path
+  );
 }
 
 function mockUnionValues(
@@ -78,12 +99,12 @@ function mockUnionValues(
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
     const first = schema.enum[0];
-    const itemType = schema.typeName ?? schema.type;
-    if (itemType === "string" || (first.typeName ?? first.type) === undefined) {
-      return `"${first}"`;
-    } else if (itemType === "number") {
-      return `${first}`;
-    }
+    // const itemType = schema.typeName ?? schema.type;
+    // if (itemType === "string" || (first.typeName ?? first.type) === undefined) {
+    //   return `"${first}"`;
+    // } else if (itemType === "number") {
+    //   return `${first}`;
+    // }
     return mockParameterTypeValue(
       first.typeName ?? first.type ?? first,
       parameterName,
