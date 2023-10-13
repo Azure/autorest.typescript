@@ -98,16 +98,19 @@ function mockUnionValues(
 ) {
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
-    const first = schema.enum[0];
     return mockParameterTypeValue(
-      getAccurateTypeName(first) ?? first,
+      getAccurateTypeName(schema.enum[0]) ?? schema.enum[0],
       parameterName,
       schemaMap,
       path
     );
   }
-  const unionType = getUnionType(type);
-  return mockParameterTypeValue(unionType, parameterName, schemaMap, path);
+  return mockParameterTypeValue(
+    getUnionType(type),
+    parameterName,
+    schemaMap,
+    path
+  );
 }
 
 function mockRecordValues(
@@ -116,15 +119,11 @@ function mockRecordValues(
   schemaMap: Map<string, Schema>,
   path: Set<string> = new Set()
 ) {
-  let recordType;
+  let recordType = getRecordType(type);
   const schema = schemaMap.get(type) as DictionarySchema;
   if (schema && schema.additionalProperties) {
     recordType = getAccurateTypeName(schema.additionalProperties);
-    if (recordType !== "string" && !schemaMap.has(recordType)) {
-      schemaMap.set(recordType, schema.additionalProperties);
-    }
-  } else {
-    recordType = getRecordType(type);
+    addToSchemaMap(schemaMap, schema.additionalProperties);
   }
 
   return recordType
@@ -147,9 +146,7 @@ function mockArrayValues(
   const schema = schemaMap.get(type) as ArraySchema;
   if (schema && schema.items) {
     arrayType = getAccurateTypeName(schema.items);
-    if (arrayType !== "string" && !schemaMap.has(arrayType)) {
-      schemaMap.set(arrayType, schema.items);
-    }
+    addToSchemaMap(schemaMap, schema.items);
   } else if (isArrayObject(type)) {
     arrayType = getArrayObjectType(type);
   } else if (isNativeArray(type)) {
@@ -172,94 +169,55 @@ function mockObjectValues(
     return `{} as any /**FIXME */`;
   }
   path.add(type);
-  // add object's properties
-  const values: string[] = [];
-  const schema = schemaMap.get(type) as ObjectSchema;
-  const allPropNames = new Set<string>();
-  extractObjectProperties(
-    schema?.properties ?? {},
-    schemaMap,
-    allPropNames,
-    values,
-    path
-  );
-
-  // add parents' properties
-  const parents = getAllParents(schema, schemaMap);
-  for (const parent of parents) {
-    extractObjectProperties(
-      (parent as ObjectSchema)?.properties ?? {},
-      schemaMap,
-      allPropNames,
-      values,
-      path
-    );
-  }
+  // Extract all properties from the schema
+  const allProperties = getAllProperties(schemaMap.get(type), schemaMap);
+  const values = extractObjectProperties(allProperties, schemaMap, path);
 
   path.delete(type);
   return `{${values.join(", ")}}`;
 }
 
-function getAllParents(
-  schema: ObjectSchema,
-  schemaMap: Map<string, Schema>
+function getAllProperties(
+  schema?: ObjectSchema,
+  schemaMap: Map<string, Schema> = new Map()
 ): Schema[] {
+  const propertiesMap: Map<string, Schema> = new Map();
   if (!schema) {
     return [];
   }
-  const isVisited = new Set<string>();
-  dfs(schema);
-  return Array.from(isVisited)
-    .filter((p) => schemaMap.get(p) !== undefined)
-    .map((p) => schemaMap.get(p)!);
-
-  function dfs(root?: Schema) {
-    if (!root) {
-      return;
-    }
-    const parents = getImmediateParentsNames(root, [SchemaContext.Input]);
-    for (const parent of parents) {
-      if (isVisited.has(parent)) {
-        continue;
-      }
-      dfs(schemaMap.get(parent));
-      isVisited.add(parent);
-    }
+  getImmediateParentsNames(schema, [SchemaContext.Input])?.forEach((p) => {
+    getAllProperties(schemaMap.get(p), schemaMap).forEach((prop) => {
+      propertiesMap.set(prop.name, prop);
+    });
+  });
+  for (const prop in schema.properties) {
+    propertiesMap.set(prop, schema.properties[prop]);
   }
+  return [...propertiesMap.values()];
 }
 
 function extractObjectProperties(
-  properties: Record<string, Schema>,
-  schemaMap: Map<string, Schema>,
-  allPropNames: Set<string>,
-  values: string[],
-  path: Set<string>
+  properties: Schema[],
+  schemaMap: Map<string, Schema> = new Map(),
+  path: Set<string> = new Set()
 ) {
-  for (const prop in properties) {
-    const propName = prop;
-    const propertySchema = properties[prop];
-    if (propertySchema.readOnly) {
+  const values: string[] = [];
+  for (const property of properties) {
+    if (property.readOnly || property.type === "never") {
       continue;
     }
-    if (propertySchema.type === "never") {
-      continue;
-    }
-    if (allPropNames.has(propName)) {
-      continue;
-    }
-    const propType = getAccurateTypeName(propertySchema);
-    if (
-      !schemaMap.has(propType) &&
-      !["string", "number", "boolean"].includes(propertySchema.type)
-    ) {
-      schemaMap.set(propType, propertySchema);
-    }
-    allPropNames.add(propName);
-    const propRetValue =
-      `${propName}: ` +
-      mockParameterTypeValue(propType, propName, schemaMap, path);
-    values.push(propRetValue);
+    addToSchemaMap(schemaMap, property);
+    values.push(
+      `${property.name}: ` +
+        mockParameterTypeValue(
+          getAccurateTypeName(property),
+          property.name,
+          schemaMap,
+          path
+        )
+    );
   }
+  return values;
 }
 
 function getAccurateTypeName(schema: Schema) {
@@ -268,4 +226,14 @@ function getAccurateTypeName(schema: Schema) {
     return schema.type;
   }
   return schema.typeName ?? schema.type;
+}
+
+function addToSchemaMap(schemaMap: Map<string, Schema>, schema: Schema) {
+  const type = getAccurateTypeName(schema);
+  if (
+    !schemaMap.has(type) &&
+    !["string", "number", "boolean"].includes(schema.type)
+  ) {
+    schemaMap.set(type, schema);
+  }
 }
