@@ -280,6 +280,7 @@ describe("Parameters.ts", () => {
         @header contentType: "multipart/form-data",
         @body body: {
           name: string;
+          @encode("binary")
           file: bytes;
         }
       ): void;
@@ -292,18 +293,16 @@ describe("Parameters.ts", () => {
       import { RequestParameters } from "@azure-rest/core-client";
       
       export interface UploadFileBodyParam {
-        body: UploadFileFormBody;
+        body: {
+          name: string;
+          file:
+            | string
+            | Uint8Array
+            | ReadableStream<Uint8Array>
+            | NodeJS.ReadableStream;
+        };
       }
       
-      export interface UploadFileFormBody {
-        name: string;
-        file:
-          | string
-          | Uint8Array
-          | ReadableStream<Uint8Array>
-          | NodeJS.ReadableStream;
-      }
-
       export interface UploadFileMediaTypesParam {
         contentType: "multipart/form-data";
       }
@@ -322,6 +321,7 @@ describe("Parameters.ts", () => {
         @post op uploadFiles(
         @header contentType: "multipart/form-data",
         @body body: {
+          @encode("binary")
           files: bytes[];
         }
       ): void;
@@ -334,13 +334,11 @@ describe("Parameters.ts", () => {
         import { RequestParameters } from "@azure-rest/core-client";
       
         export interface UploadFilesBodyParam {
-          body: UploadFilesFormBody;
-        }
-        
-        export interface UploadFilesFormBody {
-          files: Array<
-            string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
-          >;
+          body: {
+            files: Array<
+              string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream
+            >;
+          };
         }
         
         export interface UploadFilesMediaTypesParam {

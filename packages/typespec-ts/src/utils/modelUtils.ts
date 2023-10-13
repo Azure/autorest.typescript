@@ -978,6 +978,16 @@ function getSchemaForStdScalar(
         format: "float"
       });
     case "string":
+      if (format === "binary") {
+        return {
+          type: "string",
+          format: "byte",
+          description,
+          typeName:
+            "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream",
+          outputTypeName: "Uint8Array"
+        };
+      }
       return applyIntrinsicDecorators(program, type, {
         type: "string"
       });
