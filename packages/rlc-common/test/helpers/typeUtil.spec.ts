@@ -238,9 +238,13 @@ describe("#toTypeScriptTypeFromSchema", () => {
     expect(
       toTypeScriptTypeFromSchema({ type: "dictionary", name: "foo" })
     ).to.equal(TypeScriptType.record);
-    expect(toTypeScriptTypeFromSchema({ type: "union", name: "foo" })).to.equal(
-      TypeScriptType.union
-    );
+    expect(
+      toTypeScriptTypeFromSchema({
+        type: "union",
+        name: "foo",
+        enum: [{ type: "number", format: "int32" }]
+      })
+    ).to.equal(TypeScriptType.union);
     expect(
       toTypeScriptTypeFromSchema({
         type: "string",
