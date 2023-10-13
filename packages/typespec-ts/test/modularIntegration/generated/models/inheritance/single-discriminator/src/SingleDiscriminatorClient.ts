@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { Bird, Dinosaur } from "./models/models.js";
 import {
   GetModelOptions,
@@ -28,10 +29,13 @@ export { SingleDiscriminatorClientOptions } from "./api/SingleDiscriminatorConte
 
 export class SingleDiscriminatorClient {
   private _client: SingleDiscriminatorContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance with single discriminator. */
   constructor(options: SingleDiscriminatorClientOptions = {}) {
     this._client = createSingleDiscriminator(options);
+    this.pipeline = this._client.pipeline;
   }
 
   getModel(options: GetModelOptions = { requestOptions: {} }): Promise<Bird> {
@@ -39,11 +43,10 @@ export class SingleDiscriminatorClient {
   }
 
   putModel(
-    kind: string,
-    wingspan: number,
+    input: Bird,
     options: PutModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putModel(this._client, kind, wingspan, options);
+    return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
@@ -53,11 +56,10 @@ export class SingleDiscriminatorClient {
   }
 
   putRecursiveModel(
-    kind: string,
-    wingspan: number,
+    input: Bird,
     options: PutRecursiveModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putRecursiveModel(this._client, kind, wingspan, options);
+    return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(

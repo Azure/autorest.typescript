@@ -61,15 +61,14 @@ export async function getExtensibleModel(
 
 export function _putExtensibleModelSend(
   context: Client,
-  kind: string,
-  weight: number,
+  input: Dog,
   options: PutExtensibleModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutExtensibleModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, weight: weight },
+      body: { kind: input["kind"], weight: input["weight"] },
     });
 }
 
@@ -86,11 +85,10 @@ export async function _putExtensibleModelDeserialize(
 /** Send model with extensible enum discriminator type. */
 export async function putExtensibleModel(
   context: Client,
-  kind: string,
-  weight: number,
+  input: Dog,
   options: PutExtensibleModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putExtensibleModelSend(context, kind, weight, options);
+  const result = await _putExtensibleModelSend(context, input, options);
   return _putExtensibleModelDeserialize(result);
 }
 
@@ -203,15 +201,14 @@ export async function getFixedModel(
 
 export function _putFixedModelSend(
   context: Client,
-  kind: string,
-  length: number,
+  input: Snake,
   options: PutFixedModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutFixedModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, length: length },
+      body: { kind: input["kind"], length: input["length"] },
     });
 }
 
@@ -228,11 +225,10 @@ export async function _putFixedModelDeserialize(
 /** Send model with fixed enum discriminator type. */
 export async function putFixedModel(
   context: Client,
-  kind: string,
-  length: number,
+  input: Snake,
   options: PutFixedModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putFixedModelSend(context, kind, length, options);
+  const result = await _putFixedModelSend(context, input, options);
   return _putFixedModelDeserialize(result);
 }
 

@@ -20,16 +20,14 @@ import {
 
 export function _postValidSend(
   context: Client,
-  name: string,
-  age: number,
-  smart: boolean,
+  input: Siamese,
   options: PostValidOptions = { requestOptions: {} }
 ): StreamableMethod<PostValid204Response> {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { name: name, age: age, smart: smart },
+      body: { name: input["name"], age: input["age"], smart: input["smart"] },
     });
 }
 
@@ -45,12 +43,10 @@ export async function _postValidDeserialize(
 
 export async function postValid(
   context: Client,
-  name: string,
-  age: number,
-  smart: boolean,
+  input: Siamese,
   options: PostValidOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _postValidSend(context, name, age, smart, options);
+  const result = await _postValidSend(context, input, options);
   return _postValidDeserialize(result);
 }
 
@@ -87,16 +83,14 @@ export async function getValid(
 
 export function _putValidSend(
   context: Client,
-  name: string,
-  age: number,
-  smart: boolean,
+  input: Siamese,
   options: PutValidOptions = { requestOptions: {} }
 ): StreamableMethod<PutValid200Response> {
   return context
     .path("/type/model/inheritance/not-discriminated/valid")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { name: name, age: age, smart: smart },
+      body: { name: input["name"], age: input["age"], smart: input["smart"] },
     });
 }
 
@@ -116,11 +110,9 @@ export async function _putValidDeserialize(
 
 export async function putValid(
   context: Client,
-  name: string,
-  age: number,
-  smart: boolean,
+  input: Siamese,
   options: PutValidOptions = { requestOptions: {} }
 ): Promise<Siamese> {
-  const result = await _putValidSend(context, name, age, smart, options);
+  const result = await _putValidSend(context, input, options);
   return _putValidDeserialize(result);
 }

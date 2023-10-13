@@ -56,14 +56,14 @@ export async function getModel(
 
 export function _putModelSend(
   context: Client,
-  age: number,
+  input: Fish,
   options: PutModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: age, kind: options?.kind },
+      body: { age: input["age"], kind: input["kind"] },
     });
 }
 
@@ -79,10 +79,10 @@ export async function _putModelDeserialize(
 
 export async function putModel(
   context: Client,
-  age: number,
+  input: Fish,
   options: PutModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putModelSend(context, age, options);
+  const result = await _putModelSend(context, input, options);
   return _putModelDeserialize(result);
 }
 
@@ -118,14 +118,14 @@ export async function getRecursiveModel(
 
 export function _putRecursiveModelSend(
   context: Client,
-  age: number,
+  input: Fish,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: age, kind: options?.kind },
+      body: { age: input["age"], kind: input["kind"] },
     });
 }
 
@@ -141,10 +141,10 @@ export async function _putRecursiveModelDeserialize(
 
 export async function putRecursiveModel(
   context: Client,
-  age: number,
+  input: Fish,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putRecursiveModelSend(context, age, options);
+  const result = await _putRecursiveModelSend(context, input, options);
   return _putRecursiveModelDeserialize(result);
 }
 

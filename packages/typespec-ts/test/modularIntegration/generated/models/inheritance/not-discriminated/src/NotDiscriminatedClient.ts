@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { Siamese } from "./models/models.js";
 import {
   PostValidOptions,
@@ -20,19 +21,20 @@ export { NotDiscriminatedClientOptions } from "./api/NotDiscriminatedContext.js"
 
 export class NotDiscriminatedClient {
   private _client: NotDiscriminatedContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Illustrates not-discriminated inheritance model. */
   constructor(options: NotDiscriminatedClientOptions = {}) {
     this._client = createNotDiscriminated(options);
+    this.pipeline = this._client.pipeline;
   }
 
   postValid(
-    name: string,
-    age: number,
-    smart: boolean,
+    input: Siamese,
     options: PostValidOptions = { requestOptions: {} }
   ): Promise<void> {
-    return postValid(this._client, name, age, smart, options);
+    return postValid(this._client, input, options);
   }
 
   getValid(
@@ -42,11 +44,9 @@ export class NotDiscriminatedClient {
   }
 
   putValid(
-    name: string,
-    age: number,
-    smart: boolean,
+    input: Siamese,
     options: PutValidOptions = { requestOptions: {} }
   ): Promise<Siamese> {
-    return putValid(this._client, name, age, smart, options);
+    return putValid(this._client, input, options);
   }
 }

@@ -1,14 +1,14 @@
-import NotDiscriminatedClientFactory, {
+import {
   NotDiscriminatedClient,
   Siamese
-} from "./generated/models/inheritance-not-discriminated/src/index.js";
+} from "./generated/models/inheritance/not-discriminated/src/index.js";
 import { assert } from "chai";
 
 describe("NotDiscriminatedClient Rest Client", () => {
   let client: NotDiscriminatedClient;
 
   beforeEach(() => {
-    client = NotDiscriminatedClientFactory({
+    client = new NotDiscriminatedClient({
       allowInsecureConnection: true
     });
   });
@@ -16,11 +16,8 @@ describe("NotDiscriminatedClient Rest Client", () => {
   const validBody: Siamese = { name: "abc", age: 32, smart: true };
   it("should get valid", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/not-discriminated/valid")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validBody);
+      const result = await client.getValid();
+      assert.deepEqual(result, validBody);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -28,11 +25,8 @@ describe("NotDiscriminatedClient Rest Client", () => {
 
   it("should put valid", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/not-discriminated/valid")
-        .put({ body: validBody });
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validBody);
+      const result = await client.putValid(validBody);
+      assert.deepEqual(result, validBody);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -40,10 +34,8 @@ describe("NotDiscriminatedClient Rest Client", () => {
 
   it("should post valid", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/not-discriminated/valid")
-        .post({ body: validBody });
-      assert.strictEqual(result.status, "204");
+      const result = await client.postValid(validBody);
+      assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }

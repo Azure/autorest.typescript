@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { Dog, Snake } from "./models/models.js";
 import {
   GetExtensibleModelOptions,
@@ -30,10 +31,13 @@ export { EnumDiscriminatorClientOptions } from "./api/EnumDiscriminatorContext.j
 
 export class EnumDiscriminatorClient {
   private _client: EnumDiscriminatorContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Illustrates inheritance with enum discriminator. */
   constructor(options: EnumDiscriminatorClientOptions = {}) {
     this._client = createEnumDiscriminator(options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Receive model with extensible enum discriminator type. */
@@ -45,11 +49,10 @@ export class EnumDiscriminatorClient {
 
   /** Send model with extensible enum discriminator type. */
   putExtensibleModel(
-    kind: string,
-    weight: number,
+    input: Dog,
     options: PutExtensibleModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putExtensibleModel(this._client, kind, weight, options);
+    return putExtensibleModel(this._client, input, options);
   }
 
   /** Get a model omitting the discriminator. */
@@ -79,11 +82,10 @@ export class EnumDiscriminatorClient {
 
   /** Send model with fixed enum discriminator type. */
   putFixedModel(
-    kind: string,
-    length: number,
+    input: Snake,
     options: PutFixedModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putFixedModel(this._client, kind, length, options);
+    return putFixedModel(this._client, input, options);
   }
 
   /** Get a model omitting the discriminator. */

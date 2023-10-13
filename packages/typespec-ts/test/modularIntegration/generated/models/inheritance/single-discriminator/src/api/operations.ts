@@ -58,15 +58,14 @@ export async function getModel(
 
 export function _putModelSend(
   context: Client,
-  kind: string,
-  wingspan: number,
+  input: Bird,
   options: PutModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/single-discriminator/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, wingspan: wingspan },
+      body: { kind: input["kind"], wingspan: input["wingspan"] },
     });
 }
 
@@ -82,11 +81,10 @@ export async function _putModelDeserialize(
 
 export async function putModel(
   context: Client,
-  kind: string,
-  wingspan: number,
+  input: Bird,
   options: PutModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putModelSend(context, kind, wingspan, options);
+  const result = await _putModelSend(context, input, options);
   return _putModelDeserialize(result);
 }
 
@@ -122,15 +120,14 @@ export async function getRecursiveModel(
 
 export function _putRecursiveModelSend(
   context: Client,
-  kind: string,
-  wingspan: number,
+  input: Bird,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: kind, wingspan: wingspan },
+      body: { kind: input["kind"], wingspan: input["wingspan"] },
     });
 }
 
@@ -146,11 +143,10 @@ export async function _putRecursiveModelDeserialize(
 
 export async function putRecursiveModel(
   context: Client,
-  kind: string,
-  wingspan: number,
+  input: Bird,
   options: PutRecursiveModelOptions = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _putRecursiveModelSend(context, kind, wingspan, options);
+  const result = await _putRecursiveModelSend(context, input, options);
   return _putRecursiveModelDeserialize(result);
 }
 

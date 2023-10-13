@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { Fish } from "./models/models.js";
 import {
   GetModelOptions,
@@ -26,10 +27,13 @@ export { NestedDiscriminatorClientOptions } from "./api/NestedDiscriminatorConte
 
 export class NestedDiscriminatorClient {
   private _client: NestedDiscriminatorContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Illustrates multiple level inheritance with multiple discriminators. */
   constructor(options: NestedDiscriminatorClientOptions = {}) {
     this._client = createNestedDiscriminator(options);
+    this.pipeline = this._client.pipeline;
   }
 
   getModel(options: GetModelOptions = { requestOptions: {} }): Promise<Fish> {
@@ -37,10 +41,10 @@ export class NestedDiscriminatorClient {
   }
 
   putModel(
-    age: number,
+    input: Fish,
     options: PutModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putModel(this._client, age, options);
+    return putModel(this._client, input, options);
   }
 
   getRecursiveModel(
@@ -50,10 +54,10 @@ export class NestedDiscriminatorClient {
   }
 
   putRecursiveModel(
-    age: number,
+    input: Fish,
     options: PutRecursiveModelOptions = { requestOptions: {} }
   ): Promise<void> {
-    return putRecursiveModel(this._client, age, options);
+    return putRecursiveModel(this._client, input, options);
   }
 
   getMissingDiscriminator(

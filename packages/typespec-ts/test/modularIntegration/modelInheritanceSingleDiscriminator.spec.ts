@@ -1,15 +1,15 @@
-import SingleDiscriminatorClientFactory, {
+import {
   Eagle,
   SingleDiscriminatorClient,
   Sparrow
-} from "./generated/models/inheritance-single-discriminator/src/index.js";
+} from "./generated/models/inheritance/single-discriminator/src/index.js";
 import { assert } from "chai";
 
 describe("SingleDiscriminatorClient Rest Client", () => {
   let client: SingleDiscriminatorClient;
 
   beforeEach(() => {
-    client = SingleDiscriminatorClientFactory({
+    client = new SingleDiscriminatorClient({
       allowInsecureConnection: true
     });
   });
@@ -40,11 +40,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
   };
   it("should get model with single discriminator", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/single-discriminator/model")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validBody);
+      const result = await client.getModel();
+      assert.deepEqual(result, validBody);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -52,10 +49,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should put model with single discriminator", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/single-discriminator/model")
-        .put({ body: validBody });
-      assert.strictEqual(result.status, "204");
+      const result = await client.putModel(validBody);
+      assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -63,11 +58,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should get recursive model with single discriminator", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/single-discriminator/recursivemodel")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, validRecursiveBody);
+      const result = await client.getRecursiveModel();
+      assert.deepEqual(result, validRecursiveBody);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -75,10 +67,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should put recursive model with single discriminator", async () => {
     try {
-      const result = await client
-        .path("/type/model/inheritance/single-discriminator/recursivemodel")
-        .put({ body: validRecursiveBody });
-      assert.strictEqual(result.status, "204");
+      const result = await client.putRecursiveModel(validRecursiveBody);
+      assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -86,13 +76,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should get if missing discriminator", async () => {
     try {
-      const result = await client
-        .path(
-          "/type/model/inheritance/single-discriminator/missingdiscriminator"
-        )
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, { wingspan: 1 } as any);
+      const result = await client.getMissingDiscriminator();
+      assert.deepEqual(result, { wingspan: 1 } as any);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -100,13 +85,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should get if wrong discriminator", async () => {
     try {
-      const result = await client
-        .path(
-          "/type/model/inheritance/single-discriminator/wrongdiscriminator"
-        )
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, { wingspan: 1, kind: "wrongKind" } as any);
+      const result = await client.getWrongDiscriminator();
+      assert.deepEqual(result, { wingspan: 1, kind: "wrongKind" });
     } catch (err) {
       assert.fail(err as string);
     }
@@ -114,13 +94,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
 
   it("should get legacy model", async () => {
     try {
-      const result = await client
-        .path(
-          "/type/model/inheritance/single-discriminator/legacy-model"
-        )
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.deepEqual(result.body, { size: 20, kind: "t-rex" });
+      const result = await client.getLegacyModel();
+      assert.deepEqual(result, { size: 20, kind: "t-rex" });
     } catch (err) {
       assert.fail(err as string);
     }
