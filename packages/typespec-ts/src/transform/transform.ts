@@ -91,12 +91,11 @@ export async function transformRLCModel(
     urlInfo,
     telemetryOptions
   };
-  model.sampleGroups =
-    transformSampleGroups(
-      model,
-      options?.generateSample ===
-        true /* Enable mock sample content if generateSample === true */
-    ) ?? [];
+  model.sampleGroups = transformSampleGroups(
+    model,
+    options?.generateSample ===
+      true /* Enable mock sample content if generateSample === true */
+  );
   return model;
 }
 

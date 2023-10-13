@@ -18,7 +18,7 @@ dotenv.config();
 async function putHorseSample() {
   const client = createMultipleInheritanceRestClient();
   const options: PutHorseParameters = {
-    body: { isAShowHorse: true, name: "{Your name}" },
+    body: { name: "{Your name}", isAShowHorse: true },
     contentType: "application/json"
   };
   const result = await client.path("/multipleInheritance/horse").put(options);

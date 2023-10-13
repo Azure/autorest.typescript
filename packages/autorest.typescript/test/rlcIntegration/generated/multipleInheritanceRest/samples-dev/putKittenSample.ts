@@ -19,11 +19,11 @@ async function putKittenSample() {
   const client = createMultipleInheritanceRestClient();
   const options: PutKittenParameters = {
     body: {
-      eatsMiceYet: true,
       name: "{Your name}",
       meows: true,
       hisses: true,
-      likesMilk: true
+      likesMilk: true,
+      eatsMiceYet: true
     },
     contentType: "application/json"
   };
