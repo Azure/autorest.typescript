@@ -20,7 +20,9 @@ import {
   SampleParameter,
   SampleParameters,
   OperationMethod,
-  SampleParameterPosition
+  SampleParameterPosition,
+  transformSampleGroups as transformSampleGroupsFromMockValue,
+  RLCModel
 } from "@azure-tools/rlc-common";
 import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
 
@@ -30,6 +32,20 @@ const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
 
 export function transformRLCSampleData(
+  model: TestCodeModel,
+  rlcModel: RLCModel
+): RLCSampleGroup[] | undefined {
+  const sampleGroups = transformSampleGroupsFromSwaggerExamples(model);
+  if (sampleGroups && sampleGroups.length > 0) {
+    return sampleGroups;
+  }
+  const { generateSample, generateMetadata } = getAutorestOptions();
+  // Allow to generate mock sample when generateSample and generateMetadata are both true
+  const allowMockValue = generateSample === true && generateMetadata === true;
+  return transformSampleGroupsFromMockValue(rlcModel, allowMockValue);
+}
+
+function transformSampleGroupsFromSwaggerExamples(
   model: TestCodeModel
 ): RLCSampleGroup[] | undefined {
   const { generateSample, multiClient } = getAutorestOptions();

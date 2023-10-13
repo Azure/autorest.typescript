@@ -54,9 +54,9 @@ export function transform(model: CodeModel): RLCModel {
     parameters: transformParameterTypes(model, importDetails),
     helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
-    apiVersionInfo: transformApiVersion(model, urlInfo),
-    sampleGroups: transformRLCSampleData(model)
+    apiVersionInfo: transformApiVersion(model, urlInfo)
   };
+  rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
   return rlcModel;
 }
 

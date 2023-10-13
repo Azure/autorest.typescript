@@ -53,7 +53,6 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
-import { buildSamplesOnMockContent } from "@azure-tools/rlc-common";
 
 export * from "./lib.js";
 
@@ -120,12 +119,6 @@ export async function $onEmit(context: EmitContext) {
     const clients = getRLCClients(dpgContext);
     for (const client of clients) {
       const rlcModels = await transformRLCModel(client, dpgContext);
-      if (
-        rlcModels.options?.generateSample === true &&
-        (rlcModels.sampleGroups ?? []).length === 0
-      ) {
-        rlcModels.sampleGroups = buildSamplesOnMockContent(rlcModels);
-      }
       rlcCodeModels.push(rlcModels);
       serviceNameToRlcModelsMap.set(client.service.name, rlcModels);
       needUnexpectedHelper.set(

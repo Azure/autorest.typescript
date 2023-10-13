@@ -40,7 +40,6 @@ import {
   generateSchemaTypes,
   generateTopLevelIndexFile
 } from "./helpers/generatorHelpers";
-import { buildSamplesOnMockContent } from "@azure-tools/rlc-common";
 
 /**
  * Generates a Rest Level Client library
@@ -51,7 +50,6 @@ export async function generateRestLevelClient() {
   const {
     outputPath,
     srcPath,
-    generateSample,
     generateTest,
     generateMetadata
   } = getAutorestOptions();
@@ -68,13 +66,6 @@ export async function generateRestLevelClient() {
 
   // then transform CodeModel to RLCModel
   const rlcModels = transform(model);
-  if (
-    generateSample === true &&
-    generateMetadata === true &&
-    (rlcModels.sampleGroups ?? []).length === 0
-  ) {
-    rlcModels.sampleGroups = buildSamplesOnMockContent(rlcModels);
-  }
   const hasSampleGenerated = (rlcModels.sampleGroups ?? []).length > 0;
 
   if (generateMetadata) {

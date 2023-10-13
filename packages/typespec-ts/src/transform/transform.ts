@@ -35,6 +35,7 @@ import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
 import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { transformSampleGroups } from "@azure-tools/rlc-common";
 
 export async function transformRLCModel(
   client: SdkClient,
@@ -76,7 +77,7 @@ export async function transformRLCModel(
   const urlInfo = transformUrlInfo(dpgContext);
   const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
   const telemetryOptions = transformTelemetryInfo(dpgContext, client);
-  return {
+  const model: RLCModel = {
     srcPath,
     libraryName,
     paths,
@@ -90,6 +91,14 @@ export async function transformRLCModel(
     urlInfo,
     telemetryOptions
   };
+  const sampleGroups =
+    transformSampleGroups(
+      model,
+      options?.generateSample ===
+        true /* Enable mock sample content if generateSample === true */
+    ) ?? [];
+  model.sampleGroups = sampleGroups;
+  return model;
 }
 
 export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {

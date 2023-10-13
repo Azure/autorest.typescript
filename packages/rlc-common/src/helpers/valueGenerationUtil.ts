@@ -23,11 +23,21 @@ import {
   toTypeScriptTypeFromSchema
 } from "./typeUtil.js";
 
-export function mockParameterTypeValue(
+/**
+ * Generate parameter type value for the given type and parameter name
+ * @param type the typescript type
+ * @param parameterName the parameter name
+ * @param schemaMap the schema info to help generate the value
+ * @param path optional path to help detect self reference
+ * @param _allowMockValue the flag to indicate whether to allow mock value, currently we always generate mock value
+ * @returns
+ */
+export function generateParameterTypeValue(
   type: string,
   parameterName: string,
   schemaMap: Map<string, Schema>,
-  path: Set<string> = new Set()
+  path: Set<string> = new Set(),
+  _allowMockValue = true
 ): string | undefined {
   type = leaveBracket(type?.trim());
   let tsType: TypeScriptType | undefined;
@@ -51,13 +61,13 @@ export function mockParameterTypeValue(
     case TypeScriptType.unknown:
       return `"Unknown Type"`;
     case TypeScriptType.object: {
-      return mockObjectValues(type, parameterName, schemaMap, path);
+      return generateObjectValues(type, parameterName, schemaMap, path);
     }
     case TypeScriptType.array: {
-      return mockArrayValues(type, parameterName, schemaMap, path);
+      return generateArrayValues(type, parameterName, schemaMap, path);
     }
     case TypeScriptType.record: {
-      return mockRecordValues(type, parameterName, schemaMap, path);
+      return generateRecordValues(type, parameterName, schemaMap, path);
     }
     case TypeScriptType.enum: {
       return mockEnumValues(type, parameterName, schemaMap, path);
@@ -82,7 +92,7 @@ function mockEnumValues(
     const first = schema.enum[0];
     return typeof first === "string" ? `"${first}"` : `${first}`;
   }
-  return mockParameterTypeValue(
+  return generateParameterTypeValue(
     getUnionType(type),
     parameterName,
     schemaMap,
@@ -98,14 +108,14 @@ function mockUnionValues(
 ) {
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
-    return mockParameterTypeValue(
+    return generateParameterTypeValue(
       getAccurateTypeName(schema.enum[0]) ?? schema.enum[0],
       parameterName,
       schemaMap,
       path
     );
   }
-  return mockParameterTypeValue(
+  return generateParameterTypeValue(
     getUnionType(type),
     parameterName,
     schemaMap,
@@ -113,7 +123,7 @@ function mockUnionValues(
   );
 }
 
-function mockRecordValues(
+function generateRecordValues(
   type: string,
   parameterName: string,
   schemaMap: Map<string, Schema>,
@@ -127,7 +137,7 @@ function mockRecordValues(
   }
 
   return recordType
-    ? `{"key": ${mockParameterTypeValue(
+    ? `{"key": ${generateParameterTypeValue(
         recordType,
         parameterName,
         schemaMap,
@@ -136,7 +146,7 @@ function mockRecordValues(
     : `{}`;
 }
 
-function mockArrayValues(
+function generateArrayValues(
   type: string,
   parameterName: string,
   schemaMap: Map<string, Schema>,
@@ -153,12 +163,12 @@ function mockArrayValues(
     arrayType = getNativeArrayType(type);
   }
   const itemValue = arrayType
-    ? mockParameterTypeValue(arrayType, parameterName, schemaMap, path)
+    ? generateParameterTypeValue(arrayType, parameterName, schemaMap, path)
     : undefined;
   return itemValue ? `[${itemValue}]` : `[]`;
 }
 
-function mockObjectValues(
+function generateObjectValues(
   type: string,
   _parameterName: string,
   schemaMap: Map<string, Schema>,
@@ -211,7 +221,7 @@ function extractObjectProperties(
     addToSchemaMap(schemaMap, property);
     values.push(
       `${name}: ` +
-        mockParameterTypeValue(
+        generateParameterTypeValue(
           getAccurateTypeName(property),
           name,
           schemaMap,
