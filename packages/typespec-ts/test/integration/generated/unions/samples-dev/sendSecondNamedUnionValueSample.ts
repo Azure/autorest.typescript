@@ -18,7 +18,7 @@ dotenv.config();
 async function sendSecondNamedUnionValueSample() {
   const client = createUnionsClient();
   const options: SendSecondNamedUnionValueParameters = {
-    body: { namedUnion: { prop1: 123, name: "{Your name}" } },
+    body: { namedUnion: { name: "{Your name}", prop1: 123 } },
   };
   const result = await client.path("/type/union/model2").post(options);
   console.log(result);
