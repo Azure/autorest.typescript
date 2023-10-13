@@ -1,8 +1,10 @@
-import { FunctionDeclaration, SourceFile } from "ts-morph";
-import { getClientParameters } from "./helpers/clientHelpers.js";
-import { importCredential } from "./helpers/credentialHelpers.js";
+import { SourceFile } from "ts-morph";
+import {
+  getClientParameters,
+  importCredential
+} from "./helpers/clientHelpers.js";
 import { getClientName } from "./helpers/namingHelpers.js";
-import { Client, ModularCodeModel, Parameter } from "./modularCodeModel.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { importModels } from "./buildOperations.js";
@@ -16,8 +18,9 @@ export function buildClientContext(
   codeModel: ModularCodeModel,
   client: Client
 ): SourceFile {
-  const { description, parameters, subfolder } = client;
+  const { description, subfolder } = client;
   const name = getClientName(client);
+  const params = getClientParameters(client);
   const srcPath = codeModel.modularOptions.sourceRoot;
   const clientContextFile = codeModel.project.createSourceFile(
     `${srcPath}/${
@@ -26,6 +29,7 @@ export function buildClientContext(
   );
 
   let factoryFunction;
+  importCredential(clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier: "@azure-rest/core-client",
@@ -52,7 +56,7 @@ export function buildClientContext(
       docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `Client.${client.name}`,
-      parameters: getClientParameters(client),
+      parameters: params,
       isExported: true
     });
   } else {
@@ -75,42 +79,15 @@ export function buildClientContext(
       docs: getDocsFromDescription(description),
       name: `create${name}`,
       returnType: `${rlcClientName}`,
-      parameters: getClientParameters(client),
+      parameters: params,
       isExported: true
     });
   }
 
-  const credentialsParam = parameters.find(
-    (p) => p.clientName === "credential"
-  );
-
-  const baseUrlParam: Parameter | undefined = parameters.find(
-    (p) => p.location === "endpointPath"
-  );
-
-  if (baseUrlParam) {
-    let baseUrl: string | undefined = "endpoint";
-    baseUrl =
-      baseUrlParam.type.type === "constant"
-        ? baseUrlParam.type.value
-        : baseUrlParam.clientName;
-    factoryFunction.addStatements([`const baseUrl = ${baseUrl}`]);
-  }
-
-  let getClientStatement = `const clientContext = getClient(options)`;
-
-  if (baseUrlParam) {
-    getClientStatement = `const clientContext = getClient(baseUrl, options)`;
-  }
-
-  // If the client needs credentials we need to pass those to getClient
-  if (credentialsParam) {
-    importCredential(credentialsParam.type, clientContextFile);
-    addCredentialOptionsStatement(credentialsParam, factoryFunction);
-    getClientStatement = baseUrlParam
-      ? `const clientContext = getClient(baseUrl, credential, options)`
-      : `const clientContext = getClient(credential, options)`;
-  }
+  const paramNames = params.map((p) => p.name);
+  const getClientStatement = `const clientContext = getClient(${paramNames.join(
+    ","
+  )})`;
 
   factoryFunction.addStatements([getClientStatement, "return clientContext;"]);
 
@@ -139,25 +116,4 @@ export function buildClientContext(
 
   clientContextFile.fixUnusedIdentifiers();
   return clientContextFile;
-}
-
-/**
- * This function adds the statements to pass the credential to getClient
- */
-function addCredentialOptionsStatement(
-  credential: Parameter,
-  factoryFunction: FunctionDeclaration
-): void {
-  switch (credential.type.type) {
-    case "Key":
-      if (!credential.type.policy?.key) {
-        throw new Error(`Key credential does not define a header name`);
-      }
-      factoryFunction.addStatements(
-        `options.credentials = {...options.credentials, apiKeyHeaderName: "${credential.type.policy.key}"}`
-      );
-      return;
-    default:
-      return;
-  }
 }

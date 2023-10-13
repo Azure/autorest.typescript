@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { BodyParameter } from "./models/models.js";
 import {
   ModelSpreadAsRequestBodyOptions,
@@ -22,10 +23,13 @@ export { SpreadClientOptions } from "./api/SpreadContext.js";
 
 export class SpreadClient {
   private _client: SpreadContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Test for the spread operator. */
   constructor(options: SpreadClientOptions = {}) {
     this._client = createSpread(options);
+    this.pipeline = this._client.pipeline;
   }
 
   model = {

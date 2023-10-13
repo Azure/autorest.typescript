@@ -85,7 +85,7 @@ export function emitPackage(
       "review/*"
     ],
     engines: {
-      node: ">=14.0.0"
+      node: ">=16.0.0"
     },
     scripts: {
       audit:
@@ -151,7 +151,7 @@ export function emitPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
-      "@types/node": "^14.0.0",
+      "@types/node": "^16.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
@@ -208,8 +208,8 @@ export function emitPackage(
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
-    packageInfo.devDependencies["mocha"] = "^7.1.1";
-    packageInfo.devDependencies["@types/mocha"] = "^7.0.2";
+    packageInfo.devDependencies["mocha"] = "^10.0.0";
+    packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
@@ -242,12 +242,12 @@ export function emitPackage(
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] =
-      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+      'mocha --full-trace "test/{,!(browser)/**/}*.spec.ts"';
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
     packageInfo.scripts["integration-test:node"] =
-      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+      'nyc mocha --require source-map-support/register.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {
@@ -264,6 +264,12 @@ export function emitPackage(
     packageInfo["browser"] = {
       "./dist-esm/test/public/utils/env.js":
         "./dist-esm/test/public/utils/env.browser.js"
+    };
+
+    packageInfo["mocha"] = {
+      extension: ["ts"],
+      timeout: "1200000",
+      loader: "ts-node/esm"
     };
   }
 

@@ -186,4 +186,67 @@ describe("EncodeDatetimeClient Rest Client", () => {
       }
     });
   });
+
+  describe("response header", () => {
+    it(`should get default header`, async () => {
+      try {
+        const result = await client.responseHeader.default({
+          onResponse: (res) => {
+            assert.strictEqual(
+              res.headers.get("value"),
+              "Fri, 26 Aug 2022 14:38:00 GMT"
+            );
+          }
+        });
+        assert.isUndefined(result);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get rfc3339 header`, async () => {
+      try {
+        const result = await client.responseHeader.rfc3339({
+          onResponse: (res) => {
+            assert.strictEqual(
+              res.headers.get("value"),
+              "2022-08-26T18:38:00.000Z"
+            );
+          }
+        });
+        assert.isUndefined(result);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get rfc7231 header`, async () => {
+      try {
+        const result = await client.responseHeader.rfc7231({
+          onResponse: (res) => {
+            assert.strictEqual(
+              res.headers.get("value"),
+              "Fri, 26 Aug 2022 14:38:00 GMT"
+            );
+          }
+        });
+        assert.isUndefined(result);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it(`should get unix-timestamp header`, async () => {
+      try {
+        const result = await client.responseHeader.unixTimestamp({
+          onResponse: (res) => {
+            assert.strictEqual(res.headers.get("value"), "1686566864");
+          }
+        });
+        assert.isUndefined(result);
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+  });
 });

@@ -7,16 +7,19 @@ import { ServiceContext } from "./clientDefinitions.js";
 
 /**
  * Initialize a new instance of `ServiceContext`
- * @param clientParam - Possible values: default, multi-client, renamed-operation, two-operation-group
+ * @param endpoint - Need to be set as 'http://localhost:3000' in client.
+ * @param clientParam - Need to be set as 'default', 'multi-client', 'renamed-operation', 'two-operation-group' in client. Possible values: default, multi-client, renamed-operation, two-operation-group
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
+  endpoint: string,
   clientParam: string,
   options: ClientOptions = {}
 ): ServiceContext {
   const baseUrl =
-    options.baseUrl ?? `http://localhost:3000/client/structure/${clientParam}`;
+    options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
+
   const userAgentInfo = `azsdk-js-client-structure-renamed-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

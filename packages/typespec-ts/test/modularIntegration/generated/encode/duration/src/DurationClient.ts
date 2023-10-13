@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   DefaultDurationProperty,
   ISO8601DurationProperty,
@@ -50,10 +51,13 @@ export { DurationClientOptions } from "./api/DurationContext.js";
 
 export class DurationClient {
   private _client: DurationContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Test for encode decorator on duration. */
   constructor(options: DurationClientOptions = {}) {
     this._client = createDuration(options);
+    this.pipeline = this._client.pipeline;
   }
 
   query = {

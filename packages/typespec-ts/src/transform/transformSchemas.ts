@@ -131,7 +131,7 @@ export function transformSchemas(
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
-          if (prop[1].type.name === "Error") {
+          if (isAzureCoreErrorType(prop[1].type)) {
             continue;
           }
           getGeneratedModels(prop[1].type, context);

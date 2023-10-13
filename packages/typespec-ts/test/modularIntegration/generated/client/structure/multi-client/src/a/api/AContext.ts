@@ -11,10 +11,10 @@ export interface AClientOptions extends ClientOptions {}
 export { ServiceContext } from "../../rest/index.js";
 
 export function createA(
+  endpoint: string,
   client: ClientType,
   options: AClientOptions = {}
 ): ServiceContext {
-  const baseUrl = client;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(endpoint, client, options);
   return clientContext;
 }

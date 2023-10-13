@@ -19,7 +19,7 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": { "node": ">=14.0.0" },
+  "engines": { "node": ">=16.0.0" },
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:browser": "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1",
@@ -34,7 +34,7 @@
     "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
     "generate:client": "autorest --typescript swagger/README.md && npm run format",
     "integration-test:browser": "karma start --single-run",
-    "integration-test:node": "nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"",
+    "integration-test:node": "nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"",
     "integration-test": "npm run integration-test:node && npm run integration-test:browser",
     "lint:fix": "eslint package.json api-extractor.json src test --ext .ts --fix --fix-type [problem,suggestion]",
     "lint": "eslint package.json api-extractor.json src test --ext .ts",
@@ -43,7 +43,7 @@
     "test:node": "npm run clean && npm run build:test && npm run unit-test:node",
     "test": "npm run clean && npm run build:test && npm run unit-test",
     "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-    "unit-test:node": "mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"",
+    "unit-test:node": "cross-env TS_NODE_COMPILER_OPTIONS=\"{\\\"module\\\":\\\"commonjs\\\"}\" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace \"test/{,!(browser)/**/}*.spec.ts\"",
     "unit-test:browser": "karma start --single-run",
     "build": "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js"
@@ -63,7 +63,7 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
     "autorest": "latest",
-    "@types/node": "^14.0.0",
+    "@types/node": "^16.0.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.0.0",
     "mkdirp": "^2.1.2",
@@ -81,8 +81,9 @@
     "@azure-tools/test-credential": "^1.0.0",
     "@azure/identity": "^2.0.1",
     "@azure-tools/test-recorder": "^3.0.0",
-    "mocha": "^7.1.1",
-    "@types/mocha": "^7.0.2",
+    "mocha": "^10.0.0",
+    "esm": "^3.2.18",
+    "@types/mocha": "^10.0.0",
     "mocha-junit-reporter": "^1.18.0",
     "cross-env": "^7.0.2",
     "@types/chai": "^4.2.8",
