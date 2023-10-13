@@ -180,38 +180,40 @@ function mockObjectValues(
 function getAllProperties(
   schema?: ObjectSchema,
   schemaMap: Map<string, Schema> = new Map()
-): Schema[] {
+): Map<string, Schema> {
   const propertiesMap: Map<string, Schema> = new Map();
   if (!schema) {
-    return [];
+    return new Map();
   }
   getImmediateParentsNames(schema, [SchemaContext.Input])?.forEach((p) => {
-    getAllProperties(schemaMap.get(p), schemaMap).forEach((prop) => {
-      propertiesMap.set(prop.name, prop);
-    });
+    const parentProperties = getAllProperties(schemaMap.get(p), schemaMap);
+    for (const prop of parentProperties.keys()) {
+      propertiesMap.set(prop, parentProperties.get(prop)!);
+    }
   });
   for (const prop in schema.properties) {
     propertiesMap.set(prop, schema.properties[prop]);
   }
-  return [...propertiesMap.values()];
+  return propertiesMap;
 }
 
 function extractObjectProperties(
-  properties: Schema[],
+  properties: Map<string, Schema>,
   schemaMap: Map<string, Schema> = new Map(),
   path: Set<string> = new Set()
 ) {
   const values: string[] = [];
-  for (const property of properties) {
-    if (property.readOnly || property.type === "never") {
+  for (const name of properties.keys()) {
+    const property = properties.get(name);
+    if (!property || property.readOnly || property.type === "never") {
       continue;
     }
     addToSchemaMap(schemaMap, property);
     values.push(
-      `${property.name}: ` +
+      `${name}: ` +
         mockParameterTypeValue(
           getAccurateTypeName(property),
-          property.name,
+          name,
           schemaMap,
           path
         )

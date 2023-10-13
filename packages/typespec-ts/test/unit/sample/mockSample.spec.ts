@@ -68,33 +68,66 @@ describe("Integration test for mocking sample", () => {
     });
 
     describe("complex model", () => {
-      it("self-referenced model", async () => {
-        const schemaMap = await emitSchemasFromTypeSpec(
-          `
-        model A {
-          foo: B[];
-        }
-        model B {
-          bar: A;
-        }
-        model Test {
-          selfReferenced: B;
-        }
-        op getModel(@body input: Test): void;
-        `,
-          true
-        );
-        const mockStr = mockParameterTypeValue(
-          "Test",
-          "input",
-          buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
-        );
-        assert.isNotNull(mockStr);
-        // console.log(mockStr);
-        assert.deepEqual(
-          mockStr,
-          `{"selfReferenced": {"bar": {"foo": [{} as any /**FIXME */]}}}`
-        );
+      describe("object", () => {
+        it("self-referenced model", async () => {
+          const schemaMap = await emitSchemasFromTypeSpec(
+            `
+          model A {
+            foo: B[];
+          }
+          model B {
+            bar: A;
+          }
+          model Test {
+            selfReferenced: B;
+          }
+          op getModel(@body input: Test): void;
+          `,
+            true
+          );
+          const mockStr = mockParameterTypeValue(
+            "Test",
+            "input",
+            buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
+          );
+          assert.isNotNull(mockStr);
+          // console.log(mockStr);
+          assert.deepEqual(
+            mockStr,
+            `{"selfReferenced": {"bar": {"foo": [{} as any /**FIXME */]}}}`
+          );
+        });
+
+        it("inheritance model", async () => {
+          const schemaMap = await emitSchemasFromTypeSpec(
+            `
+          model A {
+            foo: string;
+            kind: string;
+          }
+          model B extends A{
+            bar: string;
+            kind: "B";
+          }
+          model Test {
+            inheritance: B;
+          }
+          op getModel(@body input: Test): void;
+          `,
+            true
+          );
+          const mockStr = mockParameterTypeValue(
+            "Test",
+            "input",
+            buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
+          );
+          assert.isNotNull(mockStr);
+          const res = {
+            inheritance: { bar: "{Your bar}", kind: "B", foo: "{Your foo}" }
+          };
+          // console.log(mockStr);
+          assert.deepEqual(JSON.parse(mockStr!), res);
+        });
       });
 
       it("primitives", async () => {
