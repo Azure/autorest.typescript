@@ -26,8 +26,6 @@ import {
 } from "@azure-tools/rlc-common";
 import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
 
-type TestSampleParameters = Record<SampleParameterPosition, ExampleParameter[]>;
-
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
 
@@ -117,7 +115,10 @@ function transformSampleGroupsFromSwaggerExamples(
           useLegacyLro: false
         };
         // convert the parameters to the intermidate model - SampleParameters
-        const rawParamters: TestSampleParameters = {
+        const rawParamters: Record<
+          SampleParameterPosition,
+          ExampleParameter[]
+        > = {
           client: rawSample.clientParameters,
           path: (rawSample.methodParameters || []).filter(isPathLevelParam),
           method: (rawSample.methodParameters || []).filter(isMethodLevelParam)
