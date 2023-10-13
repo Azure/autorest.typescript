@@ -1,7 +1,7 @@
 import {
   RLCModel,
   buildSchemaObjectMap,
-  mockParameterTypeValue
+  generateParameterTypeValue
 } from "@azure-tools/rlc-common";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 import { assert } from "chai";
@@ -12,7 +12,7 @@ describe("Integration test for mocking sample", () => {
       const schemaMap = await emitSchemasFromTypeSpec(`
         op getModel(@body input: string): void;
       `);
-      const mockStr = mockParameterTypeValue(
+      const mockStr = generateParameterTypeValue(
         "string",
         "input",
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -25,7 +25,7 @@ describe("Integration test for mocking sample", () => {
       const schemaMap = await emitSchemasFromTypeSpec(`
         op getModel(@body input: boolean): void;
       `);
-      const mockStr = mockParameterTypeValue(
+      const mockStr = generateParameterTypeValue(
         "boolean",
         "prop",
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel),
@@ -38,7 +38,7 @@ describe("Integration test for mocking sample", () => {
       const schemaMap = await emitSchemasFromTypeSpec(`
         op getModel(@body input: string[]): void;
       `);
-      const mockStr = mockParameterTypeValue(
+      const mockStr = generateParameterTypeValue(
         "string[]",
         "prop",
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel),
@@ -57,7 +57,7 @@ describe("Integration test for mocking sample", () => {
       @get
       op getModel(@body input: Test): Test;
       `);
-      const mockStr = mockParameterTypeValue(
+      const mockStr = generateParameterTypeValue(
         "Test",
         "input",
         buildSchemaObjectMap({ schemas: schemaMap } as RLCModel),
@@ -85,7 +85,7 @@ describe("Integration test for mocking sample", () => {
           `,
             true
           );
-          const mockStr = mockParameterTypeValue(
+          const mockStr = generateParameterTypeValue(
             "Test",
             "input",
             buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -116,7 +116,7 @@ describe("Integration test for mocking sample", () => {
           `,
             true
           );
-          const mockStr = mockParameterTypeValue(
+          const mockStr = generateParameterTypeValue(
             "Test",
             "input",
             buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -146,7 +146,7 @@ describe("Integration test for mocking sample", () => {
         op getModel(@body input: Test): void;
         `
         );
-        const mockStr = mockParameterTypeValue(
+        const mockStr = generateParameterTypeValue(
           "Test",
           "input",
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -174,7 +174,7 @@ describe("Integration test for mocking sample", () => {
         op getModel(@body input: Test): void;
         `
         );
-        const mockStr = mockParameterTypeValue(
+        const mockStr = generateParameterTypeValue(
           "Test",
           "input",
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -210,7 +210,7 @@ describe("Integration test for mocking sample", () => {
         `,
           true
         );
-        const mockStr = mockParameterTypeValue(
+        const mockStr = generateParameterTypeValue(
           "Test",
           "input",
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -248,7 +248,7 @@ describe("Integration test for mocking sample", () => {
         `,
           true
         );
-        const mockStr = mockParameterTypeValue(
+        const mockStr = generateParameterTypeValue(
           "Test",
           "input",
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -284,7 +284,7 @@ describe("Integration test for mocking sample", () => {
           `,
             true
           );
-          const mockStr = mockParameterTypeValue(
+          const mockStr = generateParameterTypeValue(
             "Test",
             "input",
             buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -329,7 +329,7 @@ describe("Integration test for mocking sample", () => {
           `,
             true
           );
-          const mockStr = mockParameterTypeValue(
+          const mockStr = generateParameterTypeValue(
             "Test",
             "input",
             buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)
@@ -361,7 +361,7 @@ describe("Integration test for mocking sample", () => {
         `,
           true
         );
-        const mockStr = mockParameterTypeValue(
+        const mockStr = generateParameterTypeValue(
           "Test",
           "input",
           buildSchemaObjectMap({ schemas: schemaMap } as RLCModel)

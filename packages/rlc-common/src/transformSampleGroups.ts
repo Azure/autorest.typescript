@@ -1,7 +1,6 @@
-import { camelCase } from "lodash";
 import { generateParameterTypeValue } from "./helpers/valueGenerationUtil.js";
 import { getClientName } from "./helpers/nameConstructors.js";
-import { normalizeName, NameType } from "./helpers/nameUtils.js";
+import { normalizeName, NameType, camelCase } from "./helpers/nameUtils.js";
 import { buildSchemaObjectMap } from "./helpers/schemaHelpers.js";
 import {
   RLCModel,
