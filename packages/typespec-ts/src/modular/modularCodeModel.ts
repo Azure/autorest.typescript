@@ -94,6 +94,8 @@ export interface Type {
   properties?: Property[];
   types?: Type[];
   isCoreErrorType?: boolean;
+  alias?: string;
+  aliasType?: string;
 }
 
 export interface Client {

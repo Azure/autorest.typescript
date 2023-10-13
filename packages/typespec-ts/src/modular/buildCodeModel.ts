@@ -188,8 +188,10 @@ function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator?.propertyName) {
     const discriminatorValues: string[] = [];
+    const aliases: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
+      aliases.push(modelType.name);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
@@ -206,7 +208,8 @@ function handleDiscriminator(context: SdkContext, type: Model) {
       clientName: discriminator.propertyName,
       name: discriminator.propertyName,
       isPolymorphic: true,
-      isDiscriminator: true
+      isDiscriminator: true,
+      aliases
     };
     return discriminatorInfo;
   }
@@ -279,6 +282,10 @@ function processModelProperties(
     if (isDiscriminator(context, model, property.name)) {
       hasDiscriminator = true;
       newProperty = { ...newProperty, ...discriminatorInfo };
+      newValue.alias = newValue.name;
+      newValue.name = `${newValue.name}Parent`;
+      newValue.isPolyBaseModel = true;
+      newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
     }
     newValue.properties.push(newProperty);
   }

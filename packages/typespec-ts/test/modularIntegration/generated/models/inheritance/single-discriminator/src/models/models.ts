@@ -1,34 +1,37 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/** the base class union for poly models */
+export type Bird = SeaGull | Sparrow | Goose | Eagle;
+
 /** This is base model for polymorphic single level inheritance with a discriminator. */
-export interface Bird {
+export interface BirdParent {
   /** the discriminator possible values seagull, sparrow, goose, eagle */
   kind: string;
   wingspan: number;
 }
 
 /** The second level model in polymorphic single level inheritance. */
-export interface SeaGull extends Bird {
+export interface SeaGull extends BirdParent {
   kind: "seagull";
 }
 
 /** The second level model in polymorphic single level inheritance. */
-export interface Sparrow extends Bird {
+export interface Sparrow extends BirdParent {
   kind: "sparrow";
 }
 
 /** The second level model in polymorphic single level inheritance. */
-export interface Goose extends Bird {
+export interface Goose extends BirdParent {
   kind: "goose";
 }
 
 /** The second level model in polymorphic single levels inheritance which contains references to other polymorphic instances. */
-export interface Eagle extends Bird {
+export interface Eagle extends BirdParent {
   kind: "eagle";
-  friends?: Bird[];
-  hate?: Record<string, Bird>;
-  partner?: Bird;
+  friends?: BirdParent[];
+  hate?: Record<string, BirdParent>;
+  partner?: BirdParent;
 }
 
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Bird, Dinosaur } from "./models/models.js";
+import { BirdParent, Dinosaur } from "./models/models.js";
 import {
   GetModelOptions,
   PutModelOptions,
@@ -38,12 +38,14 @@ export class SingleDiscriminatorClient {
     this.pipeline = this._client.pipeline;
   }
 
-  getModel(options: GetModelOptions = { requestOptions: {} }): Promise<Bird> {
+  getModel(
+    options: GetModelOptions = { requestOptions: {} }
+  ): Promise<BirdParent> {
     return getModel(this._client, options);
   }
 
   putModel(
-    input: Bird,
+    input: BirdParent,
     options: PutModelOptions = { requestOptions: {} }
   ): Promise<void> {
     return putModel(this._client, input, options);
@@ -51,12 +53,12 @@ export class SingleDiscriminatorClient {
 
   getRecursiveModel(
     options: GetRecursiveModelOptions = { requestOptions: {} }
-  ): Promise<Bird> {
+  ): Promise<BirdParent> {
     return getRecursiveModel(this._client, options);
   }
 
   putRecursiveModel(
-    input: Bird,
+    input: BirdParent,
     options: PutRecursiveModelOptions = { requestOptions: {} }
   ): Promise<void> {
     return putRecursiveModel(this._client, input, options);
@@ -64,13 +66,13 @@ export class SingleDiscriminatorClient {
 
   getMissingDiscriminator(
     options: GetMissingDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Bird> {
+  ): Promise<BirdParent> {
     return getMissingDiscriminator(this._client, options);
   }
 
   getWrongDiscriminator(
     options: GetWrongDiscriminatorOptions = { requestOptions: {} }
-  ): Promise<Bird> {
+  ): Promise<BirdParent> {
     return getWrongDiscriminator(this._client, options);
   }
 

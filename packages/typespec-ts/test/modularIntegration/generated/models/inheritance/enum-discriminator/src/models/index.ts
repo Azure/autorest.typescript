@@ -1,7 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { Dog, Golden, DogKind, Snake, Cobra, SnakeKind } from "./models.js";
+export {
+  Dog,
+  DogParent,
+  Golden,
+  DogKind,
+  Snake,
+  SnakeParent,
+  Cobra,
+  SnakeKind,
+} from "./models.js";
 export {
   GetExtensibleModelOptions,
   PutExtensibleModelOptions,

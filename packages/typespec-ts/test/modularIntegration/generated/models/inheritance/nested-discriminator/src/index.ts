@@ -8,6 +8,7 @@ export {
 export {
   Fish,
   Shark,
+  SharkParent,
   SawShark,
   GoblinShark,
   Salmon,

@@ -102,6 +102,14 @@ export function buildModels(
             modelInterface.extends.push(getType(p, p.format).name)
           )
         : undefined;
+      if (model.type === "model" && model.alias) {
+        modelsFile.addTypeAlias({
+          name: model.alias,
+          type: model.aliasType ?? model.name,
+          isExported: true,
+          docs: ["the base class union for poly models"]
+        })
+      }
       modelsFile.addInterface(modelInterface);
     }
   }

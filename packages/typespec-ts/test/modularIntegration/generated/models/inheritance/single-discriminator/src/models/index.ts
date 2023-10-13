@@ -3,6 +3,7 @@
 
 export {
   Bird,
+  BirdParent,
   SeaGull,
   Sparrow,
   Goose,
