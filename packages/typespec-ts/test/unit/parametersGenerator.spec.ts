@@ -317,12 +317,14 @@ describe("Parameters.ts", () => {
     it("contentTypes has array data defined in form body", async () => {
       const parameters = await emitParameterFromTypeSpec(
         `
+        @encode("binary")
+        scalar BinaryBytes extends bytes;
+
         @route("/uploadFiles")
         @post op uploadFiles(
         @header contentType: "multipart/form-data",
         @body body: {
-          @encode("binary")
-          files: bytes[];
+          files: BinaryBytes[];
         }
       ): void;
         `

@@ -269,6 +269,7 @@ function transformNormalBody(
   const type = extractNameFromTypeSpecType(
     dpgContext,
     bodyType,
+    [SchemaContext.Input],
     importedModels,
     headers
   );
@@ -382,6 +383,7 @@ function getBodyDetail(
 function extractNameFromTypeSpecType(
   dpgContext: SdkContext,
   type: Type,
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
@@ -399,7 +401,7 @@ function extractNameFromTypeSpecType(
   ]);
   if (isAnonymousModel(bodySchema)) {
     // Handle anonymous Model
-    return generateAnomymousModelSigniture(bodySchema, importedModels);
+    return generateAnomymousModelSigniture(bodySchema, schemaUsage, importedModels);
   }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
@@ -424,12 +426,13 @@ function isAnonymousModel(schema: Schema) {
 
 function generateAnomymousModelSigniture(
   schema: ObjectSchema,
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
   let schemaSigiture = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
-    const propTypeName = getTypeName(propType);
+    const propTypeName = getTypeName(propType, schemaUsage);
     if (!propType || !propTypeName) {
       continue;
     }
