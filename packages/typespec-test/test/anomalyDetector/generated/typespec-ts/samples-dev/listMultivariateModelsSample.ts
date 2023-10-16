@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAnomalyDetectorClient, {
-  ListMultivariateModelsParameters,
   paginate,
 } from "@msinternal/ai-anomaly-detector";
 import * as dotenv from "dotenv";
@@ -21,12 +18,9 @@ async function listMultivariateModelsSample() {
   const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const options: ListMultivariateModelsParameters = {
-    queryParameters: { skip: 123, top: 123 },
-  };
   const initialResponse = await client
     .path("/multivariate/models")
-    .get(options);
+    .get({ queryParameters: { skip: 123, top: 123 } });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

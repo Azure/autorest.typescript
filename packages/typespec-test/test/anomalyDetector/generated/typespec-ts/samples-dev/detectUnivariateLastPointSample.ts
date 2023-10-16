@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createAnomalyDetectorClient from "@msinternal/ai-anomaly-detector";
 import { AzureKeyCredential } from "@azure/core-auth";
-import createAnomalyDetectorClient, {
-  DetectUnivariateLastPointParameters,
-} from "@msinternal/ai-anomaly-detector";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -20,19 +16,20 @@ async function detectUnivariateLastPointSample() {
   const endpoint = "{Your endpoint}";
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAnomalyDetectorClient(endpoint, credential);
-  const options: DetectUnivariateLastPointParameters = {
-    body: {
-      series: [{ timestamp: new Date(), value: 123 }],
-      granularity: "yearly",
-      customInterval: 123,
-      period: 123,
-      maxAnomalyRatio: 123,
-      sensitivity: 123,
-      imputeMode: "auto",
-      imputeFixedValue: 123,
-    },
-  };
-  const result = await client.path("/timeseries/last/detect").post(options);
+  const result = await client
+    .path("/timeseries/last/detect")
+    .post({
+      body: {
+        series: [{ timestamp: new Date(), value: 123 }],
+        granularity: "yearly",
+        customInterval: 123,
+        period: 123,
+        maxAnomalyRatio: 123,
+        sensitivity: 123,
+        imputeMode: "auto",
+        imputeFixedValue: 123,
+      },
+    });
   console.log(result);
 }
 

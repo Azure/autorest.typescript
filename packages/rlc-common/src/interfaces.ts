@@ -44,7 +44,7 @@ export interface RLCSampleDetail {
   methodParamAssignments: string[];
   clientParamNames: string;
   pathParamNames: string;
-  methodParamNames: "options" | "";
+  methodParamNames: "options" | "" | string;
   method: string;
   isLRO: boolean;
   isPaging: boolean;
@@ -325,4 +325,5 @@ export type SampleParameters = Record<
 export interface SampleParameter {
   name: string;
   assignment?: string;
+  value?: string;
 }

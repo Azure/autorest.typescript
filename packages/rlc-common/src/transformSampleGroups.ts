@@ -98,9 +98,7 @@ export function transformSampleGroups(model: RLCModel, allowMockValue = true) {
         path: convertPathLevelParameters(pathDetails, path, schemaObjectMap),
         method: convertMethodLevelParameters(
           methods[method],
-          importedDict,
           schemaObjectMap,
-          packageName,
           methodParameterMap.get(operatonConcante)
         )
       };
@@ -182,8 +180,9 @@ function enrichParameterInSample(
   sample.clientParamNames = getContactParameterNames(parameters.client);
   sample.pathParamAssignments = getAssignmentStrArray(parameters.path);
   sample.pathParamNames = getContactParameterNames(parameters.path);
-  sample.methodParamAssignments = getAssignmentStrArray(parameters.method);
-  sample.methodParamNames = parameters.method.length > 0 ? "options" : "";
+  // Directly apply the inline option value as method parameter
+  sample.methodParamNames =
+    parameters.method.length > 0 ? parameters.method[0].value ?? "" : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {
@@ -286,9 +285,7 @@ function convertPathLevelParameters(
 
 function convertMethodLevelParameters(
   methods: OperationMethod[],
-  importedDict: Record<string, Set<string>>,
   schemaMap: Map<string, Schema>,
-  packageName: string,
   operationParameter?: OperationParameter
 ): SampleParameter[] {
   if (
@@ -377,9 +374,9 @@ function convertMethodLevelParameters(
 
   const optionParam: SampleParameter = {
     name: "options",
-    assignment: `const options =` + value + `;`
+    assignment: `const options =` + value + `;`,
+    value
   };
-  addValueInImportedDict(packageName, method.optionsName, importedDict);
   return [optionParam];
 }
 

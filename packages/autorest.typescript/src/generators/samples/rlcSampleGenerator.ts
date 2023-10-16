@@ -135,8 +135,7 @@ function transformSampleGroupsFromSwaggerExamples(
           path: convertPathLevelParameters(rawParamters.path, pathDetail, path),
           method: convertMethodLevelParameters(
             rawParamters.method,
-            pathDetail.methods[method],
-            importedDict
+            pathDetail.methods[method]
           )
         };
         // enrich parameter details
@@ -296,8 +295,7 @@ function convertPathLevelParameters(
 
 function convertMethodLevelParameters(
   rawMethodParams: ExampleParameter[],
-  methods: OperationMethod[],
-  importedDict: Record<string, Set<string>>
+  methods: OperationMethod[]
 ): SampleParameter[] {
   if (!methods || methods.length == 0) {
     return [];
@@ -355,9 +353,9 @@ function convertMethodLevelParameters(
   }
   const optionParam: SampleParameter = {
     name: "options",
-    assignment: `const options: ${method.optionsName} =` + value + `;`
+    assignment: `const options: ${method.optionsName} =` + value + `;`,
+    value
   };
-  addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
   return [optionParam];
 }
 
@@ -369,8 +367,8 @@ function enrichParameterInSample(
   sample.clientParamNames = getContactParameterNames(parameters.client);
   sample.pathParamAssignments = getAssignmentStrArray(parameters.path);
   sample.pathParamNames = getContactParameterNames(parameters.path);
-  sample.methodParamAssignments = getAssignmentStrArray(parameters.method);
-  sample.methodParamNames = parameters.method.length > 0 ? "options" : "";
+  sample.methodParamNames =
+    parameters.method.length > 1 ? parameters.method[0].value ?? "" : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {
