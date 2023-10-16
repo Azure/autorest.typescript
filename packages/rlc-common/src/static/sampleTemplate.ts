@@ -1,6 +1,4 @@
 export const sampleTemplate = `
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 {{#each importedTypes}}
 {{this}}
 {{/each}}
