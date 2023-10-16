@@ -109,13 +109,7 @@ function regularAutorestPackage(
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
-      "@rollup/plugin-commonjs": "^24.0.0",
-      "@rollup/plugin-json": "^6.0.0",
-      "@rollup/plugin-multi-entry": "^6.0.0",
-      "@rollup/plugin-node-resolve": "^13.1.3",
       mkdirp: "^2.1.2",
-      rollup: "^2.66.1",
-      "rollup-plugin-sourcemaps": "^0.6.3",
       typescript: "~5.0.0",
       "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
@@ -189,6 +183,19 @@ function regularAutorestPackage(
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
 
+  if (azureSdkForJs) {
+    packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    packageInfo.scripts["build"] =
+      "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
+  } else {
+    packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
+    packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
+    packageInfo.devDependencies["rollup"] = "^2.66.1";
+    packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
+  }
+
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
@@ -212,7 +219,6 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
