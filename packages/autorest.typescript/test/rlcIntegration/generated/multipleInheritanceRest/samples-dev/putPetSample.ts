@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createMultipleInheritanceRestClient, {
   PutPetParameters
 } from "@msinternal/multiple-inheritance-rest";
@@ -17,7 +15,7 @@ dotenv.config();
  */
 async function putPetSample() {
   const client = createMultipleInheritanceRestClient();
-  const options: PutPetParameters = {
+  const options = {
     body: { name: "{Your name}" },
     contentType: "application/json"
   };

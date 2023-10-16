@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createMediaTypesClient, {
   BodyThreeTypesParameters
 } from "@msinternal/media-types-service-rest";
@@ -17,7 +15,7 @@ dotenv.config();
  */
 async function bodyThreeTypesSample() {
   const client = createMediaTypesClient();
-  const options: BodyThreeTypesParameters = {
+  const options = {
     body: "{Your body}",
     contentType: "application/octet-stream"
   };

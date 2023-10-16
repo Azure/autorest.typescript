@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createMultipleInheritanceRestClient, {
   PutHorseParameters
 } from "@msinternal/multiple-inheritance-rest";
@@ -17,7 +15,7 @@ dotenv.config();
  */
 async function putHorseSample() {
   const client = createMultipleInheritanceRestClient();
-  const options: PutHorseParameters = {
+  const options = {
     body: { name: "{Your name}", isAShowHorse: true },
     contentType: "application/json"
   };

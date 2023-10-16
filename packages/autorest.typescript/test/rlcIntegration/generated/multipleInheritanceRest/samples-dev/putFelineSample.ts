@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createMultipleInheritanceRestClient, {
   PutFelineParameters
 } from "@msinternal/multiple-inheritance-rest";
@@ -17,7 +15,7 @@ dotenv.config();
  */
 async function putFelineSample() {
   const client = createMultipleInheritanceRestClient();
-  const options: PutFelineParameters = {
+  const options = {
     body: { meows: true, hisses: true },
     contentType: "application/json"
   };
