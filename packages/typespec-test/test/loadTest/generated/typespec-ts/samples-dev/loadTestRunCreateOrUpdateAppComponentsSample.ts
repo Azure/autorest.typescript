@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  LoadTestRunCreateOrUpdateAppComponentsParameters,
-} from "@azure-rest/load-testing";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -21,22 +17,21 @@ async function loadTestRunCreateOrUpdateAppComponentsSample() {
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpoint, credential);
   const testRunId = "{Your testRunId}";
-  const options: LoadTestRunCreateOrUpdateAppComponentsParameters = {
-    body: {
-      components: {
-        key: {
-          resourceName: "{Your resourceName}",
-          resourceType: "{Your resourceType}",
-          displayName: "{Your displayName}",
-          kind: "{Your kind}",
-        },
-      },
-    },
-    contentType: "application/merge-patch+json",
-  };
   const result = await client
     .path("/test-runs/{testRunId}/app-components", testRunId)
-    .patch(options);
+    .patch({
+      body: {
+        components: {
+          key: {
+            resourceName: "{Your resourceName}",
+            resourceType: "{Your resourceType}",
+            displayName: "{Your displayName}",
+            kind: "{Your kind}",
+          },
+        },
+      },
+      contentType: "application/merge-patch+json",
+    });
   console.log(result);
 }
 

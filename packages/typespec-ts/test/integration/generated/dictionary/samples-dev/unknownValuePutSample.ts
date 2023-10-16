@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  UnknownValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function unknownValuePutSample() {
   const client = createDictClient();
-  const options: UnknownValuePutParameters = { body: { key: "Unknown Type" } };
-  const result = await client.path("/type/dictionary/unknown").put(options);
+  const result = await client
+    .path("/type/dictionary/unknown")
+    .put({ body: { key: "Unknown Type" } });
   console.log(result);
 }
 

@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createArrayItemTypesClient, {
-  DurationValuePutParameters,
-} from "@msinternal/array-itemtypes";
+import createArrayItemTypesClient from "@msinternal/array-itemtypes";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function durationValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: DurationValuePutParameters = { body: ["{Your body}"] };
-  const result = await client.path("/type/array/duration").put(options);
+  const result = await client
+    .path("/type/array/duration")
+    .put({ body: ["{Your body}"] });
   console.log(result);
 }
 

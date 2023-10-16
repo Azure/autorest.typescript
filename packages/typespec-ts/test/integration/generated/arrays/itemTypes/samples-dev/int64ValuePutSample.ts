@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createArrayItemTypesClient, {
-  Int64ValuePutParameters,
-} from "@msinternal/array-itemtypes";
+import createArrayItemTypesClient from "@msinternal/array-itemtypes";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,7 @@ dotenv.config();
  */
 async function int64ValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: Int64ValuePutParameters = { body: [123] };
-  const result = await client.path("/type/array/int64").put(options);
+  const result = await client.path("/type/array/int64").put({ body: [123] });
   console.log(result);
 }
 

@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createMultipleInheritanceRestClient, {
-  PutKittenParameters
-} from "@msinternal/multiple-inheritance-rest";
+import createMultipleInheritanceRestClient from "@msinternal/multiple-inheritance-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,17 +13,18 @@ dotenv.config();
  */
 async function putKittenSample() {
   const client = createMultipleInheritanceRestClient();
-  const options = {
-    body: {
-      name: "{Your name}",
-      meows: true,
-      hisses: true,
-      likesMilk: true,
-      eatsMiceYet: true
-    },
-    contentType: "application/json"
-  };
-  const result = await client.path("/multipleInheritance/kitten").put(options);
+  const result = await client
+    .path("/multipleInheritance/kitten")
+    .put({
+      body: {
+        name: "{Your name}",
+        meows: true,
+        hisses: true,
+        likesMilk: true,
+        eatsMiceYet: true
+      },
+      contentType: "application/json"
+    });
   console.log(result);
 }
 

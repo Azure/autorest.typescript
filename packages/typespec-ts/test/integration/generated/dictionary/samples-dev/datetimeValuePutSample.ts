@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  DatetimeValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function datetimeValuePutSample() {
   const client = createDictClient();
-  const options: DatetimeValuePutParameters = { body: { key: new Date() } };
-  const result = await client.path("/type/dictionary/datetime").put(options);
+  const result = await client
+    .path("/type/dictionary/datetime")
+    .put({ body: { key: new Date() } });
   console.log(result);
 }
 

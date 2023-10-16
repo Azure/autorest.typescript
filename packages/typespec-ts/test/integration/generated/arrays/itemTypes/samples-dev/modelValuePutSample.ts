@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createArrayItemTypesClient, {
-  ModelValuePutParameters,
-} from "@msinternal/array-itemtypes";
+import createArrayItemTypesClient from "@msinternal/array-itemtypes";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,10 +13,13 @@ dotenv.config();
  */
 async function modelValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: ModelValuePutParameters = {
-    body: [{ property: "{Your property}", children: [{} as any /**FIXME */] }],
-  };
-  const result = await client.path("/type/array/model").put(options);
+  const result = await client
+    .path("/type/array/model")
+    .put({
+      body: [
+        { property: "{Your property}", children: [{} as any /**FIXME */] },
+      ],
+    });
   console.log(result);
 }
 

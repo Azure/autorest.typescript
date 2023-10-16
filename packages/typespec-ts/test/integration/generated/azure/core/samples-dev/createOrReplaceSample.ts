@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAzureCoreClient, {
-  CreateOrReplaceParameters,
-} from "@msinternal/azurecore";
+import createAzureCoreClient from "@msinternal/azurecore";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -18,15 +14,14 @@ dotenv.config();
 async function createOrReplaceSample() {
   const client = createAzureCoreClient();
   const id = 123;
-  const options: CreateOrReplaceParameters = {
-    body: {
-      name: "{Your name}",
-      orders: [{ userId: 123, detail: "{Your detail}" }],
-    },
-  };
   const result = await client
     .path("/azure/core/basic/users/{id}", id)
-    .put(options);
+    .put({
+      body: {
+        name: "{Your name}",
+        orders: [{ userId: 123, detail: "{Your detail}" }],
+      },
+    });
   console.log(result);
 }
 

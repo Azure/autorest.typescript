@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
-  TrainParameters,
   getLongRunningPoller,
 } from "@msinternal/authoring";
 import * as dotenv from "dotenv";
@@ -22,12 +19,9 @@ async function trainSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpoint, credential);
   const projectName = "{Your projectName}";
-  const options: TrainParameters = {
-    body: { modelLabel: "{Your modelLabel}" },
-  };
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}:train", projectName)
-    .post(options);
+    .post({ body: { modelLabel: "{Your modelLabel}" } });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
-  CreateOrUpdateParameters,
   getLongRunningPoller,
 } from "@msinternal/authoring";
 import * as dotenv from "dotenv";
@@ -22,20 +19,19 @@ async function createOrUpdateSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpoint, credential);
   const projectName = "{Your projectName}";
-  const options: CreateOrUpdateParameters = {
-    body: {
-      projectKind: "CustomSingleLabelClassification",
-      storageInputContainerName: "{Your storageInputContainerName}",
-      settings: { key: "{Your settings}" },
-      multilingual: true,
-      description: "{Your description}",
-      language: "{Your language}",
-    },
-    contentType: "application/merge-patch+json",
-  };
   const initialResponse = await client
     .path("/authoring/analyze-text/projects/{projectName}", projectName)
-    .patch(options);
+    .patch({
+      body: {
+        projectKind: "CustomSingleLabelClassification",
+        storageInputContainerName: "{Your storageInputContainerName}",
+        settings: { key: "{Your settings}" },
+        multilingual: true,
+        description: "{Your description}",
+        language: "{Your language}",
+      },
+      contentType: "application/merge-patch+json",
+    });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

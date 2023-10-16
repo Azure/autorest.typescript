@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  Float32ValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function float32ValuePutSample() {
   const client = createDictClient();
-  const options: Float32ValuePutParameters = { body: { key: 123 } };
-  const result = await client.path("/type/dictionary/float32").put(options);
+  const result = await client
+    .path("/type/dictionary/float32")
+    .put({ body: { key: 123 } });
   console.log(result);
 }
 

@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createUnionsClient, {
-  SendSecondNamedUnionValueParameters,
-} from "@msinternal/unions";
+import createUnionsClient from "@msinternal/unions";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,10 +13,9 @@ dotenv.config();
  */
 async function sendSecondNamedUnionValueSample() {
   const client = createUnionsClient();
-  const options: SendSecondNamedUnionValueParameters = {
-    body: { namedUnion: { name: "{Your name}", prop1: 123 } },
-  };
-  const result = await client.path("/type/union/model2").post(options);
+  const result = await client
+    .path("/type/union/model2")
+    .post({ body: { namedUnion: { name: "{Your name}", prop1: 123 } } });
   console.log(result);
 }
 

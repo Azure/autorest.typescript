@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  NullableFloatValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,10 +13,9 @@ dotenv.config();
  */
 async function nullableFloatValuePutSample() {
   const client = createDictClient();
-  const options: NullableFloatValuePutParameters = { body: { key: 123 } };
   const result = await client
     .path("/type/dictionary/nullable-float")
-    .put(options);
+    .put({ body: { key: 123 } });
   console.log(result);
 }
 

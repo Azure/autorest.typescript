@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  LoadTestRunListMetricDefinitionsParameters,
-} from "@azure-rest/load-testing";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -21,12 +17,9 @@ async function loadTestRunListMetricDefinitionsSample() {
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpoint, credential);
   const testRunId = "{Your testRunId}";
-  const options: LoadTestRunListMetricDefinitionsParameters = {
-    queryParameters: { metricNamespace: "{Your metricNamespace}" },
-  };
   const result = await client
     .path("/test-runs/{testRunId}/metric-definitions", testRunId)
-    .get(options);
+    .get({ queryParameters: { metricNamespace: "{Your metricNamespace}" } });
   console.log(result);
 }
 

@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
-  DeployProjectParameters,
   getLongRunningPoller,
 } from "@msinternal/authoring";
 import * as dotenv from "dotenv";
@@ -23,14 +20,13 @@ async function deployProjectSample() {
   const client = createAuthoringClient(endpoint, credential);
   const projectName = "{Your projectName}";
   const deploymentName = "{Your deploymentName}";
-  const options: DeployProjectParameters = { body: {} };
   const initialResponse = await client
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
       projectName,
       deploymentName
     )
-    .put(options);
+    .put({ body: {} });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

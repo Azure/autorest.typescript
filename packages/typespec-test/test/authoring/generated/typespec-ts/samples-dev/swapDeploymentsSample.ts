@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import { AzureKeyCredential } from "@azure/core-auth";
 import createAuthoringClient, {
-  SwapDeploymentsParameters,
   getLongRunningPoller,
 } from "@msinternal/authoring";
 import * as dotenv from "dotenv";
@@ -22,18 +19,17 @@ async function swapDeploymentsSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAuthoringClient(endpoint, credential);
   const projectName = "{Your projectName}";
-  const options: SwapDeploymentsParameters = {
-    body: {
-      firstDeploymentName: "{Your firstDeploymentName}",
-      secondDeploymentName: "{Your secondDeploymentName}",
-    },
-  };
   const initialResponse = await client
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments:swap",
       projectName
     )
-    .post(options);
+    .post({
+      body: {
+        firstDeploymentName: "{Your firstDeploymentName}",
+        secondDeploymentName: "{Your secondDeploymentName}",
+      },
+    });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

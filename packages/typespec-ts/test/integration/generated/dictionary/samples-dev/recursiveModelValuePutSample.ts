@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  RecursiveModelValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,17 +13,16 @@ dotenv.config();
  */
 async function recursiveModelValuePutSample() {
   const client = createDictClient();
-  const options: RecursiveModelValuePutParameters = {
-    body: {
-      key: {
-        property: "{Your property}",
-        children: { key: {} as any /**FIXME */ },
-      },
-    },
-  };
   const result = await client
     .path("/type/dictionary/model/recursive")
-    .put(options);
+    .put({
+      body: {
+        key: {
+          property: "{Your property}",
+          children: { key: {} as any /**FIXME */ },
+        },
+      },
+    });
   console.log(result);
 }
 

@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import { DefaultAzureCredential } from "@azure/identity";
 import createAzureLoadTestingClient, {
-  LoadTestRunListTestRunsParameters,
   paginate,
 } from "@azure-rest/load-testing";
 import * as dotenv from "dotenv";
@@ -21,18 +18,19 @@ async function loadTestRunListTestRunsSample() {
   const endpoint = "{Your endpoint}";
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpoint, credential);
-  const options: LoadTestRunListTestRunsParameters = {
-    queryParameters: {
-      orderby: "{Your orderby}",
-      search: "{Your search}",
-      testId: "{Your testId}",
-      executionFrom: "{Your executionFrom}",
-      executionTo: "{Your executionTo}",
-      status: "{Your status}",
-      maxpagesize: 123,
-    },
-  };
-  const initialResponse = await client.path("/test-runs").get(options);
+  const initialResponse = await client
+    .path("/test-runs")
+    .get({
+      queryParameters: {
+        orderby: "{Your orderby}",
+        search: "{Your search}",
+        testId: "{Your testId}",
+        executionFrom: "{Your executionFrom}",
+        executionTo: "{Your executionTo}",
+        status: "{Your status}",
+        maxpagesize: 123,
+      },
+    });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

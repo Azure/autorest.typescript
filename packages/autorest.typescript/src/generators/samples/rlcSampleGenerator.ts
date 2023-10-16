@@ -368,7 +368,7 @@ function enrichParameterInSample(
   sample.pathParamAssignments = getAssignmentStrArray(parameters.path);
   sample.pathParamNames = getContactParameterNames(parameters.path);
   sample.methodParamNames =
-    parameters.method.length > 1 ? parameters.method[0].value ?? "" : "";
+    parameters.method.length > 0 ? parameters.method[0].value ?? "" : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {

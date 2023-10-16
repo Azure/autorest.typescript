@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  LoadTestAdministrationUploadTestFileParameters,
-} from "@azure-rest/load-testing";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -22,14 +18,13 @@ async function loadTestAdministrationUploadTestFileSample() {
   const client = createAzureLoadTestingClient(endpoint, credential);
   const testId = "{Your testId}";
   const fileName = "{Your fileName}";
-  const options: LoadTestAdministrationUploadTestFileParameters = {
-    body: "{Your body}",
-    queryParameters: { fileType: "{Your fileType}" },
-    contentType: "application/octet-stream",
-  };
   const result = await client
     .path("/tests/{testId}/files/{fileName}", testId, fileName)
-    .put(options);
+    .put({
+      body: "{Your body}",
+      queryParameters: { fileType: "{Your fileType}" },
+      contentType: "application/octet-stream",
+    });
   console.log(result);
 }
 

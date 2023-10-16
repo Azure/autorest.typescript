@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  StringValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function stringValuePutSample() {
   const client = createDictClient();
-  const options: StringValuePutParameters = { body: { key: "{Your body}" } };
-  const result = await client.path("/type/dictionary/string").put(options);
+  const result = await client
+    .path("/type/dictionary/string")
+    .put({ body: { key: "{Your body}" } });
   console.log(result);
 }
 

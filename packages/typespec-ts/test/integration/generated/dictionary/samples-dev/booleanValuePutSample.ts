@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  BooleanValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function booleanValuePutSample() {
   const client = createDictClient();
-  const options: BooleanValuePutParameters = { body: { key: true } };
-  const result = await client.path("/type/dictionary/boolean").put(options);
+  const result = await client
+    .path("/type/dictionary/boolean")
+    .put({ body: { key: true } });
   console.log(result);
 }
 

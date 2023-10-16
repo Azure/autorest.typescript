@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createArrayItemTypesClient, {
-  DatetimeValuePutParameters,
-} from "@msinternal/array-itemtypes";
+import createArrayItemTypesClient from "@msinternal/array-itemtypes";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function datetimeValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: DatetimeValuePutParameters = { body: [new Date()] };
-  const result = await client.path("/type/array/datetime").put(options);
+  const result = await client
+    .path("/type/array/datetime")
+    .put({ body: [new Date()] });
   console.log(result);
 }
 

@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createAzureCoreClient from "@msinternal/azurecore";
 import * as dotenv from "dotenv";
 

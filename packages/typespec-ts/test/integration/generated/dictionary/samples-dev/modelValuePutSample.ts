@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  ModelValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,15 +13,16 @@ dotenv.config();
  */
 async function modelValuePutSample() {
   const client = createDictClient();
-  const options: ModelValuePutParameters = {
-    body: {
-      key: {
-        property: "{Your property}",
-        children: { key: {} as any /**FIXME */ },
+  const result = await client
+    .path("/type/dictionary/model")
+    .put({
+      body: {
+        key: {
+          property: "{Your property}",
+          children: { key: {} as any /**FIXME */ },
+        },
       },
-    },
-  };
-  const result = await client.path("/type/dictionary/model").put(options);
+    });
   console.log(result);
 }
 

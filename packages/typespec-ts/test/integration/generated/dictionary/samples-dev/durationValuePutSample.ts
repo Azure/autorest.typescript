@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDictClient, {
-  DurationValuePutParameters,
-} from "@msinternal/dictionary";
+import createDictClient from "@msinternal/dictionary";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function durationValuePutSample() {
   const client = createDictClient();
-  const options: DurationValuePutParameters = { body: { key: "{Your body}" } };
-  const result = await client.path("/type/dictionary/duration").put(options);
+  const result = await client
+    .path("/type/dictionary/duration")
+    .put({ body: { key: "{Your body}" } });
   console.log(result);
 }
 

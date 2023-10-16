@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createAzureLoadTestingClient from "@azure-rest/load-testing";
 import { DefaultAzureCredential } from "@azure/identity";
-import createAzureLoadTestingClient, {
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters,
-} from "@azure-rest/load-testing";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -21,8 +17,9 @@ async function loadTestAdministrationCreateOrUpdateServerMetricsConfigSample() {
   const credential = new DefaultAzureCredential();
   const client = createAzureLoadTestingClient(endpoint, credential);
   const testId = "{Your testId}";
-  const options: LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters =
-    {
+  const result = await client
+    .path("/tests/{testId}/server-metrics-config", testId)
+    .patch({
       body: {
         metrics: {
           key: {
@@ -37,10 +34,7 @@ async function loadTestAdministrationCreateOrUpdateServerMetricsConfigSample() {
         },
       },
       contentType: "application/merge-patch+json",
-    };
-  const result = await client
-    .path("/tests/{testId}/server-metrics-config", testId)
-    .patch(options);
+    });
   console.log(result);
 }
 

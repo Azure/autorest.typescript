@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
-import createOpenAIClient, {
-  GetEmbeddingsParameters,
-} from "@msinternal/openai";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -21,17 +17,16 @@ async function getEmbeddingsSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpoint, credential);
   const deploymentId = "{Your deploymentId}";
-  const options: GetEmbeddingsParameters = {
-    body: {
-      user: "{Your user}",
-      input_type: "{Your input_type}",
-      model: "{Your model}",
-      input: "{Your input}",
-    },
-  };
   const result = await client
     .path("/deployments/{deploymentId}/embeddings", deploymentId)
-    .post(options);
+    .post({
+      body: {
+        user: "{Your user}",
+        input_type: "{Your input_type}",
+        model: "{Your model}",
+        input: "{Your input}",
+      },
+    });
   console.log(result);
 }
 

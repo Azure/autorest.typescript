@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createUnionsClient, { SendIntArrayParameters } from "@msinternal/unions";
+import createUnionsClient from "@msinternal/unions";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,8 +13,9 @@ dotenv.config();
  */
 async function sendIntArraySample() {
   const client = createUnionsClient();
-  const options: SendIntArrayParameters = { body: { simpleUnion: 123 } };
-  const result = await client.path("/type/union/int-array").post(options);
+  const result = await client
+    .path("/type/union/int-array")
+    .post({ body: { simpleUnion: 123 } });
   console.log(result);
 }
 

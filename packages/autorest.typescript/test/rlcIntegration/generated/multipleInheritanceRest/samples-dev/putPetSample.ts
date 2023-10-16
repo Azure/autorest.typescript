@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createMultipleInheritanceRestClient, {
-  PutPetParameters
-} from "@msinternal/multiple-inheritance-rest";
+import createMultipleInheritanceRestClient from "@msinternal/multiple-inheritance-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -15,11 +13,9 @@ dotenv.config();
  */
 async function putPetSample() {
   const client = createMultipleInheritanceRestClient();
-  const options = {
-    body: { name: "{Your name}" },
-    contentType: "application/json"
-  };
-  const result = await client.path("/multipleInheritance/pet").put(options);
+  const result = await client
+    .path("/multipleInheritance/pet")
+    .put({ body: { name: "{Your name}" }, contentType: "application/json" });
   console.log(result);
 }
 

@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createArrayItemTypesClient, {
-  UnknownValuePutParameters,
-} from "@msinternal/array-itemtypes";
+import createArrayItemTypesClient from "@msinternal/array-itemtypes";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,9 @@ dotenv.config();
  */
 async function unknownValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: UnknownValuePutParameters = { body: ["Unknown Type"] };
-  const result = await client.path("/type/array/unknown").put(options);
+  const result = await client
+    .path("/type/array/unknown")
+    .put({ body: ["Unknown Type"] });
   console.log(result);
 }
 

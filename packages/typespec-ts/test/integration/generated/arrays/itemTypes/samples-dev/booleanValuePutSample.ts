@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createArrayItemTypesClient, {
-  BooleanValuePutParameters,
-} from "@msinternal/array-itemtypes";
+import createArrayItemTypesClient from "@msinternal/array-itemtypes";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,8 +13,7 @@ dotenv.config();
  */
 async function booleanValuePutSample() {
   const client = createArrayItemTypesClient();
-  const options: BooleanValuePutParameters = { body: [true] };
-  const result = await client.path("/type/array/boolean").put(options);
+  const result = await client.path("/type/array/boolean").put({ body: [true] });
   console.log(result);
 }
 

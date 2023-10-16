@@ -1,12 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+import createOpenAIClient from "@msinternal/openai";
 import { AzureKeyCredential } from "@azure/core-auth";
-import createOpenAIClient, {
-  GetCompletionsParameters,
-} from "@msinternal/openai";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -21,29 +17,28 @@ async function getCompletionsSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createOpenAIClient(endpoint, credential);
   const deploymentId = "{Your deploymentId}";
-  const options: GetCompletionsParameters = {
-    body: {
-      prompt: ["{Your prompt}"],
-      max_tokens: 123,
-      temperature: 123,
-      top_p: 123,
-      logit_bias: { key: 123 },
-      user: "{Your user}",
-      n: 123,
-      logprobs: 123,
-      model: "{Your model}",
-      echo: true,
-      stop: ["{Your stop}"],
-      completion_config: "{Your completion_config}",
-      cache_level: 123,
-      presence_penalty: 123,
-      frequency_penalty: 123,
-      best_of: 123,
-    },
-  };
   const result = await client
     .path("/deployments/{deploymentId}/completions", deploymentId)
-    .post(options);
+    .post({
+      body: {
+        prompt: ["{Your prompt}"],
+        max_tokens: 123,
+        temperature: 123,
+        top_p: 123,
+        logit_bias: { key: 123 },
+        user: "{Your user}",
+        n: 123,
+        logprobs: 123,
+        model: "{Your model}",
+        echo: true,
+        stop: ["{Your stop}"],
+        completion_config: "{Your completion_config}",
+        cache_level: 123,
+        presence_penalty: 123,
+        frequency_penalty: 123,
+        best_of: 123,
+      },
+    });
   console.log(result);
 }
 

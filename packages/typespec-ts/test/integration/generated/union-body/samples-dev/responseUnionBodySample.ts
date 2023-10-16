@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createUnionBodyClient from "@msinternal/union-body";
 import * as dotenv from "dotenv";
 
