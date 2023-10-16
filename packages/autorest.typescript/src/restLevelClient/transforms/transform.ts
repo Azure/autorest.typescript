@@ -127,6 +127,7 @@ export function transformHelperDetails(
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
+  let hasCsvCollection = false;
   for (let operationGroup of model.operationGroups) {
     for (let operation of operationGroup.operations) {
       const paginationDetails = extractPaginationDetails(operation);
@@ -149,6 +150,9 @@ export function transformHelperDetails(
         hasTsvCollection = hasTsvCollection
           ? hasTsvCollection
           : serializeInfo.hasTsvCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
       });
     }
   }

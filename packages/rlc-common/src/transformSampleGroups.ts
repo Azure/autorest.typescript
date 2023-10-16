@@ -377,7 +377,7 @@ function convertMethodLevelParameters(
 
   const optionParam: SampleParameter = {
     name: "options",
-    assignment: `const options: ${method.optionsName} =` + value + `;`
+    assignment: `const options =` + value + `;`
   };
   addValueInImportedDict(packageName, method.optionsName, importedDict);
   return [optionParam];

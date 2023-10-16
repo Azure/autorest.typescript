@@ -253,7 +253,8 @@ function getParameterSchema(
       serializeInfo.hasMultiCollection ||
       serializeInfo.hasPipeCollection ||
       serializeInfo.hasSsvCollection ||
-      serializeInfo.hasTsvCollection
+      serializeInfo.hasTsvCollection ||
+      serializeInfo.hasCsvCollection
     ) {
       type = "string";
       description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
@@ -280,6 +281,7 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
+  let hasCsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
   if (
@@ -305,11 +307,17 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
     descriptions.push("buildTsvCollection");
     collectionInfo.push("tsv");
   }
+  if (parameter.protocol.http?.style === "simple") {
+    hasCsvCollection = true;
+    descriptions.push("buildCsvCollection");
+    collectionInfo.push("csv");
+  }
   return {
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,
     hasTsvCollection,
+    hasCsvCollection,
     descriptions,
     collectionInfo
   };
