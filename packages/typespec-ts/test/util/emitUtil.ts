@@ -24,7 +24,10 @@ import { getRLCClients } from "../../src/utils/clientUtils.js";
 import { expectDiagnosticEmpty } from "@typespec/compiler/testing";
 import { transformHelperFunctionDetails } from "../../src/transform/transformHelperFunctionDetails.js";
 import { emitCodeModel } from "../../src/modular/buildCodeModel.js";
-import { buildModels, buildModelsOptions } from "../../src/modular/emitModels.js";
+import {
+  buildModels,
+  buildModelsOptions
+} from "../../src/modular/emitModels.js";
 import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { Project } from "ts-morph";
@@ -56,6 +59,29 @@ export async function emitPageHelperFromTypeSpec(
     libraryName: "test",
     schemas: []
   });
+}
+
+export async function emitSchemasFromTypeSpec(
+  tspContent: string,
+  needAzureCore: boolean = false,
+  needTCGC: boolean = false
+) {
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    needAzureCore,
+    false,
+    needTCGC
+  );
+  const program = context.program;
+  const dpgContext = createDpgContextTestHelper(context.program);
+  const clients = getRLCClients(dpgContext);
+  let rlcSchemas: Schema[] = [];
+  if (clients && clients[0]) {
+    rlcSchemas = transformSchemas(program, clients[0], dpgContext);
+  }
+  expectDiagnosticEmpty(program.diagnostics);
+  return rlcSchemas;
 }
 
 export async function emitModelsFromTypeSpec(
@@ -144,7 +170,14 @@ export async function emitClientFactoryFromTypeSpec(
   isEmptyDiagnostic = true,
   withRawContent = false
 ) {
-  const context = await rlcEmitterFor(tspContent, false, needAzureCore, false, false, withRawContent);
+  const context = await rlcEmitterFor(
+    tspContent,
+    false,
+    needAzureCore,
+    false,
+    false,
+    withRawContent
+  );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
   const urlInfo = transformUrlInfo(dpgContext);
@@ -215,7 +248,10 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
   return clients;
 }
 
-export async function emitModularModelsFromTypeSpec(tspContent: string, needOptions: boolean = false) {
+export async function emitModularModelsFromTypeSpec(
+  tspContent: string,
+  needOptions: boolean = false
+) {
   const context = await rlcEmitterFor(tspContent, true);
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -244,7 +280,10 @@ export async function emitModularModelsFromTypeSpec(tspContent: string, needOpti
       modularCodeModel.clients[0]
     ) {
       if (needOptions) {
-        return buildModelsOptions(modularCodeModel, modularCodeModel.clients[0]);
+        return buildModelsOptions(
+          modularCodeModel,
+          modularCodeModel.clients[0]
+        );
       }
       return buildModels(modularCodeModel, modularCodeModel.clients[0]);
     }
@@ -293,8 +332,18 @@ export async function emitModularOperationsFromTypeSpec(tspContent: string) {
   return undefined;
 }
 
-export async function emitModularClientContextFromTypeSpec(tspContent: string, withRawContent: boolean = false) {
-  const context = await rlcEmitterFor(tspContent, true, false, false, false, withRawContent);
+export async function emitModularClientContextFromTypeSpec(
+  tspContent: string,
+  withRawContent: boolean = false
+) {
+  const context = await rlcEmitterFor(
+    tspContent,
+    true,
+    false,
+    false,
+    false,
+    withRawContent
+  );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,

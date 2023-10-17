@@ -14,10 +14,10 @@ let hasPaging = false;
 let hasLRO = false;
 const clientFilePaths: string[] = [];
 
-export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
+export function buildPackageFile(model: RLCModel) {
   const project = new Project();
   const filePath = "package.json";
-  const packageJsonContents = restLevelPackage(model, hasSamplesGenerated);
+  const packageJsonContents = restLevelPackage(model);
   // return direclty if no content generated
   if (!packageJsonContents) {
     return;
@@ -40,7 +40,7 @@ export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
  * This function defines the REST Level client package.json file
  * or High Level Client
  */
-function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
+function restLevelPackage(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
     return;
   }
@@ -72,7 +72,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
     (generateSample === true || generateSample === undefined) &&
-    hasSamplesGenerated;
+    (model.sampleGroups ?? []).length > 0;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";

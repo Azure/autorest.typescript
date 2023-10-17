@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAnomalyDetectorRestClient, {
-  DetectLastPointParameters
-} from "@msinternal/anomaly-detector-rest";
+import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -26,7 +22,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
     apiVersion,
     credential
   );
-  const options: DetectLastPointParameters = {
+  const result = await client.path("/timeseries/last/detect").post({
     body: {
       granularity: "monthly",
       imputeFixedValue: 800,
@@ -85,8 +81,7 @@ async function detectAnomalyStatusOfTheLatestPointInTimeSeriesExample() {
       ]
     },
     headers: { "Content-Type": "application/json" }
-  };
-  const result = await client.path("/timeseries/last/detect").post(options);
+  });
   console.log(result);
 }
 

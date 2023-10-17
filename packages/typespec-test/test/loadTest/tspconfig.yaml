@@ -22,6 +22,7 @@ options:
     description: Azure Load Testing Client
     generateMetadata: true
     generateTest: true
+    generateSample: true
     azureSdkForJs: false
     enableOperationGroup: true
     packageDetails:
