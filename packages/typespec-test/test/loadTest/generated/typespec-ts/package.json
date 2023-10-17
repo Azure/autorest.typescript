@@ -27,11 +27,11 @@
     "build:samples": "echo skipped.",
     "build:test": "tsc -p . && rollup -c 2>&1",
     "build:debug": "echo skipped.",
-    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\"",
+    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": "echo skipped",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
-    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\"",
+    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"test/**/*.ts\" \"samples-dev/**/*.ts\"",
     "generate:client": "echo skipped",
     "integration-test:browser": "karma start --single-run",
     "integration-test:node": "nyc mocha -r esm --require source-map-support/register --timeout 5000000 --full-trace \"dist-esm/test/{,!(browser)/**/}*.spec.js\"",
@@ -79,7 +79,7 @@
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9",
     "@azure-tools/test-credential": "^1.0.0",
-    "@azure/identity": "^2.0.1",
+    "@azure/identity": "^3.3.0",
     "@azure-tools/test-recorder": "^3.0.0",
     "mocha": "^10.0.0",
     "esm": "^3.2.18",
@@ -103,5 +103,11 @@
   },
   "browser": {
     "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
+  },
+  "//sampleConfiguration": {
+    "productName": "Azure Load Testing",
+    "productSlugs": ["azure"],
+    "disableDocsMs": true,
+    "apiRefLink": "https://docs.microsoft.com/javascript/api/@azure-rest/load-testing"
   }
 }

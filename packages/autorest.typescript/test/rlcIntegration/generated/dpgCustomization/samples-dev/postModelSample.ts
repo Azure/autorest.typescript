@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createDpgCustomizationClient, {
-  PostModelParameters
-} from "@msinternal/dpg-customization-rest";
+import createDpgCustomizationClient from "@msinternal/dpg-customization-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -19,10 +15,9 @@ dotenv.config();
 async function dpgPostModel() {
   const client = createDpgCustomizationClient();
   const mode = "uat";
-  const options: PostModelParameters = { body: { hello: "test" } };
   const result = await client
     .path("/customization/model/{mode}", mode)
-    .post(options);
+    .post({ body: { hello: "test" } });
   console.log(result);
 }
 

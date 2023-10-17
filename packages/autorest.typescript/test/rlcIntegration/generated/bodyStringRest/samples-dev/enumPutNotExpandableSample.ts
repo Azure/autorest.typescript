@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createBodyStringRestClient, {
-  EnumPutNotExpandableParameters
-} from "@msinternal/body-string-rest";
+import createBodyStringRestClient from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -18,8 +14,9 @@ dotenv.config();
  */
 async function enumPutNotExpandable() {
   const client = createBodyStringRestClient();
-  const options: EnumPutNotExpandableParameters = { body: "red color" };
-  const result = await client.path("/string/enum/notExpandable").put(options);
+  const result = await client
+    .path("/string/enum/notExpandable")
+    .put({ body: "red color" });
   console.log(result);
 }
 

@@ -7,6 +7,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
+    generateSample: true
     title: UnionBodyClient
     packageDetails:
       name: "@msinternal/union-body"

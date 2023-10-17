@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAnomalyDetectorRestClient, {
-  DetectEntireSeriesParameters
-} from "@msinternal/anomaly-detector-rest";
+import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -26,7 +22,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
     apiVersion,
     credential
   );
-  const options: DetectEntireSeriesParameters = {
+  const result = await client.path("/timeseries/entire/detect").post({
     body: {
       granularity: "monthly",
       imputeMode: "auto",
@@ -84,8 +80,7 @@ async function findAnomaliesForTheEntireSeriesInBatchExample() {
       ]
     },
     headers: { "Content-Type": "application/json" }
-  };
-  const result = await client.path("/timeseries/entire/detect").post(options);
+  });
   console.log(result);
 }
 

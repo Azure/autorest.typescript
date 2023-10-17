@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  SeasonalFieldsCreateCascadeDeleteJobParameters,
   getLongRunningPoller
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -26,15 +23,14 @@ async function seasonalFieldsCreateCascadeDeleteJob() {
     credential
   );
   const jobId = "JOB123";
-  const options: SeasonalFieldsCreateCascadeDeleteJobParameters = {
-    queryParameters: {
-      farmerId: "FARMER123",
-      seasonalFieldId: "SEASONALFIELD123"
-    }
-  };
   const initialResponse = await client
     .path("/seasonal-fields/cascade-delete/{jobId}", jobId)
-    .put(options);
+    .put({
+      queryParameters: {
+        farmerId: "FARMER123",
+        seasonalFieldId: "SEASONALFIELD123"
+      }
+    });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

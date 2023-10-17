@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  ScenesListParameters,
   paginate
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -25,14 +22,15 @@ async function scenesList() {
     endpoint,
     credential
   );
-  const options: ScenesListParameters = {
-    queryParameters: {
-      provider: "Microsoft",
-      farmerId: "FARMER123",
-      boundaryId: "BOUNDARY123"
-    }
-  };
-  const initialResponse = await client.path("/scenes").get(options);
+  const initialResponse = await client
+    .path("/scenes")
+    .get({
+      queryParameters: {
+        provider: "Microsoft",
+        farmerId: "FARMER123",
+        boundaryId: "BOUNDARY123"
+      }
+    });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

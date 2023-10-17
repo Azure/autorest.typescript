@@ -38,6 +38,21 @@
       ],
       "@msinternal/header-rest": [
         "./test/rlcIntegration/generated/headerRest/src/index"
+      ],
+      "@msinternal/body-file": [
+        "./test/rlcIntegration/generated/bodyFileRest/src/index"
+      ],
+      "@msinternal/http-infrastructure-rest": [
+        "./test/rlcIntegration/generated/httpInfrastructureRest/src/index"
+      ],
+      "@msinternal/media-types-service-rest": [
+        "./test/rlcIntegration/generated/mediaTypesRest/src/index"
+      ],
+      "@msinternal/multiple-inheritance-rest": [
+        "./test/rlcIntegration/generated/multipleInheritanceRest/src/index"
+      ],
+      "@msinternal/paging-service": [
+        "./test/rlcIntegration/generated/pagingRest/src/index"
       ]
     }
   },
