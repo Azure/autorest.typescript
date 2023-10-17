@@ -3,12 +3,16 @@
 
 import { Schema } from "../interfaces.js";
 
+export interface IsDictionaryOptions {
+  filterEmpty?: boolean;
+}
+
 export function isDictionarySchema(
   schema: Schema,
-  filterEmpty: boolean = false
+  options: IsDictionaryOptions = {}
 ) {
   if (schema.type === "dictionary") {
-    if (!filterEmpty || (filterEmpty && !schema.typeName)) {
+    if (!options.filterEmpty || (options.filterEmpty && !schema.typeName)) {
       return true;
     }
   }
