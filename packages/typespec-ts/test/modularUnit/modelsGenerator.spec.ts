@@ -3,7 +3,55 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+
+async function verifyModularPropertyType(
+  tspType: string,
+  inputType: string,
+  options?: VerifyPropertyConfig,
+  needAzureCore: boolean = false,
+  additionalImports: string = ""
+) {
+  const defaultOption: VerifyPropertyConfig = {
+    additionalTypeSpecDefinition: "",
+    outputType: inputType,
+    additionalInputContent: "",
+    additionalOutputContent: ""
+  };
+  const {
+    additionalTypeSpecDefinition,
+    additionalInputContent,
+  } = {
+    ...defaultOption,
+    ...options
+  };
+  const modelsFile = await emitModularModelsFromTypeSpec(
+    `
+  ${additionalTypeSpecDefinition}
+  #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+  model InputOutputModel {
+    prop: ${tspType};
+  }
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+  #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+  @route("/models")
+  @get
+  op getModel(@body input: InputOutputModel): InputOutputModel;`,
+    needAzureCore
+  );
+  assert.ok(modelsFile);
+  assertEqualContent(
+    modelsFile?.getFullText()!,
+    `
+  ${additionalImports}
+
+  export interface InputOutputModel {
+      prop: ${inputType};
+  }
+  ${additionalInputContent}`
+  );
+}
 
 describe("modular model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
@@ -15,6 +63,26 @@ describe("modular model type", () => {
     assert.ok(!schemaOutput);
   });
 });
+
+describe("model property type", () => {
+  it("should handle type_literals:boolean -> boolean_literals", async () => {
+    const tspType = `true`;
+    const typeScriptType = `true`;
+    await verifyModularPropertyType(tspType, typeScriptType);
+  }); 
+
+  it("should handle type_literals:number -> number_literals", async () => {
+    const tspType = `1`;
+    const typeScriptType = `1`;
+    await verifyModularPropertyType(tspType, typeScriptType);
+  }); 
+
+  it("should handle type_literals:string -> string_literals", async () => {
+    const tspType = `"foo"`;
+    const typeScriptType = `"foo"`;
+    await verifyModularPropertyType(tspType, typeScriptType);
+  }); 
+})
 
 describe("modular encode test for property type datetime", () => {
   it("should handle property type plainDate, plainTime, utcDateTime, offsetDatetime with default encoding", async () => {

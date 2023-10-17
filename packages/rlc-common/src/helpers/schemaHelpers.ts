@@ -8,9 +8,18 @@ import {
   SchemaContext
 } from "../interfaces.js";
 
-export function isDictionarySchema(schema: Schema) {
+export interface IsDictionaryOptions {
+  filterEmpty?: boolean;
+}
+
+export function isDictionarySchema(
+  schema: Schema,
+  options: IsDictionaryOptions = {}
+) {
   if (schema.type === "dictionary") {
-    return true;
+    if (!options.filterEmpty || (options.filterEmpty && !schema.typeName)) {
+      return true;
+    }
   }
   return false;
 }

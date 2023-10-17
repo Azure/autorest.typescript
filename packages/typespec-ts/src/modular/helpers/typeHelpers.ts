@@ -38,7 +38,7 @@ export function getType(type: Type, format?: string): TypeMetadata {
     case "boolean":
       return { name: getNullableType(type.type, type) };
     case "constant": {
-      let typeName: string = type.value ?? "undefined";
+      let typeName: string = type.value?.toString() ?? "undefined";
       if (type.valueType?.type === "string") {
         typeName = type.value ? `"${type.value}"` : "undefined";
       }
