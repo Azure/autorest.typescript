@@ -353,7 +353,7 @@ function convertMethodLevelParameters(
   }
   const optionParam: SampleParameter = {
     name: "options",
-    assignment: `const options: ${method.optionsName} =` + value + `;`,
+    assignment: `const options =` + value + `;`,
     value
   };
   return [optionParam];
