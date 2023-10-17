@@ -4,14 +4,7 @@ import {
   emitParameterFromTypeSpec,
   emitResponsesFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
-
-type VerifyPropertyConfig = {
-  additionalTypeSpecDefinition?: string;
-  outputType?: string;
-  additionalInputContent?: string;
-  additionalOutputContent?: string;
-};
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
 
 describe("Input/output model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
@@ -847,6 +840,465 @@ describe("Input/output model type", () => {
       });
     });
   });
+  describe("additional properties generation", () => {
+    it("should handle model additional properties from record of unknown", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<unknown> {}
+      model VegetableBeans extends Record<unknown> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, unknown> {}
+        
+        export interface VegetableBeans extends Record<string, unknown> {}
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, any> {}
+        
+        export interface VegetableBeansOutput extends Record<string, any> {}
+        `
+      );
+    });
+
+    it("should handle model additional properties from record of boolean", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<boolean> {}
+      model VegetableBeans extends Record<boolean> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, boolean> {}
+        
+        export interface VegetableBeans extends Record<string, boolean> {}
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, boolean> {}
+        
+        export interface VegetableBeansOutput extends Record<string, boolean> {}
+        `
+      );
+    });
+    
+    it("should handle model additional properties from record of float32", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<float32> {}
+      model VegetableBeans extends Record<float32> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, number> {}
+        
+        export interface VegetableBeans extends Record<string, number> {}
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, number> {}
+        
+        export interface VegetableBeansOutput extends Record<string, number> {}
+        `
+      );
+    });
+
+    it("should handle model additional properties from record of int64", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<int64> {}
+      model VegetableBeans extends Record<int64> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, number> {}
+        
+        export interface VegetableBeans extends Record<string, number> {}
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, number> {}
+        
+        export interface VegetableBeansOutput extends Record<string, number> {}
+        `
+      );
+    });
+
+    it("should handle model additional properties from record of string", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<string> {}
+      model VegetableBeans extends Record<string> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, string> {}
+        
+        export interface VegetableBeans extends Record<string, string> {}
+        `
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, string> {}
+        
+        export interface VegetableBeansOutput extends Record<string, string> {}
+        `
+      );
+    });
+
+    it("should handle model additional properties extends from record of object", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<Carrots> {
+        testProp: Carrots
+      }
+      model VegetableBeans extends Record<Beans> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      model Carrots {
+        color: string,
+        id: string
+      }
+      model Beans {
+        expiry: string,
+        id: string
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, Carrots> {
+          testProp: Carrots;
+        }
+
+        export interface Carrots {
+          color: string;
+          id: string;
+        }
+        
+        export interface VegetableBeans extends Record<string, Beans> {}
+        
+        export interface Beans {
+          expiry: string;
+          id: string;
+        }`
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, CarrotsOutput> {
+          testProp: CarrotsOutput;
+        }
+
+        export interface CarrotsOutput {
+          color: string;
+          id: string;
+        }
+        
+        export interface VegetableBeansOutput extends Record<string, BeansOutput> {}
+        
+        export interface BeansOutput {
+          expiry: string;
+          id: string;
+        }`
+      );
+    });
+
+    it("should handle model additional properties is from record of object", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot is Record<Carrots> {
+        testProp: Carrots
+      }
+      model VegetableBeans is Record<Beans> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      model Carrots {
+        color: string,
+        id: string
+      }
+      model Beans {
+        expiry: string,
+        id: string
+      }
+      op post(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+
+        export interface VegetableCarrot extends Record<string, Carrots> {
+          testProp: Carrots;
+        }
+
+        export interface Carrots {
+          color: string;
+          id: string;
+        }
+        
+        export interface VegetableBeans extends Record<string, Beans> {}
+
+        export interface Beans {
+          expiry: string;
+          id: string;
+        }`
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+
+        export interface VegetableCarrotOutput extends Record<string, CarrotsOutput> {
+          testProp: CarrotsOutput;
+        }
+        
+        export interface CarrotsOutput {
+          color: string;
+          id: string;
+        }
+
+        export interface VegetableBeansOutput extends Record<string, BeansOutput> {}
+
+        export interface BeansOutput {
+          expiry: string;
+          id: string;
+        }`
+      );
+    });
+
+    it("should handle model additional properties from record of object array", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(`
+      model VegetableCarrot extends Record<Carrots[]> {}
+      model VegetableBeans extends Record<Beans[]> {}
+      
+      model Vegetables {
+        carrots: VegetableCarrot,
+        beans: VegetableBeans
+      }
+      model Carrots {
+        color: string,
+        id: string
+      }
+      model Beans {
+        expiry: string,
+        id: string
+      }
+      op read(@body body: Vegetables): { @body body: Vegetables };
+      `);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.ok(inputModelFile);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface Vegetables {
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+        
+        export interface VegetableCarrot extends Record<string, Array<Carrots>> {}
+
+        export interface Carrots {
+          color: string;
+          id: string;
+        }
+        
+        export interface VegetableBeans extends Record<string, Array<Beans>> {}
+        
+        export interface Beans {
+          expiry: string;
+          id: string;
+        }`
+      );
+
+      assert.ok(outputModelFile);
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface VegetablesOutput {
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
+        }
+        
+        export interface VegetableCarrotOutput extends Record<string, Array<CarrotsOutput>> {}
+
+        export interface CarrotsOutput {
+          color: string;
+          id: string;
+        }
+        
+        export interface VegetableBeansOutput extends Record<string, Array<BeansOutput>> {}
+        
+        export interface BeansOutput {
+          expiry: string;
+          id: string;
+        }`
+      );
+    });
+  })
   describe("bytes generation as property", () => {
     it("should handle bytes -> string", async () => {
       await verifyPropertyType("bytes", "string");
