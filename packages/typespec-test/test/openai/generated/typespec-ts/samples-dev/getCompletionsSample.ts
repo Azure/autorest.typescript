@@ -1,0 +1,49 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+import createOpenAIClient from "@msinternal/openai";
+import { AzureKeyCredential } from "@azure/core-auth";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+/**
+ * This sample demonstrates how to call operation GetCompletions
+ *
+ * @summary call operation GetCompletions
+ */
+async function getCompletionsSample() {
+  const endpoint = "{Your endpoint}";
+  const credential = new AzureKeyCredential("{Your API key}");
+  const client = createOpenAIClient(endpoint, credential);
+  const deploymentId = "{Your deploymentId}";
+  const result = await client
+    .path("/deployments/{deploymentId}/completions", deploymentId)
+    .post({
+      body: {
+        prompt: ["{Your prompt}"],
+        max_tokens: 123,
+        temperature: 123,
+        top_p: 123,
+        logit_bias: { key: 123 },
+        user: "{Your user}",
+        n: 123,
+        logprobs: 123,
+        model: "{Your model}",
+        echo: true,
+        stop: ["{Your stop}"],
+        completion_config: "{Your completion_config}",
+        cache_level: 123,
+        presence_penalty: 123,
+        frequency_penalty: 123,
+        best_of: 123,
+      },
+    });
+  console.log(result);
+}
+
+async function main() {
+  getCompletionsSample();
+}
+
+main().catch(console.error);

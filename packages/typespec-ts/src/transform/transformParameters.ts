@@ -288,7 +288,8 @@ function transformNormalBody(
         name: "body",
         type: overrideType ?? type,
         required: parameters?.bodyParameter?.optional === false,
-        description: descriptions.join("\n\n")
+        description: descriptions.join("\n\n"),
+        oriSchema: schema
       }
     ]
   };

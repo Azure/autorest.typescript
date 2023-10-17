@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createBodyStringRestClient, {
-  StringPutEmptyParameters
-} from "@msinternal/body-string-rest";
+import createBodyStringRestClient from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -18,8 +14,7 @@ dotenv.config();
  */
 async function stringPutEmpty() {
   const client = createBodyStringRestClient();
-  const options: StringPutEmptyParameters = { body: "" };
-  const result = await client.path("/string/empty").put(options);
+  const result = await client.path("/string/empty").put({ body: "" });
   console.log(result);
 }
 

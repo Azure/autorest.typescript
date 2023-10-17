@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createBodyStringRestClient, {
-  StringPutMbcsParameters
-} from "@msinternal/body-string-rest";
+import createBodyStringRestClient from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -18,11 +14,12 @@ dotenv.config();
  */
 async function stringPutMbcs() {
   const client = createBodyStringRestClient();
-  const options: StringPutMbcsParameters = {
-    body:
-      "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
-  };
-  const result = await client.path("/string/mbcs").put(options);
+  const result = await client
+    .path("/string/mbcs")
+    .put({
+      body:
+        "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+    });
   console.log(result);
 }
 
