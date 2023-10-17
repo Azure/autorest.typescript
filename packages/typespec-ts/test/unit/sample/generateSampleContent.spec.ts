@@ -243,6 +243,7 @@ describe("Integration test for mocking sample", () => {
           complexArray: (A | B | string)[];
           simpleArray: string[];
           recordArray: Record<string>[];
+          literalArray: "string1"[];
         }
         op getModel(@body input: Test): void;
         `,
@@ -258,7 +259,8 @@ describe("Integration test for mocking sample", () => {
           simpleArray: ["{Your simpleArray}"],
           objectArray: [{ foo: "{Your foo}" }],
           complexArray: [{ foo: "{Your foo}" }],
-          recordArray: [{ key: "{Your recordArray}" }]
+          recordArray: [{ key: "{Your recordArray}" }],
+          literalArray: ["string1"]
         };
         // console.log(mockStr);
         assert.deepEqual(JSON.parse(mockStr!), res);
@@ -279,6 +281,7 @@ describe("Integration test for mocking sample", () => {
             stringUnion: "string1" | "string2";
             complexUnion: "string1" | 1 | true | A;
             unionOfUnion: (A | B) | (1 | 2);
+            nullableLiteral: "string1" | null;
           }
           op getModel(@body input: Test): void;
           `,
@@ -294,7 +297,8 @@ describe("Integration test for mocking sample", () => {
             modelUnion: { foo: "{Your foo}" },
             stringUnion: "string1",
             complexUnion: "string1",
-            unionOfUnion: { foo: "{Your foo}" }
+            unionOfUnion: { foo: "{Your foo}" },
+            nullableLiteral: "string1"
           };
           // console.log(mockStr);
           assert.deepEqual(JSON.parse(mockStr!), res);
@@ -356,6 +360,8 @@ describe("Integration test for mocking sample", () => {
           objectRecord: Record<A>;
           complexRecord: Record<B | A | string>;
           recordOfRecord: Record<Record<string>>;
+          recordOfLiteral: Record<"string1">;
+          recordOfArray: Record<string[]>;
         }
         op getModel(@body input: Test): void;
         `,
@@ -372,7 +378,9 @@ describe("Integration test for mocking sample", () => {
           simpleRecord: { key: "{Your simpleRecord}" },
           objectRecord: { key: { foo: "{Your foo}" } },
           complexRecord: { key: { bar: "{Your bar}" } },
-          recordOfRecord: { key: { key: "{Your recordOfRecord}" } }
+          recordOfRecord: { key: { key: "{Your recordOfRecord}" } },
+          recordOfLiteral: { key: "string1" },
+          recordOfArray: { key: ["{Your recordOfArray}"] }
         };
         // console.log(mockStr);
         assert.deepEqual(JSON.parse(mockStr!), res);
