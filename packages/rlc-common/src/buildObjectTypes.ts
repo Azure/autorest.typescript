@@ -363,24 +363,32 @@ function getImmediateParentsNames(
 
   const extendFrom: string[] = [];
 
-  // If an immediate parent is a DictionarySchema, that means that the object has been marked
+  // If an immediate parent is an empty DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
-  if (objectSchema.parents.immediate.find(isDictionarySchema)) {
+  if (
+    objectSchema.parents.immediate.find((im) => isDictionarySchema(im, {filterEmpty: true}))
+  ) {
     extendFrom.push("Record<string, unknown>");
   }
 
   // Get the rest of the parents excluding any DictionarySchemas
   const parents = objectSchema.parents.immediate
-    .filter((p) => !isDictionarySchema(p))
+    .filter((p) => !isDictionarySchema(p, {filterEmpty: true}))
     .map((parent) => {
       const nameSuffix = schemaUsage.includes(SchemaContext.Output)
         ? "Output"
         : "";
-      const name = `${normalizeName(
-        parent.name,
-        NameType.Interface,
-        true /** shouldGuard */
-      )}${nameSuffix}`;
+      const name = isDictionarySchema(parent)
+        ? `${
+            (schemaUsage.includes(SchemaContext.Output)
+              ? parent.outputTypeName
+              : parent.typeName) ?? parent.name
+          }`
+        : `${normalizeName(
+            parent.name,
+            NameType.Interface,
+            true /** shouldGuard */
+          )}${nameSuffix}`;
 
       return isObjectSchema(parent) && isPolymorphicParent(parent)
         ? `${name}Parent`

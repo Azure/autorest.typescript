@@ -759,7 +759,7 @@ export interface Project {
     language: string;
     multilingual?: boolean;
     projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
-    settings?: Record<string, string>;
+    settings?: ProjectSettings;
     storageInputContainerName: string;
 }
 
@@ -774,12 +774,20 @@ export interface ProjectOutput {
     multilingual?: boolean;
     projectKind: "CustomSingleLabelClassification" | "CustomMultiLabelClassification" | "CustomEntityRecognition";
     readonly projectName: string;
-    settings?: Record<string, string>;
+    settings?: ProjectSettingsOutput;
     storageInputContainerName: string;
 }
 
 // @public
 export type ProjectResourceMergeAndPatch = Partial<Project>;
+
+// @public
+export interface ProjectSettings extends Record<string, string> {
+}
+
+// @public
+export interface ProjectSettingsOutput extends Record<string, string> {
+}
 
 // @public (undocumented)
 export interface Routes {
