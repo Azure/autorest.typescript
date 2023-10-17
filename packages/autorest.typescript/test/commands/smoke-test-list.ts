@@ -16,7 +16,7 @@ export enum AutorestParams {
   GenerateTest = "--generate-test=true",
   GenerateSamples = "--generate-sample=true",
   MultiClient = "--multi-client",
-  AzureSdkForJs = "--azure-sdk-for-js=false",
+  NotAzureSdkForJs = "--azure-sdk-for-js=false",
   AzureArm = "--azure-arm",
   Security = "--security=AADToken"
 }
@@ -44,10 +44,13 @@ const getArmReadmes = (): SpecDefinition[] => {
         ? [
             AutorestParams.GenerateSamples,
             AutorestParams.GenerateTest,
-            AutorestParams.AzureSdkForJs,
+            AutorestParams.NotAzureSdkForJs,
             `--tag=${tag}`
           ]
-        : [`--tag=${tag}`],
+        : [
+            AutorestParams.NotAzureSdkForJs,
+            `--tag=${tag}`
+          ],
     outputFolderName: `arm-${tag}`,
     buildTag: "ci_1"
   }));
@@ -66,7 +69,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.ModelDedup,
       AutorestParams.AzureArm,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.NotAzureSdkForJs
     ],
     buildTag: "ci_1"
   },
@@ -83,7 +86,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.ModelDedup,
       AutorestParams.GenerateSamples,
       AutorestParams.AzureArm,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.NotAzureSdkForJs
     ],
     buildTag: "ci_1"
   },
@@ -97,7 +100,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.GenerateSamples,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.NotAzureSdkForJs
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
@@ -109,7 +112,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/monitor/data-plane/readme.md"
     ),
-    params: [AutorestParams.Security],
+    params: [AutorestParams.Security, AutorestParams.NotAzureSdkForJs],
     buildTag: "ci_2"
   },
   {
@@ -119,6 +122,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/graphrbac/data-plane/readme.md"
     ),
+    params: [AutorestParams.NotAzureSdkForJs],
     buildTag: "ci_2"
   },
   {
@@ -128,7 +132,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./.tmp/specs/specification/cosmos-db/resource-manager/readme.md"
     ),
-    params: [AutorestParams.ModelDedup],
+    params: [AutorestParams.ModelDedup, AutorestParams.NotAzureSdkForJs],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
   },
@@ -143,7 +147,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.GenerateTest,
       AutorestParams.ModelDedup,
       AutorestParams.GenerateSamples,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.NotAzureSdkForJs
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_2"
@@ -158,7 +162,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.GenerateSamples,
-      AutorestParams.AzureSdkForJs,
+      AutorestParams.NotAzureSdkForJs,
       AutorestParams.AzureArm
     ],
     branch: "25bea13c86145a7620e363826a9ae476c18adb5f",
@@ -174,7 +178,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.GenerateSamples,
-      AutorestParams.AzureSdkForJs,
+      AutorestParams.NotAzureSdkForJs,
       AutorestParams.AzureArm
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
@@ -191,7 +195,7 @@ export const readmes: SpecDefinition[] = [
       AutorestParams.ModelDedup,
       AutorestParams.GenerateTest,
       AutorestParams.GenerateSamples,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.NotAzureSdkForJs
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
@@ -206,7 +210,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.GenerateTest,
       AutorestParams.GenerateSamples,
-      AutorestParams.AzureSdkForJs
+      AutorestParams.NotAzureSdkForJs
     ],
     branch: "925e8285703ddd461588d8f5fbf14bd97c286fab",
     buildTag: "ci_3"
@@ -222,7 +226,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.GenerateTest,
-      AutorestParams.AzureSdkForJs,
+      AutorestParams.NotAzureSdkForJs,
       AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
@@ -236,7 +240,7 @@ export const readmes: SpecDefinition[] = [
     params: [
       AutorestParams.RestClient,
       AutorestParams.MultiClient,
-      AutorestParams.AzureSdkForJs,
+      AutorestParams.NotAzureSdkForJs,
       AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
@@ -249,7 +253,7 @@ export const readmes: SpecDefinition[] = [
     ),
     params: [
       AutorestParams.RestClient,
-      AutorestParams.AzureSdkForJs,
+      AutorestParams.NotAzureSdkForJs,
       AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
@@ -262,7 +266,7 @@ export const readmes: SpecDefinition[] = [
     ),
     params: [
       AutorestParams.RestClient,
-      AutorestParams.AzureSdkForJs,
+      AutorestParams.NotAzureSdkForJs,
       AutorestParams.GenerateSamples
     ],
     buildTag: "ci_rlc"
@@ -273,7 +277,7 @@ export const readmes: SpecDefinition[] = [
       "..",
       "./smoke/swagger/anomaly-detector-mv-rest.md"
     ),
-    params: [AutorestParams.RestClient, AutorestParams.AzureSdkForJs],
+    params: [AutorestParams.RestClient, AutorestParams.NotAzureSdkForJs],
     buildTag: "ci_rlc"
   }
   // {
