@@ -8,6 +8,7 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
+    generateSample: true
     title: DictClient
     enableOperationGroup: true
     packageDetails:

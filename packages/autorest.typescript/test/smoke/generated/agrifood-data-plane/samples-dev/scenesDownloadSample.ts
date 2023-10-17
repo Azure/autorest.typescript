@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  ScenesDownloadParameters
-} from "@msinternal/agrifood-data-plane";
+import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -24,10 +20,9 @@ async function scenesDownload() {
     endpoint,
     credential
   );
-  const options: ScenesDownloadParameters = {
-    queryParameters: { filePath: "https://filePath" }
-  };
-  const result = await client.path("/scenes/downloadFiles").get(options);
+  const result = await client
+    .path("/scenes/downloadFiles")
+    .get({ queryParameters: { filePath: "https://filePath" } });
   console.log(result);
 }
 

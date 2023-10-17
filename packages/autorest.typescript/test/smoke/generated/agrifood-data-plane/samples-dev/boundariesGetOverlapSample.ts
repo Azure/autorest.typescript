@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  BoundariesGetOverlapParameters
-} from "@msinternal/agrifood-data-plane";
+import createAzureAgriFoodPlatformDataPlaneServiceClient from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -26,19 +22,18 @@ async function boundariesGetOverlap() {
   );
   const farmerId = "FARMER123";
   const boundaryId = "BOUNDARY123";
-  const options: BoundariesGetOverlapParameters = {
-    queryParameters: {
-      otherFarmerId: "FARMER456",
-      otherBoundaryId: "BOUNDARY56"
-    }
-  };
   const result = await client
     .path(
       "/farmers/{farmerId}/boundaries/{boundaryId}/overlap",
       farmerId,
       boundaryId
     )
-    .get(options);
+    .get({
+      queryParameters: {
+        otherFarmerId: "FARMER456",
+        otherBoundaryId: "BOUNDARY56"
+      }
+    });
   console.log(result);
 }
 

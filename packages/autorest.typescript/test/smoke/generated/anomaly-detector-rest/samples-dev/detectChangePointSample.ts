@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAnomalyDetectorRestClient, {
-  DetectChangePointParameters
-} from "@msinternal/anomaly-detector-rest";
+import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -26,7 +22,7 @@ async function detectChangePointExample() {
     apiVersion,
     credential
   );
-  const options: DetectChangePointParameters = {
+  const result = await client.path("/timeseries/changepoint/detect").post({
     body: {
       customInterval: 5,
       granularity: "minutely",
@@ -294,10 +290,7 @@ async function detectChangePointExample() {
       threshold: 0.99
     },
     headers: { "Content-Type": "application/json" }
-  };
-  const result = await client
-    .path("/timeseries/changepoint/detect")
-    .post(options);
+  });
   console.log(result);
 }
 

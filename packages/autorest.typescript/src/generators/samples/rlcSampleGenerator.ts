@@ -2,42 +2,57 @@ import {
   ExampleParameter,
   TestCodeModel
 } from "@autorest/testmodeler/dist/src/core/model";
-import { Project } from "ts-morph";
 import { getAutorestOptions, getSession } from "../../autorestSession";
-import * as fs from "fs";
-import * as path from "path";
-import * as hbs from "handlebars";
 import { NameType, normalizeName } from "../../utils/nameUtils";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
-import {
-  RLCSampleDetail,
-  RLCSampleGroup,
-  SampleParameter,
-  SampleParameters,
-  TestSampleParameters,
-  OperationMethod
-} from "../../restLevelClient/interfaces";
 import { camelCase } from "@azure-tools/codegen";
 import { Operation, ParameterLocation } from "@autorest/codemodel";
 import { isLongRunningOperation } from "../../restLevelClient/helpers/hasPollingOperations";
 import { isPagingOperation } from "../../utils/extractPaginationDetails";
 import { getSecurityInfoFromModel } from "../../utils/schemaHelpers";
 import { getParameterAssignment } from "../../utils/valueHelpers";
-import { Paths, PathMetadata } from "@azure-tools/rlc-common";
+import {
+  Paths,
+  PathMetadata,
+  RLCSampleGroup,
+  RLCSampleDetail,
+  SampleParameter,
+  SampleParameters,
+  OperationMethod,
+  SampleParameterPosition,
+  transformSampleGroups as transformSampleGroupsFromMockValue,
+  RLCModel
+} from "@azure-tools/rlc-common";
 import { transformPaths } from "../../restLevelClient/transforms/transformPaths";
 
 const tokenCredentialPackage = "@azure/identity";
 const apiKeyCredentialPackage = "@azure/core-auth";
 
-export let hasRLCSamplesGenerated = false;
+export function transformRLCSampleData(
+  model: TestCodeModel,
+  rlcModel: RLCModel
+): RLCSampleGroup[] | undefined {
+  // We prefer to generate sample from swagger examples first
+  const sampleGroups = transformSampleGroupsFromSwaggerExamples(model);
+  if (sampleGroups && sampleGroups.length > 0) {
+    return sampleGroups;
+  }
+  const { generateSample, generateMetadata } = getAutorestOptions();
+  // If no swagger examples, we will generate mock sample
+  // Allow to generate mock sample when generateSample and generateMetadata are both true
+  const allowMockValue = generateSample === true && generateMetadata === true;
+  return transformSampleGroupsFromMockValue(rlcModel, allowMockValue);
+}
 
-export function generateRLCSamples(model: TestCodeModel, project: Project) {
+function transformSampleGroupsFromSwaggerExamples(
+  model: TestCodeModel
+): RLCSampleGroup[] | undefined {
   const { generateSample, multiClient } = getAutorestOptions();
-  const session = getSession();
   if (!generateSample || !model?.testModel?.mockTest?.exampleGroups) {
     return;
   }
+  const session = getSession();
   // Currently only support single client
   if (multiClient) {
     session.info(
@@ -45,43 +60,11 @@ export function generateRLCSamples(model: TestCodeModel, project: Project) {
     );
     return;
   }
-  const sampleGroups: RLCSampleGroup[] = transformRLCSampleData(model);
-  if (sampleGroups.length > 0) {
-    hasRLCSamplesGenerated = true;
-  }
-  for (const sampleGroup of sampleGroups) {
-    try {
-      const file = fs.readFileSync(path.join(__dirname, "rlcSamples.ts.hbs"), {
-        encoding: "utf-8"
-      });
-      const sampleGroupFileContents = hbs.compile(file, { noEscape: true });
-      project.createSourceFile(
-        `samples-dev/${sampleGroup.filename}.ts`,
-        sampleGroupFileContents(sampleGroup),
-        {
-          overwrite: true
-        }
-      );
-    } catch (error) {
-      session.error(
-        "An error was encountered while handling sample generation",
-        [sampleGroup.filename]
-      );
-      session.error(
-        "Stop generating samples and please inform the developers of codegen the detailed errors",
-        []
-      );
-    }
-  }
-}
-
-export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
   const rlcSampleGroups: RLCSampleGroup[] = [];
   if (!model?.testModel?.mockTest?.exampleGroups) {
     return rlcSampleGroups;
   }
   // Get all paths
-  const session = getSession();
   const paths: Paths = transformPaths(model);
   const clientName = getLanguageMetadata(model.language).name;
   const clientInterfaceName = clientName.endsWith("Client")
@@ -134,7 +117,10 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
           useLegacyLro: false
         };
         // convert the parameters to the intermidate model - SampleParameters
-        const rawParamters: TestSampleParameters = {
+        const rawParamters: Record<
+          SampleParameterPosition,
+          ExampleParameter[]
+        > = {
           client: rawSample.clientParameters,
           path: (rawSample.methodParameters || []).filter(isPathLevelParam),
           method: (rawSample.methodParameters || []).filter(isMethodLevelParam)
@@ -149,8 +135,7 @@ export function transformRLCSampleData(model: TestCodeModel): RLCSampleGroup[] {
           path: convertPathLevelParameters(rawParamters.path, pathDetail, path),
           method: convertMethodLevelParameters(
             rawParamters.method,
-            pathDetail.methods[method],
-            importedDict
+            pathDetail.methods[method]
           )
         };
         // enrich parameter details
@@ -310,8 +295,7 @@ function convertPathLevelParameters(
 
 function convertMethodLevelParameters(
   rawMethodParams: ExampleParameter[],
-  methods: OperationMethod[],
-  importedDict: Record<string, Set<string>>
+  methods: OperationMethod[]
 ): SampleParameter[] {
   if (!methods || methods.length == 0) {
     return [];
@@ -369,9 +353,9 @@ function convertMethodLevelParameters(
   }
   const optionParam: SampleParameter = {
     name: "options",
-    assignment: `const options: ${method.optionsName} =` + value + `;`
+    assignment: `const options =` + value + `;`,
+    value
   };
-  addValueInImportedDict(getPackageName(), method.optionsName, importedDict);
   return [optionParam];
 }
 
@@ -383,8 +367,8 @@ function enrichParameterInSample(
   sample.clientParamNames = getContactParameterNames(parameters.client);
   sample.pathParamAssignments = getAssignmentStrArray(parameters.path);
   sample.pathParamNames = getContactParameterNames(parameters.path);
-  sample.methodParamAssignments = getAssignmentStrArray(parameters.method);
-  sample.methodParamNames = parameters.method.length > 0 ? "options" : "";
+  sample.methodParamNames =
+    parameters.method.length > 0 ? parameters.method[0].value ?? "" : "";
 }
 
 function getAssignmentStrArray(parameters: SampleParameter[]) {

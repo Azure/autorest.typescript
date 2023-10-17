@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createBodyStringRestClient, {
-  EnumPutReferencedParameters
-} from "@msinternal/body-string-rest";
+import createBodyStringRestClient from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -18,8 +14,9 @@ dotenv.config();
  */
 async function enumPutReferenced() {
   const client = createBodyStringRestClient();
-  const options: EnumPutReferencedParameters = { body: "red color" };
-  const result = await client.path("/string/enum/Referenced").put(options);
+  const result = await client
+    .path("/string/enum/Referenced")
+    .put({ body: "red color" });
   console.log(result);
 }
 

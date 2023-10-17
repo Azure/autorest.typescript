@@ -353,7 +353,7 @@ function getChildDiscriminatorValues(children: ObjectSchema[]): string[] {
 /**
  * Gets a list of types a given object may extend from
  */
-function getImmediateParentsNames(
+export function getImmediateParentsNames(
   objectSchema: ObjectSchema,
   schemaUsage: SchemaContext[]
 ): string[] {
