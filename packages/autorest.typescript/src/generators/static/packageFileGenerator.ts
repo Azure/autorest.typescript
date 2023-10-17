@@ -134,7 +134,6 @@ function regularAutorestPackage(
       `${srcPath}/**/*.ts`,
       "README.md",
       "LICENSE",
-      "rollup.config.js",
       "tsconfig.json",
       "review/*",
       "CHANGELOG.md",
