@@ -402,7 +402,11 @@ function extractNameFromTypeSpecType(
   ]);
   if (isAnonymousModel(bodySchema)) {
     // Handle anonymous Model
-    return generateAnomymousModelSigniture(bodySchema, schemaUsage, importedModels);
+    return generateAnomymousModelSigniture(
+      bodySchema,
+      schemaUsage,
+      importedModels
+    );
   }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
