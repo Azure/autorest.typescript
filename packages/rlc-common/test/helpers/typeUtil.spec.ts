@@ -54,6 +54,7 @@ describe("#isNumericLiteral", () => {
 
   it("should return false if the string is not numeric", () => {
     expect(isNumericLiteral(`string`)).to.be.false;
+    expect(isNumericLiteral(`"123"`)).to.be.false;
   });
 });
 
@@ -65,6 +66,9 @@ describe("#isBoolLiteral", () => {
 
   it("should return false if the string is not boolean", () => {
     expect(isBoolLiteral(`unknown`)).to.be.false;
+    expect(isBoolLiteral(`"true"`)).to.be.false;
+    expect(isBoolLiteral(`"false"`)).to.be.false;
+    expect(isBoolLiteral('"boolean"')).to.be.false;
   });
 });
 
@@ -83,6 +87,10 @@ describe("#isRecord", () => {
     expect(isRecord(`Record<string, string>`)).to.be.true;
     expect(isRecord(`Record<string, string | "1">`)).to.be.true;
     expect(isRecord(`Record<string, Record<string, any>>`)).to.be.true;
+    expect(isRecord(`Record<string, string[]>`)).to.be.true;
+    expect(isRecord(`Record<string, Array<SimpleModel>>`)).to.be.true;
+    expect(isRecord(`Record<string, SimpleModel>`)).to.be.true;
+    expect(isRecord(`Record<string, "a" | "b">`)).to.be.true;
   });
 
   it("should return false if the string is not record", () => {
@@ -99,6 +107,14 @@ describe("#getRecordType", () => {
     expect(getRecordType(`Record<string, Record<string, any>>`)).to.equal(
       "Record<string, any>"
     );
+    expect(getRecordType(`Record<string, string[]>`)).to.equal("string[]");
+    expect(getRecordType(`Record<string, Array<SimpleModel>>`)).to.equal(
+      "Array<SimpleModel>"
+    );
+    expect(getRecordType(`Record<string, SimpleModel>`)).to.equal(
+      "SimpleModel"
+    );
+    expect(getRecordType(`Record<string, "a" | "b">`)).to.equal(`"a" | "b"`);
   });
 });
 
