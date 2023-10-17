@@ -146,7 +146,7 @@ export interface FakedSharedModelOutput {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-export function getLongRunningPoller<TResult extends CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse>(client: Client, initialResponse: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse>(client: Client, initialResponse: CreateOrUpdateWidget201Response | CreateOrUpdateWidget200Response | CreateOrUpdateWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse>(client: Client, initialResponse: DeleteWidget202Response | DeleteWidgetDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -161,7 +161,7 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 export interface GetWidget {
     delete(options?: DeleteWidgetParameters): StreamableMethod<DeleteWidget202Response | DeleteWidgetDefaultResponse>;
     get(options?: GetWidgetParameters): StreamableMethod<GetWidget200Response | GetWidgetDefaultResponse>;
-    patch(options: CreateOrUpdateWidgetParameters): StreamableMethod<CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetDefaultResponse>;
+    patch(options: CreateOrUpdateWidgetParameters): StreamableMethod<CreateOrUpdateWidget201Response | CreateOrUpdateWidget200Response | CreateOrUpdateWidgetDefaultResponse>;
 }
 
 // @public
@@ -225,7 +225,7 @@ export type GetWidgetParameters = RequestParameters;
 export function isUnexpected(response: GetWidget200Response | GetWidgetDefaultResponse): response is GetWidgetDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateOrUpdateWidget200Response | CreateOrUpdateWidget201Response | CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse): response is CreateOrUpdateWidgetDefaultResponse;
+export function isUnexpected(response: CreateOrUpdateWidget201Response | CreateOrUpdateWidget200Response | CreateOrUpdateWidgetLogicalResponse | CreateOrUpdateWidgetDefaultResponse): response is CreateOrUpdateWidgetDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: DeleteWidget202Response | DeleteWidgetLogicalResponse | DeleteWidgetDefaultResponse): response is DeleteWidgetDefaultResponse;

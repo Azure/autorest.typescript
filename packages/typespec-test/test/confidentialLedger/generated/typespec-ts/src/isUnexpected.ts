@@ -26,8 +26,8 @@ import {
   DeleteUserDefaultResponse,
   GetUser200Response,
   GetUserDefaultResponse,
-  CreateOrUpdateUser200Response,
   CreateOrUpdateUser201Response,
+  CreateOrUpdateUser200Response,
   CreateOrUpdateUserDefaultResponse,
 } from "./responses";
 
@@ -44,7 +44,7 @@ const responseMap: Record<string, string[]> = {
   "GET /app/transactions/getCurrentLedgerEntry": ["200"],
   "DELETE /app/users/{userId}": ["204"],
   "GET /app/users/{userId}": ["200"],
-  "PATCH /app/users/{userId}": ["200", "201"],
+  "PATCH /app/users/{userId}": ["201", "200"],
 };
 
 export function isUnexpected(
@@ -91,8 +91,8 @@ export function isUnexpected(
 ): response is GetUserDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrUpdateUser200Response
     | CreateOrUpdateUser201Response
+    | CreateOrUpdateUser200Response
     | CreateOrUpdateUserDefaultResponse
 ): response is CreateOrUpdateUserDefaultResponse;
 export function isUnexpected(
@@ -121,8 +121,8 @@ export function isUnexpected(
     | DeleteUserDefaultResponse
     | GetUser200Response
     | GetUserDefaultResponse
-    | CreateOrUpdateUser200Response
     | CreateOrUpdateUser201Response
+    | CreateOrUpdateUser200Response
     | CreateOrUpdateUserDefaultResponse
 ): response is
   | ListCollectionsDefaultResponse

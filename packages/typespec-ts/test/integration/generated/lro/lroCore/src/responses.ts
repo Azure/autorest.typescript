@@ -9,18 +9,6 @@ import {
   ResourceOperationStatusOutput,
 } from "./outputModels";
 
-export interface CreateOrReplace200Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
-/** The request has succeeded. */
-export interface CreateOrReplace200Response extends HttpResponse {
-  status: "200";
-  body: UserOutput;
-  headers: RawHttpHeaders & CreateOrReplace200Headers;
-}
-
 export interface CreateOrReplace201Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -31,6 +19,18 @@ export interface CreateOrReplace201Response extends HttpResponse {
   status: "201";
   body: UserOutput;
   headers: RawHttpHeaders & CreateOrReplace201Headers;
+}
+
+export interface CreateOrReplace200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded. */
+export interface CreateOrReplace200Response extends HttpResponse {
+  status: "200";
+  body: UserOutput;
+  headers: RawHttpHeaders & CreateOrReplace200Headers;
 }
 
 export interface CreateOrReplaceDefaultHeaders {

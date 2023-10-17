@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateOrReplace200Response,
   CreateOrReplace201Response,
+  CreateOrReplace200Response,
   CreateOrReplaceLogicalResponse,
   CreateOrReplaceDefaultResponse,
   DeleteOperation202Response,
@@ -15,7 +15,7 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PUT /azure/core/lro/standard/users/{name}": ["200", "201"],
+  "PUT /azure/core/lro/standard/users/{name}": ["201", "200"],
   "GET /azure/core/lro/standard/users/{name}": ["200", "202"],
   "DELETE /azure/core/lro/standard/users/{name}": ["202"],
   "POST /azure/core/lro/standard/users/{name}:export": ["202"],
@@ -24,8 +24,8 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | CreateOrReplace200Response
     | CreateOrReplace201Response
+    | CreateOrReplace200Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
 ): response is CreateOrReplaceDefaultResponse;
@@ -43,8 +43,8 @@ export function isUnexpected(
 ): response is ExportOperationDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrReplace200Response
     | CreateOrReplace201Response
+    | CreateOrReplace200Response
     | CreateOrReplaceLogicalResponse
     | CreateOrReplaceDefaultResponse
     | DeleteOperation202Response

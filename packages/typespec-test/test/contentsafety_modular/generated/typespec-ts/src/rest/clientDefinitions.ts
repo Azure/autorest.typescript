@@ -20,8 +20,8 @@ import {
   AnalyzeImageDefaultResponse,
   GetTextBlocklist200Response,
   GetTextBlocklistDefaultResponse,
-  CreateOrUpdateTextBlocklist200Response,
   CreateOrUpdateTextBlocklist201Response,
+  CreateOrUpdateTextBlocklist200Response,
   CreateOrUpdateTextBlocklistDefaultResponse,
   DeleteTextBlocklist204Response,
   DeleteTextBlocklistDefaultResponse,
@@ -63,8 +63,8 @@ export interface GetTextBlocklist {
   patch(
     options: CreateOrUpdateTextBlocklistParameters
   ): StreamableMethod<
-    | CreateOrUpdateTextBlocklist200Response
     | CreateOrUpdateTextBlocklist201Response
+    | CreateOrUpdateTextBlocklist200Response
     | CreateOrUpdateTextBlocklistDefaultResponse
   >;
   /** Deletes a text blocklist. */

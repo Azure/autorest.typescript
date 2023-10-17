@@ -7,8 +7,8 @@ import {
   ExportParameters,
 } from "./parameters";
 import {
-  CreateOrReplace200Response,
   CreateOrReplace201Response,
+  CreateOrReplace200Response,
   CreateOrReplaceDefaultResponse,
   DeleteOperation202Response,
   DeleteOperationDefaultResponse,
@@ -22,8 +22,8 @@ export interface CreateOrReplace {
   put(
     options: CreateOrReplaceParameters
   ): StreamableMethod<
-    | CreateOrReplace200Response
     | CreateOrReplace201Response
+    | CreateOrReplace200Response
     | CreateOrReplaceDefaultResponse
   >;
   /** Deletes a User */

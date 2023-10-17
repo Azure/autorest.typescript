@@ -5,8 +5,8 @@ import { GetJobParameters, CreateJobParameters } from "./parameters";
 import {
   GetJob200Response,
   GetJobDefaultResponse,
-  CreateJob200Response,
   CreateJob202Response,
+  CreateJob200Response,
   CreateJobDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -23,7 +23,7 @@ export interface CreateJob {
   post(
     options?: CreateJobParameters
   ): StreamableMethod<
-    CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse
+    CreateJob202Response | CreateJob200Response | CreateJobDefaultResponse
   >;
 }
 

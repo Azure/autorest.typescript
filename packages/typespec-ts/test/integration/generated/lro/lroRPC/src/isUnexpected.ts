@@ -2,30 +2,30 @@
 // Licensed under the MIT license.
 
 import {
-  CreateJob200Response,
   CreateJob202Response,
+  CreateJob200Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "POST /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
-    ["200", "202"],
+    ["202", "200"],
   "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
     ["200", "202"],
 };
 
 export function isUnexpected(
   response:
-    | CreateJob200Response
     | CreateJob202Response
+    | CreateJob200Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse
 ): response is CreateJobDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateJob200Response
     | CreateJob202Response
+    | CreateJob200Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse
 ): response is CreateJobDefaultResponse {

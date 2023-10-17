@@ -30,8 +30,8 @@ import {
   LoadTestRunTestRunListServerMetricsConfigParameters,
 } from "./parameters.js";
 import {
-  LoadTestAdministrationCreateOrUpdateTest200Response,
   LoadTestAdministrationCreateOrUpdateTest201Response,
+  LoadTestAdministrationCreateOrUpdateTest200Response,
   LoadTestAdministrationCreateOrUpdateTestDefaultResponse,
   LoadTestAdministrationDeleteTest204Response,
   LoadTestAdministrationDeleteTestDefaultResponse,
@@ -47,20 +47,20 @@ import {
   LoadTestAdministrationDeleteTestFileDefaultResponse,
   LoadTestAdministrationListTestFiles200Response,
   LoadTestAdministrationListTestFilesDefaultResponse,
-  LoadTestAdministrationCreateOrUpdateAppComponents200Response,
   LoadTestAdministrationCreateOrUpdateAppComponents201Response,
+  LoadTestAdministrationCreateOrUpdateAppComponents200Response,
   LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
   LoadTestAdministrationGetAppComponents200Response,
   LoadTestAdministrationGetAppComponentsDefaultResponse,
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response,
   LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response,
+  LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response,
   LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestAdministrationGetServerMetricsConfig200Response,
   LoadTestAdministrationGetServerMetricsConfigDefaultResponse,
   LoadTestRunDeleteTestRun204Response,
   LoadTestRunDeleteTestRunDefaultResponse,
-  LoadTestRunCreateOrUpdateTestRun200Response,
   LoadTestRunCreateOrUpdateTestRun201Response,
+  LoadTestRunCreateOrUpdateTestRun200Response,
   LoadTestRunCreateOrUpdateTestRunDefaultResponse,
   LoadTestRunGetTestRun200Response,
   LoadTestRunGetTestRunDefaultResponse,
@@ -78,13 +78,13 @@ import {
   LoadTestRunListMetricsDefaultResponse,
   LoadTestRunListMetricDimensionValues200Response,
   LoadTestRunListMetricDimensionValuesDefaultResponse,
-  LoadTestRunCreateOrUpdateAppComponents200Response,
   LoadTestRunCreateOrUpdateAppComponents201Response,
+  LoadTestRunCreateOrUpdateAppComponents200Response,
   LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
   LoadTestRunGetAppComponents200Response,
   LoadTestRunGetAppComponentsDefaultResponse,
-  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
   LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
   LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestRunTestRunListServerMetricsConfig200Response,
   LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
@@ -96,8 +96,8 @@ export interface LoadTestAdministrationCreateOrUpdateTest {
   patch(
     options: LoadTestAdministrationCreateOrUpdateTestParameters
   ): StreamableMethod<
-    | LoadTestAdministrationCreateOrUpdateTest200Response
     | LoadTestAdministrationCreateOrUpdateTest201Response
+    | LoadTestAdministrationCreateOrUpdateTest200Response
     | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
   >;
   /** Delete a test by its name. */
@@ -172,8 +172,8 @@ export interface LoadTestAdministrationCreateOrUpdateAppComponents {
   patch(
     options: LoadTestAdministrationCreateOrUpdateAppComponentsParameters
   ): StreamableMethod<
-    | LoadTestAdministrationCreateOrUpdateAppComponents200Response
     | LoadTestAdministrationCreateOrUpdateAppComponents201Response
+    | LoadTestAdministrationCreateOrUpdateAppComponents200Response
     | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
   >;
   /** Get associated app component (collection of azure resources) for the given test. */
@@ -190,8 +190,8 @@ export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig {
   patch(
     options: LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters
   ): StreamableMethod<
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
   >;
   /** List server metrics configuration for the given test. */
@@ -215,8 +215,8 @@ export interface LoadTestRunDeleteTestRun {
   patch(
     options: LoadTestRunCreateOrUpdateTestRunParameters
   ): StreamableMethod<
-    | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRunDefaultResponse
   >;
   /** Get test run details by name. */
@@ -299,8 +299,8 @@ export interface LoadTestRunCreateOrUpdateAppComponents {
   patch(
     options: LoadTestRunCreateOrUpdateAppComponentsParameters
   ): StreamableMethod<
-    | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponents201Response
+    | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
   >;
   /**
@@ -320,8 +320,8 @@ export interface LoadTestRunCreateOrUpdateServerMetricsConfig {
   patch(
     options: LoadTestRunCreateOrUpdateServerMetricsConfigParameters
   ): StreamableMethod<
-    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
   >;
   /** List server metrics configuration for the given test run. */

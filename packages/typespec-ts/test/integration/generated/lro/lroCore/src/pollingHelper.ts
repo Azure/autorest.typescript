@@ -11,8 +11,8 @@ import {
   createHttpPoller,
 } from "@azure/core-lro";
 import {
-  CreateOrReplace200Response,
   CreateOrReplace201Response,
+  CreateOrReplace200Response,
   CreateOrReplaceDefaultResponse,
   CreateOrReplaceLogicalResponse,
   DeleteOperation202Response,
@@ -43,8 +43,8 @@ export async function getLongRunningPoller<
 >(
   client: Client,
   initialResponse:
-    | CreateOrReplace200Response
     | CreateOrReplace201Response
+    | CreateOrReplace200Response
     | CreateOrReplaceDefaultResponse,
   options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>
 ): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;

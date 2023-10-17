@@ -9,15 +9,15 @@ import {
   UserListResultsOutput,
 } from "./outputModels";
 
-/** The request has succeeded. */
-export interface CreateOrUpdate200Response extends HttpResponse {
-  status: "200";
-  body: UserOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface CreateOrUpdate201Response extends HttpResponse {
   status: "201";
+  body: UserOutput;
+}
+
+/** The request has succeeded. */
+export interface CreateOrUpdate200Response extends HttpResponse {
+  status: "200";
   body: UserOutput;
 }
 
@@ -32,15 +32,15 @@ export interface CreateOrUpdateDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & CreateOrUpdateDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface CreateOrReplace200Response extends HttpResponse {
-  status: "200";
-  body: UserOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface CreateOrReplace201Response extends HttpResponse {
   status: "201";
+  body: UserOutput;
+}
+
+/** The request has succeeded. */
+export interface CreateOrReplace200Response extends HttpResponse {
+  status: "200";
   body: UserOutput;
 }
 

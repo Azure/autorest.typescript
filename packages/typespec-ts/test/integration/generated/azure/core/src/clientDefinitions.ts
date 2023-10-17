@@ -12,11 +12,11 @@ import {
   ExportParameters,
 } from "./parameters";
 import {
-  CreateOrUpdate200Response,
   CreateOrUpdate201Response,
+  CreateOrUpdate200Response,
   CreateOrUpdateDefaultResponse,
-  CreateOrReplace200Response,
   CreateOrReplace201Response,
+  CreateOrReplace200Response,
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
@@ -38,16 +38,16 @@ export interface CreateOrUpdate {
   patch(
     options: CreateOrUpdateParameters
   ): StreamableMethod<
-    | CreateOrUpdate200Response
     | CreateOrUpdate201Response
+    | CreateOrUpdate200Response
     | CreateOrUpdateDefaultResponse
   >;
   /** Creates or replaces a User */
   put(
     options: CreateOrReplaceParameters
   ): StreamableMethod<
-    | CreateOrReplace200Response
     | CreateOrReplace201Response
+    | CreateOrReplace200Response
     | CreateOrReplaceDefaultResponse
   >;
   /** Gets a User */

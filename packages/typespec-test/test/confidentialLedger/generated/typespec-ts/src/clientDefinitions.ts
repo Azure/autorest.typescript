@@ -41,8 +41,8 @@ import {
   DeleteUserDefaultResponse,
   GetUser200Response,
   GetUserDefaultResponse,
-  CreateOrUpdateUser200Response,
   CreateOrUpdateUser201Response,
+  CreateOrUpdateUser200Response,
   CreateOrUpdateUserDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -148,8 +148,8 @@ export interface DeleteUser {
   patch(
     options: CreateOrUpdateUserParameters
   ): StreamableMethod<
-    | CreateOrUpdateUser200Response
     | CreateOrUpdateUser201Response
+    | CreateOrUpdateUser200Response
     | CreateOrUpdateUserDefaultResponse
   >;
 }
