@@ -848,12 +848,7 @@ function getSchemaForRecordModel(
     return schema;
   }
   if (isRecordModelType(program, type)) {
-    const valueType = getSchemaForType(
-      dpgContext,
-      indexer?.value,
-      usage,
-      true
-    );
+    const valueType = getSchemaForType(dpgContext, indexer?.value, usage, true);
     schema = {
       type: "dictionary",
       additionalProperties: valueType,
