@@ -850,7 +850,7 @@ function getSchemaForRecordModel(
   if (isRecordModelType(program, type)) {
     const valueType = getSchemaForType(
       dpgContext,
-      indexer?.value!,
+      indexer?.value,
       usage,
       true
     );
