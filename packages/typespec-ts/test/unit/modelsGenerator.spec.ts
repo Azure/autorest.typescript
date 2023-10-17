@@ -1178,8 +1178,12 @@ describe("Input/output model type", () => {
         inputModelFile?.content!,
         `
         export interface Vegetables {
-          carrots: Record<string, Carrots>;
-          beans: Record<string, Beans>;
+          carrots: VegetableCarrot;
+          beans: VegetableBeans;
+        }
+
+        export interface VegetableCarrot extends Record<string, Carrots> {
+          testProp: Carrots;
         }
 
         export interface Carrots {
@@ -1187,6 +1191,8 @@ describe("Input/output model type", () => {
           id: string;
         }
         
+        export interface VegetableBeans extends Record<string, Beans> {}
+
         export interface Beans {
           expiry: string;
           id: string;
@@ -1199,12 +1205,23 @@ describe("Input/output model type", () => {
         outputModelFile?.content!,
         `
         export interface VegetablesOutput {
-          carrots: Record<string, CarrotsOutput>;
-          beans: Record<string, BeansOutput>;
+          carrots: VegetableCarrotOutput;
+          beans: VegetableBeansOutput;
         }
 
+        export interface VegetableCarrotOutput extends Record<string, CarrotsOutput> {
+          testProp: CarrotsOutput;
+        }
+        
         export interface CarrotsOutput {
           color: string;
+          id: string;
+        }
+
+        export interface VegetableBeansOutput extends Record<string, BeansOutput> {}
+
+        export interface BeansOutput {
+          expiry: string;
           id: string;
         }`
       );

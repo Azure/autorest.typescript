@@ -41,7 +41,9 @@ import {
   listServices,
   Program,
   getEncode,
-  EncodeData
+  EncodeData,
+  isRecordModelType,
+  isArrayModelType
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
@@ -134,7 +136,7 @@ export function getSchemaForType(
   const program = dpgContext.program;
   const type = getEffectiveModelFromType(program, typeInput);
 
-  const builtinType = mapTypeSpecTypeToTypeScript(dpgContext, type, usage);
+  const builtinType = getSchemaForLiteral(type);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(program, type);
@@ -145,17 +147,19 @@ export function getSchemaForType(
   }
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
-    if (usage && usage.includes(SchemaContext.Output)) {
-      if (!schema.name || schema.name === "") {
-        //TODO: HANDLE ANONYMOUS
-        schema.outputTypeName =
-          schema.type === "object" ? "Record<string, any>" : "any";
-        schema.typeName =
-          schema.type === "object" ? "Record<string, unknown>" : "unknown";
-        schema.type = "unknown";
-      } else {
-        schema.outputTypeName = `${schema.name}Output`;
-        schema.typeName = `${schema.name}`;
+    if (!isArrayModelType(program, type) && !isRecordModelType(program, type)) {
+      if (usage && usage.includes(SchemaContext.Output)) {
+        if (!schema.name || schema.name === "") {
+          //TODO: HANDLE ANONYMOUS
+          schema.outputTypeName =
+            schema.type === "object" ? "Record<string, any>" : "any";
+          schema.typeName =
+            schema.type === "object" ? "Record<string, unknown>" : "unknown";
+          schema.type = "unknown";
+        } else {
+          schema.outputTypeName = `${schema.name}Output`;
+          schema.typeName = `${schema.name}`;
+        }
       }
     }
     schema.usage = usage;
@@ -418,6 +422,10 @@ function getSchemaForModel(
   usage?: SchemaContext[],
   needRef?: boolean
 ) {
+  if (isArrayModelType(dpgContext.program, model)) {
+    return getSchemaForArrayModel(dpgContext, model, usage!);
+  }
+
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
@@ -443,6 +451,7 @@ function getSchemaForModel(
         })
         .join("") + "List";
   }
+
   const modelSchema: ObjectSchema = {
     name: overridedModelName ?? name,
     type: "object",
@@ -455,7 +464,13 @@ function getSchemaForModel(
     true /** shouldGuard */
   );
 
+  if (modelSchema.name === "Record" && isRecordModelType(program, model)) {
+    return getSchemaForRecordModel(dpgContext, model, usage!);
+  }
   modelSchema.typeName = modelSchema.name;
+  if (usage && usage.includes(SchemaContext.Output)) {
+    modelSchema.outputTypeName = modelSchema.name + "Output";
+  }
 
   if (isAzureCoreErrorType(model)) {
     modelSchema.fromCore = true;
@@ -489,6 +504,7 @@ function getSchemaForModel(
     }
   }
   modelSchema.properties = {};
+
   const derivedModels = model.derivedModels.filter(includeDerivedModel);
 
   // getSchemaOrRef on all children to push them into components.schemas
@@ -544,6 +560,12 @@ function getSchemaForModel(
   // applyExternalDocs(model, modelSchema);
   if (needRef) {
     return modelSchema;
+  }
+  if (isRecordModelType(program, model)) {
+    modelSchema.parents = {
+      all: [getSchemaForRecordModel(dpgContext, model, usage!)],
+      immediate: [getSchemaForRecordModel(dpgContext, model, usage!)]
+    };
   }
   for (const [propName, prop] of model.properties) {
     const restApiName = getProjectedName(program, prop, "json");
@@ -627,11 +649,7 @@ function getSchemaForModel(
 }
 // Map an typespec type to an OA schema. Returns undefined when the resulting
 // OA schema is just a regular object schema.
-function mapTypeSpecTypeToTypeScript(
-  dpgContext: SdkContext,
-  type: Type,
-  usage?: SchemaContext[]
-): any {
+function getSchemaForLiteral(type: Type): any {
   switch (type.kind) {
     case "Number":
       return { type: `${type.value}` };
@@ -639,8 +657,6 @@ function mapTypeSpecTypeToTypeScript(
       return { type: `"${type.value}"` };
     case "Boolean":
       return { type: `${type.value}` };
-    case "Model":
-      return mapTypeSpecStdTypeToTypeScript(dpgContext, type, usage);
   }
   if (type.kind === undefined) {
     if (typeof type === "string") {
@@ -649,6 +665,7 @@ function mapTypeSpecTypeToTypeScript(
       return { type: `${type}` };
     }
   }
+  return undefined;
 }
 function applyIntrinsicDecorators(
   program: Program,
@@ -754,111 +771,124 @@ function enumMemberType(member: EnumMember) {
 /**
  * Map TypeSpec intrinsic models to open api definitions
  */
-function mapTypeSpecStdTypeToTypeScript(
+function getSchemaForArrayModel(
   dpgContext: SdkContext,
   type: Model,
-  usage?: SchemaContext[]
-): any | undefined {
-  const program = dpgContext.program;
-  const indexer = (type as Model).indexer;
-  if (indexer !== undefined) {
-    if (!isNeverType(indexer.key)) {
-      const name = indexer.key.name;
-      let schema: any = {};
-      if (name === "string") {
-        const valueType = getSchemaForType(
-          dpgContext,
-          indexer.value!,
-          usage,
-          true
-        );
-        schema = {
-          type: "dictionary",
-          additionalProperties: valueType,
-          description: getDoc(program, type)
-        };
-        if (
-          !program.checker.isStdType(indexer.value) &&
-          !isUnknownType(indexer.value!) &&
-          !isUnionType(indexer.value!)
-        ) {
-          schema.typeName = `Record<string, ${valueType.typeName}>`;
-          schema.valueTypeName = valueType.name;
-          if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
-            schema.outputValueTypeName = `${valueType.outputTypeName}`;
-          }
-        } else if (isUnknownType(indexer.value!)) {
-          schema.typeName = `Record<string, ${
-            valueType.typeName ?? valueType.type
-          }>`;
-          if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Record<string, ${
-              valueType.outputTypeName ?? valueType.type
-            }>`;
-          }
-        } else {
-          schema.typeName = `Record<string, ${getTypeName(valueType, [
-            SchemaContext.Input
-          ])}>`;
-          schema.outputTypeName = `Record<string, ${getTypeName(valueType, [
-            SchemaContext.Output
-          ])}>`;
-        }
-      } else if (name === "integer") {
-        schema = {
-          type: "array",
-          items: getSchemaForType(dpgContext, indexer.value!, usage, true),
-          description: getDoc(program, type)
-        };
-        if (
-          !program.checker.isStdType(indexer.value) &&
-          !isUnknownType(indexer.value!) &&
-          indexer.value?.kind &&
-          schema.items.name &&
-          !schema.items.enum
-        ) {
-          schema.typeName = `Array<${schema.items.name}>`;
-          if (usage && usage.includes(SchemaContext.Output)) {
-            schema.outputTypeName = `Array<${schema.items.name}Output>`;
-          }
-        } else {
-          if (schema.items.typeName) {
-            if (schema.items.type === "dictionary") {
-              schema.typeName = `${schema.items.typeName}[]`;
-            } else if (schema.items.type === "union") {
-              schema.typeName = `(${schema.items.typeName})[]`;
-            } else {
-              schema.typeName = schema.items.typeName
-                .split("|")
-                .map((typeName: string) => {
-                  return `${typeName}[]`;
-                })
-                .join(" | ");
-              if (
-                schema.items.outputTypeName &&
-                usage &&
-                usage.includes(SchemaContext.Output)
-              ) {
-                schema.outputTypeName = schema.items.outputTypeName
-                  .split("|")
-                  .map((typeName: string) => {
-                    return `${typeName}[]`;
-                  })
-                  .join(" | ");
-              }
-            }
-          } else if (schema.items.type.includes("|")) {
-            schema.typeName = `(${schema.items.type})[]`;
-          } else {
-            schema.typeName = `${schema.items.type}[]`;
-          }
-        }
+  usage: SchemaContext[]
+) {
+  const { program } = dpgContext;
+  const { indexer } = type;
+  let schema: any = {};
+  if (!indexer) {
+    return schema;
+  }
+  if (isArrayModelType(program, type)) {
+    schema = {
+      type: "array",
+      items: getSchemaForType(dpgContext, indexer.value!, usage, true),
+      description: getDoc(program, type)
+    };
+    if (
+      !program.checker.isStdType(indexer.value) &&
+      !isUnknownType(indexer.value!) &&
+      indexer.value?.kind &&
+      schema.items.name &&
+      !schema.items.enum
+    ) {
+      schema.typeName = `Array<${schema.items.name}>`;
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `Array<${schema.items.name}Output>`;
       }
-
-      schema.usage = usage;
-      return schema;
+    } else {
+      if (schema.items.typeName) {
+        if (schema.items.type === "dictionary") {
+          schema.typeName = `${schema.items.typeName}[]`;
+        } else if (schema.items.type === "union") {
+          schema.typeName = `(${schema.items.typeName})[]`;
+        } else {
+          schema.typeName = schema.items.typeName
+            .split("|")
+            .map((typeName: string) => {
+              return `${typeName}[]`;
+            })
+            .join(" | ");
+          if (
+            schema.items.outputTypeName &&
+            usage &&
+            usage.includes(SchemaContext.Output)
+          ) {
+            schema.outputTypeName = schema.items.outputTypeName
+              .split("|")
+              .map((typeName: string) => {
+                return `${typeName}[]`;
+              })
+              .join(" | ");
+          }
+        }
+      } else if (schema.items.type.includes("|")) {
+        schema.typeName = `(${schema.items.type})[]`;
+      } else {
+        schema.typeName = `${schema.items.type}[]`;
+      }
     }
+    schema.usage = usage;
+    return schema;
+  }
+}
+
+function getSchemaForRecordModel(
+  dpgContext: SdkContext,
+  type: Model,
+  usage: SchemaContext[]
+) {
+  const { program } = dpgContext;
+  const { indexer } = type;
+  let schema: any = {};
+  if (!indexer) {
+    return schema;
+  }
+  if (isRecordModelType(program, type)) {
+    const valueType = getSchemaForType(
+      dpgContext,
+      indexer?.value!,
+      usage,
+      true
+    );
+    schema = {
+      type: "dictionary",
+      additionalProperties: valueType,
+      description: getDoc(program, type)
+    };
+    if (
+      !program.checker.isStdType(indexer.value) &&
+      !isUnknownType(indexer.value!) &&
+      !isUnionType(indexer.value!)
+    ) {
+      schema.typeName = `Record<string, ${valueType.typeName}>`;
+      schema.valueTypeName = valueType.name;
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `Record<string, ${valueType.outputTypeName}>`;
+        schema.outputValueTypeName = `${valueType.outputTypeName}`;
+      }
+    } else if (isUnknownType(indexer.value!)) {
+      schema.typeName = `Record<string, ${
+        valueType.typeName ?? valueType.type
+      }>`;
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `Record<string, ${
+          valueType.outputTypeName ?? valueType.type
+        }>`;
+      }
+    } else {
+      schema.typeName = `Record<string, ${getTypeName(valueType, [
+        SchemaContext.Input
+      ])}>`;
+      schema.outputTypeName = `Record<string, ${getTypeName(valueType, [
+        SchemaContext.Output
+      ])}>`;
+    }
+    schema.usage = usage;
+    return schema;
   }
 }
 
