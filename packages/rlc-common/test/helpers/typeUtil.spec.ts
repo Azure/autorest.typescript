@@ -124,6 +124,12 @@ describe("#isArray", () => {
     expect(isArray(`Array<Model>`)).to.be.true;
     expect(isArray(`Array<string | number>`)).to.be.true;
     expect(isArray(`Array<A>`)).to.be.true;
+    expect(isArray(`true[]`)).to.be.true;
+    expect(isArray(`false[]`)).to.be.true;
+    expect(isArray(`null[]`)).to.be.true;
+    expect(isArray(`undefined[]`)).to.be.true;
+    expect(isArray(`"string"[]`)).to.be.true;
+    expect(isArray(`123[]`)).to.be.true;
   });
 
   it("should return false if the string is not array", () => {
@@ -145,6 +151,8 @@ describe("#getNativeArrayType", () => {
   it("should return the type of the array", () => {
     expect(getNativeArrayType(`string[]`)).to.equal("string");
     expect(getNativeArrayType(`"t"[]`)).to.equal(`"t"`);
+    expect(getNativeArrayType(`true[]`)).to.equal(`true`);
+    expect(getNativeArrayType(`123[]`)).to.equal(`123`);
   });
 });
 
@@ -157,6 +165,7 @@ describe("#isUnion", () => {
     expect(isUnion(`string[] | string`)).to.be.true;
     expect(isUnion(`"application/json" | "application/octet-stream"`)).to.be
       .true;
+    expect(isUnion(`true | 123 | "application/xml"`)).to.be.true;
   });
 
   it("should return false if the string is not union", () => {
