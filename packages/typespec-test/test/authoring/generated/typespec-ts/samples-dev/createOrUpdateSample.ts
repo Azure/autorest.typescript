@@ -25,7 +25,7 @@ async function createOrUpdateSample() {
       body: {
         projectKind: "CustomSingleLabelClassification",
         storageInputContainerName: "{Your storageInputContainerName}",
-        settings: { key: "{Your settings}" },
+        settings: {},
         multilingual: true,
         description: "{Your description}",
         language: "{Your language}",
