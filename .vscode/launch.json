@@ -160,7 +160,7 @@
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
         "cross-env",
-        "TS_NODE_PROJECT=tsconfig.test.json",
+        "TS_NODE_PROJECT=tsconfig.integration.json",
         "mocha",
         "-r",
         "ts-node/register",
