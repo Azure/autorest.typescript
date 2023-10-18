@@ -92,7 +92,7 @@ describe("SpecialWordsClient Rest Client", () => {
       }
     });
 
-    it.skip("should get special words for operation `constructor`", async () => {
+    it("should get special words for operation `constructor`", async () => {
       try {
         const result = await client
           .path("/special-words/operations/constructor")
@@ -452,7 +452,7 @@ describe("SpecialWordsClient Rest Client", () => {
       }
     });
 
-    it("should get special words for operation `constructor`", async () => {
+    it.skip("should get special words for operation `constructor`", async () => {
       try {
         const result = await client
           .path("/special-words/parameters/constructor")
@@ -778,6 +778,426 @@ describe("SpecialWordsClient Rest Client", () => {
               yield: "ok"
             }
           });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+  });
+
+  describe("models", () => {
+    it("should get special words for operation `for`", async () => {
+      try {
+        const result = await client.path("/special-words/models/for").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `and`", async () => {
+      try {
+        const result = await client.path("/special-words/models/and").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `as`", async () => {
+      try {
+        const result = await client.path("/special-words/models/as").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `assert`", async () => {
+      try {
+        const result = await client.path("/special-words/models/assert").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `async`", async () => {
+      try {
+        const result = await client.path("/special-words/models/async").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `await`", async () => {
+      try {
+        const result = await client.path("/special-words/models/await").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `break`", async () => {
+      try {
+        const result = await client.path("/special-words/models/break").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `class`", async () => {
+      try {
+        const result = await client.path("/special-words/models/class").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `constructor`", async () => {
+      try {
+        const result = await client
+          .path("/special-words/models/constructor")
+          .post({
+            body: {
+              name: "ok"
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `continue`", async () => {
+      try {
+        const result = await client
+          .path("/special-words/models/continue")
+          .post({
+            body: {
+              name: "ok"
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `def`", async () => {
+      try {
+        const result = await client.path("/special-words/models/def").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `elif`", async () => {
+      try {
+        const result = await client.path("/special-words/models/elif").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `else`", async () => {
+      try {
+        const result = await client.path("/special-words/models/else").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `except`", async () => {
+      try {
+        const result = await client.path("/special-words/models/except").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `exec`", async () => {
+      try {
+        const result = await client.path("/special-words/models/exec").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `finally`", async () => {
+      try {
+        const result = await client.path("/special-words/models/finally").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `for`", async () => {
+      try {
+        const result = await client.path("/special-words/models/for").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `from`", async () => {
+      try {
+        const result = await client.path("/special-words/models/from").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `global`", async () => {
+      try {
+        const result = await client.path("/special-words/models/global").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `if`", async () => {
+      try {
+        const result = await client.path("/special-words/models/if").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `import`", async () => {
+      try {
+        const result = await client.path("/special-words/models/import").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `in`", async () => {
+      try {
+        const result = await client.path("/special-words/models/in").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `is`", async () => {
+      try {
+        const result = await client.path("/special-words/models/is").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `lambda`", async () => {
+      try {
+        const result = await client.path("/special-words/models/lambda").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `not`", async () => {
+      try {
+        const result = await client.path("/special-words/models/not").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `or`", async () => {
+      try {
+        const result = await client.path("/special-words/models/or").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `pass`", async () => {
+      try {
+        const result = await client.path("/special-words/models/pass").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `raise`", async () => {
+      try {
+        const result = await client.path("/special-words/models/raise").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `return`", async () => {
+      try {
+        const result = await client.path("/special-words/models/return").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `try`", async () => {
+      try {
+        const result = await client.path("/special-words/models/try").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `while`", async () => {
+      try {
+        const result = await client.path("/special-words/models/while").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
+    it("should get special words for operation `with`", async () => {
+      try {
+        const result = await client.path("/special-words/models/with").post({
+          body: {
+            name: "ok"
+          }
+        });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+    it("should get special words for operation `yield`", async () => {
+      try {
+        const result = await client.path("/special-words/models/yield").post({
+          body: {
+            name: "ok"
+          }
+        });
         assert.strictEqual(result.status, "204");
       } catch (err) {
         assert.fail(err as string);
