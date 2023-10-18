@@ -114,7 +114,7 @@ export interface FileInfoOutput {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 // @public
-export function getLongRunningPoller<TResult extends LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse>(client: Client, initialResponse: LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse>(client: Client, initialResponse: LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public
 export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
@@ -123,7 +123,7 @@ export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise
 }>;
 
 // @public (undocumented)
-export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateTest201Response | LoadTestAdministrationCreateOrUpdateTest200Response | LoadTestAdministrationCreateOrUpdateTestDefaultResponse): response is LoadTestAdministrationCreateOrUpdateTestDefaultResponse;
+export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateTest200Response | LoadTestAdministrationCreateOrUpdateTest201Response | LoadTestAdministrationCreateOrUpdateTestDefaultResponse): response is LoadTestAdministrationCreateOrUpdateTestDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestAdministrationDeleteTest204Response | LoadTestAdministrationDeleteTestDefaultResponse): response is LoadTestAdministrationDeleteTestDefaultResponse;
@@ -147,13 +147,13 @@ export function isUnexpected(response: LoadTestAdministrationDeleteTestFile204Re
 export function isUnexpected(response: LoadTestAdministrationListTestFiles200Response | LoadTestAdministrationListTestFilesDefaultResponse): response is LoadTestAdministrationListTestFilesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateAppComponents201Response | LoadTestAdministrationCreateOrUpdateAppComponents200Response | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse): response is LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse;
+export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateAppComponents200Response | LoadTestAdministrationCreateOrUpdateAppComponents201Response | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse): response is LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestAdministrationGetAppComponents200Response | LoadTestAdministrationGetAppComponentsDefaultResponse): response is LoadTestAdministrationGetAppComponentsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse): response is LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse;
+export function isUnexpected(response: LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse): response is LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestAdministrationGetServerMetricsConfig200Response | LoadTestAdministrationGetServerMetricsConfigDefaultResponse): response is LoadTestAdministrationGetServerMetricsConfigDefaultResponse;
@@ -162,7 +162,7 @@ export function isUnexpected(response: LoadTestAdministrationGetServerMetricsCon
 export function isUnexpected(response: LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse): response is LoadTestRunDeleteTestRunDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
+export function isUnexpected(response: LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunLogicalResponse | LoadTestRunCreateOrUpdateTestRunDefaultResponse): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse): response is LoadTestRunGetTestRunDefaultResponse;
@@ -189,13 +189,13 @@ export function isUnexpected(response: LoadTestRunListMetrics200Response | LoadT
 export function isUnexpected(response: LoadTestRunListMetricDimensionValues200Response | LoadTestRunListMetricDimensionValuesDefaultResponse): response is LoadTestRunListMetricDimensionValuesDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: LoadTestRunCreateOrUpdateAppComponents201Response | LoadTestRunCreateOrUpdateAppComponents200Response | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse): response is LoadTestRunCreateOrUpdateAppComponentsDefaultResponse;
+export function isUnexpected(response: LoadTestRunCreateOrUpdateAppComponents200Response | LoadTestRunCreateOrUpdateAppComponents201Response | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse): response is LoadTestRunCreateOrUpdateAppComponentsDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestRunGetAppComponents200Response | LoadTestRunGetAppComponentsDefaultResponse): response is LoadTestRunGetAppComponentsDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: LoadTestRunCreateOrUpdateServerMetricsConfig201Response | LoadTestRunCreateOrUpdateServerMetricsConfig200Response | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse): response is LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
+export function isUnexpected(response: LoadTestRunCreateOrUpdateServerMetricsConfig200Response | LoadTestRunCreateOrUpdateServerMetricsConfig201Response | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse): response is LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: LoadTestRunTestRunListServerMetricsConfig200Response | LoadTestRunTestRunListServerMetricsConfigDefaultResponse): response is LoadTestRunTestRunListServerMetricsConfigDefaultResponse;
@@ -203,7 +203,7 @@ export function isUnexpected(response: LoadTestRunTestRunListServerMetricsConfig
 // @public (undocumented)
 export interface LoadTestAdministrationCreateOrUpdateAppComponents {
     get(options?: LoadTestAdministrationGetAppComponentsParameters): StreamableMethod<LoadTestAdministrationGetAppComponents200Response | LoadTestAdministrationGetAppComponentsDefaultResponse>;
-    patch(options: LoadTestAdministrationCreateOrUpdateAppComponentsParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateAppComponents201Response | LoadTestAdministrationCreateOrUpdateAppComponents200Response | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse>;
+    patch(options: LoadTestAdministrationCreateOrUpdateAppComponentsParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateAppComponents200Response | LoadTestAdministrationCreateOrUpdateAppComponents201Response | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse>;
 }
 
 // @public
@@ -254,7 +254,7 @@ export type LoadTestAdministrationCreateOrUpdateAppComponentsParameters = LoadTe
 // @public (undocumented)
 export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig {
     get(options?: LoadTestAdministrationGetServerMetricsConfigParameters): StreamableMethod<LoadTestAdministrationGetServerMetricsConfig200Response | LoadTestAdministrationGetServerMetricsConfigDefaultResponse>;
-    patch(options: LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse>;
+    patch(options: LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse>;
 }
 
 // @public
@@ -306,7 +306,7 @@ export type LoadTestAdministrationCreateOrUpdateServerMetricsConfigParameters = 
 export interface LoadTestAdministrationCreateOrUpdateTest {
     delete(options?: LoadTestAdministrationDeleteTestParameters): StreamableMethod<LoadTestAdministrationDeleteTest204Response | LoadTestAdministrationDeleteTestDefaultResponse>;
     get(options?: LoadTestAdministrationGetTestParameters): StreamableMethod<LoadTestAdministrationGetTest200Response | LoadTestAdministrationGetTestDefaultResponse>;
-    patch(options: LoadTestAdministrationCreateOrUpdateTestParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateTest201Response | LoadTestAdministrationCreateOrUpdateTest200Response | LoadTestAdministrationCreateOrUpdateTestDefaultResponse>;
+    patch(options: LoadTestAdministrationCreateOrUpdateTestParameters): StreamableMethod<LoadTestAdministrationCreateOrUpdateTest200Response | LoadTestAdministrationCreateOrUpdateTest201Response | LoadTestAdministrationCreateOrUpdateTestDefaultResponse>;
 }
 
 // @public
@@ -657,7 +657,7 @@ export interface LoadTestConfigurationOutput {
 // @public (undocumented)
 export interface LoadTestRunCreateOrUpdateAppComponents {
     get(options?: LoadTestRunGetAppComponentsParameters): StreamableMethod<LoadTestRunGetAppComponents200Response | LoadTestRunGetAppComponentsDefaultResponse>;
-    patch(options: LoadTestRunCreateOrUpdateAppComponentsParameters): StreamableMethod<LoadTestRunCreateOrUpdateAppComponents201Response | LoadTestRunCreateOrUpdateAppComponents200Response | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse>;
+    patch(options: LoadTestRunCreateOrUpdateAppComponentsParameters): StreamableMethod<LoadTestRunCreateOrUpdateAppComponents200Response | LoadTestRunCreateOrUpdateAppComponents201Response | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse>;
 }
 
 // @public
@@ -708,7 +708,7 @@ export type LoadTestRunCreateOrUpdateAppComponentsParameters = LoadTestRunCreate
 // @public (undocumented)
 export interface LoadTestRunCreateOrUpdateServerMetricsConfig {
     get(options?: LoadTestRunTestRunListServerMetricsConfigParameters): StreamableMethod<LoadTestRunTestRunListServerMetricsConfig200Response | LoadTestRunTestRunListServerMetricsConfigDefaultResponse>;
-    patch(options: LoadTestRunCreateOrUpdateServerMetricsConfigParameters): StreamableMethod<LoadTestRunCreateOrUpdateServerMetricsConfig201Response | LoadTestRunCreateOrUpdateServerMetricsConfig200Response | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse>;
+    patch(options: LoadTestRunCreateOrUpdateServerMetricsConfigParameters): StreamableMethod<LoadTestRunCreateOrUpdateServerMetricsConfig200Response | LoadTestRunCreateOrUpdateServerMetricsConfig201Response | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse>;
 }
 
 // @public
@@ -837,7 +837,7 @@ export interface LoadTestRunCreateOrUpdateTestRunQueryParamProperties {
 export interface LoadTestRunDeleteTestRun {
     delete(options?: LoadTestRunDeleteTestRunParameters): StreamableMethod<LoadTestRunDeleteTestRun204Response | LoadTestRunDeleteTestRunDefaultResponse>;
     get(options?: LoadTestRunGetTestRunParameters): StreamableMethod<LoadTestRunGetTestRun200Response | LoadTestRunGetTestRunDefaultResponse>;
-    patch(options: LoadTestRunCreateOrUpdateTestRunParameters): StreamableMethod<LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse>;
+    patch(options: LoadTestRunCreateOrUpdateTestRunParameters): StreamableMethod<LoadTestRunCreateOrUpdateTestRun200Response | LoadTestRunCreateOrUpdateTestRun201Response | LoadTestRunCreateOrUpdateTestRunDefaultResponse>;
 }
 
 // @public

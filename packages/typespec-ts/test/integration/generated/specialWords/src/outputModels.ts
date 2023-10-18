@@ -2,16 +2,16 @@
 // Licensed under the MIT license.
 
 /** This is a base model has discriminator name containing dot. */
-export interface BaseModelParent {
+export interface BaseModelOutputParent {
   "model.kind": string;
 }
 
 /** This is a model has property names of special words or characters. */
-export interface DerivedModel extends BaseModelParent {
+export interface DerivedModelOutput extends BaseModelOutputParent {
   "model.kind": "derived";
   "derived.name": string;
   for: string;
 }
 
 /** This is a base model has discriminator name containing dot. */
-export type BaseModel = DerivedModel;
+export type BaseModelOutput = DerivedModelOutput;

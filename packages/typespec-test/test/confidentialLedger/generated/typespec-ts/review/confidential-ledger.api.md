@@ -119,7 +119,7 @@ export type CreateOrUpdateUserParameters = CreateOrUpdateUserMediaTypesParam & C
 export interface DeleteUser {
     delete(options?: DeleteUserParameters): StreamableMethod<DeleteUser204Response | DeleteUserDefaultResponse>;
     get(options?: GetUserParameters): StreamableMethod<GetUser200Response | GetUserDefaultResponse>;
-    patch(options: CreateOrUpdateUserParameters): StreamableMethod<CreateOrUpdateUser201Response | CreateOrUpdateUser200Response | CreateOrUpdateUserDefaultResponse>;
+    patch(options: CreateOrUpdateUserParameters): StreamableMethod<CreateOrUpdateUser200Response | CreateOrUpdateUser201Response | CreateOrUpdateUserDefaultResponse>;
 }
 
 // @public
@@ -440,7 +440,7 @@ export function isUnexpected(response: DeleteUser204Response | DeleteUserDefault
 export function isUnexpected(response: GetUser200Response | GetUserDefaultResponse): response is GetUserDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateOrUpdateUser201Response | CreateOrUpdateUser200Response | CreateOrUpdateUserDefaultResponse): response is CreateOrUpdateUserDefaultResponse;
+export function isUnexpected(response: CreateOrUpdateUser200Response | CreateOrUpdateUser201Response | CreateOrUpdateUserDefaultResponse): response is CreateOrUpdateUserDefaultResponse;
 
 // @public
 export interface LedgerEntry {

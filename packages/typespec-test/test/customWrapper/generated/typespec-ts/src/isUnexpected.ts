@@ -4,14 +4,14 @@
 import {
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
-  DeployProject201Response,
   DeployProject200Response,
+  DeployProject201Response,
   DeployProjectDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "GET /authoring/analyze-text/deployments/{deploymentName}": ["200"],
-  "PUT /authoring/analyze-text/deployments/{deploymentName}": ["201", "200"],
+  "PUT /authoring/analyze-text/deployments/{deploymentName}": ["200", "201"],
 };
 
 export function isUnexpected(
@@ -19,16 +19,16 @@ export function isUnexpected(
 ): response is GetDeploymentDefaultResponse;
 export function isUnexpected(
   response:
-    | DeployProject201Response
     | DeployProject200Response
+    | DeployProject201Response
     | DeployProjectDefaultResponse
 ): response is DeployProjectDefaultResponse;
 export function isUnexpected(
   response:
     | GetDeployment200Response
     | GetDeploymentDefaultResponse
-    | DeployProject201Response
     | DeployProject200Response
+    | DeployProject201Response
     | DeployProjectDefaultResponse
 ): response is GetDeploymentDefaultResponse | DeployProjectDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];

@@ -5,6 +5,12 @@ import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
 import { JobResultOutput } from "./outputModels";
 
+/** The request has succeeded. */
+export interface CreateJob200Response extends HttpResponse {
+  status: "200";
+  body: JobResultOutput;
+}
+
 export interface CreateJob202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -16,12 +22,6 @@ export interface CreateJob202Headers {
 export interface CreateJob202Response extends HttpResponse {
   status: "202";
   headers: RawHttpHeaders & CreateJob202Headers;
-}
-
-/** The request has succeeded. */
-export interface CreateJob200Response extends HttpResponse {
-  status: "200";
-  body: JobResultOutput;
 }
 
 export interface CreateJobDefaultHeaders {

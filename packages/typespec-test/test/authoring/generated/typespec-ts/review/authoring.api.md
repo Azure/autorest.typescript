@@ -33,7 +33,7 @@ export default createClient;
 export interface CreateOrUpdate {
     delete(options?: DeleteParameters): StreamableMethod<DeleteOperation202Response | DeleteOperationDefaultResponse>;
     get(options?: GetParameters): StreamableMethod<Get200Response | GetDefaultResponse>;
-    patch(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate201Response | CreateOrUpdate200Response | CreateOrUpdateDefaultResponse>;
+    patch(options: CreateOrUpdateParameters): StreamableMethod<CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse>;
 }
 
 // @public (undocumented)
@@ -349,7 +349,7 @@ export interface GetDefaultResponse extends HttpResponse {
 export interface GetDeployment {
     delete(options?: DeleteDeploymentParameters): StreamableMethod<DeleteDeployment202Response | DeleteDeploymentDefaultResponse>;
     get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
-    put(options: DeployProjectParameters): StreamableMethod<DeployProject201Response | DeployProject200Response | DeployProjectDefaultResponse>;
+    put(options: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
 }
 
 // @public
@@ -410,7 +410,7 @@ export interface GetDeploymentStatusDefaultResponse extends HttpResponse {
 export type GetDeploymentStatusParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate201Response | CreateOrUpdate200Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse>(client: Client, initialResponse: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends DeleteLogicalResponse | DeleteOperationDefaultResponse>(client: Client, initialResponse: DeleteOperation202Response | DeleteOperationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -425,7 +425,7 @@ export function getLongRunningPoller<TResult extends ImportxLogicalResponse | Im
 export function getLongRunningPoller<TResult extends TrainLogicalResponse | TrainDefaultResponse>(client: Client, initialResponse: Train202Response | TrainDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
-export function getLongRunningPoller<TResult extends DeployProjectLogicalResponse | DeployProjectDefaultResponse>(client: Client, initialResponse: DeployProject201Response | DeployProject200Response | DeployProjectDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends DeployProjectLogicalResponse | DeployProjectDefaultResponse>(client: Client, initialResponse: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export function getLongRunningPoller<TResult extends DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse>(client: Client, initialResponse: DeleteDeployment202Response | DeleteDeploymentDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
@@ -560,7 +560,7 @@ export interface ImportxLogicalResponse extends HttpResponse {
 export type ImportxParameters = RequestParameters;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateOrUpdate201Response | CreateOrUpdate200Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
+export function isUnexpected(response: CreateOrUpdate200Response | CreateOrUpdate201Response | CreateOrUpdateLogicalResponse | CreateOrUpdateDefaultResponse): response is CreateOrUpdateDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: Get200Response | GetDefaultResponse): response is GetDefaultResponse;
@@ -584,7 +584,7 @@ export function isUnexpected(response: Train202Response | TrainLogicalResponse |
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeployProject201Response | DeployProject200Response | DeployProjectLogicalResponse | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
+export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectLogicalResponse | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
 
 // @public (undocumented)
 export function isUnexpected(response: DeleteDeployment202Response | DeleteDeploymentLogicalResponse | DeleteDeploymentDefaultResponse): response is DeleteDeploymentDefaultResponse;

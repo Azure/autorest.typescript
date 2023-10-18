@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import {
-  CreateOrUpdate201Response,
   CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
-  CreateOrReplace201Response,
   CreateOrReplace200Response,
+  CreateOrReplace201Response,
   CreateOrReplaceDefaultResponse,
   Get200Response,
   GetDefaultResponse,
@@ -23,8 +23,8 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /azure/core/basic/users/{id}": ["201", "200"],
-  "PUT /azure/core/basic/users/{id}": ["201", "200"],
+  "PATCH /azure/core/basic/users/{id}": ["200", "201"],
+  "PUT /azure/core/basic/users/{id}": ["200", "201"],
   "GET /azure/core/basic/users/{id}": ["200"],
   "DELETE /azure/core/basic/users/{id}": ["204"],
   "GET /azure/core/basic/users": ["200"],
@@ -35,14 +35,14 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | CreateOrUpdate201Response
     | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
     | CreateOrUpdateDefaultResponse
 ): response is CreateOrUpdateDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrReplace201Response
     | CreateOrReplace200Response
+    | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse
 ): response is CreateOrReplaceDefaultResponse;
 export function isUnexpected(
@@ -67,11 +67,11 @@ export function isUnexpected(
 ): response is ExportOperationDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrUpdate201Response
     | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
     | CreateOrUpdateDefaultResponse
-    | CreateOrReplace201Response
     | CreateOrReplace200Response
+    | CreateOrReplace201Response
     | CreateOrReplaceDefaultResponse
     | Get200Response
     | GetDefaultResponse

@@ -8,8 +8,8 @@ import {
   AnalyzeImageDefaultResponse,
   GetTextBlocklist200Response,
   GetTextBlocklistDefaultResponse,
-  CreateOrUpdateTextBlocklist201Response,
   CreateOrUpdateTextBlocklist200Response,
+  CreateOrUpdateTextBlocklist201Response,
   CreateOrUpdateTextBlocklistDefaultResponse,
   DeleteTextBlocklist204Response,
   DeleteTextBlocklistDefaultResponse,
@@ -29,7 +29,7 @@ const responseMap: Record<string, string[]> = {
   "POST /text:analyze": ["200"],
   "POST /image:analyze": ["200"],
   "GET /text/blocklists/{blocklistName}": ["200"],
-  "PATCH /text/blocklists/{blocklistName}": ["201", "200"],
+  "PATCH /text/blocklists/{blocklistName}": ["200", "201"],
   "DELETE /text/blocklists/{blocklistName}": ["204"],
   "GET /text/blocklists": ["200"],
   "POST /text/blocklists/{blocklistName}:addOrUpdateBlockItems": ["200"],
@@ -49,8 +49,8 @@ export function isUnexpected(
 ): response is GetTextBlocklistDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrUpdateTextBlocklist201Response
     | CreateOrUpdateTextBlocklist200Response
+    | CreateOrUpdateTextBlocklist201Response
     | CreateOrUpdateTextBlocklistDefaultResponse
 ): response is CreateOrUpdateTextBlocklistDefaultResponse;
 export function isUnexpected(
@@ -85,8 +85,8 @@ export function isUnexpected(
     | AnalyzeImageDefaultResponse
     | GetTextBlocklist200Response
     | GetTextBlocklistDefaultResponse
-    | CreateOrUpdateTextBlocklist201Response
     | CreateOrUpdateTextBlocklist200Response
+    | CreateOrUpdateTextBlocklist201Response
     | CreateOrUpdateTextBlocklistDefaultResponse
     | DeleteTextBlocklist204Response
     | DeleteTextBlocklistDefaultResponse

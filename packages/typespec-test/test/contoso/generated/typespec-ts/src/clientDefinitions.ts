@@ -11,8 +11,8 @@ import {
 import {
   GetWidget200Response,
   GetWidgetDefaultResponse,
-  CreateOrUpdateWidget201Response,
   CreateOrUpdateWidget200Response,
+  CreateOrUpdateWidget201Response,
   CreateOrUpdateWidgetDefaultResponse,
   DeleteWidget202Response,
   DeleteWidgetDefaultResponse,
@@ -32,8 +32,8 @@ export interface GetWidget {
   patch(
     options: CreateOrUpdateWidgetParameters
   ): StreamableMethod<
-    | CreateOrUpdateWidget201Response
     | CreateOrUpdateWidget200Response
+    | CreateOrUpdateWidget201Response
     | CreateOrUpdateWidgetDefaultResponse
   >;
   /** Delete a Widget asynchronously. */

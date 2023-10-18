@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  LoadTestAdministrationCreateOrUpdateTest201Response,
   LoadTestAdministrationCreateOrUpdateTest200Response,
+  LoadTestAdministrationCreateOrUpdateTest201Response,
   LoadTestAdministrationCreateOrUpdateTestDefaultResponse,
   LoadTestAdministrationDeleteTest204Response,
   LoadTestAdministrationDeleteTestDefaultResponse,
@@ -19,20 +19,20 @@ import {
   LoadTestAdministrationDeleteTestFileDefaultResponse,
   LoadTestAdministrationListTestFiles200Response,
   LoadTestAdministrationListTestFilesDefaultResponse,
-  LoadTestAdministrationCreateOrUpdateAppComponents201Response,
   LoadTestAdministrationCreateOrUpdateAppComponents200Response,
+  LoadTestAdministrationCreateOrUpdateAppComponents201Response,
   LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse,
   LoadTestAdministrationGetAppComponents200Response,
   LoadTestAdministrationGetAppComponentsDefaultResponse,
-  LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response,
   LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response,
+  LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response,
   LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestAdministrationGetServerMetricsConfig200Response,
   LoadTestAdministrationGetServerMetricsConfigDefaultResponse,
   LoadTestRunDeleteTestRun204Response,
   LoadTestRunDeleteTestRunDefaultResponse,
-  LoadTestRunCreateOrUpdateTestRun201Response,
   LoadTestRunCreateOrUpdateTestRun200Response,
+  LoadTestRunCreateOrUpdateTestRun201Response,
   LoadTestRunCreateOrUpdateTestRunLogicalResponse,
   LoadTestRunCreateOrUpdateTestRunDefaultResponse,
   LoadTestRunGetTestRun200Response,
@@ -51,20 +51,20 @@ import {
   LoadTestRunListMetricsDefaultResponse,
   LoadTestRunListMetricDimensionValues200Response,
   LoadTestRunListMetricDimensionValuesDefaultResponse,
-  LoadTestRunCreateOrUpdateAppComponents201Response,
   LoadTestRunCreateOrUpdateAppComponents200Response,
+  LoadTestRunCreateOrUpdateAppComponents201Response,
   LoadTestRunCreateOrUpdateAppComponentsDefaultResponse,
   LoadTestRunGetAppComponents200Response,
   LoadTestRunGetAppComponentsDefaultResponse,
-  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
   LoadTestRunCreateOrUpdateServerMetricsConfig200Response,
+  LoadTestRunCreateOrUpdateServerMetricsConfig201Response,
   LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse,
   LoadTestRunTestRunListServerMetricsConfig200Response,
   LoadTestRunTestRunListServerMetricsConfigDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /tests/{testId}": ["201", "200"],
+  "PATCH /tests/{testId}": ["200", "201"],
   "DELETE /tests/{testId}": ["204"],
   "GET /tests/{testId}": ["200"],
   "GET /tests": ["200"],
@@ -72,12 +72,12 @@ const responseMap: Record<string, string[]> = {
   "GET /tests/{testId}/files/{fileName}": ["200"],
   "DELETE /tests/{testId}/files/{fileName}": ["204"],
   "GET /tests/{testId}/files": ["200"],
-  "PATCH /tests/{testId}/app-components": ["201", "200"],
+  "PATCH /tests/{testId}/app-components": ["200", "201"],
   "GET /tests/{testId}/app-components": ["200"],
-  "PATCH /tests/{testId}/server-metrics-config": ["201", "200"],
+  "PATCH /tests/{testId}/server-metrics-config": ["200", "201"],
   "GET /tests/{testId}/server-metrics-config": ["200"],
   "DELETE /test-runs/{testRunId}": ["204"],
-  "PATCH /test-runs/{testRunId}": ["201", "200"],
+  "PATCH /test-runs/{testRunId}": ["200", "201"],
   "GET /test-runs/{testRunId}": ["200"],
   "GET /test-runs/{testRunId}/files/{fileName}": ["200"],
   "GET /test-runs": ["200"],
@@ -86,16 +86,16 @@ const responseMap: Record<string, string[]> = {
   "GET /test-runs/{testRunId}/metric-definitions": ["200"],
   "POST /test-runs/{testRunId}/metrics": ["200"],
   "GET /test-runs/{testRunId}/metric-dimensions/{name}/values": ["200"],
-  "PATCH /test-runs/{testRunId}/app-components": ["201", "200"],
+  "PATCH /test-runs/{testRunId}/app-components": ["200", "201"],
   "GET /test-runs/{testRunId}/app-components": ["200"],
-  "PATCH /test-runs/{testRunId}/server-metrics-config": ["201", "200"],
+  "PATCH /test-runs/{testRunId}/server-metrics-config": ["200", "201"],
   "GET /test-runs/{testRunId}/server-metrics-config": ["200"],
 };
 
 export function isUnexpected(
   response:
-    | LoadTestAdministrationCreateOrUpdateTest201Response
     | LoadTestAdministrationCreateOrUpdateTest200Response
+    | LoadTestAdministrationCreateOrUpdateTest201Response
     | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
 ): response is LoadTestAdministrationCreateOrUpdateTestDefaultResponse;
 export function isUnexpected(
@@ -135,8 +135,8 @@ export function isUnexpected(
 ): response is LoadTestAdministrationListTestFilesDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
     | LoadTestAdministrationCreateOrUpdateAppComponents200Response
+    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
     | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
 ): response is LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse;
 export function isUnexpected(
@@ -146,8 +146,8 @@ export function isUnexpected(
 ): response is LoadTestAdministrationGetAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
 ): response is LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse;
 export function isUnexpected(
@@ -162,8 +162,8 @@ export function isUnexpected(
 ): response is LoadTestRunDeleteTestRunDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRunLogicalResponse
     | LoadTestRunCreateOrUpdateTestRunDefaultResponse
 ): response is LoadTestRunCreateOrUpdateTestRunDefaultResponse;
@@ -209,8 +209,8 @@ export function isUnexpected(
 ): response is LoadTestRunListMetricDimensionValuesDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunCreateOrUpdateAppComponents201Response
     | LoadTestRunCreateOrUpdateAppComponents200Response
+    | LoadTestRunCreateOrUpdateAppComponents201Response
     | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 ): response is LoadTestRunCreateOrUpdateAppComponentsDefaultResponse;
 export function isUnexpected(
@@ -220,8 +220,8 @@ export function isUnexpected(
 ): response is LoadTestRunGetAppComponentsDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 ): response is LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse;
 export function isUnexpected(
@@ -231,8 +231,8 @@ export function isUnexpected(
 ): response is LoadTestRunTestRunListServerMetricsConfigDefaultResponse;
 export function isUnexpected(
   response:
-    | LoadTestAdministrationCreateOrUpdateTest201Response
     | LoadTestAdministrationCreateOrUpdateTest200Response
+    | LoadTestAdministrationCreateOrUpdateTest201Response
     | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
     | LoadTestAdministrationDeleteTest204Response
     | LoadTestAdministrationDeleteTestDefaultResponse
@@ -248,20 +248,20 @@ export function isUnexpected(
     | LoadTestAdministrationDeleteTestFileDefaultResponse
     | LoadTestAdministrationListTestFiles200Response
     | LoadTestAdministrationListTestFilesDefaultResponse
-    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
     | LoadTestAdministrationCreateOrUpdateAppComponents200Response
+    | LoadTestAdministrationCreateOrUpdateAppComponents201Response
     | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
     | LoadTestAdministrationGetAppComponents200Response
     | LoadTestAdministrationGetAppComponentsDefaultResponse
-    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
     | LoadTestAdministrationGetServerMetricsConfig200Response
     | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
     | LoadTestRunDeleteTestRun204Response
     | LoadTestRunDeleteTestRunDefaultResponse
-    | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRun200Response
+    | LoadTestRunCreateOrUpdateTestRun201Response
     | LoadTestRunCreateOrUpdateTestRunLogicalResponse
     | LoadTestRunCreateOrUpdateTestRunDefaultResponse
     | LoadTestRunGetTestRun200Response
@@ -280,13 +280,13 @@ export function isUnexpected(
     | LoadTestRunListMetricsDefaultResponse
     | LoadTestRunListMetricDimensionValues200Response
     | LoadTestRunListMetricDimensionValuesDefaultResponse
-    | LoadTestRunCreateOrUpdateAppComponents201Response
     | LoadTestRunCreateOrUpdateAppComponents200Response
+    | LoadTestRunCreateOrUpdateAppComponents201Response
     | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
     | LoadTestRunGetAppComponents200Response
     | LoadTestRunGetAppComponentsDefaultResponse
-    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
     | LoadTestRunTestRunListServerMetricsConfig200Response
     | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
