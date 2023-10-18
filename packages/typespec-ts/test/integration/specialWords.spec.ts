@@ -452,14 +452,14 @@ describe("SpecialWordsClient Rest Client", () => {
       }
     });
 
-    it.skip("should get special words for operation `constructor`", async () => {
+    it("should get special words for operation `constructor`", async () => {
       try {
         const result = await client
           .path("/special-words/parameters/constructor")
           .get({
             queryParameters: {
-              construtor: "ok"
-            } as any
+              constructor: "ok" as any
+            }
           });
         assert.strictEqual(result.status, "204");
       } catch (err) {
