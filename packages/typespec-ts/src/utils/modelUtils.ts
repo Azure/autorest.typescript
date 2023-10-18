@@ -231,7 +231,7 @@ function applyEncoding(
   if (encodeData) {
     const newTarget = { ...target };
     const newType = getSchemaForScalar(dpgContext, encodeData.type);
-    // newTarget["type"] = newType["type"];
+    newTarget["type"] = newType["type"];
     // If the target already has a format it takes priority. (e.g. int32)
     newTarget["format"] = mergeFormatAndEncoding(
       newTarget.format,
@@ -286,10 +286,6 @@ function getSchemaForScalar(
     withDecorators.typeName =
       "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
     withDecorators.outputTypeName = "Uint8Array";
-  }
-  if (isStd) {
-    // Standard types are going to be inlined in the spec and we don't want the description of the scalar to show up
-    delete withDecorators.description;
   }
   return withDecorators;
 }
@@ -861,6 +857,14 @@ function getSchemaForArrayModel(
           schema.typeName = `${schema.items.typeName}[]`;
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
+        } else if (
+          schema.items.format === "binary" &&
+          schema.items.type === "string"
+        ) {
+          schema.typeName = `Array<${schema.items.typeName}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Array<${schema.items.outputTypeName}>`;
+          }
         } else {
           schema.typeName = schema.items.typeName
             .split("|")
