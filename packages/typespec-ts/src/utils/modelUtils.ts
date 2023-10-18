@@ -232,6 +232,8 @@ function applyEncoding(
     const newTarget = { ...target };
     const newType = getSchemaForScalar(dpgContext, encodeData.type);
     newTarget["type"] = newType["type"];
+    newTarget["typeName"] = newType["typeName"];
+    newTarget["outputTypeName"] = newType["outputTypeName"];
     // If the target already has a format it takes priority. (e.g. int32)
     newTarget["format"] = mergeFormatAndEncoding(
       newTarget.format,
