@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import {
-  CreateOrUpdate201Response,
   CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
   CreateOrUpdateLogicalResponse,
   CreateOrUpdateDefaultResponse,
   Get200Response,
@@ -24,8 +24,8 @@ import {
   TrainDefaultResponse,
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
-  DeployProject201Response,
   DeployProject200Response,
+  DeployProject201Response,
   DeployProjectLogicalResponse,
   DeployProjectDefaultResponse,
   DeleteDeployment202Response,
@@ -47,7 +47,7 @@ import {
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
-  "PATCH /authoring/analyze-text/projects/{projectName}": ["201", "200"],
+  "PATCH /authoring/analyze-text/projects/{projectName}": ["200", "201"],
   "GET /authoring/analyze-text/projects/{projectName}": ["200"],
   "DELETE /authoring/analyze-text/projects/{projectName}": ["202"],
   "GET /authoring/analyze-text/projects": ["200"],
@@ -60,7 +60,7 @@ const responseMap: Record<string, string[]> = {
   "GET /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["200"],
   "PUT /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
-    ["201", "200"],
+    ["200", "201"],
   "DELETE /authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}":
     ["202"],
   "GET /authoring/analyze-text/projects/{projectName}/deployments": ["200"],
@@ -83,8 +83,8 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | CreateOrUpdate201Response
     | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
     | CreateOrUpdateLogicalResponse
     | CreateOrUpdateDefaultResponse
 ): response is CreateOrUpdateDefaultResponse;
@@ -117,8 +117,8 @@ export function isUnexpected(
 ): response is GetDeploymentDefaultResponse;
 export function isUnexpected(
   response:
-    | DeployProject201Response
     | DeployProject200Response
+    | DeployProject201Response
     | DeployProjectLogicalResponse
     | DeployProjectDefaultResponse
 ): response is DeployProjectDefaultResponse;
@@ -157,8 +157,8 @@ export function isUnexpected(
 ): response is ListTrainingConfigVersionsDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrUpdate201Response
     | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
     | CreateOrUpdateLogicalResponse
     | CreateOrUpdateDefaultResponse
     | Get200Response
@@ -179,8 +179,8 @@ export function isUnexpected(
     | TrainDefaultResponse
     | GetDeployment200Response
     | GetDeploymentDefaultResponse
-    | DeployProject201Response
     | DeployProject200Response
+    | DeployProject201Response
     | DeployProjectLogicalResponse
     | DeployProjectDefaultResponse
     | DeleteDeployment202Response

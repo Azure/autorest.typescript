@@ -20,8 +20,8 @@ import {
   ListTrainingConfigVersionsParameters,
 } from "./parameters";
 import {
-  CreateOrUpdate201Response,
   CreateOrUpdate200Response,
+  CreateOrUpdate201Response,
   CreateOrUpdateDefaultResponse,
   Get200Response,
   GetDefaultResponse,
@@ -37,8 +37,8 @@ import {
   TrainDefaultResponse,
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
-  DeployProject201Response,
   DeployProject200Response,
+  DeployProject201Response,
   DeployProjectDefaultResponse,
   DeleteDeployment202Response,
   DeleteDeploymentDefaultResponse,
@@ -62,8 +62,8 @@ export interface CreateOrUpdate {
   patch(
     options: CreateOrUpdateParameters
   ): StreamableMethod<
-    | CreateOrUpdate201Response
     | CreateOrUpdate200Response
+    | CreateOrUpdate201Response
     | CreateOrUpdateDefaultResponse
   >;
   /** Gets the details of a project. */
@@ -117,8 +117,8 @@ export interface GetDeployment {
   put(
     options: DeployProjectParameters
   ): StreamableMethod<
-    | DeployProject201Response
     | DeployProject200Response
+    | DeployProject201Response
     | DeployProjectDefaultResponse
   >;
   /** Deletes a project deployment. */
