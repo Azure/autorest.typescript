@@ -8,7 +8,7 @@ import { assertEqualContent } from "../util/testUtil.js";
 
 describe("anonymous model", () => {
   describe("model property in request & response", () => {
-    it.only("with simple property types", async () => {
+    it("with simple property types", async () => {
       const tsp = `
       model Foo {
           bar: {

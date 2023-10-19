@@ -9,10 +9,40 @@ export interface TypeMetadata {
 
 function getNullableType(name: string, type: Type): string {
   if (type.nullable) {
-    return `(${name} | null)`;
+    return `(${getAnonymousName(name, type)} | null)`;
   }
 
+  return getAnonymousName(name, type);
+}
+
+function getAnonymousName(name: string, type: Type): string {
+  if (name === "") {
+    return generateAnomymousModelSigniture(type, new Set<string>());
+  }
   return name;
+}
+
+export function generateAnomymousModelSigniture(
+  type: Type,
+  _importedModels: Set<string>
+) {
+  let schemaSigiture = `{`;
+  for (const prop of type.properties ?? []) {
+    const propName = prop.clientName ?? prop.restApiName ?? "";
+    const propType = prop.type;
+    const propTypeName = getTypeName(getType(propType, propType.format));
+    if (!propType || !propTypeName) {
+      continue;
+    }
+    // const importNames = getImportedModelName(propType);
+    // if (importNames) {
+    //   importNames!.forEach(importedModels.add, importedModels);
+    // }
+    schemaSigiture += `${propName}: ${propTypeName};`;
+  }
+
+  schemaSigiture += `}`;
+  return schemaSigiture;
 }
 
 function getAnonymousEnumName(values: EnumValue[]): string {

@@ -523,7 +523,7 @@ function getSchemaForModel(
           dpgContext,
           prop.type,
           usage,
-          true,
+          isAnonymousType(prop.type) ? false : true,
           prop
         );
         childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
@@ -573,12 +573,12 @@ function getSchemaForModel(
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
-
+    console.log(">>>>>>>>>>", name, isAnonymousType(prop.type) ? false : true);
     const propSchema = getSchemaForType(
       dpgContext,
       prop.type,
       usage,
-      true,
+      isAnonymousType(prop.type) ? false : true,
       prop
     );
     if (propSchema === undefined) {
@@ -1273,6 +1273,13 @@ export function isAnonymousModel(schema: Schema) {
     schema.type === "object" &&
     !!(schema as ObjectSchema)?.properties
   );
+}
+
+export function isAnonymousType(type: Type) {
+  if (type.kind === "Model") {
+    return type.name === "";
+  }
+  return false;
 }
 
 export function generateAnomymousModelSigniture(

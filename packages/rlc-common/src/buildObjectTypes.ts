@@ -16,6 +16,10 @@ import {
   RLCModel,
   SchemaContext
 } from "./interfaces.js";
+import {
+  generateAnomymousModelSigniture,
+  isAnonymousModel
+} from "./helpers/typeUtil.js";
 
 /**
  * Generates interfaces for ObjectSchemas
@@ -366,14 +370,16 @@ export function getImmediateParentsNames(
   // If an immediate parent is an empty DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
   if (
-    objectSchema.parents.immediate.find((im) => isDictionarySchema(im, {filterEmpty: true}))
+    objectSchema.parents.immediate.find((im) =>
+      isDictionarySchema(im, { filterEmpty: true })
+    )
   ) {
     extendFrom.push("Record<string, unknown>");
   }
 
   // Get the rest of the parents excluding any DictionarySchemas
   const parents = objectSchema.parents.immediate
-    .filter((p) => !isDictionarySchema(p, {filterEmpty: true}))
+    .filter((p) => !isDictionarySchema(p, { filterEmpty: true }))
     .map((parent) => {
       const nameSuffix = schemaUsage.includes(SchemaContext.Output)
         ? "Output"
@@ -450,6 +456,8 @@ export function getPropertySignature(
       (property as any).additionalProperties.typeName ??
         (property as any).additionalProperties.name
     );
+  } else if (isAnonymousModel(property)) {
+    type = generateAnomymousModelSigniture(property, importedModels);
   } else {
     type =
       generateForOutput(schemaUsage, property.usage) && property.outputTypeName
