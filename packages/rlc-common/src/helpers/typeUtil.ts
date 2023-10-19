@@ -166,37 +166,6 @@ export function isStringLiteral(type: string) {
   );
 }
 
-export function isAnonymousModel(schema: Schema) {
-  return (
-    schema.typeName === "" &&
-    schema.type === "object" &&
-    !!(schema as ObjectSchema)?.properties
-  );
-}
-
-export function generateAnomymousModelSigniture(
-  schema: ObjectSchema,
-  _importedModels: Set<string>
-) {
-  console.log("anomymous model signature", schema);
-  let schemaSigiture = `{`;
-  for (const propName in schema.properties) {
-    const propType = schema.properties[propName]!;
-    const propTypeName = getTypeName(propType);
-    if (!propType || !propTypeName) {
-      continue;
-    }
-    // const importNames = getImportedModelName(propType);
-    // if (importNames) {
-    //   importNames!.forEach(importedModels.add, importedModels);
-    // }
-    schemaSigiture += `${propName}: ${propTypeName};`;
-  }
-
-  schemaSigiture += `}`;
-  return schemaSigiture;
-}
-
 export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   // TODO: Handle more cases
   return getPriorityName(schema, usage) ?? schema.type ?? "any";

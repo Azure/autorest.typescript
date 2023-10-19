@@ -16,10 +16,6 @@ import {
   RLCModel,
   SchemaContext
 } from "./interfaces.js";
-import {
-  generateAnomymousModelSigniture,
-  isAnonymousModel
-} from "./helpers/typeUtil.js";
 
 /**
  * Generates interfaces for ObjectSchemas
@@ -456,8 +452,6 @@ export function getPropertySignature(
       (property as any).additionalProperties.typeName ??
         (property as any).additionalProperties.name
     );
-  } else if (isAnonymousModel(property)) {
-    type = generateAnomymousModelSigniture(property, importedModels);
   } else {
     type =
       generateForOutput(schemaUsage, property.usage) && property.outputTypeName

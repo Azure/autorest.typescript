@@ -147,20 +147,16 @@ export function getSchemaForType(
   }
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
-    if (!isArrayModelType(program, type) && !isRecordModelType(program, type)) {
-      // if (usage && usage.includes(SchemaContext.Output)) {
-      //   if (!schema.name || schema.name === "") {
-      //     //TODO: HANDLE ANONYMOUS
-      //     schema.outputTypeName =
-      //       schema.type === "object" ? "Record<string, any>" : "any";
-      //     schema.typeName =
-      //       schema.type === "object" ? "Record<string, unknown>" : "unknown";
-      //     schema.type = "unknown";
-      //   } else {
-      //     schema.outputTypeName = `${schema.name}Output`;
-      //     schema.typeName = `${schema.name}`;
-      //   }
-      // }
+    if (isAnonymousModel(schema)) {
+      schema.outputTypeName = schema.typeName =
+        generateAnomymousModelSigniture(schema);
+      schema.type = "object";
+    } else if (
+      !isArrayModelType(program, type) &&
+      !isRecordModelType(program, type)
+    ) {
+      schema.outputTypeName = `${schema.name}Output`;
+      schema.typeName = `${schema.name}`;
     }
     schema.usage = usage;
     return schema;
@@ -573,13 +569,20 @@ function getSchemaForModel(
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
-    console.log(">>>>>>>>>>", name, isAnonymousType(prop.type) ? false : true);
+
     const propSchema = getSchemaForType(
       dpgContext,
       prop.type,
       usage,
       isAnonymousType(prop.type) ? false : true,
       prop
+    );
+
+    console.log(
+      ">>>>>>>>>>",
+      name,
+      isAnonymousType(prop.type) ? false : true,
+      propSchema
     );
     if (propSchema === undefined) {
       continue;
@@ -1268,11 +1271,7 @@ export function isAzureCoreErrorType(t?: Type): boolean {
 }
 
 export function isAnonymousModel(schema: Schema) {
-  return (
-    schema.name === "" &&
-    schema.type === "object" &&
-    !!(schema as ObjectSchema)?.properties
-  );
+  return schema.name === "" && schema.type === "object";
 }
 
 export function isAnonymousType(type: Type) {
@@ -1284,7 +1283,7 @@ export function isAnonymousType(type: Type) {
 
 export function generateAnomymousModelSigniture(
   schema: ObjectSchema,
-  importedModels: Set<string>
+  importedModels: Set<string> = new Set<string>()
 ) {
   let schemaSigiture = `{`;
   for (const propName in schema.properties) {

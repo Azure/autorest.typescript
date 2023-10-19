@@ -1,14 +1,13 @@
 import { assert } from "chai";
 import {
   emitModelsFromTypeSpec,
-  emitParameterFromTypeSpec,
-  emitSchemasFromTypeSpec
+  emitParameterFromTypeSpec
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
 describe("anonymous model", () => {
   describe("model property in request & response", () => {
-    it("with simple property types", async () => {
+    it("input only", async () => {
       const tsp = `
       model Foo {
           bar: {
@@ -20,8 +19,76 @@ describe("anonymous model", () => {
       op getModel(@body input: Foo): void;
       `;
       const models = await emitModelsFromTypeSpec(tsp);
-      const schemas = await emitSchemasFromTypeSpec(tsp);
-      console.log(models, schemas, (schemas[0]! as any).properties);
+      assert.ok(models);
+      const { inputModelFile } = models!;
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface Foo {
+        bar: { baz: string };
+      }
+      `
+      );
+    });
+
+    it("output only", async () => {
+      const tsp = `
+      model Foo {
+          bar: {
+              baz: string;
+          }
+      }
+      @route("/models")
+      @get
+      op getModel(): Foo;
+      `;
+      const models = await emitModelsFromTypeSpec(tsp);
+      assert.ok(models);
+      const { outputModelFile } = models!;
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface FooOutput {
+        bar: { baz: string };
+      }
+      `
+      );
+    });
+
+    it("output & input", async () => {
+      const tsp = `
+      model Foo {
+          bar: {
+              baz: string;
+          }
+      }
+      @route("/models")
+      @get
+      op getModel(@body input: Foo): Foo;
+      `;
+      const models = await emitModelsFromTypeSpec(tsp);
+      assert.ok(models);
+      const { inputModelFile, outputModelFile } = models!;
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface FooOutput {
+        bar: { baz: string };
+      }
+      `
+      );
+
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface Foo {
+        bar: { baz: string };
+      }
+      `
+      );
     });
 
     it("with empty properties", async () => {});

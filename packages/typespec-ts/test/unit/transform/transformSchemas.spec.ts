@@ -3,23 +3,23 @@ import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 import { assert } from "chai";
 
 describe("#transformSchemas", () => {
-  describe("verify first property", () => {
-    async function verifyFirstProperty(tspType: string) {
-      const schemaOutput = await emitSchemasFromTypeSpec(`
-        model Test {
-            prop: ${tspType};
-        }
-        @route("/models")
-        @get
-        op getModel(@body input: Test): Test;
-      `);
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      assert.deepEqual(first.usage, ["input", "output"]);
-      assert.strictEqual(first.name, "Test");
-      assert.strictEqual(first.type, "object");
-      return first.properties![`"prop"`];
-    }
+  async function verifyFirstProperty(tspType: string) {
+    const schemaOutput = await emitSchemasFromTypeSpec(`
+      model Test {
+          prop: ${tspType};
+      }
+      @route("/models")
+      @get
+      op getModel(@body input: Test): Test;
+    `);
+    assert.isNotNull(schemaOutput);
+    const first = schemaOutput?.[0] as ObjectSchema;
+    assert.deepEqual(first.usage, ["input", "output"]);
+    assert.strictEqual(first.name, "Test");
+    assert.strictEqual(first.type, "object");
+    return first.properties![`"prop"`];
+  }
+  describe("verify general property", () => {
     it("generate string type", async () => {
       const property = await verifyFirstProperty("string");
       assert.isNotNull(property);
@@ -485,5 +485,65 @@ describe("#transformSchemas", () => {
         usage: ["input", "output"]
       } as any);
     });
+  });
+
+  describe("verify anonymous model", () => {
+    it("empty anonymous model", async () => {
+      const property = await verifyFirstProperty("{}");
+      // console.log(property);
+      assert.deepEqual(property, {
+        name: "",
+        type: "object",
+        description: undefined,
+        typeName: "{}",
+        outputTypeName: "{}",
+        properties: {},
+        usage: ["input", "output"],
+        required: true
+      } as any);
+    });
+
+    it.only("with simple types", async () => {
+      const property = await verifyFirstProperty(`
+      {
+        /** Description for name */
+        name: string;
+    
+        /** Description for arguments */
+        arguments: string;
+      }`);
+      // console.log(property);
+      assert.deepEqual(property, {
+        name: "",
+        type: "object",
+        description: undefined,
+        typeName: '{"name": string;"arguments": string;}',
+        outputTypeName: '{"name": string;"arguments": string;}',
+        properties: {
+          '"name"': {
+            type: "string",
+            description: "Description for name",
+            required: true,
+            usage: ["input", "output"]
+          },
+          '"arguments"': {
+            type: "string",
+            description: "Description for arguments",
+            required: true,
+            usage: ["input", "output"]
+          }
+        },
+        usage: ["input", "output"],
+        required: true
+      } as any);
+    });
+
+    it("with complex types", async () => {});
+
+    it("anonymous model array", async () => {});
+
+    it("anonymous model record", async () => {});
+
+    it("anonymous model union", async () => {});
   });
 });
