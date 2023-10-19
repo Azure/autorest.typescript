@@ -148,8 +148,8 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (isAnonymousModel(schema)) {
-      schema.outputTypeName = schema.typeName =
-        generateAnomymousModelSigniture(schema);
+      schema.outputTypeName = generateAnomymousModelSigniture(schema);
+      schema.typeName = generateAnomymousModelSigniture(schema);
       schema.type = "object";
     } else if (
       !isArrayModelType(program, type) &&
@@ -519,7 +519,7 @@ function getSchemaForModel(
           dpgContext,
           prop.type,
           usage,
-          isAnonymousType(prop.type) ? false : true,
+          !isAnonymousType(prop.type),
           prop
         );
         childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
@@ -783,7 +783,12 @@ function getSchemaForArrayModel(
   if (isArrayModelType(program, type)) {
     schema = {
       type: "array",
-      items: getSchemaForType(dpgContext, indexer.value!, usage, true),
+      items: getSchemaForType(
+        dpgContext,
+        indexer.value!,
+        usage,
+        !isAnonymousType(indexer.value!)
+      ),
       description: getDoc(program, type)
     };
     if (
@@ -846,7 +851,12 @@ function getSchemaForRecordModel(
     return schema;
   }
   if (isRecordModelType(program, type)) {
-    const valueType = getSchemaForType(dpgContext, indexer?.value, usage, true);
+    const valueType = getSchemaForType(
+      dpgContext,
+      indexer?.value,
+      usage,
+      !isAnonymousType(indexer.value)
+    );
     schema = {
       type: "dictionary",
       additionalProperties: valueType,

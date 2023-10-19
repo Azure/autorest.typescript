@@ -503,7 +503,7 @@ describe("#transformSchemas", () => {
       } as any);
     });
 
-    it.only("with simple types", async () => {
+    it("with simple types", async () => {
       const property = await verifyFirstProperty(`
       {
         /** Description for name */
@@ -538,12 +538,184 @@ describe("#transformSchemas", () => {
       } as any);
     });
 
-    it("with complex types", async () => {});
+    it("with nested anonymous", async () => {
+      const property = await verifyFirstProperty(`
+      {
+        name:  { foo: { bar: string; } };
+      }`);
+      console.log(property);
+      assert.deepEqual(property, {
+        name: "",
+        type: "object",
+        description: undefined,
+        typeName: '{"name": {"foo": {"bar": string;};};}',
+        outputTypeName: '{"name": {"foo": {"bar": string;};};}',
+        properties: {
+          '"name"': {
+            name: "",
+            type: "object",
+            description: undefined,
+            typeName: '{"foo": {"bar": string;};}',
+            outputTypeName: '{"foo": {"bar": string;};}',
+            required: true,
+            usage: ["input", "output"],
+            properties: {
+              '"foo"': {
+                name: "",
+                type: "object",
+                description: undefined,
+                typeName: '{"bar": string;}',
+                outputTypeName: '{"bar": string;}',
+                required: true,
+                usage: ["input", "output"],
+                properties: {
+                  '"bar"': {
+                    type: "string",
+                    description: undefined,
+                    required: true,
+                    usage: ["input", "output"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        usage: ["input", "output"],
+        required: true
+      } as any);
+    });
 
-    it("anonymous model array", async () => {});
+    it("with other models", async () => {
+      const property = await verifyFirstProperty(`
+      {
+        name: Test;
+      }`);
+      console.log(property);
+      assert.deepEqual(property, {
+        name: "",
+        type: "object",
+        description: undefined,
+        typeName: '{"name": Test;}',
+        outputTypeName: '{"name": TestOutput;}',
+        properties: {
+          '"name"': {
+            name: "Test",
+            type: "object",
+            description: undefined,
+            typeName: "Test",
+            outputTypeName: "TestOutput",
+            properties: {},
+            usage: ["input", "output"],
+            required: true
+          }
+        },
+        usage: ["input", "output"],
+        required: true
+      } as any);
+    });
 
-    it("anonymous model record", async () => {});
+    it("anonymous model array", async () => {
+      const property = await verifyFirstProperty(`
+      {
+        /** Description for name */
+        name: string;
+      }[]`);
+      // console.log(property);
+      assert.deepEqual(property, {
+        type: "array",
+        description: undefined,
+        typeName: '{"name": string;}[]',
+        outputTypeName: '{"name": string;}[]',
+        usage: ["input", "output"],
+        required: true,
+        items: {
+          name: "",
+          type: "object",
+          description: "",
+          typeName: '{"name": string;}',
+          outputTypeName: '{"name": string;}',
+          properties: {
+            '"name"': {
+              type: "string",
+              description: "Description for name",
+              required: true,
+              usage: ["input", "output"]
+            }
+          },
+          usage: ["input", "output"]
+        }
+      } as any);
+    });
 
-    it("anonymous model union", async () => {});
+    it("anonymous model record", async () => {
+      const property = await verifyFirstProperty(`
+      Record<{
+        /** Description for name */
+        name: string;
+      }>`);
+      console.log(property);
+      assert.deepEqual(property, {
+        type: "dictionary",
+        description: undefined,
+        typeName: 'Record<string, {"name": string;}>',
+        valueTypeName: "",
+        outputTypeName: 'Record<string, {"name": string;}>',
+        outputValueTypeName: '{"name": string;}',
+        usage: ["input", "output"],
+        required: true,
+        additionalProperties: {
+          name: "",
+          type: "object",
+          description: "",
+          typeName: '{"name": string;}',
+          outputTypeName: '{"name": string;}',
+          properties: {
+            '"name"': {
+              type: "string",
+              description: "Description for name",
+              required: true,
+              usage: ["input", "output"]
+            }
+          },
+          usage: ["input", "output"]
+        }
+      } as any);
+    });
+
+    it("anonymous model union", async () => {
+      const property = await verifyFirstProperty(`
+      {
+        /** Description for name */
+        name: string;
+      } | null`);
+      // console.log(property);
+      assert.deepEqual(property, {
+        type: "union",
+        typeName: '{"name": string;} | null',
+        outputTypeName: '{"name": string;} | null',
+        required: true,
+        usage: ["input", "output"],
+        description: undefined,
+        enum: [
+          {
+            name: "",
+            type: "object",
+            description: "",
+            typeName: '{"name": string;}',
+            outputTypeName: '{"name": string;}',
+            properties: {
+              '"name"': {
+                type: "string",
+                description: "Description for name",
+                required: true,
+                usage: ["input", "output"]
+              }
+            },
+            usage: ["input", "output"]
+          },
+          { type: "null" }
+        ]
+      } as any);
+    });
   });
 });

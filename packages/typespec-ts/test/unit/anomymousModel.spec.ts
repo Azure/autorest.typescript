@@ -11,8 +11,19 @@ describe("anonymous model", () => {
       const tsp = `
       model Foo {
           bar: {
-              baz: string;
-          }
+            baz: string;
+            arr: string[];
+            obj: { foo: string; };
+            record: Record<string>;
+            unionObj: string | int32 | "foo";
+            unionOfAnonymousObj: { foo: string; } | { bar: string; };
+            emptyObj: {};
+            recordOfEmptyObj: Record<{}>;
+            recordOfRecordOfEmptyObj: Record<Record<{}>>;
+            recordOfAnonymousObj: Record<{ foo: string; }>;
+            arrayOfEmptyObj: {}[];
+            arrayOfSimpleAnonymousObj: { foo: string; }[];
+          };
       }
       @route("/models")
       @get
@@ -26,7 +37,20 @@ describe("anonymous model", () => {
         inputModelFile?.content!,
         `
       export interface Foo {
-        bar: { baz: string };
+        bar: {
+          baz: string;
+          arr: string[];
+          obj: { foo: string; };
+          record: Record<string, string>;
+          unionObj: string | number | "foo";
+          unionOfAnonymousObj: { foo: string; } | { bar: string; };
+          emptyObj: {};
+          recordOfEmptyObj: Record<string, {}>;
+          recordOfRecordOfEmptyObj: Record<string, Record<string, {}>>;
+          recordOfAnonymousObj: Record<string, { foo: string; }>;
+          arrayOfEmptyObj: {}[];
+          arrayOfSimpleAnonymousObj: { foo: string; }[];
+        };
       }
       `
       );
@@ -90,14 +114,6 @@ describe("anonymous model", () => {
       `
       );
     });
-
-    it("with empty properties", async () => {});
-
-    it("nested anonymous model", async () => {});
-
-    it("with complex types and models", async () => {});
-
-    it("with azure core references", async () => {});
   });
 
   describe("request & response body", () => {
@@ -107,6 +123,8 @@ describe("anonymous model", () => {
       @get
       op getModel(@body input: {
         baz: string;
+        arr: string[];
+        obj: { foo: string; };
       }): void;
       `);
       assert.ok(schemaOutput);
