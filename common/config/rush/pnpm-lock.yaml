@@ -202,8 +202,7 @@ importers:
       '@typespec/compiler': '>=0.49.0 <1.0.0'
       '@typespec/http': '>=0.49.0 <1.0.0'
       '@typespec/openapi': '>=0.49.0 <1.0.0'
-      '@typespec/openapi3': '>=0.48.0 <1.0.0'
-      '@typespec/prettier-plugin-typespec': '>=0.48.0 <1.0.0'
+      '@typespec/openapi3': '>=0.49.0 <1.0.0'
       '@typespec/rest': '>=0.49.0 <1.0.0'
       '@typespec/versioning': '>=0.49.0 <1.0.0'
       prettier: 2.7.1
@@ -217,8 +216,7 @@ importers:
       '@typespec/compiler': 0.49.0
       '@typespec/http': 0.49.0_@typespec+compiler@0.49.0
       '@typespec/openapi': 0.49.0_eeytn2g3ek3zpawg2doqsgnp3y
-      '@typespec/openapi3': 0.48.1_h7ytnrcwtzwwwf7nk4ktbbwkva
-      '@typespec/prettier-plugin-typespec': 0.48.0
+      '@typespec/openapi3': 0.49.0_kxluj4hvpeoa2fuoepu73vvsjm
       '@typespec/rest': 0.49.0_eeytn2g3ek3zpawg2doqsgnp3y
       '@typespec/versioning': 0.49.0_@typespec+compiler@0.49.0
       prettier: 2.7.1
@@ -1376,28 +1374,20 @@ packages:
       '@typespec/http': 0.49.0_@typespec+compiler@0.49.0
     dev: false
 
-  /@typespec/openapi3/0.48.1_h7ytnrcwtzwwwf7nk4ktbbwkva:
-    resolution: {integrity: sha512-EMsLUn9VBoFAxVMbxM4dK3bIt0tjub7Y28yEqVN7P8IDUpzm/sDE24ro7+DzojmjFv7mlAV6hhnPM49BDHYiXA==}
+  /@typespec/openapi3/0.49.0_kxluj4hvpeoa2fuoepu73vvsjm:
+    resolution: {integrity: sha512-oim7MoDT6YzgYoFoTwppq4bUKkrq2w7BkMSuUDBniFDfW31W7aEkkIJYj6Q5S8dU3w0wQPkUQZVtJZjKjGPrdw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.48.1
-      '@typespec/http': ~0.48.0
-      '@typespec/openapi': ~0.48.0
-      '@typespec/rest': ~0.48.0
-      '@typespec/versioning': ~0.48.0
+      '@typespec/compiler': ~0.49.0
+      '@typespec/http': ~0.49.0
+      '@typespec/openapi': ~0.49.0
+      '@typespec/versioning': ~0.49.0
     dependencies:
       '@typespec/compiler': 0.49.0
       '@typespec/http': 0.49.0_@typespec+compiler@0.49.0
       '@typespec/openapi': 0.49.0_eeytn2g3ek3zpawg2doqsgnp3y
-      '@typespec/rest': 0.49.0_eeytn2g3ek3zpawg2doqsgnp3y
       '@typespec/versioning': 0.49.0_@typespec+compiler@0.49.0
       yaml: 2.3.2
-    dev: false
-
-  /@typespec/prettier-plugin-typespec/0.48.0:
-    resolution: {integrity: sha512-GktQSZ0Rc3d7xQ/QnzqwFX9V0l91kCU12T18wQxYzn3kDIqhTT8aL2GFP8a74X2DcbOj+ksrb9EcTZukLPc3Tg==}
-    dependencies:
-      prettier: 3.0.3
     dev: false
 
   /@typespec/rest/0.49.0_eeytn2g3ek3zpawg2doqsgnp3y:
