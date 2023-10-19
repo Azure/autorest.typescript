@@ -40,7 +40,6 @@ export {
 export {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
-  GetChatCompletionsOptions,
   GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,

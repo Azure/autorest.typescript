@@ -9,7 +9,6 @@ export {
 export {
   getEmbeddings,
   getCompletions,
-  getChatCompletions,
   getChatCompletionsWithAzureExtensions,
   getAzureBatchImageGenerationOperationStatus,
   beginAzureBatchImageGeneration,

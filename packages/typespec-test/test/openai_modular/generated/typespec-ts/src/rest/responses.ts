@@ -45,23 +45,6 @@ export interface GetCompletionsDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface GetChatCompletions200Response extends HttpResponse {
-  status: "200";
-  body: ChatCompletionsOutput;
-}
-
-export interface GetChatCompletionsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface GetChatCompletionsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & GetChatCompletionsDefaultHeaders;
-}
-
-/** The request has succeeded. */
 export interface GetChatCompletionsWithAzureExtensions200Response
   extends HttpResponse {
   status: "200";
@@ -130,4 +113,21 @@ export interface BeginAzureBatchImageGenerationLogicalResponse
   extends HttpResponse {
   status: "200";
   body: BatchImageGenerationOperationResponseOutput;
+}
+
+/** The request has succeeded. */
+export interface ChatGetCompletions200Response extends HttpResponse {
+  status: "200";
+  body: ChatCompletionsOutput;
+}
+
+export interface ChatGetCompletionsDefaultHeaders {
+  /** String error code indicating what went wrong. */
+  "x-ms-error-code"?: string;
+}
+
+export interface ChatGetCompletionsDefaultResponse extends HttpResponse {
+  status: string;
+  body: ErrorResponse;
+  headers: RawHttpHeaders & ChatGetCompletionsDefaultHeaders;
 }
