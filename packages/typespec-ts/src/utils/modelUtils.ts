@@ -148,19 +148,19 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (!isArrayModelType(program, type) && !isRecordModelType(program, type)) {
-      if (usage && usage.includes(SchemaContext.Output)) {
-        if (!schema.name || schema.name === "") {
-          //TODO: HANDLE ANONYMOUS
-          schema.outputTypeName =
-            schema.type === "object" ? "Record<string, any>" : "any";
-          schema.typeName =
-            schema.type === "object" ? "Record<string, unknown>" : "unknown";
-          schema.type = "unknown";
-        } else {
-          schema.outputTypeName = `${schema.name}Output`;
-          schema.typeName = `${schema.name}`;
-        }
-      }
+      // if (usage && usage.includes(SchemaContext.Output)) {
+      //   if (!schema.name || schema.name === "") {
+      //     //TODO: HANDLE ANONYMOUS
+      //     schema.outputTypeName =
+      //       schema.type === "object" ? "Record<string, any>" : "any";
+      //     schema.typeName =
+      //       schema.type === "object" ? "Record<string, unknown>" : "unknown";
+      //     schema.type = "unknown";
+      //   } else {
+      //     schema.outputTypeName = `${schema.name}Output`;
+      //     schema.typeName = `${schema.name}`;
+      //   }
+      // }
     }
     schema.usage = usage;
     return schema;
@@ -605,12 +605,7 @@ function getSchemaForModel(
     }
 
     // Apply decorators on the property to the type's schema
-    const newPropSchema = applyIntrinsicDecorators(
-      program,
-
-      prop,
-      propSchema
-    );
+    const newPropSchema = applyIntrinsicDecorators(program, prop, propSchema);
     if (newPropSchema === undefined) {
       continue;
     }
@@ -1270,4 +1265,34 @@ export function isAzureCoreErrorType(t?: Type): boolean {
     t = t.namespace;
   }
   return namespaces.length == 0;
+}
+
+export function isAnonymousModel(schema: Schema) {
+  return (
+    schema.name === "" &&
+    schema.type === "object" &&
+    !!(schema as ObjectSchema)?.properties
+  );
+}
+
+export function generateAnomymousModelSigniture(
+  schema: ObjectSchema,
+  importedModels: Set<string>
+) {
+  let schemaSigiture = `{`;
+  for (const propName in schema.properties) {
+    const propType = schema.properties[propName]!;
+    const propTypeName = getTypeName(propType);
+    if (!propType || !propTypeName) {
+      continue;
+    }
+    const importNames = getImportedModelName(propType);
+    if (importNames) {
+      importNames!.forEach(importedModels.add, importedModels);
+    }
+    schemaSigiture += `${propName}: ${propTypeName};`;
+  }
+
+  schemaSigiture += `}`;
+  return schemaSigiture;
 }

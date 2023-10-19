@@ -25,7 +25,9 @@ import {
   getBodyType,
   predictDefaultValue,
   getBinaryType,
-  enrichBinaryTypeInBody
+  enrichBinaryTypeInBody,
+  generateAnomymousModelSigniture,
+  isAnonymousModel
 } from "../utils/modelUtils.js";
 
 import {
@@ -430,36 +432,6 @@ function extractNameFromTypeSpecType(
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
-}
-
-function isAnonymousModel(schema: Schema) {
-  return (
-    !schema.name &&
-    schema.type === "object" &&
-    !!(schema as ObjectSchema)?.properties
-  );
-}
-
-function generateAnomymousModelSigniture(
-  schema: ObjectSchema,
-  importedModels: Set<string>
-) {
-  let schemaSigiture = `{`;
-  for (const propName in schema.properties) {
-    const propType = schema.properties[propName]!;
-    const propTypeName = getTypeName(propType);
-    if (!propType || !propTypeName) {
-      continue;
-    }
-    const importNames = getImportedModelName(propType);
-    if (importNames) {
-      importNames!.forEach(importedModels.add, importedModels);
-    }
-    schemaSigiture += `${propName}: ${propTypeName};`;
-  }
-
-  schemaSigiture += `}`;
-  return schemaSigiture;
 }
 
 function extractDescriptionsFromBody(
