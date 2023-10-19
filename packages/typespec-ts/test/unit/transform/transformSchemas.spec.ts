@@ -717,5 +717,24 @@ describe("#transformSchemas", () => {
         ]
       } as any);
     });
+
+    it("with other model reference", async () => {
+      const schemaOutput = await emitSchemasFromTypeSpec(`
+      model Foo {}
+      model Test {
+          prop: Foo;
+      }
+      @route("/models")
+      @get
+      op getModel(@body input: Test): Test;
+    `);
+      assert.isNotNull(schemaOutput);
+      const first = schemaOutput?.[0] as ObjectSchema;
+      assert.deepEqual(first.usage, ["input", "output"]);
+      assert.strictEqual(first.name, "Test");
+      assert.strictEqual(first.type, "object");
+      const property = first.properties![`"prop"`];
+      console.log(schemaOutput, property);
+    });
   });
 });

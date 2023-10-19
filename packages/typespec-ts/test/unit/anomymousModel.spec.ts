@@ -9,6 +9,9 @@ describe("anonymous model", () => {
   describe("model property in request & response", () => {
     it("input only", async () => {
       const tsp = `
+      model Bar {
+        bas: string;
+      }
       model Foo {
           bar: {
             baz: string;
@@ -17,12 +20,16 @@ describe("anonymous model", () => {
             record: Record<string>;
             unionObj: string | int32 | "foo";
             unionOfAnonymousObj: { foo: string; } | { bar: string; };
+            unionOfOtherModel: Bar | null;
             emptyObj: {};
+            referOtherModel: Bar;
             recordOfEmptyObj: Record<{}>;
+            recordOfOtherModel: Record<Bar>;
             recordOfRecordOfEmptyObj: Record<Record<{}>>;
             recordOfAnonymousObj: Record<{ foo: string; }>;
             arrayOfEmptyObj: {}[];
             arrayOfSimpleAnonymousObj: { foo: string; }[];
+            arrayOfOtherModel: Bar[];
           };
       }
       @route("/models")
@@ -44,13 +51,21 @@ describe("anonymous model", () => {
           record: Record<string, string>;
           unionObj: string | number | "foo";
           unionOfAnonymousObj: { foo: string; } | { bar: string; };
+          unionOfOtherModel: Bar | null;
           emptyObj: {};
+          referOtherModel: Bar;
           recordOfEmptyObj: Record<string, {}>;
+          recordOfOtherModel: Record<string, Bar>;
           recordOfRecordOfEmptyObj: Record<string, Record<string, {}>>;
           recordOfAnonymousObj: Record<string, { foo: string; }>;
           arrayOfEmptyObj: {}[];
           arrayOfSimpleAnonymousObj: { foo: string; }[];
+          arrayOfOtherModel: Array<Bar>;
         };
+      }
+
+      export interface Bar {
+        bas: string;
       }
       `
       );

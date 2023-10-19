@@ -148,14 +148,18 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (isAnonymousModel(schema)) {
-      schema.outputTypeName = generateAnomymousModelSigniture(schema);
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = generateAnomymousModelSigniture(schema);
+      }
       schema.typeName = generateAnomymousModelSigniture(schema);
       schema.type = "object";
     } else if (
       !isArrayModelType(program, type) &&
       !isRecordModelType(program, type)
     ) {
-      schema.outputTypeName = `${schema.name}Output`;
+      if (usage && usage.includes(SchemaContext.Output)) {
+        schema.outputTypeName = `${schema.name}Output`;
+      }
       schema.typeName = `${schema.name}`;
     }
     schema.usage = usage;
