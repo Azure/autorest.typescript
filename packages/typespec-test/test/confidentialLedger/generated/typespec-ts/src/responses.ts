@@ -216,15 +216,15 @@ export interface GetUserDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetUserDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface CreateOrUpdateUser200Response extends HttpResponse {
-  status: "200";
-  body: LedgerUserOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface CreateOrUpdateUser201Response extends HttpResponse {
   status: "201";
+  body: LedgerUserOutput;
+}
+
+/** The request has succeeded. */
+export interface CreateOrUpdateUser200Response extends HttpResponse {
+  status: "200";
   body: LedgerUserOutput;
 }
 

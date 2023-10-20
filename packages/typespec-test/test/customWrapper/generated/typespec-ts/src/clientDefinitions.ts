@@ -5,8 +5,8 @@ import { GetDeploymentParameters, DeployProjectParameters } from "./parameters";
 import {
   GetDeployment200Response,
   GetDeploymentDefaultResponse,
-  DeployProject200Response,
   DeployProject201Response,
+  DeployProject200Response,
   DeployProjectDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -20,8 +20,8 @@ export interface GetDeployment {
   put(
     options?: DeployProjectParameters
   ): StreamableMethod<
-    | DeployProject200Response
     | DeployProject201Response
+    | DeployProject200Response
     | DeployProjectDefaultResponse
   >;
 }

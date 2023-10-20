@@ -44,18 +44,6 @@ export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
 }
 
-export interface CreateOrUpdateWidget200Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
-/** The request has succeeded. */
-export interface CreateOrUpdateWidget200Response extends HttpResponse {
-  status: "200";
-  body: WidgetOutput;
-  headers: RawHttpHeaders & CreateOrUpdateWidget200Headers;
-}
-
 export interface CreateOrUpdateWidget201Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -66,6 +54,18 @@ export interface CreateOrUpdateWidget201Response extends HttpResponse {
   status: "201";
   body: WidgetOutput;
   headers: RawHttpHeaders & CreateOrUpdateWidget201Headers;
+}
+
+export interface CreateOrUpdateWidget200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded. */
+export interface CreateOrUpdateWidget200Response extends HttpResponse {
+  status: "200";
+  body: WidgetOutput;
+  headers: RawHttpHeaders & CreateOrUpdateWidget200Headers;
 }
 
 export interface CreateOrUpdateWidgetDefaultHeaders {

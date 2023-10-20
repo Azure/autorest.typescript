@@ -76,8 +76,8 @@ export function _testRunSend(
   resource: TestRun,
   options: TestRunOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | LoadTestRunCreateOrUpdateTestRun200Response
   | LoadTestRunCreateOrUpdateTestRun201Response
+  | LoadTestRunCreateOrUpdateTestRun200Response
   | LoadTestRunCreateOrUpdateTestRunDefaultResponse
   | LoadTestRunCreateOrUpdateTestRunLogicalResponse
 > {
@@ -140,8 +140,8 @@ export function _testRunSend(
 
 export async function _testRunDeserialize(
   result:
-    | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRun201Response
+    | LoadTestRunCreateOrUpdateTestRun200Response
     | LoadTestRunCreateOrUpdateTestRunDefaultResponse
     | LoadTestRunCreateOrUpdateTestRunLogicalResponse
 ): Promise<TestRun> {
@@ -390,8 +390,8 @@ export function _createOrUpdateAppComponentsSend(
   body: TestRunAppComponents,
   options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | LoadTestRunCreateOrUpdateAppComponents200Response
   | LoadTestRunCreateOrUpdateAppComponents201Response
+  | LoadTestRunCreateOrUpdateAppComponents200Response
   | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 > {
   return context
@@ -406,8 +406,8 @@ export function _createOrUpdateAppComponentsSend(
 
 export async function _createOrUpdateAppComponentsDeserialize(
   result:
-    | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponents201Response
+    | LoadTestRunCreateOrUpdateAppComponents200Response
     | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
@@ -446,8 +446,8 @@ export function _createOrUpdateServerMetricsConfigSend(
   body: TestRunServerMetricConfig,
   options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
   | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+  | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
   | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 > {
   return context
@@ -462,8 +462,8 @@ export function _createOrUpdateServerMetricsConfigSend(
 
 export async function _createOrUpdateServerMetricsConfigDeserialize(
   result:
-    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfig201Response
+    | LoadTestRunCreateOrUpdateServerMetricsConfig200Response
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {

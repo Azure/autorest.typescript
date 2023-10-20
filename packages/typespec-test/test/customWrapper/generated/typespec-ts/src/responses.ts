@@ -22,15 +22,15 @@ export interface GetDeploymentDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetDeploymentDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface DeployProject200Response extends HttpResponse {
-  status: "200";
-  body: DeploymentOutput;
-}
-
 /** A Deployment resource was successfully created. */
 export interface DeployProject201Response extends HttpResponse {
   status: "201";
+  body: DeploymentOutput;
+}
+
+/** The request has succeeded. */
+export interface DeployProject200Response extends HttpResponse {
+  status: "200";
   body: DeploymentOutput;
 }
 

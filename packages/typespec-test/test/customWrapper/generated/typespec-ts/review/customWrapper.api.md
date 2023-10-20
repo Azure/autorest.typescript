@@ -81,7 +81,7 @@ export type DeployProjectParameters = DeployProjectBodyParam & RequestParameters
 // @public (undocumented)
 export interface GetDeployment {
     get(options?: GetDeploymentParameters): StreamableMethod<GetDeployment200Response | GetDeploymentDefaultResponse>;
-    put(options?: DeployProjectParameters): StreamableMethod<DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse>;
+    put(options?: DeployProjectParameters): StreamableMethod<DeployProject201Response | DeployProject200Response | DeployProjectDefaultResponse>;
 }
 
 // @public
@@ -114,7 +114,7 @@ export type GetDeploymentParameters = RequestParameters;
 export function isUnexpected(response: GetDeployment200Response | GetDeploymentDefaultResponse): response is GetDeploymentDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: DeployProject200Response | DeployProject201Response | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
+export function isUnexpected(response: DeployProject201Response | DeployProject200Response | DeployProjectDefaultResponse): response is DeployProjectDefaultResponse;
 
 // @public (undocumented)
 export interface Routes {

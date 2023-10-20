@@ -20,17 +20,17 @@ import {
   TestRunServerMetricConfigOutput,
 } from "./outputModels.js";
 
-/** The request has succeeded. */
-export interface LoadTestAdministrationCreateOrUpdateTest200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface LoadTestAdministrationCreateOrUpdateTest201Response
   extends HttpResponse {
   status: "201";
+  body: TestOutput;
+}
+
+/** The request has succeeded. */
+export interface LoadTestAdministrationCreateOrUpdateTest200Response
+  extends HttpResponse {
+  status: "200";
   body: TestOutput;
 }
 
@@ -177,17 +177,17 @@ export interface LoadTestAdministrationListTestFilesDefaultResponse
   headers: RawHttpHeaders & LoadTestAdministrationListTestFilesDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface LoadTestAdministrationCreateOrUpdateAppComponents200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestAppComponentsOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface LoadTestAdministrationCreateOrUpdateAppComponents201Response
   extends HttpResponse {
   status: "201";
+  body: TestAppComponentsOutput;
+}
+
+/** The request has succeeded. */
+export interface LoadTestAdministrationCreateOrUpdateAppComponents200Response
+  extends HttpResponse {
+  status: "200";
   body: TestAppComponentsOutput;
 }
 
@@ -224,17 +224,17 @@ export interface LoadTestAdministrationGetAppComponentsDefaultResponse
     LoadTestAdministrationGetAppComponentsDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestServerMetricConfigOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig201Response
   extends HttpResponse {
   status: "201";
+  body: TestServerMetricConfigOutput;
+}
+
+/** The request has succeeded. */
+export interface LoadTestAdministrationCreateOrUpdateServerMetricsConfig200Response
+  extends HttpResponse {
+  status: "200";
   body: TestServerMetricConfigOutput;
 }
 
@@ -287,19 +287,6 @@ export interface LoadTestRunDeleteTestRunDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & LoadTestRunDeleteTestRunDefaultHeaders;
 }
 
-export interface LoadTestRunCreateOrUpdateTestRun200Headers {
-  /** The location for monitoring the operation state. */
-  "operation-location": string;
-}
-
-/** The request has succeeded. */
-export interface LoadTestRunCreateOrUpdateTestRun200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestRunOutput;
-  headers: RawHttpHeaders & LoadTestRunCreateOrUpdateTestRun200Headers;
-}
-
 export interface LoadTestRunCreateOrUpdateTestRun201Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -311,6 +298,19 @@ export interface LoadTestRunCreateOrUpdateTestRun201Response
   status: "201";
   body: TestRunOutput;
   headers: RawHttpHeaders & LoadTestRunCreateOrUpdateTestRun201Headers;
+}
+
+export interface LoadTestRunCreateOrUpdateTestRun200Headers {
+  /** The location for monitoring the operation state. */
+  "operation-location": string;
+}
+
+/** The request has succeeded. */
+export interface LoadTestRunCreateOrUpdateTestRun200Response
+  extends HttpResponse {
+  status: "200";
+  body: TestRunOutput;
+  headers: RawHttpHeaders & LoadTestRunCreateOrUpdateTestRun200Headers;
 }
 
 export interface LoadTestRunCreateOrUpdateTestRunDefaultHeaders {
@@ -474,17 +474,17 @@ export interface LoadTestRunListMetricDimensionValuesDefaultResponse
   headers: RawHttpHeaders & LoadTestRunListMetricDimensionValuesDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface LoadTestRunCreateOrUpdateAppComponents200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestRunAppComponentsOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface LoadTestRunCreateOrUpdateAppComponents201Response
   extends HttpResponse {
   status: "201";
+  body: TestRunAppComponentsOutput;
+}
+
+/** The request has succeeded. */
+export interface LoadTestRunCreateOrUpdateAppComponents200Response
+  extends HttpResponse {
+  status: "200";
   body: TestRunAppComponentsOutput;
 }
 
@@ -519,17 +519,17 @@ export interface LoadTestRunGetAppComponentsDefaultResponse
   headers: RawHttpHeaders & LoadTestRunGetAppComponentsDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface LoadTestRunCreateOrUpdateServerMetricsConfig200Response
-  extends HttpResponse {
-  status: "200";
-  body: TestRunServerMetricConfigOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface LoadTestRunCreateOrUpdateServerMetricsConfig201Response
   extends HttpResponse {
   status: "201";
+  body: TestRunServerMetricConfigOutput;
+}
+
+/** The request has succeeded. */
+export interface LoadTestRunCreateOrUpdateServerMetricsConfig200Response
+  extends HttpResponse {
+  status: "200";
   body: TestRunServerMetricConfigOutput;
 }
 

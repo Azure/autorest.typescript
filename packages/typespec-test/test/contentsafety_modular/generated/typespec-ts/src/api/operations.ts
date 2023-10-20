@@ -197,8 +197,8 @@ export function _createOrUpdateTextBlocklistSend(
   resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
 ): StreamableMethod<
-  | CreateOrUpdateTextBlocklist200Response
   | CreateOrUpdateTextBlocklist201Response
+  | CreateOrUpdateTextBlocklist200Response
   | CreateOrUpdateTextBlocklistDefaultResponse
 > {
   return context
@@ -213,8 +213,8 @@ export function _createOrUpdateTextBlocklistSend(
 
 export async function _createOrUpdateTextBlocklistDeserialize(
   result:
-    | CreateOrUpdateTextBlocklist200Response
     | CreateOrUpdateTextBlocklist201Response
+    | CreateOrUpdateTextBlocklist200Response
     | CreateOrUpdateTextBlocklistDefaultResponse
 ): Promise<TextBlocklist> {
   if (isUnexpected(result)) {

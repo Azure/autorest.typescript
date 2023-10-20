@@ -4,8 +4,8 @@
 import {
   GetWidget200Response,
   GetWidgetDefaultResponse,
-  CreateOrUpdateWidget200Response,
   CreateOrUpdateWidget201Response,
+  CreateOrUpdateWidget200Response,
   CreateOrUpdateWidgetLogicalResponse,
   CreateOrUpdateWidgetDefaultResponse,
   DeleteWidget202Response,
@@ -19,7 +19,7 @@ import {
 
 const responseMap: Record<string, string[]> = {
   "GET /widgets/{widgetName}": ["200"],
-  "PATCH /widgets/{widgetName}": ["200", "201"],
+  "PATCH /widgets/{widgetName}": ["201", "200"],
   "DELETE /widgets/{widgetName}": ["202"],
   "GET /widgets/{widgetName}/operations/{operationId}": ["200"],
   "GET /widgets": ["200"],
@@ -30,8 +30,8 @@ export function isUnexpected(
 ): response is GetWidgetDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
+    | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidgetLogicalResponse
     | CreateOrUpdateWidgetDefaultResponse
 ): response is CreateOrUpdateWidgetDefaultResponse;
@@ -53,8 +53,8 @@ export function isUnexpected(
   response:
     | GetWidget200Response
     | GetWidgetDefaultResponse
-    | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
+    | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidgetLogicalResponse
     | CreateOrUpdateWidgetDefaultResponse
     | DeleteWidget202Response

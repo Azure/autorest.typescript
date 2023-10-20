@@ -22,12 +22,6 @@ export interface GetJobDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetJobDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface CreateJob200Response extends HttpResponse {
-  status: "200";
-  body: TrialMatcherResultOutput;
-}
-
 export interface CreateJob202Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;
@@ -41,6 +35,12 @@ export interface CreateJob202Headers {
 export interface CreateJob202Response extends HttpResponse {
   status: "202";
   headers: RawHttpHeaders & CreateJob202Headers;
+}
+
+/** The request has succeeded. */
+export interface CreateJob200Response extends HttpResponse {
+  status: "200";
+  body: TrialMatcherResultOutput;
 }
 
 export interface CreateJobDefaultHeaders {

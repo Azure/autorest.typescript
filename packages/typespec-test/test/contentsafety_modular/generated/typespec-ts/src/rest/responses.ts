@@ -64,15 +64,15 @@ export interface GetTextBlocklistDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetTextBlocklistDefaultHeaders;
 }
 
-/** The request has succeeded. */
-export interface CreateOrUpdateTextBlocklist200Response extends HttpResponse {
-  status: "200";
-  body: TextBlocklistOutput;
-}
-
 /** The request has succeeded and a new resource has been created as a result. */
 export interface CreateOrUpdateTextBlocklist201Response extends HttpResponse {
   status: "201";
+  body: TextBlocklistOutput;
+}
+
+/** The request has succeeded. */
+export interface CreateOrUpdateTextBlocklist200Response extends HttpResponse {
+  status: "200";
   body: TextBlocklistOutput;
 }
 

@@ -159,7 +159,7 @@ export default createClient;
 
 // @public (undocumented)
 export interface CreateJob {
-    post(options?: CreateJobParameters): StreamableMethod<CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse>;
+    post(options?: CreateJobParameters): StreamableMethod<CreateJob202Response | CreateJob200Response | CreateJobDefaultResponse>;
 }
 
 // @public
@@ -291,7 +291,7 @@ export interface GetJobDefaultResponse extends HttpResponse {
 export type GetJobParameters = RequestParameters;
 
 // @public
-export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | CreateJobDefaultResponse>(client: Client, initialResponse: CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+export function getLongRunningPoller<TResult extends CreateJobLogicalResponse | CreateJobDefaultResponse>(client: Client, initialResponse: CreateJob202Response | CreateJob200Response | CreateJobDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
 
 // @public (undocumented)
 export type HealthInsightsClinicalMatchingClient = Client & {
@@ -302,7 +302,7 @@ export type HealthInsightsClinicalMatchingClient = Client & {
 export function isUnexpected(response: GetJob200Response | GetJobDefaultResponse): response is GetJobDefaultResponse;
 
 // @public (undocumented)
-export function isUnexpected(response: CreateJob200Response | CreateJob202Response | CreateJobLogicalResponse | CreateJobDefaultResponse): response is CreateJobDefaultResponse;
+export function isUnexpected(response: CreateJob202Response | CreateJob200Response | CreateJobLogicalResponse | CreateJobDefaultResponse): response is CreateJobDefaultResponse;
 
 // @public
 export interface PatientDocument {
