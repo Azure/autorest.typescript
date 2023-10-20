@@ -1,155 +1,223 @@
 import { EnumValue, Type } from "../modularCodeModel.js";
 
+/**
+ * Represents metadata for a given Type to generate the TypeScript equivalent.
+ */
 export interface TypeMetadata {
   name: string;
   originModule?: string;
   isRelative?: boolean;
-  modifier?: "Array";
+  nullable?: boolean;
+  modifier?: "Array" | "NullableArray";
 }
 
-function getNullableType(name: string, type: Type): string {
-  if (type.nullable) {
-    return `(${name} | null)`;
-  }
-
-  return name;
-}
-
+/**
+ * Returns a string representation for an anonymous enum using its values.
+ */
 function getAnonymousEnumName(values: EnumValue[]): string {
   return values
     .map((v) => (typeof v.value === "string" ? `"${v.value}"` : `${v.value}`))
     .join(" | ");
 }
 
+// Mapping of simple types to their TypeScript equivalents.
+const simpleTypeMap: Record<string, TypeMetadata> = {
+  Key: {
+    name: "KeyCredential",
+    originModule: "@azure/core-auth",
+    isRelative: false
+  },
+  OAuth2: {
+    name: "TokenCredential",
+    originModule: "@azure/core-auth",
+    isRelative: false
+  },
+  boolean: { name: "boolean" },
+  datetime: { name: "Date" },
+  float: { name: "number" },
+  integer: { name: "number" },
+  "byte-array": { name: "Uint8Array" },
+  string: { name: "string" },
+  any: { name: "Record<string, any>" },
+  unknown: { name: "unknown" }
+};
+
+/**
+ * Maps a given Type to its TypeScript representation metadata.
+ */
 export function getType(type: Type, format?: string): TypeMetadata {
+  // Handle simple type conversions
+  const simpleType = simpleTypeMap[type.type];
+  if (simpleType) {
+    const typeMetadata: TypeMetadata = { ...simpleType };
+    if (type.nullable) {
+      typeMetadata.nullable = true;
+    }
+    return typeMetadata;
+  }
+
   switch (type.type) {
-    case "Key":
-      return {
-        name: "KeyCredential",
-        originModule: "@azure/core-auth",
-        isRelative: false
-      };
-    case "OAuth2":
-      return {
-        name: "TokenCredential",
-        originModule: "@azure/core-auth",
-        isRelative: false
-      };
-    case "boolean":
-      return { name: getNullableType(type.type, type) };
-    case "constant": {
-      let typeName: string = type.value?.toString() ?? "undefined";
-      if (type.valueType?.type === "string") {
-        typeName = type.value ? `"${type.value}"` : "undefined";
-      }
-      return { name: getNullableType(typeName, type) };
-    }
-    case "datetime":
-      return { name: getNullableType("Date", type) };
+    case "constant":
+      return handleConstantType(type);
+
     case "enum":
-      if (
-        !type.name &&
-        (!type?.valueType?.type ||
-          !["string", "number"].includes(type?.valueType?.type))
-      ) {
-        throw new Error("Unable to process enum without name");
-      }
-      return {
-        name: getNullableType(
-          type.name ?? getAnonymousEnumName(type.values ?? []),
-          type
-        ),
-        originModule: "models.js"
-      };
-    case "float":
-    case "integer":
-      return { name: getNullableType("number", type) };
-    case "byte-array":
-      return { name: getNullableType("Uint8Array", type) };
+      return handleEnumType(type);
+
     case "list":
-      if (!type.elementType) {
-        throw new Error("Unable to process Array with no elementType");
-      }
-      return {
-        name: getNullableType(
-          getType(type.elementType, type.elementType.format).name,
-          type
-        ),
-        modifier: "Array",
-        originModule:
-          type.elementType?.type === "model" ? "models.js" : undefined
-      };
+      return handleListType(type);
+
     case "model":
-      return {
-        name: getNullableType(type.name!, type),
-        originModule: "models.js"
-      };
-    case "string":
+      return handleModelType(type);
+
     case "duration":
-      switch (format) {
-        case "seconds":
-          return { name: getNullableType("number", type) };
-        case "ISO8601":
-        default:
-          return { name: getNullableType("string", type) };
-      }
-    case "combined": {
-      if (!type.types) {
-        throw new Error("Unable to process combined without combinedTypes");
-      }
-      const name = type.types
-        .map((t) => {
-          const sdkType = getTypeName(getType(t, t.format));
-          return `${sdkType}`;
-        })
-        .join(" | ");
-      return { name: getNullableType(name, type) };
-    }
+      return handleDurationType(type, format);
+
+    case "combined":
+      return handleCombinedType(type);
+
     case "dict":
-      if (!type.elementType) {
-        throw new Error("Unable to process dict without elemetType info");
-      }
-      return {
-        name: `Record<string, ${getTypeName(
-          getType(type.elementType, type.elementType.format)
-        )}>`
-      };
-    case "any":
-      return {
-        name: `Record<string, any>`
-      };
+      return handleDictType(type);
+
     default:
-      // throw new Error(`Unsupported type ${type.type}`);
-      return {
-        name: `any`
-      };
+      throw new Error(`Unsupported type ${type.type}`);
   }
 }
 
-function getTypeName(typeMetadata: TypeMetadata) {
-  let typeName = typeMetadata.name;
-  if (typeMetadata.modifier === "Array") {
-    typeName = `${typeName}[]`;
+/**
+ * Handles the conversion of constant types to TypeScript representation metadata.
+ */
+function handleConstantType(type: Type): TypeMetadata {
+  let typeName: string = type.value?.toString() ?? "undefined";
+  if (type.valueType?.type === "string") {
+    typeName = type.value ? `"${type.value}"` : "undefined";
   }
-  return typeName;
+  return { name: typeName, nullable: type.nullable };
+}
+
+/**
+ * Handles the conversion of enum types to TypeScript representation metadata.
+ */
+function handleEnumType(type: Type): TypeMetadata {
+  if (
+    !type.name &&
+    (!type?.valueType?.type ||
+      !["string", "number"].includes(type?.valueType?.type))
+  ) {
+    throw new Error("Unable to process enum without name");
+  }
+  return {
+    name: type.name ?? getAnonymousEnumName(type.values ?? []),
+    nullable: type.nullable,
+    originModule: "models.js"
+  };
+}
+
+/**
+ * Handles the conversion of list types to TypeScript representation metadata.
+ */
+function handleListType(type: Type): TypeMetadata {
+  if (!type.elementType) {
+    throw new Error("Unable to process Array with no elementType");
+  }
+
+  const typeMetadata = getType(type.elementType, type.elementType.format);
+  let nestedName = getTypeName(typeMetadata);
+
+  return {
+    name: nestedName,
+    nullable: type.nullable,
+    modifier: type.nullable ? "NullableArray" : "Array",
+    originModule: type.elementType?.type === "model" ? "models.js" : undefined
+  };
+}
+
+/**
+ * Handles the conversion of model types to TypeScript representation metadata.
+ */
+function handleModelType(type: Type): TypeMetadata {
+  return {
+    name: type.name!,
+    nullable: type.nullable,
+    originModule: "models.js"
+  };
+}
+
+/**
+ * Handles the conversion of duration types to TypeScript representation metadata.
+ */
+function handleDurationType(type: Type, format?: string): TypeMetadata {
+  const isFormatSeconds = format === "seconds";
+  return {
+    name: isFormatSeconds ? "number" : "string",
+    nullable: type.nullable
+  };
+}
+
+/**
+ * Handles the conversion of combined types to TypeScript representation metadata.
+ */
+function handleCombinedType(type: Type): TypeMetadata {
+  if (!type.types) {
+    throw new Error("Unable to process combined without combinedTypes");
+  }
+  const name = type.types
+    .map((t) => {
+      const sdkType = getTypeName(getType(t, t.format));
+      return `${sdkType}`;
+    })
+    .join(" | ");
+  return { name: name, nullable: type.nullable };
+}
+
+/**
+ * Handles the conversion of dict types to TypeScript representation metadata.
+ */
+function handleDictType(type: Type): TypeMetadata {
+  if (!type.elementType) {
+    throw new Error("Unable to process dict without elemetType info");
+  }
+  return {
+    name: `Record<string, ${getTypeName(
+      getType(type.elementType, type.elementType.format)
+    )}>`
+  };
 }
 
 /**
  * Gets the Typescript representation of a TypeSpec type
  */
-export function buildType(
-  clientName: string | undefined,
-  type: Type | undefined,
-  format: string | undefined
-) {
+function getTypeName(typeMetadata: TypeMetadata): string {
+  let typeName = typeMetadata.name;
+
+  if (
+    typeMetadata.nullable &&
+    typeMetadata.modifier !== "Array" &&
+    typeMetadata.modifier !== "NullableArray"
+  ) {
+    typeName = `(${typeName} | null)`;
+  }
+
+  if (typeMetadata.modifier === "Array") {
+    typeName = `(${typeName}[])`;
+  }
+
+  if (typeMetadata.modifier === "NullableArray") {
+    typeName = `(${typeName}[] | null)`;
+  }
+
+  return typeName;
+}
+
+/**
+ * Generates a TypeScript type representation for a given client name, type, and format.
+ */
+export function buildType(clientName?: string, type?: Type, format?: string) {
   if (!type) {
     throw new Error("Type should be defined");
   }
 
   const typeMetadata = getType(type, format);
-  let typeName = typeMetadata.name;
-  if (typeMetadata.modifier === "Array") {
-    typeName = `${typeName}[]`;
-  }
+  let typeName = getTypeName(typeMetadata);
+
   return { name: clientName ?? "", type: typeName };
 }
