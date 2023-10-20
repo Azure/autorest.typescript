@@ -105,7 +105,7 @@ describe("anonymous model", () => {
       assert.ok(models);
       const { outputModelFile } = models!;
       assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-      console.log(outputModelFile?.content);
+      // console.log(outputModelFile?.content);
       assertEqualContent(
         outputModelFile?.content!,
         `
