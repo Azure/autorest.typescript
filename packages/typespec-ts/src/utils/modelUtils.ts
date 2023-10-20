@@ -47,6 +47,7 @@ import {
 } from "@typespec/compiler";
 import { reportDiagnostic } from "../lib.js";
 import {
+  ArraySchema,
   DictionarySchema,
   NameType,
   normalizeName,
@@ -586,12 +587,6 @@ function getSchemaForModel(
       prop
     );
 
-    console.log(
-      ">>>>>>>>>>",
-      name,
-      isAnonymousModelType(prop.type) ? false : true,
-      propSchema
-    );
     if (propSchema === undefined) {
       continue;
     }
@@ -1068,24 +1063,53 @@ export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
-export function getImportedModelName(schema: Schema): string[] | undefined {
+export function getImportedModelName(schema: Schema): string[] {
   switch (schema.type) {
-    case "array":
-      return [(schema as any).items]
-        .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => getPriorityName(i) ?? "");
-    case "object":
-      return getPriorityName(schema) ? [getPriorityName(schema)] : undefined;
-    case "dictionary": {
-      const importName = getDictionaryValueName(schema as DictionarySchema);
-      return importName ? [importName] : undefined;
+    case "array": {
+      const ret = new Set<string>();
+      [(schema as ArraySchema).items]
+        .filter((i?: Schema) => !!i && i.type === "object")
+        .forEach((i?: Schema) =>
+          getImportedModelName(i!).forEach((it) => ret.add(it))
+        );
+      return [...ret];
     }
-    case "union":
-      return (schema as any).enum
-        .filter((i: Schema) => i.type === "object")
-        .map((i: Schema) => getPriorityName(i) ?? "");
+    case "object": {
+      if (isAnonymousObjectSchema(schema)) {
+        const ret = new Set<string>();
+        const properties = (schema as ObjectSchema).properties ?? {};
+        for (const name in properties) {
+          if (!properties[name]) {
+            continue;
+          }
+          getImportedModelName(properties[name]!).forEach((it) => ret.add(it));
+        }
+        return [...ret];
+      }
+      return getPriorityName(schema) ? [getPriorityName(schema)] : [];
+    }
+    case "dictionary": {
+      const ret = new Set<string>();
+      [(schema as DictionarySchema).additionalProperties]
+        .filter((i?: Schema) => !!i && i.type === "object")
+        .forEach((i?: Schema) =>
+          getImportedModelName(i!).forEach((it) => ret.add(it))
+        );
+
+      return [...ret];
+    }
+    case "union": {
+      const ret = new Set<string>();
+      ((schema as Schema).enum ?? [])
+        .filter((i?: Schema) => !!i && i.type === "object")
+        .forEach((i?: Schema) =>
+          getImportedModelName(i!).forEach((it) => ret.add(it))
+        );
+
+      return [...ret];
+    }
     default:
-      return;
+      return [];
   }
 }
 
@@ -1096,9 +1120,7 @@ function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
     ? schema.typeName ?? schema.name
     : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
-function getDictionaryValueName(schema: DictionarySchema): string | undefined {
-  return schema.outputValueTypeName ?? schema.valueTypeName ?? undefined;
-}
+
 function getEnumStringDescription(type: any) {
   if (type.name === "string" && type.enum && type.enum.length > 0) {
     return `Possible values: ${type.enum.join(", ")}`;
