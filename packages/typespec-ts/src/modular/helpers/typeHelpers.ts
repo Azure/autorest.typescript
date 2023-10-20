@@ -121,7 +121,7 @@ function handleListType(type: Type): TypeMetadata {
   }
 
   const typeMetadata = getType(type.elementType, type.elementType.format);
-  let nestedName = getTypeName(typeMetadata);
+  const nestedName = getTypeName(typeMetadata);
 
   return {
     name: nestedName,
@@ -217,7 +217,7 @@ export function buildType(clientName?: string, type?: Type, format?: string) {
   }
 
   const typeMetadata = getType(type, format);
-  let typeName = getTypeName(typeMetadata);
+  const typeName = getTypeName(typeMetadata);
 
   return { name: clientName ?? "", type: typeName };
 }
