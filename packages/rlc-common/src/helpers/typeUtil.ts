@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { ObjectSchema, Schema, SchemaContext } from "../interfaces.js";
+import { Schema } from "../interfaces.js";
 
 export function isRecord(type: string) {
   return /^Record<([a-zA-Z]+),(\s*)(?<type>.+)>$/.test(type);
@@ -164,17 +164,4 @@ export function isStringLiteral(type: string) {
     (first === '"' || first === "'") &&
     type.indexOf(first, 1) === lastPos
   );
-}
-
-export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
-  // TODO: Handle more cases
-  return getPriorityName(schema, usage) ?? schema.type ?? "any";
-}
-
-function getPriorityName(schema: Schema, usage?: SchemaContext[]): string {
-  return usage &&
-    usage.includes(SchemaContext.Input) &&
-    !usage.includes(SchemaContext.Output)
-    ? schema.typeName ?? schema.name
-    : schema.outputTypeName ?? schema.typeName ?? schema.name;
 }
