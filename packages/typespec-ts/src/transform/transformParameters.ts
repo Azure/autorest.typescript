@@ -26,8 +26,8 @@ import {
   predictDefaultValue,
   getBinaryType,
   enrichBinaryTypeInBody,
-  generateAnomymousModelSigniture,
-  isAnonymousModel
+  getModelInlineSigniture,
+  isAnonymousObjectSchema
 } from "../utils/modelUtils.js";
 
 import {
@@ -417,9 +417,12 @@ function extractNameFromTypeSpecType(
     SchemaContext.Input,
     SchemaContext.Exception
   ]);
-  if (isAnonymousModel(bodySchema)) {
+  if (isAnonymousObjectSchema(bodySchema)) {
     // Handle anonymous Model
-    return generateAnomymousModelSigniture(bodySchema, importedModels);
+    return getModelInlineSigniture(bodySchema, {
+      importedModels,
+      usage: [SchemaContext.Input, SchemaContext.Exception]
+    });
   }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")

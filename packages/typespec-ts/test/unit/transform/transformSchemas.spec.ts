@@ -590,7 +590,7 @@ describe("#transformSchemas", () => {
       {
         name: Test;
       }`);
-      console.log(property);
+      // console.log(property);
       assert.deepEqual(property, {
         name: "",
         type: "object",

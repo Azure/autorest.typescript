@@ -147,11 +147,15 @@ export function getSchemaForType(
   }
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
-    if (isAnonymousModel(schema)) {
+    if (isAnonymousObjectSchema(schema)) {
       if (usage && usage.includes(SchemaContext.Output)) {
-        schema.outputTypeName = generateAnomymousModelSigniture(schema);
+        schema.outputTypeName = getModelInlineSigniture(schema, {
+          usage: [SchemaContext.Output]
+        });
       }
-      schema.typeName = generateAnomymousModelSigniture(schema);
+      schema.typeName = getModelInlineSigniture(schema, {
+        usage: [SchemaContext.Input]
+      });
       schema.type = "object";
     } else if (
       !isArrayModelType(program, type) &&
@@ -523,7 +527,7 @@ function getSchemaForModel(
           dpgContext,
           prop.type,
           usage,
-          !isAnonymousType(prop.type),
+          !isAnonymousModelType(prop.type),
           prop
         );
         childSchema.discriminatorValue = propSchema.type.replace(/"/g, "");
@@ -578,14 +582,14 @@ function getSchemaForModel(
       dpgContext,
       prop.type,
       usage,
-      isAnonymousType(prop.type) ? false : true,
+      isAnonymousModelType(prop.type) ? false : true,
       prop
     );
 
     console.log(
       ">>>>>>>>>>",
       name,
-      isAnonymousType(prop.type) ? false : true,
+      isAnonymousModelType(prop.type) ? false : true,
       propSchema
     );
     if (propSchema === undefined) {
@@ -791,7 +795,7 @@ function getSchemaForArrayModel(
         dpgContext,
         indexer.value!,
         usage,
-        !isAnonymousType(indexer.value!)
+        !isAnonymousModelType(indexer.value!)
       ),
       description: getDoc(program, type)
     };
@@ -859,7 +863,7 @@ function getSchemaForRecordModel(
       dpgContext,
       indexer?.value,
       usage,
-      !isAnonymousType(indexer.value)
+      !isAnonymousModelType(indexer.value)
     );
     schema = {
       type: "dictionary",
@@ -1284,31 +1288,44 @@ export function isAzureCoreErrorType(t?: Type): boolean {
   return namespaces.length == 0;
 }
 
-export function isAnonymousModel(schema: Schema) {
+// Check if the schema is an anonymous object
+export function isAnonymousObjectSchema(schema: Schema) {
   return schema.name === "" && schema.type === "object";
 }
 
-export function isAnonymousType(type: Type) {
+// Check if the type is an anonymous model
+export function isAnonymousModelType(type: Type) {
   if (type.kind === "Model") {
     return type.name === "";
   }
   return false;
 }
 
-export function generateAnomymousModelSigniture(
+/**
+ * Get the inline signiture of the model
+ * @param schema object schema detail
+ * @param options other optional parameters
+ * @returns
+ */
+export function getModelInlineSigniture(
   schema: ObjectSchema,
-  importedModels: Set<string> = new Set<string>()
+  options: { importedModels?: Set<string>; usage?: SchemaContext[] } = {}
 ) {
   let schemaSigiture = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
-    const propTypeName = getTypeName(propType);
+    const propTypeName = getTypeName(propType, options.usage);
     if (!propType || !propTypeName) {
       continue;
     }
-    const importNames = getImportedModelName(propType);
-    if (importNames) {
-      importNames!.forEach(importedModels.add, importedModels);
+    if (options.importedModels) {
+      const importNames = getImportedModelName(propType);
+      if (importNames) {
+        importNames!.forEach(
+          options.importedModels.add,
+          options.importedModels
+        );
+      }
     }
     schemaSigiture += `${propName}: ${propTypeName};`;
   }
