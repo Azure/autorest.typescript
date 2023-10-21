@@ -123,10 +123,11 @@ function handleListType(type: Type): TypeMetadata {
   const typeMetadata = getType(type.elementType, type.elementType.format);
   const nestedName = getTypeName(typeMetadata);
 
+  const name = type.nullable ? `(${nestedName}[] | null)` : `${nestedName}[]`;
+
   return {
-    name: nestedName,
-    nullable: type.nullable,
-    modifier: type.nullable ? "NullableArray" : "Array",
+    name: name,
+    nullable: type.elementType.nullable,
     originModule: type.elementType?.type === "model" ? "models.js" : undefined
   };
 }
@@ -135,6 +136,12 @@ function handleListType(type: Type): TypeMetadata {
  * Handles the conversion of model types to TypeScript representation metadata.
  */
 function handleModelType(type: Type): TypeMetadata {
+  // Temporarily handling the case of anonymous models
+  if (!type.name) {
+    return {
+      name: "any"
+    };
+  }
   return {
     name: type.name!,
     nullable: type.nullable,
@@ -189,11 +196,7 @@ function handleDictType(type: Type): TypeMetadata {
 function getTypeName(typeMetadata: TypeMetadata): string {
   let typeName = typeMetadata.name;
 
-  if (
-    typeMetadata.nullable &&
-    typeMetadata.modifier !== "Array" &&
-    typeMetadata.modifier !== "NullableArray"
-  ) {
+  if (typeMetadata.nullable) {
     typeName = `(${typeName} | null)`;
   }
 

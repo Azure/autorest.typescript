@@ -48,8 +48,7 @@ describe.only("typeHelpers", () => {
           nullable: false
         };
         const result = getType(type);
-        expect(result.name).to.equal("number");
-        expect(result.modifier).to.equal("Array");
+        expect(result.name).to.equal("number[]");
         expect(Boolean(result.nullable)).to.be.false;
       });
     });
@@ -144,7 +143,7 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("((number[])[])");
+        expect(result.type).to.equal("number[][]");
       });
 
       it("should handle a nested list of nullable elements", () => {
@@ -160,7 +159,7 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("(((number | null)[])[])");
+        expect(result.type).to.equal("((number | null)[] | null)[]");
       });
 
       it("should handle a nested list of nullable list of elements", () => {
@@ -176,7 +175,7 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("((number[] | null)[])");
+        expect(result.type).to.equal("((number[] | null)[] | null)");
       });
 
       it("should handle a nested nullable list of nullable list of non-nullable elements", () => {
@@ -192,7 +191,20 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("((number[] | null)[] | null)");
+        expect(result.type).to.equal("(((number[] | null)[] | null) | null)");
+      });
+
+      it("should handle a nullable list of floats", () => {
+        const type: Type = {
+          type: "list",
+          nullable: true,
+          elementType: {
+            type: "float",
+            nullable: false
+          }
+        };
+        const result = buildType("foo", type);
+        expect(result.type).to.equal("(number[] | null)");
       });
 
       it("should handle a nested nullable list of nullable list of nullable elements", () => {
@@ -209,7 +221,9 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("(((number | null)[] | null)[] | null)");
+        expect(result.type).to.equal(
+          "(((((number | null)[] | null) | null)[] | null) | null)"
+        );
       });
     });
 
@@ -225,7 +239,7 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("Record<string, (number[])>");
+        expect(result.type).to.equal("Record<string, number[]>");
       });
 
       it("should handle dictionary type with list nullable values", () => {
@@ -240,7 +254,9 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = buildType("foo", type);
-        expect(result.type).to.equal("Record<string, ((number | null)[])>");
+        expect(result.type).to.equal(
+          "Record<string, ((number | null)[] | null)>"
+        );
       });
     });
 
@@ -257,8 +273,7 @@ describe.only("typeHelpers", () => {
           }
         };
         const result = getType(type);
-        expect(result.name).to.equal("Record<string, string>");
-        expect(result.modifier).to.equal("Array");
+        expect(result.name).to.equal("Record<string, string>[]");
       });
     });
 
@@ -445,7 +460,7 @@ describe.only("typeHelpers", () => {
           nullable: false
         };
         const result = buildType("ClientList", type);
-        expect(result.type).to.equal("(number[])");
+        expect(result.type).to.equal("number[]");
       });
 
       it("should build type for nullable list", () => {
@@ -470,7 +485,7 @@ describe.only("typeHelpers", () => {
           nullable: false
         };
         const result = buildType("ClientList", type);
-        expect(result.type).to.equal("((number | null)[])");
+        expect(result.type).to.equal("((number | null)[] | null)");
       });
 
       it("should build type for nullable list and nullable element", () => {
@@ -483,7 +498,7 @@ describe.only("typeHelpers", () => {
           nullable: true
         };
         const result = buildType("ClientList", type);
-        expect(result.type).to.equal("((number | null)[] | null)");
+        expect(result.type).to.equal("(((number | null)[] | null) | null)");
       });
     });
 

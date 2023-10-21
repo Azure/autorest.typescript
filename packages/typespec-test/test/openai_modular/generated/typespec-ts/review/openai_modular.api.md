@@ -115,7 +115,7 @@ export type CompletionsFinishReason = string;
 // @public
 export interface CompletionsLogProbabilityModel {
     textOffset: number[];
-    tokenLogprobs: (number | null)[];
+    tokenLogprobs: (number | null)[] | null;
     tokens: string[];
     topLogprobs: Record<string, number | null>[];
 }
@@ -123,7 +123,7 @@ export interface CompletionsLogProbabilityModel {
 // @public
 export interface CompletionsLogProbabilityModel {
     textOffset: number[];
-    tokenLogprobs: (number | null)[];
+    tokenLogprobs: (number | null)[] | null;
     tokens: string[];
     topLogprobs: Record<string, number | null>[];
 }
