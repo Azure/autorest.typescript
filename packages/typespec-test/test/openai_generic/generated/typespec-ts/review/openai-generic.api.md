@@ -59,7 +59,7 @@ export interface CreateChatCompletionRequest {
     model: string | "gpt4" | "gpt-4-0314" | "gpt-4-0613" | "gpt-4-32k" | "gpt-4-32k-0314" | "gpt-4-32k-0613" | "gpt-3.5-turbo" | "gpt-3.5-turbo-16k" | "gpt-3.5-turbo-0301" | "gpt-3.5-turbo-0613" | "gpt-3.5-turbo-16k-0613";
     n?: number | null;
     presencePenalty?: number | null;
-    stop?: string | string[] | null;
+    stop?: string | string[];
     stream?: boolean | null;
     temperature?: number | null;
     topP?: number | null;
@@ -92,8 +92,8 @@ export interface CreateCompletionRequest {
     model: string | "babbage-002" | "davinci-002" | "text-davinci-003" | "text-davinci-002" | "text-davinci-001" | "code-davinci-002" | "text-curie-001" | "text-babbage-001" | "text-ada-001";
     n?: number | null;
     presencePenalty?: number | null;
-    prompt: string | string[] | number[] | number[][] | null;
-    stop?: string | string[] | null;
+    prompt: string | string[] | number[] | number[][];
+    stop?: string | string[];
     stream?: boolean | null;
     suffix?: string | null;
     temperature?: number | null;
@@ -179,7 +179,7 @@ export interface CreateFineTuneRequest {
     classificationPositiveClass?: string | null;
     computeClassificationMetrics?: boolean | null;
     learningRateMultiplier?: number | null;
-    model?: string | "ada" | "babbage" | "curie" | "davinci" | null;
+    model?: string | "ada" | "babbage" | "curie" | "davinci";
     nEpochs?: number | null;
     promptLossRate?: number | null;
     suffix?: string | null;
@@ -212,8 +212,8 @@ export interface CreateImageEditRequest {
     mask?: Uint8Array;
     n?: number | null;
     prompt: string;
-    responseFormat?: "url" | "b64_json" | null;
-    size?: "256x256" | "512x512" | "1024x1024" | null;
+    responseFormat?: "url" | "b64_json";
+    size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
 }
@@ -226,8 +226,8 @@ export interface CreateImageOptions extends OperationOptions {
 export interface CreateImageRequest {
     n?: number | null;
     prompt: string;
-    responseFormat?: "url" | "b64_json" | null;
-    size?: "256x256" | "512x512" | "1024x1024" | null;
+    responseFormat?: "url" | "b64_json";
+    size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
 }
@@ -242,8 +242,8 @@ export interface CreateImageVariationOptions extends OperationOptions {
 export interface CreateImageVariationRequest {
     image: Uint8Array;
     n?: number | null;
-    responseFormat?: "url" | "b64_json" | null;
-    size?: "256x256" | "512x512" | "1024x1024" | null;
+    responseFormat?: "url" | "b64_json";
+    size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
 }

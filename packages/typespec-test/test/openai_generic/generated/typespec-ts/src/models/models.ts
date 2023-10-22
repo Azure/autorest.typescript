@@ -139,7 +139,7 @@ export interface CreateChatCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: string | string[] | null;
+  stop?: string | string[];
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -395,7 +395,7 @@ export interface CreateCompletionRequest {
    * Note that <|endoftext|> is the document separator that the model sees during training, so if a
    * prompt is not specified the model will generate as if from the beginning of a new document.
    */
-  prompt: string | string[] | number[] | number[][] | null;
+  prompt: string | string[] | number[] | number[][];
   /** The suffix that comes after a completion of inserted text. */
   suffix?: string | null;
   /**
@@ -428,7 +428,7 @@ export interface CreateCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: string | string[] | null;
+  stop?: string | string[];
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -677,7 +677,7 @@ export interface CreateFineTuneRequest {
    * "davinci", or a fine-tuned model created after 2022-04-21 and before 2023-08-22. To learn more
    * about these models, see the [Models](/docs/models) documentation.
    */
-  model?: string | "ada" | "babbage" | "curie" | "davinci" | null;
+  model?: string | "ada" | "babbage" | "curie" | "davinci";
   /**
    * The number of epochs to train the model for. An epoch refers to one full cycle through the
    * training dataset.
@@ -834,9 +834,9 @@ export interface CreateImageRequest {
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: "256x256" | "512x512" | "1024x1024" | null;
+  size?: "256x256" | "512x512" | "1024x1024";
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  responseFormat?: "url" | "b64_json" | null;
+  responseFormat?: "url" | "b64_json";
   user?: string;
 }
 
@@ -870,9 +870,9 @@ export interface CreateImageEditRequest {
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: "256x256" | "512x512" | "1024x1024" | null;
+  size?: "256x256" | "512x512" | "1024x1024";
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  responseFormat?: "url" | "b64_json" | null;
+  responseFormat?: "url" | "b64_json";
   user?: string;
 }
 
@@ -885,9 +885,9 @@ export interface CreateImageVariationRequest {
   /** The number of images to generate. Must be between 1 and 10. */
   n?: number | null;
   /** The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`. */
-  size?: "256x256" | "512x512" | "1024x1024" | null;
+  size?: "256x256" | "512x512" | "1024x1024";
   /** The format in which the generated images are returned. Must be one of `url` or `b64_json`. */
-  responseFormat?: "url" | "b64_json" | null;
+  responseFormat?: "url" | "b64_json";
   user?: string;
 }
 
