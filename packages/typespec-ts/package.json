@@ -50,11 +50,11 @@
     "mocha": "^9.2.2",
     "rimraf": "^5.0.0",
     "ts-node": "^10.9.1",
-    "typescript": "~5.0.0",
+    "typescript": "~5.2.0",
     "prettier": "~2.7.1",
-    "@azure-tools/cadl-ranch-specs": "^0.22.2",
-    "@azure-tools/cadl-ranch-expect": "^0.7.0",
-    "@azure-tools/cadl-ranch": "^0.8.2",
+    "@azure-tools/cadl-ranch-specs": "^0.24.0",
+    "@azure-tools/cadl-ranch-expect": "^0.8.0",
+    "@azure-tools/cadl-ranch": "^0.9.0",
     "chalk": "^4.0.0",
     "@azure-rest/core-client": "^1.1.4",
     "@azure/core-auth": "^1.3.2",
@@ -67,12 +67,12 @@
     "eslint-plugin-require-extensions": "0.1.3"
   },
   "peerDependencies": {
-    "@azure-tools/typespec-azure-core": ">=0.34.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": "0.35.0-dev.9",
-    "@typespec/compiler": ">=0.48.0 <1.0.0",
-    "@typespec/http": ">=0.48.0 <1.0.0",
-    "@typespec/rest": ">=0.48.0 <1.0.0",
-    "@typespec/versioning": ">=0.48.0 <1.0.0"
+    "@azure-tools/typespec-azure-core": ">=0.35.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.35.0 <1.0.0",
+    "@typespec/compiler": ">=0.49.0 <1.0.0",
+    "@typespec/http": ">=0.49.0 <1.0.0",
+    "@typespec/rest": ">=0.49.0 <1.0.0",
+    "@typespec/versioning": ">=0.49.0 <1.0.0"
   },
   "dependencies": {
     "prettier": "^2.6.1",

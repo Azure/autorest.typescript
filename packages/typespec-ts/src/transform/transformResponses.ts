@@ -32,7 +32,8 @@ import {
   getOperationStatuscode,
   isBinaryPayload,
   getOperationLroOverload,
-  getOperationName
+  getOperationName,
+  sortedOperationResponses
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -78,7 +79,7 @@ export function transformToResponseTypes(
       path: route.path,
       responses: []
     };
-    for (const resp of route.responses) {
+    for (const resp of sortedOperationResponses(route.responses)) {
       const statusCode = getOperationStatuscode(resp);
       const rlcResponseUnit: ResponseMetadata = {
         statusCode,
