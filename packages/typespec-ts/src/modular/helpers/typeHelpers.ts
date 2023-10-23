@@ -168,7 +168,7 @@ function handleModelType(type: Type): TypeMetadata {
       name: "any"
     };
   }
-  let name = handleNullableTypeName(type);
+  const name = handleNullableTypeName(type);
   return {
     name,
     nullable: type.nullable,
@@ -214,7 +214,7 @@ function handleDictType(type: Type): TypeMetadata {
   }
 
   const elementType = getType(type.elementType, type.elementType.format);
-  let elementName = elementType.name;
+  const elementName = elementType.name;
   return {
     name: `Record<string, ${elementName}>`
   };
