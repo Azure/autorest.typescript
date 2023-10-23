@@ -16,7 +16,9 @@ export function buildModels(
   const coreClientTypes = new Set<string>();
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "enum") && !isAzureCoreErrorSdkType(t)
+      (t.type === "model" || t.type === "enum") &&
+      !isAzureCoreErrorSdkType(t) &&
+      !(t.type == "model" && t.name === "")
   );
 
   // Skip to generate models.ts if there is no any models

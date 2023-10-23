@@ -1349,7 +1349,8 @@ export function getModelInlineSigniture(
         );
       }
     }
-    schemaSigiture += `${propName}: ${propTypeName};`;
+    const isOptional = propType.required ? "" : "?";
+    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
   }
 
   schemaSigiture += `}`;

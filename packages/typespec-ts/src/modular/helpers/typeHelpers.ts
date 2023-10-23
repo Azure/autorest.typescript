@@ -38,7 +38,8 @@ export function generateAnomymousModelSigniture(
     // if (importNames) {
     //   importNames!.forEach(importedModels.add, importedModels);
     // }
-    schemaSigiture += `${propName}: ${propTypeName};`;
+    const isOptional = prop.optional ? "?" : "";
+    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
   }
 
   schemaSigiture += `}`;
