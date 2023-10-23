@@ -69,6 +69,7 @@ import {
   isApiVersion
 } from "@azure-tools/typespec-client-generator-core";
 import { SdkContext } from "./interfaces.js";
+import { getModelNamespaceName } from "./namespaceUtils.js";
 
 export function getBinaryType(usage: SchemaContext[]) {
   return usage.includes(SchemaContext.Output)
@@ -429,7 +430,7 @@ function getSchemaForModel(
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
-  let name = model.name;
+  let name = getModelNamespaceName(dpgContext, model.namespace!) + model.name;
   if (
     !overridedModelName &&
     model.templateMapper &&
