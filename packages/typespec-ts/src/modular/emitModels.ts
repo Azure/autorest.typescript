@@ -93,16 +93,6 @@ function buildModelInterface(
           ? getCoreClientErrorType(propertyTypeName, cache.coreClientTypes)
           : propertyTypeName;
       }
-      if (propertyMetadata.nullable) {
-        propertyTypeName = `(${propertyTypeName} | null)`;
-      }
-      if (propertyMetadata.modifier === "Array") {
-        propertyTypeName = `${propertyTypeName}[]`;
-      }
-
-      if (propertyMetadata.modifier === "NullableArray") {
-        propertyTypeName = `(${propertyTypeName} | null)[]`;
-      }
 
       return {
         name: `"${p.clientName}"`,

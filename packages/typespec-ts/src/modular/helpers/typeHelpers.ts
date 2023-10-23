@@ -8,7 +8,7 @@ export interface TypeMetadata {
   originModule?: string;
   isRelative?: boolean;
   nullable?: boolean;
-  modifier?: "Array" | "NullableArray";
+  modifier?: "Array";
 }
 
 /**
@@ -42,6 +42,19 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   unknown: { name: "unknown" }
 };
 
+function getTypeName(type: { name?: string; nullable?: boolean }): string {
+  if (!type.name) {
+    throw new Error("Unable to process type without name");
+  }
+  let name = type.name;
+
+  if (type.nullable) {
+    name = `(${name} | null)`;
+  }
+
+  return name;
+}
+
 /**
  * Maps a given Type to its TypeScript representation metadata.
  */
@@ -52,6 +65,7 @@ export function getType(type: Type, format?: string): TypeMetadata {
     const typeMetadata: TypeMetadata = { ...simpleType };
     if (type.nullable) {
       typeMetadata.nullable = true;
+      typeMetadata.name = getTypeName(typeMetadata);
     }
     return typeMetadata;
   }
@@ -105,8 +119,10 @@ function handleEnumType(type: Type): TypeMetadata {
   ) {
     throw new Error("Unable to process enum without name");
   }
+  let name = type.name ?? getAnonymousEnumName(type.values ?? []);
+  name = getTypeName({ name, nullable: type.nullable });
   return {
-    name: type.name ?? getAnonymousEnumName(type.values ?? []),
+    name,
     nullable: type.nullable,
     originModule: "models.js"
   };
@@ -120,16 +136,23 @@ function handleListType(type: Type): TypeMetadata {
     throw new Error("Unable to process Array with no elementType");
   }
 
-  const typeMetadata = getType(type.elementType, type.elementType.format);
-  const nestedName = getTypeName(typeMetadata);
+  const elementTypeMetadata = getType(
+    type.elementType,
+    type.elementType.format
+  );
 
-  const name = type.nullable ? `(${nestedName}[] | null)` : `${nestedName}[]`;
+  const name = getTypeName({
+    name: `${elementTypeMetadata.name}[]`,
+    nullable: type.nullable
+  });
 
-  return {
+  const listTypeMetadata: TypeMetadata = {
     name: name,
     nullable: type.elementType.nullable,
     originModule: type.elementType?.type === "model" ? "models.js" : undefined
   };
+
+  return listTypeMetadata;
 }
 
 /**
@@ -142,8 +165,9 @@ function handleModelType(type: Type): TypeMetadata {
       name: "any"
     };
   }
+  let name = getTypeName(type);
   return {
-    name: type.name!,
+    name,
     nullable: type.nullable,
     originModule: "models.js"
   };
@@ -154,8 +178,10 @@ function handleModelType(type: Type): TypeMetadata {
  */
 function handleDurationType(type: Type, format?: string): TypeMetadata {
   const isFormatSeconds = format === "seconds";
+  let name = isFormatSeconds ? "number" : "string";
+  name = getTypeName({ name, nullable: type.nullable });
   return {
-    name: isFormatSeconds ? "number" : "string",
+    name,
     nullable: type.nullable
   };
 }
@@ -169,7 +195,7 @@ function handleCombinedType(type: Type): TypeMetadata {
   }
   const name = type.types
     .map((t) => {
-      const sdkType = getTypeName(getType(t, t.format));
+      const sdkType = getType(t, t.format).name;
       return `${sdkType}`;
     })
     .join(" | ");
@@ -183,32 +209,12 @@ function handleDictType(type: Type): TypeMetadata {
   if (!type.elementType) {
     throw new Error("Unable to process dict without elemetType info");
   }
+
+  const elementType = getType(type.elementType, type.elementType.format);
+  let elementName = elementType.name;
   return {
-    name: `Record<string, ${getTypeName(
-      getType(type.elementType, type.elementType.format)
-    )}>`
+    name: `Record<string, ${elementName}>`
   };
-}
-
-/**
- * Gets the Typescript representation of a TypeSpec type
- */
-function getTypeName(typeMetadata: TypeMetadata): string {
-  let typeName = typeMetadata.name;
-
-  if (typeMetadata.nullable) {
-    typeName = `(${typeName} | null)`;
-  }
-
-  if (typeMetadata.modifier === "Array") {
-    typeName = `(${typeName}[])`;
-  }
-
-  if (typeMetadata.modifier === "NullableArray") {
-    typeName = `(${typeName}[] | null)`;
-  }
-
-  return typeName;
 }
 
 /**
@@ -220,7 +226,6 @@ export function buildType(clientName?: string, type?: Type, format?: string) {
   }
 
   const typeMetadata = getType(type, format);
-  const typeName = getTypeName(typeMetadata);
 
-  return { name: clientName ?? "", type: typeName };
+  return { name: clientName ?? "", type: typeMetadata.name };
 }

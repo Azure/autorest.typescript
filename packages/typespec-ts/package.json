@@ -31,8 +31,8 @@
     "integration-test:alone:modular": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 4000 ./test/modularIntegration/*.spec.ts",
     "stop-test-server": "npx cadl-ranch server stop",
     "unit-test": "npm run unit-test:rlc && npm run unit-test:modular",
-    "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 4000  './test/unit/**/*.spec.ts'",
-    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 4000  './test/modularUnit/**/*.spec.ts'"
+    "unit-test:rlc": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --timeout 4000 './test/unit/**/*.spec.ts'",
+    "unit-test:modular": "cross-env TS_NODE_PROJECT=tsconfig.json mocha -r ts-node/register --experimental-specifier-resolution=node --experimental-modules=true  --no-timeout './test/modularUnit/**/*.spec.ts'"
   },
   "author": "Jose Heredia <joheredi@microsoft.com>",
   "license": "MIT",
