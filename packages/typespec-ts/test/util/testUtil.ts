@@ -10,7 +10,6 @@ import { SdkContext } from "../../src/utils/interfaces.js";
 import { assert } from "chai";
 import { format } from "prettier";
 import { prettierTypeScriptOptions } from "../../src/lib.js";
-import { emitModelsFromTypeSpec } from "./emitUtil.js";
 
 export async function createRLCEmitterTestHost() {
   return createTestHost({
@@ -113,67 +112,3 @@ export type VerifyPropertyConfig = {
   additionalInputContent?: string;
   additionalOutputContent?: string;
 };
-
-export async function verifyPropertyType(
-  tspType: string,
-  inputType: string,
-  options?: VerifyPropertyConfig,
-  needAzureCore: boolean = false,
-  additionalImports: string = ""
-) {
-  const defaultOption: VerifyPropertyConfig = {
-    additionalTypeSpecDefinition: "",
-    outputType: inputType,
-    additionalInputContent: "",
-    additionalOutputContent: ""
-  };
-  const {
-    additionalTypeSpecDefinition,
-    outputType,
-    additionalInputContent,
-    additionalOutputContent
-  } = {
-    ...defaultOption,
-    ...options
-  };
-  const schemaOutput = await emitModelsFromTypeSpec(
-    `
-  ${additionalTypeSpecDefinition}
-  #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-  model InputOutputModel {
-    prop: ${tspType};
-  }
-
-  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
-  #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
-  @route("/models")
-  @get
-  op getModel(@body input: InputOutputModel): InputOutputModel;`,
-    needAzureCore
-  );
-  assert.ok(schemaOutput);
-  const { inputModelFile, outputModelFile } = schemaOutput!;
-  assert.strictEqual(inputModelFile?.path, "models.ts");
-  assertEqualContent(
-    inputModelFile?.content!,
-    `
-  ${additionalImports}
-
-  export interface InputOutputModel {
-      prop: ${inputType};
-  }
-  ${additionalInputContent}`
-  );
-
-  assert.strictEqual(outputModelFile?.path, "outputModels.ts");
-  assertEqualContent(
-    outputModelFile?.content!,
-    `
-  ${additionalImports}
-
-  export interface InputOutputModelOutput {
-    prop: ${outputType};
-  }
-  ${additionalOutputContent}`
-  );
-}
