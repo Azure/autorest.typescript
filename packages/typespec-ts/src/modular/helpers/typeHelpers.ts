@@ -42,7 +42,10 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   unknown: { name: "unknown" }
 };
 
-function getTypeName(type: { name?: string; nullable?: boolean }): string {
+function handleNullableTypeName(type: {
+  name?: string;
+  nullable?: boolean;
+}): string {
   if (!type.name) {
     throw new Error("Unable to process type without name");
   }
@@ -65,7 +68,7 @@ export function getType(type: Type, format?: string): TypeMetadata {
     const typeMetadata: TypeMetadata = { ...simpleType };
     if (type.nullable) {
       typeMetadata.nullable = true;
-      typeMetadata.name = getTypeName(typeMetadata);
+      typeMetadata.name = handleNullableTypeName(typeMetadata);
     }
     return typeMetadata;
   }
@@ -120,7 +123,7 @@ function handleEnumType(type: Type): TypeMetadata {
     throw new Error("Unable to process enum without name");
   }
   let name = type.name ?? getAnonymousEnumName(type.values ?? []);
-  name = getTypeName({ name, nullable: type.nullable });
+  name = handleNullableTypeName({ name, nullable: type.nullable });
   return {
     name,
     nullable: type.nullable,
@@ -141,7 +144,7 @@ function handleListType(type: Type): TypeMetadata {
     type.elementType.format
   );
 
-  const name = getTypeName({
+  const name = handleNullableTypeName({
     name: `${elementTypeMetadata.name}[]`,
     nullable: type.nullable
   });
@@ -165,7 +168,7 @@ function handleModelType(type: Type): TypeMetadata {
       name: "any"
     };
   }
-  let name = getTypeName(type);
+  let name = handleNullableTypeName(type);
   return {
     name,
     nullable: type.nullable,
@@ -179,7 +182,7 @@ function handleModelType(type: Type): TypeMetadata {
 function handleDurationType(type: Type, format?: string): TypeMetadata {
   const isFormatSeconds = format === "seconds";
   let name = isFormatSeconds ? "number" : "string";
-  name = getTypeName({ name, nullable: type.nullable });
+  name = handleNullableTypeName({ name, nullable: type.nullable });
   return {
     name,
     nullable: type.nullable
@@ -199,7 +202,7 @@ function handleCombinedType(type: Type): TypeMetadata {
       return `${sdkType}`;
     })
     .join(" | ");
-  return { name: name, nullable: type.nullable };
+  return { name: `(${name})`, nullable: type.nullable };
 }
 
 /**

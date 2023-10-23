@@ -408,7 +408,7 @@ function buildBodyParameter(
   return "";
 }
 
-function getEncodingFormat(type: Type) {
+function getEncodingFormat(type: { format?: string }) {
   const supportedFormats = ["base64url", "base64", "byte"];
 
   if (!supportedFormats.includes(type.format ?? "")) {
@@ -921,10 +921,10 @@ function serializeRequestValue(
       }
       return required
         ? `uint8ArrayToString(${clientValue}, "${
-            getEncodingFormat(type) ?? "base64"
+            getEncodingFormat({ format }) ?? "base64"
           }")`
         : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
-            getEncodingFormat(type) ?? "base64"
+            getEncodingFormat({ format }) ?? "base64"
           }"): undefined`;
     default:
       return clientValue;

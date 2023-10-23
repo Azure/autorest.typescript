@@ -5,6 +5,15 @@ import { getType, buildType } from "../../src/modular/helpers/typeHelpers.js";
 describe("typeHelpers", () => {
   describe("getType", () => {
     describe("integer type", () => {
+      it("should handle basic any", () => {
+        const type: Type = {
+          type: "any",
+          nullable: false
+        };
+        const result = getType(type);
+        expect(result.name).to.equal("Record<string, any>");
+        expect(Boolean(result.nullable)).to.be.false;
+      });
       it("should handle basic integer", () => {
         const type: Type = {
           type: "integer",
@@ -307,7 +316,7 @@ describe("typeHelpers", () => {
           nullable: false
         };
         const result = getType(type);
-        expect(result.name).to.equal("string | number");
+        expect(result.name).to.equal("(string | number)");
         expect(Boolean(result.nullable)).to.be.false;
       });
     });
@@ -364,6 +373,16 @@ describe("typeHelpers", () => {
       };
       const result = getType(type);
       expect(result.name).to.equal('"TEST"');
+    });
+
+    it("should handle constant type", () => {
+      const type: Type = {
+        type: "constant",
+        value: "true",
+        valueType: { type: "boolean" }
+      };
+      const result = getType(type);
+      expect(result.name).to.equal("true");
     });
 
     it("should handle datetime type", () => {
@@ -551,7 +570,57 @@ describe("typeHelpers", () => {
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
-        expect(result.type).to.equal("string | number");
+        expect(result.type).to.equal("(string | number)");
+      });
+
+      it("should build type for list of combined types", () => {
+        const type: Type = {
+          type: "list",
+          elementType: {
+            type: "combined",
+            types: [
+              {
+                type: "constant",
+                value: `1`,
+                valueType: { type: "integer" }
+              },
+              {
+                type: "constant",
+                value: `false`,
+                valueType: { type: "boolean" }
+              },
+              {
+                type: "constant",
+                value: "t",
+                valueType: { type: "string" }
+              }
+            ]
+          },
+          nullable: false
+        };
+        const result = buildType("ClientCombined", type);
+        expect(result.name).to.equal("ClientCombined");
+        expect(result.type).to.equal('(1 | false | "t")[]');
+      });
+
+      it("should build type for combined types, string literals", () => {
+        const type: Type = {
+          type: "combined",
+          types: [
+            {
+              type: "constant",
+              value: `"str1"`
+            },
+            {
+              type: "constant",
+              value: `"str2"`
+            }
+          ],
+          nullable: false
+        };
+        const result = buildType("ClientCombined", type);
+        expect(result.name).to.equal("ClientCombined");
+        expect(result.type).to.equal(`("str1" | "str2")`);
       });
 
       it("should build type for combined types, one nullable", () => {
@@ -570,7 +639,7 @@ describe("typeHelpers", () => {
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
-        expect(result.type).to.equal("(string | null) | number");
+        expect(result.type).to.equal("((string | null) | number)");
       });
 
       it("should build type for combined types, both nullable", () => {
@@ -590,7 +659,7 @@ describe("typeHelpers", () => {
         };
         const result = buildType("ClientCombined", type);
         expect(result.name).to.equal("ClientCombined");
-        expect(result.type).to.equal("(string | null) | (number | null)");
+        expect(result.type).to.equal("((string | null) | (number | null))");
       });
     });
 
