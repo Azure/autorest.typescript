@@ -55,7 +55,7 @@ export async function _listWidgetsDeserialize(
   return (result.body ?? []).map((p) => ({
     id: p["id"],
     weight: p["weight"],
-    color: p["color"],
+    color: p["color"] as any,
   }));
 }
 
@@ -92,7 +92,7 @@ export async function _getWidgetDeserialize(
   return {
     id: result.body["id"],
     weight: result.body["weight"],
-    color: result.body["color"],
+    color: result.body["color"] as any,
   };
 }
 
@@ -129,7 +129,7 @@ export async function _createWidgetDeserialize(
   return {
     id: result.body["id"],
     weight: result.body["weight"],
-    color: result.body["color"],
+    color: result.body["color"] as any,
   };
 }
 
@@ -172,7 +172,7 @@ export async function _updateWidgetDeserialize(
   return {
     id: result.body["id"],
     weight: result.body["weight"],
-    color: result.body["color"],
+    color: result.body["color"] as any,
   };
 }
 
