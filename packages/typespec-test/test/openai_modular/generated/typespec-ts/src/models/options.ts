@@ -16,4 +16,4 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions
 export interface BeginAzureBatchImageGenerationOptions
   extends OperationOptions {}
 
-export interface GetCompletionsOptions extends OperationOptions {}
+export interface ChatGetCompletionsOptions extends OperationOptions {}

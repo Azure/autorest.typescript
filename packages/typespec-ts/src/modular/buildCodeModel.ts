@@ -99,6 +99,7 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -759,6 +760,8 @@ function emitBasicOperation(
     );
   });
 
+  const namespaceHierarchies = getModelNamespaceName(context, operation.namespace!);
+
   for (const param of httpOperation.parameters.parameters) {
     if (isIgnoredHeaderParam(param)) {
       continue;
@@ -854,7 +857,8 @@ function emitBasicOperation(
     isOverload: false,
     overloads: [],
     apiVersions: [getAddedOnVersion(context.program, operation)],
-    rlcResponse: rlcResponses?.[0]
+    rlcResponse: rlcResponses?.[0],
+    namespaceHierarchies
   };
 }
 
@@ -1420,11 +1424,20 @@ function emitOperationGroups(
     clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
-    operationGroups.push({
-      className: "",
-      propertyName: "",
-      operations: clientOperations
+    const groupMapping: Map<string, OperationGroup> = new Map<string, OperationGroup>();
+    clientOperations.forEach((op) => {
+      const groupName = op.namespaceHierarchies[0] ?? "";
+      if (!groupMapping.has(groupName)) {
+        groupMapping.set(groupName, {
+          className: groupName,
+          propertyName: groupName,
+          operations: [op]
+        });
+      } else {
+        groupMapping.get(groupName)!.operations.push(op);
+      }
     });
+    operationGroups.push(...groupMapping.values());
   }
   resolveConflictIfExist(operationGroups);
   return operationGroups;

@@ -42,4 +42,5 @@ export {
   GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
+  ChatGetCompletionsOptions,
 } from "./models/index.js";

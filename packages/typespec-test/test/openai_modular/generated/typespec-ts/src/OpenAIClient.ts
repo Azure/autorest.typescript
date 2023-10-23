@@ -19,8 +19,10 @@ import {
   GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
+  ChatGetCompletionsOptions,
 } from "./models/options.js";
 import {
+  chatGetCompletions,
   createOpenAI,
   OpenAIClientOptions,
   OpenAIContext,
@@ -112,16 +114,13 @@ export class OpenAIClient {
     return beginAzureBatchImageGeneration(this._client, body, options);
   }
 
-  /**
-   * Gets chat completions for the provided chat messages.
-   * Completions support a wide variety of tasks and generate text that continues from or "completes"
-   * provided prompt data.
-   */
-  getCompletions(
-    deploymentId: string,
-    body: ChatCompletionsOptions,
-    options: GetCompletionsOptions = { requestOptions: {} }
-  ): Promise<ChatCompletions> {
-    return getCompletions(this._client, deploymentId, body, options);
-  }
+  chat = {
+    getCompletions: (
+      deploymentId: string,
+      body: ChatCompletionsOptions,
+      options?: ChatGetCompletionsOptions
+    ): Promise<ChatCompletions> => {
+      return chatGetCompletions(this._client, deploymentId, body, options);
+    },
+  };
 }

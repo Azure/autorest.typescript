@@ -430,7 +430,11 @@ function getSchemaForModel(
   const program = dpgContext.program;
   const overridedModelName =
     getFriendlyName(program, model) ?? getProjectedName(program, model, "json");
-  let name = getModelNamespaceName(dpgContext, model.namespace!) + model.name;
+  let name =
+    model.name !== "" && model.name !== "Record" && !isAzureCoreErrorType(model)
+      ? getModelNamespaceName(dpgContext, model.namespace!).join("") +
+        model.name
+      : model.name;
   if (
     !overridedModelName &&
     model.templateMapper &&

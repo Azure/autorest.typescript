@@ -4,10 +4,12 @@ import { Namespace, isGlobalNamespace, isService } from "@typespec/compiler";
 export function getModelNamespaceName(
   dpgContext: SdkContext,
   namespace: Namespace
-): string | undefined {
-  return namespace &&
+): string[] {
+  const result: string[] = [];
+  namespace &&
     !isGlobalNamespace(dpgContext.program, namespace) &&
     !isService(dpgContext.program, namespace)
-    ? getModelNamespaceName(dpgContext, namespace.namespace!) + namespace.name
-    : "";
+    ? (result.push(...getModelNamespaceName(dpgContext, namespace.namespace!)), result.push(namespace.name))
+    : result;
+  return result;
 }
