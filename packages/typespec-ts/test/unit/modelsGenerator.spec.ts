@@ -1530,18 +1530,17 @@ describe("Input/output model type", () => {
       await verifyPropertyType(tspType, inputType, { outputType });
     });
 
-    it("should handle record of empty object Record<{}> -> input Record<string, Record<string, unknown>>, output Record<string, Record<string, any>>", async () => {
+    it("should handle record of empty object Record<{}> -> Record<string, {}>", async () => {
       const tspType = "Record<{}>";
-      const inputType = "Record<string, Record<string, unknown>>";
-      const outputType = "Record<string, Record<string, any>>";
+      const inputType = "Record<string, {}>";
+      const outputType = "Record<string, {}>";
       await verifyPropertyType(tspType, inputType, { outputType });
     });
 
-    it("should handle record of record of empty object Record<Record<{}>> -> input Record<string, Record<string, Record<string, unknown>>> output  Record<string, Record<string, Record<string, any>>>", async () => {
+    it("should handle record of record of empty object Record<Record<{}>> -> Record<string, Record<string, {}>>", async () => {
       const tspType = "Record<Record<{}>>";
-      const inputType =
-        "Record<string, Record<string, Record<string, unknown>>>";
-      const outputType = "Record<string, Record<string, Record<string, any>>>";
+      const inputType = "Record<string, Record<string, {}>>";
+      const outputType = "Record<string, Record<string, {}>>";
       await verifyPropertyType(tspType, inputType, { outputType });
     });
 
