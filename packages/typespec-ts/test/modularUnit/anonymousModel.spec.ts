@@ -5,7 +5,7 @@ import {
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe("anomymous model", () => {
+describe("anonymous  model", () => {
   describe("in request", async () => {
     describe("happens at body parameter", async () => {
       it("should flatten alias if spread in the payload with required parameters", async () => {
@@ -416,9 +416,9 @@ describe("anomymous model", () => {
         );
       });
 
-      it("should flatten empty anomymous model({})", async () => {});
+      it("should flatten empty anonymous  model({})", async () => {});
 
-      it("should flatten non-empty anomymous model({ ... })", async () => {});
+      it("should flatten non-empty anonymous  model({ ... })", async () => {});
     });
 
     describe("happens as a property in body", async () => {});
@@ -465,7 +465,7 @@ describe("anomymous model", () => {
           true
         );
       }
-      it("should map empty anomymous model({}) => {}", async () => {
+      it("should map empty anonymous model({}) => {}", async () => {
         const tspContent = `
         op read(): {};
         `;
@@ -505,10 +505,10 @@ describe("anomymous model", () => {
         );
       });
 
-      it("should return non-empty anomymous model({ ... })", async () => {});
+      it("should return non-empty anonymous  model({ ... })", async () => {});
     });
     describe("happens as a property in response body", async () => {
-      it("should map empty anomymous model({}) => {} & empty named model(A {}) => A {}", async () => {
+      it("should map empty anonymous  model({}) => {} & empty named model(A {}) => A {}", async () => {
         const tspContent = `
         model EmptyModel {
         }
@@ -590,7 +590,7 @@ describe("anomymous model", () => {
         );
       });
 
-      it("should map non-empty anomymous model({ ... }) => { ... }", async () => {
+      it("should map non-empty anonymous  model({ ... }) => { ... }", async () => {
         const tspContent = `
         model SimpleModel {
           test: string;
