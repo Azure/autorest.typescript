@@ -100,7 +100,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { stringToUint8Array } from "@azure/core-util";
 import {
   CreateTranscriptionOptions,
   CreateTranslationOptions,
@@ -145,7 +145,7 @@ export function _createTranscriptionSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
+        file: audio["file"],
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],
@@ -189,7 +189,7 @@ export function _createTranslationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
+        file: audio["file"],
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],
@@ -847,10 +847,7 @@ export function _createFileSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(file["file"], "base64"),
-        purpose: file["purpose"],
-      },
+      body: { file: file["file"], purpose: file["purpose"] },
     });
 }
 
@@ -1559,11 +1556,8 @@ export function _createImageEditSend(
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         prompt: image["prompt"],
-        image: uint8ArrayToString(image["image"], "base64"),
-        mask:
-          image["mask"] !== undefined
-            ? uint8ArrayToString(image["mask"], "base64")
-            : undefined,
+        image: image["image"],
+        mask: image["mask"],
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],
@@ -1613,7 +1607,7 @@ export function _createImageVariationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        image: uint8ArrayToString(image["image"], "base64"),
+        image: image["image"],
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],

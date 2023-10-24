@@ -3,27 +3,23 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
+  CreateTranscriptionRequest,
+  CreateTranslationRequest,
   CreateChatCompletionRequest,
   CreateFineTuningJobRequest,
   CreateCompletionRequest,
   CreateEditRequest,
   CreateEmbeddingRequest,
+  CreateFileRequest,
   CreateFineTuneRequest,
   CreateImageRequest,
+  CreateImageEditRequest,
+  CreateImageVariationRequest,
   CreateModerationRequest,
 } from "./models.js";
 
 export interface CreateTranscriptionBodyParam {
-  body: CreateTranscriptionFormBody;
-}
-
-export interface CreateTranscriptionFormBody {
-  file: string;
-  model: string | "whisper-1";
-  prompt?: string;
-  response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
-  temperature?: number;
-  language?: string;
+  body: CreateTranscriptionRequest;
 }
 
 export interface CreateTranscriptionMediaTypesParam {
@@ -35,15 +31,7 @@ export type CreateTranscriptionParameters = CreateTranscriptionMediaTypesParam &
   RequestParameters;
 
 export interface CreateTranslationBodyParam {
-  body: CreateTranslationFormBody;
-}
-
-export interface CreateTranslationFormBody {
-  file: string;
-  model: string | "whisper-1";
-  prompt?: string;
-  response_format?: "json" | "text" | "srt" | "verbose_json" | "vtt";
-  temperature?: number;
+  body: CreateTranslationRequest;
 }
 
 export interface CreateTranslationMediaTypesParam {
@@ -120,12 +108,7 @@ export type CreateEmbeddingParameters = CreateEmbeddingBodyParam &
 export type ListFilesParameters = RequestParameters;
 
 export interface CreateFileBodyParam {
-  body: CreateFileFormBody;
-}
-
-export interface CreateFileFormBody {
-  file: string;
-  purpose: string;
+  body: CreateFileRequest;
 }
 
 export interface CreateFileMediaTypesParam {
@@ -179,17 +162,7 @@ export interface CreateImageBodyParam {
 export type CreateImageParameters = CreateImageBodyParam & RequestParameters;
 
 export interface CreateImageEditBodyParam {
-  body: CreateImageEditFormBody;
-}
-
-export interface CreateImageEditFormBody {
-  prompt: string;
-  image: string;
-  mask?: string;
-  n?: number | null;
-  size?: "256x256" | "512x512" | "1024x1024" | null;
-  response_format?: "url" | "b64_json" | null;
-  user?: string;
+  body: CreateImageEditRequest;
 }
 
 export interface CreateImageEditMediaTypesParam {
@@ -201,15 +174,7 @@ export type CreateImageEditParameters = CreateImageEditMediaTypesParam &
   RequestParameters;
 
 export interface CreateImageVariationBodyParam {
-  body: CreateImageVariationFormBody;
-}
-
-export interface CreateImageVariationFormBody {
-  image: string;
-  n?: number | null;
-  size?: "256x256" | "512x512" | "1024x1024" | null;
-  response_format?: "url" | "b64_json" | null;
-  user?: string;
+  body: CreateImageVariationRequest;
 }
 
 export interface CreateImageVariationMediaTypesParam {
