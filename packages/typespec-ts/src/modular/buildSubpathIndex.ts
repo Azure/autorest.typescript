@@ -20,6 +20,9 @@ export function buildSubpathIndexFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
+    if (file.getFilePath().endsWith("index.ts")) {
+      continue;
+    }
     const exports = [...file.getExportedDeclarations().keys()].filter(
       (k) => !k.startsWith("_")
     );

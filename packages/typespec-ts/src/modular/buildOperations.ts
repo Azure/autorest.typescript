@@ -26,11 +26,16 @@ export function buildOperationFiles(
   const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
     const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
-    const fileName = operationGroup.className
-      ? `${normalizeName(operationGroup.className, NameType.File)}`
-      : // When the program has no operation groups defined all operations are put
-        // into a nameless operation group. We'll call this operations.
-        "operations";
+    const fileName =
+      operationGroup.className && operationGroup.namespaceHierarchies.length > 0
+        ? `${operationGroup.namespaceHierarchies
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/index`
+        : // When the program has no operation groups defined all operations are put
+          // into a nameless operation group. We'll call this operations.
+          "operations";
 
     const subfolder = client.subfolder;
     const srcPath = codeModel.modularOptions.sourceRoot;
@@ -42,7 +47,7 @@ export function buildOperationFiles(
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(srcPath, operationGroupFile, codeModel.project, subfolder);
+    importModels(srcPath, operationGroupFile, codeModel.project, subfolder, operationGroup.namespaceHierarchies.length);
 
     const namedImports: string[] = [];
     let clientType = "Client";
@@ -54,7 +59,7 @@ export function buildOperationFiles(
       }
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: `../../rest/${subfolder}/index.js`,
+          moduleSpecifier: `../../${("../".repeat(operationGroup.namespaceHierarchies.length))}rest/${subfolder}/index.js`,
           namedImports
         }
       ]);
@@ -68,7 +73,7 @@ export function buildOperationFiles(
         {
           moduleSpecifier: `${
             subfolder && subfolder !== "" ? "../" : ""
-          }../rest/index.js`,
+          }../${("../".repeat(operationGroup.namespaceHierarchies.length))}rest/index.js`,
           namedImports
         }
       ]);
@@ -124,7 +129,8 @@ export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,
-  subfolder: string = ""
+  subfolder: string = "",
+  importLayer: number = 0
 ) {
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
@@ -139,7 +145,7 @@ export function importModels(
 
   if (models.length > 0) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: "../models/models.js",
+      moduleSpecifier: `../${("../".repeat(importLayer))}models/models.js`,
       namedImports: models
     });
   }

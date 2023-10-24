@@ -46,6 +46,7 @@ export interface OperationGroup {
   className: string;
   propertyName: string;
   operations: Operation[];
+  namespaceHierarchies: string[];
 }
 export interface Policy {
   type: string;
