@@ -24,7 +24,6 @@ import {
   getFormattedPropertyDoc,
   getBodyType,
   predictDefaultValue,
-  getBinaryType,
   enrichBinaryTypeInBody
 } from "../utils/modelUtils.js";
 
@@ -239,32 +238,16 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  const { hasBinaryContent, hasFormContent } = getBodyDetail(
+  const { hasBinaryContent } = getBodyDetail(dpgContext, bodyType, headers);
+
+  return transformNormalBody(
     dpgContext,
     bodyType,
-    headers
+    parameters,
+    importedModels,
+    headers,
+    hasBinaryContent
   );
-
-  if (!hasFormContent) {
-    // Case 1: Handle the normal case without binary or form data
-    // Case 2: Handle the binary body
-    return transformNormalBody(
-      dpgContext,
-      bodyType,
-      parameters,
-      importedModels,
-      headers,
-      hasBinaryContent
-    );
-  } else {
-    // Case 3: Handle the form data
-    return transformMultiFormBody(
-      dpgContext,
-      bodyType,
-      parameters,
-      importedModels
-    );
-  }
 }
 
 function transformNormalBody(
@@ -286,6 +269,7 @@ function transformNormalBody(
   const type = extractNameFromTypeSpecType(
     dpgContext,
     bodyType,
+    [SchemaContext.Input],
     importedModels,
     headers
   );
@@ -311,77 +295,6 @@ function transformNormalBody(
   };
 }
 
-function transformMultiFormBody(
-  dpgContext: SdkContext,
-  bodyType: Type,
-  parameters: HttpOperationParameters,
-  importedModels: Set<string>
-): ParameterBodyMetadata | undefined {
-  const isModelBody = bodyType.kind === "Model";
-
-  if (!isModelBody) {
-    const type = extractNameFromTypeSpecType(
-      dpgContext,
-      bodyType,
-      importedModels
-    );
-    const description = extractDescriptionsFromBody(
-      dpgContext,
-      bodyType,
-      parameters
-    ).join("\n\n");
-    return {
-      isPartialBody: true,
-      body: [
-        {
-          name: "body",
-          type,
-          required: parameters?.bodyParameter?.optional === false,
-          description
-        }
-      ]
-    };
-  }
-
-  // If the body is model type we'll spread the properties into body parameters
-  const bodyParameters: ParameterBodyMetadata = {
-    isPartialBody: true,
-    body: []
-  };
-
-  for (const [paramName, paramType] of bodyType.properties) {
-    let type: string;
-    const bodySchema = getSchemaForType(
-      dpgContext,
-      paramType.type,
-      [SchemaContext.Exception, SchemaContext.Input],
-      false,
-      paramType
-    ) as any;
-    if (bodySchema?.format === "byte") {
-      type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
-    } else if (bodySchema?.items?.format === "byte") {
-      type = `Array<${getBinaryType([
-        SchemaContext.Input,
-        SchemaContext.Exception
-      ])}>`;
-    } else {
-      type = extractNameFromTypeSpecType(
-        dpgContext,
-        paramType.type,
-        importedModels
-      );
-    }
-    bodyParameters.body!.push({
-      name: paramName,
-      type,
-      required: paramType.optional === false
-    });
-  }
-
-  return bodyParameters;
-}
-
 function getBodyDetail(
   dpgContext: SdkContext,
   bodyType: Type,
@@ -400,6 +313,7 @@ function getBodyDetail(
 function extractNameFromTypeSpecType(
   dpgContext: SdkContext,
   type: Type,
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
@@ -417,7 +331,11 @@ function extractNameFromTypeSpecType(
   ]);
   if (isAnonymousModel(bodySchema)) {
     // Handle anonymous Model
-    return generateAnomymousModelSigniture(bodySchema, importedModels);
+    return generateAnomymousModelSigniture(
+      bodySchema,
+      schemaUsage,
+      importedModels
+    );
   }
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
@@ -442,12 +360,13 @@ function isAnonymousModel(schema: Schema) {
 
 function generateAnomymousModelSigniture(
   schema: ObjectSchema,
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>
 ) {
   let schemaSigiture = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
-    const propTypeName = getTypeName(propType);
+    const propTypeName = getTypeName(propType, schemaUsage);
     if (!propType || !propTypeName) {
       continue;
     }

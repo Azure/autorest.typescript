@@ -734,7 +734,7 @@ describe("BodyComplex Rest Client", () => {
               jawsize: 5,
               // Intentionally requiring a value not defined in the enum, since
               // such values should be allowed to be sent to/received from the server
-              color: "pinkish-gray"
+              color: "pinkish-gray" as any
             }
           ]
         };
@@ -801,7 +801,7 @@ describe("BodyComplex Rest Client", () => {
         {
           species: "scary",
           length: 30,
-          color: "pinkish-gray",
+          color: "pinkish-gray" as any,
           fishtype: "goblin",
           age: 1,
           birthday: new Date("2015-08-08T00:00:00.000Z"),
@@ -828,7 +828,7 @@ describe("BodyComplex Rest Client", () => {
         {
           species: "scary",
           length: 30,
-          color: "pinkish-gray",
+          color: "pinkish-gray" as any,
           fishtype: "goblin",
           age: 1,
           birthday: "2015-08-08T00:00:00Z",
