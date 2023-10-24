@@ -118,7 +118,7 @@ describe("Spread(...) and alias", () => {
               import { RequestParameters } from "@azure-rest/core-client";
       
               export interface ReadBodyParam {
-                body?: { name: string; value: number };
+                body?: { name: string; value?: number };
               }  
       
               export type ReadParameters = ReadBodyParam & RequestParameters;

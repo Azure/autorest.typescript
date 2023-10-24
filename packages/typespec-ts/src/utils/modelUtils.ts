@@ -874,7 +874,7 @@ function getSchemaForArrayModel(
             schema.outputTypeName = `Array<${schema.items.outputTypeName}>`;
           }
         } else if (isAnonymousObjectSchema(schema.items)) {
-          schema.typeName = `${schema.items.type}[]`;
+          schema.typeName = `${schema.items.typeName}[]`;
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `${schema.items.outputTypeName}[]`;
           }
