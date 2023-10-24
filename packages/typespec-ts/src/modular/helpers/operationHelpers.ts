@@ -399,13 +399,13 @@ function buildBodyParameter(
     }
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
-    ? uint8ArrayToString(${bodyParameter.clientName}, "${
-          bodyParameter.type.format ?? "base64"
-        }")
+    ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
+          bodyParameter.type
+        )}")
     : ${bodyParameter.clientName}`
-      : `body: uint8ArrayToString(${bodyParameter.clientName}, "${
-          bodyParameter.type.format ?? "base64"
-        }")`;
+      : `body: uint8ArrayToString(${
+          bodyParameter.clientName
+        }, "${getEncodingFormat(bodyParameter.type)}")`;
   } else if (
     bodyParameter.type.type === "byte-array" &&
     bodyParameter.type.format === "binary"
@@ -414,6 +414,16 @@ function buildBodyParameter(
   }
 
   return "";
+}
+
+function getEncodingFormat(type: { format?: string }) {
+  const supportedFormats = ["base64url", "base64", "byte"];
+
+  if (!supportedFormats.includes(type.format ?? "")) {
+    return "base64";
+  }
+
+  return type.format;
 }
 
 /**
@@ -820,7 +830,9 @@ function deserializeResponseValue(
   switch (type.type) {
     case "datetime":
       return required
-        ? `new Date(${restValue})`
+        ? type.nullable
+          ? `${restValue} === null ? null : new Date(${restValue})`
+          : `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "combined":
       return `${restValue} as any`;
@@ -920,9 +932,11 @@ function serializeRequestValue(
           coreUtilSet.add("uint8ArrayToString");
         }
         return required
-          ? `uint8ArrayToString(${clientValue}, "${format ?? "base64"}")`
+          ? `uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
           : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
-              format ?? "base64"
+              getEncodingFormat({ format }) ?? "base64"
             }"): undefined`;
       }
       return clientValue;

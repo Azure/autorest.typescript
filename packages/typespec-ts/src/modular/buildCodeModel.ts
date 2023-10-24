@@ -1303,7 +1303,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else {
-    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
+    return { ...emitType(context, sdkType.__raw!), nullable: sdkType.nullable };
   }
 }
 
