@@ -1137,14 +1137,17 @@ export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
-export function getImportedModelName(schema: Schema): string[] {
+export function getImportedModelName(
+  schema: Schema,
+  usage?: SchemaContext[]
+): string[] {
   switch (schema.type) {
     case "array": {
       const ret = new Set<string>();
       [(schema as ArraySchema).items]
         .filter((i?: Schema) => !!i && i.type === "object")
         .forEach((i?: Schema) =>
-          getImportedModelName(i!).forEach((it) => ret.add(it))
+          getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
       return [...ret];
     }
@@ -1156,18 +1159,22 @@ export function getImportedModelName(schema: Schema): string[] {
           if (!properties[name]) {
             continue;
           }
-          getImportedModelName(properties[name]!).forEach((it) => ret.add(it));
+          getImportedModelName(properties[name]!, usage).forEach((it) =>
+            ret.add(it)
+          );
         }
         return [...ret];
       }
-      return getPriorityName(schema) ? [getPriorityName(schema)] : [];
+      return getPriorityName(schema, usage)
+        ? [getPriorityName(schema, usage)]
+        : [];
     }
     case "dictionary": {
       const ret = new Set<string>();
       [(schema as DictionarySchema).additionalProperties]
         .filter((i?: Schema) => !!i && i.type === "object")
         .forEach((i?: Schema) =>
-          getImportedModelName(i!).forEach((it) => ret.add(it))
+          getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
 
       return [...ret];
@@ -1177,7 +1184,7 @@ export function getImportedModelName(schema: Schema): string[] {
       ((schema as Schema).enum ?? [])
         .filter((i?: Schema) => !!i && i.type === "object")
         .forEach((i?: Schema) =>
-          getImportedModelName(i!).forEach((it) => ret.add(it))
+          getImportedModelName(i!, usage).forEach((it) => ret.add(it))
         );
 
       return [...ret];

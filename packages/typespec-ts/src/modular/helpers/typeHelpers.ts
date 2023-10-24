@@ -1,8 +1,5 @@
 import { EnumValue, Type } from "../modularCodeModel.js";
 
-/**
- * Represents metadata for a given Type to generate the TypeScript equivalent.
- */
 export interface TypeMetadata {
   name: string;
   originModule?: string;
@@ -13,39 +10,7 @@ export interface TypeMetadata {
 
 /**
  * Returns a string representation for an anonymous enum using its values.
-    return `(${getAnonymousName(name, type)} | null)`;
-  }
-
-  return getAnonymousName(name, type);
-}
-function getAnonymousName(name: string, type: Type): string {
-  if (name === "") {
-    return generateAnomymousModelSigniture(type, new Set<string>());
-  }
-}
-
-export function generateAnomymousModelSigniture(
-  type: Type,
-  _importedModels: Set<string>
-) {
-  let schemaSigiture = `{`;
-  for (const prop of type.properties ?? []) {
-    const propName = prop.clientName ?? prop.restApiName ?? "";
-    const propType = prop.type;
-    const propTypeName = getTypeName(getType(propType, propType.format));
-    if (!propType || !propTypeName) {
-      continue;
-    }
-    // const importNames = getImportedModelName(propType);
-    // if (importNames) {
-    //   importNames!.forEach(importedModels.add, importedModels);
-    // }
-    const isOptional = prop.optional ? "?" : "";
-    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
-  }
-
-  schemaSigiture += `}`;
-  return schemaSigiture;
+ */
 function getAnonymousEnumName(values: EnumValue[]): string {
   return values
     .map((v) => (typeof v.value === "string" ? `"${v.value}"` : `${v.value}`))
@@ -73,6 +38,23 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   any: { name: "Record<string, any>" },
   unknown: { name: "unknown" }
 };
+
+export function generateAnomymousModelSigniture(type: Type) {
+  let schemaSigiture = `{`;
+  for (const prop of type.properties ?? []) {
+    const propName = prop.clientName ?? prop.restApiName ?? "";
+    const propType = prop.type;
+    const propTypeName = getType(propType, propType.format).name;
+    if (!propType || !propTypeName) {
+      continue;
+    }
+    const isOptional = prop.optional ? "?" : "";
+    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
+  }
+
+  schemaSigiture += `}`;
+  return schemaSigiture;
+}
 
 function handleNullableTypeName(type: {
   name?: string;

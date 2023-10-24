@@ -321,17 +321,10 @@ function extractNameFromTypeSpecType(
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
-  const importedNames = getImportedModelName(bodySchema) ?? [];
+  const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
   importedNames.forEach(importedModels.add, importedModels);
 
-  let typeName = getTypeName(bodySchema, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]);
-      bodySchema,
-      schemaUsage,
-      importedModels
-    );
+  let typeName = getTypeName(bodySchema, schemaUsage);
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
@@ -345,8 +338,6 @@ function extractNameFromTypeSpecType(
   return typeName;
 }
 
-  schemaUsage: SchemaContext[],
-    const propTypeName = getTypeName(propType, schemaUsage);
 function extractDescriptionsFromBody(
   dpgContext: SdkContext,
   bodyType: Type,
