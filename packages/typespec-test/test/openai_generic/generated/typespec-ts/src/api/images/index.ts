@@ -21,7 +21,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { stringToUint8Array, uint8ArrayToString } from "@azure/core-util";
+import { stringToUint8Array } from "@azure/core-util";
 import {
   CreateImageOptions,
   CreateImageEditOptions,
@@ -89,11 +89,8 @@ export function _createImageEditSend(
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
         prompt: image["prompt"],
-        image: uint8ArrayToString(image["image"], "base64"),
-        mask:
-          image["mask"] !== undefined
-            ? uint8ArrayToString(image["mask"], "base64")
-            : undefined,
+        image: image["image"],
+        mask: image["mask"],
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],
@@ -143,7 +140,7 @@ export function _createImageVariationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        image: uint8ArrayToString(image["image"], "base64"),
+        image: image["image"],
         n: image["n"],
         size: image["size"],
         response_format: image["responseFormat"],

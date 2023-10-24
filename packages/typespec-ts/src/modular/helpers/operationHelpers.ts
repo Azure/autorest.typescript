@@ -384,7 +384,10 @@ function buildBodyParameter(
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
-  if (bodyParameter.type.type === "byte-array") {
+  if (
+    bodyParameter.type.type === "byte-array" &&
+    bodyParameter.type.format !== "binary"
+  ) {
     const coreUtilSet = importSet.get("@azure/core-util");
     if (!coreUtilSet) {
       importSet.set(
@@ -403,6 +406,11 @@ function buildBodyParameter(
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter.type)}")`;
+  } else if (
+    bodyParameter.type.type === "byte-array" &&
+    bodyParameter.type.format === "binary"
+  ) {
+    return `\nbody: ${bodyParameter.clientName},`;
   }
 
   return "";
@@ -847,17 +855,20 @@ function deserializeResponseValue(
         return restValue;
       }
     case "byte-array":
-      if (!coreUtilSet) {
-        importSet.set(
-          "@azure/core-util",
-          new Set<string>().add("stringToUint8Array")
-        );
-      } else {
-        coreUtilSet.add("stringToUint8Array");
+      if (format !== "binary") {
+        if (!coreUtilSet) {
+          importSet.set(
+            "@azure/core-util",
+            new Set<string>().add("stringToUint8Array")
+          );
+        } else {
+          coreUtilSet.add("stringToUint8Array");
+        }
+        return `typeof ${restValue} === 'string'
+        ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
+        : ${restValue}`;
       }
-      return `typeof ${restValue} === 'string'
-      ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
-      : ${restValue}`;
+      return restValue;
     default:
       return restValue;
   }
@@ -911,21 +922,24 @@ function serializeRequestValue(
         return clientValue;
       }
     case "byte-array":
-      if (!coreUtilSet) {
-        importSet.set(
-          "@azure/core-util",
-          new Set<string>().add("uint8ArrayToString")
-        );
-      } else {
-        coreUtilSet.add("uint8ArrayToString");
+      if (format !== "binary") {
+        if (!coreUtilSet) {
+          importSet.set(
+            "@azure/core-util",
+            new Set<string>().add("uint8ArrayToString")
+          );
+        } else {
+          coreUtilSet.add("uint8ArrayToString");
+        }
+        return required
+          ? `uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }"): undefined`;
       }
-      return required
-        ? `uint8ArrayToString(${clientValue}, "${
-            getEncodingFormat({ format }) ?? "base64"
-          }")`
-        : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
-            getEncodingFormat({ format }) ?? "base64"
-          }"): undefined`;
+      return clientValue;
     default:
       return clientValue;
   }

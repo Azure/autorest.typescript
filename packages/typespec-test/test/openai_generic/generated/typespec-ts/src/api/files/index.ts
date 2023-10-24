@@ -25,7 +25,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   ListFilesOptions,
   CreateFileOptions,
@@ -83,10 +82,7 @@ export function _createFileSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
-      body: {
-        file: uint8ArrayToString(file["file"], "base64"),
-        purpose: file["purpose"],
-      },
+      body: { file: file["file"], purpose: file["purpose"] },
     });
 }
 

@@ -15,7 +15,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import { CreateTranslationOptions } from "../../../models/options.js";
 
 export function _createTranslationSend(
@@ -31,7 +30,7 @@ export function _createTranslationSend(
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "multipart/form-data",
       body: {
-        file: uint8ArrayToString(audio["file"], "base64"),
+        file: audio["file"],
         model: audio["model"],
         prompt: audio["prompt"],
         response_format: audio["responseFormat"],

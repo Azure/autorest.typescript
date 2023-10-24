@@ -527,60 +527,70 @@ export interface Model {
 export class OpenAIClient {
     constructor(credential: KeyCredential, options?: OpenAIClientOptions);
     // (undocumented)
-    cancelFineTune(fineTuneId: string, options?: CancelFineTuneOptions): Promise<FineTune>;
+    audioTranscriptions: {
+        createTranscription: (audio: CreateTranscriptionRequest, options?: CreateTranscriptionOptions) => Promise<CreateTranscriptionResponse>;
+    };
     // (undocumented)
-    cancelFineTuningJob(fineTuningJobId: string, options?: CancelFineTuningJobOptions): Promise<FineTuningJob>;
+    audioTranslations: {
+        createTranslation: (audio: CreateTranslationRequest, options?: CreateTranslationOptions) => Promise<CreateTranslationResponse>;
+    };
     // (undocumented)
-    createChatCompletion(body: CreateChatCompletionRequest, options?: CreateChatCompletionOptions): Promise<CreateChatCompletionResponse>;
+    chatCompletions: {
+        createChatCompletion: (body: CreateChatCompletionRequest, options?: CreateChatCompletionOptions) => Promise<CreateChatCompletionResponse>;
+    };
     // (undocumented)
-    createCompletion(body: CreateCompletionRequest, options?: CreateCompletionOptions): Promise<CreateCompletionResponse>;
+    completions: {
+        createCompletion: (body: CreateCompletionRequest, options?: CreateCompletionOptions) => Promise<CreateCompletionResponse>;
+    };
     // (undocumented)
-    createEdit(edit: CreateEditRequest, options?: CreateEditOptions): Promise<CreateEditResponse>;
+    edits: {
+        createEdit: (edit: CreateEditRequest, options?: CreateEditOptions) => Promise<CreateEditResponse>;
+    };
     // (undocumented)
-    createEmbedding(embedding: CreateEmbeddingRequest, options?: CreateEmbeddingOptions): Promise<CreateEmbeddingResponse>;
+    embeddings: {
+        createEmbedding: (embedding: CreateEmbeddingRequest, options?: CreateEmbeddingOptions) => Promise<CreateEmbeddingResponse>;
+    };
     // (undocumented)
-    createFile(file: CreateFileRequest, options?: CreateFileOptions): Promise<OpenAIFile>;
+    files: {
+        listFiles: (options?: ListFilesOptions) => Promise<ListFilesResponse>;
+        createFile: (file: CreateFileRequest, options?: CreateFileOptions) => Promise<OpenAIFile>;
+        retrieveFile: (fileId: string, options?: RetrieveFileOptions) => Promise<OpenAIFile>;
+        deleteFile: (fileId: string, options?: DeleteFileOptions) => Promise<DeleteFileResponse>;
+        downloadFile: (fileId: string, options?: DownloadFileOptions) => Promise<string>;
+    };
     // (undocumented)
-    createFineTune(fineTune: CreateFineTuneRequest, options?: CreateFineTuneOptions): Promise<FineTune>;
-    createFineTuningJob(job: CreateFineTuningJobRequest, options?: CreateFineTuningJobOptions): Promise<FineTuningJob>;
+    fineTunes: {
+        createFineTune: (fineTune: CreateFineTuneRequest, options?: CreateFineTuneOptions) => Promise<FineTune>;
+        listFineTunes: (options?: ListFineTunesOptions) => Promise<ListFineTunesResponse>;
+        retrieveFineTune: (fineTuneId: string, options?: RetrieveFineTuneOptions) => Promise<FineTune>;
+        listFineTuneEvents: (fineTuneId: string, options?: ListFineTuneEventsOptions) => Promise<ListFineTuneEventsResponse>;
+        cancelFineTune: (fineTuneId: string, options?: CancelFineTuneOptions) => Promise<FineTune>;
+    };
     // (undocumented)
-    createImage(image: CreateImageRequest, options?: CreateImageOptions): Promise<ImagesResponse>;
+    fineTuningJobs: {
+        createFineTuningJob: (job: CreateFineTuningJobRequest, options?: CreateFineTuningJobOptions) => Promise<FineTuningJob>;
+        listPaginatedFineTuningJobs: (options?: ListPaginatedFineTuningJobsOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
+        retrieveFineTuningJob: (fineTuningJobId: string, options?: RetrieveFineTuningJobOptions) => Promise<FineTuningJob>;
+        listFineTuningEvents: (fineTuningJobId: string, options?: ListFineTuningEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
+        cancelFineTuningJob: (fineTuningJobId: string, options?: CancelFineTuningJobOptions) => Promise<FineTuningJob>;
+    };
     // (undocumented)
-    createImageEdit(image: CreateImageEditRequest, options?: CreateImageEditOptions): Promise<ImagesResponse>;
+    images: {
+        createImage: (image: CreateImageRequest, options?: CreateImageOptions) => Promise<ImagesResponse>;
+        createImageEdit: (image: CreateImageEditRequest, options?: CreateImageEditOptions) => Promise<ImagesResponse>;
+        createImageVariation: (image: CreateImageVariationRequest, options?: CreateImageVariationOptions) => Promise<ImagesResponse>;
+    };
     // (undocumented)
-    createImageVariation(image: CreateImageVariationRequest, options?: CreateImageVariationOptions): Promise<ImagesResponse>;
+    models: {
+        listModels: (options?: ListModelsOptions) => Promise<ListModelsResponse>;
+        retrieve: (model: string, options?: RetrieveOptions) => Promise<Model>;
+        deleteOperation: (model: string, options?: DeleteOptions) => Promise<DeleteModelResponse>;
+    };
     // (undocumented)
-    createModeration(content: CreateModerationRequest, options?: CreateModerationOptions): Promise<CreateModerationResponse>;
-    // (undocumented)
-    createTranscription(audio: CreateTranscriptionRequest, options?: CreateTranscriptionOptions): Promise<CreateTranscriptionResponse>;
-    // (undocumented)
-    createTranslation(audio: CreateTranslationRequest, options?: CreateTranslationOptions): Promise<CreateTranslationResponse>;
-    // (undocumented)
-    deleteFile(fileId: string, options?: DeleteFileOptions): Promise<DeleteFileResponse>;
-    deleteOperation(model: string, options?: DeleteOptions): Promise<DeleteModelResponse>;
-    // (undocumented)
-    downloadFile(fileId: string, options?: DownloadFileOptions): Promise<string>;
-    // (undocumented)
-    listFiles(options?: ListFilesOptions): Promise<ListFilesResponse>;
-    // (undocumented)
-    listFineTuneEvents(fineTuneId: string, options?: ListFineTuneEventsOptions): Promise<ListFineTuneEventsResponse>;
-    // (undocumented)
-    listFineTunes(options?: ListFineTunesOptions): Promise<ListFineTunesResponse>;
-    // (undocumented)
-    listFineTuningEvents(fineTuningJobId: string, options?: ListFineTuningEventsOptions): Promise<ListFineTuningJobEventsResponse>;
-    // (undocumented)
-    listModels(options?: ListModelsOptions): Promise<ListModelsResponse>;
-    // (undocumented)
-    listPaginatedFineTuningJobs(options?: ListPaginatedFineTuningJobsOptions): Promise<ListPaginatedFineTuningJobsResponse>;
+    moderations: {
+        createModeration: (content: CreateModerationRequest, options?: CreateModerationOptions) => Promise<CreateModerationResponse>;
+    };
     readonly pipeline: Pipeline;
-    // (undocumented)
-    retrieve(model: string, options?: RetrieveOptions): Promise<Model>;
-    // (undocumented)
-    retrieveFile(fileId: string, options?: RetrieveFileOptions): Promise<OpenAIFile>;
-    // (undocumented)
-    retrieveFineTune(fineTuneId: string, options?: RetrieveFineTuneOptions): Promise<FineTune>;
-    // (undocumented)
-    retrieveFineTuningJob(fineTuningJobId: string, options?: RetrieveFineTuningJobOptions): Promise<FineTuningJob>;
 }
 
 // @public (undocumented)
