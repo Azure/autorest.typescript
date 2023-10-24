@@ -247,17 +247,6 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
   return type as Model;
 }
 
-// function isEmptyModel(type: EmitterType): boolean {
-//   // object, {}, Model{} all will be treated as empty model
-//   return (
-//     type.kind === "Model" &&
-//     type.properties.size === 0 &&
-//     !type.baseModel &&
-//     type.derivedModels.length === 0 &&
-//     !type.indexer
-//   );
-// }
-
 function processModelProperties(
   context: SdkContext,
   newValue: any,
@@ -299,16 +288,7 @@ function getType(
       return cached;
     }
   }
-  let newValue: any;
-  // if (isEmptyModel(type)) {
-  //   // do not generate model for empty model, treat it as any
-  //   newValue = { type: "any" };
-  // } else {
-  //   newValue = emitType(context, type);
-  // }
-
-  newValue = emitType(context, type);
-
+  let newValue: any = emitType(context, type);
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
   }
