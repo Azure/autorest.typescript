@@ -1,6 +1,7 @@
 import { ObjectSchema } from "@azure-tools/rlc-common";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 import { assert } from "chai";
+import { getModelInlineSigniture } from "../../../src/utils/modelUtils.js";
 
 describe("#transformSchemas", () => {
   async function verifyFirstProperty(tspType: string) {
@@ -735,6 +736,41 @@ describe("#transformSchemas", () => {
       assert.strictEqual(first.type, "object");
       const property = first.properties![`"prop"`];
       console.log(schemaOutput, property);
+    });
+
+    it.skip("anonymous model with null and complext model", async () => {
+      const property = await verifyFirstProperty(`
+      {
+        index: safeint;
+        text: string;
+        logprobs: null | {
+          tokens: string[];
+          token_logprobs: float64[];
+          top_logprobs: Record<safeint>[];
+          text_offset: safeint[];
+        }
+      }`);
+      const schemaOutput = await emitSchemasFromTypeSpec(`
+      model Test {
+          prop: {
+            index: safeint;
+            text: string;
+            logprobs: null | {
+              tokens: string[];
+              token_logprobs: float64[];
+              top_logprobs: Record<safeint>[];
+              text_offset: safeint[];
+            }
+          }[];
+      }
+      @route("/models")
+      @get
+      op getModel(@body input: Test): Test;
+    `);
+      const first = schemaOutput?.[0] as ObjectSchema;
+      const res = `{"prop": {"index": number;"text": string;"logprobs": null | {"tokens": string[];"token_logprobs": number[];"top_logprobs": Record<string, number>[];"text_offset": number[];};};}`;
+      console.log(property, getModelInlineSigniture(first));
+      assert.strictEqual(getModelInlineSigniture(first), res);
     });
   });
 });

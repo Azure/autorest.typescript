@@ -38,7 +38,7 @@ function handleAnomymousModelName(type: Type) {
     if (!propName || !propTypeName) {
       continue;
     }
-    retVal += `${propName}${prop.optional ? "?" : ""}: ${propTypeName};`;
+    retVal += `"${propName}"${prop.optional ? "?" : ""}: ${propTypeName};`;
   }
 
   retVal += `}`;

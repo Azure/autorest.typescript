@@ -873,6 +873,11 @@ function getSchemaForArrayModel(
           if (usage && usage.includes(SchemaContext.Output)) {
             schema.outputTypeName = `Array<${schema.items.outputTypeName}>`;
           }
+        } else if (isAnonymousObjectSchema(schema.items)) {
+          schema.typeName = `${schema.items.type}[]`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `${schema.items.outputTypeName}[]`;
+          }
         } else {
           schema.typeName = schema.items.typeName
             .split("|")

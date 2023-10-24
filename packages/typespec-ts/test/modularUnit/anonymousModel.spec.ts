@@ -5,7 +5,7 @@ import {
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe("anonymous  model", () => {
+describe("anonymous model", () => {
   describe("in request", async () => {
     describe("happens at body parameter", async () => {
       it("should flatten alias if spread in the payload with required parameters", async () => {
@@ -416,12 +416,207 @@ describe("anonymous  model", () => {
         );
       });
 
-      it("should flatten empty anonymous  model({})", async () => {});
+      it("should flatten empty anonymous  model({})", async () => {
+        const tspContent = `
+      op read(@path pathParam: string, @query queryParam: string, @body body: {}): OkResponse;
+        `;
+        const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+        assert.isUndefined(modelFile);
+        const operationFiles = await emitModularOperationsFromTypeSpec(
+          tspContent
+        );
+        assert.ok(operationFiles);
+        assert.equal(operationFiles?.length, 1);
+        assertEqualContent(
+          operationFiles?.[0]?.getFullText()!,
+          `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        export function _readSend(
+          context: Client,
+          pathParam: string,
+          queryParam: string,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read200Response> {
+          return context
+            .path("/{pathParam}", pathParam)
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              queryParameters: { queryParam: queryParam }
+            });
+        }
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if (result.status !== "200") {
+            throw result.body;
+          }
+          return;
+        }
+        export async function read(
+          context: Client,
+          pathParam: string,
+          queryParam: string,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _readSend(
+            context,
+            pathParam,
+            queryParam,
+            options
+          );
+          return _readDeserialize(result);
+        }`,
+          true
+        );
+      });
 
-      it("should flatten non-empty anonymous  model({ ... })", async () => {});
+      it("should flatten non-empty anonymous  model({ ... })", async () => {
+        const tspContent = `
+      model Bar {
+        prop1: string;
+        prop2: int64;
+      }
+      op read(@path pathParam: string, @query queryParam: string, @body test: {
+        prop1: string;
+        prop2: Bar;
+      }): OkResponse;
+        `;
+        const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+        assert.ok(modelFile);
+        assertEqualContent(
+          modelFile?.getFullText()!,
+          `
+          export interface Bar {
+            prop1: string;
+            prop2: number;
+          }`
+        );
+        const operationFiles = await emitModularOperationsFromTypeSpec(
+          tspContent
+        );
+        assert.ok(operationFiles);
+        assert.equal(operationFiles?.length, 1);
+        assertEqualContent(
+          operationFiles?.[0]?.getFullText()!,
+          `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        export function _readSend(
+          context: Client,
+          pathParam: string,
+          queryParam: string,
+          prop1: string,
+          prop2: Bar,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read200Response> {
+          return context
+            .path("/{pathParam}", pathParam)
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              queryParameters: { queryParam: queryParam },
+              body: {
+                prop1: prop1,
+                prop2: { prop1: prop2["prop1"], prop2: prop2["prop2"] },
+              },
+            });
+        }
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if (result.status !== "200") {
+            throw result.body;
+          }
+          return;
+        }
+        export async function read(
+          context: Client,
+          pathParam: string,
+          queryParam: string,
+          prop1: string,
+          prop2: Bar,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _readSend(
+            context,
+            pathParam,
+            queryParam,
+            prop1,
+            prop2,
+            options
+          );
+          return _readDeserialize(result);
+        }`,
+          true
+        );
+      });
     });
 
-    describe("happens as a property in body", async () => {});
+    describe("happens as a property in body", async () => {
+      it("should flatten empty anonymous  model({})", async () => {
+        const tspContent = `
+        model Test {
+          color: {
+            foo?: string;
+          };
+        }
+        op read(@body body: Test): void;
+        `;
+        const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+        assert.ok(modelFile);
+        assertEqualContent(
+          modelFile!.getFullText()!,
+          `
+        export interface Test {
+          color: { foo?: string };
+        }`
+        );
+
+        const operationFiles = await emitModularOperationsFromTypeSpec(
+          tspContent
+        );
+        assert.ok(operationFiles);
+        assert.equal(operationFiles?.length, 1);
+        assertEqualContent(
+          operationFiles?.[0]?.getFullText()!,
+          `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        export function _readSend(
+          context: Client,
+          body: Test,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read204Response> {
+          return context
+            .path("/")
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              body: { color: { foo: body.color["foo"] } },
+            });
+        }
+        export async function _readDeserialize(result: Read204Response): Promise<void> {
+          if (result.status !== "204") {
+            throw result.body;
+          }
+          return;
+        }
+        export async function read(
+          context: Client,
+          body: Test,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _readSend(context, body, options);
+          return _readDeserialize(result);
+        }`,
+          true
+        );
+      });
+    });
   });
 
   describe("in response", async () => {
@@ -505,7 +700,56 @@ describe("anonymous  model", () => {
         );
       });
 
-      it("should return non-empty anonymous  model({ ... })", async () => {});
+      it("should return non-empty anonymous  model({ ... })", async () => {
+        const tspContent = `
+        op read(): { foo?: {bar: string | null}};
+        `;
+        // No models.ts file generated
+        assert.isUndefined(await emitModularModelsFromTypeSpec(tspContent));
+        const operationFiles = await emitModularOperationsFromTypeSpec(
+          tspContent
+        );
+        assert.equal(operationFiles?.length, 1);
+        // Generate the operations.ts file with empty model
+        assertEqualContent(
+          operationFiles?.[0]!.getFullText()!,
+          `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        export function _readSend(
+          context: Client,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read200Response> {
+          return context
+            .path("/")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        export async function _readDeserialize(
+          result: Read200Response
+        ): Promise<{ foo?: { bar: string | null } }> {
+          if (result.status !== "200") {
+            throw result.body;
+          }
+          return {
+            foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
+          };
+        }
+        export async function read(
+          context: Client,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<{ foo?: { bar: string | null } }> {
+          const result = await _readSend(
+            context,
+            options
+          );
+          return _readDeserialize(result);
+        }`,
+          true
+        );
+      });
     });
     describe("happens as a property in response body", async () => {
       it("should map empty anonymous  model({}) => {} & empty named model(A {}) => A {}", async () => {

@@ -73,6 +73,42 @@ describe("typeHelpers", () => {
         expect(result.originModule).to.equal("models.js");
         expect(Boolean(result.nullable)).to.be.false;
       });
+
+      describe.only("anonymous model", () => {
+        it("should handle empty anonymous model", () => {
+          const type: Type = {
+            type: "model",
+            name: "",
+            nullable: false
+          };
+          const result = getType(type);
+          expect(result.name).to.equal("{}");
+        });
+
+        it.only("should handle anonymous model with properties", () => {
+          const type: Type = {
+            type: "model",
+            name: "",
+            nullable: false,
+            properties: [
+              {
+                clientName: `foo/bar`,
+                type: {
+                  type: "string"
+                }
+              },
+              {
+                clientName: "bar",
+                type: {
+                  type: "integer"
+                }
+              }
+            ] as any
+          };
+          const result = getType(type);
+          expect(result.name).to.equal(`{"foo/bar": string;"bar": number;}`);
+        });
+      });
     });
 
     describe("datetime types", () => {

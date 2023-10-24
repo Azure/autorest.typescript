@@ -12,6 +12,7 @@ export {
   ChatCompletionFunctions,
   ChatCompletionFunctionCallOption,
   CreateChatCompletionResponse,
+  ChatCompletionResponseMessage,
   CompletionUsage,
   CreateFineTuningJobRequest,
   FineTuningJob,
