@@ -375,6 +375,17 @@ describe("typeHelpers", () => {
       expect(result.name).to.equal('"TEST"');
     });
 
+    it("should handle nullable constant type", () => {
+      const type: Type = {
+        type: "constant",
+        value: "TEST",
+        valueType: { type: "string" },
+        nullable: true
+      };
+      const result = getType(type);
+      expect(result.name).to.equal('("TEST" | null)');
+    });
+
     it("should handle constant type", () => {
       const type: Type = {
         type: "constant",

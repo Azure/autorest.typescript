@@ -1,4 +1,4 @@
-import { EnumValue, Type } from "../modularCodeModel.js";
+import { Type } from "../modularCodeModel.js";
 
 export interface TypeMetadata {
   name: string;
@@ -6,15 +6,6 @@ export interface TypeMetadata {
   isRelative?: boolean;
   nullable?: boolean;
   modifier?: "Array";
-}
-
-/**
- * Returns a string representation for an anonymous enum using its values.
- */
-function getAnonymousEnumName(values: EnumValue[]): string {
-  return values
-    .map((v) => (typeof v.value === "string" ? `"${v.value}"` : `${v.value}`))
-    .join(" | ");
 }
 
 // Mapping of simple types to their TypeScript equivalents.
@@ -122,7 +113,11 @@ function handleConstantType(type: Type): TypeMetadata {
   if (type.valueType?.type === "string") {
     typeName = type.value ? `"${type.value}"` : "undefined";
   }
-  return { name: typeName, nullable: type.nullable };
+  let name = handleNullableTypeName({
+    name: typeName,
+    nullable: type.nullable
+  });
+  return { name, nullable: type.nullable };
 }
 
 /**
@@ -136,8 +131,10 @@ function handleEnumType(type: Type): TypeMetadata {
   ) {
     throw new Error("Unable to process enum without name");
   }
-  let name = type.name ?? getAnonymousEnumName(type.values ?? []);
-  name = handleNullableTypeName({ name, nullable: type.nullable });
+  let name = handleNullableTypeName({
+    name: type.name,
+    nullable: type.nullable
+  });
   return {
     name,
     nullable: type.nullable,
