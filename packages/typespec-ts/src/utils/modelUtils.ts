@@ -227,20 +227,74 @@ export function includeDerivedModel(model: Model): boolean {
   );
 }
 
+function applyEncoding(
+  dpgContext: SdkContext,
+  typespecType: Scalar | ModelProperty,
+  target: any = {}
+) {
+  const encodeData = getEncode(dpgContext.program, typespecType);
+  if (encodeData) {
+    const newTarget = { ...target };
+    const newType = getSchemaForScalar(dpgContext, encodeData.type);
+    newTarget["type"] = newType["type"];
+    newTarget["typeName"] = newType["typeName"];
+    newTarget["outputTypeName"] = newType["outputTypeName"];
+    // If the target already has a format it takes priority. (e.g. int32)
+    newTarget["format"] = mergeFormatAndEncoding(
+      newTarget.format,
+      encodeData.encoding,
+      newType["format"]
+    );
+    return newTarget;
+  }
+  return target;
+}
+
+function mergeFormatAndEncoding(
+  format: string | undefined,
+  encoding: string,
+  encodeAsFormat: string | undefined
+): string {
+  switch (format) {
+    case undefined:
+      return encodeAsFormat ?? encoding;
+    case "date-time":
+      return encoding;
+    case "duration":
+    default:
+      return encodeAsFormat ?? encoding;
+  }
+}
+
 function getSchemaForScalar(
   dpgContext: SdkContext,
   scalar: Scalar,
   relevantProperty?: ModelProperty
 ) {
-  const program = dpgContext.program;
-  const encodeData = getEncode(program, scalar);
-  let result: any = encodeData
-    ? getSchemaForScalar(dpgContext, encodeData.type)
-    : getSchemaForStdScalar(program, scalar, relevantProperty);
-  if (!result && scalar.baseScalar) {
+  let result = {};
+  const isStd = dpgContext.program.checker.isStdType(scalar);
+  if (isStd) {
+    result = getSchemaForStdScalar(
+      dpgContext.program,
+      scalar,
+      relevantProperty
+    );
+  } else if (scalar.baseScalar) {
     result = getSchemaForScalar(dpgContext, scalar.baseScalar);
   }
-  return applyIntrinsicDecorators(program, scalar, result);
+  const withDecorators = applyEncoding(
+    dpgContext,
+    scalar,
+    result
+      ? applyIntrinsicDecorators(dpgContext.program, scalar, result)
+      : undefined
+  );
+  if (withDecorators.type === "string" && withDecorators.format === "binary") {
+    withDecorators.typeName =
+      "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream";
+    withDecorators.outputTypeName = "Uint8Array";
+  }
+  return withDecorators;
 }
 
 function getSchemaForUnion(
@@ -678,7 +732,7 @@ function applyIntrinsicDecorators(
   const isString = isStringType(program, getPropertyType(type));
   const isNumeric = isNumericType(program, getPropertyType(type));
 
-  if (isString && !target.documentation && docStr) {
+  if (isString && !target?.documentation && docStr) {
     newTarget.description = docStr;
   }
 
@@ -811,6 +865,14 @@ function getSchemaForArrayModel(
           schema.typeName = `${schema.items.typeName}[]`;
         } else if (schema.items.type === "union") {
           schema.typeName = `(${schema.items.typeName})[]`;
+        } else if (
+          schema.items.format === "binary" &&
+          schema.items.type === "string"
+        ) {
+          schema.typeName = `Array<${schema.items.typeName}>`;
+          if (usage && usage.includes(SchemaContext.Output)) {
+            schema.outputTypeName = `Array<${schema.items.outputTypeName}>`;
+          }
         } else {
           schema.typeName = schema.items.typeName
             .split("|")
@@ -994,6 +1056,16 @@ function getSchemaForStdScalar(
         format: "float"
       });
     case "string":
+      if (format === "binary") {
+        return {
+          type: "string",
+          format: "binary",
+          description,
+          typeName:
+            "string | Uint8Array | ReadableStream<Uint8Array> | NodeJS.ReadableStream",
+          outputTypeName: "Uint8Array"
+        };
+      }
       return applyIntrinsicDecorators(program, type, {
         type: "string"
       });
@@ -1033,6 +1105,8 @@ function getSchemaForStdScalar(
       };
     case "duration":
       return { type: "string", format, description };
+    case "url":
+      return { type: "string", format: "uri" };
   }
 }
 

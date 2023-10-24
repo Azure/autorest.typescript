@@ -36,8 +36,7 @@ import {
   getProjectedName,
   isNullType,
   getEncode,
-  isTemplateDeclarationOrInstance,
-  getFormat
+  isTemplateDeclarationOrInstance
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -1130,8 +1129,6 @@ function applyEncoding(
   target: any = {}
 ) {
   const encodeData = getEncode(program, typespecType);
-  const formatData = getFormat(program, typespecType);
-  formatData;
   if (encodeData) {
     const newTarget = { ...target };
     const newType = emitScalar(program, encodeData.type);
@@ -1309,7 +1306,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else {
-    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw!) };
+    return { ...emitType(context, sdkType.__raw!), nullable: sdkType.nullable };
   }
 }
 

@@ -1576,6 +1576,41 @@ describe("Input/output model type", () => {
       `
       );
     });
+
+    it("should handle datetime array with encode `unixTimestamp`", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      @encode(DateTimeKnownEncoding.unixTimestamp, int64)
+      scalar unixTimestampDatetime extends utcDateTime;
+      model SimpleModel {
+        createdAt: unixTimestampDatetime[];
+      }
+      @route("/datetime/prop/unixTimestamp")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "createdAt": number[];
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "createdAt": number[];
+      }
+      `
+      );
+    });
   });
   describe("record generation", () => {
     it("should handle Record<int32> -> Record<string, number>", async () => {
