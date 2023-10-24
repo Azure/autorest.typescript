@@ -40,7 +40,7 @@ export async function _createFileDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"],
+    status: result.body["status"] as any,
     statusDetails: result.body["status_details"],
   };
 }
