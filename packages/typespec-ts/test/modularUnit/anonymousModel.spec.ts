@@ -523,7 +523,7 @@ describe("anonymous  model", () => {
         op read(): ReturnBody;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        console.log(modelFile?.getFullText());
+        // console.log(modelFile?.getFullText());
         assertEqualContent(
           modelFile?.getFullText()!,
           `
@@ -606,7 +606,7 @@ describe("anonymous  model", () => {
         op read(): Foz;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        console.log(modelFile?.getFullText());
+        // console.log(modelFile?.getFullText());
         assertEqualContent(
           modelFile?.getFullText()!,
           `

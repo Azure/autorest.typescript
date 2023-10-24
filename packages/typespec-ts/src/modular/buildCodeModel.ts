@@ -81,7 +81,6 @@ import {
 } from "./modularCodeModel.js";
 import {
   getEnrichedDefaultApiVersion,
-  isAnonymousModelType,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { camelToSnakeCase, toCamelCase } from "../utils/casingUtils.js";
@@ -780,7 +779,7 @@ function emitBasicOperation(
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
     // Flatten the body parameter if it is an anonymous model
-    if (isAnonymousModelType(bodyParameter.type)) {
+    if (bodyParameter.type.type === "model" && bodyParameter.type.name === "") {
       if (bodyParameter.type.properties.length > 0) {
         for (const param of bodyParameter.type.properties) {
           // const emittedParam = emitParameter(context, param.type, "Method");

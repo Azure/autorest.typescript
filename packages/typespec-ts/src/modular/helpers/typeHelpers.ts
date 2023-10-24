@@ -30,21 +30,19 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   unknown: { name: "unknown" }
 };
 
-export function generateAnomymousModelSigniture(type: Type) {
-  let schemaSigiture = `{`;
+function handleAnomymousModelName(type: Type) {
+  let retVal = `{`;
   for (const prop of type.properties ?? []) {
     const propName = prop.clientName ?? prop.restApiName ?? "";
-    const propType = prop.type;
-    const propTypeName = getType(propType, propType.format).name;
-    if (!propType || !propTypeName) {
+    const propTypeName = getType(prop.type, prop.type.format).name;
+    if (!propName || !propTypeName) {
       continue;
     }
-    const isOptional = prop.optional ? "?" : "";
-    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
+    retVal += `${propName}${prop.optional ? "?" : ""}: ${propTypeName};`;
   }
 
-  schemaSigiture += `}`;
-  return schemaSigiture;
+  retVal += `}`;
+  return retVal;
 }
 
 function handleNullableTypeName(type: {
@@ -173,13 +171,11 @@ function handleListType(type: Type): TypeMetadata {
  * Handles the conversion of model types to TypeScript representation metadata.
  */
 function handleModelType(type: Type): TypeMetadata {
-  // Temporarily handling the case of anonymous models
-  if (!type.name) {
-    return {
-      name: "any"
-    };
-  }
-  const name = handleNullableTypeName(type);
+  let name = !type.name ? handleAnomymousModelName(type) : type.name;
+  name = handleNullableTypeName({
+    name,
+    nullable: type.nullable
+  });
   return {
     name,
     nullable: type.nullable,

@@ -108,4 +108,25 @@ describe("model type", () => {
       );
     });
   });
+
+  describe("anonymous model", () => {
+    it("should generate inline models", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+        model Test {
+          color: {
+            foo?: string;
+          };
+        }
+        op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: { foo?: string };
+        }`
+      );
+    });
+  });
 });
