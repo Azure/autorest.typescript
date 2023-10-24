@@ -79,7 +79,8 @@ export interface Type {
     | "boolean"
     | "dict"
     | "combined"
-    | "any";
+    | "any"
+    | "unknown";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
