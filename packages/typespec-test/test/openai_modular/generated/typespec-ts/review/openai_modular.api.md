@@ -79,10 +79,6 @@ export interface ChatCompletionsOptions {
     user?: string;
 }
 
-// @public (undocumented)
-export interface ChatGetCompletionsOptions extends OperationOptions {
-}
-
 // @public
 export interface ChatMessage {
     content: string | null;
@@ -226,6 +222,10 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions extends Oper
 }
 
 // @public (undocumented)
+export interface GetChatCompletionsOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface GetChatCompletionsWithAzureExtensionsOptions extends OperationOptions {
 }
 
@@ -272,11 +272,8 @@ export type ImageSize = string;
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
     beginAzureBatchImageGeneration(body: ImageGenerationOptions, options?: BeginAzureBatchImageGenerationOptions): Promise<BatchImageGenerationOperationResponse>;
-    // (undocumented)
-    chat: {
-        getCompletions: (deploymentId: string, body: ChatCompletionsOptions, options?: ChatGetCompletionsOptions) => Promise<ChatCompletions>;
-    };
     getAzureBatchImageGenerationOperationStatus(operationId: string, options?: GetAzureBatchImageGenerationOperationStatusOptions): Promise<BatchImageGenerationOperationResponse>;
+    getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
     getChatCompletionsWithAzureExtensions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsWithAzureExtensionsOptions): Promise<ChatCompletions>;
     getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptions): Promise<Completions>;
     getEmbeddings(deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptions): Promise<Embeddings>;

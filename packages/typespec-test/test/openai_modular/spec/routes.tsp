@@ -38,21 +38,19 @@ op getCompletions is Azure.Core.ResourceAction<
   Completions
 >;
 
-namespace Chat {
-  @doc("""
-  Gets chat completions for the provided chat messages.
-  Completions support a wide variety of tasks and generate text that continues from or "completes"
-  provided prompt data.
-  """)
-  @added(ServiceApiVersions.v2023_05_15)
-  @actionSeparator("/")
-  @action("chat/completions") //@convenientAPI(true)
-  op getCompletions is ResourceAction<
-    Deployment,
-    ChatCompletionsOptions,
-    ChatCompletions
-  >;
-}
+@doc("""
+Gets chat completions for the provided chat messages.
+Completions support a wide variety of tasks and generate text that continues from or "completes"
+provided prompt data.
+""")
+@added(ServiceApiVersions.v2023_05_15)
+@actionSeparator("/")
+@action("chat/completions") //@convenientAPI(true)
+op getChatCompletions is ResourceAction<
+  Deployment,
+  ChatCompletionsOptions,
+  ChatCompletions
+>;
 
 @doc("""
 Gets chat completions for the provided chat messages.

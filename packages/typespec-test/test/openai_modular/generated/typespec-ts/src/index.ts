@@ -39,8 +39,8 @@ export {
   ImageGenerationResponseFormat,
   GetEmbeddingsOptions,
   GetCompletionsOptions,
+  GetChatCompletionsOptions,
   GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
-  ChatGetCompletionsOptions,
 } from "./models/index.js";

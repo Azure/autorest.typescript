@@ -40,8 +40,8 @@ export {
 export {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
+  GetChatCompletionsOptions,
   GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
-  ChatGetCompletionsOptions,
 } from "./options.js";

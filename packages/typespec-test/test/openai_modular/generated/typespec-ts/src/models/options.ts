@@ -7,6 +7,8 @@ export interface GetEmbeddingsOptions extends OperationOptions {}
 
 export interface GetCompletionsOptions extends OperationOptions {}
 
+export interface GetChatCompletionsOptions extends OperationOptions {}
+
 export interface GetChatCompletionsWithAzureExtensionsOptions
   extends OperationOptions {}
 
@@ -15,5 +17,3 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions
 
 export interface BeginAzureBatchImageGenerationOptions
   extends OperationOptions {}
-
-export interface ChatGetCompletionsOptions extends OperationOptions {}

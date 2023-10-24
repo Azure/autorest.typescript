@@ -4,24 +4,24 @@
 import {
   GetEmbeddingsParameters,
   GetCompletionsParameters,
+  GetChatCompletionsParameters,
   GetChatCompletionsWithAzureExtensionsParameters,
   GetAzureBatchImageGenerationOperationStatusParameters,
   BeginAzureBatchImageGenerationParameters,
-  ChatGetCompletionsParameters,
 } from "./parameters.js";
 import {
   GetEmbeddings200Response,
   GetEmbeddingsDefaultResponse,
   GetCompletions200Response,
   GetCompletionsDefaultResponse,
+  GetChatCompletions200Response,
+  GetChatCompletionsDefaultResponse,
   GetChatCompletionsWithAzureExtensions200Response,
   GetChatCompletionsWithAzureExtensionsDefaultResponse,
   GetAzureBatchImageGenerationOperationStatus200Response,
   GetAzureBatchImageGenerationOperationStatusDefaultResponse,
   BeginAzureBatchImageGeneration202Response,
   BeginAzureBatchImageGenerationDefaultResponse,
-  ChatGetCompletions200Response,
-  ChatGetCompletionsDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -42,6 +42,19 @@ export interface GetCompletions {
     options?: GetCompletionsParameters
   ): StreamableMethod<
     GetCompletions200Response | GetCompletionsDefaultResponse
+  >;
+}
+
+export interface GetChatCompletions {
+  /**
+   * Gets chat completions for the provided chat messages.
+   * Completions support a wide variety of tasks and generate text that continues from or "completes"
+   * provided prompt data.
+   */
+  post(
+    options?: GetChatCompletionsParameters
+  ): StreamableMethod<
+    GetChatCompletions200Response | GetChatCompletionsDefaultResponse
   >;
 }
 
@@ -79,19 +92,6 @@ export interface BeginAzureBatchImageGeneration {
   >;
 }
 
-export interface GetCompletions {
-  /**
-   * Gets chat completions for the provided chat messages.
-   * Completions support a wide variety of tasks and generate text that continues from or "completes"
-   * provided prompt data.
-   */
-  post(
-    options?: ChatGetCompletionsParameters
-  ): StreamableMethod<
-    ChatGetCompletions200Response | ChatGetCompletionsDefaultResponse
-  >;
-}
-
 export interface Routes {
   /** Resource for '/deployments/\{deploymentId\}/embeddings' has methods for the following verbs: post */
   (
@@ -103,6 +103,11 @@ export interface Routes {
     path: "/deployments/{deploymentId}/completions",
     deploymentId: string
   ): GetCompletions;
+  /** Resource for '/deployments/\{deploymentId\}/chat/completions' has methods for the following verbs: post */
+  (
+    path: "/deployments/{deploymentId}/chat/completions",
+    deploymentId: string
+  ): GetChatCompletions;
   /** Resource for '/deployments/\{deploymentId\}/extensions/chat/completions' has methods for the following verbs: post */
   (
     path: "/deployments/{deploymentId}/extensions/chat/completions",
@@ -115,11 +120,6 @@ export interface Routes {
   ): GetAzureBatchImageGenerationOperationStatus;
   /** Resource for '/images/generations:submit' has methods for the following verbs: post */
   (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;
-  /** Resource for '/deployments/\{deploymentId\}/chat/completions' has methods for the following verbs: post */
-  (
-    path: "/deployments/{deploymentId}/chat/completions",
-    deploymentId: string
-  ): GetCompletions;
 }
 
 export type OpenAIContext = Client & {

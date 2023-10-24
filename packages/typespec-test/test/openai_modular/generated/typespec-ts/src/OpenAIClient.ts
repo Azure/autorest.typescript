@@ -16,18 +16,18 @@ import {
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
+  GetChatCompletionsOptions,
   GetChatCompletionsWithAzureExtensionsOptions,
   GetAzureBatchImageGenerationOperationStatusOptions,
   BeginAzureBatchImageGenerationOptions,
-  ChatGetCompletionsOptions,
 } from "./models/options.js";
 import {
-  chatGetCompletions,
   createOpenAI,
   OpenAIClientOptions,
   OpenAIContext,
   getEmbeddings,
   getCompletions,
+  getChatCompletions,
   getChatCompletionsWithAzureExtensions,
   getAzureBatchImageGenerationOperationStatus,
   beginAzureBatchImageGeneration,
@@ -74,6 +74,19 @@ export class OpenAIClient {
 
   /**
    * Gets chat completions for the provided chat messages.
+   * Completions support a wide variety of tasks and generate text that continues from or "completes"
+   * provided prompt data.
+   */
+  getChatCompletions(
+    deploymentId: string,
+    body: ChatCompletionsOptions,
+    options: GetChatCompletionsOptions = { requestOptions: {} }
+  ): Promise<ChatCompletions> {
+    return getChatCompletions(this._client, deploymentId, body, options);
+  }
+
+  /**
+   * Gets chat completions for the provided chat messages.
    * This is an Azure-specific version of chat completions that supports integration with configured data sources and
    * other augmentations to the base chat completions capabilities.
    */
@@ -113,14 +126,4 @@ export class OpenAIClient {
   ): Promise<BatchImageGenerationOperationResponse> {
     return beginAzureBatchImageGeneration(this._client, body, options);
   }
-
-  chat = {
-    getCompletions: (
-      deploymentId: string,
-      body: ChatCompletionsOptions,
-      options?: ChatGetCompletionsOptions
-    ): Promise<ChatCompletions> => {
-      return chatGetCompletions(this._client, deploymentId, body, options);
-    },
-  };
 }

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { chatGetCompletions } from "./chat.js";
 export {
   createOpenAI,
   OpenAIClientOptions,
@@ -10,6 +9,7 @@ export {
 export {
   getEmbeddings,
   getCompletions,
+  getChatCompletions,
   getChatCompletionsWithAzureExtensions,
   getAzureBatchImageGenerationOperationStatus,
   beginAzureBatchImageGeneration,
