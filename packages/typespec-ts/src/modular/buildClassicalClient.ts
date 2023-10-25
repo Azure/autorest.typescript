@@ -1,23 +1,18 @@
-import {
-  ClassDeclaration,
-  FunctionDeclarationStructure,
-  MethodDeclarationStructure,
-  OptionalKind,
-  Scope,
-  SourceFile,
-  StructureKind
-} from "ts-morph";
-import { toCamelCase } from "../utils/casingUtils.js";
+import { ClassDeclaration, Scope, SourceFile } from "ts-morph";
 import {
   getClientParameters,
   importCredential
 } from "./helpers/clientHelpers.js";
-import { getClientName } from "./helpers/namingHelpers.js";
-import { getOperationFunction } from "./helpers/operationHelpers.js";
+import {
+  getClassicalLayerPrefix,
+  getClientName
+} from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { NameType } from "@azure-tools/rlc-common";
+import { normalizeName } from "@azure-tools/rlc-common";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -85,7 +80,7 @@ export function buildClassicalClient(
   importCredential(clientFile);
   importPipeline(clientFile);
   importAllModels(clientFile, srcPath, subfolder);
-  buildClientOperationGroups(client, clientClass, subfolder);
+  buildClientOperationGroups(client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
@@ -160,73 +155,37 @@ function importPipeline(clientSourceFile: SourceFile): void {
     namedImports: ["Pipeline"]
   });
 }
+
 function buildClientOperationGroups(
   client: Client,
-  clientClass: ClassDeclaration,
-  subfolder: string
+  clientClass: ClassDeclaration
 ) {
-  const operationMap = new Map<
-    OptionalKind<FunctionDeclarationStructure>,
-    string | undefined
-  >();
   for (const operationGroup of client.operationGroups) {
-    const operationGroupName = toCamelCase(operationGroup.propertyName);
-    let clientType = "Client";
-    if (subfolder && subfolder !== "") {
-      clientType = `Client.${clientClass.getName()}`;
-    }
-    const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-      operationGroup.operations.map((operation) => {
-        const declarations = getOperationFunction(operation, clientType);
-        operationMap.set(declarations, operation.oriName);
-        return declarations;
-      });
-
-    if (operationGroupName && operationGroupName !== "") {
-      clientClass.addProperty({
-        name: operationGroupName,
-        initializer: `
-      {
-        ${operationDeclarations.map((d) => {
-          return `${getClassicalMethodName(d)}: (${d.parameters
-            ?.filter((p) => p.name !== "context")
-            .map(
-              (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
-            )
-            .join(",")}): ${d.returnType} => {return ${d.name}(${[
-            "this._client",
-            ...[d.parameters?.map((p) => p.name).filter((p) => p !== "context")]
-          ].join(",")})}`;
-        })}
-      }
-      `
-      });
-    } else {
-      clientClass.addMethods(
-        operationDeclarations.map((d) => {
-          const method: MethodDeclarationStructure = {
-            docs: d.docs,
-            name: getClassicalMethodName(d),
-            kind: StructureKind.Method,
-            returnType: d.returnType,
-            parameters: d.parameters?.filter((p) => p.name !== "context"),
-            statements: `return ${d.name}(${[
-              "this._client",
-              ...[
-                d.parameters?.map((p) => p.name).filter((p) => p !== "context")
-              ]
-            ].join(",")})`
-          };
-
-          return method;
-        })
+    const groupName = normalizeName(
+      operationGroup.namespaceHierarchies[0] ?? operationGroup.propertyName,
+      NameType.Property
+    );
+    clientClass.addProperty({
+      name: groupName,
+      type: `${getClassicalLayerPrefix(
+        operationGroup,
+        NameType.Interface,
+        "",
+        0
+      )}Operations`,
+      scope: Scope.Public,
+      isReadonly: true,
+      docs: ["The operation groups for " + operationGroup.propertyName]
+    });
+    clientClass
+      .getConstructors()[0]
+      ?.addStatements(
+        `this.${groupName} = get${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.Interface,
+          "",
+          0
+        )}Operations(this._client)`
       );
-    }
-  }
-
-  function getClassicalMethodName(
-    declaration: OptionalKind<FunctionDeclarationStructure>
-  ) {
-    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
   }
 }

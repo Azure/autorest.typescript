@@ -26,7 +26,7 @@ export function buildOperationFiles(
   const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
     const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
-    const fileName =
+    const operationFileName =
       operationGroup.className && operationGroup.namespaceHierarchies.length > 0
         ? `${operationGroup.namespaceHierarchies
             .map((hierarchy) => {
@@ -42,12 +42,18 @@ export function buildOperationFiles(
     const operationGroupFile = codeModel.project.createSourceFile(
       `${srcPath}/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
-      }api/${fileName}.ts`
+      }api/${operationFileName}.ts`
     );
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(srcPath, operationGroupFile, codeModel.project, subfolder, operationGroup.namespaceHierarchies.length);
+    importModels(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
 
     const namedImports: string[] = [];
     let clientType = "Client";
@@ -59,7 +65,9 @@ export function buildOperationFiles(
       }
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: `../../${("../".repeat(operationGroup.namespaceHierarchies.length))}rest/${subfolder}/index.js`,
+          moduleSpecifier: `../../${"../".repeat(
+            operationGroup.namespaceHierarchies.length
+          )}rest/${subfolder}/index.js`,
           namedImports
         }
       ]);
@@ -73,7 +81,9 @@ export function buildOperationFiles(
         {
           moduleSpecifier: `${
             subfolder && subfolder !== "" ? "../" : ""
-          }../${("../".repeat(operationGroup.namespaceHierarchies.length))}rest/index.js`,
+          }${"../../".repeat(
+            operationGroup.namespaceHierarchies.length
+          )}rest/index.js`,
           namedImports
         }
       ]);
@@ -145,7 +155,7 @@ export function importModels(
 
   if (models.length > 0) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: `../${("../".repeat(importLayer))}models/models.js`,
+      moduleSpecifier: `../${"../".repeat(importLayer)}models/models.js`,
       namedImports: models
     });
   }
@@ -167,7 +177,7 @@ export function buildOperationOptions(
     .filter((p) => p.optional || p.clientDefaultValue);
   const options = [...optionalParameters];
 
-  const name = getOperationOptionsName(operation);
+  const name = getOperationOptionsName(operation, true);
 
   sourceFile.addInterface({
     name,

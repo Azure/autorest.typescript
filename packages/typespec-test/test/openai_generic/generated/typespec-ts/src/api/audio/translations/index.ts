@@ -6,11 +6,9 @@ import {
   CreateTranslationResponse,
 } from "../../../models/models.js";
 import {
-  CreateTranslation200Response,
-  CreateTranslationDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
-} from "../../../rest/index.js";
+} from "../../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
