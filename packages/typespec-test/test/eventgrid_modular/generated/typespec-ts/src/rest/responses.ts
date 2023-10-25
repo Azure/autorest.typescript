@@ -13,7 +13,7 @@ import {
 /** The request has succeeded. */
 export interface PublishCloudEvent200Response extends HttpResponse {
   status: "200";
-  body: {};
+  body: Record<string, any>;
 }
 
 export interface PublishCloudEventDefaultHeaders {
@@ -30,7 +30,7 @@ export interface PublishCloudEventDefaultResponse extends HttpResponse {
 /** The request has succeeded. */
 export interface PublishCloudEvents200Response extends HttpResponse {
   status: "200";
-  body: {};
+  body: Record<string, any>;
 }
 
 export interface PublishCloudEventsDefaultHeaders {
