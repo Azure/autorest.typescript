@@ -270,7 +270,7 @@ function processModelProperties(
   // handleDiscriminator(context, model, newValue);
 }
 
-function isEmptyModel(type: EmitterType): boolean {
+function isEmptyAnonymousModel(type: EmitterType): boolean {
   // object, {}, all will be treated as empty model
   return (
     type.kind === "Model" &&
@@ -301,7 +301,7 @@ function getType(
     }
   }
   let newValue: any;
-  if (isEmptyModel(type)) {
+  if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
@@ -792,7 +792,6 @@ function emitBasicOperation(
   }
 
   let bodyParameter: any | undefined;
-  // FIXME handle the empty body case
   if (httpOperation.parameters.body === undefined) {
     bodyParameter = undefined;
   } else {
