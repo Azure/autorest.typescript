@@ -734,15 +734,20 @@ describe("anonymous model", () => {
         );
       });
 
-      it("should map empty named model(A {}) => Record<string, any>", async () => {
+      it("should map empty named model(A {}) => PublishResult", async () => {
         const tspContent = `
         model PublishResult {
         }
         op read(): PublishResult;
         `;
-        // No models will be generated in models.ts
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        assert.isUndefined(modelFile);
+        // console.log(modelFile?.getFullText());
+        assertEqualContent(
+          modelFile?.getFullText()!,
+          `
+          export interface PublishResult {}
+        `
+        );
         const operationFiles = await emitModularOperationsFromTypeSpec(
           tspContent
         );
@@ -751,7 +756,7 @@ describe("anonymous model", () => {
         // Model name referred in operations.ts
         verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
-          "Record<string, any>"
+          "PublishResult"
         );
       });
 
@@ -830,10 +835,12 @@ describe("anonymous model", () => {
           emptyAnomyous: Record<string, any>;
           emptyAnomyousArray: Record<string, any>[];
           emptyAnomyousDict: Record<string, Record<string, any>>;
-          emptyModel: Record<string, any>;
-          emptyModelArray: Record<string, any>[];
-          emptyModelDict: Record<string, Record<string, any>>;
+          emptyModel: EmptyModel;
+          emptyModelArray: EmptyModel[];
+          emptyModelDict: Record<string, EmptyModel>;
         }
+
+        export interface EmptyModel {}
         `
         );
         const operationFiles = await emitModularOperationsFromTypeSpec(
@@ -869,8 +876,8 @@ describe("anonymous model", () => {
             emptyAnomyous: result.body["emptyAnomyous"],
             emptyAnomyousArray: result.body["emptyAnomyousArray"],
             emptyAnomyousDict: result.body["emptyAnomyousDict"],
-            emptyModel: result.body["emptyModel"],
-            emptyModelArray: result.body["emptyModelArray"],
+            emptyModel: {},
+            emptyModelArray: (result.body["emptyModelArray"] ?? []).map(() => ({})),
             emptyModelDict: result.body["emptyModelDict"],
           };
         }

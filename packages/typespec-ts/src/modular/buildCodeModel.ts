@@ -271,9 +271,10 @@ function processModelProperties(
 }
 
 function isEmptyModel(type: EmitterType): boolean {
-  // object, {}, Model{} all will be treated as empty model
+  // object, {}, all will be treated as empty model
   return (
     type.kind === "Model" &&
+    type.name === "" &&
     type.properties.size === 0 &&
     !type.baseModel &&
     type.derivedModels.length === 0 &&
