@@ -1,34 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createChatCompletion } from "../../api/chat/completions";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  CreateChatCompletionRequest,
-  CreateChatCompletionOptions,
-  CreateChatCompletionResponse,
-} from "../../models";
+  ChatCompletionsOperations,
+  getChatCompletionsOperations,
+} from "./completions/index.js";
 
-export interface ChatCompletionsOperations {
-  completions: {
-    createChatCompletion: (
-      body: CreateChatCompletionRequest,
-      options?: CreateChatCompletionOptions
-    ) => Promise<CreateChatCompletionResponse>;
-  };
+export interface ChatOperations {
+  completions: ChatCompletionsOperations;
 }
 
-export function getChatCompletions(context: Client) {
+export function getChatOperations(context: OpenAIContext): ChatOperations {
   return {
-    createChatCompletion: (
-      body: CreateChatCompletionRequest,
-      options?: CreateChatCompletionOptions
-    ) => createChatCompletion(context, body, options),
-  };
-}
-
-export function getChatCompletionsOperations(): ChatCompletionsOperations {
-  return {
-    completions: getChatCompletions,
+    completions: getChatCompletionsOperations(context),
   };
 }

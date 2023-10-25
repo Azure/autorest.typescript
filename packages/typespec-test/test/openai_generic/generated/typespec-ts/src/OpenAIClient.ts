@@ -3,6 +3,38 @@
 
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { getAudioOperations, AudioOperations } from "./classic/audio/index.js";
+import { getChatOperations, ChatOperations } from "./classic/chat/index.js";
+import {
+  getFineTuningOperations,
+  FineTuningOperations,
+} from "./classic/fineTuning/index.js";
+import {
+  getCompletionsOperations,
+  CompletionsOperations,
+} from "./classic/completions/index.js";
+import { getEditsOperations, EditsOperations } from "./classic/edits/index.js";
+import {
+  getEmbeddingsOperations,
+  EmbeddingsOperations,
+} from "./classic/embeddings/index.js";
+import { getFilesOperations, FilesOperations } from "./classic/files/index.js";
+import {
+  getFineTunesOperations,
+  FineTunesOperations,
+} from "./classic/fineTunes/index.js";
+import {
+  getModelsOperations,
+  ModelsOperations,
+} from "./classic/models/index.js";
+import {
+  getImagesOperations,
+  ImagesOperations,
+} from "./classic/images/index.js";
+import {
+  getModerationsOperations,
+  ModerationsOperations,
+} from "./classic/moderations/index.js";
 import {
   createOpenAI,
   OpenAIClientOptions,
@@ -21,7 +53,6 @@ export class OpenAIClient {
     this._client = createOpenAI(credential, options);
     this.pipeline = this._client.pipeline;
     this.audio = getAudioOperations(this._client);
-    this.audio = getAudioOperations(this._client);
     this.chat = getChatOperations(this._client);
     this.fineTuning = getFineTuningOperations(this._client);
     this.completions = getCompletionsOperations(this._client);
@@ -35,8 +66,6 @@ export class OpenAIClient {
   }
 
   /** The operation groups for AudioTranscriptions */
-  public readonly audio: AudioOperations;
-  /** The operation groups for AudioTranslations */
   public readonly audio: AudioOperations;
   /** The operation groups for ChatCompletions */
   public readonly chat: ChatOperations;

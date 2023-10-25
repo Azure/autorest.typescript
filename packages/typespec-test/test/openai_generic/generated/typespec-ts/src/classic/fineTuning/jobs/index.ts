@@ -1,25 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
 import {
   createFineTuningJob,
   listPaginatedFineTuningJobs,
   retrieveFineTuningJob,
   listFineTuningEvents,
   cancelFineTuningJob,
-} from "../../../api/fineTuning/jobs";
+} from "../../../api/fineTuning/jobs/index.js";
+import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
   CreateFineTuningJobRequest,
-  CreateFineTuningJobOptions,
   FineTuningJob,
-  ListPaginatedFineTuningJobsOptions,
   ListPaginatedFineTuningJobsResponse,
+  ListFineTuningJobEventsResponse,
+} from "../../../models/models.js";
+import {
+  CreateFineTuningJobOptions,
+  ListPaginatedFineTuningJobsOptions,
   RetrieveFineTuningJobOptions,
   ListFineTuningEventsOptions,
-  ListFineTuningJobEventsResponse,
   CancelFineTuningJobOptions,
-} from "../../../models";
+} from "../../../models/options.js";
 
 export interface FineTuningJobsOperations {
   jobs: {
@@ -45,7 +47,7 @@ export interface FineTuningJobsOperations {
   };
 }
 
-export function getFineTuningJobs(context: Client) {
+export function getFineTuningJobs(context: OpenAIContext) {
   return {
     createFineTuningJob: (
       job: CreateFineTuningJobRequest,
@@ -69,8 +71,10 @@ export function getFineTuningJobs(context: Client) {
   };
 }
 
-export function getFineTuningJobsOperations(): FineTuningJobsOperations {
+export function getFineTuningJobsOperations(
+  context: OpenAIContext
+): FineTuningJobsOperations {
   return {
-    jobs: getFineTuningJobs,
+    jobs: getFineTuningJobs(context),
   };
 }

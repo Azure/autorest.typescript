@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createModeration } from "../../api/moderations";
+import { createModeration } from "../../api/moderations/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateModerationRequest,
-  CreateModerationOptions,
   CreateModerationResponse,
-} from "../../models";
+} from "../../models/models.js";
+import { CreateModerationOptions } from "../../models/options.js";
 
 export interface ModerationsOperations {
   moderations: {
@@ -18,7 +18,7 @@ export interface ModerationsOperations {
   };
 }
 
-export function getModerations(context: Client) {
+export function getModerations(context: OpenAIContext) {
   return {
     createModeration: (
       content: CreateModerationRequest,
@@ -27,8 +27,10 @@ export function getModerations(context: Client) {
   };
 }
 
-export function getModerationsOperations(): ModerationsOperations {
+export function getModerationsOperations(
+  context: OpenAIContext
+): ModerationsOperations {
   return {
-    moderations: getModerations,
+    moderations: getModerations(context),
   };
 }

@@ -1,25 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
 import {
   listFiles,
   createFile,
   retrieveFile,
   deleteFile,
   downloadFile,
-} from "../../api/files";
+} from "../../api/files/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  ListFilesOptions,
   ListFilesResponse,
   CreateFileRequest,
-  CreateFileOptions,
   OpenAIFile,
+  DeleteFileResponse,
+} from "../../models/models.js";
+import {
+  ListFilesOptions,
+  CreateFileOptions,
   RetrieveFileOptions,
   DeleteFileOptions,
-  DeleteFileResponse,
   DownloadFileOptions,
-} from "../../models";
+} from "../../models/options.js";
 
 export interface FilesOperations {
   files: {
@@ -43,7 +45,7 @@ export interface FilesOperations {
   };
 }
 
-export function getFiles(context: Client) {
+export function getFiles(context: OpenAIContext) {
   return {
     listFiles: (options?: ListFilesOptions) => listFiles(context, options),
     createFile: (file: CreateFileRequest, options?: CreateFileOptions) =>
@@ -57,8 +59,8 @@ export function getFiles(context: Client) {
   };
 }
 
-export function getFilesOperations(): FilesOperations {
+export function getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
-    files: getFiles,
+    files: getFiles(context),
   };
 }

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createTranscription } from "../../../api/audio/transcriptions";
+import { createTranscription } from "../../../api/audio/transcriptions/index.js";
+import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
   CreateTranscriptionRequest,
-  CreateTranscriptionOptions,
   CreateTranscriptionResponse,
-} from "../../../models";
+} from "../../../models/models.js";
+import { CreateTranscriptionOptions } from "../../../models/options.js";
 
 export interface AudioTranscriptionsOperations {
   transcriptions: {
@@ -18,7 +18,7 @@ export interface AudioTranscriptionsOperations {
   };
 }
 
-export function getAudioTranscriptions(context: Client) {
+export function getAudioTranscriptions(context: OpenAIContext) {
   return {
     createTranscription: (
       audio: CreateTranscriptionRequest,
@@ -27,8 +27,10 @@ export function getAudioTranscriptions(context: Client) {
   };
 }
 
-export function getAudioTranscriptionsOperations(): AudioTranscriptionsOperations {
+export function getAudioTranscriptionsOperations(
+  context: OpenAIContext
+): AudioTranscriptionsOperations {
   return {
-    transcriptions: getAudioTranscriptions,
+    transcriptions: getAudioTranscriptions(context),
   };
 }

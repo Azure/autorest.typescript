@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createEdit } from "../../api/edits";
-import {
-  CreateEditRequest,
-  CreateEditOptions,
-  CreateEditResponse,
-} from "../../models";
+import { createEdit } from "../../api/edits/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
+import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
+import { CreateEditOptions } from "../../models/options.js";
 
 export interface EditsOperations {
   edits: {
@@ -18,15 +15,15 @@ export interface EditsOperations {
   };
 }
 
-export function getEdits(context: Client) {
+export function getEdits(context: OpenAIContext) {
   return {
     createEdit: (edit: CreateEditRequest, options?: CreateEditOptions) =>
       createEdit(context, edit, options),
   };
 }
 
-export function getEditsOperations(): EditsOperations {
+export function getEditsOperations(context: OpenAIContext): EditsOperations {
   return {
-    edits: getEdits,
+    edits: getEdits(context),
   };
 }

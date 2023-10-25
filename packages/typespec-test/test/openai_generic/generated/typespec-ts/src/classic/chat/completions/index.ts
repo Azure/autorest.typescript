@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createChatCompletion } from "../../../api/chat/completions";
+import { createChatCompletion } from "../../../api/chat/completions/index.js";
+import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
   CreateChatCompletionRequest,
-  CreateChatCompletionOptions,
   CreateChatCompletionResponse,
-} from "../../../models";
+} from "../../../models/models.js";
+import { CreateChatCompletionOptions } from "../../../models/options.js";
 
 export interface ChatCompletionsOperations {
   completions: {
@@ -18,7 +18,7 @@ export interface ChatCompletionsOperations {
   };
 }
 
-export function getChatCompletions(context: Client) {
+export function getChatCompletions(context: OpenAIContext) {
   return {
     createChatCompletion: (
       body: CreateChatCompletionRequest,
@@ -27,8 +27,10 @@ export function getChatCompletions(context: Client) {
   };
 }
 
-export function getChatCompletionsOperations(): ChatCompletionsOperations {
+export function getChatCompletionsOperations(
+  context: OpenAIContext
+): ChatCompletionsOperations {
   return {
-    completions: getChatCompletions,
+    completions: getChatCompletions(context),
   };
 }

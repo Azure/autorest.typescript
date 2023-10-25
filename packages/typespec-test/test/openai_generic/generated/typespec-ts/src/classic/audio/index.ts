@@ -1,62 +1,24 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createTranscription } from "../../api/audio/transcriptions";
-import { createTranslation } from "../../api/audio/translations";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  CreateTranscriptionRequest,
-  CreateTranscriptionOptions,
-  CreateTranscriptionResponse,
-  CreateTranslationOptions,
-  CreateTranslationRequest,
-  CreateTranslationResponse,
-} from "../../models";
+  AudioTranscriptionsOperations,
+  getAudioTranscriptionsOperations,
+} from "./transcriptions/index.js";
+import {
+  AudioTranslationsOperations,
+  getAudioTranslationsOperations,
+} from "./translations/index.js";
 
-export interface AudioTranscriptionsOperations {
-  transcriptions: {
-    createTranscription: (
-      audio: CreateTranscriptionRequest,
-      options?: CreateTranscriptionOptions
-    ) => Promise<CreateTranscriptionResponse>;
-  };
+export interface AudioOperations {
+  transcriptions: AudioTranscriptionsOperations;
+  translations: AudioTranslationsOperations;
 }
 
-export function getAudioTranscriptions(context: Client) {
+export function getAudioOperations(context: OpenAIContext): AudioOperations {
   return {
-    createTranscription: (
-      audio: CreateTranscriptionRequest,
-      options?: CreateTranscriptionOptions
-    ) => createTranscription(context, audio, options),
-  };
-}
-
-export function getAudioTranscriptionsOperations(): AudioTranscriptionsOperations {
-  return {
-    transcriptions: getAudioTranscriptions,
-  };
-}
-
-export interface AudioTranslationsOperations {
-  translations: {
-    createTranslation: (
-      audio: CreateTranslationRequest,
-      options?: CreateTranslationOptions
-    ) => Promise<CreateTranslationResponse>;
-  };
-}
-
-export function getAudioTranslations(context: Client) {
-  return {
-    createTranslation: (
-      audio: CreateTranslationRequest,
-      options?: CreateTranslationOptions
-    ) => createTranslation(context, audio, options),
-  };
-}
-
-export function getAudioTranslationsOperations(): AudioTranslationsOperations {
-  return {
-    translations: getAudioTranslations,
+    transcriptions: getAudioTranscriptionsOperations(context),
+    translations: getAudioTranslationsOperations(context),
   };
 }

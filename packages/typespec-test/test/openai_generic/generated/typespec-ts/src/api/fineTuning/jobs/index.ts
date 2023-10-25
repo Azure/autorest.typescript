@@ -8,9 +8,19 @@ import {
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
 import {
+  CancelFineTuningJob200Response,
+  CancelFineTuningJobDefaultResponse,
+  CreateFineTuningJob200Response,
+  CreateFineTuningJobDefaultResponse,
   isUnexpected,
+  ListFineTuningEvents200Response,
+  ListFineTuningEventsDefaultResponse,
+  ListPaginatedFineTuningJobs200Response,
+  ListPaginatedFineTuningJobsDefaultResponse,
   OpenAIContext as Client,
-} from "../../../../rest/index.js";
+  RetrieveFineTuningJob200Response,
+  RetrieveFineTuningJobDefaultResponse,
+} from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,

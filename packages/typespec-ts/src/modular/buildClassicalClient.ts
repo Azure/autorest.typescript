@@ -11,8 +11,7 @@ import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { NameType } from "@azure-tools/rlc-common";
-import { normalizeName } from "@azure-tools/rlc-common";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -80,7 +79,7 @@ export function buildClassicalClient(
   importCredential(clientFile);
   importPipeline(clientFile);
   importAllModels(clientFile, srcPath, subfolder);
-  buildClientOperationGroups(client, clientClass);
+  buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
@@ -157,6 +156,7 @@ function importPipeline(clientSourceFile: SourceFile): void {
 }
 
 function buildClientOperationGroups(
+  clientFile: SourceFile,
   client: Client,
   clientClass: ClassDeclaration
 ) {
@@ -165,27 +165,48 @@ function buildClientOperationGroups(
       operationGroup.namespaceHierarchies[0] ?? operationGroup.propertyName,
       NameType.Property
     );
-    clientClass.addProperty({
-      name: groupName,
-      type: `${getClassicalLayerPrefix(
-        operationGroup,
-        NameType.Interface,
-        "",
-        0
-      )}Operations`,
-      scope: Scope.Public,
-      isReadonly: true,
-      docs: ["The operation groups for " + operationGroup.propertyName]
+    const operationName = `get${getClassicalLayerPrefix(
+      operationGroup,
+      NameType.Interface,
+      "",
+      0
+    )}Operations`;
+    const propertyType = `${getClassicalLayerPrefix(
+      operationGroup,
+      NameType.Interface,
+      "",
+      0
+    )}Operations`;
+    const existProperty = clientClass.getProperties().filter((p) => {
+      return p.getName() === groupName;
     });
-    clientClass
-      .getConstructors()[0]
-      ?.addStatements(
-        `this.${groupName} = get${getClassicalLayerPrefix(
+    if (!existProperty || existProperty.length === 0) {
+      clientFile.addImportDeclaration({
+        namedImports: [operationName, propertyType],
+        moduleSpecifier: `./classic/${getClassicalLayerPrefix(
           operationGroup,
-          NameType.Interface,
-          "",
+          NameType.File,
+          "/",
           0
-        )}Operations(this._client)`
-      );
+        )}/index.js`
+      });
+      clientClass.addProperty({
+        name: groupName,
+        type: propertyType,
+        scope: Scope.Public,
+        isReadonly: true,
+        docs: ["The operation groups for " + operationGroup.propertyName]
+      });
+      clientClass
+        .getConstructors()[0]
+        ?.addStatements(
+          `this.${groupName} = get${getClassicalLayerPrefix(
+            operationGroup,
+            NameType.Interface,
+            "",
+            0
+          )}Operations(this._client)`
+        );
+    }
   }
 }

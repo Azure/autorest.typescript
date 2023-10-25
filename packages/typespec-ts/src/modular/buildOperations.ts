@@ -65,7 +65,7 @@ export function buildOperationFiles(
       }
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: `../../${"../".repeat(
+          moduleSpecifier: `../${"../".repeat(
             operationGroup.namespaceHierarchies.length
           )}rest/${subfolder}/index.js`,
           namedImports
@@ -81,8 +81,8 @@ export function buildOperationFiles(
         {
           moduleSpecifier: `${
             subfolder && subfolder !== "" ? "../" : ""
-          }${"../../".repeat(
-            operationGroup.namespaceHierarchies.length
+          }${"../".repeat(
+            operationGroup.namespaceHierarchies.length + 1
           )}rest/index.js`,
           namedImports
         }

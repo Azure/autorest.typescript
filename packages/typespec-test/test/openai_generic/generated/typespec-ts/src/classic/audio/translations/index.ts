@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { createTranslation } from "../../../api/audio/translations/index.js";
+import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
   CreateTranslationRequest,
-  CreateTranslationOptions,
   CreateTranslationResponse,
-} from "../../../models/index.js";
-import { OpenAIContext } from "../../../rest/clientDefinitions.js";
+} from "../../../models/models.js";
+import { CreateTranslationOptions } from "../../../models/options.js";
 
 export interface AudioTranslationsOperations {
   translations: {
@@ -27,7 +27,9 @@ export function getAudioTranslations(context: OpenAIContext) {
   };
 }
 
-export function getAudioTranslationsOperations(context: OpenAIContext): AudioTranslationsOperations {
+export function getAudioTranslationsOperations(
+  context: OpenAIContext
+): AudioTranslationsOperations {
   return {
     translations: getAudioTranslations(context),
   };

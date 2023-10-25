@@ -1,21 +1,23 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
 import {
   createImage,
   createImageEdit,
   createImageVariation,
-} from "../../api/images";
+} from "../../api/images/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateImageRequest,
-  CreateImageOptions,
   ImagesResponse,
   CreateImageEditRequest,
-  CreateImageEditOptions,
   CreateImageVariationRequest,
+} from "../../models/models.js";
+import {
+  CreateImageOptions,
+  CreateImageEditOptions,
   CreateImageVariationOptions,
-} from "../../models";
+} from "../../models/options.js";
 
 export interface ImagesOperations {
   images: {
@@ -34,7 +36,7 @@ export interface ImagesOperations {
   };
 }
 
-export function getImages(context: Client) {
+export function getImages(context: OpenAIContext) {
   return {
     createImage: (image: CreateImageRequest, options?: CreateImageOptions) =>
       createImage(context, image, options),
@@ -49,8 +51,8 @@ export function getImages(context: Client) {
   };
 }
 
-export function getImagesOperations(): ImagesOperations {
+export function getImagesOperations(context: OpenAIContext): ImagesOperations {
   return {
-    images: getImages,
+    images: getImages(context),
   };
 }

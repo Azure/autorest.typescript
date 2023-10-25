@@ -1,25 +1,27 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
 import {
   createFineTune,
   listFineTunes,
   retrieveFineTune,
   listFineTuneEvents,
   cancelFineTune,
-} from "../../api/fineTunes";
+} from "../../api/fineTunes/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateFineTuneRequest,
-  CreateFineTuneOptions,
   FineTune,
-  ListFineTunesOptions,
   ListFineTunesResponse,
+  ListFineTuneEventsResponse,
+} from "../../models/models.js";
+import {
+  CreateFineTuneOptions,
+  ListFineTunesOptions,
   RetrieveFineTuneOptions,
   ListFineTuneEventsOptions,
-  ListFineTuneEventsResponse,
   CancelFineTuneOptions,
-} from "../../models";
+} from "../../models/options.js";
 
 export interface FineTunesOperations {
   fineTunes: {
@@ -45,7 +47,7 @@ export interface FineTunesOperations {
   };
 }
 
-export function getFineTunes(context: Client) {
+export function getFineTunes(context: OpenAIContext) {
   return {
     createFineTune: (
       fineTune: CreateFineTuneRequest,
@@ -64,8 +66,10 @@ export function getFineTunes(context: Client) {
   };
 }
 
-export function getFineTunesOperations(): FineTunesOperations {
+export function getFineTunesOperations(
+  context: OpenAIContext
+): FineTunesOperations {
   return {
-    fineTunes: getFineTunes,
+    fineTunes: getFineTunes(context),
   };
 }

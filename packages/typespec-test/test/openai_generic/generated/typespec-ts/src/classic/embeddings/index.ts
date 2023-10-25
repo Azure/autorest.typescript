@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createEmbedding } from "../../api/embeddings";
+import { createEmbedding } from "../../api/embeddings/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateEmbeddingRequest,
-  CreateEmbeddingOptions,
   CreateEmbeddingResponse,
-} from "../../models";
+} from "../../models/models.js";
+import { CreateEmbeddingOptions } from "../../models/options.js";
 
 export interface EmbeddingsOperations {
   embeddings: {
@@ -18,7 +18,7 @@ export interface EmbeddingsOperations {
   };
 }
 
-export function getEmbeddings(context: Client) {
+export function getEmbeddings(context: OpenAIContext) {
   return {
     createEmbedding: (
       embedding: CreateEmbeddingRequest,
@@ -27,8 +27,10 @@ export function getEmbeddings(context: Client) {
   };
 }
 
-export function getEmbeddingsOperations(): EmbeddingsOperations {
+export function getEmbeddingsOperations(
+  context: OpenAIContext
+): EmbeddingsOperations {
   return {
-    embeddings: getEmbeddings,
+    embeddings: getEmbeddings(context),
   };
 }

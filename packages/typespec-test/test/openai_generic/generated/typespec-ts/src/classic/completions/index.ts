@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { createCompletion } from "../../api/completions";
+import { createCompletion } from "../../api/completions/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateCompletionRequest,
-  CreateCompletionOptions,
   CreateCompletionResponse,
-} from "../../models";
+} from "../../models/models.js";
+import { CreateCompletionOptions } from "../../models/options.js";
 
 export interface CompletionsOperations {
   completions: {
@@ -18,7 +18,7 @@ export interface CompletionsOperations {
   };
 }
 
-export function getCompletions(context: Client) {
+export function getCompletions(context: OpenAIContext) {
   return {
     createCompletion: (
       body: CreateCompletionRequest,
@@ -27,8 +27,10 @@ export function getCompletions(context: Client) {
   };
 }
 
-export function getCompletionsOperations(): CompletionsOperations {
+export function getCompletionsOperations(
+  context: OpenAIContext
+): CompletionsOperations {
   return {
-    completions: getCompletions,
+    completions: getCompletions(context),
   };
 }

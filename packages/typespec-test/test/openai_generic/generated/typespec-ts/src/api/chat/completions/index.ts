@@ -6,9 +6,11 @@ import {
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
+  CreateChatCompletion200Response,
+  CreateChatCompletionDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
-} from "../../../../rest/index.js";
+} from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,

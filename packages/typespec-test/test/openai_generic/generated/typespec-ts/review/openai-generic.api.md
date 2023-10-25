@@ -526,70 +526,28 @@ export interface Model {
 // @public (undocumented)
 export class OpenAIClient {
     constructor(credential: KeyCredential, options?: OpenAIClientOptions);
-    // (undocumented)
-    audioTranscriptions: {
-        createTranscription: (audio: CreateTranscriptionRequest, options?: CreateTranscriptionOptions) => Promise<CreateTranscriptionResponse>;
-    };
-    // (undocumented)
-    audioTranslations: {
-        createTranslation: (audio: CreateTranslationRequest, options?: CreateTranslationOptions) => Promise<CreateTranslationResponse>;
-    };
-    // (undocumented)
-    chatCompletions: {
-        createChatCompletion: (body: CreateChatCompletionRequest, options?: CreateChatCompletionOptions) => Promise<CreateChatCompletionResponse>;
-    };
-    // (undocumented)
-    completions: {
-        createCompletion: (body: CreateCompletionRequest, options?: CreateCompletionOptions) => Promise<CreateCompletionResponse>;
-    };
-    // (undocumented)
-    edits: {
-        createEdit: (edit: CreateEditRequest, options?: CreateEditOptions) => Promise<CreateEditResponse>;
-    };
-    // (undocumented)
-    embeddings: {
-        createEmbedding: (embedding: CreateEmbeddingRequest, options?: CreateEmbeddingOptions) => Promise<CreateEmbeddingResponse>;
-    };
-    // (undocumented)
-    files: {
-        listFiles: (options?: ListFilesOptions) => Promise<ListFilesResponse>;
-        createFile: (file: CreateFileRequest, options?: CreateFileOptions) => Promise<OpenAIFile>;
-        retrieveFile: (fileId: string, options?: RetrieveFileOptions) => Promise<OpenAIFile>;
-        deleteFile: (fileId: string, options?: DeleteFileOptions) => Promise<DeleteFileResponse>;
-        downloadFile: (fileId: string, options?: DownloadFileOptions) => Promise<string>;
-    };
-    // (undocumented)
-    fineTunes: {
-        createFineTune: (fineTune: CreateFineTuneRequest, options?: CreateFineTuneOptions) => Promise<FineTune>;
-        listFineTunes: (options?: ListFineTunesOptions) => Promise<ListFineTunesResponse>;
-        retrieveFineTune: (fineTuneId: string, options?: RetrieveFineTuneOptions) => Promise<FineTune>;
-        listFineTuneEvents: (fineTuneId: string, options?: ListFineTuneEventsOptions) => Promise<ListFineTuneEventsResponse>;
-        cancelFineTune: (fineTuneId: string, options?: CancelFineTuneOptions) => Promise<FineTune>;
-    };
-    // (undocumented)
-    fineTuningJobs: {
-        createFineTuningJob: (job: CreateFineTuningJobRequest, options?: CreateFineTuningJobOptions) => Promise<FineTuningJob>;
-        listPaginatedFineTuningJobs: (options?: ListPaginatedFineTuningJobsOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
-        retrieveFineTuningJob: (fineTuningJobId: string, options?: RetrieveFineTuningJobOptions) => Promise<FineTuningJob>;
-        listFineTuningEvents: (fineTuningJobId: string, options?: ListFineTuningEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
-        cancelFineTuningJob: (fineTuningJobId: string, options?: CancelFineTuningJobOptions) => Promise<FineTuningJob>;
-    };
-    // (undocumented)
-    images: {
-        createImage: (image: CreateImageRequest, options?: CreateImageOptions) => Promise<ImagesResponse>;
-        createImageEdit: (image: CreateImageEditRequest, options?: CreateImageEditOptions) => Promise<ImagesResponse>;
-        createImageVariation: (image: CreateImageVariationRequest, options?: CreateImageVariationOptions) => Promise<ImagesResponse>;
-    };
-    // (undocumented)
-    models: {
-        listModels: (options?: ListModelsOptions) => Promise<ListModelsResponse>;
-        retrieve: (model: string, options?: RetrieveOptions) => Promise<Model>;
-        deleteOperation: (model: string, options?: DeleteOptions) => Promise<DeleteModelResponse>;
-    };
-    // (undocumented)
-    moderations: {
-        createModeration: (content: CreateModerationRequest, options?: CreateModerationOptions) => Promise<CreateModerationResponse>;
-    };
+    // Warning: (ae-forgotten-export) The symbol "AudioOperations" needs to be exported by the entry point index.d.ts
+    readonly audio: AudioOperations;
+    // Warning: (ae-forgotten-export) The symbol "ChatOperations" needs to be exported by the entry point index.d.ts
+    readonly chat: ChatOperations;
+    // Warning: (ae-forgotten-export) The symbol "CompletionsOperations" needs to be exported by the entry point index.d.ts
+    readonly completions: CompletionsOperations;
+    // Warning: (ae-forgotten-export) The symbol "EditsOperations" needs to be exported by the entry point index.d.ts
+    readonly edits: EditsOperations;
+    // Warning: (ae-forgotten-export) The symbol "EmbeddingsOperations" needs to be exported by the entry point index.d.ts
+    readonly embeddings: EmbeddingsOperations;
+    // Warning: (ae-forgotten-export) The symbol "FilesOperations" needs to be exported by the entry point index.d.ts
+    readonly files: FilesOperations;
+    // Warning: (ae-forgotten-export) The symbol "FineTunesOperations" needs to be exported by the entry point index.d.ts
+    readonly fineTunes: FineTunesOperations;
+    // Warning: (ae-forgotten-export) The symbol "FineTuningOperations" needs to be exported by the entry point index.d.ts
+    readonly fineTuning: FineTuningOperations;
+    // Warning: (ae-forgotten-export) The symbol "ImagesOperations" needs to be exported by the entry point index.d.ts
+    readonly images: ImagesOperations;
+    // Warning: (ae-forgotten-export) The symbol "ModelsOperations" needs to be exported by the entry point index.d.ts
+    readonly models: ModelsOperations;
+    // Warning: (ae-forgotten-export) The symbol "ModerationsOperations" needs to be exported by the entry point index.d.ts
+    readonly moderations: ModerationsOperations;
     readonly pipeline: Pipeline;
 }
 

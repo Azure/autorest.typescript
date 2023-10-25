@@ -1,16 +1,22 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Client } from "@azure-rest/core-client";
-import { listModels, retrieve, deleteOperation } from "../../api/models";
+import {
+  listModels,
+  retrieve,
+  deleteOperation,
+} from "../../api/models/index.js";
+import { OpenAIContext } from "../../api/OpenAIContext.js";
+import {
+  ListModelsResponse,
+  Model,
+  DeleteModelResponse,
+} from "../../models/models.js";
 import {
   ListModelsOptions,
-  ListModelsResponse,
   RetrieveOptions,
-  Model,
   DeleteOptions,
-  DeleteModelResponse,
-} from "../../models";
+} from "../../models/options.js";
 
 export interface ModelsOperations {
   models: {
@@ -23,7 +29,7 @@ export interface ModelsOperations {
   };
 }
 
-export function getModels(context: Client) {
+export function getModels(context: OpenAIContext) {
   return {
     listModels: (options?: ListModelsOptions) => listModels(context, options),
     retrieve: (model: string, options?: RetrieveOptions) =>
@@ -33,8 +39,8 @@ export function getModels(context: Client) {
   };
 }
 
-export function getModelsOperations(): ModelsOperations {
+export function getModelsOperations(context: OpenAIContext): ModelsOperations {
   return {
-    models: getModels,
+    models: getModels(context),
   };
 }
