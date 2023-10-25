@@ -33,7 +33,9 @@ function getCoreClientErrorType(name: string, coreClientTypes: Set<string>) {
 function extractModels(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) =>
-      (t.type === "model" || t.type === "enum") && !isAzureCoreErrorSdkType(t)
+      (t.type === "model" || t.type === "enum") &&
+      !isAzureCoreErrorSdkType(t) &&
+      !(t.type == "model" && t.name === "")
   );
 
   for (const model of codeModel.types) {
