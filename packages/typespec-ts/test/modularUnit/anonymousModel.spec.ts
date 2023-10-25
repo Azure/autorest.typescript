@@ -734,7 +734,7 @@ describe("anonymous model", () => {
         );
       });
 
-      it("should map empty named model(A {}) => PublishResult", async () => {
+      it("should map empty named model(PublishResult {}) => PublishResult", async () => {
         const tspContent = `
         model PublishResult {
         }
