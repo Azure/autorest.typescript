@@ -1,5 +1,8 @@
 import { Type } from "../modularCodeModel.js";
 
+/**
+ * Represents metadata for a given Type to generate the TypeScript equivalent.
+ */
 export interface TypeMetadata {
   name: string;
   originModule?: string;
