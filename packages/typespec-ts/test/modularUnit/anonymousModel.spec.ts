@@ -892,7 +892,7 @@ describe("anonymous model", () => {
         );
       });
 
-      it("should map non-empty anonymous  model({ ... }) => { ... }", async () => {
+      it("should map non-empty anonymous model({ ... }) => { ... }", async () => {
         const tspContent = `
         model SimpleModel {
           test: string;
@@ -903,6 +903,9 @@ describe("anonymous model", () => {
             bas: string;
             @projectedName("json", "test")
             bar?: SimpleModel[];
+            nonemptyAnomyous: { a: string };
+            nonemptyAnomyousArray: { b?: Record<string> }[];
+            nonemptyAnomyousDict: Record<{ c: int32[]; }>;
           }
         }
         op read(): Foz;
@@ -913,7 +916,14 @@ describe("anonymous model", () => {
           modelFile?.getFullText()!,
           `
           export interface Foz {
-            baz: { foo: number[]; bas: string; bar?: SimpleModel[] };
+            baz: {
+                foo: number[];
+                bas: string;
+                bar?: SimpleModel[];
+                nonemptyAnomyous: { a: string };
+                nonemptyAnomyousArray: { b?: Record<string, string> }[];
+                nonemptyAnomyousDict: Record<string, { c: number[] }>;
+              };
           }
           
           export interface SimpleModel {
@@ -954,6 +964,11 @@ describe("anonymous model", () => {
                 foo: result.body.baz["foo"],
                 bas: result.body.baz["bas"],
                 bar: (result.body.baz["test"] ?? []).map((p) => ({ test: p["test"] })),
+                nonemptyAnomyous: { a: result.body.baz.nonemptyAnomyous["a"] },
+                nonemptyAnomyousArray: (
+                  result.body.baz["nonemptyAnomyousArray"] ?? []
+                ).map((p) => ({ b: p["b"] })),
+                nonemptyAnomyousDict: result.body.baz["nonemptyAnomyousDict"],
               },
             };
           }
