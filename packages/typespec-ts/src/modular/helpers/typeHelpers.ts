@@ -111,7 +111,7 @@ function handleConstantType(type: Type): TypeMetadata {
   if (type.valueType?.type === "string") {
     typeName = type.value ? `"${type.value}"` : "undefined";
   }
-  let name = handleNullableTypeName({
+  const name = handleNullableTypeName({
     name: typeName,
     nullable: type.nullable
   });
@@ -129,7 +129,7 @@ function handleEnumType(type: Type): TypeMetadata {
   ) {
     throw new Error("Unable to process enum without name");
   }
-  let name = handleNullableTypeName({
+  const name = handleNullableTypeName({
     name: type.name,
     nullable: type.nullable
   });

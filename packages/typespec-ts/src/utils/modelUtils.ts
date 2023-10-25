@@ -149,15 +149,27 @@ export function getSchemaForType(
   if (type.kind === "Model") {
     const schema = getSchemaForModel(dpgContext, type, usage, needRef) as any;
     if (isAnonymousObjectSchema(schema)) {
-      if (usage && usage.includes(SchemaContext.Output)) {
-        schema.outputTypeName = getModelInlineSigniture(schema, {
-          usage: [SchemaContext.Output]
+      if (Object.keys(schema.properties ?? {}).length === 0) {
+        // Handle empty anonymous model as Record
+        schema.typeName =
+          schema.type === "object" ? "Record<string, unknown>" : "unknown";
+        if (usage && usage.includes(SchemaContext.Output)) {
+          schema.outputTypeName =
+            schema.type === "object" ? "Record<string, any>" : "any";
+        }
+        schema.type = "unknown";
+      } else {
+        // Handle non-empty anonymous model as inline model
+        if (usage && usage.includes(SchemaContext.Output)) {
+          schema.outputTypeName = getModelInlineSigniture(schema, {
+            usage: [SchemaContext.Output]
+          });
+        }
+        schema.typeName = getModelInlineSigniture(schema, {
+          usage: [SchemaContext.Input]
         });
+        schema.type = "object";
       }
-      schema.typeName = getModelInlineSigniture(schema, {
-        usage: [SchemaContext.Input]
-      });
-      schema.type = "object";
     } else if (
       !isArrayModelType(program, type) &&
       !isRecordModelType(program, type)

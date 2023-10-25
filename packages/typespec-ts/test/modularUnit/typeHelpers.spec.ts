@@ -74,7 +74,7 @@ describe("typeHelpers", () => {
         expect(Boolean(result.nullable)).to.be.false;
       });
 
-      describe.only("anonymous model", () => {
+      describe("anonymous model", () => {
         it("should handle empty anonymous model", () => {
           const type: Type = {
             type: "model",
@@ -85,7 +85,7 @@ describe("typeHelpers", () => {
           expect(result.name).to.equal("{}");
         });
 
-        it.only("should handle anonymous model with properties", () => {
+        it("should handle anonymous model with properties", () => {
           const type: Type = {
             type: "model",
             name: "",

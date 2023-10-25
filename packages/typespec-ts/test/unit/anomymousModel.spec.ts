@@ -13,6 +13,9 @@ describe("anonymous model", () => {
       model Bar {
         bas: string;
       }
+      model EmptyObj {
+
+      }
       model Foo {
           bar: {
             baz: string;
@@ -24,6 +27,7 @@ describe("anonymous model", () => {
             unionOfOtherModel: Bar | null;
             emptyObj: {};
             referOtherModel: Bar;
+            namedEmptyObj: EmptyObj;
             recordOfEmptyObj: Record<{}>;
             recordOfOtherModel: Record<Bar>;
             recordOfRecordOfEmptyObj: Record<Record<{}>>;
@@ -53,13 +57,14 @@ describe("anonymous model", () => {
           unionObj: string | number | "foo";
           unionOfAnonymousObj: { foo: string; } | { bar: string; };
           unionOfOtherModel: Bar | null;
-          emptyObj: {};
+          emptyObj: Record<string, unknown>;
           referOtherModel: Bar;
-          recordOfEmptyObj: Record<string, {}>;
+          namedEmptyObj: EmptyObj;
+          recordOfEmptyObj: Record<string, Record<string, unknown>>;
           recordOfOtherModel: Record<string, Bar>;
-          recordOfRecordOfEmptyObj: Record<string, Record<string, {}>>;
+          recordOfRecordOfEmptyObj: Record<string, Record<string, Record<string, unknown>>>;
           recordOfAnonymousObj: Record<string, { foo: string; }>;
-          arrayOfEmptyObj: {}[];
+          arrayOfEmptyObj: Record<string, unknown>[];
           arrayOfSimpleAnonymousObj: { foo: string; }[];
           arrayOfOtherModel: Array<Bar>;
         };
@@ -68,6 +73,8 @@ describe("anonymous model", () => {
       export interface Bar {
         bas: string;
       }
+
+      export interface EmptyObj {}
       `
       );
     });
@@ -76,6 +83,10 @@ describe("anonymous model", () => {
       const tsp = `
       model Bar {
         bas: string;
+      }
+
+      model EmptyObj {
+
       }
       model Foo {
           bar: {
@@ -88,6 +99,7 @@ describe("anonymous model", () => {
             unionOfOtherModel: Bar | null;
             emptyObj: {};
             referOtherModel: Bar;
+            namedEmptyObj: EmptyObj;
             recordOfEmptyObj: Record<{}>;
             recordOfOtherModel: Record<Bar>;
             recordOfRecordOfEmptyObj: Record<Record<{}>>;
@@ -118,13 +130,14 @@ describe("anonymous model", () => {
               unionObj: string | number | "foo";
               unionOfAnonymousObj: { foo: string } | { bar: string };
               unionOfOtherModel: BarOutput | null;
-              emptyObj: {};
+              emptyObj: Record<string, any>;
               referOtherModel: BarOutput;
-              recordOfEmptyObj: Record<string, {}>;
+              namedEmptyObj: EmptyObjOutput;
+              recordOfEmptyObj: Record<string, Record<string, any>>;
               recordOfOtherModel: Record<string, BarOutput>;
-              recordOfRecordOfEmptyObj: Record<string, Record<string, {}>>;
+              recordOfRecordOfEmptyObj: Record<string, Record<string, Record<string, any>>>;
               recordOfAnonymousObj: Record<string, { foo: string }>;
-              arrayOfEmptyObj: {}[];
+              arrayOfEmptyObj: Record<string, any>[];
               arrayOfSimpleAnonymousObj: { foo: string }[];
               arrayOfOtherModel: Array<BarOutput>;
           };
@@ -133,6 +146,8 @@ describe("anonymous model", () => {
       export interface BarOutput {
         bas: string;
       }
+
+      export interface EmptyObjOutput {}
       `
       );
     });
@@ -182,13 +197,13 @@ describe("anonymous model", () => {
               unionObj: string | number | "foo";
               unionOfAnonymousObj: { foo: string } | { bar: string };
               unionOfOtherModel: BarOutput | null;
-              emptyObj: {};
+              emptyObj: Record<string, any>;
               referOtherModel: BarOutput;
-              recordOfEmptyObj: Record<string, {}>;
+              recordOfEmptyObj: Record<string, Record<string, any>>;
               recordOfOtherModel: Record<string, BarOutput>;
-              recordOfRecordOfEmptyObj: Record<string, Record<string, {}>>;
+              recordOfRecordOfEmptyObj: Record<string, Record<string, Record<string, any>>>;
               recordOfAnonymousObj: Record<string, { foo: string }>;
-              arrayOfEmptyObj: {}[];
+              arrayOfEmptyObj: Record<string, any>[];
               arrayOfSimpleAnonymousObj: { foo: string }[];
               arrayOfOtherModel: Array<BarOutput>;
           };
@@ -212,13 +227,13 @@ describe("anonymous model", () => {
           unionObj: string | number | "foo";
           unionOfAnonymousObj: { foo: string; } | { bar: string; };
           unionOfOtherModel: Bar | null;
-          emptyObj: {};
+          emptyObj: Record<string, unknown>;
           referOtherModel: Bar;
-          recordOfEmptyObj: Record<string, {}>;
+          recordOfEmptyObj: Record<string, Record<string, unknown>>;
           recordOfOtherModel: Record<string, Bar>;
-          recordOfRecordOfEmptyObj: Record<string, Record<string, {}>>;
+          recordOfRecordOfEmptyObj: Record<string, Record<string, Record<string, unknown>>>;
           recordOfAnonymousObj: Record<string, { foo: string; }>;
-          arrayOfEmptyObj: {}[];
+          arrayOfEmptyObj: Record<string, unknown>[];
           arrayOfSimpleAnonymousObj: { foo: string; }[];
           arrayOfOtherModel: Array<Bar>;
         };

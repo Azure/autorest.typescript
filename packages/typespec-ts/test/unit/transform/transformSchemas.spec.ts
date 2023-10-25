@@ -1,7 +1,6 @@
 import { ObjectSchema } from "@azure-tools/rlc-common";
 import { emitSchemasFromTypeSpec } from "../../util/emitUtil.js";
 import { assert } from "chai";
-import { getModelInlineSigniture } from "../../../src/utils/modelUtils.js";
 
 describe("#transformSchemas", () => {
   async function verifyFirstProperty(tspType: string) {
@@ -494,10 +493,10 @@ describe("#transformSchemas", () => {
       // console.log(property);
       assert.deepEqual(property, {
         name: "",
-        type: "object",
+        type: "unknown",
         description: undefined,
-        typeName: "{}",
-        outputTypeName: "{}",
+        typeName: "Record<string, unknown>",
+        outputTypeName: "Record<string, any>",
         properties: {},
         usage: ["input", "output"],
         required: true
@@ -544,7 +543,7 @@ describe("#transformSchemas", () => {
       {
         name:  { foo: { bar: string; } };
       }`);
-      console.log(property);
+      // console.log(property);
       assert.deepEqual(property, {
         name: "",
         type: "object",
@@ -654,7 +653,7 @@ describe("#transformSchemas", () => {
         /** Description for name */
         name: string;
       }>`);
-      console.log(property);
+      // console.log(property);
       assert.deepEqual(property, {
         type: "dictionary",
         description: undefined,
@@ -717,60 +716,6 @@ describe("#transformSchemas", () => {
           { type: "null" }
         ]
       } as any);
-    });
-
-    it("with other model reference", async () => {
-      const schemaOutput = await emitSchemasFromTypeSpec(`
-      model Foo {}
-      model Test {
-          prop: Foo;
-      }
-      @route("/models")
-      @get
-      op getModel(@body input: Test): Test;
-    `);
-      assert.isNotNull(schemaOutput);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      assert.deepEqual(first.usage, ["input", "output"]);
-      assert.strictEqual(first.name, "Test");
-      assert.strictEqual(first.type, "object");
-      const property = first.properties![`"prop"`];
-      console.log(schemaOutput, property);
-    });
-
-    it.skip("anonymous model with null and complext model", async () => {
-      const property = await verifyFirstProperty(`
-      {
-        index: safeint;
-        text: string;
-        logprobs: null | {
-          tokens: string[];
-          token_logprobs: float64[];
-          top_logprobs: Record<safeint>[];
-          text_offset: safeint[];
-        }
-      }`);
-      const schemaOutput = await emitSchemasFromTypeSpec(`
-      model Test {
-          prop: {
-            index: safeint;
-            text: string;
-            logprobs: null | {
-              tokens: string[];
-              token_logprobs: float64[];
-              top_logprobs: Record<safeint>[];
-              text_offset: safeint[];
-            }
-          }[];
-      }
-      @route("/models")
-      @get
-      op getModel(@body input: Test): Test;
-    `);
-      const first = schemaOutput?.[0] as ObjectSchema;
-      const res = `{"prop": {"index": number;"text": string;"logprobs": null | {"tokens": string[];"token_logprobs": number[];"top_logprobs": Record<string, number>[];"text_offset": number[];};};}`;
-      console.log(property, getModelInlineSigniture(first));
-      assert.strictEqual(getModelInlineSigniture(first), res);
     });
   });
 });

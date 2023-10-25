@@ -416,7 +416,7 @@ describe("anonymous model", () => {
         );
       });
 
-      it("should flatten empty anonymous  model({})", async () => {
+      it("should not flatten if body is empty anonymous model({})", async () => {
         const tspContent = `
       op read(@path pathParam: string, @query queryParam: string, @body body: {}): OkResponse;
         `;
@@ -439,6 +439,7 @@ describe("anonymous model", () => {
           context: Client,
           pathParam: string,
           queryParam: string,
+          body: Record<string, any>,
           options: ReadOptions = { requestOptions: {} }
         ): StreamableMethod<Read200Response> {
           return context
@@ -458,14 +459,10 @@ describe("anonymous model", () => {
           context: Client,
           pathParam: string,
           queryParam: string,
+          body: Record<string, any>,
           options: ReadOptions = { requestOptions: {} }
         ): Promise<void> {
-          const result = await _readSend(
-            context,
-            pathParam,
-            queryParam,
-            options
-          );
+          const result = await _readSend(context, pathParam, queryParam, body, options);
           return _readDeserialize(result);
         }`,
           true
@@ -555,7 +552,67 @@ describe("anonymous model", () => {
     });
 
     describe("happens as a property in body", async () => {
-      it("should flatten empty anonymous  model({})", async () => {
+      it("should generate empty anonymous model({}) as Record<string, any>", async () => {
+        const tspContent = `
+        model Test {
+          color: {};
+        }
+        op read(@body body: Test): void;
+        `;
+        const modelFile = await emitModularModelsFromTypeSpec(tspContent);
+        assert.ok(modelFile);
+        assertEqualContent(
+          modelFile!.getFullText()!,
+          `
+        export interface Test {
+          color: Record<string, any>;
+        }`
+        );
+
+        const operationFiles = await emitModularOperationsFromTypeSpec(
+          tspContent
+        );
+        assert.ok(operationFiles);
+        assert.equal(operationFiles?.length, 1);
+        assertEqualContent(
+          operationFiles?.[0]?.getFullText()!,
+          `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        export function _readSend(
+          context: Client,
+          body: Test,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read204Response> {
+          return context
+            .path("/")
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              body: { color: body["color"] },
+            });
+        }
+        export async function _readDeserialize(result: Read204Response): Promise<void> {
+          if (result.status !== "204") {
+            throw result.body;
+          }
+          return;
+        }
+        export async function read(
+          context: Client,
+          body: Test,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _readSend(context, body, options);
+          return _readDeserialize(result);
+        }`,
+          true
+        );
+      });
+
+      it("should generate non-empty anonymous  model({ ... })", async () => {
         const tspContent = `
         model Test {
           color: {
@@ -660,7 +717,7 @@ describe("anonymous model", () => {
           true
         );
       }
-      it("should map empty anonymous model({}) => {}", async () => {
+      it("should map empty anonymous model({}) => Record<string, any>", async () => {
         const tspContent = `
         op read(): {};
         `;
@@ -671,23 +728,21 @@ describe("anonymous model", () => {
         );
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
-        verifyReturnTypeAsEmpty(operationFiles?.[0]?.getFullText()!, "{}");
+        verifyReturnTypeAsEmpty(
+          operationFiles?.[0]?.getFullText()!,
+          "Record<string, any>"
+        );
       });
 
-      it("should map empty named model(A {}) => A {}", async () => {
+      it("should map empty named model(A {}) => Record<string, any>", async () => {
         const tspContent = `
         model PublishResult {
         }
         op read(): PublishResult;
         `;
-        // Empty models generated in models.ts
+        // No models will be generated in models.ts
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        assertEqualContent(
-          modelFile?.getFullText()!,
-          `
-        export interface PublishResult {}
-        `
-        );
+        assert.isUndefined(modelFile);
         const operationFiles = await emitModularOperationsFromTypeSpec(
           tspContent
         );
@@ -696,7 +751,7 @@ describe("anonymous model", () => {
         // Model name referred in operations.ts
         verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
-          "PublishResult"
+          "Record<string, any>"
         );
       });
 
@@ -752,7 +807,7 @@ describe("anonymous model", () => {
       });
     });
     describe("happens as a property in response body", async () => {
-      it("should map empty anonymous  model({}) => {} & empty named model(A {}) => A {}", async () => {
+      it("should map empty anonymous  model({}) => Record<string, any> & empty named model(A {}) => Record<string, any>", async () => {
         const tspContent = `
         model EmptyModel {
         }
@@ -772,15 +827,13 @@ describe("anonymous model", () => {
           modelFile?.getFullText()!,
           `
         export interface ReturnBody {
-          emptyAnomyous: {};
-          emptyAnomyousArray: {}[];
-          emptyAnomyousDict: Record<string, {}>;
-          emptyModel: EmptyModel;
-          emptyModelArray: EmptyModel[];
-          emptyModelDict: Record<string, EmptyModel>;
+          emptyAnomyous: Record<string, any>;
+          emptyAnomyousArray: Record<string, any>[];
+          emptyAnomyousDict: Record<string, Record<string, any>>;
+          emptyModel: Record<string, any>;
+          emptyModelArray: Record<string, any>[];
+          emptyModelDict: Record<string, Record<string, any>>;
         }
-
-        export interface EmptyModel {}
         `
         );
         const operationFiles = await emitModularOperationsFromTypeSpec(
@@ -813,13 +866,11 @@ describe("anonymous model", () => {
           }
 
           return {
-            emptyAnomyous: {},
-            emptyAnomyousArray: (result.body["emptyAnomyousArray"] ?? []).map(
-              () => ({})
-            ),
+            emptyAnomyous: result.body["emptyAnomyous"],
+            emptyAnomyousArray: result.body["emptyAnomyousArray"],
             emptyAnomyousDict: result.body["emptyAnomyousDict"],
-            emptyModel: {},
-            emptyModelArray: (result.body["emptyModelArray"] ?? []).map(() => ({})),
+            emptyModel: result.body["emptyModel"],
+            emptyModelArray: result.body["emptyModelArray"],
             emptyModelDict: result.body["emptyModelDict"],
           };
         }
