@@ -10,11 +10,11 @@ export interface Op1BodyParam {
 
 export type Op1Parameters = Op1BodyParam & RequestParameters;
 
-export interface BbOp1BodyParam {
+export interface BOp1BodyParam {
   body: Ba;
 }
 
-export type BbOp1Parameters = BbOp1BodyParam & RequestParameters;
+export type BOp1Parameters = BOp1BodyParam & RequestParameters;
 
 export interface BecOp1BodyParam {
   body: Bea;

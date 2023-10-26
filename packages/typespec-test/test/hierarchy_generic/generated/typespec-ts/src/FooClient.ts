@@ -26,7 +26,7 @@ export class FooClient {
     return op1(this._client, body, options);
   }
 
-  /** The operation groups for BB */
+  /** The operation groups for B */
   public readonly b: BOperations;
   /** The operation groups for D */
   public readonly d: DOperations;

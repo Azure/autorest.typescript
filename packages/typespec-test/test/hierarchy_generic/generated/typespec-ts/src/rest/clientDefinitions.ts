@@ -3,14 +3,14 @@
 
 import {
   Op1Parameters,
-  BbOp1Parameters,
+  BOp1Parameters,
   BecOp1Parameters,
   BcOp1Parameters,
   DOp1Parameters,
 } from "./parameters.js";
 import {
   Op1204Response,
-  BbOp1204Response,
+  BOp1204Response,
   BecOp1204Response,
   BcOp1204Response,
   DOp1204Response,
@@ -21,8 +21,8 @@ export interface Op1 {
   post(options: Op1Parameters): StreamableMethod<Op1204Response>;
 }
 
-export interface BBOp1 {
-  post(options: BbOp1Parameters): StreamableMethod<BbOp1204Response>;
+export interface BOp1 {
+  post(options: BOp1Parameters): StreamableMethod<BOp1204Response>;
 }
 
 export interface BECOp1 {
@@ -41,7 +41,7 @@ export interface Routes {
   /** Resource for '/' has methods for the following verbs: post */
   (path: "/"): Op1;
   /** Resource for '/b' has methods for the following verbs: post */
-  (path: "/b"): BBOp1;
+  (path: "/b"): BOp1;
   /** Resource for '/b/e' has methods for the following verbs: post */
   (path: "/b/e"): BECOp1;
   /** Resource for '/b/c' has methods for the following verbs: post */

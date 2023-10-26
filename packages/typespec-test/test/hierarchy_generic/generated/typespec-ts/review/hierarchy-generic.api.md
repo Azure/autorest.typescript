@@ -21,10 +21,6 @@ export interface BA {
 }
 
 // @public (undocumented)
-export interface BBOp1Options extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface BCOp1Options extends OperationOptions {
 }
 
@@ -36,6 +32,10 @@ export interface BEA {
 
 // @public (undocumented)
 export interface BECOp1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface BOp1Options extends OperationOptions {
 }
 
 // @public (undocumented)

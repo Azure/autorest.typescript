@@ -9,7 +9,7 @@ export interface Op1204Response extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface BbOp1204Response extends HttpResponse {
+export interface BOp1204Response extends HttpResponse {
   status: "204";
 }
 
