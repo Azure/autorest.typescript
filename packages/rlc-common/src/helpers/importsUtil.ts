@@ -1,4 +1,4 @@
-import { Imports } from "../interfaces";
+import { Imports } from "../interfaces.js";
 
 /**
  * Build the common imports for generated SDK
