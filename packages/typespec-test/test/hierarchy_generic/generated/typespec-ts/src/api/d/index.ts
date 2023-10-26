@@ -6,13 +6,13 @@ import { DOp1204Response, FooContext as Client } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  OperationOptions,
 } from "@azure-rest/core-client";
-import { DOp1Options } from "../../models/options.js";
 
-export function _dOp1Send(
+export function _op1Send(
   context: Client,
   body: A,
-  options: DOp1Options = { requestOptions: {} }
+  options: Op1Options = { requestOptions: {} }
 ): StreamableMethod<DOp1204Response> {
   return context
     .path("/d")
@@ -22,7 +22,7 @@ export function _dOp1Send(
     });
 }
 
-export async function _dOp1Deserialize(result: DOp1204Response): Promise<void> {
+export async function _op1Deserialize(result: DOp1204Response): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
   }
@@ -30,11 +30,13 @@ export async function _dOp1Deserialize(result: DOp1204Response): Promise<void> {
   return;
 }
 
-export async function dOp1(
+export async function op1(
   context: Client,
   body: A,
-  options: DOp1Options = { requestOptions: {} }
+  options: Op1Options = { requestOptions: {} }
 ): Promise<void> {
-  const result = await _dOp1Send(context, body, options);
-  return _dOp1Deserialize(result);
+  const result = await _op1Send(context, body, options);
+  return _op1Deserialize(result);
 }
+
+export interface Op1Options extends OperationOptions {}

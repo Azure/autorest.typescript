@@ -21,25 +21,9 @@ export interface BA {
 }
 
 // @public (undocumented)
-export interface BCOp1Options extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface BEA {
     // (undocumented)
     prop3: string;
-}
-
-// @public (undocumented)
-export interface BECOp1Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface BOp1Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface DOp1Options extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -49,6 +33,8 @@ export class FooClient {
     readonly b: BOperations;
     // Warning: (ae-forgotten-export) The symbol "DOperations" needs to be exported by the entry point index.d.ts
     readonly d: DOperations;
+    // Warning: (ae-forgotten-export) The symbol "Op1Options" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
     op1(body: A, options?: Op1Options): Promise<void>;
     readonly pipeline: Pipeline;
@@ -56,10 +42,6 @@ export class FooClient {
 
 // @public (undocumented)
 export interface FooClientOptions extends ClientOptions {
-}
-
-// @public (undocumented)
-export interface Op1Options extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

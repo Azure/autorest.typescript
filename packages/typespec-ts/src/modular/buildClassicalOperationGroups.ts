@@ -120,7 +120,12 @@ function importApis(
     return !e.startsWith("_");
   });
 
-  if (exported.length > 0) {
+  const existApiImport = classicFile.getImportDeclarations().filter((i) => {
+    return i
+      .getModuleSpecifierValue()
+      .includes(`../api/${classicOperationFileName}`);
+  })[0];
+  if (exported.length > 0 && !existApiImport) {
     classicFile.addImportDeclaration({
       moduleSpecifier: `${"../".repeat(
         operationGroup.namespaceHierarchies.length + 1

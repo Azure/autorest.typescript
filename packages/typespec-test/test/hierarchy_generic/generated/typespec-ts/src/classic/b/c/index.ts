@@ -1,20 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { bcOp1 } from "../../../api/b/c/index.js";
 import { FooContext } from "../../../api/FooContext.js";
+import { op1, Op1Options } from "../../../api/b/c/index.js";
 import { BA } from "../../../models/models.js";
-import { BCOp1Options } from "../../../models/options.js";
 
 export interface BCOperations {
   c: {
-    op1: (body: BA, options?: BCOp1Options) => Promise<void>;
+    op1: (body: BA, options?: Op1Options) => Promise<void>;
   };
 }
 
 export function getBC(context: FooContext) {
   return {
-    op1: (body: BA, options?: BCOp1Options) => bcOp1(context, body, options),
+    op1: (body: BA, options?: Op1Options) => op1(context, body, options),
   };
 }
 
