@@ -57,20 +57,17 @@ export function build3ndPartyImports(branded = true): Imports {
 }
 
 /**
- * Initialize the inner imports for parameter and response
- * @param isModular whether to use modular imports to add js suffix, the default value is false not in modular
+ * Initialize the inner imports for parameter and response, the import set would be used for referred models
  * @returns
  */
-export function initInnerImports(isModular = false): Imports {
+export function initInnerImports(): Imports {
   return {
     parameter: {
       type: "parameter",
-      specifier: `parameters${isModular ? ".js" : ""}`,
       importsSet: new Set<string>()
     },
     response: {
       type: "response",
-      specifier: `responses${isModular ? ".js" : ""}`,
       importsSet: new Set<string>()
     }
   } as Imports;
