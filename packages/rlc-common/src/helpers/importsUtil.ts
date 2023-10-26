@@ -2,7 +2,7 @@ import { Imports } from "../interfaces";
 
 /**
  * Build the common imports for generated SDK
- * @param branded whether to use azure-branded imports
+ * @param branded whether to use azure-branded imports, the default value is true for azure branded
  * @returns
  */
 export function build3ndPartyImports(branded = true): Imports {
@@ -58,7 +58,7 @@ export function build3ndPartyImports(branded = true): Imports {
 
 /**
  * Initialize the inner imports for parameter and response
- * @param isModular whether to use modular imports to add js suffix
+ * @param isModular whether to use modular imports to add js suffix, the default value is false not in modular
  * @returns
  */
 export function initInnerImports(isModular = false): Imports {

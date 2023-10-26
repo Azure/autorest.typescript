@@ -3,7 +3,8 @@
 
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import {
-  ImportKind,
+  build3ndPartyImports,
+  initInnerImports,
   NameType,
   normalizeName,
   OperationParameter,
@@ -58,7 +59,7 @@ export async function transformRLCModel(
           "",
     NameType.Class
   );
-  const importSet = new Map<ImportKind, Set<string>>();
+  const importSet = initInnerImports();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
@@ -84,12 +85,13 @@ export async function transformRLCModel(
     options,
     schemas,
     responses,
-    importSet,
     apiVersionInfo,
     parameters,
     helperDetails,
     urlInfo,
-    telemetryOptions
+    telemetryOptions,
+    innerImports: importSet,
+    thirdPartyImports: build3ndPartyImports(options.branded)
   };
   model.sampleGroups = transformSampleGroups(
     model,

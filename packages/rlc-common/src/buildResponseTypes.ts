@@ -9,7 +9,6 @@ import {
   StructureKind
 } from "ts-morph";
 import {
-  ImportKind,
   ResponseHeaderSchema,
   ResponseMetadata,
   RLCModel
@@ -101,9 +100,9 @@ export function buildResponseTypes(model: RLCModel) {
     }
   ]);
 
-  if (model.importSet?.has(ImportKind.ResponseOutput)) {
+  if ((model.innerImports?.response?.importsSet?.size ?? 0) > 0) {
     const modelNamedImports = Array.from(
-      model.importSet.get(ImportKind.ResponseOutput) || []
+      model.innerImports!.response!.importsSet!
     ).filter((modelName) => {
       return !(modelName === "ErrorResponseOutput" && hasErrorResponse);
     });

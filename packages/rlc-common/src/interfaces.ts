@@ -20,7 +20,7 @@ export interface RLCModel {
 export type Imports = Record<ImportType, ImportMetadata>;
 
 export type ImportType =
-  /**inner imports for parameter and response */
+  /**inner models' imports for parameter and response */
   | "parameter"
   | "response"
   /**common third party imports */
@@ -223,10 +223,6 @@ export interface DependencyInfo {
   description: string;
 }
 
-export enum ImportKind {
-  ResponseOutput,
-  ParameterInput
-}
 export interface File {
   path: string;
   content: string;

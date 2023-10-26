@@ -10,7 +10,6 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import {
-  ImportKind,
   ObjectSchema,
   ParameterMetadata,
   ParameterMetadatas,
@@ -149,12 +148,10 @@ export function buildParameterTypes(model: RLCModel) {
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
-  if (model.importSet?.has(ImportKind.ParameterInput)) {
+  if ((model.innerImports?.parameter?.importsSet?.size ?? 0) > 0) {
     parametersFile.addImportDeclarations([
       {
-        namedImports: [
-          ...Array.from(model.importSet?.get(ImportKind.ParameterInput) || [])
-        ],
+        namedImports: Array.from(model.innerImports!.parameter.importsSet!),
         moduleSpecifier: getImportModuleName(
           {
             cjsName: `./models`,
