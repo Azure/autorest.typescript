@@ -20,8 +20,6 @@ export interface CreateTranslationResponseOutput {
   text: string;
 }
 
-export interface TypeSpecRecordOutput extends Record<string, number> {}
-
 /** Represents a chat completion response returned by model, based on the provided input. */
 export interface CreateChatCompletionResponseOutput {
   /** A unique identifier for the chat completion. */
@@ -163,7 +161,7 @@ export interface CreateCompletionResponseOutput {
     logprobs: null | {
       tokens: string[];
       token_logprobs: number[];
-      top_logprobs: TypeSpecRecordOutput[];
+      top_logprobs: Record<string, number>[];
       text_offset: number[];
     };
     finish_reason: "stop" | "length" | "content_filter";

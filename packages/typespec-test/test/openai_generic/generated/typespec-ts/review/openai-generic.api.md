@@ -10,18 +10,6 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export interface AudioTranscriptionsCreateOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
-export interface AudioTranslationsCreateOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface ChatCompletionFunctionCallOption {
     name: string;
 }
@@ -52,14 +40,6 @@ export interface ChatCompletionResponseMessage {
         arguments: string;
     };
     role: "system" | "user" | "assistant" | "function";
-}
-
-// @public (undocumented)
-export interface ChatCompletionsCreateOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CompletionsCreateOptions extends OperationOptions {
 }
 
 // @public
@@ -342,19 +322,11 @@ export interface DeleteModelResponse {
     object: string;
 }
 
-// @public (undocumented)
-export interface EditsCreateOptions extends OperationOptions {
-}
-
 // @public
 export interface Embedding {
     embedding: number[];
     index: number;
     object: "embedding";
-}
-
-// @public (undocumented)
-export interface EmbeddingsCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -369,28 +341,6 @@ interface Error_2 {
     type: string;
 }
 export { Error_2 as Error }
-
-// @public (undocumented)
-export interface FilesCreateOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
-export interface FilesDeleteOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FilesDownloadOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FilesListOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FilesRetrieveOptions extends OperationOptions {
-}
 
 // @public
 export interface FineTune {
@@ -427,27 +377,6 @@ export interface FineTuneEvent {
     message: string;
     // (undocumented)
     object: string;
-}
-
-// @public (undocumented)
-export interface FineTunesCancelOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FineTunesCreateOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FineTunesListEventsOptions extends OperationOptions {
-    stream?: boolean;
-}
-
-// @public (undocumented)
-export interface FineTunesListOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FineTunesRetrieveOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -488,52 +417,12 @@ export interface FineTuningJobEvent {
     object: string;
 }
 
-// @public (undocumented)
-export interface FineTuningJobsCancelOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FineTuningJobsCreateOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface FineTuningJobsListEventsOptions extends OperationOptions {
-    after?: string;
-    limit?: number;
-}
-
-// @public (undocumented)
-export interface FineTuningJobsListOptions extends OperationOptions {
-    after?: string;
-    limit?: number;
-}
-
-// @public (undocumented)
-export interface FineTuningJobsRetrieveOptions extends OperationOptions {
-}
-
 // @public
 interface Image_2 {
     b64Json?: Uint8Array;
     url?: string;
 }
 export { Image_2 as Image }
-
-// @public (undocumented)
-export interface ImagesCreateEditOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
-export interface ImagesCreateOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ImagesCreateVariationOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
 
 // @public (undocumented)
 export interface ImagesResponse {
@@ -599,22 +488,6 @@ export interface Model {
     id: string;
     object: "model";
     ownedBy: string;
-}
-
-// @public (undocumented)
-export interface ModelsDeleteOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ModelsListOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ModelsRetrieveOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface ModerationsCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)

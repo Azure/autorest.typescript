@@ -51,6 +51,9 @@ export function detectModelConflicts(dpgContext: SdkContext) {
   const allModels = getAllModels(dpgContext);
   const nameSet = new Set<string>();
   for (const model of allModels) {
+    if (model.name === "") {
+      continue;
+    }
     if (nameSet.has(model.name)) {
       return true;
     }
