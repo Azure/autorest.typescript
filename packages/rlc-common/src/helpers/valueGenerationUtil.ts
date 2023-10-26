@@ -108,6 +108,7 @@ function mockUnionValues(
 ) {
   const schema = schemaMap.get(type);
   if (schema && schema.enum && schema.enum.length > 0) {
+    addToSchemaMap(schemaMap, schema.enum[0]);
     return generateParameterTypeValue(
       getAccurateTypeName(schema.enum[0]) ?? schema.enum[0],
       parameterName,
@@ -242,6 +243,9 @@ function getAccurateTypeName(schema: Schema) {
 
 function addToSchemaMap(schemaMap: Map<string, Schema>, schema: Schema) {
   const type = getAccurateTypeName(schema);
+  if (!type) {
+    return;
+  }
   if (
     !schemaMap.has(type) &&
     !["string", "number", "boolean"].includes(schema.type)

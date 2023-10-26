@@ -1,4 +1,4 @@
-import { EnumValue, Type } from "../modularCodeModel.js";
+import { Type } from "../modularCodeModel.js";
 
 /**
  * Represents metadata for a given Type to generate the TypeScript equivalent.
@@ -9,15 +9,6 @@ export interface TypeMetadata {
   isRelative?: boolean;
   nullable?: boolean;
   modifier?: "Array";
-}
-
-/**
- * Returns a string representation for an anonymous enum using its values.
- */
-function getAnonymousEnumName(values: EnumValue[]): string {
-  return values
-    .map((v) => (typeof v.value === "string" ? `"${v.value}"` : `${v.value}`))
-    .join(" | ");
 }
 
 // Mapping of simple types to their TypeScript equivalents.
@@ -41,6 +32,21 @@ const simpleTypeMap: Record<string, TypeMetadata> = {
   any: { name: "Record<string, any>" },
   unknown: { name: "unknown" }
 };
+
+function handleAnomymousModelName(type: Type) {
+  let retVal = `{`;
+  for (const prop of type.properties ?? []) {
+    const propName = prop.clientName ?? prop.restApiName ?? "";
+    const propTypeName = getType(prop.type, prop.type.format).name;
+    if (!propName || !propTypeName) {
+      continue;
+    }
+    retVal += `"${propName}"${prop.optional ? "?" : ""}: ${propTypeName};`;
+  }
+
+  retVal += `}`;
+  return retVal;
+}
 
 function handleNullableTypeName(type: {
   name?: string;
@@ -108,7 +114,11 @@ function handleConstantType(type: Type): TypeMetadata {
   if (type.valueType?.type === "string") {
     typeName = type.value ? `"${type.value}"` : "undefined";
   }
-  return { name: typeName, nullable: type.nullable };
+  const name = handleNullableTypeName({
+    name: typeName,
+    nullable: type.nullable
+  });
+  return { name, nullable: type.nullable };
 }
 
 /**
@@ -122,8 +132,10 @@ function handleEnumType(type: Type): TypeMetadata {
   ) {
     throw new Error("Unable to process enum without name");
   }
-  let name = type.name ?? getAnonymousEnumName(type.values ?? []);
-  name = handleNullableTypeName({ name, nullable: type.nullable });
+  const name = handleNullableTypeName({
+    name: type.name,
+    nullable: type.nullable
+  });
   return {
     name,
     nullable: type.nullable,
@@ -162,13 +174,11 @@ function handleListType(type: Type): TypeMetadata {
  * Handles the conversion of model types to TypeScript representation metadata.
  */
 function handleModelType(type: Type): TypeMetadata {
-  // Temporarily handling the case of anonymous models
-  if (!type.name) {
-    return {
-      name: "any"
-    };
-  }
-  const name = handleNullableTypeName(type);
+  let name = !type.name ? handleAnomymousModelName(type) : type.name;
+  name = handleNullableTypeName({
+    name,
+    nullable: type.nullable
+  });
   return {
     name,
     nullable: type.nullable,

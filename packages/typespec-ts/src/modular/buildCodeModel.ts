@@ -247,17 +247,6 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
   return type as Model;
 }
 
-function isEmptyModel(type: EmitterType): boolean {
-  // object, {}, Model{} all will be treated as empty model
-  return (
-    type.kind === "Model" &&
-    type.properties.size === 0 &&
-    !type.baseModel &&
-    type.derivedModels.length === 0 &&
-    !type.indexer
-  );
-}
-
 function processModelProperties(
   context: SdkContext,
   newValue: any,
@@ -281,6 +270,18 @@ function processModelProperties(
   // handleDiscriminator(context, model, newValue);
 }
 
+function isEmptyAnonymousModel(type: EmitterType): boolean {
+  // object, {}, all will be treated as empty model
+  return (
+    type.kind === "Model" &&
+    type.name === "" &&
+    type.properties.size === 0 &&
+    !type.baseModel &&
+    type.derivedModels.length === 0 &&
+    !type.indexer
+  );
+}
+
 function getType(
   context: SdkContext,
   type: EmitterType,
@@ -300,13 +301,12 @@ function getType(
     }
   }
   let newValue: any;
-  if (isEmptyModel(type)) {
+  if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
     newValue = emitType(context, type);
   }
-
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
   }
@@ -796,14 +796,16 @@ function emitBasicOperation(
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
-    if (bodyParameter.type.type === "model" && bodyParameter.type.name === "") {
-      if (bodyParameter.type.properties.length > 0) {
-        for (const param of bodyParameter.type.properties) {
-          // const emittedParam = emitParameter(context, param.type, "Method");
-          param.implementation = "Method";
-          param.location = param.location ?? "body";
-          parameters.push(param);
-        }
+    // Flatten the body parameter if it is an anonymous model
+    if (
+      bodyParameter.type.type === "model" &&
+      bodyParameter.type.name === "" &&
+      bodyParameter.type.properties.length > 0
+    ) {
+      for (const param of bodyParameter.type.properties) {
+        param.implementation = "Method";
+        param.location = param.location ?? "body";
+        parameters.push(param);
       }
       bodyParameter = undefined;
     } else if (
