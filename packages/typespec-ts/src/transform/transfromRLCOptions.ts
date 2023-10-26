@@ -21,6 +21,7 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { getOperationName } from "../utils/operationUtil.js";
+import { detectModelConflicts } from "../utils/namespaceUtils.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
@@ -56,6 +57,10 @@ function extractRLCOptions(
     dpgContext,
     emitterOptions
   );
+  const enableModelNamespace = getEnableModelNamespace(
+    dpgContext,
+    emitterOptions
+  );
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -67,7 +72,8 @@ function extractRLCOptions(
     serviceInfo,
     azureOutputDirectory,
     sourceFrom: "TypeSpec",
-    enableOperationGroup
+    enableOperationGroup,
+    enableModelNamespace
   };
 }
 
@@ -138,6 +144,20 @@ function getEnableOperationGroup(
   }
   // Detect if existing name conflicts if customers didn't set the option explicitly
   return detectIfNameConflicts(dpgContext);
+}
+
+function getEnableModelNamespace(
+  dpgContext: SdkContext,
+  emitterOptions: RLCOptions
+) {
+  if (
+    emitterOptions.enableModelNamespace === true ||
+    emitterOptions.enableModelNamespace === false
+  ) {
+    return emitterOptions.enableModelNamespace;
+  }
+  // Detect if existing name conflicts if customers didn't set the option explicitly
+  return detectModelConflicts(dpgContext);
 }
 
 function detectIfNameConflicts(dpgContext: SdkContext) {

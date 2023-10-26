@@ -98,7 +98,10 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
-import { getOperationNamespaceInterfaceName } from "../utils/namespaceUtils.js";
+import {
+  getModelNamespaceName,
+  getOperationNamespaceInterfaceName
+} from "../utils/namespaceUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -954,9 +957,20 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     getProjectedName(context.program, type, "javascript") ??
     getProjectedName(context.program, type, "client") ??
     getFriendlyName(context.program, type);
+  const fullNamespaceName =
+    getModelNamespaceName(context, type.namespace!)
+      .map((nsName) => {
+        return normalizeName(nsName, NameType.Interface);
+      })
+      .join("") +
+    (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
     overridedModelName ??
-    (effectiveName ? effectiveName : getName(context.program, type));
+    (context.rlcOptions?.enableModelNamespace
+      ? fullNamespaceName
+      : effectiveName
+      ? effectiveName
+      : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&

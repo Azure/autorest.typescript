@@ -1,4 +1,10 @@
-import { ClassDeclaration, Scope, SourceFile } from "ts-morph";
+import {
+  ClassDeclaration,
+  MethodDeclarationStructure,
+  Scope,
+  SourceFile,
+  StructureKind
+} from "ts-morph";
 import {
   getClientParameters,
   importCredential
@@ -12,6 +18,7 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { getOperationFunction } from "./helpers/operationHelpers.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -160,11 +167,40 @@ function buildClientOperationGroups(
   client: Client,
   clientClass: ClassDeclaration
 ) {
+  let clientType = "Client";
+  const subfolder = client.subfolder ?? "";
+  if (subfolder && subfolder !== "") {
+    clientType = `Client.${clientClass.getName()}`;
+  }
   for (const operationGroup of client.operationGroups) {
     const groupName = normalizeName(
       operationGroup.namespaceHierarchies[0] ?? operationGroup.propertyName,
       NameType.Property
     );
+    if (groupName === "") {
+      operationGroup.operations.forEach((op) => {
+        const declarations = getOperationFunction(op, clientType);
+        const method: MethodDeclarationStructure = {
+          docs: declarations.docs,
+          name: declarations.name ?? "FIXME",
+          kind: StructureKind.Method,
+          returnType: declarations.returnType,
+          parameters: declarations.parameters?.filter(
+            (p) => p.name !== "context"
+          ),
+          statements: `return ${declarations.name}(${[
+            "this._client",
+            ...[
+              declarations.parameters
+                ?.map((p) => p.name)
+                .filter((p) => p !== "context")
+            ]
+          ].join(",")})`
+        };
+        clientClass.addMethod(method);
+      });
+      continue;
+    }
     const operationName = `get${getClassicalLayerPrefix(
       operationGroup,
       NameType.Interface,

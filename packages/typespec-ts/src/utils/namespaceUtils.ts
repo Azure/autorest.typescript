@@ -1,4 +1,7 @@
-import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import {
+  SdkContext,
+  getAllModels
+} from "@azure-tools/typespec-client-generator-core";
 import {
   Namespace,
   isGlobalNamespace,
@@ -41,6 +44,17 @@ export function getOperationNamespaceInterfaceName(
         result.push(operation.namespace.name))
       : result;
   }
-
   return result;
+}
+
+export function detectModelConflicts(dpgContext: SdkContext) {
+  const allModels = getAllModels(dpgContext);
+  const nameSet = new Set<string>();
+  for (const model of allModels) {
+    if (nameSet.has(model.name)) {
+      return true;
+    }
+    nameSet.add(model.name);
+  }
+  return false;
 }

@@ -14,6 +14,28 @@ import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
 
+// @public
+export interface AlignPolicy {
+    alignMode?: "Inner" | "Outer";
+    fillNAMethod?: string;
+    paddingValue?: number;
+}
+
+// @public
+export interface AlignPolicyOutput {
+    alignMode?: "Inner" | "Outer";
+    fillNAMethod?: string;
+    paddingValue?: number;
+}
+
+// @public
+export interface AnomalyDetectionModelOutput {
+    createdTime: string;
+    lastUpdatedTime: string;
+    readonly modelId: string;
+    modelInfo?: ModelInfoOutput;
+}
+
 // @public (undocumented)
 export type AnomalyDetectorClient = Client & {
     path: Routes;
@@ -23,6 +45,39 @@ export type AnomalyDetectorClient = Client & {
 export interface AnomalyDetectorClientOptions extends ClientOptions {
     // (undocumented)
     apiVersion?: string;
+}
+
+// @public
+export interface AnomalyDetectorErrorOutput {
+    code?: string;
+    message?: string;
+}
+
+// @public
+export interface AnomalyInterpretationOutput {
+    contributionScore?: number;
+    correlationChanges?: CorrelationChangesOutput;
+    variable?: string;
+}
+
+// @public
+export interface AnomalyStateOutput {
+    errors?: Array<ErrorResponseOutput>;
+    timestamp: string;
+    value?: AnomalyValueOutput;
+}
+
+// @public
+export interface AnomalyValueOutput {
+    interpretation?: Array<AnomalyInterpretationOutput>;
+    isAnomaly: boolean;
+    score: number;
+    severity: number;
+}
+
+// @public
+export interface CorrelationChangesOutput {
+    changedVariables?: string[];
 }
 
 // @public
@@ -49,7 +104,7 @@ export interface DeleteMultivariateModelDefaultHeaders {
 // @public (undocumented)
 export interface DeleteMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & DeleteMultivariateModelDefaultHeaders;
     // (undocumented)
@@ -73,7 +128,7 @@ export interface DetectMultivariateBatchAnomaly202Headers {
 // @public
 export interface DetectMultivariateBatchAnomaly202Response extends HttpResponse {
     // (undocumented)
-    body: MultivariateMultivariateDetectionResultOutput;
+    body: MultivariateDetectionResultOutput;
     // (undocumented)
     headers: RawHttpHeaders & DetectMultivariateBatchAnomaly202Headers;
     // (undocumented)
@@ -82,7 +137,7 @@ export interface DetectMultivariateBatchAnomaly202Response extends HttpResponse 
 
 // @public (undocumented)
 export interface DetectMultivariateBatchAnomalyBodyParam {
-    body: MultivariateMultivariateBatchDetectionOptions;
+    body: MultivariateBatchDetectionOptions;
 }
 
 // @public (undocumented)
@@ -93,7 +148,7 @@ export interface DetectMultivariateBatchAnomalyDefaultHeaders {
 // @public (undocumented)
 export interface DetectMultivariateBatchAnomalyDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & DetectMultivariateBatchAnomalyDefaultHeaders;
     // (undocumented)
@@ -111,14 +166,14 @@ export interface DetectMultivariateLastAnomaly {
 // @public
 export interface DetectMultivariateLastAnomaly200Response extends HttpResponse {
     // (undocumented)
-    body: MultivariateMultivariateLastDetectionResultOutput;
+    body: MultivariateLastDetectionResultOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
 export interface DetectMultivariateLastAnomalyBodyParam {
-    body: MultivariateMultivariateLastDetectionOptions;
+    body: MultivariateLastDetectionOptions;
 }
 
 // @public (undocumented)
@@ -129,7 +184,7 @@ export interface DetectMultivariateLastAnomalyDefaultHeaders {
 // @public (undocumented)
 export interface DetectMultivariateLastAnomalyDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & DetectMultivariateLastAnomalyDefaultHeaders;
     // (undocumented)
@@ -147,14 +202,14 @@ export interface DetectUnivariateChangePoint {
 // @public
 export interface DetectUnivariateChangePoint200Response extends HttpResponse {
     // (undocumented)
-    body: UnivariateUnivariateChangePointDetectionResultOutput;
+    body: UnivariateChangePointDetectionResultOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
 export interface DetectUnivariateChangePointBodyParam {
-    body: UnivariateUnivariateChangePointDetectionOptions;
+    body: UnivariateChangePointDetectionOptions;
 }
 
 // @public (undocumented)
@@ -165,7 +220,7 @@ export interface DetectUnivariateChangePointDefaultHeaders {
 // @public (undocumented)
 export interface DetectUnivariateChangePointDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: UnivariateAnomalyDetectorErrorOutput;
+    body: AnomalyDetectorErrorOutput;
     // (undocumented)
     headers: RawHttpHeaders & DetectUnivariateChangePointDefaultHeaders;
     // (undocumented)
@@ -183,14 +238,14 @@ export interface DetectUnivariateEntireSeries {
 // @public
 export interface DetectUnivariateEntireSeries200Response extends HttpResponse {
     // (undocumented)
-    body: UnivariateUnivariateEntireDetectionResultOutput;
+    body: UnivariateEntireDetectionResultOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
 export interface DetectUnivariateEntireSeriesBodyParam {
-    body: UnivariateUnivariateDetectionOptions;
+    body: UnivariateDetectionOptions;
 }
 
 // @public (undocumented)
@@ -201,7 +256,7 @@ export interface DetectUnivariateEntireSeriesDefaultHeaders {
 // @public (undocumented)
 export interface DetectUnivariateEntireSeriesDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: UnivariateAnomalyDetectorErrorOutput;
+    body: AnomalyDetectorErrorOutput;
     // (undocumented)
     headers: RawHttpHeaders & DetectUnivariateEntireSeriesDefaultHeaders;
     // (undocumented)
@@ -219,14 +274,14 @@ export interface DetectUnivariateLastPoint {
 // @public
 export interface DetectUnivariateLastPoint200Response extends HttpResponse {
     // (undocumented)
-    body: UnivariateUnivariateLastDetectionResultOutput;
+    body: UnivariateLastDetectionResultOutput;
     // (undocumented)
     status: "200";
 }
 
 // @public (undocumented)
 export interface DetectUnivariateLastPointBodyParam {
-    body: UnivariateUnivariateDetectionOptions;
+    body: UnivariateDetectionOptions;
 }
 
 // @public (undocumented)
@@ -237,7 +292,7 @@ export interface DetectUnivariateLastPointDefaultHeaders {
 // @public (undocumented)
 export interface DetectUnivariateLastPointDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: UnivariateAnomalyDetectorErrorOutput;
+    body: AnomalyDetectorErrorOutput;
     // (undocumented)
     headers: RawHttpHeaders & DetectUnivariateLastPointDefaultHeaders;
     // (undocumented)
@@ -246,6 +301,30 @@ export interface DetectUnivariateLastPointDefaultResponse extends HttpResponse {
 
 // @public (undocumented)
 export type DetectUnivariateLastPointParameters = DetectUnivariateLastPointBodyParam & RequestParameters;
+
+// @public
+export interface DiagnosticsInfo {
+    modelState?: ModelState;
+    variableStates?: Array<VariableState>;
+}
+
+// @public
+export interface DiagnosticsInfoOutput {
+    modelState?: ModelStateOutput;
+    variableStates?: Array<VariableStateOutput>;
+}
+
+// @public
+export interface ErrorResponse {
+    code: string;
+    message: string;
+}
+
+// @public
+export interface ErrorResponseOutput {
+    code: string;
+    message: string;
+}
 
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
@@ -258,7 +337,7 @@ export interface GetMultivariateBatchDetectionResult {
 // @public
 export interface GetMultivariateBatchDetectionResult200Response extends HttpResponse {
     // (undocumented)
-    body: MultivariateMultivariateDetectionResultOutput;
+    body: MultivariateDetectionResultOutput;
     // (undocumented)
     status: "200";
 }
@@ -271,7 +350,7 @@ export interface GetMultivariateBatchDetectionResultDefaultHeaders {
 // @public (undocumented)
 export interface GetMultivariateBatchDetectionResultDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & GetMultivariateBatchDetectionResultDefaultHeaders;
     // (undocumented)
@@ -284,7 +363,7 @@ export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
 // @public
 export interface GetMultivariateModel200Response extends HttpResponse {
     // (undocumented)
-    body: MultivariateAnomalyDetectionModelOutput;
+    body: AnomalyDetectionModelOutput;
     // (undocumented)
     status: "200";
 }
@@ -297,7 +376,7 @@ export interface GetMultivariateModelDefaultHeaders {
 // @public (undocumented)
 export interface GetMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & GetMultivariateModelDefaultHeaders;
     // (undocumented)
@@ -346,7 +425,7 @@ export function isUnexpected(response: DetectMultivariateLastAnomaly200Response 
 // @public
 export interface ListMultivariateModels200Response extends HttpResponse {
     // (undocumented)
-    body: MultivariateModelListOutput;
+    body: ModelListOutput;
     // (undocumented)
     status: "200";
 }
@@ -359,7 +438,7 @@ export interface ListMultivariateModelsDefaultHeaders {
 // @public (undocumented)
 export interface ListMultivariateModelsDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & ListMultivariateModelsDefaultHeaders;
     // (undocumented)
@@ -382,84 +461,11 @@ export interface ListMultivariateModelsQueryParamProperties {
 }
 
 // @public
-export interface MultivariateAlignPolicy {
-    alignMode?: "Inner" | "Outer";
-    fillNAMethod?: string;
-    paddingValue?: number;
-}
-
-// @public
-export interface MultivariateAlignPolicyOutput {
-    alignMode?: "Inner" | "Outer";
-    fillNAMethod?: string;
-    paddingValue?: number;
-}
-
-// @public
-export interface MultivariateAnomalyDetectionModelOutput {
-    createdTime: string;
-    lastUpdatedTime: string;
-    readonly modelId: string;
-    modelInfo?: MultivariateModelInfoOutput;
-}
-
-// @public
-export interface MultivariateAnomalyInterpretationOutput {
-    contributionScore?: number;
-    correlationChanges?: MultivariateCorrelationChangesOutput;
-    variable?: string;
-}
-
-// @public
-export interface MultivariateAnomalyStateOutput {
-    errors?: Array<MultivariateErrorResponseOutput>;
-    timestamp: string;
-    value?: MultivariateAnomalyValueOutput;
-}
-
-// @public
-export interface MultivariateAnomalyValueOutput {
-    interpretation?: Array<MultivariateAnomalyInterpretationOutput>;
-    isAnomaly: boolean;
-    score: number;
-    severity: number;
-}
-
-// @public
-export interface MultivariateCorrelationChangesOutput {
-    changedVariables?: string[];
-}
-
-// @public
-export interface MultivariateDiagnosticsInfo {
-    modelState?: MultivariateModelState;
-    variableStates?: Array<MultivariateVariableState>;
-}
-
-// @public
-export interface MultivariateDiagnosticsInfoOutput {
-    modelState?: MultivariateModelStateOutput;
-    variableStates?: Array<MultivariateVariableStateOutput>;
-}
-
-// @public
-export interface MultivariateErrorResponse {
-    code: string;
-    message: string;
-}
-
-// @public
-export interface MultivariateErrorResponseOutput {
-    code: string;
-    message: string;
-}
-
-// @public
-export interface MultivariateModelInfo {
-    alignPolicy?: MultivariateAlignPolicy;
+export interface ModelInfo {
+    alignPolicy?: AlignPolicy;
     dataSchema?: string;
     dataSource: string;
-    diagnosticsInfo?: MultivariateDiagnosticsInfo;
+    diagnosticsInfo?: DiagnosticsInfo;
     displayName?: string;
     endTime: Date | string;
     slidingWindow?: number;
@@ -468,29 +474,29 @@ export interface MultivariateModelInfo {
 }
 
 // @public
-export interface MultivariateModelInfoOutput {
-    alignPolicy?: MultivariateAlignPolicyOutput;
+export interface ModelInfoOutput {
+    alignPolicy?: AlignPolicyOutput;
     dataSchema?: string;
     dataSource: string;
-    diagnosticsInfo?: MultivariateDiagnosticsInfoOutput;
+    diagnosticsInfo?: DiagnosticsInfoOutput;
     displayName?: string;
     endTime: string;
-    readonly errors?: Array<MultivariateErrorResponseOutput>;
+    readonly errors?: Array<ErrorResponseOutput>;
     slidingWindow?: number;
     startTime: string;
     status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
 }
 
 // @public
-export interface MultivariateModelListOutput {
+export interface ModelListOutput {
     currentCount: number;
     maxCount: number;
-    models: Array<MultivariateAnomalyDetectionModelOutput>;
+    models: Array<AnomalyDetectionModelOutput>;
     nextLink?: string;
 }
 
 // @public
-export interface MultivariateModelState {
+export interface ModelState {
     epochIds?: number[];
     latenciesInSeconds?: number[];
     trainLosses?: number[];
@@ -498,7 +504,7 @@ export interface MultivariateModelState {
 }
 
 // @public
-export interface MultivariateModelStateOutput {
+export interface ModelStateOutput {
     epochIds?: number[];
     latenciesInSeconds?: number[];
     trainLosses?: number[];
@@ -506,7 +512,7 @@ export interface MultivariateModelStateOutput {
 }
 
 // @public
-export interface MultivariateMultivariateBatchDetectionOptions {
+export interface MultivariateBatchDetectionOptions {
     dataSource: string;
     endTime: Date | string;
     startTime: Date | string;
@@ -514,7 +520,7 @@ export interface MultivariateMultivariateBatchDetectionOptions {
 }
 
 // @public
-export interface MultivariateMultivariateBatchDetectionOptionsOutput {
+export interface MultivariateBatchDetectionOptionsOutput {
     dataSource: string;
     endTime: string;
     startTime: string;
@@ -522,55 +528,30 @@ export interface MultivariateMultivariateBatchDetectionOptionsOutput {
 }
 
 // @public
-export interface MultivariateMultivariateBatchDetectionResultSummaryOutput {
-    errors?: Array<MultivariateErrorResponseOutput>;
-    setupInfo: MultivariateMultivariateBatchDetectionOptionsOutput;
+export interface MultivariateBatchDetectionResultSummaryOutput {
+    errors?: Array<ErrorResponseOutput>;
+    setupInfo: MultivariateBatchDetectionOptionsOutput;
     status: "CREATED" | "RUNNING" | "READY" | "FAILED";
-    variableStates?: Array<MultivariateVariableStateOutput>;
+    variableStates?: Array<VariableStateOutput>;
 }
 
 // @public
-export interface MultivariateMultivariateDetectionResultOutput {
+export interface MultivariateDetectionResultOutput {
     readonly resultId: string;
-    results: Array<MultivariateAnomalyStateOutput>;
-    summary: MultivariateMultivariateBatchDetectionResultSummaryOutput;
+    results: Array<AnomalyStateOutput>;
+    summary: MultivariateBatchDetectionResultSummaryOutput;
 }
 
 // @public
-export interface MultivariateMultivariateLastDetectionOptions {
+export interface MultivariateLastDetectionOptions {
     topContributorCount: number;
-    variables: Array<MultivariateVariableValues>;
+    variables: Array<VariableValues>;
 }
 
 // @public
-export interface MultivariateMultivariateLastDetectionResultOutput {
-    results?: Array<MultivariateAnomalyStateOutput>;
-    variableStates?: Array<MultivariateVariableStateOutput>;
-}
-
-// @public
-export interface MultivariateVariableState {
-    effectiveCount?: number;
-    filledNARatio?: number;
-    firstTimestamp?: Date | string;
-    lastTimestamp?: Date | string;
-    variable?: string;
-}
-
-// @public
-export interface MultivariateVariableStateOutput {
-    effectiveCount?: number;
-    filledNARatio?: number;
-    firstTimestamp?: string;
-    lastTimestamp?: string;
-    variable?: string;
-}
-
-// @public
-export interface MultivariateVariableValues {
-    timestamps: string[];
-    values: number[];
-    variable: string;
+export interface MultivariateLastDetectionResultOutput {
+    results?: Array<AnomalyStateOutput>;
+    variableStates?: Array<VariableStateOutput>;
 }
 
 // @public
@@ -604,6 +585,12 @@ export interface Routes {
     (path: "/multivariate/models/{modelId}:detect-last", modelId: string): DetectMultivariateLastAnomaly;
 }
 
+// @public
+export interface TimeSeriesPoint {
+    timestamp?: Date | string;
+    value: number;
+}
+
 // @public (undocumented)
 export interface TrainMultivariateModel {
     get(options?: ListMultivariateModelsParameters): StreamableMethod<ListMultivariateModels200Response | ListMultivariateModelsDefaultResponse>;
@@ -618,7 +605,7 @@ export interface TrainMultivariateModel201Headers {
 // @public
 export interface TrainMultivariateModel201Response extends HttpResponse {
     // (undocumented)
-    body: MultivariateAnomalyDetectionModelOutput;
+    body: AnomalyDetectionModelOutput;
     // (undocumented)
     headers: RawHttpHeaders & TrainMultivariateModel201Headers;
     // (undocumented)
@@ -627,7 +614,7 @@ export interface TrainMultivariateModel201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface TrainMultivariateModelBodyParam {
-    body: MultivariateModelInfo;
+    body: ModelInfo;
 }
 
 // @public (undocumented)
@@ -638,7 +625,7 @@ export interface TrainMultivariateModelDefaultHeaders {
 // @public (undocumented)
 export interface TrainMultivariateModelDefaultResponse extends HttpResponse {
     // (undocumented)
-    body: MultivariateErrorResponseOutput;
+    body: ErrorResponseOutput;
     // (undocumented)
     headers: RawHttpHeaders & TrainMultivariateModelDefaultHeaders;
     // (undocumented)
@@ -649,36 +636,24 @@ export interface TrainMultivariateModelDefaultResponse extends HttpResponse {
 export type TrainMultivariateModelParameters = TrainMultivariateModelBodyParam & RequestParameters;
 
 // @public
-export interface UnivariateAnomalyDetectorErrorOutput {
-    code?: string;
-    message?: string;
-}
-
-// @public
-export interface UnivariateTimeSeriesPoint {
-    timestamp?: Date | string;
-    value: number;
-}
-
-// @public
-export interface UnivariateUnivariateChangePointDetectionOptions {
+export interface UnivariateChangePointDetectionOptions {
     customInterval?: number;
     granularity: "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
     period?: number;
-    series: Array<UnivariateTimeSeriesPoint>;
+    series: Array<TimeSeriesPoint>;
     stableTrendWindow?: number;
     threshold?: number;
 }
 
 // @public
-export interface UnivariateUnivariateChangePointDetectionResultOutput {
+export interface UnivariateChangePointDetectionResultOutput {
     confidenceScores?: number[];
     isChangePoint?: boolean[];
     readonly period?: number;
 }
 
 // @public
-export interface UnivariateUnivariateDetectionOptions {
+export interface UnivariateDetectionOptions {
     customInterval?: number;
     granularity?: "yearly" | "monthly" | "weekly" | "daily" | "hourly" | "minutely" | "secondly" | "microsecond" | "none";
     imputeFixedValue?: number;
@@ -686,11 +661,11 @@ export interface UnivariateUnivariateDetectionOptions {
     maxAnomalyRatio?: number;
     period?: number;
     sensitivity?: number;
-    series: Array<UnivariateTimeSeriesPoint>;
+    series: Array<TimeSeriesPoint>;
 }
 
 // @public
-export interface UnivariateUnivariateEntireDetectionResultOutput {
+export interface UnivariateEntireDetectionResultOutput {
     expectedValues: number[];
     isAnomaly: boolean[];
     isNegativeAnomaly: boolean[];
@@ -702,7 +677,7 @@ export interface UnivariateUnivariateEntireDetectionResultOutput {
 }
 
 // @public
-export interface UnivariateUnivariateLastDetectionResultOutput {
+export interface UnivariateLastDetectionResultOutput {
     expectedValue: number;
     isAnomaly: boolean;
     isNegativeAnomaly: boolean;
@@ -712,6 +687,31 @@ export interface UnivariateUnivariateLastDetectionResultOutput {
     severity?: number;
     suggestedWindow: number;
     upperMargin: number;
+}
+
+// @public
+export interface VariableState {
+    effectiveCount?: number;
+    filledNARatio?: number;
+    firstTimestamp?: Date | string;
+    lastTimestamp?: Date | string;
+    variable?: string;
+}
+
+// @public
+export interface VariableStateOutput {
+    effectiveCount?: number;
+    filledNARatio?: number;
+    firstTimestamp?: string;
+    lastTimestamp?: string;
+    variable?: string;
+}
+
+// @public
+export interface VariableValues {
+    timestamps: string[];
+    values: number[];
+    variable: string;
 }
 
 // (No @packageDocumentation comment for this package)

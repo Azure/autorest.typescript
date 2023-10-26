@@ -180,6 +180,7 @@ export interface RLCOptions {
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
+  enableModelNamespace?: boolean;
 }
 
 export interface ServiceInfo {
