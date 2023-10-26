@@ -17,12 +17,18 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
     "..",
     `./temp/http/${sourceTypespec}`
   );
+  let subPath = "integration";
+  if (mode.includes("modular")) {
+    subPath = "modularIntegration";
+  } else if (mode.includes("non-azure")) {
+    subPath = `nonAzureIntegration/${
+      mode.includes("modular") ? "modular" : "rlc"
+    }`;
+  }
   const outputPath = joinPath(
     `${__dirname}`,
     "..",
-    `./${mode.includes("modular") ? "modularIntegration" : "integration"}/${
-      mode.includes("non-azure") ? "nonAzureGenerated" : "generated"
-    }/${targetFolder}`
+    `./${subPath}/generated/${targetFolder}`
   );
   const possibleEntryFiles = ["client.tsp", "main.tsp"];
   for (let filename of possibleEntryFiles) {
