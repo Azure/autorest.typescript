@@ -9,11 +9,41 @@ export interface RLCModel {
   apiVersionInfo?: ApiVersionInfo;
   parameters?: OperationParameter[];
   responses?: OperationResponse[];
-  importSet?: Map<ImportKind, Set<string>>;
   helperDetails?: HelperFunctionDetails;
   urlInfo?: UrlInfo;
   telemetryOptions?: TelemetryInfo;
   sampleGroups?: RLCSampleGroup[];
+  innerImports?: Imports;
+  thirdPartyImports?: Imports;
+}
+
+export type Imports = Record<ImportType, ImportMetadata>;
+
+export type ImportType =
+  /**inner imports for parameter and response */
+  | "parameter"
+  | "response"
+  /**common third party imports */
+  | "restClient"
+  | "coreAuth"
+  | "restPipeline"
+  | "coreUtil"
+  | "coreLogger"
+  // this is a fallback import if above imports are not available
+  | "commonFallback"
+  /**azure specific imports */
+  | "azureEslintPlugin"
+  | "azureTestRecorder"
+  | "azureDevTool"
+  | "azureAbortController"
+  | "azureCoreLro"
+  | "azureCorePaging";
+
+export interface ImportMetadata {
+  type: ImportType;
+  specifier?: string;
+  version?: string;
+  importsSet?: Set<string>;
 }
 
 /**
@@ -180,6 +210,7 @@ export interface RLCOptions {
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
+  branded?: boolean;
 }
 
 export interface ServiceInfo {
