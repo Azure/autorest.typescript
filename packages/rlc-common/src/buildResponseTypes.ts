@@ -85,7 +85,11 @@ export function buildResponseTypes(model: RLCModel) {
     responsesFile.addImportDeclarations([
       {
         namedImports: ["RawHttpHeaders"],
-        moduleSpecifier: "@azure/core-rest-pipeline"
+        moduleSpecifier:
+          (
+            model.thirdPartyImports?.commonFallback ??
+            model.thirdPartyImports?.restPipeline
+          )?.specifier ?? "@azure/core-rest-pipeline"
       }
     ]);
   }
@@ -96,7 +100,11 @@ export function buildResponseTypes(model: RLCModel) {
   responsesFile.addImportDeclarations([
     {
       namedImports,
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier:
+        (
+          model?.thirdPartyImports?.restClient ??
+          model?.thirdPartyImports?.commonFallback
+        )?.specifier ?? "@azure-rest/core-client"
     }
   ]);
 

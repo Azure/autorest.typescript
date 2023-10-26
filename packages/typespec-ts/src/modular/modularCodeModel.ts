@@ -1,3 +1,4 @@
+import { Imports } from "@azure-tools/rlc-common";
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
 import { Project } from "ts-morph";
 
@@ -12,6 +13,7 @@ export interface ModularCodeModel {
   clients: Client[];
   types: Type[];
   project: Project;
+  thirdPartyImports?: Imports;
 }
 
 export interface Header {

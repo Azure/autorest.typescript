@@ -156,7 +156,11 @@ export function buildModels(
   if (coreClientTypes.size > 0) {
     modelsFile.addImportDeclarations([
       {
-        moduleSpecifier: "@azure-rest/core-client",
+        moduleSpecifier:
+          (
+            codeModel?.thirdPartyImports?.restClient ??
+            codeModel?.thirdPartyImports?.commonFallback
+          )?.specifier ?? "@azure-rest/core-client",
         namedImports: Array.from(coreClientTypes)
       }
     ]);
@@ -187,7 +191,11 @@ export function buildModelsOptions(
   }
   modelOptionsFile.addImportDeclarations([
     {
-      moduleSpecifier: "@azure-rest/core-client",
+      moduleSpecifier:
+        (
+          codeModel?.thirdPartyImports?.restClient ??
+          codeModel?.thirdPartyImports?.commonFallback
+        )?.specifier ?? "@azure-rest/core-client",
       namedImports: ["OperationOptions"]
     }
   ]);

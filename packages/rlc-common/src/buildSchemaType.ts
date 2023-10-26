@@ -74,7 +74,11 @@ export function generateModelFiles(
       modelsFile.addImportDeclarations([
         {
           namedImports: [...Array.from(importedModels || [])],
-          moduleSpecifier: "@azure-rest/core-client"
+          moduleSpecifier:
+            (
+              model?.thirdPartyImports?.restClient ??
+              model?.thirdPartyImports?.commonFallback
+            )?.specifier ?? "@azure-rest/core-client"
         }
       ]);
     }

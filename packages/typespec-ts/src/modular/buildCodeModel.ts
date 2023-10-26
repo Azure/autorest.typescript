@@ -98,6 +98,7 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
+import { build3ndPartyImports } from "@azure-tools/rlc-common";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1685,7 +1686,10 @@ export function emitCodeModel(
     subnamespaceToClients: {},
     clients: [],
     types: [],
-    project
+    project,
+    thirdPartyImports: build3ndPartyImports(
+      dpgContext.rlcOptions?.branded ?? true
+    )
   };
 
   typesMap.clear();

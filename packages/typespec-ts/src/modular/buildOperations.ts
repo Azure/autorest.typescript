@@ -95,7 +95,11 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "@azure-rest/core-client",
+        moduleSpecifier:
+          (
+            codeModel?.thirdPartyImports?.restClient ??
+            codeModel?.thirdPartyImports?.commonFallback
+          )?.specifier ?? "@azure-rest/core-client",
         namedImports: [
           "StreamableMethod",
           "operationOptionsToRequestParameters"

@@ -29,10 +29,14 @@ export function buildClientContext(
   );
 
   let factoryFunction;
-  importCredential(clientContextFile);
+  importCredential(codeModel, clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
-    moduleSpecifier: "@azure-rest/core-client",
+    moduleSpecifier:
+      (
+        codeModel?.thirdPartyImports?.restClient ??
+        codeModel?.thirdPartyImports?.commonFallback
+      )?.specifier ?? "@azure-rest/core-client",
     namedImports: ["ClientOptions"]
   });
 

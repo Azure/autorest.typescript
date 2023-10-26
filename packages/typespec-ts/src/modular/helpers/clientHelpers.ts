@@ -3,7 +3,7 @@ import {
   ParameterDeclarationStructure,
   SourceFile
 } from "ts-morph";
-import { Client } from "../modularCodeModel.js";
+import { Client, ModularCodeModel } from "../modularCodeModel.js";
 import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
 
@@ -42,9 +42,16 @@ export function getClientParameters(
   return params;
 }
 
-export function importCredential(clientSourceFile: SourceFile): void {
+export function importCredential(
+  codeModel: ModularCodeModel,
+  clientSourceFile: SourceFile
+): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: "@azure/core-auth",
+    moduleSpecifier:
+      (
+        codeModel.thirdPartyImports?.commonFallback ??
+        codeModel.thirdPartyImports?.coreAuth
+      )?.specifier ?? "@azure/core-auth",
     namedImports: ["TokenCredential", "KeyCredential"]
   });
 }

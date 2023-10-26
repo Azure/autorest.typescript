@@ -138,14 +138,22 @@ export function buildParameterTypes(model: RLCModel) {
     parametersFile.addImportDeclarations([
       {
         namedImports: ["RawHttpHeadersInput"],
-        moduleSpecifier: "@azure/core-rest-pipeline"
+        moduleSpecifier:
+          (
+            model.thirdPartyImports?.commonFallback ??
+            model.thirdPartyImports?.restPipeline
+          )?.specifier ?? "@azure/core-rest-pipeline"
       }
     ]);
   }
   parametersFile.addImportDeclarations([
     {
       namedImports: ["RequestParameters"],
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier:
+        (
+          model?.thirdPartyImports?.restClient ??
+          model?.thirdPartyImports?.commonFallback
+        )?.specifier ?? "@azure-rest/core-client"
     }
   ]);
   if ((model.innerImports?.parameter?.importsSet?.size ?? 0) > 0) {

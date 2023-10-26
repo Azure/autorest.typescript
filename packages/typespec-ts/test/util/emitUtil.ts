@@ -5,7 +5,7 @@ import {
   buildParameterTypes,
   buildResponseTypes,
   buildSchemaTypes,
-  ImportKind,
+  initInnerImports,
   RLCModel,
   Schema
 } from "@azure-tools/rlc-common";
@@ -127,7 +127,7 @@ export async function emitParameterFromTypeSpec(
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
-  const importSet = new Map<ImportKind, Set<string>>();
+  const importSet = initInnerImports();
   let parameters;
   if (clients && clients[0]) {
     parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
@@ -139,7 +139,7 @@ export async function emitParameterFromTypeSpec(
     libraryName: "test",
     schemas: [],
     parameters,
-    importSet
+    innerImports: importSet
   });
 }
 
@@ -216,7 +216,7 @@ export async function emitResponsesFromTypeSpec(
 ) {
   const context = await rlcEmitterFor(tspContent, true, needAzureCore);
   const dpgContext = createDpgContextTestHelper(context.program);
-  const importSet = new Map<ImportKind, Set<string>>();
+  const importSet = initInnerImports();
   const clients = getRLCClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
@@ -229,7 +229,7 @@ export async function emitResponsesFromTypeSpec(
     schemas: [],
     paths: {},
     responses,
-    importSet
+    innerImports: importSet
   });
 }
 

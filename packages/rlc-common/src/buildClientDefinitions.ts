@@ -115,7 +115,11 @@ export function buildClientDefinitions(model: RLCModel) {
   clientDefinitionsFile.addImportDeclarations([
     {
       namedImports: [...options.clientImports],
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier:
+        (
+          model?.thirdPartyImports?.restClient ??
+          model?.thirdPartyImports?.commonFallback
+        )?.specifier ?? "@azure-rest/core-client"
     }
   ]);
 

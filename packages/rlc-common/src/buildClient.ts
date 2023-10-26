@@ -161,7 +161,11 @@ export function buildClient(model: RLCModel): File | undefined {
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier:
+        (
+          model?.thirdPartyImports?.restClient ??
+          model?.thirdPartyImports?.commonFallback
+        )?.specifier ?? "@azure-rest/core-client"
     },
     {
       namedImports: ["logger"],
@@ -186,7 +190,11 @@ export function buildClient(model: RLCModel): File | undefined {
     clientFile.addImportDeclarations([
       {
         namedImports: credentialTypes,
-        moduleSpecifier: "@azure/core-auth"
+        moduleSpecifier:
+          (
+            model.thirdPartyImports?.commonFallback ??
+            model.thirdPartyImports?.coreAuth
+          )?.specifier ?? "@azure/core-auth"
       }
     ]);
   }

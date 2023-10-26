@@ -82,8 +82,8 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
-  importCredential(clientFile);
-  importPipeline(clientFile);
+  importCredential(codeModel, clientFile);
+  importPipeline(codeModel, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(client, clientClass, subfolder);
   importAllApis(clientFile, srcPath, subfolder);
@@ -154,9 +154,16 @@ function importAllModels(
   });
 }
 
-function importPipeline(clientSourceFile: SourceFile): void {
+function importPipeline(
+  codeModel: ModularCodeModel,
+  clientSourceFile: SourceFile
+): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: "@azure/core-rest-pipeline",
+    moduleSpecifier:
+      (
+        codeModel.thirdPartyImports?.commonFallback ??
+        codeModel.thirdPartyImports?.restPipeline
+      )?.specifier ?? "@azure/core-rest-pipeline",
     namedImports: ["Pipeline"]
   });
 }
