@@ -20,18 +20,14 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  OperationOptions,
 } from "@azure-rest/core-client";
 import { stringToUint8Array } from "@azure/core-util";
-import {
-  ImagesCreateOptions,
-  ImagesCreateEditOptions,
-  ImagesCreateVariationOptions,
-} from "../../models/options.js";
 
-export function _imagesCreateSend(
+export function _createSend(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse> {
   return context
     .path("/images/generations")
@@ -47,7 +43,7 @@ export function _imagesCreateSend(
     });
 }
 
-export async function _imagesCreateDeserialize(
+export async function _createDeserialize(
   result: ImagesCreate200Response | ImagesCreateDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
@@ -66,19 +62,21 @@ export async function _imagesCreateDeserialize(
   };
 }
 
-export async function imagesCreate(
+export async function create(
   context: Client,
   image: CreateImageRequest,
-  options: ImagesCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): Promise<ImagesResponse> {
-  const result = await _imagesCreateSend(context, image, options);
-  return _imagesCreateDeserialize(result);
+  const result = await _createSend(context, image, options);
+  return _createDeserialize(result);
 }
 
-export function _imagesCreateEditSend(
+export interface CreateOptions extends OperationOptions {}
+
+export function _createEditSend(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} }
+  options: CreateEditOptions = { requestOptions: {} }
 ): StreamableMethod<
   ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 > {
@@ -99,7 +97,7 @@ export function _imagesCreateEditSend(
     });
 }
 
-export async function _imagesCreateEditDeserialize(
+export async function _createEditDeserialize(
   result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
@@ -118,19 +116,23 @@ export async function _imagesCreateEditDeserialize(
   };
 }
 
-export async function imagesCreateEdit(
+export async function createEdit(
   context: Client,
   image: CreateImageEditRequest,
-  options: ImagesCreateEditOptions = { requestOptions: {} }
+  options: CreateEditOptions = { requestOptions: {} }
 ): Promise<ImagesResponse> {
-  const result = await _imagesCreateEditSend(context, image, options);
-  return _imagesCreateEditDeserialize(result);
+  const result = await _createEditSend(context, image, options);
+  return _createEditDeserialize(result);
 }
 
-export function _imagesCreateVariationSend(
+export interface CreateEditOptions extends OperationOptions {
+  contentType?: string;
+}
+
+export function _createVariationSend(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} }
+  options: CreateVariationOptions = { requestOptions: {} }
 ): StreamableMethod<
   ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
 > {
@@ -149,7 +151,7 @@ export function _imagesCreateVariationSend(
     });
 }
 
-export async function _imagesCreateVariationDeserialize(
+export async function _createVariationDeserialize(
   result:
     | ImagesCreateVariation200Response
     | ImagesCreateVariationDefaultResponse
@@ -170,11 +172,15 @@ export async function _imagesCreateVariationDeserialize(
   };
 }
 
-export async function imagesCreateVariation(
+export async function createVariation(
   context: Client,
   image: CreateImageVariationRequest,
-  options: ImagesCreateVariationOptions = { requestOptions: {} }
+  options: CreateVariationOptions = { requestOptions: {} }
 ): Promise<ImagesResponse> {
-  const result = await _imagesCreateVariationSend(context, image, options);
-  return _imagesCreateVariationDeserialize(result);
+  const result = await _createVariationSend(context, image, options);
+  return _createVariationDeserialize(result);
+}
+
+export interface CreateVariationOptions extends OperationOptions {
+  contentType?: string;
 }

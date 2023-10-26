@@ -1,53 +1,49 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  imagesCreate,
-  imagesCreateEdit,
-  imagesCreateVariation,
-} from "../../api/images/index.js";
 import { OpenAIContext } from "../../api/OpenAIContext.js";
+import {
+  create,
+  createEdit,
+  createVariation,
+  CreateOptions,
+  CreateEditOptions,
+  CreateVariationOptions,
+} from "../../api/images/index.js";
 import {
   CreateImageRequest,
   ImagesResponse,
   CreateImageEditRequest,
   CreateImageVariationRequest,
 } from "../../models/models.js";
-import {
-  ImagesCreateOptions,
-  ImagesCreateEditOptions,
-  ImagesCreateVariationOptions,
-} from "../../models/options.js";
 
 export interface ImagesOperations {
   images: {
     create: (
       image: CreateImageRequest,
-      options?: ImagesCreateOptions
+      options?: CreateOptions
     ) => Promise<ImagesResponse>;
     createEdit: (
       image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptions
+      options?: CreateEditOptions
     ) => Promise<ImagesResponse>;
     createVariation: (
       image: CreateImageVariationRequest,
-      options?: ImagesCreateVariationOptions
+      options?: CreateVariationOptions
     ) => Promise<ImagesResponse>;
   };
 }
 
 export function getImages(context: OpenAIContext) {
   return {
-    create: (image: CreateImageRequest, options?: ImagesCreateOptions) =>
-      imagesCreate(context, image, options),
-    createEdit: (
-      image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptions
-    ) => imagesCreateEdit(context, image, options),
+    create: (image: CreateImageRequest, options?: CreateOptions) =>
+      create(context, image, options),
+    createEdit: (image: CreateImageEditRequest, options?: CreateEditOptions) =>
+      createEdit(context, image, options),
     createVariation: (
       image: CreateImageVariationRequest,
-      options?: ImagesCreateVariationOptions
-    ) => imagesCreateVariation(context, image, options),
+      options?: CreateVariationOptions
+    ) => createVariation(context, image, options),
   };
 }
 

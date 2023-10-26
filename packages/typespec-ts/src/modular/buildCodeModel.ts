@@ -966,7 +966,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
     overridedModelName ??
-    (context.rlcOptions?.enableModelNamespace
+    (!context.rlcOptions?.hierarchyClient &&
+    context.rlcOptions?.enableModelNamespace
       ? fullNamespaceName
       : effectiveName
       ? effectiveName
@@ -1448,7 +1449,9 @@ function emitOperationGroups(
   groupMapping.forEach((value) => {
     operationGroups.push(value);
   });
-  resolveConflictIfExist(operationGroups);
+  if (!context.rlcOptions?.hierarchyClient) {
+    resolveConflictIfExist(operationGroups);
+  }
   return operationGroups;
 }
 

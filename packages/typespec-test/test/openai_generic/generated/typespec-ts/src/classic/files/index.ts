@@ -1,61 +1,56 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  filesList,
-  filesCreate,
-  filesRetrieve,
-  filesDelete,
-  filesDownload,
-} from "../../api/files/index.js";
 import { OpenAIContext } from "../../api/OpenAIContext.js";
+import {
+  list,
+  create,
+  retrieve,
+  deleteOperation,
+  download,
+  ListOptions,
+  CreateOptions,
+  RetrieveOptions,
+  DeleteOptions,
+  DownloadOptions,
+} from "../../api/files/index.js";
 import {
   ListFilesResponse,
   CreateFileRequest,
   OpenAIFile,
   DeleteFileResponse,
 } from "../../models/models.js";
-import {
-  FilesListOptions,
-  FilesCreateOptions,
-  FilesRetrieveOptions,
-  FilesDeleteOptions,
-  FilesDownloadOptions,
-} from "../../models/options.js";
 
 export interface FilesOperations {
   files: {
-    list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+    list: (options?: ListOptions) => Promise<ListFilesResponse>;
     create: (
       file: CreateFileRequest,
-      options?: FilesCreateOptions
+      options?: CreateOptions
     ) => Promise<OpenAIFile>;
     retrieve: (
       fileId: string,
-      options?: FilesRetrieveOptions
+      options?: RetrieveOptions
     ) => Promise<OpenAIFile>;
-    delete: (
+    deleteOperation: (
       fileId: string,
-      options?: FilesDeleteOptions
+      options?: DeleteOptions
     ) => Promise<DeleteFileResponse>;
-    download: (
-      fileId: string,
-      options?: FilesDownloadOptions
-    ) => Promise<string>;
+    download: (fileId: string, options?: DownloadOptions) => Promise<string>;
   };
 }
 
 export function getFiles(context: OpenAIContext) {
   return {
-    list: (options?: FilesListOptions) => filesList(context, options),
-    create: (file: CreateFileRequest, options?: FilesCreateOptions) =>
-      filesCreate(context, file, options),
-    retrieve: (fileId: string, options?: FilesRetrieveOptions) =>
-      filesRetrieve(context, fileId, options),
-    delete: (fileId: string, options?: FilesDeleteOptions) =>
-      filesDelete(context, fileId, options),
-    download: (fileId: string, options?: FilesDownloadOptions) =>
-      filesDownload(context, fileId, options),
+    list: (options?: ListOptions) => list(context, options),
+    create: (file: CreateFileRequest, options?: CreateOptions) =>
+      create(context, file, options),
+    retrieve: (fileId: string, options?: RetrieveOptions) =>
+      retrieve(context, fileId, options),
+    deleteOperation: (fileId: string, options?: DeleteOptions) =>
+      deleteOperation(context, fileId, options),
+    download: (fileId: string, options?: DownloadOptions) =>
+      download(context, fileId, options),
   };
 }
 

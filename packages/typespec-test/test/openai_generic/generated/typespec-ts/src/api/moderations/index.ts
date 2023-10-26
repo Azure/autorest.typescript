@@ -14,13 +14,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  OperationOptions,
 } from "@azure-rest/core-client";
-import { ModerationsCreateOptions } from "../../models/options.js";
 
-export function _moderationsCreateSend(
+export function _createSend(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): StreamableMethod<
   ModerationsCreate200Response | ModerationsCreateDefaultResponse
 > {
@@ -32,7 +32,7 @@ export function _moderationsCreateSend(
     });
 }
 
-export async function _moderationsCreateDeserialize(
+export async function _createDeserialize(
   result: ModerationsCreate200Response | ModerationsCreateDefaultResponse
 ): Promise<CreateModerationResponse> {
   if (isUnexpected(result)) {
@@ -74,11 +74,13 @@ export async function _moderationsCreateDeserialize(
   };
 }
 
-export async function moderationsCreate(
+export async function create(
   context: Client,
   content: CreateModerationRequest,
-  options: ModerationsCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): Promise<CreateModerationResponse> {
-  const result = await _moderationsCreateSend(context, content, options);
-  return _moderationsCreateDeserialize(result);
+  const result = await _createSend(context, content, options);
+  return _createDeserialize(result);
 }
+
+export interface CreateOptions extends OperationOptions {}

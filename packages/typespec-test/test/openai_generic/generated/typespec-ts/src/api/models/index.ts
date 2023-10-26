@@ -19,23 +19,19 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  OperationOptions,
 } from "@azure-rest/core-client";
-import {
-  ModelsListOptions,
-  ModelsRetrieveOptions,
-  ModelsDeleteOptions,
-} from "../../models/options.js";
 
-export function _modelsListSend(
+export function _listSend(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} }
+  options: ListOptions = { requestOptions: {} }
 ): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
   return context
     .path("/models")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _modelsListDeserialize(
+export async function _listDeserialize(
   result: ModelsList200Response | ModelsListDefaultResponse
 ): Promise<ListModelsResponse> {
   if (isUnexpected(result)) {
@@ -53,25 +49,27 @@ export async function _modelsListDeserialize(
   };
 }
 
-export async function modelsList(
+export async function list(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} }
+  options: ListOptions = { requestOptions: {} }
 ): Promise<ListModelsResponse> {
-  const result = await _modelsListSend(context, options);
-  return _modelsListDeserialize(result);
+  const result = await _listSend(context, options);
+  return _listDeserialize(result);
 }
 
-export function _modelsRetrieveSend(
+export interface ListOptions extends OperationOptions {}
+
+export function _retrieveSend(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} }
+  options: RetrieveOptions = { requestOptions: {} }
 ): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
   return context
     .path("/models/{model}", model)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _modelsRetrieveDeserialize(
+export async function _retrieveDeserialize(
   result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
 ): Promise<Model> {
   if (isUnexpected(result)) {
@@ -86,19 +84,21 @@ export async function _modelsRetrieveDeserialize(
   };
 }
 
-export async function modelsRetrieve(
+export async function retrieve(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} }
+  options: RetrieveOptions = { requestOptions: {} }
 ): Promise<Model> {
-  const result = await _modelsRetrieveSend(context, model, options);
-  return _modelsRetrieveDeserialize(result);
+  const result = await _retrieveSend(context, model, options);
+  return _retrieveDeserialize(result);
 }
 
-export function _modelsDeleteSend(
+export interface RetrieveOptions extends OperationOptions {}
+
+export function _deleteOperationSend(
   context: Client,
   model: string,
-  options: ModelsDeleteOptions = { requestOptions: {} }
+  options: DeleteOptions = { requestOptions: {} }
 ): StreamableMethod<
   ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
 > {
@@ -107,7 +107,7 @@ export function _modelsDeleteSend(
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _modelsDeleteDeserialize(
+export async function _deleteOperationDeserialize(
   result:
     | ModelsDeleteOperation200Response
     | ModelsDeleteOperationDefaultResponse
@@ -123,11 +123,17 @@ export async function _modelsDeleteDeserialize(
   };
 }
 
-export async function modelsDelete(
+/**
+ *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
+ *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
+ */
+export async function deleteOperation(
   context: Client,
   model: string,
-  options: ModelsDeleteOptions = { requestOptions: {} }
+  options: DeleteOptions = { requestOptions: {} }
 ): Promise<DeleteModelResponse> {
-  const result = await _modelsDeleteSend(context, model, options);
-  return _modelsDeleteDeserialize(result);
+  const result = await _deleteOperationSend(context, model, options);
+  return _deleteOperationDeserialize(result);
 }
+
+export interface DeleteOptions extends OperationOptions {}

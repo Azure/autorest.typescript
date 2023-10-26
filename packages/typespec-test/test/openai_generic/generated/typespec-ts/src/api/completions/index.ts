@@ -14,13 +14,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  OperationOptions,
 } from "@azure-rest/core-client";
-import { CompletionsCreateOptions } from "../../models/options.js";
 
-export function _completionsCreateSend(
+export function _createSend(
   context: Client,
   body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): StreamableMethod<
   CompletionsCreate200Response | CompletionsCreateDefaultResponse
 > {
@@ -49,7 +49,7 @@ export function _completionsCreateSend(
     });
 }
 
-export async function _completionsCreateDeserialize(
+export async function _createDeserialize(
   result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
 ): Promise<CreateCompletionResponse> {
   if (isUnexpected(result)) {
@@ -85,11 +85,13 @@ export async function _completionsCreateDeserialize(
   };
 }
 
-export async function completionsCreate(
+export async function create(
   context: Client,
   body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): Promise<CreateCompletionResponse> {
-  const result = await _completionsCreateSend(context, body, options);
-  return _completionsCreateDeserialize(result);
+  const result = await _createSend(context, body, options);
+  return _createDeserialize(result);
 }
+
+export interface CreateOptions extends OperationOptions {}

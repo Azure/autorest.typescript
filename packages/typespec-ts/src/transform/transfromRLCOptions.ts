@@ -61,6 +61,7 @@ function extractRLCOptions(
     dpgContext,
     emitterOptions
   );
+  const hierarchyClient = getHierarchyClient(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
@@ -73,7 +74,8 @@ function extractRLCOptions(
     azureOutputDirectory,
     sourceFrom: "TypeSpec",
     enableOperationGroup,
-    enableModelNamespace
+    enableModelNamespace,
+    hierarchyClient
   };
 }
 
@@ -158,6 +160,17 @@ function getEnableModelNamespace(
   }
   // Detect if existing name conflicts if customers didn't set the option explicitly
   return detectModelConflicts(dpgContext);
+}
+
+function getHierarchyClient(emitterOptions: RLCOptions) {
+  if (
+    emitterOptions.hierarchyClient === true ||
+    emitterOptions.hierarchyClient === false
+  ) {
+    return emitterOptions.hierarchyClient;
+  }
+  // enable hierarchy client by default if customers didn't set the option explicitly
+  return true;
 }
 
 function detectIfNameConflicts(dpgContext: SdkContext) {

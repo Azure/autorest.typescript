@@ -106,6 +106,8 @@ export function buildOperationFiles(
         deserializeOperationDeclaration,
         operationDeclaration
       ]);
+
+      buildOperationOptions(o, operationGroupFile);
     });
 
     operationGroupFile.addImportDeclarations([
@@ -113,7 +115,8 @@ export function buildOperationFiles(
         moduleSpecifier: "@azure-rest/core-client",
         namedImports: [
           "StreamableMethod",
-          "operationOptionsToRequestParameters"
+          "operationOptionsToRequestParameters",
+          "OperationOptions"
         ]
       }
     ]);

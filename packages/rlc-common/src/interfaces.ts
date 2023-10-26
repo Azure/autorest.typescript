@@ -181,6 +181,7 @@ export interface RLCOptions {
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
   enableModelNamespace?: boolean;
+  hierarchyClient?: boolean;
 }
 
 export interface ServiceInfo {

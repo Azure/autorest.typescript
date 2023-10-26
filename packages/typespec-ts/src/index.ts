@@ -42,7 +42,7 @@ import {
   buildRootIndex,
   buildSubClientIndexFile
 } from "./modular/buildRootIndex.js";
-import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
+import { buildModels } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
@@ -172,7 +172,7 @@ export async function $onEmit(context: EmitContext) {
       );
       for (const subClient of modularCodeModel.clients) {
         buildModels(modularCodeModel, subClient);
-        buildModelsOptions(modularCodeModel, subClient);
+        // buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildOperationFiles(

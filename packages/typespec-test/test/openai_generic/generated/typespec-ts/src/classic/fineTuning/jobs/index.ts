@@ -1,70 +1,61 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  fineTuningJobsCreate,
-  fineTuningJobsList,
-  fineTuningJobsRetrieve,
-  fineTuningJobsListEvents,
-  fineTuningJobsCancel,
-} from "../../../api/fineTuning/jobs/index.js";
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
+import {
+  create,
+  list,
+  retrieve,
+  listEvents,
+  cancel,
+  CreateOptions,
+  ListOptions,
+  RetrieveOptions,
+  ListEventsOptions,
+  CancelOptions,
+} from "../../../api/fineTuning/jobs/index.js";
 import {
   CreateFineTuningJobRequest,
   FineTuningJob,
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
-import {
-  FineTuningJobsCreateOptions,
-  FineTuningJobsListOptions,
-  FineTuningJobsRetrieveOptions,
-  FineTuningJobsListEventsOptions,
-  FineTuningJobsCancelOptions,
-} from "../../../models/options.js";
 
 export interface FineTuningJobsOperations {
   jobs: {
     create: (
       job: CreateFineTuningJobRequest,
-      options?: FineTuningJobsCreateOptions
+      options?: CreateOptions
     ) => Promise<FineTuningJob>;
     list: (
-      options?: FineTuningJobsListOptions
+      options?: ListOptions
     ) => Promise<ListPaginatedFineTuningJobsResponse>;
     retrieve: (
       fineTuningJobId: string,
-      options?: FineTuningJobsRetrieveOptions
+      options?: RetrieveOptions
     ) => Promise<FineTuningJob>;
     listEvents: (
       fineTuningJobId: string,
-      options?: FineTuningJobsListEventsOptions
+      options?: ListEventsOptions
     ) => Promise<ListFineTuningJobEventsResponse>;
     cancel: (
       fineTuningJobId: string,
-      options?: FineTuningJobsCancelOptions
+      options?: CancelOptions
     ) => Promise<FineTuningJob>;
   };
 }
 
 export function getFineTuningJobs(context: OpenAIContext) {
   return {
-    create: (
-      job: CreateFineTuningJobRequest,
-      options?: FineTuningJobsCreateOptions
-    ) => fineTuningJobsCreate(context, job, options),
-    list: (options?: FineTuningJobsListOptions) =>
-      fineTuningJobsList(context, options),
-    retrieve: (
-      fineTuningJobId: string,
-      options?: FineTuningJobsRetrieveOptions
-    ) => fineTuningJobsRetrieve(context, fineTuningJobId, options),
-    listEvents: (
-      fineTuningJobId: string,
-      options?: FineTuningJobsListEventsOptions
-    ) => fineTuningJobsListEvents(context, fineTuningJobId, options),
-    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) =>
-      fineTuningJobsCancel(context, fineTuningJobId, options),
+    create: (job: CreateFineTuningJobRequest, options?: CreateOptions) =>
+      create(context, job, options),
+    list: (options?: ListOptions) => list(context, options),
+    retrieve: (fineTuningJobId: string, options?: RetrieveOptions) =>
+      retrieve(context, fineTuningJobId, options),
+    listEvents: (fineTuningJobId: string, options?: ListEventsOptions) =>
+      listEvents(context, fineTuningJobId, options),
+    cancel: (fineTuningJobId: string, options?: CancelOptions) =>
+      cancel(context, fineTuningJobId, options),
   };
 }
 

@@ -137,22 +137,22 @@ function importAllModels(
     });
   }
 
-  const apiModelsOptions = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
-  );
+  // const apiModelsOptions = project.getSourceFile(
+  //   `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/options.ts`
+  // );
 
-  if (!apiModelsOptions) {
-    return;
-  }
+  // if (!apiModelsOptions) {
+  //   return;
+  // }
 
-  const exportedOptions = [
-    ...apiModelsOptions.getExportedDeclarations().keys()
-  ];
+  // const exportedOptions = [
+  //   ...apiModelsOptions.getExportedDeclarations().keys()
+  // ];
 
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `./models/options.js`,
-    namedImports: exportedOptions
-  });
+  // clientFile.addImportDeclaration({
+  //   moduleSpecifier: `./models/options.js`,
+  //   namedImports: exportedOptions
+  // });
 }
 
 function importPipeline(clientSourceFile: SourceFile): void {
