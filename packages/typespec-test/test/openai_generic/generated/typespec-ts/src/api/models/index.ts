@@ -7,36 +7,36 @@ import {
   DeleteModelResponse,
 } from "../../models/models.js";
 import {
-  DeleteOperation200Response,
-  DeleteOperationDefaultResponse,
   isUnexpected,
-  ListModels200Response,
-  ListModelsDefaultResponse,
+  ModelsDeleteOperation200Response,
+  ModelsDeleteOperationDefaultResponse,
+  ModelsList200Response,
+  ModelsListDefaultResponse,
+  ModelsRetrieve200Response,
+  ModelsRetrieveDefaultResponse,
   OpenAIContext as Client,
-  Retrieve200Response,
-  RetrieveDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  ListModelsOptions,
-  RetrieveOptions,
-  DeleteOptions,
+  ModelsListOptions,
+  ModelsRetrieveOptions,
+  ModelsDeleteOptions,
 } from "../../models/options.js";
 
-export function _listModelsSend(
+export function _modelsListSend(
   context: Client,
-  options: ListModelsOptions = { requestOptions: {} }
-): StreamableMethod<ListModels200Response | ListModelsDefaultResponse> {
+  options: ModelsListOptions = { requestOptions: {} }
+): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
   return context
     .path("/models")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _listModelsDeserialize(
-  result: ListModels200Response | ListModelsDefaultResponse
+export async function _modelsListDeserialize(
+  result: ModelsList200Response | ModelsListDefaultResponse
 ): Promise<ListModelsResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -53,26 +53,26 @@ export async function _listModelsDeserialize(
   };
 }
 
-export async function listModels(
+export async function modelsList(
   context: Client,
-  options: ListModelsOptions = { requestOptions: {} }
+  options: ModelsListOptions = { requestOptions: {} }
 ): Promise<ListModelsResponse> {
-  const result = await _listModelsSend(context, options);
-  return _listModelsDeserialize(result);
+  const result = await _modelsListSend(context, options);
+  return _modelsListDeserialize(result);
 }
 
-export function _retrieveSend(
+export function _modelsRetrieveSend(
   context: Client,
   model: string,
-  options: RetrieveOptions = { requestOptions: {} }
-): StreamableMethod<Retrieve200Response | RetrieveDefaultResponse> {
+  options: ModelsRetrieveOptions = { requestOptions: {} }
+): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
   return context
     .path("/models/{model}", model)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _retrieveDeserialize(
-  result: Retrieve200Response | RetrieveDefaultResponse
+export async function _modelsRetrieveDeserialize(
+  result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
 ): Promise<Model> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -86,29 +86,31 @@ export async function _retrieveDeserialize(
   };
 }
 
-export async function retrieve(
+export async function modelsRetrieve(
   context: Client,
   model: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: ModelsRetrieveOptions = { requestOptions: {} }
 ): Promise<Model> {
-  const result = await _retrieveSend(context, model, options);
-  return _retrieveDeserialize(result);
+  const result = await _modelsRetrieveSend(context, model, options);
+  return _modelsRetrieveDeserialize(result);
 }
 
-export function _deleteOperationSend(
+export function _modelsDeleteSend(
   context: Client,
   model: string,
-  options: DeleteOptions = { requestOptions: {} }
+  options: ModelsDeleteOptions = { requestOptions: {} }
 ): StreamableMethod<
-  DeleteOperation200Response | DeleteOperationDefaultResponse
+  ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
 > {
   return context
     .path("/models/{model}", model)
     .delete({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _deleteOperationDeserialize(
-  result: DeleteOperation200Response | DeleteOperationDefaultResponse
+export async function _modelsDeleteDeserialize(
+  result:
+    | ModelsDeleteOperation200Response
+    | ModelsDeleteOperationDefaultResponse
 ): Promise<DeleteModelResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -121,15 +123,11 @@ export async function _deleteOperationDeserialize(
   };
 }
 
-/**
- *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
-export async function deleteOperation(
+export async function modelsDelete(
   context: Client,
   model: string,
-  options: DeleteOptions = { requestOptions: {} }
+  options: ModelsDeleteOptions = { requestOptions: {} }
 ): Promise<DeleteModelResponse> {
-  const result = await _deleteOperationSend(context, model, options);
-  return _deleteOperationDeserialize(result);
+  const result = await _modelsDeleteSend(context, model, options);
+  return _modelsDeleteDeserialize(result);
 }

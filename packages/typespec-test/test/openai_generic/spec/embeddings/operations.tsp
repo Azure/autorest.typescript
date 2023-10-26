@@ -15,7 +15,7 @@ interface Embeddings {
   @summary("Creates an embedding vector representing the input text.")
   @post
   @operationId("createEmbedding")
-  createEmbedding(
+  create(
     @body embedding: CreateEmbeddingRequest,
   ): CreateEmbeddingResponse | ErrorResponse;
 }

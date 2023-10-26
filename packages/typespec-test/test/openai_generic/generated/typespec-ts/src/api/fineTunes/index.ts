@@ -8,36 +8,38 @@ import {
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
 import {
-  CancelFineTune200Response,
-  CancelFineTuneDefaultResponse,
-  CreateFineTune200Response,
-  CreateFineTuneDefaultResponse,
+  FineTunesCancel200Response,
+  FineTunesCancelDefaultResponse,
+  FineTunesCreate200Response,
+  FineTunesCreateDefaultResponse,
+  FineTunesList200Response,
+  FineTunesListDefaultResponse,
+  FineTunesListEvents200Response,
+  FineTunesListEventsDefaultResponse,
+  FineTunesRetrieve200Response,
+  FineTunesRetrieveDefaultResponse,
   isUnexpected,
-  ListFineTuneEvents200Response,
-  ListFineTuneEventsDefaultResponse,
-  ListFineTunes200Response,
-  ListFineTunesDefaultResponse,
   OpenAIContext as Client,
-  RetrieveFineTune200Response,
-  RetrieveFineTuneDefaultResponse,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  CreateFineTuneOptions,
-  ListFineTunesOptions,
-  RetrieveFineTuneOptions,
-  ListFineTuneEventsOptions,
-  CancelFineTuneOptions,
+  FineTunesCreateOptions,
+  FineTunesListOptions,
+  FineTunesRetrieveOptions,
+  FineTunesListEventsOptions,
+  FineTunesCancelOptions,
 } from "../../models/options.js";
 
-export function _createFineTuneSend(
+export function _fineTunesCreateSend(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: CreateFineTuneOptions = { requestOptions: {} }
-): StreamableMethod<CreateFineTune200Response | CreateFineTuneDefaultResponse> {
+  options: FineTunesCreateOptions = { requestOptions: {} }
+): StreamableMethod<
+  FineTunesCreate200Response | FineTunesCreateDefaultResponse
+> {
   return context
     .path("/fine-tunes")
     .post({
@@ -60,8 +62,8 @@ export function _createFineTuneSend(
     });
 }
 
-export async function _createFineTuneDeserialize(
-  result: CreateFineTune200Response | CreateFineTuneDefaultResponse
+export async function _fineTunesCreateDeserialize(
+  result: FineTunesCreate200Response | FineTunesCreateDefaultResponse
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -128,26 +130,26 @@ export async function _createFineTuneDeserialize(
   };
 }
 
-export async function createFineTune(
+export async function fineTunesCreate(
   context: Client,
   fineTune: CreateFineTuneRequest,
-  options: CreateFineTuneOptions = { requestOptions: {} }
+  options: FineTunesCreateOptions = { requestOptions: {} }
 ): Promise<FineTune> {
-  const result = await _createFineTuneSend(context, fineTune, options);
-  return _createFineTuneDeserialize(result);
+  const result = await _fineTunesCreateSend(context, fineTune, options);
+  return _fineTunesCreateDeserialize(result);
 }
 
-export function _listFineTunesSend(
+export function _fineTunesListSend(
   context: Client,
-  options: ListFineTunesOptions = { requestOptions: {} }
-): StreamableMethod<ListFineTunes200Response | ListFineTunesDefaultResponse> {
+  options: FineTunesListOptions = { requestOptions: {} }
+): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse> {
   return context
     .path("/fine-tunes")
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _listFineTunesDeserialize(
-  result: ListFineTunes200Response | ListFineTunesDefaultResponse
+export async function _fineTunesListDeserialize(
+  result: FineTunesList200Response | FineTunesListDefaultResponse
 ): Promise<ListFineTunesResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -215,28 +217,28 @@ export async function _listFineTunesDeserialize(
   };
 }
 
-export async function listFineTunes(
+export async function fineTunesList(
   context: Client,
-  options: ListFineTunesOptions = { requestOptions: {} }
+  options: FineTunesListOptions = { requestOptions: {} }
 ): Promise<ListFineTunesResponse> {
-  const result = await _listFineTunesSend(context, options);
-  return _listFineTunesDeserialize(result);
+  const result = await _fineTunesListSend(context, options);
+  return _fineTunesListDeserialize(result);
 }
 
-export function _retrieveFineTuneSend(
+export function _fineTunesRetrieveSend(
   context: Client,
   fineTuneId: string,
-  options: RetrieveFineTuneOptions = { requestOptions: {} }
+  options: FineTunesRetrieveOptions = { requestOptions: {} }
 ): StreamableMethod<
-  RetrieveFineTune200Response | RetrieveFineTuneDefaultResponse
+  FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
 > {
   return context
     .path("/fine-tunes/{fine_tune_id}", fineTuneId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _retrieveFineTuneDeserialize(
-  result: RetrieveFineTune200Response | RetrieveFineTuneDefaultResponse
+export async function _fineTunesRetrieveDeserialize(
+  result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -303,21 +305,21 @@ export async function _retrieveFineTuneDeserialize(
   };
 }
 
-export async function retrieveFineTune(
+export async function fineTunesRetrieve(
   context: Client,
   fineTuneId: string,
-  options: RetrieveFineTuneOptions = { requestOptions: {} }
+  options: FineTunesRetrieveOptions = { requestOptions: {} }
 ): Promise<FineTune> {
-  const result = await _retrieveFineTuneSend(context, fineTuneId, options);
-  return _retrieveFineTuneDeserialize(result);
+  const result = await _fineTunesRetrieveSend(context, fineTuneId, options);
+  return _fineTunesRetrieveDeserialize(result);
 }
 
-export function _listFineTuneEventsSend(
+export function _fineTunesListEventsSend(
   context: Client,
   fineTuneId: string,
-  options: ListFineTuneEventsOptions = { requestOptions: {} }
+  options: FineTunesListEventsOptions = { requestOptions: {} }
 ): StreamableMethod<
-  ListFineTuneEvents200Response | ListFineTuneEventsDefaultResponse
+  FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
 > {
   return context
     .path("/fine-tunes/{fine_tune_id}/events", fineTuneId)
@@ -327,8 +329,8 @@ export function _listFineTuneEventsSend(
     });
 }
 
-export async function _listFineTuneEventsDeserialize(
-  result: ListFineTuneEvents200Response | ListFineTuneEventsDefaultResponse
+export async function _fineTunesListEventsDeserialize(
+  result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
 ): Promise<ListFineTuneEventsResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -345,27 +347,29 @@ export async function _listFineTuneEventsDeserialize(
   };
 }
 
-export async function listFineTuneEvents(
+export async function fineTunesListEvents(
   context: Client,
   fineTuneId: string,
-  options: ListFineTuneEventsOptions = { requestOptions: {} }
+  options: FineTunesListEventsOptions = { requestOptions: {} }
 ): Promise<ListFineTuneEventsResponse> {
-  const result = await _listFineTuneEventsSend(context, fineTuneId, options);
-  return _listFineTuneEventsDeserialize(result);
+  const result = await _fineTunesListEventsSend(context, fineTuneId, options);
+  return _fineTunesListEventsDeserialize(result);
 }
 
-export function _cancelFineTuneSend(
+export function _fineTunesCancelSend(
   context: Client,
   fineTuneId: string,
-  options: CancelFineTuneOptions = { requestOptions: {} }
-): StreamableMethod<CancelFineTune200Response | CancelFineTuneDefaultResponse> {
+  options: FineTunesCancelOptions = { requestOptions: {} }
+): StreamableMethod<
+  FineTunesCancel200Response | FineTunesCancelDefaultResponse
+> {
   return context
     .path("/fine-tunes/{fine_tune_id}/cancel", fineTuneId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _cancelFineTuneDeserialize(
-  result: CancelFineTune200Response | CancelFineTuneDefaultResponse
+export async function _fineTunesCancelDeserialize(
+  result: FineTunesCancel200Response | FineTunesCancelDefaultResponse
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -432,11 +436,11 @@ export async function _cancelFineTuneDeserialize(
   };
 }
 
-export async function cancelFineTune(
+export async function fineTunesCancel(
   context: Client,
   fineTuneId: string,
-  options: CancelFineTuneOptions = { requestOptions: {} }
+  options: FineTunesCancelOptions = { requestOptions: {} }
 ): Promise<FineTune> {
-  const result = await _cancelFineTuneSend(context, fineTuneId, options);
-  return _cancelFineTuneDeserialize(result);
+  const result = await _fineTunesCancelSend(context, fineTuneId, options);
+  return _fineTunesCancelDeserialize(result);
 }

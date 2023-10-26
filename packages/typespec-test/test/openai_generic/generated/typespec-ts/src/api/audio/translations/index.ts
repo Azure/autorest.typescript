@@ -6,23 +6,23 @@ import {
   CreateTranslationResponse,
 } from "../../../models/models.js";
 import {
-  CreateTranslation200Response,
-  CreateTranslationDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
+  TranslationsCreate200Response,
+  TranslationsCreateDefaultResponse,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateTranslationOptions } from "../../../models/options.js";
+import { AudioTranslationsCreateOptions } from "../../../models/options.js";
 
-export function _createTranslationSend(
+export function _audioTranslationsCreateSend(
   context: Client,
   audio: CreateTranslationRequest,
-  options: CreateTranslationOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateTranslation200Response | CreateTranslationDefaultResponse
+  TranslationsCreate200Response | TranslationsCreateDefaultResponse
 > {
   return context
     .path("/audio/translations")
@@ -39,8 +39,8 @@ export function _createTranslationSend(
     });
 }
 
-export async function _createTranslationDeserialize(
-  result: CreateTranslation200Response | CreateTranslationDefaultResponse
+export async function _audioTranslationsCreateDeserialize(
+  result: TranslationsCreate200Response | TranslationsCreateDefaultResponse
 ): Promise<CreateTranslationResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -51,11 +51,11 @@ export async function _createTranslationDeserialize(
   };
 }
 
-export async function createTranslation(
+export async function audioTranslationsCreate(
   context: Client,
   audio: CreateTranslationRequest,
-  options: CreateTranslationOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} }
 ): Promise<CreateTranslationResponse> {
-  const result = await _createTranslationSend(context, audio, options);
-  return _createTranslationDeserialize(result);
+  const result = await _audioTranslationsCreateSend(context, audio, options);
+  return _audioTranslationsCreateDeserialize(result);
 }

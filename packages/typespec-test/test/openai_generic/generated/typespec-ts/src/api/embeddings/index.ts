@@ -6,8 +6,8 @@ import {
   CreateEmbeddingResponse,
 } from "../../models/models.js";
 import {
-  CreateEmbedding200Response,
-  CreateEmbeddingDefaultResponse,
+  EmbeddingsCreate200Response,
+  EmbeddingsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
 } from "../../rest/index.js";
@@ -15,14 +15,14 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateEmbeddingOptions } from "../../models/options.js";
+import { EmbeddingsCreateOptions } from "../../models/options.js";
 
-export function _createEmbeddingSend(
+export function _embeddingsCreateSend(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: CreateEmbeddingOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateEmbedding200Response | CreateEmbeddingDefaultResponse
+  EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 > {
   return context
     .path("/embeddings")
@@ -36,8 +36,8 @@ export function _createEmbeddingSend(
     });
 }
 
-export async function _createEmbeddingDeserialize(
-  result: CreateEmbedding200Response | CreateEmbeddingDefaultResponse
+export async function _embeddingsCreateDeserialize(
+  result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 ): Promise<CreateEmbeddingResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -58,11 +58,11 @@ export async function _createEmbeddingDeserialize(
   };
 }
 
-export async function createEmbedding(
+export async function embeddingsCreate(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: CreateEmbeddingOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptions = { requestOptions: {} }
 ): Promise<CreateEmbeddingResponse> {
-  const result = await _createEmbeddingSend(context, embedding, options);
-  return _createEmbeddingDeserialize(result);
+  const result = await _embeddingsCreateSend(context, embedding, options);
+  return _embeddingsCreateDeserialize(result);
 }

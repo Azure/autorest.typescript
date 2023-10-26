@@ -6,23 +6,23 @@ import {
   CreateModerationResponse,
 } from "../../models/models.js";
 import {
-  CreateModeration200Response,
-  CreateModerationDefaultResponse,
   isUnexpected,
+  ModerationsCreate200Response,
+  ModerationsCreateDefaultResponse,
   OpenAIContext as Client,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateModerationOptions } from "../../models/options.js";
+import { ModerationsCreateOptions } from "../../models/options.js";
 
-export function _createModerationSend(
+export function _moderationsCreateSend(
   context: Client,
   content: CreateModerationRequest,
-  options: CreateModerationOptions = { requestOptions: {} }
+  options: ModerationsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateModeration200Response | CreateModerationDefaultResponse
+  ModerationsCreate200Response | ModerationsCreateDefaultResponse
 > {
   return context
     .path("/moderations")
@@ -32,8 +32,8 @@ export function _createModerationSend(
     });
 }
 
-export async function _createModerationDeserialize(
-  result: CreateModeration200Response | CreateModerationDefaultResponse
+export async function _moderationsCreateDeserialize(
+  result: ModerationsCreate200Response | ModerationsCreateDefaultResponse
 ): Promise<CreateModerationResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -74,11 +74,11 @@ export async function _createModerationDeserialize(
   };
 }
 
-export async function createModeration(
+export async function moderationsCreate(
   context: Client,
   content: CreateModerationRequest,
-  options: CreateModerationOptions = { requestOptions: {} }
+  options: ModerationsCreateOptions = { requestOptions: {} }
 ): Promise<CreateModerationResponse> {
-  const result = await _createModerationSend(context, content, options);
-  return _createModerationDeserialize(result);
+  const result = await _moderationsCreateSend(context, content, options);
+  return _moderationsCreateDeserialize(result);
 }

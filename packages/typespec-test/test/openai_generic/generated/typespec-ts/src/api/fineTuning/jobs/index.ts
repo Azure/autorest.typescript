@@ -8,38 +8,36 @@ import {
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
 import {
-  CancelFineTuningJob200Response,
-  CancelFineTuningJobDefaultResponse,
-  CreateFineTuningJob200Response,
-  CreateFineTuningJobDefaultResponse,
   isUnexpected,
-  ListFineTuningEvents200Response,
-  ListFineTuningEventsDefaultResponse,
-  ListPaginatedFineTuningJobs200Response,
-  ListPaginatedFineTuningJobsDefaultResponse,
+  JobsCancel200Response,
+  JobsCancelDefaultResponse,
+  JobsCreate200Response,
+  JobsCreateDefaultResponse,
+  JobsList200Response,
+  JobsListDefaultResponse,
+  JobsListEvents200Response,
+  JobsListEventsDefaultResponse,
+  JobsRetrieve200Response,
+  JobsRetrieveDefaultResponse,
   OpenAIContext as Client,
-  RetrieveFineTuningJob200Response,
-  RetrieveFineTuningJobDefaultResponse,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  CreateFineTuningJobOptions,
-  ListPaginatedFineTuningJobsOptions,
-  RetrieveFineTuningJobOptions,
-  ListFineTuningEventsOptions,
-  CancelFineTuningJobOptions,
+  FineTuningJobsCreateOptions,
+  FineTuningJobsListOptions,
+  FineTuningJobsRetrieveOptions,
+  FineTuningJobsListEventsOptions,
+  FineTuningJobsCancelOptions,
 } from "../../../models/options.js";
 
-export function _createFineTuningJobSend(
+export function _fineTuningJobsCreateSend(
   context: Client,
   job: CreateFineTuningJobRequest,
-  options: CreateFineTuningJobOptions = { requestOptions: {} }
-): StreamableMethod<
-  CreateFineTuningJob200Response | CreateFineTuningJobDefaultResponse
-> {
+  options: FineTuningJobsCreateOptions = { requestOptions: {} }
+): StreamableMethod<JobsCreate200Response | JobsCreateDefaultResponse> {
   return context
     .path("/fine_tuning/jobs")
     .post({
@@ -56,8 +54,8 @@ export function _createFineTuningJobSend(
     });
 }
 
-export async function _createFineTuningJobDeserialize(
-  result: CreateFineTuningJob200Response | CreateFineTuningJobDefaultResponse
+export async function _fineTuningJobsCreateDeserialize(
+  result: JobsCreate200Response | JobsCreateDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -101,22 +99,19 @@ export async function _createFineTuningJobDeserialize(
  *
  * [Learn more about fine-tuning](/docs/guides/fine-tuning)
  */
-export async function createFineTuningJob(
+export async function fineTuningJobsCreate(
   context: Client,
   job: CreateFineTuningJobRequest,
-  options: CreateFineTuningJobOptions = { requestOptions: {} }
+  options: FineTuningJobsCreateOptions = { requestOptions: {} }
 ): Promise<FineTuningJob> {
-  const result = await _createFineTuningJobSend(context, job, options);
-  return _createFineTuningJobDeserialize(result);
+  const result = await _fineTuningJobsCreateSend(context, job, options);
+  return _fineTuningJobsCreateDeserialize(result);
 }
 
-export function _listPaginatedFineTuningJobsSend(
+export function _fineTuningJobsListSend(
   context: Client,
-  options: ListPaginatedFineTuningJobsOptions = { requestOptions: {} }
-): StreamableMethod<
-  | ListPaginatedFineTuningJobs200Response
-  | ListPaginatedFineTuningJobsDefaultResponse
-> {
+  options: FineTuningJobsListOptions = { requestOptions: {} }
+): StreamableMethod<JobsList200Response | JobsListDefaultResponse> {
   return context
     .path("/fine_tuning/jobs")
     .get({
@@ -125,10 +120,8 @@ export function _listPaginatedFineTuningJobsSend(
     });
 }
 
-export async function _listPaginatedFineTuningJobsDeserialize(
-  result:
-    | ListPaginatedFineTuningJobs200Response
-    | ListPaginatedFineTuningJobsDefaultResponse
+export async function _fineTuningJobsListDeserialize(
+  result: JobsList200Response | JobsListDefaultResponse
 ): Promise<ListPaginatedFineTuningJobsResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -163,30 +156,26 @@ export async function _listPaginatedFineTuningJobsDeserialize(
   };
 }
 
-export async function listPaginatedFineTuningJobs(
+export async function fineTuningJobsList(
   context: Client,
-  options: ListPaginatedFineTuningJobsOptions = { requestOptions: {} }
+  options: FineTuningJobsListOptions = { requestOptions: {} }
 ): Promise<ListPaginatedFineTuningJobsResponse> {
-  const result = await _listPaginatedFineTuningJobsSend(context, options);
-  return _listPaginatedFineTuningJobsDeserialize(result);
+  const result = await _fineTuningJobsListSend(context, options);
+  return _fineTuningJobsListDeserialize(result);
 }
 
-export function _retrieveFineTuningJobSend(
+export function _fineTuningJobsRetrieveSend(
   context: Client,
   fineTuningJobId: string,
-  options: RetrieveFineTuningJobOptions = { requestOptions: {} }
-): StreamableMethod<
-  RetrieveFineTuningJob200Response | RetrieveFineTuningJobDefaultResponse
-> {
+  options: FineTuningJobsRetrieveOptions = { requestOptions: {} }
+): StreamableMethod<JobsRetrieve200Response | JobsRetrieveDefaultResponse> {
   return context
     .path("/fine_tuning/jobs/{fine_tuning_job_id}", fineTuningJobId)
     .get({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _retrieveFineTuningJobDeserialize(
-  result:
-    | RetrieveFineTuningJob200Response
-    | RetrieveFineTuningJobDefaultResponse
+export async function _fineTuningJobsRetrieveDeserialize(
+  result: JobsRetrieve200Response | JobsRetrieveDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -222,26 +211,24 @@ export async function _retrieveFineTuningJobDeserialize(
   };
 }
 
-export async function retrieveFineTuningJob(
+export async function fineTuningJobsRetrieve(
   context: Client,
   fineTuningJobId: string,
-  options: RetrieveFineTuningJobOptions = { requestOptions: {} }
+  options: FineTuningJobsRetrieveOptions = { requestOptions: {} }
 ): Promise<FineTuningJob> {
-  const result = await _retrieveFineTuningJobSend(
+  const result = await _fineTuningJobsRetrieveSend(
     context,
     fineTuningJobId,
     options
   );
-  return _retrieveFineTuningJobDeserialize(result);
+  return _fineTuningJobsRetrieveDeserialize(result);
 }
 
-export function _listFineTuningEventsSend(
+export function _fineTuningJobsListEventsSend(
   context: Client,
   fineTuningJobId: string,
-  options: ListFineTuningEventsOptions = { requestOptions: {} }
-): StreamableMethod<
-  ListFineTuningEvents200Response | ListFineTuningEventsDefaultResponse
-> {
+  options: FineTuningJobsListEventsOptions = { requestOptions: {} }
+): StreamableMethod<JobsListEvents200Response | JobsListEventsDefaultResponse> {
   return context
     .path("/fine_tuning/jobs/{fine_tuning_job_id}/events", fineTuningJobId)
     .get({
@@ -250,8 +237,8 @@ export function _listFineTuningEventsSend(
     });
 }
 
-export async function _listFineTuningEventsDeserialize(
-  result: ListFineTuningEvents200Response | ListFineTuningEventsDefaultResponse
+export async function _fineTuningJobsListEventsDeserialize(
+  result: JobsListEvents200Response | JobsListEventsDefaultResponse
 ): Promise<ListFineTuningJobEventsResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -269,33 +256,31 @@ export async function _listFineTuningEventsDeserialize(
   };
 }
 
-export async function listFineTuningEvents(
+export async function fineTuningJobsListEvents(
   context: Client,
   fineTuningJobId: string,
-  options: ListFineTuningEventsOptions = { requestOptions: {} }
+  options: FineTuningJobsListEventsOptions = { requestOptions: {} }
 ): Promise<ListFineTuningJobEventsResponse> {
-  const result = await _listFineTuningEventsSend(
+  const result = await _fineTuningJobsListEventsSend(
     context,
     fineTuningJobId,
     options
   );
-  return _listFineTuningEventsDeserialize(result);
+  return _fineTuningJobsListEventsDeserialize(result);
 }
 
-export function _cancelFineTuningJobSend(
+export function _fineTuningJobsCancelSend(
   context: Client,
   fineTuningJobId: string,
-  options: CancelFineTuningJobOptions = { requestOptions: {} }
-): StreamableMethod<
-  CancelFineTuningJob200Response | CancelFineTuningJobDefaultResponse
-> {
+  options: FineTuningJobsCancelOptions = { requestOptions: {} }
+): StreamableMethod<JobsCancel200Response | JobsCancelDefaultResponse> {
   return context
     .path("/fine_tuning/jobs/{fine_tuning_job_id}/cancel", fineTuningJobId)
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _cancelFineTuningJobDeserialize(
-  result: CancelFineTuningJob200Response | CancelFineTuningJobDefaultResponse
+export async function _fineTuningJobsCancelDeserialize(
+  result: JobsCancel200Response | JobsCancelDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -331,15 +316,15 @@ export async function _cancelFineTuningJobDeserialize(
   };
 }
 
-export async function cancelFineTuningJob(
+export async function fineTuningJobsCancel(
   context: Client,
   fineTuningJobId: string,
-  options: CancelFineTuningJobOptions = { requestOptions: {} }
+  options: FineTuningJobsCancelOptions = { requestOptions: {} }
 ): Promise<FineTuningJob> {
-  const result = await _cancelFineTuningJobSend(
+  const result = await _fineTuningJobsCancelSend(
     context,
     fineTuningJobId,
     options
   );
-  return _cancelFineTuningJobDeserialize(result);
+  return _fineTuningJobsCancelDeserialize(result);
 }

@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import {
-  createFineTune,
-  listFineTunes,
-  retrieveFineTune,
-  listFineTuneEvents,
-  cancelFineTune,
+  fineTunesCreate,
+  fineTunesList,
+  fineTunesRetrieve,
+  fineTunesListEvents,
+  fineTunesCancel,
 } from "../../api/fineTunes/index.js";
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
@@ -16,53 +16,48 @@ import {
   ListFineTuneEventsResponse,
 } from "../../models/models.js";
 import {
-  CreateFineTuneOptions,
-  ListFineTunesOptions,
-  RetrieveFineTuneOptions,
-  ListFineTuneEventsOptions,
-  CancelFineTuneOptions,
+  FineTunesCreateOptions,
+  FineTunesListOptions,
+  FineTunesRetrieveOptions,
+  FineTunesListEventsOptions,
+  FineTunesCancelOptions,
 } from "../../models/options.js";
 
 export interface FineTunesOperations {
   fineTunes: {
-    createFineTune: (
+    create: (
       fineTune: CreateFineTuneRequest,
-      options?: CreateFineTuneOptions
+      options?: FineTunesCreateOptions
     ) => Promise<FineTune>;
-    listFineTunes: (
-      options?: ListFineTunesOptions
-    ) => Promise<ListFineTunesResponse>;
-    retrieveFineTune: (
+    list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+    retrieve: (
       fineTuneId: string,
-      options?: RetrieveFineTuneOptions
+      options?: FineTunesRetrieveOptions
     ) => Promise<FineTune>;
-    listFineTuneEvents: (
+    listEvents: (
       fineTuneId: string,
-      options?: ListFineTuneEventsOptions
+      options?: FineTunesListEventsOptions
     ) => Promise<ListFineTuneEventsResponse>;
-    cancelFineTune: (
+    cancel: (
       fineTuneId: string,
-      options?: CancelFineTuneOptions
+      options?: FineTunesCancelOptions
     ) => Promise<FineTune>;
   };
 }
 
 export function getFineTunes(context: OpenAIContext) {
   return {
-    createFineTune: (
+    create: (
       fineTune: CreateFineTuneRequest,
-      options?: CreateFineTuneOptions
-    ) => createFineTune(context, fineTune, options),
-    listFineTunes: (options?: ListFineTunesOptions) =>
-      listFineTunes(context, options),
-    retrieveFineTune: (fineTuneId: string, options?: RetrieveFineTuneOptions) =>
-      retrieveFineTune(context, fineTuneId, options),
-    listFineTuneEvents: (
-      fineTuneId: string,
-      options?: ListFineTuneEventsOptions
-    ) => listFineTuneEvents(context, fineTuneId, options),
-    cancelFineTune: (fineTuneId: string, options?: CancelFineTuneOptions) =>
-      cancelFineTune(context, fineTuneId, options),
+      options?: FineTunesCreateOptions
+    ) => fineTunesCreate(context, fineTune, options),
+    list: (options?: FineTunesListOptions) => fineTunesList(context, options),
+    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) =>
+      fineTunesRetrieve(context, fineTuneId, options),
+    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) =>
+      fineTunesListEvents(context, fineTuneId, options),
+    cancel: (fineTuneId: string, options?: FineTunesCancelOptions) =>
+      fineTunesCancel(context, fineTuneId, options),
   };
 }
 

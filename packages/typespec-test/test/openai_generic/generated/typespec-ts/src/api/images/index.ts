@@ -8,12 +8,12 @@ import {
   CreateImageVariationRequest,
 } from "../../models/models.js";
 import {
-  CreateImage200Response,
-  CreateImageDefaultResponse,
-  CreateImageEdit200Response,
-  CreateImageEditDefaultResponse,
-  CreateImageVariation200Response,
-  CreateImageVariationDefaultResponse,
+  ImagesCreate200Response,
+  ImagesCreateDefaultResponse,
+  ImagesCreateEdit200Response,
+  ImagesCreateEditDefaultResponse,
+  ImagesCreateVariation200Response,
+  ImagesCreateVariationDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
 } from "../../rest/index.js";
@@ -23,16 +23,16 @@ import {
 } from "@azure-rest/core-client";
 import { stringToUint8Array } from "@azure/core-util";
 import {
-  CreateImageOptions,
-  CreateImageEditOptions,
-  CreateImageVariationOptions,
+  ImagesCreateOptions,
+  ImagesCreateEditOptions,
+  ImagesCreateVariationOptions,
 } from "../../models/options.js";
 
-export function _createImageSend(
+export function _imagesCreateSend(
   context: Client,
   image: CreateImageRequest,
-  options: CreateImageOptions = { requestOptions: {} }
-): StreamableMethod<CreateImage200Response | CreateImageDefaultResponse> {
+  options: ImagesCreateOptions = { requestOptions: {} }
+): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse> {
   return context
     .path("/images/generations")
     .post({
@@ -47,8 +47,8 @@ export function _createImageSend(
     });
 }
 
-export async function _createImageDeserialize(
-  result: CreateImage200Response | CreateImageDefaultResponse
+export async function _imagesCreateDeserialize(
+  result: ImagesCreate200Response | ImagesCreateDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -66,21 +66,21 @@ export async function _createImageDeserialize(
   };
 }
 
-export async function createImage(
+export async function imagesCreate(
   context: Client,
   image: CreateImageRequest,
-  options: CreateImageOptions = { requestOptions: {} }
+  options: ImagesCreateOptions = { requestOptions: {} }
 ): Promise<ImagesResponse> {
-  const result = await _createImageSend(context, image, options);
-  return _createImageDeserialize(result);
+  const result = await _imagesCreateSend(context, image, options);
+  return _imagesCreateDeserialize(result);
 }
 
-export function _createImageEditSend(
+export function _imagesCreateEditSend(
   context: Client,
   image: CreateImageEditRequest,
-  options: CreateImageEditOptions = { requestOptions: {} }
+  options: ImagesCreateEditOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateImageEdit200Response | CreateImageEditDefaultResponse
+  ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 > {
   return context
     .path("/images/edits")
@@ -99,8 +99,8 @@ export function _createImageEditSend(
     });
 }
 
-export async function _createImageEditDeserialize(
-  result: CreateImageEdit200Response | CreateImageEditDefaultResponse
+export async function _imagesCreateEditDeserialize(
+  result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -118,21 +118,21 @@ export async function _createImageEditDeserialize(
   };
 }
 
-export async function createImageEdit(
+export async function imagesCreateEdit(
   context: Client,
   image: CreateImageEditRequest,
-  options: CreateImageEditOptions = { requestOptions: {} }
+  options: ImagesCreateEditOptions = { requestOptions: {} }
 ): Promise<ImagesResponse> {
-  const result = await _createImageEditSend(context, image, options);
-  return _createImageEditDeserialize(result);
+  const result = await _imagesCreateEditSend(context, image, options);
+  return _imagesCreateEditDeserialize(result);
 }
 
-export function _createImageVariationSend(
+export function _imagesCreateVariationSend(
   context: Client,
   image: CreateImageVariationRequest,
-  options: CreateImageVariationOptions = { requestOptions: {} }
+  options: ImagesCreateVariationOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateImageVariation200Response | CreateImageVariationDefaultResponse
+  ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
 > {
   return context
     .path("/images/variations")
@@ -149,8 +149,10 @@ export function _createImageVariationSend(
     });
 }
 
-export async function _createImageVariationDeserialize(
-  result: CreateImageVariation200Response | CreateImageVariationDefaultResponse
+export async function _imagesCreateVariationDeserialize(
+  result:
+    | ImagesCreateVariation200Response
+    | ImagesCreateVariationDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -168,11 +170,11 @@ export async function _createImageVariationDeserialize(
   };
 }
 
-export async function createImageVariation(
+export async function imagesCreateVariation(
   context: Client,
   image: CreateImageVariationRequest,
-  options: CreateImageVariationOptions = { requestOptions: {} }
+  options: ImagesCreateVariationOptions = { requestOptions: {} }
 ): Promise<ImagesResponse> {
-  const result = await _createImageVariationSend(context, image, options);
-  return _createImageVariationDeserialize(result);
+  const result = await _imagesCreateVariationSend(context, image, options);
+  return _imagesCreateVariationDeserialize(result);
 }

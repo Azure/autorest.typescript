@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import {
-  createFineTuningJob,
-  listPaginatedFineTuningJobs,
-  retrieveFineTuningJob,
-  listFineTuningEvents,
-  cancelFineTuningJob,
+  fineTuningJobsCreate,
+  fineTuningJobsList,
+  fineTuningJobsRetrieve,
+  fineTuningJobsListEvents,
+  fineTuningJobsCancel,
 } from "../../../api/fineTuning/jobs/index.js";
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
@@ -16,58 +16,55 @@ import {
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
 import {
-  CreateFineTuningJobOptions,
-  ListPaginatedFineTuningJobsOptions,
-  RetrieveFineTuningJobOptions,
-  ListFineTuningEventsOptions,
-  CancelFineTuningJobOptions,
+  FineTuningJobsCreateOptions,
+  FineTuningJobsListOptions,
+  FineTuningJobsRetrieveOptions,
+  FineTuningJobsListEventsOptions,
+  FineTuningJobsCancelOptions,
 } from "../../../models/options.js";
 
 export interface FineTuningJobsOperations {
   jobs: {
-    createFineTuningJob: (
+    create: (
       job: CreateFineTuningJobRequest,
-      options?: CreateFineTuningJobOptions
+      options?: FineTuningJobsCreateOptions
     ) => Promise<FineTuningJob>;
-    listPaginatedFineTuningJobs: (
-      options?: ListPaginatedFineTuningJobsOptions
+    list: (
+      options?: FineTuningJobsListOptions
     ) => Promise<ListPaginatedFineTuningJobsResponse>;
-    retrieveFineTuningJob: (
+    retrieve: (
       fineTuningJobId: string,
-      options?: RetrieveFineTuningJobOptions
+      options?: FineTuningJobsRetrieveOptions
     ) => Promise<FineTuningJob>;
-    listFineTuningEvents: (
+    listEvents: (
       fineTuningJobId: string,
-      options?: ListFineTuningEventsOptions
+      options?: FineTuningJobsListEventsOptions
     ) => Promise<ListFineTuningJobEventsResponse>;
-    cancelFineTuningJob: (
+    cancel: (
       fineTuningJobId: string,
-      options?: CancelFineTuningJobOptions
+      options?: FineTuningJobsCancelOptions
     ) => Promise<FineTuningJob>;
   };
 }
 
 export function getFineTuningJobs(context: OpenAIContext) {
   return {
-    createFineTuningJob: (
+    create: (
       job: CreateFineTuningJobRequest,
-      options?: CreateFineTuningJobOptions
-    ) => createFineTuningJob(context, job, options),
-    listPaginatedFineTuningJobs: (
-      options?: ListPaginatedFineTuningJobsOptions
-    ) => listPaginatedFineTuningJobs(context, options),
-    retrieveFineTuningJob: (
+      options?: FineTuningJobsCreateOptions
+    ) => fineTuningJobsCreate(context, job, options),
+    list: (options?: FineTuningJobsListOptions) =>
+      fineTuningJobsList(context, options),
+    retrieve: (
       fineTuningJobId: string,
-      options?: RetrieveFineTuningJobOptions
-    ) => retrieveFineTuningJob(context, fineTuningJobId, options),
-    listFineTuningEvents: (
+      options?: FineTuningJobsRetrieveOptions
+    ) => fineTuningJobsRetrieve(context, fineTuningJobId, options),
+    listEvents: (
       fineTuningJobId: string,
-      options?: ListFineTuningEventsOptions
-    ) => listFineTuningEvents(context, fineTuningJobId, options),
-    cancelFineTuningJob: (
-      fineTuningJobId: string,
-      options?: CancelFineTuningJobOptions
-    ) => cancelFineTuningJob(context, fineTuningJobId, options),
+      options?: FineTuningJobsListEventsOptions
+    ) => fineTuningJobsListEvents(context, fineTuningJobId, options),
+    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) =>
+      fineTuningJobsCancel(context, fineTuningJobId, options),
   };
 }
 

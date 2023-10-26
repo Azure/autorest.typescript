@@ -1,29 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { createChatCompletion } from "../../../api/chat/completions/index.js";
+import { chatCompletionsCreate } from "../../../api/chat/completions/index.js";
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
 import {
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
-import { CreateChatCompletionOptions } from "../../../models/options.js";
+import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export interface ChatCompletionsOperations {
   completions: {
-    createChatCompletion: (
+    create: (
       body: CreateChatCompletionRequest,
-      options?: CreateChatCompletionOptions
+      options?: ChatCompletionsCreateOptions
     ) => Promise<CreateChatCompletionResponse>;
   };
 }
 
 export function getChatCompletions(context: OpenAIContext) {
   return {
-    createChatCompletion: (
+    create: (
       body: CreateChatCompletionRequest,
-      options?: CreateChatCompletionOptions
-    ) => createChatCompletion(context, body, options),
+      options?: ChatCompletionsCreateOptions
+    ) => chatCompletionsCreate(context, body, options),
   };
 }
 

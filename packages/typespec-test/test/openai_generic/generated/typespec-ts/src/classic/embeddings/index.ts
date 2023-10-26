@@ -1,29 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { createEmbedding } from "../../api/embeddings/index.js";
+import { embeddingsCreate } from "../../api/embeddings/index.js";
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
-import { CreateEmbeddingOptions } from "../../models/options.js";
+import { EmbeddingsCreateOptions } from "../../models/options.js";
 
 export interface EmbeddingsOperations {
   embeddings: {
-    createEmbedding: (
+    create: (
       embedding: CreateEmbeddingRequest,
-      options?: CreateEmbeddingOptions
+      options?: EmbeddingsCreateOptions
     ) => Promise<CreateEmbeddingResponse>;
   };
 }
 
 export function getEmbeddings(context: OpenAIContext) {
   return {
-    createEmbedding: (
+    create: (
       embedding: CreateEmbeddingRequest,
-      options?: CreateEmbeddingOptions
-    ) => createEmbedding(context, embedding, options),
+      options?: EmbeddingsCreateOptions
+    ) => embeddingsCreate(context, embedding, options),
   };
 }
 

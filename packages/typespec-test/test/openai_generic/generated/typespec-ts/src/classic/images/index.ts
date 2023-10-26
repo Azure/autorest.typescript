@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  createImage,
-  createImageEdit,
-  createImageVariation,
+  imagesCreate,
+  imagesCreateEdit,
+  imagesCreateVariation,
 } from "../../api/images/index.js";
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
@@ -14,40 +14,40 @@ import {
   CreateImageVariationRequest,
 } from "../../models/models.js";
 import {
-  CreateImageOptions,
-  CreateImageEditOptions,
-  CreateImageVariationOptions,
+  ImagesCreateOptions,
+  ImagesCreateEditOptions,
+  ImagesCreateVariationOptions,
 } from "../../models/options.js";
 
 export interface ImagesOperations {
   images: {
-    createImage: (
+    create: (
       image: CreateImageRequest,
-      options?: CreateImageOptions
+      options?: ImagesCreateOptions
     ) => Promise<ImagesResponse>;
-    createImageEdit: (
+    createEdit: (
       image: CreateImageEditRequest,
-      options?: CreateImageEditOptions
+      options?: ImagesCreateEditOptions
     ) => Promise<ImagesResponse>;
-    createImageVariation: (
+    createVariation: (
       image: CreateImageVariationRequest,
-      options?: CreateImageVariationOptions
+      options?: ImagesCreateVariationOptions
     ) => Promise<ImagesResponse>;
   };
 }
 
 export function getImages(context: OpenAIContext) {
   return {
-    createImage: (image: CreateImageRequest, options?: CreateImageOptions) =>
-      createImage(context, image, options),
-    createImageEdit: (
+    create: (image: CreateImageRequest, options?: ImagesCreateOptions) =>
+      imagesCreate(context, image, options),
+    createEdit: (
       image: CreateImageEditRequest,
-      options?: CreateImageEditOptions
-    ) => createImageEdit(context, image, options),
-    createImageVariation: (
+      options?: ImagesCreateEditOptions
+    ) => imagesCreateEdit(context, image, options),
+    createVariation: (
       image: CreateImageVariationRequest,
-      options?: CreateImageVariationOptions
-    ) => createImageVariation(context, image, options),
+      options?: ImagesCreateVariationOptions
+    ) => imagesCreateVariation(context, image, options),
   };
 }
 

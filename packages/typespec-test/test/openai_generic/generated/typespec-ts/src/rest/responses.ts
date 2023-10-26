@@ -27,310 +27,309 @@ import {
 } from "./outputModels.js";
 
 /** The request has succeeded. */
-export interface CreateTranscription200Response extends HttpResponse {
+export interface TranscriptionsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateTranscriptionResponseOutput;
 }
 
-export interface CreateTranscriptionDefaultResponse extends HttpResponse {
+export interface TranscriptionsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateTranslation200Response extends HttpResponse {
+export interface TranslationsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateTranslationResponseOutput;
 }
 
-export interface CreateTranslationDefaultResponse extends HttpResponse {
+export interface TranslationsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateChatCompletion200Response extends HttpResponse {
+export interface CompletionsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateChatCompletionResponseOutput;
 }
 
-export interface CreateChatCompletionDefaultResponse extends HttpResponse {
+export interface CompletionsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateFineTuningJob200Response extends HttpResponse {
+export interface JobsCreate200Response extends HttpResponse {
   status: "200";
   body: FineTuningJobOutput;
 }
 
-export interface CreateFineTuningJobDefaultResponse extends HttpResponse {
+export interface JobsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListPaginatedFineTuningJobs200Response extends HttpResponse {
+export interface JobsList200Response extends HttpResponse {
   status: "200";
   body: ListPaginatedFineTuningJobsResponseOutput;
 }
 
-export interface ListPaginatedFineTuningJobsDefaultResponse
-  extends HttpResponse {
+export interface JobsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface RetrieveFineTuningJob200Response extends HttpResponse {
+export interface JobsRetrieve200Response extends HttpResponse {
   status: "200";
   body: FineTuningJobOutput;
 }
 
-export interface RetrieveFineTuningJobDefaultResponse extends HttpResponse {
+export interface JobsRetrieveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListFineTuningEvents200Response extends HttpResponse {
+export interface JobsListEvents200Response extends HttpResponse {
   status: "200";
   body: ListFineTuningJobEventsResponseOutput;
 }
 
-export interface ListFineTuningEventsDefaultResponse extends HttpResponse {
+export interface JobsListEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CancelFineTuningJob200Response extends HttpResponse {
+export interface JobsCancel200Response extends HttpResponse {
   status: "200";
   body: FineTuningJobOutput;
 }
 
-export interface CancelFineTuningJobDefaultResponse extends HttpResponse {
+export interface JobsCancelDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateCompletion200Response extends HttpResponse {
+export interface CompletionsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateCompletionResponseOutput;
 }
 
-export interface CreateCompletionDefaultResponse extends HttpResponse {
+export interface CompletionsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateEdit200Response extends HttpResponse {
+export interface EditsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateEditResponseOutput;
 }
 
-export interface CreateEditDefaultResponse extends HttpResponse {
+export interface EditsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateEmbedding200Response extends HttpResponse {
+export interface EmbeddingsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateEmbeddingResponseOutput;
 }
 
-export interface CreateEmbeddingDefaultResponse extends HttpResponse {
+export interface EmbeddingsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListFiles200Response extends HttpResponse {
+export interface FilesList200Response extends HttpResponse {
   status: "200";
   body: ListFilesResponseOutput;
 }
 
-export interface ListFilesDefaultResponse extends HttpResponse {
+export interface FilesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateFile200Response extends HttpResponse {
+export interface FilesCreate200Response extends HttpResponse {
   status: "200";
   body: OpenAIFileOutput;
 }
 
-export interface CreateFileDefaultResponse extends HttpResponse {
+export interface FilesCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface RetrieveFile200Response extends HttpResponse {
+export interface FilesRetrieve200Response extends HttpResponse {
   status: "200";
   body: OpenAIFileOutput;
 }
 
-export interface RetrieveFileDefaultResponse extends HttpResponse {
+export interface FilesRetrieveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface DeleteFile200Response extends HttpResponse {
+export interface FilesDeleteOperation200Response extends HttpResponse {
   status: "200";
   body: DeleteFileResponseOutput;
 }
 
-export interface DeleteFileDefaultResponse extends HttpResponse {
+export interface FilesDeleteOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface DownloadFile200Response extends HttpResponse {
+export interface FilesDownload200Response extends HttpResponse {
   status: "200";
   body: string;
 }
 
-export interface DownloadFileDefaultResponse extends HttpResponse {
+export interface FilesDownloadDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateFineTune200Response extends HttpResponse {
+export interface FineTunesCreate200Response extends HttpResponse {
   status: "200";
   body: FineTuneOutput;
 }
 
-export interface CreateFineTuneDefaultResponse extends HttpResponse {
+export interface FineTunesCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListFineTunes200Response extends HttpResponse {
+export interface FineTunesList200Response extends HttpResponse {
   status: "200";
   body: ListFineTunesResponseOutput;
 }
 
-export interface ListFineTunesDefaultResponse extends HttpResponse {
+export interface FineTunesListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface RetrieveFineTune200Response extends HttpResponse {
+export interface FineTunesRetrieve200Response extends HttpResponse {
   status: "200";
   body: FineTuneOutput;
 }
 
-export interface RetrieveFineTuneDefaultResponse extends HttpResponse {
+export interface FineTunesRetrieveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListFineTuneEvents200Response extends HttpResponse {
+export interface FineTunesListEvents200Response extends HttpResponse {
   status: "200";
   body: ListFineTuneEventsResponseOutput;
 }
 
-export interface ListFineTuneEventsDefaultResponse extends HttpResponse {
+export interface FineTunesListEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CancelFineTune200Response extends HttpResponse {
+export interface FineTunesCancel200Response extends HttpResponse {
   status: "200";
   body: FineTuneOutput;
 }
 
-export interface CancelFineTuneDefaultResponse extends HttpResponse {
+export interface FineTunesCancelDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ListModels200Response extends HttpResponse {
+export interface ModelsList200Response extends HttpResponse {
   status: "200";
   body: ListModelsResponseOutput;
 }
 
-export interface ListModelsDefaultResponse extends HttpResponse {
+export interface ModelsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface Retrieve200Response extends HttpResponse {
+export interface ModelsRetrieve200Response extends HttpResponse {
   status: "200";
   body: ModelOutput;
 }
 
-export interface RetrieveDefaultResponse extends HttpResponse {
+export interface ModelsRetrieveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface DeleteOperation200Response extends HttpResponse {
+export interface ModelsDeleteOperation200Response extends HttpResponse {
   status: "200";
   body: DeleteModelResponseOutput;
 }
 
-export interface DeleteOperationDefaultResponse extends HttpResponse {
+export interface ModelsDeleteOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateImage200Response extends HttpResponse {
+export interface ImagesCreate200Response extends HttpResponse {
   status: "200";
   body: ImagesResponseOutput;
 }
 
-export interface CreateImageDefaultResponse extends HttpResponse {
+export interface ImagesCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateImageEdit200Response extends HttpResponse {
+export interface ImagesCreateEdit200Response extends HttpResponse {
   status: "200";
   body: ImagesResponseOutput;
 }
 
-export interface CreateImageEditDefaultResponse extends HttpResponse {
+export interface ImagesCreateEditDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateImageVariation200Response extends HttpResponse {
+export interface ImagesCreateVariation200Response extends HttpResponse {
   status: "200";
   body: ImagesResponseOutput;
 }
 
-export interface CreateImageVariationDefaultResponse extends HttpResponse {
+export interface ImagesCreateVariationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface CreateModeration200Response extends HttpResponse {
+export interface ModerationsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateModerationResponseOutput;
 }
 
-export interface CreateModerationDefaultResponse extends HttpResponse {
+export interface ModerationsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

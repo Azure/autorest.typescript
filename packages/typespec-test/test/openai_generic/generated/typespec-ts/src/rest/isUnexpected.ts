@@ -2,62 +2,60 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranscription200Response,
-  CreateTranscriptionDefaultResponse,
-  CreateTranslation200Response,
-  CreateTranslationDefaultResponse,
-  CreateChatCompletion200Response,
-  CreateChatCompletionDefaultResponse,
-  CreateFineTuningJob200Response,
-  CreateFineTuningJobDefaultResponse,
-  ListPaginatedFineTuningJobs200Response,
-  ListPaginatedFineTuningJobsDefaultResponse,
-  RetrieveFineTuningJob200Response,
-  RetrieveFineTuningJobDefaultResponse,
-  ListFineTuningEvents200Response,
-  ListFineTuningEventsDefaultResponse,
-  CancelFineTuningJob200Response,
-  CancelFineTuningJobDefaultResponse,
-  CreateCompletion200Response,
-  CreateCompletionDefaultResponse,
-  CreateEdit200Response,
-  CreateEditDefaultResponse,
-  CreateEmbedding200Response,
-  CreateEmbeddingDefaultResponse,
-  ListFiles200Response,
-  ListFilesDefaultResponse,
-  CreateFile200Response,
-  CreateFileDefaultResponse,
-  RetrieveFile200Response,
-  RetrieveFileDefaultResponse,
-  DeleteFile200Response,
-  DeleteFileDefaultResponse,
-  DownloadFile200Response,
-  DownloadFileDefaultResponse,
-  CreateFineTune200Response,
-  CreateFineTuneDefaultResponse,
-  ListFineTunes200Response,
-  ListFineTunesDefaultResponse,
-  RetrieveFineTune200Response,
-  RetrieveFineTuneDefaultResponse,
-  ListFineTuneEvents200Response,
-  ListFineTuneEventsDefaultResponse,
-  CancelFineTune200Response,
-  CancelFineTuneDefaultResponse,
-  ListModels200Response,
-  ListModelsDefaultResponse,
-  Retrieve200Response,
-  RetrieveDefaultResponse,
-  DeleteOperation200Response,
-  DeleteOperationDefaultResponse,
-  CreateImage200Response,
-  CreateImageDefaultResponse,
-  CreateImageEdit200Response,
-  CreateImageEditDefaultResponse,
-  CreateImageVariation200Response,
-  CreateImageVariationDefaultResponse,
-  CreateModeration200Response,
-  CreateModerationDefaultResponse,
+  TranscriptionsCreate200Response,
+  TranscriptionsCreateDefaultResponse,
+  TranslationsCreate200Response,
+  TranslationsCreateDefaultResponse,
+  CompletionsCreate200Response,
+  CompletionsCreateDefaultResponse,
+  JobsCreate200Response,
+  JobsCreateDefaultResponse,
+  JobsList200Response,
+  JobsListDefaultResponse,
+  JobsRetrieve200Response,
+  JobsRetrieveDefaultResponse,
+  JobsListEvents200Response,
+  JobsListEventsDefaultResponse,
+  JobsCancel200Response,
+  JobsCancelDefaultResponse,
+  EditsCreate200Response,
+  EditsCreateDefaultResponse,
+  EmbeddingsCreate200Response,
+  EmbeddingsCreateDefaultResponse,
+  FilesList200Response,
+  FilesListDefaultResponse,
+  FilesCreate200Response,
+  FilesCreateDefaultResponse,
+  FilesRetrieve200Response,
+  FilesRetrieveDefaultResponse,
+  FilesDeleteOperation200Response,
+  FilesDeleteOperationDefaultResponse,
+  FilesDownload200Response,
+  FilesDownloadDefaultResponse,
+  FineTunesCreate200Response,
+  FineTunesCreateDefaultResponse,
+  FineTunesList200Response,
+  FineTunesListDefaultResponse,
+  FineTunesRetrieve200Response,
+  FineTunesRetrieveDefaultResponse,
+  FineTunesListEvents200Response,
+  FineTunesListEventsDefaultResponse,
+  FineTunesCancel200Response,
+  FineTunesCancelDefaultResponse,
+  ModelsList200Response,
+  ModelsListDefaultResponse,
+  ModelsRetrieve200Response,
+  ModelsRetrieveDefaultResponse,
+  ModelsDeleteOperation200Response,
+  ModelsDeleteOperationDefaultResponse,
+  ImagesCreate200Response,
+  ImagesCreateDefaultResponse,
+  ImagesCreateEdit200Response,
+  ImagesCreateEditDefaultResponse,
+  ImagesCreateVariation200Response,
+  ImagesCreateVariationDefaultResponse,
+  ModerationsCreate200Response,
+  ModerationsCreateDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
@@ -92,186 +90,181 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: CreateTranscription200Response | CreateTranscriptionDefaultResponse
-): response is CreateTranscriptionDefaultResponse;
+  response:
+    | TranscriptionsCreate200Response
+    | TranscriptionsCreateDefaultResponse
+): response is TranscriptionsCreateDefaultResponse;
 export function isUnexpected(
-  response: CreateTranslation200Response | CreateTranslationDefaultResponse
-): response is CreateTranslationDefaultResponse;
+  response: TranslationsCreate200Response | TranslationsCreateDefaultResponse
+): response is TranslationsCreateDefaultResponse;
+export function isUnexpected(
+  response: CompletionsCreate200Response | CompletionsCreateDefaultResponse
+): response is CompletionsCreateDefaultResponse;
+export function isUnexpected(
+  response: JobsCreate200Response | JobsCreateDefaultResponse
+): response is JobsCreateDefaultResponse;
+export function isUnexpected(
+  response: JobsList200Response | JobsListDefaultResponse
+): response is JobsListDefaultResponse;
+export function isUnexpected(
+  response: JobsRetrieve200Response | JobsRetrieveDefaultResponse
+): response is JobsRetrieveDefaultResponse;
+export function isUnexpected(
+  response: JobsListEvents200Response | JobsListEventsDefaultResponse
+): response is JobsListEventsDefaultResponse;
+export function isUnexpected(
+  response: JobsCancel200Response | JobsCancelDefaultResponse
+): response is JobsCancelDefaultResponse;
+export function isUnexpected(
+  response: CompletionsCreate200Response | CompletionsCreateDefaultResponse
+): response is CompletionsCreateDefaultResponse;
+export function isUnexpected(
+  response: EditsCreate200Response | EditsCreateDefaultResponse
+): response is EditsCreateDefaultResponse;
+export function isUnexpected(
+  response: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
+): response is EmbeddingsCreateDefaultResponse;
+export function isUnexpected(
+  response: FilesList200Response | FilesListDefaultResponse
+): response is FilesListDefaultResponse;
+export function isUnexpected(
+  response: FilesCreate200Response | FilesCreateDefaultResponse
+): response is FilesCreateDefaultResponse;
+export function isUnexpected(
+  response: FilesRetrieve200Response | FilesRetrieveDefaultResponse
+): response is FilesRetrieveDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateChatCompletion200Response
-    | CreateChatCompletionDefaultResponse
-): response is CreateChatCompletionDefaultResponse;
+    | FilesDeleteOperation200Response
+    | FilesDeleteOperationDefaultResponse
+): response is FilesDeleteOperationDefaultResponse;
 export function isUnexpected(
-  response: CreateFineTuningJob200Response | CreateFineTuningJobDefaultResponse
-): response is CreateFineTuningJobDefaultResponse;
+  response: FilesDownload200Response | FilesDownloadDefaultResponse
+): response is FilesDownloadDefaultResponse;
 export function isUnexpected(
-  response:
-    | ListPaginatedFineTuningJobs200Response
-    | ListPaginatedFineTuningJobsDefaultResponse
-): response is ListPaginatedFineTuningJobsDefaultResponse;
+  response: FineTunesCreate200Response | FineTunesCreateDefaultResponse
+): response is FineTunesCreateDefaultResponse;
 export function isUnexpected(
-  response:
-    | RetrieveFineTuningJob200Response
-    | RetrieveFineTuningJobDefaultResponse
-): response is RetrieveFineTuningJobDefaultResponse;
+  response: FineTunesList200Response | FineTunesListDefaultResponse
+): response is FineTunesListDefaultResponse;
 export function isUnexpected(
-  response:
-    | ListFineTuningEvents200Response
-    | ListFineTuningEventsDefaultResponse
-): response is ListFineTuningEventsDefaultResponse;
+  response: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
+): response is FineTunesRetrieveDefaultResponse;
 export function isUnexpected(
-  response: CancelFineTuningJob200Response | CancelFineTuningJobDefaultResponse
-): response is CancelFineTuningJobDefaultResponse;
+  response: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
+): response is FineTunesListEventsDefaultResponse;
 export function isUnexpected(
-  response: CreateCompletion200Response | CreateCompletionDefaultResponse
-): response is CreateCompletionDefaultResponse;
+  response: FineTunesCancel200Response | FineTunesCancelDefaultResponse
+): response is FineTunesCancelDefaultResponse;
 export function isUnexpected(
-  response: CreateEdit200Response | CreateEditDefaultResponse
-): response is CreateEditDefaultResponse;
+  response: ModelsList200Response | ModelsListDefaultResponse
+): response is ModelsListDefaultResponse;
 export function isUnexpected(
-  response: CreateEmbedding200Response | CreateEmbeddingDefaultResponse
-): response is CreateEmbeddingDefaultResponse;
-export function isUnexpected(
-  response: ListFiles200Response | ListFilesDefaultResponse
-): response is ListFilesDefaultResponse;
-export function isUnexpected(
-  response: CreateFile200Response | CreateFileDefaultResponse
-): response is CreateFileDefaultResponse;
-export function isUnexpected(
-  response: RetrieveFile200Response | RetrieveFileDefaultResponse
-): response is RetrieveFileDefaultResponse;
-export function isUnexpected(
-  response: DeleteFile200Response | DeleteFileDefaultResponse
-): response is DeleteFileDefaultResponse;
-export function isUnexpected(
-  response: DownloadFile200Response | DownloadFileDefaultResponse
-): response is DownloadFileDefaultResponse;
-export function isUnexpected(
-  response: CreateFineTune200Response | CreateFineTuneDefaultResponse
-): response is CreateFineTuneDefaultResponse;
-export function isUnexpected(
-  response: ListFineTunes200Response | ListFineTunesDefaultResponse
-): response is ListFineTunesDefaultResponse;
-export function isUnexpected(
-  response: RetrieveFineTune200Response | RetrieveFineTuneDefaultResponse
-): response is RetrieveFineTuneDefaultResponse;
-export function isUnexpected(
-  response: ListFineTuneEvents200Response | ListFineTuneEventsDefaultResponse
-): response is ListFineTuneEventsDefaultResponse;
-export function isUnexpected(
-  response: CancelFineTune200Response | CancelFineTuneDefaultResponse
-): response is CancelFineTuneDefaultResponse;
-export function isUnexpected(
-  response: ListModels200Response | ListModelsDefaultResponse
-): response is ListModelsDefaultResponse;
-export function isUnexpected(
-  response: Retrieve200Response | RetrieveDefaultResponse
-): response is RetrieveDefaultResponse;
-export function isUnexpected(
-  response: DeleteOperation200Response | DeleteOperationDefaultResponse
-): response is DeleteOperationDefaultResponse;
-export function isUnexpected(
-  response: CreateImage200Response | CreateImageDefaultResponse
-): response is CreateImageDefaultResponse;
-export function isUnexpected(
-  response: CreateImageEdit200Response | CreateImageEditDefaultResponse
-): response is CreateImageEditDefaultResponse;
+  response: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
+): response is ModelsRetrieveDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateImageVariation200Response
-    | CreateImageVariationDefaultResponse
-): response is CreateImageVariationDefaultResponse;
+    | ModelsDeleteOperation200Response
+    | ModelsDeleteOperationDefaultResponse
+): response is ModelsDeleteOperationDefaultResponse;
 export function isUnexpected(
-  response: CreateModeration200Response | CreateModerationDefaultResponse
-): response is CreateModerationDefaultResponse;
+  response: ImagesCreate200Response | ImagesCreateDefaultResponse
+): response is ImagesCreateDefaultResponse;
+export function isUnexpected(
+  response: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
+): response is ImagesCreateEditDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateTranscription200Response
-    | CreateTranscriptionDefaultResponse
-    | CreateTranslation200Response
-    | CreateTranslationDefaultResponse
-    | CreateChatCompletion200Response
-    | CreateChatCompletionDefaultResponse
-    | CreateFineTuningJob200Response
-    | CreateFineTuningJobDefaultResponse
-    | ListPaginatedFineTuningJobs200Response
-    | ListPaginatedFineTuningJobsDefaultResponse
-    | RetrieveFineTuningJob200Response
-    | RetrieveFineTuningJobDefaultResponse
-    | ListFineTuningEvents200Response
-    | ListFineTuningEventsDefaultResponse
-    | CancelFineTuningJob200Response
-    | CancelFineTuningJobDefaultResponse
-    | CreateCompletion200Response
-    | CreateCompletionDefaultResponse
-    | CreateEdit200Response
-    | CreateEditDefaultResponse
-    | CreateEmbedding200Response
-    | CreateEmbeddingDefaultResponse
-    | ListFiles200Response
-    | ListFilesDefaultResponse
-    | CreateFile200Response
-    | CreateFileDefaultResponse
-    | RetrieveFile200Response
-    | RetrieveFileDefaultResponse
-    | DeleteFile200Response
-    | DeleteFileDefaultResponse
-    | DownloadFile200Response
-    | DownloadFileDefaultResponse
-    | CreateFineTune200Response
-    | CreateFineTuneDefaultResponse
-    | ListFineTunes200Response
-    | ListFineTunesDefaultResponse
-    | RetrieveFineTune200Response
-    | RetrieveFineTuneDefaultResponse
-    | ListFineTuneEvents200Response
-    | ListFineTuneEventsDefaultResponse
-    | CancelFineTune200Response
-    | CancelFineTuneDefaultResponse
-    | ListModels200Response
-    | ListModelsDefaultResponse
-    | Retrieve200Response
-    | RetrieveDefaultResponse
-    | DeleteOperation200Response
-    | DeleteOperationDefaultResponse
-    | CreateImage200Response
-    | CreateImageDefaultResponse
-    | CreateImageEdit200Response
-    | CreateImageEditDefaultResponse
-    | CreateImageVariation200Response
-    | CreateImageVariationDefaultResponse
-    | CreateModeration200Response
-    | CreateModerationDefaultResponse
+    | ImagesCreateVariation200Response
+    | ImagesCreateVariationDefaultResponse
+): response is ImagesCreateVariationDefaultResponse;
+export function isUnexpected(
+  response: ModerationsCreate200Response | ModerationsCreateDefaultResponse
+): response is ModerationsCreateDefaultResponse;
+export function isUnexpected(
+  response:
+    | TranscriptionsCreate200Response
+    | TranscriptionsCreateDefaultResponse
+    | TranslationsCreate200Response
+    | TranslationsCreateDefaultResponse
+    | CompletionsCreate200Response
+    | CompletionsCreateDefaultResponse
+    | JobsCreate200Response
+    | JobsCreateDefaultResponse
+    | JobsList200Response
+    | JobsListDefaultResponse
+    | JobsRetrieve200Response
+    | JobsRetrieveDefaultResponse
+    | JobsListEvents200Response
+    | JobsListEventsDefaultResponse
+    | JobsCancel200Response
+    | JobsCancelDefaultResponse
+    | EditsCreate200Response
+    | EditsCreateDefaultResponse
+    | EmbeddingsCreate200Response
+    | EmbeddingsCreateDefaultResponse
+    | FilesList200Response
+    | FilesListDefaultResponse
+    | FilesCreate200Response
+    | FilesCreateDefaultResponse
+    | FilesRetrieve200Response
+    | FilesRetrieveDefaultResponse
+    | FilesDeleteOperation200Response
+    | FilesDeleteOperationDefaultResponse
+    | FilesDownload200Response
+    | FilesDownloadDefaultResponse
+    | FineTunesCreate200Response
+    | FineTunesCreateDefaultResponse
+    | FineTunesList200Response
+    | FineTunesListDefaultResponse
+    | FineTunesRetrieve200Response
+    | FineTunesRetrieveDefaultResponse
+    | FineTunesListEvents200Response
+    | FineTunesListEventsDefaultResponse
+    | FineTunesCancel200Response
+    | FineTunesCancelDefaultResponse
+    | ModelsList200Response
+    | ModelsListDefaultResponse
+    | ModelsRetrieve200Response
+    | ModelsRetrieveDefaultResponse
+    | ModelsDeleteOperation200Response
+    | ModelsDeleteOperationDefaultResponse
+    | ImagesCreate200Response
+    | ImagesCreateDefaultResponse
+    | ImagesCreateEdit200Response
+    | ImagesCreateEditDefaultResponse
+    | ImagesCreateVariation200Response
+    | ImagesCreateVariationDefaultResponse
+    | ModerationsCreate200Response
+    | ModerationsCreateDefaultResponse
 ): response is
-  | CreateTranscriptionDefaultResponse
-  | CreateTranslationDefaultResponse
-  | CreateChatCompletionDefaultResponse
-  | CreateFineTuningJobDefaultResponse
-  | ListPaginatedFineTuningJobsDefaultResponse
-  | RetrieveFineTuningJobDefaultResponse
-  | ListFineTuningEventsDefaultResponse
-  | CancelFineTuningJobDefaultResponse
-  | CreateCompletionDefaultResponse
-  | CreateEditDefaultResponse
-  | CreateEmbeddingDefaultResponse
-  | ListFilesDefaultResponse
-  | CreateFileDefaultResponse
-  | RetrieveFileDefaultResponse
-  | DeleteFileDefaultResponse
-  | DownloadFileDefaultResponse
-  | CreateFineTuneDefaultResponse
-  | ListFineTunesDefaultResponse
-  | RetrieveFineTuneDefaultResponse
-  | ListFineTuneEventsDefaultResponse
-  | CancelFineTuneDefaultResponse
-  | ListModelsDefaultResponse
-  | RetrieveDefaultResponse
-  | DeleteOperationDefaultResponse
-  | CreateImageDefaultResponse
-  | CreateImageEditDefaultResponse
-  | CreateImageVariationDefaultResponse
-  | CreateModerationDefaultResponse {
+  | TranscriptionsCreateDefaultResponse
+  | TranslationsCreateDefaultResponse
+  | CompletionsCreateDefaultResponse
+  | JobsCreateDefaultResponse
+  | JobsListDefaultResponse
+  | JobsRetrieveDefaultResponse
+  | JobsListEventsDefaultResponse
+  | JobsCancelDefaultResponse
+  | EditsCreateDefaultResponse
+  | EmbeddingsCreateDefaultResponse
+  | FilesListDefaultResponse
+  | FilesCreateDefaultResponse
+  | FilesRetrieveDefaultResponse
+  | FilesDeleteOperationDefaultResponse
+  | FilesDownloadDefaultResponse
+  | FineTunesCreateDefaultResponse
+  | FineTunesListDefaultResponse
+  | FineTunesRetrieveDefaultResponse
+  | FineTunesListEventsDefaultResponse
+  | FineTunesCancelDefaultResponse
+  | ModelsListDefaultResponse
+  | ModelsRetrieveDefaultResponse
+  | ModelsDeleteOperationDefaultResponse
+  | ImagesCreateDefaultResponse
+  | ImagesCreateEditDefaultResponse
+  | ImagesCreateVariationDefaultResponse
+  | ModerationsCreateDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

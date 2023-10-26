@@ -6,8 +6,8 @@ import {
   CreateCompletionResponse,
 } from "../../models/models.js";
 import {
-  CreateCompletion200Response,
-  CreateCompletionDefaultResponse,
+  CompletionsCreate200Response,
+  CompletionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
 } from "../../rest/index.js";
@@ -15,14 +15,14 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateCompletionOptions } from "../../models/options.js";
+import { CompletionsCreateOptions } from "../../models/options.js";
 
-export function _createCompletionSend(
+export function _completionsCreateSend(
   context: Client,
   body: CreateCompletionRequest,
-  options: CreateCompletionOptions = { requestOptions: {} }
+  options: CompletionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateCompletion200Response | CreateCompletionDefaultResponse
+  CompletionsCreate200Response | CompletionsCreateDefaultResponse
 > {
   return context
     .path("/completions")
@@ -49,8 +49,8 @@ export function _createCompletionSend(
     });
 }
 
-export async function _createCompletionDeserialize(
-  result: CreateCompletion200Response | CreateCompletionDefaultResponse
+export async function _completionsCreateDeserialize(
+  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
 ): Promise<CreateCompletionResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -85,11 +85,11 @@ export async function _createCompletionDeserialize(
   };
 }
 
-export async function createCompletion(
+export async function completionsCreate(
   context: Client,
   body: CreateCompletionRequest,
-  options: CreateCompletionOptions = { requestOptions: {} }
+  options: CompletionsCreateOptions = { requestOptions: {} }
 ): Promise<CreateCompletionResponse> {
-  const result = await _createCompletionSend(context, body, options);
-  return _createCompletionDeserialize(result);
+  const result = await _completionsCreateSend(context, body, options);
+  return _completionsCreateDeserialize(result);
 }

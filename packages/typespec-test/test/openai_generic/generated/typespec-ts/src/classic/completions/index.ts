@@ -1,29 +1,29 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { createCompletion } from "../../api/completions/index.js";
+import { completionsCreate } from "../../api/completions/index.js";
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
   CreateCompletionRequest,
   CreateCompletionResponse,
 } from "../../models/models.js";
-import { CreateCompletionOptions } from "../../models/options.js";
+import { CompletionsCreateOptions } from "../../models/options.js";
 
 export interface CompletionsOperations {
   completions: {
-    createCompletion: (
+    create: (
       body: CreateCompletionRequest,
-      options?: CreateCompletionOptions
+      options?: CompletionsCreateOptions
     ) => Promise<CreateCompletionResponse>;
   };
 }
 
 export function getCompletions(context: OpenAIContext) {
   return {
-    createCompletion: (
+    create: (
       body: CreateCompletionRequest,
-      options?: CreateCompletionOptions
-    ) => createCompletion(context, body, options),
+      options?: CompletionsCreateOptions
+    ) => completionsCreate(context, body, options),
   };
 }
 

@@ -18,120 +18,119 @@ import {
   CreateModerationRequest,
 } from "./models.js";
 
-export interface CreateTranscriptionBodyParam {
+export interface TranscriptionsCreateBodyParam {
   body: CreateTranscriptionRequest;
 }
 
-export interface CreateTranscriptionMediaTypesParam {
+export interface TranscriptionsCreateMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type CreateTranscriptionParameters = CreateTranscriptionMediaTypesParam &
-  CreateTranscriptionBodyParam &
-  RequestParameters;
+export type TranscriptionsCreateParameters =
+  TranscriptionsCreateMediaTypesParam &
+    TranscriptionsCreateBodyParam &
+    RequestParameters;
 
-export interface CreateTranslationBodyParam {
+export interface TranslationsCreateBodyParam {
   body: CreateTranslationRequest;
 }
 
-export interface CreateTranslationMediaTypesParam {
+export interface TranslationsCreateMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type CreateTranslationParameters = CreateTranslationMediaTypesParam &
-  CreateTranslationBodyParam &
+export type TranslationsCreateParameters = TranslationsCreateMediaTypesParam &
+  TranslationsCreateBodyParam &
   RequestParameters;
 
-export interface CreateChatCompletionBodyParam {
+export interface CompletionsCreateBodyParam {
   body?: CreateChatCompletionRequest;
 }
 
-export type CreateChatCompletionParameters = CreateChatCompletionBodyParam &
+export type CompletionsCreateParameters = CompletionsCreateBodyParam &
   RequestParameters;
 
-export interface CreateFineTuningJobBodyParam {
+export interface JobsCreateBodyParam {
   body: CreateFineTuningJobRequest;
 }
 
-export type CreateFineTuningJobParameters = CreateFineTuningJobBodyParam &
-  RequestParameters;
+export type JobsCreateParameters = JobsCreateBodyParam & RequestParameters;
 
-export interface ListPaginatedFineTuningJobsQueryParamProperties {
+export interface JobsListQueryParamProperties {
   /** Identifier for the last job from the previous pagination request. */
   after?: string;
   /** Number of fine-tuning jobs to retrieve. */
   limit?: number;
 }
 
-export interface ListPaginatedFineTuningJobsQueryParam {
-  queryParameters?: ListPaginatedFineTuningJobsQueryParamProperties;
+export interface JobsListQueryParam {
+  queryParameters?: JobsListQueryParamProperties;
 }
 
-export type ListPaginatedFineTuningJobsParameters =
-  ListPaginatedFineTuningJobsQueryParam & RequestParameters;
-export type RetrieveFineTuningJobParameters = RequestParameters;
+export type JobsListParameters = JobsListQueryParam & RequestParameters;
+export type JobsRetrieveParameters = RequestParameters;
 
-export interface ListFineTuningEventsQueryParamProperties {
+export interface JobsListEventsQueryParamProperties {
   /** Identifier for the last event from the previous pagination request. */
   after?: string;
   /** Number of events to retrieve. */
   limit?: number;
 }
 
-export interface ListFineTuningEventsQueryParam {
-  queryParameters?: ListFineTuningEventsQueryParamProperties;
+export interface JobsListEventsQueryParam {
+  queryParameters?: JobsListEventsQueryParamProperties;
 }
 
-export type ListFineTuningEventsParameters = ListFineTuningEventsQueryParam &
+export type JobsListEventsParameters = JobsListEventsQueryParam &
   RequestParameters;
-export type CancelFineTuningJobParameters = RequestParameters;
+export type JobsCancelParameters = RequestParameters;
 
-export interface CreateCompletionBodyParam {
+export interface CompletionsCreateBodyParam {
   body?: CreateCompletionRequest;
 }
 
-export type CreateCompletionParameters = CreateCompletionBodyParam &
+export type CompletionsCreateParameters = CompletionsCreateBodyParam &
   RequestParameters;
 
-export interface CreateEditBodyParam {
+export interface EditsCreateBodyParam {
   body: CreateEditRequest;
 }
 
-export type CreateEditParameters = CreateEditBodyParam & RequestParameters;
+export type EditsCreateParameters = EditsCreateBodyParam & RequestParameters;
 
-export interface CreateEmbeddingBodyParam {
+export interface EmbeddingsCreateBodyParam {
   body: CreateEmbeddingRequest;
 }
 
-export type CreateEmbeddingParameters = CreateEmbeddingBodyParam &
+export type EmbeddingsCreateParameters = EmbeddingsCreateBodyParam &
   RequestParameters;
-export type ListFilesParameters = RequestParameters;
+export type FilesListParameters = RequestParameters;
 
-export interface CreateFileBodyParam {
+export interface FilesCreateBodyParam {
   body: CreateFileRequest;
 }
 
-export interface CreateFileMediaTypesParam {
+export interface FilesCreateMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type CreateFileParameters = CreateFileMediaTypesParam &
-  CreateFileBodyParam &
+export type FilesCreateParameters = FilesCreateMediaTypesParam &
+  FilesCreateBodyParam &
   RequestParameters;
-export type RetrieveFileParameters = RequestParameters;
-export type DeleteFileParameters = RequestParameters;
-export type DownloadFileParameters = RequestParameters;
+export type FilesRetrieveParameters = RequestParameters;
+export type FilesDeleteParameters = RequestParameters;
+export type FilesDownloadParameters = RequestParameters;
 
-export interface CreateFineTuneBodyParam {
+export interface FineTunesCreateBodyParam {
   body: CreateFineTuneRequest;
 }
 
-export type CreateFineTuneParameters = CreateFineTuneBodyParam &
+export type FineTunesCreateParameters = FineTunesCreateBodyParam &
   RequestParameters;
-export type ListFineTunesParameters = RequestParameters;
-export type RetrieveFineTuneParameters = RequestParameters;
+export type FineTunesListParameters = RequestParameters;
+export type FineTunesRetrieveParameters = RequestParameters;
 
-export interface ListFineTuneEventsQueryParamProperties {
+export interface FineTunesListEventsQueryParamProperties {
   /**
    * Whether to stream events for the fine-tune job. If set to true, events will be sent as
    * data-only
@@ -144,51 +143,51 @@ export interface ListFineTuneEventsQueryParamProperties {
   stream?: boolean;
 }
 
-export interface ListFineTuneEventsQueryParam {
-  queryParameters?: ListFineTuneEventsQueryParamProperties;
+export interface FineTunesListEventsQueryParam {
+  queryParameters?: FineTunesListEventsQueryParamProperties;
 }
 
-export type ListFineTuneEventsParameters = ListFineTuneEventsQueryParam &
+export type FineTunesListEventsParameters = FineTunesListEventsQueryParam &
   RequestParameters;
-export type CancelFineTuneParameters = RequestParameters;
-export type ListModelsParameters = RequestParameters;
-export type RetrieveParameters = RequestParameters;
-export type DeleteParameters = RequestParameters;
+export type FineTunesCancelParameters = RequestParameters;
+export type ModelsListParameters = RequestParameters;
+export type ModelsRetrieveParameters = RequestParameters;
+export type ModelsDeleteParameters = RequestParameters;
 
-export interface CreateImageBodyParam {
+export interface ImagesCreateBodyParam {
   body: CreateImageRequest;
 }
 
-export type CreateImageParameters = CreateImageBodyParam & RequestParameters;
+export type ImagesCreateParameters = ImagesCreateBodyParam & RequestParameters;
 
-export interface CreateImageEditBodyParam {
+export interface ImagesCreateEditBodyParam {
   body: CreateImageEditRequest;
 }
 
-export interface CreateImageEditMediaTypesParam {
+export interface ImagesCreateEditMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type CreateImageEditParameters = CreateImageEditMediaTypesParam &
-  CreateImageEditBodyParam &
+export type ImagesCreateEditParameters = ImagesCreateEditMediaTypesParam &
+  ImagesCreateEditBodyParam &
   RequestParameters;
 
-export interface CreateImageVariationBodyParam {
+export interface ImagesCreateVariationBodyParam {
   body: CreateImageVariationRequest;
 }
 
-export interface CreateImageVariationMediaTypesParam {
+export interface ImagesCreateVariationMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type CreateImageVariationParameters =
-  CreateImageVariationMediaTypesParam &
-    CreateImageVariationBodyParam &
+export type ImagesCreateVariationParameters =
+  ImagesCreateVariationMediaTypesParam &
+    ImagesCreateVariationBodyParam &
     RequestParameters;
 
-export interface CreateModerationBodyParam {
+export interface ModerationsCreateBodyParam {
   body: CreateModerationRequest;
 }
 
-export type CreateModerationParameters = CreateModerationBodyParam &
+export type ModerationsCreateParameters = ModerationsCreateBodyParam &
   RequestParameters;

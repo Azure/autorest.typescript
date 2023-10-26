@@ -3,8 +3,8 @@
 
 import { CreateEditRequest, CreateEditResponse } from "../../models/models.js";
 import {
-  CreateEdit200Response,
-  CreateEditDefaultResponse,
+  EditsCreate200Response,
+  EditsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
 } from "../../rest/index.js";
@@ -12,13 +12,13 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateEditOptions } from "../../models/options.js";
+import { EditsCreateOptions } from "../../models/options.js";
 
-export function _createEditSend(
+export function _editsCreateSend(
   context: Client,
   edit: CreateEditRequest,
-  options: CreateEditOptions = { requestOptions: {} }
-): StreamableMethod<CreateEdit200Response | CreateEditDefaultResponse> {
+  options: EditsCreateOptions = { requestOptions: {} }
+): StreamableMethod<EditsCreate200Response | EditsCreateDefaultResponse> {
   return context
     .path("/edits")
     .post({
@@ -34,8 +34,8 @@ export function _createEditSend(
     });
 }
 
-export async function _createEditDeserialize(
-  result: CreateEdit200Response | CreateEditDefaultResponse
+export async function _editsCreateDeserialize(
+  result: EditsCreate200Response | EditsCreateDefaultResponse
 ): Promise<CreateEditResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -57,11 +57,11 @@ export async function _createEditDeserialize(
   };
 }
 
-export async function createEdit(
+export async function editsCreate(
   context: Client,
   edit: CreateEditRequest,
-  options: CreateEditOptions = { requestOptions: {} }
+  options: EditsCreateOptions = { requestOptions: {} }
 ): Promise<CreateEditResponse> {
-  const result = await _createEditSend(context, edit, options);
-  return _createEditDeserialize(result);
+  const result = await _editsCreateSend(context, edit, options);
+  return _editsCreateDeserialize(result);
 }

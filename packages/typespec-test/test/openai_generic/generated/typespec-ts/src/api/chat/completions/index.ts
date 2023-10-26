@@ -6,8 +6,8 @@ import {
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
-  CreateChatCompletion200Response,
-  CreateChatCompletionDefaultResponse,
+  CompletionsCreate200Response,
+  CompletionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
 } from "../../../rest/index.js";
@@ -15,14 +15,14 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateChatCompletionOptions } from "../../../models/options.js";
+import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
-export function _createChatCompletionSend(
+export function _chatCompletionsCreateSend(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: CreateChatCompletionOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateChatCompletion200Response | CreateChatCompletionDefaultResponse
+  CompletionsCreate200Response | CompletionsCreateDefaultResponse
 > {
   return context
     .path("/chat/completions")
@@ -61,8 +61,8 @@ export function _createChatCompletionSend(
     });
 }
 
-export async function _createChatCompletionDeserialize(
-  result: CreateChatCompletion200Response | CreateChatCompletionDefaultResponse
+export async function _chatCompletionsCreateDeserialize(
+  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
 ): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -97,11 +97,11 @@ export async function _createChatCompletionDeserialize(
   };
 }
 
-export async function createChatCompletion(
+export async function chatCompletionsCreate(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: CreateChatCompletionOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} }
 ): Promise<CreateChatCompletionResponse> {
-  const result = await _createChatCompletionSend(context, body, options);
-  return _createChatCompletionDeserialize(result);
+  const result = await _chatCompletionsCreateSend(context, body, options);
+  return _chatCompletionsCreateDeserialize(result);
 }

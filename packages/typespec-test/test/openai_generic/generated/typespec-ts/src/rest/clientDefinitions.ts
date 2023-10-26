@@ -2,120 +2,117 @@
 // Licensed under the MIT license.
 
 import {
-  CreateTranscriptionParameters,
-  CreateTranslationParameters,
-  CreateChatCompletionParameters,
-  CreateFineTuningJobParameters,
-  ListPaginatedFineTuningJobsParameters,
-  RetrieveFineTuningJobParameters,
-  ListFineTuningEventsParameters,
-  CancelFineTuningJobParameters,
-  CreateCompletionParameters,
-  CreateEditParameters,
-  CreateEmbeddingParameters,
-  ListFilesParameters,
-  CreateFileParameters,
-  RetrieveFileParameters,
-  DeleteFileParameters,
-  DownloadFileParameters,
-  CreateFineTuneParameters,
-  ListFineTunesParameters,
-  RetrieveFineTuneParameters,
-  ListFineTuneEventsParameters,
-  CancelFineTuneParameters,
-  ListModelsParameters,
-  RetrieveParameters,
-  DeleteParameters,
-  CreateImageParameters,
-  CreateImageEditParameters,
-  CreateImageVariationParameters,
-  CreateModerationParameters,
+  TranscriptionsCreateParameters,
+  TranslationsCreateParameters,
+  CompletionsCreateParameters,
+  JobsCreateParameters,
+  JobsListParameters,
+  JobsRetrieveParameters,
+  JobsListEventsParameters,
+  JobsCancelParameters,
+  EditsCreateParameters,
+  EmbeddingsCreateParameters,
+  FilesListParameters,
+  FilesCreateParameters,
+  FilesRetrieveParameters,
+  FilesDeleteParameters,
+  FilesDownloadParameters,
+  FineTunesCreateParameters,
+  FineTunesListParameters,
+  FineTunesRetrieveParameters,
+  FineTunesListEventsParameters,
+  FineTunesCancelParameters,
+  ModelsListParameters,
+  ModelsRetrieveParameters,
+  ModelsDeleteParameters,
+  ImagesCreateParameters,
+  ImagesCreateEditParameters,
+  ImagesCreateVariationParameters,
+  ModerationsCreateParameters,
 } from "./parameters.js";
 import {
-  CreateTranscription200Response,
-  CreateTranscriptionDefaultResponse,
-  CreateTranslation200Response,
-  CreateTranslationDefaultResponse,
-  CreateChatCompletion200Response,
-  CreateChatCompletionDefaultResponse,
-  CreateFineTuningJob200Response,
-  CreateFineTuningJobDefaultResponse,
-  ListPaginatedFineTuningJobs200Response,
-  ListPaginatedFineTuningJobsDefaultResponse,
-  RetrieveFineTuningJob200Response,
-  RetrieveFineTuningJobDefaultResponse,
-  ListFineTuningEvents200Response,
-  ListFineTuningEventsDefaultResponse,
-  CancelFineTuningJob200Response,
-  CancelFineTuningJobDefaultResponse,
-  CreateCompletion200Response,
-  CreateCompletionDefaultResponse,
-  CreateEdit200Response,
-  CreateEditDefaultResponse,
-  CreateEmbedding200Response,
-  CreateEmbeddingDefaultResponse,
-  ListFiles200Response,
-  ListFilesDefaultResponse,
-  CreateFile200Response,
-  CreateFileDefaultResponse,
-  RetrieveFile200Response,
-  RetrieveFileDefaultResponse,
-  DeleteFile200Response,
-  DeleteFileDefaultResponse,
-  DownloadFile200Response,
-  DownloadFileDefaultResponse,
-  CreateFineTune200Response,
-  CreateFineTuneDefaultResponse,
-  ListFineTunes200Response,
-  ListFineTunesDefaultResponse,
-  RetrieveFineTune200Response,
-  RetrieveFineTuneDefaultResponse,
-  ListFineTuneEvents200Response,
-  ListFineTuneEventsDefaultResponse,
-  CancelFineTune200Response,
-  CancelFineTuneDefaultResponse,
-  ListModels200Response,
-  ListModelsDefaultResponse,
-  Retrieve200Response,
-  RetrieveDefaultResponse,
-  DeleteOperation200Response,
-  DeleteOperationDefaultResponse,
-  CreateImage200Response,
-  CreateImageDefaultResponse,
-  CreateImageEdit200Response,
-  CreateImageEditDefaultResponse,
-  CreateImageVariation200Response,
-  CreateImageVariationDefaultResponse,
-  CreateModeration200Response,
-  CreateModerationDefaultResponse,
+  TranscriptionsCreate200Response,
+  TranscriptionsCreateDefaultResponse,
+  TranslationsCreate200Response,
+  TranslationsCreateDefaultResponse,
+  CompletionsCreate200Response,
+  CompletionsCreateDefaultResponse,
+  JobsCreate200Response,
+  JobsCreateDefaultResponse,
+  JobsList200Response,
+  JobsListDefaultResponse,
+  JobsRetrieve200Response,
+  JobsRetrieveDefaultResponse,
+  JobsListEvents200Response,
+  JobsListEventsDefaultResponse,
+  JobsCancel200Response,
+  JobsCancelDefaultResponse,
+  EditsCreate200Response,
+  EditsCreateDefaultResponse,
+  EmbeddingsCreate200Response,
+  EmbeddingsCreateDefaultResponse,
+  FilesList200Response,
+  FilesListDefaultResponse,
+  FilesCreate200Response,
+  FilesCreateDefaultResponse,
+  FilesRetrieve200Response,
+  FilesRetrieveDefaultResponse,
+  FilesDeleteOperation200Response,
+  FilesDeleteOperationDefaultResponse,
+  FilesDownload200Response,
+  FilesDownloadDefaultResponse,
+  FineTunesCreate200Response,
+  FineTunesCreateDefaultResponse,
+  FineTunesList200Response,
+  FineTunesListDefaultResponse,
+  FineTunesRetrieve200Response,
+  FineTunesRetrieveDefaultResponse,
+  FineTunesListEvents200Response,
+  FineTunesListEventsDefaultResponse,
+  FineTunesCancel200Response,
+  FineTunesCancelDefaultResponse,
+  ModelsList200Response,
+  ModelsListDefaultResponse,
+  ModelsRetrieve200Response,
+  ModelsRetrieveDefaultResponse,
+  ModelsDeleteOperation200Response,
+  ModelsDeleteOperationDefaultResponse,
+  ImagesCreate200Response,
+  ImagesCreateDefaultResponse,
+  ImagesCreateEdit200Response,
+  ImagesCreateEditDefaultResponse,
+  ImagesCreateVariation200Response,
+  ImagesCreateVariationDefaultResponse,
+  ModerationsCreate200Response,
+  ModerationsCreateDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface CreateTranscription {
+export interface TranscriptionsCreate {
   post(
-    options: CreateTranscriptionParameters
+    options: TranscriptionsCreateParameters
   ): StreamableMethod<
-    CreateTranscription200Response | CreateTranscriptionDefaultResponse
+    TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
   >;
 }
 
-export interface CreateTranslation {
+export interface TranslationsCreate {
   post(
-    options: CreateTranslationParameters
+    options: TranslationsCreateParameters
   ): StreamableMethod<
-    CreateTranslation200Response | CreateTranslationDefaultResponse
+    TranslationsCreate200Response | TranslationsCreateDefaultResponse
   >;
 }
 
-export interface CreateChatCompletion {
+export interface CompletionsCreate {
   post(
-    options?: CreateChatCompletionParameters
+    options?: CompletionsCreateParameters
   ): StreamableMethod<
-    CreateChatCompletion200Response | CreateChatCompletionDefaultResponse
+    CompletionsCreate200Response | CompletionsCreateDefaultResponse
   >;
 }
 
-export interface CreateFineTuningJob {
+export interface JobsCreate {
   /**
    * Creates a job that fine-tunes a specified model from a given dataset.
    *
@@ -125,232 +122,227 @@ export interface CreateFineTuningJob {
    * [Learn more about fine-tuning](/docs/guides/fine-tuning)
    */
   post(
-    options: CreateFineTuningJobParameters
-  ): StreamableMethod<
-    CreateFineTuningJob200Response | CreateFineTuningJobDefaultResponse
-  >;
+    options: JobsCreateParameters
+  ): StreamableMethod<JobsCreate200Response | JobsCreateDefaultResponse>;
   get(
-    options?: ListPaginatedFineTuningJobsParameters
-  ): StreamableMethod<
-    | ListPaginatedFineTuningJobs200Response
-    | ListPaginatedFineTuningJobsDefaultResponse
-  >;
+    options?: JobsListParameters
+  ): StreamableMethod<JobsList200Response | JobsListDefaultResponse>;
 }
 
-export interface RetrieveFineTuningJob {
+export interface JobsRetrieve {
   get(
-    options?: RetrieveFineTuningJobParameters
-  ): StreamableMethod<
-    RetrieveFineTuningJob200Response | RetrieveFineTuningJobDefaultResponse
-  >;
+    options?: JobsRetrieveParameters
+  ): StreamableMethod<JobsRetrieve200Response | JobsRetrieveDefaultResponse>;
 }
 
-export interface ListFineTuningEvents {
+export interface JobsListEvents {
   get(
-    options?: ListFineTuningEventsParameters
+    options?: JobsListEventsParameters
   ): StreamableMethod<
-    ListFineTuningEvents200Response | ListFineTuningEventsDefaultResponse
+    JobsListEvents200Response | JobsListEventsDefaultResponse
   >;
 }
 
-export interface CancelFineTuningJob {
+export interface JobsCancel {
   post(
-    options?: CancelFineTuningJobParameters
+    options?: JobsCancelParameters
+  ): StreamableMethod<JobsCancel200Response | JobsCancelDefaultResponse>;
+}
+
+export interface CompletionsCreate {
+  post(
+    options?: CompletionsCreateParameters
   ): StreamableMethod<
-    CancelFineTuningJob200Response | CancelFineTuningJobDefaultResponse
+    CompletionsCreate200Response | CompletionsCreateDefaultResponse
   >;
 }
 
-export interface CreateCompletion {
+export interface EditsCreate {
   post(
-    options?: CreateCompletionParameters
+    options: EditsCreateParameters
+  ): StreamableMethod<EditsCreate200Response | EditsCreateDefaultResponse>;
+}
+
+export interface EmbeddingsCreate {
+  post(
+    options: EmbeddingsCreateParameters
   ): StreamableMethod<
-    CreateCompletion200Response | CreateCompletionDefaultResponse
+    EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
   >;
 }
 
-export interface CreateEdit {
-  post(
-    options: CreateEditParameters
-  ): StreamableMethod<CreateEdit200Response | CreateEditDefaultResponse>;
-}
-
-export interface CreateEmbedding {
-  post(
-    options: CreateEmbeddingParameters
-  ): StreamableMethod<
-    CreateEmbedding200Response | CreateEmbeddingDefaultResponse
-  >;
-}
-
-export interface ListFiles {
+export interface FilesList {
   get(
-    options?: ListFilesParameters
-  ): StreamableMethod<ListFiles200Response | ListFilesDefaultResponse>;
+    options?: FilesListParameters
+  ): StreamableMethod<FilesList200Response | FilesListDefaultResponse>;
   post(
-    options: CreateFileParameters
-  ): StreamableMethod<CreateFile200Response | CreateFileDefaultResponse>;
+    options: FilesCreateParameters
+  ): StreamableMethod<FilesCreate200Response | FilesCreateDefaultResponse>;
 }
 
-export interface RetrieveFile {
+export interface FilesRetrieve {
   post(
-    options?: RetrieveFileParameters
-  ): StreamableMethod<RetrieveFile200Response | RetrieveFileDefaultResponse>;
+    options?: FilesRetrieveParameters
+  ): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse>;
   delete(
-    options?: DeleteFileParameters
-  ): StreamableMethod<DeleteFile200Response | DeleteFileDefaultResponse>;
+    options?: FilesDeleteParameters
+  ): StreamableMethod<
+    FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
+  >;
 }
 
-export interface DownloadFile {
+export interface FilesDownload {
   get(
-    options?: DownloadFileParameters
-  ): StreamableMethod<DownloadFile200Response | DownloadFileDefaultResponse>;
+    options?: FilesDownloadParameters
+  ): StreamableMethod<FilesDownload200Response | FilesDownloadDefaultResponse>;
 }
 
-export interface CreateFineTune {
+export interface FineTunesCreate {
   post(
-    options: CreateFineTuneParameters
+    options: FineTunesCreateParameters
   ): StreamableMethod<
-    CreateFineTune200Response | CreateFineTuneDefaultResponse
+    FineTunesCreate200Response | FineTunesCreateDefaultResponse
   >;
   get(
-    options?: ListFineTunesParameters
-  ): StreamableMethod<ListFineTunes200Response | ListFineTunesDefaultResponse>;
+    options?: FineTunesListParameters
+  ): StreamableMethod<FineTunesList200Response | FineTunesListDefaultResponse>;
 }
 
-export interface RetrieveFineTune {
+export interface FineTunesRetrieve {
   get(
-    options?: RetrieveFineTuneParameters
+    options?: FineTunesRetrieveParameters
   ): StreamableMethod<
-    RetrieveFineTune200Response | RetrieveFineTuneDefaultResponse
-  >;
-}
-
-export interface ListFineTuneEvents {
-  get(
-    options?: ListFineTuneEventsParameters
-  ): StreamableMethod<
-    ListFineTuneEvents200Response | ListFineTuneEventsDefaultResponse
+    FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
   >;
 }
 
-export interface CancelFineTune {
+export interface FineTunesListEvents {
+  get(
+    options?: FineTunesListEventsParameters
+  ): StreamableMethod<
+    FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
+  >;
+}
+
+export interface FineTunesCancel {
   post(
-    options?: CancelFineTuneParameters
+    options?: FineTunesCancelParameters
   ): StreamableMethod<
-    CancelFineTune200Response | CancelFineTuneDefaultResponse
+    FineTunesCancel200Response | FineTunesCancelDefaultResponse
   >;
 }
 
-export interface ListModels {
+export interface ModelsList {
   get(
-    options?: ListModelsParameters
-  ): StreamableMethod<ListModels200Response | ListModelsDefaultResponse>;
+    options?: ModelsListParameters
+  ): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse>;
 }
 
-export interface Retrieve {
+export interface ModelsRetrieve {
   get(
-    options?: RetrieveParameters
-  ): StreamableMethod<Retrieve200Response | RetrieveDefaultResponse>;
+    options?: ModelsRetrieveParameters
+  ): StreamableMethod<
+    ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
+  >;
   delete(
-    options?: DeleteParameters
+    options?: ModelsDeleteParameters
   ): StreamableMethod<
-    DeleteOperation200Response | DeleteOperationDefaultResponse
+    ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
   >;
 }
 
-export interface CreateImage {
+export interface ImagesCreate {
   post(
-    options: CreateImageParameters
-  ): StreamableMethod<CreateImage200Response | CreateImageDefaultResponse>;
+    options: ImagesCreateParameters
+  ): StreamableMethod<ImagesCreate200Response | ImagesCreateDefaultResponse>;
 }
 
-export interface CreateImageEdit {
+export interface ImagesCreateEdit {
   post(
-    options: CreateImageEditParameters
+    options: ImagesCreateEditParameters
   ): StreamableMethod<
-    CreateImageEdit200Response | CreateImageEditDefaultResponse
+    ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
   >;
 }
 
-export interface CreateImageVariation {
+export interface ImagesCreateVariation {
   post(
-    options: CreateImageVariationParameters
+    options: ImagesCreateVariationParameters
   ): StreamableMethod<
-    CreateImageVariation200Response | CreateImageVariationDefaultResponse
+    ImagesCreateVariation200Response | ImagesCreateVariationDefaultResponse
   >;
 }
 
-export interface CreateModeration {
+export interface ModerationsCreate {
   post(
-    options: CreateModerationParameters
+    options: ModerationsCreateParameters
   ): StreamableMethod<
-    CreateModeration200Response | CreateModerationDefaultResponse
+    ModerationsCreate200Response | ModerationsCreateDefaultResponse
   >;
 }
 
 export interface Routes {
   /** Resource for '/audio/transcriptions' has methods for the following verbs: post */
-  (path: "/audio/transcriptions"): CreateTranscription;
+  (path: "/audio/transcriptions"): TranscriptionsCreate;
   /** Resource for '/audio/translations' has methods for the following verbs: post */
-  (path: "/audio/translations"): CreateTranslation;
+  (path: "/audio/translations"): TranslationsCreate;
   /** Resource for '/chat/completions' has methods for the following verbs: post */
-  (path: "/chat/completions"): CreateChatCompletion;
+  (path: "/chat/completions"): CompletionsCreate;
   /** Resource for '/fine_tuning/jobs' has methods for the following verbs: post, get */
-  (path: "/fine_tuning/jobs"): CreateFineTuningJob;
+  (path: "/fine_tuning/jobs"): JobsCreate;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}' has methods for the following verbs: get */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}",
     fineTuningJobId: string
-  ): RetrieveFineTuningJob;
+  ): JobsRetrieve;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}/events' has methods for the following verbs: get */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}/events",
     fineTuningJobId: string
-  ): ListFineTuningEvents;
+  ): JobsListEvents;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}/cancel' has methods for the following verbs: post */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
     fineTuningJobId: string
-  ): CancelFineTuningJob;
+  ): JobsCancel;
   /** Resource for '/completions' has methods for the following verbs: post */
-  (path: "/completions"): CreateCompletion;
+  (path: "/completions"): CompletionsCreate;
   /** Resource for '/edits' has methods for the following verbs: post */
-  (path: "/edits"): CreateEdit;
+  (path: "/edits"): EditsCreate;
   /** Resource for '/embeddings' has methods for the following verbs: post */
-  (path: "/embeddings"): CreateEmbedding;
+  (path: "/embeddings"): EmbeddingsCreate;
   /** Resource for '/files' has methods for the following verbs: get, post */
-  (path: "/files"): ListFiles;
+  (path: "/files"): FilesList;
   /** Resource for '/files/files/\{file_id\}' has methods for the following verbs: post, delete */
-  (path: "/files/files/{file_id}", fileId: string): RetrieveFile;
+  (path: "/files/files/{file_id}", fileId: string): FilesRetrieve;
   /** Resource for '/files/files/\{file_id\}/content' has methods for the following verbs: get */
-  (path: "/files/files/{file_id}/content", fileId: string): DownloadFile;
+  (path: "/files/files/{file_id}/content", fileId: string): FilesDownload;
   /** Resource for '/fine-tunes' has methods for the following verbs: post, get */
-  (path: "/fine-tunes"): CreateFineTune;
+  (path: "/fine-tunes"): FineTunesCreate;
   /** Resource for '/fine-tunes/\{fine_tune_id\}' has methods for the following verbs: get */
-  (path: "/fine-tunes/{fine_tune_id}", fineTuneId: string): RetrieveFineTune;
+  (path: "/fine-tunes/{fine_tune_id}", fineTuneId: string): FineTunesRetrieve;
   /** Resource for '/fine-tunes/\{fine_tune_id\}/events' has methods for the following verbs: get */
   (
     path: "/fine-tunes/{fine_tune_id}/events",
     fineTuneId: string
-  ): ListFineTuneEvents;
+  ): FineTunesListEvents;
   /** Resource for '/fine-tunes/\{fine_tune_id\}/cancel' has methods for the following verbs: post */
   (
     path: "/fine-tunes/{fine_tune_id}/cancel",
     fineTuneId: string
-  ): CancelFineTune;
+  ): FineTunesCancel;
   /** Resource for '/models' has methods for the following verbs: get */
-  (path: "/models"): ListModels;
+  (path: "/models"): ModelsList;
   /** Resource for '/models/\{model\}' has methods for the following verbs: get, delete */
-  (path: "/models/{model}", model: string): Retrieve;
+  (path: "/models/{model}", model: string): ModelsRetrieve;
   /** Resource for '/images/generations' has methods for the following verbs: post */
-  (path: "/images/generations"): CreateImage;
+  (path: "/images/generations"): ImagesCreate;
   /** Resource for '/images/edits' has methods for the following verbs: post */
-  (path: "/images/edits"): CreateImageEdit;
+  (path: "/images/edits"): ImagesCreateEdit;
   /** Resource for '/images/variations' has methods for the following verbs: post */
-  (path: "/images/variations"): CreateImageVariation;
+  (path: "/images/variations"): ImagesCreateVariation;
   /** Resource for '/moderations' has methods for the following verbs: post */
-  (path: "/moderations"): CreateModeration;
+  (path: "/moderations"): ModerationsCreate;
 }
 
 export type OpenAIContext = Client & {

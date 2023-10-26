@@ -6,23 +6,23 @@ import {
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
 import {
-  CreateTranscription200Response,
-  CreateTranscriptionDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
+  TranscriptionsCreate200Response,
+  TranscriptionsCreateDefaultResponse,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CreateTranscriptionOptions } from "../../../models/options.js";
+import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
-export function _createTranscriptionSend(
+export function _audioTranscriptionsCreateSend(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: CreateTranscriptionOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CreateTranscription200Response | CreateTranscriptionDefaultResponse
+  TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
 > {
   return context
     .path("/audio/transcriptions")
@@ -40,8 +40,8 @@ export function _createTranscriptionSend(
     });
 }
 
-export async function _createTranscriptionDeserialize(
-  result: CreateTranscription200Response | CreateTranscriptionDefaultResponse
+export async function _audioTranscriptionsCreateDeserialize(
+  result: TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
 ): Promise<CreateTranscriptionResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -52,11 +52,11 @@ export async function _createTranscriptionDeserialize(
   };
 }
 
-export async function createTranscription(
+export async function audioTranscriptionsCreate(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: CreateTranscriptionOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
 ): Promise<CreateTranscriptionResponse> {
-  const result = await _createTranscriptionSend(context, audio, options);
-  return _createTranscriptionDeserialize(result);
+  const result = await _audioTranscriptionsCreateSend(context, audio, options);
+  return _audioTranscriptionsCreateDeserialize(result);
 }
