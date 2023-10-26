@@ -20,9 +20,9 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
   const outputPath = joinPath(
     `${__dirname}`,
     "..",
-    `./${
-      mode === "modular" ? "modularIntegration" : "integration"
-    }/generated/${targetFolder}`
+    `./${mode.includes("modular") ? "modularIntegration" : "integration"}/${
+      mode.includes("non-azure") ? "nonAzureGenerated" : "generated"
+    }/${targetFolder}`
   );
   const possibleEntryFiles = ["client.tsp", "main.tsp"];
   for (let filename of possibleEntryFiles) {

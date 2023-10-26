@@ -1,4 +1,4 @@
-import { modularTsps, rlcTsps } from "./cadl-ranch-list.js";
+import { modularTsps, nonAzureRlcTsps, rlcTsps } from "./cadl-ranch-list.js";
 import { runTypespec } from "./run.js";
 import pkg from "chalk";
 const { bold } = pkg;
@@ -8,6 +8,9 @@ async function generateTypeSpecs(tag: string = "rlc", isDebugging?: boolean) {
   let list = rlcTsps;
   if (tag === "modular") {
     list = modularTsps;
+  }
+  if (tag === "non-azure-rlc") {
+    list = nonAzureRlcTsps;
   }
   for (const tsp of list) {
     if (isDebugging === true && tsp.debug !== true) {

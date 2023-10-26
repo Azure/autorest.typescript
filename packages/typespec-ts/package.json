@@ -25,6 +25,7 @@
     "generate-and-run:modular": "npm run generate-tsp-only:modular && npm run integration-test:alone:modular && npm run stop-test-server",
     "generate-tsp-only": "npm run generate-tsp-only:rlc && npm run generate-tsp-only:modular",
     "generate-tsp-only:rlc": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=rlc",
+    "generate-tsp-only:non-azure-rlc": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=non-azure-rlc",
     "generate-tsp-only:modular": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=modular",
     "integration-test:alone": "npm run integration-test:alone:rlc && npm run integration-test:alone:modular",
     "integration-test:alone:rlc": "cross-env TS_NODE_PROJECT=tsconfig.integration.json mocha -r ts-node/register --experimental-specifier-resolution=node --timeout 4000 ./test/integration/*.spec.ts",

@@ -187,6 +187,13 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
+export const nonAzureRlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  }
+];
+
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
