@@ -6,7 +6,11 @@ import {
   listOperationGroups,
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
-import { SchemaContext } from "@azure-tools/rlc-common";
+import {
+  NameType,
+  SchemaContext,
+  normalizeName
+} from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
 import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
@@ -17,6 +21,7 @@ import {
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getModelNamespaceName } from "../utils/namespaceUtils.js";
 
 export function transformSchemas(
   program: Program,
@@ -208,5 +213,31 @@ export function transformSchemas(
   const allSchemas = Array.from(schemas, function (item) {
     return { ...schemaMap.get(item[0]), usage: item[1] };
   });
+  if (detectModelConflicts(allSchemas)) {
+    allSchemas.map((schema) => {
+      if (!schema.name || schema.name === "") {
+        return schema;
+      }
+      schema.name =
+        getModelNamespaceName(dpgContext, schema.namespace)
+          .map((n) => {
+            return normalizeName(n, NameType.Interface);
+          })
+          .join("") + normalizeName(schema.name, NameType.Interface);
+      return schema;
+    });
+  }
   return allSchemas;
+}
+
+function detectModelConflicts(allSchemas: any[]) {
+  const nameMap: Map<string, any> = new Map<string, any>();
+  for (const schema of allSchemas) {
+    if (nameMap.has(schema.name) && schema.name && schema.name !== "") {
+      return true;
+    } else {
+      nameMap.set(schema.name, schema);
+    }
+  }
+  return false;
 }
