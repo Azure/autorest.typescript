@@ -36,8 +36,21 @@ export interface ChatCompletionFunctions {
 // @public (undocumented)
 export interface ChatCompletionRequestMessage {
     content: string | null;
-    functionCall?: any;
+    functionCall?: {
+        name: string;
+        arguments: string;
+    };
     name?: string;
+    role: "system" | "user" | "assistant" | "function";
+}
+
+// @public (undocumented)
+export interface ChatCompletionResponseMessage {
+    content: string | null;
+    functionCall?: {
+        name: string;
+        arguments: string;
+    };
     role: "system" | "user" | "assistant" | "function";
 }
 
@@ -76,7 +89,11 @@ export interface CreateChatCompletionRequest {
 
 // @public
 export interface CreateChatCompletionResponse {
-    choices: any[];
+    choices: {
+        index: number;
+        message: ChatCompletionResponseMessage;
+        finishReason: "stop" | "length" | "function_call" | "content_filter";
+    }[];
     created: Date;
     id: string;
     model: string;
@@ -107,7 +124,17 @@ export interface CreateCompletionRequest {
 
 // @public
 export interface CreateCompletionResponse {
-    choices: any[];
+    choices: {
+        index: number;
+        text: string;
+        logprobs: {
+            tokens: string[];
+            tokenLogprobs: number[];
+            topLogprobs: Record<string, number>[];
+            textOffset: number[];
+        } | null;
+        finishReason: "stop" | "length" | "content_filter";
+    }[];
     created: Date;
     id: string;
     model: string;
@@ -128,7 +155,11 @@ export interface CreateEditRequest {
 
 // @public (undocumented)
 export interface CreateEditResponse {
-    choices: any[];
+    choices: {
+        text: string;
+        index: number;
+        finishReason: "stop" | "length";
+    }[];
     created: Date;
     object: "edit";
     // (undocumented)
@@ -148,7 +179,10 @@ export interface CreateEmbeddingResponse {
     data: Embedding[];
     model: string;
     object: "embedding";
-    usage: any;
+    usage: {
+        promptTokens: number;
+        totalTokens: number;
+    };
 }
 
 // @public (undocumented)
@@ -175,7 +209,9 @@ export interface CreateFineTuneRequest {
 
 // @public (undocumented)
 export interface CreateFineTuningJobRequest {
-    hyperparameters?: any;
+    hyperparameters?: {
+        nEpochs?: "auto" | number;
+    };
     model: string | "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
     suffix?: string | null;
     trainingFile: string;
@@ -224,7 +260,35 @@ export interface CreateModerationRequest {
 export interface CreateModerationResponse {
     id: string;
     model: string;
-    results: any[];
+    results: {
+        flagged: boolean;
+        categories: {
+            hate: boolean;
+            "hate/threatening": boolean;
+            harassment: boolean;
+            "harassment/threatening": boolean;
+            selfHarm: boolean;
+            "selfHarm/intent": boolean;
+            "selfHarm/instructive": boolean;
+            sexual: boolean;
+            "sexual/minors": boolean;
+            violence: boolean;
+            "violence/graphic": boolean;
+        };
+        categoryScores: {
+            hate: number;
+            "hate/threatening": number;
+            harassment: number;
+            "harassment/threatening": number;
+            selfHarm: number;
+            "selfHarm/intent": number;
+            "selfHarm/instructive": number;
+            sexual: number;
+            "sexual/minors": number;
+            violence: number;
+            "violence/graphic": number;
+        };
+    }[];
 }
 
 // @public (undocumented)
@@ -333,7 +397,15 @@ export interface FineTune {
     createdAt: Date;
     events?: FineTuneEvent[];
     fineTunedModel: string | null;
-    hyperparams: any;
+    hyperparams: {
+        nEpochs: number;
+        batchSize: number;
+        promptLossWeight: number;
+        learningRateMultiplier: number;
+        computeClassificationMetrics?: boolean;
+        classificationPositiveClass?: string;
+        classificationNClasses?: number;
+    };
     id: string;
     model: string;
     object: "fine-tune";
@@ -381,10 +453,16 @@ export interface FineTunesRetrieveOptions extends OperationOptions {
 // @public (undocumented)
 export interface FineTuningJob {
     createdAt: Date;
-    error: any;
+    error: {
+        message?: string;
+        code?: string;
+        param?: string | null;
+    } | null;
     fineTunedModel: string | null;
     finishedAt: Date | null;
-    hyperparameters: any;
+    hyperparameters: {
+        nEpochs?: "auto" | number;
+    };
     id: string;
     model: string;
     object: "fine_tuning.job";

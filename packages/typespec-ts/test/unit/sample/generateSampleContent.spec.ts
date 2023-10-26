@@ -67,6 +67,45 @@ describe("Integration test for mocking sample", () => {
       assert.deepEqual(JSON.parse(mockStr!), res);
     });
 
+    it("anonymous model", async () => {
+      const schemaMap = await emitSchemasFromTypeSpec(`
+      model Test {
+        prop: string;
+        test: {
+          prop: string[];
+          foo?: int32;
+          bar: {
+            prop: string;
+            baz: boolean[];
+          }[];
+          baz: Record<{ t: string}>;
+          unionTest: { a: string } | { b: string };
+        }
+      }
+      @route("/models")
+      @get
+      op getModel(@body body: Test): void;
+      `);
+      const mockStr = generateParameterTypeValue(
+        "Test",
+        "input",
+        buildSchemaObjectMap({ schemas: schemaMap } as RLCModel),
+        new Set()
+      );
+      // console.log(mockStr);
+      const res = {
+        prop: "{Your prop}",
+        test: {
+          prop: ["{Your prop}"],
+          foo: 123,
+          bar: [{ prop: "{Your prop}", baz: [true] }],
+          baz: { key: { t: "{Your t}" } },
+          unionTest: { a: "{Your a}" }
+        }
+      };
+      assert.deepEqual(JSON.parse(mockStr!), res);
+    });
+
     describe("complex model", () => {
       describe("object", () => {
         it("self-referenced model", async () => {
