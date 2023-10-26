@@ -6,8 +6,8 @@ import {
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
 import {
-  CompletionsCreate200Response,
-  CompletionsCreateDefaultResponse,
+  ChatCompletionsCreate200Response,
+  ChatCompletionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
 } from "../../../rest/index.js";
@@ -22,7 +22,7 @@ export function _chatCompletionsCreateSend(
   body: CreateChatCompletionRequest,
   options: ChatCompletionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CompletionsCreate200Response | CompletionsCreateDefaultResponse
+  ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
   return context
     .path("/chat/completions")
@@ -62,7 +62,9 @@ export function _chatCompletionsCreateSend(
 }
 
 export async function _chatCompletionsCreateDeserialize(
-  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
+  result:
+    | ChatCompletionsCreate200Response
+    | ChatCompletionsCreateDefaultResponse
 ): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
     throw result.body;

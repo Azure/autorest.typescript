@@ -10,11 +10,15 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export interface CancelFineTuneOptions extends OperationOptions {
+export interface AudioTranscriptionsCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
 }
 
 // @public (undocumented)
-export interface CancelFineTuningJobOptions extends OperationOptions {
+export interface AudioTranslationsCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
 }
 
 // @public (undocumented)
@@ -37,15 +41,19 @@ export interface ChatCompletionRequestMessage {
     role: "system" | "user" | "assistant" | "function";
 }
 
+// @public (undocumented)
+export interface ChatCompletionsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CompletionsCreateOptions extends OperationOptions {
+}
+
 // @public
 export interface CompletionUsage {
     completionTokens: number;
     promptTokens: number;
     totalTokens: number;
-}
-
-// @public (undocumented)
-export interface CreateChatCompletionOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -75,10 +83,6 @@ export interface CreateChatCompletionResponse {
     object: string;
     // (undocumented)
     usage?: CompletionUsage;
-}
-
-// @public (undocumented)
-export interface CreateCompletionOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -113,10 +117,6 @@ export interface CreateCompletionResponse {
 }
 
 // @public (undocumented)
-export interface CreateEditOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateEditRequest {
     input?: string | null;
     instruction: string;
@@ -136,10 +136,6 @@ export interface CreateEditResponse {
 }
 
 // @public (undocumented)
-export interface CreateEmbeddingOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateEmbeddingRequest {
     input: string | string[] | number[] | number[][];
     model: string | "text-embedding-ada-002";
@@ -156,19 +152,9 @@ export interface CreateEmbeddingResponse {
 }
 
 // @public (undocumented)
-export interface CreateFileOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface CreateFileRequest {
     file: Uint8Array;
     purpose: string;
-}
-
-// @public (undocumented)
-export interface CreateFineTuneOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -188,22 +174,12 @@ export interface CreateFineTuneRequest {
 }
 
 // @public (undocumented)
-export interface CreateFineTuningJobOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateFineTuningJobRequest {
     hyperparameters?: any;
     model: string | "babbage-002" | "davinci-002" | "gpt-3.5-turbo";
     suffix?: string | null;
     trainingFile: string;
     validationFile?: string | null;
-}
-
-// @public (undocumented)
-export interface CreateImageEditOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public (undocumented)
@@ -219,10 +195,6 @@ export interface CreateImageEditRequest {
 }
 
 // @public (undocumented)
-export interface CreateImageOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateImageRequest {
     n?: number | null;
     prompt: string;
@@ -230,12 +202,6 @@ export interface CreateImageRequest {
     size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
-}
-
-// @public (undocumented)
-export interface CreateImageVariationOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public (undocumented)
@@ -249,10 +215,6 @@ export interface CreateImageVariationRequest {
 }
 
 // @public (undocumented)
-export interface CreateModerationOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateModerationRequest {
     input: string | string[];
     model?: string | "text-moderation-latest" | "text-moderation-stable";
@@ -263,12 +225,6 @@ export interface CreateModerationResponse {
     id: string;
     model: string;
     results: any[];
-}
-
-// @public (undocumented)
-export interface CreateTranscriptionOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public (undocumented)
@@ -288,12 +244,6 @@ export interface CreateTranscriptionResponse {
 }
 
 // @public (undocumented)
-export interface CreateTranslationOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface CreateTranslationRequest {
     file: Uint8Array;
     model: string | "whisper-1";
@@ -306,10 +256,6 @@ export interface CreateTranslationRequest {
 export interface CreateTranslationResponse {
     // (undocumented)
     text: string;
-}
-
-// @public (undocumented)
-export interface DeleteFileOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -333,11 +279,7 @@ export interface DeleteModelResponse {
 }
 
 // @public (undocumented)
-export interface DeleteOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface DownloadFileOptions extends OperationOptions {
+export interface EditsCreateOptions extends OperationOptions {
 }
 
 // @public
@@ -345,6 +287,10 @@ export interface Embedding {
     embedding: number[];
     index: number;
     object: "embedding";
+}
+
+// @public (undocumented)
+export interface EmbeddingsCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -359,6 +305,28 @@ interface Error_2 {
     type: string;
 }
 export { Error_2 as Error }
+
+// @public (undocumented)
+export interface FilesCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface FilesDeleteOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesDownloadOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesRetrieveOptions extends OperationOptions {
+}
 
 // @public
 export interface FineTune {
@@ -387,6 +355,27 @@ export interface FineTuneEvent {
     message: string;
     // (undocumented)
     object: string;
+}
+
+// @public (undocumented)
+export interface FineTunesCancelOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesListEventsOptions extends OperationOptions {
+    stream?: boolean;
+}
+
+// @public (undocumented)
+export interface FineTunesListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesRetrieveOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -421,6 +410,30 @@ export interface FineTuningJobEvent {
     object: string;
 }
 
+// @public (undocumented)
+export interface FineTuningJobsCancelOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningJobsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningJobsListEventsOptions extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public (undocumented)
+export interface FineTuningJobsListOptions extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public (undocumented)
+export interface FineTuningJobsRetrieveOptions extends OperationOptions {
+}
+
 // @public
 interface Image_2 {
     b64Json?: Uint8Array;
@@ -429,15 +442,27 @@ interface Image_2 {
 export { Image_2 as Image }
 
 // @public (undocumented)
+export interface ImagesCreateEditOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface ImagesCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ImagesCreateVariationOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
 export interface ImagesResponse {
     // (undocumented)
     created: Date;
     // (undocumented)
     data: Image_2[];
-}
-
-// @public (undocumented)
-export interface ListFilesOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -449,20 +474,11 @@ export interface ListFilesResponse {
 }
 
 // @public (undocumented)
-export interface ListFineTuneEventsOptions extends OperationOptions {
-    stream?: boolean;
-}
-
-// @public (undocumented)
 export interface ListFineTuneEventsResponse {
     // (undocumented)
     data: FineTuneEvent[];
     // (undocumented)
     object: string;
-}
-
-// @public (undocumented)
-export interface ListFineTunesOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -474,12 +490,6 @@ export interface ListFineTunesResponse {
 }
 
 // @public (undocumented)
-export interface ListFineTuningEventsOptions extends OperationOptions {
-    after?: string;
-    limit?: number;
-}
-
-// @public (undocumented)
 export interface ListFineTuningJobEventsResponse {
     // (undocumented)
     data: FineTuningJobEvent[];
@@ -488,21 +498,11 @@ export interface ListFineTuningJobEventsResponse {
 }
 
 // @public (undocumented)
-export interface ListModelsOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface ListModelsResponse {
     // (undocumented)
     data: Model[];
     // (undocumented)
     object: string;
-}
-
-// @public (undocumented)
-export interface ListPaginatedFineTuningJobsOptions extends OperationOptions {
-    after?: string;
-    limit?: number;
 }
 
 // @public (undocumented)
@@ -521,6 +521,22 @@ export interface Model {
     id: string;
     object: "model";
     ownedBy: string;
+}
+
+// @public (undocumented)
+export interface ModelsDeleteOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsRetrieveOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModerationsCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -565,22 +581,6 @@ export interface OpenAIFile {
     purpose: string;
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
     statusDetails?: string | null;
-}
-
-// @public (undocumented)
-export interface RetrieveFileOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface RetrieveFineTuneOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface RetrieveFineTuningJobOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface RetrieveOptions extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

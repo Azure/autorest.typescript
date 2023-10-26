@@ -6,10 +6,10 @@ import {
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
 import {
+  AudioTranscriptionsCreate200Response,
+  AudioTranscriptionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
-  TranscriptionsCreate200Response,
-  TranscriptionsCreateDefaultResponse,
 } from "../../../rest/index.js";
 import {
   StreamableMethod,
@@ -22,7 +22,8 @@ export function _audioTranscriptionsCreateSend(
   audio: CreateTranscriptionRequest,
   options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
+  | AudioTranscriptionsCreate200Response
+  | AudioTranscriptionsCreateDefaultResponse
 > {
   return context
     .path("/audio/transcriptions")
@@ -41,7 +42,9 @@ export function _audioTranscriptionsCreateSend(
 }
 
 export async function _audioTranscriptionsCreateDeserialize(
-  result: TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
+  result:
+    | AudioTranscriptionsCreate200Response
+    | AudioTranscriptionsCreateDefaultResponse
 ): Promise<CreateTranscriptionResponse> {
   if (isUnexpected(result)) {
     throw result.body;
