@@ -462,7 +462,9 @@ function emitBodyParameter(
     location: "body",
     ...base,
     defaultContentType,
-    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
+    isBinaryPayload:
+      isBinaryPayload(context, body.type, defaultContentType) ||
+      (type.type === "byte-array" && type.format === "binary")
   };
 }
 

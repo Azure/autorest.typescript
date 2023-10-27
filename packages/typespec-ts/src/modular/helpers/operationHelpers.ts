@@ -407,11 +407,7 @@ function buildBodyParameter(
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter.type)}")`;
-  } else if (
-    (bodyParameter.type.type === "byte-array" &&
-      bodyParameter.type.format === "binary") ||
-    bodyParameter.isBinaryPayload
-  ) {
+  } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
