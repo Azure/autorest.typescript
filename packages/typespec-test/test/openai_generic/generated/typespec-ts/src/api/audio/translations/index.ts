@@ -14,13 +14,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import { AudioTranslationsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranslationRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
   AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
 > {
@@ -56,12 +56,8 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranslationRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} }
 ): Promise<CreateTranslationResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);
-}
-
-export interface CreateOptions extends OperationOptions {
-  contentType?: string;
 }

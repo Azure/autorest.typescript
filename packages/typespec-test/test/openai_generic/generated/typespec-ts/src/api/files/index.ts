@@ -24,12 +24,18 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import {
+  FilesListOptions,
+  FilesCreateOptions,
+  FilesRetrieveOptions,
+  FilesDeleteOptions,
+  FilesDownloadOptions,
+} from "../../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: FilesListOptions = { requestOptions: {} }
 ): StreamableMethod<FilesList200Response | FilesListDefaultResponse> {
   return context
     .path("/files")
@@ -60,18 +66,16 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: FilesListOptions = { requestOptions: {} }
 ): Promise<ListFilesResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
 }
 
-export interface ListOptions extends OperationOptions {}
-
 export function _createSend(
   context: Client,
   file: CreateFileRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: FilesCreateOptions = { requestOptions: {} }
 ): StreamableMethod<FilesCreate200Response | FilesCreateDefaultResponse> {
   return context
     .path("/files")
@@ -104,20 +108,16 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   file: CreateFileRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: FilesCreateOptions = { requestOptions: {} }
 ): Promise<OpenAIFile> {
   const result = await _createSend(context, file, options);
   return _createDeserialize(result);
 }
 
-export interface CreateOptions extends OperationOptions {
-  contentType?: string;
-}
-
 export function _retrieveSend(
   context: Client,
   fileId: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: FilesRetrieveOptions = { requestOptions: {} }
 ): StreamableMethod<FilesRetrieve200Response | FilesRetrieveDefaultResponse> {
   return context
     .path("/files/files/{file_id}", fileId)
@@ -146,18 +146,16 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   fileId: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: FilesRetrieveOptions = { requestOptions: {} }
 ): Promise<OpenAIFile> {
   const result = await _retrieveSend(context, fileId, options);
   return _retrieveDeserialize(result);
 }
 
-export interface RetrieveOptions extends OperationOptions {}
-
 export function _deleteOperationSend(
   context: Client,
   fileId: string,
-  options: DeleteOptions = { requestOptions: {} }
+  options: FilesDeleteOptions = { requestOptions: {} }
 ): StreamableMethod<
   FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
 > {
@@ -187,18 +185,16 @@ export async function _deleteOperationDeserialize(
 export async function deleteOperation(
   context: Client,
   fileId: string,
-  options: DeleteOptions = { requestOptions: {} }
+  options: FilesDeleteOptions = { requestOptions: {} }
 ): Promise<DeleteFileResponse> {
   const result = await _deleteOperationSend(context, fileId, options);
   return _deleteOperationDeserialize(result);
 }
 
-export interface DeleteOptions extends OperationOptions {}
-
 export function _downloadSend(
   context: Client,
   fileId: string,
-  options: DownloadOptions = { requestOptions: {} }
+  options: FilesDownloadOptions = { requestOptions: {} }
 ): StreamableMethod<FilesDownload200Response | FilesDownloadDefaultResponse> {
   return context
     .path("/files/files/{file_id}/content", fileId)
@@ -218,10 +214,8 @@ export async function _downloadDeserialize(
 export async function download(
   context: Client,
   fileId: string,
-  options: DownloadOptions = { requestOptions: {} }
+  options: FilesDownloadOptions = { requestOptions: {} }
 ): Promise<string> {
   const result = await _downloadSend(context, fileId, options);
   return _downloadDeserialize(result);
 }
-
-export interface DownloadOptions extends OperationOptions {}

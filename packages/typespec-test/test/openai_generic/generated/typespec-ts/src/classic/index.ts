@@ -1,69 +1,18 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export { getAudioOperations, AudioOperations } from "./audio/index.js";
-export { getChatOperations, ChatOperations } from "./chat/index.js";
-export {
-  getCompletions,
-  getCompletionsOperations,
-  CompletionsOperations,
-} from "./completions/index.js";
-export {
-  getEdits,
-  getEditsOperations,
-  EditsOperations,
-} from "./edits/index.js";
-export {
-  getEmbeddings,
-  getEmbeddingsOperations,
-  EmbeddingsOperations,
-} from "./embeddings/index.js";
-export {
-  getFiles,
-  getFilesOperations,
-  FilesOperations,
-} from "./files/index.js";
-export {
-  getFineTunes,
-  getFineTunesOperations,
-  FineTunesOperations,
-} from "./fineTunes/index.js";
-export {
-  getFineTuningOperations,
-  FineTuningOperations,
-} from "./fineTuning/index.js";
-export {
-  getImages,
-  getImagesOperations,
-  ImagesOperations,
-} from "./images/index.js";
-export {
-  getModels,
-  getModelsOperations,
-  ModelsOperations,
-} from "./models/index.js";
-export {
-  getModerations,
-  getModerationsOperations,
-  ModerationsOperations,
-} from "./moderations/index.js";
-export {
-  getAudioTranscriptions,
-  getAudioTranscriptionsOperations,
-  AudioTranscriptionsOperations,
-} from "./audio/transcriptions/index.js";
-export {
-  getAudioTranslations,
-  getAudioTranslationsOperations,
-  AudioTranslationsOperations,
-} from "./audio/translations/index.js";
-export {
-  getChatCompletions,
-  getChatCompletionsOperations,
-  ChatCompletionsOperations,
-} from "./chat/completions/index.js";
-export {
-  getFineTuningJobs,
-  getFineTuningJobsOperations,
-  FineTuningJobsOperations,
-} from "./fineTuning/jobs/index.js";
+export { AudioOperations } from "./audio/index.js";
+export { ChatOperations } from "./chat/index.js";
+export { CompletionsOperations } from "./completions/index.js";
+export { EditsOperations } from "./edits/index.js";
+export { EmbeddingsOperations } from "./embeddings/index.js";
+export { FilesOperations } from "./files/index.js";
+export { FineTunesOperations } from "./fineTunes/index.js";
+export { FineTuningOperations } from "./fineTuning/index.js";
+export { ImagesOperations } from "./images/index.js";
+export { ModelsOperations } from "./models/index.js";
+export { ModerationsOperations } from "./moderations/index.js";
+export { AudioTranscriptionsOperations } from "./audio/transcriptions/index.js";
+export { AudioTranslationsOperations } from "./audio/translations/index.js";
+export { ChatCompletionsOperations } from "./chat/completions/index.js";
+export { FineTuningJobsOperations } from "./fineTuning/jobs/index.js";

@@ -2,25 +2,28 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
-import { create, CreateOptions } from "../../api/embeddings/index.js";
+import { create } from "../../api/embeddings/index.js";
 import {
   CreateEmbeddingRequest,
   CreateEmbeddingResponse,
 } from "../../models/models.js";
+import { EmbeddingsCreateOptions } from "../../models/options.js";
 
 export interface EmbeddingsOperations {
   embeddings: {
     create: (
       embedding: CreateEmbeddingRequest,
-      options?: CreateOptions
+      options?: EmbeddingsCreateOptions
     ) => Promise<CreateEmbeddingResponse>;
   };
 }
 
 export function getEmbeddings(context: OpenAIContext) {
   return {
-    create: (embedding: CreateEmbeddingRequest, options?: CreateOptions) =>
-      create(context, embedding, options),
+    create: (
+      embedding: CreateEmbeddingRequest,
+      options?: EmbeddingsCreateOptions
+    ) => create(context, embedding, options),
   };
 }
 

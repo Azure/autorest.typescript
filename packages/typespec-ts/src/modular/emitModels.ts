@@ -8,7 +8,7 @@ import { getType } from "./helpers/typeHelpers.js";
 import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
-// import { buildOperationOptions } from "./buildOperations.js";
+import { buildOperationOptions } from "./buildOperations.js";
 
 // ====== UTILITIES ======
 
@@ -165,45 +165,45 @@ export function buildModels(
   return modelsFile;
 }
 
-// export function buildModelsOptions(
-//   codeModel: ModularCodeModel,
-//   client: Client
-// ) {
-//   const modelOptionsFile = codeModel.project.createSourceFile(
-//     path.join(
-//       codeModel.modularOptions.sourceRoot,
-//       client.subfolder ?? "",
-//       `models/options.ts`
-//     ),
-//     undefined,
-//     {
-//       overwrite: true
-//     }
-//   );
-//   for (const operationGroup of client.operationGroups) {
-//     operationGroup.operations.forEach((o) => {
-//       buildOperationOptions(o, modelOptionsFile);
-//     });
-//   }
-//   modelOptionsFile.addImportDeclarations([
-//     {
-//       moduleSpecifier: "@azure-rest/core-client",
-//       namedImports: ["OperationOptions"]
-//     }
-//   ]);
+export function buildModelsOptions(
+  codeModel: ModularCodeModel,
+  client: Client
+) {
+  const modelOptionsFile = codeModel.project.createSourceFile(
+    path.join(
+      codeModel.modularOptions.sourceRoot,
+      client.subfolder ?? "",
+      `models/options.ts`
+    ),
+    undefined,
+    {
+      overwrite: true
+    }
+  );
+  for (const operationGroup of client.operationGroups) {
+    operationGroup.operations.forEach((o) => {
+      buildOperationOptions(o, modelOptionsFile);
+    });
+  }
+  modelOptionsFile.addImportDeclarations([
+    {
+      moduleSpecifier: "@azure-rest/core-client",
+      namedImports: ["OperationOptions"]
+    }
+  ]);
 
-//   modelOptionsFile.fixMissingImports();
-//   modelOptionsFile
-//     .getImportDeclarations()
-//     .filter((id) => {
-//       return (
-//         id.isModuleSpecifierRelative() &&
-//         !id.getModuleSpecifierValue().endsWith(".js")
-//       );
-//     })
-//     .map((id) => {
-//       id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
-//       return id;
-//     });
-//   return modelOptionsFile;
-// }
+  modelOptionsFile.fixMissingImports();
+  modelOptionsFile
+    .getImportDeclarations()
+    .filter((id) => {
+      return (
+        id.isModuleSpecifierRelative() &&
+        !id.getModuleSpecifierValue().endsWith(".js")
+      );
+    })
+    .map((id) => {
+      id.setModuleSpecifier(id.getModuleSpecifierValue() + ".js");
+      return id;
+    });
+  return modelOptionsFile;
+}

@@ -38,7 +38,7 @@ export function buildSubpathIndexFile(
         if (exDeclaration[0].startsWith("_")) {
           return false;
         }
-        exDeclaration[1].filter((ex) => {
+        return exDeclaration[1].some((ex) => {
           if (
             options.interfaceOnly &&
             ex.getKindName() !== "InterfaceDeclaration"
@@ -47,7 +47,6 @@ export function buildSubpathIndexFile(
           }
           return true;
         });
-        return true;
       })
       .map((exDeclaration) => {
         return exDeclaration[0];

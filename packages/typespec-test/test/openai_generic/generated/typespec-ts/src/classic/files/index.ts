@@ -8,11 +8,6 @@ import {
   retrieve,
   deleteOperation,
   download,
-  ListOptions,
-  CreateOptions,
-  RetrieveOptions,
-  DeleteOptions,
-  DownloadOptions,
 } from "../../api/files/index.js";
 import {
   ListFilesResponse,
@@ -20,36 +15,46 @@ import {
   OpenAIFile,
   DeleteFileResponse,
 } from "../../models/models.js";
+import {
+  FilesListOptions,
+  FilesCreateOptions,
+  FilesRetrieveOptions,
+  FilesDeleteOptions,
+  FilesDownloadOptions,
+} from "../../models/options.js";
 
 export interface FilesOperations {
   files: {
-    list: (options?: ListOptions) => Promise<ListFilesResponse>;
+    list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
     create: (
       file: CreateFileRequest,
-      options?: CreateOptions
+      options?: FilesCreateOptions
     ) => Promise<OpenAIFile>;
     retrieve: (
       fileId: string,
-      options?: RetrieveOptions
+      options?: FilesRetrieveOptions
     ) => Promise<OpenAIFile>;
     deleteOperation: (
       fileId: string,
-      options?: DeleteOptions
+      options?: FilesDeleteOptions
     ) => Promise<DeleteFileResponse>;
-    download: (fileId: string, options?: DownloadOptions) => Promise<string>;
+    download: (
+      fileId: string,
+      options?: FilesDownloadOptions
+    ) => Promise<string>;
   };
 }
 
 export function getFiles(context: OpenAIContext) {
   return {
-    list: (options?: ListOptions) => list(context, options),
-    create: (file: CreateFileRequest, options?: CreateOptions) =>
+    list: (options?: FilesListOptions) => list(context, options),
+    create: (file: CreateFileRequest, options?: FilesCreateOptions) =>
       create(context, file, options),
-    retrieve: (fileId: string, options?: RetrieveOptions) =>
+    retrieve: (fileId: string, options?: FilesRetrieveOptions) =>
       retrieve(context, fileId, options),
-    deleteOperation: (fileId: string, options?: DeleteOptions) =>
+    deleteOperation: (fileId: string, options?: FilesDeleteOptions) =>
       deleteOperation(context, fileId, options),
-    download: (fileId: string, options?: DownloadOptions) =>
+    download: (fileId: string, options?: FilesDownloadOptions) =>
       download(context, fileId, options),
   };
 }

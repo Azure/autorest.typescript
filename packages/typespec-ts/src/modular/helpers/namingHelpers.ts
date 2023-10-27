@@ -44,7 +44,7 @@ export function isReservedName(name: string, nameType: NameType): boolean {
 }
 
 export function getClassicalLayerPrefix(
-  operationGroup: OperationGroup,
+  operationGroup: OperationGroup | Operation,
   nameType: NameType,
   separator: string = "",
   layer: number = operationGroup.namespaceHierarchies.length - 1

@@ -2,28 +2,28 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
-import {
-  create,
-  CreateOptions,
-} from "../../../api/audio/transcriptions/index.js";
+import { create } from "../../../api/audio/transcriptions/index.js";
 import {
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
 } from "../../../models/models.js";
+import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
 export interface AudioTranscriptionsOperations {
   transcriptions: {
     create: (
       audio: CreateTranscriptionRequest,
-      options?: CreateOptions
+      options?: AudioTranscriptionsCreateOptions
     ) => Promise<CreateTranscriptionResponse>;
   };
 }
 
 export function getAudioTranscriptions(context: OpenAIContext) {
   return {
-    create: (audio: CreateTranscriptionRequest, options?: CreateOptions) =>
-      create(context, audio, options),
+    create: (
+      audio: CreateTranscriptionRequest,
+      options?: AudioTranscriptionsCreateOptions
+    ) => create(context, audio, options),
   };
 }
 

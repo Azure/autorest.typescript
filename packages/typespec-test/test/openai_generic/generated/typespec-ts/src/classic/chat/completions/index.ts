@@ -2,25 +2,28 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../../api/OpenAIContext.js";
-import { create, CreateOptions } from "../../../api/chat/completions/index.js";
+import { create } from "../../../api/chat/completions/index.js";
 import {
   CreateChatCompletionRequest,
   CreateChatCompletionResponse,
 } from "../../../models/models.js";
+import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export interface ChatCompletionsOperations {
   completions: {
     create: (
       body: CreateChatCompletionRequest,
-      options?: CreateOptions
+      options?: ChatCompletionsCreateOptions
     ) => Promise<CreateChatCompletionResponse>;
   };
 }
 
 export function getChatCompletions(context: OpenAIContext) {
   return {
-    create: (body: CreateChatCompletionRequest, options?: CreateOptions) =>
-      create(context, body, options),
+    create: (
+      body: CreateChatCompletionRequest,
+      options?: ChatCompletionsCreateOptions
+    ) => create(context, body, options),
   };
 }
 

@@ -14,13 +14,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
   ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
@@ -102,10 +102,8 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateChatCompletionRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: ChatCompletionsCreateOptions = { requestOptions: {} }
 ): Promise<CreateChatCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);
 }
-
-export interface CreateOptions extends OperationOptions {}

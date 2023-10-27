@@ -24,13 +24,19 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import {
+  FineTuningJobsCreateOptions,
+  FineTuningJobsListOptions,
+  FineTuningJobsRetrieveOptions,
+  FineTuningJobsListEventsOptions,
+  FineTuningJobsCancelOptions,
+} from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   job: CreateFineTuningJobRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: FineTuningJobsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
   FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
 > {
@@ -98,17 +104,15 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   job: CreateFineTuningJobRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: FineTuningJobsCreateOptions = { requestOptions: {} }
 ): Promise<FineTuningJob> {
   const result = await _createSend(context, job, options);
   return _createDeserialize(result);
 }
 
-export interface CreateOptions extends OperationOptions {}
-
 export function _listSend(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: FineTuningJobsListOptions = { requestOptions: {} }
 ): StreamableMethod<
   FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
 > {
@@ -158,23 +162,16 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: FineTuningJobsListOptions = { requestOptions: {} }
 ): Promise<ListPaginatedFineTuningJobsResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
 }
 
-export interface ListOptions extends OperationOptions {
-  /** Identifier for the last job from the previous pagination request. */
-  after?: string;
-  /** Number of fine-tuning jobs to retrieve. */
-  limit?: number;
-}
-
 export function _retrieveSend(
   context: Client,
   fineTuningJobId: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: FineTuningJobsRetrieveOptions = { requestOptions: {} }
 ): StreamableMethod<
   FineTuningJobsRetrieve200Response | FineTuningJobsRetrieveDefaultResponse
 > {
@@ -225,18 +222,16 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   fineTuningJobId: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: FineTuningJobsRetrieveOptions = { requestOptions: {} }
 ): Promise<FineTuningJob> {
   const result = await _retrieveSend(context, fineTuningJobId, options);
   return _retrieveDeserialize(result);
 }
 
-export interface RetrieveOptions extends OperationOptions {}
-
 export function _listEventsSend(
   context: Client,
   fineTuningJobId: string,
-  options: ListEventsOptions = { requestOptions: {} }
+  options: FineTuningJobsListEventsOptions = { requestOptions: {} }
 ): StreamableMethod<
   FineTuningJobsListEvents200Response | FineTuningJobsListEventsDefaultResponse
 > {
@@ -272,23 +267,16 @@ export async function _listEventsDeserialize(
 export async function listEvents(
   context: Client,
   fineTuningJobId: string,
-  options: ListEventsOptions = { requestOptions: {} }
+  options: FineTuningJobsListEventsOptions = { requestOptions: {} }
 ): Promise<ListFineTuningJobEventsResponse> {
   const result = await _listEventsSend(context, fineTuningJobId, options);
   return _listEventsDeserialize(result);
 }
 
-export interface ListEventsOptions extends OperationOptions {
-  /** Identifier for the last event from the previous pagination request. */
-  after?: string;
-  /** Number of events to retrieve. */
-  limit?: number;
-}
-
 export function _cancelSend(
   context: Client,
   fineTuningJobId: string,
-  options: CancelOptions = { requestOptions: {} }
+  options: FineTuningJobsCancelOptions = { requestOptions: {} }
 ): StreamableMethod<
   FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
 > {
@@ -337,10 +325,8 @@ export async function _cancelDeserialize(
 export async function cancel(
   context: Client,
   fineTuningJobId: string,
-  options: CancelOptions = { requestOptions: {} }
+  options: FineTuningJobsCancelOptions = { requestOptions: {} }
 ): Promise<FineTuningJob> {
   const result = await _cancelSend(context, fineTuningJobId, options);
   return _cancelDeserialize(result);
 }
-
-export interface CancelOptions extends OperationOptions {}

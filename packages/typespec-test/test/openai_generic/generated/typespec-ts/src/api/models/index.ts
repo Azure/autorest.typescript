@@ -19,12 +19,16 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import {
+  ModelsListOptions,
+  ModelsRetrieveOptions,
+  ModelsDeleteOptions,
+} from "../../models/options.js";
 
 export function _listSend(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: ModelsListOptions = { requestOptions: {} }
 ): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
   return context
     .path("/models")
@@ -51,18 +55,16 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: ListOptions = { requestOptions: {} }
+  options: ModelsListOptions = { requestOptions: {} }
 ): Promise<ListModelsResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
 }
 
-export interface ListOptions extends OperationOptions {}
-
 export function _retrieveSend(
   context: Client,
   model: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: ModelsRetrieveOptions = { requestOptions: {} }
 ): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
   return context
     .path("/models/{model}", model)
@@ -87,18 +89,16 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   model: string,
-  options: RetrieveOptions = { requestOptions: {} }
+  options: ModelsRetrieveOptions = { requestOptions: {} }
 ): Promise<Model> {
   const result = await _retrieveSend(context, model, options);
   return _retrieveDeserialize(result);
 }
 
-export interface RetrieveOptions extends OperationOptions {}
-
 export function _deleteOperationSend(
   context: Client,
   model: string,
-  options: DeleteOptions = { requestOptions: {} }
+  options: ModelsDeleteOptions = { requestOptions: {} }
 ): StreamableMethod<
   ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
 > {
@@ -130,10 +130,8 @@ export async function _deleteOperationDeserialize(
 export async function deleteOperation(
   context: Client,
   model: string,
-  options: DeleteOptions = { requestOptions: {} }
+  options: ModelsDeleteOptions = { requestOptions: {} }
 ): Promise<DeleteModelResponse> {
   const result = await _deleteOperationSend(context, model, options);
   return _deleteOperationDeserialize(result);
 }
-
-export interface DeleteOptions extends OperationOptions {}

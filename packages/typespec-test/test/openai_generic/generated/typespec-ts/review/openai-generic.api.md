@@ -18,18 +18,30 @@ export interface AudioOperations {
 }
 
 // @public (undocumented)
+export interface AudioTranscriptionsCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
 export interface AudioTranscriptionsOperations {
     // (undocumented)
     transcriptions: {
-        create: (audio: CreateTranscriptionRequest, options?: CreateOptions) => Promise<CreateTranscriptionResponse>;
+        create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptions) => Promise<CreateTranscriptionResponse>;
     };
+}
+
+// @public (undocumented)
+export interface AudioTranslationsCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
 }
 
 // @public (undocumented)
 export interface AudioTranslationsOperations {
     // (undocumented)
     translations: {
-        create: (audio: CreateTranslationRequest, options?: CreateOptions_2) => Promise<CreateTranslationResponse>;
+        create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptions) => Promise<CreateTranslationResponse>;
     };
 }
 
@@ -67,10 +79,14 @@ export interface ChatCompletionResponseMessage {
 }
 
 // @public (undocumented)
+export interface ChatCompletionsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface ChatCompletionsOperations {
     // (undocumented)
     completions: {
-        create: (body: CreateChatCompletionRequest, options?: CreateOptions_3) => Promise<CreateChatCompletionResponse>;
+        create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptions) => Promise<CreateChatCompletionResponse>;
     };
 }
 
@@ -81,10 +97,14 @@ export interface ChatOperations {
 }
 
 // @public (undocumented)
+export interface CompletionsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface CompletionsOperations {
     // (undocumented)
     completions: {
-        create: (body: CreateCompletionRequest, options?: CreateOptions_5) => Promise<CreateCompletionResponse>;
+        create: (body: CreateCompletionRequest, options?: CompletionsCreateOptions) => Promise<CreateCompletionResponse>;
     };
 }
 
@@ -369,10 +389,14 @@ export interface DeleteModelResponse {
 }
 
 // @public (undocumented)
+export interface EditsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface EditsOperations {
     // (undocumented)
     edits: {
-        create: (edit: CreateEditRequest, options?: CreateOptions_6) => Promise<CreateEditResponse>;
+        create: (edit: CreateEditRequest, options?: EditsCreateOptions) => Promise<CreateEditResponse>;
     };
 }
 
@@ -384,10 +408,14 @@ export interface Embedding {
 }
 
 // @public (undocumented)
+export interface EmbeddingsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface EmbeddingsOperations {
     // (undocumented)
     embeddings: {
-        create: (embedding: CreateEmbeddingRequest, options?: CreateOptions_7) => Promise<CreateEmbeddingResponse>;
+        create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptions) => Promise<CreateEmbeddingResponse>;
     };
 }
 
@@ -405,15 +433,37 @@ interface Error_2 {
 export { Error_2 as Error }
 
 // @public (undocumented)
+export interface FilesCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface FilesDeleteOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesDownloadOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface FilesOperations {
     // (undocumented)
     files: {
-        list: (options?: ListOptions_2) => Promise<ListFilesResponse>;
-        create: (file: CreateFileRequest, options?: CreateOptions_8) => Promise<OpenAIFile>;
-        retrieve: (fileId: string, options?: RetrieveOptions_2) => Promise<OpenAIFile>;
-        deleteOperation: (fileId: string, options?: DeleteOptions) => Promise<DeleteFileResponse>;
-        download: (fileId: string, options?: DownloadOptions) => Promise<string>;
+        list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+        create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
+        retrieve: (fileId: string, options?: FilesRetrieveOptions) => Promise<OpenAIFile>;
+        deleteOperation: (fileId: string, options?: FilesDeleteOptions) => Promise<DeleteFileResponse>;
+        download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
     };
+}
+
+// @public (undocumented)
+export interface FilesRetrieveOptions extends OperationOptions {
 }
 
 // @public
@@ -454,15 +504,36 @@ export interface FineTuneEvent {
 }
 
 // @public (undocumented)
+export interface FineTunesCancelOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesListEventsOptions extends OperationOptions {
+    stream?: boolean;
+}
+
+// @public (undocumented)
+export interface FineTunesListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface FineTunesOperations {
     // (undocumented)
     fineTunes: {
-        create: (fineTune: CreateFineTuneRequest, options?: CreateOptions_9) => Promise<FineTune>;
-        list: (options?: ListOptions_3) => Promise<ListFineTunesResponse>;
-        retrieve: (fineTuneId: string, options?: RetrieveOptions_3) => Promise<FineTune>;
-        listEvents: (fineTuneId: string, options?: ListEventsOptions_2) => Promise<ListFineTuneEventsResponse>;
-        cancel: (fineTuneId: string, options?: CancelOptions_2) => Promise<FineTune>;
+        create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptions) => Promise<FineTune>;
+        list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+        retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) => Promise<FineTune>;
+        listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) => Promise<ListFineTuneEventsResponse>;
+        cancel: (fineTuneId: string, options?: FineTunesCancelOptions) => Promise<FineTune>;
     };
+}
+
+// @public (undocumented)
+export interface FineTunesRetrieveOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -504,15 +575,39 @@ export interface FineTuningJobEvent {
 }
 
 // @public (undocumented)
+export interface FineTuningJobsCancelOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningJobsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningJobsListEventsOptions extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public (undocumented)
+export interface FineTuningJobsListOptions extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public (undocumented)
 export interface FineTuningJobsOperations {
     // (undocumented)
     jobs: {
-        create: (job: CreateFineTuningJobRequest, options?: CreateOptions_4) => Promise<FineTuningJob>;
-        list: (options?: ListOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
-        retrieve: (fineTuningJobId: string, options?: RetrieveOptions) => Promise<FineTuningJob>;
-        listEvents: (fineTuningJobId: string, options?: ListEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
-        cancel: (fineTuningJobId: string, options?: CancelOptions) => Promise<FineTuningJob>;
+        create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptions) => Promise<FineTuningJob>;
+        list: (options?: FineTuningJobsListOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
+        retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptions) => Promise<FineTuningJob>;
+        listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
+        cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) => Promise<FineTuningJob>;
     };
+}
+
+// @public (undocumented)
+export interface FineTuningJobsRetrieveOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -529,12 +624,28 @@ interface Image_2 {
 export { Image_2 as Image }
 
 // @public (undocumented)
+export interface ImagesCreateEditOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface ImagesCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ImagesCreateVariationOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
 export interface ImagesOperations {
     // (undocumented)
     images: {
-        create: (image: CreateImageRequest, options?: CreateOptions_10) => Promise<ImagesResponse>;
-        createEdit: (image: CreateImageEditRequest, options?: CreateEditOptions) => Promise<ImagesResponse>;
-        createVariation: (image: CreateImageVariationRequest, options?: CreateVariationOptions) => Promise<ImagesResponse>;
+        create: (image: CreateImageRequest, options?: ImagesCreateOptions) => Promise<ImagesResponse>;
+        createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptions) => Promise<ImagesResponse>;
+        createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptions) => Promise<ImagesResponse>;
     };
 }
 
@@ -605,20 +716,36 @@ export interface Model {
 }
 
 // @public (undocumented)
+export interface ModelsDeleteOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface ModelsOperations {
     // (undocumented)
     models: {
-        list: (options?: ListOptions_4) => Promise<ListModelsResponse>;
-        retrieve: (model: string, options?: RetrieveOptions_4) => Promise<Model>;
-        deleteOperation: (model: string, options?: DeleteOptions_2) => Promise<DeleteModelResponse>;
+        list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
+        retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
+        deleteOperation: (model: string, options?: ModelsDeleteOptions) => Promise<DeleteModelResponse>;
     };
+}
+
+// @public (undocumented)
+export interface ModelsRetrieveOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModerationsCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
 export interface ModerationsOperations {
     // (undocumented)
     moderations: {
-        create: (content: CreateModerationRequest, options?: CreateOptions_11) => Promise<CreateModerationResponse>;
+        create: (content: CreateModerationRequest, options?: ModerationsCreateOptions) => Promise<CreateModerationResponse>;
     };
 }
 
@@ -654,37 +781,6 @@ export interface OpenAIFile {
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
     statusDetails?: string | null;
 }
-
-// Warnings were encountered during analysis:
-//
-// src/classic/audio/transcriptions/index.ts:16:5 - (ae-forgotten-export) The symbol "CreateOptions" needs to be exported by the entry point index.d.ts
-// src/classic/audio/translations/index.ts:16:5 - (ae-forgotten-export) The symbol "CreateOptions_2" needs to be exported by the entry point index.d.ts
-// src/classic/chat/completions/index.ts:13:5 - (ae-forgotten-export) The symbol "CreateOptions_3" needs to be exported by the entry point index.d.ts
-// src/classic/completions/index.ts:13:5 - (ae-forgotten-export) The symbol "CreateOptions_5" needs to be exported by the entry point index.d.ts
-// src/classic/edits/index.ts:10:5 - (ae-forgotten-export) The symbol "CreateOptions_6" needs to be exported by the entry point index.d.ts
-// src/classic/embeddings/index.ts:13:5 - (ae-forgotten-export) The symbol "CreateOptions_7" needs to be exported by the entry point index.d.ts
-// src/classic/files/index.ts:26:5 - (ae-forgotten-export) The symbol "ListOptions_2" needs to be exported by the entry point index.d.ts
-// src/classic/files/index.ts:27:5 - (ae-forgotten-export) The symbol "CreateOptions_8" needs to be exported by the entry point index.d.ts
-// src/classic/files/index.ts:31:5 - (ae-forgotten-export) The symbol "RetrieveOptions_2" needs to be exported by the entry point index.d.ts
-// src/classic/files/index.ts:35:5 - (ae-forgotten-export) The symbol "DeleteOptions" needs to be exported by the entry point index.d.ts
-// src/classic/files/index.ts:39:5 - (ae-forgotten-export) The symbol "DownloadOptions" needs to be exported by the entry point index.d.ts
-// src/classic/fineTunes/index.ts:26:5 - (ae-forgotten-export) The symbol "CreateOptions_9" needs to be exported by the entry point index.d.ts
-// src/classic/fineTunes/index.ts:30:5 - (ae-forgotten-export) The symbol "ListOptions_3" needs to be exported by the entry point index.d.ts
-// src/classic/fineTunes/index.ts:31:5 - (ae-forgotten-export) The symbol "RetrieveOptions_3" needs to be exported by the entry point index.d.ts
-// src/classic/fineTunes/index.ts:35:5 - (ae-forgotten-export) The symbol "ListEventsOptions_2" needs to be exported by the entry point index.d.ts
-// src/classic/fineTunes/index.ts:39:5 - (ae-forgotten-export) The symbol "CancelOptions_2" needs to be exported by the entry point index.d.ts
-// src/classic/fineTuning/jobs/index.ts:26:5 - (ae-forgotten-export) The symbol "CreateOptions_4" needs to be exported by the entry point index.d.ts
-// src/classic/fineTuning/jobs/index.ts:30:5 - (ae-forgotten-export) The symbol "ListOptions" needs to be exported by the entry point index.d.ts
-// src/classic/fineTuning/jobs/index.ts:33:5 - (ae-forgotten-export) The symbol "RetrieveOptions" needs to be exported by the entry point index.d.ts
-// src/classic/fineTuning/jobs/index.ts:37:5 - (ae-forgotten-export) The symbol "ListEventsOptions" needs to be exported by the entry point index.d.ts
-// src/classic/fineTuning/jobs/index.ts:41:5 - (ae-forgotten-export) The symbol "CancelOptions" needs to be exported by the entry point index.d.ts
-// src/classic/images/index.ts:22:5 - (ae-forgotten-export) The symbol "CreateOptions_10" needs to be exported by the entry point index.d.ts
-// src/classic/images/index.ts:26:5 - (ae-forgotten-export) The symbol "CreateEditOptions" needs to be exported by the entry point index.d.ts
-// src/classic/images/index.ts:30:5 - (ae-forgotten-export) The symbol "CreateVariationOptions" needs to be exported by the entry point index.d.ts
-// src/classic/models/index.ts:21:5 - (ae-forgotten-export) The symbol "ListOptions_4" needs to be exported by the entry point index.d.ts
-// src/classic/models/index.ts:22:5 - (ae-forgotten-export) The symbol "RetrieveOptions_4" needs to be exported by the entry point index.d.ts
-// src/classic/models/index.ts:23:5 - (ae-forgotten-export) The symbol "DeleteOptions_2" needs to be exported by the entry point index.d.ts
-// src/classic/moderations/index.ts:13:5 - (ae-forgotten-export) The symbol "CreateOptions_11" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

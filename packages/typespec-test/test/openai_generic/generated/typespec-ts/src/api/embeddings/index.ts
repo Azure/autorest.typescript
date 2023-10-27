@@ -14,13 +14,13 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import { EmbeddingsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
   EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 > {
@@ -61,10 +61,8 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   embedding: CreateEmbeddingRequest,
-  options: CreateOptions = { requestOptions: {} }
+  options: EmbeddingsCreateOptions = { requestOptions: {} }
 ): Promise<CreateEmbeddingResponse> {
   const result = await _createSend(context, embedding, options);
   return _createDeserialize(result);
 }
-
-export interface CreateOptions extends OperationOptions {}

@@ -8,11 +8,6 @@ import {
   retrieve,
   listEvents,
   cancel,
-  CreateOptions,
-  ListOptions,
-  RetrieveOptions,
-  ListEventsOptions,
-  CancelOptions,
 } from "../../../api/fineTuning/jobs/index.js";
 import {
   CreateFineTuningJobRequest,
@@ -20,41 +15,54 @@ import {
   ListPaginatedFineTuningJobsResponse,
   ListFineTuningJobEventsResponse,
 } from "../../../models/models.js";
+import {
+  FineTuningJobsCreateOptions,
+  FineTuningJobsListOptions,
+  FineTuningJobsRetrieveOptions,
+  FineTuningJobsListEventsOptions,
+  FineTuningJobsCancelOptions,
+} from "../../../models/options.js";
 
 export interface FineTuningJobsOperations {
   jobs: {
     create: (
       job: CreateFineTuningJobRequest,
-      options?: CreateOptions
+      options?: FineTuningJobsCreateOptions
     ) => Promise<FineTuningJob>;
     list: (
-      options?: ListOptions
+      options?: FineTuningJobsListOptions
     ) => Promise<ListPaginatedFineTuningJobsResponse>;
     retrieve: (
       fineTuningJobId: string,
-      options?: RetrieveOptions
+      options?: FineTuningJobsRetrieveOptions
     ) => Promise<FineTuningJob>;
     listEvents: (
       fineTuningJobId: string,
-      options?: ListEventsOptions
+      options?: FineTuningJobsListEventsOptions
     ) => Promise<ListFineTuningJobEventsResponse>;
     cancel: (
       fineTuningJobId: string,
-      options?: CancelOptions
+      options?: FineTuningJobsCancelOptions
     ) => Promise<FineTuningJob>;
   };
 }
 
 export function getFineTuningJobs(context: OpenAIContext) {
   return {
-    create: (job: CreateFineTuningJobRequest, options?: CreateOptions) =>
-      create(context, job, options),
-    list: (options?: ListOptions) => list(context, options),
-    retrieve: (fineTuningJobId: string, options?: RetrieveOptions) =>
-      retrieve(context, fineTuningJobId, options),
-    listEvents: (fineTuningJobId: string, options?: ListEventsOptions) =>
-      listEvents(context, fineTuningJobId, options),
-    cancel: (fineTuningJobId: string, options?: CancelOptions) =>
+    create: (
+      job: CreateFineTuningJobRequest,
+      options?: FineTuningJobsCreateOptions
+    ) => create(context, job, options),
+    list: (options?: FineTuningJobsListOptions) => list(context, options),
+    retrieve: (
+      fineTuningJobId: string,
+      options?: FineTuningJobsRetrieveOptions
+    ) => retrieve(context, fineTuningJobId, options),
+    listEvents: (
+      fineTuningJobId: string,
+      options?: FineTuningJobsListEventsOptions
+    ) => listEvents(context, fineTuningJobId, options),
+    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) =>
       cancel(context, fineTuningJobId, options),
   };
 }
