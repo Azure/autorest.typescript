@@ -47,21 +47,3 @@ export {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "./models/index.js";
-
-export {
-  AudioOperations,
-  AudioTranslationsOperations,
-  AudioTranscriptionsOperations,
-  ChatOperations,
-  ChatCompletionsOperations,
-  FineTuningOperations,
-  FineTuningJobsOperations,
-  CompletionsOperations,
-  EditsOperations,
-  EmbeddingsOperations,
-  FilesOperations,
-  FineTunesOperations,
-  ModelsOperations,
-  ImagesOperations,
-  ModerationsOperations,
-} from "./classic/index.js";

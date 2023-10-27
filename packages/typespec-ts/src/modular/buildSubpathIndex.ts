@@ -1,10 +1,16 @@
 import { join } from "path";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
+export interface buildSubpathIndexFileOptions {
+  filterIndex?: boolean;
+  interfaceOnly?: boolean;
+}
+
 export function buildSubpathIndexFile(
   codeModel: ModularCodeModel,
   client: Client,
-  subpath: string
+  subpath: string,
+  options: buildSubpathIndexFileOptions = {}
 ) {
   const { subfolder } = client;
   const srcPath = codeModel.modularOptions.sourceRoot;
@@ -20,15 +26,39 @@ export function buildSubpathIndexFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
-    if (file.getFilePath().endsWith("index.ts")) {
+    if (!options.filterIndex && file.getFilePath().endsWith("index.ts")) {
       continue;
     }
-    const exports = [...file.getExportedDeclarations().keys()].filter(
-      (k) => !k.startsWith("_")
-    );
+    if (file.getFilePath() === indexFile.getFilePath()) {
+      continue;
+    }
+
+    const namedExports: string[] = [...file.getExportedDeclarations().entries()]
+      .filter((exDeclaration) => {
+        if (exDeclaration[0].startsWith("_")) {
+          return false;
+        }
+        exDeclaration[1].filter((ex) => {
+          if (
+            options.interfaceOnly &&
+            ex.getKindName() !== "InterfaceDeclaration"
+          ) {
+            return false;
+          }
+          return true;
+        });
+        return true;
+      })
+      .map((exDeclaration) => {
+        return exDeclaration[0];
+      });
     indexFile.addExportDeclaration({
-      moduleSpecifier: `./${file.getBaseNameWithoutExtension()}.js`,
-      namedExports: exports
+      moduleSpecifier: `.${file
+        .getFilePath()
+        .replace(indexFile.getDirectoryPath(), "")
+        .replace(/\\/g, "/")
+        .replace(".ts", "")}.js`,
+      namedExports
     });
   }
 }

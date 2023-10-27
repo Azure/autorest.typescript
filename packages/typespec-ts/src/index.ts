@@ -186,6 +186,10 @@ export async function $onEmit(context: EmitContext) {
         buildSubpathIndexFile(modularCodeModel, subClient, "api");
         buildClassicalClient(dpgContext, modularCodeModel, subClient);
         buildClassicOperationFiles(modularCodeModel, subClient);
+        buildSubpathIndexFile(modularCodeModel, subClient, "classic", {
+          filterIndex: true,
+          interfaceOnly: true
+        });
         if (modularCodeModel.clients.length > 1) {
           buildSubClientIndexFile(modularCodeModel, subClient);
         }

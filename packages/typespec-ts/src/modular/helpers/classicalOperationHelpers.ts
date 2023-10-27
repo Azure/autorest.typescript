@@ -15,12 +15,14 @@ export function getClassicalOperation(
   layer: number = operationGroup.namespaceHierarchies.length - 1
 ) {
   const modularClientName = `${getClientName(client)}Context`;
-  const hasClientContextImport = classicFile.getImportDeclarations().filter((i) => {
-    return (
-      i.getModuleSpecifierValue() ===
-      `${"../".repeat(layer + 2)}api/${modularClientName}.js`
-    );
-  });
+  const hasClientContextImport = classicFile
+    .getImportDeclarations()
+    .filter((i) => {
+      return (
+        i.getModuleSpecifierValue() ===
+        `${"../".repeat(layer + 2)}api/${modularClientName}.js`
+      );
+    });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
       namedImports: [modularClientName],
