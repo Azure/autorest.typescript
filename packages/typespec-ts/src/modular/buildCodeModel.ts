@@ -93,6 +93,7 @@ import {
 import {
   getOperationGroupName,
   getOperationName,
+  isBinaryPayload,
   isIgnoredHeaderParam,
   isLongRunningOperation
 } from "../utils/operationUtil.js";
@@ -390,6 +391,7 @@ type BodyParameter = ParamBase & {
   restApiName: string;
   location: "body";
   defaultContentType: string;
+  isBinaryPayload: boolean;
 };
 
 function getBodyType(program: Program, route: HttpOperation): Type {
@@ -449,16 +451,18 @@ function emitBodyParameter(
     disableEffectiveModel: true
   });
 
+  const defaultContentType =
+    body.parameter?.default ?? contentTypes.includes("application/json")
+      ? "application/json"
+      : contentTypes[0]!;
   return {
     contentTypes,
     type,
     restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
-    defaultContentType:
-      body.parameter?.default ?? contentTypes.includes("application/json")
-        ? "application/json"
-        : contentTypes[0]!
+    defaultContentType,
+    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
   };
 }
 

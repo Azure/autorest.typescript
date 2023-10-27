@@ -386,7 +386,8 @@ function buildBodyParameter(
 
   if (
     bodyParameter.type.type === "byte-array" &&
-    bodyParameter.type.format !== "binary"
+    bodyParameter.type.format !== "binary" &&
+    !bodyParameter.isBinaryPayload
   ) {
     const coreUtilSet = importSet.get("@azure/core-util");
     if (!coreUtilSet) {
@@ -407,8 +408,9 @@ function buildBodyParameter(
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter.type)}")`;
   } else if (
-    bodyParameter.type.type === "byte-array" &&
-    bodyParameter.type.format === "binary"
+    (bodyParameter.type.type === "byte-array" &&
+      bodyParameter.type.format === "binary") ||
+    bodyParameter.isBinaryPayload
   ) {
     return `\nbody: ${bodyParameter.clientName},`;
   }

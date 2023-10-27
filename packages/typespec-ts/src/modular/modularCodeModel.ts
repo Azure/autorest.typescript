@@ -40,6 +40,7 @@ export interface BodyParameter {
   clientName: string;
   inOverload: boolean;
   defaultContentType: string;
+  isBinaryPayload: boolean;
 }
 
 export interface OperationGroup {
