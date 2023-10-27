@@ -65,9 +65,7 @@ export function transformResponseTypes(
     }
     rlcResponses.push(rlcOperationUnit);
   }
-  if (importedModels.size > 0) {
-    importDetails.response.importsSet = importedModels;
-  }
+  importDetails.response.importsSet = importedModels;
   return rlcResponses;
 }
 

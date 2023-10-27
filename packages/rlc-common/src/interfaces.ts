@@ -30,6 +30,7 @@ export type ImportType =
   | "coreUtil"
   | "coreLogger"
   // this is a fallback import if above imports are not available
+  // mainly used in non-branded scope
   | "commonFallback"
   /**azure specific imports */
   | "azureEslintPlugin"

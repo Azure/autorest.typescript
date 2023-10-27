@@ -81,9 +81,7 @@ export function transformParameterTypes(
     }
     rlcParameters.push(rlcParameter);
   }
-  if (importedModels.size > 0) {
-    importDetails.parameter.importsSet = importedModels;
-  }
+  importDetails.parameter.importsSet = importedModels;
   return rlcParameters;
 }
 

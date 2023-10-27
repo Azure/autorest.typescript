@@ -192,8 +192,8 @@ export function buildClient(model: RLCModel): File | undefined {
         namedImports: credentialTypes,
         moduleSpecifier:
           (
-            model.thirdPartyImports?.commonFallback ??
-            model.thirdPartyImports?.coreAuth
+            model.thirdPartyImports?.coreAuth ??
+            model.thirdPartyImports?.commonFallback
           )?.specifier ?? "@azure/core-auth"
       }
     ]);

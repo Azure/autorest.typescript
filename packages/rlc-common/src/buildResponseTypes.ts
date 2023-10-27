@@ -87,8 +87,8 @@ export function buildResponseTypes(model: RLCModel) {
         namedImports: ["RawHttpHeaders"],
         moduleSpecifier:
           (
-            model.thirdPartyImports?.commonFallback ??
-            model.thirdPartyImports?.restPipeline
+            model.thirdPartyImports?.restPipeline ??
+            model.thirdPartyImports?.commonFallback
           )?.specifier ?? "@azure/core-rest-pipeline"
       }
     ]);
