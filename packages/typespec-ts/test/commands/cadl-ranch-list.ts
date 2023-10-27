@@ -268,3 +268,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "authentication/union"
   }
 ];
+
+export const nonAzureModularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  }
+];

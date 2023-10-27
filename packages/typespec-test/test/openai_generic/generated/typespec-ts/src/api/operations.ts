@@ -99,7 +99,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-} from "@azure-rest/core-client";
+} from "@typespec/ts-http-runtime";
 import { stringToUint8Array } from "@azure/core-util";
 import {
   CreateTranscriptionOptions,

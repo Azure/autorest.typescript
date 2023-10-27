@@ -89,7 +89,7 @@ import {
   CreateModeration200Response,
   CreateModerationDefaultResponse,
 } from "./responses.js";
-import { Client, StreamableMethod } from "@azure-rest/core-client";
+import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface CreateTranscription {
   post(

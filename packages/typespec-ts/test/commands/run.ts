@@ -18,12 +18,12 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
     `./temp/http/${sourceTypespec}`
   );
   let subPath = "integration";
-  if (mode.includes("modular")) {
-    subPath = "modularIntegration";
-  } else if (mode.includes("non-azure")) {
+  if (mode.includes("non-azure")) {
     subPath = `nonAzureIntegration/${
       mode.includes("modular") ? "modular" : "rlc"
     }`;
+  } else if (mode.includes("modular")) {
+    subPath = "modularIntegration";
   }
   const outputPath = joinPath(
     `${__dirname}`,
