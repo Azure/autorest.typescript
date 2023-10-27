@@ -6,8 +6,8 @@ import { FooContext as Client, Op1204Response } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import { Op1Options } from "../models/options.js";
 
 export function _op1Send(
   context: Client,
@@ -38,5 +38,3 @@ export async function op1(
   const result = await _op1Send(context, body, options);
   return _op1Deserialize(result);
 }
-
-export interface Op1Options extends OperationOptions {}

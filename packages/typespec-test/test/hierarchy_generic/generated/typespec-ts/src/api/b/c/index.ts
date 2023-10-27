@@ -6,13 +6,13 @@ import { BcOp1204Response, FooContext as Client } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  OperationOptions,
 } from "@azure-rest/core-client";
+import { BCOp1Options } from "../../../models/options.js";
 
 export function _op1Send(
   context: Client,
   body: BA,
-  options: Op1Options = { requestOptions: {} }
+  options: BCOp1Options = { requestOptions: {} }
 ): StreamableMethod<BcOp1204Response> {
   return context
     .path("/b/c")
@@ -33,10 +33,8 @@ export async function _op1Deserialize(result: BcOp1204Response): Promise<void> {
 export async function op1(
   context: Client,
   body: BA,
-  options: Op1Options = { requestOptions: {} }
+  options: BCOp1Options = { requestOptions: {} }
 ): Promise<void> {
   const result = await _op1Send(context, body, options);
   return _op1Deserialize(result);
 }
-
-export interface Op1Options extends OperationOptions {}

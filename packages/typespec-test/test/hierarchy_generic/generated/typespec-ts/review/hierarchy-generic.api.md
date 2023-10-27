@@ -21,20 +21,74 @@ export interface BA {
 }
 
 // @public (undocumented)
+export interface BCOp1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface BCOperations {
+    // (undocumented)
+    c: {
+        op1: (body: BA, options?: BCOp1Options) => Promise<void>;
+    };
+}
+
+// @public (undocumented)
 export interface BEA {
     // (undocumented)
     prop3: string;
 }
 
 // @public (undocumented)
+export interface BECOp1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface BECOperations {
+    // (undocumented)
+    c: {
+        op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
+    };
+}
+
+// @public (undocumented)
+export interface BEOperations {
+    // (undocumented)
+    c: BECOperations;
+}
+
+// @public (undocumented)
+export interface BOp1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface BOperations {
+    // (undocumented)
+    b: {
+        op1: (body: BA, options?: BOp1Options) => Promise<void>;
+    };
+    // (undocumented)
+    c: BCOperations;
+    // (undocumented)
+    e: BEOperations;
+}
+
+// @public (undocumented)
+export interface DOp1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface DOperations {
+    // (undocumented)
+    d: {
+        op1: (body: A, options?: DOp1Options) => Promise<void>;
+    };
+}
+
+// @public (undocumented)
 export class FooClient {
     constructor(endpoint: string, options?: FooClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "BOperations" needs to be exported by the entry point index.d.ts
     readonly b: BOperations;
-    // Warning: (ae-forgotten-export) The symbol "DOperations" needs to be exported by the entry point index.d.ts
     readonly d: DOperations;
-    // Warning: (ae-forgotten-export) The symbol "Op1Options" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     op1(body: A, options?: Op1Options): Promise<void>;
     readonly pipeline: Pipeline;
@@ -42,6 +96,10 @@ export class FooClient {
 
 // @public (undocumented)
 export interface FooClientOptions extends ClientOptions {
+}
+
+// @public (undocumented)
+export interface Op1Options extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)
