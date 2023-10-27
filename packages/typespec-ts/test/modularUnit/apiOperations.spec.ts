@@ -2,7 +2,7 @@ import { assert } from "chai";
 import { emitModularOperationsFromTypeSpec } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe.only("api operations in Modular", () => {
+describe("api operations in Modular", () => {
   it("should handle contentTypes has binary data", async () => {
     const tspContent = `
     @route("/uploadFileViaBody")
