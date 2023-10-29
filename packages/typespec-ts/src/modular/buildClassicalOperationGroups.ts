@@ -7,6 +7,7 @@ import { NameType } from "@azure-tools/rlc-common";
 import { getClassicalOperation } from "./helpers/classicalOperationHelpers.js";
 import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 import { SourceFile } from "ts-morph";
+import { importModels } from "./buildOperations.js";
 
 export function buildClassicOperationFiles(
   codeModel: ModularCodeModel,
@@ -40,6 +41,16 @@ export function buildClassicOperationFiles(
           }classic/${classicOperationFileName}.ts`
         );
       getClassicalOperation(classicFile, client, operationGroup);
+
+      // Import models used from ./models.ts
+      // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
+      importModels(
+        srcPath,
+        classicFile,
+        codeModel.project,
+        subfolder,
+        operationGroup.namespaceHierarchies.length
+      );
       importApis(classicFile, client, codeModel, operationGroup);
       classicFile.fixMissingImports();
       classicFile.fixUnusedIdentifiers();
@@ -75,6 +86,10 @@ export function buildClassicOperationFiles(
             }classic/${classicOperationFileName}.ts`
           );
         getClassicalOperation(classicFile, client, operationGroup, layer);
+
+        // Import models used from ./models.ts
+        // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
+        importModels(srcPath, classicFile, codeModel.project, subfolder, layer);
         importApis(classicFile, client, codeModel, operationGroup, layer);
         classicFile.fixMissingImports();
         classicFile.fixUnusedIdentifiers();

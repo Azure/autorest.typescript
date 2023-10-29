@@ -151,6 +151,10 @@ export function getOperationGroupName(
     operation
   );
 
+  if (namespaceNames.length === 0 && operation.interface?.name) {
+    namespaceNames.push(operation.interface.name);
+  }
+
   return namespaceNames
     .map((name) => {
       return normalizeName(name, NameType.Interface, true);

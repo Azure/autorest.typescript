@@ -11,6 +11,7 @@ options:
     azureSdkForJs: false
     enableOperationGroup: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@azure/load-testing"
       description: This package contains Microsoft Azure LoadTestingClient client library.

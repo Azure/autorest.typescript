@@ -22,6 +22,9 @@ export function buildSubpathIndexFile(
       .replace(/\\/g, "/")
       .startsWith(apiFilePattern.replace(/\\/g, "/"));
   });
+  if (apiFiles.length === 0) {
+    return;
+  }
   const indexFile = codeModel.project.createSourceFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );

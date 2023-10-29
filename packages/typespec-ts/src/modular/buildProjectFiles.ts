@@ -319,13 +319,13 @@ export function emitPackage(
         codeModel.clients.length > 1
           ? normalizeName(client.name.replace("Client", ""), NameType.File)
           : undefined;
-      const subApiPath = getClassicalLayerPrefix(
+      const subApiPath = `api/${getClassicalLayerPrefix(
         operationGroup,
         NameType.File,
         "/"
-      );
+      )}`;
       packageInfo.exports[
-        `./api/${subfolder ? subfolder + "/" : ""}${subApiPath}`
+        `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
       ] = {
         types: `./types/src/${
           subfolder ? subfolder + "/" : ""

@@ -1,13 +1,11 @@
-import {
-  SdkContext,
-  getAllModels
-} from "@azure-tools/typespec-client-generator-core";
+import { getAllModels } from "@azure-tools/typespec-client-generator-core";
 import {
   Namespace,
   isGlobalNamespace,
   isService,
   Operation
 } from "@typespec/compiler";
+import { SdkContext } from "../utils/interfaces.js";
 
 export function getModelNamespaceName(
   dpgContext: SdkContext,
@@ -28,6 +26,9 @@ export function getOperationNamespaceInterfaceName(
   operation: Operation
 ): string[] {
   const result: string[] = [];
+  if (dpgContext.rlcOptions?.hierarchyClient === false) {
+    return result;
+  }
   if (operation.interface) {
     if (operation.interface.namespace) {
       result.push(

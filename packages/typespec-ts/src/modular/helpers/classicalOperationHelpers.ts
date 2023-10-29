@@ -25,7 +25,7 @@ export function getClassicalOperation(
     });
   if (!hasClientContextImport || hasClientContextImport.length === 0) {
     classicFile.addImportDeclaration({
-      namedImports: [modularClientName],
+      namedImports: [client.rlcClientName],
       moduleSpecifier: `${"../".repeat(layer + 2)}api/${modularClientName}.js`
     });
   }
@@ -102,7 +102,7 @@ export function getClassicalOperation(
       parameters: [
         {
           name: "context",
-          type: modularClientName
+          type: client.rlcClientName
         }
       ],
       statements: `return {
@@ -160,7 +160,7 @@ export function getClassicalOperation(
       parameters: [
         {
           name: "context",
-          type: modularClientName
+          type: client.rlcClientName
         }
       ],
       returnType: `${getClassicalLayerPrefix(
