@@ -3,18 +3,18 @@
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
+  ListFilesResponse,
+  OpenAIFile,
+  CreateFileRequest,
+  DeleteFileResponse,
+} from "../../models/models.js";
+import {
   list,
   create,
   retrieve,
   deleteOperation,
   download,
 } from "../../api/files/index.js";
-import {
-  ListFilesResponse,
-  CreateFileRequest,
-  OpenAIFile,
-  DeleteFileResponse,
-} from "../../models/models.js";
 import {
   FilesListOptions,
   FilesCreateOptions,

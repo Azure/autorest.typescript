@@ -3,18 +3,18 @@
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
+  CreateFineTuneRequest,
+  FineTune,
+  ListFineTunesResponse,
+  ListFineTuneEventsResponse,
+} from "../../models/models.js";
+import {
   create,
   list,
   retrieve,
   listEvents,
   cancel,
 } from "../../api/fineTunes/index.js";
-import {
-  CreateFineTuneRequest,
-  FineTune,
-  ListFineTunesResponse,
-  ListFineTuneEventsResponse,
-} from "../../models/models.js";
 import {
   FineTunesCreateOptions,
   FineTunesListOptions,

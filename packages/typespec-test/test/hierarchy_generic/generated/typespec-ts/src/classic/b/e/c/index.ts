@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { FooContext } from "../../../../api/FooContext.js";
-import { op1 } from "../../../../api/b/e/c/index.js";
 import { BEA } from "../../../../models/models.js";
+import { op1 } from "../../../../api/b/e/c/index.js";
 import { BECOp1Options } from "../../../../models/options.js";
 
 export interface BECOperations {

@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
-import { list, retrieve, deleteOperation } from "../../api/models/index.js";
 import {
   ListModelsResponse,
   Model,
   DeleteModelResponse,
 } from "../../models/models.js";
+import { list, retrieve, deleteOperation } from "../../api/models/index.js";
 import {
   ModelsListOptions,
   ModelsRetrieveOptions,

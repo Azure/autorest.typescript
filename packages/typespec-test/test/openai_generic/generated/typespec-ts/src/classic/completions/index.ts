@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
-import { create } from "../../api/completions/index.js";
 import {
   CreateCompletionRequest,
   CreateCompletionResponse,
 } from "../../models/models.js";
+import { create } from "../../api/completions/index.js";
 import { CompletionsCreateOptions } from "../../models/options.js";
 
 export interface CompletionsOperations {

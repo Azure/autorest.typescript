@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { FooContext } from "../../api/FooContext.js";
-import { op1 } from "../../api/b/index.js";
 import { BA } from "../../models/models.js";
+import { op1 } from "../../api/b/index.js";
 import { BOp1Options } from "../../models/options.js";
 import { BCOperations, getBCOperations } from "./c/index.js";
 import { BEOperations, getBEOperations } from "./e/index.js";

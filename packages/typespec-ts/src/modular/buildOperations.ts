@@ -142,6 +142,9 @@ export function importModels(
   subfolder: string = "",
   importLayer: number = 0
 ) {
+  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
+    return i.getModuleSpecifierValue().includes(`models/models.js`);
+  });
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
@@ -153,9 +156,9 @@ export function importModels(
     models.push(entry[0]);
   }
 
-  if (models.length > 0) {
+  if (models.length > 0 && hasModelsImport) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: `../${"../".repeat(importLayer)}models/models.js`,
+      moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
       namedImports: models
     });
   }

@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
-import { create } from "../../api/moderations/index.js";
 import {
   CreateModerationRequest,
   CreateModerationResponse,
 } from "../../models/models.js";
+import { create } from "../../api/moderations/index.js";
 import { ModerationsCreateOptions } from "../../models/options.js";
 
 export interface ModerationsOperations {
