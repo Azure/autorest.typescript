@@ -145,6 +145,7 @@ export interface Response {
   discriminator: string;
   type: Type;
   addedOn?: string;
+  isBinaryPayload?: boolean;
 }
 
 export interface Operation {

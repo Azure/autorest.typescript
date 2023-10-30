@@ -462,9 +462,7 @@ function emitBodyParameter(
     location: "body",
     ...base,
     defaultContentType,
-    isBinaryPayload:
-      isBinaryPayload(context, body.type, defaultContentType) ||
-      (type.type === "byte-array" && type.format === "binary")
+    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
   };
 }
 
@@ -618,7 +616,14 @@ function emitResponse(
     statusCodes: statusCodes ?? [],
     addedOn: getAddedOnVersion(context.program, response.type),
     discriminator: "basic",
-    type: type
+    type: type,
+    isBinaryPayload: innerResponse.body?.type
+      ? isBinaryPayload(
+          context,
+          innerResponse.body?.type,
+          innerResponse.body?.contentTypes![0]! ?? "application/json"
+        )
+      : false
   };
 }
 
