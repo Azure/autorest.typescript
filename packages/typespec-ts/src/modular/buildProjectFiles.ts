@@ -85,7 +85,7 @@ export function emitPackage(
       "review/*"
     ],
     engines: {
-      node: ">=16.0.0"
+      node: ">=18.0.0"
     },
     scripts: {
       audit:

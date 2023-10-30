@@ -83,7 +83,7 @@ function regularAutorestPackage(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     engines: {
-      node: ">=16.0.0"
+      node: ">=18.0.0"
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
