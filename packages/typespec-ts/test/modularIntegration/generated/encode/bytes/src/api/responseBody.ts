@@ -67,9 +67,7 @@ export async function _responseBodyOctetStreamDeserialize(
     throw result.body;
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body;
 }
 
 export async function responseBodyOctetStream(
@@ -96,9 +94,7 @@ export async function _responseBodyCustomContentTypeDeserialize(
     throw result.body;
   }
 
-  return typeof result.body === "string"
-    ? stringToUint8Array(result.body, "base64")
-    : result.body;
+  return result.body;
 }
 
 export async function responseBodyCustomContentType(

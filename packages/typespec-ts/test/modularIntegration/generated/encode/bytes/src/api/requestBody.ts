@@ -64,7 +64,7 @@ export function _requestBodyOctetStreamSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "application/octet-stream",
-      body: uint8ArrayToString(value, "base64"),
+      body: value,
     });
 }
 
@@ -97,7 +97,7 @@ export function _requestBodyCustomContentTypeSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
-      body: uint8ArrayToString(value, "base64"),
+      body: value,
     });
 }
 
