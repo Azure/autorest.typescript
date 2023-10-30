@@ -152,7 +152,7 @@ export interface RLCOptions {
   addCredentials?: boolean;
   /** Three possiblie values:
    * - undefined, no credentialScopes and relevant settings would be generated
-   * - [], which means we would generate credentialScopes and relevant settings but with empty
+   * - [], which means we would generate TokenCredential but no credentialScopes and relevant settings
    * - ["..."], which means we would generate credentialScopes and relevant settings with the given values
    */
   credentialScopes?: string[];
