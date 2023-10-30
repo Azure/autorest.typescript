@@ -621,7 +621,7 @@ function emitResponse(
       ? isBinaryPayload(
           context,
           innerResponse.body?.type,
-          innerResponse.body?.contentTypes![0]! ?? "application/json"
+          innerResponse.body?.contentTypes![0] ?? "application/json"
         )
       : false
   };
