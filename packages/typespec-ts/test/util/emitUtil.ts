@@ -167,7 +167,7 @@ export async function emitClientDefinitionFromTypeSpec(
 export async function emitClientFactoryFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
-  isEmptyDiagnostic = true,
+  mustEmptyDiagnostic = true,
   withRawContent = false
 ) {
   const context = await rlcEmitterFor(
@@ -187,10 +187,13 @@ export async function emitClientFactoryFromTypeSpec(
   if (clients && clients[0]) {
     apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
   }
-  if (isEmptyDiagnostic) {
-    expectDiagnosticEmpty(dpgContext.program.diagnostics);
+  if (mustEmptyDiagnostic) {
+    if (dpgContext.program.diagnostics.length > 0) {
+      throw dpgContext.program.diagnostics;
+    }
   } else {
-    throw dpgContext.program.diagnostics;
+    // do not expect empty diagnostic
+    // do nothing
   }
 
   return buildClient({
