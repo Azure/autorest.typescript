@@ -2,171 +2,166 @@
 // Licensed under the MIT license.
 
 import {
-  ApplicationsListApplications200Response,
-  ApplicationsListApplicationsDefaultResponse,
-  ApplicationsGet200Response,
-  ApplicationsGetDefaultResponse,
-  PoolListUsageMetrics200Response,
-  PoolListUsageMetricsDefaultResponse,
-  PoolGetAllPoolLifetimeStatistics200Response,
-  PoolGetAllPoolLifetimeStatisticsDefaultResponse,
-  PoolAddPool201Response,
-  PoolAddPoolDefaultResponse,
-  PoolListPools200Response,
-  PoolListPoolsDefaultResponse,
-  PoolDeletePool202Response,
-  PoolDeletePoolDefaultResponse,
+  ListApplications200Response,
+  ListApplicationsDefaultResponse,
+  GetApplication200Response,
+  GetApplicationDefaultResponse,
+  ListPoolUsageMetrics200Response,
+  ListPoolUsageMetricsDefaultResponse,
+  CreatePool201Response,
+  CreatePoolDefaultResponse,
+  ListPools200Response,
+  ListPoolsDefaultResponse,
+  DeletePool202Response,
+  DeletePoolDefaultResponse,
   PoolExists200Response,
   PoolExists404Response,
   PoolExistsDefaultResponse,
-  PoolGetPool200Response,
-  PoolGetPoolDefaultResponse,
-  PoolPatchPool200Response,
-  PoolPatchPoolDefaultResponse,
-  PoolDisableAutoScale200Response,
-  PoolDisableAutoScaleDefaultResponse,
-  PoolEnableAutoScale200Response,
-  PoolEnableAutoScaleDefaultResponse,
-  PoolEvaluateAutoScale200Response,
-  PoolEvaluateAutoScaleDefaultResponse,
-  PoolResize202Response,
-  PoolResizeDefaultResponse,
-  PoolStopResize202Response,
-  PoolStopResizeDefaultResponse,
-  PoolUpdateProperties204Response,
-  PoolUpdatePropertiesDefaultResponse,
-  PoolRemoveNodes202Response,
-  PoolRemoveNodesDefaultResponse,
-  AccountListSupportedImages200Response,
-  AccountListSupportedImagesDefaultResponse,
-  AccountListPoolNodeCounts200Response,
-  AccountListPoolNodeCountsDefaultResponse,
-  JobGetAllJobLifetimeStatistics200Response,
-  JobGetAllJobLifetimeStatisticsDefaultResponse,
-  JobDeleteJob202Response,
-  JobDeleteJobDefaultResponse,
-  JobGetJob200Response,
-  JobGetJobDefaultResponse,
-  JobPatchJob200Response,
-  JobPatchJobDefaultResponse,
-  JobUpdateJob200Response,
-  JobUpdateJobDefaultResponse,
-  JobDisableJob202Response,
-  JobDisableJobDefaultResponse,
-  JobEnableJob202Response,
-  JobEnableJobDefaultResponse,
-  JobTerminateJob202Response,
-  JobTerminateJobDefaultResponse,
-  JobAddJob201Response,
-  JobAddJobDefaultResponse,
-  JobListJobs200Response,
-  JobListJobsDefaultResponse,
-  JobListFromJobSchedule200Response,
-  JobListFromJobScheduleDefaultResponse,
-  JobListPreparationAndReleaseTaskStatus200Response,
-  JobListPreparationAndReleaseTaskStatusDefaultResponse,
-  JobGetTaskCounts200Response,
-  JobGetTaskCountsDefaultResponse,
-  CertificatesAddCertificate201Response,
-  CertificatesAddCertificateDefaultResponse,
-  CertificatesListCertificates200Response,
-  CertificatesListCertificatesDefaultResponse,
-  CertificatesCancelCertificateDeletion204Response,
-  CertificatesCancelCertificateDeletionDefaultResponse,
-  CertificatesDeleteCertificate202Response,
-  CertificatesDeleteCertificateDefaultResponse,
-  CertificatesGetCertificate200Response,
-  CertificatesGetCertificateDefaultResponse,
-  FileDeleteFromTask200Response,
-  FileDeleteFromTaskDefaultResponse,
-  FileGetFromTask200Response,
-  FileGetFromTaskDefaultResponse,
-  FileGetPropertiesFromTask200Response,
-  FileGetPropertiesFromTaskDefaultResponse,
-  FileDeleteFromComputeNode200Response,
-  FileDeleteFromComputeNodeDefaultResponse,
-  FileGetFromComputeNode200Response,
-  FileGetFromComputeNodeDefaultResponse,
-  FileGetPropertiesFromComputeNode200Response,
-  FileGetPropertiesFromComputeNodeDefaultResponse,
-  FileListFromTask200Response,
-  FileListFromTaskDefaultResponse,
-  FileListFromComputeNode200Response,
-  FileListFromComputeNodeDefaultResponse,
-  JobScheduleJobScheduleExists200Response,
-  JobScheduleJobScheduleExists404Response,
-  JobScheduleJobScheduleExistsDefaultResponse,
-  JobScheduleDeleteJobSchedule202Response,
-  JobScheduleDeleteJobScheduleDefaultResponse,
-  JobScheduleGetJobSchedule200Response,
-  JobScheduleGetJobScheduleDefaultResponse,
-  JobSchedulePatchJobSchedule200Response,
-  JobSchedulePatchJobScheduleDefaultResponse,
-  JobScheduleUpdateJobSchedule200Response,
-  JobScheduleUpdateJobScheduleDefaultResponse,
-  JobScheduleDisableJobSchedule204Response,
-  JobScheduleDisableJobScheduleDefaultResponse,
-  JobScheduleEnableJobSchedule204Response,
-  JobScheduleEnableJobScheduleDefaultResponse,
-  JobScheduleTerminateJobSchedule202Response,
-  JobScheduleTerminateJobScheduleDefaultResponse,
-  JobScheduleAddJobSchedule201Response,
-  JobScheduleAddJobScheduleDefaultResponse,
-  JobScheduleListJobSchedules200Response,
-  JobScheduleListJobSchedulesDefaultResponse,
-  TaskAddTask201Response,
-  TaskAddTaskDefaultResponse,
-  TaskListTasks200Response,
-  TaskListTasksDefaultResponse,
-  TaskAddTaskCollection200Response,
-  TaskAddTaskCollectionDefaultResponse,
-  TaskDeleteTaskCollection200Response,
-  TaskDeleteTaskCollectionDefaultResponse,
-  TaskGetTaskCollection200Response,
-  TaskGetTaskCollectionDefaultResponse,
-  TaskUpdateTaskCollection200Response,
-  TaskUpdateTaskCollectionDefaultResponse,
-  TaskListSubtasks200Response,
-  TaskListSubtasksDefaultResponse,
-  TaskTerminateTaskCollection204Response,
-  TaskTerminateTaskCollectionDefaultResponse,
-  TaskReactivateTaskCollection204Response,
-  TaskReactivateTaskCollectionDefaultResponse,
-  ComputeNodesAddUser201Response,
-  ComputeNodesAddUserDefaultResponse,
-  ComputeNodesDeleteUser200Response,
-  ComputeNodesDeleteUserDefaultResponse,
-  ComputeNodesUpdateUser200Response,
-  ComputeNodesUpdateUserDefaultResponse,
-  ComputeNodesGetComputeNode200Response,
-  ComputeNodesGetComputeNodeDefaultResponse,
-  ComputeNodesRebootComputeNode202Response,
-  ComputeNodesRebootComputeNodeDefaultResponse,
-  ComputeNodesReimageComputeNode202Response,
-  ComputeNodesReimageComputeNodeDefaultResponse,
-  ComputeNodesDisableScheduling200Response,
-  ComputeNodesDisableSchedulingDefaultResponse,
-  ComputeNodesEnableScheduling200Response,
-  ComputeNodesEnableSchedulingDefaultResponse,
-  ComputeNodesGetRemoteLoginSettings200Response,
-  ComputeNodesGetRemoteLoginSettingsDefaultResponse,
-  ComputeNodesGetRemoteDesktop200Response,
-  ComputeNodesGetRemoteDesktopDefaultResponse,
-  ComputeNodesUploadBatchServiceLogs200Response,
-  ComputeNodesUploadBatchServiceLogsDefaultResponse,
-  ComputeNodesList200Response,
-  ComputeNodesListDefaultResponse,
-  ComputeNodeExtensionsGetComputeNodeExtensions200Response,
-  ComputeNodeExtensionsGetComputeNodeExtensionsDefaultResponse,
-  ComputeNodeExtensionsListComputeNodeExtensions200Response,
-  ComputeNodeExtensionsListComputeNodeExtensionsDefaultResponse,
+  GetPool200Response,
+  GetPoolDefaultResponse,
+  UpdatePool200Response,
+  UpdatePoolDefaultResponse,
+  DisablePoolAutoScale200Response,
+  DisablePoolAutoScaleDefaultResponse,
+  EnablePoolAutoScale200Response,
+  EnablePoolAutoScaleDefaultResponse,
+  EvaluatePoolAutoScale200Response,
+  EvaluatePoolAutoScaleDefaultResponse,
+  ResizePool202Response,
+  ResizePoolDefaultResponse,
+  StopPoolResize202Response,
+  StopPoolResizeDefaultResponse,
+  ReplacePoolProperties204Response,
+  ReplacePoolPropertiesDefaultResponse,
+  RemoveNodes202Response,
+  RemoveNodesDefaultResponse,
+  ListSupportedImages200Response,
+  ListSupportedImagesDefaultResponse,
+  ListPoolNodeCounts200Response,
+  ListPoolNodeCountsDefaultResponse,
+  DeleteJob202Response,
+  DeleteJobDefaultResponse,
+  GetJob200Response,
+  GetJobDefaultResponse,
+  UpdateJob200Response,
+  UpdateJobDefaultResponse,
+  ReplaceJob200Response,
+  ReplaceJobDefaultResponse,
+  DisableJob202Response,
+  DisableJobDefaultResponse,
+  EnableJob202Response,
+  EnableJobDefaultResponse,
+  TerminateJob202Response,
+  TerminateJobDefaultResponse,
+  CreateJob201Response,
+  CreateJobDefaultResponse,
+  ListJobs200Response,
+  ListJobsDefaultResponse,
+  ListJobsFromSchedule200Response,
+  ListJobsFromScheduleDefaultResponse,
+  ListJobPreparationAndReleaseTaskStatus200Response,
+  ListJobPreparationAndReleaseTaskStatusDefaultResponse,
+  GetJobTaskCounts200Response,
+  GetJobTaskCountsDefaultResponse,
+  CreateCertificate201Response,
+  CreateCertificateDefaultResponse,
+  ListCertificates200Response,
+  ListCertificatesDefaultResponse,
+  CancelCertificateDeletion204Response,
+  CancelCertificateDeletionDefaultResponse,
+  DeleteCertificate202Response,
+  DeleteCertificateDefaultResponse,
+  GetCertificate200Response,
+  GetCertificateDefaultResponse,
+  JobScheduleExists200Response,
+  JobScheduleExists404Response,
+  JobScheduleExistsDefaultResponse,
+  DeleteJobSchedule202Response,
+  DeleteJobScheduleDefaultResponse,
+  GetJobSchedule200Response,
+  GetJobScheduleDefaultResponse,
+  UpdateJobSchedule200Response,
+  UpdateJobScheduleDefaultResponse,
+  ReplaceJobSchedule200Response,
+  ReplaceJobScheduleDefaultResponse,
+  DisableJobSchedule204Response,
+  DisableJobScheduleDefaultResponse,
+  EnableJobSchedule204Response,
+  EnableJobScheduleDefaultResponse,
+  TerminateJobSchedule202Response,
+  TerminateJobScheduleDefaultResponse,
+  CreateJobSchedule201Response,
+  CreateJobScheduleDefaultResponse,
+  ListJobSchedules200Response,
+  ListJobSchedulesDefaultResponse,
+  CreateTask201Response,
+  CreateTaskDefaultResponse,
+  ListTasks200Response,
+  ListTasksDefaultResponse,
+  CreateTaskCollection200Response,
+  CreateTaskCollectionDefaultResponse,
+  DeleteTask200Response,
+  DeleteTaskDefaultResponse,
+  GetTask200Response,
+  GetTaskDefaultResponse,
+  ReplaceTask200Response,
+  ReplaceTaskDefaultResponse,
+  ListSubTasks200Response,
+  ListSubTasksDefaultResponse,
+  TerminateTask204Response,
+  TerminateTaskDefaultResponse,
+  ReactivateTask204Response,
+  ReactivateTaskDefaultResponse,
+  DeleteTaskFile200Response,
+  DeleteTaskFileDefaultResponse,
+  GetTaskFile200Response,
+  GetTaskFileDefaultResponse,
+  GetTaskFileProperties200Response,
+  GetTaskFilePropertiesDefaultResponse,
+  ListTaskFiles200Response,
+  ListTaskFilesDefaultResponse,
+  CreateNodeUser201Response,
+  CreateNodeUserDefaultResponse,
+  DeleteNodeUser200Response,
+  DeleteNodeUserDefaultResponse,
+  ReplaceNodeUser200Response,
+  ReplaceNodeUserDefaultResponse,
+  GetNode200Response,
+  GetNodeDefaultResponse,
+  RebootNode202Response,
+  RebootNodeDefaultResponse,
+  ReimageNode202Response,
+  ReimageNodeDefaultResponse,
+  DisableNodeScheduling200Response,
+  DisableNodeSchedulingDefaultResponse,
+  EnableNodeScheduling200Response,
+  EnableNodeSchedulingDefaultResponse,
+  GetNodeRemoteLoginSettings200Response,
+  GetNodeRemoteLoginSettingsDefaultResponse,
+  GetNodeRemoteDesktopFile200Response,
+  GetNodeRemoteDesktopFileDefaultResponse,
+  UploadNodeLogs200Response,
+  UploadNodeLogsDefaultResponse,
+  ListNodes200Response,
+  ListNodesDefaultResponse,
+  GetNodeExtension200Response,
+  GetNodeExtensionDefaultResponse,
+  ListNodeExtensions200Response,
+  ListNodeExtensionsDefaultResponse,
+  DeleteNodeFile200Response,
+  DeleteNodeFileDefaultResponse,
+  GetNodeFile200Response,
+  GetNodeFileDefaultResponse,
+  GetNodeFileProperties200Response,
+  GetNodeFilePropertiesDefaultResponse,
+  ListNodeFiles200Response,
+  ListNodeFilesDefaultResponse,
 } from "./responses.js";
 
 const responseMap: Record<string, string[]> = {
   "GET /applications": ["200"],
   "GET /applications/{applicationId}": ["200"],
   "GET /poolusagemetrics": ["200"],
-  "GET /lifetimepoolstats": ["200"],
   "POST /pools": ["201"],
   "GET /pools": ["200"],
   "DELETE /pools/{poolId}": ["202"],
@@ -182,7 +177,6 @@ const responseMap: Record<string, string[]> = {
   "POST /pools/{poolId}/removenodes": ["202"],
   "GET /supportedimages": ["200"],
   "GET /nodecounts": ["200"],
-  "GET /lifetimejobstats": ["200"],
   "DELETE /jobs/{jobId}": ["202"],
   "GET /jobs/{jobId}": ["200"],
   "PATCH /jobs/{jobId}": ["200"],
@@ -203,14 +197,6 @@ const responseMap: Record<string, string[]> = {
     ["202"],
   "GET /certificates(thumbprintAlgorithm={thumbprintAlgorithm},thumbprint={thumbprint})":
     ["200"],
-  "DELETE /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
-  "GET /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
-  "HEAD /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
-  "DELETE /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
-  "GET /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
-  "HEAD /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
-  "GET /jobs/{jobId}/tasks/{taskId}/files": ["200"],
-  "GET /pools/{poolId}/nodes/{nodeId}/files": ["200"],
   "HEAD /jobschedules/{jobScheduleId}": ["200", "404"],
   "DELETE /jobschedules/{jobScheduleId}": ["202"],
   "GET /jobschedules/{jobScheduleId}": ["200"],
@@ -230,6 +216,10 @@ const responseMap: Record<string, string[]> = {
   "GET /jobs/{jobId}/tasks/{taskId}/subtasksinfo": ["200"],
   "POST /jobs/{jobId}/tasks/{taskId}/terminate": ["204"],
   "POST /jobs/{jobId}/tasks/{taskId}/reactivate": ["204"],
+  "DELETE /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
+  "GET /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
+  "HEAD /jobs/{jobId}/tasks/{taskId}/files/{filePath}": ["200"],
+  "GET /jobs/{jobId}/tasks/{taskId}/files": ["200"],
   "POST /pools/{poolId}/nodes/{nodeId}/users": ["201"],
   "DELETE /pools/{poolId}/nodes/{nodeId}/users/{userName}": ["200"],
   "PUT /pools/{poolId}/nodes/{nodeId}/users/{userName}": ["200"],
@@ -244,35 +234,32 @@ const responseMap: Record<string, string[]> = {
   "GET /pools/{poolId}/nodes": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}/extensions/{extensionName}": ["200"],
   "GET /pools/{poolId}/nodes/{nodeId}/extensions": ["200"],
+  "DELETE /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
+  "GET /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
+  "HEAD /pools/{poolId}/nodes/{nodeId}/files/{filePath}": ["200"],
+  "GET /pools/{poolId}/nodes/{nodeId}/files": ["200"],
 };
 
 export function isUnexpected(
-  response:
-    | ApplicationsListApplications200Response
-    | ApplicationsListApplicationsDefaultResponse
-): response is ApplicationsListApplicationsDefaultResponse;
+  response: ListApplications200Response | ListApplicationsDefaultResponse
+): response is ListApplicationsDefaultResponse;
 export function isUnexpected(
-  response: ApplicationsGet200Response | ApplicationsGetDefaultResponse
-): response is ApplicationsGetDefaultResponse;
+  response: GetApplication200Response | GetApplicationDefaultResponse
+): response is GetApplicationDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolListUsageMetrics200Response
-    | PoolListUsageMetricsDefaultResponse
-): response is PoolListUsageMetricsDefaultResponse;
+    | ListPoolUsageMetrics200Response
+    | ListPoolUsageMetricsDefaultResponse
+): response is ListPoolUsageMetricsDefaultResponse;
 export function isUnexpected(
-  response:
-    | PoolGetAllPoolLifetimeStatistics200Response
-    | PoolGetAllPoolLifetimeStatisticsDefaultResponse
-): response is PoolGetAllPoolLifetimeStatisticsDefaultResponse;
+  response: CreatePool201Response | CreatePoolDefaultResponse
+): response is CreatePoolDefaultResponse;
 export function isUnexpected(
-  response: PoolAddPool201Response | PoolAddPoolDefaultResponse
-): response is PoolAddPoolDefaultResponse;
+  response: ListPools200Response | ListPoolsDefaultResponse
+): response is ListPoolsDefaultResponse;
 export function isUnexpected(
-  response: PoolListPools200Response | PoolListPoolsDefaultResponse
-): response is PoolListPoolsDefaultResponse;
-export function isUnexpected(
-  response: PoolDeletePool202Response | PoolDeletePoolDefaultResponse
-): response is PoolDeletePoolDefaultResponse;
+  response: DeletePool202Response | DeletePoolDefaultResponse
+): response is DeletePoolDefaultResponse;
 export function isUnexpected(
   response:
     | PoolExists200Response
@@ -280,547 +267,476 @@ export function isUnexpected(
     | PoolExistsDefaultResponse
 ): response is PoolExistsDefaultResponse;
 export function isUnexpected(
-  response: PoolGetPool200Response | PoolGetPoolDefaultResponse
-): response is PoolGetPoolDefaultResponse;
+  response: GetPool200Response | GetPoolDefaultResponse
+): response is GetPoolDefaultResponse;
 export function isUnexpected(
-  response: PoolPatchPool200Response | PoolPatchPoolDefaultResponse
-): response is PoolPatchPoolDefaultResponse;
-export function isUnexpected(
-  response:
-    | PoolDisableAutoScale200Response
-    | PoolDisableAutoScaleDefaultResponse
-): response is PoolDisableAutoScaleDefaultResponse;
-export function isUnexpected(
-  response: PoolEnableAutoScale200Response | PoolEnableAutoScaleDefaultResponse
-): response is PoolEnableAutoScaleDefaultResponse;
+  response: UpdatePool200Response | UpdatePoolDefaultResponse
+): response is UpdatePoolDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolEvaluateAutoScale200Response
-    | PoolEvaluateAutoScaleDefaultResponse
-): response is PoolEvaluateAutoScaleDefaultResponse;
+    | DisablePoolAutoScale200Response
+    | DisablePoolAutoScaleDefaultResponse
+): response is DisablePoolAutoScaleDefaultResponse;
 export function isUnexpected(
-  response: PoolResize202Response | PoolResizeDefaultResponse
-): response is PoolResizeDefaultResponse;
-export function isUnexpected(
-  response: PoolStopResize202Response | PoolStopResizeDefaultResponse
-): response is PoolStopResizeDefaultResponse;
+  response: EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
+): response is EnablePoolAutoScaleDefaultResponse;
 export function isUnexpected(
   response:
-    | PoolUpdateProperties204Response
-    | PoolUpdatePropertiesDefaultResponse
-): response is PoolUpdatePropertiesDefaultResponse;
+    | EvaluatePoolAutoScale200Response
+    | EvaluatePoolAutoScaleDefaultResponse
+): response is EvaluatePoolAutoScaleDefaultResponse;
 export function isUnexpected(
-  response: PoolRemoveNodes202Response | PoolRemoveNodesDefaultResponse
-): response is PoolRemoveNodesDefaultResponse;
+  response: ResizePool202Response | ResizePoolDefaultResponse
+): response is ResizePoolDefaultResponse;
 export function isUnexpected(
-  response:
-    | AccountListSupportedImages200Response
-    | AccountListSupportedImagesDefaultResponse
-): response is AccountListSupportedImagesDefaultResponse;
+  response: StopPoolResize202Response | StopPoolResizeDefaultResponse
+): response is StopPoolResizeDefaultResponse;
 export function isUnexpected(
   response:
-    | AccountListPoolNodeCounts200Response
-    | AccountListPoolNodeCountsDefaultResponse
-): response is AccountListPoolNodeCountsDefaultResponse;
+    | ReplacePoolProperties204Response
+    | ReplacePoolPropertiesDefaultResponse
+): response is ReplacePoolPropertiesDefaultResponse;
+export function isUnexpected(
+  response: RemoveNodes202Response | RemoveNodesDefaultResponse
+): response is RemoveNodesDefaultResponse;
+export function isUnexpected(
+  response: ListSupportedImages200Response | ListSupportedImagesDefaultResponse
+): response is ListSupportedImagesDefaultResponse;
+export function isUnexpected(
+  response: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
+): response is ListPoolNodeCountsDefaultResponse;
+export function isUnexpected(
+  response: DeleteJob202Response | DeleteJobDefaultResponse
+): response is DeleteJobDefaultResponse;
+export function isUnexpected(
+  response: GetJob200Response | GetJobDefaultResponse
+): response is GetJobDefaultResponse;
+export function isUnexpected(
+  response: UpdateJob200Response | UpdateJobDefaultResponse
+): response is UpdateJobDefaultResponse;
+export function isUnexpected(
+  response: ReplaceJob200Response | ReplaceJobDefaultResponse
+): response is ReplaceJobDefaultResponse;
+export function isUnexpected(
+  response: DisableJob202Response | DisableJobDefaultResponse
+): response is DisableJobDefaultResponse;
+export function isUnexpected(
+  response: EnableJob202Response | EnableJobDefaultResponse
+): response is EnableJobDefaultResponse;
+export function isUnexpected(
+  response: TerminateJob202Response | TerminateJobDefaultResponse
+): response is TerminateJobDefaultResponse;
+export function isUnexpected(
+  response: CreateJob201Response | CreateJobDefaultResponse
+): response is CreateJobDefaultResponse;
+export function isUnexpected(
+  response: ListJobs200Response | ListJobsDefaultResponse
+): response is ListJobsDefaultResponse;
 export function isUnexpected(
   response:
-    | JobGetAllJobLifetimeStatistics200Response
-    | JobGetAllJobLifetimeStatisticsDefaultResponse
-): response is JobGetAllJobLifetimeStatisticsDefaultResponse;
-export function isUnexpected(
-  response: JobDeleteJob202Response | JobDeleteJobDefaultResponse
-): response is JobDeleteJobDefaultResponse;
-export function isUnexpected(
-  response: JobGetJob200Response | JobGetJobDefaultResponse
-): response is JobGetJobDefaultResponse;
-export function isUnexpected(
-  response: JobPatchJob200Response | JobPatchJobDefaultResponse
-): response is JobPatchJobDefaultResponse;
-export function isUnexpected(
-  response: JobUpdateJob200Response | JobUpdateJobDefaultResponse
-): response is JobUpdateJobDefaultResponse;
-export function isUnexpected(
-  response: JobDisableJob202Response | JobDisableJobDefaultResponse
-): response is JobDisableJobDefaultResponse;
-export function isUnexpected(
-  response: JobEnableJob202Response | JobEnableJobDefaultResponse
-): response is JobEnableJobDefaultResponse;
-export function isUnexpected(
-  response: JobTerminateJob202Response | JobTerminateJobDefaultResponse
-): response is JobTerminateJobDefaultResponse;
-export function isUnexpected(
-  response: JobAddJob201Response | JobAddJobDefaultResponse
-): response is JobAddJobDefaultResponse;
-export function isUnexpected(
-  response: JobListJobs200Response | JobListJobsDefaultResponse
-): response is JobListJobsDefaultResponse;
+    | ListJobsFromSchedule200Response
+    | ListJobsFromScheduleDefaultResponse
+): response is ListJobsFromScheduleDefaultResponse;
 export function isUnexpected(
   response:
-    | JobListFromJobSchedule200Response
-    | JobListFromJobScheduleDefaultResponse
-): response is JobListFromJobScheduleDefaultResponse;
+    | ListJobPreparationAndReleaseTaskStatus200Response
+    | ListJobPreparationAndReleaseTaskStatusDefaultResponse
+): response is ListJobPreparationAndReleaseTaskStatusDefaultResponse;
+export function isUnexpected(
+  response: GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse
+): response is GetJobTaskCountsDefaultResponse;
+export function isUnexpected(
+  response: CreateCertificate201Response | CreateCertificateDefaultResponse
+): response is CreateCertificateDefaultResponse;
+export function isUnexpected(
+  response: ListCertificates200Response | ListCertificatesDefaultResponse
+): response is ListCertificatesDefaultResponse;
 export function isUnexpected(
   response:
-    | JobListPreparationAndReleaseTaskStatus200Response
-    | JobListPreparationAndReleaseTaskStatusDefaultResponse
-): response is JobListPreparationAndReleaseTaskStatusDefaultResponse;
+    | CancelCertificateDeletion204Response
+    | CancelCertificateDeletionDefaultResponse
+): response is CancelCertificateDeletionDefaultResponse;
 export function isUnexpected(
-  response: JobGetTaskCounts200Response | JobGetTaskCountsDefaultResponse
-): response is JobGetTaskCountsDefaultResponse;
+  response: DeleteCertificate202Response | DeleteCertificateDefaultResponse
+): response is DeleteCertificateDefaultResponse;
 export function isUnexpected(
-  response:
-    | CertificatesAddCertificate201Response
-    | CertificatesAddCertificateDefaultResponse
-): response is CertificatesAddCertificateDefaultResponse;
+  response: GetCertificate200Response | GetCertificateDefaultResponse
+): response is GetCertificateDefaultResponse;
 export function isUnexpected(
   response:
-    | CertificatesListCertificates200Response
-    | CertificatesListCertificatesDefaultResponse
-): response is CertificatesListCertificatesDefaultResponse;
+    | JobScheduleExists200Response
+    | JobScheduleExists404Response
+    | JobScheduleExistsDefaultResponse
+): response is JobScheduleExistsDefaultResponse;
+export function isUnexpected(
+  response: DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse
+): response is DeleteJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: GetJobSchedule200Response | GetJobScheduleDefaultResponse
+): response is GetJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
+): response is UpdateJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
+): response is ReplaceJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: DisableJobSchedule204Response | DisableJobScheduleDefaultResponse
+): response is DisableJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: EnableJobSchedule204Response | EnableJobScheduleDefaultResponse
+): response is EnableJobScheduleDefaultResponse;
 export function isUnexpected(
   response:
-    | CertificatesCancelCertificateDeletion204Response
-    | CertificatesCancelCertificateDeletionDefaultResponse
-): response is CertificatesCancelCertificateDeletionDefaultResponse;
+    | TerminateJobSchedule202Response
+    | TerminateJobScheduleDefaultResponse
+): response is TerminateJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
+): response is CreateJobScheduleDefaultResponse;
+export function isUnexpected(
+  response: ListJobSchedules200Response | ListJobSchedulesDefaultResponse
+): response is ListJobSchedulesDefaultResponse;
+export function isUnexpected(
+  response: CreateTask201Response | CreateTaskDefaultResponse
+): response is CreateTaskDefaultResponse;
+export function isUnexpected(
+  response: ListTasks200Response | ListTasksDefaultResponse
+): response is ListTasksDefaultResponse;
 export function isUnexpected(
   response:
-    | CertificatesDeleteCertificate202Response
-    | CertificatesDeleteCertificateDefaultResponse
-): response is CertificatesDeleteCertificateDefaultResponse;
+    | CreateTaskCollection200Response
+    | CreateTaskCollectionDefaultResponse
+): response is CreateTaskCollectionDefaultResponse;
+export function isUnexpected(
+  response: DeleteTask200Response | DeleteTaskDefaultResponse
+): response is DeleteTaskDefaultResponse;
+export function isUnexpected(
+  response: GetTask200Response | GetTaskDefaultResponse
+): response is GetTaskDefaultResponse;
+export function isUnexpected(
+  response: ReplaceTask200Response | ReplaceTaskDefaultResponse
+): response is ReplaceTaskDefaultResponse;
+export function isUnexpected(
+  response: ListSubTasks200Response | ListSubTasksDefaultResponse
+): response is ListSubTasksDefaultResponse;
+export function isUnexpected(
+  response: TerminateTask204Response | TerminateTaskDefaultResponse
+): response is TerminateTaskDefaultResponse;
+export function isUnexpected(
+  response: ReactivateTask204Response | ReactivateTaskDefaultResponse
+): response is ReactivateTaskDefaultResponse;
+export function isUnexpected(
+  response: DeleteTaskFile200Response | DeleteTaskFileDefaultResponse
+): response is DeleteTaskFileDefaultResponse;
+export function isUnexpected(
+  response: GetTaskFile200Response | GetTaskFileDefaultResponse
+): response is GetTaskFileDefaultResponse;
 export function isUnexpected(
   response:
-    | CertificatesGetCertificate200Response
-    | CertificatesGetCertificateDefaultResponse
-): response is CertificatesGetCertificateDefaultResponse;
+    | GetTaskFileProperties200Response
+    | GetTaskFilePropertiesDefaultResponse
+): response is GetTaskFilePropertiesDefaultResponse;
 export function isUnexpected(
-  response: FileDeleteFromTask200Response | FileDeleteFromTaskDefaultResponse
-): response is FileDeleteFromTaskDefaultResponse;
+  response: ListTaskFiles200Response | ListTaskFilesDefaultResponse
+): response is ListTaskFilesDefaultResponse;
 export function isUnexpected(
-  response: FileGetFromTask200Response | FileGetFromTaskDefaultResponse
-): response is FileGetFromTaskDefaultResponse;
+  response: CreateNodeUser201Response | CreateNodeUserDefaultResponse
+): response is CreateNodeUserDefaultResponse;
 export function isUnexpected(
-  response:
-    | FileGetPropertiesFromTask200Response
-    | FileGetPropertiesFromTaskDefaultResponse
-): response is FileGetPropertiesFromTaskDefaultResponse;
+  response: DeleteNodeUser200Response | DeleteNodeUserDefaultResponse
+): response is DeleteNodeUserDefaultResponse;
 export function isUnexpected(
-  response:
-    | FileDeleteFromComputeNode200Response
-    | FileDeleteFromComputeNodeDefaultResponse
-): response is FileDeleteFromComputeNodeDefaultResponse;
+  response: ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
+): response is ReplaceNodeUserDefaultResponse;
 export function isUnexpected(
-  response:
-    | FileGetFromComputeNode200Response
-    | FileGetFromComputeNodeDefaultResponse
-): response is FileGetFromComputeNodeDefaultResponse;
+  response: GetNode200Response | GetNodeDefaultResponse
+): response is GetNodeDefaultResponse;
 export function isUnexpected(
-  response:
-    | FileGetPropertiesFromComputeNode200Response
-    | FileGetPropertiesFromComputeNodeDefaultResponse
-): response is FileGetPropertiesFromComputeNodeDefaultResponse;
+  response: RebootNode202Response | RebootNodeDefaultResponse
+): response is RebootNodeDefaultResponse;
 export function isUnexpected(
-  response: FileListFromTask200Response | FileListFromTaskDefaultResponse
-): response is FileListFromTaskDefaultResponse;
+  response: ReimageNode202Response | ReimageNodeDefaultResponse
+): response is ReimageNodeDefaultResponse;
 export function isUnexpected(
   response:
-    | FileListFromComputeNode200Response
-    | FileListFromComputeNodeDefaultResponse
-): response is FileListFromComputeNodeDefaultResponse;
+    | DisableNodeScheduling200Response
+    | DisableNodeSchedulingDefaultResponse
+): response is DisableNodeSchedulingDefaultResponse;
 export function isUnexpected(
   response:
-    | JobScheduleJobScheduleExists200Response
-    | JobScheduleJobScheduleExists404Response
-    | JobScheduleJobScheduleExistsDefaultResponse
-): response is JobScheduleJobScheduleExistsDefaultResponse;
+    | EnableNodeScheduling200Response
+    | EnableNodeSchedulingDefaultResponse
+): response is EnableNodeSchedulingDefaultResponse;
 export function isUnexpected(
   response:
-    | JobScheduleDeleteJobSchedule202Response
-    | JobScheduleDeleteJobScheduleDefaultResponse
-): response is JobScheduleDeleteJobScheduleDefaultResponse;
+    | GetNodeRemoteLoginSettings200Response
+    | GetNodeRemoteLoginSettingsDefaultResponse
+): response is GetNodeRemoteLoginSettingsDefaultResponse;
 export function isUnexpected(
   response:
-    | JobScheduleGetJobSchedule200Response
-    | JobScheduleGetJobScheduleDefaultResponse
-): response is JobScheduleGetJobScheduleDefaultResponse;
+    | GetNodeRemoteDesktopFile200Response
+    | GetNodeRemoteDesktopFileDefaultResponse
+): response is GetNodeRemoteDesktopFileDefaultResponse;
+export function isUnexpected(
+  response: UploadNodeLogs200Response | UploadNodeLogsDefaultResponse
+): response is UploadNodeLogsDefaultResponse;
+export function isUnexpected(
+  response: ListNodes200Response | ListNodesDefaultResponse
+): response is ListNodesDefaultResponse;
+export function isUnexpected(
+  response: GetNodeExtension200Response | GetNodeExtensionDefaultResponse
+): response is GetNodeExtensionDefaultResponse;
+export function isUnexpected(
+  response: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse
+): response is ListNodeExtensionsDefaultResponse;
+export function isUnexpected(
+  response: DeleteNodeFile200Response | DeleteNodeFileDefaultResponse
+): response is DeleteNodeFileDefaultResponse;
+export function isUnexpected(
+  response: GetNodeFile200Response | GetNodeFileDefaultResponse
+): response is GetNodeFileDefaultResponse;
 export function isUnexpected(
   response:
-    | JobSchedulePatchJobSchedule200Response
-    | JobSchedulePatchJobScheduleDefaultResponse
-): response is JobSchedulePatchJobScheduleDefaultResponse;
+    | GetNodeFileProperties200Response
+    | GetNodeFilePropertiesDefaultResponse
+): response is GetNodeFilePropertiesDefaultResponse;
+export function isUnexpected(
+  response: ListNodeFiles200Response | ListNodeFilesDefaultResponse
+): response is ListNodeFilesDefaultResponse;
 export function isUnexpected(
   response:
-    | JobScheduleUpdateJobSchedule200Response
-    | JobScheduleUpdateJobScheduleDefaultResponse
-): response is JobScheduleUpdateJobScheduleDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleDisableJobSchedule204Response
-    | JobScheduleDisableJobScheduleDefaultResponse
-): response is JobScheduleDisableJobScheduleDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleEnableJobSchedule204Response
-    | JobScheduleEnableJobScheduleDefaultResponse
-): response is JobScheduleEnableJobScheduleDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleTerminateJobSchedule202Response
-    | JobScheduleTerminateJobScheduleDefaultResponse
-): response is JobScheduleTerminateJobScheduleDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleAddJobSchedule201Response
-    | JobScheduleAddJobScheduleDefaultResponse
-): response is JobScheduleAddJobScheduleDefaultResponse;
-export function isUnexpected(
-  response:
-    | JobScheduleListJobSchedules200Response
-    | JobScheduleListJobSchedulesDefaultResponse
-): response is JobScheduleListJobSchedulesDefaultResponse;
-export function isUnexpected(
-  response: TaskAddTask201Response | TaskAddTaskDefaultResponse
-): response is TaskAddTaskDefaultResponse;
-export function isUnexpected(
-  response: TaskListTasks200Response | TaskListTasksDefaultResponse
-): response is TaskListTasksDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskAddTaskCollection200Response
-    | TaskAddTaskCollectionDefaultResponse
-): response is TaskAddTaskCollectionDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskDeleteTaskCollection200Response
-    | TaskDeleteTaskCollectionDefaultResponse
-): response is TaskDeleteTaskCollectionDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskGetTaskCollection200Response
-    | TaskGetTaskCollectionDefaultResponse
-): response is TaskGetTaskCollectionDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskUpdateTaskCollection200Response
-    | TaskUpdateTaskCollectionDefaultResponse
-): response is TaskUpdateTaskCollectionDefaultResponse;
-export function isUnexpected(
-  response: TaskListSubtasks200Response | TaskListSubtasksDefaultResponse
-): response is TaskListSubtasksDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskTerminateTaskCollection204Response
-    | TaskTerminateTaskCollectionDefaultResponse
-): response is TaskTerminateTaskCollectionDefaultResponse;
-export function isUnexpected(
-  response:
-    | TaskReactivateTaskCollection204Response
-    | TaskReactivateTaskCollectionDefaultResponse
-): response is TaskReactivateTaskCollectionDefaultResponse;
-export function isUnexpected(
-  response: ComputeNodesAddUser201Response | ComputeNodesAddUserDefaultResponse
-): response is ComputeNodesAddUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesDeleteUser200Response
-    | ComputeNodesDeleteUserDefaultResponse
-): response is ComputeNodesDeleteUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesUpdateUser200Response
-    | ComputeNodesUpdateUserDefaultResponse
-): response is ComputeNodesUpdateUserDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesGetComputeNode200Response
-    | ComputeNodesGetComputeNodeDefaultResponse
-): response is ComputeNodesGetComputeNodeDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesRebootComputeNode202Response
-    | ComputeNodesRebootComputeNodeDefaultResponse
-): response is ComputeNodesRebootComputeNodeDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesReimageComputeNode202Response
-    | ComputeNodesReimageComputeNodeDefaultResponse
-): response is ComputeNodesReimageComputeNodeDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesDisableScheduling200Response
-    | ComputeNodesDisableSchedulingDefaultResponse
-): response is ComputeNodesDisableSchedulingDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesEnableScheduling200Response
-    | ComputeNodesEnableSchedulingDefaultResponse
-): response is ComputeNodesEnableSchedulingDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesGetRemoteLoginSettings200Response
-    | ComputeNodesGetRemoteLoginSettingsDefaultResponse
-): response is ComputeNodesGetRemoteLoginSettingsDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesGetRemoteDesktop200Response
-    | ComputeNodesGetRemoteDesktopDefaultResponse
-): response is ComputeNodesGetRemoteDesktopDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodesUploadBatchServiceLogs200Response
-    | ComputeNodesUploadBatchServiceLogsDefaultResponse
-): response is ComputeNodesUploadBatchServiceLogsDefaultResponse;
-export function isUnexpected(
-  response: ComputeNodesList200Response | ComputeNodesListDefaultResponse
-): response is ComputeNodesListDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodeExtensionsGetComputeNodeExtensions200Response
-    | ComputeNodeExtensionsGetComputeNodeExtensionsDefaultResponse
-): response is ComputeNodeExtensionsGetComputeNodeExtensionsDefaultResponse;
-export function isUnexpected(
-  response:
-    | ComputeNodeExtensionsListComputeNodeExtensions200Response
-    | ComputeNodeExtensionsListComputeNodeExtensionsDefaultResponse
-): response is ComputeNodeExtensionsListComputeNodeExtensionsDefaultResponse;
-export function isUnexpected(
-  response:
-    | ApplicationsListApplications200Response
-    | ApplicationsListApplicationsDefaultResponse
-    | ApplicationsGet200Response
-    | ApplicationsGetDefaultResponse
-    | PoolListUsageMetrics200Response
-    | PoolListUsageMetricsDefaultResponse
-    | PoolGetAllPoolLifetimeStatistics200Response
-    | PoolGetAllPoolLifetimeStatisticsDefaultResponse
-    | PoolAddPool201Response
-    | PoolAddPoolDefaultResponse
-    | PoolListPools200Response
-    | PoolListPoolsDefaultResponse
-    | PoolDeletePool202Response
-    | PoolDeletePoolDefaultResponse
+    | ListApplications200Response
+    | ListApplicationsDefaultResponse
+    | GetApplication200Response
+    | GetApplicationDefaultResponse
+    | ListPoolUsageMetrics200Response
+    | ListPoolUsageMetricsDefaultResponse
+    | CreatePool201Response
+    | CreatePoolDefaultResponse
+    | ListPools200Response
+    | ListPoolsDefaultResponse
+    | DeletePool202Response
+    | DeletePoolDefaultResponse
     | PoolExists200Response
     | PoolExists404Response
     | PoolExistsDefaultResponse
-    | PoolGetPool200Response
-    | PoolGetPoolDefaultResponse
-    | PoolPatchPool200Response
-    | PoolPatchPoolDefaultResponse
-    | PoolDisableAutoScale200Response
-    | PoolDisableAutoScaleDefaultResponse
-    | PoolEnableAutoScale200Response
-    | PoolEnableAutoScaleDefaultResponse
-    | PoolEvaluateAutoScale200Response
-    | PoolEvaluateAutoScaleDefaultResponse
-    | PoolResize202Response
-    | PoolResizeDefaultResponse
-    | PoolStopResize202Response
-    | PoolStopResizeDefaultResponse
-    | PoolUpdateProperties204Response
-    | PoolUpdatePropertiesDefaultResponse
-    | PoolRemoveNodes202Response
-    | PoolRemoveNodesDefaultResponse
-    | AccountListSupportedImages200Response
-    | AccountListSupportedImagesDefaultResponse
-    | AccountListPoolNodeCounts200Response
-    | AccountListPoolNodeCountsDefaultResponse
-    | JobGetAllJobLifetimeStatistics200Response
-    | JobGetAllJobLifetimeStatisticsDefaultResponse
-    | JobDeleteJob202Response
-    | JobDeleteJobDefaultResponse
-    | JobGetJob200Response
-    | JobGetJobDefaultResponse
-    | JobPatchJob200Response
-    | JobPatchJobDefaultResponse
-    | JobUpdateJob200Response
-    | JobUpdateJobDefaultResponse
-    | JobDisableJob202Response
-    | JobDisableJobDefaultResponse
-    | JobEnableJob202Response
-    | JobEnableJobDefaultResponse
-    | JobTerminateJob202Response
-    | JobTerminateJobDefaultResponse
-    | JobAddJob201Response
-    | JobAddJobDefaultResponse
-    | JobListJobs200Response
-    | JobListJobsDefaultResponse
-    | JobListFromJobSchedule200Response
-    | JobListFromJobScheduleDefaultResponse
-    | JobListPreparationAndReleaseTaskStatus200Response
-    | JobListPreparationAndReleaseTaskStatusDefaultResponse
-    | JobGetTaskCounts200Response
-    | JobGetTaskCountsDefaultResponse
-    | CertificatesAddCertificate201Response
-    | CertificatesAddCertificateDefaultResponse
-    | CertificatesListCertificates200Response
-    | CertificatesListCertificatesDefaultResponse
-    | CertificatesCancelCertificateDeletion204Response
-    | CertificatesCancelCertificateDeletionDefaultResponse
-    | CertificatesDeleteCertificate202Response
-    | CertificatesDeleteCertificateDefaultResponse
-    | CertificatesGetCertificate200Response
-    | CertificatesGetCertificateDefaultResponse
-    | FileDeleteFromTask200Response
-    | FileDeleteFromTaskDefaultResponse
-    | FileGetFromTask200Response
-    | FileGetFromTaskDefaultResponse
-    | FileGetPropertiesFromTask200Response
-    | FileGetPropertiesFromTaskDefaultResponse
-    | FileDeleteFromComputeNode200Response
-    | FileDeleteFromComputeNodeDefaultResponse
-    | FileGetFromComputeNode200Response
-    | FileGetFromComputeNodeDefaultResponse
-    | FileGetPropertiesFromComputeNode200Response
-    | FileGetPropertiesFromComputeNodeDefaultResponse
-    | FileListFromTask200Response
-    | FileListFromTaskDefaultResponse
-    | FileListFromComputeNode200Response
-    | FileListFromComputeNodeDefaultResponse
-    | JobScheduleJobScheduleExists200Response
-    | JobScheduleJobScheduleExists404Response
-    | JobScheduleJobScheduleExistsDefaultResponse
-    | JobScheduleDeleteJobSchedule202Response
-    | JobScheduleDeleteJobScheduleDefaultResponse
-    | JobScheduleGetJobSchedule200Response
-    | JobScheduleGetJobScheduleDefaultResponse
-    | JobSchedulePatchJobSchedule200Response
-    | JobSchedulePatchJobScheduleDefaultResponse
-    | JobScheduleUpdateJobSchedule200Response
-    | JobScheduleUpdateJobScheduleDefaultResponse
-    | JobScheduleDisableJobSchedule204Response
-    | JobScheduleDisableJobScheduleDefaultResponse
-    | JobScheduleEnableJobSchedule204Response
-    | JobScheduleEnableJobScheduleDefaultResponse
-    | JobScheduleTerminateJobSchedule202Response
-    | JobScheduleTerminateJobScheduleDefaultResponse
-    | JobScheduleAddJobSchedule201Response
-    | JobScheduleAddJobScheduleDefaultResponse
-    | JobScheduleListJobSchedules200Response
-    | JobScheduleListJobSchedulesDefaultResponse
-    | TaskAddTask201Response
-    | TaskAddTaskDefaultResponse
-    | TaskListTasks200Response
-    | TaskListTasksDefaultResponse
-    | TaskAddTaskCollection200Response
-    | TaskAddTaskCollectionDefaultResponse
-    | TaskDeleteTaskCollection200Response
-    | TaskDeleteTaskCollectionDefaultResponse
-    | TaskGetTaskCollection200Response
-    | TaskGetTaskCollectionDefaultResponse
-    | TaskUpdateTaskCollection200Response
-    | TaskUpdateTaskCollectionDefaultResponse
-    | TaskListSubtasks200Response
-    | TaskListSubtasksDefaultResponse
-    | TaskTerminateTaskCollection204Response
-    | TaskTerminateTaskCollectionDefaultResponse
-    | TaskReactivateTaskCollection204Response
-    | TaskReactivateTaskCollectionDefaultResponse
-    | ComputeNodesAddUser201Response
-    | ComputeNodesAddUserDefaultResponse
-    | ComputeNodesDeleteUser200Response
-    | ComputeNodesDeleteUserDefaultResponse
-    | ComputeNodesUpdateUser200Response
-    | ComputeNodesUpdateUserDefaultResponse
-    | ComputeNodesGetComputeNode200Response
-    | ComputeNodesGetComputeNodeDefaultResponse
-    | ComputeNodesRebootComputeNode202Response
-    | ComputeNodesRebootComputeNodeDefaultResponse
-    | ComputeNodesReimageComputeNode202Response
-    | ComputeNodesReimageComputeNodeDefaultResponse
-    | ComputeNodesDisableScheduling200Response
-    | ComputeNodesDisableSchedulingDefaultResponse
-    | ComputeNodesEnableScheduling200Response
-    | ComputeNodesEnableSchedulingDefaultResponse
-    | ComputeNodesGetRemoteLoginSettings200Response
-    | ComputeNodesGetRemoteLoginSettingsDefaultResponse
-    | ComputeNodesGetRemoteDesktop200Response
-    | ComputeNodesGetRemoteDesktopDefaultResponse
-    | ComputeNodesUploadBatchServiceLogs200Response
-    | ComputeNodesUploadBatchServiceLogsDefaultResponse
-    | ComputeNodesList200Response
-    | ComputeNodesListDefaultResponse
-    | ComputeNodeExtensionsGetComputeNodeExtensions200Response
-    | ComputeNodeExtensionsGetComputeNodeExtensionsDefaultResponse
-    | ComputeNodeExtensionsListComputeNodeExtensions200Response
-    | ComputeNodeExtensionsListComputeNodeExtensionsDefaultResponse
+    | GetPool200Response
+    | GetPoolDefaultResponse
+    | UpdatePool200Response
+    | UpdatePoolDefaultResponse
+    | DisablePoolAutoScale200Response
+    | DisablePoolAutoScaleDefaultResponse
+    | EnablePoolAutoScale200Response
+    | EnablePoolAutoScaleDefaultResponse
+    | EvaluatePoolAutoScale200Response
+    | EvaluatePoolAutoScaleDefaultResponse
+    | ResizePool202Response
+    | ResizePoolDefaultResponse
+    | StopPoolResize202Response
+    | StopPoolResizeDefaultResponse
+    | ReplacePoolProperties204Response
+    | ReplacePoolPropertiesDefaultResponse
+    | RemoveNodes202Response
+    | RemoveNodesDefaultResponse
+    | ListSupportedImages200Response
+    | ListSupportedImagesDefaultResponse
+    | ListPoolNodeCounts200Response
+    | ListPoolNodeCountsDefaultResponse
+    | DeleteJob202Response
+    | DeleteJobDefaultResponse
+    | GetJob200Response
+    | GetJobDefaultResponse
+    | UpdateJob200Response
+    | UpdateJobDefaultResponse
+    | ReplaceJob200Response
+    | ReplaceJobDefaultResponse
+    | DisableJob202Response
+    | DisableJobDefaultResponse
+    | EnableJob202Response
+    | EnableJobDefaultResponse
+    | TerminateJob202Response
+    | TerminateJobDefaultResponse
+    | CreateJob201Response
+    | CreateJobDefaultResponse
+    | ListJobs200Response
+    | ListJobsDefaultResponse
+    | ListJobsFromSchedule200Response
+    | ListJobsFromScheduleDefaultResponse
+    | ListJobPreparationAndReleaseTaskStatus200Response
+    | ListJobPreparationAndReleaseTaskStatusDefaultResponse
+    | GetJobTaskCounts200Response
+    | GetJobTaskCountsDefaultResponse
+    | CreateCertificate201Response
+    | CreateCertificateDefaultResponse
+    | ListCertificates200Response
+    | ListCertificatesDefaultResponse
+    | CancelCertificateDeletion204Response
+    | CancelCertificateDeletionDefaultResponse
+    | DeleteCertificate202Response
+    | DeleteCertificateDefaultResponse
+    | GetCertificate200Response
+    | GetCertificateDefaultResponse
+    | JobScheduleExists200Response
+    | JobScheduleExists404Response
+    | JobScheduleExistsDefaultResponse
+    | DeleteJobSchedule202Response
+    | DeleteJobScheduleDefaultResponse
+    | GetJobSchedule200Response
+    | GetJobScheduleDefaultResponse
+    | UpdateJobSchedule200Response
+    | UpdateJobScheduleDefaultResponse
+    | ReplaceJobSchedule200Response
+    | ReplaceJobScheduleDefaultResponse
+    | DisableJobSchedule204Response
+    | DisableJobScheduleDefaultResponse
+    | EnableJobSchedule204Response
+    | EnableJobScheduleDefaultResponse
+    | TerminateJobSchedule202Response
+    | TerminateJobScheduleDefaultResponse
+    | CreateJobSchedule201Response
+    | CreateJobScheduleDefaultResponse
+    | ListJobSchedules200Response
+    | ListJobSchedulesDefaultResponse
+    | CreateTask201Response
+    | CreateTaskDefaultResponse
+    | ListTasks200Response
+    | ListTasksDefaultResponse
+    | CreateTaskCollection200Response
+    | CreateTaskCollectionDefaultResponse
+    | DeleteTask200Response
+    | DeleteTaskDefaultResponse
+    | GetTask200Response
+    | GetTaskDefaultResponse
+    | ReplaceTask200Response
+    | ReplaceTaskDefaultResponse
+    | ListSubTasks200Response
+    | ListSubTasksDefaultResponse
+    | TerminateTask204Response
+    | TerminateTaskDefaultResponse
+    | ReactivateTask204Response
+    | ReactivateTaskDefaultResponse
+    | DeleteTaskFile200Response
+    | DeleteTaskFileDefaultResponse
+    | GetTaskFile200Response
+    | GetTaskFileDefaultResponse
+    | GetTaskFileProperties200Response
+    | GetTaskFilePropertiesDefaultResponse
+    | ListTaskFiles200Response
+    | ListTaskFilesDefaultResponse
+    | CreateNodeUser201Response
+    | CreateNodeUserDefaultResponse
+    | DeleteNodeUser200Response
+    | DeleteNodeUserDefaultResponse
+    | ReplaceNodeUser200Response
+    | ReplaceNodeUserDefaultResponse
+    | GetNode200Response
+    | GetNodeDefaultResponse
+    | RebootNode202Response
+    | RebootNodeDefaultResponse
+    | ReimageNode202Response
+    | ReimageNodeDefaultResponse
+    | DisableNodeScheduling200Response
+    | DisableNodeSchedulingDefaultResponse
+    | EnableNodeScheduling200Response
+    | EnableNodeSchedulingDefaultResponse
+    | GetNodeRemoteLoginSettings200Response
+    | GetNodeRemoteLoginSettingsDefaultResponse
+    | GetNodeRemoteDesktopFile200Response
+    | GetNodeRemoteDesktopFileDefaultResponse
+    | UploadNodeLogs200Response
+    | UploadNodeLogsDefaultResponse
+    | ListNodes200Response
+    | ListNodesDefaultResponse
+    | GetNodeExtension200Response
+    | GetNodeExtensionDefaultResponse
+    | ListNodeExtensions200Response
+    | ListNodeExtensionsDefaultResponse
+    | DeleteNodeFile200Response
+    | DeleteNodeFileDefaultResponse
+    | GetNodeFile200Response
+    | GetNodeFileDefaultResponse
+    | GetNodeFileProperties200Response
+    | GetNodeFilePropertiesDefaultResponse
+    | ListNodeFiles200Response
+    | ListNodeFilesDefaultResponse
 ): response is
-  | ApplicationsListApplicationsDefaultResponse
-  | ApplicationsGetDefaultResponse
-  | PoolListUsageMetricsDefaultResponse
-  | PoolGetAllPoolLifetimeStatisticsDefaultResponse
-  | PoolAddPoolDefaultResponse
-  | PoolListPoolsDefaultResponse
-  | PoolDeletePoolDefaultResponse
+  | ListApplicationsDefaultResponse
+  | GetApplicationDefaultResponse
+  | ListPoolUsageMetricsDefaultResponse
+  | CreatePoolDefaultResponse
+  | ListPoolsDefaultResponse
+  | DeletePoolDefaultResponse
   | PoolExistsDefaultResponse
-  | PoolGetPoolDefaultResponse
-  | PoolPatchPoolDefaultResponse
-  | PoolDisableAutoScaleDefaultResponse
-  | PoolEnableAutoScaleDefaultResponse
-  | PoolEvaluateAutoScaleDefaultResponse
-  | PoolResizeDefaultResponse
-  | PoolStopResizeDefaultResponse
-  | PoolUpdatePropertiesDefaultResponse
-  | PoolRemoveNodesDefaultResponse
-  | AccountListSupportedImagesDefaultResponse
-  | AccountListPoolNodeCountsDefaultResponse
-  | JobGetAllJobLifetimeStatisticsDefaultResponse
-  | JobDeleteJobDefaultResponse
-  | JobGetJobDefaultResponse
-  | JobPatchJobDefaultResponse
-  | JobUpdateJobDefaultResponse
-  | JobDisableJobDefaultResponse
-  | JobEnableJobDefaultResponse
-  | JobTerminateJobDefaultResponse
-  | JobAddJobDefaultResponse
-  | JobListJobsDefaultResponse
-  | JobListFromJobScheduleDefaultResponse
-  | JobListPreparationAndReleaseTaskStatusDefaultResponse
-  | JobGetTaskCountsDefaultResponse
-  | CertificatesAddCertificateDefaultResponse
-  | CertificatesListCertificatesDefaultResponse
-  | CertificatesCancelCertificateDeletionDefaultResponse
-  | CertificatesDeleteCertificateDefaultResponse
-  | CertificatesGetCertificateDefaultResponse
-  | FileDeleteFromTaskDefaultResponse
-  | FileGetFromTaskDefaultResponse
-  | FileGetPropertiesFromTaskDefaultResponse
-  | FileDeleteFromComputeNodeDefaultResponse
-  | FileGetFromComputeNodeDefaultResponse
-  | FileGetPropertiesFromComputeNodeDefaultResponse
-  | FileListFromTaskDefaultResponse
-  | FileListFromComputeNodeDefaultResponse
-  | JobScheduleJobScheduleExistsDefaultResponse
-  | JobScheduleDeleteJobScheduleDefaultResponse
-  | JobScheduleGetJobScheduleDefaultResponse
-  | JobSchedulePatchJobScheduleDefaultResponse
-  | JobScheduleUpdateJobScheduleDefaultResponse
-  | JobScheduleDisableJobScheduleDefaultResponse
-  | JobScheduleEnableJobScheduleDefaultResponse
-  | JobScheduleTerminateJobScheduleDefaultResponse
-  | JobScheduleAddJobScheduleDefaultResponse
-  | JobScheduleListJobSchedulesDefaultResponse
-  | TaskAddTaskDefaultResponse
-  | TaskListTasksDefaultResponse
-  | TaskAddTaskCollectionDefaultResponse
-  | TaskDeleteTaskCollectionDefaultResponse
-  | TaskGetTaskCollectionDefaultResponse
-  | TaskUpdateTaskCollectionDefaultResponse
-  | TaskListSubtasksDefaultResponse
-  | TaskTerminateTaskCollectionDefaultResponse
-  | TaskReactivateTaskCollectionDefaultResponse
-  | ComputeNodesAddUserDefaultResponse
-  | ComputeNodesDeleteUserDefaultResponse
-  | ComputeNodesUpdateUserDefaultResponse
-  | ComputeNodesGetComputeNodeDefaultResponse
-  | ComputeNodesRebootComputeNodeDefaultResponse
-  | ComputeNodesReimageComputeNodeDefaultResponse
-  | ComputeNodesDisableSchedulingDefaultResponse
-  | ComputeNodesEnableSchedulingDefaultResponse
-  | ComputeNodesGetRemoteLoginSettingsDefaultResponse
-  | ComputeNodesGetRemoteDesktopDefaultResponse
-  | ComputeNodesUploadBatchServiceLogsDefaultResponse
-  | ComputeNodesListDefaultResponse
-  | ComputeNodeExtensionsGetComputeNodeExtensionsDefaultResponse
-  | ComputeNodeExtensionsListComputeNodeExtensionsDefaultResponse {
+  | GetPoolDefaultResponse
+  | UpdatePoolDefaultResponse
+  | DisablePoolAutoScaleDefaultResponse
+  | EnablePoolAutoScaleDefaultResponse
+  | EvaluatePoolAutoScaleDefaultResponse
+  | ResizePoolDefaultResponse
+  | StopPoolResizeDefaultResponse
+  | ReplacePoolPropertiesDefaultResponse
+  | RemoveNodesDefaultResponse
+  | ListSupportedImagesDefaultResponse
+  | ListPoolNodeCountsDefaultResponse
+  | DeleteJobDefaultResponse
+  | GetJobDefaultResponse
+  | UpdateJobDefaultResponse
+  | ReplaceJobDefaultResponse
+  | DisableJobDefaultResponse
+  | EnableJobDefaultResponse
+  | TerminateJobDefaultResponse
+  | CreateJobDefaultResponse
+  | ListJobsDefaultResponse
+  | ListJobsFromScheduleDefaultResponse
+  | ListJobPreparationAndReleaseTaskStatusDefaultResponse
+  | GetJobTaskCountsDefaultResponse
+  | CreateCertificateDefaultResponse
+  | ListCertificatesDefaultResponse
+  | CancelCertificateDeletionDefaultResponse
+  | DeleteCertificateDefaultResponse
+  | GetCertificateDefaultResponse
+  | JobScheduleExistsDefaultResponse
+  | DeleteJobScheduleDefaultResponse
+  | GetJobScheduleDefaultResponse
+  | UpdateJobScheduleDefaultResponse
+  | ReplaceJobScheduleDefaultResponse
+  | DisableJobScheduleDefaultResponse
+  | EnableJobScheduleDefaultResponse
+  | TerminateJobScheduleDefaultResponse
+  | CreateJobScheduleDefaultResponse
+  | ListJobSchedulesDefaultResponse
+  | CreateTaskDefaultResponse
+  | ListTasksDefaultResponse
+  | CreateTaskCollectionDefaultResponse
+  | DeleteTaskDefaultResponse
+  | GetTaskDefaultResponse
+  | ReplaceTaskDefaultResponse
+  | ListSubTasksDefaultResponse
+  | TerminateTaskDefaultResponse
+  | ReactivateTaskDefaultResponse
+  | DeleteTaskFileDefaultResponse
+  | GetTaskFileDefaultResponse
+  | GetTaskFilePropertiesDefaultResponse
+  | ListTaskFilesDefaultResponse
+  | CreateNodeUserDefaultResponse
+  | DeleteNodeUserDefaultResponse
+  | ReplaceNodeUserDefaultResponse
+  | GetNodeDefaultResponse
+  | RebootNodeDefaultResponse
+  | ReimageNodeDefaultResponse
+  | DisableNodeSchedulingDefaultResponse
+  | EnableNodeSchedulingDefaultResponse
+  | GetNodeRemoteLoginSettingsDefaultResponse
+  | GetNodeRemoteDesktopFileDefaultResponse
+  | UploadNodeLogsDefaultResponse
+  | ListNodesDefaultResponse
+  | GetNodeExtensionDefaultResponse
+  | ListNodeExtensionsDefaultResponse
+  | DeleteNodeFileDefaultResponse
+  | GetNodeFileDefaultResponse
+  | GetNodeFilePropertiesDefaultResponse
+  | ListNodeFilesDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

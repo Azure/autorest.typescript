@@ -2,13 +2,13 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
-import { logger } from "./logger";
+import { logger } from "../logger.js";
 import { TokenCredential } from "@azure/core-auth";
-import { BatchServiceClient } from "./clientDefinitions";
+import { BatchContext } from "./clientDefinitions.js";
 
 /**
- * Initialize a new instance of `BatchServiceClient`
- * @param endpoint - The parameter endpoint
+ * Initialize a new instance of `BatchContext`
+ * @param endpoint - Batch account endpoint (for example: https://batchaccount.eastus2.batch.azure.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
@@ -16,13 +16,15 @@ export default function createClient(
   endpoint: string,
   credentials: TokenCredential,
   options: ClientOptions = {}
-): BatchServiceClient {
+): BatchContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2022-10-01.16.0";
+  options.apiVersion = options.apiVersion ?? "2023-05-01.17.0";
   options = {
     ...options,
     credentials: {
-      scopes: ["user_impersonation"],
+      scopes: options.credentials?.scopes ?? [
+        "https://batch.core.windows.net//.default",
+      ],
     },
   };
 
@@ -39,9 +41,14 @@ export default function createClient(
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
+    telemetryOptions: {
+      clientRequestIdHeaderName:
+        options.telemetryOptions?.clientRequestIdHeaderName ??
+        "client-request-id",
+    },
   };
 
-  const client = getClient(baseUrl, credentials, options) as BatchServiceClient;
+  const client = getClient(baseUrl, credentials, options) as BatchContext;
 
   return client;
 }

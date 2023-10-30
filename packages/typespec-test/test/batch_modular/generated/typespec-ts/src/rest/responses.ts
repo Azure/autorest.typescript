@@ -2,40 +2,39 @@
 // Licensed under the MIT license.
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
-import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+import { HttpResponse } from "@azure-rest/core-client";
 import {
   ApplicationListResultOutput,
-  ApplicationOutput,
-  PoolUsageMetricsListOutput,
-  PoolStatisticsOutput,
+  BatchErrorOutput,
+  BatchApplicationOutput,
+  PoolListUsageMetricsResultOutput,
   BatchPoolListResultOutput,
   BatchPoolOutput,
   AutoScaleRunOutput,
   AccountListSupportedImagesResultOutput,
   PoolNodeCountsListResultOutput,
-  JobStatisticsOutput,
   BatchJobOutput,
   BatchJobListResultOutput,
   BatchJobListPreparationAndReleaseTaskStatusResultOutput,
   TaskCountsResultOutput,
   CertificateListResultOutput,
-  CertificateOutput,
-  NodeFileListResultOutput,
+  BatchCertificateOutput,
   BatchJobScheduleOutput,
   BatchJobScheduleListResultOutput,
   BatchTaskListResultOutput,
   TaskAddCollectionResultOutput,
   BatchTaskOutput,
   BatchTaskListSubtasksResultOutput,
-  ComputeNodeOutput,
-  ComputeNodeGetRemoteLoginSettingsResultOutput,
+  NodeFileListResultOutput,
+  BatchNodeOutput,
+  BatchNodeRemoteLoginSettingsResultOutput,
   UploadBatchServiceLogsResultOutput,
-  ComputeNodeListResultOutput,
+  BatchNodeListResultOutput,
   NodeVMExtensionOutput,
   NodeVMExtensionListOutput,
 } from "./outputModels.js";
 
-export interface ApplicationsListApplications200Headers {
+export interface ListApplications200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -47,59 +46,18 @@ export interface ApplicationsListApplications200Headers {
 }
 
 /** The request has succeeded. */
-export interface ApplicationsListApplications200Response extends HttpResponse {
+export interface ListApplications200Response extends HttpResponse {
   status: "200";
   body: ApplicationListResultOutput;
-  headers: RawHttpHeaders & ApplicationsListApplications200Headers;
+  headers: RawHttpHeaders & ListApplications200Headers;
 }
 
-export interface ApplicationsListApplicationsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ApplicationsListApplicationsDefaultResponse
-  extends HttpResponse {
+export interface ListApplicationsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ApplicationsListApplicationsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-/** The request has succeeded. */
-export interface ApplicationsGet200Response extends HttpResponse {
-  status: "200";
-  body: ApplicationOutput;
-}
-
-export interface ApplicationsGetDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ApplicationsGetDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ApplicationsGetDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface PoolListUsageMetrics200Response extends HttpResponse {
-  status: "200";
-  body: PoolUsageMetricsListOutput;
-}
-
-export interface PoolListUsageMetricsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolListUsageMetricsDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolListUsageMetricsDefaultHeaders;
-}
-
-export interface PoolGetAllPoolLifetimeStatistics200Headers {
+export interface GetApplication200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -111,26 +69,18 @@ export interface PoolGetAllPoolLifetimeStatistics200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolGetAllPoolLifetimeStatistics200Response
-  extends HttpResponse {
+export interface GetApplication200Response extends HttpResponse {
   status: "200";
-  body: PoolStatisticsOutput;
-  headers: RawHttpHeaders & PoolGetAllPoolLifetimeStatistics200Headers;
+  body: BatchApplicationOutput;
+  headers: RawHttpHeaders & GetApplication200Headers;
 }
 
-export interface PoolGetAllPoolLifetimeStatisticsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolGetAllPoolLifetimeStatisticsDefaultResponse
-  extends HttpResponse {
+export interface GetApplicationDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolGetAllPoolLifetimeStatisticsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolAddPool201Headers {
+export interface ListPoolUsageMetrics200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -139,28 +89,45 @@ export interface PoolAddPool201Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
+}
+
+/** The request has succeeded. */
+export interface ListPoolUsageMetrics200Response extends HttpResponse {
+  status: "200";
+  body: PoolListUsageMetricsResultOutput;
+  headers: RawHttpHeaders & ListPoolUsageMetrics200Headers;
+}
+
+export interface ListPoolUsageMetricsDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface CreatePool201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied */
   dataserviceid: string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface PoolAddPool201Response extends HttpResponse {
+export interface CreatePool201Response extends HttpResponse {
   status: "201";
-  headers: RawHttpHeaders & PoolAddPool201Headers;
+  headers: RawHttpHeaders & CreatePool201Headers;
 }
 
-export interface PoolAddPoolDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolAddPoolDefaultResponse extends HttpResponse {
+export interface CreatePoolDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolAddPoolDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolListPools200Headers {
+export interface ListPools200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -172,45 +139,33 @@ export interface PoolListPools200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolListPools200Response extends HttpResponse {
+export interface ListPools200Response extends HttpResponse {
   status: "200";
   body: BatchPoolListResultOutput;
-  headers: RawHttpHeaders & PoolListPools200Headers;
+  headers: RawHttpHeaders & ListPools200Headers;
 }
 
-export interface PoolListPoolsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolListPoolsDefaultResponse extends HttpResponse {
+export interface ListPoolsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolListPoolsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolDeletePool202Headers {
+export interface DeletePool202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
 }
 
-/** The parameters for a widget status request */
-export interface PoolDeletePool202Response extends HttpResponse {
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface DeletePool202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & PoolDeletePool202Headers;
+  headers: RawHttpHeaders & DeletePool202Headers;
 }
 
-export interface PoolDeletePoolDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolDeletePoolDefaultResponse extends HttpResponse {
+export interface DeletePoolDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolDeletePoolDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
 export interface PoolExists200Headers {
@@ -230,23 +185,17 @@ export interface PoolExists200Response extends HttpResponse {
   headers: RawHttpHeaders & PoolExists200Headers;
 }
 
-/** The Pool does not exist. */
+/** The server cannot find the requested resource. */
 export interface PoolExists404Response extends HttpResponse {
   status: "404";
 }
 
-export interface PoolExistsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
 export interface PoolExistsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolExistsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolGetPool200Headers {
+export interface GetPool200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -258,24 +207,18 @@ export interface PoolGetPool200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolGetPool200Response extends HttpResponse {
+export interface GetPool200Response extends HttpResponse {
   status: "200";
   body: BatchPoolOutput;
-  headers: RawHttpHeaders & PoolGetPool200Headers;
+  headers: RawHttpHeaders & GetPool200Headers;
 }
 
-export interface PoolGetPoolDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolGetPoolDefaultResponse extends HttpResponse {
+export interface GetPoolDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolGetPoolDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolPatchPool200Headers {
+export interface UpdatePool200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -289,23 +232,17 @@ export interface PoolPatchPool200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolPatchPool200Response extends HttpResponse {
+export interface UpdatePool200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & PoolPatchPool200Headers;
+  headers: RawHttpHeaders & UpdatePool200Headers;
 }
 
-export interface PoolPatchPoolDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolPatchPoolDefaultResponse extends HttpResponse {
+export interface UpdatePoolDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolPatchPoolDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolDisableAutoScale200Headers {
+export interface DisablePoolAutoScale200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -319,23 +256,17 @@ export interface PoolDisableAutoScale200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolDisableAutoScale200Response extends HttpResponse {
+export interface DisablePoolAutoScale200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & PoolDisableAutoScale200Headers;
+  headers: RawHttpHeaders & DisablePoolAutoScale200Headers;
 }
 
-export interface PoolDisableAutoScaleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolDisableAutoScaleDefaultResponse extends HttpResponse {
+export interface DisablePoolAutoScaleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolDisableAutoScaleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolEnableAutoScale200Headers {
+export interface EnablePoolAutoScale200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -349,23 +280,17 @@ export interface PoolEnableAutoScale200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolEnableAutoScale200Response extends HttpResponse {
+export interface EnablePoolAutoScale200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & PoolEnableAutoScale200Headers;
+  headers: RawHttpHeaders & EnablePoolAutoScale200Headers;
 }
 
-export interface PoolEnableAutoScaleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolEnableAutoScaleDefaultResponse extends HttpResponse {
+export interface EnablePoolAutoScaleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolEnableAutoScaleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolEvaluateAutoScale200Headers {
+export interface EvaluatePoolAutoScale200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -379,24 +304,18 @@ export interface PoolEvaluateAutoScale200Headers {
 }
 
 /** The request has succeeded. */
-export interface PoolEvaluateAutoScale200Response extends HttpResponse {
+export interface EvaluatePoolAutoScale200Response extends HttpResponse {
   status: "200";
   body: AutoScaleRunOutput;
-  headers: RawHttpHeaders & PoolEvaluateAutoScale200Headers;
+  headers: RawHttpHeaders & EvaluatePoolAutoScale200Headers;
 }
 
-export interface PoolEvaluateAutoScaleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolEvaluateAutoScaleDefaultResponse extends HttpResponse {
+export interface EvaluatePoolAutoScaleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolEvaluateAutoScaleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolResize202Headers {
+export interface ResizePool202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -410,23 +329,17 @@ export interface PoolResize202Headers {
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface PoolResize202Response extends HttpResponse {
+export interface ResizePool202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & PoolResize202Headers;
+  headers: RawHttpHeaders & ResizePool202Headers;
 }
 
-export interface PoolResizeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolResizeDefaultResponse extends HttpResponse {
+export interface ResizePoolDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolResizeDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolStopResize202Headers {
+export interface StopPoolResize202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -439,24 +352,18 @@ export interface PoolStopResize202Headers {
   dataserviceid: string;
 }
 
-/** The request to the Batch service was successful. */
-export interface PoolStopResize202Response extends HttpResponse {
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface StopPoolResize202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & PoolStopResize202Headers;
+  headers: RawHttpHeaders & StopPoolResize202Headers;
 }
 
-export interface PoolStopResizeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolStopResizeDefaultResponse extends HttpResponse {
+export interface StopPoolResizeDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolStopResizeDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolUpdateProperties204Headers {
+export interface ReplacePoolProperties204Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -469,24 +376,18 @@ export interface PoolUpdateProperties204Headers {
   dataserviceid: string;
 }
 
-/** The request to the Batch service was successful. */
-export interface PoolUpdateProperties204Response extends HttpResponse {
+/** There is no content to send for this request, but the headers may be useful. */
+export interface ReplacePoolProperties204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & PoolUpdateProperties204Headers;
+  headers: RawHttpHeaders & ReplacePoolProperties204Headers;
 }
 
-export interface PoolUpdatePropertiesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolUpdatePropertiesDefaultResponse extends HttpResponse {
+export interface ReplacePoolPropertiesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolUpdatePropertiesDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface PoolRemoveNodes202Headers {
+export interface RemoveNodes202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -499,24 +400,18 @@ export interface PoolRemoveNodes202Headers {
   dataserviceid: string;
 }
 
-/** The request to the Batch service was successful. */
-export interface PoolRemoveNodes202Response extends HttpResponse {
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface RemoveNodes202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & PoolRemoveNodes202Headers;
+  headers: RawHttpHeaders & RemoveNodes202Headers;
 }
 
-export interface PoolRemoveNodesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface PoolRemoveNodesDefaultResponse extends HttpResponse {
+export interface RemoveNodesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & PoolRemoveNodesDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface AccountListSupportedImages200Headers {
+export interface ListSupportedImages200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -528,25 +423,18 @@ export interface AccountListSupportedImages200Headers {
 }
 
 /** The request has succeeded. */
-export interface AccountListSupportedImages200Response extends HttpResponse {
+export interface ListSupportedImages200Response extends HttpResponse {
   status: "200";
   body: AccountListSupportedImagesResultOutput;
-  headers: RawHttpHeaders & AccountListSupportedImages200Headers;
+  headers: RawHttpHeaders & ListSupportedImages200Headers;
 }
 
-export interface AccountListSupportedImagesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface AccountListSupportedImagesDefaultResponse
-  extends HttpResponse {
+export interface ListSupportedImagesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & AccountListSupportedImagesDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface AccountListPoolNodeCounts200Headers {
+export interface ListPoolNodeCounts200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -554,79 +442,36 @@ export interface AccountListPoolNodeCounts200Headers {
 }
 
 /** The request has succeeded. */
-export interface AccountListPoolNodeCounts200Response extends HttpResponse {
+export interface ListPoolNodeCounts200Response extends HttpResponse {
   status: "200";
   body: PoolNodeCountsListResultOutput;
-  headers: RawHttpHeaders & AccountListPoolNodeCounts200Headers;
+  headers: RawHttpHeaders & ListPoolNodeCounts200Headers;
 }
 
-export interface AccountListPoolNodeCountsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface AccountListPoolNodeCountsDefaultResponse extends HttpResponse {
+export interface ListPoolNodeCountsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & AccountListPoolNodeCountsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobGetAllJobLifetimeStatistics200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-}
-
-/** The request has succeeded. */
-export interface JobGetAllJobLifetimeStatistics200Response
-  extends HttpResponse {
-  status: "200";
-  body: JobStatisticsOutput;
-  headers: RawHttpHeaders & JobGetAllJobLifetimeStatistics200Headers;
-}
-
-export interface JobGetAllJobLifetimeStatisticsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobGetAllJobLifetimeStatisticsDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobGetAllJobLifetimeStatisticsDefaultHeaders;
-}
-
-export interface JobDeleteJob202Headers {
+export interface DeleteJob202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
 }
 
-/** The parameters for a widget status request */
-export interface JobDeleteJob202Response extends HttpResponse {
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface DeleteJob202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & JobDeleteJob202Headers;
+  headers: RawHttpHeaders & DeleteJob202Headers;
 }
 
-export interface JobDeleteJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobDeleteJobDefaultResponse extends HttpResponse {
+export interface DeleteJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobDeleteJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobGetJob200Headers {
+export interface GetJob200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -638,24 +483,18 @@ export interface JobGetJob200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobGetJob200Response extends HttpResponse {
+export interface GetJob200Response extends HttpResponse {
   status: "200";
   body: BatchJobOutput;
-  headers: RawHttpHeaders & JobGetJob200Headers;
+  headers: RawHttpHeaders & GetJob200Headers;
 }
 
-export interface JobGetJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobGetJobDefaultResponse extends HttpResponse {
+export interface GetJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobGetJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobPatchJob200Headers {
+export interface UpdateJob200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -669,23 +508,17 @@ export interface JobPatchJob200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobPatchJob200Response extends HttpResponse {
+export interface UpdateJob200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & JobPatchJob200Headers;
+  headers: RawHttpHeaders & UpdateJob200Headers;
 }
 
-export interface JobPatchJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobPatchJobDefaultResponse extends HttpResponse {
+export interface UpdateJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobPatchJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobUpdateJob200Headers {
+export interface ReplaceJob200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -699,23 +532,17 @@ export interface JobUpdateJob200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobUpdateJob200Response extends HttpResponse {
+export interface ReplaceJob200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & JobUpdateJob200Headers;
+  headers: RawHttpHeaders & ReplaceJob200Headers;
 }
 
-export interface JobUpdateJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobUpdateJobDefaultResponse extends HttpResponse {
+export interface ReplaceJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobUpdateJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobDisableJob202Headers {
+export interface DisableJob202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -729,23 +556,17 @@ export interface JobDisableJob202Headers {
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface JobDisableJob202Response extends HttpResponse {
+export interface DisableJob202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & JobDisableJob202Headers;
+  headers: RawHttpHeaders & DisableJob202Headers;
 }
 
-export interface JobDisableJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobDisableJobDefaultResponse extends HttpResponse {
+export interface DisableJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobDisableJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobEnableJob202Headers {
+export interface EnableJob202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -759,23 +580,17 @@ export interface JobEnableJob202Headers {
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface JobEnableJob202Response extends HttpResponse {
+export interface EnableJob202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & JobEnableJob202Headers;
+  headers: RawHttpHeaders & EnableJob202Headers;
 }
 
-export interface JobEnableJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobEnableJobDefaultResponse extends HttpResponse {
+export interface EnableJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobEnableJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobTerminateJob202Headers {
+export interface TerminateJob202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -789,23 +604,17 @@ export interface JobTerminateJob202Headers {
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface JobTerminateJob202Response extends HttpResponse {
+export interface TerminateJob202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & JobTerminateJob202Headers;
+  headers: RawHttpHeaders & TerminateJob202Headers;
 }
 
-export interface JobTerminateJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobTerminateJobDefaultResponse extends HttpResponse {
+export interface TerminateJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobTerminateJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobAddJob201Headers {
+export interface CreateJob201Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -819,23 +628,17 @@ export interface JobAddJob201Headers {
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface JobAddJob201Response extends HttpResponse {
+export interface CreateJob201Response extends HttpResponse {
   status: "201";
-  headers: RawHttpHeaders & JobAddJob201Headers;
+  headers: RawHttpHeaders & CreateJob201Headers;
 }
 
-export interface JobAddJobDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobAddJobDefaultResponse extends HttpResponse {
+export interface CreateJobDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobAddJobDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobListJobs200Headers {
+export interface ListJobs200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -847,24 +650,18 @@ export interface JobListJobs200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobListJobs200Response extends HttpResponse {
+export interface ListJobs200Response extends HttpResponse {
   status: "200";
   body: BatchJobListResultOutput;
-  headers: RawHttpHeaders & JobListJobs200Headers;
+  headers: RawHttpHeaders & ListJobs200Headers;
 }
 
-export interface JobListJobsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobListJobsDefaultResponse extends HttpResponse {
+export interface ListJobsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobListJobsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobListFromJobSchedule200Headers {
+export interface ListJobsFromSchedule200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -876,24 +673,18 @@ export interface JobListFromJobSchedule200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobListFromJobSchedule200Response extends HttpResponse {
+export interface ListJobsFromSchedule200Response extends HttpResponse {
   status: "200";
   body: BatchJobListResultOutput;
-  headers: RawHttpHeaders & JobListFromJobSchedule200Headers;
+  headers: RawHttpHeaders & ListJobsFromSchedule200Headers;
 }
 
-export interface JobListFromJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobListFromJobScheduleDefaultResponse extends HttpResponse {
+export interface ListJobsFromScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobListFromJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobListPreparationAndReleaseTaskStatus200Headers {
+export interface ListJobPreparationAndReleaseTaskStatus200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -905,27 +696,20 @@ export interface JobListPreparationAndReleaseTaskStatus200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobListPreparationAndReleaseTaskStatus200Response
+export interface ListJobPreparationAndReleaseTaskStatus200Response
   extends HttpResponse {
   status: "200";
   body: BatchJobListPreparationAndReleaseTaskStatusResultOutput;
-  headers: RawHttpHeaders & JobListPreparationAndReleaseTaskStatus200Headers;
+  headers: RawHttpHeaders & ListJobPreparationAndReleaseTaskStatus200Headers;
 }
 
-export interface JobListPreparationAndReleaseTaskStatusDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobListPreparationAndReleaseTaskStatusDefaultResponse
+export interface ListJobPreparationAndReleaseTaskStatusDefaultResponse
   extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders &
-    JobListPreparationAndReleaseTaskStatusDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobGetTaskCounts200Headers {
+export interface GetJobTaskCounts200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -933,24 +717,18 @@ export interface JobGetTaskCounts200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobGetTaskCounts200Response extends HttpResponse {
+export interface GetJobTaskCounts200Response extends HttpResponse {
   status: "200";
   body: TaskCountsResultOutput;
-  headers: RawHttpHeaders & JobGetTaskCounts200Headers;
+  headers: RawHttpHeaders & GetJobTaskCounts200Headers;
 }
 
-export interface JobGetTaskCountsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobGetTaskCountsDefaultResponse extends HttpResponse {
+export interface GetJobTaskCountsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobGetTaskCountsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface CertificatesAddCertificate201Headers {
+export interface CreateCertificate201Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -959,27 +737,22 @@ export interface CertificatesAddCertificate201Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface CertificatesAddCertificate201Response extends HttpResponse {
+export interface CreateCertificate201Response extends HttpResponse {
   status: "201";
-  headers: RawHttpHeaders & CertificatesAddCertificate201Headers;
+  headers: RawHttpHeaders & CreateCertificate201Headers;
 }
 
-export interface CertificatesAddCertificateDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CertificatesAddCertificateDefaultResponse
-  extends HttpResponse {
+export interface CreateCertificateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & CertificatesAddCertificateDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface CertificatesListCertificates200Headers {
+export interface ListCertificates200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -991,25 +764,18 @@ export interface CertificatesListCertificates200Headers {
 }
 
 /** The request has succeeded. */
-export interface CertificatesListCertificates200Response extends HttpResponse {
+export interface ListCertificates200Response extends HttpResponse {
   status: "200";
   body: CertificateListResultOutput;
-  headers: RawHttpHeaders & CertificatesListCertificates200Headers;
+  headers: RawHttpHeaders & ListCertificates200Headers;
 }
 
-export interface CertificatesListCertificatesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CertificatesListCertificatesDefaultResponse
-  extends HttpResponse {
+export interface ListCertificatesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & CertificatesListCertificatesDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface CertificatesCancelCertificateDeletion204Headers {
+export interface CancelCertificateDeletion204Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1023,25 +789,17 @@ export interface CertificatesCancelCertificateDeletion204Headers {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface CertificatesCancelCertificateDeletion204Response
-  extends HttpResponse {
+export interface CancelCertificateDeletion204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & CertificatesCancelCertificateDeletion204Headers;
+  headers: RawHttpHeaders & CancelCertificateDeletion204Headers;
 }
 
-export interface CertificatesCancelCertificateDeletionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CertificatesCancelCertificateDeletionDefaultResponse
-  extends HttpResponse {
+export interface CancelCertificateDeletionDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & CertificatesCancelCertificateDeletionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface CertificatesDeleteCertificate202Headers {
+export interface DeleteCertificate202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1053,24 +811,17 @@ export interface CertificatesDeleteCertificate202Headers {
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface CertificatesDeleteCertificate202Response extends HttpResponse {
+export interface DeleteCertificate202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & CertificatesDeleteCertificate202Headers;
+  headers: RawHttpHeaders & DeleteCertificate202Headers;
 }
 
-export interface CertificatesDeleteCertificateDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CertificatesDeleteCertificateDefaultResponse
-  extends HttpResponse {
+export interface DeleteCertificateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & CertificatesDeleteCertificateDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface CertificatesGetCertificate200Headers {
+export interface GetCertificate200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1082,231 +833,18 @@ export interface CertificatesGetCertificate200Headers {
 }
 
 /** The request has succeeded. */
-export interface CertificatesGetCertificate200Response extends HttpResponse {
+export interface GetCertificate200Response extends HttpResponse {
   status: "200";
-  body: CertificateOutput;
-  headers: RawHttpHeaders & CertificatesGetCertificate200Headers;
+  body: BatchCertificateOutput;
+  headers: RawHttpHeaders & GetCertificate200Headers;
 }
 
-export interface CertificatesGetCertificateDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface CertificatesGetCertificateDefaultResponse
-  extends HttpResponse {
+export interface GetCertificateDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & CertificatesGetCertificateDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface FileDeleteFromTask200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-}
-
-/** The request has succeeded. */
-export interface FileDeleteFromTask200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & FileDeleteFromTask200Headers;
-}
-
-export interface FileDeleteFromTaskDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileDeleteFromTaskDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileDeleteFromTaskDefaultHeaders;
-}
-
-export interface FileGetFromTask200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The file creation time. */
-  "ocp-creation-time"?: string;
-  /** Whether the object represents a directory. */
-  "ocp-batch-file-isdirectory": boolean;
-  /** The URL of the file. */
-  "ocp-batch-file-url": string;
-  /** The file mode attribute in octal format. */
-  "ocp-batch-file-mode": string;
-  /** The length of the file. */
-  "content-length": number;
-}
-
-/** The request has succeeded. */
-export interface FileGetFromTask200Response extends HttpResponse {
-  status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
-  headers: RawHttpHeaders & FileGetFromTask200Headers;
-}
-
-export interface FileGetFromTaskDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileGetFromTaskDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileGetFromTaskDefaultHeaders;
-}
-
-export interface FileGetPropertiesFromTask200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The file creation time. */
-  "ocp-creation-time"?: string;
-  /** Whether the object represents a directory. */
-  "ocp-batch-file-isdirectory": boolean;
-  /** The URL of the file. */
-  "ocp-batch-file-url": string;
-  /** The file mode attribute in octal format. */
-  "ocp-batch-file-mode": string;
-  /** The length of the file. */
-  "content-length": number;
-}
-
-/** The request has succeeded. */
-export interface FileGetPropertiesFromTask200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & FileGetPropertiesFromTask200Headers;
-}
-
-export interface FileGetPropertiesFromTaskDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileGetPropertiesFromTaskDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileGetPropertiesFromTaskDefaultHeaders;
-}
-
-export interface FileDeleteFromComputeNode200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-}
-
-/** The request has succeeded. */
-export interface FileDeleteFromComputeNode200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & FileDeleteFromComputeNode200Headers;
-}
-
-export interface FileDeleteFromComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileDeleteFromComputeNodeDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileDeleteFromComputeNodeDefaultHeaders;
-}
-
-export interface FileGetFromComputeNode200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The file creation time. */
-  "ocp-creation-time"?: string;
-  /** Whether the object represents a directory. */
-  "ocp-batch-file-isdirectory": boolean;
-  /** The URL of the file. */
-  "ocp-batch-file-url": string;
-  /** The file mode attribute in octal format. */
-  "ocp-batch-file-mode": string;
-  /** The length of the file. */
-  "content-length": number;
-}
-
-/** The request has succeeded. */
-export interface FileGetFromComputeNode200Response extends HttpResponse {
-  status: "200";
-  /** Value may contain any sequence of octets */
-  body: Uint8Array;
-  headers: RawHttpHeaders & FileGetFromComputeNode200Headers;
-}
-
-export interface FileGetFromComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileGetFromComputeNodeDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileGetFromComputeNodeDefaultHeaders;
-}
-
-export interface FileGetPropertiesFromComputeNode200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The file creation time. */
-  "ocp-creation-time"?: string;
-  /** Whether the object represents a directory. */
-  "ocp-batch-file-isdirectory": boolean;
-  /** The URL of the file. */
-  "ocp-batch-file-url": string;
-  /** The file mode attribute in octal format. */
-  "ocp-batch-file-mode": string;
-  /** The length of the file. */
-  "content-length": number;
-}
-
-/** The request has succeeded. */
-export interface FileGetPropertiesFromComputeNode200Response
-  extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & FileGetPropertiesFromComputeNode200Headers;
-}
-
-export interface FileGetPropertiesFromComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileGetPropertiesFromComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileGetPropertiesFromComputeNodeDefaultHeaders;
-}
-
-export interface FileListFromTask200Headers {
+export interface JobScheduleExists200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1318,112 +856,40 @@ export interface FileListFromTask200Headers {
 }
 
 /** The request has succeeded. */
-export interface FileListFromTask200Response extends HttpResponse {
+export interface JobScheduleExists200Response extends HttpResponse {
   status: "200";
-  body: NodeFileListResultOutput;
-  headers: RawHttpHeaders & FileListFromTask200Headers;
-}
-
-export interface FileListFromTaskDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileListFromTaskDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileListFromTaskDefaultHeaders;
-}
-
-export interface FileListFromComputeNode200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-}
-
-/** The request has succeeded. */
-export interface FileListFromComputeNode200Response extends HttpResponse {
-  status: "200";
-  body: NodeFileListResultOutput;
-  headers: RawHttpHeaders & FileListFromComputeNode200Headers;
-}
-
-export interface FileListFromComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface FileListFromComputeNodeDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & FileListFromComputeNodeDefaultHeaders;
-}
-
-export interface JobScheduleJobScheduleExists200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-}
-
-/** The request has succeeded. */
-export interface JobScheduleJobScheduleExists200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & JobScheduleJobScheduleExists200Headers;
+  headers: RawHttpHeaders & JobScheduleExists200Headers;
 }
 
 /** The server cannot find the requested resource. */
-export interface JobScheduleJobScheduleExists404Response extends HttpResponse {
+export interface JobScheduleExists404Response extends HttpResponse {
   status: "404";
 }
 
-export interface JobScheduleJobScheduleExistsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleJobScheduleExistsDefaultResponse
-  extends HttpResponse {
+export interface JobScheduleExistsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleJobScheduleExistsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleDeleteJobSchedule202Headers {
+export interface DeleteJobSchedule202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
   "request-id"?: string;
 }
 
-/** The parameters for a widget status request */
-export interface JobScheduleDeleteJobSchedule202Response extends HttpResponse {
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface DeleteJobSchedule202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & JobScheduleDeleteJobSchedule202Headers;
+  headers: RawHttpHeaders & DeleteJobSchedule202Headers;
 }
 
-export interface JobScheduleDeleteJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleDeleteJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface DeleteJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleDeleteJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleGetJobSchedule200Headers {
+export interface GetJobSchedule200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1435,24 +901,18 @@ export interface JobScheduleGetJobSchedule200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobScheduleGetJobSchedule200Response extends HttpResponse {
+export interface GetJobSchedule200Response extends HttpResponse {
   status: "200";
   body: BatchJobScheduleOutput;
-  headers: RawHttpHeaders & JobScheduleGetJobSchedule200Headers;
+  headers: RawHttpHeaders & GetJobSchedule200Headers;
 }
 
-export interface JobScheduleGetJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleGetJobScheduleDefaultResponse extends HttpResponse {
+export interface GetJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleGetJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobSchedulePatchJobSchedule200Headers {
+export interface UpdateJobSchedule200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1466,24 +926,17 @@ export interface JobSchedulePatchJobSchedule200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobSchedulePatchJobSchedule200Response extends HttpResponse {
+export interface UpdateJobSchedule200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & JobSchedulePatchJobSchedule200Headers;
+  headers: RawHttpHeaders & UpdateJobSchedule200Headers;
 }
 
-export interface JobSchedulePatchJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobSchedulePatchJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface UpdateJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobSchedulePatchJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleUpdateJobSchedule200Headers {
+export interface ReplaceJobSchedule200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1497,24 +950,17 @@ export interface JobScheduleUpdateJobSchedule200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobScheduleUpdateJobSchedule200Response extends HttpResponse {
+export interface ReplaceJobSchedule200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & JobScheduleUpdateJobSchedule200Headers;
+  headers: RawHttpHeaders & ReplaceJobSchedule200Headers;
 }
 
-export interface JobScheduleUpdateJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleUpdateJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface ReplaceJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleUpdateJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleDisableJobSchedule204Headers {
+export interface DisableJobSchedule204Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1528,24 +974,17 @@ export interface JobScheduleDisableJobSchedule204Headers {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleDisableJobSchedule204Response extends HttpResponse {
+export interface DisableJobSchedule204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & JobScheduleDisableJobSchedule204Headers;
+  headers: RawHttpHeaders & DisableJobSchedule204Headers;
 }
 
-export interface JobScheduleDisableJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleDisableJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface DisableJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleDisableJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleEnableJobSchedule204Headers {
+export interface EnableJobSchedule204Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1559,24 +998,17 @@ export interface JobScheduleEnableJobSchedule204Headers {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface JobScheduleEnableJobSchedule204Response extends HttpResponse {
+export interface EnableJobSchedule204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & JobScheduleEnableJobSchedule204Headers;
+  headers: RawHttpHeaders & EnableJobSchedule204Headers;
 }
 
-export interface JobScheduleEnableJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleEnableJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface EnableJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleEnableJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleTerminateJobSchedule202Headers {
+export interface TerminateJobSchedule202Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1590,25 +1022,17 @@ export interface JobScheduleTerminateJobSchedule202Headers {
 }
 
 /** The request has been accepted for processing, but processing has not yet completed. */
-export interface JobScheduleTerminateJobSchedule202Response
-  extends HttpResponse {
+export interface TerminateJobSchedule202Response extends HttpResponse {
   status: "202";
-  headers: RawHttpHeaders & JobScheduleTerminateJobSchedule202Headers;
+  headers: RawHttpHeaders & TerminateJobSchedule202Headers;
 }
 
-export interface JobScheduleTerminateJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleTerminateJobScheduleDefaultResponse
-  extends HttpResponse {
+export interface TerminateJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleTerminateJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleAddJobSchedule201Headers {
+export interface CreateJobSchedule201Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1622,23 +1046,17 @@ export interface JobScheduleAddJobSchedule201Headers {
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface JobScheduleAddJobSchedule201Response extends HttpResponse {
+export interface CreateJobSchedule201Response extends HttpResponse {
   status: "201";
-  headers: RawHttpHeaders & JobScheduleAddJobSchedule201Headers;
+  headers: RawHttpHeaders & CreateJobSchedule201Headers;
 }
 
-export interface JobScheduleAddJobScheduleDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleAddJobScheduleDefaultResponse extends HttpResponse {
+export interface CreateJobScheduleDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleAddJobScheduleDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface JobScheduleListJobSchedules200Headers {
+export interface ListJobSchedules200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1650,25 +1068,18 @@ export interface JobScheduleListJobSchedules200Headers {
 }
 
 /** The request has succeeded. */
-export interface JobScheduleListJobSchedules200Response extends HttpResponse {
+export interface ListJobSchedules200Response extends HttpResponse {
   status: "200";
   body: BatchJobScheduleListResultOutput;
-  headers: RawHttpHeaders & JobScheduleListJobSchedules200Headers;
+  headers: RawHttpHeaders & ListJobSchedules200Headers;
 }
 
-export interface JobScheduleListJobSchedulesDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface JobScheduleListJobSchedulesDefaultResponse
-  extends HttpResponse {
+export interface ListJobSchedulesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & JobScheduleListJobSchedulesDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskAddTask201Headers {
+export interface CreateTask201Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1682,23 +1093,17 @@ export interface TaskAddTask201Headers {
 }
 
 /** The request has succeeded and a new resource has been created as a result. */
-export interface TaskAddTask201Response extends HttpResponse {
+export interface CreateTask201Response extends HttpResponse {
   status: "201";
-  headers: RawHttpHeaders & TaskAddTask201Headers;
+  headers: RawHttpHeaders & CreateTask201Headers;
 }
 
-export interface TaskAddTaskDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskAddTaskDefaultResponse extends HttpResponse {
+export interface CreateTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskAddTaskDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskListTasks200Headers {
+export interface ListTasks200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1710,24 +1115,18 @@ export interface TaskListTasks200Headers {
 }
 
 /** The request has succeeded. */
-export interface TaskListTasks200Response extends HttpResponse {
+export interface ListTasks200Response extends HttpResponse {
   status: "200";
   body: BatchTaskListResultOutput;
-  headers: RawHttpHeaders & TaskListTasks200Headers;
+  headers: RawHttpHeaders & ListTasks200Headers;
 }
 
-export interface TaskListTasksDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskListTasksDefaultResponse extends HttpResponse {
+export interface ListTasksDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskListTasksDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskAddTaskCollection200Headers {
+export interface CreateTaskCollection200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1735,24 +1134,18 @@ export interface TaskAddTaskCollection200Headers {
 }
 
 /** The request has succeeded. */
-export interface TaskAddTaskCollection200Response extends HttpResponse {
+export interface CreateTaskCollection200Response extends HttpResponse {
   status: "200";
   body: TaskAddCollectionResultOutput;
-  headers: RawHttpHeaders & TaskAddTaskCollection200Headers;
+  headers: RawHttpHeaders & CreateTaskCollection200Headers;
 }
 
-export interface TaskAddTaskCollectionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskAddTaskCollectionDefaultResponse extends HttpResponse {
+export interface CreateTaskCollectionDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskAddTaskCollectionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskDeleteTaskCollection200Headers {
+export interface DeleteTask200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1760,23 +1153,17 @@ export interface TaskDeleteTaskCollection200Headers {
 }
 
 /** The request has succeeded. */
-export interface TaskDeleteTaskCollection200Response extends HttpResponse {
+export interface DeleteTask200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & TaskDeleteTaskCollection200Headers;
+  headers: RawHttpHeaders & DeleteTask200Headers;
 }
 
-export interface TaskDeleteTaskCollectionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskDeleteTaskCollectionDefaultResponse extends HttpResponse {
+export interface DeleteTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskDeleteTaskCollectionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskGetTaskCollection200Headers {
+export interface GetTask200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1790,24 +1177,18 @@ export interface TaskGetTaskCollection200Headers {
 }
 
 /** The request has succeeded. */
-export interface TaskGetTaskCollection200Response extends HttpResponse {
+export interface GetTask200Response extends HttpResponse {
   status: "200";
   body: BatchTaskOutput;
-  headers: RawHttpHeaders & TaskGetTaskCollection200Headers;
+  headers: RawHttpHeaders & GetTask200Headers;
 }
 
-export interface TaskGetTaskCollectionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskGetTaskCollectionDefaultResponse extends HttpResponse {
+export interface GetTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskGetTaskCollectionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskUpdateTaskCollection200Headers {
+export interface ReplaceTask200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1821,23 +1202,17 @@ export interface TaskUpdateTaskCollection200Headers {
 }
 
 /** The request has succeeded. */
-export interface TaskUpdateTaskCollection200Response extends HttpResponse {
+export interface ReplaceTask200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & TaskUpdateTaskCollection200Headers;
+  headers: RawHttpHeaders & ReplaceTask200Headers;
 }
 
-export interface TaskUpdateTaskCollectionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskUpdateTaskCollectionDefaultResponse extends HttpResponse {
+export interface ReplaceTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskUpdateTaskCollectionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskListSubtasks200Headers {
+export interface ListSubTasks200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1849,24 +1224,18 @@ export interface TaskListSubtasks200Headers {
 }
 
 /** The request has succeeded. */
-export interface TaskListSubtasks200Response extends HttpResponse {
+export interface ListSubTasks200Response extends HttpResponse {
   status: "200";
   body: BatchTaskListSubtasksResultOutput;
-  headers: RawHttpHeaders & TaskListSubtasks200Headers;
+  headers: RawHttpHeaders & ListSubTasks200Headers;
 }
 
-export interface TaskListSubtasksDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskListSubtasksDefaultResponse extends HttpResponse {
+export interface ListSubTasksDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskListSubtasksDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskTerminateTaskCollection204Headers {
+export interface TerminateTask204Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1880,24 +1249,17 @@ export interface TaskTerminateTaskCollection204Headers {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface TaskTerminateTaskCollection204Response extends HttpResponse {
+export interface TerminateTask204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & TaskTerminateTaskCollection204Headers;
+  headers: RawHttpHeaders & TerminateTask204Headers;
 }
 
-export interface TaskTerminateTaskCollectionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskTerminateTaskCollectionDefaultResponse
-  extends HttpResponse {
+export interface TerminateTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskTerminateTaskCollectionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface TaskReactivateTaskCollection204Headers {
+export interface ReactivateTask204Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1911,54 +1273,17 @@ export interface TaskReactivateTaskCollection204Headers {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface TaskReactivateTaskCollection204Response extends HttpResponse {
+export interface ReactivateTask204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & TaskReactivateTaskCollection204Headers;
+  headers: RawHttpHeaders & ReactivateTask204Headers;
 }
 
-export interface TaskReactivateTaskCollectionDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface TaskReactivateTaskCollectionDefaultResponse
-  extends HttpResponse {
+export interface ReactivateTaskDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & TaskReactivateTaskCollectionDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface ComputeNodesAddUser201Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
-  dataserviceid: string;
-}
-
-/** The request has succeeded and a new resource has been created as a result. */
-export interface ComputeNodesAddUser201Response extends HttpResponse {
-  status: "201";
-  headers: RawHttpHeaders & ComputeNodesAddUser201Headers;
-}
-
-export interface ComputeNodesAddUserDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesAddUserDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesAddUserDefaultHeaders;
-}
-
-export interface ComputeNodesDeleteUser200Headers {
+export interface DeleteTaskFile200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1966,23 +1291,17 @@ export interface ComputeNodesDeleteUser200Headers {
 }
 
 /** The request has succeeded. */
-export interface ComputeNodesDeleteUser200Response extends HttpResponse {
+export interface DeleteTaskFile200Response extends HttpResponse {
   status: "200";
-  headers: RawHttpHeaders & ComputeNodesDeleteUser200Headers;
+  headers: RawHttpHeaders & DeleteTaskFile200Headers;
 }
 
-export interface ComputeNodesDeleteUserDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesDeleteUserDefaultResponse extends HttpResponse {
+export interface DeleteTaskFileDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesDeleteUserDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface ComputeNodesUpdateUser200Headers {
+export interface GetTaskFile200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -1991,245 +1310,111 @@ export interface ComputeNodesUpdateUser200Headers {
   etag?: string;
   /** The time at which the resource was last modified. */
   "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
-  dataserviceid: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
 }
 
 /** The request has succeeded. */
-export interface ComputeNodesUpdateUser200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & ComputeNodesUpdateUser200Headers;
-}
-
-export interface ComputeNodesUpdateUserDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesUpdateUserDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesUpdateUserDefaultHeaders;
-}
-
-export interface ComputeNodesGetComputeNode200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-}
-
-/** The request has succeeded. */
-export interface ComputeNodesGetComputeNode200Response extends HttpResponse {
-  status: "200";
-  body: ComputeNodeOutput;
-  headers: RawHttpHeaders & ComputeNodesGetComputeNode200Headers;
-}
-
-export interface ComputeNodesGetComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesGetComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesGetComputeNodeDefaultHeaders;
-}
-
-export interface ComputeNodesRebootComputeNode202Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
-  dataserviceid: string;
-}
-
-/** The request has been accepted for processing, but processing has not yet completed. */
-export interface ComputeNodesRebootComputeNode202Response extends HttpResponse {
-  status: "202";
-  headers: RawHttpHeaders & ComputeNodesRebootComputeNode202Headers;
-}
-
-export interface ComputeNodesRebootComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesRebootComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesRebootComputeNodeDefaultHeaders;
-}
-
-export interface ComputeNodesReimageComputeNode202Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
-  dataserviceid: string;
-}
-
-/** The request has been accepted for processing, but processing has not yet completed. */
-export interface ComputeNodesReimageComputeNode202Response
-  extends HttpResponse {
-  status: "202";
-  headers: RawHttpHeaders & ComputeNodesReimageComputeNode202Headers;
-}
-
-export interface ComputeNodesReimageComputeNodeDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesReimageComputeNodeDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesReimageComputeNodeDefaultHeaders;
-}
-
-export interface ComputeNodesDisableScheduling200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
-  dataserviceid: string;
-}
-
-/** The request has succeeded. */
-export interface ComputeNodesDisableScheduling200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & ComputeNodesDisableScheduling200Headers;
-}
-
-export interface ComputeNodesDisableSchedulingDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesDisableSchedulingDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesDisableSchedulingDefaultHeaders;
-}
-
-export interface ComputeNodesEnableScheduling200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-  /** The OData ID of the resource to which the request applied. */
-  dataserviceid: string;
-}
-
-/** The request has succeeded. */
-export interface ComputeNodesEnableScheduling200Response extends HttpResponse {
-  status: "200";
-  headers: RawHttpHeaders & ComputeNodesEnableScheduling200Headers;
-}
-
-export interface ComputeNodesEnableSchedulingDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesEnableSchedulingDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesEnableSchedulingDefaultHeaders;
-}
-
-export interface ComputeNodesGetRemoteLoginSettings200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-}
-
-/** The request has succeeded. */
-export interface ComputeNodesGetRemoteLoginSettings200Response
-  extends HttpResponse {
-  status: "200";
-  body: ComputeNodeGetRemoteLoginSettingsResultOutput;
-  headers: RawHttpHeaders & ComputeNodesGetRemoteLoginSettings200Headers;
-}
-
-export interface ComputeNodesGetRemoteLoginSettingsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesGetRemoteLoginSettingsDefaultResponse
-  extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesGetRemoteLoginSettingsDefaultHeaders;
-}
-
-export interface ComputeNodesGetRemoteDesktop200Headers {
-  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
-  "client-request-id"?: string;
-  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
-  "request-id"?: string;
-  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
-  etag?: string;
-  /** The time at which the resource was last modified. */
-  "last-modified"?: string;
-}
-
-/** The request has succeeded. */
-export interface ComputeNodesGetRemoteDesktop200Response extends HttpResponse {
+export interface GetTaskFile200Response extends HttpResponse {
   status: "200";
   /** Value may contain any sequence of octets */
   body: Uint8Array;
-  headers: RawHttpHeaders & ComputeNodesGetRemoteDesktop200Headers;
+  headers: RawHttpHeaders & GetTaskFile200Headers;
 }
 
-export interface ComputeNodesGetRemoteDesktopDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesGetRemoteDesktopDefaultResponse
-  extends HttpResponse {
+export interface GetTaskFileDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesGetRemoteDesktopDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface ComputeNodesUploadBatchServiceLogs200Headers {
+export interface GetTaskFileProperties200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface GetTaskFileProperties200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & GetTaskFileProperties200Headers;
+}
+
+export interface GetTaskFilePropertiesDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface ListTaskFiles200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface ListTaskFiles200Response extends HttpResponse {
+  status: "200";
+  body: NodeFileListResultOutput;
+  headers: RawHttpHeaders & ListTaskFiles200Headers;
+}
+
+export interface ListTaskFilesDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface CreateNodeUser201Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded and a new resource has been created as a result. */
+export interface CreateNodeUser201Response extends HttpResponse {
+  status: "201";
+  headers: RawHttpHeaders & CreateNodeUser201Headers;
+}
+
+export interface CreateNodeUserDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface DeleteNodeUser200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -2237,26 +1422,226 @@ export interface ComputeNodesUploadBatchServiceLogs200Headers {
 }
 
 /** The request has succeeded. */
-export interface ComputeNodesUploadBatchServiceLogs200Response
+export interface DeleteNodeUser200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & DeleteNodeUser200Headers;
+}
+
+export interface DeleteNodeUserDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface ReplaceNodeUser200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface ReplaceNodeUser200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & ReplaceNodeUser200Headers;
+}
+
+export interface ReplaceNodeUserDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface GetNode200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface GetNode200Response extends HttpResponse {
+  status: "200";
+  body: BatchNodeOutput;
+  headers: RawHttpHeaders & GetNode200Headers;
+}
+
+export interface GetNodeDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface RebootNode202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface RebootNode202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & RebootNode202Headers;
+}
+
+export interface RebootNodeDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface ReimageNode202Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has been accepted for processing, but processing has not yet completed. */
+export interface ReimageNode202Response extends HttpResponse {
+  status: "202";
+  headers: RawHttpHeaders & ReimageNode202Headers;
+}
+
+export interface ReimageNodeDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface DisableNodeScheduling200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface DisableNodeScheduling200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & DisableNodeScheduling200Headers;
+}
+
+export interface DisableNodeSchedulingDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface EnableNodeScheduling200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The OData ID of the resource to which the request applied. */
+  dataserviceid: string;
+}
+
+/** The request has succeeded. */
+export interface EnableNodeScheduling200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & EnableNodeScheduling200Headers;
+}
+
+export interface EnableNodeSchedulingDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface GetNodeRemoteLoginSettings200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface GetNodeRemoteLoginSettings200Response extends HttpResponse {
+  status: "200";
+  body: BatchNodeRemoteLoginSettingsResultOutput;
+  headers: RawHttpHeaders & GetNodeRemoteLoginSettings200Headers;
+}
+
+export interface GetNodeRemoteLoginSettingsDefaultResponse
   extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface GetNodeRemoteDesktopFile200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface GetNodeRemoteDesktopFile200Response extends HttpResponse {
+  status: "200";
+  body: string;
+  headers: RawHttpHeaders & GetNodeRemoteDesktopFile200Headers;
+}
+
+export interface GetNodeRemoteDesktopFileDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface UploadNodeLogs200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
+/** The request has succeeded. */
+export interface UploadNodeLogs200Response extends HttpResponse {
   status: "200";
   body: UploadBatchServiceLogsResultOutput;
-  headers: RawHttpHeaders & ComputeNodesUploadBatchServiceLogs200Headers;
+  headers: RawHttpHeaders & UploadNodeLogs200Headers;
 }
 
-export interface ComputeNodesUploadBatchServiceLogsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesUploadBatchServiceLogsDefaultResponse
-  extends HttpResponse {
+export interface UploadNodeLogsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesUploadBatchServiceLogsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface ComputeNodesList200Headers {
+export interface ListNodes200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -2268,24 +1653,18 @@ export interface ComputeNodesList200Headers {
 }
 
 /** The request has succeeded. */
-export interface ComputeNodesList200Response extends HttpResponse {
+export interface ListNodes200Response extends HttpResponse {
   status: "200";
-  body: ComputeNodeListResultOutput;
-  headers: RawHttpHeaders & ComputeNodesList200Headers;
+  body: BatchNodeListResultOutput;
+  headers: RawHttpHeaders & ListNodes200Headers;
 }
 
-export interface ComputeNodesListDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodesListDefaultResponse extends HttpResponse {
+export interface ListNodesDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ComputeNodesListDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface ComputeNodeExtensionsGetComputeNodeExtensions200Headers {
+export interface GetNodeExtension200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -2297,28 +1676,18 @@ export interface ComputeNodeExtensionsGetComputeNodeExtensions200Headers {
 }
 
 /** The request has succeeded. */
-export interface ComputeNodeExtensionsGetComputeNodeExtensions200Response
-  extends HttpResponse {
+export interface GetNodeExtension200Response extends HttpResponse {
   status: "200";
   body: NodeVMExtensionOutput;
-  headers: RawHttpHeaders &
-    ComputeNodeExtensionsGetComputeNodeExtensions200Headers;
+  headers: RawHttpHeaders & GetNodeExtension200Headers;
 }
 
-export interface ComputeNodeExtensionsGetComputeNodeExtensionsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodeExtensionsGetComputeNodeExtensionsDefaultResponse
-  extends HttpResponse {
+export interface GetNodeExtensionDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders &
-    ComputeNodeExtensionsGetComputeNodeExtensionsDefaultHeaders;
+  body: BatchErrorOutput;
 }
 
-export interface ComputeNodeExtensionsListComputeNodeExtensions200Headers {
+export interface ListNodeExtensions200Headers {
   /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
   "client-request-id"?: string;
   /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
@@ -2330,23 +1699,119 @@ export interface ComputeNodeExtensionsListComputeNodeExtensions200Headers {
 }
 
 /** The request has succeeded. */
-export interface ComputeNodeExtensionsListComputeNodeExtensions200Response
-  extends HttpResponse {
+export interface ListNodeExtensions200Response extends HttpResponse {
   status: "200";
   body: NodeVMExtensionListOutput;
-  headers: RawHttpHeaders &
-    ComputeNodeExtensionsListComputeNodeExtensions200Headers;
+  headers: RawHttpHeaders & ListNodeExtensions200Headers;
 }
 
-export interface ComputeNodeExtensionsListComputeNodeExtensionsDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ComputeNodeExtensionsListComputeNodeExtensionsDefaultResponse
-  extends HttpResponse {
+export interface ListNodeExtensionsDefaultResponse extends HttpResponse {
   status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders &
-    ComputeNodeExtensionsListComputeNodeExtensionsDefaultHeaders;
+  body: BatchErrorOutput;
+}
+
+export interface DeleteNodeFile200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+}
+
+/** The request has succeeded. */
+export interface DeleteNodeFile200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & DeleteNodeFile200Headers;
+}
+
+export interface DeleteNodeFileDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface GetNodeFile200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface GetNodeFile200Response extends HttpResponse {
+  status: "200";
+  body: string;
+  headers: RawHttpHeaders & GetNodeFile200Headers;
+}
+
+export interface GetNodeFileDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface GetNodeFileProperties200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+  /** The file creation time. */
+  "ocp-creation-time"?: string;
+  /** Whether the object represents a directory. */
+  "ocp-batch-file-isdirectory": boolean;
+  /** The URL of the file. */
+  "ocp-batch-file-url": string;
+  /** The file mode attribute in octal format. */
+  "ocp-batch-file-mode": string;
+  /** The length of the file. */
+  "content-length": number;
+}
+
+/** The request has succeeded. */
+export interface GetNodeFileProperties200Response extends HttpResponse {
+  status: "200";
+  headers: RawHttpHeaders & GetNodeFileProperties200Headers;
+}
+
+export interface GetNodeFilePropertiesDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
+}
+
+export interface ListNodeFiles200Headers {
+  /** The client-request-id provided by the client during the request. This will be returned only if the return-client-request-id parameter was set to true. */
+  "client-request-id"?: string;
+  /** A unique identifier for the request that was made to the Batch service. If a request is consistently failing and you have verified that the request is properly formulated, you may use this value to report the error to Microsoft. In your report, include the value of this request ID, the approximate time that the request was made, the Batch Account against which the request was made, and the region that Account resides in. */
+  "request-id"?: string;
+  /** The ETag HTTP response header. This is an opaque string. You can use it to detect whether the resource has changed between requests. In particular, you can pass the ETag to one of the If-Modified-Since, If-Unmodified-Since, If-Match or If-None-Match headers. */
+  etag?: string;
+  /** The time at which the resource was last modified. */
+  "last-modified"?: string;
+}
+
+/** The request has succeeded. */
+export interface ListNodeFiles200Response extends HttpResponse {
+  status: "200";
+  body: NodeFileListResultOutput;
+  headers: RawHttpHeaders & ListNodeFiles200Headers;
+}
+
+export interface ListNodeFilesDefaultResponse extends HttpResponse {
+  status: string;
+  body: BatchErrorOutput;
 }
