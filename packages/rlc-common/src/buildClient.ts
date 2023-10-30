@@ -86,8 +86,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialKeyHeaderName,
     customHttpAuthHeaderName
   } = model.options;
-  const credentialTypes =
-    credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
+  const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName || customHttpAuthHeaderName) {
     credentialTypes.push("KeyCredential");
@@ -211,9 +210,7 @@ function isSecurityInfoDefined(
   customHttpAuthHeaderName?: string
 ) {
   return (
-    (credentialScopes && credentialScopes.length > 0) ||
-    credentialKeyHeaderName ||
-    customHttpAuthHeaderName
+    credentialScopes || credentialKeyHeaderName || customHttpAuthHeaderName
   );
 }
 
@@ -311,10 +308,9 @@ export function getClientFactoryBody(
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
 
-  const scopesString =
-    credentialScopes && credentialScopes.length
-      ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
-      : "";
+  const scopesString = credentialScopes
+    ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
+    : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
     : "";
