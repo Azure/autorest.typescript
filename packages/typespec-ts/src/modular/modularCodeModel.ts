@@ -75,6 +75,7 @@ export interface Type {
     | "float"
     | "duration"
     | "enum"
+    | "enummember"
     | "integer"
     | "float"
     | "boolean"

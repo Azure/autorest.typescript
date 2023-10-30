@@ -1028,12 +1028,13 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
     values: enumValues,
     isFixed: isFixed(program, type)
   };
-  function enumMemberType(member: EnumMember) {
-    if (typeof member.value === "number") {
-      return intOrFloat(member.value);
-    }
-    return "string";
+}
+
+function enumMemberType(member: EnumMember) {
+  if (typeof member.value === "number") {
+    return intOrFloat(member.value);
   }
+  return "string";
 }
 
 function constantType(value: any, valueType: string): Record<string, any> {
@@ -1342,6 +1343,7 @@ function getNonNullOptions(type: Union) {
 
 function emitEnumMember(type: any): Record<string, any> {
   return {
+    type: enumMemberType(type),
     name: type.name ? enumName(type.name) : undefined,
     value: type.value,
     description: type.doc
@@ -1399,6 +1401,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
       return {};
     case "Enum":
       return emitEnum(context.program, type);
+    case "EnumMember":
+      return emitEnumMember(type);
     default:
       throw Error(`Not supported ${type.kind}`);
   }

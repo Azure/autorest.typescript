@@ -610,3 +610,23 @@ export type ImageSize = string;
 /** The format in which the generated images are returned. */
 /** "url", "b64_json" */
 export type ImageGenerationResponseFormat = string;
+
+/** Optional settings to control how fields are processed when using a configured Azure Cognitive Search resource. */
+export interface AzureCognitiveSearchIndexFieldMappingOptions {
+  /** The name of the index field to use as a title. */
+  titleField?: string;
+  /** The name of the index field to use as a URL. */
+  urlField?: string;
+  /** The name of the index field to use as a filepath. */
+  filepathField?: string;
+  /** The names of index fields that should be treated as content. */
+  contentFieldNames?: string[];
+  /** The separator pattern that content fields should use. */
+  contentFieldSeparator?: string;
+  /** The names of fields that represent vector data. */
+  vectorFields?: string[];
+}
+
+/** The type of Azure Cognitive Search retrieval query that should be executed when using it as an Azure OpenAI chat extension. */
+/** "simple", "semantic", "vector", "vectorSimpleHybrid", "vectorSemanticHybrid" */
+export type AzureCognitiveSearchQueryType = string;
