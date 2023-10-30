@@ -83,7 +83,10 @@ export function isByteOrByteUnion(dpgContext: SdkContext, type: Type) {
 }
 
 function isByteType(schema: any) {
-  return schema.type === "string" && schema.format === "byte";
+  return (
+    schema.type === "string" &&
+    (schema.format === "byte" || schema.format === "binary")
+  );
 }
 
 function isByteUnion(schema: any) {
