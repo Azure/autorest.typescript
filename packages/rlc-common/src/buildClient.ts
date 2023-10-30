@@ -308,9 +308,9 @@ export function getClientFactoryBody(
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
 
-  const scopesString = credentialScopes
-    ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
-    : "";
+  const scopesString = (credentialScopes ?? [])
+    .map((cs) => `"${cs}"`)
+    .join(", ");
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
     : "";
