@@ -355,7 +355,7 @@ function buildHeaderParameter(paramMap: string, param: Parameter): string {
   if (!param.optional) {
     return paramMap;
   }
-  // Header parameter must be not undefined
+  // Header parameter must not be undefined
   return `...(options?.${param.clientName} !== undefined ? {${paramMap}} : {})`;
 }
 
