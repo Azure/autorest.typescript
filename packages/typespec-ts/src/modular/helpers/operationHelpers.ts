@@ -298,7 +298,7 @@ function getRequestParameters(
 
   const parametersImplementation: Record<
     "header" | "query" | "body",
-    string[]
+    { paramMap: string; param: Parameter }[]
   > = {
     header: [],
     query: [],
@@ -311,9 +311,10 @@ function getRequestParameters(
       param.location === "query" ||
       param.location === "body"
     ) {
-      parametersImplementation[param.location].push(
-        getParameterMap(param, importSet)
-      );
+      parametersImplementation[param.location].push({
+        paramMap: getParameterMap(param, importSet),
+        param
+      });
     }
   }
 
@@ -324,23 +325,23 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
+      .map((i) => buildHeaderParameter(i.paramMap, i.param))
+      .join(",\n")}},`;
   }
 
   if (parametersImplementation.query.length) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
+      .map((i) => i.paramMap)
+      .join(",\n")}},`;
   }
   if (
     operation.bodyParameter === undefined &&
     parametersImplementation.body.length
   ) {
-    paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
-      ",\n"
-    )}}`;
+    paramStr = `${paramStr}\nbody: {${parametersImplementation.body
+      .map((i) => i.paramMap)
+      .join(",\n")}}`;
   } else if (operation.bodyParameter !== undefined) {
     paramStr = `${paramStr}${buildBodyParameter(
       operation.bodyParameter,
@@ -348,6 +349,14 @@ function getRequestParameters(
     )}`;
   }
   return paramStr;
+}
+
+function buildHeaderParameter(paramMap: string, param: Parameter): string {
+  if (!param.optional) {
+    return paramMap;
+  }
+  // Header parameter must be not undefined
+  return `...(options?.${param.clientName} !== undefined ? {${paramMap}} : {})`;
 }
 
 function buildBodyParameter(

@@ -1275,10 +1275,18 @@ export function _deletePoolSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -1329,10 +1337,18 @@ export function _poolExistsSend(
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -1371,10 +1387,18 @@ export function _getPoolSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: {
         timeOut: options?.timeOut,
@@ -1859,10 +1883,18 @@ export function _updatePoolSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -2039,10 +2071,18 @@ export function _enablePoolAutoScaleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -2159,10 +2199,18 @@ export function _resizePoolSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -2213,10 +2261,18 @@ export function _stopPoolResizeSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -2410,10 +2466,18 @@ export function _removeNodesSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -2598,10 +2662,18 @@ export function _deleteJobSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -2646,10 +2718,18 @@ export function _getJobSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: {
         timeOut: options?.timeOut,
@@ -3621,10 +3701,18 @@ export function _updateJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -4278,10 +4366,18 @@ export function _replaceJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -4893,10 +4989,18 @@ export function _disableJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: { disableTasks: body["disableTasks"] },
@@ -4943,10 +5047,18 @@ export function _enableJobSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -4993,10 +5105,18 @@ export function _terminateJobSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: { terminateReason: body["terminateReason"] },
@@ -8420,10 +8540,18 @@ export function _jobScheduleExistsSend(
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -8464,10 +8592,18 @@ export function _deleteJobScheduleSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -8509,10 +8645,18 @@ export function _getJobScheduleSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: {
         timeOut: options?.timeOut,
@@ -9615,10 +9759,18 @@ export function _updateJobScheduleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -10759,10 +10911,18 @@ export function _replaceJobScheduleSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -11820,10 +11980,18 @@ export function _disableJobScheduleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -11861,10 +12029,18 @@ export function _enableJobScheduleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -11902,10 +12078,18 @@ export function _terminateJobScheduleSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -14844,10 +15028,18 @@ export function _deleteTaskSend(
     .delete({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -14891,10 +15083,18 @@ export function _getTaskSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: {
         timeOut: options?.timeOut,
@@ -15207,10 +15407,18 @@ export function _replaceTaskSend(
         (options.contentType as any) ??
         "application/json; odata=minimalmetadata",
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
       body: {
@@ -15340,10 +15548,18 @@ export function _terminateTaskSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -15385,10 +15601,18 @@ export function _reactivateTaskSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-match": options?.ifMatch,
-        "if-none-match": options?.ifNoneMatch,
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifMatch !== undefined
+          ? { "if-match": options?.ifMatch }
+          : {}),
+        ...(options?.ifNoneMatch !== undefined
+          ? { "if-none-match": options?.ifNoneMatch }
+          : {}),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -15491,9 +15715,15 @@ export function _getTaskFileSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
-        "ocp-range": options?.ocpRange,
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ocpRange !== undefined
+          ? { "ocp-range": options?.ocpRange }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -15548,8 +15778,12 @@ export function _getTaskFilePropertiesSend(
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -16970,9 +17204,15 @@ export function _getNodeFileSend(
     .get({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
-        "ocp-range": options?.ocpRange,
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ocpRange !== undefined
+          ? { "ocp-range": options?.ocpRange }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
@@ -17027,8 +17267,12 @@ export function _getNodeFilePropertiesSend(
     .head({
       ...operationOptionsToRequestParameters(options),
       headers: {
-        "if-modified-since": options?.ifModifiedSince?.toUTCString(),
-        "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString(),
+        ...(options?.ifModifiedSince !== undefined
+          ? { "if-modified-since": options?.ifModifiedSince?.toUTCString() }
+          : {}),
+        ...(options?.ifUnmodifiedSince !== undefined
+          ? { "if-unmodified-since": options?.ifUnmodifiedSince?.toUTCString() }
+          : {}),
       },
       queryParameters: { timeOut: options?.timeOut },
     });
