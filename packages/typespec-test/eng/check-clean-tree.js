@@ -26,6 +26,11 @@ async function check_tree() {
     })
   );
 
+  const status = await onExit(
+    spawn("git", ["status"])
+  );
+  console.log(status);
+
   // If there is any output from this command it means that
   // there are non committed changes so we need to handle
   // stout
