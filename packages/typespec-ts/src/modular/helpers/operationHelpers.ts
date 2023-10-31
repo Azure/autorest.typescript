@@ -29,6 +29,9 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { Program, NoTarget } from "@typespec/compiler";
+import { reportDiagnostic } from "../../lib.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -48,6 +51,7 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
 }
 
 export function getSendPrivateFunction(
+  dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
   importSet: Map<string, Set<string>>
@@ -71,6 +75,7 @@ export function getSendPrivateFunction(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+      dpgContext,
       operation,
       importSet
     )}});`
@@ -284,6 +289,7 @@ export function getOperationOptionsName(
  * Figuring out what goes in headers, body, path and qsp.
  */
 function getRequestParameters(
+  dpgContext: SdkContext,
   operation: Operation,
   importSet: Map<string, Set<string>>
 ): string {
@@ -326,7 +332,7 @@ function getRequestParameters(
 
   if (parametersImplementation.header.length) {
     paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
-      .map((i) => buildHeaderParameter(i.paramMap, i.param))
+      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
       .join(",\n")}},`;
   }
 
@@ -351,12 +357,29 @@ function getRequestParameters(
   return paramStr;
 }
 
-function buildHeaderParameter(paramMap: string, param: Parameter): string {
-  if (!param.optional) {
+// Specially handle the type for headers because we only allow string/number/boolean values
+function buildHeaderParameter(
+  program: Program,
+  paramMap: string,
+  param: Parameter
+): string {
+  if (!param.optional && param.type.nullable === true) {
+    reportDiagnostic(program, {
+      code: "nullable-required-header",
+      target: NoTarget
+    });
     return paramMap;
   }
-  // Header parameter must not be undefined
-  return `...(options?.${param.clientName} !== undefined ? {${paramMap}} : {})`;
+  let conditions = [];
+  if (param.optional) {
+    conditions.push(`options?.${param.clientName} !== undefined`);
+  }
+  if (param.type.nullable === true) {
+    conditions.push(`options?.${param.clientName} !== null`);
+  }
+  return conditions.length > 0
+    ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
+    : paramMap;
 }
 
 function buildBodyParameter(
