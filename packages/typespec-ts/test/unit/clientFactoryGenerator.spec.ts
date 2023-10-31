@@ -425,6 +425,13 @@ describe("Client Factory generation", () => {
        */
       export default function createClient(endpoint: string, credentials: TokenCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+
+        options = {
+          ...options,
+          credentials: {
+            scopes: options.credentials?.scopes ?? [\`\${baseUrl}/.default\`],
+          },
+        };
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`: \`\${userAgentInfo}\`;;
@@ -438,7 +445,7 @@ describe("Client Factory generation", () => {
             }
         };
 
-        const client = getClient(baseUrl, options) as testClient;
+        const client = getClient(baseUrl, credentials, options) as testClient;
 
         return client;
       }

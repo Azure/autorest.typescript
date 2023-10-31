@@ -22,6 +22,7 @@ export default function createClient(
   options = {
     ...options,
     credentials: {
+      scopes: options.credentials?.scopes ?? [`${baseUrl}/.default`],
       apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
