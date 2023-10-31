@@ -49,7 +49,7 @@ export function getClassicalLayerPrefix(
   separator: string = "",
   layer: number = operationGroup.namespaceHierarchies.length - 1
 ): string {
-  let prefix: string[] = [];
+  const prefix: string[] = [];
   if (layer < 0) {
     return prefix.join(separator);
   }
