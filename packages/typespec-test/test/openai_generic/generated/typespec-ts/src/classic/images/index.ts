@@ -16,20 +16,18 @@ import {
 } from "../../models/options.js";
 
 export interface ImagesOperations {
-  images: {
-    create: (
-      image: CreateImageRequest,
-      options?: ImagesCreateOptions
-    ) => Promise<ImagesResponse>;
-    createEdit: (
-      image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptions
-    ) => Promise<ImagesResponse>;
-    createVariation: (
-      image: CreateImageVariationRequest,
-      options?: ImagesCreateVariationOptions
-    ) => Promise<ImagesResponse>;
-  };
+  create: (
+    image: CreateImageRequest,
+    options?: ImagesCreateOptions
+  ) => Promise<ImagesResponse>;
+  createEdit: (
+    image: CreateImageEditRequest,
+    options?: ImagesCreateEditOptions
+  ) => Promise<ImagesResponse>;
+  createVariation: (
+    image: CreateImageVariationRequest,
+    options?: ImagesCreateVariationOptions
+  ) => Promise<ImagesResponse>;
 }
 
 export function getImages(context: OpenAIContext) {
@@ -49,6 +47,6 @@ export function getImages(context: OpenAIContext) {
 
 export function getImagesOperations(context: OpenAIContext): ImagesOperations {
   return {
-    images: getImages(context),
+    ...getImages(context),
   };
 }

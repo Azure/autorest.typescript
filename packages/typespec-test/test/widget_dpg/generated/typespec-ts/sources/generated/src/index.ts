@@ -10,10 +10,11 @@ export {
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
-  ListWidgetsOptions,
-  GetWidgetOptions,
-  CreateWidgetOptions,
-  UpdateWidgetOptions,
-  DeleteWidgetOptions,
-  AnalyzeWidgetOptions,
+  WidgetsListWidgetsOptions,
+  WidgetsGetWidgetOptions,
+  WidgetsCreateWidgetOptions,
+  WidgetsUpdateWidgetOptions,
+  WidgetsDeleteWidgetOptions,
+  WidgetsAnalyzeWidgetOptions,
 } from "./models/index.js";
+export { WidgetsOperations } from "./classic/index.js";

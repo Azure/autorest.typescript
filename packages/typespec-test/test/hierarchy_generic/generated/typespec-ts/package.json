@@ -25,20 +25,20 @@
       "import": "./dist-esm/src/models/index.js"
     },
     "./api/b": {
-      "types": "./types/src/b/index.d.ts",
-      "import": "./dist-esm/src/b/index.js"
+      "types": "./types/src/api/b/index.d.ts",
+      "import": "./dist-esm/src/api/b/index.js"
     },
     "./api/b/e/c": {
-      "types": "./types/src/b/e/c/index.d.ts",
-      "import": "./dist-esm/src/b/e/c/index.js"
+      "types": "./types/src/api/b/e/c/index.d.ts",
+      "import": "./dist-esm/src/api/b/e/c/index.js"
     },
     "./api/b/c": {
-      "types": "./types/src/b/c/index.d.ts",
-      "import": "./dist-esm/src/b/c/index.js"
+      "types": "./types/src/api/b/c/index.d.ts",
+      "import": "./dist-esm/src/api/b/c/index.js"
     },
     "./api/d": {
-      "types": "./types/src/d/index.d.ts",
-      "import": "./dist-esm/src/d/index.js"
+      "types": "./types/src/api/d/index.d.ts",
+      "import": "./dist-esm/src/api/d/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",

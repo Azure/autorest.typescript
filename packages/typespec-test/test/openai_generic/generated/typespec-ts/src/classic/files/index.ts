@@ -24,25 +24,20 @@ import {
 } from "../../models/options.js";
 
 export interface FilesOperations {
-  files: {
-    list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
-    create: (
-      file: CreateFileRequest,
-      options?: FilesCreateOptions
-    ) => Promise<OpenAIFile>;
-    retrieve: (
-      fileId: string,
-      options?: FilesRetrieveOptions
-    ) => Promise<OpenAIFile>;
-    deleteOperation: (
-      fileId: string,
-      options?: FilesDeleteOptions
-    ) => Promise<DeleteFileResponse>;
-    download: (
-      fileId: string,
-      options?: FilesDownloadOptions
-    ) => Promise<string>;
-  };
+  list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+  create: (
+    file: CreateFileRequest,
+    options?: FilesCreateOptions
+  ) => Promise<OpenAIFile>;
+  retrieve: (
+    fileId: string,
+    options?: FilesRetrieveOptions
+  ) => Promise<OpenAIFile>;
+  deleteOperation: (
+    fileId: string,
+    options?: FilesDeleteOptions
+  ) => Promise<DeleteFileResponse>;
+  download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
 }
 
 export function getFiles(context: OpenAIContext) {
@@ -61,6 +56,6 @@ export function getFiles(context: OpenAIContext) {
 
 export function getFilesOperations(context: OpenAIContext): FilesOperations {
   return {
-    files: getFiles(context),
+    ...getFiles(context),
   };
 }

@@ -24,25 +24,23 @@ import {
 } from "../../models/options.js";
 
 export interface FineTunesOperations {
-  fineTunes: {
-    create: (
-      fineTune: CreateFineTuneRequest,
-      options?: FineTunesCreateOptions
-    ) => Promise<FineTune>;
-    list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
-    retrieve: (
-      fineTuneId: string,
-      options?: FineTunesRetrieveOptions
-    ) => Promise<FineTune>;
-    listEvents: (
-      fineTuneId: string,
-      options?: FineTunesListEventsOptions
-    ) => Promise<ListFineTuneEventsResponse>;
-    cancel: (
-      fineTuneId: string,
-      options?: FineTunesCancelOptions
-    ) => Promise<FineTune>;
-  };
+  create: (
+    fineTune: CreateFineTuneRequest,
+    options?: FineTunesCreateOptions
+  ) => Promise<FineTune>;
+  list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+  retrieve: (
+    fineTuneId: string,
+    options?: FineTunesRetrieveOptions
+  ) => Promise<FineTune>;
+  listEvents: (
+    fineTuneId: string,
+    options?: FineTunesListEventsOptions
+  ) => Promise<ListFineTuneEventsResponse>;
+  cancel: (
+    fineTuneId: string,
+    options?: FineTunesCancelOptions
+  ) => Promise<FineTune>;
 }
 
 export function getFineTunes(context: OpenAIContext) {
@@ -65,6 +63,6 @@ export function getFineTunesOperations(
   context: OpenAIContext
 ): FineTunesOperations {
   return {
-    fineTunes: getFineTunes(context),
+    ...getFineTunes(context),
   };
 }

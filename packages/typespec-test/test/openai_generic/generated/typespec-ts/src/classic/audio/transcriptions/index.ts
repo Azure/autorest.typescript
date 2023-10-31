@@ -10,12 +10,10 @@ import { create } from "../../../api/audio/transcriptions/index.js";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
 export interface AudioTranscriptionsOperations {
-  transcriptions: {
-    create: (
-      audio: CreateTranscriptionRequest,
-      options?: AudioTranscriptionsCreateOptions
-    ) => Promise<CreateTranscriptionResponse>;
-  };
+  create: (
+    audio: CreateTranscriptionRequest,
+    options?: AudioTranscriptionsCreateOptions
+  ) => Promise<CreateTranscriptionResponse>;
 }
 
 export function getAudioTranscriptions(context: OpenAIContext) {
@@ -31,6 +29,6 @@ export function getAudioTranscriptionsOperations(
   context: OpenAIContext
 ): AudioTranscriptionsOperations {
   return {
-    transcriptions: getAudioTranscriptions(context),
+    ...getAudioTranscriptions(context),
   };
 }

@@ -183,11 +183,18 @@ export async function $onEmit(context: EmitContext) {
         );
         buildClientContext(dpgContext, modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "models");
-        buildSubpathIndexFile(modularCodeModel, subClient, "api");
+        if (dpgContext.rlcOptions?.hierarchyClient) {
+          buildSubpathIndexFile(modularCodeModel, subClient, "api");
+        } else {
+          buildSubpathIndexFile(modularCodeModel, subClient, "api", {
+            exportIndex: true
+          });
+        }
+
         buildClassicalClient(dpgContext, modularCodeModel, subClient);
         buildClassicOperationFiles(modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "classic", {
-          filterIndex: true,
+          exportIndex: true,
           interfaceOnly: true
         });
         if (modularCodeModel.clients.length > 1) {

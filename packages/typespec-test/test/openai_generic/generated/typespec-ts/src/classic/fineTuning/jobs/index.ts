@@ -24,27 +24,25 @@ import {
 } from "../../../models/options.js";
 
 export interface FineTuningJobsOperations {
-  jobs: {
-    create: (
-      job: CreateFineTuningJobRequest,
-      options?: FineTuningJobsCreateOptions
-    ) => Promise<FineTuningJob>;
-    list: (
-      options?: FineTuningJobsListOptions
-    ) => Promise<ListPaginatedFineTuningJobsResponse>;
-    retrieve: (
-      fineTuningJobId: string,
-      options?: FineTuningJobsRetrieveOptions
-    ) => Promise<FineTuningJob>;
-    listEvents: (
-      fineTuningJobId: string,
-      options?: FineTuningJobsListEventsOptions
-    ) => Promise<ListFineTuningJobEventsResponse>;
-    cancel: (
-      fineTuningJobId: string,
-      options?: FineTuningJobsCancelOptions
-    ) => Promise<FineTuningJob>;
-  };
+  create: (
+    job: CreateFineTuningJobRequest,
+    options?: FineTuningJobsCreateOptions
+  ) => Promise<FineTuningJob>;
+  list: (
+    options?: FineTuningJobsListOptions
+  ) => Promise<ListPaginatedFineTuningJobsResponse>;
+  retrieve: (
+    fineTuningJobId: string,
+    options?: FineTuningJobsRetrieveOptions
+  ) => Promise<FineTuningJob>;
+  listEvents: (
+    fineTuningJobId: string,
+    options?: FineTuningJobsListEventsOptions
+  ) => Promise<ListFineTuningJobEventsResponse>;
+  cancel: (
+    fineTuningJobId: string,
+    options?: FineTuningJobsCancelOptions
+  ) => Promise<FineTuningJob>;
 }
 
 export function getFineTuningJobs(context: OpenAIContext) {
@@ -71,6 +69,6 @@ export function getFineTuningJobsOperations(
   context: OpenAIContext
 ): FineTuningJobsOperations {
   return {
-    jobs: getFineTuningJobs(context),
+    ...getFineTuningJobs(context),
   };
 }

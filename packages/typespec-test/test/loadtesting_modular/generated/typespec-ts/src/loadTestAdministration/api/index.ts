@@ -19,4 +19,4 @@ export {
   uploadTestFile,
   deleteTestFile,
   deleteTest,
-} from "./operations.js";
+} from "./administrationOperations/index.js";

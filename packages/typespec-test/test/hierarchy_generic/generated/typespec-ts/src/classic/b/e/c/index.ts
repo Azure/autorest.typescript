@@ -7,9 +7,7 @@ import { op1 } from "../../../../api/b/e/c/index.js";
 import { BECOp1Options } from "../../../../models/options.js";
 
 export interface BECOperations {
-  c: {
-    op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
-  };
+  op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
 }
 
 export function getBEC(context: FooContext) {
@@ -20,6 +18,6 @@ export function getBEC(context: FooContext) {
 
 export function getBECOperations(context: FooContext): BECOperations {
   return {
-    c: getBEC(context),
+    ...getBEC(context),
   };
 }

@@ -2,7 +2,7 @@ import { join } from "path";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 
 export interface buildSubpathIndexFileOptions {
-  filterIndex?: boolean;
+  exportIndex?: boolean;
   interfaceOnly?: boolean;
 }
 
@@ -29,7 +29,7 @@ export function buildSubpathIndexFile(
     `${srcPath}/${subfolder}/${subpath}/index.ts`
   );
   for (const file of apiFiles) {
-    if (!options.filterIndex && file.getFilePath().endsWith("index.ts")) {
+    if (!options.exportIndex && file.getFilePath().endsWith("index.ts")) {
       continue;
     }
     if (file.getFilePath() === indexFile.getFilePath()) {

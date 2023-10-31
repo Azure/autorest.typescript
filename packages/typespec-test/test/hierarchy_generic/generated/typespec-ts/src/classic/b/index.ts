@@ -9,9 +9,7 @@ import { BCOperations, getBCOperations } from "./c/index.js";
 import { BEOperations, getBEOperations } from "./e/index.js";
 
 export interface BOperations {
-  b: {
-    op1: (body: BA, options?: BOp1Options) => Promise<void>;
-  };
+  op1: (body: BA, options?: BOp1Options) => Promise<void>;
   e: BEOperations;
   c: BCOperations;
 }
@@ -24,7 +22,7 @@ export function getB(context: FooContext) {
 
 export function getBOperations(context: FooContext): BOperations {
   return {
-    b: getB(context),
+    ...getB(context),
     e: getBEOperations(context),
     c: getBCOperations(context),
   };

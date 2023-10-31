@@ -27,9 +27,7 @@ export interface BCOp1Options extends OperationOptions {
 // @public (undocumented)
 export interface BCOperations {
     // (undocumented)
-    c: {
-        op1: (body: BA, options?: BCOp1Options) => Promise<void>;
-    };
+    op1: (body: BA, options?: BCOp1Options) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -45,9 +43,7 @@ export interface BECOp1Options extends OperationOptions {
 // @public (undocumented)
 export interface BECOperations {
     // (undocumented)
-    c: {
-        op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
-    };
+    op1: (body: BEA, options?: BECOp1Options) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -63,13 +59,11 @@ export interface BOp1Options extends OperationOptions {
 // @public (undocumented)
 export interface BOperations {
     // (undocumented)
-    b: {
-        op1: (body: BA, options?: BOp1Options) => Promise<void>;
-    };
-    // (undocumented)
     c: BCOperations;
     // (undocumented)
     e: BEOperations;
+    // (undocumented)
+    op1: (body: BA, options?: BOp1Options) => Promise<void>;
 }
 
 // @public (undocumented)
@@ -79,9 +73,7 @@ export interface DOp1Options extends OperationOptions {
 // @public (undocumented)
 export interface DOperations {
     // (undocumented)
-    d: {
-        op1: (body: A, options?: DOp1Options) => Promise<void>;
-    };
+    op1: (body: A, options?: DOp1Options) => Promise<void>;
 }
 
 // @public (undocumented)

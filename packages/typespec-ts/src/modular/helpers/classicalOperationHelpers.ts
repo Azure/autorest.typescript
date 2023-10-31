@@ -1,7 +1,9 @@
 import {
   FunctionDeclarationStructure,
   OptionalKind,
-  SourceFile
+  PropertySignatureStructure,
+  SourceFile,
+  StructureKind
 } from "ts-morph";
 import { Client, OperationGroup } from "../modularCodeModel.js";
 import { getClassicalLayerPrefix, getClientName } from "./namingHelpers.js";
@@ -50,43 +52,45 @@ export function getClassicalOperation(
   const existInterface = classicFile
     .getInterfaces()
     .filter((i) => i.getName() === interfaceName)[0];
-  const property = {
-    name:
-      normalizeName(
-        (layer === operationGroup.namespaceHierarchies.length - 1
-          ? operationGroup.namespaceHierarchies[layer]
-          : operationGroup.namespaceHierarchies[layer + 1]) ?? "",
-        NameType.Property
-      ) ?? operationGroup.propertyName,
-    type:
-      layer !== operationGroup.namespaceHierarchies.length - 1
-        ? `${getClassicalLayerPrefix(
-            operationGroup,
-            NameType.Interface,
-            "",
-            layer + 1
-          )}Operations`
-        : `{
-          ${operationDeclarations
-            .map((d) => {
-              return `${getClassicalMethodName(d)}: (${d.parameters
-                ?.filter((p) => p.name !== "context")
-                .map(
-                  (p) =>
-                    p.name + (p.name === "options" ? "?" : "") + ": " + p.type
-                )
-                .join(",")}) => ${d.returnType}`;
-            })
-            .join(";")}  
-        }`
-  };
+  const properties: OptionalKind<PropertySignatureStructure>[] = [];
+  if (layer !== operationGroup.namespaceHierarchies.length - 1) {
+    properties.push({
+      kind: StructureKind.PropertySignature,
+      name:
+        normalizeName(
+          (layer === operationGroup.namespaceHierarchies.length - 1
+            ? operationGroup.namespaceHierarchies[layer]
+            : operationGroup.namespaceHierarchies[layer + 1]) ?? "",
+          NameType.Property
+        ) ?? operationGroup.propertyName,
+      type: `${getClassicalLayerPrefix(
+        operationGroup,
+        NameType.Interface,
+        "",
+        layer + 1
+      )}Operations`
+    });
+  } else {
+    operationDeclarations.forEach((d) => {
+      properties.push({
+        kind: StructureKind.PropertySignature,
+        name: getClassicalMethodName(d),
+        type: `(${d.parameters
+          ?.filter((p) => p.name !== "context")
+          .map(
+            (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
+          )
+          .join(",")}) => ${d.returnType}`
+      });
+    });
+  }
   if (existInterface) {
-    existInterface.addProperty(property);
+    existInterface.addProperties([...properties]);
   } else {
     classicFile.addInterface({
       name: interfaceName,
       isExported: true,
-      properties: [property]
+      properties
     });
   }
 
@@ -138,19 +142,26 @@ export function getClassicalOperation(
   if (existFunction) {
     const returnStatement = existFunction.getBodyText();
     if (returnStatement) {
-      const newReturnStatement = returnStatement.replace(
-        /}$/,
-        `,
-          ${normalizeName(
-            operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
-            NameType.Property
-          )}: get${getClassicalLayerPrefix(
+      let statement = `,
+      ...get${getClassicalLayerPrefix(
+        operationGroup,
+        NameType.Interface,
+        "",
+        layer + 1
+      )}Operations(context)}`;
+      if (layer !== operationGroup.namespaceHierarchies.length - 1) {
+        statement = `,
+        ${normalizeName(
+          operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+          NameType.Property
+        )}: get${getClassicalLayerPrefix(
           operationGroup,
           NameType.Interface,
           "",
           layer + 1
-        )}Operations(context)}`
-      );
+        )}Operations(context)}`;
+      }
+      const newReturnStatement = returnStatement.replace(/}$/, statement);
       existFunction.setBodyText(newReturnStatement);
     }
   } else {
@@ -172,10 +183,10 @@ export function getClassicalOperation(
       statements:
         layer !== operationGroup.namespaceHierarchies.length - 1
           ? `return {
-        ${normalizeName(
-          operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
-          NameType.Property
-        )}: get${getClassicalLayerPrefix(
+            ${normalizeName(
+              operationGroup.namespaceHierarchies[layer + 1] ?? "FIXME",
+              NameType.Property
+            )}: get${getClassicalLayerPrefix(
               operationGroup,
               NameType.Interface,
               "",
@@ -183,15 +194,12 @@ export function getClassicalOperation(
             )}Operations(context)   
       }`
           : `return {
-        ${normalizeName(
-          operationGroup.namespaceHierarchies[layer] ?? "FIXME",
-          NameType.Property
-        )}: get${getClassicalLayerPrefix(
-              operationGroup,
-              NameType.Interface,
-              "",
-              layer
-            )}(context)
+        ...get${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.Interface,
+          "",
+          layer
+        )}(context)
       }`
     });
   }

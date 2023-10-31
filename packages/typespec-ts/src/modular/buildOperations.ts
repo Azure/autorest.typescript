@@ -143,7 +143,7 @@ export function importModels(
   importLayer: number = 0
 ) {
   const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
-    return i.getModuleSpecifierValue().includes(`models/models.js`);
+    return i.getModuleSpecifierValue().endsWith(`models/models.js`);
   });
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
@@ -156,7 +156,7 @@ export function importModels(
     models.push(entry[0]);
   }
 
-  if (models.length > 0 && hasModelsImport) {
+  if (models.length > 0 && !hasModelsImport) {
     sourceFile.addImportDeclaration({
       moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
       namedImports: models

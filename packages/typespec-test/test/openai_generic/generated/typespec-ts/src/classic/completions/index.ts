@@ -10,12 +10,10 @@ import { create } from "../../api/completions/index.js";
 import { CompletionsCreateOptions } from "../../models/options.js";
 
 export interface CompletionsOperations {
-  completions: {
-    create: (
-      body: CreateCompletionRequest,
-      options?: CompletionsCreateOptions
-    ) => Promise<CreateCompletionResponse>;
-  };
+  create: (
+    body: CreateCompletionRequest,
+    options?: CompletionsCreateOptions
+  ) => Promise<CreateCompletionResponse>;
 }
 
 export function getCompletions(context: OpenAIContext) {
@@ -31,6 +29,6 @@ export function getCompletionsOperations(
   context: OpenAIContext
 ): CompletionsOperations {
   return {
-    completions: getCompletions(context),
+    ...getCompletions(context),
   };
 }

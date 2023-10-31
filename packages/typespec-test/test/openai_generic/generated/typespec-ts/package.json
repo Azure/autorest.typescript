@@ -25,52 +25,52 @@
       "import": "./dist-esm/src/models/index.js"
     },
     "./api/audio/transcriptions": {
-      "types": "./types/src/audio/transcriptions/index.d.ts",
-      "import": "./dist-esm/src/audio/transcriptions/index.js"
+      "types": "./types/src/api/audio/transcriptions/index.d.ts",
+      "import": "./dist-esm/src/api/audio/transcriptions/index.js"
     },
     "./api/audio/translations": {
-      "types": "./types/src/audio/translations/index.d.ts",
-      "import": "./dist-esm/src/audio/translations/index.js"
+      "types": "./types/src/api/audio/translations/index.d.ts",
+      "import": "./dist-esm/src/api/audio/translations/index.js"
     },
     "./api/chat/completions": {
-      "types": "./types/src/chat/completions/index.d.ts",
-      "import": "./dist-esm/src/chat/completions/index.js"
+      "types": "./types/src/api/chat/completions/index.d.ts",
+      "import": "./dist-esm/src/api/chat/completions/index.js"
     },
     "./api/fineTuning/jobs": {
-      "types": "./types/src/fineTuning/jobs/index.d.ts",
-      "import": "./dist-esm/src/fineTuning/jobs/index.js"
+      "types": "./types/src/api/fineTuning/jobs/index.d.ts",
+      "import": "./dist-esm/src/api/fineTuning/jobs/index.js"
     },
     "./api/completions": {
-      "types": "./types/src/completions/index.d.ts",
-      "import": "./dist-esm/src/completions/index.js"
+      "types": "./types/src/api/completions/index.d.ts",
+      "import": "./dist-esm/src/api/completions/index.js"
     },
     "./api/edits": {
-      "types": "./types/src/edits/index.d.ts",
-      "import": "./dist-esm/src/edits/index.js"
+      "types": "./types/src/api/edits/index.d.ts",
+      "import": "./dist-esm/src/api/edits/index.js"
     },
     "./api/embeddings": {
-      "types": "./types/src/embeddings/index.d.ts",
-      "import": "./dist-esm/src/embeddings/index.js"
+      "types": "./types/src/api/embeddings/index.d.ts",
+      "import": "./dist-esm/src/api/embeddings/index.js"
     },
     "./api/files": {
-      "types": "./types/src/files/index.d.ts",
-      "import": "./dist-esm/src/files/index.js"
+      "types": "./types/src/api/files/index.d.ts",
+      "import": "./dist-esm/src/api/files/index.js"
     },
     "./api/fineTunes": {
-      "types": "./types/src/fineTunes/index.d.ts",
-      "import": "./dist-esm/src/fineTunes/index.js"
+      "types": "./types/src/api/fineTunes/index.d.ts",
+      "import": "./dist-esm/src/api/fineTunes/index.js"
     },
     "./api/models": {
-      "types": "./types/src/models/index.d.ts",
-      "import": "./dist-esm/src/models/index.js"
+      "types": "./types/src/api/models/index.d.ts",
+      "import": "./dist-esm/src/api/models/index.js"
     },
     "./api/images": {
-      "types": "./types/src/images/index.d.ts",
-      "import": "./dist-esm/src/images/index.js"
+      "types": "./types/src/api/images/index.d.ts",
+      "import": "./dist-esm/src/api/images/index.js"
     },
     "./api/moderations": {
-      "types": "./types/src/moderations/index.d.ts",
-      "import": "./dist-esm/src/moderations/index.js"
+      "types": "./types/src/api/moderations/index.d.ts",
+      "import": "./dist-esm/src/api/moderations/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",

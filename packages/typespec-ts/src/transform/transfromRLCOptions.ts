@@ -144,7 +144,7 @@ function getEnableOperationGroup(
   ) {
     return emitterOptions.enableOperationGroup;
   }
-  // Detect if existing name conflicts if customers didn't set the option explicitly
+  // Only detect if existing name conflicts if customers don't set hierarchyClient to true
   return detectIfNameConflicts(dpgContext);
 }
 

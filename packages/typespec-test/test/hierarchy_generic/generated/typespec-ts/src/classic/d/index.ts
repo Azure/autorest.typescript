@@ -7,9 +7,7 @@ import { op1 } from "../../api/d/index.js";
 import { DOp1Options } from "../../models/options.js";
 
 export interface DOperations {
-  d: {
-    op1: (body: A, options?: DOp1Options) => Promise<void>;
-  };
+  op1: (body: A, options?: DOp1Options) => Promise<void>;
 }
 
 export function getD(context: FooContext) {
@@ -20,6 +18,6 @@ export function getD(context: FooContext) {
 
 export function getDOperations(context: FooContext): DOperations {
   return {
-    d: getD(context),
+    ...getD(context),
   };
 }

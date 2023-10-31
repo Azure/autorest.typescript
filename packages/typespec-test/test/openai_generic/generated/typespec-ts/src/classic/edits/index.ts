@@ -7,12 +7,10 @@ import { create } from "../../api/edits/index.js";
 import { EditsCreateOptions } from "../../models/options.js";
 
 export interface EditsOperations {
-  edits: {
-    create: (
-      edit: CreateEditRequest,
-      options?: EditsCreateOptions
-    ) => Promise<CreateEditResponse>;
-  };
+  create: (
+    edit: CreateEditRequest,
+    options?: EditsCreateOptions
+  ) => Promise<CreateEditResponse>;
 }
 
 export function getEdits(context: OpenAIContext) {
@@ -24,6 +22,6 @@ export function getEdits(context: OpenAIContext) {
 
 export function getEditsOperations(context: OpenAIContext): EditsOperations {
   return {
-    edits: getEdits(context),
+    ...getEdits(context),
   };
 }

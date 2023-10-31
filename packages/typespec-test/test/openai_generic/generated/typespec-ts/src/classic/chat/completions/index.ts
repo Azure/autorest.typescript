@@ -10,12 +10,10 @@ import { create } from "../../../api/chat/completions/index.js";
 import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export interface ChatCompletionsOperations {
-  completions: {
-    create: (
-      body: CreateChatCompletionRequest,
-      options?: ChatCompletionsCreateOptions
-    ) => Promise<CreateChatCompletionResponse>;
-  };
+  create: (
+    body: CreateChatCompletionRequest,
+    options?: ChatCompletionsCreateOptions
+  ) => Promise<CreateChatCompletionResponse>;
 }
 
 export function getChatCompletions(context: OpenAIContext) {
@@ -31,6 +29,6 @@ export function getChatCompletionsOperations(
   context: OpenAIContext
 ): ChatCompletionsOperations {
   return {
-    completions: getChatCompletions(context),
+    ...getChatCompletions(context),
   };
 }

@@ -39,17 +39,23 @@ export class RenamedOperationClient {
     this.pipeline = this._client.pipeline;
   }
 
-  group = {
-    renamedTwo: (options?: RenamedTwoOptions): Promise<void> => {
-      return renamedTwo(this._client, options);
-    },
-    renamedFour: (options?: RenamedFourOptions): Promise<void> => {
-      return renamedFour(this._client, options);
-    },
-    renamedSix: (options?: RenamedSixOptions): Promise<void> => {
-      return renamedSix(this._client, options);
-    },
-  };
+  renamedTwo(
+    options: RenamedTwoOptions = { requestOptions: {} }
+  ): Promise<void> {
+    return renamedTwo(this._client, options);
+  }
+
+  renamedFour(
+    options: RenamedFourOptions = { requestOptions: {} }
+  ): Promise<void> {
+    return renamedFour(this._client, options);
+  }
+
+  renamedSix(
+    options: RenamedSixOptions = { requestOptions: {} }
+  ): Promise<void> {
+    return renamedSix(this._client, options);
+  }
 
   renamedOne(
     options: RenamedOneOptions = { requestOptions: {} }

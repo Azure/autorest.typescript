@@ -7,9 +7,7 @@ import { op1 } from "../../../api/b/c/index.js";
 import { BCOp1Options } from "../../../models/options.js";
 
 export interface BCOperations {
-  c: {
-    op1: (body: BA, options?: BCOp1Options) => Promise<void>;
-  };
+  op1: (body: BA, options?: BCOp1Options) => Promise<void>;
 }
 
 export function getBC(context: FooContext) {
@@ -20,6 +18,6 @@ export function getBC(context: FooContext) {
 
 export function getBCOperations(context: FooContext): BCOperations {
   return {
-    c: getBC(context),
+    ...getBC(context),
   };
 }

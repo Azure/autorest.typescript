@@ -26,9 +26,7 @@ export interface AudioTranscriptionsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface AudioTranscriptionsOperations {
     // (undocumented)
-    transcriptions: {
-        create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptions) => Promise<CreateTranscriptionResponse>;
-    };
+    create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptions) => Promise<CreateTranscriptionResponse>;
 }
 
 // @public (undocumented)
@@ -40,9 +38,7 @@ export interface AudioTranslationsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface AudioTranslationsOperations {
     // (undocumented)
-    translations: {
-        create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptions) => Promise<CreateTranslationResponse>;
-    };
+    create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptions) => Promise<CreateTranslationResponse>;
 }
 
 // @public (undocumented)
@@ -85,9 +81,7 @@ export interface ChatCompletionsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface ChatCompletionsOperations {
     // (undocumented)
-    completions: {
-        create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptions) => Promise<CreateChatCompletionResponse>;
-    };
+    create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptions) => Promise<CreateChatCompletionResponse>;
 }
 
 // @public (undocumented)
@@ -103,9 +97,7 @@ export interface CompletionsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface CompletionsOperations {
     // (undocumented)
-    completions: {
-        create: (body: CreateCompletionRequest, options?: CompletionsCreateOptions) => Promise<CreateCompletionResponse>;
-    };
+    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptions) => Promise<CreateCompletionResponse>;
 }
 
 // @public
@@ -395,9 +387,7 @@ export interface EditsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface EditsOperations {
     // (undocumented)
-    edits: {
-        create: (edit: CreateEditRequest, options?: EditsCreateOptions) => Promise<CreateEditResponse>;
-    };
+    create: (edit: CreateEditRequest, options?: EditsCreateOptions) => Promise<CreateEditResponse>;
 }
 
 // @public
@@ -414,9 +404,7 @@ export interface EmbeddingsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface EmbeddingsOperations {
     // (undocumented)
-    embeddings: {
-        create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptions) => Promise<CreateEmbeddingResponse>;
-    };
+    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptions) => Promise<CreateEmbeddingResponse>;
 }
 
 // @public (undocumented)
@@ -453,13 +441,15 @@ export interface FilesListOptions extends OperationOptions {
 // @public (undocumented)
 export interface FilesOperations {
     // (undocumented)
-    files: {
-        list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
-        create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
-        retrieve: (fileId: string, options?: FilesRetrieveOptions) => Promise<OpenAIFile>;
-        deleteOperation: (fileId: string, options?: FilesDeleteOptions) => Promise<DeleteFileResponse>;
-        download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
-    };
+    create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
+    // (undocumented)
+    deleteOperation: (fileId: string, options?: FilesDeleteOptions) => Promise<DeleteFileResponse>;
+    // (undocumented)
+    download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
+    // (undocumented)
+    list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+    // (undocumented)
+    retrieve: (fileId: string, options?: FilesRetrieveOptions) => Promise<OpenAIFile>;
 }
 
 // @public (undocumented)
@@ -523,13 +513,15 @@ export interface FineTunesListOptions extends OperationOptions {
 // @public (undocumented)
 export interface FineTunesOperations {
     // (undocumented)
-    fineTunes: {
-        create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptions) => Promise<FineTune>;
-        list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
-        retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) => Promise<FineTune>;
-        listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) => Promise<ListFineTuneEventsResponse>;
-        cancel: (fineTuneId: string, options?: FineTunesCancelOptions) => Promise<FineTune>;
-    };
+    cancel: (fineTuneId: string, options?: FineTunesCancelOptions) => Promise<FineTune>;
+    // (undocumented)
+    create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptions) => Promise<FineTune>;
+    // (undocumented)
+    list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+    // (undocumented)
+    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) => Promise<ListFineTuneEventsResponse>;
+    // (undocumented)
+    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) => Promise<FineTune>;
 }
 
 // @public (undocumented)
@@ -597,13 +589,15 @@ export interface FineTuningJobsListOptions extends OperationOptions {
 // @public (undocumented)
 export interface FineTuningJobsOperations {
     // (undocumented)
-    jobs: {
-        create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptions) => Promise<FineTuningJob>;
-        list: (options?: FineTuningJobsListOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
-        retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptions) => Promise<FineTuningJob>;
-        listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
-        cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) => Promise<FineTuningJob>;
-    };
+    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) => Promise<FineTuningJob>;
+    // (undocumented)
+    create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptions) => Promise<FineTuningJob>;
+    // (undocumented)
+    list: (options?: FineTuningJobsListOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
+    // (undocumented)
+    listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
+    // (undocumented)
+    retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptions) => Promise<FineTuningJob>;
 }
 
 // @public (undocumented)
@@ -642,11 +636,11 @@ export interface ImagesCreateVariationOptions extends OperationOptions {
 // @public (undocumented)
 export interface ImagesOperations {
     // (undocumented)
-    images: {
-        create: (image: CreateImageRequest, options?: ImagesCreateOptions) => Promise<ImagesResponse>;
-        createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptions) => Promise<ImagesResponse>;
-        createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptions) => Promise<ImagesResponse>;
-    };
+    create: (image: CreateImageRequest, options?: ImagesCreateOptions) => Promise<ImagesResponse>;
+    // (undocumented)
+    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptions) => Promise<ImagesResponse>;
+    // (undocumented)
+    createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptions) => Promise<ImagesResponse>;
 }
 
 // @public (undocumented)
@@ -726,11 +720,11 @@ export interface ModelsListOptions extends OperationOptions {
 // @public (undocumented)
 export interface ModelsOperations {
     // (undocumented)
-    models: {
-        list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
-        retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
-        deleteOperation: (model: string, options?: ModelsDeleteOptions) => Promise<DeleteModelResponse>;
-    };
+    deleteOperation: (model: string, options?: ModelsDeleteOptions) => Promise<DeleteModelResponse>;
+    // (undocumented)
+    list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
+    // (undocumented)
+    retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
 }
 
 // @public (undocumented)
@@ -744,9 +738,7 @@ export interface ModerationsCreateOptions extends OperationOptions {
 // @public (undocumented)
 export interface ModerationsOperations {
     // (undocumented)
-    moderations: {
-        create: (content: CreateModerationRequest, options?: ModerationsCreateOptions) => Promise<CreateModerationResponse>;
-    };
+    create: (content: CreateModerationRequest, options?: ModerationsCreateOptions) => Promise<CreateModerationResponse>;
 }
 
 // @public (undocumented)

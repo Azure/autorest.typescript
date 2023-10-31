@@ -9,6 +9,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/azure-core-basic"
       description: "Azure Core Basic Test Service"

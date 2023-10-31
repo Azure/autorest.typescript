@@ -8,6 +8,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/azure-http-custom"
       description: "Azure Http Custom Test Service"

@@ -15,17 +15,12 @@ import {
 } from "../../models/options.js";
 
 export interface ModelsOperations {
-  models: {
-    list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
-    retrieve: (
-      model: string,
-      options?: ModelsRetrieveOptions
-    ) => Promise<Model>;
-    deleteOperation: (
-      model: string,
-      options?: ModelsDeleteOptions
-    ) => Promise<DeleteModelResponse>;
-  };
+  list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
+  retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
+  deleteOperation: (
+    model: string,
+    options?: ModelsDeleteOptions
+  ) => Promise<DeleteModelResponse>;
 }
 
 export function getModels(context: OpenAIContext) {
@@ -40,6 +35,6 @@ export function getModels(context: OpenAIContext) {
 
 export function getModelsOperations(context: OpenAIContext): ModelsOperations {
   return {
-    models: getModels(context),
+    ...getModels(context),
   };
 }

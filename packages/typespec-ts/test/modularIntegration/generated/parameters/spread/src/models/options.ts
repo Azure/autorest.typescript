@@ -3,12 +3,14 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ModelSpreadAsRequestBodyOptions extends OperationOptions {}
-
-export interface AliasSpreadAsRequestBodyOptions extends OperationOptions {}
-
-export interface AliasSpreadAsRequestParameterOptions
+export interface ModelModelSpreadAsRequestBodyOptions
   extends OperationOptions {}
 
-export interface AliasSpreadWithMultipleParametersOptions
+export interface AliasAliasSpreadAsRequestBodyOptions
+  extends OperationOptions {}
+
+export interface AliasAliasSpreadAsRequestParameterOptions
+  extends OperationOptions {}
+
+export interface AliasAliasSpreadWithMultipleParametersOptions
   extends OperationOptions {}

@@ -10,12 +10,10 @@ import { create } from "../../api/embeddings/index.js";
 import { EmbeddingsCreateOptions } from "../../models/options.js";
 
 export interface EmbeddingsOperations {
-  embeddings: {
-    create: (
-      embedding: CreateEmbeddingRequest,
-      options?: EmbeddingsCreateOptions
-    ) => Promise<CreateEmbeddingResponse>;
-  };
+  create: (
+    embedding: CreateEmbeddingRequest,
+    options?: EmbeddingsCreateOptions
+  ) => Promise<CreateEmbeddingResponse>;
 }
 
 export function getEmbeddings(context: OpenAIContext) {
@@ -31,6 +29,6 @@ export function getEmbeddingsOperations(
   context: OpenAIContext
 ): EmbeddingsOperations {
   return {
-    embeddings: getEmbeddings(context),
+    ...getEmbeddings(context),
   };
 }

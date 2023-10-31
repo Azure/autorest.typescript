@@ -39,26 +39,27 @@ export class TwoOperationGroupClient {
     this.pipeline = this._client.pipeline;
   }
 
-  group1 = {
-    one: (options?: OneOptions): Promise<void> => {
-      return one(this._client, options);
-    },
-    three: (options?: ThreeOptions): Promise<void> => {
-      return three(this._client, options);
-    },
-    four: (options?: FourOptions): Promise<void> => {
-      return four(this._client, options);
-    },
-  };
-  group2 = {
-    two: (options?: TwoOptions): Promise<void> => {
-      return two(this._client, options);
-    },
-    five: (options?: FiveOptions): Promise<void> => {
-      return five(this._client, options);
-    },
-    six: (options?: SixOptions): Promise<void> => {
-      return six(this._client, options);
-    },
-  };
+  one(options: OneOptions = { requestOptions: {} }): Promise<void> {
+    return one(this._client, options);
+  }
+
+  three(options: ThreeOptions = { requestOptions: {} }): Promise<void> {
+    return three(this._client, options);
+  }
+
+  four(options: FourOptions = { requestOptions: {} }): Promise<void> {
+    return four(this._client, options);
+  }
+
+  two(options: TwoOptions = { requestOptions: {} }): Promise<void> {
+    return two(this._client, options);
+  }
+
+  five(options: FiveOptions = { requestOptions: {} }): Promise<void> {
+    return five(this._client, options);
+  }
+
+  six(options: SixOptions = { requestOptions: {} }): Promise<void> {
+    return six(this._client, options);
+  }
 }
