@@ -79,6 +79,26 @@ describe("model property type", () => {
     const typeScriptType = `"foo"`;
     await verifyModularPropertyType(tspType, typeScriptType);
   });
+
+  it("should handle enum member", async () => {
+    const tspTypeDefinition = `
+    @doc("Translation Language Values")
+    enum TranslationLanguageValues {
+      @doc("English descriptions")
+      English: "English",
+      @doc("Chinese descriptions")
+      Chinese: "Chinese",
+    }`;
+    const tspType = "TranslationLanguageValues.English";
+    const typeScriptType = `"English"`;
+    await verifyModularPropertyType(
+      tspType,
+      typeScriptType,
+      {
+        additionalTypeSpecDefinition: tspTypeDefinition
+      }
+    );
+  });
 });
 
 describe("modular encode test for property type datetime", () => {

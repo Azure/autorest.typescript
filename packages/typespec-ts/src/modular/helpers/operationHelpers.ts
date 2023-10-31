@@ -144,7 +144,7 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  if (response?.type?.type === "any") {
+  if (response?.type?.type === "any" || response.isBinaryPayload) {
     statements.push(`return result.body`);
   } else if (getAllProperties(response?.type).length > 0) {
     statements.push(
@@ -388,7 +388,7 @@ function buildBodyParameter(
 
   if (
     bodyParameter.type.type === "byte-array" &&
-    bodyParameter.type.format !== "binary"
+    !bodyParameter.isBinaryPayload
   ) {
     const coreUtilSet = importSet.get("@azure/core-util");
     if (!coreUtilSet) {
@@ -408,10 +408,7 @@ function buildBodyParameter(
       : `body: uint8ArrayToString(${
           bodyParameter.clientName
         }, "${getEncodingFormat(bodyParameter.type)}")`;
-  } else if (
-    bodyParameter.type.type === "byte-array" &&
-    bodyParameter.type.format === "binary"
-  ) {
+  } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
 

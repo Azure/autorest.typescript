@@ -26,6 +26,19 @@ export interface AzureChatExtensionsMessageContext {
 export type AzureChatExtensionType = string;
 
 // @public
+export interface AzureCognitiveSearchIndexFieldMappingOptions {
+    contentFieldNames?: string[];
+    contentFieldSeparator?: string;
+    filepathField?: string;
+    titleField?: string;
+    urlField?: string;
+    vectorFields?: string[];
+}
+
+// @public
+export type AzureCognitiveSearchQueryType = string;
+
+// @public
 export type AzureOpenAIOperationState = string;
 
 // @public
