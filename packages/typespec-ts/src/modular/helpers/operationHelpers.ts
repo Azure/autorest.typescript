@@ -370,7 +370,7 @@ function buildHeaderParameter(
     });
     return paramMap;
   }
-  let conditions = [];
+  const conditions = [];
   if (param.optional) {
     conditions.push(`options?.${param.clientName} !== undefined`);
   }
