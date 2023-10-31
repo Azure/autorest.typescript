@@ -283,6 +283,29 @@ describe("Input/output model type", () => {
           true
         );
       });
+
+      it("should handle enum member", async () => {
+        const tspTypeDefinition = `
+        #suppress "@azure-tools/typespec-azure-core/use-extensible-enum" "for test"
+        @fixed
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          English,
+          @doc("Chinese descriptions")
+          Chinese,
+        }`;
+        const tspType = "TranslationLanguageValues.English";
+        const typeScriptType = `"English"`;
+        await verifyPropertyType(
+          tspType,
+          typeScriptType,
+          {
+            additionalTypeSpecDefinition: tspTypeDefinition
+          },
+          true
+        );
+      });
     });
 
     it("should handle type_literals:string -> string_literals", async () => {
