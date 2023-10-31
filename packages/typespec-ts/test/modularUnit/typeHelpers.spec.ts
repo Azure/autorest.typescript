@@ -453,6 +453,41 @@ describe("typeHelpers", () => {
       expect(result.originModule).to.equal("models.js");
     });
 
+    it("should handle enum member type as string literal", () => {
+      const type: Type = {
+        type: "constant",
+        name: "A_VAL",
+        valueType: { type: "string" },
+        value: "A_VAL"
+      };
+      const result = getType(type);
+      expect(result.name).to.equal('"A_VAL"');
+    });
+
+    
+    it("should handle enum member type as number literal", () => {
+      const type: Type = {
+        type: "constant",
+        name: "1",
+        valueType: { type: "integer" },
+        value: "1"
+      };
+      const result = getType(type);
+      expect(result.name).to.equal('1');
+    });
+
+
+    it("should handle enum member type as number literal", () => {
+      const type: Type = {
+        type: "constant",
+        name: "true",
+        valueType: { type: "boolean" },
+        value: "true"
+      };
+      const result = getType(type);
+      expect(result.name).to.equal('true');
+    });
+
     it("should handle float type", () => {
       const type: Type = { type: "float" };
       const result = getType(type);

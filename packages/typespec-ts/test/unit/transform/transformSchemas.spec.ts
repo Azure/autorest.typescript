@@ -267,6 +267,38 @@ describe("#transformSchemas", () => {
       } as any);
     });
 
+    it("generate enum member", async () => {
+      const schemaOutput = await emitSchemasFromTypeSpec(
+        `
+        @doc("Translation Language Values")
+        enum TranslationLanguageValues {
+          @doc("English descriptions")
+          English,
+          @doc("Chinese descriptions")
+          Chinese,
+        }
+        model Test {
+            prop: TranslationLanguageValues.English;
+        }
+        @route("/models")
+        @get
+        op getModel(@body input: Test): Test;
+      `,
+        true
+      );
+      assert.isNotNull(schemaOutput);
+      const first = schemaOutput?.[0] as ObjectSchema;
+      const property = first.properties![`"prop"`];
+      assert.isNotNull(property);
+      assert.deepEqual(property, {
+        type: '"English"',
+        description: undefined,
+        isConstant: true,
+        required: true,
+        usage: ["input", "output"]
+      } as any);
+    });
+
     it("generate union model", async () => {
       const schemaOutput = await emitSchemasFromTypeSpec(
         `

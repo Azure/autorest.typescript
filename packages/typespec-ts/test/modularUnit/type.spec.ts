@@ -18,6 +18,27 @@ describe("model type", () => {
         export interface Test {
           color: "red" | "blue";
         }`
+      ); 
+    });
+
+    it("string enum member", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+        enum Color {
+          Red: "red",
+          Blue: "blue"
+        }
+        model Test {
+          color: Color.Red;
+        }
+        op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: "red";
+        }`
       );
     });
 
@@ -70,6 +91,27 @@ describe("model type", () => {
         `
         export interface Test {
           color: 1 | 2;
+        }`
+      );
+    });
+
+    it("number enum member", async () => {
+      const modelFile = await emitModularModelsFromTypeSpec(`
+        enum Color {
+          Color1: 1,
+          Color2: 2
+        }
+        model Test {
+          color: Color.Color1;
+        }
+        op read(@body body: Test): void;
+        `);
+      assert.ok(modelFile);
+      assertEqualContent(
+        modelFile!.getFullText()!,
+        `
+        export interface Test {
+          color: 1;
         }`
       );
     });
