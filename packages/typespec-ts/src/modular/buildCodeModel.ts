@@ -1,6 +1,5 @@
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import {
-  EnumMember,
   Enum,
   getDoc,
   getFriendlyName,
@@ -66,7 +65,8 @@ import {
   getAllModels,
   SdkBuiltInType,
   getSdkBuiltInType,
-  getClientType
+  getClientType,
+  SdkEnumValueType
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -1028,12 +1028,13 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
     values: enumValues,
     isFixed: isFixed(program, type)
   };
-  function enumMemberType(member: EnumMember) {
-    if (typeof member.value === "number") {
-      return intOrFloat(member.value);
-    }
-    return "string";
+}
+
+function enumMemberType(member: SdkEnumValueType) {
+  if (typeof member.value === "number") {
+    return "number";
   }
+  return "string";
 }
 
 function constantType(value: any, valueType: string): Record<string, any> {
@@ -1295,7 +1296,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       internal: true,
       type: sdkType.kind,
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
-      values: sdkType.values.map((x) => emitEnumMember(x)),
+      values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
       xmlMetadata: {}
     };
@@ -1311,7 +1312,7 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
       values: nonNullOptions
         .map((x) => getClientType(context, x))
-        .map((x) => emitEnumMember(x)),
+        .map((x) => emitEnumMember(context, x)),
       isFixed: true,
       xmlMetadata: {}
     };
@@ -1340,11 +1341,17 @@ function getNonNullOptions(type: Union) {
     .filter((t) => !isNullType(t));
 }
 
-function emitEnumMember(type: any): Record<string, any> {
+function emitEnumMember(context: SdkContext, member: any): Record<string, any> {
+  const value = member.value ?? member.name;
   return {
-    name: type.name ? enumName(type.name) : undefined,
-    value: type.value,
-    description: type.doc
+    type: "constant",
+    valueType: {
+      type: enumMemberType(member)
+    },
+    value,
+    name: member.name ? enumName(member.name) : undefined,
+    description: getDoc(context.program, member),
+    isConstant: true
   };
 }
 
@@ -1399,6 +1406,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
       return {};
     case "Enum":
       return emitEnum(context.program, type);
+    case "EnumMember":
+      return emitEnumMember(context, type);
     default:
       throw Error(`Not supported ${type.kind}`);
   }
