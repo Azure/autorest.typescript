@@ -83,7 +83,7 @@ function regularAutorestPackage(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     engines: {
-      node: ">=16.0.0"
+      node: ">=18.0.0"
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
@@ -206,7 +206,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
-    packageInfo.devDependencies["@types/node"] = "^16.0.0";
+    packageInfo.devDependencies["@types/node"] = "^18.0.0";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
 
     packageInfo.scripts["test"] = "npm run integration-test";
