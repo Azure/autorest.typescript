@@ -16,7 +16,6 @@ export default function createClient(
 ): WidgetServiceContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-
   const userAgentInfo = `azsdk-js-widget_dpg-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

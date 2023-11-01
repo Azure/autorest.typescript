@@ -17,13 +17,6 @@ export default function createClient(
 ): AuthApiKeyClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
-    },
-  };
-
   const userAgentInfo = `azsdk-js-auth-apikey-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -36,6 +29,9 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "x-ms-api-key",
     },
   };
 
