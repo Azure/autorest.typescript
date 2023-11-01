@@ -290,16 +290,6 @@ export function getClientFactoryBody(
     }`
     : "";
 
-  const overrideOptionsStatement = `options = {
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      loggingOptions: {
-        logger: options.loggingOptions?.logger ?? logger.info
-      }${customHeaderOptions}
-    }`;
-
   const baseUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
     declarationKind: VariableDeclarationKind.Const,
@@ -319,19 +309,26 @@ export function getClientFactoryBody(
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
 
-  const credentials =
+  const credentialsOptions =
     scopes || apiKeyHeaderName
-      ? `options = {
-        ...options,
-        credentials: {
-          ${scopes}
-          ${apiKeyHeaderName}
-        },
+      ? `,
+      credentials: {
+        ${scopes}
+        ${apiKeyHeaderName}
       }`
       : "";
+  const overrideOptionsStatement = `options = {
+        ...options,
+        userAgentOptions: {
+          userAgentPrefix
+        },
+        loggingOptions: {
+          logger: options.loggingOptions?.logger ?? logger.info
+        }${customHeaderOptions}${credentialsOptions}
+      }`;
 
   const getClient = `const client = getClient(
-        baseUrl, ${credentials ? "credentials," : ""} options
+        baseUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
@@ -368,7 +365,6 @@ export function getClientFactoryBody(
     ...optionalUrlParameters,
     baseUrlStatement,
     apiVersionStatement,
-    credentials,
     userAgentInfoStatement,
     userAgentStatement,
     overrideOptionsStatement,
