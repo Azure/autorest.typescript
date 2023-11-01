@@ -19,15 +19,6 @@ export default function createClient(
 ): SynapseArtifactsClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://dev.azuresynapse.net/.default"
-      ]
-    }
-  };
-
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -40,6 +31,11 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://dev.azuresynapse.net/.default"
+      ]
     }
   };
 
