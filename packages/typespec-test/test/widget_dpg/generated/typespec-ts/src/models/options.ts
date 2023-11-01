@@ -3,7 +3,12 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface ListWidgetsOptions extends OperationOptions {}
+export interface ListWidgetsOptions extends OperationOptions {
+  optionalHeader?: string;
+  nullableOptionalHeader?: string | null;
+  optionalDateHeader?: Date;
+  nullableDateHeader?: Date | null;
+}
 
 export interface GetWidgetOptions extends OperationOptions {}
 

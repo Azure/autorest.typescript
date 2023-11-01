@@ -46,9 +46,22 @@ export class WidgetServiceClient {
    * It does not accept any options or parameters.
    */
   listWidgets(
+    requiredHeader: string,
+    bytesHeader: Uint8Array,
+    value: Uint8Array,
+    csvArrayHeader: Uint8Array[],
+    utcDateHeader: Date,
     options: ListWidgetsOptions = { requestOptions: {} }
   ): Promise<Widget[]> {
-    return listWidgets(this._client, options);
+    return listWidgets(
+      this._client,
+      requiredHeader,
+      bytesHeader,
+      value,
+      csvArrayHeader,
+      utcDateHeader,
+      options
+    );
   }
 
   /** Get a widget by ID. */

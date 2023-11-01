@@ -144,7 +144,6 @@ const buildDefaultReturn = (hasDefault: boolean) => {
   ): testClient {
     const baseUrl = options.baseUrl ?? \`\${endpoint}/language\`;
     ${defaultDef}
-    
     const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix

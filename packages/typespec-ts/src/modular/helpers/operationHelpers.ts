@@ -29,6 +29,9 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { Program, NoTarget } from "@typespec/compiler";
+import { reportDiagnostic } from "../../lib.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -48,6 +51,7 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
 }
 
 export function getSendPrivateFunction(
+  dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
   importSet: Map<string, Set<string>>
@@ -71,6 +75,7 @@ export function getSendPrivateFunction(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+      dpgContext,
       operation,
       importSet
     )}});`
@@ -284,6 +289,7 @@ export function getOperationOptionsName(
  * Figuring out what goes in headers, body, path and qsp.
  */
 function getRequestParameters(
+  dpgContext: SdkContext,
   operation: Operation,
   importSet: Map<string, Set<string>>
 ): string {
@@ -298,7 +304,7 @@ function getRequestParameters(
 
   const parametersImplementation: Record<
     "header" | "query" | "body",
-    string[]
+    { paramMap: string; param: Parameter }[]
   > = {
     header: [],
     query: [],
@@ -311,9 +317,10 @@ function getRequestParameters(
       param.location === "query" ||
       param.location === "body"
     ) {
-      parametersImplementation[param.location].push(
-        getParameterMap(param, importSet)
-      );
+      parametersImplementation[param.location].push({
+        paramMap: getParameterMap(param, importSet),
+        param
+      });
     }
   }
 
@@ -324,23 +331,23 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
+      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
+      .join(",\n")}},`;
   }
 
   if (parametersImplementation.query.length) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
+      .map((i) => i.paramMap)
+      .join(",\n")}},`;
   }
   if (
     operation.bodyParameter === undefined &&
     parametersImplementation.body.length
   ) {
-    paramStr = `${paramStr}\nbody: {${parametersImplementation.body.join(
-      ",\n"
-    )}}`;
+    paramStr = `${paramStr}\nbody: {${parametersImplementation.body
+      .map((i) => i.paramMap)
+      .join(",\n")}}`;
   } else if (operation.bodyParameter !== undefined) {
     paramStr = `${paramStr}${buildBodyParameter(
       operation.bodyParameter,
@@ -348,6 +355,31 @@ function getRequestParameters(
     )}`;
   }
   return paramStr;
+}
+
+// Specially handle the type for headers because we only allow string/number/boolean values
+function buildHeaderParameter(
+  program: Program,
+  paramMap: string,
+  param: Parameter
+): string {
+  if (!param.optional && param.type.nullable === true) {
+    reportDiagnostic(program, {
+      code: "nullable-required-header",
+      target: NoTarget
+    });
+    return paramMap;
+  }
+  const conditions = [];
+  if (param.optional) {
+    conditions.push(`options?.${param.clientName} !== undefined`);
+  }
+  if (param.type.nullable === true) {
+    conditions.push(`options?.${param.clientName} !== null`);
+  }
+  return conditions.length > 0
+    ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
+    : paramMap;
 }
 
 function buildBodyParameter(

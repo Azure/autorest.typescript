@@ -19,7 +19,6 @@ export default function createClient(
   const baseUrl =
     options.baseUrl ?? `${endpoint}/client/structure/${clientParam}`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-
   const userAgentInfo = `azsdk-js-client-structure-multiclient-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix

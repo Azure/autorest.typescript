@@ -19,15 +19,6 @@ export default function createClient(
 ): AzureLoadTestingClient {
   const baseUrl = options.baseUrl ?? `https://${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2022-11-01";
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://cnt-prod.loadtesting.azure.com/.default",
-      ],
-    },
-  };
-
   const userAgentInfo = `azsdk-js-load-testing-rest/1.0.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -40,6 +31,11 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://cnt-prod.loadtesting.azure.com/.default",
+      ],
     },
   };
 

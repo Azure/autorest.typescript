@@ -76,6 +76,7 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(
+        dpgContext,
         o,
         clientType,
         importSet
