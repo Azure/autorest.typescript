@@ -53,6 +53,12 @@ export function getClassicalLayerPrefix(
   if (layer < 0) {
     return prefix.join(separator);
   }
+  if (layer === 0) {
+    return normalizeName(
+      operationGroup.namespaceHierarchies[0] ?? "",
+      nameType
+    );
+  }
   for (let i = 0; i <= layer; i++) {
     prefix.push(
       normalizeName(operationGroup.namespaceHierarchies[i] ?? "", nameType)

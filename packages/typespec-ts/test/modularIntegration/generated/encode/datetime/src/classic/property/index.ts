@@ -25,23 +25,23 @@ import {
 } from "../../models/options.js";
 
 export interface PropertyOperations {
-  default: (
+  propertyDefault: (
     body: DefaultDatetimeProperty,
     options?: PropertyPropertyDefaultOptions
   ) => Promise<DefaultDatetimeProperty>;
-  rfc3339: (
+  propertyRfc3339: (
     body: Rfc3339DatetimeProperty,
     options?: PropertyPropertyRfc3339Options
   ) => Promise<Rfc3339DatetimeProperty>;
-  rfc7231: (
+  propertyRfc7231: (
     body: Rfc7231DatetimeProperty,
     options?: PropertyPropertyRfc7231Options
   ) => Promise<Rfc7231DatetimeProperty>;
-  unixTimestamp: (
+  propertyUnixTimestamp: (
     body: UnixTimestampDatetimeProperty,
     options?: PropertyPropertyUnixTimestampOptions
   ) => Promise<UnixTimestampDatetimeProperty>;
-  unixTimestampArray: (
+  propertyUnixTimestampArray: (
     body: UnixTimestampArrayDatetimeProperty,
     options?: PropertyPropertyUnixTimestampArrayOptions
   ) => Promise<UnixTimestampArrayDatetimeProperty>;
@@ -49,23 +49,23 @@ export interface PropertyOperations {
 
 export function getProperty(context: DatetimeContext) {
   return {
-    default: (
+    propertyDefault: (
       body: DefaultDatetimeProperty,
       options?: PropertyPropertyDefaultOptions
     ) => propertyDefault(context, body, options),
-    rfc3339: (
+    propertyRfc3339: (
       body: Rfc3339DatetimeProperty,
       options?: PropertyPropertyRfc3339Options
     ) => propertyRfc3339(context, body, options),
-    rfc7231: (
+    propertyRfc7231: (
       body: Rfc7231DatetimeProperty,
       options?: PropertyPropertyRfc7231Options
     ) => propertyRfc7231(context, body, options),
-    unixTimestamp: (
+    propertyUnixTimestamp: (
       body: UnixTimestampDatetimeProperty,
       options?: PropertyPropertyUnixTimestampOptions
     ) => propertyUnixTimestamp(context, body, options),
-    unixTimestampArray: (
+    propertyUnixTimestampArray: (
       body: UnixTimestampArrayDatetimeProperty,
       options?: PropertyPropertyUnixTimestampArrayOptions
     ) => propertyUnixTimestampArray(context, body, options),

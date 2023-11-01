@@ -14,17 +14,17 @@ import {
 } from "../../models/options.js";
 
 export interface AliasOperations {
-  spreadAsRequestBody: (
+  aliasSpreadAsRequestBody: (
     name: string,
     options?: AliasAliasSpreadAsRequestBodyOptions
   ) => Promise<void>;
-  spreadAsRequestParameter: (
+  aliasSpreadAsRequestParameter: (
     id: string,
     xMsTestHeader: string,
     name: string,
     options?: AliasAliasSpreadAsRequestParameterOptions
   ) => Promise<void>;
-  spreadWithMultipleParameters: (
+  aliasSpreadWithMultipleParameters: (
     id: string,
     xMsTestHeader: string,
     prop1: string,
@@ -39,18 +39,18 @@ export interface AliasOperations {
 
 export function getAlias(context: SpreadContext) {
   return {
-    spreadAsRequestBody: (
+    aliasSpreadAsRequestBody: (
       name: string,
       options?: AliasAliasSpreadAsRequestBodyOptions
     ) => aliasSpreadAsRequestBody(context, name, options),
-    spreadAsRequestParameter: (
+    aliasSpreadAsRequestParameter: (
       id: string,
       xMsTestHeader: string,
       name: string,
       options?: AliasAliasSpreadAsRequestParameterOptions
     ) =>
       aliasSpreadAsRequestParameter(context, id, xMsTestHeader, name, options),
-    spreadWithMultipleParameters: (
+    aliasSpreadWithMultipleParameters: (
       id: string,
       xMsTestHeader: string,
       prop1: string,

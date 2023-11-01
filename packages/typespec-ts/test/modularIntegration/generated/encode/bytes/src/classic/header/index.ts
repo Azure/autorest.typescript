@@ -16,19 +16,19 @@ import {
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  default: (
+  headerDefault: (
     value: Uint8Array,
     options?: HeaderHeaderDefaultOptions
   ) => Promise<void>;
-  base64: (
+  headerBase64: (
     value: Uint8Array,
     options?: HeaderHeaderBase64Options
   ) => Promise<void>;
-  base64url: (
+  headerBase64url: (
     value: Uint8Array,
     options?: HeaderHeaderBase64urlOptions
   ) => Promise<void>;
-  base64urlArray: (
+  headerBase64urlArray: (
     value: Uint8Array[],
     options?: HeaderHeaderBase64urlArrayOptions
   ) => Promise<void>;
@@ -36,13 +36,15 @@ export interface HeaderOperations {
 
 export function getHeader(context: BytesContext) {
   return {
-    default: (value: Uint8Array, options?: HeaderHeaderDefaultOptions) =>
+    headerDefault: (value: Uint8Array, options?: HeaderHeaderDefaultOptions) =>
       headerDefault(context, value, options),
-    base64: (value: Uint8Array, options?: HeaderHeaderBase64Options) =>
+    headerBase64: (value: Uint8Array, options?: HeaderHeaderBase64Options) =>
       headerBase64(context, value, options),
-    base64url: (value: Uint8Array, options?: HeaderHeaderBase64urlOptions) =>
-      headerBase64url(context, value, options),
-    base64urlArray: (
+    headerBase64url: (
+      value: Uint8Array,
+      options?: HeaderHeaderBase64urlOptions
+    ) => headerBase64url(context, value, options),
+    headerBase64urlArray: (
       value: Uint8Array[],
       options?: HeaderHeaderBase64urlArrayOptions
     ) => headerBase64urlArray(context, value, options),

@@ -18,14 +18,23 @@ import {
 } from "../../models/options.js";
 
 export interface QueryOperations {
-  default: (value: Date, options?: QueryQueryDefaultOptions) => Promise<void>;
-  rfc3339: (value: Date, options?: QueryQueryRfc3339Options) => Promise<void>;
-  rfc7231: (value: Date, options?: QueryQueryRfc7231Options) => Promise<void>;
-  unixTimestamp: (
+  queryDefault: (
+    value: Date,
+    options?: QueryQueryDefaultOptions
+  ) => Promise<void>;
+  queryRfc3339: (
+    value: Date,
+    options?: QueryQueryRfc3339Options
+  ) => Promise<void>;
+  queryRfc7231: (
+    value: Date,
+    options?: QueryQueryRfc7231Options
+  ) => Promise<void>;
+  queryUnixTimestamp: (
     value: Date,
     options?: QueryQueryUnixTimestampOptions
   ) => Promise<void>;
-  unixTimestampArray: (
+  queryUnixTimestampArray: (
     value: Date[],
     options?: QueryQueryUnixTimestampArrayOptions
   ) => Promise<void>;
@@ -33,15 +42,17 @@ export interface QueryOperations {
 
 export function getQuery(context: DatetimeContext) {
   return {
-    default: (value: Date, options?: QueryQueryDefaultOptions) =>
+    queryDefault: (value: Date, options?: QueryQueryDefaultOptions) =>
       queryDefault(context, value, options),
-    rfc3339: (value: Date, options?: QueryQueryRfc3339Options) =>
+    queryRfc3339: (value: Date, options?: QueryQueryRfc3339Options) =>
       queryRfc3339(context, value, options),
-    rfc7231: (value: Date, options?: QueryQueryRfc7231Options) =>
+    queryRfc7231: (value: Date, options?: QueryQueryRfc7231Options) =>
       queryRfc7231(context, value, options),
-    unixTimestamp: (value: Date, options?: QueryQueryUnixTimestampOptions) =>
-      queryUnixTimestamp(context, value, options),
-    unixTimestampArray: (
+    queryUnixTimestamp: (
+      value: Date,
+      options?: QueryQueryUnixTimestampOptions
+    ) => queryUnixTimestamp(context, value, options),
+    queryUnixTimestampArray: (
       value: Date[],
       options?: QueryQueryUnixTimestampArrayOptions
     ) => queryUnixTimestampArray(context, value, options),

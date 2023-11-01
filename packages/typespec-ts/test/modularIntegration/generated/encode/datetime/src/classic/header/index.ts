@@ -18,14 +18,23 @@ import {
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  default: (value: Date, options?: HeaderHeaderDefaultOptions) => Promise<void>;
-  rfc3339: (value: Date, options?: HeaderHeaderRfc3339Options) => Promise<void>;
-  rfc7231: (value: Date, options?: HeaderHeaderRfc7231Options) => Promise<void>;
-  unixTimestamp: (
+  headerDefault: (
+    value: Date,
+    options?: HeaderHeaderDefaultOptions
+  ) => Promise<void>;
+  headerRfc3339: (
+    value: Date,
+    options?: HeaderHeaderRfc3339Options
+  ) => Promise<void>;
+  headerRfc7231: (
+    value: Date,
+    options?: HeaderHeaderRfc7231Options
+  ) => Promise<void>;
+  headerUnixTimestamp: (
     value: Date,
     options?: HeaderHeaderUnixTimestampOptions
   ) => Promise<void>;
-  unixTimestampArray: (
+  headerUnixTimestampArray: (
     value: Date[],
     options?: HeaderHeaderUnixTimestampArrayOptions
   ) => Promise<void>;
@@ -33,15 +42,17 @@ export interface HeaderOperations {
 
 export function getHeader(context: DatetimeContext) {
   return {
-    default: (value: Date, options?: HeaderHeaderDefaultOptions) =>
+    headerDefault: (value: Date, options?: HeaderHeaderDefaultOptions) =>
       headerDefault(context, value, options),
-    rfc3339: (value: Date, options?: HeaderHeaderRfc3339Options) =>
+    headerRfc3339: (value: Date, options?: HeaderHeaderRfc3339Options) =>
       headerRfc3339(context, value, options),
-    rfc7231: (value: Date, options?: HeaderHeaderRfc7231Options) =>
+    headerRfc7231: (value: Date, options?: HeaderHeaderRfc7231Options) =>
       headerRfc7231(context, value, options),
-    unixTimestamp: (value: Date, options?: HeaderHeaderUnixTimestampOptions) =>
-      headerUnixTimestamp(context, value, options),
-    unixTimestampArray: (
+    headerUnixTimestamp: (
+      value: Date,
+      options?: HeaderHeaderUnixTimestampOptions
+    ) => headerUnixTimestamp(context, value, options),
+    headerUnixTimestampArray: (
       value: Date[],
       options?: HeaderHeaderUnixTimestampArrayOptions
     ) => headerUnixTimestampArray(context, value, options),

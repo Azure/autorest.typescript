@@ -6,12 +6,15 @@ import { headerCsv } from "../../api/header/index.js";
 import { HeaderHeaderCsvOptions } from "../../models/options.js";
 
 export interface HeaderOperations {
-  csv: (colors: string[], options?: HeaderHeaderCsvOptions) => Promise<void>;
+  headerCsv: (
+    colors: string[],
+    options?: HeaderHeaderCsvOptions
+  ) => Promise<void>;
 }
 
 export function getHeader(context: CollectionFormatContext) {
   return {
-    csv: (colors: string[], options?: HeaderHeaderCsvOptions) =>
+    headerCsv: (colors: string[], options?: HeaderHeaderCsvOptions) =>
       headerCsv(context, colors, options),
   };
 }

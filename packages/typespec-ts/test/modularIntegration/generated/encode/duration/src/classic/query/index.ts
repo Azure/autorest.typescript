@@ -18,17 +18,23 @@ import {
 } from "../../models/options.js";
 
 export interface QueryOperations {
-  default: (input: string, options?: QueryQueryDefaultOptions) => Promise<void>;
-  iso8601: (input: string, options?: QueryQueryIso8601Options) => Promise<void>;
-  int32Seconds: (
+  queryDefault: (
+    input: string,
+    options?: QueryQueryDefaultOptions
+  ) => Promise<void>;
+  queryIso8601: (
+    input: string,
+    options?: QueryQueryIso8601Options
+  ) => Promise<void>;
+  queryInt32Seconds: (
     input: number,
     options?: QueryQueryInt32SecondsOptions
   ) => Promise<void>;
-  floatSeconds: (
+  queryFloatSeconds: (
     input: number,
     options?: QueryQueryFloatSecondsOptions
   ) => Promise<void>;
-  int32SecondsArray: (
+  queryInt32SecondsArray: (
     input: number[],
     options?: QueryQueryInt32SecondsArrayOptions
   ) => Promise<void>;
@@ -36,15 +42,19 @@ export interface QueryOperations {
 
 export function getQuery(context: DurationContext) {
   return {
-    default: (input: string, options?: QueryQueryDefaultOptions) =>
+    queryDefault: (input: string, options?: QueryQueryDefaultOptions) =>
       queryDefault(context, input, options),
-    iso8601: (input: string, options?: QueryQueryIso8601Options) =>
+    queryIso8601: (input: string, options?: QueryQueryIso8601Options) =>
       queryIso8601(context, input, options),
-    int32Seconds: (input: number, options?: QueryQueryInt32SecondsOptions) =>
-      queryInt32Seconds(context, input, options),
-    floatSeconds: (input: number, options?: QueryQueryFloatSecondsOptions) =>
-      queryFloatSeconds(context, input, options),
-    int32SecondsArray: (
+    queryInt32Seconds: (
+      input: number,
+      options?: QueryQueryInt32SecondsOptions
+    ) => queryInt32Seconds(context, input, options),
+    queryFloatSeconds: (
+      input: number,
+      options?: QueryQueryFloatSecondsOptions
+    ) => queryFloatSeconds(context, input, options),
+    queryInt32SecondsArray: (
       input: number[],
       options?: QueryQueryInt32SecondsArrayOptions
     ) => queryInt32SecondsArray(context, input, options),

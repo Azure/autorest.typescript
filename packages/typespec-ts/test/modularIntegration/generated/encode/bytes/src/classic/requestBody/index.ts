@@ -18,23 +18,23 @@ import {
 } from "../../models/options.js";
 
 export interface RequestBodyOperations {
-  default: (
+  requestBodyDefault: (
     value: Uint8Array,
     options?: RequestBodyRequestBodyDefaultOptions
   ) => Promise<void>;
-  octetStream: (
+  requestBodyOctetStream: (
     value: Uint8Array,
     options?: RequestBodyRequestBodyOctetStreamOptions
   ) => Promise<void>;
-  customContentType: (
+  requestBodyCustomContentType: (
     value: Uint8Array,
     options?: RequestBodyRequestBodyCustomContentTypeOptions
   ) => Promise<void>;
-  base64: (
+  requestBodyBase64: (
     value: Uint8Array,
     options?: RequestBodyRequestBodyBase64Options
   ) => Promise<void>;
-  base64url: (
+  requestBodyBase64url: (
     value: Uint8Array,
     options?: RequestBodyRequestBodyBase64urlOptions
   ) => Promise<void>;
@@ -42,23 +42,23 @@ export interface RequestBodyOperations {
 
 export function getRequestBody(context: BytesContext) {
   return {
-    default: (
+    requestBodyDefault: (
       value: Uint8Array,
       options?: RequestBodyRequestBodyDefaultOptions
     ) => requestBodyDefault(context, value, options),
-    octetStream: (
+    requestBodyOctetStream: (
       value: Uint8Array,
       options?: RequestBodyRequestBodyOctetStreamOptions
     ) => requestBodyOctetStream(context, value, options),
-    customContentType: (
+    requestBodyCustomContentType: (
       value: Uint8Array,
       options?: RequestBodyRequestBodyCustomContentTypeOptions
     ) => requestBodyCustomContentType(context, value, options),
-    base64: (
+    requestBodyBase64: (
       value: Uint8Array,
       options?: RequestBodyRequestBodyBase64Options
     ) => requestBodyBase64(context, value, options),
-    base64url: (
+    requestBodyBase64url: (
       value: Uint8Array,
       options?: RequestBodyRequestBodyBase64urlOptions
     ) => requestBodyBase64url(context, value, options),

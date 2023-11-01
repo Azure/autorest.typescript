@@ -25,23 +25,23 @@ import {
 } from "../../models/options.js";
 
 export interface PropertyOperations {
-  default: (
+  propertyDefault: (
     body: DefaultDurationProperty,
     options?: PropertyPropertyDefaultOptions
   ) => Promise<DefaultDurationProperty>;
-  iso8601: (
+  propertyIso8601: (
     body: ISO8601DurationProperty,
     options?: PropertyPropertyIso8601Options
   ) => Promise<ISO8601DurationProperty>;
-  int32Seconds: (
+  propertyInt32Seconds: (
     body: Int32SecondsDurationProperty,
     options?: PropertyPropertyInt32SecondsOptions
   ) => Promise<Int32SecondsDurationProperty>;
-  floatSeconds: (
+  propertyFloatSeconds: (
     body: FloatSecondsDurationProperty,
     options?: PropertyPropertyFloatSecondsOptions
   ) => Promise<FloatSecondsDurationProperty>;
-  floatSecondsArray: (
+  propertyFloatSecondsArray: (
     body: FloatSecondsDurationArrayProperty,
     options?: PropertyPropertyFloatSecondsArrayOptions
   ) => Promise<FloatSecondsDurationArrayProperty>;
@@ -49,23 +49,23 @@ export interface PropertyOperations {
 
 export function getProperty(context: DurationContext) {
   return {
-    default: (
+    propertyDefault: (
       body: DefaultDurationProperty,
       options?: PropertyPropertyDefaultOptions
     ) => propertyDefault(context, body, options),
-    iso8601: (
+    propertyIso8601: (
       body: ISO8601DurationProperty,
       options?: PropertyPropertyIso8601Options
     ) => propertyIso8601(context, body, options),
-    int32Seconds: (
+    propertyInt32Seconds: (
       body: Int32SecondsDurationProperty,
       options?: PropertyPropertyInt32SecondsOptions
     ) => propertyInt32Seconds(context, body, options),
-    floatSeconds: (
+    propertyFloatSeconds: (
       body: FloatSecondsDurationProperty,
       options?: PropertyPropertyFloatSecondsOptions
     ) => propertyFloatSeconds(context, body, options),
-    floatSecondsArray: (
+    propertyFloatSecondsArray: (
       body: FloatSecondsDurationArrayProperty,
       options?: PropertyPropertyFloatSecondsArrayOptions
     ) => propertyFloatSecondsArray(context, body, options),

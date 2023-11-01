@@ -851,7 +851,15 @@ function emitBasicOperation(
       }
     }
   }
-  const name = applyCasing(operation.name, { casing: CASING });
+
+  let operationName = getOperationName(context.program, operation);
+  if (
+    context.rlcOptions?.hierarchyClient === false &&
+    context.rlcOptions.enableOperationGroup
+  ) {
+    operationName = operationGroupName + operationName;
+  }
+  const name = applyCasing(operationName, { casing: CASING });
 
   /** handle name collision between operation name and parameter signature */
   if (bodyParameter) {
@@ -868,7 +876,7 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    name: name,
+    name: normalizeName(name, NameType.Operation, true),
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -1476,12 +1484,6 @@ function emitOperationGroups(
   groupMapping.forEach((value) => {
     operationGroups.push(value);
   });
-  if (
-    context.rlcOptions?.hierarchyClient === false &&
-    context.rlcOptions?.enableOperationGroup
-  ) {
-    resolveConflictIfExist(operationGroups);
-  }
   return operationGroups;
 }
 
@@ -1506,34 +1508,6 @@ function addHierarchyOperationGroup(
     return [...groupMapping.values()];
   }
   return [];
-}
-
-function resolveConflictIfExist(operationGroups: OperationGroup[]) {
-  if (operationGroups.length < 2) {
-    return;
-  }
-
-  const nameSet = new Set<string>();
-  const hasConflict = operationGroups.some((g) =>
-    g.operations.some((op) => {
-      if (nameSet.has(op.name)) {
-        return true;
-      } else {
-        nameSet.add(op.name);
-        return false;
-      }
-    })
-  );
-  if (!hasConflict) {
-    return;
-  }
-  // Append operation group prefix
-  operationGroups.forEach((g) =>
-    g.operations.forEach((op) => {
-      op.oriName = op.name;
-      op.name = `${g.propertyName}_${op.name}`;
-    })
-  );
 }
 
 function getServerHelper(

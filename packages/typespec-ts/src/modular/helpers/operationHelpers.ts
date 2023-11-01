@@ -179,7 +179,7 @@ function getOperationSignatureParameters(
   operation: Operation,
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const optionsType = getOperationOptionsName(operation, true);
+  const optionsType = getOperationOptionsName(operation);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
@@ -266,13 +266,8 @@ export function getOperationFunction(
   };
 }
 
-export function getOperationOptionsName(
-  operation: Operation,
-  includeGroupName = false
-) {
-  const prefix = includeGroupName
-    ? getClassicalLayerPrefix(operation, NameType.Interface)
-    : "";
+export function getOperationOptionsName(operation: Operation) {
+  const prefix = getClassicalLayerPrefix(operation, NameType.Interface);
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");

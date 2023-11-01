@@ -16,29 +16,32 @@ import {
 } from "../../models/options.js";
 
 export interface ResponseHeaderOperations {
-  default: (
+  responseHeaderDefault: (
     options?: ResponseHeaderResponseHeaderDefaultOptions
   ) => Promise<void>;
-  rfc3339: (
+  responseHeaderRfc3339: (
     options?: ResponseHeaderResponseHeaderRfc3339Options
   ) => Promise<void>;
-  rfc7231: (
+  responseHeaderRfc7231: (
     options?: ResponseHeaderResponseHeaderRfc7231Options
   ) => Promise<void>;
-  unixTimestamp: (
+  responseHeaderUnixTimestamp: (
     options?: ResponseHeaderResponseHeaderUnixTimestampOptions
   ) => Promise<void>;
 }
 
 export function getResponseHeader(context: DatetimeContext) {
   return {
-    default: (options?: ResponseHeaderResponseHeaderDefaultOptions) =>
-      responseHeaderDefault(context, options),
-    rfc3339: (options?: ResponseHeaderResponseHeaderRfc3339Options) =>
-      responseHeaderRfc3339(context, options),
-    rfc7231: (options?: ResponseHeaderResponseHeaderRfc7231Options) =>
-      responseHeaderRfc7231(context, options),
-    unixTimestamp: (
+    responseHeaderDefault: (
+      options?: ResponseHeaderResponseHeaderDefaultOptions
+    ) => responseHeaderDefault(context, options),
+    responseHeaderRfc3339: (
+      options?: ResponseHeaderResponseHeaderRfc3339Options
+    ) => responseHeaderRfc3339(context, options),
+    responseHeaderRfc7231: (
+      options?: ResponseHeaderResponseHeaderRfc7231Options
+    ) => responseHeaderRfc7231(context, options),
+    responseHeaderUnixTimestamp: (
       options?: ResponseHeaderResponseHeaderUnixTimestampOptions
     ) => responseHeaderUnixTimestamp(context, options),
   };

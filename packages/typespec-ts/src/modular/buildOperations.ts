@@ -180,7 +180,7 @@ export function buildOperationOptions(
     .filter((p) => p.optional || p.clientDefaultValue);
   const options = [...optionalParameters];
 
-  const name = getOperationOptionsName(operation, true);
+  const name = getOperationOptionsName(operation);
 
   sourceFile.addInterface({
     name,

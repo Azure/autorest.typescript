@@ -22,19 +22,19 @@ import {
 } from "../../models/options.js";
 
 export interface PropertyOperations {
-  default: (
+  propertyDefault: (
     body: DefaultBytesProperty,
     options?: PropertyPropertyDefaultOptions
   ) => Promise<DefaultBytesProperty>;
-  base64: (
+  propertyBase64: (
     body: Base64BytesProperty,
     options?: PropertyPropertyBase64Options
   ) => Promise<Base64BytesProperty>;
-  base64url: (
+  propertyBase64url: (
     body: Base64urlBytesProperty,
     options?: PropertyPropertyBase64urlOptions
   ) => Promise<Base64urlBytesProperty>;
-  base64urlArray: (
+  propertyBase64urlArray: (
     body: Base64urlArrayBytesProperty,
     options?: PropertyPropertyBase64urlArrayOptions
   ) => Promise<Base64urlArrayBytesProperty>;
@@ -42,19 +42,19 @@ export interface PropertyOperations {
 
 export function getProperty(context: BytesContext) {
   return {
-    default: (
+    propertyDefault: (
       body: DefaultBytesProperty,
       options?: PropertyPropertyDefaultOptions
     ) => propertyDefault(context, body, options),
-    base64: (
+    propertyBase64: (
       body: Base64BytesProperty,
       options?: PropertyPropertyBase64Options
     ) => propertyBase64(context, body, options),
-    base64url: (
+    propertyBase64url: (
       body: Base64urlBytesProperty,
       options?: PropertyPropertyBase64urlOptions
     ) => propertyBase64url(context, body, options),
-    base64urlArray: (
+    propertyBase64urlArray: (
       body: Base64urlArrayBytesProperty,
       options?: PropertyPropertyBase64urlArrayOptions
     ) => propertyBase64urlArray(context, body, options),

@@ -18,23 +18,23 @@ import {
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  default: (
+  headerDefault: (
     duration: string,
     options?: HeaderHeaderDefaultOptions
   ) => Promise<void>;
-  iso8601: (
+  headerIso8601: (
     duration: string,
     options?: HeaderHeaderIso8601Options
   ) => Promise<void>;
-  iso8601Array: (
+  headerIso8601Array: (
     duration: string[],
     options?: HeaderHeaderIso8601ArrayOptions
   ) => Promise<void>;
-  int32Seconds: (
+  headerInt32Seconds: (
     duration: number,
     options?: HeaderHeaderInt32SecondsOptions
   ) => Promise<void>;
-  floatSeconds: (
+  headerFloatSeconds: (
     duration: number,
     options?: HeaderHeaderFloatSecondsOptions
   ) => Promise<void>;
@@ -42,19 +42,19 @@ export interface HeaderOperations {
 
 export function getHeader(context: DurationContext) {
   return {
-    default: (duration: string, options?: HeaderHeaderDefaultOptions) =>
+    headerDefault: (duration: string, options?: HeaderHeaderDefaultOptions) =>
       headerDefault(context, duration, options),
-    iso8601: (duration: string, options?: HeaderHeaderIso8601Options) =>
+    headerIso8601: (duration: string, options?: HeaderHeaderIso8601Options) =>
       headerIso8601(context, duration, options),
-    iso8601Array: (
+    headerIso8601Array: (
       duration: string[],
       options?: HeaderHeaderIso8601ArrayOptions
     ) => headerIso8601Array(context, duration, options),
-    int32Seconds: (
+    headerInt32Seconds: (
       duration: number,
       options?: HeaderHeaderInt32SecondsOptions
     ) => headerInt32Seconds(context, duration, options),
-    floatSeconds: (
+    headerFloatSeconds: (
       duration: number,
       options?: HeaderHeaderFloatSecondsOptions
     ) => headerFloatSeconds(context, duration, options),
