@@ -176,8 +176,9 @@ function getHierarchyClient(emitterOptions: RLCOptions) {
 function detectIfNameConflicts(dpgContext: SdkContext) {
   const clients = getRLCClients(dpgContext);
   const program = dpgContext.program;
-  const nameSet = new Set<string>();
   for (const client of clients) {
+    // only consider it's conflict when there are conflicts in the same client
+    const nameSet = new Set<string>();
     const operationGroups = listOperationGroups(dpgContext, client);
     for (const operationGroup of operationGroups) {
       const operations = listOperationsInOperationGroup(

@@ -778,6 +778,14 @@ function emitBasicOperation(
     operation
   );
 
+  if (
+    namespaceHierarchies.length === 0 &&
+    context.rlcOptions?.hierarchyClient === false &&
+    operationGroupName !== "" 
+  ) {
+    namespaceHierarchies.push(operationGroupName);
+  }
+
   for (const param of httpOperation.parameters.parameters) {
     if (isIgnoredHeaderParam(param)) {
       continue;
@@ -1468,7 +1476,10 @@ function emitOperationGroups(
   groupMapping.forEach((value) => {
     operationGroups.push(value);
   });
-  if (!context.rlcOptions?.hierarchyClient) {
+  if (
+    context.rlcOptions?.hierarchyClient === false &&
+    context.rlcOptions?.enableOperationGroup
+  ) {
     resolveConflictIfExist(operationGroups);
   }
   return operationGroups;

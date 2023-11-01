@@ -9,7 +9,6 @@ options:
     title: Azure Load Testing
     description: Azure Load Testing Client
     azureSdkForJs: false
-    enableOperationGroup: true
     isModularLibrary: true
     hierarchyClient: false
     packageDetails:
