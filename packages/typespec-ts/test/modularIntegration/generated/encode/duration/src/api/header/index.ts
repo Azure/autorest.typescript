@@ -3,12 +3,12 @@
 
 import {
   buildCsvCollection,
+  Default204Response,
   DurationContext as Client,
-  HeaderDefault204Response,
-  HeaderFloatSeconds204Response,
-  HeaderInt32Seconds204Response,
-  HeaderIso8601204Response,
-  HeaderIso8601Array204Response,
+  FloatSeconds204Response,
+  Int32Seconds204Response,
+  Iso8601204Response,
+  Iso8601Array204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -26,7 +26,7 @@ export function _headerDefaultSend(
   context: Client,
   duration: string,
   options: HeaderHeaderDefaultOptions = { requestOptions: {} }
-): StreamableMethod<HeaderDefault204Response> {
+): StreamableMethod<Default204Response> {
   return context
     .path("/encode/duration/header/default")
     .get({
@@ -36,7 +36,7 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response
+  result: Default204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -58,7 +58,7 @@ export function _headerIso8601Send(
   context: Client,
   duration: string,
   options: HeaderHeaderIso8601Options = { requestOptions: {} }
-): StreamableMethod<HeaderIso8601204Response> {
+): StreamableMethod<Iso8601204Response> {
   return context
     .path("/encode/duration/header/iso8601")
     .get({
@@ -68,7 +68,7 @@ export function _headerIso8601Send(
 }
 
 export async function _headerIso8601Deserialize(
-  result: HeaderIso8601204Response
+  result: Iso8601204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -90,7 +90,7 @@ export function _headerIso8601ArraySend(
   context: Client,
   duration: string[],
   options: HeaderHeaderIso8601ArrayOptions = { requestOptions: {} }
-): StreamableMethod<HeaderIso8601Array204Response> {
+): StreamableMethod<Iso8601Array204Response> {
   return context
     .path("/encode/duration/header/iso8601-array")
     .get({
@@ -100,7 +100,7 @@ export function _headerIso8601ArraySend(
 }
 
 export async function _headerIso8601ArrayDeserialize(
-  result: HeaderIso8601Array204Response
+  result: Iso8601Array204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -122,7 +122,7 @@ export function _headerInt32SecondsSend(
   context: Client,
   duration: number,
   options: HeaderHeaderInt32SecondsOptions = { requestOptions: {} }
-): StreamableMethod<HeaderInt32Seconds204Response> {
+): StreamableMethod<Int32Seconds204Response> {
   return context
     .path("/encode/duration/header/int32-seconds")
     .get({
@@ -132,7 +132,7 @@ export function _headerInt32SecondsSend(
 }
 
 export async function _headerInt32SecondsDeserialize(
-  result: HeaderInt32Seconds204Response
+  result: Int32Seconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -154,7 +154,7 @@ export function _headerFloatSecondsSend(
   context: Client,
   duration: number,
   options: HeaderHeaderFloatSecondsOptions = { requestOptions: {} }
-): StreamableMethod<HeaderFloatSeconds204Response> {
+): StreamableMethod<FloatSeconds204Response> {
   return context
     .path("/encode/duration/header/float-seconds")
     .get({
@@ -164,7 +164,7 @@ export function _headerFloatSecondsSend(
 }
 
 export async function _headerFloatSecondsDeserialize(
-  result: HeaderFloatSeconds204Response
+  result: FloatSeconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

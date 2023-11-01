@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
+  Base64204Response,
+  Base64url204Response,
   BytesContext as Client,
-  RequestBodyBase64204Response,
-  RequestBodyBase64url204Response,
-  RequestBodyCustomContentType204Response,
-  RequestBodyDefault204Response,
-  RequestBodyOctetStream204Response,
+  CustomContentType204Response,
+  Default204Response,
+  OctetStream204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -26,7 +26,7 @@ export function _requestBodyDefaultSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyRequestBodyDefaultOptions = { requestOptions: {} }
-): StreamableMethod<RequestBodyDefault204Response> {
+): StreamableMethod<Default204Response> {
   return context
     .path("/encode/bytes/body/request/default")
     .post({
@@ -36,7 +36,7 @@ export function _requestBodyDefaultSend(
 }
 
 export async function _requestBodyDefaultDeserialize(
-  result: RequestBodyDefault204Response
+  result: Default204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -58,7 +58,7 @@ export function _requestBodyOctetStreamSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyRequestBodyOctetStreamOptions = { requestOptions: {} }
-): StreamableMethod<RequestBodyOctetStream204Response> {
+): StreamableMethod<OctetStream204Response> {
   return context
     .path("/encode/bytes/body/request/octet-stream")
     .post({
@@ -69,7 +69,7 @@ export function _requestBodyOctetStreamSend(
 }
 
 export async function _requestBodyOctetStreamDeserialize(
-  result: RequestBodyOctetStream204Response
+  result: OctetStream204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -93,7 +93,7 @@ export function _requestBodyCustomContentTypeSend(
   options: RequestBodyRequestBodyCustomContentTypeOptions = {
     requestOptions: {},
   }
-): StreamableMethod<RequestBodyCustomContentType204Response> {
+): StreamableMethod<CustomContentType204Response> {
   return context
     .path("/encode/bytes/body/request/custom-content-type")
     .post({
@@ -104,7 +104,7 @@ export function _requestBodyCustomContentTypeSend(
 }
 
 export async function _requestBodyCustomContentTypeDeserialize(
-  result: RequestBodyCustomContentType204Response
+  result: CustomContentType204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -132,7 +132,7 @@ export function _requestBodyBase64Send(
   context: Client,
   value: Uint8Array,
   options: RequestBodyRequestBodyBase64Options = { requestOptions: {} }
-): StreamableMethod<RequestBodyBase64204Response> {
+): StreamableMethod<Base64204Response> {
   return context
     .path("/encode/bytes/body/request/base64")
     .post({
@@ -142,7 +142,7 @@ export function _requestBodyBase64Send(
 }
 
 export async function _requestBodyBase64Deserialize(
-  result: RequestBodyBase64204Response
+  result: Base64204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -164,7 +164,7 @@ export function _requestBodyBase64urlSend(
   context: Client,
   value: Uint8Array,
   options: RequestBodyRequestBodyBase64urlOptions = { requestOptions: {} }
-): StreamableMethod<RequestBodyBase64url204Response> {
+): StreamableMethod<Base64url204Response> {
   return context
     .path("/encode/bytes/body/request/base64url")
     .post({
@@ -174,7 +174,7 @@ export function _requestBodyBase64urlSend(
 }
 
 export async function _requestBodyBase64urlDeserialize(
-  result: RequestBodyBase64url204Response
+  result: Base64url204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

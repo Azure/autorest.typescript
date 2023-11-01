@@ -10,11 +10,11 @@ import {
 } from "../../models/models.js";
 import {
   DatetimeContext as Client,
-  PropertyDefault200Response,
-  PropertyRfc3339200Response,
-  PropertyRfc7231200Response,
-  PropertyUnixTimestamp200Response,
-  PropertyUnixTimestampArray200Response,
+  Default200Response,
+  Rfc3339200Response,
+  Rfc7231200Response,
+  UnixTimestamp200Response,
+  UnixTimestampArray200Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -32,7 +32,7 @@ export function _propertyDefaultSend(
   context: Client,
   body: DefaultDatetimeProperty,
   options: PropertyPropertyDefaultOptions = { requestOptions: {} }
-): StreamableMethod<PropertyDefault200Response> {
+): StreamableMethod<Default200Response> {
   return context
     .path("/encode/datetime/property/default")
     .post({
@@ -42,7 +42,7 @@ export function _propertyDefaultSend(
 }
 
 export async function _propertyDefaultDeserialize(
-  result: PropertyDefault200Response
+  result: Default200Response
 ): Promise<DefaultDatetimeProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -66,7 +66,7 @@ export function _propertyRfc3339Send(
   context: Client,
   body: Rfc3339DatetimeProperty,
   options: PropertyPropertyRfc3339Options = { requestOptions: {} }
-): StreamableMethod<PropertyRfc3339200Response> {
+): StreamableMethod<Rfc3339200Response> {
   return context
     .path("/encode/datetime/property/rfc3339")
     .post({
@@ -76,7 +76,7 @@ export function _propertyRfc3339Send(
 }
 
 export async function _propertyRfc3339Deserialize(
-  result: PropertyRfc3339200Response
+  result: Rfc3339200Response
 ): Promise<Rfc3339DatetimeProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -100,7 +100,7 @@ export function _propertyRfc7231Send(
   context: Client,
   body: Rfc7231DatetimeProperty,
   options: PropertyPropertyRfc7231Options = { requestOptions: {} }
-): StreamableMethod<PropertyRfc7231200Response> {
+): StreamableMethod<Rfc7231200Response> {
   return context
     .path("/encode/datetime/property/rfc7231")
     .post({
@@ -110,7 +110,7 @@ export function _propertyRfc7231Send(
 }
 
 export async function _propertyRfc7231Deserialize(
-  result: PropertyRfc7231200Response
+  result: Rfc7231200Response
 ): Promise<Rfc7231DatetimeProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -134,7 +134,7 @@ export function _propertyUnixTimestampSend(
   context: Client,
   body: UnixTimestampDatetimeProperty,
   options: PropertyPropertyUnixTimestampOptions = { requestOptions: {} }
-): StreamableMethod<PropertyUnixTimestamp200Response> {
+): StreamableMethod<UnixTimestamp200Response> {
   return context
     .path("/encode/datetime/property/unix-timestamp")
     .post({
@@ -144,7 +144,7 @@ export function _propertyUnixTimestampSend(
 }
 
 export async function _propertyUnixTimestampDeserialize(
-  result: PropertyUnixTimestamp200Response
+  result: UnixTimestamp200Response
 ): Promise<UnixTimestampDatetimeProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -168,7 +168,7 @@ export function _propertyUnixTimestampArraySend(
   context: Client,
   body: UnixTimestampArrayDatetimeProperty,
   options: PropertyPropertyUnixTimestampArrayOptions = { requestOptions: {} }
-): StreamableMethod<PropertyUnixTimestampArray200Response> {
+): StreamableMethod<UnixTimestampArray200Response> {
   return context
     .path("/encode/datetime/property/unix-timestamp-array")
     .post({
@@ -178,7 +178,7 @@ export function _propertyUnixTimestampArraySend(
 }
 
 export async function _propertyUnixTimestampArrayDeserialize(
-  result: PropertyUnixTimestampArray200Response
+  result: UnixTimestampArray200Response
 ): Promise<UnixTimestampArrayDatetimeProperty> {
   if (result.status !== "200") {
     throw result.body;

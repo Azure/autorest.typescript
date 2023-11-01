@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
+  Default204Response,
   DurationContext as Client,
-  QueryDefault204Response,
-  QueryFloatSeconds204Response,
-  QueryInt32Seconds204Response,
-  QueryInt32SecondsArray204Response,
-  QueryIso8601204Response,
+  FloatSeconds204Response,
+  Int32Seconds204Response,
+  Int32SecondsArray204Response,
+  Iso8601204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -25,7 +25,7 @@ export function _queryDefaultSend(
   context: Client,
   input: string,
   options: QueryQueryDefaultOptions = { requestOptions: {} }
-): StreamableMethod<QueryDefault204Response> {
+): StreamableMethod<Default204Response> {
   return context
     .path("/encode/duration/query/default")
     .get({
@@ -35,7 +35,7 @@ export function _queryDefaultSend(
 }
 
 export async function _queryDefaultDeserialize(
-  result: QueryDefault204Response
+  result: Default204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -57,7 +57,7 @@ export function _queryIso8601Send(
   context: Client,
   input: string,
   options: QueryQueryIso8601Options = { requestOptions: {} }
-): StreamableMethod<QueryIso8601204Response> {
+): StreamableMethod<Iso8601204Response> {
   return context
     .path("/encode/duration/query/iso8601")
     .get({
@@ -67,7 +67,7 @@ export function _queryIso8601Send(
 }
 
 export async function _queryIso8601Deserialize(
-  result: QueryIso8601204Response
+  result: Iso8601204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -89,7 +89,7 @@ export function _queryInt32SecondsSend(
   context: Client,
   input: number,
   options: QueryQueryInt32SecondsOptions = { requestOptions: {} }
-): StreamableMethod<QueryInt32Seconds204Response> {
+): StreamableMethod<Int32Seconds204Response> {
   return context
     .path("/encode/duration/query/int32-seconds")
     .get({
@@ -99,7 +99,7 @@ export function _queryInt32SecondsSend(
 }
 
 export async function _queryInt32SecondsDeserialize(
-  result: QueryInt32Seconds204Response
+  result: Int32Seconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -121,7 +121,7 @@ export function _queryFloatSecondsSend(
   context: Client,
   input: number,
   options: QueryQueryFloatSecondsOptions = { requestOptions: {} }
-): StreamableMethod<QueryFloatSeconds204Response> {
+): StreamableMethod<FloatSeconds204Response> {
   return context
     .path("/encode/duration/query/float-seconds")
     .get({
@@ -131,7 +131,7 @@ export function _queryFloatSecondsSend(
 }
 
 export async function _queryFloatSecondsDeserialize(
-  result: QueryFloatSeconds204Response
+  result: FloatSeconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -153,7 +153,7 @@ export function _queryInt32SecondsArraySend(
   context: Client,
   input: number[],
   options: QueryQueryInt32SecondsArrayOptions = { requestOptions: {} }
-): StreamableMethod<QueryInt32SecondsArray204Response> {
+): StreamableMethod<Int32SecondsArray204Response> {
   return context
     .path("/encode/duration/query/int32-seconds-array")
     .get({
@@ -163,7 +163,7 @@ export function _queryInt32SecondsArraySend(
 }
 
 export async function _queryInt32SecondsArrayDeserialize(
-  result: QueryInt32SecondsArray204Response
+  result: Int32SecondsArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

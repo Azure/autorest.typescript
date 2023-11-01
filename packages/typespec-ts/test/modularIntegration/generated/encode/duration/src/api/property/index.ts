@@ -9,12 +9,12 @@ import {
   FloatSecondsDurationArrayProperty,
 } from "../../models/models.js";
 import {
+  Default200Response,
   DurationContext as Client,
-  PropertyDefault200Response,
-  PropertyFloatSeconds200Response,
-  PropertyFloatSecondsArray200Response,
-  PropertyInt32Seconds200Response,
-  PropertyIso8601200Response,
+  FloatSeconds200Response,
+  FloatSecondsArray200Response,
+  Int32Seconds200Response,
+  Iso8601200Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -32,7 +32,7 @@ export function _propertyDefaultSend(
   context: Client,
   body: DefaultDurationProperty,
   options: PropertyPropertyDefaultOptions = { requestOptions: {} }
-): StreamableMethod<PropertyDefault200Response> {
+): StreamableMethod<Default200Response> {
   return context
     .path("/encode/duration/property/default")
     .post({
@@ -42,7 +42,7 @@ export function _propertyDefaultSend(
 }
 
 export async function _propertyDefaultDeserialize(
-  result: PropertyDefault200Response
+  result: Default200Response
 ): Promise<DefaultDurationProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -66,7 +66,7 @@ export function _propertyIso8601Send(
   context: Client,
   body: ISO8601DurationProperty,
   options: PropertyPropertyIso8601Options = { requestOptions: {} }
-): StreamableMethod<PropertyIso8601200Response> {
+): StreamableMethod<Iso8601200Response> {
   return context
     .path("/encode/duration/property/iso8601")
     .post({
@@ -76,7 +76,7 @@ export function _propertyIso8601Send(
 }
 
 export async function _propertyIso8601Deserialize(
-  result: PropertyIso8601200Response
+  result: Iso8601200Response
 ): Promise<ISO8601DurationProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -100,7 +100,7 @@ export function _propertyInt32SecondsSend(
   context: Client,
   body: Int32SecondsDurationProperty,
   options: PropertyPropertyInt32SecondsOptions = { requestOptions: {} }
-): StreamableMethod<PropertyInt32Seconds200Response> {
+): StreamableMethod<Int32Seconds200Response> {
   return context
     .path("/encode/duration/property/int32-seconds")
     .post({
@@ -110,7 +110,7 @@ export function _propertyInt32SecondsSend(
 }
 
 export async function _propertyInt32SecondsDeserialize(
-  result: PropertyInt32Seconds200Response
+  result: Int32Seconds200Response
 ): Promise<Int32SecondsDurationProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -134,7 +134,7 @@ export function _propertyFloatSecondsSend(
   context: Client,
   body: FloatSecondsDurationProperty,
   options: PropertyPropertyFloatSecondsOptions = { requestOptions: {} }
-): StreamableMethod<PropertyFloatSeconds200Response> {
+): StreamableMethod<FloatSeconds200Response> {
   return context
     .path("/encode/duration/property/float-seconds")
     .post({
@@ -144,7 +144,7 @@ export function _propertyFloatSecondsSend(
 }
 
 export async function _propertyFloatSecondsDeserialize(
-  result: PropertyFloatSeconds200Response
+  result: FloatSeconds200Response
 ): Promise<FloatSecondsDurationProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -168,7 +168,7 @@ export function _propertyFloatSecondsArraySend(
   context: Client,
   body: FloatSecondsDurationArrayProperty,
   options: PropertyPropertyFloatSecondsArrayOptions = { requestOptions: {} }
-): StreamableMethod<PropertyFloatSecondsArray200Response> {
+): StreamableMethod<FloatSecondsArray200Response> {
   return context
     .path("/encode/duration/property/float-seconds-array")
     .post({
@@ -178,7 +178,7 @@ export function _propertyFloatSecondsArraySend(
 }
 
 export async function _propertyFloatSecondsArrayDeserialize(
-  result: PropertyFloatSecondsArray200Response
+  result: FloatSecondsArray200Response
 ): Promise<FloatSecondsDurationArrayProperty> {
   if (result.status !== "200") {
     throw result.body;

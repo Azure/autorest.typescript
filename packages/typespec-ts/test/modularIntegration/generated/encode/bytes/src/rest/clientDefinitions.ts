@@ -2,234 +2,176 @@
 // Licensed under the MIT license.
 
 import {
-  QueryDefaultParameters,
-  QueryBase64Parameters,
-  QueryBase64urlParameters,
-  QueryBase64urlArrayParameters,
-  PropertyDefaultParameters,
-  PropertyBase64Parameters,
-  PropertyBase64urlParameters,
-  PropertyBase64urlArrayParameters,
-  HeaderDefaultParameters,
-  HeaderBase64Parameters,
-  HeaderBase64urlParameters,
-  HeaderBase64urlArrayParameters,
-  RequestBodyDefaultParameters,
-  RequestBodyOctetStreamParameters,
-  RequestBodyCustomContentTypeParameters,
-  RequestBodyBase64Parameters,
-  RequestBodyBase64urlParameters,
-  ResponseBodyDefaultParameters,
-  ResponseBodyOctetStreamParameters,
-  ResponseBodyCustomContentTypeParameters,
-  ResponseBodyBase64Parameters,
-  ResponseBodyBase64urlParameters,
+  DefaultParameters,
+  Base64Parameters,
+  Base64urlParameters,
+  Base64urlArrayParameters,
+  OctetStreamParameters,
+  CustomContentTypeParameters,
 } from "./parameters.js";
 import {
-  QueryDefault204Response,
-  QueryBase64204Response,
-  QueryBase64url204Response,
-  QueryBase64urlArray204Response,
-  PropertyDefault200Response,
-  PropertyBase64200Response,
-  PropertyBase64url200Response,
-  PropertyBase64urlArray200Response,
-  HeaderDefault204Response,
-  HeaderBase64204Response,
-  HeaderBase64url204Response,
-  HeaderBase64urlArray204Response,
-  RequestBodyDefault204Response,
-  RequestBodyOctetStream204Response,
-  RequestBodyCustomContentType204Response,
-  RequestBodyBase64204Response,
-  RequestBodyBase64url204Response,
-  ResponseBodyDefault200Response,
-  ResponseBodyOctetStream200Response,
-  ResponseBodyCustomContentType200Response,
-  ResponseBodyBase64200Response,
-  ResponseBodyBase64url200Response,
+  Default204Response,
+  Base64204Response,
+  Base64url204Response,
+  Base64urlArray204Response,
+  Default200Response,
+  Base64200Response,
+  Base64url200Response,
+  Base64urlArray200Response,
+  OctetStream204Response,
+  CustomContentType204Response,
+  OctetStream200Response,
+  CustomContentType200Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface QueryDefault {
+export interface Default {
+  get(options: DefaultParameters): StreamableMethod<Default204Response>;
+}
+
+export interface Base64 {
+  get(options: Base64Parameters): StreamableMethod<Base64204Response>;
+}
+
+export interface Base64url {
+  get(options: Base64urlParameters): StreamableMethod<Base64url204Response>;
+}
+
+export interface Base64urlArray {
   get(
-    options: QueryDefaultParameters
-  ): StreamableMethod<QueryDefault204Response>;
+    options: Base64urlArrayParameters
+  ): StreamableMethod<Base64urlArray204Response>;
 }
 
-export interface QueryBase64 {
-  get(options: QueryBase64Parameters): StreamableMethod<QueryBase64204Response>;
+export interface Default {
+  post(options: DefaultParameters): StreamableMethod<Default200Response>;
 }
 
-export interface QueryBase64url {
-  get(
-    options: QueryBase64urlParameters
-  ): StreamableMethod<QueryBase64url204Response>;
+export interface Base64 {
+  post(options: Base64Parameters): StreamableMethod<Base64200Response>;
 }
 
-export interface QueryBase64urlArray {
-  get(
-    options: QueryBase64urlArrayParameters
-  ): StreamableMethod<QueryBase64urlArray204Response>;
+export interface Base64url {
+  post(options: Base64urlParameters): StreamableMethod<Base64url200Response>;
 }
 
-export interface PropertyDefault {
+export interface Base64urlArray {
   post(
-    options: PropertyDefaultParameters
-  ): StreamableMethod<PropertyDefault200Response>;
+    options: Base64urlArrayParameters
+  ): StreamableMethod<Base64urlArray200Response>;
 }
 
-export interface PropertyBase64 {
+export interface Default {
+  get(options: DefaultParameters): StreamableMethod<Default204Response>;
+}
+
+export interface Base64 {
+  get(options: Base64Parameters): StreamableMethod<Base64204Response>;
+}
+
+export interface Base64url {
+  get(options: Base64urlParameters): StreamableMethod<Base64url204Response>;
+}
+
+export interface Base64urlArray {
+  get(
+    options: Base64urlArrayParameters
+  ): StreamableMethod<Base64urlArray204Response>;
+}
+
+export interface Default {
+  post(options: DefaultParameters): StreamableMethod<Default204Response>;
+}
+
+export interface OctetStream {
   post(
-    options: PropertyBase64Parameters
-  ): StreamableMethod<PropertyBase64200Response>;
+    options: OctetStreamParameters
+  ): StreamableMethod<OctetStream204Response>;
 }
 
-export interface PropertyBase64url {
+export interface CustomContentType {
   post(
-    options: PropertyBase64urlParameters
-  ): StreamableMethod<PropertyBase64url200Response>;
+    options: CustomContentTypeParameters
+  ): StreamableMethod<CustomContentType204Response>;
 }
 
-export interface PropertyBase64urlArray {
-  post(
-    options: PropertyBase64urlArrayParameters
-  ): StreamableMethod<PropertyBase64urlArray200Response>;
+export interface Base64 {
+  post(options: Base64Parameters): StreamableMethod<Base64204Response>;
 }
 
-export interface HeaderDefault {
+export interface Base64url {
+  post(options: Base64urlParameters): StreamableMethod<Base64url204Response>;
+}
+
+export interface Default {
+  get(options?: DefaultParameters): StreamableMethod<Default200Response>;
+}
+
+export interface OctetStream {
   get(
-    options: HeaderDefaultParameters
-  ): StreamableMethod<HeaderDefault204Response>;
+    options?: OctetStreamParameters
+  ): StreamableMethod<OctetStream200Response>;
 }
 
-export interface HeaderBase64 {
+export interface CustomContentType {
   get(
-    options: HeaderBase64Parameters
-  ): StreamableMethod<HeaderBase64204Response>;
+    options?: CustomContentTypeParameters
+  ): StreamableMethod<CustomContentType200Response>;
 }
 
-export interface HeaderBase64url {
-  get(
-    options: HeaderBase64urlParameters
-  ): StreamableMethod<HeaderBase64url204Response>;
+export interface Base64 {
+  get(options?: Base64Parameters): StreamableMethod<Base64200Response>;
 }
 
-export interface HeaderBase64urlArray {
-  get(
-    options: HeaderBase64urlArrayParameters
-  ): StreamableMethod<HeaderBase64urlArray204Response>;
-}
-
-export interface RequestBodyDefault {
-  post(
-    options: RequestBodyDefaultParameters
-  ): StreamableMethod<RequestBodyDefault204Response>;
-}
-
-export interface RequestBodyOctetStream {
-  post(
-    options: RequestBodyOctetStreamParameters
-  ): StreamableMethod<RequestBodyOctetStream204Response>;
-}
-
-export interface RequestBodyCustomContentType {
-  post(
-    options: RequestBodyCustomContentTypeParameters
-  ): StreamableMethod<RequestBodyCustomContentType204Response>;
-}
-
-export interface RequestBodyBase64 {
-  post(
-    options: RequestBodyBase64Parameters
-  ): StreamableMethod<RequestBodyBase64204Response>;
-}
-
-export interface RequestBodyBase64url {
-  post(
-    options: RequestBodyBase64urlParameters
-  ): StreamableMethod<RequestBodyBase64url204Response>;
-}
-
-export interface ResponseBodyDefault {
-  get(
-    options?: ResponseBodyDefaultParameters
-  ): StreamableMethod<ResponseBodyDefault200Response>;
-}
-
-export interface ResponseBodyOctetStream {
-  get(
-    options?: ResponseBodyOctetStreamParameters
-  ): StreamableMethod<ResponseBodyOctetStream200Response>;
-}
-
-export interface ResponseBodyCustomContentType {
-  get(
-    options?: ResponseBodyCustomContentTypeParameters
-  ): StreamableMethod<ResponseBodyCustomContentType200Response>;
-}
-
-export interface ResponseBodyBase64 {
-  get(
-    options?: ResponseBodyBase64Parameters
-  ): StreamableMethod<ResponseBodyBase64200Response>;
-}
-
-export interface ResponseBodyBase64url {
-  get(
-    options?: ResponseBodyBase64urlParameters
-  ): StreamableMethod<ResponseBodyBase64url200Response>;
+export interface Base64url {
+  get(options?: Base64urlParameters): StreamableMethod<Base64url200Response>;
 }
 
 export interface Routes {
   /** Resource for '/encode/bytes/query/default' has methods for the following verbs: get */
-  (path: "/encode/bytes/query/default"): QueryDefault;
+  (path: "/encode/bytes/query/default"): Default;
   /** Resource for '/encode/bytes/query/base64' has methods for the following verbs: get */
-  (path: "/encode/bytes/query/base64"): QueryBase64;
+  (path: "/encode/bytes/query/base64"): Base64;
   /** Resource for '/encode/bytes/query/base64url' has methods for the following verbs: get */
-  (path: "/encode/bytes/query/base64url"): QueryBase64url;
+  (path: "/encode/bytes/query/base64url"): Base64url;
   /** Resource for '/encode/bytes/query/base64url-array' has methods for the following verbs: get */
-  (path: "/encode/bytes/query/base64url-array"): QueryBase64urlArray;
+  (path: "/encode/bytes/query/base64url-array"): Base64urlArray;
   /** Resource for '/encode/bytes/property/default' has methods for the following verbs: post */
-  (path: "/encode/bytes/property/default"): PropertyDefault;
+  (path: "/encode/bytes/property/default"): Default;
   /** Resource for '/encode/bytes/property/base64' has methods for the following verbs: post */
-  (path: "/encode/bytes/property/base64"): PropertyBase64;
+  (path: "/encode/bytes/property/base64"): Base64;
   /** Resource for '/encode/bytes/property/base64url' has methods for the following verbs: post */
-  (path: "/encode/bytes/property/base64url"): PropertyBase64url;
+  (path: "/encode/bytes/property/base64url"): Base64url;
   /** Resource for '/encode/bytes/property/base64url-array' has methods for the following verbs: post */
-  (path: "/encode/bytes/property/base64url-array"): PropertyBase64urlArray;
+  (path: "/encode/bytes/property/base64url-array"): Base64urlArray;
   /** Resource for '/encode/bytes/header/default' has methods for the following verbs: get */
-  (path: "/encode/bytes/header/default"): HeaderDefault;
+  (path: "/encode/bytes/header/default"): Default;
   /** Resource for '/encode/bytes/header/base64' has methods for the following verbs: get */
-  (path: "/encode/bytes/header/base64"): HeaderBase64;
+  (path: "/encode/bytes/header/base64"): Base64;
   /** Resource for '/encode/bytes/header/base64url' has methods for the following verbs: get */
-  (path: "/encode/bytes/header/base64url"): HeaderBase64url;
+  (path: "/encode/bytes/header/base64url"): Base64url;
   /** Resource for '/encode/bytes/header/base64url-array' has methods for the following verbs: get */
-  (path: "/encode/bytes/header/base64url-array"): HeaderBase64urlArray;
+  (path: "/encode/bytes/header/base64url-array"): Base64urlArray;
   /** Resource for '/encode/bytes/body/request/default' has methods for the following verbs: post */
-  (path: "/encode/bytes/body/request/default"): RequestBodyDefault;
+  (path: "/encode/bytes/body/request/default"): Default;
   /** Resource for '/encode/bytes/body/request/octet-stream' has methods for the following verbs: post */
-  (path: "/encode/bytes/body/request/octet-stream"): RequestBodyOctetStream;
+  (path: "/encode/bytes/body/request/octet-stream"): OctetStream;
   /** Resource for '/encode/bytes/body/request/custom-content-type' has methods for the following verbs: post */
-  (
-    path: "/encode/bytes/body/request/custom-content-type"
-  ): RequestBodyCustomContentType;
+  (path: "/encode/bytes/body/request/custom-content-type"): CustomContentType;
   /** Resource for '/encode/bytes/body/request/base64' has methods for the following verbs: post */
-  (path: "/encode/bytes/body/request/base64"): RequestBodyBase64;
+  (path: "/encode/bytes/body/request/base64"): Base64;
   /** Resource for '/encode/bytes/body/request/base64url' has methods for the following verbs: post */
-  (path: "/encode/bytes/body/request/base64url"): RequestBodyBase64url;
+  (path: "/encode/bytes/body/request/base64url"): Base64url;
   /** Resource for '/encode/bytes/body/response/default' has methods for the following verbs: get */
-  (path: "/encode/bytes/body/response/default"): ResponseBodyDefault;
+  (path: "/encode/bytes/body/response/default"): Default;
   /** Resource for '/encode/bytes/body/response/octet-stream' has methods for the following verbs: get */
-  (path: "/encode/bytes/body/response/octet-stream"): ResponseBodyOctetStream;
+  (path: "/encode/bytes/body/response/octet-stream"): OctetStream;
   /** Resource for '/encode/bytes/body/response/custom-content-type' has methods for the following verbs: get */
-  (
-    path: "/encode/bytes/body/response/custom-content-type"
-  ): ResponseBodyCustomContentType;
+  (path: "/encode/bytes/body/response/custom-content-type"): CustomContentType;
   /** Resource for '/encode/bytes/body/response/base64' has methods for the following verbs: get */
-  (path: "/encode/bytes/body/response/base64"): ResponseBodyBase64;
+  (path: "/encode/bytes/body/response/base64"): Base64;
   /** Resource for '/encode/bytes/body/response/base64url' has methods for the following verbs: get */
-  (path: "/encode/bytes/body/response/base64url"): ResponseBodyBase64url;
+  (path: "/encode/bytes/body/response/base64url"): Base64url;
 }
 
 export type BytesContext = Client & {

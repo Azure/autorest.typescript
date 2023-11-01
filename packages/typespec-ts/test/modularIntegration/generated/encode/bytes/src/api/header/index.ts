@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
+  Base64204Response,
+  Base64url204Response,
+  Base64urlArray204Response,
   buildCsvCollection,
   BytesContext as Client,
-  HeaderBase64204Response,
-  HeaderBase64url204Response,
-  HeaderBase64urlArray204Response,
-  HeaderDefault204Response,
+  Default204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -25,7 +25,7 @@ export function _headerDefaultSend(
   context: Client,
   value: Uint8Array,
   options: HeaderHeaderDefaultOptions = { requestOptions: {} }
-): StreamableMethod<HeaderDefault204Response> {
+): StreamableMethod<Default204Response> {
   return context
     .path("/encode/bytes/header/default")
     .get({
@@ -35,7 +35,7 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: HeaderDefault204Response
+  result: Default204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -57,7 +57,7 @@ export function _headerBase64Send(
   context: Client,
   value: Uint8Array,
   options: HeaderHeaderBase64Options = { requestOptions: {} }
-): StreamableMethod<HeaderBase64204Response> {
+): StreamableMethod<Base64204Response> {
   return context
     .path("/encode/bytes/header/base64")
     .get({
@@ -67,7 +67,7 @@ export function _headerBase64Send(
 }
 
 export async function _headerBase64Deserialize(
-  result: HeaderBase64204Response
+  result: Base64204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -89,7 +89,7 @@ export function _headerBase64urlSend(
   context: Client,
   value: Uint8Array,
   options: HeaderHeaderBase64urlOptions = { requestOptions: {} }
-): StreamableMethod<HeaderBase64url204Response> {
+): StreamableMethod<Base64url204Response> {
   return context
     .path("/encode/bytes/header/base64url")
     .get({
@@ -99,7 +99,7 @@ export function _headerBase64urlSend(
 }
 
 export async function _headerBase64urlDeserialize(
-  result: HeaderBase64url204Response
+  result: Base64url204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -121,7 +121,7 @@ export function _headerBase64urlArraySend(
   context: Client,
   value: Uint8Array[],
   options: HeaderHeaderBase64urlArrayOptions = { requestOptions: {} }
-): StreamableMethod<HeaderBase64urlArray204Response> {
+): StreamableMethod<Base64urlArray204Response> {
   return context
     .path("/encode/bytes/header/base64url-array")
     .get({
@@ -135,7 +135,7 @@ export function _headerBase64urlArraySend(
 }
 
 export async function _headerBase64urlArrayDeserialize(
-  result: HeaderBase64urlArray204Response
+  result: Base64urlArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

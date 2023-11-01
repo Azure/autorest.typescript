@@ -8,11 +8,11 @@ import {
   Base64urlArrayBytesProperty,
 } from "../../models/models.js";
 import {
+  Base64200Response,
+  Base64url200Response,
+  Base64urlArray200Response,
   BytesContext as Client,
-  PropertyBase64200Response,
-  PropertyBase64url200Response,
-  PropertyBase64urlArray200Response,
-  PropertyDefault200Response,
+  Default200Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -30,7 +30,7 @@ export function _propertyDefaultSend(
   context: Client,
   body: DefaultBytesProperty,
   options: PropertyPropertyDefaultOptions = { requestOptions: {} }
-): StreamableMethod<PropertyDefault200Response> {
+): StreamableMethod<Default200Response> {
   return context
     .path("/encode/bytes/property/default")
     .post({
@@ -40,7 +40,7 @@ export function _propertyDefaultSend(
 }
 
 export async function _propertyDefaultDeserialize(
-  result: PropertyDefault200Response
+  result: Default200Response
 ): Promise<DefaultBytesProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -67,7 +67,7 @@ export function _propertyBase64Send(
   context: Client,
   body: Base64BytesProperty,
   options: PropertyPropertyBase64Options = { requestOptions: {} }
-): StreamableMethod<PropertyBase64200Response> {
+): StreamableMethod<Base64200Response> {
   return context
     .path("/encode/bytes/property/base64")
     .post({
@@ -77,7 +77,7 @@ export function _propertyBase64Send(
 }
 
 export async function _propertyBase64Deserialize(
-  result: PropertyBase64200Response
+  result: Base64200Response
 ): Promise<Base64BytesProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -104,7 +104,7 @@ export function _propertyBase64urlSend(
   context: Client,
   body: Base64urlBytesProperty,
   options: PropertyPropertyBase64urlOptions = { requestOptions: {} }
-): StreamableMethod<PropertyBase64url200Response> {
+): StreamableMethod<Base64url200Response> {
   return context
     .path("/encode/bytes/property/base64url")
     .post({
@@ -114,7 +114,7 @@ export function _propertyBase64urlSend(
 }
 
 export async function _propertyBase64urlDeserialize(
-  result: PropertyBase64url200Response
+  result: Base64url200Response
 ): Promise<Base64urlBytesProperty> {
   if (result.status !== "200") {
     throw result.body;
@@ -141,7 +141,7 @@ export function _propertyBase64urlArraySend(
   context: Client,
   body: Base64urlArrayBytesProperty,
   options: PropertyPropertyBase64urlArrayOptions = { requestOptions: {} }
-): StreamableMethod<PropertyBase64urlArray200Response> {
+): StreamableMethod<Base64urlArray200Response> {
   return context
     .path("/encode/bytes/property/base64url-array")
     .post({
@@ -155,7 +155,7 @@ export function _propertyBase64urlArraySend(
 }
 
 export async function _propertyBase64urlArrayDeserialize(
-  result: PropertyBase64urlArray200Response
+  result: Base64urlArray200Response
 ): Promise<Base64urlArrayBytesProperty> {
   if (result.status !== "200") {
     throw result.body;

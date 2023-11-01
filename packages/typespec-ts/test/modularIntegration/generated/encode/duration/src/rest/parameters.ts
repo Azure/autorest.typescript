@@ -11,146 +11,138 @@ import {
   FloatSecondsDurationArrayProperty,
 } from "./models.js";
 
-export interface QueryDefaultQueryParamProperties {
+export interface DefaultQueryParamProperties {
   input: string;
 }
 
-export interface QueryDefaultQueryParam {
-  queryParameters: QueryDefaultQueryParamProperties;
+export interface DefaultQueryParam {
+  queryParameters: DefaultQueryParamProperties;
 }
 
-export type QueryDefaultParameters = QueryDefaultQueryParam & RequestParameters;
+export type DefaultParameters = DefaultQueryParam & RequestParameters;
 
-export interface QueryIso8601QueryParamProperties {
+export interface Iso8601QueryParamProperties {
   input: string;
 }
 
-export interface QueryIso8601QueryParam {
-  queryParameters: QueryIso8601QueryParamProperties;
+export interface Iso8601QueryParam {
+  queryParameters: Iso8601QueryParamProperties;
 }
 
-export type QueryIso8601Parameters = QueryIso8601QueryParam & RequestParameters;
+export type Iso8601Parameters = Iso8601QueryParam & RequestParameters;
 
-export interface QueryInt32SecondsQueryParamProperties {
+export interface Int32SecondsQueryParamProperties {
   input: number;
 }
 
-export interface QueryInt32SecondsQueryParam {
-  queryParameters: QueryInt32SecondsQueryParamProperties;
+export interface Int32SecondsQueryParam {
+  queryParameters: Int32SecondsQueryParamProperties;
 }
 
-export type QueryInt32SecondsParameters = QueryInt32SecondsQueryParam &
-  RequestParameters;
+export type Int32SecondsParameters = Int32SecondsQueryParam & RequestParameters;
 
-export interface QueryFloatSecondsQueryParamProperties {
+export interface FloatSecondsQueryParamProperties {
   input: number;
 }
 
-export interface QueryFloatSecondsQueryParam {
-  queryParameters: QueryFloatSecondsQueryParamProperties;
+export interface FloatSecondsQueryParam {
+  queryParameters: FloatSecondsQueryParamProperties;
 }
 
-export type QueryFloatSecondsParameters = QueryFloatSecondsQueryParam &
-  RequestParameters;
+export type FloatSecondsParameters = FloatSecondsQueryParam & RequestParameters;
 
-export interface QueryInt32SecondsArrayQueryParamProperties {
+export interface Int32SecondsArrayQueryParamProperties {
   input: number[];
 }
 
-export interface QueryInt32SecondsArrayQueryParam {
-  queryParameters: QueryInt32SecondsArrayQueryParamProperties;
+export interface Int32SecondsArrayQueryParam {
+  queryParameters: Int32SecondsArrayQueryParamProperties;
 }
 
-export type QueryInt32SecondsArrayParameters =
-  QueryInt32SecondsArrayQueryParam & RequestParameters;
+export type Int32SecondsArrayParameters = Int32SecondsArrayQueryParam &
+  RequestParameters;
 
-export interface PropertyDefaultBodyParam {
+export interface DefaultBodyParam {
   body: DefaultDurationProperty;
 }
 
-export type PropertyDefaultParameters = PropertyDefaultBodyParam &
-  RequestParameters;
+export type DefaultParameters = DefaultBodyParam & RequestParameters;
 
-export interface PropertyIso8601BodyParam {
+export interface Iso8601BodyParam {
   body: ISO8601DurationProperty;
 }
 
-export type PropertyIso8601Parameters = PropertyIso8601BodyParam &
-  RequestParameters;
+export type Iso8601Parameters = Iso8601BodyParam & RequestParameters;
 
-export interface PropertyInt32SecondsBodyParam {
+export interface Int32SecondsBodyParam {
   body: Int32SecondsDurationProperty;
 }
 
-export type PropertyInt32SecondsParameters = PropertyInt32SecondsBodyParam &
-  RequestParameters;
+export type Int32SecondsParameters = Int32SecondsBodyParam & RequestParameters;
 
-export interface PropertyFloatSecondsBodyParam {
+export interface FloatSecondsBodyParam {
   body: FloatSecondsDurationProperty;
 }
 
-export type PropertyFloatSecondsParameters = PropertyFloatSecondsBodyParam &
-  RequestParameters;
+export type FloatSecondsParameters = FloatSecondsBodyParam & RequestParameters;
 
-export interface PropertyFloatSecondsArrayBodyParam {
+export interface FloatSecondsArrayBodyParam {
   body: FloatSecondsDurationArrayProperty;
 }
 
-export type PropertyFloatSecondsArrayParameters =
-  PropertyFloatSecondsArrayBodyParam & RequestParameters;
+export type FloatSecondsArrayParameters = FloatSecondsArrayBodyParam &
+  RequestParameters;
 
-export interface HeaderDefaultHeaders {
+export interface DefaultHeaders {
   duration: string;
 }
 
-export interface HeaderDefaultHeaderParam {
-  headers: RawHttpHeadersInput & HeaderDefaultHeaders;
+export interface DefaultHeaderParam {
+  headers: RawHttpHeadersInput & DefaultHeaders;
 }
 
-export type HeaderDefaultParameters = HeaderDefaultHeaderParam &
-  RequestParameters;
+export type DefaultParameters = DefaultHeaderParam & RequestParameters;
 
-export interface HeaderIso8601Headers {
+export interface Iso8601Headers {
   duration: string;
 }
 
-export interface HeaderIso8601HeaderParam {
-  headers: RawHttpHeadersInput & HeaderIso8601Headers;
+export interface Iso8601HeaderParam {
+  headers: RawHttpHeadersInput & Iso8601Headers;
 }
 
-export type HeaderIso8601Parameters = HeaderIso8601HeaderParam &
-  RequestParameters;
+export type Iso8601Parameters = Iso8601HeaderParam & RequestParameters;
 
-export interface HeaderIso8601ArrayHeaders {
+export interface Iso8601ArrayHeaders {
   /**  This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
   duration: string;
 }
 
-export interface HeaderIso8601ArrayHeaderParam {
-  headers: RawHttpHeadersInput & HeaderIso8601ArrayHeaders;
+export interface Iso8601ArrayHeaderParam {
+  headers: RawHttpHeadersInput & Iso8601ArrayHeaders;
 }
 
-export type HeaderIso8601ArrayParameters = HeaderIso8601ArrayHeaderParam &
+export type Iso8601ArrayParameters = Iso8601ArrayHeaderParam &
   RequestParameters;
 
-export interface HeaderInt32SecondsHeaders {
+export interface Int32SecondsHeaders {
   duration: number;
 }
 
-export interface HeaderInt32SecondsHeaderParam {
-  headers: RawHttpHeadersInput & HeaderInt32SecondsHeaders;
+export interface Int32SecondsHeaderParam {
+  headers: RawHttpHeadersInput & Int32SecondsHeaders;
 }
 
-export type HeaderInt32SecondsParameters = HeaderInt32SecondsHeaderParam &
+export type Int32SecondsParameters = Int32SecondsHeaderParam &
   RequestParameters;
 
-export interface HeaderFloatSecondsHeaders {
+export interface FloatSecondsHeaders {
   duration: number;
 }
 
-export interface HeaderFloatSecondsHeaderParam {
-  headers: RawHttpHeadersInput & HeaderFloatSecondsHeaders;
+export interface FloatSecondsHeaderParam {
+  headers: RawHttpHeadersInput & FloatSecondsHeaders;
 }
 
-export type HeaderFloatSecondsParameters = HeaderFloatSecondsHeaderParam &
+export type FloatSecondsParameters = FloatSecondsHeaderParam &
   RequestParameters;

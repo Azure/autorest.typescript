@@ -10,129 +10,121 @@ import {
   Base64urlArrayBytesProperty,
 } from "./models.js";
 
-export interface QueryDefaultQueryParamProperties {
+export interface DefaultQueryParamProperties {
   value: string;
 }
 
-export interface QueryDefaultQueryParam {
-  queryParameters: QueryDefaultQueryParamProperties;
+export interface DefaultQueryParam {
+  queryParameters: DefaultQueryParamProperties;
 }
 
-export type QueryDefaultParameters = QueryDefaultQueryParam & RequestParameters;
+export type DefaultParameters = DefaultQueryParam & RequestParameters;
 
-export interface QueryBase64QueryParamProperties {
+export interface Base64QueryParamProperties {
   value: string;
 }
 
-export interface QueryBase64QueryParam {
-  queryParameters: QueryBase64QueryParamProperties;
+export interface Base64QueryParam {
+  queryParameters: Base64QueryParamProperties;
 }
 
-export type QueryBase64Parameters = QueryBase64QueryParam & RequestParameters;
+export type Base64Parameters = Base64QueryParam & RequestParameters;
 
-export interface QueryBase64urlQueryParamProperties {
+export interface Base64urlQueryParamProperties {
   value: string;
 }
 
-export interface QueryBase64urlQueryParam {
-  queryParameters: QueryBase64urlQueryParamProperties;
+export interface Base64urlQueryParam {
+  queryParameters: Base64urlQueryParamProperties;
 }
 
-export type QueryBase64urlParameters = QueryBase64urlQueryParam &
-  RequestParameters;
+export type Base64urlParameters = Base64urlQueryParam & RequestParameters;
 
-export interface QueryBase64urlArrayQueryParamProperties {
+export interface Base64urlArrayQueryParamProperties {
   value: string[];
 }
 
-export interface QueryBase64urlArrayQueryParam {
-  queryParameters: QueryBase64urlArrayQueryParamProperties;
+export interface Base64urlArrayQueryParam {
+  queryParameters: Base64urlArrayQueryParamProperties;
 }
 
-export type QueryBase64urlArrayParameters = QueryBase64urlArrayQueryParam &
+export type Base64urlArrayParameters = Base64urlArrayQueryParam &
   RequestParameters;
 
-export interface PropertyDefaultBodyParam {
+export interface DefaultBodyParam {
   body: DefaultBytesProperty;
 }
 
-export type PropertyDefaultParameters = PropertyDefaultBodyParam &
-  RequestParameters;
+export type DefaultParameters = DefaultBodyParam & RequestParameters;
 
-export interface PropertyBase64BodyParam {
+export interface Base64BodyParam {
   body: Base64BytesProperty;
 }
 
-export type PropertyBase64Parameters = PropertyBase64BodyParam &
-  RequestParameters;
+export type Base64Parameters = Base64BodyParam & RequestParameters;
 
-export interface PropertyBase64urlBodyParam {
+export interface Base64urlBodyParam {
   body: Base64urlBytesProperty;
 }
 
-export type PropertyBase64urlParameters = PropertyBase64urlBodyParam &
-  RequestParameters;
+export type Base64urlParameters = Base64urlBodyParam & RequestParameters;
 
-export interface PropertyBase64urlArrayBodyParam {
+export interface Base64urlArrayBodyParam {
   body: Base64urlArrayBytesProperty;
 }
 
-export type PropertyBase64urlArrayParameters = PropertyBase64urlArrayBodyParam &
+export type Base64urlArrayParameters = Base64urlArrayBodyParam &
   RequestParameters;
 
-export interface HeaderDefaultHeaders {
+export interface DefaultHeaders {
   value: string;
 }
 
-export interface HeaderDefaultHeaderParam {
-  headers: RawHttpHeadersInput & HeaderDefaultHeaders;
+export interface DefaultHeaderParam {
+  headers: RawHttpHeadersInput & DefaultHeaders;
 }
 
-export type HeaderDefaultParameters = HeaderDefaultHeaderParam &
-  RequestParameters;
+export type DefaultParameters = DefaultHeaderParam & RequestParameters;
 
-export interface HeaderBase64Headers {
+export interface Base64Headers {
   value: string;
 }
 
-export interface HeaderBase64HeaderParam {
-  headers: RawHttpHeadersInput & HeaderBase64Headers;
+export interface Base64HeaderParam {
+  headers: RawHttpHeadersInput & Base64Headers;
 }
 
-export type HeaderBase64Parameters = HeaderBase64HeaderParam &
-  RequestParameters;
+export type Base64Parameters = Base64HeaderParam & RequestParameters;
 
-export interface HeaderBase64urlHeaders {
+export interface Base64urlHeaders {
   value: string;
 }
 
-export interface HeaderBase64urlHeaderParam {
-  headers: RawHttpHeadersInput & HeaderBase64urlHeaders;
+export interface Base64urlHeaderParam {
+  headers: RawHttpHeadersInput & Base64urlHeaders;
 }
 
-export type HeaderBase64urlParameters = HeaderBase64urlHeaderParam &
-  RequestParameters;
+export type Base64urlParameters = Base64urlHeaderParam & RequestParameters;
 
-export interface HeaderBase64urlArrayHeaders {
+export interface Base64urlArrayHeaders {
   /**  This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
   value: string;
 }
 
-export interface HeaderBase64urlArrayHeaderParam {
-  headers: RawHttpHeadersInput & HeaderBase64urlArrayHeaders;
+export interface Base64urlArrayHeaderParam {
+  headers: RawHttpHeadersInput & Base64urlArrayHeaders;
 }
 
-export type HeaderBase64urlArrayParameters = HeaderBase64urlArrayHeaderParam &
+export type Base64urlArrayParameters = Base64urlArrayHeaderParam &
   RequestParameters;
 
-export interface RequestBodyDefaultBodyParam {
+export interface DefaultBodyParam {
   body: string;
 }
 
-export type RequestBodyDefaultParameters = RequestBodyDefaultBodyParam &
-  RequestParameters;
+export type DefaultParameters = DefaultBodyParam & RequestParameters;
 
-export interface RequestBodyOctetStreamBodyParam {
+export interface OctetStreamBodyParam {
   /** Value may contain any sequence of octets */
   body:
     | string
@@ -141,16 +133,15 @@ export interface RequestBodyOctetStreamBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface RequestBodyOctetStreamMediaTypesParam {
+export interface OctetStreamMediaTypesParam {
   contentType: "application/octet-stream";
 }
 
-export type RequestBodyOctetStreamParameters =
-  RequestBodyOctetStreamMediaTypesParam &
-    RequestBodyOctetStreamBodyParam &
-    RequestParameters;
+export type OctetStreamParameters = OctetStreamMediaTypesParam &
+  OctetStreamBodyParam &
+  RequestParameters;
 
-export interface RequestBodyCustomContentTypeBodyParam {
+export interface CustomContentTypeBodyParam {
   /** Value may contain any sequence of octets */
   body:
     | string
@@ -159,30 +150,27 @@ export interface RequestBodyCustomContentTypeBodyParam {
     | NodeJS.ReadableStream;
 }
 
-export interface RequestBodyCustomContentTypeMediaTypesParam {
+export interface CustomContentTypeMediaTypesParam {
   contentType: "image/png";
 }
 
-export type RequestBodyCustomContentTypeParameters =
-  RequestBodyCustomContentTypeMediaTypesParam &
-    RequestBodyCustomContentTypeBodyParam &
-    RequestParameters;
+export type CustomContentTypeParameters = CustomContentTypeMediaTypesParam &
+  CustomContentTypeBodyParam &
+  RequestParameters;
 
-export interface RequestBodyBase64BodyParam {
+export interface Base64BodyParam {
   body: string;
 }
 
-export type RequestBodyBase64Parameters = RequestBodyBase64BodyParam &
-  RequestParameters;
+export type Base64Parameters = Base64BodyParam & RequestParameters;
 
-export interface RequestBodyBase64urlBodyParam {
+export interface Base64urlBodyParam {
   body: string;
 }
 
-export type RequestBodyBase64urlParameters = RequestBodyBase64urlBodyParam &
-  RequestParameters;
-export type ResponseBodyDefaultParameters = RequestParameters;
-export type ResponseBodyOctetStreamParameters = RequestParameters;
-export type ResponseBodyCustomContentTypeParameters = RequestParameters;
-export type ResponseBodyBase64Parameters = RequestParameters;
-export type ResponseBodyBase64urlParameters = RequestParameters;
+export type Base64urlParameters = Base64urlBodyParam & RequestParameters;
+export type DefaultParameters = RequestParameters;
+export type OctetStreamParameters = RequestParameters;
+export type CustomContentTypeParameters = RequestParameters;
+export type Base64Parameters = RequestParameters;
+export type Base64urlParameters = RequestParameters;

@@ -3,7 +3,7 @@
 
 import { BodyParameter } from "../../models/models.js";
 import {
-  ModelSpreadAsRequestBody204Response,
+  SpreadAsRequestBody204Response,
   SpreadContext as Client,
 } from "../../rest/index.js";
 import {
@@ -16,7 +16,7 @@ export function _modelSpreadAsRequestBodySend(
   context: Client,
   body: BodyParameter,
   options: ModelModelSpreadAsRequestBodyOptions = { requestOptions: {} }
-): StreamableMethod<ModelSpreadAsRequestBody204Response> {
+): StreamableMethod<SpreadAsRequestBody204Response> {
   return context
     .path("/parameters/spread/model/request-body")
     .put({
@@ -26,7 +26,7 @@ export function _modelSpreadAsRequestBodySend(
 }
 
 export async function _modelSpreadAsRequestBodyDeserialize(
-  result: ModelSpreadAsRequestBody204Response
+  result: SpreadAsRequestBody204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

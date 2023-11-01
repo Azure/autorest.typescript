@@ -12,121 +12,121 @@ import {
 } from "./outputModels.js";
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface QueryDefault204Response extends HttpResponse {
+export interface Default204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface QueryRfc3339204Response extends HttpResponse {
+export interface Rfc3339204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface QueryRfc7231204Response extends HttpResponse {
+export interface Rfc7231204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface QueryUnixTimestamp204Response extends HttpResponse {
+export interface UnixTimestamp204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface QueryUnixTimestampArray204Response extends HttpResponse {
+export interface UnixTimestampArray204Response extends HttpResponse {
   status: "204";
 }
 
 /** The request has succeeded. */
-export interface PropertyDefault200Response extends HttpResponse {
+export interface Default200Response extends HttpResponse {
   status: "200";
   body: DefaultDatetimePropertyOutput;
 }
 
 /** The request has succeeded. */
-export interface PropertyRfc3339200Response extends HttpResponse {
+export interface Rfc3339200Response extends HttpResponse {
   status: "200";
   body: Rfc3339DatetimePropertyOutput;
 }
 
 /** The request has succeeded. */
-export interface PropertyRfc7231200Response extends HttpResponse {
+export interface Rfc7231200Response extends HttpResponse {
   status: "200";
   body: Rfc7231DatetimePropertyOutput;
 }
 
 /** The request has succeeded. */
-export interface PropertyUnixTimestamp200Response extends HttpResponse {
+export interface UnixTimestamp200Response extends HttpResponse {
   status: "200";
   body: UnixTimestampDatetimePropertyOutput;
 }
 
 /** The request has succeeded. */
-export interface PropertyUnixTimestampArray200Response extends HttpResponse {
+export interface UnixTimestampArray200Response extends HttpResponse {
   status: "200";
   body: UnixTimestampArrayDatetimePropertyOutput;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface HeaderDefault204Response extends HttpResponse {
+export interface Default204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface HeaderRfc3339204Response extends HttpResponse {
+export interface Rfc3339204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface HeaderRfc7231204Response extends HttpResponse {
+export interface Rfc7231204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface HeaderUnixTimestamp204Response extends HttpResponse {
+export interface UnixTimestamp204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface HeaderUnixTimestampArray204Response extends HttpResponse {
+export interface UnixTimestampArray204Response extends HttpResponse {
   status: "204";
 }
 
-export interface ResponseHeaderDefault204Headers {
+export interface Default204Headers {
   value: string;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ResponseHeaderDefault204Response extends HttpResponse {
+export interface Default204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & ResponseHeaderDefault204Headers;
+  headers: RawHttpHeaders & Default204Headers;
 }
 
-export interface ResponseHeaderRfc3339204Headers {
+export interface Rfc3339204Headers {
   value: string;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ResponseHeaderRfc3339204Response extends HttpResponse {
+export interface Rfc3339204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & ResponseHeaderRfc3339204Headers;
+  headers: RawHttpHeaders & Rfc3339204Headers;
 }
 
-export interface ResponseHeaderRfc7231204Headers {
+export interface Rfc7231204Headers {
   value: string;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ResponseHeaderRfc7231204Response extends HttpResponse {
+export interface Rfc7231204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & ResponseHeaderRfc7231204Headers;
+  headers: RawHttpHeaders & Rfc7231204Headers;
 }
 
-export interface ResponseHeaderUnixTimestamp204Headers {
+export interface UnixTimestamp204Headers {
   value: string;
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface ResponseHeaderUnixTimestamp204Response extends HttpResponse {
+export interface UnixTimestamp204Response extends HttpResponse {
   status: "204";
-  headers: RawHttpHeaders & ResponseHeaderUnixTimestamp204Headers;
+  headers: RawHttpHeaders & UnixTimestamp204Headers;
 }

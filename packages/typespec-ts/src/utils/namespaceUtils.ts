@@ -6,7 +6,6 @@ import {
   Operation
 } from "@typespec/compiler";
 import { SdkContext } from "../utils/interfaces.js";
-import { getOperationGroupName } from "./operationUtil.js";
 
 export function getModelNamespaceName(
   dpgContext: SdkContext,
@@ -28,14 +27,6 @@ export function getOperationNamespaceInterfaceName(
 ): string[] {
   const result: string[] = [];
   if (dpgContext.rlcOptions?.hierarchyClient === false) {
-    const operationGroupName = getOperationGroupName(
-      dpgContext,
-      operation,
-      true
-    );
-    if (operationGroupName !== "") {
-      result.push(operationGroupName);
-    }
     return result;
   }
   if (operation.interface) {

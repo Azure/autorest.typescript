@@ -4,68 +4,68 @@
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 
-export interface QueryMultiQueryParamProperties {
+export interface MultiQueryParamProperties {
   /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as multi collection, we provide buildMultiCollection from serializeHelper.ts to help, you will probably need to set skipUrlEncoding as true when sending the request */
   colors: string;
 }
 
-export interface QueryMultiQueryParam {
-  queryParameters: QueryMultiQueryParamProperties;
+export interface MultiQueryParam {
+  queryParameters: MultiQueryParamProperties;
 }
 
-export type QueryMultiParameters = QueryMultiQueryParam & RequestParameters;
+export type MultiParameters = MultiQueryParam & RequestParameters;
 
-export interface QuerySsvQueryParamProperties {
+export interface SsvQueryParamProperties {
   /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as ssv collection, we provide buildSsvCollection from serializeHelper.ts to help */
   colors: string;
 }
 
-export interface QuerySsvQueryParam {
-  queryParameters: QuerySsvQueryParamProperties;
+export interface SsvQueryParam {
+  queryParameters: SsvQueryParamProperties;
 }
 
-export type QuerySsvParameters = QuerySsvQueryParam & RequestParameters;
+export type SsvParameters = SsvQueryParam & RequestParameters;
 
-export interface QueryTsvQueryParamProperties {
+export interface TsvQueryParamProperties {
   /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as tsv collection, we provide buildTsvCollection from serializeHelper.ts to help */
   colors: string;
 }
 
-export interface QueryTsvQueryParam {
-  queryParameters: QueryTsvQueryParamProperties;
+export interface TsvQueryParam {
+  queryParameters: TsvQueryParamProperties;
 }
 
-export type QueryTsvParameters = QueryTsvQueryParam & RequestParameters;
+export type TsvParameters = TsvQueryParam & RequestParameters;
 
-export interface QueryPipesQueryParamProperties {
+export interface PipesQueryParamProperties {
   /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as pipe collection, we provide buildPipeCollection from serializeHelper.ts to help */
   colors: string;
 }
 
-export interface QueryPipesQueryParam {
-  queryParameters: QueryPipesQueryParamProperties;
+export interface PipesQueryParam {
+  queryParameters: PipesQueryParamProperties;
 }
 
-export type QueryPipesParameters = QueryPipesQueryParam & RequestParameters;
+export type PipesParameters = PipesQueryParam & RequestParameters;
 
-export interface QueryCsvQueryParamProperties {
+export interface CsvQueryParamProperties {
   /** Possible values for colors are [blue,red,green] */
   colors: string[];
 }
 
-export interface QueryCsvQueryParam {
-  queryParameters: QueryCsvQueryParamProperties;
+export interface CsvQueryParam {
+  queryParameters: CsvQueryParamProperties;
 }
 
-export type QueryCsvParameters = QueryCsvQueryParam & RequestParameters;
+export type CsvParameters = CsvQueryParam & RequestParameters;
 
-export interface HeaderCsvHeaders {
+export interface CsvHeaders {
   /** Possible values for colors are [blue,red,green] This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
   colors: string;
 }
 
-export interface HeaderCsvHeaderParam {
-  headers: RawHttpHeadersInput & HeaderCsvHeaders;
+export interface CsvHeaderParam {
+  headers: RawHttpHeadersInput & CsvHeaders;
 }
 
-export type HeaderCsvParameters = HeaderCsvHeaderParam & RequestParameters;
+export type CsvParameters = CsvHeaderParam & RequestParameters;

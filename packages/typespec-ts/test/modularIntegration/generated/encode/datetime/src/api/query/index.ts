@@ -3,11 +3,11 @@
 
 import {
   DatetimeContext as Client,
-  QueryDefault204Response,
-  QueryRfc3339204Response,
-  QueryRfc7231204Response,
-  QueryUnixTimestamp204Response,
-  QueryUnixTimestampArray204Response,
+  Default204Response,
+  Rfc3339204Response,
+  Rfc7231204Response,
+  UnixTimestamp204Response,
+  UnixTimestampArray204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -25,7 +25,7 @@ export function _queryDefaultSend(
   context: Client,
   value: Date,
   options: QueryQueryDefaultOptions = { requestOptions: {} }
-): StreamableMethod<QueryDefault204Response> {
+): StreamableMethod<Default204Response> {
   return context
     .path("/encode/datetime/query/default")
     .get({
@@ -35,7 +35,7 @@ export function _queryDefaultSend(
 }
 
 export async function _queryDefaultDeserialize(
-  result: QueryDefault204Response
+  result: Default204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -57,7 +57,7 @@ export function _queryRfc3339Send(
   context: Client,
   value: Date,
   options: QueryQueryRfc3339Options = { requestOptions: {} }
-): StreamableMethod<QueryRfc3339204Response> {
+): StreamableMethod<Rfc3339204Response> {
   return context
     .path("/encode/datetime/query/rfc3339")
     .get({
@@ -67,7 +67,7 @@ export function _queryRfc3339Send(
 }
 
 export async function _queryRfc3339Deserialize(
-  result: QueryRfc3339204Response
+  result: Rfc3339204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -89,7 +89,7 @@ export function _queryRfc7231Send(
   context: Client,
   value: Date,
   options: QueryQueryRfc7231Options = { requestOptions: {} }
-): StreamableMethod<QueryRfc7231204Response> {
+): StreamableMethod<Rfc7231204Response> {
   return context
     .path("/encode/datetime/query/rfc7231")
     .get({
@@ -99,7 +99,7 @@ export function _queryRfc7231Send(
 }
 
 export async function _queryRfc7231Deserialize(
-  result: QueryRfc7231204Response
+  result: Rfc7231204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -121,7 +121,7 @@ export function _queryUnixTimestampSend(
   context: Client,
   value: Date,
   options: QueryQueryUnixTimestampOptions = { requestOptions: {} }
-): StreamableMethod<QueryUnixTimestamp204Response> {
+): StreamableMethod<UnixTimestamp204Response> {
   return context
     .path("/encode/datetime/query/unix-timestamp")
     .get({
@@ -131,7 +131,7 @@ export function _queryUnixTimestampSend(
 }
 
 export async function _queryUnixTimestampDeserialize(
-  result: QueryUnixTimestamp204Response
+  result: UnixTimestamp204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -153,7 +153,7 @@ export function _queryUnixTimestampArraySend(
   context: Client,
   value: Date[],
   options: QueryQueryUnixTimestampArrayOptions = { requestOptions: {} }
-): StreamableMethod<QueryUnixTimestampArray204Response> {
+): StreamableMethod<UnixTimestampArray204Response> {
   return context
     .path("/encode/datetime/query/unix-timestamp-array")
     .get({
@@ -163,7 +163,7 @@ export function _queryUnixTimestampArraySend(
 }
 
 export async function _queryUnixTimestampArrayDeserialize(
-  result: QueryUnixTimestampArray204Response
+  result: UnixTimestampArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

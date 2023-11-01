@@ -2,164 +2,138 @@
 // Licensed under the MIT license.
 
 import {
-  QueryDefaultParameters,
-  QueryIso8601Parameters,
-  QueryInt32SecondsParameters,
-  QueryFloatSecondsParameters,
-  QueryInt32SecondsArrayParameters,
-  PropertyDefaultParameters,
-  PropertyIso8601Parameters,
-  PropertyInt32SecondsParameters,
-  PropertyFloatSecondsParameters,
-  PropertyFloatSecondsArrayParameters,
-  HeaderDefaultParameters,
-  HeaderIso8601Parameters,
-  HeaderIso8601ArrayParameters,
-  HeaderInt32SecondsParameters,
-  HeaderFloatSecondsParameters,
+  DefaultParameters,
+  Iso8601Parameters,
+  Int32SecondsParameters,
+  FloatSecondsParameters,
+  Int32SecondsArrayParameters,
+  FloatSecondsArrayParameters,
+  Iso8601ArrayParameters,
 } from "./parameters.js";
 import {
-  QueryDefault204Response,
-  QueryIso8601204Response,
-  QueryInt32Seconds204Response,
-  QueryFloatSeconds204Response,
-  QueryInt32SecondsArray204Response,
-  PropertyDefault200Response,
-  PropertyIso8601200Response,
-  PropertyInt32Seconds200Response,
-  PropertyFloatSeconds200Response,
-  PropertyFloatSecondsArray200Response,
-  HeaderDefault204Response,
-  HeaderIso8601204Response,
-  HeaderIso8601Array204Response,
-  HeaderInt32Seconds204Response,
-  HeaderFloatSeconds204Response,
+  Default204Response,
+  Iso8601204Response,
+  Int32Seconds204Response,
+  FloatSeconds204Response,
+  Int32SecondsArray204Response,
+  Default200Response,
+  Iso8601200Response,
+  Int32Seconds200Response,
+  FloatSeconds200Response,
+  FloatSecondsArray200Response,
+  Iso8601Array204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface QueryDefault {
-  get(
-    options: QueryDefaultParameters
-  ): StreamableMethod<QueryDefault204Response>;
+export interface Default {
+  get(options: DefaultParameters): StreamableMethod<Default204Response>;
 }
 
-export interface QueryIso8601 {
-  get(
-    options: QueryIso8601Parameters
-  ): StreamableMethod<QueryIso8601204Response>;
+export interface Iso8601 {
+  get(options: Iso8601Parameters): StreamableMethod<Iso8601204Response>;
 }
 
-export interface QueryInt32Seconds {
+export interface Int32Seconds {
   get(
-    options: QueryInt32SecondsParameters
-  ): StreamableMethod<QueryInt32Seconds204Response>;
+    options: Int32SecondsParameters
+  ): StreamableMethod<Int32Seconds204Response>;
 }
 
-export interface QueryFloatSeconds {
+export interface FloatSeconds {
   get(
-    options: QueryFloatSecondsParameters
-  ): StreamableMethod<QueryFloatSeconds204Response>;
+    options: FloatSecondsParameters
+  ): StreamableMethod<FloatSeconds204Response>;
 }
 
-export interface QueryInt32SecondsArray {
+export interface Int32SecondsArray {
   get(
-    options: QueryInt32SecondsArrayParameters
-  ): StreamableMethod<QueryInt32SecondsArray204Response>;
+    options: Int32SecondsArrayParameters
+  ): StreamableMethod<Int32SecondsArray204Response>;
 }
 
-export interface PropertyDefault {
+export interface Default {
+  post(options: DefaultParameters): StreamableMethod<Default200Response>;
+}
+
+export interface Iso8601 {
+  post(options: Iso8601Parameters): StreamableMethod<Iso8601200Response>;
+}
+
+export interface Int32Seconds {
   post(
-    options: PropertyDefaultParameters
-  ): StreamableMethod<PropertyDefault200Response>;
+    options: Int32SecondsParameters
+  ): StreamableMethod<Int32Seconds200Response>;
 }
 
-export interface PropertyIso8601 {
+export interface FloatSeconds {
   post(
-    options: PropertyIso8601Parameters
-  ): StreamableMethod<PropertyIso8601200Response>;
+    options: FloatSecondsParameters
+  ): StreamableMethod<FloatSeconds200Response>;
 }
 
-export interface PropertyInt32Seconds {
+export interface FloatSecondsArray {
   post(
-    options: PropertyInt32SecondsParameters
-  ): StreamableMethod<PropertyInt32Seconds200Response>;
+    options: FloatSecondsArrayParameters
+  ): StreamableMethod<FloatSecondsArray200Response>;
 }
 
-export interface PropertyFloatSeconds {
-  post(
-    options: PropertyFloatSecondsParameters
-  ): StreamableMethod<PropertyFloatSeconds200Response>;
+export interface Default {
+  get(options: DefaultParameters): StreamableMethod<Default204Response>;
 }
 
-export interface PropertyFloatSecondsArray {
-  post(
-    options: PropertyFloatSecondsArrayParameters
-  ): StreamableMethod<PropertyFloatSecondsArray200Response>;
+export interface Iso8601 {
+  get(options: Iso8601Parameters): StreamableMethod<Iso8601204Response>;
 }
 
-export interface HeaderDefault {
+export interface Iso8601Array {
   get(
-    options: HeaderDefaultParameters
-  ): StreamableMethod<HeaderDefault204Response>;
+    options: Iso8601ArrayParameters
+  ): StreamableMethod<Iso8601Array204Response>;
 }
 
-export interface HeaderIso8601 {
+export interface Int32Seconds {
   get(
-    options: HeaderIso8601Parameters
-  ): StreamableMethod<HeaderIso8601204Response>;
+    options: Int32SecondsParameters
+  ): StreamableMethod<Int32Seconds204Response>;
 }
 
-export interface HeaderIso8601Array {
+export interface FloatSeconds {
   get(
-    options: HeaderIso8601ArrayParameters
-  ): StreamableMethod<HeaderIso8601Array204Response>;
-}
-
-export interface HeaderInt32Seconds {
-  get(
-    options: HeaderInt32SecondsParameters
-  ): StreamableMethod<HeaderInt32Seconds204Response>;
-}
-
-export interface HeaderFloatSeconds {
-  get(
-    options: HeaderFloatSecondsParameters
-  ): StreamableMethod<HeaderFloatSeconds204Response>;
+    options: FloatSecondsParameters
+  ): StreamableMethod<FloatSeconds204Response>;
 }
 
 export interface Routes {
   /** Resource for '/encode/duration/query/default' has methods for the following verbs: get */
-  (path: "/encode/duration/query/default"): QueryDefault;
+  (path: "/encode/duration/query/default"): Default;
   /** Resource for '/encode/duration/query/iso8601' has methods for the following verbs: get */
-  (path: "/encode/duration/query/iso8601"): QueryIso8601;
+  (path: "/encode/duration/query/iso8601"): Iso8601;
   /** Resource for '/encode/duration/query/int32-seconds' has methods for the following verbs: get */
-  (path: "/encode/duration/query/int32-seconds"): QueryInt32Seconds;
+  (path: "/encode/duration/query/int32-seconds"): Int32Seconds;
   /** Resource for '/encode/duration/query/float-seconds' has methods for the following verbs: get */
-  (path: "/encode/duration/query/float-seconds"): QueryFloatSeconds;
+  (path: "/encode/duration/query/float-seconds"): FloatSeconds;
   /** Resource for '/encode/duration/query/int32-seconds-array' has methods for the following verbs: get */
-  (path: "/encode/duration/query/int32-seconds-array"): QueryInt32SecondsArray;
+  (path: "/encode/duration/query/int32-seconds-array"): Int32SecondsArray;
   /** Resource for '/encode/duration/property/default' has methods for the following verbs: post */
-  (path: "/encode/duration/property/default"): PropertyDefault;
+  (path: "/encode/duration/property/default"): Default;
   /** Resource for '/encode/duration/property/iso8601' has methods for the following verbs: post */
-  (path: "/encode/duration/property/iso8601"): PropertyIso8601;
+  (path: "/encode/duration/property/iso8601"): Iso8601;
   /** Resource for '/encode/duration/property/int32-seconds' has methods for the following verbs: post */
-  (path: "/encode/duration/property/int32-seconds"): PropertyInt32Seconds;
+  (path: "/encode/duration/property/int32-seconds"): Int32Seconds;
   /** Resource for '/encode/duration/property/float-seconds' has methods for the following verbs: post */
-  (path: "/encode/duration/property/float-seconds"): PropertyFloatSeconds;
+  (path: "/encode/duration/property/float-seconds"): FloatSeconds;
   /** Resource for '/encode/duration/property/float-seconds-array' has methods for the following verbs: post */
-  (
-    path: "/encode/duration/property/float-seconds-array"
-  ): PropertyFloatSecondsArray;
+  (path: "/encode/duration/property/float-seconds-array"): FloatSecondsArray;
   /** Resource for '/encode/duration/header/default' has methods for the following verbs: get */
-  (path: "/encode/duration/header/default"): HeaderDefault;
+  (path: "/encode/duration/header/default"): Default;
   /** Resource for '/encode/duration/header/iso8601' has methods for the following verbs: get */
-  (path: "/encode/duration/header/iso8601"): HeaderIso8601;
+  (path: "/encode/duration/header/iso8601"): Iso8601;
   /** Resource for '/encode/duration/header/iso8601-array' has methods for the following verbs: get */
-  (path: "/encode/duration/header/iso8601-array"): HeaderIso8601Array;
+  (path: "/encode/duration/header/iso8601-array"): Iso8601Array;
   /** Resource for '/encode/duration/header/int32-seconds' has methods for the following verbs: get */
-  (path: "/encode/duration/header/int32-seconds"): HeaderInt32Seconds;
+  (path: "/encode/duration/header/int32-seconds"): Int32Seconds;
   /** Resource for '/encode/duration/header/float-seconds' has methods for the following verbs: get */
-  (path: "/encode/duration/header/float-seconds"): HeaderFloatSeconds;
+  (path: "/encode/duration/header/float-seconds"): FloatSeconds;
 }
 
 export type DurationContext = Client & {

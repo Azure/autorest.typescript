@@ -781,7 +781,7 @@ function emitBasicOperation(
   if (
     namespaceHierarchies.length === 0 &&
     context.rlcOptions?.hierarchyClient === false &&
-    operationGroupName !== "" 
+    operationGroupName !== ""
   ) {
     namespaceHierarchies.push(operationGroupName);
   }

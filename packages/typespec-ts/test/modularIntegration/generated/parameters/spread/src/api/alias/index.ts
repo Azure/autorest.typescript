@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  AliasSpreadAsRequestBody204Response,
-  AliasSpreadAsRequestParameter204Response,
-  AliasSpreadWithMultipleParameters204Response,
+  SpreadAsRequestBody204Response,
+  SpreadAsRequestParameter204Response,
   SpreadContext as Client,
+  SpreadWithMultipleParameters204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -21,7 +21,7 @@ export function _aliasSpreadAsRequestBodySend(
   context: Client,
   name: string,
   options: AliasAliasSpreadAsRequestBodyOptions = { requestOptions: {} }
-): StreamableMethod<AliasSpreadAsRequestBody204Response> {
+): StreamableMethod<SpreadAsRequestBody204Response> {
   return context
     .path("/parameters/spread/alias/request-body")
     .put({
@@ -31,7 +31,7 @@ export function _aliasSpreadAsRequestBodySend(
 }
 
 export async function _aliasSpreadAsRequestBodyDeserialize(
-  result: AliasSpreadAsRequestBody204Response
+  result: SpreadAsRequestBody204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -55,7 +55,7 @@ export function _aliasSpreadAsRequestParameterSend(
   xMsTestHeader: string,
   name: string,
   options: AliasAliasSpreadAsRequestParameterOptions = { requestOptions: {} }
-): StreamableMethod<AliasSpreadAsRequestParameter204Response> {
+): StreamableMethod<SpreadAsRequestParameter204Response> {
   return context
     .path("/parameters/spread/alias/request-parameter/{id}", id)
     .put({
@@ -66,7 +66,7 @@ export function _aliasSpreadAsRequestParameterSend(
 }
 
 export async function _aliasSpreadAsRequestParameterDeserialize(
-  result: AliasSpreadAsRequestParameter204Response
+  result: SpreadAsRequestParameter204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -105,7 +105,7 @@ export function _aliasSpreadWithMultipleParametersSend(
   options: AliasAliasSpreadWithMultipleParametersOptions = {
     requestOptions: {},
   }
-): StreamableMethod<AliasSpreadWithMultipleParameters204Response> {
+): StreamableMethod<SpreadWithMultipleParameters204Response> {
   return context
     .path("/parameters/spread/alias/multiple-parameters/{id}", id)
     .put({
@@ -123,7 +123,7 @@ export function _aliasSpreadWithMultipleParametersSend(
 }
 
 export async function _aliasSpreadWithMultipleParametersDeserialize(
-  result: AliasSpreadWithMultipleParameters204Response
+  result: SpreadWithMultipleParameters204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

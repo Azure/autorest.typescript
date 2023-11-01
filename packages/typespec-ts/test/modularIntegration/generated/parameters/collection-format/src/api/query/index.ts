@@ -7,11 +7,11 @@ import {
   buildSsvCollection,
   buildTsvCollection,
   CollectionFormatContext as Client,
-  QueryCsv204Response,
-  QueryMulti204Response,
-  QueryPipes204Response,
-  QuerySsv204Response,
-  QueryTsv204Response,
+  Csv204Response,
+  Multi204Response,
+  Pipes204Response,
+  Ssv204Response,
+  Tsv204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -29,7 +29,7 @@ export function _queryMultiSend(
   context: Client,
   colors: string[],
   options: QueryQueryMultiOptions = { requestOptions: {} }
-): StreamableMethod<QueryMulti204Response> {
+): StreamableMethod<Multi204Response> {
   return context
     .path("/parameters/collection-format/query/multi")
     .get({
@@ -39,7 +39,7 @@ export function _queryMultiSend(
 }
 
 export async function _queryMultiDeserialize(
-  result: QueryMulti204Response
+  result: Multi204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -61,7 +61,7 @@ export function _querySsvSend(
   context: Client,
   colors: string[],
   options: QueryQuerySsvOptions = { requestOptions: {} }
-): StreamableMethod<QuerySsv204Response> {
+): StreamableMethod<Ssv204Response> {
   return context
     .path("/parameters/collection-format/query/ssv")
     .get({
@@ -71,7 +71,7 @@ export function _querySsvSend(
 }
 
 export async function _querySsvDeserialize(
-  result: QuerySsv204Response
+  result: Ssv204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -93,7 +93,7 @@ export function _queryTsvSend(
   context: Client,
   colors: string[],
   options: QueryQueryTsvOptions = { requestOptions: {} }
-): StreamableMethod<QueryTsv204Response> {
+): StreamableMethod<Tsv204Response> {
   return context
     .path("/parameters/collection-format/query/tsv")
     .get({
@@ -103,7 +103,7 @@ export function _queryTsvSend(
 }
 
 export async function _queryTsvDeserialize(
-  result: QueryTsv204Response
+  result: Tsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -125,7 +125,7 @@ export function _queryPipesSend(
   context: Client,
   colors: string[],
   options: QueryQueryPipesOptions = { requestOptions: {} }
-): StreamableMethod<QueryPipes204Response> {
+): StreamableMethod<Pipes204Response> {
   return context
     .path("/parameters/collection-format/query/pipes")
     .get({
@@ -135,7 +135,7 @@ export function _queryPipesSend(
 }
 
 export async function _queryPipesDeserialize(
-  result: QueryPipes204Response
+  result: Pipes204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -157,7 +157,7 @@ export function _queryCsvSend(
   context: Client,
   colors: string[],
   options: QueryQueryCsvOptions = { requestOptions: {} }
-): StreamableMethod<QueryCsv204Response> {
+): StreamableMethod<Csv204Response> {
   return context
     .path("/parameters/collection-format/query/csv")
     .get({
@@ -167,7 +167,7 @@ export function _queryCsvSend(
 }
 
 export async function _queryCsvDeserialize(
-  result: QueryCsv204Response
+  result: Csv204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

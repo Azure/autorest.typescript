@@ -4,7 +4,7 @@
 import {
   buildCsvCollection,
   CollectionFormatContext as Client,
-  HeaderCsv204Response,
+  Csv204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -16,7 +16,7 @@ export function _headerCsvSend(
   context: Client,
   colors: string[],
   options: HeaderHeaderCsvOptions = { requestOptions: {} }
-): StreamableMethod<HeaderCsv204Response> {
+): StreamableMethod<Csv204Response> {
   return context
     .path("/parameters/collection-format/header/csv")
     .get({
@@ -26,7 +26,7 @@ export function _headerCsvSend(
 }
 
 export async function _headerCsvDeserialize(
-  result: HeaderCsv204Response
+  result: Csv204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;

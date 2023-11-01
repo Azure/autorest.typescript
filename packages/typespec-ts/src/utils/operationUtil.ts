@@ -13,8 +13,6 @@ import {
 import {
   getProjectedName,
   ignoreDiagnostics,
-  isGlobalNamespace,
-  isService,
   Model,
   Operation,
   Program,
@@ -130,18 +128,15 @@ export function getOperationStatuscode(
 
 export function getOperationGroupName(
   dpgContext: SdkContext,
-  route?: HttpOperation,
-  fromHierarchyNamespace?: boolean
+  route?: HttpOperation
 ): string;
 export function getOperationGroupName(
   dpgContext: SdkContext,
-  operation?: Operation,
-  fromHierarchyNamespace?: boolean
+  operation?: Operation
 ): string;
 export function getOperationGroupName(
   dpgContext: SdkContext,
-  operationOrRoute?: Operation | HttpOperation,
-  fromHierarchyNamespace?: boolean
+  operationOrRoute?: Operation | HttpOperation
 ) {
   if (!dpgContext.rlcOptions?.enableOperationGroup || !operationOrRoute) {
     return "";
@@ -151,25 +146,6 @@ export function getOperationGroupName(
     operationOrRoute = (operationOrRoute as HttpOperation).operation;
   }
   const operation = operationOrRoute as Operation;
-  if (fromHierarchyNamespace) {
-    if (operation.interface) {
-      return normalizeName(
-        operation.interface?.name ?? "",
-        NameType.Interface,
-        true
-      );
-    }
-    const namespace = operation.namespace;
-    if (
-      namespace === undefined ||
-      isGlobalNamespace(dpgContext.program, namespace) ||
-      isService(dpgContext.program, namespace)
-    ) {
-      return "";
-    }
-
-    return normalizeName(namespace.name ?? "", NameType.Interface, true);
-  }
   const namespaceNames = getOperationNamespaceInterfaceName(
     dpgContext,
     operation
