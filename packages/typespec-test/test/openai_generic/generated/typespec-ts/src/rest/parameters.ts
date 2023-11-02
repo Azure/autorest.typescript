@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestParameters } from "@typespec/ts-http-runtime";
+import { RequestParameters } from "@azure-rest/core-client";
 import {
   CreateTranscriptionRequest,
   CreateTranslationRequest,

@@ -18,6 +18,7 @@ import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { Imports as ThirdPartyImports } from "@azure-tools/rlc-common";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -82,8 +83,8 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
-  importCredential(codeModel, clientFile);
-  importPipeline(codeModel, clientFile);
+  importCredential(codeModel.thirdPartyImports, clientFile);
+  importPipeline(codeModel.thirdPartyImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(client, clientClass, subfolder);
   importAllApis(clientFile, srcPath, subfolder);
@@ -155,15 +156,13 @@ function importAllModels(
 }
 
 function importPipeline(
-  codeModel: ModularCodeModel,
+  thirdPartyImports: ThirdPartyImports,
   clientSourceFile: SourceFile
 ): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier:
-      (
-        codeModel.thirdPartyImports?.commonFallback ??
-        codeModel.thirdPartyImports?.restPipeline
-      )?.specifier ?? "@azure/core-rest-pipeline",
+      (thirdPartyImports?.commonFallback ?? thirdPartyImports?.restPipeline)
+        ?.specifier ?? "@azure/core-rest-pipeline",
     namedImports: ["Pipeline"]
   });
 }

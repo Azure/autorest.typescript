@@ -59,6 +59,7 @@ function extractRLCOptions(
   return {
     ...emitterOptions,
     ...credentialInfo,
+    branded: getBranded(emitterOptions),
     includeShortcuts,
     packageDetails,
     generateMetadata,
@@ -179,6 +180,10 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 
 function getIncludeShortcuts(emitterOptions: RLCOptions) {
   return Boolean(emitterOptions.includeShortcuts);
+}
+
+function getBranded(emitterOptions: RLCOptions) {
+  return emitterOptions.branded !== undefined ? emitterOptions.branded : true;
 }
 
 function getPackageDetails(

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { HttpResponse } from "@typespec/ts-http-runtime";
+import { HttpResponse } from "@azure-rest/core-client";
 import {
   CreateTranscriptionResponseOutput,
   ErrorResponseOutput,

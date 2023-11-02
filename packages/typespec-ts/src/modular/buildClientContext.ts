@@ -29,7 +29,7 @@ export function buildClientContext(
   );
 
   let factoryFunction;
-  importCredential(codeModel, clientContextFile);
+  importCredential(codeModel.thirdPartyImports, clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
     moduleSpecifier:

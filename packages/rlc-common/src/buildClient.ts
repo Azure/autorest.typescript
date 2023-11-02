@@ -84,7 +84,8 @@ export function buildClient(model: RLCModel): File | undefined {
     addCredentials,
     credentialScopes,
     credentialKeyHeaderName,
-    customHttpAuthHeaderName
+    customHttpAuthHeaderName,
+    branded
   } = model.options;
   const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
@@ -165,18 +166,22 @@ export function buildClient(model: RLCModel): File | undefined {
           model?.thirdPartyImports?.restClient ??
           model?.thirdPartyImports?.commonFallback
         )?.specifier ?? "@azure-rest/core-client"
-    },
-    {
-      namedImports: ["logger"],
-      moduleSpecifier: getImportModuleName(
-        {
-          cjsName: loggerPath,
-          esModulesName: `${loggerPath}.js`
-        },
-        model
-      )
     }
   ]);
+  if (branded) {
+    clientFile.addImportDeclarations([
+      {
+        namedImports: ["logger"],
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: loggerPath,
+            esModulesName: `${loggerPath}.js`
+          },
+          model
+        )
+      }
+    ]);
+  }
 
   if (
     addCredentials &&
@@ -229,7 +234,7 @@ export function getClientFactoryBody(
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const { includeShortcuts, packageDetails } = model.options;
+  const { includeShortcuts, packageDetails, branded } = model.options;
   let clientPackageName =
     packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
   const packageVersion = packageDetails.version;
@@ -316,6 +321,12 @@ export function getClientFactoryBody(
   const apiKeyHeaderName = credentialKeyHeaderName
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
+  const loggerOptions = branded
+    ? `,
+  loggingOptions: {
+    logger: options.loggingOptions?.logger ?? logger.info
+  }`
+    : "";
 
   const credentialsOptions =
     scopes || apiKeyHeaderName
@@ -329,10 +340,7 @@ export function getClientFactoryBody(
         ...options,
         userAgentOptions: {
           userAgentPrefix
-        },
-        loggingOptions: {
-          logger: options.loggingOptions?.logger ?? logger.info
-        }${customHeaderOptions}${credentialsOptions}
+        }${loggerOptions}${customHeaderOptions}${credentialsOptions}
       }`;
 
   const getClient = `const client = getClient(

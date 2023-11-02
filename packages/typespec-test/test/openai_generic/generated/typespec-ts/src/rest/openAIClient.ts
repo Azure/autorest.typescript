@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
+import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "../logger.js";
-import { KeyCredential } from "@typespec/ts-http-runtime";
+import { KeyCredential } from "@azure/core-auth";
 import { OpenAIContext } from "./clientDefinitions.js";
 
 /**

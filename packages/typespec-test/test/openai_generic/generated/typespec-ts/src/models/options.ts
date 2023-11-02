@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OperationOptions } from "@typespec/ts-http-runtime";
+import { OperationOptions } from "@azure-rest/core-client";
 
 export interface CreateTranscriptionOptions extends OperationOptions {
   contentType?: string;

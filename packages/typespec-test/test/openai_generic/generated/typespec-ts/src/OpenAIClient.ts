@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { KeyCredential } from "@typespec/ts-http-runtime";
-import { Pipeline } from "@typespec/ts-http-runtime";
+import { KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,

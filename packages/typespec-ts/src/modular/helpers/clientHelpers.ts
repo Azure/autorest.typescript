@@ -3,9 +3,10 @@ import {
   ParameterDeclarationStructure,
   SourceFile
 } from "ts-morph";
-import { Client, ModularCodeModel } from "../modularCodeModel.js";
+import { Client } from "../modularCodeModel.js";
 import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
+import { Imports as ThirdPartyImports } from "@azure-tools/rlc-common";
 
 export function getClientParameters(
   client: Client
@@ -43,15 +44,13 @@ export function getClientParameters(
 }
 
 export function importCredential(
-  codeModel: ModularCodeModel,
+  thirdPartyImports: ThirdPartyImports,
   clientSourceFile: SourceFile
 ): void {
   clientSourceFile.addImportDeclaration({
     moduleSpecifier:
-      (
-        codeModel.thirdPartyImports?.commonFallback ??
-        codeModel.thirdPartyImports?.coreAuth
-      )?.specifier ?? "@azure/core-auth",
+      (thirdPartyImports?.commonFallback ?? thirdPartyImports?.coreAuth)
+        ?.specifier ?? "@azure/core-auth",
     namedImports: ["TokenCredential", "KeyCredential"]
   });
 }
