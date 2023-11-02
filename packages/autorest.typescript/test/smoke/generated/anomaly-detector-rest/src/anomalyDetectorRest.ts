@@ -22,14 +22,6 @@ export default function createClient(
   const baseUrl =
     options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
 
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key"
-    }
-  };
-
   const userAgentInfo = `azsdk-js-anomaly-detector-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -42,6 +34,10 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key"
     }
   };
 

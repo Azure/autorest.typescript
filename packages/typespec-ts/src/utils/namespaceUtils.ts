@@ -30,10 +30,6 @@ export function getOperationNamespaceInterfaceName(
     return result;
   }
   if (operation.interface) {
-    if (dpgContext.rlcOptions?.enableOperationGroup === true) {
-      result.push(operation.interface.name);
-      return result;
-    }
     if (operation.interface.namespace) {
       result.push(
         ...getModelNamespaceName(dpgContext, operation.interface.namespace)

@@ -29,7 +29,7 @@ import {
   FilesListOptions,
   FilesCreateOptions,
   FilesRetrieveOptions,
-  FilesDeleteOptions,
+  FilesDeleteOperationOptions,
   FilesDownloadOptions,
 } from "../../models/options.js";
 
@@ -155,7 +155,7 @@ export async function retrieve(
 export function _deleteOperationSend(
   context: Client,
   fileId: string,
-  options: FilesDeleteOptions = { requestOptions: {} }
+  options: FilesDeleteOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
 > {
@@ -178,14 +178,10 @@ export async function _deleteOperationDeserialize(
   };
 }
 
-/**
- *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
 export async function deleteOperation(
   context: Client,
   fileId: string,
-  options: FilesDeleteOptions = { requestOptions: {} }
+  options: FilesDeleteOperationOptions = { requestOptions: {} }
 ): Promise<DeleteFileResponse> {
   const result = await _deleteOperationSend(context, fileId, options);
   return _deleteOperationDeserialize(result);

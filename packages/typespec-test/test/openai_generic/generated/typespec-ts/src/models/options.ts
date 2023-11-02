@@ -47,7 +47,7 @@ export interface FilesCreateOptions extends OperationOptions {
 
 export interface FilesRetrieveOptions extends OperationOptions {}
 
-export interface FilesDeleteOptions extends OperationOptions {}
+export interface FilesDeleteOperationOptions extends OperationOptions {}
 
 export interface FilesDownloadOptions extends OperationOptions {}
 
@@ -76,7 +76,7 @@ export interface ModelsListOptions extends OperationOptions {}
 
 export interface ModelsRetrieveOptions extends OperationOptions {}
 
-export interface ModelsDeleteOptions extends OperationOptions {}
+export interface ModelsDeleteOperationOptions extends OperationOptions {}
 
 export interface ImagesCreateOptions extends OperationOptions {}
 

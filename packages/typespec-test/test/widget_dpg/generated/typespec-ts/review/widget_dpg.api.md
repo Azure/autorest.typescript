@@ -62,6 +62,14 @@ export interface WidgetsGetWidgetOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface WidgetsListWidgetsOptions extends OperationOptions {
+    // (undocumented)
+    nullableDateHeader?: Date | null;
+    // (undocumented)
+    nullableOptionalHeader?: string | null;
+    // (undocumented)
+    optionalDateHeader?: Date;
+    // (undocumented)
+    optionalHeader?: string;
 }
 
 // @public (undocumented)
@@ -75,7 +83,7 @@ export interface WidgetsOperations {
     // (undocumented)
     getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
     // (undocumented)
-    listWidgets: (options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
+    listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
     // (undocumented)
     updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptions) => Promise<Widget>;
 }

@@ -10,6 +10,7 @@ import {
 import {
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
+  buildCsvCollection,
   CreateWidget201Response,
   CreateWidgetDefaultResponse,
   DeleteWidget204Response,
@@ -27,6 +28,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { uint8ArrayToString } from "@azure/core-util";
 import {
   WidgetsListWidgetsOptions,
   WidgetsGetWidgetOptions,
@@ -38,11 +40,47 @@ import {
 
 export function _listWidgetsSend(
   context: Client,
+  requiredHeader: string,
+  bytesHeader: Uint8Array,
+  value: Uint8Array,
+  csvArrayHeader: Uint8Array[],
+  utcDateHeader: Date,
   options: WidgetsListWidgetsOptions = { requestOptions: {} }
 ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse> {
   return context
     .path("/widgets")
-    .get({ ...operationOptionsToRequestParameters(options) });
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      headers: {
+        "required-header": requiredHeader,
+        ...(options?.optionalHeader !== undefined
+          ? { "optional-header": options?.optionalHeader }
+          : {}),
+        ...(options?.nullableOptionalHeader !== undefined &&
+        options?.nullableOptionalHeader !== null
+          ? { "nullable-optional-header": options?.nullableOptionalHeader }
+          : {}),
+        "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
+        value: uint8ArrayToString(value, "base64"),
+        "csv-array-header": buildCsvCollection(
+          (csvArrayHeader ?? []).map((p) => uint8ArrayToString(p, "base64url"))
+        ),
+        "utc-date-header": utcDateHeader.toUTCString(),
+        ...(options?.optionalDateHeader !== undefined
+          ? {
+              "optional-date-header":
+                options?.optionalDateHeader?.toUTCString(),
+            }
+          : {}),
+        ...(options?.nullableDateHeader !== undefined &&
+        options?.nullableDateHeader !== null
+          ? {
+              "nullable-date-header":
+                options?.nullableDateHeader?.toUTCString(),
+            }
+          : {}),
+      },
+    });
 }
 
 export async function _listWidgetsDeserialize(
@@ -66,9 +104,22 @@ export async function _listWidgetsDeserialize(
  */
 export async function listWidgets(
   context: Client,
+  requiredHeader: string,
+  bytesHeader: Uint8Array,
+  value: Uint8Array,
+  csvArrayHeader: Uint8Array[],
+  utcDateHeader: Date,
   options: WidgetsListWidgetsOptions = { requestOptions: {} }
 ): Promise<Widget[]> {
-  const result = await _listWidgetsSend(context, options);
+  const result = await _listWidgetsSend(
+    context,
+    requiredHeader,
+    bytesHeader,
+    value,
+    csvArrayHeader,
+    utcDateHeader,
+    options
+  );
   return _listWidgetsDeserialize(result);
 }
 

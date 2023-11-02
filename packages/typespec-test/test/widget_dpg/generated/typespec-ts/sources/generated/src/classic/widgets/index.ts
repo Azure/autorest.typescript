@@ -26,7 +26,14 @@ import {
 } from "../../models/options.js";
 
 export interface WidgetsOperations {
-  listWidgets: (options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
+  listWidgets: (
+    requiredHeader: string,
+    bytesHeader: Uint8Array,
+    value: Uint8Array,
+    csvArrayHeader: Uint8Array[],
+    utcDateHeader: Date,
+    options?: WidgetsListWidgetsOptions
+  ) => Promise<Widget[]>;
   getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
   createWidget: (
     body: CreateWidget,
@@ -49,8 +56,23 @@ export interface WidgetsOperations {
 
 export function getWidgets(context: WidgetServiceContext) {
   return {
-    listWidgets: (options?: WidgetsListWidgetsOptions) =>
-      listWidgets(context, options),
+    listWidgets: (
+      requiredHeader: string,
+      bytesHeader: Uint8Array,
+      value: Uint8Array,
+      csvArrayHeader: Uint8Array[],
+      utcDateHeader: Date,
+      options?: WidgetsListWidgetsOptions
+    ) =>
+      listWidgets(
+        context,
+        requiredHeader,
+        bytesHeader,
+        value,
+        csvArrayHeader,
+        utcDateHeader,
+        options
+      ),
     getWidget: (id: string, options?: WidgetsGetWidgetOptions) =>
       getWidget(context, id, options),
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) =>

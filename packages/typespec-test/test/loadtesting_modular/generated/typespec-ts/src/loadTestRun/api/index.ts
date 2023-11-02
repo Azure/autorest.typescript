@@ -21,4 +21,4 @@ export {
   listMetrics,
   listTestRuns,
   stopTestRun,
-} from "./testRunOperations/index.js";
+} from "./operations.js";

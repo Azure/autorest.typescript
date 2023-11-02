@@ -427,7 +427,7 @@ export interface FilesCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface FilesDeleteOptions extends OperationOptions {
+export interface FilesDeleteOperationOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -443,7 +443,7 @@ export interface FilesOperations {
     // (undocumented)
     create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
     // (undocumented)
-    deleteOperation: (fileId: string, options?: FilesDeleteOptions) => Promise<DeleteFileResponse>;
+    deleteOperation: (fileId: string, options?: FilesDeleteOperationOptions) => Promise<DeleteFileResponse>;
     // (undocumented)
     download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
     // (undocumented)
@@ -710,7 +710,7 @@ export interface Model {
 }
 
 // @public (undocumented)
-export interface ModelsDeleteOptions extends OperationOptions {
+export interface ModelsDeleteOperationOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -720,7 +720,7 @@ export interface ModelsListOptions extends OperationOptions {
 // @public (undocumented)
 export interface ModelsOperations {
     // (undocumented)
-    deleteOperation: (model: string, options?: ModelsDeleteOptions) => Promise<DeleteModelResponse>;
+    deleteOperation: (model: string, options?: ModelsDeleteOperationOptions) => Promise<DeleteModelResponse>;
     // (undocumented)
     list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
     // (undocumented)

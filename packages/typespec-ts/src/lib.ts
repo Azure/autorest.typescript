@@ -184,6 +184,13 @@ const libDef = {
         default:
           "Please provide credential scopes to ensure the token credential signature can be generated."
       }
+    },
+    "nullable-required-header": {
+      severity: "warning",
+      messages: {
+        default:
+          "Required header cannot be nullable. Please remove the nullable modifier."
+      }
     }
   },
   emitter: {

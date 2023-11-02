@@ -91,6 +91,7 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(
+        dpgContext,
         o,
         clientType,
         importSet
@@ -180,7 +181,7 @@ export function buildOperationOptions(
     .filter((p) => p.optional || p.clientDefaultValue);
   const options = [...optionalParameters];
 
-  const name = getOperationOptionsName(operation);
+  const name = getOperationOptionsName(operation, true);
 
   sourceFile.addInterface({
     name,

@@ -16,15 +16,6 @@ export default function createClient(
   options: ClientOptions = {}
 ): SecurityAADRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://security.microsoft.com/.default"
-      ]
-    }
-  };
-
   const userAgentInfo = `azsdk-js-security-aad-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -37,6 +28,11 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://security.microsoft.com/.default"
+      ]
     }
   };
 

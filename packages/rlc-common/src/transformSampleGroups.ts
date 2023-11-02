@@ -213,9 +213,7 @@ function convertClientLevelParameters(
     model.options;
   const hasUrlParameter = !!urlParameters,
     hasCredentials =
-      addCredentials &&
-      ((credentialScopes && credentialScopes.length > 0) ||
-        credentialKeyHeaderName);
+      addCredentials && (credentialScopes || credentialKeyHeaderName);
 
   if (hasUrlParameter) {
     // convert the host parameters in url
