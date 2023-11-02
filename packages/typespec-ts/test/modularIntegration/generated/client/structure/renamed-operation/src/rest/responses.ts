@@ -14,21 +14,21 @@ export interface Two204Response extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface FooThree204Response extends HttpResponse {
+export interface Three204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface FooFour204Response extends HttpResponse {
+export interface Four204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface BarFive204Response extends HttpResponse {
+export interface Five204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface BarSix204Response extends HttpResponse {
+export interface Six204Response extends HttpResponse {
   status: "204";
 }

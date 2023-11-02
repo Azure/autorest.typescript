@@ -4,18 +4,18 @@
 import {
   OneParameters,
   TwoParameters,
-  FooThreeParameters,
-  FooFourParameters,
-  BarFiveParameters,
-  BarSixParameters,
+  ThreeParameters,
+  FourParameters,
+  FiveParameters,
+  SixParameters,
 } from "./parameters.js";
 import {
   One204Response,
   Two204Response,
-  FooThree204Response,
-  FooFour204Response,
-  BarFive204Response,
-  BarSix204Response,
+  Three204Response,
+  Four204Response,
+  Five204Response,
+  Six204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -27,20 +27,20 @@ export interface Two {
   post(options?: TwoParameters): StreamableMethod<Two204Response>;
 }
 
-export interface FooThree {
-  post(options?: FooThreeParameters): StreamableMethod<FooThree204Response>;
+export interface Three {
+  post(options?: ThreeParameters): StreamableMethod<Three204Response>;
 }
 
-export interface FooFour {
-  post(options?: FooFourParameters): StreamableMethod<FooFour204Response>;
+export interface Four {
+  post(options?: FourParameters): StreamableMethod<Four204Response>;
 }
 
-export interface BarFive {
-  post(options?: BarFiveParameters): StreamableMethod<BarFive204Response>;
+export interface Five {
+  post(options?: FiveParameters): StreamableMethod<Five204Response>;
 }
 
-export interface BarSix {
-  post(options?: BarSixParameters): StreamableMethod<BarSix204Response>;
+export interface Six {
+  post(options?: SixParameters): StreamableMethod<Six204Response>;
 }
 
 export interface Routes {
@@ -49,13 +49,13 @@ export interface Routes {
   /** Resource for '/two' has methods for the following verbs: post */
   (path: "/two"): Two;
   /** Resource for '/three' has methods for the following verbs: post */
-  (path: "/three"): FooThree;
+  (path: "/three"): Three;
   /** Resource for '/four' has methods for the following verbs: post */
-  (path: "/four"): FooFour;
+  (path: "/four"): Four;
   /** Resource for '/five' has methods for the following verbs: post */
-  (path: "/five"): BarFive;
+  (path: "/five"): Five;
   /** Resource for '/six' has methods for the following verbs: post */
-  (path: "/six"): BarSix;
+  (path: "/six"): Six;
 }
 
 export type ServiceContext = Client & {

@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  BarSix204Response,
-  FooFour204Response,
+  Four204Response,
   ServiceContext as Client,
+  Six204Response,
   Two204Response,
 } from "../../rest/index.js";
 import {
@@ -47,14 +47,14 @@ export async function renamedTwo(
 export function _renamedFourSend(
   context: Client,
   options: GroupRenamedFourOptions = { requestOptions: {} }
-): StreamableMethod<FooFour204Response> {
+): StreamableMethod<Four204Response> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFourDeserialize(
-  result: FooFour204Response
+  result: Four204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -74,14 +74,14 @@ export async function renamedFour(
 export function _renamedSixSend(
   context: Client,
   options: GroupRenamedSixOptions = { requestOptions: {} }
-): StreamableMethod<BarSix204Response> {
+): StreamableMethod<Six204Response> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedSixDeserialize(
-  result: BarSix204Response
+  result: Six204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
