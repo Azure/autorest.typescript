@@ -364,21 +364,21 @@ describe("Client Factory generation", () => {
   });
 
   describe("should handle different auth options", () => {
-    it("should not generate credential if scope is empty", async () => {
+    it("should diagnost warning if scope is empty", async () => {
       try {
         await emitClientFactoryFromTypeSpec(
           `
-      @useAuth(
-        OAuth2Auth<[{
-          type: OAuth2FlowType.implicit,
-          authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-          scopes: []
-        }]>)
-      @service( {title: "PetStoreClient"})
-      namespace PetStore;
-      `,
+          @useAuth(
+            OAuth2Auth<[{
+              type: OAuth2FlowType.implicit,
+              authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+              scopes: []
+            }]>)
+          @service( {title: "PetStoreClient"})
+          namespace PetStore;
+        `,
           false,
-          false
+          true
         );
         assert.fail("Should throw diagnostic errors");
       } catch (e) {
@@ -389,6 +389,64 @@ describe("Client Factory generation", () => {
           "@azure-tools/typespec-ts/no-credential-scopes"
         );
       }
+    });
+
+    it("should generate TokenCredential if scope is empty", async () => {
+      const factoryFile = await emitClientFactoryFromTypeSpec(
+        `
+        @useAuth(
+          OAuth2Auth<[{
+            type: OAuth2FlowType.implicit,
+            authorizationUrl: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+            scopes: []
+          }]>)
+        @service( {title: "PetStoreClient"})
+        namespace PetStore;
+      `,
+        false,
+        false
+      );
+
+      assert.ok(factoryFile);
+      // console.log(factoryFile!.content);
+      assertEqualContent(
+        factoryFile!.content,
+        `
+      import { getClient, ClientOptions } from "@azure-rest/core-client";
+      import { logger } from "./logger";
+      import { TokenCredential } from "@azure/core-auth";
+      import { testClient } from "./clientDefinitions";
+
+      /**
+       * Initialize a new instance of \`testClient\`
+       * @param endpoint - The parameter endpoint
+       * @param credentials - uniquely identify client credential
+       * @param options - the parameter for all optional parameters
+       */
+      export default function createClient(endpoint: string, credentials: TokenCredential, options: ClientOptions = {}): testClient {
+        const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
+        
+        const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
+        const userAgentPrefix = options.userAgentOptions && options.userAgentOptions.userAgentPrefix ? \`\${options.userAgentOptions.userAgentPrefix} \${userAgentInfo}\`: \`\${userAgentInfo}\`;;
+        options = {
+            ...options,
+            userAgentOptions: {
+              userAgentPrefix
+            },
+            loggingOptions: {
+              logger: options.loggingOptions?.logger ?? logger.info
+            },
+            credentials: {
+              scopes: options.credentials?.scopes ?? [\`\${baseUrl}/.default\`],
+            },
+        };
+
+        const client = getClient(baseUrl, credentials, options) as testClient;
+
+        return client;
+      }
+      `
+      );
     });
 
     it("should generate both credentials if both defined", async () => {
@@ -420,14 +478,6 @@ describe("Client Factory generation", () => {
          */
         export default function createClient(endpoint: string, credentials: TokenCredential | KeyCredential, options: ClientOptions = {}): testClient {
         const baseUrl = options.baseUrl ?? \`\${endpoint}\`;
-
-        options = {
-            ...options,
-            credentials: {
-              scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
-              apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "apiKey",
-            },
-          };
         
         const userAgentInfo = \`azsdk-js-test-rest/1.0.0-beta.1\`;
         const userAgentPrefix =
@@ -441,6 +491,10 @@ describe("Client Factory generation", () => {
             },
             loggingOptions: {
               logger: options.loggingOptions?.logger ?? logger.info
+            },
+            credentials: {
+              scopes: options.credentials?.scopes ?? ["https://petstor.com/default"],
+              apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "apiKey",
             },
         };
         

@@ -36,6 +36,8 @@ export {
   ImageGenerationOptions,
   ImageSize,
   ImageGenerationResponseFormat,
+  AzureCognitiveSearchIndexFieldMappingOptions,
+  AzureCognitiveSearchQueryType,
 } from "./models.js";
 export {
   GetEmbeddingsOptions,

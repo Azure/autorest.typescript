@@ -233,8 +233,10 @@ export function getSecurityInfoFromModel(security: Security) {
   const { addCredentials } = getAutorestOptions();
   const credentialScopes: Set<string> = new Set<string>();
   let credentialKeyHeaderName: string = "";
+  let hasOAuth2Defined = false;
   for (const securitySchema of security.schemes) {
     if (securitySchema.type === "OAuth2") {
+      hasOAuth2Defined = true;
       (securitySchema as OAuth2SecurityScheme).scopes.forEach(scope => {
         const scopes = scope.split(",");
         for (const scope of scopes) {
@@ -273,7 +275,8 @@ export function getSecurityInfoFromModel(security: Security) {
   }
   return {
     addCredentials: refinedAddCredentials,
-    credentialScopes: scopes,
+    credentialScopes:
+      !hasOAuth2Defined && scopes.length === 0 ? undefined : scopes,
     credentialKeyHeaderName: credentialKeyHeaderName
   };
 }

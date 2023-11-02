@@ -2329,7 +2329,7 @@ export interface DetectorInfo {
 // @public
 export interface DetectorResponse extends ProxyOnlyResource {
     dataProvidersMetadata?: DataProviderMetadata[];
-    dataset?: DiagnosticData[];
+    dataset?: DiagnosticData_2[];
     metadata?: DetectorInfo;
     status?: Status;
     suggestedUtterances?: QueryUtterancesResults;
@@ -2371,10 +2371,11 @@ export interface DiagnosticCategoryCollection {
 }
 
 // @public
-export interface DiagnosticData {
+interface DiagnosticData_2 {
     renderingProperties?: Rendering;
     table?: DataTableResponseObject;
 }
+export { DiagnosticData_2 as DiagnosticData }
 
 // @public
 export interface DiagnosticDetectorCollection {

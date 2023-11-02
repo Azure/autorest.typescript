@@ -38,6 +38,14 @@ export interface GetWidgetOptions extends OperationOptions {
 
 // @public (undocumented)
 export interface ListWidgetsOptions extends OperationOptions {
+    // (undocumented)
+    nullableDateHeader?: Date | null;
+    // (undocumented)
+    nullableOptionalHeader?: string | null;
+    // (undocumented)
+    optionalDateHeader?: Date;
+    // (undocumented)
+    optionalHeader?: string;
 }
 
 // @public (undocumented)
@@ -64,7 +72,7 @@ export class WidgetServiceClient {
     createWidget(body: CreateWidget, options?: CreateWidgetOptions): Promise<Widget>;
     deleteWidget(id: string, options?: DeleteWidgetOptions): Promise<void>;
     getWidget(id: string, options?: GetWidgetOptions): Promise<Widget>;
-    listWidgets(options?: ListWidgetsOptions): Promise<Widget[]>;
+    listWidgets(requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: ListWidgetsOptions): Promise<Widget[]>;
     readonly pipeline: Pipeline;
     updateWidget(id: string, body: UpdateWidget, options?: UpdateWidgetOptions): Promise<Widget>;
 }

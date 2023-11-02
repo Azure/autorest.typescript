@@ -1,5 +1,4 @@
 import "@typespec/rest";
-import "@typespec/http";
 import "@typespec/versioning";
 import "./routes.tsp";
 
@@ -7,19 +6,29 @@ using TypeSpec.Http;
 using TypeSpec.Versioning;
 
 @service({
-  title: "BatchServiceClient"
+  title: "Azure Batch",
 })
+@versioned(Azure.Batch.Versions)
+@doc("Azure Batch provides Cloud-scale job scheduling and compute management.")
+@server(
+  "{endpoint}",
+  "Azure Batch provides Cloud-scale job scheduling and compute management.",
+  {
+    @doc("Batch account endpoint (for example: https://batchaccount.eastus2.batch.azure.com).")
+    endpoint: url,
+  }
+)
 @useAuth(AADToken)
-@versioned(BatchService.Versions)
+namespace Azure.Batch;
 
-@doc("A client for issuing REST requests to the Azure Batch service.")
-namespace BatchService;
-
+@doc("The Azure Batch service version.")
 enum Versions {
-  @useDependency(Azure.Core.Versions.v1_0_Preview_1)
-  v2022_10_01: "2022-10-01.16.0",
+   @doc("API Version 2023-05-01.17.0")
+   @useDependency(Azure.Core.Versions.v1_0_Preview_2)
+  `2023-05-01.17.0`,
 }
 
+#suppress "@azure-tools/typespec-azure-core/casing-style" "The names of Model types must use camelCase"
 @doc("The Azure Active Directory OAuth2 Flow")
 model AADToken
   is OAuth2Auth<[

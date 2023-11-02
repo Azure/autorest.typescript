@@ -19,13 +19,6 @@ export function createClient(
 ): PurviewMetadataPoliciesClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/policyStore`;
   options.apiVersion = options.apiVersion ?? "2021-07-01-preview";
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth"
-    }
-  };
-
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -38,6 +31,9 @@ export function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth"
     }
   };
 

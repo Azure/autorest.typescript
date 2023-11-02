@@ -86,8 +86,7 @@ export function buildClient(model: RLCModel): File | undefined {
     credentialKeyHeaderName,
     customHttpAuthHeaderName
   } = model.options;
-  const credentialTypes =
-    credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
+  const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName || customHttpAuthHeaderName) {
     credentialTypes.push("KeyCredential");
@@ -219,9 +218,7 @@ function isSecurityInfoDefined(
   customHttpAuthHeaderName?: string
 ) {
   return (
-    (credentialScopes && credentialScopes.length > 0) ||
-    credentialKeyHeaderName ||
-    customHttpAuthHeaderName
+    credentialScopes || credentialKeyHeaderName || customHttpAuthHeaderName
   );
 }
 
@@ -301,16 +298,6 @@ export function getClientFactoryBody(
     }`
     : "";
 
-  const overrideOptionsStatement = `options = {
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      loggingOptions: {
-        logger: options.loggingOptions?.logger ?? logger.info
-      }${customHeaderOptions}
-    }`;
-
   const baseUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
     declarationKind: VariableDeclarationKind.Const,
@@ -318,11 +305,10 @@ export function getClientFactoryBody(
   };
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
-
-  const scopesString =
-    credentialScopes && credentialScopes.length
-      ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
-      : "";
+  const scopesString = credentialScopes
+    ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
+      "`${baseUrl}/.default`"
+    : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
     : "";
@@ -331,19 +317,26 @@ export function getClientFactoryBody(
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
 
-  const credentials =
+  const credentialsOptions =
     scopes || apiKeyHeaderName
-      ? `options = {
-        ...options,
-        credentials: {
-          ${scopes}
-          ${apiKeyHeaderName}
-        },
+      ? `,
+      credentials: {
+        ${scopes}
+        ${apiKeyHeaderName}
       }`
       : "";
+  const overrideOptionsStatement = `options = {
+        ...options,
+        userAgentOptions: {
+          userAgentPrefix
+        },
+        loggingOptions: {
+          logger: options.loggingOptions?.logger ?? logger.info
+        }${customHeaderOptions}${credentialsOptions}
+      }`;
 
   const getClient = `const client = getClient(
-        baseUrl, ${credentials ? "credentials," : ""} options
+        baseUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
@@ -380,7 +373,6 @@ export function getClientFactoryBody(
     ...optionalUrlParameters,
     baseUrlStatement,
     apiVersionStatement,
-    credentials,
     userAgentInfoStatement,
     userAgentStatement,
     overrideOptionsStatement,

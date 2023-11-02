@@ -42,6 +42,7 @@ export interface BodyParameter {
   clientName: string;
   inOverload: boolean;
   defaultContentType: string;
+  isBinaryPayload: boolean;
 }
 
 export interface OperationGroup {
@@ -146,6 +147,7 @@ export interface Response {
   discriminator: string;
   type: Type;
   addedOn?: string;
+  isBinaryPayload?: boolean;
 }
 
 export interface Operation {

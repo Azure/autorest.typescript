@@ -19,14 +19,6 @@ export default function createClient(
 ): EventGridContext {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2023-06-01-preview";
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "SharedAccessKey",
-    },
-  };
-
   const userAgentInfo = `azsdk-js-eventgrid-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -39,6 +31,10 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "SharedAccessKey",
     },
   };
 

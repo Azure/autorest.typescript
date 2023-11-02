@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-ts",
-  "version": "0.17.1",
+  "version": "0.18.0",
   "description": "An experimental TypeSpec emitter for TypeScript RLC",
   "main": "dist/src/index.js",
   "type": "module",
@@ -24,8 +24,8 @@
     "generate-and-run:rlc": "npm run generate-tsp-only:rlc && npm run integration-test:alone:rlc && npm run stop-test-server",
     "generate-and-run:modular": "npm run generate-tsp-only:modular && npm run integration-test:alone:modular && npm run stop-test-server",
     "generate-tsp-only": "npm run generate-tsp-only:rlc && npm run generate-tsp-only:modular",
-    "generate-tsp-only:rlc": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=rlc",
-    "generate-tsp-only:modular": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=modular",
+    "generate-tsp-only:rlc": "node --loader ts-node/esm ./test/commands/gen-cadl-ranch.ts --tag=rlc",
+    "generate-tsp-only:modular": "node --loader ts-node/esm ./test/commands/gen-cadl-ranch.ts --tag=modular",
     "generate-tsp-only:non-azure": "npm run generate-tsp-only:non-azure-rlc && npm run generate-tsp-only:non-azure-modular",
     "generate-tsp-only:non-azure-rlc": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=non-azure-rlc",
     "generate-tsp-only:non-azure-modular": "ts-node ./test/commands/gen-cadl-ranch.ts --tag=non-azure-modular",
@@ -83,7 +83,7 @@
   "dependencies": {
     "prettier": "^2.6.1",
     "tslib": "^2.3.1",
-    "@azure-tools/rlc-common": "workspace:^0.17.1",
+    "@azure-tools/rlc-common": "workspace:^0.18.0",
     "ts-morph": "^15.1.0",
     "fs-extra": "^11.1.0"
   },

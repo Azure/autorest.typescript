@@ -167,7 +167,7 @@ export async function emitClientDefinitionFromTypeSpec(
 export async function emitClientFactoryFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
-  isEmptyDiagnostic = true,
+  mustEmptyDiagnostic = true,
   withRawContent = false
 ) {
   const context = await rlcEmitterFor(
@@ -187,9 +187,7 @@ export async function emitClientFactoryFromTypeSpec(
   if (clients && clients[0]) {
     apiVersionInfo = transformApiVersionInfo(clients[0], dpgContext, urlInfo);
   }
-  if (isEmptyDiagnostic) {
-    expectDiagnosticEmpty(dpgContext.program.diagnostics);
-  } else {
+  if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
     throw dpgContext.program.diagnostics;
   }
 
@@ -292,7 +290,10 @@ export async function emitModularModelsFromTypeSpec(
   return undefined;
 }
 
-export async function emitModularOperationsFromTypeSpec(tspContent: string) {
+export async function emitModularOperationsFromTypeSpec(
+  tspContent: string,
+  mustEmptyDiagnostic = true
+) {
   const context = await rlcEmitterFor(tspContent);
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
@@ -320,15 +321,18 @@ export async function emitModularOperationsFromTypeSpec(tspContent: string) {
       modularCodeModel.clients.length > 0 &&
       modularCodeModel.clients[0]
     ) {
-      return buildOperationFiles(
+      const res = buildOperationFiles(
         dpgContext,
         modularCodeModel,
         modularCodeModel.clients[0],
         false
       );
+      if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+        throw dpgContext.program.diagnostics;
+      }
+      return res;
     }
   }
-  expectDiagnosticEmpty(dpgContext.program.diagnostics);
   return undefined;
 }
 
