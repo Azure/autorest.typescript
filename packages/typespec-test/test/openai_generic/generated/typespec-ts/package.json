@@ -24,21 +24,25 @@
       "types": "./types/src/models/index.d.ts",
       "import": "./dist-esm/src/models/index.js"
     },
-    "./api/transcriptions": {
-      "types": "./types/src/api/transcriptions/index.d.ts",
-      "import": "./dist-esm/src/api/transcriptions/index.js"
+    "./api/audio/transcriptions": {
+      "types": "./types/src/api/audio/transcriptions/index.d.ts",
+      "import": "./dist-esm/src/api/audio/transcriptions/index.js"
     },
-    "./api/translations": {
-      "types": "./types/src/api/translations/index.d.ts",
-      "import": "./dist-esm/src/api/translations/index.js"
+    "./api/audio/translations": {
+      "types": "./types/src/api/audio/translations/index.d.ts",
+      "import": "./dist-esm/src/api/audio/translations/index.js"
+    },
+    "./api/chat/completions": {
+      "types": "./types/src/api/chat/completions/index.d.ts",
+      "import": "./dist-esm/src/api/chat/completions/index.js"
+    },
+    "./api/fineTuning/jobs": {
+      "types": "./types/src/api/fineTuning/jobs/index.d.ts",
+      "import": "./dist-esm/src/api/fineTuning/jobs/index.js"
     },
     "./api/completions": {
       "types": "./types/src/api/completions/index.d.ts",
       "import": "./dist-esm/src/api/completions/index.js"
-    },
-    "./api/jobs": {
-      "types": "./types/src/api/jobs/index.d.ts",
-      "import": "./dist-esm/src/api/jobs/index.js"
     },
     "./api/edits": {
       "types": "./types/src/api/edits/index.d.ts",

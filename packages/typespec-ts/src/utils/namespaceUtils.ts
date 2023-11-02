@@ -33,7 +33,10 @@ export function getOperationNamespaceInterfaceName(
     return result;
   }
   if (operation.interface) {
-    if (dpgContext.rlcOptions?.enableOperationGroup === true) {
+    if (
+      dpgContext.rlcOptions?.enableOperationGroup === true &&
+      dpgContext.rlcOptions?.hierarchyClient === false
+    ) {
       result.push(operation.interface.name);
       return result;
     }

@@ -2,36 +2,51 @@
 // Licensed under the MIT license.
 
 import {
-  CreateCompletionRequest,
-  CreateCompletionResponse,
-} from "../../models/models.js";
+  CreateChatCompletionRequest,
+  CreateChatCompletionResponse,
+} from "../../../models/models.js";
 import {
-  CompletionsCreate200Response,
-  CompletionsCreateDefaultResponse,
+  ChatCompletionsCreate200Response,
+  ChatCompletionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
-} from "../../rest/index.js";
+} from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { CompletionsCreateOptions } from "../../models/options.js";
+import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
-  body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  body: CreateChatCompletionRequest,
+  options: ChatCompletionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  CompletionsCreate200Response | CompletionsCreateDefaultResponse
+  ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
 > {
   return context
-    .path("/completions")
+    .path("/chat/completions")
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
         model: body["model"],
-        prompt: body["prompt"],
-        suffix: body["suffix"],
+        messages: (body["messages"] ?? []).map((p) => ({
+          role: p["role"],
+          content: p["content"],
+          name: p["name"],
+          function_call: !p.functionCall
+            ? undefined
+            : {
+                name: p.functionCall?.["name"],
+                arguments: p.functionCall?.["arguments"],
+              },
+        })),
+        functions: (body["functions"] ?? []).map((p) => ({
+          name: p["name"],
+          description: p["description"],
+          parameters: p["parameters"],
+        })),
+        function_call: body["functionCall"],
         temperature: body["temperature"],
         top_p: body["topP"],
         n: body["n"],
@@ -42,16 +57,15 @@ export function _createSend(
         logit_bias: body["logitBias"],
         user: body["user"],
         stream: body["stream"],
-        logprobs: body["logprobs"],
-        echo: body["echo"],
-        best_of: body["bestOf"],
       },
     });
 }
 
 export async function _createDeserialize(
-  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
-): Promise<CreateCompletionResponse> {
+  result:
+    | ChatCompletionsCreate200Response
+    | ChatCompletionsCreateDefaultResponse
+): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
     throw result.body;
   }
@@ -63,16 +77,16 @@ export async function _createDeserialize(
     model: result.body["model"],
     choices: (result.body["choices"] ?? []).map((p) => ({
       index: p["index"],
-      text: p["text"],
-      logprobs:
-        p.logprobs === null
-          ? null
+      message: {
+        role: p.message["role"] as any,
+        content: p.message["content"],
+        functionCall: !p.message.function_call
+          ? undefined
           : {
-              tokens: p.logprobs["tokens"],
-              tokenLogprobs: p.logprobs["token_logprobs"],
-              topLogprobs: p.logprobs["top_logprobs"],
-              textOffset: p.logprobs["text_offset"],
+              name: p.message.function_call?.["name"],
+              arguments: p.message.function_call?.["arguments"],
             },
+      },
       finishReason: p["finish_reason"] as any,
     })),
     usage: !result.body.usage
@@ -87,9 +101,9 @@ export async function _createDeserialize(
 
 export async function create(
   context: Client,
-  body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
-): Promise<CreateCompletionResponse> {
+  body: CreateChatCompletionRequest,
+  options: ChatCompletionsCreateOptions = { requestOptions: {} }
+): Promise<CreateChatCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);
 }

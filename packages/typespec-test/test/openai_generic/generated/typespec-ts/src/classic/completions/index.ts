@@ -3,8 +3,6 @@
 
 import { OpenAIContext } from "../../api/OpenAIContext.js";
 import {
-  CreateChatCompletionRequest,
-  CreateChatCompletionResponse,
   CreateCompletionRequest,
   CreateCompletionResponse,
 } from "../../models/models.js";
@@ -13,10 +11,6 @@ import { CompletionsCreateOptions } from "../../models/options.js";
 
 export interface CompletionsOperations {
   create: (
-    body: CreateChatCompletionRequest,
-    options?: CompletionsCreateOptions
-  ) => Promise<CreateChatCompletionResponse>;
-  create: (
     body: CreateCompletionRequest,
     options?: CompletionsCreateOptions
   ) => Promise<CreateCompletionResponse>;
@@ -24,10 +18,6 @@ export interface CompletionsOperations {
 
 export function getCompletions(context: OpenAIContext) {
   return {
-    create: (
-      body: CreateChatCompletionRequest,
-      options?: CompletionsCreateOptions
-    ) => create(context, body, options),
     create: (
       body: CreateCompletionRequest,
       options?: CompletionsCreateOptions

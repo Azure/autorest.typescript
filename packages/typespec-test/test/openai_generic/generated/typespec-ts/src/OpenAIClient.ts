@@ -3,19 +3,16 @@
 
 import { KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { getAudioOperations, AudioOperations } from "./classic/audio/index.js";
+import { getChatOperations, ChatOperations } from "./classic/chat/index.js";
 import {
-  getTranscriptionsOperations,
-  TranscriptionsOperations,
-} from "./classic/transcriptions/index.js";
-import {
-  getTranslationsOperations,
-  TranslationsOperations,
-} from "./classic/translations/index.js";
+  getFineTuningOperations,
+  FineTuningOperations,
+} from "./classic/fineTuning/index.js";
 import {
   getCompletionsOperations,
   CompletionsOperations,
 } from "./classic/completions/index.js";
-import { getJobsOperations, JobsOperations } from "./classic/jobs/index.js";
 import { getEditsOperations, EditsOperations } from "./classic/edits/index.js";
 import {
   getEmbeddingsOperations,
@@ -55,10 +52,10 @@ export class OpenAIClient {
   constructor(credential: KeyCredential, options: OpenAIClientOptions = {}) {
     this._client = createOpenAI(credential, options);
     this.pipeline = this._client.pipeline;
-    this.transcriptions = getTranscriptionsOperations(this._client);
-    this.translations = getTranslationsOperations(this._client);
+    this.audio = getAudioOperations(this._client);
+    this.chat = getChatOperations(this._client);
+    this.fineTuning = getFineTuningOperations(this._client);
     this.completions = getCompletionsOperations(this._client);
-    this.jobs = getJobsOperations(this._client);
     this.edits = getEditsOperations(this._client);
     this.embeddings = getEmbeddingsOperations(this._client);
     this.files = getFilesOperations(this._client);
@@ -68,14 +65,14 @@ export class OpenAIClient {
     this.moderations = getModerationsOperations(this._client);
   }
 
-  /** The operation groups for Transcriptions */
-  public readonly transcriptions: TranscriptionsOperations;
-  /** The operation groups for Translations */
-  public readonly translations: TranslationsOperations;
+  /** The operation groups for AudioTranscriptions */
+  public readonly audio: AudioOperations;
+  /** The operation groups for ChatCompletions */
+  public readonly chat: ChatOperations;
+  /** The operation groups for FineTuningJobs */
+  public readonly fineTuning: FineTuningOperations;
   /** The operation groups for Completions */
   public readonly completions: CompletionsOperations;
-  /** The operation groups for Jobs */
-  public readonly jobs: JobsOperations;
   /** The operation groups for Edits */
   public readonly edits: EditsOperations;
   /** The operation groups for Embeddings */

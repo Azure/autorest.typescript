@@ -14,12 +14,12 @@ export interface BOp1204Response extends HttpResponse {
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface COp1204Response extends HttpResponse {
+export interface BecOp1204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface COp1204Response extends HttpResponse {
+export interface BcOp1204Response extends HttpResponse {
   status: "204";
 }
 

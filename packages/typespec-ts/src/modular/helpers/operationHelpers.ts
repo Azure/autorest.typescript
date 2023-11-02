@@ -274,9 +274,10 @@ export function getOperationOptionsName(
   operation: Operation,
   includeGroupName = false
 ) {
-  const prefix = includeGroupName && operation.name.indexOf("_") === -1
-    ? getClassicalLayerPrefix(operation, NameType.Interface)
-    : "";
+  const prefix =
+    includeGroupName && operation.name.indexOf("_") === -1
+      ? getClassicalLayerPrefix(operation, NameType.Interface)
+      : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");

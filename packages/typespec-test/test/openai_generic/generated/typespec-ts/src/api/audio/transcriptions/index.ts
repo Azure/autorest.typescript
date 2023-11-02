@@ -4,25 +4,26 @@
 import {
   CreateTranscriptionRequest,
   CreateTranscriptionResponse,
-} from "../../models/models.js";
+} from "../../../models/models.js";
 import {
+  AudioTranscriptionsCreate200Response,
+  AudioTranscriptionsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
-  TranscriptionsCreate200Response,
-  TranscriptionsCreateDefaultResponse,
-} from "../../rest/index.js";
+} from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { TranscriptionsCreateOptions } from "../../models/options.js";
+import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: TranscriptionsCreateOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
+  | AudioTranscriptionsCreate200Response
+  | AudioTranscriptionsCreateDefaultResponse
 > {
   return context
     .path("/audio/transcriptions")
@@ -41,7 +42,9 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
+  result:
+    | AudioTranscriptionsCreate200Response
+    | AudioTranscriptionsCreateDefaultResponse
 ): Promise<CreateTranscriptionResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -55,7 +58,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranscriptionRequest,
-  options: TranscriptionsCreateOptions = { requestOptions: {} }
+  options: AudioTranscriptionsCreateOptions = { requestOptions: {} }
 ): Promise<CreateTranscriptionResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);

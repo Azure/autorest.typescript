@@ -3,37 +3,37 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface TranscriptionsCreateOptions extends OperationOptions {
+export interface AudioTranscriptionsCreateOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface TranslationsCreateOptions extends OperationOptions {
+export interface AudioTranslationsCreateOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface CompletionsCreateOptions extends OperationOptions {}
+export interface ChatCompletionsCreateOptions extends OperationOptions {}
 
-export interface CompletionsCreateOptions extends OperationOptions {}
+export interface FineTuningJobsCreateOptions extends OperationOptions {}
 
-export interface JobsCreateOptions extends OperationOptions {}
-
-export interface JobsListOptions extends OperationOptions {
+export interface FineTuningJobsListOptions extends OperationOptions {
   /** Identifier for the last job from the previous pagination request. */
   after?: string;
   /** Number of fine-tuning jobs to retrieve. */
   limit?: number;
 }
 
-export interface JobsRetrieveOptions extends OperationOptions {}
+export interface FineTuningJobsRetrieveOptions extends OperationOptions {}
 
-export interface JobsListEventsOptions extends OperationOptions {
+export interface FineTuningJobsListEventsOptions extends OperationOptions {
   /** Identifier for the last event from the previous pagination request. */
   after?: string;
   /** Number of events to retrieve. */
   limit?: number;
 }
 
-export interface JobsCancelOptions extends OperationOptions {}
+export interface FineTuningJobsCancelOptions extends OperationOptions {}
+
+export interface CompletionsCreateOptions extends OperationOptions {}
 
 export interface EditsCreateOptions extends OperationOptions {}
 

@@ -2,22 +2,24 @@
 // Licensed under the MIT license.
 
 import {
-  TranscriptionsCreate200Response,
-  TranscriptionsCreateDefaultResponse,
-  TranslationsCreate200Response,
-  TranslationsCreateDefaultResponse,
+  AudioTranscriptionsCreate200Response,
+  AudioTranscriptionsCreateDefaultResponse,
+  AudioTranslationsCreate200Response,
+  AudioTranslationsCreateDefaultResponse,
+  ChatCompletionsCreate200Response,
+  ChatCompletionsCreateDefaultResponse,
+  FineTuningJobsCreate200Response,
+  FineTuningJobsCreateDefaultResponse,
+  FineTuningJobsList200Response,
+  FineTuningJobsListDefaultResponse,
+  FineTuningJobsRetrieve200Response,
+  FineTuningJobsRetrieveDefaultResponse,
+  FineTuningJobsListEvents200Response,
+  FineTuningJobsListEventsDefaultResponse,
+  FineTuningJobsCancel200Response,
+  FineTuningJobsCancelDefaultResponse,
   CompletionsCreate200Response,
   CompletionsCreateDefaultResponse,
-  JobsCreate200Response,
-  JobsCreateDefaultResponse,
-  JobsList200Response,
-  JobsListDefaultResponse,
-  JobsRetrieve200Response,
-  JobsRetrieveDefaultResponse,
-  JobsListEvents200Response,
-  JobsListEventsDefaultResponse,
-  JobsCancel200Response,
-  JobsCancelDefaultResponse,
   EditsCreate200Response,
   EditsCreateDefaultResponse,
   EmbeddingsCreate200Response,
@@ -91,30 +93,42 @@ const responseMap: Record<string, string[]> = {
 
 export function isUnexpected(
   response:
-    | TranscriptionsCreate200Response
-    | TranscriptionsCreateDefaultResponse
-): response is TranscriptionsCreateDefaultResponse;
+    | AudioTranscriptionsCreate200Response
+    | AudioTranscriptionsCreateDefaultResponse
+): response is AudioTranscriptionsCreateDefaultResponse;
 export function isUnexpected(
-  response: TranslationsCreate200Response | TranslationsCreateDefaultResponse
-): response is TranslationsCreateDefaultResponse;
+  response:
+    | AudioTranslationsCreate200Response
+    | AudioTranslationsCreateDefaultResponse
+): response is AudioTranslationsCreateDefaultResponse;
 export function isUnexpected(
-  response: CompletionsCreate200Response | CompletionsCreateDefaultResponse
-): response is CompletionsCreateDefaultResponse;
+  response:
+    | ChatCompletionsCreate200Response
+    | ChatCompletionsCreateDefaultResponse
+): response is ChatCompletionsCreateDefaultResponse;
 export function isUnexpected(
-  response: JobsCreate200Response | JobsCreateDefaultResponse
-): response is JobsCreateDefaultResponse;
+  response:
+    | FineTuningJobsCreate200Response
+    | FineTuningJobsCreateDefaultResponse
+): response is FineTuningJobsCreateDefaultResponse;
 export function isUnexpected(
-  response: JobsList200Response | JobsListDefaultResponse
-): response is JobsListDefaultResponse;
+  response: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
+): response is FineTuningJobsListDefaultResponse;
 export function isUnexpected(
-  response: JobsRetrieve200Response | JobsRetrieveDefaultResponse
-): response is JobsRetrieveDefaultResponse;
+  response:
+    | FineTuningJobsRetrieve200Response
+    | FineTuningJobsRetrieveDefaultResponse
+): response is FineTuningJobsRetrieveDefaultResponse;
 export function isUnexpected(
-  response: JobsListEvents200Response | JobsListEventsDefaultResponse
-): response is JobsListEventsDefaultResponse;
+  response:
+    | FineTuningJobsListEvents200Response
+    | FineTuningJobsListEventsDefaultResponse
+): response is FineTuningJobsListEventsDefaultResponse;
 export function isUnexpected(
-  response: JobsCancel200Response | JobsCancelDefaultResponse
-): response is JobsCancelDefaultResponse;
+  response:
+    | FineTuningJobsCancel200Response
+    | FineTuningJobsCancelDefaultResponse
+): response is FineTuningJobsCancelDefaultResponse;
 export function isUnexpected(
   response: CompletionsCreate200Response | CompletionsCreateDefaultResponse
 ): response is CompletionsCreateDefaultResponse;
@@ -183,22 +197,24 @@ export function isUnexpected(
 ): response is ModerationsCreateDefaultResponse;
 export function isUnexpected(
   response:
-    | TranscriptionsCreate200Response
-    | TranscriptionsCreateDefaultResponse
-    | TranslationsCreate200Response
-    | TranslationsCreateDefaultResponse
+    | AudioTranscriptionsCreate200Response
+    | AudioTranscriptionsCreateDefaultResponse
+    | AudioTranslationsCreate200Response
+    | AudioTranslationsCreateDefaultResponse
+    | ChatCompletionsCreate200Response
+    | ChatCompletionsCreateDefaultResponse
+    | FineTuningJobsCreate200Response
+    | FineTuningJobsCreateDefaultResponse
+    | FineTuningJobsList200Response
+    | FineTuningJobsListDefaultResponse
+    | FineTuningJobsRetrieve200Response
+    | FineTuningJobsRetrieveDefaultResponse
+    | FineTuningJobsListEvents200Response
+    | FineTuningJobsListEventsDefaultResponse
+    | FineTuningJobsCancel200Response
+    | FineTuningJobsCancelDefaultResponse
     | CompletionsCreate200Response
     | CompletionsCreateDefaultResponse
-    | JobsCreate200Response
-    | JobsCreateDefaultResponse
-    | JobsList200Response
-    | JobsListDefaultResponse
-    | JobsRetrieve200Response
-    | JobsRetrieveDefaultResponse
-    | JobsListEvents200Response
-    | JobsListEventsDefaultResponse
-    | JobsCancel200Response
-    | JobsCancelDefaultResponse
     | EditsCreate200Response
     | EditsCreateDefaultResponse
     | EmbeddingsCreate200Response
@@ -238,14 +254,15 @@ export function isUnexpected(
     | ModerationsCreate200Response
     | ModerationsCreateDefaultResponse
 ): response is
-  | TranscriptionsCreateDefaultResponse
-  | TranslationsCreateDefaultResponse
+  | AudioTranscriptionsCreateDefaultResponse
+  | AudioTranslationsCreateDefaultResponse
+  | ChatCompletionsCreateDefaultResponse
+  | FineTuningJobsCreateDefaultResponse
+  | FineTuningJobsListDefaultResponse
+  | FineTuningJobsRetrieveDefaultResponse
+  | FineTuningJobsListEventsDefaultResponse
+  | FineTuningJobsCancelDefaultResponse
   | CompletionsCreateDefaultResponse
-  | JobsCreateDefaultResponse
-  | JobsListDefaultResponse
-  | JobsRetrieveDefaultResponse
-  | JobsListEventsDefaultResponse
-  | JobsCancelDefaultResponse
   | EditsCreateDefaultResponse
   | EmbeddingsCreateDefaultResponse
   | FilesListDefaultResponse

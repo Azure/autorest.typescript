@@ -4,25 +4,25 @@
 import {
   CreateTranslationRequest,
   CreateTranslationResponse,
-} from "../../models/models.js";
+} from "../../../models/models.js";
 import {
+  AudioTranslationsCreate200Response,
+  AudioTranslationsCreateDefaultResponse,
   isUnexpected,
   OpenAIContext as Client,
-  TranslationsCreate200Response,
-  TranslationsCreateDefaultResponse,
-} from "../../rest/index.js";
+} from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { TranslationsCreateOptions } from "../../models/options.js";
+import { AudioTranslationsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
   context: Client,
   audio: CreateTranslationRequest,
-  options: TranslationsCreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} }
 ): StreamableMethod<
-  TranslationsCreate200Response | TranslationsCreateDefaultResponse
+  AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
 > {
   return context
     .path("/audio/translations")
@@ -40,7 +40,9 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: TranslationsCreate200Response | TranslationsCreateDefaultResponse
+  result:
+    | AudioTranslationsCreate200Response
+    | AudioTranslationsCreateDefaultResponse
 ): Promise<CreateTranslationResponse> {
   if (isUnexpected(result)) {
     throw result.body;
@@ -54,7 +56,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   audio: CreateTranslationRequest,
-  options: TranslationsCreateOptions = { requestOptions: {} }
+  options: AudioTranslationsCreateOptions = { requestOptions: {} }
 ): Promise<CreateTranslationResponse> {
   const result = await _createSend(context, audio, options);
   return _createDeserialize(result);
