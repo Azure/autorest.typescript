@@ -9,42 +9,36 @@ import {
   queryBase64urlArray,
 } from "../../api/query/index.js";
 import {
-  QueryQueryDefaultOptions,
-  QueryQueryBase64Options,
-  QueryQueryBase64urlOptions,
-  QueryQueryBase64urlArrayOptions,
+  QueryDefaultOptions,
+  QueryBase64Options,
+  QueryBase64urlOptions,
+  QueryBase64urlArrayOptions,
 } from "../../models/options.js";
 
 export interface QueryOperations {
-  queryDefault: (
+  default: (value: Uint8Array, options?: QueryDefaultOptions) => Promise<void>;
+  base64: (value: Uint8Array, options?: QueryBase64Options) => Promise<void>;
+  base64url: (
     value: Uint8Array,
-    options?: QueryQueryDefaultOptions
+    options?: QueryBase64urlOptions
   ) => Promise<void>;
-  queryBase64: (
-    value: Uint8Array,
-    options?: QueryQueryBase64Options
-  ) => Promise<void>;
-  queryBase64url: (
-    value: Uint8Array,
-    options?: QueryQueryBase64urlOptions
-  ) => Promise<void>;
-  queryBase64urlArray: (
+  base64urlArray: (
     value: Uint8Array[],
-    options?: QueryQueryBase64urlArrayOptions
+    options?: QueryBase64urlArrayOptions
   ) => Promise<void>;
 }
 
 export function getQuery(context: BytesContext) {
   return {
-    queryDefault: (value: Uint8Array, options?: QueryQueryDefaultOptions) =>
+    default: (value: Uint8Array, options?: QueryDefaultOptions) =>
       queryDefault(context, value, options),
-    queryBase64: (value: Uint8Array, options?: QueryQueryBase64Options) =>
+    base64: (value: Uint8Array, options?: QueryBase64Options) =>
       queryBase64(context, value, options),
-    queryBase64url: (value: Uint8Array, options?: QueryQueryBase64urlOptions) =>
+    base64url: (value: Uint8Array, options?: QueryBase64urlOptions) =>
       queryBase64url(context, value, options),
-    queryBase64urlArray: (
+    base64urlArray: (
       value: Uint8Array[],
-      options?: QueryQueryBase64urlArrayOptions
+      options?: QueryBase64urlArrayOptions
     ) => queryBase64urlArray(context, value, options),
   };
 }

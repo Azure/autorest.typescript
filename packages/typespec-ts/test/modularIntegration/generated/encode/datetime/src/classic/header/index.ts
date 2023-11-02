@@ -10,51 +10,40 @@ import {
   headerUnixTimestampArray,
 } from "../../api/header/index.js";
 import {
-  HeaderHeaderDefaultOptions,
-  HeaderHeaderRfc3339Options,
-  HeaderHeaderRfc7231Options,
-  HeaderHeaderUnixTimestampOptions,
-  HeaderHeaderUnixTimestampArrayOptions,
+  HeaderDefaultOptions,
+  HeaderRfc3339Options,
+  HeaderRfc7231Options,
+  HeaderUnixTimestampOptions,
+  HeaderUnixTimestampArrayOptions,
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  headerDefault: (
+  default: (value: Date, options?: HeaderDefaultOptions) => Promise<void>;
+  rfc3339: (value: Date, options?: HeaderRfc3339Options) => Promise<void>;
+  rfc7231: (value: Date, options?: HeaderRfc7231Options) => Promise<void>;
+  unixTimestamp: (
     value: Date,
-    options?: HeaderHeaderDefaultOptions
+    options?: HeaderUnixTimestampOptions
   ) => Promise<void>;
-  headerRfc3339: (
-    value: Date,
-    options?: HeaderHeaderRfc3339Options
-  ) => Promise<void>;
-  headerRfc7231: (
-    value: Date,
-    options?: HeaderHeaderRfc7231Options
-  ) => Promise<void>;
-  headerUnixTimestamp: (
-    value: Date,
-    options?: HeaderHeaderUnixTimestampOptions
-  ) => Promise<void>;
-  headerUnixTimestampArray: (
+  unixTimestampArray: (
     value: Date[],
-    options?: HeaderHeaderUnixTimestampArrayOptions
+    options?: HeaderUnixTimestampArrayOptions
   ) => Promise<void>;
 }
 
 export function getHeader(context: DatetimeContext) {
   return {
-    headerDefault: (value: Date, options?: HeaderHeaderDefaultOptions) =>
+    default: (value: Date, options?: HeaderDefaultOptions) =>
       headerDefault(context, value, options),
-    headerRfc3339: (value: Date, options?: HeaderHeaderRfc3339Options) =>
+    rfc3339: (value: Date, options?: HeaderRfc3339Options) =>
       headerRfc3339(context, value, options),
-    headerRfc7231: (value: Date, options?: HeaderHeaderRfc7231Options) =>
+    rfc7231: (value: Date, options?: HeaderRfc7231Options) =>
       headerRfc7231(context, value, options),
-    headerUnixTimestamp: (
-      value: Date,
-      options?: HeaderHeaderUnixTimestampOptions
-    ) => headerUnixTimestamp(context, value, options),
-    headerUnixTimestampArray: (
+    unixTimestamp: (value: Date, options?: HeaderUnixTimestampOptions) =>
+      headerUnixTimestamp(context, value, options),
+    unixTimestampArray: (
       value: Date[],
-      options?: HeaderHeaderUnixTimestampArrayOptions
+      options?: HeaderUnixTimestampArrayOptions
     ) => headerUnixTimestampArray(context, value, options),
   };
 }

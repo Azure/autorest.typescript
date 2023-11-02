@@ -2,58 +2,60 @@
 // Licensed under the MIT license.
 
 import {
-  MultiParameters,
-  SsvParameters,
-  TsvParameters,
-  PipesParameters,
-  CsvParameters,
+  QueryMultiParameters,
+  QuerySsvParameters,
+  QueryTsvParameters,
+  QueryPipesParameters,
+  QueryCsvParameters,
+  HeaderCsvParameters,
 } from "./parameters.js";
 import {
-  Multi204Response,
-  Ssv204Response,
-  Tsv204Response,
-  Pipes204Response,
-  Csv204Response,
+  QueryMulti204Response,
+  QuerySsv204Response,
+  QueryTsv204Response,
+  QueryPipes204Response,
+  QueryCsv204Response,
+  HeaderCsv204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface Multi {
-  get(options: MultiParameters): StreamableMethod<Multi204Response>;
+export interface QueryMulti {
+  get(options: QueryMultiParameters): StreamableMethod<QueryMulti204Response>;
 }
 
-export interface Ssv {
-  get(options: SsvParameters): StreamableMethod<Ssv204Response>;
+export interface QuerySsv {
+  get(options: QuerySsvParameters): StreamableMethod<QuerySsv204Response>;
 }
 
-export interface Tsv {
-  get(options: TsvParameters): StreamableMethod<Tsv204Response>;
+export interface QueryTsv {
+  get(options: QueryTsvParameters): StreamableMethod<QueryTsv204Response>;
 }
 
-export interface Pipes {
-  get(options: PipesParameters): StreamableMethod<Pipes204Response>;
+export interface QueryPipes {
+  get(options: QueryPipesParameters): StreamableMethod<QueryPipes204Response>;
 }
 
-export interface Csv {
-  get(options: CsvParameters): StreamableMethod<Csv204Response>;
+export interface QueryCsv {
+  get(options: QueryCsvParameters): StreamableMethod<QueryCsv204Response>;
 }
 
-export interface Csv {
-  get(options: CsvParameters): StreamableMethod<Csv204Response>;
+export interface HeaderCsv {
+  get(options: HeaderCsvParameters): StreamableMethod<HeaderCsv204Response>;
 }
 
 export interface Routes {
   /** Resource for '/parameters/collection-format/query/multi' has methods for the following verbs: get */
-  (path: "/parameters/collection-format/query/multi"): Multi;
+  (path: "/parameters/collection-format/query/multi"): QueryMulti;
   /** Resource for '/parameters/collection-format/query/ssv' has methods for the following verbs: get */
-  (path: "/parameters/collection-format/query/ssv"): Ssv;
+  (path: "/parameters/collection-format/query/ssv"): QuerySsv;
   /** Resource for '/parameters/collection-format/query/tsv' has methods for the following verbs: get */
-  (path: "/parameters/collection-format/query/tsv"): Tsv;
+  (path: "/parameters/collection-format/query/tsv"): QueryTsv;
   /** Resource for '/parameters/collection-format/query/pipes' has methods for the following verbs: get */
-  (path: "/parameters/collection-format/query/pipes"): Pipes;
+  (path: "/parameters/collection-format/query/pipes"): QueryPipes;
   /** Resource for '/parameters/collection-format/query/csv' has methods for the following verbs: get */
-  (path: "/parameters/collection-format/query/csv"): Csv;
+  (path: "/parameters/collection-format/query/csv"): QueryCsv;
   /** Resource for '/parameters/collection-format/header/csv' has methods for the following verbs: get */
-  (path: "/parameters/collection-format/header/csv"): Csv;
+  (path: "/parameters/collection-format/header/csv"): HeaderCsv;
 }
 
 export type CollectionFormatContext = Client & {

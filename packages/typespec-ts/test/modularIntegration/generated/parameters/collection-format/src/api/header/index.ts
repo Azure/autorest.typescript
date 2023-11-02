@@ -4,19 +4,19 @@
 import {
   buildCsvCollection,
   CollectionFormatContext as Client,
-  Csv204Response,
+  HeaderCsv204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { HeaderHeaderCsvOptions } from "../../models/options.js";
+import { HeaderCsvOptions } from "../../models/options.js";
 
 export function _headerCsvSend(
   context: Client,
   colors: string[],
-  options: HeaderHeaderCsvOptions = { requestOptions: {} }
-): StreamableMethod<Csv204Response> {
+  options: HeaderCsvOptions = { requestOptions: {} }
+): StreamableMethod<HeaderCsv204Response> {
   return context
     .path("/parameters/collection-format/header/csv")
     .get({
@@ -26,7 +26,7 @@ export function _headerCsvSend(
 }
 
 export async function _headerCsvDeserialize(
-  result: Csv204Response
+  result: HeaderCsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -38,7 +38,7 @@ export async function _headerCsvDeserialize(
 export async function headerCsv(
   context: Client,
   colors: string[],
-  options: HeaderHeaderCsvOptions = { requestOptions: {} }
+  options: HeaderCsvOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerCsvSend(context, colors, options);
   return _headerCsvDeserialize(result);

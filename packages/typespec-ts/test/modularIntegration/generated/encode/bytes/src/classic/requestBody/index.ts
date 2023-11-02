@@ -10,58 +10,50 @@ import {
   requestBodyBase64url,
 } from "../../api/requestBody/index.js";
 import {
-  RequestBodyRequestBodyDefaultOptions,
-  RequestBodyRequestBodyOctetStreamOptions,
-  RequestBodyRequestBodyCustomContentTypeOptions,
-  RequestBodyRequestBodyBase64Options,
-  RequestBodyRequestBodyBase64urlOptions,
+  RequestBodyDefaultOptions,
+  RequestBodyOctetStreamOptions,
+  RequestBodyCustomContentTypeOptions,
+  RequestBodyBase64Options,
+  RequestBodyBase64urlOptions,
 } from "../../models/options.js";
 
 export interface RequestBodyOperations {
-  requestBodyDefault: (
+  default: (
     value: Uint8Array,
-    options?: RequestBodyRequestBodyDefaultOptions
+    options?: RequestBodyDefaultOptions
   ) => Promise<void>;
-  requestBodyOctetStream: (
+  octetStream: (
     value: Uint8Array,
-    options?: RequestBodyRequestBodyOctetStreamOptions
+    options?: RequestBodyOctetStreamOptions
   ) => Promise<void>;
-  requestBodyCustomContentType: (
+  customContentType: (
     value: Uint8Array,
-    options?: RequestBodyRequestBodyCustomContentTypeOptions
+    options?: RequestBodyCustomContentTypeOptions
   ) => Promise<void>;
-  requestBodyBase64: (
+  base64: (
     value: Uint8Array,
-    options?: RequestBodyRequestBodyBase64Options
+    options?: RequestBodyBase64Options
   ) => Promise<void>;
-  requestBodyBase64url: (
+  base64url: (
     value: Uint8Array,
-    options?: RequestBodyRequestBodyBase64urlOptions
+    options?: RequestBodyBase64urlOptions
   ) => Promise<void>;
 }
 
 export function getRequestBody(context: BytesContext) {
   return {
-    requestBodyDefault: (
+    default: (value: Uint8Array, options?: RequestBodyDefaultOptions) =>
+      requestBodyDefault(context, value, options),
+    octetStream: (value: Uint8Array, options?: RequestBodyOctetStreamOptions) =>
+      requestBodyOctetStream(context, value, options),
+    customContentType: (
       value: Uint8Array,
-      options?: RequestBodyRequestBodyDefaultOptions
-    ) => requestBodyDefault(context, value, options),
-    requestBodyOctetStream: (
-      value: Uint8Array,
-      options?: RequestBodyRequestBodyOctetStreamOptions
-    ) => requestBodyOctetStream(context, value, options),
-    requestBodyCustomContentType: (
-      value: Uint8Array,
-      options?: RequestBodyRequestBodyCustomContentTypeOptions
+      options?: RequestBodyCustomContentTypeOptions
     ) => requestBodyCustomContentType(context, value, options),
-    requestBodyBase64: (
-      value: Uint8Array,
-      options?: RequestBodyRequestBodyBase64Options
-    ) => requestBodyBase64(context, value, options),
-    requestBodyBase64url: (
-      value: Uint8Array,
-      options?: RequestBodyRequestBodyBase64urlOptions
-    ) => requestBodyBase64url(context, value, options),
+    base64: (value: Uint8Array, options?: RequestBodyBase64Options) =>
+      requestBodyBase64(context, value, options),
+    base64url: (value: Uint8Array, options?: RequestBodyBase64urlOptions) =>
+      requestBodyBase64url(context, value, options),
   };
 }
 

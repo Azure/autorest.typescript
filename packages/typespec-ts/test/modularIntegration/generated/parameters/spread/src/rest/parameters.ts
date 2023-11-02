@@ -5,42 +5,42 @@ import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import { BodyParameter } from "./models.js";
 
-export interface SpreadAsRequestBodyBodyParam {
+export interface ModelSpreadAsRequestBodyBodyParam {
   body?: BodyParameter;
 }
 
-export type SpreadAsRequestBodyParameters = SpreadAsRequestBodyBodyParam &
-  RequestParameters;
+export type ModelSpreadAsRequestBodyParameters =
+  ModelSpreadAsRequestBodyBodyParam & RequestParameters;
 
-export interface SpreadAsRequestBodyBodyParam {
+export interface AliasSpreadAsRequestBodyBodyParam {
   body?: { name: string };
 }
 
-export type SpreadAsRequestBodyParameters = SpreadAsRequestBodyBodyParam &
-  RequestParameters;
+export type AliasSpreadAsRequestBodyParameters =
+  AliasSpreadAsRequestBodyBodyParam & RequestParameters;
 
-export interface SpreadAsRequestParameterHeaders {
+export interface AliasSpreadAsRequestParameterHeaders {
   "x-ms-test-header": string;
 }
 
-export interface SpreadAsRequestParameterBodyParam {
+export interface AliasSpreadAsRequestParameterBodyParam {
   body?: { name: string };
 }
 
-export interface SpreadAsRequestParameterHeaderParam {
-  headers: RawHttpHeadersInput & SpreadAsRequestParameterHeaders;
+export interface AliasSpreadAsRequestParameterHeaderParam {
+  headers: RawHttpHeadersInput & AliasSpreadAsRequestParameterHeaders;
 }
 
-export type SpreadAsRequestParameterParameters =
-  SpreadAsRequestParameterHeaderParam &
-    SpreadAsRequestParameterBodyParam &
+export type AliasSpreadAsRequestParameterParameters =
+  AliasSpreadAsRequestParameterHeaderParam &
+    AliasSpreadAsRequestParameterBodyParam &
     RequestParameters;
 
-export interface SpreadWithMultipleParametersHeaders {
+export interface AliasSpreadWithMultipleParametersHeaders {
   "x-ms-test-header": string;
 }
 
-export interface SpreadWithMultipleParametersBodyParam {
+export interface AliasSpreadWithMultipleParametersBodyParam {
   body?: {
     prop1: string;
     prop2: string;
@@ -51,11 +51,11 @@ export interface SpreadWithMultipleParametersBodyParam {
   };
 }
 
-export interface SpreadWithMultipleParametersHeaderParam {
-  headers: RawHttpHeadersInput & SpreadWithMultipleParametersHeaders;
+export interface AliasSpreadWithMultipleParametersHeaderParam {
+  headers: RawHttpHeadersInput & AliasSpreadWithMultipleParametersHeaders;
 }
 
-export type SpreadWithMultipleParametersParameters =
-  SpreadWithMultipleParametersHeaderParam &
-    SpreadWithMultipleParametersBodyParam &
+export type AliasSpreadWithMultipleParametersParameters =
+  AliasSpreadWithMultipleParametersHeaderParam &
+    AliasSpreadWithMultipleParametersBodyParam &
     RequestParameters;

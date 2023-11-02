@@ -3,47 +3,40 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface QueryQueryDefaultOptions extends OperationOptions {}
+export interface QueryDefaultOptions extends OperationOptions {}
 
-export interface QueryQueryRfc3339Options extends OperationOptions {}
+export interface QueryRfc3339Options extends OperationOptions {}
 
-export interface QueryQueryRfc7231Options extends OperationOptions {}
+export interface QueryRfc7231Options extends OperationOptions {}
 
-export interface QueryQueryUnixTimestampOptions extends OperationOptions {}
+export interface QueryUnixTimestampOptions extends OperationOptions {}
 
-export interface QueryQueryUnixTimestampArrayOptions extends OperationOptions {}
+export interface QueryUnixTimestampArrayOptions extends OperationOptions {}
 
-export interface PropertyPropertyDefaultOptions extends OperationOptions {}
+export interface PropertyDefaultOptions extends OperationOptions {}
 
-export interface PropertyPropertyRfc3339Options extends OperationOptions {}
+export interface PropertyRfc3339Options extends OperationOptions {}
 
-export interface PropertyPropertyRfc7231Options extends OperationOptions {}
+export interface PropertyRfc7231Options extends OperationOptions {}
 
-export interface PropertyPropertyUnixTimestampOptions
-  extends OperationOptions {}
+export interface PropertyUnixTimestampOptions extends OperationOptions {}
 
-export interface PropertyPropertyUnixTimestampArrayOptions
-  extends OperationOptions {}
+export interface PropertyUnixTimestampArrayOptions extends OperationOptions {}
 
-export interface HeaderHeaderDefaultOptions extends OperationOptions {}
+export interface HeaderDefaultOptions extends OperationOptions {}
 
-export interface HeaderHeaderRfc3339Options extends OperationOptions {}
+export interface HeaderRfc3339Options extends OperationOptions {}
 
-export interface HeaderHeaderRfc7231Options extends OperationOptions {}
+export interface HeaderRfc7231Options extends OperationOptions {}
 
-export interface HeaderHeaderUnixTimestampOptions extends OperationOptions {}
+export interface HeaderUnixTimestampOptions extends OperationOptions {}
 
-export interface HeaderHeaderUnixTimestampArrayOptions
-  extends OperationOptions {}
+export interface HeaderUnixTimestampArrayOptions extends OperationOptions {}
 
-export interface ResponseHeaderResponseHeaderDefaultOptions
-  extends OperationOptions {}
+export interface ResponseHeaderDefaultOptions extends OperationOptions {}
 
-export interface ResponseHeaderResponseHeaderRfc3339Options
-  extends OperationOptions {}
+export interface ResponseHeaderRfc3339Options extends OperationOptions {}
 
-export interface ResponseHeaderResponseHeaderRfc7231Options
-  extends OperationOptions {}
+export interface ResponseHeaderRfc7231Options extends OperationOptions {}
 
-export interface ResponseHeaderResponseHeaderUnixTimestampOptions
-  extends OperationOptions {}
+export interface ResponseHeaderUnixTimestampOptions extends OperationOptions {}

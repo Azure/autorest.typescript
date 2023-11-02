@@ -26,10 +26,17 @@ export function getOperationNamespaceInterfaceName(
   operation: Operation
 ): string[] {
   const result: string[] = [];
-  if (dpgContext.rlcOptions?.hierarchyClient === false) {
+  if (
+    dpgContext.rlcOptions?.hierarchyClient === false &&
+    dpgContext.rlcOptions?.enableOperationGroup !== true
+  ) {
     return result;
   }
   if (operation.interface) {
+    if (dpgContext.rlcOptions?.enableOperationGroup === true) {
+      result.push(operation.interface.name);
+      return result;
+    }
     if (operation.interface.namespace) {
       result.push(
         ...getModelNamespaceName(dpgContext, operation.interface.namespace)

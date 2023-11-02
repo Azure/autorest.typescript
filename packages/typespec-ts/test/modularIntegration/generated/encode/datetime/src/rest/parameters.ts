@@ -11,143 +11,149 @@ import {
   UnixTimestampArrayDatetimeProperty,
 } from "./models.js";
 
-export interface DefaultQueryParamProperties {
+export interface QueryDefaultQueryParamProperties {
   value: Date | string;
 }
 
-export interface DefaultQueryParam {
-  queryParameters: DefaultQueryParamProperties;
+export interface QueryDefaultQueryParam {
+  queryParameters: QueryDefaultQueryParamProperties;
 }
 
-export type DefaultParameters = DefaultQueryParam & RequestParameters;
+export type QueryDefaultParameters = QueryDefaultQueryParam & RequestParameters;
 
-export interface Rfc3339QueryParamProperties {
+export interface QueryRfc3339QueryParamProperties {
   value: Date | string;
 }
 
-export interface Rfc3339QueryParam {
-  queryParameters: Rfc3339QueryParamProperties;
+export interface QueryRfc3339QueryParam {
+  queryParameters: QueryRfc3339QueryParamProperties;
 }
 
-export type Rfc3339Parameters = Rfc3339QueryParam & RequestParameters;
+export type QueryRfc3339Parameters = QueryRfc3339QueryParam & RequestParameters;
 
-export interface Rfc7231QueryParamProperties {
+export interface QueryRfc7231QueryParamProperties {
   value: Date | string;
 }
 
-export interface Rfc7231QueryParam {
-  queryParameters: Rfc7231QueryParamProperties;
+export interface QueryRfc7231QueryParam {
+  queryParameters: QueryRfc7231QueryParamProperties;
 }
 
-export type Rfc7231Parameters = Rfc7231QueryParam & RequestParameters;
+export type QueryRfc7231Parameters = QueryRfc7231QueryParam & RequestParameters;
 
-export interface UnixTimestampQueryParamProperties {
+export interface QueryUnixTimestampQueryParamProperties {
   value: number;
 }
 
-export interface UnixTimestampQueryParam {
-  queryParameters: UnixTimestampQueryParamProperties;
+export interface QueryUnixTimestampQueryParam {
+  queryParameters: QueryUnixTimestampQueryParamProperties;
 }
 
-export type UnixTimestampParameters = UnixTimestampQueryParam &
+export type QueryUnixTimestampParameters = QueryUnixTimestampQueryParam &
   RequestParameters;
 
-export interface UnixTimestampArrayQueryParamProperties {
+export interface QueryUnixTimestampArrayQueryParamProperties {
   value: number[];
 }
 
-export interface UnixTimestampArrayQueryParam {
-  queryParameters: UnixTimestampArrayQueryParamProperties;
+export interface QueryUnixTimestampArrayQueryParam {
+  queryParameters: QueryUnixTimestampArrayQueryParamProperties;
 }
 
-export type UnixTimestampArrayParameters = UnixTimestampArrayQueryParam &
-  RequestParameters;
+export type QueryUnixTimestampArrayParameters =
+  QueryUnixTimestampArrayQueryParam & RequestParameters;
 
-export interface DefaultBodyParam {
+export interface PropertyDefaultBodyParam {
   body: DefaultDatetimeProperty;
 }
 
-export type DefaultParameters = DefaultBodyParam & RequestParameters;
+export type PropertyDefaultParameters = PropertyDefaultBodyParam &
+  RequestParameters;
 
-export interface Rfc3339BodyParam {
+export interface PropertyRfc3339BodyParam {
   body: Rfc3339DatetimeProperty;
 }
 
-export type Rfc3339Parameters = Rfc3339BodyParam & RequestParameters;
+export type PropertyRfc3339Parameters = PropertyRfc3339BodyParam &
+  RequestParameters;
 
-export interface Rfc7231BodyParam {
+export interface PropertyRfc7231BodyParam {
   body: Rfc7231DatetimeProperty;
 }
 
-export type Rfc7231Parameters = Rfc7231BodyParam & RequestParameters;
+export type PropertyRfc7231Parameters = PropertyRfc7231BodyParam &
+  RequestParameters;
 
-export interface UnixTimestampBodyParam {
+export interface PropertyUnixTimestampBodyParam {
   body: UnixTimestampDatetimeProperty;
 }
 
-export type UnixTimestampParameters = UnixTimestampBodyParam &
+export type PropertyUnixTimestampParameters = PropertyUnixTimestampBodyParam &
   RequestParameters;
 
-export interface UnixTimestampArrayBodyParam {
+export interface PropertyUnixTimestampArrayBodyParam {
   body: UnixTimestampArrayDatetimeProperty;
 }
 
-export type UnixTimestampArrayParameters = UnixTimestampArrayBodyParam &
+export type PropertyUnixTimestampArrayParameters =
+  PropertyUnixTimestampArrayBodyParam & RequestParameters;
+
+export interface HeaderDefaultHeaders {
+  value: string;
+}
+
+export interface HeaderDefaultHeaderParam {
+  headers: RawHttpHeadersInput & HeaderDefaultHeaders;
+}
+
+export type HeaderDefaultParameters = HeaderDefaultHeaderParam &
   RequestParameters;
 
-export interface DefaultHeaders {
+export interface HeaderRfc3339Headers {
   value: string;
 }
 
-export interface DefaultHeaderParam {
-  headers: RawHttpHeadersInput & DefaultHeaders;
+export interface HeaderRfc3339HeaderParam {
+  headers: RawHttpHeadersInput & HeaderRfc3339Headers;
 }
 
-export type DefaultParameters = DefaultHeaderParam & RequestParameters;
+export type HeaderRfc3339Parameters = HeaderRfc3339HeaderParam &
+  RequestParameters;
 
-export interface Rfc3339Headers {
+export interface HeaderRfc7231Headers {
   value: string;
 }
 
-export interface Rfc3339HeaderParam {
-  headers: RawHttpHeadersInput & Rfc3339Headers;
+export interface HeaderRfc7231HeaderParam {
+  headers: RawHttpHeadersInput & HeaderRfc7231Headers;
 }
 
-export type Rfc3339Parameters = Rfc3339HeaderParam & RequestParameters;
+export type HeaderRfc7231Parameters = HeaderRfc7231HeaderParam &
+  RequestParameters;
 
-export interface Rfc7231Headers {
-  value: string;
-}
-
-export interface Rfc7231HeaderParam {
-  headers: RawHttpHeadersInput & Rfc7231Headers;
-}
-
-export type Rfc7231Parameters = Rfc7231HeaderParam & RequestParameters;
-
-export interface UnixTimestampHeaders {
+export interface HeaderUnixTimestampHeaders {
   value: number;
 }
 
-export interface UnixTimestampHeaderParam {
-  headers: RawHttpHeadersInput & UnixTimestampHeaders;
+export interface HeaderUnixTimestampHeaderParam {
+  headers: RawHttpHeadersInput & HeaderUnixTimestampHeaders;
 }
 
-export type UnixTimestampParameters = UnixTimestampHeaderParam &
+export type HeaderUnixTimestampParameters = HeaderUnixTimestampHeaderParam &
   RequestParameters;
 
-export interface UnixTimestampArrayHeaders {
+export interface HeaderUnixTimestampArrayHeaders {
   /**  This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
   value: string;
 }
 
-export interface UnixTimestampArrayHeaderParam {
-  headers: RawHttpHeadersInput & UnixTimestampArrayHeaders;
+export interface HeaderUnixTimestampArrayHeaderParam {
+  headers: RawHttpHeadersInput & HeaderUnixTimestampArrayHeaders;
 }
 
-export type UnixTimestampArrayParameters = UnixTimestampArrayHeaderParam &
-  RequestParameters;
-export type DefaultParameters = RequestParameters;
-export type Rfc3339Parameters = RequestParameters;
-export type Rfc7231Parameters = RequestParameters;
-export type UnixTimestampParameters = RequestParameters;
+export type HeaderUnixTimestampArrayParameters =
+  HeaderUnixTimestampArrayHeaderParam & RequestParameters;
+export type ResponseHeaderDefaultParameters = RequestParameters;
+export type ResponseHeaderRfc3339Parameters = RequestParameters;
+export type ResponseHeaderRfc7231Parameters = RequestParameters;
+export type ResponseHeaderUnixTimestampParameters = RequestParameters;

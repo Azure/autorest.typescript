@@ -9,44 +9,36 @@ import {
   headerBase64urlArray,
 } from "../../api/header/index.js";
 import {
-  HeaderHeaderDefaultOptions,
-  HeaderHeaderBase64Options,
-  HeaderHeaderBase64urlOptions,
-  HeaderHeaderBase64urlArrayOptions,
+  HeaderDefaultOptions,
+  HeaderBase64Options,
+  HeaderBase64urlOptions,
+  HeaderBase64urlArrayOptions,
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  headerDefault: (
+  default: (value: Uint8Array, options?: HeaderDefaultOptions) => Promise<void>;
+  base64: (value: Uint8Array, options?: HeaderBase64Options) => Promise<void>;
+  base64url: (
     value: Uint8Array,
-    options?: HeaderHeaderDefaultOptions
+    options?: HeaderBase64urlOptions
   ) => Promise<void>;
-  headerBase64: (
-    value: Uint8Array,
-    options?: HeaderHeaderBase64Options
-  ) => Promise<void>;
-  headerBase64url: (
-    value: Uint8Array,
-    options?: HeaderHeaderBase64urlOptions
-  ) => Promise<void>;
-  headerBase64urlArray: (
+  base64urlArray: (
     value: Uint8Array[],
-    options?: HeaderHeaderBase64urlArrayOptions
+    options?: HeaderBase64urlArrayOptions
   ) => Promise<void>;
 }
 
 export function getHeader(context: BytesContext) {
   return {
-    headerDefault: (value: Uint8Array, options?: HeaderHeaderDefaultOptions) =>
+    default: (value: Uint8Array, options?: HeaderDefaultOptions) =>
       headerDefault(context, value, options),
-    headerBase64: (value: Uint8Array, options?: HeaderHeaderBase64Options) =>
+    base64: (value: Uint8Array, options?: HeaderBase64Options) =>
       headerBase64(context, value, options),
-    headerBase64url: (
-      value: Uint8Array,
-      options?: HeaderHeaderBase64urlOptions
-    ) => headerBase64url(context, value, options),
-    headerBase64urlArray: (
+    base64url: (value: Uint8Array, options?: HeaderBase64urlOptions) =>
+      headerBase64url(context, value, options),
+    base64urlArray: (
       value: Uint8Array[],
-      options?: HeaderHeaderBase64urlArrayOptions
+      options?: HeaderBase64urlArrayOptions
     ) => headerBase64urlArray(context, value, options),
   };
 }

@@ -8,23 +8,23 @@ import {
   aliasSpreadWithMultipleParameters,
 } from "../../api/alias/index.js";
 import {
-  AliasAliasSpreadAsRequestBodyOptions,
-  AliasAliasSpreadAsRequestParameterOptions,
-  AliasAliasSpreadWithMultipleParametersOptions,
+  AliasSpreadAsRequestBodyOptions,
+  AliasSpreadAsRequestParameterOptions,
+  AliasSpreadWithMultipleParametersOptions,
 } from "../../models/options.js";
 
 export interface AliasOperations {
-  aliasSpreadAsRequestBody: (
+  spreadAsRequestBody: (
     name: string,
-    options?: AliasAliasSpreadAsRequestBodyOptions
+    options?: AliasSpreadAsRequestBodyOptions
   ) => Promise<void>;
-  aliasSpreadAsRequestParameter: (
+  spreadAsRequestParameter: (
     id: string,
     xMsTestHeader: string,
     name: string,
-    options?: AliasAliasSpreadAsRequestParameterOptions
+    options?: AliasSpreadAsRequestParameterOptions
   ) => Promise<void>;
-  aliasSpreadWithMultipleParameters: (
+  spreadWithMultipleParameters: (
     id: string,
     xMsTestHeader: string,
     prop1: string,
@@ -33,24 +33,24 @@ export interface AliasOperations {
     prop4: string,
     prop5: string,
     prop6: string,
-    options?: AliasAliasSpreadWithMultipleParametersOptions
+    options?: AliasSpreadWithMultipleParametersOptions
   ) => Promise<void>;
 }
 
 export function getAlias(context: SpreadContext) {
   return {
-    aliasSpreadAsRequestBody: (
+    spreadAsRequestBody: (
       name: string,
-      options?: AliasAliasSpreadAsRequestBodyOptions
+      options?: AliasSpreadAsRequestBodyOptions
     ) => aliasSpreadAsRequestBody(context, name, options),
-    aliasSpreadAsRequestParameter: (
+    spreadAsRequestParameter: (
       id: string,
       xMsTestHeader: string,
       name: string,
-      options?: AliasAliasSpreadAsRequestParameterOptions
+      options?: AliasSpreadAsRequestParameterOptions
     ) =>
       aliasSpreadAsRequestParameter(context, id, xMsTestHeader, name, options),
-    aliasSpreadWithMultipleParameters: (
+    spreadWithMultipleParameters: (
       id: string,
       xMsTestHeader: string,
       prop1: string,
@@ -59,7 +59,7 @@ export function getAlias(context: SpreadContext) {
       prop4: string,
       prop5: string,
       prop6: string,
-      options?: AliasAliasSpreadWithMultipleParametersOptions
+      options?: AliasSpreadWithMultipleParametersOptions
     ) =>
       aliasSpreadWithMultipleParameters(
         context,

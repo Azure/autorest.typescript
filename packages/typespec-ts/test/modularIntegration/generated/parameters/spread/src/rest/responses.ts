@@ -4,21 +4,22 @@
 import { HttpResponse } from "@azure-rest/core-client";
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface SpreadAsRequestBody204Response extends HttpResponse {
+export interface ModelSpreadAsRequestBody204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface SpreadAsRequestBody204Response extends HttpResponse {
+export interface AliasSpreadAsRequestBody204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface SpreadAsRequestParameter204Response extends HttpResponse {
+export interface AliasSpreadAsRequestParameter204Response extends HttpResponse {
   status: "204";
 }
 
 /** There is no content to send for this request, but the headers may be useful. */
-export interface SpreadWithMultipleParameters204Response extends HttpResponse {
+export interface AliasSpreadWithMultipleParameters204Response
+  extends HttpResponse {
   status: "204";
 }

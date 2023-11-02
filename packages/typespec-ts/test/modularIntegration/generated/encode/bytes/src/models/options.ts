@@ -3,60 +3,51 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface QueryQueryDefaultOptions extends OperationOptions {}
+export interface QueryDefaultOptions extends OperationOptions {}
 
-export interface QueryQueryBase64Options extends OperationOptions {}
+export interface QueryBase64Options extends OperationOptions {}
 
-export interface QueryQueryBase64urlOptions extends OperationOptions {}
+export interface QueryBase64urlOptions extends OperationOptions {}
 
-export interface QueryQueryBase64urlArrayOptions extends OperationOptions {}
+export interface QueryBase64urlArrayOptions extends OperationOptions {}
 
-export interface PropertyPropertyDefaultOptions extends OperationOptions {}
+export interface PropertyDefaultOptions extends OperationOptions {}
 
-export interface PropertyPropertyBase64Options extends OperationOptions {}
+export interface PropertyBase64Options extends OperationOptions {}
 
-export interface PropertyPropertyBase64urlOptions extends OperationOptions {}
+export interface PropertyBase64urlOptions extends OperationOptions {}
 
-export interface PropertyPropertyBase64urlArrayOptions
-  extends OperationOptions {}
+export interface PropertyBase64urlArrayOptions extends OperationOptions {}
 
-export interface HeaderHeaderDefaultOptions extends OperationOptions {}
+export interface HeaderDefaultOptions extends OperationOptions {}
 
-export interface HeaderHeaderBase64Options extends OperationOptions {}
+export interface HeaderBase64Options extends OperationOptions {}
 
-export interface HeaderHeaderBase64urlOptions extends OperationOptions {}
+export interface HeaderBase64urlOptions extends OperationOptions {}
 
-export interface HeaderHeaderBase64urlArrayOptions extends OperationOptions {}
+export interface HeaderBase64urlArrayOptions extends OperationOptions {}
 
-export interface RequestBodyRequestBodyDefaultOptions
-  extends OperationOptions {}
+export interface RequestBodyDefaultOptions extends OperationOptions {}
 
-export interface RequestBodyRequestBodyOctetStreamOptions
-  extends OperationOptions {
+export interface RequestBodyOctetStreamOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface RequestBodyRequestBodyCustomContentTypeOptions
-  extends OperationOptions {
+export interface RequestBodyCustomContentTypeOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface RequestBodyRequestBodyBase64Options extends OperationOptions {}
+export interface RequestBodyBase64Options extends OperationOptions {}
 
-export interface RequestBodyRequestBodyBase64urlOptions
+export interface RequestBodyBase64urlOptions extends OperationOptions {}
+
+export interface ResponseBodyDefaultOptions extends OperationOptions {}
+
+export interface ResponseBodyOctetStreamOptions extends OperationOptions {}
+
+export interface ResponseBodyCustomContentTypeOptions
   extends OperationOptions {}
 
-export interface ResponseBodyResponseBodyDefaultOptions
-  extends OperationOptions {}
+export interface ResponseBodyBase64Options extends OperationOptions {}
 
-export interface ResponseBodyResponseBodyOctetStreamOptions
-  extends OperationOptions {}
-
-export interface ResponseBodyResponseBodyCustomContentTypeOptions
-  extends OperationOptions {}
-
-export interface ResponseBodyResponseBodyBase64Options
-  extends OperationOptions {}
-
-export interface ResponseBodyResponseBodyBase64urlOptions
-  extends OperationOptions {}
+export interface ResponseBodyBase64urlOptions extends OperationOptions {}

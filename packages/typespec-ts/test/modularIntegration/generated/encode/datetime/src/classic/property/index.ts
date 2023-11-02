@@ -17,57 +17,57 @@ import {
   propertyUnixTimestampArray,
 } from "../../api/property/index.js";
 import {
-  PropertyPropertyDefaultOptions,
-  PropertyPropertyRfc3339Options,
-  PropertyPropertyRfc7231Options,
-  PropertyPropertyUnixTimestampOptions,
-  PropertyPropertyUnixTimestampArrayOptions,
+  PropertyDefaultOptions,
+  PropertyRfc3339Options,
+  PropertyRfc7231Options,
+  PropertyUnixTimestampOptions,
+  PropertyUnixTimestampArrayOptions,
 } from "../../models/options.js";
 
 export interface PropertyOperations {
-  propertyDefault: (
+  default: (
     body: DefaultDatetimeProperty,
-    options?: PropertyPropertyDefaultOptions
+    options?: PropertyDefaultOptions
   ) => Promise<DefaultDatetimeProperty>;
-  propertyRfc3339: (
+  rfc3339: (
     body: Rfc3339DatetimeProperty,
-    options?: PropertyPropertyRfc3339Options
+    options?: PropertyRfc3339Options
   ) => Promise<Rfc3339DatetimeProperty>;
-  propertyRfc7231: (
+  rfc7231: (
     body: Rfc7231DatetimeProperty,
-    options?: PropertyPropertyRfc7231Options
+    options?: PropertyRfc7231Options
   ) => Promise<Rfc7231DatetimeProperty>;
-  propertyUnixTimestamp: (
+  unixTimestamp: (
     body: UnixTimestampDatetimeProperty,
-    options?: PropertyPropertyUnixTimestampOptions
+    options?: PropertyUnixTimestampOptions
   ) => Promise<UnixTimestampDatetimeProperty>;
-  propertyUnixTimestampArray: (
+  unixTimestampArray: (
     body: UnixTimestampArrayDatetimeProperty,
-    options?: PropertyPropertyUnixTimestampArrayOptions
+    options?: PropertyUnixTimestampArrayOptions
   ) => Promise<UnixTimestampArrayDatetimeProperty>;
 }
 
 export function getProperty(context: DatetimeContext) {
   return {
-    propertyDefault: (
+    default: (
       body: DefaultDatetimeProperty,
-      options?: PropertyPropertyDefaultOptions
+      options?: PropertyDefaultOptions
     ) => propertyDefault(context, body, options),
-    propertyRfc3339: (
+    rfc3339: (
       body: Rfc3339DatetimeProperty,
-      options?: PropertyPropertyRfc3339Options
+      options?: PropertyRfc3339Options
     ) => propertyRfc3339(context, body, options),
-    propertyRfc7231: (
+    rfc7231: (
       body: Rfc7231DatetimeProperty,
-      options?: PropertyPropertyRfc7231Options
+      options?: PropertyRfc7231Options
     ) => propertyRfc7231(context, body, options),
-    propertyUnixTimestamp: (
+    unixTimestamp: (
       body: UnixTimestampDatetimeProperty,
-      options?: PropertyPropertyUnixTimestampOptions
+      options?: PropertyUnixTimestampOptions
     ) => propertyUnixTimestamp(context, body, options),
-    propertyUnixTimestampArray: (
+    unixTimestampArray: (
       body: UnixTimestampArrayDatetimeProperty,
-      options?: PropertyPropertyUnixTimestampArrayOptions
+      options?: PropertyUnixTimestampArrayOptions
     ) => propertyUnixTimestampArray(context, body, options),
   };
 }

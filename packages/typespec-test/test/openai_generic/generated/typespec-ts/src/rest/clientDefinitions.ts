@@ -2,15 +2,14 @@
 // Licensed under the MIT license.
 
 import {
-  AudioTranscriptionsCreateParameters,
-  AudioTranslationsCreateParameters,
-  ChatCompletionsCreateParameters,
-  FineTuningJobsCreateParameters,
-  FineTuningJobsListParameters,
-  FineTuningJobsRetrieveParameters,
-  FineTuningJobsListEventsParameters,
-  FineTuningJobsCancelParameters,
+  TranscriptionsCreateParameters,
+  TranslationsCreateParameters,
   CompletionsCreateParameters,
+  JobsCreateParameters,
+  JobsListParameters,
+  JobsRetrieveParameters,
+  JobsListEventsParameters,
+  JobsCancelParameters,
   EditsCreateParameters,
   EmbeddingsCreateParameters,
   FilesListParameters,
@@ -32,24 +31,22 @@ import {
   ModerationsCreateParameters,
 } from "./parameters.js";
 import {
-  AudioTranscriptionsCreate200Response,
-  AudioTranscriptionsCreateDefaultResponse,
-  AudioTranslationsCreate200Response,
-  AudioTranslationsCreateDefaultResponse,
-  ChatCompletionsCreate200Response,
-  ChatCompletionsCreateDefaultResponse,
-  FineTuningJobsCreate200Response,
-  FineTuningJobsCreateDefaultResponse,
-  FineTuningJobsList200Response,
-  FineTuningJobsListDefaultResponse,
-  FineTuningJobsRetrieve200Response,
-  FineTuningJobsRetrieveDefaultResponse,
-  FineTuningJobsListEvents200Response,
-  FineTuningJobsListEventsDefaultResponse,
-  FineTuningJobsCancel200Response,
-  FineTuningJobsCancelDefaultResponse,
+  TranscriptionsCreate200Response,
+  TranscriptionsCreateDefaultResponse,
+  TranslationsCreate200Response,
+  TranslationsCreateDefaultResponse,
   CompletionsCreate200Response,
   CompletionsCreateDefaultResponse,
+  JobsCreate200Response,
+  JobsCreateDefaultResponse,
+  JobsList200Response,
+  JobsListDefaultResponse,
+  JobsRetrieve200Response,
+  JobsRetrieveDefaultResponse,
+  JobsListEvents200Response,
+  JobsListEventsDefaultResponse,
+  JobsCancel200Response,
+  JobsCancelDefaultResponse,
   EditsCreate200Response,
   EditsCreateDefaultResponse,
   EmbeddingsCreate200Response,
@@ -91,32 +88,31 @@ import {
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface AudioTranscriptionsCreate {
+export interface TranscriptionsCreate {
   post(
-    options: AudioTranscriptionsCreateParameters
+    options: TranscriptionsCreateParameters
   ): StreamableMethod<
-    | AudioTranscriptionsCreate200Response
-    | AudioTranscriptionsCreateDefaultResponse
+    TranscriptionsCreate200Response | TranscriptionsCreateDefaultResponse
   >;
 }
 
-export interface AudioTranslationsCreate {
+export interface TranslationsCreate {
   post(
-    options: AudioTranslationsCreateParameters
+    options: TranslationsCreateParameters
   ): StreamableMethod<
-    AudioTranslationsCreate200Response | AudioTranslationsCreateDefaultResponse
+    TranslationsCreate200Response | TranslationsCreateDefaultResponse
   >;
 }
 
-export interface ChatCompletionsCreate {
+export interface CompletionsCreate {
   post(
-    options?: ChatCompletionsCreateParameters
+    options?: CompletionsCreateParameters
   ): StreamableMethod<
-    ChatCompletionsCreate200Response | ChatCompletionsCreateDefaultResponse
+    CompletionsCreate200Response | CompletionsCreateDefaultResponse
   >;
 }
 
-export interface FineTuningJobsCreate {
+export interface JobsCreate {
   /**
    * Creates a job that fine-tunes a specified model from a given dataset.
    *
@@ -126,40 +122,31 @@ export interface FineTuningJobsCreate {
    * [Learn more about fine-tuning](/docs/guides/fine-tuning)
    */
   post(
-    options: FineTuningJobsCreateParameters
-  ): StreamableMethod<
-    FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
-  >;
+    options: JobsCreateParameters
+  ): StreamableMethod<JobsCreate200Response | JobsCreateDefaultResponse>;
   get(
-    options?: FineTuningJobsListParameters
+    options?: JobsListParameters
+  ): StreamableMethod<JobsList200Response | JobsListDefaultResponse>;
+}
+
+export interface JobsRetrieve {
+  get(
+    options?: JobsRetrieveParameters
+  ): StreamableMethod<JobsRetrieve200Response | JobsRetrieveDefaultResponse>;
+}
+
+export interface JobsListEvents {
+  get(
+    options?: JobsListEventsParameters
   ): StreamableMethod<
-    FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
+    JobsListEvents200Response | JobsListEventsDefaultResponse
   >;
 }
 
-export interface FineTuningJobsRetrieve {
-  get(
-    options?: FineTuningJobsRetrieveParameters
-  ): StreamableMethod<
-    FineTuningJobsRetrieve200Response | FineTuningJobsRetrieveDefaultResponse
-  >;
-}
-
-export interface FineTuningJobsListEvents {
-  get(
-    options?: FineTuningJobsListEventsParameters
-  ): StreamableMethod<
-    | FineTuningJobsListEvents200Response
-    | FineTuningJobsListEventsDefaultResponse
-  >;
-}
-
-export interface FineTuningJobsCancel {
+export interface JobsCancel {
   post(
-    options?: FineTuningJobsCancelParameters
-  ): StreamableMethod<
-    FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
-  >;
+    options?: JobsCancelParameters
+  ): StreamableMethod<JobsCancel200Response | JobsCancelDefaultResponse>;
 }
 
 export interface CompletionsCreate {
@@ -296,28 +283,28 @@ export interface ModerationsCreate {
 
 export interface Routes {
   /** Resource for '/audio/transcriptions' has methods for the following verbs: post */
-  (path: "/audio/transcriptions"): AudioTranscriptionsCreate;
+  (path: "/audio/transcriptions"): TranscriptionsCreate;
   /** Resource for '/audio/translations' has methods for the following verbs: post */
-  (path: "/audio/translations"): AudioTranslationsCreate;
+  (path: "/audio/translations"): TranslationsCreate;
   /** Resource for '/chat/completions' has methods for the following verbs: post */
-  (path: "/chat/completions"): ChatCompletionsCreate;
+  (path: "/chat/completions"): CompletionsCreate;
   /** Resource for '/fine_tuning/jobs' has methods for the following verbs: post, get */
-  (path: "/fine_tuning/jobs"): FineTuningJobsCreate;
+  (path: "/fine_tuning/jobs"): JobsCreate;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}' has methods for the following verbs: get */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}",
     fineTuningJobId: string
-  ): FineTuningJobsRetrieve;
+  ): JobsRetrieve;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}/events' has methods for the following verbs: get */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}/events",
     fineTuningJobId: string
-  ): FineTuningJobsListEvents;
+  ): JobsListEvents;
   /** Resource for '/fine_tuning/jobs/\{fine_tuning_job_id\}/cancel' has methods for the following verbs: post */
   (
     path: "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
     fineTuningJobId: string
-  ): FineTuningJobsCancel;
+  ): JobsCancel;
   /** Resource for '/completions' has methods for the following verbs: post */
   (path: "/completions"): CompletionsCreate;
   /** Resource for '/edits' has methods for the following verbs: post */

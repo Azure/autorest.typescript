@@ -10,46 +10,37 @@ import {
   responseBodyBase64url,
 } from "../../api/responseBody/index.js";
 import {
-  ResponseBodyResponseBodyDefaultOptions,
-  ResponseBodyResponseBodyOctetStreamOptions,
-  ResponseBodyResponseBodyCustomContentTypeOptions,
-  ResponseBodyResponseBodyBase64Options,
-  ResponseBodyResponseBodyBase64urlOptions,
+  ResponseBodyDefaultOptions,
+  ResponseBodyOctetStreamOptions,
+  ResponseBodyCustomContentTypeOptions,
+  ResponseBodyBase64Options,
+  ResponseBodyBase64urlOptions,
 } from "../../models/options.js";
 
 export interface ResponseBodyOperations {
-  responseBodyDefault: (
-    options?: ResponseBodyResponseBodyDefaultOptions
+  default: (options?: ResponseBodyDefaultOptions) => Promise<Uint8Array>;
+  octetStream: (
+    options?: ResponseBodyOctetStreamOptions
   ) => Promise<Uint8Array>;
-  responseBodyOctetStream: (
-    options?: ResponseBodyResponseBodyOctetStreamOptions
+  customContentType: (
+    options?: ResponseBodyCustomContentTypeOptions
   ) => Promise<Uint8Array>;
-  responseBodyCustomContentType: (
-    options?: ResponseBodyResponseBodyCustomContentTypeOptions
-  ) => Promise<Uint8Array>;
-  responseBodyBase64: (
-    options?: ResponseBodyResponseBodyBase64Options
-  ) => Promise<Uint8Array>;
-  responseBodyBase64url: (
-    options?: ResponseBodyResponseBodyBase64urlOptions
-  ) => Promise<Uint8Array>;
+  base64: (options?: ResponseBodyBase64Options) => Promise<Uint8Array>;
+  base64url: (options?: ResponseBodyBase64urlOptions) => Promise<Uint8Array>;
 }
 
 export function getResponseBody(context: BytesContext) {
   return {
-    responseBodyDefault: (options?: ResponseBodyResponseBodyDefaultOptions) =>
+    default: (options?: ResponseBodyDefaultOptions) =>
       responseBodyDefault(context, options),
-    responseBodyOctetStream: (
-      options?: ResponseBodyResponseBodyOctetStreamOptions
-    ) => responseBodyOctetStream(context, options),
-    responseBodyCustomContentType: (
-      options?: ResponseBodyResponseBodyCustomContentTypeOptions
-    ) => responseBodyCustomContentType(context, options),
-    responseBodyBase64: (options?: ResponseBodyResponseBodyBase64Options) =>
+    octetStream: (options?: ResponseBodyOctetStreamOptions) =>
+      responseBodyOctetStream(context, options),
+    customContentType: (options?: ResponseBodyCustomContentTypeOptions) =>
+      responseBodyCustomContentType(context, options),
+    base64: (options?: ResponseBodyBase64Options) =>
       responseBodyBase64(context, options),
-    responseBodyBase64url: (
-      options?: ResponseBodyResponseBodyBase64urlOptions
-    ) => responseBodyBase64url(context, options),
+    base64url: (options?: ResponseBodyBase64urlOptions) =>
+      responseBodyBase64url(context, options),
   };
 }
 

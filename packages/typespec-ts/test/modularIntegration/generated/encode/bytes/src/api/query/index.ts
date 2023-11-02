@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import {
-  Base64204Response,
-  Base64url204Response,
-  Base64urlArray204Response,
   BytesContext as Client,
-  Default204Response,
+  QueryBase64204Response,
+  QueryBase64url204Response,
+  QueryBase64urlArray204Response,
+  QueryDefault204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -14,17 +14,17 @@ import {
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
-  QueryQueryDefaultOptions,
-  QueryQueryBase64Options,
-  QueryQueryBase64urlOptions,
-  QueryQueryBase64urlArrayOptions,
+  QueryDefaultOptions,
+  QueryBase64Options,
+  QueryBase64urlOptions,
+  QueryBase64urlArrayOptions,
 } from "../../models/options.js";
 
 export function _queryDefaultSend(
   context: Client,
   value: Uint8Array,
-  options: QueryQueryDefaultOptions = { requestOptions: {} }
-): StreamableMethod<Default204Response> {
+  options: QueryDefaultOptions = { requestOptions: {} }
+): StreamableMethod<QueryDefault204Response> {
   return context
     .path("/encode/bytes/query/default")
     .get({
@@ -34,7 +34,7 @@ export function _queryDefaultSend(
 }
 
 export async function _queryDefaultDeserialize(
-  result: Default204Response
+  result: QueryDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -46,7 +46,7 @@ export async function _queryDefaultDeserialize(
 export async function queryDefault(
   context: Client,
   value: Uint8Array,
-  options: QueryQueryDefaultOptions = { requestOptions: {} }
+  options: QueryDefaultOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryDefaultSend(context, value, options);
   return _queryDefaultDeserialize(result);
@@ -55,8 +55,8 @@ export async function queryDefault(
 export function _queryBase64Send(
   context: Client,
   value: Uint8Array,
-  options: QueryQueryBase64Options = { requestOptions: {} }
-): StreamableMethod<Base64204Response> {
+  options: QueryBase64Options = { requestOptions: {} }
+): StreamableMethod<QueryBase64204Response> {
   return context
     .path("/encode/bytes/query/base64")
     .get({
@@ -66,7 +66,7 @@ export function _queryBase64Send(
 }
 
 export async function _queryBase64Deserialize(
-  result: Base64204Response
+  result: QueryBase64204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -78,7 +78,7 @@ export async function _queryBase64Deserialize(
 export async function queryBase64(
   context: Client,
   value: Uint8Array,
-  options: QueryQueryBase64Options = { requestOptions: {} }
+  options: QueryBase64Options = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryBase64Send(context, value, options);
   return _queryBase64Deserialize(result);
@@ -87,8 +87,8 @@ export async function queryBase64(
 export function _queryBase64urlSend(
   context: Client,
   value: Uint8Array,
-  options: QueryQueryBase64urlOptions = { requestOptions: {} }
-): StreamableMethod<Base64url204Response> {
+  options: QueryBase64urlOptions = { requestOptions: {} }
+): StreamableMethod<QueryBase64url204Response> {
   return context
     .path("/encode/bytes/query/base64url")
     .get({
@@ -98,7 +98,7 @@ export function _queryBase64urlSend(
 }
 
 export async function _queryBase64urlDeserialize(
-  result: Base64url204Response
+  result: QueryBase64url204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -110,7 +110,7 @@ export async function _queryBase64urlDeserialize(
 export async function queryBase64url(
   context: Client,
   value: Uint8Array,
-  options: QueryQueryBase64urlOptions = { requestOptions: {} }
+  options: QueryBase64urlOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryBase64urlSend(context, value, options);
   return _queryBase64urlDeserialize(result);
@@ -119,8 +119,8 @@ export async function queryBase64url(
 export function _queryBase64urlArraySend(
   context: Client,
   value: Uint8Array[],
-  options: QueryQueryBase64urlArrayOptions = { requestOptions: {} }
-): StreamableMethod<Base64urlArray204Response> {
+  options: QueryBase64urlArrayOptions = { requestOptions: {} }
+): StreamableMethod<QueryBase64urlArray204Response> {
   return context
     .path("/encode/bytes/query/base64url-array")
     .get({
@@ -132,7 +132,7 @@ export function _queryBase64urlArraySend(
 }
 
 export async function _queryBase64urlArrayDeserialize(
-  result: Base64urlArray204Response
+  result: QueryBase64urlArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -144,7 +144,7 @@ export async function _queryBase64urlArrayDeserialize(
 export async function queryBase64urlArray(
   context: Client,
   value: Uint8Array[],
-  options: QueryQueryBase64urlArrayOptions = { requestOptions: {} }
+  options: QueryBase64urlArrayOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _queryBase64urlArraySend(context, value, options);
   return _queryBase64urlArrayDeserialize(result);

@@ -2,56 +2,58 @@
 // Licensed under the MIT license.
 
 import {
-  SpreadAsRequestBodyParameters,
-  SpreadAsRequestParameterParameters,
-  SpreadWithMultipleParametersParameters,
+  ModelSpreadAsRequestBodyParameters,
+  AliasSpreadAsRequestBodyParameters,
+  AliasSpreadAsRequestParameterParameters,
+  AliasSpreadWithMultipleParametersParameters,
 } from "./parameters.js";
 import {
-  SpreadAsRequestBody204Response,
-  SpreadAsRequestParameter204Response,
-  SpreadWithMultipleParameters204Response,
+  ModelSpreadAsRequestBody204Response,
+  AliasSpreadAsRequestBody204Response,
+  AliasSpreadAsRequestParameter204Response,
+  AliasSpreadWithMultipleParameters204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface SpreadAsRequestBody {
+export interface ModelSpreadAsRequestBody {
   put(
-    options?: SpreadAsRequestBodyParameters
-  ): StreamableMethod<SpreadAsRequestBody204Response>;
+    options?: ModelSpreadAsRequestBodyParameters
+  ): StreamableMethod<ModelSpreadAsRequestBody204Response>;
 }
 
-export interface SpreadAsRequestBody {
+export interface AliasSpreadAsRequestBody {
   put(
-    options?: SpreadAsRequestBodyParameters
-  ): StreamableMethod<SpreadAsRequestBody204Response>;
+    options?: AliasSpreadAsRequestBodyParameters
+  ): StreamableMethod<AliasSpreadAsRequestBody204Response>;
 }
 
-export interface SpreadAsRequestParameter {
+export interface AliasSpreadAsRequestParameter {
   put(
-    options: SpreadAsRequestParameterParameters
-  ): StreamableMethod<SpreadAsRequestParameter204Response>;
+    options: AliasSpreadAsRequestParameterParameters
+  ): StreamableMethod<AliasSpreadAsRequestParameter204Response>;
 }
 
-export interface SpreadWithMultipleParameters {
+export interface AliasSpreadWithMultipleParameters {
   put(
-    options: SpreadWithMultipleParametersParameters
-  ): StreamableMethod<SpreadWithMultipleParameters204Response>;
+    options: AliasSpreadWithMultipleParametersParameters
+  ): StreamableMethod<AliasSpreadWithMultipleParameters204Response>;
 }
 
 export interface Routes {
   /** Resource for '/parameters/spread/model/request-body' has methods for the following verbs: put */
-  (path: "/parameters/spread/model/request-body"): SpreadAsRequestBody;
+  (path: "/parameters/spread/model/request-body"): ModelSpreadAsRequestBody;
   /** Resource for '/parameters/spread/alias/request-body' has methods for the following verbs: put */
-  (path: "/parameters/spread/alias/request-body"): SpreadAsRequestBody;
+  (path: "/parameters/spread/alias/request-body"): AliasSpreadAsRequestBody;
   /** Resource for '/parameters/spread/alias/request-parameter/\{id\}' has methods for the following verbs: put */
   (
     path: "/parameters/spread/alias/request-parameter/{id}",
     id: string
-  ): SpreadAsRequestParameter;
+  ): AliasSpreadAsRequestParameter;
   /** Resource for '/parameters/spread/alias/multiple-parameters/\{id\}' has methods for the following verbs: put */
   (
     path: "/parameters/spread/alias/multiple-parameters/{id}",
     id: string
-  ): SpreadWithMultipleParameters;
+  ): AliasSpreadWithMultipleParameters;
 }
 
 export type SpreadContext = Client & {

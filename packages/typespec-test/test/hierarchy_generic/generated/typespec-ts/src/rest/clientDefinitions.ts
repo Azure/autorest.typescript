@@ -4,15 +4,13 @@
 import {
   Op1Parameters,
   BOp1Parameters,
-  BecOp1Parameters,
-  BcOp1Parameters,
+  COp1Parameters,
   DOp1Parameters,
 } from "./parameters.js";
 import {
   Op1204Response,
   BOp1204Response,
-  BecOp1204Response,
-  BcOp1204Response,
+  COp1204Response,
   DOp1204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
@@ -25,12 +23,12 @@ export interface BOp1 {
   post(options: BOp1Parameters): StreamableMethod<BOp1204Response>;
 }
 
-export interface BECOp1 {
-  post(options: BecOp1Parameters): StreamableMethod<BecOp1204Response>;
+export interface COp1 {
+  post(options: COp1Parameters): StreamableMethod<COp1204Response>;
 }
 
-export interface BCOp1 {
-  post(options: BcOp1Parameters): StreamableMethod<BcOp1204Response>;
+export interface COp1 {
+  post(options: COp1Parameters): StreamableMethod<COp1204Response>;
 }
 
 export interface DOp1 {
@@ -43,9 +41,9 @@ export interface Routes {
   /** Resource for '/b' has methods for the following verbs: post */
   (path: "/b"): BOp1;
   /** Resource for '/b/e' has methods for the following verbs: post */
-  (path: "/b/e"): BECOp1;
+  (path: "/b/e"): COp1;
   /** Resource for '/b/c' has methods for the following verbs: post */
-  (path: "/b/c"): BCOp1;
+  (path: "/b/c"): COp1;
   /** Resource for '/d' has methods for the following verbs: post */
   (path: "/d"): DOp1;
 }

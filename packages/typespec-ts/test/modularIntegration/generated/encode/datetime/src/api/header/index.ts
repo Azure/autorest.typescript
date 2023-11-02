@@ -4,29 +4,29 @@
 import {
   buildCsvCollection,
   DatetimeContext as Client,
-  Default204Response,
-  Rfc3339204Response,
-  Rfc7231204Response,
-  UnixTimestamp204Response,
-  UnixTimestampArray204Response,
+  HeaderDefault204Response,
+  HeaderRfc3339204Response,
+  HeaderRfc7231204Response,
+  HeaderUnixTimestamp204Response,
+  HeaderUnixTimestampArray204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  HeaderHeaderDefaultOptions,
-  HeaderHeaderRfc3339Options,
-  HeaderHeaderRfc7231Options,
-  HeaderHeaderUnixTimestampOptions,
-  HeaderHeaderUnixTimestampArrayOptions,
+  HeaderDefaultOptions,
+  HeaderRfc3339Options,
+  HeaderRfc7231Options,
+  HeaderUnixTimestampOptions,
+  HeaderUnixTimestampArrayOptions,
 } from "../../models/options.js";
 
 export function _headerDefaultSend(
   context: Client,
   value: Date,
-  options: HeaderHeaderDefaultOptions = { requestOptions: {} }
-): StreamableMethod<Default204Response> {
+  options: HeaderDefaultOptions = { requestOptions: {} }
+): StreamableMethod<HeaderDefault204Response> {
   return context
     .path("/encode/datetime/header/default")
     .get({
@@ -36,7 +36,7 @@ export function _headerDefaultSend(
 }
 
 export async function _headerDefaultDeserialize(
-  result: Default204Response
+  result: HeaderDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -48,7 +48,7 @@ export async function _headerDefaultDeserialize(
 export async function headerDefault(
   context: Client,
   value: Date,
-  options: HeaderHeaderDefaultOptions = { requestOptions: {} }
+  options: HeaderDefaultOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerDefaultSend(context, value, options);
   return _headerDefaultDeserialize(result);
@@ -57,8 +57,8 @@ export async function headerDefault(
 export function _headerRfc3339Send(
   context: Client,
   value: Date,
-  options: HeaderHeaderRfc3339Options = { requestOptions: {} }
-): StreamableMethod<Rfc3339204Response> {
+  options: HeaderRfc3339Options = { requestOptions: {} }
+): StreamableMethod<HeaderRfc3339204Response> {
   return context
     .path("/encode/datetime/header/rfc3339")
     .get({
@@ -68,7 +68,7 @@ export function _headerRfc3339Send(
 }
 
 export async function _headerRfc3339Deserialize(
-  result: Rfc3339204Response
+  result: HeaderRfc3339204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -80,7 +80,7 @@ export async function _headerRfc3339Deserialize(
 export async function headerRfc3339(
   context: Client,
   value: Date,
-  options: HeaderHeaderRfc3339Options = { requestOptions: {} }
+  options: HeaderRfc3339Options = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerRfc3339Send(context, value, options);
   return _headerRfc3339Deserialize(result);
@@ -89,8 +89,8 @@ export async function headerRfc3339(
 export function _headerRfc7231Send(
   context: Client,
   value: Date,
-  options: HeaderHeaderRfc7231Options = { requestOptions: {} }
-): StreamableMethod<Rfc7231204Response> {
+  options: HeaderRfc7231Options = { requestOptions: {} }
+): StreamableMethod<HeaderRfc7231204Response> {
   return context
     .path("/encode/datetime/header/rfc7231")
     .get({
@@ -100,7 +100,7 @@ export function _headerRfc7231Send(
 }
 
 export async function _headerRfc7231Deserialize(
-  result: Rfc7231204Response
+  result: HeaderRfc7231204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -112,7 +112,7 @@ export async function _headerRfc7231Deserialize(
 export async function headerRfc7231(
   context: Client,
   value: Date,
-  options: HeaderHeaderRfc7231Options = { requestOptions: {} }
+  options: HeaderRfc7231Options = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerRfc7231Send(context, value, options);
   return _headerRfc7231Deserialize(result);
@@ -121,8 +121,8 @@ export async function headerRfc7231(
 export function _headerUnixTimestampSend(
   context: Client,
   value: Date,
-  options: HeaderHeaderUnixTimestampOptions = { requestOptions: {} }
-): StreamableMethod<UnixTimestamp204Response> {
+  options: HeaderUnixTimestampOptions = { requestOptions: {} }
+): StreamableMethod<HeaderUnixTimestamp204Response> {
   return context
     .path("/encode/datetime/header/unix-timestamp")
     .get({
@@ -132,7 +132,7 @@ export function _headerUnixTimestampSend(
 }
 
 export async function _headerUnixTimestampDeserialize(
-  result: UnixTimestamp204Response
+  result: HeaderUnixTimestamp204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -144,7 +144,7 @@ export async function _headerUnixTimestampDeserialize(
 export async function headerUnixTimestamp(
   context: Client,
   value: Date,
-  options: HeaderHeaderUnixTimestampOptions = { requestOptions: {} }
+  options: HeaderUnixTimestampOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerUnixTimestampSend(context, value, options);
   return _headerUnixTimestampDeserialize(result);
@@ -153,8 +153,8 @@ export async function headerUnixTimestamp(
 export function _headerUnixTimestampArraySend(
   context: Client,
   value: Date[],
-  options: HeaderHeaderUnixTimestampArrayOptions = { requestOptions: {} }
-): StreamableMethod<UnixTimestampArray204Response> {
+  options: HeaderUnixTimestampArrayOptions = { requestOptions: {} }
+): StreamableMethod<HeaderUnixTimestampArray204Response> {
   return context
     .path("/encode/datetime/header/unix-timestamp-array")
     .get({
@@ -166,7 +166,7 @@ export function _headerUnixTimestampArraySend(
 }
 
 export async function _headerUnixTimestampArrayDeserialize(
-  result: UnixTimestampArray204Response
+  result: HeaderUnixTimestampArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -178,7 +178,7 @@ export async function _headerUnixTimestampArrayDeserialize(
 export async function headerUnixTimestampArray(
   context: Client,
   value: Date[],
-  options: HeaderHeaderUnixTimestampArrayOptions = { requestOptions: {} }
+  options: HeaderUnixTimestampArrayOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _headerUnixTimestampArraySend(context, value, options);
   return _headerUnixTimestampArrayDeserialize(result);

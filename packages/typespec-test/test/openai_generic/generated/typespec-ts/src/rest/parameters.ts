@@ -18,75 +18,72 @@ import {
   CreateModerationRequest,
 } from "./models.js";
 
-export interface AudioTranscriptionsCreateBodyParam {
+export interface TranscriptionsCreateBodyParam {
   body: CreateTranscriptionRequest;
 }
 
-export interface AudioTranscriptionsCreateMediaTypesParam {
+export interface TranscriptionsCreateMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type AudioTranscriptionsCreateParameters =
-  AudioTranscriptionsCreateMediaTypesParam &
-    AudioTranscriptionsCreateBodyParam &
+export type TranscriptionsCreateParameters =
+  TranscriptionsCreateMediaTypesParam &
+    TranscriptionsCreateBodyParam &
     RequestParameters;
 
-export interface AudioTranslationsCreateBodyParam {
+export interface TranslationsCreateBodyParam {
   body: CreateTranslationRequest;
 }
 
-export interface AudioTranslationsCreateMediaTypesParam {
+export interface TranslationsCreateMediaTypesParam {
   contentType: "multipart/form-data";
 }
 
-export type AudioTranslationsCreateParameters =
-  AudioTranslationsCreateMediaTypesParam &
-    AudioTranslationsCreateBodyParam &
-    RequestParameters;
+export type TranslationsCreateParameters = TranslationsCreateMediaTypesParam &
+  TranslationsCreateBodyParam &
+  RequestParameters;
 
-export interface ChatCompletionsCreateBodyParam {
+export interface CompletionsCreateBodyParam {
   body?: CreateChatCompletionRequest;
 }
 
-export type ChatCompletionsCreateParameters = ChatCompletionsCreateBodyParam &
+export type CompletionsCreateParameters = CompletionsCreateBodyParam &
   RequestParameters;
 
-export interface FineTuningJobsCreateBodyParam {
+export interface JobsCreateBodyParam {
   body: CreateFineTuningJobRequest;
 }
 
-export type FineTuningJobsCreateParameters = FineTuningJobsCreateBodyParam &
-  RequestParameters;
+export type JobsCreateParameters = JobsCreateBodyParam & RequestParameters;
 
-export interface FineTuningJobsListQueryParamProperties {
+export interface JobsListQueryParamProperties {
   /** Identifier for the last job from the previous pagination request. */
   after?: string;
   /** Number of fine-tuning jobs to retrieve. */
   limit?: number;
 }
 
-export interface FineTuningJobsListQueryParam {
-  queryParameters?: FineTuningJobsListQueryParamProperties;
+export interface JobsListQueryParam {
+  queryParameters?: JobsListQueryParamProperties;
 }
 
-export type FineTuningJobsListParameters = FineTuningJobsListQueryParam &
-  RequestParameters;
-export type FineTuningJobsRetrieveParameters = RequestParameters;
+export type JobsListParameters = JobsListQueryParam & RequestParameters;
+export type JobsRetrieveParameters = RequestParameters;
 
-export interface FineTuningJobsListEventsQueryParamProperties {
+export interface JobsListEventsQueryParamProperties {
   /** Identifier for the last event from the previous pagination request. */
   after?: string;
   /** Number of events to retrieve. */
   limit?: number;
 }
 
-export interface FineTuningJobsListEventsQueryParam {
-  queryParameters?: FineTuningJobsListEventsQueryParamProperties;
+export interface JobsListEventsQueryParam {
+  queryParameters?: JobsListEventsQueryParamProperties;
 }
 
-export type FineTuningJobsListEventsParameters =
-  FineTuningJobsListEventsQueryParam & RequestParameters;
-export type FineTuningJobsCancelParameters = RequestParameters;
+export type JobsListEventsParameters = JobsListEventsQueryParam &
+  RequestParameters;
+export type JobsCancelParameters = RequestParameters;
 
 export interface CompletionsCreateBodyParam {
   body?: CreateCompletionRequest;

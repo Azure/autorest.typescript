@@ -3,14 +3,14 @@
 
 import { OperationOptions } from "@azure-rest/core-client";
 
-export interface QueryQueryMultiOptions extends OperationOptions {}
+export interface QueryMultiOptions extends OperationOptions {}
 
-export interface QueryQuerySsvOptions extends OperationOptions {}
+export interface QuerySsvOptions extends OperationOptions {}
 
-export interface QueryQueryTsvOptions extends OperationOptions {}
+export interface QueryTsvOptions extends OperationOptions {}
 
-export interface QueryQueryPipesOptions extends OperationOptions {}
+export interface QueryPipesOptions extends OperationOptions {}
 
-export interface QueryQueryCsvOptions extends OperationOptions {}
+export interface QueryCsvOptions extends OperationOptions {}
 
-export interface HeaderHeaderCsvOptions extends OperationOptions {}
+export interface HeaderCsvOptions extends OperationOptions {}

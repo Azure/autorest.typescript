@@ -28,13 +28,9 @@
       "types": "./types/src/api/b/index.d.ts",
       "import": "./dist-esm/src/api/b/index.js"
     },
-    "./api/b/e/c": {
-      "types": "./types/src/api/b/e/c/index.d.ts",
-      "import": "./dist-esm/src/api/b/e/c/index.js"
-    },
-    "./api/b/c": {
-      "types": "./types/src/api/b/c/index.d.ts",
-      "import": "./dist-esm/src/api/b/c/index.js"
+    "./api/c": {
+      "types": "./types/src/api/c/index.d.ts",
+      "import": "./dist-esm/src/api/c/index.js"
     },
     "./api/d": {
       "types": "./types/src/api/d/index.d.ts",

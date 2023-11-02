@@ -27,89 +27,89 @@ import {
 } from "./outputModels.js";
 
 /** The request has succeeded. */
-export interface AudioTranscriptionsCreate200Response extends HttpResponse {
+export interface TranscriptionsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateTranscriptionResponseOutput;
 }
 
-export interface AudioTranscriptionsCreateDefaultResponse extends HttpResponse {
+export interface TranscriptionsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface AudioTranslationsCreate200Response extends HttpResponse {
+export interface TranslationsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateTranslationResponseOutput;
 }
 
-export interface AudioTranslationsCreateDefaultResponse extends HttpResponse {
+export interface TranslationsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface ChatCompletionsCreate200Response extends HttpResponse {
+export interface CompletionsCreate200Response extends HttpResponse {
   status: "200";
   body: CreateChatCompletionResponseOutput;
 }
 
-export interface ChatCompletionsCreateDefaultResponse extends HttpResponse {
+export interface CompletionsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface FineTuningJobsCreate200Response extends HttpResponse {
+export interface JobsCreate200Response extends HttpResponse {
   status: "200";
   body: FineTuningJobOutput;
 }
 
-export interface FineTuningJobsCreateDefaultResponse extends HttpResponse {
+export interface JobsCreateDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface FineTuningJobsList200Response extends HttpResponse {
+export interface JobsList200Response extends HttpResponse {
   status: "200";
   body: ListPaginatedFineTuningJobsResponseOutput;
 }
 
-export interface FineTuningJobsListDefaultResponse extends HttpResponse {
+export interface JobsListDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface FineTuningJobsRetrieve200Response extends HttpResponse {
+export interface JobsRetrieve200Response extends HttpResponse {
   status: "200";
   body: FineTuningJobOutput;
 }
 
-export interface FineTuningJobsRetrieveDefaultResponse extends HttpResponse {
+export interface JobsRetrieveDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface FineTuningJobsListEvents200Response extends HttpResponse {
+export interface JobsListEvents200Response extends HttpResponse {
   status: "200";
   body: ListFineTuningJobEventsResponseOutput;
 }
 
-export interface FineTuningJobsListEventsDefaultResponse extends HttpResponse {
+export interface JobsListEventsDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }
 
 /** The request has succeeded. */
-export interface FineTuningJobsCancel200Response extends HttpResponse {
+export interface JobsCancel200Response extends HttpResponse {
   status: "200";
   body: FineTuningJobOutput;
 }
 
-export interface FineTuningJobsCancelDefaultResponse extends HttpResponse {
+export interface JobsCancelDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponseOutput;
 }

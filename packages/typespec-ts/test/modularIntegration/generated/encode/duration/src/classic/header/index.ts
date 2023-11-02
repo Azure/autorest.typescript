@@ -10,54 +10,42 @@ import {
   headerFloatSeconds,
 } from "../../api/header/index.js";
 import {
-  HeaderHeaderDefaultOptions,
-  HeaderHeaderIso8601Options,
-  HeaderHeaderIso8601ArrayOptions,
-  HeaderHeaderInt32SecondsOptions,
-  HeaderHeaderFloatSecondsOptions,
+  HeaderDefaultOptions,
+  HeaderIso8601Options,
+  HeaderIso8601ArrayOptions,
+  HeaderInt32SecondsOptions,
+  HeaderFloatSecondsOptions,
 } from "../../models/options.js";
 
 export interface HeaderOperations {
-  headerDefault: (
-    duration: string,
-    options?: HeaderHeaderDefaultOptions
-  ) => Promise<void>;
-  headerIso8601: (
-    duration: string,
-    options?: HeaderHeaderIso8601Options
-  ) => Promise<void>;
-  headerIso8601Array: (
+  default: (duration: string, options?: HeaderDefaultOptions) => Promise<void>;
+  iso8601: (duration: string, options?: HeaderIso8601Options) => Promise<void>;
+  iso8601Array: (
     duration: string[],
-    options?: HeaderHeaderIso8601ArrayOptions
+    options?: HeaderIso8601ArrayOptions
   ) => Promise<void>;
-  headerInt32Seconds: (
+  int32Seconds: (
     duration: number,
-    options?: HeaderHeaderInt32SecondsOptions
+    options?: HeaderInt32SecondsOptions
   ) => Promise<void>;
-  headerFloatSeconds: (
+  floatSeconds: (
     duration: number,
-    options?: HeaderHeaderFloatSecondsOptions
+    options?: HeaderFloatSecondsOptions
   ) => Promise<void>;
 }
 
 export function getHeader(context: DurationContext) {
   return {
-    headerDefault: (duration: string, options?: HeaderHeaderDefaultOptions) =>
+    default: (duration: string, options?: HeaderDefaultOptions) =>
       headerDefault(context, duration, options),
-    headerIso8601: (duration: string, options?: HeaderHeaderIso8601Options) =>
+    iso8601: (duration: string, options?: HeaderIso8601Options) =>
       headerIso8601(context, duration, options),
-    headerIso8601Array: (
-      duration: string[],
-      options?: HeaderHeaderIso8601ArrayOptions
-    ) => headerIso8601Array(context, duration, options),
-    headerInt32Seconds: (
-      duration: number,
-      options?: HeaderHeaderInt32SecondsOptions
-    ) => headerInt32Seconds(context, duration, options),
-    headerFloatSeconds: (
-      duration: number,
-      options?: HeaderHeaderFloatSecondsOptions
-    ) => headerFloatSeconds(context, duration, options),
+    iso8601Array: (duration: string[], options?: HeaderIso8601ArrayOptions) =>
+      headerIso8601Array(context, duration, options),
+    int32Seconds: (duration: number, options?: HeaderInt32SecondsOptions) =>
+      headerInt32Seconds(context, duration, options),
+    floatSeconds: (duration: number, options?: HeaderFloatSecondsOptions) =>
+      headerFloatSeconds(context, duration, options),
   };
 }
 

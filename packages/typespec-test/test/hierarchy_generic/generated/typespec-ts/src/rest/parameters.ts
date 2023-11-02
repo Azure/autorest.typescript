@@ -16,17 +16,17 @@ export interface BOp1BodyParam {
 
 export type BOp1Parameters = BOp1BodyParam & RequestParameters;
 
-export interface BecOp1BodyParam {
+export interface COp1BodyParam {
   body: Bea;
 }
 
-export type BecOp1Parameters = BecOp1BodyParam & RequestParameters;
+export type COp1Parameters = COp1BodyParam & RequestParameters;
 
-export interface BcOp1BodyParam {
+export interface COp1BodyParam {
   body: Ba;
 }
 
-export type BcOp1Parameters = BcOp1BodyParam & RequestParameters;
+export type COp1Parameters = COp1BodyParam & RequestParameters;
 
 export interface DOp1BodyParam {
   body: A;
