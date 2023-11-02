@@ -23,10 +23,6 @@
     "./models": {
       "types": "./types/src/models/index.d.ts",
       "import": "./dist-esm/src/models/index.js"
-    },
-    "./api/genericChatClient": {
-      "types": "./types/src/api/genericChatClient/index.d.ts",
-      "import": "./dist-esm/src/api/genericChatClient/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",
