@@ -6,25 +6,22 @@ import {
   ChatCompletionChunk,
   ChatCompletionOptions,
   ChatCompletion,
-} from "../../models/models.js";
+} from "../models/models.js";
 import {
   ChatProtocolContext as Client,
   Create200Response,
   CreateStreaming200Response,
-} from "../../rest/index.js";
+} from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  GenericChatClientCreateStreamingOptions,
-  GenericChatClientCreateOptions,
-} from "../../models/options.js";
+import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
 
 export function _createStreamingSend(
   context: Client,
   body: StreamingChatCompletionOptions,
-  options: GenericChatClientCreateStreamingOptions = { requestOptions: {} }
+  options: CreateStreamingOptions = { requestOptions: {} }
 ): StreamableMethod<CreateStreaming200Response> {
   return context
     .path("/chat")
@@ -65,7 +62,7 @@ export async function _createStreamingDeserialize(
 export async function createStreaming(
   context: Client,
   body: StreamingChatCompletionOptions,
-  options: GenericChatClientCreateStreamingOptions = { requestOptions: {} }
+  options: CreateStreamingOptions = { requestOptions: {} }
 ): Promise<ChatCompletionChunk> {
   const result = await _createStreamingSend(context, body, options);
   return _createStreamingDeserialize(result);
@@ -74,7 +71,7 @@ export async function createStreaming(
 export function _createSend(
   context: Client,
   body: ChatCompletionOptions,
-  options: GenericChatClientCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): StreamableMethod<Create200Response> {
   return context
     .path("/chat")
@@ -111,7 +108,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: ChatCompletionOptions,
-  options: GenericChatClientCreateOptions = { requestOptions: {} }
+  options: CreateOptions = { requestOptions: {} }
 ): Promise<ChatCompletion> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

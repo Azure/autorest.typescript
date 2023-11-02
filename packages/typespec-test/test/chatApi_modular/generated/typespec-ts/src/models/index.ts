@@ -13,7 +13,4 @@ export {
   ChatCompletion,
   ChatChoice,
 } from "./models.js";
-export {
-  GenericChatClientCreateStreamingOptions,
-  GenericChatClientCreateOptions,
-} from "./options.js";
+export { CreateStreamingOptions, CreateOptions } from "./options.js";
