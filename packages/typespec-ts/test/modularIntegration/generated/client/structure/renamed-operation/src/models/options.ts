@@ -9,11 +9,8 @@ export interface GroupRenamedFourOptions extends OperationOptions {}
 
 export interface GroupRenamedSixOptions extends OperationOptions {}
 
-export interface ClientStructureRenamedOperationRenamedOneOptions
-  extends OperationOptions {}
+export interface RenamedOneOptions extends OperationOptions {}
 
-export interface ClientStructureRenamedOperationRenamedThreeOptions
-  extends OperationOptions {}
+export interface RenamedThreeOptions extends OperationOptions {}
 
-export interface ClientStructureRenamedOperationRenamedFiveOptions
-  extends OperationOptions {}
+export interface RenamedFiveOptions extends OperationOptions {}

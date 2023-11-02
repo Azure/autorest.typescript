@@ -773,10 +773,10 @@ function emitBasicOperation(
     );
   });
 
-  const namespaceHierarchies = getOperationNamespaceInterfaceName(
-    context,
-    operation
-  );
+  const namespaceHierarchies =
+    context.rlcOptions?.hierarchyClient === true
+      ? getOperationNamespaceInterfaceName(context, operation)
+      : [];
 
   if (
     namespaceHierarchies.length === 0 &&
