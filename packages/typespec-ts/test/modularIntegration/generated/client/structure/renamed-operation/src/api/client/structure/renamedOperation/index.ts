@@ -2,24 +2,26 @@
 // Licensed under the MIT license.
 
 import {
-  Five204Response,
+  BarFive204Response,
+  FooThree204Response,
   One204Response,
   ServiceContext as Client,
-  Three204Response,
-} from "../rest/index.js";
+} from "../../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import {
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
-} from "../models/options.js";
+  ClientStructureRenamedOperationRenamedOneOptions,
+  ClientStructureRenamedOperationRenamedThreeOptions,
+  ClientStructureRenamedOperationRenamedFiveOptions,
+} from "../../../../models/options.js";
 
 export function _renamedOneSend(
   context: Client,
-  options: RenamedOneOptions = { requestOptions: {} }
+  options: ClientStructureRenamedOperationRenamedOneOptions = {
+    requestOptions: {},
+  }
 ): StreamableMethod<One204Response> {
   return context
     .path("/one")
@@ -38,7 +40,9 @@ export async function _renamedOneDeserialize(
 
 export async function renamedOne(
   context: Client,
-  options: RenamedOneOptions = { requestOptions: {} }
+  options: ClientStructureRenamedOperationRenamedOneOptions = {
+    requestOptions: {},
+  }
 ): Promise<void> {
   const result = await _renamedOneSend(context, options);
   return _renamedOneDeserialize(result);
@@ -46,15 +50,17 @@ export async function renamedOne(
 
 export function _renamedThreeSend(
   context: Client,
-  options: RenamedThreeOptions = { requestOptions: {} }
-): StreamableMethod<Three204Response> {
+  options: ClientStructureRenamedOperationRenamedThreeOptions = {
+    requestOptions: {},
+  }
+): StreamableMethod<FooThree204Response> {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedThreeDeserialize(
-  result: Three204Response
+  result: FooThree204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -65,7 +71,9 @@ export async function _renamedThreeDeserialize(
 
 export async function renamedThree(
   context: Client,
-  options: RenamedThreeOptions = { requestOptions: {} }
+  options: ClientStructureRenamedOperationRenamedThreeOptions = {
+    requestOptions: {},
+  }
 ): Promise<void> {
   const result = await _renamedThreeSend(context, options);
   return _renamedThreeDeserialize(result);
@@ -73,15 +81,17 @@ export async function renamedThree(
 
 export function _renamedFiveSend(
   context: Client,
-  options: RenamedFiveOptions = { requestOptions: {} }
-): StreamableMethod<Five204Response> {
+  options: ClientStructureRenamedOperationRenamedFiveOptions = {
+    requestOptions: {},
+  }
+): StreamableMethod<BarFive204Response> {
   return context
     .path("/five")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _renamedFiveDeserialize(
-  result: Five204Response
+  result: BarFive204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -92,7 +102,9 @@ export async function _renamedFiveDeserialize(
 
 export async function renamedFive(
   context: Client,
-  options: RenamedFiveOptions = { requestOptions: {} }
+  options: ClientStructureRenamedOperationRenamedFiveOptions = {
+    requestOptions: {},
+  }
 ): Promise<void> {
   const result = await _renamedFiveSend(context, options);
   return _renamedFiveDeserialize(result);

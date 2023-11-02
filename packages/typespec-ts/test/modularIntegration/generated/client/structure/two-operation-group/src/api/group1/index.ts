@@ -2,10 +2,10 @@
 // Licensed under the MIT license.
 
 import {
-  Four204Response,
+  FooFour204Response,
+  FooThree204Response,
   One204Response,
   ServiceContext as Client,
-  Three204Response,
 } from "../../rest/index.js";
 import {
   StreamableMethod,
@@ -45,14 +45,14 @@ export async function one(
 export function _threeSend(
   context: Client,
   options: Group1ThreeOptions = { requestOptions: {} }
-): StreamableMethod<Three204Response> {
+): StreamableMethod<FooThree204Response> {
   return context
     .path("/three")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
 export async function _threeDeserialize(
-  result: Three204Response
+  result: FooThree204Response
 ): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
@@ -72,13 +72,15 @@ export async function three(
 export function _fourSend(
   context: Client,
   options: Group1FourOptions = { requestOptions: {} }
-): StreamableMethod<Four204Response> {
+): StreamableMethod<FooFour204Response> {
   return context
     .path("/four")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fourDeserialize(result: Four204Response): Promise<void> {
+export async function _fourDeserialize(
+  result: FooFour204Response
+): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
   }

@@ -10,8 +10,13 @@ export {
   GroupRenamedTwoOptions,
   GroupRenamedFourOptions,
   GroupRenamedSixOptions,
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  ClientStructureRenamedOperationRenamedOneOptions,
+  ClientStructureRenamedOperationRenamedThreeOptions,
+  ClientStructureRenamedOperationRenamedFiveOptions,
 } from "./models/index.js";
-export { GroupOperations } from "./classic/index.js";
+export {
+  ClientOperations,
+  GroupOperations,
+  ClientStructureOperations,
+  ClientStructureRenamedOperationOperations,
+} from "./classic/index.js";

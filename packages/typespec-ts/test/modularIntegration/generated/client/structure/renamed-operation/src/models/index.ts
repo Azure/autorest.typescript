@@ -6,7 +6,7 @@ export {
   GroupRenamedTwoOptions,
   GroupRenamedFourOptions,
   GroupRenamedSixOptions,
-  RenamedOneOptions,
-  RenamedThreeOptions,
-  RenamedFiveOptions,
+  ClientStructureRenamedOperationRenamedOneOptions,
+  ClientStructureRenamedOperationRenamedThreeOptions,
+  ClientStructureRenamedOperationRenamedFiveOptions,
 } from "./options.js";

@@ -2,9 +2,9 @@
 // Licensed under the MIT license.
 
 import {
-  Five204Response,
+  BarFive204Response,
+  BarSix204Response,
   ServiceContext as Client,
-  Six204Response,
   Two204Response,
 } from "../../rest/index.js";
 import {
@@ -45,13 +45,15 @@ export async function two(
 export function _fiveSend(
   context: Client,
   options: Group2FiveOptions = { requestOptions: {} }
-): StreamableMethod<Five204Response> {
+): StreamableMethod<BarFive204Response> {
   return context
     .path("/five")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _fiveDeserialize(result: Five204Response): Promise<void> {
+export async function _fiveDeserialize(
+  result: BarFive204Response
+): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
   }
@@ -70,13 +72,15 @@ export async function five(
 export function _sixSend(
   context: Client,
   options: Group2SixOptions = { requestOptions: {} }
-): StreamableMethod<Six204Response> {
+): StreamableMethod<BarSix204Response> {
   return context
     .path("/six")
     .post({ ...operationOptionsToRequestParameters(options) });
 }
 
-export async function _sixDeserialize(result: Six204Response): Promise<void> {
+export async function _sixDeserialize(
+  result: BarSix204Response
+): Promise<void> {
   if (result.status !== "204") {
     throw result.body;
   }
