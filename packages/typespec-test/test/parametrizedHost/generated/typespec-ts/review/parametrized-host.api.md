@@ -11,7 +11,6 @@ import { HttpResponse } from '@azure-rest/core-client';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
 import { StreamableMethod } from '@azure-rest/core-client';
-import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface CollectionOutput {
@@ -20,7 +19,7 @@ export interface CollectionOutput {
 }
 
 // @public
-function createClient(credentials: TokenCredential, options?: ParametrizedHostClientOptions): ParametrizedHostClient;
+function createClient(options?: ParametrizedHostClientOptions): ParametrizedHostClient;
 export default createClient;
 
 // @public (undocumented)

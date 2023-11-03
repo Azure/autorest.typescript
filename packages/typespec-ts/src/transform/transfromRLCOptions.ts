@@ -251,7 +251,7 @@ export function getCredentialInfo(
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
-    !securityInfo && emitterOptions.addCredentials === false
+    emitterOptions.addCredentials === false
       ? false
       : securityInfo
       ? securityInfo.addCredentials

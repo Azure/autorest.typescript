@@ -19,6 +19,8 @@ import {
   getClientName,
   getImportModuleName
 } from "./helpers/nameConstructors.js";
+import { add } from "lodash";
+import { ADDRCONFIG } from "dns";
 
 function getClientOptionsInterface(
   clientName: string,
@@ -234,7 +236,8 @@ export function getClientFactoryBody(
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const { includeShortcuts, packageDetails, branded } = model.options;
+  const { includeShortcuts, packageDetails, branded, addCredentials } =
+    model.options;
   let clientPackageName =
     packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
   const packageVersion = packageDetails.version;
@@ -329,7 +332,7 @@ export function getClientFactoryBody(
     : "";
 
   const credentialsOptions =
-    scopes || apiKeyHeaderName
+    (scopes || apiKeyHeaderName) && addCredentials
       ? `,
       credentials: {
         ${scopes}
