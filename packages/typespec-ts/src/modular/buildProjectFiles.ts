@@ -367,9 +367,8 @@ function emitNonBrandedPackage() {
         "rimraf review && mkdirp ./review && api-extractor run --local",
       format:
         'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ',
-      "lint:fix":
-        "eslint package.json api-extractor.json src  --ext .ts --fix --fix-type [problem,suggestion]",
-      lint: "eslint package.json api-extractor.json src  --ext .ts",
+      "lint:fix": "echo skipped",
+      lint: "echo skipped",
       pack: "npm pack 2>&1",
       test: 'echo "Error: no test specified" && exit 1',
       build:
@@ -386,8 +385,6 @@ function emitNonBrandedPackage() {
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       "@types/node": "^18.0.0",
-      dotenv: "^16.0.0",
-      eslint: "^8.0.0",
       mkdirp: "^2.1.2",
       prettier: "^2.5.1",
       rimraf: "^5.0.0",

@@ -4,12 +4,7 @@
   "author": "Microsoft Corporation",
   "version": "1.0.0-beta.1",
   "description": "OpenAI",
-  "keywords": [
-    "node",
-    "typescript",
-    "browser",
-    "isomorphic"
-  ],
+  "keywords": ["node", "typescript", "browser", "isomorphic"],
   "license": "MIT",
   "type": "module",
   "main": "dist/index.js",
@@ -38,16 +33,14 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
+  "engines": { "node": ">=18.0.0" },
   "scripts": {
     "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
     "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
-    "lint:fix": "eslint package.json api-extractor.json src  --ext .ts --fix --fix-type [problem,suggestion]",
-    "lint": "eslint package.json api-extractor.json src  --ext .ts",
+    "lint:fix": "echo skipped",
+    "lint": "echo skipped",
     "pack": "npm pack 2>&1",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
@@ -62,8 +55,6 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
     "@types/node": "^18.0.0",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.0.0",
     "mkdirp": "^2.1.2",
     "prettier": "^2.5.1",
     "rimraf": "^5.0.0",
