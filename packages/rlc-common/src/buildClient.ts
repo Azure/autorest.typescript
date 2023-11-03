@@ -19,8 +19,6 @@ import {
   getClientName,
   getImportModuleName
 } from "./helpers/nameConstructors.js";
-import { add } from "lodash";
-import { ADDRCONFIG } from "dns";
 
 function getClientOptionsInterface(
   clientName: string,
