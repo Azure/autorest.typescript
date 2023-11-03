@@ -168,7 +168,7 @@ export function buildClient(model: RLCModel): File | undefined {
         )?.specifier ?? "@azure-rest/core-client"
     }
   ]);
-  if (branded) {
+  if (branded !== false) {
     clientFile.addImportDeclarations([
       {
         namedImports: ["logger"],
@@ -322,12 +322,13 @@ export function getClientFactoryBody(
   const apiKeyHeaderName = credentialKeyHeaderName
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
-  const loggerOptions = branded
-    ? `,
+  const loggerOptions =
+    branded !== false
+      ? `,
   loggingOptions: {
     logger: options.loggingOptions?.logger ?? logger.info
   }`
-    : "";
+      : "";
 
   const credentialsOptions =
     (scopes || apiKeyHeaderName) && addCredentials
