@@ -79,13 +79,15 @@ export function buildOperationFiles(
         dpgContext,
         o,
         clientType,
-        importSet
+        importSet,
+        codeModel.thirdPartyImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper,
-        importSet
+        importSet,
+        codeModel.thirdPartyImports
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,

@@ -100,7 +100,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { stringToUint8Array } from "@azure/core-util";
+import { stringToUint8Array } from "@typespec/ts-http-runtime";
 import {
   CreateTranscriptionOptions,
   CreateTranslationOptions,

@@ -14,6 +14,7 @@ import {
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
 import {
+  Imports as ThirdPartyImports,
   NameType,
   OperationResponse,
   getResponseBaseName,
@@ -54,7 +55,8 @@ export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
@@ -77,7 +79,8 @@ export function getSendPrivateFunction(
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
       dpgContext,
       operation,
-      importSet
+      importSet,
+      thirdPartyImports
     )}});`
   );
 
@@ -91,7 +94,8 @@ export function getDeserializePrivateFunction(
   operation: Operation,
   needSubClient: boolean,
   needUnexpectedHelper: boolean,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
@@ -157,7 +161,8 @@ export function getDeserializePrivateFunction(
       getResponseMapping(
         getAllProperties(response.type) ?? [],
         "result.body",
-        importSet
+        importSet,
+        thirdPartyImports
       ).join(","),
       `}`
     );
@@ -169,6 +174,7 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
+        thirdPartyImports,
         response.type.nullable !== undefined ? !response.type.nullable : false,
         response.type.format
       )}`
@@ -291,7 +297,8 @@ export function getOperationOptionsName(
 function getRequestParameters(
   dpgContext: SdkContext,
   operation: Operation,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ): string {
   if (!operation.parameters) {
     return "";
@@ -351,7 +358,8 @@ function getRequestParameters(
   } else if (operation.bodyParameter !== undefined) {
     paramStr = `${paramStr}${buildBodyParameter(
       operation.bodyParameter,
-      importSet
+      importSet,
+      thirdPartyImports
     )}`;
   }
   return paramStr;
@@ -384,7 +392,8 @@ function buildHeaderParameter(
 
 function buildBodyParameter(
   bodyParameter: BodyParameter | undefined,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ) {
   if (!bodyParameter) {
     return "";
@@ -420,12 +429,12 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    const coreUtilSet = importSet.get("@azure/core-util");
+    const specifier =
+      (thirdPartyImports?.coreUtil ?? thirdPartyImports?.commonFallback)
+        ?.specifier ?? "@azure/core-util";
+    const coreUtilSet = importSet.get(specifier);
     if (!coreUtilSet) {
-      importSet.set(
-        "@azure/core-util",
-        new Set<string>().add("uint8ArrayToString")
-      );
+      importSet.set(specifier, new Set<string>().add("uint8ArrayToString"));
     } else {
       coreUtilSet.add("uint8ArrayToString");
     }
@@ -766,7 +775,8 @@ function getRequestModelMapping(
 export function getResponseMapping(
   properties: Property[],
   propertyPath: string = "result.body",
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ) {
   const props: string[] = [];
   for (const property of properties) {
@@ -803,7 +813,8 @@ export function getResponseMapping(
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
-          importSet
+          importSet,
+          thirdPartyImports
         )}}`;
       }
 
@@ -832,6 +843,7 @@ export function getResponseMapping(
             property.type,
             restValue,
             importSet,
+            thirdPartyImports,
             property.optional !== undefined ? !property.optional : false,
             property.format
           )}`
@@ -852,10 +864,14 @@ function deserializeResponseValue(
   type: Type,
   restValue: string,
   importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports,
   required: boolean,
   format?: string
 ): string {
-  const coreUtilSet = importSet.get("@azure/core-util");
+  const coreSpecifier =
+    (thirdPartyImports?.coreUtil ?? thirdPartyImports?.commonFallback)
+      ?.specifier ?? "@azure/core-util";
+  const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":
       return required
@@ -870,13 +886,15 @@ function deserializeResponseValue(
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
           getAllProperties(type.elementType) ?? [],
           "p",
-          importSet
+          importSet,
+          thirdPartyImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
           importSet,
+          thirdPartyImports,
           required,
           type.elementType?.format
         )})`;
@@ -887,7 +905,7 @@ function deserializeResponseValue(
       if (format !== "binary") {
         if (!coreUtilSet) {
           importSet.set(
-            "@azure/core-util",
+            coreSpecifier,
             new Set<string>().add("stringToUint8Array")
           );
         } else {
