@@ -50,7 +50,8 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  getHttpOperation
+  getHttpOperation,
+  isSharedRoute
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -749,6 +750,8 @@ function emitBasicOperation(
   const httpOperation = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   );
+  const shared = isSharedRoute(context.program, operation);
+  console.log(`${operation.name} is shared: ${shared}`);
   const sourceOperation =
     operation.sourceOperation &&
     !isTemplateDeclarationOrInstance(operation.sourceOperation)
@@ -802,7 +805,7 @@ function emitBasicOperation(
   // Set up responses for operation
   const responses: Response[] = [];
   const exceptions: Response[] = [];
-  const isOverload: boolean = false;
+  const isOverload = isSharedRoute(context.program, operation);
   for (const response of httpOperation.responses) {
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
@@ -883,7 +886,7 @@ function emitBasicOperation(
     groupName: operationGroupName,
     addedOn: getAddedOnVersion(context.program, operation),
     discriminator: "basic",
-    isOverload: false,
+    isOverload,
     overloads: [],
     apiVersions: [getAddedOnVersion(context.program, operation)],
     rlcResponse: rlcResponses?.[0],
@@ -1436,6 +1439,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
       return emitUnion(context, type);
     case "UnionVariant":
       return {};
+    case "EnumMember":
+      return emitEnumMember(type);
     case "Enum":
       return emitEnum(context.program, type);
     case "EnumMember":
