@@ -13,7 +13,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
 import {
   GetAvatarAsPngOptions,
   GetAvatarAsJpegOptions,
@@ -29,7 +28,7 @@ export function _getAvatarAsPngSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/png",
-      body: uint8ArrayToString(image, "base64"),
+      body: image,
     }) as StreamableMethod<
     GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
   >;
@@ -67,7 +66,7 @@ export function _getAvatarAsJpegSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       contentType: (options.contentType as any) ?? "image/jpeg",
-      body: uint8ArrayToString(image, "base64"),
+      body: image,
     }) as StreamableMethod<
     GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
   >;

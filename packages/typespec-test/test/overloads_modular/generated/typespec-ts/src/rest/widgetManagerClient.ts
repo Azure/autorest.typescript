@@ -20,16 +20,6 @@ export default function createClient(
 ): WidgetManagerContext {
   const baseUrl = options.baseUrl ?? `${endpoint}/widget`;
   options.apiVersion = options.apiVersion ?? "2022-08-30";
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://widget.contoso.com/.default",
-      ],
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
-    },
-  };
-
   const userAgentInfo = `azsdk-js-overload_modular-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -42,6 +32,12 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://widget.contoso.com/.default",
+      ],
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "api-key",
     },
   };
 

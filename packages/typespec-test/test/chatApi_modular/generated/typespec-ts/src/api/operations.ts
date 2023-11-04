@@ -33,7 +33,7 @@ export function _createStreamingSend(
         session_state: body["sessionState"],
         context: body["context"],
       },
-    });
+    }) as StreamableMethod<CreateStreaming200Response>;
 }
 
 export async function _createStreamingDeserialize(
@@ -83,7 +83,7 @@ export function _createSend(
         session_state: body["sessionState"],
         context: body["context"],
       },
-    });
+    }) as StreamableMethod<Create200Response>;
 }
 
 export async function _createDeserialize(

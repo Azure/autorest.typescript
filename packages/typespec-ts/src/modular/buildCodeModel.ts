@@ -751,7 +751,6 @@ function emitBasicOperation(
     getHttpOperation(context.program, operation)
   );
   const shared = isSharedRoute(context.program, operation);
-  console.log(`${operation.name} is shared: ${shared}`);
   const sourceOperation =
     operation.sourceOperation &&
     !isTemplateDeclarationOrInstance(operation.sourceOperation)
@@ -1439,8 +1438,6 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
       return emitUnion(context, type);
     case "UnionVariant":
       return {};
-    case "EnumMember":
-      return emitEnumMember(type);
     case "Enum":
       return emitEnum(context.program, type);
     case "EnumMember":
