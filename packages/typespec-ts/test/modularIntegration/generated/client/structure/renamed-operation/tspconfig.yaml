@@ -8,6 +8,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/client-structure-renamed"
       description: "Client Structure RenamedOperaiton Test Service"

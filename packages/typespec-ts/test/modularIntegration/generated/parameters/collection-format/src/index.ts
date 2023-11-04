@@ -13,3 +13,4 @@ export {
   QueryCsvOptions,
   HeaderCsvOptions,
 } from "./models/index.js";
+export { HeaderOperations, QueryOperations } from "./classic/index.js";

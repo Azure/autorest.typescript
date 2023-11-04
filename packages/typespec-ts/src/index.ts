@@ -46,6 +46,7 @@ import { buildModels, buildModelsOptions } from "./modular/emitModels.js";
 import { buildOperationFiles } from "./modular/buildOperations.js";
 import { buildSubpathIndexFile } from "./modular/buildSubpathIndex.js";
 import { buildClassicalClient } from "./modular/buildClassicalClient.js";
+import { buildClassicOperationFiles } from "./modular/buildClassicalOperationGroups.js";
 import { emitPackage, emitTsConfig } from "./modular/buildProjectFiles.js";
 import { getRLCClients } from "./utils/clientUtils.js";
 import { join } from "path";
@@ -182,8 +183,20 @@ export async function $onEmit(context: EmitContext) {
         );
         buildClientContext(dpgContext, modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "models");
-        buildSubpathIndexFile(modularCodeModel, subClient, "api");
+        if (dpgContext.rlcOptions?.hierarchyClient) {
+          buildSubpathIndexFile(modularCodeModel, subClient, "api");
+        } else {
+          buildSubpathIndexFile(modularCodeModel, subClient, "api", {
+            exportIndex: true
+          });
+        }
+
         buildClassicalClient(dpgContext, modularCodeModel, subClient);
+        buildClassicOperationFiles(modularCodeModel, subClient);
+        buildSubpathIndexFile(modularCodeModel, subClient, "classic", {
+          exportIndex: true,
+          interfaceOnly: true
+        });
         if (modularCodeModel.clients.length > 1) {
           buildSubClientIndexFile(modularCodeModel, subClient);
         }

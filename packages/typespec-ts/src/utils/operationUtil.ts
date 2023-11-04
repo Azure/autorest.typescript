@@ -13,8 +13,6 @@ import {
 import {
   getProjectedName,
   ignoreDiagnostics,
-  isGlobalNamespace,
-  isService,
   Model,
   Operation,
   Program,
@@ -44,6 +42,7 @@ import {
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
+import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
 
 // Sorts the responses by status code
 export function sortedOperationResponses(responses: HttpOperationResponse[]) {
@@ -142,29 +141,21 @@ export function getOperationGroupName(
   if (!dpgContext.rlcOptions?.enableOperationGroup || !operationOrRoute) {
     return "";
   }
-  const program = dpgContext.program;
   // If this is a HttpOperation
   if ((operationOrRoute as any).kind !== "Operation") {
     operationOrRoute = (operationOrRoute as HttpOperation).operation;
   }
   const operation = operationOrRoute as Operation;
-  if (operation.interface) {
-    return normalizeName(
-      operation.interface?.name ?? "",
-      NameType.Interface,
-      true
-    );
-  }
-  const namespace = operation.namespace;
-  if (
-    namespace === undefined ||
-    isGlobalNamespace(program, namespace) ||
-    isService(program, namespace)
-  ) {
-    return "";
-  }
+  const namespaceNames = getOperationNamespaceInterfaceName(
+    dpgContext,
+    operation
+  );
 
-  return normalizeName(namespace.name ?? "", NameType.Interface, true);
+  return namespaceNames
+    .map((name) => {
+      return normalizeName(name, NameType.Interface, true);
+    })
+    .join("");
 }
 
 export function getOperationName(program: Program, operation: Operation) {

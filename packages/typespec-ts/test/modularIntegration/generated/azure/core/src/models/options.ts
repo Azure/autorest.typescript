@@ -33,6 +33,6 @@ export interface ListWithPageOptions extends OperationOptions {}
 
 export interface ListWithCustomPageModelOptions extends OperationOptions {}
 
-export interface DeleteOptions extends OperationOptions {}
+export interface DeleteOperationOptions extends OperationOptions {}
 
-export interface ExportOptions extends OperationOptions {}
+export interface ExportOperationOptions extends OperationOptions {}

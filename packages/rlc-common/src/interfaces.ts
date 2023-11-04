@@ -185,6 +185,8 @@ export interface RLCOptions {
   sourceFrom?: "TypeSpec" | "Swagger";
   isModularLibrary?: boolean;
   enableOperationGroup?: boolean;
+  enableModelNamespace?: boolean;
+  hierarchyClient?: boolean;
 }
 
 export interface ServiceInfo {

@@ -30,3 +30,10 @@ export {
   ResponseBodyBase64Options,
   ResponseBodyBase64urlOptions,
 } from "./models/index.js";
+export {
+  HeaderOperations,
+  PropertyOperations,
+  QueryOperations,
+  RequestBodyOperations,
+  ResponseBodyOperations,
+} from "./classic/index.js";

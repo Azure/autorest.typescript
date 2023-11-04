@@ -28,3 +28,9 @@ export {
   ResponseHeaderRfc7231Options,
   ResponseHeaderUnixTimestampOptions,
 } from "./models/index.js";
+export {
+  HeaderOperations,
+  PropertyOperations,
+  QueryOperations,
+  ResponseHeaderOperations,
+} from "./classic/index.js";

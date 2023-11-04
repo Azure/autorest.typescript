@@ -10,5 +10,6 @@ options:
     isTypeSpecTest: true
     enableOperationGroup: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/encode-datatime"

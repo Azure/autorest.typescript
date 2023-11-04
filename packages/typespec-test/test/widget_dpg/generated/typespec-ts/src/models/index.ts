@@ -3,10 +3,10 @@
 
 export { Widget, CreateWidget, UpdateWidget, AnalyzeResult } from "./models.js";
 export {
-  ListWidgetsOptions,
-  GetWidgetOptions,
-  CreateWidgetOptions,
-  UpdateWidgetOptions,
-  DeleteWidgetOptions,
-  AnalyzeWidgetOptions,
+  WidgetsListWidgetsOptions,
+  WidgetsGetWidgetOptions,
+  WidgetsCreateWidgetOptions,
+  WidgetsUpdateWidgetOptions,
+  WidgetsDeleteWidgetOptions,
+  WidgetsAnalyzeWidgetOptions,
 } from "./options.js";

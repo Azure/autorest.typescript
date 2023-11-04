@@ -36,8 +36,8 @@ import {
   ListOptions,
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
+  DeleteOperationOptions,
+  ExportOperationOptions,
 } from "../models/options.js";
 
 export function _createOrUpdateSend(
@@ -342,7 +342,7 @@ export async function listWithCustomPageModel(
 export function _deleteOperationSend(
   context: Client,
   id: number,
-  options: DeleteOptions = { requestOptions: {} }
+  options: DeleteOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   DeleteOperation204Response | DeleteOperationDefaultResponse
 > {
@@ -362,14 +362,10 @@ export async function _deleteOperationDeserialize(
 }
 
 /** Deletes a User */
-/**
- *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
 export async function deleteOperation(
   context: Client,
   id: number,
-  options: DeleteOptions = { requestOptions: {} }
+  options: DeleteOperationOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteOperationSend(context, id, options);
   return _deleteOperationDeserialize(result);
@@ -379,7 +375,7 @@ export function _exportOperationSend(
   context: Client,
   id: number,
   format: string,
-  options: ExportOptions = { requestOptions: {} }
+  options: ExportOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   ExportOperation200Response | ExportOperationDefaultResponse
 > {
@@ -411,15 +407,11 @@ export async function _exportOperationDeserialize(
 }
 
 /** Exports a User */
-/**
- *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
 export async function exportOperation(
   context: Client,
   id: number,
   format: string,
-  options: ExportOptions = { requestOptions: {} }
+  options: ExportOperationOptions = { requestOptions: {} }
 ): Promise<User> {
   const result = await _exportOperationSend(context, id, format, options);
   return _exportOperationDeserialize(result);

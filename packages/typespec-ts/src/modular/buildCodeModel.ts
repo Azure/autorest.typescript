@@ -99,6 +99,10 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
+import {
+  getModelNamespaceName,
+  getOperationNamespaceInterfaceName
+} from "../utils/namespaceUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -769,6 +773,20 @@ function emitBasicOperation(
     );
   });
 
+  const namespaceHierarchies =
+    context.rlcOptions?.hierarchyClient === true
+      ? getOperationNamespaceInterfaceName(context, operation)
+      : [];
+
+  if (
+    namespaceHierarchies.length === 0 &&
+    context.rlcOptions?.hierarchyClient === false &&
+    operationGroupName !== "" &&
+    namespaceHierarchies[0] !== operationGroupName
+  ) {
+    namespaceHierarchies.push(operationGroupName);
+  }
+
   for (const param of httpOperation.parameters.parameters) {
     if (isIgnoredHeaderParam(param)) {
       continue;
@@ -834,6 +852,7 @@ function emitBasicOperation(
       }
     }
   }
+
   const name = applyCasing(operation.name, { casing: CASING });
 
   /** handle name collision between operation name and parameter signature */
@@ -851,7 +870,7 @@ function emitBasicOperation(
       param.clientName = param.clientName + "Parameter";
     });
   return {
-    name: name,
+    name: normalizeName(name, NameType.Operation, true),
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -866,7 +885,8 @@ function emitBasicOperation(
     isOverload: false,
     overloads: [],
     apiVersions: [getAddedOnVersion(context.program, operation)],
-    rlcResponse: rlcResponses?.[0]
+    rlcResponse: rlcResponses?.[0],
+    namespaceHierarchies
   };
 }
 
@@ -958,9 +978,20 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     getProjectedName(context.program, type, "javascript") ??
     getProjectedName(context.program, type, "client") ??
     getFriendlyName(context.program, type);
+  const fullNamespaceName =
+    getModelNamespaceName(context, type.namespace!)
+      .map((nsName) => {
+        return normalizeName(nsName, NameType.Interface);
+      })
+      .join("") +
+    (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
     overridedModelName ??
-    (effectiveName ? effectiveName : getName(context.program, type));
+    (context.rlcOptions?.enableModelNamespace
+      ? fullNamespaceName
+      : effectiveName
+      ? effectiveName
+      : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&
@@ -1419,6 +1450,10 @@ function emitOperationGroups(
   rlcModels: RLCModel
 ): OperationGroup[] {
   const operationGroups: OperationGroup[] = [];
+  const groupMapping: Map<string, OperationGroup> = new Map<
+    string,
+    OperationGroup
+  >();
   for (const operationGroup of listOperationGroups(context, client)) {
     const operations: HrlcOperation[] = [];
     const name = operationGroup.type.name;
@@ -1428,25 +1463,51 @@ function emitOperationGroups(
     )) {
       operations.push(emitOperation(context, operation, name, rlcModels));
     }
-    operationGroups.push({
-      className: name,
-      propertyName: name,
-      operations: operations
-    });
+    if (operations.length > 0) {
+      addHierarchyOperationGroup(operations, groupMapping);
+    }
   }
   const clientOperations: HrlcOperation[] = [];
   for (const operation of listOperationsInOperationGroup(context, client)) {
     clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
-    operationGroups.push({
-      className: "",
-      propertyName: "",
-      operations: clientOperations
-    });
+    addHierarchyOperationGroup(clientOperations, groupMapping);
   }
-  resolveConflictIfExist(operationGroups);
+
+  groupMapping.forEach((value) => {
+    operationGroups.push(value);
+  });
+  if (
+    context.rlcOptions?.hierarchyClient === false &&
+    context.rlcOptions?.enableOperationGroup
+  ) {
+    resolveConflictIfExist(operationGroups);
+  }
   return operationGroups;
+}
+
+function addHierarchyOperationGroup(
+  operations: HrlcOperation[],
+  groupMapping: Map<string, OperationGroup>
+): OperationGroup[] {
+  if (operations.length > 0) {
+    operations.forEach((op) => {
+      const groupName = op.namespaceHierarchies.join("") ?? "";
+      if (!groupMapping.has(groupName)) {
+        groupMapping.set(groupName, {
+          className: groupName,
+          propertyName: groupName,
+          operations: [op],
+          namespaceHierarchies: op.namespaceHierarchies
+        });
+      } else {
+        groupMapping.get(groupName)!.operations.push(op);
+      }
+    });
+    return [...groupMapping.values()];
+  }
+  return [];
 }
 
 function resolveConflictIfExist(operationGroups: OperationGroup[]) {

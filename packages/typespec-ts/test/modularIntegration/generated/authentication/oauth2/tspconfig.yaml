@@ -8,6 +8,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/azure-oauth2"
       description: "Azure Oauth2 Test Service"
