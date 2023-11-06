@@ -4,13 +4,13 @@
 import {
   InputParameters,
   OutputParameters,
-  InputAndOutputParameters
-} from "./parameters.js";
+  InputAndOutputParameters,
+} from "./parameters";
 import {
   Input204Response,
   Output200Response,
-  InputAndOutput200Response
-} from "./responses.js";
+  InputAndOutput200Response,
+} from "./responses";
 import { Client, StreamableMethod } from "@typespec/ts-http-runtime";
 
 export interface Input {
@@ -36,6 +36,6 @@ export interface Routes {
   (path: "/type/model/usage/input-output"): InputAndOutput;
 }
 
-export type NonAzureUsageClient = Client & {
+export type UsageClient = Client & {
   path: Routes;
 };

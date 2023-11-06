@@ -1,17 +1,15 @@
-import TypeModelNonAzureUsageClientFactory, {
-  NonAzureUsageClient
+import TypeModelUsageClientFactory, {
+  UsageClient
 } from "./generated/models/usage/src/index.js";
 import { assert } from "chai";
-describe.only("NonAzureUsageClient Rest Client", () => {
-  let client: NonAzureUsageClient;
+describe("ModelsUsageClient Rest Client", () => {
+  let client: UsageClient;
   const body = {
     requiredProp: "example-value"
   };
 
   beforeEach(() => {
-    client = TypeModelNonAzureUsageClientFactory({
-      allowInsecureConnection: true
-    });
+    client = TypeModelUsageClientFactory({ allowInsecureConnection: true });
   });
 
   it("should post input model correctly", async () => {

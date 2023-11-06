@@ -187,7 +187,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
-export const nonAzureRlcTsps: TypeSpecRanchConfig[] = [
+export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"
@@ -269,7 +269,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
-export const nonAzureModularTsps: TypeSpecRanchConfig[] = [
+export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
     inputPath: "type/model/usage"

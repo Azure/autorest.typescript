@@ -9,7 +9,6 @@ options:
     isTypeSpecTest: true
     azureSdkForJs: false
     branded: false
-    title: NonAzureUsageClient
     packageDetails:
       name: "@msinternal/usage"
       description: "Usage Test Service"

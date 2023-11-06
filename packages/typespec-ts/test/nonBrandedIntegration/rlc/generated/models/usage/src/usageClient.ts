@@ -2,16 +2,13 @@
 // Licensed under the MIT license.
 
 import { getClient, ClientOptions } from "@typespec/ts-http-runtime";
-import { logger } from "./logger.js";
-import { NonAzureUsageClient } from "./clientDefinitions.js";
+import { UsageClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `NonAzureUsageClient`
+ * Initialize a new instance of `UsageClient`
  * @param options - the parameter for all optional parameters
  */
-export default function createClient(
-  options: ClientOptions = {}
-): NonAzureUsageClient {
+export default function createClient(options: ClientOptions = {}): UsageClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-usage-rest/1.0.0`;
@@ -22,14 +19,11 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
-    loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
-    }
   };
 
-  const client = getClient(baseUrl, options) as NonAzureUsageClient;
+  const client = getClient(baseUrl, options) as UsageClient;
 
   return client;
 }

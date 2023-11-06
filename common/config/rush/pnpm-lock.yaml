@@ -251,7 +251,7 @@ importers:
       '@typespec/compiler': '>=0.49.0 <1.0.0'
       '@typespec/http': '>=0.49.0 <1.0.0'
       '@typespec/rest': '>=0.49.0 <1.0.0'
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231023.3
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20231103.1
       '@typespec/versioning': '>=0.49.0 <1.0.0'
       chai: ^4.3.6
       chalk: ^4.0.0
@@ -297,7 +297,7 @@ importers:
       '@types/prettier': 2.7.3
       '@typescript-eslint/eslint-plugin': 6.8.0_qc27boxdfajyxyoyktucppwpla
       '@typescript-eslint/parser': 6.8.0_jk7qbkaijtltyu4ajmze3dfiwa
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231023.3
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20231103.1
       chai: 4.3.8
       chalk: 4.1.2
       cross-env: 7.0.3
@@ -1403,8 +1403,8 @@ packages:
       '@typespec/compiler': 0.49.0
       '@typespec/http': 0.49.0_@typespec+compiler@0.49.0
 
-  /@typespec/ts-http-runtime/1.0.0-alpha.20231023.3:
-    resolution: {integrity: sha512-qvmUVRrWnEGfttPWIB1365C1S6hdBurEHDeKWBcbFOk7q0HkEjFBB+vgfzfEV91f0Yiwj6C4IzBQoeK3NdJlsA==}
+  /@typespec/ts-http-runtime/1.0.0-alpha.20231103.1:
+    resolution: {integrity: sha512-ouAAPny3OHIVcC44YfevSH08etbBvg+v6tMBJZMHX1YR2FT0tKBRb4PU47OdEmH74u7JXyccXlZhEENA38RRCw==}
     engines: {node: '>=18.0.0'}
     dependencies:
       form-data: 4.0.0

@@ -19,7 +19,7 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
   );
   let subPath = "integration";
   if (mode.includes("non-azure")) {
-    subPath = `nonAzureIntegration/${
+    subPath = `nonBrandedIntegration/${
       mode.includes("modular") ? "modular" : "rlc"
     }`;
   } else if (mode.includes("modular")) {

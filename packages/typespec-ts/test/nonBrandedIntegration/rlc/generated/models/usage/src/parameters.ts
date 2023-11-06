@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@typespec/ts-http-runtime";
-import { InputRecord, InputOutputRecord } from "./models.js";
+import { InputRecord, InputOutputRecord } from "./models";
 
 export interface InputBodyParam {
   body: InputRecord;

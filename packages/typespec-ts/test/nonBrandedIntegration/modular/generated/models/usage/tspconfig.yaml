@@ -5,11 +5,9 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: false
     generateTest: false
-    addCredentials: false
     isTypeSpecTest: true
     azureSdkForJs: false
     branded: false
-    title: NonAzureUsageModularClient
     isModularLibrary: true
     packageDetails:
       name: "@msinternal/usage"
