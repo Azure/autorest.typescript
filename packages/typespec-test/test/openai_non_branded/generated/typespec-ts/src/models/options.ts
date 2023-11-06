@@ -3,61 +3,61 @@
 
 import { OperationOptions } from "@typespec/ts-http-runtime";
 
-export interface CreateTranscriptionOptions extends OperationOptions {
+export interface AudioTranscriptionsCreateOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface CreateTranslationOptions extends OperationOptions {
+export interface AudioTranslationsCreateOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface CreateChatCompletionOptions extends OperationOptions {}
+export interface ChatCompletionsCreateOptions extends OperationOptions {}
 
-export interface CreateFineTuningJobOptions extends OperationOptions {}
+export interface FineTuningJobsCreateOptions extends OperationOptions {}
 
-export interface ListPaginatedFineTuningJobsOptions extends OperationOptions {
+export interface FineTuningJobsListOptions extends OperationOptions {
   /** Identifier for the last job from the previous pagination request. */
   after?: string;
   /** Number of fine-tuning jobs to retrieve. */
   limit?: number;
 }
 
-export interface RetrieveFineTuningJobOptions extends OperationOptions {}
+export interface FineTuningJobsRetrieveOptions extends OperationOptions {}
 
-export interface ListFineTuningEventsOptions extends OperationOptions {
+export interface FineTuningJobsListEventsOptions extends OperationOptions {
   /** Identifier for the last event from the previous pagination request. */
   after?: string;
   /** Number of events to retrieve. */
   limit?: number;
 }
 
-export interface CancelFineTuningJobOptions extends OperationOptions {}
+export interface FineTuningJobsCancelOptions extends OperationOptions {}
 
-export interface CreateCompletionOptions extends OperationOptions {}
+export interface CompletionsCreateOptions extends OperationOptions {}
 
-export interface CreateEditOptions extends OperationOptions {}
+export interface EditsCreateOptions extends OperationOptions {}
 
-export interface CreateEmbeddingOptions extends OperationOptions {}
+export interface EmbeddingsCreateOptions extends OperationOptions {}
 
-export interface ListFilesOptions extends OperationOptions {}
+export interface FilesListOptions extends OperationOptions {}
 
-export interface CreateFileOptions extends OperationOptions {
+export interface FilesCreateOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface RetrieveFileOptions extends OperationOptions {}
+export interface FilesRetrieveOptions extends OperationOptions {}
 
-export interface DeleteFileOptions extends OperationOptions {}
+export interface FilesDeleteOperationOptions extends OperationOptions {}
 
-export interface DownloadFileOptions extends OperationOptions {}
+export interface FilesDownloadOptions extends OperationOptions {}
 
-export interface CreateFineTuneOptions extends OperationOptions {}
+export interface FineTunesCreateOptions extends OperationOptions {}
 
-export interface ListFineTunesOptions extends OperationOptions {}
+export interface FineTunesListOptions extends OperationOptions {}
 
-export interface RetrieveFineTuneOptions extends OperationOptions {}
+export interface FineTunesRetrieveOptions extends OperationOptions {}
 
-export interface ListFineTuneEventsOptions extends OperationOptions {
+export interface FineTunesListEventsOptions extends OperationOptions {
   /**
    * Whether to stream events for the fine-tune job. If set to true, events will be sent as
    * data-only
@@ -70,22 +70,22 @@ export interface ListFineTuneEventsOptions extends OperationOptions {
   stream?: boolean;
 }
 
-export interface CancelFineTuneOptions extends OperationOptions {}
+export interface FineTunesCancelOptions extends OperationOptions {}
 
-export interface ListModelsOptions extends OperationOptions {}
+export interface ModelsListOptions extends OperationOptions {}
 
-export interface RetrieveOptions extends OperationOptions {}
+export interface ModelsRetrieveOptions extends OperationOptions {}
 
-export interface DeleteOptions extends OperationOptions {}
+export interface ModelsDeleteOperationOptions extends OperationOptions {}
 
-export interface CreateImageOptions extends OperationOptions {}
+export interface ImagesCreateOptions extends OperationOptions {}
 
-export interface CreateImageEditOptions extends OperationOptions {
+export interface ImagesCreateEditOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface CreateImageVariationOptions extends OperationOptions {
+export interface ImagesCreateVariationOptions extends OperationOptions {
   contentType?: string;
 }
 
-export interface CreateModerationOptions extends OperationOptions {}
+export interface ModerationsCreateOptions extends OperationOptions {}
