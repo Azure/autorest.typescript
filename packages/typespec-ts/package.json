@@ -14,7 +14,7 @@
     "check-format": "npm run prettier -- --check",
     "prettier": "prettier --config ./.prettierrc src/**/*.ts",
     "check:tree": "ts-node ./test/commands/check-clean-tree.ts",
-    "integration-test-ci": "npm run integration-test-ci:rlc && npm run integration-test-ci:modular && integration-test-ci:non-branded",
+    "integration-test-ci": "npm run integration-test-ci:rlc && npm run integration-test-ci:modular && npm run integration-test-ci:non-branded",
     "integration-test-ci:rlc": "npm run start-test-server:rlc & npm run copy:typespec && npm run generate-and-run:rlc",
     "integration-test-ci:modular": "npm run start-test-server:modular & npm run copy:typespec && npm run generate-and-run:modular",
     "integration-test-ci:non-branded": "npm run start-test-server & npm run copy:typespec && npm run generate-tsp-only:non-branded && npm run integration-test:alone:non-branded-rlc && npm run integration-test:alone:non-branded-modular && npm run stop-test-server",

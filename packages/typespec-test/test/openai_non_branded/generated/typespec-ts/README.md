@@ -4,7 +4,7 @@ The OpenAI REST API. Please see https://platform.openai.com/docs/api-reference f
 
 Key links:
 
-- [Package (NPM)](https://www.npmjs.com/package/@msinternal/openai-generic)
+- [Package (NPM)](https://www.npmjs.com/package/@msinternal/openai-non-branded)
 
 ## Getting started
 
@@ -12,10 +12,10 @@ Key links:
 
 - LTS versions of Node.js
 
-### Install the `@msinternal/openai-generic` package
+### Install the `@msinternal/openai-non-branded` package
 
 Install the OpenAI REST client REST client library for JavaScript with `npm`:
 
 ```bash
-npm install @msinternal/openai-generic
+npm install @msinternal/openai-non-branded
 ```

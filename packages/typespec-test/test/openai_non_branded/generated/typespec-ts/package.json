@@ -1,5 +1,5 @@
 {
-  "name": "@msinternal/openai-generic",
+  "name": "@msinternal/openai-non-branded",
   "sdk-type": "client",
   "author": "Microsoft Corporation",
   "version": "1.0.0-beta.1",
@@ -9,7 +9,7 @@
   "type": "module",
   "main": "dist/index.js",
   "module": "./dist-esm/src/index.js",
-  "types": "./types/openai-generic.d.ts",
+  "types": "./types/openai-non-branded.d.ts",
   "exports": {
     ".": {
       "types": "./types/src/index.d.ts",
@@ -76,7 +76,7 @@
   "files": [
     "dist/",
     "dist-esm/",
-    "types/openai-generic.d.ts",
+    "types/openai-non-branded.d.ts",
     "README.md",
     "LICENSE",
     "review/*"
