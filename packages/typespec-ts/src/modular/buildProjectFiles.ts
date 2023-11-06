@@ -21,7 +21,7 @@ export function emitPackage(
     }
   );
   if (!codeModel.options.branded) {
-    packageJson.addStatements(JSON.stringify(emitNonBrandedPackage()));
+    packageJson.addStatements(JSON.stringify(emitNonBrandedPackage(codeModel)));
     return packageJson;
   }
   const hasLRO = hasLROOperation(codeModel),
@@ -44,6 +44,9 @@ export function emitPackage(
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
+  const description = packageDetails.description
+    ? packageDetails.description
+    : `A generated SDK for ${codeModel.clients[0]?.name}.`;
   if (packageDetails.version.includes("beta")) {
     apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
@@ -53,9 +56,7 @@ export function emitPackage(
     "sdk-type": "client",
     author: "Microsoft Corporation",
     version: `${packageDetails.version}`,
-    description:
-      `${packageDetails.description}` ||
-      `A generated SDK for ${codeModel.clients[0]?.name}.`,
+    description,
     keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
     license: "MIT",
     type: "module",
@@ -347,19 +348,33 @@ export function emitPackage(
   return packageJson;
 }
 
-function emitNonBrandedPackage() {
-  return {
-    name: "@msinternal/openai-generic",
+function emitNonBrandedPackage(codeModel: ModularCodeModel) {
+  let { packageDetails } = codeModel.options;
+  const runtimeLibVersion =
+    codeModel.thirdPartyImports?.commonFallback?.version ??
+    "1.0.0-alpha.20231103.1";
+  if (packageDetails === undefined) {
+    packageDetails = {
+      name: "@msinternal/unamedpackage",
+      nameWithoutScope: "unamedpackage",
+      version: "1.0.0-beta.1"
+    };
+  }
+  const description = packageDetails.description
+    ? packageDetails.description
+    : `A generated SDK for ${codeModel.clients[0]?.name}.`;
+  const packageInfo = {
+    name: `${packageDetails.name}`,
     "sdk-type": "client",
     author: "Microsoft Corporation",
-    version: "1.0.0-beta.1",
-    description: "OpenAI",
+    version: `${packageDetails.version}`,
+    description,
     keywords: ["node", "typescript", "browser", "isomorphic"],
     license: "MIT",
     type: "module",
     main: "dist/index.js",
     module: "./dist-esm/src/index.js",
-    types: "./types/openai-generic.d.ts",
+    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     exports: {
       ".": {
         types: "./types/src/index.d.ts",
@@ -378,7 +393,7 @@ function emitNonBrandedPackage() {
     files: [
       "dist/",
       "dist-esm/",
-      "types/openai-generic.d.ts",
+      `types/${packageDetails.nameWithoutScope}.d.ts`,
       "README.md",
       "LICENSE",
       "review/*"
@@ -408,7 +423,7 @@ function emitNonBrandedPackage() {
     autoPublish: false,
     dependencies: {
       tslib: "^2.2.0",
-      "@typespec/ts-http-runtime": "1.0.0-alpha.20231023.3"
+      "@typespec/ts-http-runtime": runtimeLibVersion
     },
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
@@ -426,7 +441,58 @@ function emitNonBrandedPackage() {
       "rollup-plugin-sourcemaps": "^0.6.3",
       "uglify-js": "^3.4.9"
     }
-  };
+  } as any;
+  if (codeModel.clients.length > 1) {
+    delete packageInfo.exports["./api"];
+    delete packageInfo.exports["./models"];
+    for (const client of codeModel.clients) {
+      const subfolder = normalizeName(
+        client.name.replace("Client", ""),
+        NameType.File
+      );
+      packageInfo.exports[`./${subfolder}`] = {
+        types: `./types/src/${subfolder}/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/index.js`
+      };
+      packageInfo.exports[`./${subfolder}/api`] = {
+        types: `./types/src/${subfolder}/api/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/api/index.js`
+      };
+      packageInfo.exports[`./${subfolder}/models`] = {
+        types: `./types/src/${subfolder}/models/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/models/index.js`
+      };
+    }
+  }
+  if (codeModel.options.hierarchyClient) {
+    for (const client of codeModel.clients) {
+      for (const operationGroup of client.operationGroups) {
+        if (operationGroup.namespaceHierarchies.length === 0) {
+          continue;
+        }
+        const subfolder =
+          codeModel.clients.length > 1
+            ? normalizeName(client.name.replace("Client", ""), NameType.File)
+            : undefined;
+        const subApiPath = `api/${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.File,
+          "/"
+        )}`;
+        packageInfo.exports[
+          `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
+        ] = {
+          types: `./types/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.d.ts`,
+          import: `./dist-esm/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.js`
+        };
+      }
+    }
+  }
+  return packageInfo;
 }
 
 const modularTsConfigInSDKRepo: Record<string, any> = {
@@ -487,6 +553,7 @@ export function emitTsConfig(
 
   const { packageDetails, azureSdkForJs } = codeModel.options || {};
   let { generateTest, generateSample } = codeModel.options || {};
+  const isBranded = codeModel.options?.branded ?? true;
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
@@ -494,13 +561,17 @@ export function emitTsConfig(
     hasSamplesGenerated;
   const clientPackageName = packageDetails?.name ?? "@msinternal/unamedpackage";
   const tsConfig = (
-    azureSdkForJs ? modularTsConfigInSDKRepo : modularTsConfigNotInSDKRepo
+    !isBranded
+      ? modularTsConfigNotInSDKRepo
+      : azureSdkForJs
+      ? modularTsConfigInSDKRepo
+      : modularTsConfigNotInSDKRepo
   ) as any;
 
-  if (generateTest) {
+  if (generateTest && isBranded) {
     tsConfig.include.push("./test/**/*.ts");
   }
-  if (generateSample) {
+  if (generateSample && isBranded) {
     tsConfig.include.push("samples-dev/**/*.ts");
     tsConfig.compilerOptions["paths"] = {};
     tsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];

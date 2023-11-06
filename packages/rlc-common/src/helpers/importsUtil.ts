@@ -12,7 +12,7 @@ export function build3ndPartyImports(branded = true): Imports {
       commonFallback: {
         type: "commonFallback",
         specifier: "@typespec/ts-http-runtime",
-        version: "1.0.0-alpha.20231023.3"
+        version: "1.0.0-alpha.20231103.1"
       }
     } as Imports;
   } else {
