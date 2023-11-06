@@ -10,6 +10,7 @@ options:
     isTypeSpecTest: true
     title: SingleParamInServerPathClient
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/singleparam"
       description: "SingleParameter Test Service"

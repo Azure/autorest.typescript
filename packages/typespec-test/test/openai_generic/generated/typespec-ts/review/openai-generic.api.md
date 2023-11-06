@@ -10,11 +10,35 @@ import { OperationOptions } from '@azure-rest/core-client';
 import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
-export interface CancelFineTuneOptions extends OperationOptions {
+export interface AudioOperations {
+    // (undocumented)
+    transcriptions: AudioTranscriptionsOperations;
+    // (undocumented)
+    translations: AudioTranslationsOperations;
 }
 
 // @public (undocumented)
-export interface CancelFineTuningJobOptions extends OperationOptions {
+export interface AudioTranscriptionsCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface AudioTranscriptionsOperations {
+    // (undocumented)
+    create: (audio: CreateTranscriptionRequest, options?: AudioTranscriptionsCreateOptions) => Promise<CreateTranscriptionResponse>;
+}
+
+// @public (undocumented)
+export interface AudioTranslationsCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface AudioTranslationsOperations {
+    // (undocumented)
+    create: (audio: CreateTranslationRequest, options?: AudioTranslationsCreateOptions) => Promise<CreateTranslationResponse>;
 }
 
 // @public (undocumented)
@@ -50,15 +74,37 @@ export interface ChatCompletionResponseMessage {
     role: "system" | "user" | "assistant" | "function";
 }
 
+// @public (undocumented)
+export interface ChatCompletionsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ChatCompletionsOperations {
+    // (undocumented)
+    create: (body: CreateChatCompletionRequest, options?: ChatCompletionsCreateOptions) => Promise<CreateChatCompletionResponse>;
+}
+
+// @public (undocumented)
+export interface ChatOperations {
+    // (undocumented)
+    completions: ChatCompletionsOperations;
+}
+
+// @public (undocumented)
+export interface CompletionsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface CompletionsOperations {
+    // (undocumented)
+    create: (body: CreateCompletionRequest, options?: CompletionsCreateOptions) => Promise<CreateCompletionResponse>;
+}
+
 // @public
 export interface CompletionUsage {
     completionTokens: number;
     promptTokens: number;
     totalTokens: number;
-}
-
-// @public (undocumented)
-export interface CreateChatCompletionOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -92,10 +138,6 @@ export interface CreateChatCompletionResponse {
     object: string;
     // (undocumented)
     usage?: CompletionUsage;
-}
-
-// @public (undocumented)
-export interface CreateCompletionOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -140,10 +182,6 @@ export interface CreateCompletionResponse {
 }
 
 // @public (undocumented)
-export interface CreateEditOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateEditRequest {
     input?: string | null;
     instruction: string;
@@ -167,10 +205,6 @@ export interface CreateEditResponse {
 }
 
 // @public (undocumented)
-export interface CreateEmbeddingOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateEmbeddingRequest {
     input: string | string[] | number[] | number[][];
     model: string | "text-embedding-ada-002";
@@ -190,19 +224,9 @@ export interface CreateEmbeddingResponse {
 }
 
 // @public (undocumented)
-export interface CreateFileOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface CreateFileRequest {
     file: Uint8Array;
     purpose: string;
-}
-
-// @public (undocumented)
-export interface CreateFineTuneOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -222,10 +246,6 @@ export interface CreateFineTuneRequest {
 }
 
 // @public (undocumented)
-export interface CreateFineTuningJobOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateFineTuningJobRequest {
     hyperparameters?: {
         nEpochs?: "auto" | number;
@@ -234,12 +254,6 @@ export interface CreateFineTuningJobRequest {
     suffix?: string | null;
     trainingFile: string;
     validationFile?: string | null;
-}
-
-// @public (undocumented)
-export interface CreateImageEditOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
 }
 
 // @public (undocumented)
@@ -255,10 +269,6 @@ export interface CreateImageEditRequest {
 }
 
 // @public (undocumented)
-export interface CreateImageOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateImageRequest {
     n?: number | null;
     prompt: string;
@@ -269,12 +279,6 @@ export interface CreateImageRequest {
 }
 
 // @public (undocumented)
-export interface CreateImageVariationOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface CreateImageVariationRequest {
     image: Uint8Array;
     n?: number | null;
@@ -282,10 +286,6 @@ export interface CreateImageVariationRequest {
     size?: "256x256" | "512x512" | "1024x1024";
     // (undocumented)
     user?: string;
-}
-
-// @public (undocumented)
-export interface CreateModerationOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -330,12 +330,6 @@ export interface CreateModerationResponse {
 }
 
 // @public (undocumented)
-export interface CreateTranscriptionOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface CreateTranscriptionRequest {
     file: Uint8Array;
     language?: string;
@@ -352,12 +346,6 @@ export interface CreateTranscriptionResponse {
 }
 
 // @public (undocumented)
-export interface CreateTranslationOptions extends OperationOptions {
-    // (undocumented)
-    contentType?: string;
-}
-
-// @public (undocumented)
 export interface CreateTranslationRequest {
     file: Uint8Array;
     model: string | "whisper-1";
@@ -370,10 +358,6 @@ export interface CreateTranslationRequest {
 export interface CreateTranslationResponse {
     // (undocumented)
     text: string;
-}
-
-// @public (undocumented)
-export interface DeleteFileOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -397,11 +381,13 @@ export interface DeleteModelResponse {
 }
 
 // @public (undocumented)
-export interface DeleteOptions extends OperationOptions {
+export interface EditsCreateOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface DownloadFileOptions extends OperationOptions {
+export interface EditsOperations {
+    // (undocumented)
+    create: (edit: CreateEditRequest, options?: EditsCreateOptions) => Promise<CreateEditResponse>;
 }
 
 // @public
@@ -409,6 +395,16 @@ export interface Embedding {
     embedding: number[];
     index: number;
     object: "embedding";
+}
+
+// @public (undocumented)
+export interface EmbeddingsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface EmbeddingsOperations {
+    // (undocumented)
+    create: (embedding: CreateEmbeddingRequest, options?: EmbeddingsCreateOptions) => Promise<CreateEmbeddingResponse>;
 }
 
 // @public (undocumented)
@@ -423,6 +419,42 @@ interface Error_2 {
     type: string;
 }
 export { Error_2 as Error }
+
+// @public (undocumented)
+export interface FilesCreateOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface FilesDeleteOperationOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesDownloadOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FilesOperations {
+    // (undocumented)
+    create: (file: CreateFileRequest, options?: FilesCreateOptions) => Promise<OpenAIFile>;
+    // (undocumented)
+    deleteOperation: (fileId: string, options?: FilesDeleteOperationOptions) => Promise<DeleteFileResponse>;
+    // (undocumented)
+    download: (fileId: string, options?: FilesDownloadOptions) => Promise<string>;
+    // (undocumented)
+    list: (options?: FilesListOptions) => Promise<ListFilesResponse>;
+    // (undocumented)
+    retrieve: (fileId: string, options?: FilesRetrieveOptions) => Promise<OpenAIFile>;
+}
+
+// @public (undocumented)
+export interface FilesRetrieveOptions extends OperationOptions {
+}
 
 // @public
 export interface FineTune {
@@ -459,6 +491,41 @@ export interface FineTuneEvent {
     message: string;
     // (undocumented)
     object: string;
+}
+
+// @public (undocumented)
+export interface FineTunesCancelOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesListEventsOptions extends OperationOptions {
+    stream?: boolean;
+}
+
+// @public (undocumented)
+export interface FineTunesListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTunesOperations {
+    // (undocumented)
+    cancel: (fineTuneId: string, options?: FineTunesCancelOptions) => Promise<FineTune>;
+    // (undocumented)
+    create: (fineTune: CreateFineTuneRequest, options?: FineTunesCreateOptions) => Promise<FineTune>;
+    // (undocumented)
+    list: (options?: FineTunesListOptions) => Promise<ListFineTunesResponse>;
+    // (undocumented)
+    listEvents: (fineTuneId: string, options?: FineTunesListEventsOptions) => Promise<ListFineTuneEventsResponse>;
+    // (undocumented)
+    retrieve: (fineTuneId: string, options?: FineTunesRetrieveOptions) => Promise<FineTune>;
+}
+
+// @public (undocumented)
+export interface FineTunesRetrieveOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -499,6 +566,50 @@ export interface FineTuningJobEvent {
     object: string;
 }
 
+// @public (undocumented)
+export interface FineTuningJobsCancelOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningJobsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningJobsListEventsOptions extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public (undocumented)
+export interface FineTuningJobsListOptions extends OperationOptions {
+    after?: string;
+    limit?: number;
+}
+
+// @public (undocumented)
+export interface FineTuningJobsOperations {
+    // (undocumented)
+    cancel: (fineTuningJobId: string, options?: FineTuningJobsCancelOptions) => Promise<FineTuningJob>;
+    // (undocumented)
+    create: (job: CreateFineTuningJobRequest, options?: FineTuningJobsCreateOptions) => Promise<FineTuningJob>;
+    // (undocumented)
+    list: (options?: FineTuningJobsListOptions) => Promise<ListPaginatedFineTuningJobsResponse>;
+    // (undocumented)
+    listEvents: (fineTuningJobId: string, options?: FineTuningJobsListEventsOptions) => Promise<ListFineTuningJobEventsResponse>;
+    // (undocumented)
+    retrieve: (fineTuningJobId: string, options?: FineTuningJobsRetrieveOptions) => Promise<FineTuningJob>;
+}
+
+// @public (undocumented)
+export interface FineTuningJobsRetrieveOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface FineTuningOperations {
+    // (undocumented)
+    jobs: FineTuningJobsOperations;
+}
+
 // @public
 interface Image_2 {
     b64Json?: Uint8Array;
@@ -507,15 +618,37 @@ interface Image_2 {
 export { Image_2 as Image }
 
 // @public (undocumented)
+export interface ImagesCreateEditOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface ImagesCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ImagesCreateVariationOptions extends OperationOptions {
+    // (undocumented)
+    contentType?: string;
+}
+
+// @public (undocumented)
+export interface ImagesOperations {
+    // (undocumented)
+    create: (image: CreateImageRequest, options?: ImagesCreateOptions) => Promise<ImagesResponse>;
+    // (undocumented)
+    createEdit: (image: CreateImageEditRequest, options?: ImagesCreateEditOptions) => Promise<ImagesResponse>;
+    // (undocumented)
+    createVariation: (image: CreateImageVariationRequest, options?: ImagesCreateVariationOptions) => Promise<ImagesResponse>;
+}
+
+// @public (undocumented)
 export interface ImagesResponse {
     // (undocumented)
     created: Date;
     // (undocumented)
     data: Image_2[];
-}
-
-// @public (undocumented)
-export interface ListFilesOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -527,20 +660,11 @@ export interface ListFilesResponse {
 }
 
 // @public (undocumented)
-export interface ListFineTuneEventsOptions extends OperationOptions {
-    stream?: boolean;
-}
-
-// @public (undocumented)
 export interface ListFineTuneEventsResponse {
     // (undocumented)
     data: FineTuneEvent[];
     // (undocumented)
     object: string;
-}
-
-// @public (undocumented)
-export interface ListFineTunesOptions extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -552,12 +676,6 @@ export interface ListFineTunesResponse {
 }
 
 // @public (undocumented)
-export interface ListFineTuningEventsOptions extends OperationOptions {
-    after?: string;
-    limit?: number;
-}
-
-// @public (undocumented)
 export interface ListFineTuningJobEventsResponse {
     // (undocumented)
     data: FineTuningJobEvent[];
@@ -566,21 +684,11 @@ export interface ListFineTuningJobEventsResponse {
 }
 
 // @public (undocumented)
-export interface ListModelsOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface ListModelsResponse {
     // (undocumented)
     data: Model[];
     // (undocumented)
     object: string;
-}
-
-// @public (undocumented)
-export interface ListPaginatedFineTuningJobsOptions extends OperationOptions {
-    after?: string;
-    limit?: number;
 }
 
 // @public (undocumented)
@@ -602,63 +710,52 @@ export interface Model {
 }
 
 // @public (undocumented)
+export interface ModelsDeleteOperationOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsListOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModelsOperations {
+    // (undocumented)
+    deleteOperation: (model: string, options?: ModelsDeleteOperationOptions) => Promise<DeleteModelResponse>;
+    // (undocumented)
+    list: (options?: ModelsListOptions) => Promise<ListModelsResponse>;
+    // (undocumented)
+    retrieve: (model: string, options?: ModelsRetrieveOptions) => Promise<Model>;
+}
+
+// @public (undocumented)
+export interface ModelsRetrieveOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModerationsCreateOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface ModerationsOperations {
+    // (undocumented)
+    create: (content: CreateModerationRequest, options?: ModerationsCreateOptions) => Promise<CreateModerationResponse>;
+}
+
+// @public (undocumented)
 export class OpenAIClient {
     constructor(credential: KeyCredential, options?: OpenAIClientOptions);
-    // (undocumented)
-    cancelFineTune(fineTuneId: string, options?: CancelFineTuneOptions): Promise<FineTune>;
-    // (undocumented)
-    cancelFineTuningJob(fineTuningJobId: string, options?: CancelFineTuningJobOptions): Promise<FineTuningJob>;
-    // (undocumented)
-    createChatCompletion(body: CreateChatCompletionRequest, options?: CreateChatCompletionOptions): Promise<CreateChatCompletionResponse>;
-    // (undocumented)
-    createCompletion(body: CreateCompletionRequest, options?: CreateCompletionOptions): Promise<CreateCompletionResponse>;
-    // (undocumented)
-    createEdit(edit: CreateEditRequest, options?: CreateEditOptions): Promise<CreateEditResponse>;
-    // (undocumented)
-    createEmbedding(embedding: CreateEmbeddingRequest, options?: CreateEmbeddingOptions): Promise<CreateEmbeddingResponse>;
-    // (undocumented)
-    createFile(file: CreateFileRequest, options?: CreateFileOptions): Promise<OpenAIFile>;
-    // (undocumented)
-    createFineTune(fineTune: CreateFineTuneRequest, options?: CreateFineTuneOptions): Promise<FineTune>;
-    createFineTuningJob(job: CreateFineTuningJobRequest, options?: CreateFineTuningJobOptions): Promise<FineTuningJob>;
-    // (undocumented)
-    createImage(image: CreateImageRequest, options?: CreateImageOptions): Promise<ImagesResponse>;
-    // (undocumented)
-    createImageEdit(image: CreateImageEditRequest, options?: CreateImageEditOptions): Promise<ImagesResponse>;
-    // (undocumented)
-    createImageVariation(image: CreateImageVariationRequest, options?: CreateImageVariationOptions): Promise<ImagesResponse>;
-    // (undocumented)
-    createModeration(content: CreateModerationRequest, options?: CreateModerationOptions): Promise<CreateModerationResponse>;
-    // (undocumented)
-    createTranscription(audio: CreateTranscriptionRequest, options?: CreateTranscriptionOptions): Promise<CreateTranscriptionResponse>;
-    // (undocumented)
-    createTranslation(audio: CreateTranslationRequest, options?: CreateTranslationOptions): Promise<CreateTranslationResponse>;
-    // (undocumented)
-    deleteFile(fileId: string, options?: DeleteFileOptions): Promise<DeleteFileResponse>;
-    deleteOperation(model: string, options?: DeleteOptions): Promise<DeleteModelResponse>;
-    // (undocumented)
-    downloadFile(fileId: string, options?: DownloadFileOptions): Promise<string>;
-    // (undocumented)
-    listFiles(options?: ListFilesOptions): Promise<ListFilesResponse>;
-    // (undocumented)
-    listFineTuneEvents(fineTuneId: string, options?: ListFineTuneEventsOptions): Promise<ListFineTuneEventsResponse>;
-    // (undocumented)
-    listFineTunes(options?: ListFineTunesOptions): Promise<ListFineTunesResponse>;
-    // (undocumented)
-    listFineTuningEvents(fineTuningJobId: string, options?: ListFineTuningEventsOptions): Promise<ListFineTuningJobEventsResponse>;
-    // (undocumented)
-    listModels(options?: ListModelsOptions): Promise<ListModelsResponse>;
-    // (undocumented)
-    listPaginatedFineTuningJobs(options?: ListPaginatedFineTuningJobsOptions): Promise<ListPaginatedFineTuningJobsResponse>;
+    readonly audio: AudioOperations;
+    readonly chat: ChatOperations;
+    readonly completions: CompletionsOperations;
+    readonly edits: EditsOperations;
+    readonly embeddings: EmbeddingsOperations;
+    readonly files: FilesOperations;
+    readonly fineTunes: FineTunesOperations;
+    readonly fineTuning: FineTuningOperations;
+    readonly images: ImagesOperations;
+    readonly models: ModelsOperations;
+    readonly moderations: ModerationsOperations;
     readonly pipeline: Pipeline;
-    // (undocumented)
-    retrieve(model: string, options?: RetrieveOptions): Promise<Model>;
-    // (undocumented)
-    retrieveFile(fileId: string, options?: RetrieveFileOptions): Promise<OpenAIFile>;
-    // (undocumented)
-    retrieveFineTune(fineTuneId: string, options?: RetrieveFineTuneOptions): Promise<FineTune>;
-    // (undocumented)
-    retrieveFineTuningJob(fineTuningJobId: string, options?: RetrieveFineTuningJobOptions): Promise<FineTuningJob>;
 }
 
 // @public (undocumented)
@@ -675,22 +772,6 @@ export interface OpenAIFile {
     purpose: string;
     status: "uploaded" | "processed" | "pending" | "error" | "deleting" | "deleted";
     statusDetails?: string | null;
-}
-
-// @public (undocumented)
-export interface RetrieveFileOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface RetrieveFineTuneOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface RetrieveFineTuningJobOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface RetrieveOptions extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

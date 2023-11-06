@@ -11,30 +11,30 @@ export {
   headerBase64,
   headerBase64url,
   headerBase64urlArray,
-} from "./header.js";
+} from "./header/index.js";
 export {
   propertyDefault,
   propertyBase64,
   propertyBase64url,
   propertyBase64urlArray,
-} from "./property.js";
+} from "./property/index.js";
 export {
   queryDefault,
   queryBase64,
   queryBase64url,
   queryBase64urlArray,
-} from "./query.js";
+} from "./query/index.js";
 export {
   requestBodyDefault,
   requestBodyOctetStream,
   requestBodyCustomContentType,
   requestBodyBase64,
   requestBodyBase64url,
-} from "./requestBody.js";
+} from "./requestBody/index.js";
 export {
   responseBodyDefault,
   responseBodyOctetStream,
   responseBodyCustomContentType,
   responseBodyBase64,
   responseBodyBase64url,
-} from "./responseBody.js";
+} from "./responseBody/index.js";

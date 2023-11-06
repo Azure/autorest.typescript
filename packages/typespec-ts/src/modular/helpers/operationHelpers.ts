@@ -21,7 +21,7 @@ import {
   getResponseTypeName,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { getOperationName } from "./namingHelpers.js";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
@@ -190,7 +190,7 @@ function getOperationSignatureParameters(
   operation: Operation,
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const optionsType = getOperationOptionsName(operation);
+  const optionsType = getOperationOptionsName(operation, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
@@ -276,12 +276,14 @@ export function getOperationFunction(
     statements
   };
 }
-
 export function getOperationOptionsName(
   operation: Operation,
   includeGroupName = false
 ) {
-  const prefix = includeGroupName ? toPascalCase(operation.groupName) : "";
+  const prefix =
+    includeGroupName && operation.name.indexOf("_") === -1
+      ? getClassicalLayerPrefix(operation, NameType.Interface)
+      : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");

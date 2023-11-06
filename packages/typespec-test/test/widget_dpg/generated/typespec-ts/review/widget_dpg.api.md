@@ -15,29 +15,53 @@ export interface AnalyzeResult {
 }
 
 // @public (undocumented)
-export interface AnalyzeWidgetOptions extends OperationOptions {
-}
-
-// @public (undocumented)
 export interface CreateWidget {
     color: "red" | "blue";
     weight: number;
 }
 
 // @public (undocumented)
-export interface CreateWidgetOptions extends OperationOptions {
+export interface UpdateWidget {
+    color?: "red" | "blue";
+    weight?: number;
 }
 
 // @public (undocumented)
-export interface DeleteWidgetOptions extends OperationOptions {
+export interface Widget {
+    color: "red" | "blue";
+    id: string;
+    weight: number;
 }
 
 // @public (undocumented)
-export interface GetWidgetOptions extends OperationOptions {
+export interface WidgetsAnalyzeWidgetOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface ListWidgetsOptions extends OperationOptions {
+export interface WidgetsCreateWidgetOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetsDeleteWidgetOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export class WidgetServiceClient {
+    constructor(endpoint: string, options?: WidgetServiceClientOptions);
+    readonly pipeline: Pipeline;
+    readonly widgets: WidgetsOperations;
+}
+
+// @public (undocumented)
+export interface WidgetServiceClientOptions extends ClientOptions {
+}
+
+// @public (undocumented)
+export interface WidgetsGetWidgetOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetsListWidgetsOptions extends OperationOptions {
     // (undocumented)
     nullableDateHeader?: Date | null;
     // (undocumented)
@@ -49,36 +73,23 @@ export interface ListWidgetsOptions extends OperationOptions {
 }
 
 // @public (undocumented)
-export interface UpdateWidget {
-    color?: "red" | "blue";
-    weight?: number;
+export interface WidgetsOperations {
+    // (undocumented)
+    analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
+    // (undocumented)
+    createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) => Promise<Widget>;
+    // (undocumented)
+    deleteWidget: (id: string, options?: WidgetsDeleteWidgetOptions) => Promise<void>;
+    // (undocumented)
+    getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
+    // (undocumented)
+    listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
+    // (undocumented)
+    updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptions) => Promise<Widget>;
 }
 
 // @public (undocumented)
-export interface UpdateWidgetOptions extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface Widget {
-    color: "red" | "blue";
-    id: string;
-    weight: number;
-}
-
-// @public (undocumented)
-export class WidgetServiceClient {
-    constructor(endpoint: string, options?: WidgetServiceClientOptions);
-    analyzeWidget(id: string, options?: AnalyzeWidgetOptions): Promise<AnalyzeResult>;
-    createWidget(body: CreateWidget, options?: CreateWidgetOptions): Promise<Widget>;
-    deleteWidget(id: string, options?: DeleteWidgetOptions): Promise<void>;
-    getWidget(id: string, options?: GetWidgetOptions): Promise<Widget>;
-    listWidgets(requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: ListWidgetsOptions): Promise<Widget[]>;
-    readonly pipeline: Pipeline;
-    updateWidget(id: string, body: UpdateWidget, options?: UpdateWidgetOptions): Promise<Widget>;
-}
-
-// @public (undocumented)
-export interface WidgetServiceClientOptions extends ClientOptions {
+export interface WidgetsUpdateWidgetOptions extends OperationOptions {
 }
 
 // (No @packageDocumentation comment for this package)

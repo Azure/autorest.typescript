@@ -5,6 +5,7 @@ import {
   hasLROOperation,
   hasPagingOperation
 } from "./helpers/operationHelpers.js";
+import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 
 export function emitPackage(
   project: Project,
@@ -313,7 +314,34 @@ export function emitPackage(
       };
     }
   }
-
+  if (codeModel.options.hierarchyClient) {
+    for (const client of codeModel.clients) {
+      for (const operationGroup of client.operationGroups) {
+        if (operationGroup.namespaceHierarchies.length === 0) {
+          continue;
+        }
+        const subfolder =
+          codeModel.clients.length > 1
+            ? normalizeName(client.name.replace("Client", ""), NameType.File)
+            : undefined;
+        const subApiPath = `api/${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.File,
+          "/"
+        )}`;
+        packageInfo.exports[
+          `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
+        ] = {
+          types: `./types/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.d.ts`,
+          import: `./dist-esm/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.js`
+        };
+      }
+    }
+  }
   packageJson.addStatements(JSON.stringify(packageInfo));
 
   return packageJson;

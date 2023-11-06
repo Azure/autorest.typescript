@@ -24,3 +24,8 @@ export {
   HeaderInt32SecondsOptions,
   HeaderFloatSecondsOptions,
 } from "./models/index.js";
+export {
+  HeaderOperations,
+  PropertyOperations,
+  QueryOperations,
+} from "./classic/index.js";

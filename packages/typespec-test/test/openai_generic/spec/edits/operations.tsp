@@ -15,5 +15,5 @@ interface Edits {
   @post
   @tag("OpenAI")
   @operationId("createEdit")
-  createEdit(@body edit: CreateEditRequest): CreateEditResponse | ErrorResponse;
+  create(@body edit: CreateEditRequest): CreateEditResponse | ErrorResponse;
 }

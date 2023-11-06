@@ -13,6 +13,6 @@ export {
   ListOptions,
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
+  DeleteOperationOptions,
+  ExportOperationOptions,
 } from "./models/index.js";

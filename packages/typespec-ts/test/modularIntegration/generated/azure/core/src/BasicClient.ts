@@ -10,8 +10,8 @@ import {
   ListOptions,
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
+  DeleteOperationOptions,
+  ExportOperationOptions,
 } from "./models/options.js";
 import {
   createBasic,
@@ -83,26 +83,18 @@ export class BasicClient {
   }
 
   /** Deletes a User */
-  /**
-   *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
   deleteOperation(
     id: number,
-    options: DeleteOptions = { requestOptions: {} }
+    options: DeleteOperationOptions = { requestOptions: {} }
   ): Promise<void> {
     return deleteOperation(this._client, id, options);
   }
 
   /** Exports a User */
-  /**
-   *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
   exportOperation(
     id: number,
     format: string,
-    options: ExportOptions = { requestOptions: {} }
+    options: ExportOperationOptions = { requestOptions: {} }
   ): Promise<User> {
     return exportOperation(this._client, id, format, options);
   }

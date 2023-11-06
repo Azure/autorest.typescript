@@ -2,14 +2,14 @@
 // Licensed under the MIT license.
 
 /** The request of entire or last anomaly detection. */
-export interface UnivariateDetectionOptions {
+export interface UnivariateUnivariateDetectionOptions {
   /**
    * Time series data points. Points should be sorted by timestamp in ascending
    * order to match the anomaly detection result. If the data is not sorted
    * correctly or there is duplicated timestamp, the API will not work. In such
    * case, an error message will be returned.
    */
-  series: Array<TimeSeriesPoint>;
+  series: Array<UnivariateTimeSeriesPoint>;
   /**
    * Optional argument, can be one of yearly, monthly, weekly, daily, hourly,
    * minutely, secondly, microsecond or none. If granularity is not present, it will
@@ -60,7 +60,7 @@ export interface UnivariateDetectionOptions {
 }
 
 /** The definition of input timeseries points. */
-export interface TimeSeriesPoint {
+export interface UnivariateTimeSeriesPoint {
   /** Optional argument, timestamp of a data point (ISO8601 format). */
   timestamp?: Date | string;
   /** The measurement of that point, should be float. */
@@ -68,12 +68,12 @@ export interface TimeSeriesPoint {
 }
 
 /** The request of change point detection. */
-export interface UnivariateChangePointDetectionOptions {
+export interface UnivariateUnivariateChangePointDetectionOptions {
   /**
    * Time series data points. Points should be sorted by timestamp in ascending
    * order to match the change point detection result.
    */
-  series: Array<TimeSeriesPoint>;
+  series: Array<UnivariateTimeSeriesPoint>;
   /**
    * Can only be one of yearly, monthly, weekly, daily, hourly, minutely or
    * secondly. Granularity is used for verify whether input series is valid.
@@ -113,7 +113,7 @@ export interface UnivariateChangePointDetectionOptions {
 }
 
 /** ErrorResponse contains code and message that shows the error information. */
-export interface ErrorResponse {
+export interface MultivariateErrorResponse {
   /** The error code. */
   code: string;
   /** The message explaining the error reported by the service. */
@@ -121,7 +121,7 @@ export interface ErrorResponse {
 }
 
 /** Variable Status. */
-export interface VariableState {
+export interface MultivariateVariableState {
   /** Variable name in variable states. */
   variable?: string;
   /** Proportion of missing values that need to be filled by fillNAMethod. */
@@ -138,7 +138,7 @@ export interface VariableState {
  * Detection request for batch inference. This is an asynchronous inference which
  * will need another API to get detection results.
  */
-export interface MultivariateBatchDetectionOptions {
+export interface MultivariateMultivariateBatchDetectionOptions {
   /**
    * Source link to the input data to indicate an accessible Azure storage Uri,
    * either pointed to an Azure blob storage folder, or pointed to a CSV file in
@@ -168,7 +168,7 @@ export interface MultivariateBatchDetectionOptions {
  * Training result of a model including its status, errors and diagnostics
  * information.
  */
-export interface ModelInfo {
+export interface MultivariateModelInfo {
   /**
    * Source link to the input data to indicate an accessible Azure storage Uri,
    * either pointed to an Azure blob storage folder, or pointed to a CSV file in
@@ -203,15 +203,15 @@ export interface ModelInfo {
    */
   slidingWindow?: number;
   /** An optional field, indicating the manner to align multiple variables. */
-  alignPolicy?: AlignPolicy;
+  alignPolicy?: MultivariateAlignPolicy;
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
   status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
   /** Diagnostics information to help inspect the states of model or variable. */
-  diagnosticsInfo?: DiagnosticsInfo;
+  diagnosticsInfo?: MultivariateDiagnosticsInfo;
 }
 
 /** An optional field, indicating the manner to align multiple variables. */
-export interface AlignPolicy {
+export interface MultivariateAlignPolicy {
   /**
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
@@ -229,15 +229,15 @@ export interface AlignPolicy {
 }
 
 /** Diagnostics information to help inspect the states of model or variable. */
-export interface DiagnosticsInfo {
+export interface MultivariateDiagnosticsInfo {
   /** Model status. */
-  modelState?: ModelState;
+  modelState?: MultivariateModelState;
   /** Variable Status. */
-  variableStates?: Array<VariableState>;
+  variableStates?: Array<MultivariateVariableState>;
 }
 
 /** Model status. */
-export interface ModelState {
+export interface MultivariateModelState {
   /**
    * This indicates the number of passes of the entire training dataset the
    * algorithm has completed.
@@ -258,12 +258,12 @@ export interface ModelState {
 }
 
 /** Request of last detection. */
-export interface MultivariateLastDetectionOptions {
+export interface MultivariateMultivariateLastDetectionOptions {
   /**
    * This contains the inference data, including the name, timestamps(ISO 8601) and
    * values of variables.
    */
-  variables: Array<VariableValues>;
+  variables: Array<MultivariateVariableValues>;
   /**
    * An optional field, which is used to specify the number of top contributed
    * variables for one anomalous timestamp in the response. The default number is
@@ -273,7 +273,7 @@ export interface MultivariateLastDetectionOptions {
 }
 
 /** Variable values. */
-export interface VariableValues {
+export interface MultivariateVariableValues {
   /** Variable name of last detection request. */
   variable: string;
   /** Timestamps of last detection request */
