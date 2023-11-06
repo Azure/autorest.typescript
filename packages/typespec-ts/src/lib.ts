@@ -75,9 +75,9 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     sourceFrom: { type: "string", nullable: true },
     isModularLibrary: { type: "boolean", nullable: true, default: false },
     enableOperationGroup: { type: "boolean", nullable: true },
-    branded: { type: "boolean", nullable: true, default: true }
     enableModelNamespace: { type: "boolean", nullable: true },
-    hierarchyClient: { type: "boolean", nullable: true }
+    hierarchyClient: { type: "boolean", nullable: true },
+    branded: { type: "boolean", nullable: true, default: true }
   },
   required: []
 };
