@@ -19,6 +19,8 @@ import {
   getResponseBaseName,
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
+import { get } from "lodash";
 
 let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
@@ -85,11 +87,10 @@ export function buildResponseTypes(model: RLCModel) {
     responsesFile.addImportDeclarations([
       {
         namedImports: ["RawHttpHeaders"],
-        moduleSpecifier:
-          (
-            model.thirdPartyImports?.restPipeline ??
-            model.thirdPartyImports?.commonFallback
-          )?.specifier ?? "@azure/core-rest-pipeline"
+        moduleSpecifier: getImportSpecifier(
+          "restPipeline",
+          model?.thirdPartyImports
+        )
       }
     ]);
   }
@@ -100,11 +101,10 @@ export function buildResponseTypes(model: RLCModel) {
   responsesFile.addImportDeclarations([
     {
       namedImports,
-      moduleSpecifier:
-        (
-          model?.thirdPartyImports?.restClient ??
-          model?.thirdPartyImports?.commonFallback
-        )?.specifier ?? "@azure-rest/core-client"
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model?.thirdPartyImports
+      )
     }
   ]);
 

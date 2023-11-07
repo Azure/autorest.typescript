@@ -33,6 +33,7 @@ import {
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { Program, NoTarget } from "@typespec/compiler";
 import { reportDiagnostic } from "../../lib.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -431,9 +432,7 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    const specifier =
-      (thirdPartyImports?.coreUtil ?? thirdPartyImports?.commonFallback)
-        ?.specifier ?? "@azure/core-util";
+    const specifier = getImportSpecifier("coreAuth", thirdPartyImports);
     const coreUtilSet = importSet.get(specifier);
     if (!coreUtilSet) {
       importSet.set(specifier, new Set<string>().add("uint8ArrayToString"));
@@ -870,9 +869,7 @@ function deserializeResponseValue(
   required: boolean,
   format?: string
 ): string {
-  const coreSpecifier =
-    (thirdPartyImports?.coreUtil ?? thirdPartyImports?.commonFallback)
-      ?.specifier ?? "@azure/core-util";
+  const coreSpecifier = getImportSpecifier("coreAuth", thirdPartyImports);
   const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":

@@ -20,6 +20,7 @@ import { SdkContext } from "../utils/interfaces.js";
 import { Imports as ThirdPartyImports } from "@azure-tools/rlc-common";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -161,9 +162,7 @@ function importPipeline(
   clientSourceFile: SourceFile
 ): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier:
-      (thirdPartyImports?.commonFallback ?? thirdPartyImports?.restPipeline)
-        ?.specifier ?? "@azure/core-rest-pipeline",
+    moduleSpecifier: getImportSpecifier("restClient", thirdPartyImports),
     namedImports: ["Pipeline"]
   });
 }

@@ -19,6 +19,7 @@ import {
   getClientName,
   getImportModuleName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 function getClientOptionsInterface(
   clientName: string,
@@ -161,11 +162,10 @@ export function buildClient(model: RLCModel): File | undefined {
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
-      moduleSpecifier:
-        (
-          model?.thirdPartyImports?.restClient ??
-          model?.thirdPartyImports?.commonFallback
-        )?.specifier ?? "@azure-rest/core-client"
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model?.thirdPartyImports
+      )
     }
   ]);
   if (branded !== false) {
@@ -194,11 +194,10 @@ export function buildClient(model: RLCModel): File | undefined {
     clientFile.addImportDeclarations([
       {
         namedImports: credentialTypes,
-        moduleSpecifier:
-          (
-            model.thirdPartyImports?.coreAuth ??
-            model.thirdPartyImports?.commonFallback
-          )?.specifier ?? "@azure/core-auth"
+        moduleSpecifier: getImportSpecifier(
+          "coreAuth",
+          model?.thirdPartyImports
+        )
       }
     ]);
   }

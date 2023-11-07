@@ -21,6 +21,7 @@ import {
   getParameterBaseName,
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -138,22 +139,20 @@ export function buildParameterTypes(model: RLCModel) {
     parametersFile.addImportDeclarations([
       {
         namedImports: ["RawHttpHeadersInput"],
-        moduleSpecifier:
-          (
-            model.thirdPartyImports?.restPipeline ??
-            model.thirdPartyImports?.commonFallback
-          )?.specifier ?? "@azure/core-rest-pipeline"
+        moduleSpecifier: getImportSpecifier(
+          "restPipeline",
+          model?.thirdPartyImports
+        )
       }
     ]);
   }
   parametersFile.addImportDeclarations([
     {
       namedImports: ["RequestParameters"],
-      moduleSpecifier:
-        (
-          model?.thirdPartyImports?.restClient ??
-          model?.thirdPartyImports?.commonFallback
-        )?.specifier ?? "@azure-rest/core-client"
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model?.thirdPartyImports
+      )
     }
   ]);
   if ((model.innerImports?.parameter?.importsSet?.size ?? 0) > 0) {

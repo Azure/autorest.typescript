@@ -1,4 +1,4 @@
-import { Imports } from "../interfaces.js";
+import { ImportType, Imports } from "../interfaces.js";
 
 /**
  * Build the common imports for generated SDK
@@ -71,4 +71,27 @@ export function initInnerImports(): Imports {
       importsSet: new Set<string>()
     }
   } as Imports;
+}
+
+export function getImportSpecifier(
+  importType: ImportType,
+  imports?: Imports,
+  includeFallback = true
+): string {
+  imports = imports ?? ({} as Imports);
+  const defaultPackageMap: Record<ImportType, string> = {
+    restClient: "@azure-rest/core-client",
+    coreAuth: "@azure/core-auth",
+    restPipeline: "@azure/core-rest-pipeline",
+    coreUtil: "@azure/core-util",
+    coreLogger: "@azure/logger"
+  } as any;
+  if (!includeFallback) {
+    return imports[importType]?.specifier ?? "";
+  }
+  return (
+    (imports[importType] ?? imports.commonFallback)?.specifier ??
+    defaultPackageMap[importType] ??
+    ""
+  );
 }

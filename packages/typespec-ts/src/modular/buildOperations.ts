@@ -11,6 +11,7 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -113,11 +114,10 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier:
-          (
-            codeModel?.thirdPartyImports?.restClient ??
-            codeModel?.thirdPartyImports?.commonFallback
-          )?.specifier ?? "@azure-rest/core-client",
+        moduleSpecifier: getImportSpecifier(
+          "restClient",
+          codeModel?.thirdPartyImports
+        ),
         namedImports: [
           "StreamableMethod",
           "operationOptionsToRequestParameters"
