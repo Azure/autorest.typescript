@@ -162,7 +162,7 @@ function importPipeline(
   clientSourceFile: SourceFile
 ): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("restClient", thirdPartyImports),
+    moduleSpecifier: getImportSpecifier("restPipeline", thirdPartyImports),
     namedImports: ["Pipeline"]
   });
 }

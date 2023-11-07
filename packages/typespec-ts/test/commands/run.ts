@@ -18,7 +18,7 @@ export async function runTypespec(config: TypeSpecRanchConfig, mode: string) {
     `./temp/http/${sourceTypespec}`
   );
   let subPath = "integration";
-  if (mode.includes("non-azure")) {
+  if (mode.includes("non-branded")) {
     subPath = `nonBrandedIntegration/${
       mode.includes("modular") ? "modular" : "rlc"
     }`;

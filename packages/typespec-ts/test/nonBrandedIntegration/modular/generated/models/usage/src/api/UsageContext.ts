@@ -1,4 +1,3 @@
-// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
 import { ClientOptions } from "@typespec/ts-http-runtime";
