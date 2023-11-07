@@ -4,6 +4,7 @@ options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
+    addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
     title: AzureCoreTraitsClient

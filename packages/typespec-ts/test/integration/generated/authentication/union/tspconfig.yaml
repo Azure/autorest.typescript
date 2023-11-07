@@ -5,6 +5,7 @@ options:
     "emitter-output-dir": "{project-root}"
     generateMetadata: false
     generateTest: true
+    addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
     title: AuthUnionClient
