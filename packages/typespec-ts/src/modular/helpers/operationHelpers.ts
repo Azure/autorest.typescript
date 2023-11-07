@@ -869,7 +869,7 @@ function deserializeResponseValue(
   required: boolean,
   format?: string
 ): string {
-  const coreSpecifier = getImportSpecifier("coreAuth", thirdPartyImports);
+  const coreSpecifier = getImportSpecifier("coreUtil", thirdPartyImports);
   const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":
