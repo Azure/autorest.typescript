@@ -71,7 +71,7 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           ...methodDetails.flatMap(
             (md) =>
               md.operationHelperDetail?.lroDetails?.logicalResponseTypes
-                ?.success!
+                ?.success ?? ""
           )
         );
       }
