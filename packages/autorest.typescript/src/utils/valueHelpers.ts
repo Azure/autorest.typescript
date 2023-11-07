@@ -178,9 +178,7 @@ export function getParameterAssignment(
             : prop;
           propName = normalizeName(initPropName, NameType.Property, true);
         }
-        let propRetValue: string;
-        propRetValue =
-            `"${propName}": ` + getParameterAssignment(property, isRLCSample);
+        const propRetValue = `"${propName}": ` + getParameterAssignment(property, isRLCSample);
         values.push(propRetValue);
       }
       if (values.length > 0) {
