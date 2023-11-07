@@ -432,7 +432,7 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    const specifier = getImportSpecifier("coreAuth", thirdPartyImports);
+    const specifier = getImportSpecifier("coreUtil", thirdPartyImports);
     const coreUtilSet = importSet.get(specifier);
     if (!coreUtilSet) {
       importSet.set(specifier, new Set<string>().add("uint8ArrayToString"));
