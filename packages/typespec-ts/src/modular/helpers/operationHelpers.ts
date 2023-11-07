@@ -328,7 +328,7 @@ function getRequestParameters(
       param.location === "body"
     ) {
       parametersImplementation[param.location].push({
-        paramMap: getParameterMap(param, importSet),
+        paramMap: getParameterMap(param, importSet, thirdPartyImports),
         param
       });
     }
@@ -406,7 +406,8 @@ function buildBodyParameter(
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
-      importSet
+      importSet,
+      thirdPartyImports
     );
 
     if (bodyParameter && bodyParts.length > 0) {
@@ -419,7 +420,8 @@ function buildBodyParameter(
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p",
-        importSet
+        importSet,
+        thirdPartyImports
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
@@ -470,23 +472,28 @@ function getEncodingFormat(type: { format?: string }) {
  */
 function getParameterMap(
   param: Parameter | Property,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ): string {
   if (isConstant(param)) {
     return getConstantValue(param);
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(param as Parameter, importSet);
+    return getCollectionFormat(
+      param as Parameter,
+      importSet,
+      thirdPartyImports
+    );
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(param, importSet);
+    return getOptional(param, importSet, thirdPartyImports);
   }
 
   if (isRequired(param)) {
-    return getRequired(param, importSet);
+    return getRequired(param, importSet, thirdPartyImports);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -494,7 +501,8 @@ function getParameterMap(
 
 function getCollectionFormat(
   param: Parameter,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
@@ -510,6 +518,7 @@ function getCollectionFormat(
       param.type,
       param.clientName,
       importSet,
+      thirdPartyImports,
       true,
       param.format
     )}${additionalParam})`;
@@ -520,6 +529,7 @@ function getCollectionFormat(
     param.type,
     "options?." + param.clientName,
     importSet,
+    thirdPartyImports,
     false,
     param.format
   )}${additionalParam}): undefined`;
@@ -557,18 +567,24 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
+function getRequired(
+  param: RequiredType,
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
-      importSet
+      importSet,
+      thirdPartyImports
     ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     param.clientName,
     importSet,
+    thirdPartyImports,
     true,
     param.format === undefined &&
       (param as Parameter).location === "header" &&
@@ -609,18 +625,24 @@ function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
+function getOptional(
+  param: OptionalType,
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
-      importSet
+      importSet,
+      thirdPartyImports
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
     importSet,
+    thirdPartyImports,
     false,
     param.format === undefined &&
       (param as Parameter).location === "header" &&
@@ -689,7 +711,8 @@ function getNullableCheck(name: string, type: Type) {
 function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports
 ) {
   if (getAllProperties(modelPropertyType).length <= 0) {
     return [];
@@ -732,7 +755,8 @@ function getRequestModelMapping(
           `${propertyPath}.${property.clientName}${
             property.optional ? "?" : ""
           }`,
-          importSet
+          importSet,
+          thirdPartyImports
         )}}`;
       }
 
@@ -759,6 +783,7 @@ function getRequestModelMapping(
           property.type,
           clientValue,
           importSet,
+          thirdPartyImports,
           !property.optional,
           property.format
         )}`
@@ -929,10 +954,12 @@ function serializeRequestValue(
   type: Type,
   clientValue: string,
   importSet: Map<string, Set<string>>,
+  thirdPartyImports: ThirdPartyImports,
   required: boolean,
   format?: string
 ): string {
-  const coreUtilSet = importSet.get("@azure/core-util");
+  const utilSpecifier = getImportSpecifier("coreUtil", thirdPartyImports);
+  const coreUtilSet = importSet.get(utilSpecifier);
   switch (type.type) {
     case "datetime":
       switch (type.format ?? format) {
@@ -954,13 +981,15 @@ function serializeRequestValue(
         return `(${clientValue} ?? []).map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
-          importSet
+          importSet,
+          thirdPartyImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
         return `(${clientValue} ?? []).map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet,
+          thirdPartyImports,
           required,
           type.elementType?.format
         )})`;
@@ -971,7 +1000,7 @@ function serializeRequestValue(
       if (format !== "binary") {
         if (!coreUtilSet) {
           importSet.set(
-            "@azure/core-util",
+            utilSpecifier,
             new Set<string>().add("uint8ArrayToString")
           );
         } else {
