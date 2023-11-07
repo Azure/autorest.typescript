@@ -1,7 +1,6 @@
 {
   "name": "@msinternal/openai-non-branded",
   "sdk-type": "client",
-  "author": "Microsoft Corporation",
   "version": "1.0.0-beta.1",
   "description": "A generated SDK for OpenAI.",
   "keywords": ["node", "typescript", "browser", "isomorphic"],
