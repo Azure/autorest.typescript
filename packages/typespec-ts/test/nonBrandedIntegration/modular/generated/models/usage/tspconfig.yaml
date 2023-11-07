@@ -6,7 +6,6 @@ options:
     generateMetadata: false
     generateTest: false
     isTypeSpecTest: true
-    azureSdkForJs: false
     branded: false
     isModularLibrary: true
     packageDetails:

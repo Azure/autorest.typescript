@@ -7,7 +7,6 @@ options:
     generateTest: false
     addCredentials: false
     isTypeSpecTest: true
-    azureSdkForJs: false
     branded: false
     packageDetails:
       name: "@msinternal/usage"
