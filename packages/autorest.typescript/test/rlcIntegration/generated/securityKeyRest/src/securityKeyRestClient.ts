@@ -16,13 +16,6 @@ export default function createClient(
   options: ClientOptions = {}
 ): SecurityKeyRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key"
-    }
-  };
-
   const userAgentInfo = `azsdk-js-security-key-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -35,6 +28,9 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key"
     }
   };
 

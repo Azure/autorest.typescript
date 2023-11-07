@@ -11,7 +11,7 @@ export interface Project {
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
-  settings?: Record<string, string>;
+  settings?: ProjectSettings;
   /** Whether the project would be used for multiple languages or not. */
   multilingual?: boolean;
   /** The project description. */
@@ -19,6 +19,9 @@ export interface Project {
   /** The project language. This is BCP-47 representation of a language. For example, use "en" for English, "en-gb" for English (UK), "es" for Spanish etc. */
   language: string;
 }
+
+/** Represents the settings used to define the project behavior. */
+export interface ProjectSettings extends Record<string, string> {}
 
 /** Training job parameters. */
 export interface TrainingJobOptions {

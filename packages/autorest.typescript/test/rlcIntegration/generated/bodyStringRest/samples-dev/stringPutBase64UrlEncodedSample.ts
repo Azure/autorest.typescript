@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createBodyStringRestClient, {
-  StringPutBase64UrlEncodedParameters
-} from "@msinternal/body-string-rest";
+import createBodyStringRestClient from "@msinternal/body-string-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -16,17 +12,16 @@ dotenv.config();
  * @summary Put value that is base64url encoded
  * x-ms-original-file: /@microsoft.azure/autorest.testserver/swagger/examples/string_putBase64UrlEncoded.json
  */
-async function stringPutNull() {
+async function stringPutBase64UrlEncoded() {
   const client = createBodyStringRestClient();
-  const options: StringPutBase64UrlEncodedParameters = {
-    body: "YSBzdHJpbmcgdGhhdCBnZXRzIGVuY29kZWQgd2l0aCBiYXNlNjR1cmw"
-  };
-  const result = await client.path("/string/base64UrlEncoding").put(options);
+  const result = await client
+    .path("/string/base64UrlEncoding")
+    .put({ body: "YSBzdHJpbmcgdGhhdCBnZXRzIGVuY29kZWQgd2l0aCBiYXNlNjR1cmw" });
   console.log(result);
 }
 
 async function main() {
-  stringPutNull();
+  stringPutBase64UrlEncoded();
 }
 
 main().catch(console.error);

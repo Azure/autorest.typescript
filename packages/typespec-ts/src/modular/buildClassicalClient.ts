@@ -1,20 +1,24 @@
 import {
   ClassDeclaration,
-  FunctionDeclarationStructure,
   MethodDeclarationStructure,
-  OptionalKind,
   Scope,
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { toCamelCase } from "../utils/casingUtils.js";
-import { getClientParameters } from "./helpers/clientHelpers.js";
-import { getClientName } from "./helpers/namingHelpers.js";
-import { getOperationFunction } from "./helpers/operationHelpers.js";
+import {
+  getClientParameters,
+  importCredential
+} from "./helpers/clientHelpers.js";
+import {
+  getClassicalLayerPrefix,
+  getClientName
+} from "./helpers/namingHelpers.js";
 import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { NameType, normalizeName } from "@azure-tools/rlc-common";
+import { getOperationFunction } from "./helpers/operationHelpers.js";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -59,6 +63,15 @@ export function buildClassicalClient(
     });
   }
 
+  // Add the pipeline member. This will be the pipeline from /api
+  clientClass.addProperty({
+    name: "pipeline",
+    type: "Pipeline",
+    scope: Scope.Public,
+    isReadonly: true,
+    docs: ["The pipeline used by this client to make requests"]
+  });
+
   // TODO: We may need to generate constructor overloads at some point. Here we'd do that.
   const constructor = clientClass.addConstructor({
     docs: getDocsFromDescription(description),
@@ -69,9 +82,11 @@ export function buildClassicalClient(
       .map((p) => p.name)
       .join(",")})`
   ]);
+  constructor.addStatements(`this.pipeline = this._client.pipeline`);
   importCredential(clientFile);
+  importPipeline(clientFile);
   importAllModels(clientFile, srcPath, subfolder);
-  buildClientOperationGroups(client, clientClass, subfolder);
+  buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
   importAllUtils(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
@@ -161,80 +176,94 @@ function importAllModels(
   });
 }
 
-function importCredential(clientSourceFile: SourceFile): void {
+function importPipeline(clientSourceFile: SourceFile): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: "@azure/core-auth",
-    namedImports: ["TokenCredential", "KeyCredential"]
+    moduleSpecifier: "@azure/core-rest-pipeline",
+    namedImports: ["Pipeline"]
   });
 }
 
 function buildClientOperationGroups(
+  clientFile: SourceFile,
   client: Client,
-  clientClass: ClassDeclaration,
-  subfolder: string
+  clientClass: ClassDeclaration
 ) {
-  const operationMap = new Map<
-    OptionalKind<FunctionDeclarationStructure>,
-    string | undefined
-  >();
-  for (const operationGroup of client.operationGroups) {
-    const operationGroupName = toCamelCase(operationGroup.propertyName);
-    let clientType = "Client";
-    if (subfolder && subfolder !== "") {
-      clientType = `Client.${clientClass.getName()}`;
-    }
-    const operationDeclarations: OptionalKind<FunctionDeclarationStructure>[] =
-      operationGroup.operations.map((operation) => {
-        const declarations = getOperationFunction(operation, clientType);
-        operationMap.set(declarations, operation.oriName);
-        return declarations;
-      });
-
-    if (operationGroupName && operationGroupName !== "") {
-      clientClass.addProperty({
-        name: operationGroupName,
-        initializer: `
-      {
-        ${operationDeclarations.map((d) => {
-          return `${getClassicalMethodName(d)}: (${d.parameters
-            ?.filter((p) => p.name !== "context")
-            .map(
-              (p) => p.name + (p.name === "options" ? "?" : "") + ": " + p.type
-            )
-            .join(",")}): ${d.returnType} => {return ${d.name}(${[
-            "this._client",
-            ...[d.parameters?.map((p) => p.name).filter((p) => p !== "context")]
-          ].join(",")})}`;
-        })}
-      }
-      `
-      });
-    } else {
-      clientClass.addMethods(
-        operationDeclarations.map((d) => {
-          const method: MethodDeclarationStructure = {
-            docs: d.docs,
-            name: getClassicalMethodName(d),
-            kind: StructureKind.Method,
-            returnType: d.returnType,
-            parameters: d.parameters?.filter((p) => p.name !== "context"),
-            statements: `return ${d.name}(${[
-              "this._client",
-              ...[
-                d.parameters?.map((p) => p.name).filter((p) => p !== "context")
-              ]
-            ].join(",")})`
-          };
-
-          return method;
-        })
-      );
-    }
+  let clientType = "Client";
+  const subfolder = client.subfolder ?? "";
+  if (subfolder && subfolder !== "") {
+    clientType = `Client.${clientClass.getName()}`;
   }
-
-  function getClassicalMethodName(
-    declaration: OptionalKind<FunctionDeclarationStructure>
-  ) {
-    return operationMap.get(declaration) ?? declaration.name ?? "FIXME";
+  for (const operationGroup of client.operationGroups) {
+    const groupName = normalizeName(
+      operationGroup.namespaceHierarchies[0] ?? operationGroup.propertyName,
+      NameType.Property
+    );
+    if (groupName === "") {
+      operationGroup.operations.forEach((op) => {
+        const declarations = getOperationFunction(op, clientType);
+        const method: MethodDeclarationStructure = {
+          docs: declarations.docs,
+          name: declarations.name ?? "FIXME",
+          kind: StructureKind.Method,
+          returnType: declarations.returnType,
+          parameters: declarations.parameters?.filter(
+            (p) => p.name !== "context"
+          ),
+          statements: `return ${declarations.name}(${[
+            "this._client",
+            ...[
+              declarations.parameters
+                ?.map((p) => p.name)
+                .filter((p) => p !== "context")
+            ]
+          ].join(",")})`
+        };
+        clientClass.addMethod(method);
+      });
+      continue;
+    }
+    const operationName = `get${getClassicalLayerPrefix(
+      operationGroup,
+      NameType.Interface,
+      "",
+      0
+    )}Operations`;
+    const propertyType = `${getClassicalLayerPrefix(
+      operationGroup,
+      NameType.Interface,
+      "",
+      0
+    )}Operations`;
+    const existProperty = clientClass.getProperties().filter((p) => {
+      return p.getName() === groupName;
+    });
+    if (!existProperty || existProperty.length === 0) {
+      clientFile.addImportDeclaration({
+        namedImports: [operationName, propertyType],
+        moduleSpecifier: `./classic/${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.File,
+          "/",
+          0
+        )}/index.js`
+      });
+      clientClass.addProperty({
+        name: groupName,
+        type: propertyType,
+        scope: Scope.Public,
+        isReadonly: true,
+        docs: ["The operation groups for " + operationGroup.propertyName]
+      });
+      clientClass
+        .getConstructors()[0]
+        ?.addStatements(
+          `this.${groupName} = get${getClassicalLayerPrefix(
+            operationGroup,
+            NameType.Interface,
+            "",
+            0
+          )}Operations(this._client)`
+        );
+    }
   }
 }

@@ -20,6 +20,7 @@ import {
   getResponseTypeName,
   normalizeName
 } from "@azure-tools/rlc-common";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import { getOperationName } from "./namingHelpers.js";
 import {
   getFixmeForMultilineDocs,
@@ -29,6 +30,9 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { Program, NoTarget } from "@typespec/compiler";
+import { reportDiagnostic } from "../../lib.js";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -48,6 +52,7 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
 }
 
 export function getSendPrivateFunction(
+  dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
   importSet: Map<string, Set<string>>
@@ -71,6 +76,7 @@ export function getSendPrivateFunction(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+      dpgContext,
       operation,
       importSet
     )}});`
@@ -144,9 +150,21 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  if (response?.type?.type === "any") {
+  if (response?.type?.type === "any" || response.isBinaryPayload) {
     statements.push(`return result.body`);
-  } else if (response?.type?.elementType) {
+  } else if (getAllProperties(response?.type).length > 0) {
+    statements.push(
+      `return {`,
+      getResponseMapping(
+        getAllProperties(response.type) ?? [],
+        "result.body",
+        importSet
+      ).join(","),
+      `}`
+    );
+  } else if (returnType.type === "void") {
+    statements.push(`return;`);
+  } else {
     statements.push(
       `return ${deserializeResponseValue(
         response.type,
@@ -156,20 +174,6 @@ export function getDeserializePrivateFunction(
         response.type.format
       )}`
     );
-  } else if (response?.type?.properties) {
-    statements.push(
-      `return {`,
-      getResponseMapping(
-        response.type.properties ?? [],
-        "result.body",
-        importSet
-      ).join(","),
-      `}`
-    );
-  } else if (returnType.type === "void") {
-    statements.push(`return;`);
-  } else {
-    statements.push(`return result.body;`);
   }
   return {
     ...functionStatement,
@@ -181,33 +185,11 @@ function getOperationSignatureParameters(
   operation: Operation,
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const optionsType = getOperationOptionsName(operation);
+  const optionsType = getOperationOptionsName(operation, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
-  if (operation.bodyParameter?.type.type === "model") {
-    (operation.bodyParameter?.type.properties ?? [])
-      .filter((p) => !p.optional)
-      .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type, p.format))
-      .forEach((p) => parameters.set(p.name, p));
-  } else if (operation.bodyParameter?.type.type === "list") {
-    const bodyArray = operation.bodyParameter;
-    parameters.set(
-      bodyArray.clientName,
-      buildType(bodyArray.clientName, bodyArray.type, bodyArray.type.format)
-    );
-  } else if (operation.bodyParameter?.type.type === "byte-array") {
-    parameters.set(
-      operation.bodyParameter.clientName,
-      buildType(
-        operation.bodyParameter.clientName,
-        operation.bodyParameter.type,
-        operation.bodyParameter.type.format
-      )
-    );
-  }
 
   operation.parameters
     .filter(
@@ -222,6 +204,16 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
+  if (operation.bodyParameter) {
+    parameters.set(
+      operation.bodyParameter?.clientName,
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type,
+        operation.bodyParameter.type.format
+      )
+    );
+  }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
@@ -310,12 +302,14 @@ function extractPagingType(type: Type, itemName?: string): Type | undefined {
     ? prop[0].elementType
     : undefined;
 }
-
 export function getOperationOptionsName(
   operation: Operation,
   includeGroupName = false
 ) {
-  const prefix = includeGroupName ? toPascalCase(operation.groupName) : "";
+  const prefix =
+    includeGroupName && operation.name.indexOf("_") === -1
+      ? getClassicalLayerPrefix(operation, NameType.Interface)
+      : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");
@@ -329,6 +323,7 @@ export function getOperationOptionsName(
  * Figuring out what goes in headers, body, path and qsp.
  */
 function getRequestParameters(
+  dpgContext: SdkContext,
   operation: Operation,
   importSet: Map<string, Set<string>>
 ): string {
@@ -343,7 +338,7 @@ function getRequestParameters(
 
   const parametersImplementation: Record<
     "header" | "query" | "body",
-    string[]
+    { paramMap: string; param: Parameter }[]
   > = {
     header: [],
     query: [],
@@ -351,10 +346,15 @@ function getRequestParameters(
   };
 
   for (const param of operationParameters) {
-    if (param.location === "header" || param.location === "query") {
-      parametersImplementation[param.location].push(
-        getParameterMap(param, importSet)
-      );
+    if (
+      param.location === "header" ||
+      param.location === "query" ||
+      param.location === "body"
+    ) {
+      parametersImplementation[param.location].push({
+        paramMap: getParameterMap(param, importSet),
+        param
+      });
     }
   }
 
@@ -365,23 +365,55 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
+      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
+      .join(",\n")}},`;
   }
 
   if (parametersImplementation.query.length) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
+      .map((i) => i.paramMap)
+      .join(",\n")}},`;
   }
-
-  paramStr = `${paramStr}${buildBodyParameter(
-    operation.bodyParameter,
-    importSet
-  )}`;
-
+  if (
+    operation.bodyParameter === undefined &&
+    parametersImplementation.body.length
+  ) {
+    paramStr = `${paramStr}\nbody: {${parametersImplementation.body
+      .map((i) => i.paramMap)
+      .join(",\n")}}`;
+  } else if (operation.bodyParameter !== undefined) {
+    paramStr = `${paramStr}${buildBodyParameter(
+      operation.bodyParameter,
+      importSet
+    )}`;
+  }
   return paramStr;
+}
+
+// Specially handle the type for headers because we only allow string/number/boolean values
+function buildHeaderParameter(
+  program: Program,
+  paramMap: string,
+  param: Parameter
+): string {
+  if (!param.optional && param.type.nullable === true) {
+    reportDiagnostic(program, {
+      code: "nullable-required-header",
+      target: NoTarget
+    });
+    return paramMap;
+  }
+  const conditions = [];
+  if (param.optional) {
+    conditions.push(`options?.${param.clientName} !== undefined`);
+  }
+  if (param.type.nullable === true) {
+    conditions.push(`options?.${param.clientName} !== null`);
+  }
+  return conditions.length > 0
+    ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
+    : paramMap;
 }
 
 function buildBodyParameter(
@@ -393,24 +425,13 @@ function buildBodyParameter(
   }
 
   if (bodyParameter.type.type === "model") {
-    const bodyParts: string[] = [];
-    for (const param of bodyParameter?.type.properties?.filter(
-      (p) => !p.readonly
-    ) ?? []) {
-      if (param.type.type === "model" && isRequired(param)) {
-        bodyParts.push(
-          `"${param.restApiName}": {${getRequestModelMapping(
-            param.type,
-            param.clientName,
-            importSet
-          ).join(",\n")}}`
-        );
-      } else {
-        bodyParts.push(getParameterMap(param, importSet));
-      }
-    }
+    const bodyParts: string[] = getRequestModelMapping(
+      bodyParameter.type,
+      bodyParameter.clientName,
+      importSet
+    );
 
-    if (bodyParameter && bodyParameter.type.properties) {
+    if (bodyParameter && bodyParts.length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }
@@ -429,11 +450,43 @@ function buildBodyParameter(
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
-  if (bodyParameter.type.type === "byte-array") {
+  if (
+    bodyParameter.type.type === "byte-array" &&
+    !bodyParameter.isBinaryPayload
+  ) {
+    const coreUtilSet = importSet.get("@azure/core-util");
+    if (!coreUtilSet) {
+      importSet.set(
+        "@azure/core-util",
+        new Set<string>().add("uint8ArrayToString")
+      );
+    } else {
+      coreUtilSet.add("uint8ArrayToString");
+    }
+    return bodyParameter.optional
+      ? `body: typeof ${bodyParameter.clientName} === 'string'
+    ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
+          bodyParameter.type
+        )}")
+    : ${bodyParameter.clientName}`
+      : `body: uint8ArrayToString(${
+          bodyParameter.clientName
+        }, "${getEncodingFormat(bodyParameter.type)}")`;
+  } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
   return "";
+}
+
+function getEncodingFormat(type: { format?: string }) {
+  const supportedFormats = ["base64url", "base64", "byte"];
+
+  if (!supportedFormats.includes(type.format ?? "")) {
+    return "base64";
+  }
+
+  return type.format;
 }
 
 /**
@@ -530,11 +583,11 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": ${getRequestModelMapping(
+    return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
       importSet
-    ).join(",")}`;
+    ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
@@ -662,11 +715,11 @@ function getRequestModelMapping(
   propertyPath: string = "body",
   importSet: Map<string, Set<string>>
 ) {
-  if (!modelPropertyType.properties || !modelPropertyType.properties) {
+  if (getAllProperties(modelPropertyType).length <= 0) {
     return [];
   }
   const props: string[] = [];
-  const properties: Property[] = modelPropertyType.properties;
+  const properties: Property[] = getAllProperties(modelPropertyType) ?? [];
   for (const property of properties) {
     if (property.readonly) {
       continue;
@@ -780,7 +833,7 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } {${getResponseMapping(
-          property.type.properties ?? [],
+          getAllProperties(property.type) ?? [],
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
@@ -840,14 +893,16 @@ function deserializeResponseValue(
   switch (type.type) {
     case "datetime":
       return required
-        ? `new Date(${restValue})`
+        ? type.nullable
+          ? `${restValue} === null ? null : new Date(${restValue})`
+          : `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "combined":
       return `${restValue} as any`;
     case "list":
       if (type.elementType?.type === "model") {
         return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
+          getAllProperties(type.elementType) ?? [],
           "p",
           importSet
         )}}))`;
@@ -863,17 +918,20 @@ function deserializeResponseValue(
         return restValue;
       }
     case "byte-array":
-      if (!coreUtilSet) {
-        importSet.set(
-          "@azure/core-util",
-          new Set<string>().add("stringToUint8Array")
-        );
-      } else {
-        coreUtilSet.add("stringToUint8Array");
+      if (format !== "binary") {
+        if (!coreUtilSet) {
+          importSet.set(
+            "@azure/core-util",
+            new Set<string>().add("stringToUint8Array")
+          );
+        } else {
+          coreUtilSet.add("stringToUint8Array");
+        }
+        return `typeof ${restValue} === 'string'
+        ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
+        : ${restValue}`;
       }
-      return `typeof ${restValue} === 'string'
-      ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
-      : ${restValue}`;
+      return restValue;
     default:
       return restValue;
   }
@@ -927,19 +985,24 @@ function serializeRequestValue(
         return clientValue;
       }
     case "byte-array":
-      if (!coreUtilSet) {
-        importSet.set(
-          "@azure/core-util",
-          new Set<string>().add("uint8ArrayToString")
-        );
-      } else {
-        coreUtilSet.add("uint8ArrayToString");
+      if (format !== "binary") {
+        if (!coreUtilSet) {
+          importSet.set(
+            "@azure/core-util",
+            new Set<string>().add("uint8ArrayToString")
+          );
+        } else {
+          coreUtilSet.add("uint8ArrayToString");
+        }
+        return required
+          ? `uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }"): undefined`;
       }
-      return required
-        ? `uint8ArrayToString(${clientValue}, "${format ?? "base64"}")`
-        : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
-            format ?? "base64"
-          }"): undefined`;
+      return clientValue;
     default:
       return clientValue;
   }
@@ -973,4 +1036,20 @@ export function hasPagingOperation(codeModel: ModularCodeModel) {
       )
     )
   );
+}
+
+function getAllProperties(type: Type): Property[] {
+  const propertiesMap: Map<string, Property> = new Map();
+  if (!type) {
+    return [];
+  }
+  type.parents?.forEach((p) => {
+    getAllProperties(p).forEach((prop) => {
+      propertiesMap.set(prop.clientName, prop);
+    });
+  });
+  type.properties?.forEach((p) => {
+    propertiesMap.set(p.clientName, p);
+  });
+  return [...propertiesMap.values()];
 }

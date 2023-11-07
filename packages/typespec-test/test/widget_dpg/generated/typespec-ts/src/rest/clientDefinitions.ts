@@ -32,7 +32,7 @@ export interface ListWidgets {
    * It does not accept any options or parameters.
    */
   get(
-    options?: ListWidgetsParameters
+    options: ListWidgetsParameters
   ): StreamableMethod<ListWidgets200Response | ListWidgetsDefaultResponse>;
   /**
    * Create a new widget.

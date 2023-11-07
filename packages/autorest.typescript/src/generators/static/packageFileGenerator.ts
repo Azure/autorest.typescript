@@ -83,7 +83,7 @@ function regularAutorestPackage(
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
     engines: {
-      node: ">=14.0.0"
+      node: ">=18.0.0"
     },
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.5.4" }),
@@ -109,14 +109,8 @@ function regularAutorestPackage(
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
-      "@rollup/plugin-commonjs": "^24.0.0",
-      "@rollup/plugin-json": "^6.0.0",
-      "@rollup/plugin-multi-entry": "^6.0.0",
-      "@rollup/plugin-node-resolve": "^13.1.3",
       mkdirp: "^2.1.2",
-      rollup: "^2.66.1",
-      "rollup-plugin-sourcemaps": "^0.6.3",
-      typescript: "~5.0.0",
+      typescript: "~5.2.0",
       "uglify-js": "^3.4.9",
       rimraf: "^5.0.0",
       dotenv: "^16.0.0"
@@ -140,7 +134,6 @@ function regularAutorestPackage(
       `${srcPath}/**/*.ts`,
       "README.md",
       "LICENSE",
-      "rollup.config.js",
       "tsconfig.json",
       "review/*",
       "CHANGELOG.md",
@@ -189,16 +182,31 @@ function regularAutorestPackage(
     packageInfo.homepage = `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`;
   }
 
+  if (azureSdkForJs) {
+    packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
+    packageInfo.scripts["build"] =
+      "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
+  } else {
+    packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
+    packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
+    packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
+    packageInfo.devDependencies["rollup"] = "^2.66.1";
+    packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
+  }
+
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
+    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["mocha"] = "^7.1.1";
+    packageInfo.devDependencies["mocha"] = "^10.0.0";
+    packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
+    packageInfo.devDependencies["esm"] = "^3.2.18";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
-    packageInfo.devDependencies["@types/node"] = "^14.0.0";
+    packageInfo.devDependencies["@types/node"] = "^18.0.0";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
 
     packageInfo.scripts["test"] = "npm run integration-test";
@@ -210,12 +218,10 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
 
     if (azureSdkForJs) {
-      packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
       packageInfo.scripts["integration-test:node"] =
         "dev-tool run test:node-ts-input -- --timeout 1200000 'test/*.ts'";
     } else {
-      packageInfo.scripts["integration-test:node"] =
-        "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
+      packageInfo.scripts["integration-test:node"] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts`;
     }
   }
   if (

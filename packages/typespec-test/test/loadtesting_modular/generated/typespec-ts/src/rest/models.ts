@@ -160,7 +160,7 @@ export interface FileInfo {
    */
   fileType?: string;
   /** Expiry time of the file (ISO 8601 literal format) */
-  expireDateTime?: Date | string;
+  expireDateTime?: string;
   /**
    * Validation status of the file
    *

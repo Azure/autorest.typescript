@@ -154,10 +154,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "projection/projected-name"
   },
   {
-    outputPath: "internal",
-    inputPath: "azure/client-generator-core/internal"
-  },
-  {
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
@@ -237,5 +233,33 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "encode/datetime",
     inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
   }
 ];

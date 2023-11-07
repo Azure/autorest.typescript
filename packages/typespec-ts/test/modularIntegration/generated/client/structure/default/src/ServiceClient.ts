@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
   OneOptions,
@@ -26,6 +27,8 @@ export { ServiceClientOptions } from "./api/ServiceContext.js";
 
 export class ServiceClient {
   private _client: ServiceContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /**
    * Test that we can use @client and @operationGroup decorators to customize client side code structure, such as:
@@ -36,8 +39,13 @@ export class ServiceClient {
    * 5. have two clients with operations come from different interfaces
    * 6. have two clients with a hierarchy relation.
    */
-  constructor(client: ClientType, options: ServiceClientOptions = {}) {
-    this._client = createService(client, options);
+  constructor(
+    endpoint: string,
+    client: ClientType,
+    options: ServiceClientOptions = {}
+  ) {
+    this._client = createService(endpoint, client, options);
+    this.pipeline = this._client.pipeline;
   }
 
   one(options: OneOptions = { requestOptions: {} }): Promise<void> {

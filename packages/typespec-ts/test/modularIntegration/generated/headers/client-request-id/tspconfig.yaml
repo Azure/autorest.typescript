@@ -6,6 +6,7 @@ options:
     generateTest: false
     azureSdkForJs: false
     isModularLibrary: true
+    hierarchyClient: false
     "emitter-output-dir": "{project-root}"
     packageDetails:
       name: "@msinternal/modular-model-usage"

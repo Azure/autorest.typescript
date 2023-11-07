@@ -40,12 +40,14 @@ export interface BodyParameter {
   clientName: string;
   inOverload: boolean;
   defaultContentType: string;
+  isBinaryPayload: boolean;
 }
 
 export interface OperationGroup {
   className: string;
   propertyName: string;
   operations: Operation[];
+  namespaceHierarchies: string[];
 }
 export interface Policy {
   type: string;
@@ -79,7 +81,8 @@ export interface Type {
     | "boolean"
     | "dict"
     | "combined"
-    | "any";
+    | "any"
+    | "unknown";
   policy?: Policy;
   apiVersions?: any[];
   clientDefaultValue?: any;
@@ -112,6 +115,7 @@ export type ParameterLocation =
   | "header"
   | "query"
   | "path"
+  | "body"
   | "other";
 
 export interface Parameter {
@@ -142,6 +146,7 @@ export interface Response {
   discriminator: string;
   type: Type;
   addedOn?: string;
+  isBinaryPayload?: boolean;
 }
 
 export interface Operation {
@@ -164,4 +169,5 @@ export interface Operation {
   continuationTokenName?: string;
   addedOn?: string;
   rlcResponse?: OperationResponse;
+  namespaceHierarchies: string[];
 }

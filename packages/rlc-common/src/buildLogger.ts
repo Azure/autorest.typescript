@@ -24,7 +24,9 @@ export function buildLogger(model: RLCModel) {
     moduleSpecifier: `@azure/logger`
   });
   loggerFile.addStatements(
-    `export const logger = createClientLogger("${packageDetails?.nameWithoutScope}")`
+    `export const logger = createClientLogger("${
+      packageDetails!.nameWithoutScope ?? packageDetails?.name ?? ""
+    }")`
   );
   return { path: filePath, content: loggerFile.getFullText() };
 }

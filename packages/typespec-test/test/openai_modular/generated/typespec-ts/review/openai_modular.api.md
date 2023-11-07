@@ -8,11 +8,12 @@ import { ClientOptions } from '@azure-rest/core-client';
 import { ErrorModel } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
 import { OperationOptions } from '@azure-rest/core-client';
+import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface AzureChatExtensionConfiguration {
-    parameters: any;
+    parameters: unknown;
     type: AzureChatExtensionType;
 }
 
@@ -23,6 +24,19 @@ export interface AzureChatExtensionsMessageContext {
 
 // @public
 export type AzureChatExtensionType = string;
+
+// @public
+export interface AzureCognitiveSearchIndexFieldMappingOptions {
+    contentFieldNames?: string[];
+    contentFieldSeparator?: string;
+    filepathField?: string;
+    titleField?: string;
+    urlField?: string;
+    vectorFields?: string[];
+}
+
+// @public
+export type AzureCognitiveSearchQueryType = string;
 
 // @public
 export type AzureOpenAIOperationState = string;
@@ -39,10 +53,6 @@ export interface BatchImageGenerationOperationResponse {
 
 // @public (undocumented)
 export interface BeginAzureBatchImageGenerationOptions extends OperationOptions {
-    n?: number;
-    responseFormat?: ImageGenerationResponseFormat;
-    size?: ImageSize;
-    user?: string;
 }
 
 // @public
@@ -61,6 +71,25 @@ export interface ChatCompletions {
     id: string;
     promptFilterResults?: PromptFilterResult[];
     usage: CompletionsUsage;
+}
+
+// @public
+export interface ChatCompletionsOptions {
+    dataSources?: AzureChatExtensionConfiguration[];
+    frequencyPenalty?: number;
+    functionCall?: FunctionCallPreset | FunctionName;
+    functions?: FunctionDefinition[];
+    logitBias?: Record<string, number>;
+    maxTokens?: number;
+    messages: ChatMessage[];
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
 }
 
 // @public
@@ -113,6 +142,25 @@ export interface CompletionsLogProbabilityModel {
 }
 
 // @public
+export interface CompletionsOptions {
+    bestOf?: number;
+    echo?: boolean;
+    frequencyPenalty?: number;
+    logitBias?: Record<string, number>;
+    logprobs?: number;
+    maxTokens?: number;
+    model?: string;
+    n?: number;
+    presencePenalty?: number;
+    prompt: string[];
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    topP?: number;
+    user?: string;
+}
+
+// @public
 export interface CompletionsUsage {
     completionTokens: number;
     promptTokens: number;
@@ -149,6 +197,13 @@ export interface Embeddings {
 }
 
 // @public
+export interface EmbeddingsOptions {
+    input: string[];
+    model?: string;
+    user?: string;
+}
+
+// @public
 export interface EmbeddingsUsage {
     promptTokens: number;
     totalTokens: number;
@@ -167,7 +222,7 @@ export type FunctionCallPreset = string;
 export interface FunctionDefinition {
     description?: string;
     name: string;
-    parameters?: any;
+    parameters?: unknown;
 }
 
 // @public
@@ -181,61 +236,26 @@ export interface GetAzureBatchImageGenerationOperationStatusOptions extends Oper
 
 // @public (undocumented)
 export interface GetChatCompletionsOptions extends OperationOptions {
-    dataSources?: AzureChatExtensionConfiguration[];
-    frequencyPenalty?: number;
-    functionCall?: FunctionCallPreset | FunctionName;
-    functions?: FunctionDefinition[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
 }
 
 // @public (undocumented)
 export interface GetChatCompletionsWithAzureExtensionsOptions extends OperationOptions {
-    dataSources?: AzureChatExtensionConfiguration[];
-    frequencyPenalty?: number;
-    functionCall?: FunctionCallPreset | FunctionName;
-    functions?: FunctionDefinition[];
-    logitBias?: Record<string, number>;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
 }
 
 // @public (undocumented)
 export interface GetCompletionsOptions extends OperationOptions {
-    bestOf?: number;
-    echo?: boolean;
-    frequencyPenalty?: number;
-    logitBias?: Record<string, number>;
-    logprobs?: number;
-    maxTokens?: number;
-    model?: string;
-    n?: number;
-    presencePenalty?: number;
-    stop?: string[];
-    stream?: boolean;
-    temperature?: number;
-    topP?: number;
-    user?: string;
 }
 
 // @public (undocumented)
 export interface GetEmbeddingsOptions extends OperationOptions {
-    model?: string;
+}
+
+// @public
+export interface ImageGenerationOptions {
+    n?: number;
+    prompt: string;
+    responseFormat?: ImageGenerationResponseFormat;
+    size?: ImageSize;
     user?: string;
 }
 
@@ -264,12 +284,13 @@ export type ImageSize = string;
 // @public (undocumented)
 export class OpenAIClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: OpenAIClientOptions);
-    beginAzureBatchImageGeneration(prompt: string, options?: BeginAzureBatchImageGenerationOptions): Promise<BatchImageGenerationOperationResponse>;
+    beginAzureBatchImageGeneration(body: ImageGenerationOptions, options?: BeginAzureBatchImageGenerationOptions): Promise<BatchImageGenerationOperationResponse>;
     getAzureBatchImageGenerationOperationStatus(operationId: string, options?: GetAzureBatchImageGenerationOperationStatusOptions): Promise<BatchImageGenerationOperationResponse>;
-    getChatCompletions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
-    getChatCompletionsWithAzureExtensions(messages: ChatMessage[], deploymentId: string, options?: GetChatCompletionsWithAzureExtensionsOptions): Promise<ChatCompletions>;
-    getCompletions(prompt: string[], deploymentId: string, options?: GetCompletionsOptions): Promise<Completions>;
-    getEmbeddings(input: string[], deploymentId: string, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+    getChatCompletions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsOptions): Promise<ChatCompletions>;
+    getChatCompletionsWithAzureExtensions(deploymentId: string, body: ChatCompletionsOptions, options?: GetChatCompletionsWithAzureExtensionsOptions): Promise<ChatCompletions>;
+    getCompletions(deploymentId: string, body: CompletionsOptions, options?: GetCompletionsOptions): Promise<Completions>;
+    getEmbeddings(deploymentId: string, body: EmbeddingsOptions, options?: GetEmbeddingsOptions): Promise<Embeddings>;
+    readonly pipeline: Pipeline;
 }
 
 // @public (undocumented)

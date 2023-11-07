@@ -1,4 +1,8 @@
-import { OptionalKind, ParameterDeclarationStructure } from "ts-morph";
+import {
+  OptionalKind,
+  ParameterDeclarationStructure,
+  SourceFile
+} from "ts-morph";
 import { Client } from "../modularCodeModel.js";
 import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
@@ -22,13 +26,25 @@ export function getClientParameters(
           (p.clientDefaultValue === null || p.clientDefaultValue === undefined)
       )
       .map<OptionalKind<ParameterDeclarationStructure>>((p) => {
+        const typeMetadata = getType(p.type, p.format);
+        let typeName = typeMetadata.name;
+        if (typeMetadata.nullable) {
+          typeName = `${typeName} | null`;
+        }
         return {
           name: p.clientName,
-          type: getType(p.type, p.format).name
+          type: typeName
         };
       }),
     optionsParam
   ];
 
   return params;
+}
+
+export function importCredential(clientSourceFile: SourceFile): void {
+  clientSourceFile.addImportDeclaration({
+    moduleSpecifier: "@azure/core-auth",
+    namedImports: ["TokenCredential", "KeyCredential"]
+  });
 }

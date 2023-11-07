@@ -19,15 +19,6 @@ export function createClient(
 ): PurviewAccountClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2019-11-01-preview";
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://purview.azure.net/.default"
-      ]
-    }
-  };
-
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -40,6 +31,11 @@ export function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://purview.azure.net/.default"
+      ]
     }
   };
 

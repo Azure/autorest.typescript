@@ -5,7 +5,8 @@ import { Project } from "ts-morph";
 import { RLCModel } from "../interfaces.js";
 
 export function buildApiExtractorConfig(model: RLCModel) {
-  let { generateTest, packageDetails, isModularLibrary } = model.options || {};
+  let { generateTest } = model.options || {};
+  const { packageDetails, isModularLibrary } = model.options || {};
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   const project = new Project();
@@ -25,7 +26,9 @@ export function buildApiExtractorConfig(model: RLCModel) {
     dtsRollup: {
       enabled: true,
       untrimmedFilePath: "",
-      publicTrimmedFilePath: `./types/${packageDetails?.nameWithoutScope}.d.ts`
+      publicTrimmedFilePath: `./types/${
+        packageDetails?.nameWithoutScope ?? packageDetails?.name
+      }.d.ts`
     },
     messages: {
       tsdocMessageReporting: {

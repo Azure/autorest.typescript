@@ -6,7 +6,7 @@ import {
     let client: RenamedOperationClient;
   
     beforeEach(() => {
-      client = new RenamedOperationClient("renamed-operation", {
+      client = new RenamedOperationClient("http://localhost:3000", "renamed-operation", {
         allowInsecureConnection: true
       });
     });

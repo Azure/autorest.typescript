@@ -9,6 +9,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/client-structure-multiclient"
       description: "Client Structure MultiClient Test Service"

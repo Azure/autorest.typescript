@@ -20,18 +20,30 @@ describe("ClientStructureClient Rest Client", () => {
   let clientArray: Client[];
 
   beforeEach(() => {
-    client0 = ServiceDefaultClientFactory("default", {
+    client0 = ServiceDefaultClientFactory("http://localhost:3000", "default", {
       allowInsecureConnection: true
     });
-    client1 = ServiceMultiClientFactory("multi-client", {
-      allowInsecureConnection: true
-    });
-    client2 = ServiceRenamedClientFactory("renamed-operation", {
-      allowInsecureConnection: true
-    });
-    client3 = ServiceTwoOpGroupClientFactory("two-operation-group", {
-      allowInsecureConnection: true
-    });
+    client1 = ServiceMultiClientFactory(
+      "http://localhost:3000",
+      "multi-client",
+      {
+        allowInsecureConnection: true
+      }
+    );
+    client2 = ServiceRenamedClientFactory(
+      "http://localhost:3000",
+      "renamed-operation",
+      {
+        allowInsecureConnection: true
+      }
+    );
+    client3 = ServiceTwoOpGroupClientFactory(
+      "http://localhost:3000",
+      "two-operation-group",
+      {
+        allowInsecureConnection: true
+      }
+    );
     clientArray = new Array(...[client0, client1, client2, client3]);
   });
 

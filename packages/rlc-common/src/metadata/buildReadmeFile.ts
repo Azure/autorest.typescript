@@ -1,4 +1,5 @@
 import { RLCModel } from "../interfaces.js";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore: to fix the handlebars issue
 import hbs from "handlebars";
 import { NameType, normalizeName } from "../helpers/nameUtils.js";
@@ -196,10 +197,13 @@ function getServiceName(model: RLCModel) {
   const libraryName = model.libraryName;
   const serviceTitle = model.options?.serviceInfo?.title ?? model.libraryName;
   const batch = model?.options?.batch,
-    packageDetails = model?.options?.packageDetails!;
+    packageDetails = model?.options?.packageDetails;
   let simpleServiceName =
     batch && batch.length > 1
-      ? normalizeName(packageDetails.nameWithoutScope || "", NameType.Class)
+      ? normalizeName(
+          packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "",
+          NameType.Class
+        )
       : normalizeName(serviceTitle, NameType.Class);
   simpleServiceName =
     /**

@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
   paginate
 } from "@msinternal/agrifood-data-plane";

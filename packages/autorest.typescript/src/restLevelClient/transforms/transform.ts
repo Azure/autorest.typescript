@@ -34,6 +34,7 @@ import {
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
+import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenerator";
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
@@ -55,6 +56,7 @@ export function transform(model: CodeModel): RLCModel {
     urlInfo: transformUrlInfo(model),
     apiVersionInfo: transformApiVersion(model, urlInfo)
   };
+  rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
   return rlcModel;
 }
 
@@ -125,6 +127,7 @@ export function transformHelperDetails(
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
+  let hasCsvCollection = false;
   for (let operationGroup of model.operationGroups) {
     for (let operation of operationGroup.operations) {
       const paginationDetails = extractPaginationDetails(operation);
@@ -147,6 +150,9 @@ export function transformHelperDetails(
         hasTsvCollection = hasTsvCollection
           ? hasTsvCollection
           : serializeInfo.hasTsvCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
       });
     }
   }

@@ -40,14 +40,14 @@ import {
   ListOptions,
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
+  DeleteOperationOptions,
+  ExportOperationOptions,
 } from "../models/options.js";
 
 export function _createOrUpdateSend(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrUpdateOptions = { requestOptions: {} }
 ): StreamableMethod<
   | CreateOrUpdate200Response
@@ -61,8 +61,8 @@ export function _createOrUpdateSend(
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
-        name: name,
-        orders: (options?.orders ?? []).map((p) => ({
+        name: resource["name"],
+        orders: (resource["orders"] ?? []).map((p) => ({
           userId: p["userId"],
           detail: p["detail"],
         })),
@@ -95,18 +95,18 @@ export async function _createOrUpdateDeserialize(
 /** Creates or updates a User */
 export async function createOrUpdate(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrUpdateOptions = { requestOptions: {} }
 ): Promise<User> {
-  const result = await _createOrUpdateSend(context, name, id, options);
+  const result = await _createOrUpdateSend(context, id, resource, options);
   return _createOrUpdateDeserialize(result);
 }
 
 export function _createOrReplaceSend(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
 ): StreamableMethod<
   | CreateOrReplace200Response
@@ -118,8 +118,8 @@ export function _createOrReplaceSend(
     .put({
       ...operationOptionsToRequestParameters(options),
       body: {
-        name: name,
-        orders: (options?.orders ?? []).map((p) => ({
+        name: resource["name"],
+        orders: (resource["orders"] ?? []).map((p) => ({
           userId: p["userId"],
           detail: p["detail"],
         })),
@@ -152,11 +152,11 @@ export async function _createOrReplaceDeserialize(
 /** Creates or replaces a User */
 export async function createOrReplace(
   context: Client,
-  name: string,
   id: number,
+  resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
 ): Promise<User> {
-  const result = await _createOrReplaceSend(context, name, id, options);
+  const result = await _createOrReplaceSend(context, id, resource, options);
   return _createOrReplaceDeserialize(result);
 }
 
@@ -356,7 +356,7 @@ export function listWithCustomPageModel(
 export function _deleteOperationSend(
   context: Client,
   id: number,
-  options: DeleteOptions = { requestOptions: {} }
+  options: DeleteOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   DeleteOperation204Response | DeleteOperationDefaultResponse
 > {
@@ -376,14 +376,10 @@ export async function _deleteOperationDeserialize(
 }
 
 /** Deletes a User */
-/**
- *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
 export async function deleteOperation(
   context: Client,
   id: number,
-  options: DeleteOptions = { requestOptions: {} }
+  options: DeleteOperationOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _deleteOperationSend(context, id, options);
   return _deleteOperationDeserialize(result);
@@ -393,7 +389,7 @@ export function _exportOperationSend(
   context: Client,
   id: number,
   format: string,
-  options: ExportOptions = { requestOptions: {} }
+  options: ExportOperationOptions = { requestOptions: {} }
 ): StreamableMethod<
   ExportOperation200Response | ExportOperationDefaultResponse
 > {
@@ -425,15 +421,11 @@ export async function _exportOperationDeserialize(
 }
 
 /** Exports a User */
-/**
- *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
- *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
- */
 export async function exportOperation(
   context: Client,
   id: number,
   format: string,
-  options: ExportOptions = { requestOptions: {} }
+  options: ExportOperationOptions = { requestOptions: {} }
 ): Promise<User> {
   const result = await _exportOperationSend(context, id, format, options);
   return _exportOperationDeserialize(result);

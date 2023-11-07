@@ -5,6 +5,7 @@ import {
   hasLROOperation,
   hasPagingOperation
 } from "./helpers/operationHelpers.js";
+import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
 
 export function emitPackage(
   project: Project,
@@ -85,7 +86,7 @@ export function emitPackage(
       "review/*"
     ],
     engines: {
-      node: ">=14.0.0"
+      node: ">=18.0.0"
     },
     scripts: {
       audit:
@@ -151,14 +152,14 @@ export function emitPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
-      "@types/node": "^14.0.0",
+      "@types/node": "^18.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
       prettier: "^2.5.1",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.0.0"
+      typescript: "~5.2.0"
     }
   } as any;
 
@@ -206,10 +207,10 @@ export function emitPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
+    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
-    packageInfo.devDependencies["mocha"] = "^7.1.1";
-    packageInfo.devDependencies["@types/mocha"] = "^7.0.2";
+    packageInfo.devDependencies["mocha"] = "^10.0.0";
+    packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
     packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
@@ -225,7 +226,7 @@ export function emitPackage(
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
     packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
     packageInfo.devDependencies["karma"] = "^6.2.0";
-    packageInfo.devDependencies["nyc"] = "^15.0.0";
+    packageInfo.devDependencies["c8"] = "^8.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
     packageInfo.scripts["test"] =
@@ -242,12 +243,12 @@ export function emitPackage(
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts["unit-test:node"] =
-      'mocha -r esm --require ts-node/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"';
+      'mocha --full-trace "test/{,!(browser)/**/}*.spec.ts"';
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
     packageInfo.scripts["integration-test:node"] =
-      'nyc mocha -r esm --require source-map-support/register --reporter ../../../common/tools/mocha-multi-reporter.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
+      'nyc mocha --require source-map-support/register.js --timeout 5000000 --full-trace "dist-esm/test/{,!(browser)/**/}*.spec.js"';
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
     if (azureSdkForJs) {
@@ -264,6 +265,12 @@ export function emitPackage(
     packageInfo["browser"] = {
       "./dist-esm/test/public/utils/env.js":
         "./dist-esm/test/public/utils/env.browser.js"
+    };
+
+    packageInfo["mocha"] = {
+      extension: ["ts"],
+      timeout: "1200000",
+      loader: "ts-node/esm"
     };
   }
 
@@ -303,7 +310,34 @@ export function emitPackage(
       };
     }
   }
-
+  if (codeModel.options.hierarchyClient) {
+    for (const client of codeModel.clients) {
+      for (const operationGroup of client.operationGroups) {
+        if (operationGroup.namespaceHierarchies.length === 0) {
+          continue;
+        }
+        const subfolder =
+          codeModel.clients.length > 1
+            ? normalizeName(client.name.replace("Client", ""), NameType.File)
+            : undefined;
+        const subApiPath = `api/${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.File,
+          "/"
+        )}`;
+        packageInfo.exports[
+          `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
+        ] = {
+          types: `./types/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.d.ts`,
+          import: `./dist-esm/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.js`
+        };
+      }
+    }
+  }
   packageJson.addStatements(JSON.stringify(packageInfo));
 
   return packageJson;

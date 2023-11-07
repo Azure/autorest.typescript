@@ -2,19 +2,13 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import { UserOrder } from "./models.js";
 
 export interface CreateOrUpdateOptions extends OperationOptions {
-  /** The user's order list */
-  orders?: UserOrder[];
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
 }
 
-export interface CreateOrReplaceOptions extends OperationOptions {
-  /** The user's order list */
-  orders?: UserOrder[];
-}
+export interface CreateOrReplaceOptions extends OperationOptions {}
 
 export interface GetOptions extends OperationOptions {}
 
@@ -39,6 +33,6 @@ export interface ListWithPageOptions extends OperationOptions {}
 
 export interface ListWithCustomPageModelOptions extends OperationOptions {}
 
-export interface DeleteOptions extends OperationOptions {}
+export interface DeleteOperationOptions extends OperationOptions {}
 
-export interface ExportOptions extends OperationOptions {}
+export interface ExportOperationOptions extends OperationOptions {}

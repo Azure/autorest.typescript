@@ -9,8 +9,8 @@ import {
   ListOptions,
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
+  DeleteOperationOptions,
+  ExportOperationOptions,
 } from "./models/options.js";
 import {
   createBasic,
@@ -31,28 +31,31 @@ export { BasicClientOptions } from "./api/BasicContext.js";
 
 export class BasicClient {
   private _client: BasicContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Illustrates bodies templated with Azure Core */
   constructor(options: BasicClientOptions = {}) {
     this._client = createBasic(options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Creates or updates a User */
   createOrUpdate(
-    name: string,
     id: number,
+    resource: User,
     options: CreateOrUpdateOptions = { requestOptions: {} }
   ): Promise<User> {
-    return createOrUpdate(this._client, name, id, options);
+    return createOrUpdate(this._client, id, resource, options);
   }
 
   /** Creates or replaces a User */
   createOrReplace(
-    name: string,
     id: number,
+    resource: User,
     options: CreateOrReplaceOptions = { requestOptions: {} }
   ): Promise<User> {
-    return createOrReplace(this._client, name, id, options);
+    return createOrReplace(this._client, id, resource, options);
   }
 
   /** Gets a User */
@@ -82,26 +85,18 @@ export class BasicClient {
   }
 
   /** Deletes a User */
-  /**
-   *  @fixme delete is a reserved word that cannot be used as an operation name. Please add @projectedName(
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
   deleteOperation(
     id: number,
-    options: DeleteOptions = { requestOptions: {} }
+    options: DeleteOperationOptions = { requestOptions: {} }
   ): Promise<void> {
     return deleteOperation(this._client, id, options);
   }
 
   /** Exports a User */
-  /**
-   *  @fixme export is a reserved word that cannot be used as an operation name. Please add @projectedName(
-   *       "javascript", "<JS-Specific-Name>") to the operation to override the generated name.
-   */
   exportOperation(
     id: number,
     format: string,
-    options: ExportOptions = { requestOptions: {} }
+    options: ExportOperationOptions = { requestOptions: {} }
   ): Promise<User> {
     return exportOperation(this._client, id, format, options);
   }

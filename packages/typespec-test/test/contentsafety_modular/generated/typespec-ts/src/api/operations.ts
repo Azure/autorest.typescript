@@ -2,13 +2,15 @@
 // Licensed under the MIT license.
 
 import {
+  AnalyzeTextOptions,
   AnalyzeTextResult,
-  ImageData,
+  AnalyzeImageOptions,
   AnalyzeImageResult,
   TextBlocklist,
-  TextBlockItemInfo,
+  AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
+  RemoveBlockItemsOptions,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
@@ -61,7 +63,7 @@ import {
 
 export function _analyzeTextSend(
   context: Client,
-  text: string,
+  body: AnalyzeTextOptions,
   options: AnalyzeTextRequestOptions = { requestOptions: {} }
 ): StreamableMethod<AnalyzeText200Response | AnalyzeTextDefaultResponse> {
   return context
@@ -69,11 +71,11 @@ export function _analyzeTextSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        text: text,
-        categories: options?.categories,
-        blocklistNames: options?.blocklistNames,
-        breakByBlocklists: options?.breakByBlocklists,
-        outputType: options?.outputType,
+        text: body["text"],
+        categories: body["categories"],
+        blocklistNames: body["blocklistNames"],
+        breakByBlocklists: body["breakByBlocklists"],
+        outputType: body["outputType"],
       },
     });
 }
@@ -103,16 +105,16 @@ export async function _analyzeTextDeserialize(
 /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
 export async function analyzeText(
   context: Client,
-  text: string,
+  body: AnalyzeTextOptions,
   options: AnalyzeTextRequestOptions = { requestOptions: {} }
 ): Promise<AnalyzeTextResult> {
-  const result = await _analyzeTextSend(context, text, options);
+  const result = await _analyzeTextSend(context, body, options);
   return _analyzeTextDeserialize(result);
 }
 
 export function _analyzeImageSend(
   context: Client,
-  image: ImageData,
+  body: AnalyzeImageOptions,
   options: AnalyzeImageRequestOptions = { requestOptions: {} }
 ): StreamableMethod<AnalyzeImage200Response | AnalyzeImageDefaultResponse> {
   return context
@@ -122,13 +124,13 @@ export function _analyzeImageSend(
       body: {
         image: {
           content:
-            image["content"] !== undefined
-              ? uint8ArrayToString(image["content"], "base64")
+            body.image["content"] !== undefined
+              ? uint8ArrayToString(body.image["content"], "base64")
               : undefined,
-          blobUrl: image["blobUrl"],
+          blobUrl: body.image["blobUrl"],
         },
-        categories: options?.categories,
-        outputType: options?.outputType,
+        categories: body["categories"],
+        outputType: body["outputType"],
       },
     });
 }
@@ -151,10 +153,10 @@ export async function _analyzeImageDeserialize(
 /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
 export async function analyzeImage(
   context: Client,
-  image: ImageData,
+  body: AnalyzeImageOptions,
   options: AnalyzeImageRequestOptions = { requestOptions: {} }
 ): Promise<AnalyzeImageResult> {
-  const result = await _analyzeImageSend(context, image, options);
+  const result = await _analyzeImageSend(context, body, options);
   return _analyzeImageDeserialize(result);
 }
 
@@ -196,6 +198,7 @@ export async function getTextBlocklist(
 export function _createOrUpdateTextBlocklistSend(
   context: Client,
   blocklistName: string,
+  resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
 ): StreamableMethod<
   | CreateOrUpdateTextBlocklist200Response
@@ -208,7 +211,7 @@ export function _createOrUpdateTextBlocklistSend(
       ...operationOptionsToRequestParameters(options),
       contentType:
         (options.contentType as any) ?? "application/merge-patch+json",
-      body: { description: options?.description },
+      body: { description: resource["description"] },
     });
 }
 
@@ -232,11 +235,13 @@ export async function _createOrUpdateTextBlocklistDeserialize(
 export async function createOrUpdateTextBlocklist(
   context: Client,
   blocklistName: string,
+  resource: TextBlocklist,
   options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
 ): Promise<TextBlocklist> {
   const result = await _createOrUpdateTextBlocklistSend(
     context,
     blocklistName,
+    resource,
     options
   );
   return _createOrUpdateTextBlocklistDeserialize(result);
@@ -320,8 +325,8 @@ export function listTextBlocklists(
 
 export function _addOrUpdateBlockItemsSend(
   context: Client,
-  blockItems: TextBlockItemInfo[],
   blocklistName: string,
+  body: AddOrUpdateBlockItemsOptions,
   options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
 ): StreamableMethod<
   AddOrUpdateBlockItems200Response | AddOrUpdateBlockItemsDefaultResponse
@@ -334,7 +339,7 @@ export function _addOrUpdateBlockItemsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        blockItems: (blockItems ?? []).map((p) => ({
+        blockItems: (body["blockItems"] ?? []).map((p) => ({
           description: p["description"],
           text: p["text"],
         })),
@@ -363,14 +368,14 @@ export async function _addOrUpdateBlockItemsDeserialize(
 /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
 export async function addOrUpdateBlockItems(
   context: Client,
-  blockItems: TextBlockItemInfo[],
   blocklistName: string,
+  body: AddOrUpdateBlockItemsOptions,
   options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
 ): Promise<AddOrUpdateBlockItemsResult> {
   const result = await _addOrUpdateBlockItemsSend(
     context,
-    blockItems,
     blocklistName,
+    body,
     options
   );
   return _addOrUpdateBlockItemsDeserialize(result);
@@ -378,8 +383,8 @@ export async function addOrUpdateBlockItems(
 
 export function _removeBlockItemsSend(
   context: Client,
-  blockItemIds: string[],
   blocklistName: string,
+  body: RemoveBlockItemsOptions,
   options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
 ): StreamableMethod<
   RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
@@ -388,7 +393,7 @@ export function _removeBlockItemsSend(
     .path("/text/blocklists/{blocklistName}:removeBlockItems", blocklistName)
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { blockItemIds: blockItemIds },
+      body: { blockItemIds: body["blockItemIds"] },
     });
 }
 
@@ -405,14 +410,14 @@ export async function _removeBlockItemsDeserialize(
 /** Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request. */
 export async function removeBlockItems(
   context: Client,
-  blockItemIds: string[],
   blocklistName: string,
+  body: RemoveBlockItemsOptions,
   options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
 ): Promise<void> {
   const result = await _removeBlockItemsSend(
     context,
-    blockItemIds,
     blocklistName,
+    body,
     options
   );
   return _removeBlockItemsDeserialize(result);
