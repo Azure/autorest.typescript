@@ -20,7 +20,6 @@ import {
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
-import { get } from "lodash";
 
 let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
