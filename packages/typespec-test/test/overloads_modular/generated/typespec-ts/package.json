@@ -23,6 +23,10 @@
     "./models": {
       "types": "./types/src/models/index.d.ts",
       "import": "./dist-esm/src/models/index.js"
+    },
+    "./api/fooOperations": {
+      "types": "./types/src/api/fooOperations/index.d.ts",
+      "import": "./dist-esm/src/api/fooOperations/index.js"
     }
   },
   "repository": "github:Azure/azure-sdk-for-js",

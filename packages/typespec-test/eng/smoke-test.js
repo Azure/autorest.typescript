@@ -10,7 +10,7 @@ function generate(path) {
   try {
     // Prepare the generate command
     if (existsSync(join(path, "spec", "tspconfig.yaml"))) {
-      generateCmd = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`
+      generateCmd = `cd ${path}/spec && npx tsp compile --config ./tspconfig.yaml .`;
     }
     if (existsSync(join(path, "spec", "client.tsp"))) {
       generateCmd += "/client.tsp";
@@ -26,7 +26,12 @@ function generate(path) {
     }
     // Recovery the sources folder if we have
     if (hasCustomization) {
-      const recoveryCmd = `mkdir -p ${join(path, "generated", "typespec-ts", "sources")}`;
+      const recoveryCmd = `mkdir -p ${join(
+        path,
+        "generated",
+        "typespec-ts",
+        "sources"
+      )}`;
       console.log("Run command:", recoveryCmd);
       execSync(recoveryCmd, {
         maxBuffer: MAX_BUFFER,
@@ -51,7 +56,10 @@ function generate(path) {
 
 function copyFile(path) {
   if (hasCustomizationFolder(path)) {
-    const customizationPath = join(path, "generated/typespec-ts/sources/generated/src");
+    const customizationPath = join(
+      path,
+      "generated/typespec-ts/sources/generated/src"
+    );
     const srcPath = join(path, "generated/typespec-ts");
     const cp = `cp -rf ${customizationPath} ${srcPath}`;
     console.log(cp);
@@ -62,6 +70,8 @@ function copyFile(path) {
   }
 }
 
+const failed = [];
+
 function build(path) {
   const command = `cd ${path}/generated/typespec-ts && npm install && npm run build`;
   console.log(command);
@@ -71,6 +81,7 @@ function build(path) {
     });
     console.log("build output:", result.toString("utf8"));
   } catch (e) {
+    failed.push(path);
     console.log(Error(e.stdout.toString("utf8")));
     process.exitCode = 1;
   }
@@ -108,6 +119,8 @@ async function main() {
     }
     console.log(`================End ${folder}===============`);
   }
+
+  console.error(`Failed to generate:\n ${failed.join("\n")}`);
 }
 
 main().catch((e) => {

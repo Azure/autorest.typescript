@@ -4,16 +4,14 @@
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  getAvatarAsPng,
-  getAvatarAsJpeg,
+  getFooOperationsOperations,
+  FooOperationsOperations,
+} from "./classic/fooOperations/index.js";
+import {
   createWidgetManager,
   WidgetManagerClientOptions,
   WidgetManagerContext,
 } from "./api/index.js";
-import {
-  GetAvatarAsPngOptions,
-  GetAvatarAsJpegOptions,
-} from "./models/options.js";
 
 export { WidgetManagerClientOptions } from "./api/WidgetManagerContext.js";
 
@@ -29,21 +27,9 @@ export class WidgetManagerClient {
   ) {
     this._client = createWidgetManager(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
+    this.fooOperations = getFooOperationsOperations(this._client);
   }
 
-  /** A remote procedure call (RPC) operation. */
-  getAvatarAsPng(
-    image: Uint8Array,
-    options: GetAvatarAsPngOptions = { requestOptions: {} }
-  ): Promise<void> {
-    return getAvatarAsPng(this._client, image, options);
-  }
-
-  /** A remote procedure call (RPC) operation. */
-  getAvatarAsJpeg(
-    image: Uint8Array,
-    options: GetAvatarAsJpegOptions = { requestOptions: {} }
-  ): Promise<void> {
-    return getAvatarAsJpeg(this._client, image, options);
-  }
+  /** The operation groups for FooOperations */
+  public readonly fooOperations: FooOperationsOperations;
 }

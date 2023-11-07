@@ -11,22 +11,29 @@ import { Pipeline } from '@azure/core-rest-pipeline';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
-export interface GetAvatarAsJpegOptions extends OperationOptions {
+export interface FooOperationsGetAvatarAsJpegOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
 }
 
 // @public (undocumented)
-export interface GetAvatarAsPngOptions extends OperationOptions {
+export interface FooOperationsGetAvatarAsPngOptions extends OperationOptions {
     // (undocumented)
     contentType?: string;
+}
+
+// @public (undocumented)
+export interface FooOperationsOperations {
+    // (undocumented)
+    getAvatarAsJpeg: (image: Uint8Array, options?: FooOperationsGetAvatarAsJpegOptions) => Promise<void>;
+    // (undocumented)
+    getAvatarAsPng: (image: Uint8Array, options?: FooOperationsGetAvatarAsPngOptions) => Promise<void>;
 }
 
 // @public (undocumented)
 export class WidgetManagerClient {
     constructor(endpoint: string, credential: KeyCredential | TokenCredential, options?: WidgetManagerClientOptions);
-    getAvatarAsJpeg(image: Uint8Array, options?: GetAvatarAsJpegOptions): Promise<void>;
-    getAvatarAsPng(image: Uint8Array, options?: GetAvatarAsPngOptions): Promise<void>;
+    readonly fooOperations: FooOperationsOperations;
     readonly pipeline: Pipeline;
 }
 
