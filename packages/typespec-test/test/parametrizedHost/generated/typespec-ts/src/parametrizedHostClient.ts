@@ -3,6 +3,7 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
+import { TokenCredential } from "@azure/core-auth";
 import { ParametrizedHostClient } from "./clientDefinitions";
 
 export interface ParametrizedHostClientOptions extends ClientOptions {
@@ -14,9 +15,11 @@ export interface ParametrizedHostClientOptions extends ClientOptions {
 
 /**
  * Initialize a new instance of `ParametrizedHostClient`
+ * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
+  credentials: TokenCredential,
   options: ParametrizedHostClientOptions = {}
 ): ParametrizedHostClient {
   const host = options.host ?? "one";
@@ -39,9 +42,18 @@ export default function createClient(
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
     },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://parametrized-host.azure.com/.default",
+      ],
+    },
   };
 
-  const client = getClient(baseUrl, options) as ParametrizedHostClient;
+  const client = getClient(
+    baseUrl,
+    credentials,
+    options
+  ) as ParametrizedHostClient;
 
   return client;
 }
