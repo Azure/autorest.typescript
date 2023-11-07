@@ -366,7 +366,6 @@ function emitNonBrandedPackage(codeModel: ModularCodeModel) {
   const packageInfo = {
     name: `${packageDetails.name}`,
     "sdk-type": "client",
-    author: "Microsoft Corporation",
     version: `${packageDetails.version}`,
     description,
     keywords: ["node", "typescript", "browser", "isomorphic"],
