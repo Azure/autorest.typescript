@@ -4,8 +4,8 @@ options:
   "@azure-tools/typespec-ts":
     "emitter-output-dir": "{project-root}"
     generateMetadata: true
-    addCredentials: false
     generateTest: false
+    addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
     generateSample: true
