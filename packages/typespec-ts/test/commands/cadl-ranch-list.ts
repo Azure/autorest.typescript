@@ -261,7 +261,7 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "authentication/union"
   },
   {
-    outputPath: "dictionary",
-    inputPath: "type/dictionary"
+    outputPath: "enums/extensible",
+    inputPath: "type/enum/extensible"
   }
 ];
