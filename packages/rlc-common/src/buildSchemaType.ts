@@ -77,7 +77,7 @@ export function generateModelFiles(
           namedImports: [...Array.from(importedModels || [])],
           moduleSpecifier: getImportSpecifier(
             "restClient",
-            model?.thirdPartyImports
+            model.importInfo.runtimeImports
           )
         }
       ]);

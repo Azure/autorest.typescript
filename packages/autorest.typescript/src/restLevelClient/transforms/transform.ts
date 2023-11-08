@@ -7,14 +7,14 @@ import {
   ParameterLocation
 } from "@autorest/codemodel";
 import {
-  initInnerImports,
   RLCModel,
   HelperFunctionDetails,
   UrlInfo,
   ApiVersionInfo,
   extractPathApiVersion,
   extractDefinedPosition,
-  build3ndPartyImports
+  buildRuntimeImports,
+  initInternalImports
 } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -38,7 +38,7 @@ import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenera
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
-  const importDetails = initInnerImports();
+  const importDetails = initInternalImports();
   const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
     libraryName: normalizeName(
@@ -54,8 +54,10 @@ export function transform(model: CodeModel): RLCModel {
     helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
     apiVersionInfo: transformApiVersion(model, urlInfo),
-    innerImports: importDetails,
-    thirdPartyImports: build3ndPartyImports()
+    importInfo: {
+      internalImports: importDetails,
+      runtimeImports: buildRuntimeImports()
+    }
   };
   rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
   return rlcModel;

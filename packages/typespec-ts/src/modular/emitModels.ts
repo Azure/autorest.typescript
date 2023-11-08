@@ -159,7 +159,7 @@ export function buildModels(
       {
         moduleSpecifier: getImportSpecifier(
           "restClient",
-          codeModel?.thirdPartyImports
+          codeModel.runtimeImports
         ),
         namedImports: Array.from(coreClientTypes)
       }
@@ -193,7 +193,7 @@ export function buildModelsOptions(
     {
       moduleSpecifier: getImportSpecifier(
         "restClient",
-        codeModel?.thirdPartyImports
+        codeModel.runtimeImports
       ),
       namedImports: ["OperationOptions"]
     }

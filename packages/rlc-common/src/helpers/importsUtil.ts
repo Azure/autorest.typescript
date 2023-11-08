@@ -5,7 +5,7 @@ import { ImportType, Imports } from "../interfaces.js";
  * @param branded whether to use azure-branded imports, the default value is true for azure branded
  * @returns
  */
-export function build3ndPartyImports(branded = true): Imports {
+export function buildRuntimeImports(branded = true): Imports {
   if (!branded) {
     // In non-azure branded scope we only have one dependency that is ts-http-runtime
     return {
@@ -60,7 +60,7 @@ export function build3ndPartyImports(branded = true): Imports {
  * Initialize the inner imports for parameter and response, the import set would be used for referred models
  * @returns
  */
-export function initInnerImports(): Imports {
+export function initInternalImports(): Imports {
   return {
     parameter: {
       type: "parameter",

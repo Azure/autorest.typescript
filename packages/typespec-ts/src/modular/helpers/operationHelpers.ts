@@ -14,7 +14,7 @@ import {
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
 import {
-  Imports as ThirdPartyImports,
+  Imports as RuntimeImports,
   NameType,
   OperationResponse,
   getResponseBaseName,
@@ -57,7 +57,7 @@ export function getSendPrivateFunction(
   operation: Operation,
   clientType: string,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
@@ -81,7 +81,7 @@ export function getSendPrivateFunction(
       dpgContext,
       operation,
       importSet,
-      thirdPartyImports
+      runtimeImports
     )}});`
   );
 
@@ -96,7 +96,7 @@ export function getDeserializePrivateFunction(
   needSubClient: boolean,
   needUnexpectedHelper: boolean,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
@@ -163,7 +163,7 @@ export function getDeserializePrivateFunction(
         getAllProperties(response.type) ?? [],
         "result.body",
         importSet,
-        thirdPartyImports
+        runtimeImports
       ).join(","),
       `}`
     );
@@ -175,7 +175,7 @@ export function getDeserializePrivateFunction(
         response.type,
         "result.body",
         importSet,
-        thirdPartyImports,
+        runtimeImports,
         response.type.nullable !== undefined ? !response.type.nullable : false,
         response.type.format
       )}`
@@ -301,7 +301,7 @@ function getRequestParameters(
   dpgContext: SdkContext,
   operation: Operation,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ): string {
   if (!operation.parameters) {
     return "";
@@ -328,7 +328,7 @@ function getRequestParameters(
       param.location === "body"
     ) {
       parametersImplementation[param.location].push({
-        paramMap: getParameterMap(param, importSet, thirdPartyImports),
+        paramMap: getParameterMap(param, importSet, runtimeImports),
         param
       });
     }
@@ -362,7 +362,7 @@ function getRequestParameters(
     paramStr = `${paramStr}${buildBodyParameter(
       operation.bodyParameter,
       importSet,
-      thirdPartyImports
+      runtimeImports
     )}`;
   }
   return paramStr;
@@ -396,7 +396,7 @@ function buildHeaderParameter(
 function buildBodyParameter(
   bodyParameter: BodyParameter | undefined,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ) {
   if (!bodyParameter) {
     return "";
@@ -407,7 +407,7 @@ function buildBodyParameter(
       bodyParameter.type,
       bodyParameter.clientName,
       importSet,
-      thirdPartyImports
+      runtimeImports
     );
 
     if (bodyParameter && bodyParts.length > 0) {
@@ -421,7 +421,7 @@ function buildBodyParameter(
         bodyParameter.type.elementType,
         "p",
         importSet,
-        thirdPartyImports
+        runtimeImports
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
@@ -434,7 +434,7 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    const specifier = getImportSpecifier("coreUtil", thirdPartyImports);
+    const specifier = getImportSpecifier("coreUtil", runtimeImports);
     const coreUtilSet = importSet.get(specifier);
     if (!coreUtilSet) {
       importSet.set(specifier, new Set<string>().add("uint8ArrayToString"));
@@ -473,27 +473,23 @@ function getEncodingFormat(type: { format?: string }) {
 function getParameterMap(
   param: Parameter | Property,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ): string {
   if (isConstant(param)) {
     return getConstantValue(param);
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(
-      param as Parameter,
-      importSet,
-      thirdPartyImports
-    );
+    return getCollectionFormat(param as Parameter, importSet, runtimeImports);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(param, importSet, thirdPartyImports);
+    return getOptional(param, importSet, runtimeImports);
   }
 
   if (isRequired(param)) {
-    return getRequired(param, importSet, thirdPartyImports);
+    return getRequired(param, importSet, runtimeImports);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -502,7 +498,7 @@ function getParameterMap(
 function getCollectionFormat(
   param: Parameter,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
@@ -518,7 +514,7 @@ function getCollectionFormat(
       param.type,
       param.clientName,
       importSet,
-      thirdPartyImports,
+      runtimeImports,
       true,
       param.format
     )}${additionalParam})`;
@@ -529,7 +525,7 @@ function getCollectionFormat(
     param.type,
     "options?." + param.clientName,
     importSet,
-    thirdPartyImports,
+    runtimeImports,
     false,
     param.format
   )}${additionalParam}): undefined`;
@@ -570,21 +566,21 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 function getRequired(
   param: RequiredType,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
       importSet,
-      thirdPartyImports
+      runtimeImports
     ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     param.clientName,
     importSet,
-    thirdPartyImports,
+    runtimeImports,
     true,
     param.format === undefined &&
       (param as Parameter).location === "header" &&
@@ -628,21 +624,21 @@ function isOptional(param: Parameter | Property): param is OptionalType {
 function getOptional(
   param: OptionalType,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
       importSet,
-      thirdPartyImports
+      runtimeImports
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
     importSet,
-    thirdPartyImports,
+    runtimeImports,
     false,
     param.format === undefined &&
       (param as Parameter).location === "header" &&
@@ -712,7 +708,7 @@ function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ) {
   if (getAllProperties(modelPropertyType).length <= 0) {
     return [];
@@ -756,7 +752,7 @@ function getRequestModelMapping(
             property.optional ? "?" : ""
           }`,
           importSet,
-          thirdPartyImports
+          runtimeImports
         )}}`;
       }
 
@@ -783,7 +779,7 @@ function getRequestModelMapping(
           property.type,
           clientValue,
           importSet,
-          thirdPartyImports,
+          runtimeImports,
           !property.optional,
           property.format
         )}`
@@ -802,7 +798,7 @@ export function getResponseMapping(
   properties: Property[],
   propertyPath: string = "result.body",
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports
+  runtimeImports: RuntimeImports
 ) {
   const props: string[] = [];
   for (const property of properties) {
@@ -840,7 +836,7 @@ export function getResponseMapping(
             property.optional ? "?" : ""
           }`,
           importSet,
-          thirdPartyImports
+          runtimeImports
         )}}`;
       }
 
@@ -869,7 +865,7 @@ export function getResponseMapping(
             property.type,
             restValue,
             importSet,
-            thirdPartyImports,
+            runtimeImports,
             property.optional !== undefined ? !property.optional : false,
             property.format
           )}`
@@ -890,11 +886,11 @@ function deserializeResponseValue(
   type: Type,
   restValue: string,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports,
+  runtimeImports: RuntimeImports,
   required: boolean,
   format?: string
 ): string {
-  const coreSpecifier = getImportSpecifier("coreUtil", thirdPartyImports);
+  const coreSpecifier = getImportSpecifier("coreUtil", runtimeImports);
   const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":
@@ -911,14 +907,14 @@ function deserializeResponseValue(
           getAllProperties(type.elementType) ?? [],
           "p",
           importSet,
-          thirdPartyImports
+          runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
         return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
           importSet,
-          thirdPartyImports,
+          runtimeImports,
           required,
           type.elementType?.format
         )})`;
@@ -954,11 +950,11 @@ function serializeRequestValue(
   type: Type,
   clientValue: string,
   importSet: Map<string, Set<string>>,
-  thirdPartyImports: ThirdPartyImports,
+  runtimeImports: RuntimeImports,
   required: boolean,
   format?: string
 ): string {
-  const utilSpecifier = getImportSpecifier("coreUtil", thirdPartyImports);
+  const utilSpecifier = getImportSpecifier("coreUtil", runtimeImports);
   const coreUtilSet = importSet.get(utilSpecifier);
   switch (type.type) {
     case "datetime":
@@ -982,14 +978,14 @@ function serializeRequestValue(
           type.elementType,
           "p",
           importSet,
-          thirdPartyImports
+          runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
         return `(${clientValue} ?? []).map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet,
-          thirdPartyImports,
+          runtimeImports,
           required,
           type.elementType?.format
         )})`;

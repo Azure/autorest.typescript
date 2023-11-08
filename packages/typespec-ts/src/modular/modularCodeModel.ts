@@ -13,7 +13,7 @@ export interface ModularCodeModel {
   clients: Client[];
   types: Type[];
   project: Project;
-  thirdPartyImports: Imports;
+  runtimeImports: Imports;
 }
 
 export interface Header {

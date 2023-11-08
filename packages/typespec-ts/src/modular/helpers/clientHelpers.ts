@@ -6,7 +6,7 @@ import {
 import { Client } from "../modularCodeModel.js";
 import { getType } from "./typeHelpers.js";
 import { getClientName } from "./namingHelpers.js";
-import { Imports as ThirdPartyImports } from "@azure-tools/rlc-common";
+import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 export function getClientParameters(
@@ -45,11 +45,11 @@ export function getClientParameters(
 }
 
 export function importCredential(
-  thirdPartyImports: ThirdPartyImports,
+  runtimeImports: RuntimeImports,
   clientSourceFile: SourceFile
 ): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("coreAuth", thirdPartyImports),
+    moduleSpecifier: getImportSpecifier("coreAuth", runtimeImports),
     namedImports: ["TokenCredential", "KeyCredential"]
   });
 }

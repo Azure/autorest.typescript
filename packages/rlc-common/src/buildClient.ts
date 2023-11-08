@@ -164,7 +164,7 @@ export function buildClient(model: RLCModel): File | undefined {
       namedImports: ["getClient", "ClientOptions"],
       moduleSpecifier: getImportSpecifier(
         "restClient",
-        model?.thirdPartyImports
+        model.importInfo.runtimeImports
       )
     }
   ]);
@@ -196,7 +196,7 @@ export function buildClient(model: RLCModel): File | undefined {
         namedImports: credentialTypes,
         moduleSpecifier: getImportSpecifier(
           "coreAuth",
-          model?.thirdPartyImports
+          model.importInfo.runtimeImports
         )
       }
     ]);

@@ -118,7 +118,7 @@ export function buildClientDefinitions(model: RLCModel) {
       namedImports: [...options.clientImports],
       moduleSpecifier: getImportSpecifier(
         "restClient",
-        model?.thirdPartyImports
+        model.importInfo.runtimeImports
       )
     }
   ]);

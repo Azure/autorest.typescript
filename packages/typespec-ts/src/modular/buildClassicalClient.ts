@@ -17,7 +17,7 @@ import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { Imports as ThirdPartyImports } from "@azure-tools/rlc-common";
+import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
@@ -85,8 +85,8 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
-  importCredential(codeModel.thirdPartyImports, clientFile);
-  importPipeline(codeModel.thirdPartyImports, clientFile);
+  importCredential(codeModel.runtimeImports, clientFile);
+  importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
@@ -158,11 +158,11 @@ function importAllModels(
 }
 
 function importPipeline(
-  thirdPartyImports: ThirdPartyImports,
+  runtimeImports: RuntimeImports,
   clientSourceFile: SourceFile
 ): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier("restPipeline", thirdPartyImports),
+    moduleSpecifier: getImportSpecifier("restPipeline", runtimeImports),
     namedImports: ["Pipeline"]
   });
 }

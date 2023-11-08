@@ -4,6 +4,7 @@ export interface RLCModel {
   libraryName: string;
   srcPath: string;
   paths: Paths;
+  importInfo: ImportInfo;
   options?: RLCOptions;
   schemas: Schema[];
   apiVersionInfo?: ApiVersionInfo;
@@ -13,8 +14,11 @@ export interface RLCModel {
   urlInfo?: UrlInfo;
   telemetryOptions?: TelemetryInfo;
   sampleGroups?: RLCSampleGroup[];
-  innerImports?: Imports;
-  thirdPartyImports?: Imports;
+}
+
+export interface ImportInfo {
+  internalImports: Imports;
+  runtimeImports: Imports;
 }
 
 export type Imports = Record<ImportType, ImportMetadata>;

@@ -88,7 +88,7 @@ export function buildResponseTypes(model: RLCModel) {
         namedImports: ["RawHttpHeaders"],
         moduleSpecifier: getImportSpecifier(
           "restPipeline",
-          model?.thirdPartyImports
+          model.importInfo.runtimeImports
         )
       }
     ]);
@@ -102,14 +102,14 @@ export function buildResponseTypes(model: RLCModel) {
       namedImports,
       moduleSpecifier: getImportSpecifier(
         "restClient",
-        model?.thirdPartyImports
+        model.importInfo.runtimeImports
       )
     }
   ]);
 
-  if ((model.innerImports?.response?.importsSet?.size ?? 0) > 0) {
+  if ((model.importInfo.internalImports.response?.importsSet?.size ?? 0) > 0) {
     const modelNamedImports = Array.from(
-      model.innerImports!.response!.importsSet!
+      model.importInfo.internalImports.response!.importsSet!
     ).filter((modelName) => {
       return !(modelName === "ErrorResponseOutput" && hasErrorResponse);
     });

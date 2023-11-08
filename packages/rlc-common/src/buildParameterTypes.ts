@@ -141,7 +141,7 @@ export function buildParameterTypes(model: RLCModel) {
         namedImports: ["RawHttpHeadersInput"],
         moduleSpecifier: getImportSpecifier(
           "restPipeline",
-          model?.thirdPartyImports
+          model.importInfo.runtimeImports
         )
       }
     ]);
@@ -151,14 +151,18 @@ export function buildParameterTypes(model: RLCModel) {
       namedImports: ["RequestParameters"],
       moduleSpecifier: getImportSpecifier(
         "restClient",
-        model?.thirdPartyImports
+        model.importInfo.runtimeImports
       )
     }
   ]);
-  if ((model.innerImports?.parameter?.importsSet?.size ?? 0) > 0) {
+  if (
+    (model.importInfo.internalImports?.parameter?.importsSet?.size ?? 0) > 0
+  ) {
     parametersFile.addImportDeclarations([
       {
-        namedImports: Array.from(model.innerImports!.parameter.importsSet!),
+        namedImports: Array.from(
+          model.importInfo.internalImports.parameter.importsSet!
+        ),
         moduleSpecifier: getImportModuleName(
           {
             cjsName: `./models`,

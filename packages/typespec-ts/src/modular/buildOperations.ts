@@ -96,14 +96,14 @@ export function buildOperationFiles(
         o,
         clientType,
         importSet,
-        codeModel.thirdPartyImports
+        codeModel.runtimeImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper,
         importSet,
-        codeModel.thirdPartyImports
+        codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -116,7 +116,7 @@ export function buildOperationFiles(
       {
         moduleSpecifier: getImportSpecifier(
           "restClient",
-          codeModel?.thirdPartyImports
+          codeModel?.runtimeImports
         ),
         namedImports: [
           "StreamableMethod",

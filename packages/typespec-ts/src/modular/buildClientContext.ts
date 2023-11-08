@@ -30,13 +30,10 @@ export function buildClientContext(
   );
 
   let factoryFunction;
-  importCredential(codeModel.thirdPartyImports, clientContextFile);
+  importCredential(codeModel.runtimeImports, clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
-    moduleSpecifier: getImportSpecifier(
-      "restClient",
-      codeModel?.thirdPartyImports
-    ),
+    moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
     namedImports: ["ClientOptions"]
   });
 
