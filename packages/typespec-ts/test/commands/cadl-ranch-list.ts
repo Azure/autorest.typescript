@@ -259,5 +259,9 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "authentication/union",
     inputPath: "authentication/union"
+  },
+  {
+    outputPath: "arrays/itemTypes",
+    inputPath: "type/array"
   }
 ];
