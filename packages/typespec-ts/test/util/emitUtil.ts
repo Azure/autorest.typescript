@@ -4,8 +4,9 @@ import {
   buildPaginateHelper,
   buildParameterTypes,
   buildResponseTypes,
+  buildRuntimeImports,
   buildSchemaTypes,
-  initInnerImports,
+  initInternalImports,
   RLCModel,
   Schema
 } from "@azure-tools/rlc-common";
@@ -57,7 +58,11 @@ export async function emitPageHelperFromTypeSpec(
     srcPath: "",
     paths: {},
     libraryName: "test",
-    schemas: []
+    schemas: [],
+    importInfo: {
+      internalImports: initInternalImports(),
+      runtimeImports: buildRuntimeImports()
+    }
   });
 }
 
@@ -108,7 +113,11 @@ export async function emitModelsFromTypeSpec(
     schemas: rlcSchemas,
     srcPath: "",
     paths: {},
-    libraryName: "test"
+    libraryName: "test",
+    importInfo: {
+      internalImports: initInternalImports(),
+      runtimeImports: buildRuntimeImports()
+    }
   });
 }
 
@@ -127,7 +136,7 @@ export async function emitParameterFromTypeSpec(
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
-  const importSet = initInnerImports();
+  const importSet = initInternalImports();
   let parameters;
   if (clients && clients[0]) {
     parameters = transformToParameterTypes(importSet, clients[0], dpgContext);
@@ -139,7 +148,10 @@ export async function emitParameterFromTypeSpec(
     libraryName: "test",
     schemas: [],
     parameters,
-    innerImports: importSet
+    importInfo: {
+      internalImports: importSet,
+      runtimeImports: buildRuntimeImports()
+    }
   });
 }
 
@@ -160,7 +172,11 @@ export async function emitClientDefinitionFromTypeSpec(
     srcPath: "",
     libraryName: "test",
     schemas: [],
-    paths
+    paths,
+    importInfo: {
+      internalImports: initInternalImports(),
+      runtimeImports: buildRuntimeImports()
+    }
   });
 }
 
@@ -204,6 +220,10 @@ export async function emitClientFactoryFromTypeSpec(
         version: "1.0.0-beta.1"
       },
       ...creadentialInfo
+    },
+    importInfo: {
+      internalImports: initInternalImports(),
+      runtimeImports: buildRuntimeImports()
     }
   });
 }
@@ -214,7 +234,7 @@ export async function emitResponsesFromTypeSpec(
 ) {
   const context = await rlcEmitterFor(tspContent, true, needAzureCore);
   const dpgContext = createDpgContextTestHelper(context.program);
-  const importSet = initInnerImports();
+  const importSet = initInternalImports();
   const clients = getRLCClients(dpgContext);
   let responses;
   if (clients && clients[0]) {
@@ -227,7 +247,10 @@ export async function emitResponsesFromTypeSpec(
     schemas: [],
     paths: {},
     responses,
-    innerImports: importSet
+    importInfo: {
+      internalImports: importSet,
+      runtimeImports: buildRuntimeImports()
+    }
   });
 }
 
