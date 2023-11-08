@@ -1,15 +1,9 @@
 import { ExtensibleClient } from "./generated/enums/extensible/src/index.js";
 import { assert } from "chai";
-// import {
-//   UsageContext,
-//   createUsage,
-//   input,
-//   inputAndOutput,
-//   output
-// } from "./generated/enums/extensible/src/api/index.js";
+
 const KNOWN_VALUE = "Monday";
 const UNKNOWN_VALUE = "Weekend";
-describe.only("Extensible Client", () => {
+describe("Extensible Client", () => {
   let client: ExtensibleClient;
 
   beforeEach(() => {
