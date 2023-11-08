@@ -22,7 +22,6 @@ import {
   normalizeName
 } from "@azure-tools/rlc-common";
 import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
-import { getOperationName } from "./namingHelpers.js";
 import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
