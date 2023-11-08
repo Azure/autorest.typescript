@@ -2,70 +2,25 @@
 // Licensed under the MIT license.
 
 import {
-  PublishCloudEvent200Response,
-  PublishCloudEvents200Response,
-  PublishCloudEventDefaultResponse,
-  ReceiveCloudEvents200Response,
-  ReceiveCloudEventsDefaultResponse,
-  AcknowledgeCloudEvents200Response,
-  AcknowledgeCloudEventsDefaultResponse,
-  ReleaseCloudEvents200Response,
-  ReleaseCloudEventsDefaultResponse,
-  RejectCloudEvents200Response,
-  RejectCloudEventsDefaultResponse,
+  GetAvatarAsPng204Response,
+  GetAvatarAsJpeg204Response,
+  GetAvatarAsPngDefaultResponse,
 } from "./responses.js";
 
-const responseMap: Record<string, string[]> = {
-  "POST /topics/{topicName}:publish": ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:receive":
-    ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:acknowledge":
-    ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:release":
-    ["200"],
-  "POST /topics/{topicName}/eventsubscriptions/{eventSubscriptionName}:reject":
-    ["200"],
-};
+const responseMap: Record<string, string[]> = { "POST /avatar": ["204"] };
 
 export function isUnexpected(
   response:
-    | PublishCloudEvent200Response
-    | PublishCloudEvents200Response
-    | PublishCloudEventDefaultResponse
-): response is PublishCloudEventDefaultResponse;
-export function isUnexpected(
-  response: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
-): response is ReceiveCloudEventsDefaultResponse;
+    | GetAvatarAsPng204Response
+    | GetAvatarAsJpeg204Response
+    | GetAvatarAsPngDefaultResponse
+): response is GetAvatarAsPngDefaultResponse;
 export function isUnexpected(
   response:
-    | AcknowledgeCloudEvents200Response
-    | AcknowledgeCloudEventsDefaultResponse
-): response is AcknowledgeCloudEventsDefaultResponse;
-export function isUnexpected(
-  response: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
-): response is ReleaseCloudEventsDefaultResponse;
-export function isUnexpected(
-  response: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
-): response is RejectCloudEventsDefaultResponse;
-export function isUnexpected(
-  response:
-    | PublishCloudEvent200Response
-    | PublishCloudEvents200Response
-    | PublishCloudEventDefaultResponse
-    | ReceiveCloudEvents200Response
-    | ReceiveCloudEventsDefaultResponse
-    | AcknowledgeCloudEvents200Response
-    | AcknowledgeCloudEventsDefaultResponse
-    | ReleaseCloudEvents200Response
-    | ReleaseCloudEventsDefaultResponse
-    | RejectCloudEvents200Response
-    | RejectCloudEventsDefaultResponse
-): response is
-  | PublishCloudEventDefaultResponse
-  | ReceiveCloudEventsDefaultResponse
-  | AcknowledgeCloudEventsDefaultResponse
-  | ReleaseCloudEventsDefaultResponse
-  | RejectCloudEventsDefaultResponse {
+    | GetAvatarAsPng204Response
+    | GetAvatarAsJpeg204Response
+    | GetAvatarAsPngDefaultResponse
+): response is GetAvatarAsPngDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;
