@@ -187,6 +187,13 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
+export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  }
+];
+
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
@@ -261,5 +268,12 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "authentication/union",
     inputPath: "authentication/union"
+  }
+];
+
+export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];

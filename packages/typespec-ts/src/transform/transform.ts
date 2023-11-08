@@ -3,7 +3,7 @@
 
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import {
-  ImportKind,
+  buildRuntimeImports,
   NameType,
   normalizeName,
   OperationParameter,
@@ -14,7 +14,9 @@ import {
   RLCOptions,
   Schema,
   SchemaContext,
-  UrlInfo
+  UrlInfo,
+  initInternalImports,
+  transformSampleGroups
 } from "@azure-tools/rlc-common";
 import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
@@ -35,7 +37,6 @@ import { transformApiVersionInfo } from "./transformApiVersionInfo.js";
 import { getClientLroOverload } from "../utils/operationUtil.js";
 import { transformTelemetryInfo } from "./transformTelemetryInfo.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { transformSampleGroups } from "@azure-tools/rlc-common";
 
 export async function transformRLCModel(
   client: SdkClient,
@@ -58,7 +59,7 @@ export async function transformRLCModel(
           "",
     NameType.Class
   );
-  const importSet = new Map<ImportKind, Set<string>>();
+  const importSet = initInternalImports();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
   const responses: OperationResponse[] = transformToResponseTypes(
@@ -84,12 +85,15 @@ export async function transformRLCModel(
     options,
     schemas,
     responses,
-    importSet,
     apiVersionInfo,
     parameters,
     helperDetails,
     urlInfo,
-    telemetryOptions
+    telemetryOptions,
+    importInfo: {
+      internalImports: importSet,
+      runtimeImports: buildRuntimeImports(options.branded)
+    }
   };
   model.sampleGroups = transformSampleGroups(
     model,

@@ -225,6 +225,7 @@ export async function $onEmit(context: EmitContext) {
     }
     const rlcClient: RLCModel = rlcCodeModels[0];
     const option = dpgContext.rlcOptions!;
+    const isBranded = option.branded ?? true;
     // Generate metadata
     const hasPackageFile = await existsSync(
       join(dpgContext.generationPathDetail?.metadataDir ?? "", "package.json")
@@ -232,17 +233,20 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateMetadata =
       option.generateMetadata === true ||
       (option.generateMetadata === undefined && !hasPackageFile);
-    const commonBuilders = [
-      buildEsLintConfig,
-      buildRollupConfig,
-      buildApiExtractorConfig,
-      buildReadmeFile
-    ];
-    if (!option.isModularLibrary) {
-      commonBuilders.push(buildPackageFile);
-      commonBuilders.push(buildTsConfig);
-    }
+
     if (shouldGenerateMetadata) {
+      const commonBuilders = [
+        buildRollupConfig,
+        buildApiExtractorConfig,
+        buildReadmeFile
+      ];
+      if (isBranded) {
+        commonBuilders.push(buildEsLintConfig);
+      }
+      if (!option.isModularLibrary) {
+        commonBuilders.push(buildPackageFile);
+        commonBuilders.push(buildTsConfig);
+      }
       // build metadata relevant files
       await emitContentByBuilder(
         program,
@@ -280,7 +284,7 @@ export async function $onEmit(context: EmitContext) {
     const shouldGenerateTest =
       option.generateTest === true ||
       (option.generateTest === undefined && !hasTestFolder);
-    if (shouldGenerateTest) {
+    if (shouldGenerateTest && isBranded) {
       await emitContentByBuilder(
         program,
         [

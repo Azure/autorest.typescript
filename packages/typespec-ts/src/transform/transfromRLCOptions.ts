@@ -65,6 +65,7 @@ function extractRLCOptions(
   return {
     ...emitterOptions,
     ...credentialInfo,
+    branded: getBranded(emitterOptions),
     includeShortcuts,
     packageDetails,
     generateMetadata,
@@ -215,6 +216,10 @@ function getIncludeShortcuts(emitterOptions: RLCOptions) {
   return Boolean(emitterOptions.includeShortcuts);
 }
 
+function getBranded(emitterOptions: RLCOptions) {
+  return emitterOptions.branded !== undefined ? emitterOptions.branded : true;
+}
+
 function getPackageDetails(
   program: Program,
   emitterOptions: RLCOptions
@@ -280,7 +285,7 @@ export function getCredentialInfo(
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
-    !securityInfo && emitterOptions.addCredentials === false
+    emitterOptions.addCredentials === false
       ? false
       : securityInfo
       ? securityInfo.addCredentials

@@ -17,8 +17,10 @@ import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { NameType, normalizeName } from "@azure-tools/rlc-common";
 import { getOperationFunction } from "./helpers/operationHelpers.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 export function buildClassicalClient(
   dpgContext: SdkContext,
@@ -83,8 +85,8 @@ export function buildClassicalClient(
       .join(",")})`
   ]);
   constructor.addStatements(`this.pipeline = this._client.pipeline`);
-  importCredential(clientFile);
-  importPipeline(clientFile);
+  importCredential(codeModel.runtimeImports, clientFile);
+  importPipeline(codeModel.runtimeImports, clientFile);
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
@@ -176,9 +178,12 @@ function importAllModels(
   });
 }
 
-function importPipeline(clientSourceFile: SourceFile): void {
+function importPipeline(
+  runtimeImports: RuntimeImports,
+  clientSourceFile: SourceFile
+): void {
   clientSourceFile.addImportDeclaration({
-    moduleSpecifier: "@azure/core-rest-pipeline",
+    moduleSpecifier: getImportSpecifier("restPipeline", runtimeImports),
     namedImports: ["Pipeline"]
   });
 }

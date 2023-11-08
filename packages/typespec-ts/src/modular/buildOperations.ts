@@ -12,6 +12,7 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -95,13 +96,15 @@ export function buildOperationFiles(
         dpgContext,
         o,
         clientType,
-        importSet
+        importSet,
+        codeModel.runtimeImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper,
-        importSet
+        importSet,
+        codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -112,7 +115,10 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "@azure-rest/core-client",
+        moduleSpecifier: getImportSpecifier(
+          "restClient",
+          codeModel?.runtimeImports
+        ),
         namedImports: [
           "StreamableMethod",
           "operationOptionsToRequestParameters"

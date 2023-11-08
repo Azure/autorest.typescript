@@ -99,6 +99,7 @@ import {
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
+import { buildRuntimeImports } from "@azure-tools/rlc-common";
 import {
   getModelNamespaceName,
   getOperationNamespaceInterfaceName
@@ -1766,7 +1767,8 @@ export function emitCodeModel(
     subnamespaceToClients: {},
     clients: [],
     types: [],
-    project
+    project,
+    runtimeImports: buildRuntimeImports(dpgContext.rlcOptions?.branded ?? true)
   };
 
   typesMap.clear();
