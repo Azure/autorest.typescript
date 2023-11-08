@@ -9,6 +9,7 @@ import { Client, ModularCodeModel, Type } from "./modularCodeModel.js";
 import * as path from "path";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { buildOperationOptions } from "./buildOperations.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 // ====== UTILITIES ======
 
@@ -156,7 +157,10 @@ export function buildModels(
   if (coreClientTypes.size > 0) {
     modelsFile.addImportDeclarations([
       {
-        moduleSpecifier: "@azure-rest/core-client",
+        moduleSpecifier: getImportSpecifier(
+          "restClient",
+          codeModel.runtimeImports
+        ),
         namedImports: Array.from(coreClientTypes)
       }
     ]);
@@ -187,7 +191,10 @@ export function buildModelsOptions(
   }
   modelOptionsFile.addImportDeclarations([
     {
-      moduleSpecifier: "@azure-rest/core-client",
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        codeModel.runtimeImports
+      ),
       namedImports: ["OperationOptions"]
     }
   ]);

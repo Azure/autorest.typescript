@@ -8,13 +8,14 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "../lib.js";
 
 export async function emitModels(rlcModels: RLCModel, program: Program) {
   const schemaOutput = buildSchemaTypes(rlcModels);
+  const isBranded = rlcModels?.options?.branded ?? true;
   if (schemaOutput) {
     const { inputModelFile, outputModelFile } = schemaOutput;
     if (inputModelFile) {
-      await emitFile(inputModelFile, program);
+      await emitFile(inputModelFile, program, isBranded);
     }
     if (outputModelFile) {
-      await emitFile(outputModelFile, program);
+      await emitFile(outputModelFile, program, isBranded);
     }
   }
 }
@@ -28,6 +29,7 @@ export async function emitContentByBuilder(
   if (!Array.isArray(builderFnOrList)) {
     builderFnOrList = [builderFnOrList];
   }
+  const isBranded = rlcModels?.options?.branded ?? true;
   for (const builderFn of builderFnOrList) {
     let contentFiles: File[] | File | undefined = builderFn(rlcModels);
     if (!contentFiles) {
@@ -37,7 +39,7 @@ export async function emitContentByBuilder(
       contentFiles = [contentFiles];
     }
     for (const file of contentFiles) {
-      await emitFile(file, program, emitterOutputDir);
+      await emitFile(file, program, isBranded, emitterOutputDir);
     }
   }
 }
@@ -45,13 +47,17 @@ export async function emitContentByBuilder(
 async function emitFile(
   file: File,
   program: Program,
+  isBranded: boolean,
   emitterOutputDir?: string
 ) {
   const host: CompilerHost = program.host;
   const filePath = join(emitterOutputDir ?? "", file.path);
   const isJson = /\.json$/gi.test(filePath);
   const isSourceCode = /\.(ts|js)$/gi.test(filePath);
-  const licenseHeader = `// Copyright (c) Microsoft Corporation.\n// Licensed under the MIT license.\n`;
+  const microsoftHeader = isBranded
+    ? `// Copyright (c) Microsoft Corporation.\n`
+    : "";
+  const licenseHeader = `${microsoftHeader}// Licensed under the MIT license.\n`;
   let prettierFileContent = file.content;
 
   if (isSourceCode) {

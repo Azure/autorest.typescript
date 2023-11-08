@@ -9,6 +9,7 @@ import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { importModels } from "./buildOperations.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 /**
  * This function creates the file containing the modular client context
@@ -29,10 +30,10 @@ export function buildClientContext(
   );
 
   let factoryFunction;
-  importCredential(clientContextFile);
+  importCredential(codeModel.runtimeImports, clientContextFile);
   importModels(srcPath, clientContextFile, codeModel.project, subfolder);
   clientContextFile.addImportDeclaration({
-    moduleSpecifier: "@azure-rest/core-client",
+    moduleSpecifier: getImportSpecifier("restClient", codeModel.runtimeImports),
     namedImports: ["ClientOptions"]
   });
 

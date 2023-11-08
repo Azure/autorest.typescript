@@ -29,14 +29,13 @@ async function getCompletionsSample() {
         user: "{Your user}",
         n: 123,
         logprobs: 123,
-        model: "{Your model}",
         echo: true,
         stop: ["{Your stop}"],
-        completion_config: "{Your completion_config}",
-        cache_level: 123,
         presence_penalty: 123,
         frequency_penalty: 123,
         best_of: 123,
+        stream: true,
+        model: "{Your model}",
       },
     });
   console.log(result);

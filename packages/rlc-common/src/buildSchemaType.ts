@@ -9,6 +9,7 @@ import {
   buildPolymorphicAliases
 } from "./buildObjectTypes.js";
 import { RLCModel, SchemaContext } from "./interfaces.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 /**
  * Generates types to represent schema definitions in the swagger
@@ -74,7 +75,10 @@ export function generateModelFiles(
       modelsFile.addImportDeclarations([
         {
           namedImports: [...Array.from(importedModels || [])],
-          moduleSpecifier: "@azure-rest/core-client"
+          moduleSpecifier: getImportSpecifier(
+            "restClient",
+            model.importInfo.runtimeImports
+          )
         }
       ]);
     }
