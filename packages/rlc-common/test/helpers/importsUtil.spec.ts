@@ -1,13 +1,13 @@
 import { expect } from "chai";
 import "mocha";
 import {
-  build3ndPartyImports,
+  buildRuntimeImports,
   getImportSpecifier
 } from "../../src/helpers/importsUtil.js";
 
-describe("#build3ndPartyImports", () => {
+describe("#buildRuntimeImports", () => {
   it("should return the correct import set for branded scope", () => {
-    const imports = build3ndPartyImports(true);
+    const imports = buildRuntimeImports(true);
     expect(imports.commonFallback).to.be.undefined;
     expect(imports.restClient).to.deep.equal({
       type: "restClient",
@@ -17,7 +17,7 @@ describe("#build3ndPartyImports", () => {
   });
 
   it("should return the correct import set for non-branded scope", () => {
-    const imports = build3ndPartyImports(false);
+    const imports = buildRuntimeImports(false);
     expect(imports.commonFallback).to.deep.equal({
       type: "commonFallback",
       specifier: "@typespec/ts-http-runtime",
@@ -41,7 +41,7 @@ describe("#getImportSpecifier", () => {
   });
 
   describe("#branded", () => {
-    const branded = build3ndPartyImports(true);
+    const branded = buildRuntimeImports(true);
     it("should return the correct import specifier for core auth", () => {
       expect(getImportSpecifier("coreAuth", branded)).to.equal(
         "@azure/core-auth"
@@ -54,7 +54,7 @@ describe("#getImportSpecifier", () => {
   });
 
   describe("#non-branded", () => {
-    const nonBranded = build3ndPartyImports(false);
+    const nonBranded = buildRuntimeImports(false);
     it("should return the correct import specifier for core auth", () => {
       expect(getImportSpecifier("coreAuth", nonBranded)).to.equal(
         "@typespec/ts-http-runtime"
