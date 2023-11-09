@@ -12,12 +12,12 @@ import {
   Request as M4OperationRequest
 } from "@autorest/codemodel";
 import {
-  ImportKind,
   ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
-  Schema
+  Schema,
+  Imports as InnerImports
 } from "@azure-tools/rlc-common";
 import { transformObject } from "./transformSchemas";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
@@ -28,7 +28,7 @@ import { getElementType, primitiveSchemaToType } from "../schemaHelpers";
 
 export function transformParameterTypes(
   model: CodeModel,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: InnerImports
 ) {
   const rlcParameters: OperationParameter[] = [];
   let importedModels = new Set<string>();
@@ -81,9 +81,7 @@ export function transformParameterTypes(
     }
     rlcParameters.push(rlcParameter);
   }
-  if (importedModels.size > 0) {
-    importDetails.set(ImportKind.ParameterInput, importedModels);
-  }
+  importDetails.parameter.importsSet = importedModels;
   return rlcParameters;
 }
 

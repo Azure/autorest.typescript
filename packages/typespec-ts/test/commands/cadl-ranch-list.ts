@@ -187,6 +187,13 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   }
 ];
 
+export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  }
+];
+
 export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/usage",
@@ -263,5 +270,12 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "enums/extensible",
     inputPath: "type/enum/extensible"
+  }
+];
+
+export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];

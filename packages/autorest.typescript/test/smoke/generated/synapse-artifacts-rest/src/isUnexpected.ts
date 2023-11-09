@@ -105,6 +105,7 @@ import {
   LibraryGetDefaultResponse,
   LibraryCreate200Response,
   LibraryCreate202Response,
+  LibraryAppend201Response,
   LibraryCreateDefaultResponse,
   LinkedServiceGetLinkedServicesByWorkspace200Response,
   LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse,
@@ -555,6 +556,7 @@ export function isUnexpected(
   response:
     | LibraryCreate200Response
     | LibraryCreate202Response
+    | LibraryAppend201Response
     | LibraryCreateDefaultResponse
 ): response is LibraryCreateDefaultResponse;
 export function isUnexpected(
@@ -933,6 +935,7 @@ export function isUnexpected(
     | LibraryGetDefaultResponse
     | LibraryCreate200Response
     | LibraryCreate202Response
+    | LibraryAppend201Response
     | LibraryCreateDefaultResponse
     | LinkedServiceGetLinkedServicesByWorkspace200Response
     | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse

@@ -4,17 +4,17 @@
 import {
   CodeModel,
   ImplementationLocation,
-  ParameterLocation,
-  Protocol
+  ParameterLocation
 } from "@autorest/codemodel";
 import {
-  ImportKind,
   RLCModel,
   HelperFunctionDetails,
   UrlInfo,
   ApiVersionInfo,
   extractPathApiVersion,
-  extractDefinedPosition
+  extractDefinedPosition,
+  buildRuntimeImports,
+  initInternalImports
 } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -38,7 +38,7 @@ import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenera
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
-  const importDetails = new Map<ImportKind, Set<string>>();
+  const importDetails = initInternalImports();
   const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
     libraryName: normalizeName(
@@ -50,11 +50,14 @@ export function transform(model: CodeModel): RLCModel {
     options: transformOptions(model),
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
-    importSet: importDetails,
     parameters: transformParameterTypes(model, importDetails),
     helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
-    apiVersionInfo: transformApiVersion(model, urlInfo)
+    apiVersionInfo: transformApiVersion(model, urlInfo),
+    importInfo: {
+      internalImports: importDetails,
+      runtimeImports: buildRuntimeImports()
+    }
   };
   rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
   return rlcModel;

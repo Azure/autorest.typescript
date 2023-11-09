@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  ImportKind,
+  Imports,
   ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
@@ -42,7 +42,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToParameterTypes(
-  importDetails: Map<ImportKind, Set<string>>,
+  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext
 ): OperationParameter[] {
@@ -74,7 +74,7 @@ export function transformToParameterTypes(
     transformToParameterTypesForRoute(program, route);
   }
   if (outputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ParameterInput, outputImportedSet);
+    importDetails.parameter.importsSet = outputImportedSet;
   }
   function transformToParameterTypesForRoute(
     program: Program,
