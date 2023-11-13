@@ -426,7 +426,9 @@ function buildBodyParameter(
         importSet,
         runtimeImports
       );
-      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
+      return `\nbody: !${bodyParameter.clientName} ? ${
+        bodyParameter.clientName
+      } : ${bodyParameter.clientName}.map((p) => { return {
         ${bodyParts.join(", ")}
       };}),`;
     }

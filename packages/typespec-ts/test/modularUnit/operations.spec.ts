@@ -165,7 +165,100 @@ describe("operations", () => {
   });
 
   describe("array in body", () => {
-    it("should handle `undefined` for named model array as request body", async () => {});
+    it.only("should generate required model array as request body", async () => {
+      const tspContent = `
+        model Bar {
+          prop1: string;
+          prop2: int64;
+        }
+        op read(@body bars?: Bar[]): OkResponse;
+          `;
+
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      console.log(operationFiles?.[0]?.getFullText()!);
+      assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+
+        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+           return context.path("/").post({
+              ...operationOptionsToRequestParameters(options),
+              body: bars.map((p) => {
+                    return {
+                      prop1: p["prop1"],
+                      prop2: p["prop2"],
+                    };
+                  }),
+           });
+        }
+
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if(result.status !== "200"){
+          throw result.body
+          }
+      
+          return;
+        }
+        
+        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, bars, options);
+            return _readDeserialize(result);
+        }`
+      );
+    });
+    it.only("should handle `undefined` for named model array as request body", async () => {
+      const tspContent = `
+        model Bar {
+          prop1: string;
+          prop2: int64;
+        }
+        op read(@body bars: Bar[]): OkResponse;
+          `;
+
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      // console.log(operationFiles?.[0]?.getFullText()!);
+      assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+
+        export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
+           return context.path("/").post({
+              ...operationOptionsToRequestParameters(options),
+              body: bars.map((p) => {
+                    return {
+                      prop1: p["prop1"],
+                      prop2: p["prop2"],
+                    };
+                  }),
+           });
+        }
+
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if(result.status !== "200"){
+          throw result.body
+          }
+      
+          return;
+        }
+        
+        export async function read(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): Promise<void> {
+            const result = await _readSend(context, bars, options);
+            return _readDeserialize(result);
+        }`
+      );
+    });
     it("should handle `undefined` for anonymous model array as request body", async () => {});
     it("should handle `undefined` for array in request body", async () => {});
     it("should handle `undefined` for named array as response body", async () => {});
