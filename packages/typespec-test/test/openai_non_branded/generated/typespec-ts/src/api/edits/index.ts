@@ -43,11 +43,14 @@ export async function _createDeserialize(
   return {
     object: result.body["object"],
     created: new Date(result.body["created"]),
-    choices: (result.body["choices"] ?? []).map((p) => ({
-      text: p["text"],
-      index: p["index"],
-      finishReason: p["finish_reason"] as any,
-    })),
+    choices:
+      result.body["choices"] === undefined
+        ? undefined
+        : result.body["choices"].map((p) => ({
+            text: p["text"],
+            index: p["index"],
+            finishReason: p["finish_reason"] as any,
+          })),
     usage: {
       promptTokens: result.body.usage["prompt_tokens"],
       completionTokens: result.body.usage["completion_tokens"],

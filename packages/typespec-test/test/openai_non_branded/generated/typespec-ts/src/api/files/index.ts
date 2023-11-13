@@ -50,16 +50,19 @@ export async function _listDeserialize(
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
+    data:
+      result.body["data"] === undefined
+        ? undefined
+        : result.body["data"].map((p) => ({
+            id: p["id"],
+            object: p["object"],
+            bytes: p["bytes"],
+            createdAt: new Date(p["createdAt"]),
+            filename: p["filename"],
+            purpose: p["purpose"],
+            status: p["status"] as any,
+            statusDetails: p["status_details"],
+          })),
   };
 }
 
