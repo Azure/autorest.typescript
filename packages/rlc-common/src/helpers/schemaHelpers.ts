@@ -1,11 +1,25 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { Schema } from "../interfaces.js";
+import {
+  ObjectSchema,
+  RLCModel,
+  Schema,
+  SchemaContext
+} from "../interfaces.js";
 
-export function isDictionarySchema(schema: Schema) {
+export interface IsDictionaryOptions {
+  filterEmpty?: boolean;
+}
+
+export function isDictionarySchema(
+  schema: Schema,
+  options: IsDictionaryOptions = {}
+) {
   if (schema.type === "dictionary") {
-    return true;
+    if (!options.filterEmpty || (options.filterEmpty && !schema.typeName)) {
+      return true;
+    }
   }
   return false;
 }
@@ -22,4 +36,19 @@ export function isConstantSchema(schema: Schema) {
     return true;
   }
   return false;
+}
+
+export function buildSchemaObjectMap(model: RLCModel) {
+  // include interfaces
+  const map = new Map<string, Schema>();
+  const allSchemas = (model.schemas ?? []).filter(
+    (o) =>
+      isObjectSchema(o) &&
+      (o as ObjectSchema).usage?.some((u) => [SchemaContext.Input].includes(u))
+  );
+  allSchemas.forEach((o) => {
+    map.set(o.name, o);
+  });
+
+  return map;
 }

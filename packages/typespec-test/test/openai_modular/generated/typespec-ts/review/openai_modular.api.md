@@ -13,7 +13,7 @@ import { TokenCredential } from '@azure/core-auth';
 
 // @public
 export interface AzureChatExtensionConfiguration {
-    parameters: any;
+    parameters: unknown;
     type: AzureChatExtensionType;
 }
 
@@ -24,6 +24,19 @@ export interface AzureChatExtensionsMessageContext {
 
 // @public
 export type AzureChatExtensionType = string;
+
+// @public
+export interface AzureCognitiveSearchIndexFieldMappingOptions {
+    contentFieldNames?: string[];
+    contentFieldSeparator?: string;
+    filepathField?: string;
+    titleField?: string;
+    urlField?: string;
+    vectorFields?: string[];
+}
+
+// @public
+export type AzureCognitiveSearchQueryType = string;
 
 // @public
 export type AzureOpenAIOperationState = string;
@@ -209,7 +222,7 @@ export type FunctionCallPreset = string;
 export interface FunctionDefinition {
     description?: string;
     name: string;
-    parameters?: any;
+    parameters?: unknown;
 }
 
 // @public

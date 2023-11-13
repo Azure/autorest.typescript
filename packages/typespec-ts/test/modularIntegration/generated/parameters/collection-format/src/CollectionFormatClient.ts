@@ -2,25 +2,16 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
+import { getQueryOperations, QueryOperations } from "./classic/query/index.js";
+import {
+  getHeaderOperations,
+  HeaderOperations,
+} from "./classic/header/index.js";
 import {
   createCollectionFormat,
   CollectionFormatClientOptions,
   CollectionFormatContext,
-  headerCsv,
-  queryMulti,
-  querySsv,
-  queryTsv,
-  queryPipes,
-  queryCsv,
 } from "./api/index.js";
-import {
-  QueryMultiOptions,
-  QuerySsvOptions,
-  QueryTsvOptions,
-  QueryPipesOptions,
-  QueryCsvOptions,
-  HeaderCsvOptions,
-} from "./models/options.js";
 
 export { CollectionFormatClientOptions } from "./api/CollectionFormatContext.js";
 
@@ -33,28 +24,12 @@ export class CollectionFormatClient {
   constructor(options: CollectionFormatClientOptions = {}) {
     this._client = createCollectionFormat(options);
     this.pipeline = this._client.pipeline;
+    this.query = getQueryOperations(this._client);
+    this.header = getHeaderOperations(this._client);
   }
 
-  query = {
-    multi: (colors: string[], options?: QueryMultiOptions): Promise<void> => {
-      return queryMulti(this._client, colors, options);
-    },
-    ssv: (colors: string[], options?: QuerySsvOptions): Promise<void> => {
-      return querySsv(this._client, colors, options);
-    },
-    tsv: (colors: string[], options?: QueryTsvOptions): Promise<void> => {
-      return queryTsv(this._client, colors, options);
-    },
-    pipes: (colors: string[], options?: QueryPipesOptions): Promise<void> => {
-      return queryPipes(this._client, colors, options);
-    },
-    csv: (colors: string[], options?: QueryCsvOptions): Promise<void> => {
-      return queryCsv(this._client, colors, options);
-    },
-  };
-  header = {
-    csv: (colors: string[], options?: HeaderCsvOptions): Promise<void> => {
-      return headerCsv(this._client, colors, options);
-    },
-  };
+  /** The operation groups for Query */
+  public readonly query: QueryOperations;
+  /** The operation groups for Header */
+  public readonly header: HeaderOperations;
 }

@@ -5,53 +5,122 @@ import {
   hasLROOperation,
   hasPagingOperation
 } from "./helpers/operationHelpers.js";
+import { getClassicalLayerPrefix } from "./helpers/namingHelpers.js";
+import { PackageDetails } from "@azure-tools/rlc-common";
 
-export function emitPackage(
-  project: Project,
-  metadataDir: string,
-  codeModel: ModularCodeModel,
-  hasSamplesGenerated = false
+// =========== utils =============
+function appendPathWhenFormat(
+  generateTest?: boolean,
+  generateSample?: boolean
 ) {
-  const packageJson = project.createSourceFile(
-    `${metadataDir}/package.json`,
-    "",
-    {
-      overwrite: true
+  let path = "";
+  if (generateTest) {
+    path = path + ` "test/**/*.ts"`;
+  }
+  if (generateSample) {
+    path = path + ` "samples-dev/**/*.ts"`;
+  }
+  return path;
+}
+
+function appednPathWhenLint(generateTest?: boolean) {
+  return generateTest ? "test" : "";
+}
+
+function buildExportsForMultiClient(
+  codeModel: ModularCodeModel,
+  packageInfo: any
+) {
+  if (codeModel.clients.length > 1) {
+    delete packageInfo.exports["./api"];
+    delete packageInfo.exports["./models"];
+    for (const client of codeModel.clients) {
+      const subfolder = normalizeName(
+        client.name.replace("Client", ""),
+        NameType.File
+      );
+      packageInfo.exports[`./${subfolder}`] = {
+        types: `./types/src/${subfolder}/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/index.js`
+      };
+      packageInfo.exports[`./${subfolder}/api`] = {
+        types: `./types/src/${subfolder}/api/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/api/index.js`
+      };
+      packageInfo.exports[`./${subfolder}/models`] = {
+        types: `./types/src/${subfolder}/models/index.d.ts`,
+        import: `./dist-esm/src/${subfolder}/models/index.js`
+      };
     }
-  );
-  const hasLRO = hasLROOperation(codeModel),
-    hasPaging = hasPagingOperation(codeModel);
-  const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
-    codeModel.options;
-  let { packageDetails, generateTest, generateSample } = codeModel.options;
-  if (packageDetails === undefined) {
-    packageDetails = {
+  }
+  if (codeModel.options.hierarchyClient) {
+    for (const client of codeModel.clients) {
+      for (const operationGroup of client.operationGroups) {
+        if (operationGroup.namespaceHierarchies.length === 0) {
+          continue;
+        }
+        const subfolder =
+          codeModel.clients.length > 1
+            ? normalizeName(client.name.replace("Client", ""), NameType.File)
+            : undefined;
+        const subApiPath = `api/${getClassicalLayerPrefix(
+          operationGroup,
+          NameType.File,
+          "/"
+        )}`;
+        packageInfo.exports[
+          `./${subfolder ? subfolder + "/" : ""}${subApiPath}`
+        ] = {
+          types: `./types/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.d.ts`,
+          import: `./dist-esm/src/${
+            subfolder ? subfolder + "/" : ""
+          }${subApiPath}/index.js`
+        };
+      }
+    }
+  }
+
+  return packageInfo;
+}
+
+function buildPackageDetails(packageDetails?: PackageDetails) {
+  return (
+    packageDetails ?? {
       name: "@msinternal/unamedpackage",
       nameWithoutScope: "unamedpackage",
       version: "1.0.0-beta.1"
-    };
-  }
-  // Take the undefined as true by default
-  generateTest = generateTest === true || generateTest === undefined;
-  generateSample =
-    (generateSample === true || generateSample === undefined) &&
-    hasSamplesGenerated;
-  const clientPackageName = packageDetails.name;
-  let apiRefUrlQueryParameter: string = "";
-  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
-  if (packageDetails.version.includes("beta")) {
-    apiRefUrlQueryParameter = "?view=azure-node-preview";
-  }
+    }
+  );
+}
 
+// Prepare package info without scripts and devDependencies and dependencies ect
+function initPackageInfo(codeModel: ModularCodeModel) {
+  let { packageDetails, generateTest, branded } = codeModel.options;
+  branded = branded ?? true;
+  generateTest = generateTest === true || generateTest === undefined;
+  packageDetails = buildPackageDetails(packageDetails);
+  const description = packageDetails.description
+    ? packageDetails.description
+    : `A generated SDK for ${codeModel.clients[0]?.name}.`;
   const packageInfo = {
     name: `${packageDetails.name}`,
     "sdk-type": "client",
-    author: "Microsoft Corporation",
+    ...(branded
+      ? {
+          author: "Microsoft Corporation"
+        }
+      : {}),
     version: `${packageDetails.version}`,
-    description:
-      `${packageDetails.description}` ||
-      `A generated SDK for ${codeModel.clients[0]?.name}.`,
-    keywords: ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+    description,
+    keywords: [
+      "node",
+      ...(branded ? ["azure", "cloud"] : []),
+      "typescript",
+      "browser",
+      "isomorphic"
+    ],
     license: "MIT",
     type: "module",
     main: "dist/index.js",
@@ -72,21 +141,125 @@ export function emitPackage(
         import: "./dist-esm/src/models/index.js"
       }
     },
-    repository: "github:Azure/azure-sdk-for-js",
-    bugs: {
-      url: "https://github.com/Azure/azure-sdk-for-js/issues"
-    },
+    ...(branded
+      ? {
+          repository: "github:Azure/azure-sdk-for-js",
+          bugs: {
+            url: "https://github.com/Azure/azure-sdk-for-js/issues"
+          }
+        }
+      : {}),
     files: [
       "dist/",
-      generateTest ? "dist-esm/src/" : "dist-esm/",
+      generateTest && branded ? "dist-esm/src/" : "dist-esm/",
       `types/${packageDetails.nameWithoutScope}.d.ts`,
       "README.md",
       "LICENSE",
       "review/*"
     ],
     engines: {
-      node: ">=16.0.0"
+      node: ">=18.0.0"
+    }
+  } as any;
+  return packageInfo;
+}
+
+// =========== emit package.json =============
+export function emitPackage(
+  project: Project,
+  metadataDir: string,
+  codeModel: ModularCodeModel,
+  hasSamplesGenerated = false
+) {
+  const packageJsonFile = project.createSourceFile(
+    `${metadataDir}/package.json`,
+    "",
+    {
+      overwrite: true
+    }
+  );
+  const branded = codeModel.options.branded ?? true;
+  const packageInfo = branded
+    ? emitBrandedPackage(codeModel, hasSamplesGenerated)
+    : emitNonBrandedPackage(codeModel);
+  packageJsonFile.addStatements(JSON.stringify(packageInfo));
+  return packageJsonFile;
+}
+
+function emitNonBrandedPackage(codeModel: ModularCodeModel) {
+  const runtimeLibVersion =
+    codeModel.runtimeImports?.commonFallback?.version ??
+    "1.0.0-alpha.20231103.1";
+  const packageInfo = {
+    ...initPackageInfo(codeModel),
+    scripts: {
+      "check-format":
+        'prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ',
+      clean:
+        "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
+      "extract-api":
+        "rimraf review && mkdirp ./review && api-extractor run --local",
+      format:
+        'prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore "src/**/*.ts" "*.{js,json}" ',
+      "lint:fix": "echo skipped",
+      lint: "echo skipped",
+      pack: "npm pack 2>&1",
+      test: 'echo "Error: no test specified" && exit 1',
+      build:
+        "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
+      minify:
+        "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js"
     },
+    sideEffects: false,
+    autoPublish: false,
+    dependencies: {
+      tslib: "^2.2.0",
+      "@typespec/ts-http-runtime": runtimeLibVersion
+    },
+    devDependencies: {
+      "@microsoft/api-extractor": "^7.31.1",
+      "@types/node": "^18.0.0",
+      mkdirp: "^2.1.2",
+      prettier: "^2.5.1",
+      rimraf: "^5.0.0",
+      "source-map-support": "^0.5.9",
+      typescript: "~5.2.0",
+      "@rollup/plugin-commonjs": "^24.0.0",
+      "@rollup/plugin-json": "^6.0.0",
+      "@rollup/plugin-multi-entry": "^6.0.0",
+      "@rollup/plugin-node-resolve": "^13.1.3",
+      rollup: "^2.66.1",
+      "rollup-plugin-sourcemaps": "^0.6.3",
+      "uglify-js": "^3.4.9"
+    }
+  } as any;
+  buildExportsForMultiClient(codeModel, packageInfo);
+  return packageInfo;
+}
+
+function emitBrandedPackage(
+  codeModel: ModularCodeModel,
+  hasSamplesGenerated: boolean
+) {
+  const hasLRO = hasLROOperation(codeModel),
+    hasPaging = hasPagingOperation(codeModel);
+  const { azureOutputDirectory, azureSdkForJs, sourceFrom, isModularLibrary } =
+    codeModel.options;
+  let { packageDetails, generateTest, generateSample } = codeModel.options;
+  packageDetails = buildPackageDetails(packageDetails);
+  // Take the undefined as true by default
+  generateTest = generateTest === true || generateTest === undefined;
+  generateSample =
+    (generateSample === true || generateSample === undefined) &&
+    hasSamplesGenerated;
+  const clientPackageName = packageDetails.name;
+  let apiRefUrlQueryParameter: string = "";
+  packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
+  if (packageDetails.version.includes("beta")) {
+    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  }
+  const packageInfo = {
+    ...initPackageInfo(codeModel),
     scripts: {
       audit:
         "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
@@ -151,14 +324,14 @@ export function emitPackage(
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
-      "@types/node": "^16.0.0",
+      "@types/node": "^18.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
       prettier: "^2.5.1",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.0.0"
+      typescript: "~5.2.0"
     }
   } as any;
 
@@ -206,7 +379,7 @@ export function emitPackage(
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
+    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
@@ -225,7 +398,7 @@ export function emitPackage(
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
     packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
     packageInfo.devDependencies["karma"] = "^6.2.0";
-    packageInfo.devDependencies["nyc"] = "^15.0.0";
+    packageInfo.devDependencies["c8"] = "^8.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
     packageInfo.scripts["test"] =
@@ -287,34 +460,11 @@ export function emitPackage(
     }
   }
 
-  if (codeModel.clients.length > 1) {
-    delete packageInfo.exports["./api"];
-    delete packageInfo.exports["./models"];
-    for (const client of codeModel.clients) {
-      const subfolder = normalizeName(
-        client.name.replace("Client", ""),
-        NameType.File
-      );
-      packageInfo.exports[`./${subfolder}`] = {
-        types: `./types/src/${subfolder}/index.d.ts`,
-        import: `./dist-esm/src/${subfolder}/index.js`
-      };
-      packageInfo.exports[`./${subfolder}/api`] = {
-        types: `./types/src/${subfolder}/api/index.d.ts`,
-        import: `./dist-esm/src/${subfolder}/api/index.js`
-      };
-      packageInfo.exports[`./${subfolder}/models`] = {
-        types: `./types/src/${subfolder}/models/index.d.ts`,
-        import: `./dist-esm/src/${subfolder}/models/index.js`
-      };
-    }
-  }
-
-  packageJson.addStatements(JSON.stringify(packageInfo));
-
-  return packageJson;
+  buildExportsForMultiClient(codeModel, packageInfo);
+  return packageInfo;
 }
 
+// =========== emit tsconfig.json =============
 const modularTsConfigInSDKRepo: Record<string, any> = {
   extends: "../../../tsconfig.package",
   compilerOptions: {
@@ -373,6 +523,7 @@ export function emitTsConfig(
 
   const { packageDetails, azureSdkForJs } = codeModel.options || {};
   let { generateTest, generateSample } = codeModel.options || {};
+  const isBranded = codeModel.options?.branded ?? true;
   // Take the undefined as true by default
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
@@ -380,13 +531,17 @@ export function emitTsConfig(
     hasSamplesGenerated;
   const clientPackageName = packageDetails?.name ?? "@msinternal/unamedpackage";
   const tsConfig = (
-    azureSdkForJs ? modularTsConfigInSDKRepo : modularTsConfigNotInSDKRepo
+    !isBranded
+      ? modularTsConfigNotInSDKRepo
+      : azureSdkForJs
+      ? modularTsConfigInSDKRepo
+      : modularTsConfigNotInSDKRepo
   ) as any;
 
-  if (generateTest) {
+  if (generateTest && isBranded) {
     tsConfig.include.push("./test/**/*.ts");
   }
-  if (generateSample) {
+  if (generateSample && isBranded) {
     tsConfig.include.push("samples-dev/**/*.ts");
     tsConfig.compilerOptions["paths"] = {};
     tsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"];
@@ -395,22 +550,4 @@ export function emitTsConfig(
   tsConfigFile.addStatements(JSON.stringify(tsConfig));
 
   return tsConfigFile;
-}
-
-function appendPathWhenFormat(
-  generateTest?: boolean,
-  generateSample?: boolean
-) {
-  let path = "";
-  if (generateTest) {
-    path = path + ` "test/**/*.ts"`;
-  }
-  if (generateSample) {
-    path = path + ` "samples-dev/**/*.ts"`;
-  }
-  return path;
-}
-
-function appednPathWhenLint(generateTest?: boolean) {
-  return generateTest ? "test" : "";
 }

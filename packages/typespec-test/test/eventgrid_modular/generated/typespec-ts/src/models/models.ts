@@ -8,7 +8,7 @@ export interface CloudEvent {
   /** Identifies the context in which an event happened. The combination of id and source must be unique for each distinct event. */
   source: string;
   /** Event data specific to the event type. */
-  data?: any;
+  data?: unknown;
   /** Event data specific to the event type, encoded as a base64 string. */
   dataBase64?: Uint8Array;
   /** Type of event related to the originating occurrence. */

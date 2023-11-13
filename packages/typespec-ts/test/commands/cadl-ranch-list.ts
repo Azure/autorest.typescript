@@ -154,10 +154,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "projection/projected-name"
   },
   {
-    outputPath: "internal",
-    inputPath: "azure/client-generator-core/internal"
-  },
-  {
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
@@ -188,6 +184,13 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "client/structure/two-operation-group",
     inputPath: "client/structure/two-operation-group"
+  }
+];
+
+export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];
 
@@ -279,5 +282,12 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "authentication/union",
     inputPath: "authentication/union"
+  }
+];
+
+export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];

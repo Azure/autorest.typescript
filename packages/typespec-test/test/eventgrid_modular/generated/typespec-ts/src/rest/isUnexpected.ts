@@ -3,6 +3,7 @@
 
 import {
   PublishCloudEvent200Response,
+  PublishCloudEvents200Response,
   PublishCloudEventDefaultResponse,
   ReceiveCloudEvents200Response,
   ReceiveCloudEventsDefaultResponse,
@@ -27,7 +28,10 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
+  response:
+    | PublishCloudEvent200Response
+    | PublishCloudEvents200Response
+    | PublishCloudEventDefaultResponse
 ): response is PublishCloudEventDefaultResponse;
 export function isUnexpected(
   response: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
@@ -46,6 +50,7 @@ export function isUnexpected(
 export function isUnexpected(
   response:
     | PublishCloudEvent200Response
+    | PublishCloudEvents200Response
     | PublishCloudEventDefaultResponse
     | ReceiveCloudEvents200Response
     | ReceiveCloudEventsDefaultResponse

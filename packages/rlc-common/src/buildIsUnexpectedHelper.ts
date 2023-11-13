@@ -57,7 +57,9 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
         map = { ...map, ...{ [operation]: Array.from(successSet) } };
       }
 
-      const successTypes = [...methodDetails[0].responseTypes.success];
+      const successTypes = [
+        ...methodDetails.flatMap((md) => md.responseTypes.success)
+      ];
       const errorTypes = methodDetails[0].responseTypes.error;
 
       if (
@@ -66,8 +68,11 @@ export function buildIsUnexpectedHelper(model: RLCModel) {
           ?.success
       ) {
         successTypes.push(
-          ...methodDetails[0].operationHelperDetail.lroDetails
-            .logicalResponseTypes.success!
+          ...methodDetails.flatMap(
+            (md) =>
+              md.operationHelperDetail?.lroDetails?.logicalResponseTypes
+                ?.success ?? ""
+          )
         );
       }
 

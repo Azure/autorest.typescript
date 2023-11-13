@@ -122,8 +122,12 @@ export function transformSchemas(
 
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
-      if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {
-        setModelMap(indexer.value, context);
+      if (
+        indexer?.value &&
+        (!program.stateMap(modelKey).get(indexer?.value) ||
+          !program.stateMap(modelKey).get(indexer?.value)?.includes(context))
+      ) {
+        getGeneratedModels(indexer.value, context);
       }
       for (const prop of model.properties) {
         if (

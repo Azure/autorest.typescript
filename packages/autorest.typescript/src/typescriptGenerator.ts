@@ -66,7 +66,8 @@ export async function generateTypeScriptLibrary(
     generateSample,
     outputPath,
     srcPath,
-    generateMetadata
+    generateMetadata,
+    azureSdkForJs
   } = getAutorestOptions();
 
   const clientDetails = await transformCodeModel(codeModel);
@@ -84,7 +85,12 @@ export async function generateTypeScriptLibrary(
     generateSampleTestFile(project);
   }
   generateTsConfig(project);
-  generateRollupConfig(project);
+
+  if (!azureSdkForJs) {
+    // azure-sdk-for-js repo uses dev-tool run bundle
+    generateRollupConfig(project);
+  }
+
   generateApiExtractorConfig(project);
 
   generateClient(clientDetails, project);

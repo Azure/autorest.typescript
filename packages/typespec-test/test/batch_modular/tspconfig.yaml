@@ -7,6 +7,7 @@ options:
     generateTest: true
     azureSdkForJs: false
     isModularLibrary: true
+    hierarchyClient: false
     "emitter-output-dir": "{project-root}/generated/typespec-ts"
     packageDetails:
       name: "@azure-rest/batch"

@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  WeatherListParameters,
   paginate
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -25,16 +22,17 @@ async function weatherList() {
     endpoint,
     credential
   );
-  const options: WeatherListParameters = {
-    queryParameters: {
-      farmerId: "FARMER123",
-      boundaryId: "BOUNDARY123",
-      extensionId: "DTN.ClearAg",
-      weatherDataType: "Historical",
-      granularity: "Daily"
-    }
-  };
-  const initialResponse = await client.path("/weather").get(options);
+  const initialResponse = await client
+    .path("/weather")
+    .get({
+      queryParameters: {
+        farmerId: "FARMER123",
+        boundaryId: "BOUNDARY123",
+        extensionId: "DTN.ClearAg",
+        weatherDataType: "Historical",
+        granularity: "Daily"
+      }
+    });
   const pageData = paginate(client, initialResponse);
   const result = [];
   for await (const item of pageData) {

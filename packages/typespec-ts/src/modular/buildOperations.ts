@@ -11,6 +11,7 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -26,23 +27,34 @@ export function buildOperationFiles(
   const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
     const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
-    const fileName = operationGroup.className
-      ? `${normalizeName(operationGroup.className, NameType.File)}`
-      : // When the program has no operation groups defined all operations are put
-        // into a nameless operation group. We'll call this operations.
-        "operations";
+    const operationFileName =
+      operationGroup.className && operationGroup.namespaceHierarchies.length > 0
+        ? `${operationGroup.namespaceHierarchies
+            .map((hierarchy) => {
+              return normalizeName(hierarchy, NameType.File);
+            })
+            .join("/")}/index`
+        : // When the program has no operation groups defined all operations are put
+          // into a nameless operation group. We'll call this operations.
+          "operations";
 
     const subfolder = client.subfolder;
     const srcPath = codeModel.modularOptions.sourceRoot;
     const operationGroupFile = codeModel.project.createSourceFile(
       `${srcPath}/${
         subfolder && subfolder !== "" ? subfolder + "/" : ""
-      }api/${fileName}.ts`
+      }api/${operationFileName}.ts`
     );
 
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
-    importModels(srcPath, operationGroupFile, codeModel.project, subfolder);
+    importModels(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
 
     const namedImports: string[] = [];
     let clientType = "Client";
@@ -54,7 +66,9 @@ export function buildOperationFiles(
       }
       operationGroupFile.addImportDeclarations([
         {
-          moduleSpecifier: `../../rest/${subfolder}/index.js`,
+          moduleSpecifier: `../${"../".repeat(
+            operationGroup.namespaceHierarchies.length
+          )}rest/${subfolder}/index.js`,
           namedImports
         }
       ]);
@@ -68,7 +82,9 @@ export function buildOperationFiles(
         {
           moduleSpecifier: `${
             subfolder && subfolder !== "" ? "../" : ""
-          }../rest/index.js`,
+          }${"../".repeat(
+            operationGroup.namespaceHierarchies.length + 1
+          )}rest/index.js`,
           namedImports
         }
       ]);
@@ -76,15 +92,18 @@ export function buildOperationFiles(
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
       const sendOperationDeclaration = getSendPrivateFunction(
+        dpgContext,
         o,
         clientType,
-        importSet
+        importSet,
+        codeModel.runtimeImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper,
-        importSet
+        importSet,
+        codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
         sendOperationDeclaration,
@@ -95,7 +114,10 @@ export function buildOperationFiles(
 
     operationGroupFile.addImportDeclarations([
       {
-        moduleSpecifier: "@azure-rest/core-client",
+        moduleSpecifier: getImportSpecifier(
+          "restClient",
+          codeModel?.runtimeImports
+        ),
         namedImports: [
           "StreamableMethod",
           "operationOptionsToRequestParameters"
@@ -124,8 +146,12 @@ export function importModels(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,
-  subfolder: string = ""
+  subfolder: string = "",
+  importLayer: number = 0
 ) {
+  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
+    return i.getModuleSpecifierValue().endsWith(`models/models.js`);
+  });
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
@@ -137,9 +163,9 @@ export function importModels(
     models.push(entry[0]);
   }
 
-  if (models.length > 0) {
+  if (models.length > 0 && !hasModelsImport) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: "../models/models.js",
+      moduleSpecifier: `${"../".repeat(importLayer + 1)}models/models.js`,
       namedImports: models
     });
   }
@@ -161,7 +187,7 @@ export function buildOperationOptions(
     .filter((p) => p.optional || p.clientDefaultValue);
   const options = [...optionalParameters];
 
-  const name = getOperationOptionsName(operation);
+  const name = getOperationOptionsName(operation, true);
 
   sourceFile.addInterface({
     name,

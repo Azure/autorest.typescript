@@ -20,7 +20,24 @@ export function buildRootIndex(
   }
 
   exportClassicalClient(client, rootIndexFile, subfolder);
-  exportModels(rootIndexFile, project, srcPath, clientName, subfolder, true);
+  exportModules(
+    rootIndexFile,
+    project,
+    srcPath,
+    clientName,
+    "models",
+    subfolder,
+    true
+  );
+  exportModules(
+    rootIndexFile,
+    project,
+    srcPath,
+    clientName,
+    "classic",
+    subfolder,
+    true
+  );
 }
 
 function exportClassicalClient(
@@ -38,16 +55,19 @@ function exportClassicalClient(
   });
 }
 
-function exportModels(
+function exportModules(
   indexFile: SourceFile,
   project: Project,
   srcPath: string,
   clientName: string,
+  moduleName: string,
   subfolder: string = "",
   isTopLevel: boolean = false
 ) {
   const modelsFile = project.getSourceFile(
-    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/index.ts`
+    `${srcPath}/${
+      subfolder !== "" ? subfolder + "/" : ""
+    }${moduleName}/index.ts`
   );
   if (!modelsFile) {
     return;
@@ -64,7 +84,7 @@ function exportModels(
   );
   const moduleSpecifier = `./${
     isTopLevel && subfolder !== "" ? subfolder + "/" : ""
-  }models/index.js`;
+  }${moduleName}/index.js`;
   indexFile.addExportDeclaration({
     moduleSpecifier,
     namedExports
@@ -93,11 +113,20 @@ export function buildSubClientIndexFile(
   }
 
   exportClassicalClient(client, subClientIndexFile, subfolder, true);
-  exportModels(
+  exportModules(
     subClientIndexFile,
     codeModel.project,
     srcPath,
     clientName,
+    "models",
+    subfolder
+  );
+  exportModules(
+    subClientIndexFile,
+    codeModel.project,
+    srcPath,
+    clientName,
+    "classic",
     subfolder
   );
 }

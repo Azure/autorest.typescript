@@ -10,6 +10,7 @@ options:
     isTypeSpecTest: true
     title: MultipleParamInServerPathClient
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/multipleparam"
       description: "MultipleParameter Test Service"

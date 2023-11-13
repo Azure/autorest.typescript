@@ -8,6 +8,7 @@ options:
     azureSdkForJs: false
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/azure-api-key"
       description: "Azure API Key Test Service"

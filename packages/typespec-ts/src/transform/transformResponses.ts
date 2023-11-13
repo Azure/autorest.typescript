@@ -8,12 +8,12 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import {
   ResponseHeaderSchema,
-  ImportKind,
   OperationResponse,
   ResponseMetadata,
   Schema,
   SchemaContext,
-  getLroLogicalResponseName
+  getLroLogicalResponseName,
+  Imports
 } from "@azure-tools/rlc-common";
 import { getDoc, ignoreDiagnostics } from "@typespec/compiler";
 import {
@@ -32,12 +32,13 @@ import {
   getOperationStatuscode,
   isBinaryPayload,
   getOperationLroOverload,
-  getOperationName
+  getOperationName,
+  sortedOperationResponses
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToResponseTypes(
-  importDetails: Map<ImportKind, Set<string>>,
+  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext
 ): OperationResponse[] {
@@ -69,7 +70,7 @@ export function transformToResponseTypes(
     transformToResponseTypesForRoute(route);
   }
   if (inputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ResponseOutput, inputImportedSet);
+    importDetails.response.importsSet = inputImportedSet;
   }
   function transformToResponseTypesForRoute(route: HttpOperation) {
     const rlcOperationUnit: OperationResponse = {
@@ -78,7 +79,7 @@ export function transformToResponseTypes(
       path: route.path,
       responses: []
     };
-    for (const resp of route.responses) {
+    for (const resp of sortedOperationResponses(route.responses)) {
       const statusCode = getOperationStatuscode(resp);
       const rlcResponseUnit: ResponseMetadata = {
         statusCode,

@@ -10,5 +10,6 @@ options:
     enableOperationGroup: true
     isTypeSpecTest: true
     isModularLibrary: true
+    hierarchyClient: false
     packageDetails:
       name: "@msinternal/parameterSpread"

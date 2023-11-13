@@ -10,11 +10,11 @@ import {
   SchemaResponse
 } from "@autorest/codemodel";
 import {
-  ImportKind,
   OperationResponse,
   ResponseMetadata,
   ResponseBodySchema,
-  ResponseHeaderSchema
+  ResponseHeaderSchema,
+  Imports as InnerImports
 } from "@azure-tools/rlc-common";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
 import { responseToSchemaResponse } from "../operationHelpers";
@@ -27,7 +27,7 @@ import { isSchemaResponse } from "../../utils/schemaHelpers";
 
 export function transformResponseTypes(
   model: CodeModel,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: InnerImports
 ): OperationResponse[] {
   const operations = getAllOperationRequests(model);
   const rlcResponses: OperationResponse[] = [];
@@ -53,7 +53,7 @@ export function transformResponseTypes(
       // transform body
       let body = undefined;
       if (isSchemaResponse(response) || (response as any).binary) {
-        body = transformBody(response, importedModels);    
+        body = transformBody(response, importedModels);
       }
       const rlcResponseUnit: ResponseMetadata = {
         statusCode: getStatusCode(schemaResponse),
@@ -65,9 +65,7 @@ export function transformResponseTypes(
     }
     rlcResponses.push(rlcOperationUnit);
   }
-  if (importedModels.size > 0) {
-    importDetails.set(ImportKind.ResponseOutput, importedModels);
-  }
+  importDetails.response.importsSet = importedModels;
   return rlcResponses;
 }
 

@@ -37,6 +37,9 @@ model AnalyzeResult {
     summary: string;
 }
 
+@encode(BytesKnownEncoding.base64url)
+scalar base64urlBytes extends bytes;
+
 @error
 model WidgetError {
     @doc("The HTTP error code.")
@@ -54,7 +57,20 @@ List all widgets in the system. This operation is not paginated, and returns a s
 It does not accept any options or parameters.
 """)
 
-    @get listWidgets(): Widget[] | WidgetError;
+    @get listWidgets(
+        @header requiredHeader: string, 
+        @header optionalHeader?: string,  
+        @header nullableOptionalHeader?: string | null,
+        @header bytesHeader: bytes,
+        @header @encode(BytesKnownEncoding.base64) value: bytes,
+        @header({
+          format: "csv",
+        })
+        csvArrayHeader: base64urlBytes[],
+        @header utcDateHeader: utcDateTime,
+        @header optionalDateHeader?: utcDateTime,
+        @header nullableDateHeader?: utcDateTime | null,
+    ): Widget[] | WidgetError;
 
     @doc("Get a widget by ID.")
     @get getWidget(@path id: string): Widget | WidgetError;

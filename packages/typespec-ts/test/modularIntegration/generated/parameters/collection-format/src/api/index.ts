@@ -6,11 +6,11 @@ export {
   CollectionFormatClientOptions,
   CollectionFormatContext,
 } from "./CollectionFormatContext.js";
-export { headerCsv } from "./header.js";
+export { headerCsv } from "./header/index.js";
 export {
   queryMulti,
   querySsv,
   queryTsv,
   queryPipes,
   queryCsv,
-} from "./query.js";
+} from "./query/index.js";

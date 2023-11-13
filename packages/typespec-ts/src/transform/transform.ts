@@ -3,7 +3,7 @@
 
 import { SdkClient } from "@azure-tools/typespec-client-generator-core";
 import {
-  ImportKind,
+  buildRuntimeImports,
   NameType,
   normalizeName,
   OperationParameter,
@@ -14,7 +14,9 @@ import {
   RLCOptions,
   Schema,
   SchemaContext,
-  UrlInfo
+  UrlInfo,
+  initInternalImports,
+  transformSampleGroups
 } from "@azure-tools/rlc-common";
 import { getDoc } from "@typespec/compiler";
 import { getServers } from "@typespec/http";
@@ -57,10 +59,9 @@ export async function transformRLCModel(
           "",
     NameType.Class
   );
-  const importSet = new Map<ImportKind, Set<string>>();
+  const importSet = initInternalImports();
   const paths: Paths = transformPaths(program, client, dpgContext);
   const schemas: Schema[] = transformSchemas(program, client, dpgContext);
-
   const responses: OperationResponse[] = transformToResponseTypes(
     importSet,
     client,
@@ -77,20 +78,29 @@ export async function transformRLCModel(
   const urlInfo = transformUrlInfo(dpgContext);
   const apiVersionInfo = transformApiVersionInfo(client, dpgContext, urlInfo);
   const telemetryOptions = transformTelemetryInfo(dpgContext, client);
-  return {
+  const model: RLCModel = {
     srcPath,
     libraryName,
     paths,
     options,
     schemas,
     responses,
-    importSet,
     apiVersionInfo,
     parameters,
     helperDetails,
     urlInfo,
-    telemetryOptions
+    telemetryOptions,
+    importInfo: {
+      internalImports: importSet,
+      runtimeImports: buildRuntimeImports(options.branded)
+    }
   };
+  model.sampleGroups = transformSampleGroups(
+    model,
+    options?.generateSample ===
+      true /* Enable mock sample content if generateSample === true */
+  );
+  return model;
 }
 
 export function transformUrlInfo(dpgContext: SdkContext): UrlInfo | undefined {

@@ -3,7 +3,52 @@ import {
   emitModularModelsFromTypeSpec,
   emitModularOperationsFromTypeSpec
 } from "../util/emitUtil.js";
-import { assertEqualContent } from "../util/testUtil.js";
+import { VerifyPropertyConfig, assertEqualContent } from "../util/testUtil.js";
+
+async function verifyModularPropertyType(
+  tspType: string,
+  inputType: string,
+  options?: VerifyPropertyConfig,
+  needAzureCore: boolean = false,
+  additionalImports: string = ""
+) {
+  const defaultOption: VerifyPropertyConfig = {
+    additionalTypeSpecDefinition: "",
+    outputType: inputType,
+    additionalInputContent: "",
+    additionalOutputContent: ""
+  };
+  const { additionalTypeSpecDefinition, additionalInputContent } = {
+    ...defaultOption,
+    ...options
+  };
+  const modelsFile = await emitModularModelsFromTypeSpec(
+    `
+  ${additionalTypeSpecDefinition}
+  #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+  model InputOutputModel {
+    prop: ${tspType};
+  }
+
+  #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for test"
+  #suppress "@azure-tools/typespec-azure-core/documentation-required" "for test"
+  @route("/models")
+  @get
+  op getModel(@body input: InputOutputModel): InputOutputModel;`,
+    needAzureCore
+  );
+  assert.ok(modelsFile);
+  assertEqualContent(
+    modelsFile?.getFullText()!,
+    `
+  ${additionalImports}
+
+  export interface InputOutputModel {
+      prop: ${inputType};
+  }
+  ${additionalInputContent}`
+  );
+}
 
 describe("modular model type", () => {
   it("shouldn't generate models if there is no operations", async () => {
@@ -13,6 +58,46 @@ describe("modular model type", () => {
       }
       `);
     assert.ok(!schemaOutput);
+  });
+});
+
+describe("model property type", () => {
+  it("should handle type_literals:boolean -> boolean_literals", async () => {
+    const tspType = `true`;
+    const typeScriptType = `true`;
+    await verifyModularPropertyType(tspType, typeScriptType);
+  });
+
+  it("should handle type_literals:number -> number_literals", async () => {
+    const tspType = `1`;
+    const typeScriptType = `1`;
+    await verifyModularPropertyType(tspType, typeScriptType);
+  });
+
+  it("should handle type_literals:string -> string_literals", async () => {
+    const tspType = `"foo"`;
+    const typeScriptType = `"foo"`;
+    await verifyModularPropertyType(tspType, typeScriptType);
+  });
+
+  it("should handle enum member", async () => {
+    const tspTypeDefinition = `
+    @doc("Translation Language Values")
+    enum TranslationLanguageValues {
+      @doc("English descriptions")
+      English: "English",
+      @doc("Chinese descriptions")
+      Chinese: "Chinese",
+    }`;
+    const tspType = "TranslationLanguageValues.English";
+    const typeScriptType = `"English"`;
+    await verifyModularPropertyType(
+      tspType,
+      typeScriptType,
+      {
+        additionalTypeSpecDefinition: tspTypeDefinition
+      }
+    );
   });
 });
 
@@ -1215,402 +1300,6 @@ describe("inheritance & polymorphism", () => {
         return _readDeserialize(result);
       }
       `
-    );
-  });
-});
-
-describe("flatten alias if spread", () => {
-  it("should flatten alias if spread in the payload with required parameters", async () => {
-    const tspContent = `
-    alias Foo = {
-      prop1: string;
-      prop2: int64;
-      prop3: utcDateTime;
-      prop4: offsetDateTime;
-      prop5: Bar;
-    };
-    model Bar {
-      prop1: string;
-      prop2: int64;
-    }
-    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
-      `;
-    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-    assert.ok(modelFile);
-    assertEqualContent(
-      modelFile?.getFullText()!,
-      `
-        export interface Bar {
-          prop1: string;
-          prop2: number;
-        }`
-    );
-    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
-    assert.ok(operationFiles);
-    assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,
-      `
-      import { TestingContext as Client } from "../rest/index.js";
-      import {
-        StreamableMethod,
-        operationOptionsToRequestParameters,
-      } from "@azure-rest/core-client";
-      export function _readSend(
-        context: Client,
-        pathParam: string,
-        queryParam: string,
-        prop1: string,
-        prop2: number,
-        prop3: Date,
-        prop4: string,
-        prop5: Bar,
-        options: ReadOptions = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
-        return context
-          .path("/{pathParam}", pathParam)
-          .post({
-            ...operationOptionsToRequestParameters(options),
-            queryParameters: { queryParam: queryParam },
-            body: {
-              prop1: prop1,
-              prop2: prop2,
-              prop3: prop3.toISOString(),
-              prop4: prop4,
-              prop5: { prop1: prop5["prop1"], prop2: prop5["prop2"] },
-            },
-          });
-      }
-      export async function _readDeserialize(result: Read200Response): Promise<void> {
-        if (result.status !== "200") {
-          throw result.body;
-        }
-        return;
-      }
-      export async function read(
-        context: Client,
-        pathParam: string,
-        queryParam: string,
-        prop1: string,
-        prop2: number,
-        prop3: Date,
-        prop4: string,
-        prop5: Bar,
-        options: ReadOptions = { requestOptions: {} }
-      ): Promise<void> {
-        const result = await _readSend(
-          context,
-          pathParam,
-          queryParam,
-          prop1,
-          prop2,
-          prop3,
-          prop4,
-          prop5,
-          options
-        );
-        return _readDeserialize(result);
-      }`,
-      true
-    );
-  });
-
-  it("should flatten alias if spread in the payload with optional parameters", async () => {
-    const tspContent = `
-    alias Foo = {
-      prop1: string;
-      prop2: int64;
-      prop3?: utcDateTime;
-      prop4: offsetDateTime;
-      prop5?: Bar;
-    };
-    model Bar {
-      prop1: string;
-      prop2: int64;
-    }
-    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
-      `;
-    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-    assert.ok(modelFile);
-    assertEqualContent(
-      modelFile?.getFullText()!,
-      `
-        export interface Bar {
-          prop1: string;
-          prop2: number;
-        }`
-    );
-    const optionFile = await emitModularModelsFromTypeSpec(tspContent, true);
-    assert.ok(optionFile);
-    assertEqualContent(
-      optionFile?.getFullText()!,
-      `
-      import { OperationOptions } from "@azure-rest/core-client";
-      
-      export interface ReadOptions extends OperationOptions {
-        prop3?: Date;
-        prop5?: Bar;
-      }`
-    );
-    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
-    assert.ok(operationFiles);
-    assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,
-      `
-      import { TestingContext as Client } from "../rest/index.js";
-      import {
-        StreamableMethod,
-        operationOptionsToRequestParameters,
-      } from "@azure-rest/core-client";
-      export function _readSend(
-        context: Client,
-        pathParam: string,
-        queryParam: string,
-        prop1: string,
-        prop2: number,
-        prop4: string,
-        options: ReadOptions = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
-        return context
-          .path("/{pathParam}", pathParam)
-          .post({
-            ...operationOptionsToRequestParameters(options),
-            queryParameters: { queryParam: queryParam },
-            body: {
-              prop1: prop1,
-              prop2: prop2,
-              prop3: options?.prop3?.toISOString(),
-              prop4: prop4,
-              prop5: {
-                prop1: options?.prop5?.["prop1"],
-                prop2: options?.prop5?.["prop2"],
-              },
-            },
-          });
-      }
-      export async function _readDeserialize(result: Read200Response): Promise<void> {
-        if (result.status !== "200") {
-          throw result.body;
-        }
-        return;
-      }
-      export async function read(
-        context: Client,
-        pathParam: string,
-        queryParam: string,
-        prop1: string,
-        prop2: number,
-        prop4: string,
-        options: ReadOptions = { requestOptions: {} }
-      ): Promise<void> {
-        const result = await _readSend(
-          context,
-          pathParam,
-          queryParam,
-          prop1,
-          prop2,
-          prop4,
-          options
-        );
-        return _readDeserialize(result);
-      }`,
-      true
-    );
-  });
-
-  it("should flatten alias if spread in the payload with optional parameters", async () => {
-    const tspContent = `
-    alias Foo = {
-      @path
-      prop1: string;
-      prop2: int64;
-      prop3?: utcDateTime;
-      @query
-      prop4: offsetDateTime;
-      prop5?: Bar;
-    };
-    model Bar {
-      prop1: string;
-      prop2: int64;
-    }
-    op read(@path pathParam: string, ...Foo, @query queryParam: string): OkResponse;
-      `;
-    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-    assert.ok(modelFile);
-    assertEqualContent(
-      modelFile?.getFullText()!,
-      `
-        export interface Bar {
-          prop1: string;
-          prop2: number;
-        }`
-    );
-    const optionFile = await emitModularModelsFromTypeSpec(tspContent, true);
-    assert.ok(optionFile);
-    assertEqualContent(
-      optionFile?.getFullText()!,
-      `
-      import { OperationOptions } from "@azure-rest/core-client";
-      
-      export interface ReadOptions extends OperationOptions {
-        prop3?: Date;
-        prop5?: Bar;
-      }`
-    );
-    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
-    assert.ok(operationFiles);
-    assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,
-      `
-      import { TestingContext as Client } from "../rest/index.js";
-      import {
-        StreamableMethod,
-        operationOptionsToRequestParameters,
-      } from "@azure-rest/core-client";
-      export function _readSend(
-        context: Client,
-        pathParam: string,
-        prop1: string,
-        prop4: string,
-        queryParam: string,
-        prop2: number,
-        options: ReadOptions = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
-        return context
-          .path("/{pathParam}/{prop1}", pathParam, prop1)
-          .post({
-            ...operationOptionsToRequestParameters(options),
-            queryParameters: { prop4: prop4, queryParam: queryParam },
-            body: {
-              prop2: prop2,
-              prop3: options?.prop3?.toISOString(),
-              prop5: {
-                prop1: options?.prop5?.["prop1"],
-                prop2: options?.prop5?.["prop2"],
-              },
-            },
-          });
-      }
-      export async function _readDeserialize(result: Read200Response): Promise<void> {
-        if (result.status !== "200") {
-          throw result.body;
-        }
-        return;
-      }
-      export async function read(
-        context: Client,
-        pathParam: string,
-        prop1: string,
-        prop4: string,
-        queryParam: string,
-        prop2: number,
-        options: ReadOptions = { requestOptions: {} }
-      ): Promise<void> {
-        const result = await _readSend(
-          context,
-          pathParam,
-          prop1,
-          prop4,
-          queryParam,
-          prop2,
-          options
-        );
-        return _readDeserialize(result);
-      }`,
-      true
-    );
-  });
-
-  it("should not flatten model if spread in the payload with required parameters", async () => {
-    const tspContent = `
-    model Foo {
-      prop1: string;
-      prop2: int64;
-      prop3: utcDateTime;
-      prop4: offsetDateTime;
-      prop5: Bar;
-    }
-    model Bar {
-      prop1: string;
-      prop2: int64;
-    }
-    op read(@path pathParam: string, @query queryParam: string, ...Foo): OkResponse;
-      `;
-    const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-    assert.ok(modelFile);
-    assertEqualContent(
-      modelFile?.getFullText()!,
-      `
-      export interface Foo {
-        prop1: string;
-        prop2: number;
-        prop3: Date;
-        prop4: string;
-        prop5: Bar;
-      }
-
-      export interface Bar {
-        prop1: string;
-        prop2: number;
-      }`
-    );
-    const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
-    assert.ok(operationFiles);
-    assert.equal(operationFiles?.length, 1);
-    assertEqualContent(
-      operationFiles?.[0]?.getFullText()!,
-      `
-      import { TestingContext as Client } from "../rest/index.js";
-      import {
-        StreamableMethod,
-        operationOptionsToRequestParameters,
-      } from "@azure-rest/core-client";
-      export function _readSend(
-        context: Client,
-        pathParam: string,
-        queryParam: string,
-        body: Foo,
-        options: ReadOptions = { requestOptions: {} }
-      ): StreamableMethod<Read200Response> {
-        return context
-          .path("/{pathParam}", pathParam)
-          .post({
-            ...operationOptionsToRequestParameters(options),
-            queryParameters: { queryParam: queryParam },
-            body: {
-              prop1: body["prop1"],
-              prop2: body["prop2"],
-              prop3: body["prop3"].toISOString(),
-              prop4: body["prop4"],
-              prop5: { prop1: body.prop5["prop1"], prop2: body.prop5["prop2"] },
-            },
-          });
-      }
-      export async function _readDeserialize(result: Read200Response): Promise<void> {
-        if (result.status !== "200") {
-          throw result.body;
-        }
-        return;
-      }
-      export async function read(
-        context: Client,
-        pathParam: string,
-        queryParam: string,
-        body: Foo,
-        options: ReadOptions = { requestOptions: {} }
-      ): Promise<void> {
-        const result = await _readSend(
-          context,
-          pathParam,
-          queryParam,
-          body,
-          options
-        );
-        return _readDeserialize(result);
-      }`,
-      true
     );
   });
 });

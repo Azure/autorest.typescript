@@ -14,10 +14,10 @@ let hasPaging = false;
 let hasLRO = false;
 const clientFilePaths: string[] = [];
 
-export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
+export function buildPackageFile(model: RLCModel) {
   const project = new Project();
   const filePath = "package.json";
-  const packageJsonContents = restLevelPackage(model, hasSamplesGenerated);
+  const packageJsonContents = restLevelPackage(model);
   // return direclty if no content generated
   if (!packageJsonContents) {
     return;
@@ -40,7 +40,7 @@ export function buildPackageFile(model: RLCModel, hasSamplesGenerated = false) {
  * This function defines the REST Level client package.json file
  * or High Level Client
  */
-function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
+function restLevelPackage(model: RLCModel) {
   if (!model.options || !model.options.packageDetails) {
     return;
   }
@@ -72,7 +72,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   generateTest = generateTest === true || generateTest === undefined;
   generateSample =
     (generateSample === true || generateSample === undefined) &&
-    hasSamplesGenerated;
+    (model.sampleGroups ?? []).length > 0;
   const clientPackageName = packageDetails.name;
   let apiRefUrlQueryParameter: string = "";
   packageDetails.version = packageDetails.version ?? "1.0.0-beta.1";
@@ -108,7 +108,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
       "review/*"
     ],
     engines: {
-      node: ">=16.0.0"
+      node: ">=18.0.0"
     },
     scripts: {
       audit:
@@ -174,14 +174,14 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     devDependencies: {
       "@microsoft/api-extractor": "^7.31.1",
       autorest: "latest",
-      "@types/node": "^16.0.0",
+      "@types/node": "^18.0.0",
       dotenv: "^16.0.0",
       eslint: "^8.0.0",
       mkdirp: "^2.1.2",
       prettier: "^2.5.1",
       rimraf: "^5.0.0",
       "source-map-support": "^0.5.9",
-      typescript: "~5.0.0"
+      typescript: "~5.2.0"
     }
   };
 
@@ -236,7 +236,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies["@azure-tools/test-credential"] = "^1.0.0";
-    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
+    packageInfo.devDependencies["@azure/identity"] = "^3.3.0";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["esm"] = "^3.2.18";
@@ -256,7 +256,7 @@ function restLevelPackage(model: RLCModel, hasSamplesGenerated: boolean) {
     packageInfo.devDependencies["karma-source-map-support"] = "~1.4.0";
     packageInfo.devDependencies["karma-sourcemap-loader"] = "^0.4.0";
     packageInfo.devDependencies["karma"] = "^6.2.0";
-    packageInfo.devDependencies["nyc"] = "^15.0.0";
+    packageInfo.devDependencies["c8"] = "^8.0.0";
     packageInfo.devDependencies["source-map-support"] = "^0.5.9";
     packageInfo.devDependencies["ts-node"] = "^10.0.0";
     packageInfo.scripts["test"] =

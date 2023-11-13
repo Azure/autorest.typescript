@@ -4,20 +4,14 @@
 import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  OneOptions,
-  ThreeOptions,
-  FourOptions,
-  TwoOptions,
-  FiveOptions,
-  SixOptions,
-} from "./models/options.js";
+  getGroup1Operations,
+  Group1Operations,
+} from "./classic/group1/index.js";
 import {
-  one,
-  three,
-  four,
-  two,
-  five,
-  six,
+  getGroup2Operations,
+  Group2Operations,
+} from "./classic/group2/index.js";
+import {
   createTwoOperationGroup,
   TwoOperationGroupClientOptions,
   ServiceContext,
@@ -37,28 +31,12 @@ export class TwoOperationGroupClient {
   ) {
     this._client = createTwoOperationGroup(endpoint, client, options);
     this.pipeline = this._client.pipeline;
+    this.group1 = getGroup1Operations(this._client);
+    this.group2 = getGroup2Operations(this._client);
   }
 
-  group1 = {
-    one: (options?: OneOptions): Promise<void> => {
-      return one(this._client, options);
-    },
-    three: (options?: ThreeOptions): Promise<void> => {
-      return three(this._client, options);
-    },
-    four: (options?: FourOptions): Promise<void> => {
-      return four(this._client, options);
-    },
-  };
-  group2 = {
-    two: (options?: TwoOptions): Promise<void> => {
-      return two(this._client, options);
-    },
-    five: (options?: FiveOptions): Promise<void> => {
-      return five(this._client, options);
-    },
-    six: (options?: SixOptions): Promise<void> => {
-      return six(this._client, options);
-    },
-  };
+  /** The operation groups for Group1 */
+  public readonly group1: Group1Operations;
+  /** The operation groups for Group2 */
+  public readonly group2: Group2Operations;
 }

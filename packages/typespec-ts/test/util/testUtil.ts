@@ -105,3 +105,10 @@ export function assertEqualContent(
     )
   );
 }
+
+export type VerifyPropertyConfig = {
+  additionalTypeSpecDefinition?: string;
+  outputType?: string;
+  additionalInputContent?: string;
+  additionalOutputContent?: string;
+};

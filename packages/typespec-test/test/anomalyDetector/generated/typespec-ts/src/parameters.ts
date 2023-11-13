@@ -3,16 +3,16 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  UnivariateDetectionOptions,
-  UnivariateChangePointDetectionOptions,
-  ModelInfo,
-  MultivariateBatchDetectionOptions,
-  MultivariateLastDetectionOptions,
+  UnivariateUnivariateDetectionOptions,
+  UnivariateUnivariateChangePointDetectionOptions,
+  MultivariateModelInfo,
+  MultivariateMultivariateBatchDetectionOptions,
+  MultivariateMultivariateLastDetectionOptions,
 } from "./models";
 
 export interface DetectUnivariateEntireSeriesBodyParam {
   /** Method of univariate anomaly detection. */
-  body: UnivariateDetectionOptions;
+  body: UnivariateUnivariateDetectionOptions;
 }
 
 export type DetectUnivariateEntireSeriesParameters =
@@ -20,7 +20,7 @@ export type DetectUnivariateEntireSeriesParameters =
 
 export interface DetectUnivariateLastPointBodyParam {
   /** Method of univariate anomaly detection. */
-  body: UnivariateDetectionOptions;
+  body: UnivariateUnivariateDetectionOptions;
 }
 
 export type DetectUnivariateLastPointParameters =
@@ -28,7 +28,7 @@ export type DetectUnivariateLastPointParameters =
 
 export interface DetectUnivariateChangePointBodyParam {
   /** Method of univariate anomaly detection. */
-  body: UnivariateChangePointDetectionOptions;
+  body: UnivariateUnivariateChangePointDetectionOptions;
 }
 
 export type DetectUnivariateChangePointParameters =
@@ -37,7 +37,7 @@ export type GetMultivariateBatchDetectionResultParameters = RequestParameters;
 
 export interface TrainMultivariateModelBodyParam {
   /** Model information. */
-  body: ModelInfo;
+  body: MultivariateModelInfo;
 }
 
 export type TrainMultivariateModelParameters = TrainMultivariateModelBodyParam &
@@ -61,7 +61,7 @@ export type GetMultivariateModelParameters = RequestParameters;
 
 export interface DetectMultivariateBatchAnomalyBodyParam {
   /** Request of multivariate anomaly detection. */
-  body: MultivariateBatchDetectionOptions;
+  body: MultivariateMultivariateBatchDetectionOptions;
 }
 
 export type DetectMultivariateBatchAnomalyParameters =
@@ -69,7 +69,7 @@ export type DetectMultivariateBatchAnomalyParameters =
 
 export interface DetectMultivariateLastAnomalyBodyParam {
   /** Request of last detection. */
-  body: MultivariateLastDetectionOptions;
+  body: MultivariateMultivariateLastDetectionOptions;
 }
 
 export type DetectMultivariateLastAnomalyParameters =

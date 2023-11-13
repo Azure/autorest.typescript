@@ -9,3 +9,4 @@ export {
   AliasSpreadAsRequestParameterOptions,
   AliasSpreadWithMultipleParametersOptions,
 } from "./models/index.js";
+export { AliasOperations, ModelOperations } from "./classic/index.js";

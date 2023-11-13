@@ -1,4 +1,4 @@
-import { ApiVersionInfo, ApiVersionPosition, UrlInfo } from "../interfaces";
+import { ApiVersionInfo, ApiVersionPosition, UrlInfo } from "../interfaces.js";
 
 /**
  * Extract the path api-version detail from UrlInfo, return undefined if no valid api-version parameter

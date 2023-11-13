@@ -42,6 +42,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const coreHttpCompatMode = await getCoreHttpCompatMode(host);
   const azureSdkForJs = await getAzureSdkForJs(host);
   const dependencyInfo = await getDependencyInfo(host);
+  const branded = await getBranded(host);
 
   return {
     azureArm,
@@ -75,7 +76,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     productDocLink,
     coreHttpCompatMode,
     dependencyInfo,
-    useLegacyLro
+    useLegacyLro,
+    branded
   };
 }
 
@@ -333,6 +335,10 @@ async function getCoreHttpCompatMode(
   host: AutorestExtensionHost
 ): Promise<boolean> {
   return (await host.getValue("core-http-compat-mode")) || false;
+}
+
+async function getBranded(host: AutorestExtensionHost): Promise<boolean> {
+  return (await host.getValue("branded")) ?? true;
 }
 
 async function getDependencyInfo(

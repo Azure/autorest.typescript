@@ -28,6 +28,24 @@
       ]
     },
     {
+      "name": "[Autorest] Run Debug Integration Test",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/packages/autorest.typescript",
+      "runtimeArgs": [
+        "ts-node",
+        "./test/commands/test-swagger-gen.ts",
+        "--",
+        "rlc"
+      ],
+      "runtimeExecutable": "npx",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "outFiles": [
+        "${workspaceFolder}/packages/*/dist/**/*.js",
+        "${workspaceFolder}/packages/*/dist-dev/**/*.js"
+      ]
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "[Autorest] Debug Unit Tests",
@@ -94,7 +112,7 @@
     {
       "name": "[TypeSpec] Smoke Test Debug",
       "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-test/test/openai_modular",
+      "cwd": "${workspaceFolder}/packages/typespec-test/test/customWrapper",
       "runtimeArgs": ["tsp", "compile", "./spec"],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],
@@ -108,7 +126,7 @@
       "runtimeArgs": [
         "ts-node",
         "./test/commands/gen-cadl-ranch.ts",
-        "--tag=modular",
+        "--tag=rlc",
         "--debug"
       ],
       "runtimeExecutable": "npx",
@@ -142,7 +160,7 @@
       "cwd": "${workspaceFolder}/packages/typespec-ts",
       "runtimeArgs": [
         "cross-env",
-        "TS_NODE_PROJECT=tsconfig.test.json",
+        "TS_NODE_PROJECT=tsconfig.integration.json",
         "mocha",
         "-r",
         "ts-node/register",
