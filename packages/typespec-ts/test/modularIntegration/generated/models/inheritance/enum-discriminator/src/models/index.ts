@@ -2,11 +2,9 @@
 // Licensed under the MIT license.
 
 export {
-  Dog,
   DogParent,
   Golden,
   DogKind,
-  Snake,
   SnakeParent,
   Cobra,
   SnakeKind,

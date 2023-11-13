@@ -206,9 +206,12 @@ function handleDiscriminator(context: SdkContext, type: Model) {
       }
     }
     const discriminatorInfo = {
-      description: discriminatorValues.length > 0 ? `the discriminator possible values ${discriminatorValues.join(
-        ", "
-      )}`: "discriminator property",
+      description:
+        discriminatorValues.length > 0
+          ? `the discriminator possible values ${discriminatorValues.join(
+              ", "
+            )}`
+          : "discriminator property",
       type: { type: "string" },
       restApiName: discriminator.propertyName,
       clientName: discriminator.propertyName,
@@ -285,7 +288,7 @@ function processModelProperties(
     newValue.properties.push(newProperty);
   }
   if (!hasDiscriminator && discriminatorInfo) {
-    newValue.properties.push({...discriminatorInfo, optional: true});
+    newValue.properties.push({ ...discriminatorInfo, optional: true });
   }
 }
 

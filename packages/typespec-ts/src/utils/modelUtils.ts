@@ -689,11 +689,7 @@ function getSchemaForModel(
     }
 
     // Apply decorators on the property to the type's schema
-    const newPropSchema = applyIntrinsicDecorators(
-      program,
-      prop,
-      propSchema
-    );
+    const newPropSchema = applyIntrinsicDecorators(program, prop, propSchema);
     if (newPropSchema === undefined) {
       continue;
     }

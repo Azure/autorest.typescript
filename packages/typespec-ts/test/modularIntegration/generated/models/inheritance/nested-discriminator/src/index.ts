@@ -7,7 +7,6 @@ export {
 } from "./NestedDiscriminatorClient.js";
 export {
   Fish,
-  Shark,
   SharkParent,
   SawShark,
   GoblinShark,

@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** the base class union for poly models */
-export type Bird = SeaGull | Sparrow | Goose | Eagle;
-
 /** This is base model for polymorphic single level inheritance with a discriminator. */
 export interface BirdParent {
   /** the discriminator possible values seagull, sparrow, goose, eagle */

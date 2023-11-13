@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-/** the base class union for poly models */
-export type Dog = Golden;
-
 /** Test extensible enum type for discriminator */
 export interface DogParent {
   /** the discriminator possible values golden */
@@ -15,14 +12,12 @@ export interface DogParent {
 /** Golden dog model */
 export interface Golden extends DogParent {
   /** discriminator property */
-  kind: any;
+  kind: "golden";
 }
 
 /** extensible enum type for discriminator */
 /** "golden" */
 export type DogKind = string;
-/** the base class union for poly models */
-export type Snake = Cobra;
 
 /** Test fixed enum type for discriminator */
 export interface SnakeParent {
@@ -35,7 +30,7 @@ export interface SnakeParent {
 /** Cobra model */
 export interface Cobra extends SnakeParent {
   /** discriminator property */
-  kind: any;
+  kind: "cobra";
 }
 
 /** fixed enum type for discriminator */

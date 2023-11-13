@@ -6,11 +6,9 @@ export {
   EnumDiscriminatorClientOptions,
 } from "./EnumDiscriminatorClient.js";
 export {
-  Dog,
   DogParent,
   Golden,
   DogKind,
-  Snake,
   SnakeParent,
   Cobra,
   SnakeKind,

@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 export {
-  Bird,
   BirdParent,
   SeaGull,
   Sparrow,

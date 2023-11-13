@@ -6,7 +6,6 @@ export {
   SingleDiscriminatorClientOptions,
 } from "./SingleDiscriminatorClient.js";
 export {
-  Bird,
   BirdParent,
   SeaGull,
   Sparrow,

@@ -8,9 +8,6 @@ export interface Fish {
   kind?: string;
 }
 
-/** the base class union for poly models */
-export type Shark = SawShark | GoblinShark;
-
 /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
 export interface SharkParent extends Fish {
   kind: "shark";
