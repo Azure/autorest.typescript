@@ -35,7 +35,7 @@ import {
 import { transformRLCModel } from "./transform/transform.js";
 import { emitContentByBuilder, emitModels } from "./utils/emitUtil.js";
 import { createSdkContext } from "@azure-tools/typespec-client-generator-core";
-import { Project } from "ts-morph";
+import { Project, SyntaxKind } from "ts-morph";
 import { buildClientContext } from "./modular/buildClientContext.js";
 import { emitCodeModel } from "./modular/buildCodeModel.js";
 import {
@@ -203,7 +203,7 @@ export async function $onEmit(context: EmitContext) {
         buildRootIndex(modularCodeModel, subClient, rootIndexFile);
       }
 
-      // removeUnusedInterfaces(project);
+      removeUnusedInterfaces(project);
 
       for (const file of project.getSourceFiles()) {
         await emitContentByBuilder(
@@ -301,83 +301,83 @@ export async function $onEmit(context: EmitContext) {
 /**
  * Removing this for now, as it has some problem when we have two models with the same name and only one of them is unused, this function will end up removing the other used models.
  */
-// export function removeUnusedInterfaces(project: Project) {
-//   const allInterfaces = project.getSourceFiles().flatMap((file) =>
-//     file.getInterfaces().map((interfaceDeclaration) => {
-//       return { interfaceDeclaration, filepath: file.getFilePath() };
-//     })
-//   );
+export function removeUnusedInterfaces(project: Project) {
+  const allInterfaces = project.getSourceFiles().flatMap((file) =>
+    file.getInterfaces().map((interfaceDeclaration) => {
+      return { interfaceDeclaration, filepath: file.getFilePath() };
+    })
+  );
 
-//   const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
-//     const references = interfaceDeclaration.interfaceDeclaration
-//       .findReferencesAsNodes()
-//       .filter((node) => {
-//         const kind = node.getParent()?.getKind();
-//         return (
-//           kind !== SyntaxKind.ExportSpecifier &&
-//           kind !== SyntaxKind.InterfaceDeclaration
-//         );
-//       });
-//     return references.length === 0;
-//   });
+  const unusedInterfaces = allInterfaces.filter((interfaceDeclaration) => {
+    const references = interfaceDeclaration.interfaceDeclaration
+      .findReferencesAsNodes()
+      .filter((node) => {
+        const kind = node.getParent()?.getKind();
+        return (
+          kind !== SyntaxKind.ExportSpecifier &&
+          kind !== SyntaxKind.InterfaceDeclaration
+        );
+      });
+    return references.length === 0;
+  });
 
-//   unusedInterfaces.forEach((interfaceDeclaration) => {
-//     const references = interfaceDeclaration.interfaceDeclaration
-//       .findReferencesAsNodes()
-//       .filter((node) => {
-//         const kind = node.getParent()?.getKind();
-//         return kind === SyntaxKind.ExportSpecifier;
-//       });
-//     const map = new Map<string, string>();
-//     references.forEach((node) => {
-//       const exportPath = node.getSourceFile().getFilePath();
-//       map.set(exportPath, node.getText());
-//     });
+  unusedInterfaces.forEach((interfaceDeclaration) => {
+    const references = interfaceDeclaration.interfaceDeclaration
+      .findReferencesAsNodes()
+      .filter((node) => {
+        const kind = node.getParent()?.getKind();
+        return kind === SyntaxKind.ExportSpecifier;
+      });
+    const map = new Map<string, string>();
+    references.forEach((node) => {
+      const exportPath = node.getSourceFile().getFilePath();
+      map.set(exportPath, node.getText());
+    });
 
-//     // Get the index.ts file
-//     const indexFiles = project.getSourceFiles().filter((file) => {
-//       return file.getFilePath().endsWith("index.ts");
-//     }); // Adjust the path to your index.ts file
-//     // to make sure the top level index file is in the last
-//     const sortedIndexFiles = indexFiles.sort((idx1, idx2) => {
-//       return (
-//         idx2.getFilePath().split("/").length -
-//         idx1.getFilePath().split("/").length
-//       );
-//     });
+    // Get the index.ts file
+    const indexFiles = project.getSourceFiles().filter((file) => {
+      return file.getFilePath().endsWith("index.ts");
+    }); // Adjust the path to your index.ts file
+    // to make sure the top level index file is in the last
+    const sortedIndexFiles = indexFiles.sort((idx1, idx2) => {
+      return (
+        idx2.getFilePath().split("/").length -
+        idx1.getFilePath().split("/").length
+      );
+    });
 
-//     const matchAliasNodes: string[] = [];
-//     for (const indexFile of sortedIndexFiles) {
-//       const filepath = indexFile.getFilePath();
-//       if (map.has(filepath)) {
-//         // Get all export declarations
-//         const exportDeclarations = indexFile.getExportDeclarations();
+    const matchAliasNodes: string[] = [];
+    for (const indexFile of sortedIndexFiles) {
+      const filepath = indexFile.getFilePath();
+      if (map.has(filepath)) {
+        // Get all export declarations
+        const exportDeclarations = indexFile.getExportDeclarations();
 
-//         // Iterate over each export declaration
-//         exportDeclarations.forEach((exportDeclaration) => {
-//           // Find named exports that match the unused interface
-//           const matchingExports = exportDeclaration
-//             .getNamedExports()
-//             .filter((ne) => {
-//               const aliasNode = ne.getAliasNode();
-//               if (
-//                 aliasNode &&
-//                 aliasNode.getText() !== map.get(filepath) &&
-//                 ne.getName() === map.get(filepath)
-//               ) {
-//                 matchAliasNodes.push(aliasNode.getText());
-//               }
-//               return (
-//                 matchAliasNodes.indexOf(ne.getName()) > -1 ||
-//                 ne.getName() === map.get(filepath) ||
-//                 ne.getAliasNode()?.getText() === map.get(filepath)
-//               );
-//             });
-//           // Remove the matching exports
-//           matchingExports.forEach((me) => me.remove());
-//         });
-//       }
-//     }
-//     interfaceDeclaration.interfaceDeclaration.remove();
-//   });
-// }
+        // Iterate over each export declaration
+        exportDeclarations.forEach((exportDeclaration) => {
+          // Find named exports that match the unused interface
+          const matchingExports = exportDeclaration
+            .getNamedExports()
+            .filter((ne) => {
+              const aliasNode = ne.getAliasNode();
+              if (
+                aliasNode &&
+                aliasNode.getText() !== map.get(filepath) &&
+                ne.getName() === map.get(filepath)
+              ) {
+                matchAliasNodes.push(aliasNode.getText());
+              }
+              return (
+                matchAliasNodes.indexOf(ne.getName()) > -1 ||
+                ne.getName() === map.get(filepath) ||
+                ne.getAliasNode()?.getText() === map.get(filepath)
+              );
+            });
+          // Remove the matching exports
+          matchingExports.forEach((me) => me.remove());
+        });
+      }
+    }
+    interfaceDeclaration.interfaceDeclaration.remove();
+  });
+}
