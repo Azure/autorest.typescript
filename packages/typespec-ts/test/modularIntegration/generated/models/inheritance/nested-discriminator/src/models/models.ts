@@ -32,3 +32,6 @@ export interface Salmon extends Fish {
   hate?: Record<string, Fish>;
   partner?: Fish;
 }
+
+/** Base type for Shark */
+export type Shark = SawShark | GoblinShark | SharkParent;

@@ -26,9 +26,9 @@ export interface Goose extends BirdParent {
 /** The second level model in polymorphic single levels inheritance which contains references to other polymorphic instances. */
 export interface Eagle extends BirdParent {
   kind: "eagle";
-  friends?: BirdParent[];
-  hate?: Record<string, BirdParent>;
-  partner?: BirdParent;
+  friends?: Bird[];
+  hate?: Record<string, Bird>;
+  partner?: Bird;
 }
 
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */
@@ -42,3 +42,6 @@ export interface Dinosaur {
 export interface TRex extends Dinosaur {
   kind: "t-rex";
 }
+
+/** Base type for Bird */
+export type Bird = SeaGull | Sparrow | Goose | Eagle | BirdParent;

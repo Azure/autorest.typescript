@@ -8,6 +8,8 @@ export {
   SnakeParent,
   Cobra,
   SnakeKind,
+  Dog,
+  Snake,
 } from "./models.js";
 export {
   GetExtensibleModelOptions,

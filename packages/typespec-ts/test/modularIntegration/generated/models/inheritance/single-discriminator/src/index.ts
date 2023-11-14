@@ -13,6 +13,7 @@ export {
   Eagle,
   Dinosaur,
   TRex,
+  Bird,
   GetModelOptions,
   PutModelOptions,
   GetRecursiveModelOptions,

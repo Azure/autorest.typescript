@@ -11,6 +11,7 @@ export {
   SawShark,
   GoblinShark,
   Salmon,
+  Shark,
   GetModelOptions,
   PutModelOptions,
   GetRecursiveModelOptions,

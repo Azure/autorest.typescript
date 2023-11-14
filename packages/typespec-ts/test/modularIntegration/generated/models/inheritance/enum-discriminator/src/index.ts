@@ -12,6 +12,8 @@ export {
   SnakeParent,
   Cobra,
   SnakeKind,
+  Dog,
+  Snake,
   GetExtensibleModelOptions,
   PutExtensibleModelOptions,
   GetExtensibleModelMissingDiscriminatorOptions,

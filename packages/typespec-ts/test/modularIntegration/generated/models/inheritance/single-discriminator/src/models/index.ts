@@ -9,6 +9,7 @@ export {
   Eagle,
   Dinosaur,
   TRex,
+  Bird,
 } from "./models.js";
 export {
   GetModelOptions,
