@@ -50,7 +50,8 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  getHttpOperation
+  getHttpOperation,
+  isSharedRoute
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -802,7 +803,7 @@ function emitBasicOperation(
   // Set up responses for operation
   const responses: Response[] = [];
   const exceptions: Response[] = [];
-  const isOverload: boolean = false;
+  const isOverload = isSharedRoute(context.program, operation);
   for (const response of httpOperation.responses) {
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
@@ -883,7 +884,7 @@ function emitBasicOperation(
     groupName: operationGroupName,
     addedOn: getAddedOnVersion(context.program, operation),
     discriminator: "basic",
-    isOverload: false,
+    isOverload,
     overloads: [],
     apiVersions: [getAddedOnVersion(context.program, operation)],
     rlcResponse: rlcResponses?.[0],

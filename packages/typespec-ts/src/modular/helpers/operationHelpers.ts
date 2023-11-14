@@ -61,13 +61,16 @@ export function getSendPrivateFunction(
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
+  const returnType = `StreamableMethod<${getRLCResponseType(
+    operation.rlcResponse
+  )}>`;
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType: `StreamableMethod<${getRLCResponseType(operation.rlcResponse)}>`
+    returnType
   };
 
   const operationPath = operation.url;
@@ -82,7 +85,7 @@ export function getSendPrivateFunction(
       operation,
       importSet,
       runtimeImports
-    )}});`
+    )}}) ${operation.isOverload ? `as ${returnType}` : ``} ;`
   );
 
   return {

@@ -73,7 +73,9 @@ export function _publishCloudEventSend(
           subject: event["subject"],
         },
       },
-    });
+    }) as StreamableMethod<
+    PublishCloudEvent200Response | PublishCloudEventDefaultResponse
+  >;
 }
 
 export async function _publishCloudEventDeserialize(
@@ -132,7 +134,9 @@ export function _publishCloudEventsSend(
         subject: p["subject"],
       };
     }),
-  });
+  }) as StreamableMethod<
+    PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
+  >;
 }
 
 export async function _publishCloudEventsDeserialize(
