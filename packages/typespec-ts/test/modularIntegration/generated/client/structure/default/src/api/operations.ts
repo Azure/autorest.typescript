@@ -8,11 +8,11 @@ import {
   ServiceContext as Client,
   Six204Response,
   Three204Response,
-  Two204Response,
+  Two204Response
 } from "../rest/index.js";
 import {
   StreamableMethod,
-  operationOptionsToRequestParameters,
+  operationOptionsToRequestParameters
 } from "@azure-rest/core-client";
 import {
   OneOptions,
@@ -20,8 +20,9 @@ import {
   ThreeOptions,
   FourOptions,
   FiveOptions,
-  SixOptions,
+  SixOptions
 } from "../models/options.js";
+import { Pipeline, PipelineRequest, PipelineResponse, RestError } from "@azure/core-rest-pipeline";
 
 export function _oneSend(
   context: Client,
@@ -34,7 +35,13 @@ export function _oneSend(
 
 export async function _oneDeserialize(result: One204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body.error;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: result.status,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
