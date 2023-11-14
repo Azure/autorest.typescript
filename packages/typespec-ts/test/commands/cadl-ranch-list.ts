@@ -270,6 +270,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "parameters/body-optionality",
+    inputPath: "parameters/body-optionality"
   }
 ];
 
