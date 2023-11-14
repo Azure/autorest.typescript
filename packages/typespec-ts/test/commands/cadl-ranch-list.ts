@@ -270,6 +270,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "enums/fixed",
+    inputPath: "type/enum/fixed"
+  },
+  {
+    outputPath: "models/empty",
+    inputPath: "type/model/empty"
   }
 ];
 
