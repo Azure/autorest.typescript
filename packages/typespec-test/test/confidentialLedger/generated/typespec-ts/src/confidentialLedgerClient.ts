@@ -19,15 +19,6 @@ export default function createClient(
 ): ConfidentialLedgerClient {
   const baseUrl = options.baseUrl ?? `${ledgerUri}`;
   options.apiVersion = options.apiVersion ?? "2022-05-13";
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://confidential-ledger.azure.com/.default",
-      ],
-    },
-  };
-
   const userAgentInfo = `azsdk-js-confidential-ledger-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -40,6 +31,11 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://confidential-ledger.azure.com/.default",
+      ],
     },
   };
 

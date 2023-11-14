@@ -9,6 +9,6 @@ export {
   ListOptions,
   ListWithPageOptions,
   ListWithCustomPageModelOptions,
-  DeleteOptions,
-  ExportOptions,
+  DeleteOperationOptions,
+  ExportOperationOptions,
 } from "./options.js";

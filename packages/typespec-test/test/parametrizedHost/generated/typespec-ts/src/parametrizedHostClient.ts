@@ -29,15 +29,6 @@ export default function createClient(
   const baseUrl =
     options.baseUrl ?? `${host}.${subdomain}.${sufix}.com/${apiVersion}`;
 
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://parametrized-host.azure.com/.default",
-      ],
-    },
-  };
-
   const userAgentInfo = `azsdk-js-parametrized-host-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -50,6 +41,11 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://parametrized-host.azure.com/.default",
+      ],
     },
   };
 

@@ -4,7 +4,7 @@ describe("Client Structure Default Rest Client", () => {
   let client: ServiceClient;
 
   beforeEach(() => {
-    client = new ServiceClient("default", {
+    client = new ServiceClient("http://localhost:3000", "default", {
       allowInsecureConnection: true
     });
   });

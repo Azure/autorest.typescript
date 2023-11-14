@@ -74,7 +74,10 @@ export const RLCOptionsSchema: JSONSchemaType<RLCOptions> = {
     azureArm: { type: "boolean", nullable: true },
     sourceFrom: { type: "string", nullable: true },
     isModularLibrary: { type: "boolean", nullable: true, default: false },
-    enableOperationGroup: { type: "boolean", nullable: true }
+    enableOperationGroup: { type: "boolean", nullable: true },
+    enableModelNamespace: { type: "boolean", nullable: true },
+    hierarchyClient: { type: "boolean", nullable: true },
+    branded: { type: "boolean", nullable: true, default: true }
   },
   required: []
 };
@@ -181,6 +184,13 @@ const libDef = {
       messages: {
         default:
           "Please provide credential scopes to ensure the token credential signature can be generated."
+      }
+    },
+    "nullable-required-header": {
+      severity: "warning",
+      messages: {
+        default:
+          "Required header cannot be nullable. Please remove the nullable modifier."
       }
     }
   },

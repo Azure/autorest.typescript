@@ -122,8 +122,12 @@ export function transformSchemas(
 
       setModelMap(model, context);
       const indexer = (model as Model).indexer;
-      if (indexer?.value && !program.stateMap(modelKey).get(indexer?.value)) {
-        setModelMap(indexer.value, context);
+      if (
+        indexer?.value &&
+        (!program.stateMap(modelKey).get(indexer?.value) ||
+          !program.stateMap(modelKey).get(indexer?.value)?.includes(context))
+      ) {
+        getGeneratedModels(indexer.value, context);
       }
       for (const prop of model.properties) {
         if (
@@ -131,7 +135,7 @@ export function transformSchemas(
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
-          if (prop[1].type.name === "Error") {
+          if (isAzureCoreErrorType(prop[1].type)) {
             continue;
           }
           getGeneratedModels(prop[1].type, context);

@@ -34,11 +34,11 @@ export interface Test {
   /** Resource Id of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -171,7 +171,7 @@ export interface FileInfo {
   /** File type */
   fileType?: FileType;
   /** Expiry time of the file (ISO 8601 literal format) */
-  expireDateTime?: any;
+  expireDateTime?: string;
   /** Validation status of the file */
   validationStatus?: FileStatus;
   /** Validation failure error details */
@@ -194,11 +194,11 @@ export interface TestAppComponents {
   /** Test identifier */
   readonly testId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -238,11 +238,11 @@ export interface TestServerMetricConfig {
    */
   metrics?: Record<string, ResourceMetric>;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -326,11 +326,11 @@ export interface TestRun {
   /** The test run status. */
   readonly status?: Status;
   /** The test run start DateTime(ISO 8601 literal format). */
-  readonly startDateTime?: any;
+  readonly startDateTime?: string;
   /** The test run end DateTime(ISO 8601 literal format). */
-  readonly endDateTime?: any;
+  readonly endDateTime?: string;
   /** Test run initiated time. */
-  readonly executedDateTime?: any;
+  readonly executedDateTime?: string;
   /** Portal url. */
   readonly portalUrl?: string;
   /** Test run duration in milliseconds. */
@@ -338,11 +338,11 @@ export interface TestRun {
   /** Subnet ID on which the load test instances should run. */
   readonly subnetId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }

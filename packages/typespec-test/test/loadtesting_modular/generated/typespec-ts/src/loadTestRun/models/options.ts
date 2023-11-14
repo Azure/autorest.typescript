@@ -2,76 +2,9 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import {
-  PassFailCriteria,
-  Secret,
-  CertificateMetadata,
-  ErrorDetails,
-  TestRunStatistics,
-  LoadTestConfiguration,
-  TestRunArtifacts,
-  PFTestResult,
-  Status,
-  ResourceMetric,
-  Interval,
-  DimensionFilter,
-} from "./models.js";
+import { Interval } from "./models.js";
 
 export interface TestRunOptions extends OperationOptions {
-  /** Pass fail criteria for a test. */
-  passFailCriteria?: PassFailCriteria;
-  /**
-   * Secrets can be stored in an Azure Key Vault or any other secret store. If the
-   * secret is stored in an Azure Key Vault, the value should be the secret
-   * identifier and the type should be AKV_SECRET_URI. If the secret is stored
-   * elsewhere, the secret value should be provided directly and the type should be
-   * SECRET_VALUE.
-   */
-  secrets?: Record<string, Secret>;
-  /** Certificates metadata */
-  certificate?: CertificateMetadata;
-  /** Environment variables which are defined as a set of <name,value> pairs. */
-  environmentVariables?: Record<string, string>;
-  /** Error details if there is any failure in load test run */
-  errorDetails?: ErrorDetails[];
-  /** Test run statistics. */
-  testRunStatistics?: Record<string, TestRunStatistics>;
-  /** The load test configuration. */
-  loadTestConfiguration?: LoadTestConfiguration;
-  /** Collection of test run artifacts */
-  testArtifacts?: TestRunArtifacts;
-  /** Test result for pass/Fail criteria used during the test run. */
-  testResult?: PFTestResult;
-  /** Number of virtual users, for which test has been run. */
-  virtualUsers?: number;
-  /** Display name of a testRun. */
-  displayName?: string;
-  /** Associated test Id. */
-  testId?: string;
-  /** The test run description. */
-  description?: string;
-  /** The test run status. */
-  status?: Status;
-  /** The test run start DateTime(ISO 8601 literal format). */
-  startDateTime?: any;
-  /** The test run end DateTime(ISO 8601 literal format). */
-  endDateTime?: any;
-  /** Test run initiated time. */
-  executedDateTime?: any;
-  /** Portal url. */
-  portalUrl?: string;
-  /** Test run duration in milliseconds. */
-  duration?: number;
-  /** Subnet ID on which the load test instances should run. */
-  subnetId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
   /** This request has a JSON Merge Patch body. */
   contentType?: string;
   /**
@@ -84,37 +17,11 @@ export interface TestRunOptions extends OperationOptions {
 }
 
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
-  /** Test run identifier */
-  testRunId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
   contentType?: string;
 }
 
 export interface CreateOrUpdateServerMetricsConfigOptions
   extends OperationOptions {
-  /** Test run identifier */
-  testRunId?: string;
-  /**
-   * Azure resource metrics collection {metric id : metrics object} (Refer :
-   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
-   * for metric id).
-   */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
   contentType?: string;
 }
 
@@ -148,13 +55,6 @@ export interface ListMetricDefinitionsOptions extends OperationOptions {
 export interface ListMetricNamespacesOptions extends OperationOptions {}
 
 export interface ListMetricsOptions extends OperationOptions {
-  /**
-   * Get metrics for specific dimension values. Example: Metric contains dimension
-   * like SamplerName, Error. To retrieve all the time series data where SamplerName
-   * is equals to HTTPRequest1 or HTTPRequest2, the DimensionFilter value will be
-   * {"SamplerName", ["HTTPRequest1", "HTTPRequest2"}
-   */
-  filters?: DimensionFilter[];
   /** The aggregation */
   aggregation?: string;
   /** The interval (i.e. timegrain) of the query. */
@@ -185,9 +85,9 @@ export interface ListTestRunsOptions extends OperationOptions {
   /** Unique name of an existing load test. */
   testId?: string;
   /** Start DateTime(ISO 8601 literal format) of test-run execution time filter range. */
-  executionFrom?: any;
+  executionFrom?: string;
   /** End DateTime(ISO 8601 literal format) of test-run execution time filter range. */
-  executionTo?: any;
+  executionTo?: string;
   /** Comma separated list of test run status. */
   status?: string;
   /** Number of results in response. */

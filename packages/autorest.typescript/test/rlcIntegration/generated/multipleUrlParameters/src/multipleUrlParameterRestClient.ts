@@ -23,13 +23,6 @@ export default function createClient(
     options.baseUrl ??
     `${endpoint}/catalog/api/atlas/${serviceVersion}/{accountName}`;
 
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? ["user_impersonation"]
-    }
-  };
-
   const userAgentInfo = `azsdk-js-multiple-url-parameter-rest/1.0.0-preview1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -42,6 +35,9 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? ["user_impersonation"]
     }
   };
 

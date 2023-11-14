@@ -13,13 +13,13 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import { NameType, normalizeName } from "./helpers/nameUtils.js";
-import { isConstantSchema } from "./helpers/schemaHelpers.js";
 import { buildMethodShortcutImplementation } from "./buildMethodShortcuts.js";
-import { RLCModel, Schema, File, PathParameter } from "./interfaces.js";
+import { RLCModel, File, PathParameter } from "./interfaces.js";
 import {
   getClientName,
   getImportModuleName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 function getClientOptionsInterface(
   clientName: string,
@@ -47,7 +47,7 @@ function getClientOptionsInterface(
 
 export function buildClient(model: RLCModel): File | undefined {
   const name = normalizeName(model.libraryName, NameType.File);
-  const { srcPath, options } = model;
+  const { srcPath } = model;
   const project = new Project();
   const filePath = path.join(srcPath, `${name}.ts`);
   const clientFile = project.createSourceFile(filePath, undefined, {
@@ -85,10 +85,10 @@ export function buildClient(model: RLCModel): File | undefined {
     addCredentials,
     credentialScopes,
     credentialKeyHeaderName,
-    customHttpAuthHeaderName
+    customHttpAuthHeaderName,
+    branded
   } = model.options;
-  const credentialTypes =
-    credentialScopes && credentialScopes.length > 0 ? ["TokenCredential"] : [];
+  const credentialTypes = credentialScopes ? ["TokenCredential"] : [];
 
   if (credentialKeyHeaderName || customHttpAuthHeaderName) {
     credentialTypes.push("KeyCredential");
@@ -162,19 +162,26 @@ export function buildClient(model: RLCModel): File | undefined {
   clientFile.addImportDeclarations([
     {
       namedImports: ["getClient", "ClientOptions"],
-      moduleSpecifier: "@azure-rest/core-client"
-    },
-    {
-      namedImports: ["logger"],
-      moduleSpecifier: getImportModuleName(
-        {
-          cjsName: loggerPath,
-          esModulesName: `${loggerPath}.js`
-        },
-        model
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
       )
     }
   ]);
+  if (branded !== false) {
+    clientFile.addImportDeclarations([
+      {
+        namedImports: ["logger"],
+        moduleSpecifier: getImportModuleName(
+          {
+            cjsName: loggerPath,
+            esModulesName: `${loggerPath}.js`
+          },
+          model
+        )
+      }
+    ]);
+  }
 
   if (
     addCredentials &&
@@ -187,7 +194,10 @@ export function buildClient(model: RLCModel): File | undefined {
     clientFile.addImportDeclarations([
       {
         namedImports: credentialTypes,
-        moduleSpecifier: "@azure/core-auth"
+        moduleSpecifier: getImportSpecifier(
+          "coreAuth",
+          model.importInfo.runtimeImports
+        )
       }
     ]);
   }
@@ -212,9 +222,7 @@ function isSecurityInfoDefined(
   customHttpAuthHeaderName?: string
 ) {
   return (
-    (credentialScopes && credentialScopes.length > 0) ||
-    credentialKeyHeaderName ||
-    customHttpAuthHeaderName
+    credentialScopes || credentialKeyHeaderName || customHttpAuthHeaderName
   );
 }
 
@@ -225,8 +233,10 @@ export function getClientFactoryBody(
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
   }
-  const { includeShortcuts, packageDetails } = model.options;
-  let clientPackageName = packageDetails.nameWithoutScope ?? "";
+  const { includeShortcuts, packageDetails, branded, addCredentials } =
+    model.options;
+  let clientPackageName =
+    packageDetails!.nameWithoutScope ?? packageDetails?.name ?? "";
   const packageVersion = packageDetails.version;
   const { endpoint, urlParameters } = model.urlInfo;
 
@@ -293,16 +303,6 @@ export function getClientFactoryBody(
     }`
     : "";
 
-  const overrideOptionsStatement = `options = {
-      ...options,
-      userAgentOptions: {
-        userAgentPrefix
-      },
-      loggingOptions: {
-        logger: options.loggingOptions?.logger ?? logger.info
-      }${customHeaderOptions}
-    }`;
-
   const baseUrlStatement: VariableStatementStructure = {
     kind: StructureKind.VariableStatement,
     declarationKind: VariableDeclarationKind.Const,
@@ -310,11 +310,10 @@ export function getClientFactoryBody(
   };
 
   const { credentialScopes, credentialKeyHeaderName } = model.options;
-
-  const scopesString =
-    credentialScopes && credentialScopes.length
-      ? credentialScopes.map((cs) => `"${cs}"`).join(", ")
-      : "";
+  const scopesString = credentialScopes
+    ? credentialScopes.map((cs) => `"${cs}"`).join(", ") ||
+      "`${baseUrl}/.default`"
+    : "";
   const scopes = scopesString
     ? `scopes: options.credentials?.scopes ?? [${scopesString}],`
     : "";
@@ -322,20 +321,31 @@ export function getClientFactoryBody(
   const apiKeyHeaderName = credentialKeyHeaderName
     ? `apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "${credentialKeyHeaderName}",`
     : "";
-
-  const credentials =
-    scopes || apiKeyHeaderName
-      ? `options = {
-        ...options,
-        credentials: {
-          ${scopes}
-          ${apiKeyHeaderName}
-        },
-      }`
+  const loggerOptions =
+    branded !== false
+      ? `,
+  loggingOptions: {
+    logger: options.loggingOptions?.logger ?? logger.info
+  }`
       : "";
 
+  const credentialsOptions =
+    (scopes || apiKeyHeaderName) && addCredentials
+      ? `,
+      credentials: {
+        ${scopes}
+        ${apiKeyHeaderName}
+      }`
+      : "";
+  const overrideOptionsStatement = `options = {
+        ...options,
+        userAgentOptions: {
+          userAgentPrefix
+        }${loggerOptions}${customHeaderOptions}${credentialsOptions}
+      }`;
+
   const getClient = `const client = getClient(
-        baseUrl, ${credentials ? "credentials," : ""} options
+        baseUrl, ${credentialsOptions ? "credentials," : ""} options
       ) as ${clientTypeName};
       `;
   const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
@@ -350,7 +360,6 @@ export function getClientFactoryBody(
           return next(request);
         }
       });`;
-    
   }
   let returnStatement = `return client;`;
 
@@ -373,7 +382,6 @@ export function getClientFactoryBody(
     ...optionalUrlParameters,
     baseUrlStatement,
     apiVersionStatement,
-    credentials,
     userAgentInfoStatement,
     userAgentStatement,
     overrideOptionsStatement,

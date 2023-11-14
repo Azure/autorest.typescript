@@ -862,7 +862,7 @@ let testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "petstore",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false,
+    addCredentials: true,
     isTestPackage: true,
     coreHttpCompatMode: true
   },
@@ -907,7 +907,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   dpgCustomization: {
     swaggerOrConfig: "dpg-customization.json",
@@ -954,7 +954,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -991,7 +991,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   headerRest: {
     swaggerOrConfig: "header.json",
@@ -1016,7 +1016,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   bodyFormDataRest: {
     swaggerOrConfig: "body-formdata.json",
@@ -1029,7 +1029,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true,
     restLevelClient: true,
     azureSdkForJs: false,
-    generateSample: true
+    generateSample: false
   },
   customUrlRest: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -1054,7 +1054,7 @@ const rlcTestSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false,
     isTestPackage: true,
-    generateSample: true
+    generateSample: false
   },
   securityAADRest: {
     swaggerOrConfig: "security-aad.json",

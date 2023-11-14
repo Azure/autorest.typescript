@@ -2,90 +2,18 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
-import {
-  PassFailCriteria,
-  Secret,
-  CertificateMetadata,
-  LoadTestConfiguration,
-  TestInputArtifacts,
-  ResourceMetric,
-  FileType,
-} from "./models.js";
+import { FileType } from "./models.js";
 
 export interface CreateOrUpdateTestOptions extends OperationOptions {
-  /** Pass fail criteria for a test. */
-  passFailCriteria?: PassFailCriteria;
-  /**
-   * Secrets can be stored in an Azure Key Vault or any other secret store. If the
-   * secret is stored in an Azure Key Vault, the value should be the secret
-   * identifier and the type should be AKV_SECRET_URI. If the secret is stored
-   * elsewhere, the secret value should be provided directly and the type should be
-   * SECRET_VALUE.
-   */
-  secrets?: Record<string, Secret>;
-  /** Certificates metadata */
-  certificate?: CertificateMetadata;
-  /** Environment variables which are defined as a set of <name,value> pairs. */
-  environmentVariables?: Record<string, string>;
-  /** The load test configuration. */
-  loadTestConfiguration?: LoadTestConfiguration;
-  /** The input artifacts for the test. */
-  inputArtifacts?: TestInputArtifacts;
-  /** Unique test name as identifier. */
-  testId?: string;
-  /** The test description. */
-  description?: string;
-  /** Display name of a test. */
-  displayName?: string;
-  /** Subnet ID on which the load test instances should run. */
-  subnetId?: string;
-  /** Type of the managed identity referencing the Key vault. */
-  keyvaultReferenceIdentityType?: string;
-  /** Resource Id of the managed identity referencing the Key vault. */
-  keyvaultReferenceIdentityId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
   contentType?: string;
 }
 
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
-  /** Test identifier */
-  testId?: string;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
   contentType?: string;
 }
 
 export interface CreateOrUpdateServerMetricsConfigOptions
   extends OperationOptions {
-  /** Test identifier */
-  testId?: string;
-  /**
-   * Azure resource metrics collection {metric id : metrics object} (Refer :
-   * https://docs.microsoft.com/en-us/rest/api/monitor/metric-definitions/list#metricdefinition
-   * for metric id).
-   */
-  metrics?: Record<string, ResourceMetric>;
-  /** The creation datetime(ISO 8601 literal format). */
-  createdDateTime?: any;
-  /** The user that created. */
-  createdBy?: string;
-  /** The last Modified datetime(ISO 8601 literal format). */
-  lastModifiedDateTime?: any;
-  /** The user that last modified. */
-  lastModifiedBy?: string;
   contentType?: string;
 }
 
@@ -115,12 +43,12 @@ export interface ListTestsOptions extends OperationOptions {
    * Start DateTime(ISO 8601 literal format) of the last updated time range to
    * filter tests.
    */
-  lastModifiedStartTime?: any;
+  lastModifiedStartTime?: string;
   /**
    * End DateTime(ISO 8601 literal format) of the last updated time range to filter
    * tests.
    */
-  lastModifiedEndTime?: any;
+  lastModifiedEndTime?: string;
   /** Number of results in response. */
   maxpagesize?: number;
 }

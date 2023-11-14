@@ -1,6 +1,6 @@
-# Azure BatchService REST client library for JavaScript
+# Azure Batch REST client library for JavaScript
 
-A client for issuing REST requests to the Azure Batch service.
+Azure Batch provides Cloud-scale job scheduling and compute management.
 
 **Please rely heavily on our [REST client docs](https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/rest-clients.md) to use this library**
 
@@ -21,13 +21,13 @@ Key links:
 
 ### Install the `@azure-rest/batch` package
 
-Install the Azure BatchService REST client REST client library for JavaScript with `npm`:
+Install the Azure Batch REST client REST client library for JavaScript with `npm`:
 
 ```bash
 npm install @azure-rest/batch
 ```
 
-### Create and authenticate a `BatchServiceClient`
+### Create and authenticate a `BatchClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

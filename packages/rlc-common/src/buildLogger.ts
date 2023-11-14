@@ -9,6 +9,10 @@ export function buildLogger(model: RLCModel) {
   if (!model.options) {
     return undefined;
   }
+  // Disable logger for non-branded packages
+  if (model.options.branded === false) {
+    return undefined;
+  }
   const project = new Project();
   const { srcPath } = model;
   const { packageDetails } = model.options;
@@ -24,7 +28,9 @@ export function buildLogger(model: RLCModel) {
     moduleSpecifier: `@azure/logger`
   });
   loggerFile.addStatements(
-    `export const logger = createClientLogger("${packageDetails?.nameWithoutScope}")`
+    `export const logger = createClientLogger("${
+      packageDetails!.nameWithoutScope ?? packageDetails?.name ?? ""
+    }")`
   );
   return { path: filePath, content: loggerFile.getFullText() };
 }

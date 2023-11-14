@@ -8,7 +8,7 @@ export interface CloudEvent {
   /** Identifies the context in which an event happened. The combination of id and source must be unique for each distinct event. */
   source: string;
   /** Event data specific to the event type. */
-  data?: any;
+  data?: unknown;
   /** Event data specific to the event type, encoded as a base64 string. */
   dataBase64?: Uint8Array;
   /** Type of event related to the originating occurrence. */
@@ -47,6 +47,12 @@ export interface BrokerProperties {
   deliveryCount: number;
 }
 
+/** Array of lock token strings for the corresponding received Cloud Events to be acknowledged. */
+export interface AcknowledgeOptions {
+  /** String array of lock tokens. */
+  lockTokens: string[];
+}
+
 /** The result of the Acknowledge operation. */
 export interface AcknowledgeResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
@@ -65,12 +71,24 @@ export interface FailedLockToken {
   errorDescription: string;
 }
 
+/** Array of lock token strings for the corresponding received Cloud Events to be released. */
+export interface ReleaseOptions {
+  /** String array of lock tokens. */
+  lockTokens: string[];
+}
+
 /** The result of the Release operation. */
 export interface ReleaseResult {
   /** Array of LockToken values for failed cloud events. Each LockToken includes the lock token value along with the related error information (namely, the error code and description). */
   failedLockTokens: FailedLockToken[];
   /** Array of lock tokens values for the successfully released cloud events. */
   succeededLockTokens: string[];
+}
+
+/** Array of lock token strings for the corresponding received Cloud Events to be rejected. */
+export interface RejectOptions {
+  /** String array of lock tokens. */
+  lockTokens: string[];
 }
 
 /** The result of the Reject operation. */

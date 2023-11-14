@@ -8,10 +8,10 @@ describe("Client Structure Multi-Client Rest Client", () => {
   let clientB: BClient;
 
   beforeEach(() => {
-    clientA = new AClient("multi-client", {
+    clientA = new AClient("http://localhost:3000", "multi-client", {
       allowInsecureConnection: true
     });
-    clientB = new BClient("multi-client", {
+    clientB = new BClient("http://localhost:3000", "multi-client", {
       allowInsecureConnection: true
     });
   });

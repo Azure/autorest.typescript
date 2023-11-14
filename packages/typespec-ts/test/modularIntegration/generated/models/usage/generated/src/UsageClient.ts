@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { OutputRecord, InputOutputRecord } from "./models/models.js";
+import { Pipeline } from "@azure/core-rest-pipeline";
+import {
+  InputRecord,
+  OutputRecord,
+  InputOutputRecord,
+} from "./models/models.js";
 import {
   InputOptions,
   OutputOptions,
@@ -20,17 +25,20 @@ export { UsageClientOptions } from "./api/UsageContext.js";
 
 export class UsageClient {
   private _client: UsageContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Illustrates usage of Record in different places(Operation parameters, return type or both). */
   constructor(options: UsageClientOptions = {}) {
     this._client = createUsage(options);
+    this.pipeline = this._client.pipeline;
   }
 
   input(
-    requiredProp: string,
+    inputParameter: InputRecord,
     options: InputOptions = { requestOptions: {} }
   ): Promise<void> {
-    return input(this._client, requiredProp, options);
+    return input(this._client, inputParameter, options);
   }
 
   output(
@@ -40,9 +48,9 @@ export class UsageClient {
   }
 
   inputAndOutput(
-    requiredProp: string,
+    body: InputOutputRecord,
     options: InputAndOutputOptions = { requestOptions: {} }
   ): Promise<InputOutputRecord> {
-    return inputAndOutput(this._client, requiredProp, options);
+    return inputAndOutput(this._client, body, options);
   }
 }

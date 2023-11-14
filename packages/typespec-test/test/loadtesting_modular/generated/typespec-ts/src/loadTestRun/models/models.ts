@@ -34,11 +34,11 @@ export interface Test {
   /** Resource Id of the managed identity referencing the Key vault. */
   keyvaultReferenceIdentityId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -171,7 +171,7 @@ export interface FileInfo {
   /** File type */
   fileType?: FileType;
   /** Expiry time of the file (ISO 8601 literal format) */
-  expireDateTime?: any;
+  expireDateTime?: string;
   /** Validation status of the file */
   validationStatus?: FileStatus;
   /** Validation failure error details */
@@ -270,11 +270,11 @@ export interface TestRun {
   /** The test run status. */
   readonly status?: Status;
   /** The test run start DateTime(ISO 8601 literal format). */
-  readonly startDateTime?: any;
+  readonly startDateTime?: string;
   /** The test run end DateTime(ISO 8601 literal format). */
-  readonly endDateTime?: any;
+  readonly endDateTime?: string;
   /** Test run initiated time. */
-  readonly executedDateTime?: any;
+  readonly executedDateTime?: string;
   /** Portal url. */
   readonly portalUrl?: string;
   /** Test run duration in milliseconds. */
@@ -282,11 +282,11 @@ export interface TestRun {
   /** Subnet ID on which the load test instances should run. */
   readonly subnetId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -375,11 +375,11 @@ export interface TestRunAppComponents {
   /** Test run identifier */
   readonly testRunId?: string;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -395,11 +395,11 @@ export interface TestRunServerMetricConfig {
    */
   metrics?: Record<string, ResourceMetric>;
   /** The creation datetime(ISO 8601 literal format). */
-  readonly createdDateTime?: any;
+  readonly createdDateTime?: string;
   /** The user that created. */
   readonly createdBy?: string;
   /** The last Modified datetime(ISO 8601 literal format). */
-  readonly lastModifiedDateTime?: any;
+  readonly lastModifiedDateTime?: string;
   /** The user that last modified. */
   readonly lastModifiedBy?: string;
 }
@@ -470,6 +470,17 @@ export interface MetricNamespace {
   description?: string;
   /** The metric namespace name. */
   name?: string;
+}
+
+/** Filters to fetch the set of metric */
+export interface MetricRequestPayload {
+  /**
+   * Get metrics for specific dimension values. Example: Metric contains dimension
+   * like SamplerName, Error. To retrieve all the time series data where SamplerName
+   * is equals to HTTPRequest1 or HTTPRequest2, the DimensionFilter value will be
+   * {"SamplerName", ["HTTPRequest1", "HTTPRequest2"}
+   */
+  filters?: DimensionFilter[];
 }
 
 /** Dimension name and values to filter */

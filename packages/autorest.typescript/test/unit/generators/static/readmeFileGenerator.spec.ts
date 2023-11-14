@@ -6,6 +6,8 @@ import { generateReadmeFile } from "../../../../src/generators/static/readmeFile
 import { Project, IndentationText } from "ts-morph";
 import { readFileSync, writeFileSync } from "fs";
 import * as path from "path";
+import { SampleGroup } from "../../../../src/models/sampleDetails";
+import { ClientDetails } from "../../../../src/models/clientDetails";
 
 describe("readmeFileGenerator", () => {
   describe("generateReadmeFile", () => {
@@ -82,6 +84,66 @@ describe("readmeFileGenerator", () => {
       writeFileSync(
         path.join(__dirname, "files/case-hlcReadme.md"),
         getFirstFileContent(project)
+      );
+      assert.strictEqual(actualContents, expectedContends);
+    });
+
+    it("should generate readme if no subscriptionid param in samples", async () => {
+      const autorestOption = {
+        srcPath: ".",
+        azureOutputDirectory: "sdk/kusto/arm-kusto",
+        packageDetails: {
+          name: "@azure/arm-kusto",
+          nameWithoutScope: "arm-kusto",
+          scopeName: "azure",
+          version: "1.0.0-beta.1"
+        },
+        licenseHeader: false,
+        hideClients: true,
+        azureArm: true,
+        addCredentials: true,
+        generateMetadata: true,
+        isTestPackage: false,
+        ignoreNullableOnOptional: false,
+        useCoreV2: true,
+        allowInsecureConnection: true
+      } as autorestSession.AutorestOptions;
+      const codeModel = new CodeModel("testCodeModel");
+      // set client details info
+      codeModel.language = {
+        default: {
+          name: "KustoManagementClient",
+          description: ""
+        }
+      };
+      codeModel.info.title = "KustoManagementClient";
+      codeModel.info.description =
+        "The Azure Kusto management API provides a RESTful set of web services that interact with Azure Kusto services to manage your clusters and databases. The API enables you to create, update, and delete clusters and databases.";
+      sinon.replace(
+        autorestSession,
+        "getAutorestOptions",
+        () => autorestOption
+      );
+      codeModel.security.authenticationRequired = true;
+      const project = getEmptyProject();
+      const sample = {
+        samples: [
+          {
+            clientParameterNames: "credential"
+          }
+        ]
+      } as SampleGroup;
+      generateReadmeFile(codeModel, project, {
+        samples: [sample]
+      } as ClientDetails);
+
+      const expectedContends = readFileSync(
+        path.join(__dirname, "files/case-hlcReadme-without-subid.md"),
+        "utf-8"
+      ).replace(/(\r\n|\n|\r)/gm, " ");
+      const actualContents = getFirstFileContent(project).replace(
+        /(\r\n|\n|\r)/gm,
+        " "
       );
       assert.strictEqual(actualContents, expectedContends);
     });

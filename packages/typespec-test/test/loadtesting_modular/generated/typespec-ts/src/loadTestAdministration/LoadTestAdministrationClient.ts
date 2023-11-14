@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 import { TokenCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   Test,
   FileInfo,
   TestAppComponents,
-  AppComponent,
   TestServerMetricConfig,
   PagedFileInfo,
   PagedTest,
@@ -47,6 +47,8 @@ export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministratio
 
 export class LoadTestAdministrationClient {
   private _client: AzureLoadTestingContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   constructor(
     endpoint: string,
@@ -54,36 +56,39 @@ export class LoadTestAdministrationClient {
     options: LoadTestAdministrationClientOptions = {}
   ) {
     this._client = createLoadTestAdministration(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** Create a new test or update an existing test. */
   createOrUpdateTest(
     testId: string,
+    body: Test,
     options: CreateOrUpdateTestOptions = { requestOptions: {} }
   ): Promise<Test> {
-    return createOrUpdateTest(this._client, testId, options);
+    return createOrUpdateTest(this._client, testId, body, options);
   }
 
   /** Associate an app component (collection of azure resources) to a test */
   createOrUpdateAppComponents(
-    components: Record<string, AppComponent>,
     testId: string,
+    body: TestAppComponents,
     options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
   ): Promise<TestAppComponents> {
-    return createOrUpdateAppComponents(
-      this._client,
-      components,
-      testId,
-      options
-    );
+    return createOrUpdateAppComponents(this._client, testId, body, options);
   }
 
   /** Configure server metrics for a test */
   createOrUpdateServerMetricsConfig(
     testId: string,
+    body: TestServerMetricConfig,
     options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
   ): Promise<TestServerMetricConfig> {
-    return createOrUpdateServerMetricsConfig(this._client, testId, options);
+    return createOrUpdateServerMetricsConfig(
+      this._client,
+      testId,
+      body,
+      options
+    );
   }
 
   /** Get associated app component (collection of azure resources) for the given test. */
@@ -143,12 +148,12 @@ export class LoadTestAdministrationClient {
    * should be provided in the request body as application/octet-stream.
    */
   uploadTestFile(
-    body: Uint8Array,
     testId: string,
     fileName: string,
+    body: Uint8Array,
     options: UploadTestFileOptions = { requestOptions: {} }
   ): Promise<FileInfo> {
-    return uploadTestFile(this._client, body, testId, fileName, options);
+    return uploadTestFile(this._client, testId, fileName, body, options);
   }
 
   /** Delete file by the file name for a test */

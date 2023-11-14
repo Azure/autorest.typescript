@@ -2,9 +2,11 @@
 // Licensed under the MIT license.
 
 export {
+  EmbeddingsOptions,
   Embeddings,
   EmbeddingItem,
   EmbeddingsUsage,
+  CompletionsOptions,
   Completions,
   PromptFilterResult,
   ContentFilterResults,
@@ -14,6 +16,7 @@ export {
   CompletionsLogProbabilityModel,
   CompletionsFinishReason,
   CompletionsUsage,
+  ChatCompletionsOptions,
   ChatMessage,
   ChatRole,
   FunctionCall,
@@ -30,8 +33,11 @@ export {
   ImageLocation,
   ImagePayload,
   AzureOpenAIOperationState,
+  ImageGenerationOptions,
   ImageSize,
   ImageGenerationResponseFormat,
+  AzureCognitiveSearchIndexFieldMappingOptions,
+  AzureCognitiveSearchQueryType,
 } from "./models.js";
 export {
   GetEmbeddingsOptions,

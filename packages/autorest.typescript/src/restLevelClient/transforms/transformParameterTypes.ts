@@ -12,12 +12,12 @@ import {
   Request as M4OperationRequest
 } from "@autorest/codemodel";
 import {
-  ImportKind,
   ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
   ParameterMetadata,
-  Schema
+  Schema,
+  Imports as InnerImports
 } from "@azure-tools/rlc-common";
 import { transformObject } from "./transformSchemas";
 import { getLanguageMetadata } from "../../utils/languageHelpers";
@@ -28,7 +28,7 @@ import { getElementType, primitiveSchemaToType } from "../schemaHelpers";
 
 export function transformParameterTypes(
   model: CodeModel,
-  importDetails: Map<ImportKind, Set<string>>
+  importDetails: InnerImports
 ) {
   const rlcParameters: OperationParameter[] = [];
   let importedModels = new Set<string>();
@@ -81,9 +81,7 @@ export function transformParameterTypes(
     }
     rlcParameters.push(rlcParameter);
   }
-  if (importedModels.size > 0) {
-    importDetails.set(ImportKind.ParameterInput, importedModels);
-  }
+  importDetails.parameter.importsSet = importedModels;
   return rlcParameters;
 }
 
@@ -171,7 +169,12 @@ function transformBodyParameters(
     );
   } else {
     rlcBodyParam.body = [
-      getParameterSchema(bodyParameters[0], importedModels, false, contentTypeParam)
+      getParameterSchema(
+        bodyParameters[0],
+        importedModels,
+        false,
+        contentTypeParam
+      )
     ];
   }
 
@@ -244,9 +247,23 @@ function getParameterSchema(
   }
   if (type === "Array<string>" || type === "Array<number>") {
     const serializeInfo = getSpecialSerializeInfo(parameter);
-    if (serializeInfo.hasMultiCollection || serializeInfo.hasPipeCollection || serializeInfo.hasSsvCollection || serializeInfo.hasTsvCollection) {
+    if (
+      serializeInfo.hasMultiCollection ||
+      serializeInfo.hasPipeCollection ||
+      serializeInfo.hasSsvCollection ||
+      serializeInfo.hasTsvCollection ||
+      serializeInfo.hasCsvCollection
+    ) {
       type = "string";
-      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(", ")} collection, we provide ${serializeInfo.descriptions.join(", ")} from serializeHelper.ts to help${serializeInfo.hasMultiCollection? ", you will probably need to set skipUrlEncoding as true when sending the request": ""}`;
+      description += ` This parameter needs to be formatted as ${serializeInfo.collectionInfo.join(
+        ", "
+      )} collection, we provide ${serializeInfo.descriptions.join(
+        ", "
+      )} from serializeHelper.ts to help${
+        serializeInfo.hasMultiCollection
+          ? ", you will probably need to set skipUrlEncoding as true when sending the request"
+          : ""
+      }`;
     }
   }
   return {
@@ -262,9 +279,13 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
+  let hasCsvCollection = false;
   const descriptions = [];
   const collectionInfo = [];
-  if (parameter.protocol.http?.explode === true && parameter.protocol.http?.style === 'form') {
+  if (
+    parameter.protocol.http?.explode === true &&
+    parameter.protocol.http?.style === "form"
+  ) {
     hasMultiCollection = true;
     descriptions.push("buildMultiCollection");
     collectionInfo.push("multi");
@@ -284,14 +305,20 @@ export function getSpecialSerializeInfo(parameter: Parameter) {
     descriptions.push("buildTsvCollection");
     collectionInfo.push("tsv");
   }
+  if (parameter.protocol.http?.style === "simple") {
+    hasCsvCollection = true;
+    descriptions.push("buildCsvCollection");
+    collectionInfo.push("csv");
+  }
   return {
     hasMultiCollection,
     hasPipeCollection,
     hasSsvCollection,
     hasTsvCollection,
+    hasCsvCollection,
     descriptions,
     collectionInfo
-  }
+  };
 }
 
 /**

@@ -2,14 +2,17 @@
 // Licensed under the MIT license.
 
 import { TokenCredential, KeyCredential } from "@azure/core-auth";
+import { Pipeline } from "@azure/core-rest-pipeline";
 import {
+  AnalyzeTextOptions,
   AnalyzeTextResult,
-  ImageData,
+  AnalyzeImageOptions,
   AnalyzeImageResult,
   TextBlocklist,
-  TextBlockItemInfo,
+  AddOrUpdateBlockItemsOptions,
   AddOrUpdateBlockItemsResult,
   TextBlockItem,
+  RemoveBlockItemsOptions,
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "./models/models.js";
@@ -45,6 +48,8 @@ export { ContentSafetyClientOptions } from "./api/ContentSafetyContext.js";
 
 export class ContentSafetyClient {
   private _client: ContentSafetyContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
   /** Analyze harmful content */
   constructor(
@@ -53,22 +58,23 @@ export class ContentSafetyClient {
     options: ContentSafetyClientOptions = {}
   ) {
     this._client = createContentSafety(endpoint, credential, options);
+    this.pipeline = this._client.pipeline;
   }
 
   /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeText(
-    text: string,
+    body: AnalyzeTextOptions,
     options: AnalyzeTextRequestOptions = { requestOptions: {} }
   ): Promise<AnalyzeTextResult> {
-    return analyzeText(this._client, text, options);
+    return analyzeText(this._client, body, options);
   }
 
   /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
   analyzeImage(
-    image: ImageData,
+    body: AnalyzeImageOptions,
     options: AnalyzeImageRequestOptions = { requestOptions: {} }
   ): Promise<AnalyzeImageResult> {
-    return analyzeImage(this._client, image, options);
+    return analyzeImage(this._client, body, options);
   }
 
   /** Returns text blocklist details. */
@@ -82,9 +88,15 @@ export class ContentSafetyClient {
   /** Updates a text blocklist, if blocklistName does not exist, create a new blocklist. */
   createOrUpdateTextBlocklist(
     blocklistName: string,
+    resource: TextBlocklist,
     options: CreateOrUpdateTextBlocklistOptions = { requestOptions: {} }
   ): Promise<TextBlocklist> {
-    return createOrUpdateTextBlocklist(this._client, blocklistName, options);
+    return createOrUpdateTextBlocklist(
+      this._client,
+      blocklistName,
+      resource,
+      options
+    );
   }
 
   /** Deletes a text blocklist. */
@@ -104,25 +116,20 @@ export class ContentSafetyClient {
 
   /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
   addOrUpdateBlockItems(
-    blockItems: TextBlockItemInfo[],
     blocklistName: string,
+    body: AddOrUpdateBlockItemsOptions,
     options: AddOrUpdateBlockItemsRequestOptions = { requestOptions: {} }
   ): Promise<AddOrUpdateBlockItemsResult> {
-    return addOrUpdateBlockItems(
-      this._client,
-      blockItems,
-      blocklistName,
-      options
-    );
+    return addOrUpdateBlockItems(this._client, blocklistName, body, options);
   }
 
   /** Remove blockItems from a text blocklist. You can remove at most 100 BlockItems in one request. */
   removeBlockItems(
-    blockItemIds: string[],
     blocklistName: string,
+    body: RemoveBlockItemsOptions,
     options: RemoveBlockItemsRequestOptions = { requestOptions: {} }
   ): Promise<void> {
-    return removeBlockItems(this._client, blockItemIds, blocklistName, options);
+    return removeBlockItems(this._client, blocklistName, body, options);
   }
 
   /** Get blockItem By blockItemId from a text blocklist. */

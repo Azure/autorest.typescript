@@ -29,6 +29,7 @@ import {
   getClientName,
   getImportModuleName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 export function buildClientDefinitions(model: RLCModel) {
   const options = {
@@ -115,7 +116,10 @@ export function buildClientDefinitions(model: RLCModel) {
   clientDefinitionsFile.addImportDeclarations([
     {
       namedImports: [...options.clientImports],
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
+      )
     }
   ]);
 

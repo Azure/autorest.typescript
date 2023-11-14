@@ -1,10 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import { CreateWidget, UpdateWidget } from "./models.js";
 
-export type ListWidgetsParameters = RequestParameters;
+export interface ListWidgetsHeaders {
+  "required-header": string;
+  "optional-header"?: string;
+  "nullable-optional-header"?: string | null;
+  "bytes-header": string;
+  value: string;
+  /**  This parameter needs to be formatted as csv collection, we provide buildCsvCollection from serializeHelper.ts to help */
+  "csv-array-header": string;
+  "utc-date-header": string;
+  "optional-date-header"?: string;
+  "nullable-date-header"?: string | null;
+}
+
+export interface ListWidgetsHeaderParam {
+  headers: RawHttpHeadersInput & ListWidgetsHeaders;
+}
+
+export type ListWidgetsParameters = ListWidgetsHeaderParam & RequestParameters;
 export type GetWidgetParameters = RequestParameters;
 
 export interface CreateWidgetBodyParam {

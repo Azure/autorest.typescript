@@ -22,6 +22,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "parameters/body-optionality"
   },
   {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
     outputPath: "encode/duration",
     inputPath: "encode/duration"
   },
@@ -86,8 +90,20 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/model/inheritance/nested-discriminator"
   },
   {
+    outputPath: "models/inheritance-not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "models/inheritance-enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "models/inheritance-single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
+  },
+  {
     outputPath: "models/propertyOptional",
-    inputPath: "type/property/optional"
+    inputPath: "type/property/optionality"
   },
   {
     outputPath: "models/propertyNullable",
@@ -138,10 +154,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "projection/projected-name"
   },
   {
-    outputPath: "internal",
-    inputPath: "azure/client-generator-core/internal"
-  },
-  {
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
@@ -172,6 +184,13 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "client/structure/two-operation-group",
     inputPath: "client/structure/two-operation-group"
+  }
+];
+
+export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];
 
@@ -207,5 +226,52 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  }
+];
+
+export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];

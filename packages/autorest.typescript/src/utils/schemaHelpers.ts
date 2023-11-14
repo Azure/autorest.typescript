@@ -154,7 +154,7 @@ export function getTypeForSchema(
       }
       break;
     case SchemaType.AnyObject:
-      kind = PropertyKind.Dictionary
+      kind = PropertyKind.Dictionary;
       typeName = `Record<string, unknown>`;
       break;
     case SchemaType.Number:
@@ -233,11 +233,13 @@ export function getSecurityInfoFromModel(security: Security) {
   const { addCredentials } = getAutorestOptions();
   const credentialScopes: Set<string> = new Set<string>();
   let credentialKeyHeaderName: string = "";
+  let hasOAuth2Defined = false;
   for (const securitySchema of security.schemes) {
     if (securitySchema.type === "OAuth2") {
+      hasOAuth2Defined = true;
       (securitySchema as OAuth2SecurityScheme).scopes.forEach(scope => {
-        const scopes = scope.split(',');
-        for(const scope of scopes) {
+        const scopes = scope.split(",");
+        for (const scope of scopes) {
           credentialScopes.add(scope);
         }
       });
@@ -258,14 +260,23 @@ export function getSecurityInfoFromModel(security: Security) {
       );
     }
   }
-  const scopes: string[] = [];
-  credentialScopes.forEach(item => {
-    scopes.push(item);
-  });
+  const scopes: string[] = [...credentialScopes];
+  let refinedAddCredentials =
+    addCredentials === false ? false : security.authenticationRequired;
+  // Add default info if explictly set the addCredentials as true
+  if (
+    addCredentials === true &&
+    !security.authenticationRequired &&
+    scopes.length === 0 &&
+    credentialKeyHeaderName === ""
+  ) {
+    refinedAddCredentials = true;
+    scopes.push("https://management.azure.com/.default");
+  }
   return {
-    addCredentials:
-      addCredentials === false ? false : security.authenticationRequired,
-    credentialScopes: scopes,
+    addCredentials: refinedAddCredentials,
+    credentialScopes:
+      !hasOAuth2Defined && scopes.length === 0 ? undefined : scopes,
     credentialKeyHeaderName: credentialKeyHeaderName
   };
 }

@@ -17,15 +17,6 @@ export default function createClient(
 ): AuthOauth2Client {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
-  options = {
-    ...options,
-    credentials: {
-      scopes: options.credentials?.scopes ?? [
-        "https://security.microsoft.com/.default",
-      ],
-    },
-  };
-
   const userAgentInfo = `azsdk-js-auth-oauth2-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -38,6 +29,11 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      scopes: options.credentials?.scopes ?? [
+        "https://security.microsoft.com/.default",
+      ],
     },
   };
 

@@ -10,7 +10,6 @@ import {
 } from "ts-morph";
 import * as path from "path";
 import {
-  ImportKind,
   ObjectSchema,
   ParameterMetadata,
   ParameterMetadatas,
@@ -22,6 +21,7 @@ import {
   getParameterBaseName,
   getParameterTypeName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 export function buildParameterTypes(model: RLCModel) {
   const project = new Project();
@@ -139,22 +139,30 @@ export function buildParameterTypes(model: RLCModel) {
     parametersFile.addImportDeclarations([
       {
         namedImports: ["RawHttpHeadersInput"],
-        moduleSpecifier: "@azure/core-rest-pipeline"
+        moduleSpecifier: getImportSpecifier(
+          "restPipeline",
+          model.importInfo.runtimeImports
+        )
       }
     ]);
   }
   parametersFile.addImportDeclarations([
     {
       namedImports: ["RequestParameters"],
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
+      )
     }
   ]);
-  if (model.importSet?.has(ImportKind.ParameterInput)) {
+  if (
+    (model.importInfo.internalImports?.parameter?.importsSet?.size ?? 0) > 0
+  ) {
     parametersFile.addImportDeclarations([
       {
-        namedImports: [
-          ...Array.from(model.importSet?.get(ImportKind.ParameterInput) || [])
-        ],
+        namedImports: Array.from(
+          model.importInfo.internalImports.parameter.importsSet!
+        ),
         moduleSpecifier: getImportModuleName(
           {
             cjsName: `./models`,
