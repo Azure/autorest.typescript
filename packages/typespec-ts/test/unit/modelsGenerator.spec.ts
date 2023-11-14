@@ -593,7 +593,7 @@ describe("Input/output model type", () => {
           export interface PetOutputParent {
             name: string;
             weight?: number;
-            "kind": string;
+            kind?: string;
           }
   
           export interface CatOutput extends PetOutputParent {
@@ -606,7 +606,7 @@ describe("Input/output model type", () => {
             bark: string;
           }
   
-          export type PetOutput = CatOutput | DogOutput;`
+          export type PetOutput = PetOutputParent | CatOutput | DogOutput;`
         );
       });
 
@@ -654,13 +654,13 @@ describe("Input/output model type", () => {
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
         export interface FishOutputParent {
           age: number;
-          kind: string;
+          kind?: string;
         }
         
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
         export interface SharkOutputParent extends FishOutputParent {
           kind: "shark";
-          sharktype: string;
+          sharktype?: string;
         }
         
         /** The third level model SawShark in polymorphic multiple levels inheritance. */
@@ -682,9 +682,9 @@ describe("Input/output model type", () => {
         }
         
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
-        export type FishOutput = SharkOutput | SalmonOutput;
+        export type FishOutput = FishOutputParent | SharkOutput | SalmonOutput;
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
-        export type SharkOutput = SawSharkOutput | GoblinSharkOutput;
+        export type SharkOutput = SharkOutputParent | SawSharkOutput | GoblinSharkOutput;
         `
         );
       });
@@ -741,11 +741,11 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelParent {
-            "model.kind": string;
+            "model.kind"?: string;
           }
   
           /** This is a base model has discriminator name containing dot. */
-          export type BaseModel = ${inputModelName};
+          export type BaseModel = BaseModelParent | ${inputModelName};
           `,
           additionalOutputContent: `
           /** This is a model has property names of special words or characters. */
@@ -757,11 +757,11 @@ describe("Input/output model type", () => {
           
           /** This is a base model has discriminator name containing dot. */
           export interface BaseModelOutputParent {
-            "model.kind": string;
+            "model.kind"?: string;
           }
   
           /** This is a base model has discriminator name containing dot. */
-          export type BaseModelOutput = ${inputModelName}Output;
+          export type BaseModelOutput = BaseModelOutputParent | ${inputModelName}Output;
           `
         });
       });
@@ -799,7 +799,7 @@ describe("Input/output model type", () => {
               a: string;
             }
 
-            export type BOutput = COutput;`
+            export type BOutput = BOutputParent | COutput;`
             );
           });
 

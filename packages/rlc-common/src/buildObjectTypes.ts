@@ -147,9 +147,7 @@ function getPolymorphicTypeAlias(
   const unionTypes: string[] = [];
 
   // If the object itself has a discriminatorValue add its base to the union
-  if (!schemaUsage.includes(SchemaContext.Output)) {
-    unionTypes.push(`${baseName}Parent`);
-  }
+  unionTypes.push(`${baseName}Parent`);
 
   for (const child of objectSchema.children?.all ?? []) {
     const nameSuffix = schemaUsage.includes(SchemaContext.Output)
@@ -241,7 +239,8 @@ function addDiscriminatorProperty(
     const existingDiscriminator = properties.filter(
       (p) => p.name === polymorphicProperty.name
     );
-    polymorphicProperty.hasQuestionToken = existingDiscriminator[0]?.hasQuestionToken ?? true;
+    polymorphicProperty.hasQuestionToken =
+      existingDiscriminator[0]?.hasQuestionToken ?? true;
     return [...filteredProperties, polymorphicProperty];
   }
 
@@ -370,14 +369,16 @@ export function getImmediateParentsNames(
   // If an immediate parent is an empty DictionarySchema, that means that the object has been marked
   // with additional properties. We need to add Record<string, unknown> to the extend list and
   if (
-    objectSchema.parents.immediate.find((im) => isDictionarySchema(im, {filterEmpty: true}))
+    objectSchema.parents.immediate.find((im) =>
+      isDictionarySchema(im, { filterEmpty: true })
+    )
   ) {
     extendFrom.push("Record<string, unknown>");
   }
 
   // Get the rest of the parents excluding any DictionarySchemas
   const parents = objectSchema.parents.immediate
-    .filter((p) => !isDictionarySchema(p, {filterEmpty: true}))
+    .filter((p) => !isDictionarySchema(p, { filterEmpty: true }))
     .map((parent) => {
       const nameSuffix = schemaUsage.includes(SchemaContext.Output)
         ? "Output"
