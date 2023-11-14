@@ -7,9 +7,10 @@ export {
   Sparrow,
   Goose,
   Eagle,
-  Dinosaur,
+  DinosaurParent,
   TRex,
   Bird,
+  Dinosaur,
 } from "./models.js";
 export {
   GetModelOptions,

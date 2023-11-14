@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { Dinosaur, Bird } from "./models/models.js";
+import { Bird, Dinosaur } from "./models/models.js";
 import {
   GetModelOptions,
   PutModelOptions,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { Dinosaur, Bird } from "../models/models.js";
+import { Bird, Dinosaur } from "../models/models.js";
 import {
   GetLegacyModel200Response,
   GetMissingDiscriminator200Response,

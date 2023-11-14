@@ -32,16 +32,18 @@ export interface Eagle extends BirdParent {
 }
 
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */
-export interface Dinosaur {
+export interface DinosaurParent {
   size: number;
   /** the discriminator possible values t-rex */
   kind?: string;
 }
 
 /** The second level legacy model in polymorphic single level inheritance. */
-export interface TRex extends Dinosaur {
+export interface TRex extends DinosaurParent {
   kind: "t-rex";
 }
 
 /** Base type for Bird */
 export type Bird = SeaGull | Sparrow | Goose | Eagle | BirdParent;
+/** Base type for Dinosaur */
+export type Dinosaur = TRex | DinosaurParent;
