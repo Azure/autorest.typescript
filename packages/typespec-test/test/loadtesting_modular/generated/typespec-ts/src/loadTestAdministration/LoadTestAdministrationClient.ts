@@ -23,6 +23,7 @@ import {
   DeleteTestFileOptions,
   DeleteTestOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createLoadTestAdministration,
   LoadTestAdministrationClientOptions,
@@ -40,7 +41,6 @@ import {
   deleteTestFile,
   deleteTest,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "../util/pagingUtil.js";
 
 export { LoadTestAdministrationClientOptions } from "./api/LoadTestAdministrationContext.js";
 

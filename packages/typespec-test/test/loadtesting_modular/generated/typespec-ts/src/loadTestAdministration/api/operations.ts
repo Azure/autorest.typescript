@@ -9,6 +9,8 @@ import {
   PagedFileInfo,
   PagedTest,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
@@ -44,10 +46,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../../util/pagingUtil.js";
 import {
   CreateOrUpdateTestOptions,
   CreateOrUpdateAppComponentsOptions,

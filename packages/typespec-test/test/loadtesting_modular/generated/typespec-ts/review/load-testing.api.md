@@ -190,9 +190,9 @@ export class LoadTestAdministrationClient {
     getServerMetricsConfig(testId: string, options?: GetServerMetricsConfigOptions): Promise<TestServerMetricConfig>;
     getTest(testId: string, options?: GetTestOptions): Promise<Test>;
     getTestFile(testId: string, fileName: string, options?: GetTestFileOptions): Promise<FileInfo>;
-    // Warning: (ae-forgotten-export) The symbol "PagedAsyncIterableIterator" needs to be exported by the entry point index.d.ts
     listTestFiles(testId: string, options?: ListTestFilesOptions): PagedAsyncIterableIterator<FileInfo>;
     listTests(options?: ListTestsOptions): PagedAsyncIterableIterator<Test>;
+    readonly pipeline: Pipeline;
     uploadTestFile(testId: string, fileName: string, body: Uint8Array, options?: UploadTestFileOptions): Promise<FileInfo>;
 }
 
@@ -222,11 +222,12 @@ export class LoadTestRunClient {
     getTestRunFile(testRunId: string, fileName: string, options?: GetTestRunFileOptions): Promise<LoadTestRunClientFileInfo>;
     // Warning: (ae-forgotten-export) The symbol "MetricDefinitionCollection" needs to be exported by the entry point index.d.ts
     listMetricDefinitions(testRunId: string, options?: ListMetricDefinitionsOptions): Promise<MetricDefinitionCollection>;
-    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): PagedAsyncIterableIterator<LoadTestRunClientDimensionValueList>;
+    listMetricDimensionValues(testRunId: string, name: string, metricNamespace: string, options?: ListMetricDimensionValuesOptions): LoadTestRunClientPagedAsyncIterableIterator<LoadTestRunClientDimensionValueList>;
     // Warning: (ae-forgotten-export) The symbol "MetricNamespaceCollection" needs to be exported by the entry point index.d.ts
     listMetricNamespaces(testRunId: string, options?: ListMetricNamespacesOptions): Promise<MetricNamespaceCollection>;
-    listMetrics(testRunId: string, options?: ListMetricsOptions): PagedAsyncIterableIterator<LoadTestRunClientTimeSeriesElement>;
-    listTestRuns(options?: ListTestRunsOptions): PagedAsyncIterableIterator<LoadTestRunClientTestRun>;
+    // Warning: (ae-forgotten-export) The symbol "MetricRequestPayload" needs to be exported by the entry point index.d.ts
+    listMetrics(testRunId: string, body: MetricRequestPayload, options?: ListMetricsOptions): LoadTestRunClientPagedAsyncIterableIterator<LoadTestRunClientTimeSeriesElement>;
+    listTestRuns(options?: ListTestRunsOptions): LoadTestRunClientPagedAsyncIterableIterator<LoadTestRunClientTestRun>;
     readonly pipeline: Pipeline;
     stopTestRun(testRunId: string, options?: StopTestRunOptions): Promise<LoadTestRunClientTestRun>;
     testRun(testRunId: string, resource: LoadTestRunClientTestRun, options?: TestRunOptions): Promise<LoadTestRunClientTestRun>;
@@ -374,6 +375,20 @@ export interface LoadTestRunClientOptionalLoadTestConfig {
 
 // @public (undocumented)
 export interface LoadTestRunClientOptions extends ClientOptions {
+}
+
+// @public
+export interface LoadTestRunClientPagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = LoadTestRunClientPageSettings> {
+    [Symbol.asyncIterator](): LoadTestRunClientPagedAsyncIterableIterator<TElement>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage & {
+        continuationToken?: string;
+    }>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public (undocumented)
+export interface LoadTestRunClientPageSettings {
+    continuationToken?: string;
 }
 
 // @public
@@ -585,6 +600,15 @@ export interface OptionalLoadTestConfig {
 }
 
 // @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage & {
+        continuationToken?: string;
+    }>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
 export interface PagedFileInfo {
     nextLink?: string;
     value: FileInfo[];
@@ -594,6 +618,11 @@ export interface PagedFileInfo {
 export interface PagedTest {
     nextLink?: string;
     value: Test[];
+}
+
+// @public (undocumented)
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public

@@ -26,6 +26,7 @@ import {
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createContentSafety,
   ContentSafetyClientOptions,
@@ -41,7 +42,6 @@ import {
   getTextBlocklistItem,
   listTextBlocklistItems,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "./util/pagingUtil.js";
 
 export { ContentSafetyClientOptions } from "./api/ContentSafetyContext.js";
 

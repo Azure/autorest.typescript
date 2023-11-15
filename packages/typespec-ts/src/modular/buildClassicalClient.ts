@@ -90,29 +90,8 @@ export function buildClassicalClient(
   importAllModels(clientFile, srcPath, subfolder);
   buildClientOperationGroups(clientFile, client, clientClass);
   importAllApis(clientFile, srcPath, subfolder);
-  importAllUtils(clientFile, srcPath, subfolder);
   clientFile.fixMissingImports();
   clientFile.fixUnusedIdentifiers();
-}
-
-function importAllUtils(
-  clientFile: SourceFile,
-  srcPath: string,
-  subfolder: string
-) {
-  const project = clientFile.getProject();
-  const utils = project.getSourceFile(`${srcPath}/util/pagingUtil.ts`);
-
-  if (!utils) {
-    return;
-  }
-
-  const exported = [...utils.getExportedDeclarations().keys()];
-
-  clientFile.addImportDeclaration({
-    moduleSpecifier: `${subfolder !== "" ? "." : ""}./util/pagingUtil.js`,
-    namedImports: exported
-  });
 }
 
 function importAllApis(

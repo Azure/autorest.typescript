@@ -68,4 +68,6 @@ export {
   ListMetricsOptions,
   ListTestRunsOptions,
   StopTestRunOptions,
+  PageSettings,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";

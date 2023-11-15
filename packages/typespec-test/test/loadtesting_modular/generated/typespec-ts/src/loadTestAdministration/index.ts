@@ -62,4 +62,6 @@ export {
   UploadTestFileOptions,
   DeleteTestFileOptions,
   DeleteTestOptions,
+  PageSettings,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";

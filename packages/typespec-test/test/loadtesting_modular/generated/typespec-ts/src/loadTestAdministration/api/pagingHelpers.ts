@@ -12,6 +12,10 @@ import {
   createRestError,
   PathUncheckedResponse,
 } from "@azure-rest/core-client";
+import {
+  PageSettings,
+  PagedAsyncIterableIterator,
+} from "../models/pagingTypes.js";
 /**
  * Helper type to extract the type of an array
  */
@@ -33,37 +37,6 @@ export type PaginateReturn<TResult> = TResult extends
     }
   ? GetArrayType<TPage>
   : Array<unknown>;
-
-export interface PageSettings {
-  /**
-   * The token that keeps track of where to continue the iterator
-   */
-  continuationToken?: string;
-}
-
-/**
- * An interface that allows async iterable iteration both to completion and by page.
- */
-export interface PagedAsyncIterableIterator<
-  TElement,
-  TPage = TElement[],
-  TPageSettings = PageSettings
-> {
-  /**
-   * The next method, part of the iteration protocol
-   */
-  next(): Promise<IteratorResult<TElement>>;
-  /**
-   * The connection to the async iterator, part of the iteration protocol
-   */
-  [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
-  /**
-   * Return an AsyncIterableIterator that works a page at a time
-   */
-  byPage: (
-    settings?: TPageSettings
-  ) => AsyncIterableIterator<TPage & { continuationToken?: string }>;
-}
 
 export function buildPagedAsyncIterator<
   TElement,
@@ -181,7 +154,8 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
   // type of elements in the page in PaginateReturn
   if (!Array.isArray(value)) {
     throw new Error(
-      `Couldn't paginate response\n Body doesn't contain an array property with name: ${itemName}`
+      `Couldn't paginate response
+ Body doesn't contain an array property with name: ${itemName}`
     );
   }
 
@@ -247,9 +221,10 @@ function getPaginationProperties(initialResponse: PathUncheckedResponse) {
 
   if (!itemName) {
     throw new Error(
-      `Couldn't paginate response\n Body doesn't contain an array property with name: ${[
-        ...itemNames,
-      ].join(" OR ")}`
+      `Couldn't paginate response
+ Body doesn't contain an array property with name: ${[...itemNames].join(
+   " OR "
+ )}`
     );
   }
 

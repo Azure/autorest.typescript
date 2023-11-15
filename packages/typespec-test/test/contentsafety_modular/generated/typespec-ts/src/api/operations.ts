@@ -14,6 +14,8 @@ import {
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   ContentSafetyContext as Client,
@@ -44,10 +46,6 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../util/pagingUtil.js";
 import {
   AnalyzeTextRequestOptions,
   AnalyzeImageRequestOptions,

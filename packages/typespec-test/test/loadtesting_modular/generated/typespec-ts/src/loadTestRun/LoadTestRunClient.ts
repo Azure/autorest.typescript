@@ -10,6 +10,7 @@ import {
   TestRunServerMetricConfig,
   MetricDefinitionCollection,
   MetricNamespaceCollection,
+  MetricRequestPayload,
   TimeSeriesElement,
   DimensionValueList,
 } from "./models/models.js";
@@ -29,6 +30,7 @@ import {
   ListTestRunsOptions,
   StopTestRunOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createLoadTestRun,
   LoadTestRunClientOptions,
@@ -48,7 +50,6 @@ import {
   listTestRuns,
   stopTestRun,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "../util/pagingUtil.js";
 
 export { LoadTestRunClientOptions } from "./api/LoadTestRunContext.js";
 
