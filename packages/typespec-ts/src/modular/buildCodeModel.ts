@@ -96,7 +96,9 @@ import {
   getOperationName,
   isBinaryPayload,
   isIgnoredHeaderParam,
-  isLongRunningOperation
+  isLongRunningOperation,
+  parseItemName,
+  parseNextLinkName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
@@ -680,8 +682,8 @@ function addPagingInformation(
       "Trying to add paging information, but not paging metadata for this operation"
     );
   }
-  emittedOperation["itemName"] = pagedResult.itemsPath;
-  emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+  emittedOperation["itemName"] = parseItemName(pagedResult);
+  emittedOperation["continuationTokenName"] = parseNextLinkName(pagedResult);
 }
 
 function emitLroPagingOperation(

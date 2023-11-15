@@ -11,7 +11,9 @@ import {
   hasPagingOperations,
   extractPagedMetadataNested,
   hasPollingOperations,
-  getSpecialSerializeInfo
+  getSpecialSerializeInfo,
+  parseNextLinkName,
+  parseItemName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
@@ -165,19 +167,6 @@ function extractPageDetailFromCore(
       isComplexPaging
     }
   };
-}
-
-function parseNextLinkName(paged: PagedResultMetadata): string | undefined {
-  return paged.nextLinkProperty?.name;
-}
-
-function parseItemName(paged: PagedResultMetadata): string | undefined {
-  const pathComponents = paged.itemsPath?.split(".");
-  if (pathComponents) {
-    // TODO: This logic breaks down if there actually is a dotted path.
-    return pathComponents[pathComponents.length - 1];
-  }
-  return undefined;
 }
 
 function extractSpecialSerializeInfo(
