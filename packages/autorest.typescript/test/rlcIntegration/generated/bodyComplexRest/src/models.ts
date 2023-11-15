@@ -108,7 +108,7 @@ export interface FishParent {
 export interface SalmonParent extends FishParent {
   location?: string;
   iswild?: boolean;
-  fishtype: "salmon" | "smart_salmon";
+  fishtype?: "salmon" | "smart_salmon";
 }
 
 export interface ReadonlyObj {
@@ -117,33 +117,34 @@ export interface ReadonlyObj {
 
 export interface SmartSalmon extends SalmonParent, Record<string, unknown> {
   college_degree?: string;
-  fishtype: "smart_salmon";
+  fishtype?: "smart_salmon";
 }
 
 export interface SharkParent extends FishParent {
   age?: number;
   birthday: Date | string;
-  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
+  fishtype?: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
 }
 
 export interface Sawshark extends SharkParent {
   /** Value may contain base64 encoded characters */
   picture?: string;
-  fishtype: "sawshark";
+  fishtype?: "sawshark";
 }
 
 export interface Goblinshark extends SharkParent {
   jawsize?: number;
   /** Colors possible */
   color?: "pink" | "gray" | "brown" | "RED" | "red";
-  fishtype: "goblin";
+  fishtype?: "goblin";
 }
 
 export interface Cookiecuttershark extends SharkParent {
-  fishtype: "cookiecuttershark";
+  fishtype?: "cookiecuttershark";
 }
 
 export type Fish =
+  | FishParent
   | Salmon
   | SmartSalmon
   | Shark

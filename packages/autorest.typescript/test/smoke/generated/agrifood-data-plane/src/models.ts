@@ -676,4 +676,8 @@ export interface PolygonCoordinates {
 }
 
 /** GeoJSON abstract class. */
-export type GeoJsonObject = MultiPolygon | Point | Polygon;
+export type GeoJsonObject =
+  | GeoJsonObjectParent
+  | MultiPolygon
+  | Point
+  | Polygon;

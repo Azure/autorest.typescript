@@ -1069,22 +1069,25 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
+      export interface PetParent {
         /** the discriminator possible values cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends Pet {
+      export interface Cat extends PetParent {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends Pet {
+      export interface Dog extends PetParent {
         kind: "dog";
         bark: string;
-      }`
+      }
+      
+      /** Base type for Pet */
+      export type Pet = Cat | Dog | PetParent;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1154,22 +1157,25 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
+      export interface PetParent {
         /** the discriminator possible values cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends Pet {
+      export interface Cat extends PetParent {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends Pet {
+      export interface Dog extends PetParent {
         kind: "dog";
         bark: string;
-      }`
+      }
+      
+      /** Base type for Pet */
+      export type Pet = Cat | Dog | PetParent;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
