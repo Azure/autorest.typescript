@@ -125,13 +125,13 @@ export interface DotFishMarketOutput {
 export interface DotSalmonOutput extends DotFishOutputParent {
   location?: string;
   iswild?: boolean;
-  "fish.type"?: "DotSalmon";
+  "fish.type": "DotSalmon";
 }
 
 export interface SalmonOutputParent extends FishOutputParent {
   location?: string;
   iswild?: boolean;
-  fishtype?: "salmon" | "smart_salmon";
+  fishtype: "salmon" | "smart_salmon";
 }
 
 export interface ReadonlyObjOutput {
@@ -153,35 +153,35 @@ export interface SmartSalmonOutput
   extends SalmonOutputParent,
     Record<string, unknown> {
   college_degree?: string;
-  fishtype?: "smart_salmon";
+  fishtype: "smart_salmon";
 }
 
 export interface SharkOutputParent extends FishOutputParent {
   age?: number;
   birthday: string;
-  fishtype?: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
+  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
 }
 
 export interface SawsharkOutput extends SharkOutputParent {
   /** Value may contain base64 encoded characters */
   picture?: string;
-  fishtype?: "sawshark";
+  fishtype: "sawshark";
 }
 
 export interface GoblinsharkOutput extends SharkOutputParent {
   jawsize?: number;
   /** Colors possible */
   color?: "pink" | "gray" | "brown" | "RED" | "red";
-  fishtype?: "goblin";
+  fishtype: "goblin";
 }
 
 export interface CookiecuttersharkOutput extends SharkOutputParent {
-  fishtype?: "cookiecuttershark";
+  fishtype: "cookiecuttershark";
 }
 
 export interface MyDerivedTypeOutput extends MyBaseTypeOutputParent {
   propD1?: string;
-  kind?: "Kind1";
+  kind: "Kind1";
 }
 
 export type FishOutput =

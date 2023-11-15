@@ -240,7 +240,8 @@ function addDiscriminatorProperty(
       (p) => p.name === polymorphicProperty.name
     );
     polymorphicProperty.hasQuestionToken =
-      existingDiscriminator[0]?.hasQuestionToken ?? true;
+      existingDiscriminator[0]?.hasQuestionToken ??
+      polymorphicProperty.hasQuestionToken;
     return [...filteredProperties, polymorphicProperty];
   }
 
@@ -271,7 +272,8 @@ function getDiscriminatorProperty(
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
-      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`
+      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`,
+      hasQuestionToken: model.options?.sourceFrom === "Swagger" ? false : true
     };
   }
 

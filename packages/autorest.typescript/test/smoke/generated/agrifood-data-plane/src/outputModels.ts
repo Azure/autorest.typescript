@@ -1239,7 +1239,7 @@ export interface WeatherDataDeleteJobOutput {
 export interface MultiPolygonOutput
   extends GeoJsonObjectOutputParent,
     MultiPolygonCoordinatesOutput {
-  type?: "MultiPolygon";
+  type: "MultiPolygon";
 }
 
 /** Schema of multi polygon coordinates. */
@@ -1257,7 +1257,7 @@ export interface MultiPolygonCoordinatesOutput {
 export interface PointOutput
   extends GeoJsonObjectOutputParent,
     PointCoordinatesOutput {
-  type?: "Point";
+  type: "Point";
 }
 
 /** Schema of the coordinates of a point. */
@@ -1273,7 +1273,7 @@ export interface PointCoordinatesOutput {
 export interface PolygonOutput
   extends GeoJsonObjectOutputParent,
     PolygonCoordinatesOutput {
-  type?: "Polygon";
+  type: "Polygon";
 }
 
 /** Schema of polygon coordinates. */
