@@ -1063,7 +1063,7 @@ function needsDeserialize(type?: Type) {
 export function hasLROOperation(codeModel: ModularCodeModel) {
   return (codeModel.clients ?? []).some((c) =>
     (c.operationGroups ?? []).some((og) =>
-      (og.operations ?? []).some(isPagingOperation)
+      (og.operations ?? []).some(isLROOperation)
     )
   );
 }

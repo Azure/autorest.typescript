@@ -12,3 +12,4 @@ export {
   DeleteOperationOptions,
   ExportOperationOptions,
 } from "./options.js";
+export { PageSettings, PagedAsyncIterableIterator } from "./pagingTypes.js";

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { User } from "./models/models.js";
 import {
   CreateOrUpdateOptions,
@@ -12,6 +13,7 @@ import {
   DeleteOperationOptions,
   ExportOperationOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
   BasicClientOptions,
@@ -25,7 +27,6 @@ import {
   deleteOperation,
   exportOperation,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "./util/pagingUtil.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
 

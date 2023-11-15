@@ -15,4 +15,6 @@ export {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  PageSettings,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";

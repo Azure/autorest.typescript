@@ -2,6 +2,8 @@
 // Licensed under the MIT license.
 
 import { User, UserListResults, PagedUser } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   BasicContext as Client,
@@ -29,10 +31,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import {
-  PagedAsyncIterableIterator,
-  buildPagedAsyncIterator,
-} from "../util/pagingUtil.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
