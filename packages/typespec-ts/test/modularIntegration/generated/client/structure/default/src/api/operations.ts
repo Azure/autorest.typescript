@@ -38,7 +38,7 @@ export async function _oneDeserialize(result: One204Response): Promise<void> {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
     throw new RestError(internalError.message ?? message, {
-      statusCode: result.status,
+      statusCode: internalError.code,
       request: result.request,
       response: result.body as PipelineResponse,
     });
