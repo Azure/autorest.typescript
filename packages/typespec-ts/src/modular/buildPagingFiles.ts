@@ -1,7 +1,7 @@
 import { RLCModel } from "@azure-tools/rlc-common";
 import { dirname, join as joinPath } from "path";
 import { promises } from "fs";
-import { ModularCodeModel } from "./modularCodeModel.js";
+import { Client, ModularCodeModel } from "./modularCodeModel.js";
 import { fileURLToPath } from "url";
 
 export async function buildPagingUtils(
@@ -40,4 +40,22 @@ export async function buildPagingUtils(
       overwrite: true
     }
   );
+}
+
+export async function buildPagingTypes(
+  _codeModel: ModularCodeModel,
+  _client: Client
+) {
+  // const _hasPaging = rlcCodeModels.some(
+  //   (codeModel) => codeModel.helperDetails?.hasPaging
+  // );
+}
+
+export async function buildPagingHelper(
+  _codeModel: ModularCodeModel,
+  _client: Client
+) {
+  // const _hasPaging = rlcCodeModels.some(
+  //   (codeModel) => codeModel.helperDetails?.hasPaging
+  // );
 }

@@ -17,7 +17,7 @@ import {
   buildApiExtractorConfig,
   buildPackageFile,
   buildPollingHelper,
-  buildPaginateHelper,
+  buildPaginateHelper as buildRLCPaginateHelper,
   buildEsLintConfig,
   buildKarmaConfigFile,
   buildEnvFile,
@@ -54,7 +54,10 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
-import { buildPagingUtils } from "./modular/buildPagingUtils.js";
+import {
+  buildPagingTypes,
+  buildPaginateHelper as buildModularPaginateHelper
+} from "./modular/buildPagingTypesAndHelper.js";
 
 export * from "./lib.js";
 
@@ -137,7 +140,7 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(program, buildIndexFile, rlcModels);
       await emitContentByBuilder(program, buildLogger, rlcModels);
       await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-      await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
+      await emitContentByBuilder(program, buildRLCPaginateHelper, rlcModels);
       await emitContentByBuilder(program, buildPollingHelper, rlcModels);
       await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
       await emitContentByBuilder(
@@ -171,13 +174,14 @@ export async function $onEmit(context: EmitContext) {
           overwrite: true
         }
       );
-      // Build the shared paging utils
-      await buildPagingUtils(modularCodeModel, rlcCodeModels);
+
       for (const subClient of modularCodeModel.clients) {
         buildModels(modularCodeModel, subClient);
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildPagingTypes(modularCodeModel, subClient);
+        buildModularPaginateHelper(modularCodeModel, subClient);
         buildOperationFiles(
           dpgContext,
           modularCodeModel,

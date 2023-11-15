@@ -9,6 +9,7 @@ import {
   createRestError,
   PathUncheckedResponse
 } from "@azure-rest/core-client";
+import { PageSettings, PagedAsyncIterableIterator } from "./pagingTypes.js";
 
 export interface PageInfo {
   continuationToken?: string;
@@ -35,37 +36,6 @@ export type PaginateReturn<TResult> = TResult extends
     }
   ? GetArrayType<TPage>
   : Array<unknown>;
-
-export interface PageSettings {
-  /**
-   * The token that keeps track of where to continue the iterator
-   */
-  continuationToken?: string;
-}
-
-/**
- * An interface that allows async iterable iteration both to completion and by page.
- */
-export interface PagedAsyncIterableIterator<
-  TElement,
-  TPage = TElement[],
-  TPageSettings = PageSettings
-> {
-  /**
-   * The next method, part of the iteration protocol
-   */
-  next(): Promise<IteratorResult<TElement>>;
-  /**
-   * The connection to the async iterator, part of the iteration protocol
-   */
-  [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
-  /**
-   * Return an AsyncIterableIterator that works a page at a time
-   */
-  byPage: (
-    settings?: TPageSettings
-  ) => AsyncIterableIterator<TPage & { continuationToken?: string }>;
-}
 
 export function buildPagedAsyncIterator<
   TElement,
