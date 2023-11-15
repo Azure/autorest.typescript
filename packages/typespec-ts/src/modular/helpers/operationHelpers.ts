@@ -6,6 +6,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
+  Client,
   ModularCodeModel,
   Operation,
   Parameter,
@@ -1062,22 +1063,35 @@ function needsDeserialize(type?: Type) {
 export function hasLROOperation(codeModel: ModularCodeModel) {
   return (codeModel.clients ?? []).some((c) =>
     (c.operationGroups ?? []).some((og) =>
-      (og.operations ?? []).some(
-        (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
-      )
+      (og.operations ?? []).some(isPagingOperation)
     )
   );
 }
 
-export function hasPagingOperation(codeModel: ModularCodeModel) {
-  return (codeModel.clients ?? []).some((c) =>
+export function isLROOperation(op: Operation): boolean {
+  return op.discriminator === "lro" || op.discriminator === "lropaging";
+}
+
+export function hasPagingOperation(client: Client): boolean;
+export function hasPagingOperation(codeModel: ModularCodeModel): boolean;
+export function hasPagingOperation(
+  clientOrCodeModel: Client | ModularCodeModel
+): boolean {
+  let clients: Client[] = [];
+  if ((clientOrCodeModel as any)?.operationGroups) {
+    clients = [clientOrCodeModel as Client];
+  } else if ((clientOrCodeModel as any)?.clients) {
+    clients = (clientOrCodeModel as ModularCodeModel).clients;
+  }
+  return clients.some((c) =>
     (c.operationGroups ?? []).some((og) =>
-      (og.operations ?? []).some(
-        (op) =>
-          op.discriminator === "paging" || op.discriminator === "lropaging"
-      )
+      (og.operations ?? []).some(isPagingOperation)
     )
   );
+}
+
+export function isPagingOperation(op: Operation): boolean {
+  return op.discriminator === "paging" || op.discriminator === "lropaging";
 }
 
 function getAllProperties(type: Type): Property[] {

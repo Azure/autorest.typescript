@@ -57,7 +57,7 @@ import { getClientName } from "@azure-tools/rlc-common";
 import {
   buildPagingTypes,
   buildPaginateHelper as buildModularPaginateHelper
-} from "./modular/buildPagingTypesAndHelper.js";
+} from "./modular/buildPagingFiles.js";
 
 export * from "./lib.js";
 

@@ -12,9 +12,10 @@ import {
   createRestError,
   PathUncheckedResponse,
 } from "@azure-rest/core-client";
-
-import { PageSettings, PagedAsyncIterableIterator } from "../models/index.js";
-
+import {
+  PageSettings,
+  PagedAsyncIterableIterator,
+} from "../models/pagingTypes.js";
 /**
  * Helper type to extract the type of an array
  */
@@ -153,7 +154,8 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
   // type of elements in the page in PaginateReturn
   if (!Array.isArray(value)) {
     throw new Error(
-      `Couldn't paginate response\n Body doesn't contain an array property with name: ${itemName}`
+      `Couldn't paginate response
+ Body doesn't contain an array property with name: ${itemName}`
     );
   }
 
@@ -189,7 +191,7 @@ function checkPagingRequest(response: PathUncheckedResponse): void {
  */
 function getPaginationProperties(initialResponse: PathUncheckedResponse) {
   // Build a set with the passed custom nextLinkNames
-  const nextLinkNames = new Set(["nextLink"]);
+  const nextLinkNames = new Set(["nextLink", "odata.nextLink"]);
 
   // Build a set with the passed custom set of itemNames
   const itemNames = new Set(["value", "items"]);
@@ -219,9 +221,10 @@ function getPaginationProperties(initialResponse: PathUncheckedResponse) {
 
   if (!itemName) {
     throw new Error(
-      `Couldn't paginate response\n Body doesn't contain an array property with name: ${[
-        ...itemNames,
-      ].join(" OR ")}`
+      `Couldn't paginate response
+ Body doesn't contain an array property with name: ${[...itemNames].join(
+   " OR "
+ )}`
     );
   }
 
