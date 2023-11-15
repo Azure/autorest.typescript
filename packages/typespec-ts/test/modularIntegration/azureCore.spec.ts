@@ -71,15 +71,8 @@ describe("BasicClient Classical Client", () => {
         });
 
         const pagedIter = iter.byPage({ maxPageSize: 10 } as any);
-        try {
-          const items: User[] = (await pagedIter.next()).value;
-          assert.strictEqual(items.length, 2);
-        } catch (err: any) {
-          assert.strictEqual(
-            err.message,
-            "maxPageSize is not supported by this operation."
-          );
-        }
+        const items: User[] = (await pagedIter.next()).value;
+        assert.strictEqual(items.length, 2);
       });
 
       it("should get users by continuationToken", async () => {
@@ -100,5 +93,33 @@ describe("BasicClient Classical Client", () => {
         );
       });
     });
+  });
+
+  it("should get a user", async () => {
+    const user = await client.get(1);
+    assert.strictEqual(user?.name, "Madge");
+    assert.strictEqual(user?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+  });
+
+  it("should list with custom page model", async () => {
+    const customPageIter = await client.listWithCustomPageModel();
+    const items = [];
+    for await (const user of customPageIter) {
+      items.push(user);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.name, "Madge");
+    assert.strictEqual(items[0]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
+  });
+
+  it("should list with page", async () => {
+    const customPageIter = await client.listWithPage();
+    const items = [];
+    for await (const user of customPageIter) {
+      items.push(user);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.name, "Madge");
+    assert.strictEqual(items[0]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
   });
 });

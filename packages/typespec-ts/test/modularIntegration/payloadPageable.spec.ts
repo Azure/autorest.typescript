@@ -4,11 +4,6 @@ import {
 } from "./generated/payload/pageable/src/index.js";
 import { assert } from "chai";
 
-/**
- * Add test cases to test the iterable and iterator
- * Add test cases to test error handling
- */
-
 describe("PageableClient Classical Client", () => {
   let client: PageableClient;
 
@@ -86,14 +81,7 @@ describe("PageableClient Classical Client", () => {
     const pagedIter = client
       .list({ maxpagesize: 3 })
       .byPage({ maxPageSize: 10 } as any);
-    try {
-      const items: User[] = (await pagedIter.next()).value;
-      assert.strictEqual(items.length, 3);
-    } catch (err: any) {
-      assert.strictEqual(
-        err.message,
-        "maxPageSize is not supported by this operation."
-      );
-    }
+    const items: User[] = (await pagedIter.next()).value;
+    assert.strictEqual(items.length, 3);
   });
 });
