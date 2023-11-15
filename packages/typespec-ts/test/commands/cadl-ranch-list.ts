@@ -270,6 +270,18 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "unions",
+    inputPath: "type/union"
+  },
+  {
+    outputPath: "projection",
+    inputPath: "projection/projected-name"
+  },
+  {
+    outputPath: "azure/core-traits",
+    inputPath: "azure/core/traits"
   }
 ];
 
