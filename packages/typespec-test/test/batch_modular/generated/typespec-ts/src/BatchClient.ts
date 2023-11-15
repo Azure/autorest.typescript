@@ -4,11 +4,9 @@
 import { TokenCredential } from "@azure/core-auth";
 import { Pipeline } from "@azure/core-rest-pipeline";
 import {
-  ApplicationListResult,
   BatchApplication,
-  PoolListUsageMetricsResult,
+  PoolUsageMetrics,
   BatchPoolCreateOptions,
-  BatchPoolListResult,
   BatchPool,
   AutoScaleRun,
   BatchPoolUpdateOptions,
@@ -17,29 +15,25 @@ import {
   BatchPoolResizeOptions,
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
-  AccountListSupportedImagesResult,
-  PoolNodeCountsListResult,
+  ImageInformation,
+  PoolNodeCounts,
   BatchJob,
   BatchJobUpdateOptions,
   BatchJobDisableOptions,
   BatchJobTerminateOptions,
   BatchJobCreateOptions,
-  BatchJobListResult,
-  BatchJobListPreparationAndReleaseTaskStatusResult,
+  JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
   BatchCertificate,
-  CertificateListResult,
   BatchJobSchedule,
   BatchJobScheduleUpdateOptions,
   BatchJobScheduleCreateOptions,
-  BatchJobScheduleListResult,
   BatchTaskCreateOptions,
-  BatchTaskListResult,
   BatchTask,
   BatchTaskCollection,
   TaskAddCollectionResult,
   BatchTaskListSubtasksResult,
-  NodeFileListResult,
+  NodeFile,
   BatchNodeUserCreateOptions,
   BatchNodeUserUpdateOptions,
   BatchNode,
@@ -49,9 +43,7 @@ import {
   BatchNodeRemoteLoginSettingsResult,
   UploadBatchServiceLogsOptions,
   UploadBatchServiceLogsResult,
-  BatchNodeListResult,
   NodeVMExtension,
-  NodeVMExtensionList,
 } from "./models/models.js";
 import {
   ListApplicationsOptions,
@@ -212,6 +204,7 @@ import {
   getNodeFileProperties,
   listNodeFiles,
 } from "./api/index.js";
+import { PagedAsyncIterableIterator } from "./models/index.js";
 
 export { BatchClientOptions } from "./api/BatchContext.js";
 
@@ -239,7 +232,7 @@ export class BatchClient {
    */
   listApplications(
     options: ListApplicationsOptions = { requestOptions: {} }
-  ): Promise<ApplicationListResult> {
+  ): PagedAsyncIterableIterator<BatchApplication> {
     return listApplications(this._client, options);
   }
 
@@ -267,7 +260,7 @@ export class BatchClient {
    */
   listPoolUsageMetrics(
     options: ListPoolUsageMetricsOptions = { requestOptions: {} }
-  ): Promise<PoolListUsageMetricsResult> {
+  ): PagedAsyncIterableIterator<PoolUsageMetrics> {
     return listPoolUsageMetrics(this._client, options);
   }
 
@@ -286,7 +279,7 @@ export class BatchClient {
   /** Lists all of the Pools in the specified Account. */
   listPools(
     options: ListPoolsOptions = { requestOptions: {} }
-  ): Promise<BatchPoolListResult> {
+  ): PagedAsyncIterableIterator<BatchPool> {
     return listPools(this._client, options);
   }
 
@@ -439,7 +432,7 @@ export class BatchClient {
   /** Lists all Virtual Machine Images supported by the Azure Batch service. */
   listSupportedImages(
     options: ListSupportedImagesOptions = { requestOptions: {} }
-  ): Promise<AccountListSupportedImagesResult> {
+  ): PagedAsyncIterableIterator<ImageInformation> {
     return listSupportedImages(this._client, options);
   }
 
@@ -450,7 +443,7 @@ export class BatchClient {
    */
   listPoolNodeCounts(
     options: ListPoolNodeCountsOptions = { requestOptions: {} }
-  ): Promise<PoolNodeCountsListResult> {
+  ): PagedAsyncIterableIterator<PoolNodeCounts> {
     return listPoolNodeCounts(this._client, options);
   }
 
@@ -575,7 +568,7 @@ export class BatchClient {
   /** Lists all of the Jobs in the specified Account. */
   listJobs(
     options: ListJobsOptions = { requestOptions: {} }
-  ): Promise<BatchJobListResult> {
+  ): PagedAsyncIterableIterator<BatchJob> {
     return listJobs(this._client, options);
   }
 
@@ -583,7 +576,7 @@ export class BatchClient {
   listJobsFromSchedule(
     jobScheduleId: string,
     options: ListJobsFromScheduleOptions = { requestOptions: {} }
-  ): Promise<BatchJobListResult> {
+  ): PagedAsyncIterableIterator<BatchJob> {
     return listJobsFromSchedule(this._client, jobScheduleId, options);
   }
 
@@ -600,7 +593,7 @@ export class BatchClient {
     options: ListJobPreparationAndReleaseTaskStatusOptions = {
       requestOptions: {},
     }
-  ): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
+  ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
     return listJobPreparationAndReleaseTaskStatus(this._client, jobId, options);
   }
 
@@ -628,7 +621,7 @@ export class BatchClient {
   /** Lists all of the Certificates that have been added to the specified Account. */
   listCertificates(
     options: ListCertificatesOptions = { requestOptions: {} }
-  ): Promise<CertificateListResult> {
+  ): PagedAsyncIterableIterator<BatchCertificate> {
     return listCertificates(this._client, options);
   }
 
@@ -787,7 +780,7 @@ export class BatchClient {
   /** Lists all of the Job Schedules in the specified Account. */
   listJobSchedules(
     options: ListJobSchedulesOptions = { requestOptions: {} }
-  ): Promise<BatchJobScheduleListResult> {
+  ): PagedAsyncIterableIterator<BatchJobSchedule> {
     return listJobSchedules(this._client, options);
   }
 
@@ -812,7 +805,7 @@ export class BatchClient {
   listTasks(
     jobId: string,
     options: ListTasksOptions = { requestOptions: {} }
-  ): Promise<BatchTaskListResult> {
+  ): PagedAsyncIterableIterator<BatchTask> {
     return listTasks(this._client, jobId, options);
   }
 
@@ -958,7 +951,7 @@ export class BatchClient {
     jobId: string,
     taskId: string,
     options: ListTaskFilesOptions = { requestOptions: {} }
-  ): Promise<NodeFileListResult> {
+  ): PagedAsyncIterableIterator<NodeFile> {
     return listTaskFiles(this._client, jobId, taskId, options);
   }
 
@@ -1117,7 +1110,7 @@ export class BatchClient {
   listNodes(
     poolId: string,
     options: ListNodesOptions = { requestOptions: {} }
-  ): Promise<BatchNodeListResult> {
+  ): PagedAsyncIterableIterator<BatchNode> {
     return listNodes(this._client, poolId, options);
   }
 
@@ -1142,7 +1135,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     options: ListNodeExtensionsOptions = { requestOptions: {} }
-  ): Promise<NodeVMExtensionList> {
+  ): PagedAsyncIterableIterator<NodeVMExtension> {
     return listNodeExtensions(this._client, poolId, nodeId, options);
   }
 
@@ -1187,7 +1180,7 @@ export class BatchClient {
     poolId: string,
     nodeId: string,
     options: ListNodeFilesOptions = { requestOptions: {} }
-  ): Promise<NodeFileListResult> {
+  ): PagedAsyncIterableIterator<NodeFile> {
     return listNodeFiles(this._client, poolId, nodeId, options);
   }
 }

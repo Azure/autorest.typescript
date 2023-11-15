@@ -283,4 +283,6 @@ export {
   GetNodeFileOptions,
   GetNodeFilePropertiesOptions,
   ListNodeFilesOptions,
+  PagedAsyncIterableIterator,
+  PageSettings,
 } from "./models/index.js";
