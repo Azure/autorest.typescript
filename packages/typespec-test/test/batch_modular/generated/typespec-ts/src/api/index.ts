@@ -88,4 +88,4 @@ export {
   buildPagedAsyncIterator,
   GetArrayType,
   PaginateReturn,
-} from "./paginateHelper.js";
+} from "./pagingHelpers.js";

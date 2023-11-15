@@ -123,6 +123,7 @@ import {
   GetNodeFilePropertiesOptions,
   ListNodeFilesOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBatch,
   BatchClientOptions,
@@ -204,7 +205,6 @@ import {
   getNodeFileProperties,
   listNodeFiles,
 } from "./api/index.js";
-import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 export { BatchClientOptions } from "./api/BatchContext.js";
 

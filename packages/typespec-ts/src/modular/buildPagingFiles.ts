@@ -58,7 +58,7 @@ export async function buildPagingTypes(
   return fileContent;
 }
 
-export async function buildPaginateHelper(
+export async function buildPagingHelpers(
   codeModel: ModularCodeModel,
   client: Client
 ) {
@@ -87,7 +87,7 @@ export async function buildPaginateHelper(
   const filePath = path.join(
     codeModel.modularOptions.sourceRoot,
     client.subfolder ?? "",
-    `api/paginateHelper.ts`
+    `api/pagingHelpers.ts`
   );
 
   const fileContent = codeModel.project.createSourceFile(filePath, undefined, {

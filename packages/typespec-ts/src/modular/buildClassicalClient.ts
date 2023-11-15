@@ -176,6 +176,21 @@ function importAllModels(
     moduleSpecifier: `./models/options.js`,
     namedImports: exportedOptions
   });
+
+  const pagingTypes = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
+  );
+
+  if (!pagingTypes) {
+    return;
+  }
+
+  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
+
+  clientFile.addImportDeclaration({
+    moduleSpecifier: `./models/pagingTypes.js`,
+    namedImports: exportedPaingTypes
+  });
 }
 
 function importPipeline(

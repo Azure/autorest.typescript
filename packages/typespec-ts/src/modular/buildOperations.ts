@@ -5,8 +5,7 @@ import {
   getOperationFunction,
   getSendPrivateFunction,
   getDeserializePrivateFunction,
-  getOperationOptionsName,
-  hasPagingOperation
+  getOperationOptionsName
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
@@ -50,6 +49,15 @@ export function buildOperationFiles(
     // Import models used from ./models.ts
     // We SHOULD keep this because otherwise ts-morph will "helpfully" try to import models from the rest layer when we call fixMissingImports().
     importModels(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
+    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
+    importPagingDependencies(
       srcPath,
       operationGroupFile,
       codeModel.project,
@@ -135,19 +143,6 @@ export function buildOperationFiles(
         ]);
       }
     }
-    if (hasPagingOperation(codeModel)) {
-      operationGroupFile.addImportDeclarations([
-        {
-          moduleSpecifier: `${
-            subfolder && subfolder !== "" ? "../" : ""
-          }../util/pagingUtil.js`,
-          namedImports: [
-            "PagedAsyncIterableIterator",
-            "buildPagedAsyncIterator"
-          ]
-        }
-      ]);
-    }
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();
@@ -187,6 +182,46 @@ export function importModels(
   // Import all models and then let ts-morph clean up the unused ones
   // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
   // sourceFile.fixUnusedIdentifiers();
+}
+
+function importPagingDependencies(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  subfolder: string = "",
+  importLayer: number = 0
+) {
+  const pagingTypes = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
+  );
+
+  if (!pagingTypes) {
+    return;
+  }
+
+  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${"../".repeat(importLayer + 1)}models/pagingTypes.js`,
+    namedImports: exportedPaingTypes
+  });
+
+  const pagingHelper = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pagingHelpers.ts`
+  );
+
+  if (!pagingHelper) {
+    return;
+  }
+
+  const exportedPaingHelpers = [
+    ...pagingHelper.getExportedDeclarations().keys()
+  ];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${"../".repeat(importLayer + 1)}api/pagingTypes.js`,
+    namedImports: exportedPaingHelpers
+  });
 }
 
 /**

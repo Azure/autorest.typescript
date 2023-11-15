@@ -56,7 +56,7 @@ import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
 import {
   buildPagingTypes,
-  buildPaginateHelper as buildModularPaginateHelper
+  buildPagingHelpers as buildModularPaginateHelper
 } from "./modular/buildPagingFiles.js";
 
 export * from "./lib.js";
