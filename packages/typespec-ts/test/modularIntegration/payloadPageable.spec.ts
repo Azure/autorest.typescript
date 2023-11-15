@@ -70,6 +70,10 @@ describe("PageableClient Classical Client", () => {
     assert.strictEqual(firstPage.value.length, 3);
     // initiate another iterator starting with 2nd page
     const continuationToken = firstPage.value.continuationToken;
+    assert.strictEqual(
+      continuationToken,
+      "http://localhost:3000/payload/pageable?skipToken=name-user7&maxpagesize=3"
+    );
     const items: User[] = [];
     for await (const pagedUsers of iter.byPage({ continuationToken })) {
       items.push(...pagedUsers);
