@@ -161,22 +161,22 @@ export class BatchClient {
     getTaskFile(jobId: string, taskId: string, filePath: string, options?: GetTaskFileOptions): Promise<Uint8Array>;
     getTaskFileProperties(jobId: string, taskId: string, filePath: string, options?: GetTaskFilePropertiesOptions): Promise<void>;
     jobScheduleExists(jobScheduleId: string, options?: JobScheduleExistsOptions): Promise<void>;
-    listApplications(options?: ListApplicationsOptions): Promise<ApplicationListResult>;
-    listCertificates(options?: ListCertificatesOptions): Promise<CertificateListResult>;
-    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptions): Promise<BatchJobListPreparationAndReleaseTaskStatusResult>;
-    listJobs(options?: ListJobsOptions): Promise<BatchJobListResult>;
-    listJobSchedules(options?: ListJobSchedulesOptions): Promise<BatchJobScheduleListResult>;
-    listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptions): Promise<BatchJobListResult>;
-    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptions): Promise<NodeVMExtensionList>;
-    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptions): Promise<NodeFileListResult>;
-    listNodes(poolId: string, options?: ListNodesOptions): Promise<BatchNodeListResult>;
-    listPoolNodeCounts(options?: ListPoolNodeCountsOptions): Promise<PoolNodeCountsListResult>;
-    listPools(options?: ListPoolsOptions): Promise<BatchPoolListResult>;
-    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptions): Promise<PoolListUsageMetricsResult>;
+    listApplications(options?: ListApplicationsOptions): PagedAsyncIterableIterator<BatchApplication>;
+    listCertificates(options?: ListCertificatesOptions): PagedAsyncIterableIterator<BatchCertificate>;
+    listJobPreparationAndReleaseTaskStatus(jobId: string, options?: ListJobPreparationAndReleaseTaskStatusOptions): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation>;
+    listJobs(options?: ListJobsOptions): PagedAsyncIterableIterator<BatchJob>;
+    listJobSchedules(options?: ListJobSchedulesOptions): PagedAsyncIterableIterator<BatchJobSchedule>;
+    listJobsFromSchedule(jobScheduleId: string, options?: ListJobsFromScheduleOptions): PagedAsyncIterableIterator<BatchJob>;
+    listNodeExtensions(poolId: string, nodeId: string, options?: ListNodeExtensionsOptions): PagedAsyncIterableIterator<NodeVMExtension>;
+    listNodeFiles(poolId: string, nodeId: string, options?: ListNodeFilesOptions): PagedAsyncIterableIterator<NodeFile>;
+    listNodes(poolId: string, options?: ListNodesOptions): PagedAsyncIterableIterator<BatchNode>;
+    listPoolNodeCounts(options?: ListPoolNodeCountsOptions): PagedAsyncIterableIterator<PoolNodeCounts>;
+    listPools(options?: ListPoolsOptions): PagedAsyncIterableIterator<BatchPool>;
+    listPoolUsageMetrics(options?: ListPoolUsageMetricsOptions): PagedAsyncIterableIterator<PoolUsageMetrics>;
     listSubTasks(jobId: string, taskId: string, options?: ListSubTasksOptions): Promise<BatchTaskListSubtasksResult>;
-    listSupportedImages(options?: ListSupportedImagesOptions): Promise<AccountListSupportedImagesResult>;
-    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptions): Promise<NodeFileListResult>;
-    listTasks(jobId: string, options?: ListTasksOptions): Promise<BatchTaskListResult>;
+    listSupportedImages(options?: ListSupportedImagesOptions): PagedAsyncIterableIterator<ImageInformation>;
+    listTaskFiles(jobId: string, taskId: string, options?: ListTaskFilesOptions): PagedAsyncIterableIterator<NodeFile>;
+    listTasks(jobId: string, options?: ListTasksOptions): PagedAsyncIterableIterator<BatchTask>;
     readonly pipeline: Pipeline;
     poolExists(poolId: string, options?: PoolExistsOptions): Promise<void>;
     reactivateTask(jobId: string, taskId: string, options?: ReactivateTaskOptions): Promise<void>;
@@ -1643,6 +1643,20 @@ export type OutputFileUploadCondition = string;
 // @public
 export interface OutputFileUploadOptions {
     uploadCondition: OutputFileUploadCondition;
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage & {
+        continuationToken?: string;
+    }>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public (undocumented)
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public

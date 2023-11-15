@@ -84,8 +84,3 @@ export {
   getNodeFileProperties,
   listNodeFiles,
 } from "./operations.js";
-export {
-  buildPagedAsyncIterator,
-  GetArrayType,
-  PaginateReturn,
-} from "./pagingHelpers.js";

@@ -219,7 +219,9 @@ function importPagingDependencies(
   ];
 
   sourceFile.addImportDeclaration({
-    moduleSpecifier: `${"../".repeat(importLayer + 1)}api/pagingTypes.js`,
+    moduleSpecifier: `${
+      importLayer === 0 ? "./" : "../".repeat(importLayer)
+    }pagingHelpers.js`,
     namedImports: exportedPaingHelpers
   });
 }

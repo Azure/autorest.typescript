@@ -32,6 +32,11 @@ export function buildSubpathIndexFile(
     if (!options.exportIndex && file.getFilePath().endsWith("index.ts")) {
       continue;
     }
+    // Skip to export pagingHelpers.ts
+    // pagingHelpers.ts is a file that is used internally and is not exported.
+    if (file.getFilePath().endsWith("pagingHelpers.ts")) {
+      continue;
+    }
     if (file.getFilePath() === indexFile.getFilePath()) {
       continue;
     }
