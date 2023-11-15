@@ -1,4 +1,3 @@
-import { PagedResultMetadata } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
   listOperationGroups,
