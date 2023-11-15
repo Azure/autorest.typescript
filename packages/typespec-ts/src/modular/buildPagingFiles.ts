@@ -5,10 +5,7 @@ import {
   isPagingOperation
 } from "./helpers/operationHelpers.js";
 
-export async function buildPagingTypes(
-  codeModel: ModularCodeModel,
-  client: Client
-) {
+export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
   if (!hasPagingOperation(client)) {
     return;
   }
@@ -58,7 +55,7 @@ export async function buildPagingTypes(
   return fileContent;
 }
 
-export async function buildPagingHelpers(
+export function buildPagingHelpers(
   codeModel: ModularCodeModel,
   client: Client
 ) {
