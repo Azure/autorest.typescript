@@ -164,6 +164,7 @@ describe("operations", () => {
     });
   });
 
+  // TODO: need to fix the tests
   describe.skip("array as body", () => {
     it("should generate required model array as request body", async () => {
       const tspContent = `
@@ -306,7 +307,7 @@ describe("operations", () => {
         }`
       );
     });
-    it("should handle `null` for anonymous array as response body", async () => {
+    it("should handle `null` for named array as response body", async () => {
       const tspContent = `
         model Bar {
           prop1: string;
@@ -355,10 +356,170 @@ describe("operations", () => {
     });
   });
 
-  describe.only("array in body", () => {
-    it("should handle `undefined` for array in request body", async () => {});
-    it("should handle `undefined` for named array as response body", async () => {});
-    it("should handle `undefined` for array in response body", async () => {});
-    it("should handle `undefined` for array both in request and response body", async () => {});
+  describe("array in body", () => {
+    it("should handle `undefined`/`null` for array in request body", async () => {
+      const tspContent = `
+        model Bar {
+          prop1: string;
+          prop2: int64;
+        }
+        model Foo {
+          optionalBars?: Bar[];
+          requiredBars: Bar[];
+          nullableBars?: Bar[] | null;
+          nullableRequiredBars: Bar[] | null;
+        }
+        op read(...Foo): OkResponse;
+          `;
+
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      // console.log(operationFiles?.[0]?.getFullText()!);
+      assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        
+        export function _readSend(
+          context: Client,
+          body: Foo,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read200Response> {
+          return context
+            .path("/")
+            .post({
+              ...operationOptionsToRequestParameters(options),
+              body: {
+                optionalBars: !body["optionalBars"]
+                  ? body["optionalBars"]
+                  : body["optionalBars"].map((p) => ({
+                      prop1: p["prop1"],
+                      prop2: p["prop2"],
+                    })),
+                requiredBars: body["requiredBars"].map((p) => ({
+                  prop1: p["prop1"],
+                  prop2: p["prop2"],
+                })),
+                nullableBars: !body["nullableBars"]
+                  ? body["nullableBars"]
+                  : body["nullableBars"].map((p) => ({
+                      prop1: p["prop1"],
+                      prop2: p["prop2"],
+                    })),
+                nullableRequiredBars: !body["nullableRequiredBars"]
+                  ? body["nullableRequiredBars"]
+                  : body["nullableRequiredBars"].map((p) => ({
+                      prop1: p["prop1"],
+                      prop2: p["prop2"],
+                    })),
+              },
+            });
+        }
+        
+        export async function _readDeserialize(result: Read200Response): Promise<void> {
+          if (result.status !== "200") {
+            throw result.body;
+          }
+        
+          return;
+        }
+        
+        export async function read(
+          context: Client,
+          body: Foo,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _readSend(context, body, options);
+          return _readDeserialize(result);
+        }`,
+        true
+      );
+    });
+    it("should handle `undefined`/`null` for array in response body", async () => {
+      const tspContent = `
+        model Bar {
+          prop1: string;
+          prop2: int64;
+        }
+        model Foo {
+          optionalBars?: Bar[];
+          requiredBars: Bar[];
+          nullableBars?: Bar[] | null;
+          nullableRequiredBars: Bar[] | null;
+        }
+        op read(): Foo;
+          `;
+
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      // console.log(operationFiles?.[0]?.getFullText()!);
+      assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+        } from "@azure-rest/core-client";
+        
+        export function _readSend(
+          context: Client,
+          options: ReadOptions = { requestOptions: {} }
+        ): StreamableMethod<Read200Response> {
+          return context
+            .path("/")
+            .get({ ...operationOptionsToRequestParameters(options) });
+        }
+        
+        export async function _readDeserialize(result: Read200Response): Promise<Foo> {
+          if (result.status !== "200") {
+            throw result.body;
+          }
+          return {
+            optionalBars: !result.body["optionalBars"]
+              ? result.body["optionalBars"]
+              : result.body["optionalBars"].map((p) => ({
+                  prop1: p["prop1"],
+                  prop2: p["prop2"],
+                })),
+            requiredBars: result.body["requiredBars"].map((p) => ({
+              prop1: p["prop1"],
+              prop2: p["prop2"],
+            })),
+            nullableBars: !result.body["nullableBars"]
+              ? result.body["nullableBars"]
+              : result.body["nullableBars"].map((p) => ({
+                  prop1: p["prop1"],
+                  prop2: p["prop2"],
+                })),
+            nullableRequiredBars: !result.body["nullableRequiredBars"]
+              ? result.body["nullableRequiredBars"]
+              : result.body["nullableRequiredBars"].map((p) => ({
+                  prop1: p["prop1"],
+                  prop2: p["prop2"],
+                })),
+          };
+        }
+        
+        export async function read(
+          context: Client,
+          options: ReadOptions = { requestOptions: {} }
+        ): Promise<Foo> {
+          const result = await _readSend(context, options);
+          return _readDeserialize(result);
+        }`,
+        true
+      );
+    });
   });
 });
