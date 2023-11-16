@@ -184,6 +184,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "client/structure/two-operation-group",
     inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
   }
 ];
 
