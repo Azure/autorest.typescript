@@ -126,7 +126,7 @@ export function _queryBase64urlArraySend(
     .get({
       ...operationOptionsToRequestParameters(options),
       queryParameters: {
-        value: (value ?? []).map((p) => uint8ArrayToString(p, "base64url")),
+        value: value.map((p) => uint8ArrayToString(p, "base64url")),
       },
     });
 }

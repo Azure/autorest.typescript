@@ -86,14 +86,14 @@ export async function _analyzeTextDeserialize(
   }
 
   return {
-    blocklistsMatchResults: (result.body["blocklistsMatchResults"] ?? []).map(
-      (p) => ({
-        blocklistName: p["blocklistName"],
-        blockItemId: p["blockItemId"],
-        blockItemText: p["blockItemText"],
-      })
-    ),
-    analyzeResults: (result.body["analyzeResults"] ?? []).map((p) => ({
+    blocklistsMatchResults: !result.body["blocklistsMatchResults"]
+      ? result.body["blocklistsMatchResults"]
+      : result.body["blocklistsMatchResults"].map((p) => ({
+          blocklistName: p["blocklistName"],
+          blockItemId: p["blockItemId"],
+          blockItemText: p["blockItemText"],
+        })),
+    analyzeResults: result.body["analyzeResults"].map((p) => ({
       category: p["category"],
       severity: p["severity"],
     })),
@@ -141,7 +141,7 @@ export async function _analyzeImageDeserialize(
   }
 
   return {
-    analyzeResults: (result.body["analyzeResults"] ?? []).map((p) => ({
+    analyzeResults: result.body["analyzeResults"].map((p) => ({
       category: p["category"],
       severity: p["severity"],
     })),
@@ -300,7 +300,7 @@ export async function _listTextBlocklistsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       blocklistName: p["blocklistName"],
       description: p["description"],
     })),
@@ -337,7 +337,7 @@ export function _addOrUpdateBlockItemsSend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        blockItems: (body["blockItems"] ?? []).map((p) => ({
+        blockItems: body["blockItems"].map((p) => ({
           description: p["description"],
           text: p["text"],
         })),
@@ -355,11 +355,13 @@ export async function _addOrUpdateBlockItemsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      blockItemId: p["blockItemId"],
-      description: p["description"],
-      text: p["text"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          blockItemId: p["blockItemId"],
+          description: p["description"],
+          text: p["text"],
+        })),
   };
 }
 
@@ -497,7 +499,7 @@ export async function _listTextBlocklistItemsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       blockItemId: p["blockItemId"],
       description: p["description"],
       text: p["text"],

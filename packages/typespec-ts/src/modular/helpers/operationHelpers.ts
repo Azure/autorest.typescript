@@ -936,16 +936,20 @@ function deserializeResponseValue(
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "combined":
       return `${restValue} as any`;
-    case "list":
+    case "list": {
+      const prefix =
+        required && !type.nullable
+          ? `${restValue}`
+          : `!${restValue} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
+        return `${prefix}.map(p => ({${getResponseMapping(
           getAllProperties(type.elementType) ?? [],
           "p",
           importSet,
           runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
-        return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
+        return `${prefix}.map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
           importSet,
@@ -956,6 +960,7 @@ function deserializeResponseValue(
       } else {
         return restValue;
       }
+    }
     case "byte-array":
       if (format !== "binary") {
         if (!coreUtilSet) {
@@ -1007,16 +1012,20 @@ function serializeRequestValue(
         default:
           return `${clientValue}${required ? "" : "?"}.toISOString()`;
       }
-    case "list":
+    case "list": {
+      const prefix =
+        required && !type.nullable
+          ? `${clientValue}`
+          : `!${clientValue} ? ${clientValue} : ${clientValue}`;
       if (type.elementType?.type === "model") {
-        return `(${clientValue} ?? []).map(p => ({${getRequestModelMapping(
+        return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
           importSet,
           runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
-        return `(${clientValue} ?? []).map(p => ${serializeRequestValue(
+        return `${prefix}.map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet,
@@ -1027,6 +1036,7 @@ function serializeRequestValue(
       } else {
         return clientValue;
       }
+    }
     case "byte-array":
       if (format !== "binary") {
         if (!coreUtilSet) {
