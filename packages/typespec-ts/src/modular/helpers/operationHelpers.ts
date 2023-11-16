@@ -249,7 +249,7 @@ export function getOperationFunction(
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
-  const isPaging = operation.discriminator === "paging";
+  const isPaging = isPagingOperation(operation);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
