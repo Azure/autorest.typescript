@@ -1,10 +1,11 @@
 import { assert } from "chai";
-import AzureCoreClientFactory, {
-  AzureCoreClient
+import AccessClientFactory, {
+  AccessClient
 } from "./generated/azure/clientGeneratorCore/access/src/index.js";
 import { matrix } from "../util/matrix.js";
-describe("Scalar Projected Client", () => {
-  let client: AzureCoreClient;
+
+describe("Access Client", () => {
+  let client: AccessClient;
 
   interface UrlDetail {
     type: string;
@@ -40,7 +41,7 @@ describe("Scalar Projected Client", () => {
   ];
 
   beforeEach(() => {
-    client = AzureCoreClientFactory({
+    client = AccessClientFactory({
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0
@@ -73,7 +74,9 @@ describe("Scalar Projected Client", () => {
         .path(
           "/azure/client-generator-core/access/relativeModelInOperation/operation"
         )
-        .get({ queryParameters: { name: "Madge", inner: { name: "Madge" } } });
+        .get({
+          queryParameters: { name: "Madge", inner: { name: "Madge" } }
+        });
       assert.strictEqual(result.status, "200");
       assert.strictEqual(
         JSON.stringify(result.body),

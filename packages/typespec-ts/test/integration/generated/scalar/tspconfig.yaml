@@ -8,7 +8,6 @@ options:
     addCredentials: false
     azureSdkForJs: false
     isTypeSpecTest: true
-    title: ProjectionClient
     enableOperationGroup: true
     packageDetails:
       name: "@msinternal/scalar"

@@ -1,12 +1,13 @@
 import { assert } from "chai";
-import ProjectionClientFactory, {
-  ProjectionClient
+import ScalarClientFactory, {
+  ScalarClient
 } from "./generated/scalar/src/index.js";
-describe("Scalar Projected Client", () => {
-  let client: ProjectionClient;
+
+describe("Scalar Client", () => {
+  let client: ScalarClient;
 
   beforeEach(() => {
-    client = ProjectionClientFactory({
+    client = ScalarClientFactory({
       allowInsecureConnection: true,
       retryOptions: {
         maxRetries: 0

@@ -26,7 +26,7 @@ Install the _Specs_Azure REST client REST client library for JavaScript with `np
 npm install @msinternal/clientGeneratorCore-access
 ```
 
-### Create and authenticate a `AzureCoreClient`
+### Create and authenticate a `AccessClient`
 
 To use an [Azure Active Directory (AAD) token credential](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token),
 provide an instance of the desired credential type obtained from the

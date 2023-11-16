@@ -135,6 +135,6 @@ export interface Routes {
   ): Discriminator;
 }
 
-export type AzureCoreClient = Client & {
+export type AccessClient = Client & {
   path: Routes;
 };

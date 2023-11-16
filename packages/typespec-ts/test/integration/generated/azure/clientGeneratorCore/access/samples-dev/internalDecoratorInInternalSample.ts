@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import createAzureCoreClient from "@msinternal/clientGeneratorCore-access";
+import createAccessClient from "@msinternal/clientGeneratorCore-access";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -12,7 +12,7 @@ dotenv.config();
  * @summary call operation InternalDecoratorInInternal
  */
 async function internalDecoratorInInternalSample() {
-  const client = createAzureCoreClient();
+  const client = createAccessClient();
   const result = await client
     .path(
       "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal"

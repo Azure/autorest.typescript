@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import AzureCoreClient from "./azureCoreClient";
+import AccessClient from "./accessClient";
 
-export * from "./azureCoreClient";
+export * from "./accessClient";
 export * from "./parameters";
 export * from "./responses";
 export * from "./clientDefinitions";
 export * from "./outputModels";
 
-export default AzureCoreClient;
+export default AccessClient;

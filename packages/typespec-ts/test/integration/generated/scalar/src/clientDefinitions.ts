@@ -57,6 +57,6 @@ export interface Routes {
   (path: "/type/scalar/unknown"): UnknownGet;
 }
 
-export type ProjectionClient = Client & {
+export type ScalarClient = Client & {
   path: Routes;
 };

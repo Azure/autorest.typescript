@@ -3,15 +3,15 @@
 
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
-import { ProjectionClient } from "./clientDefinitions";
+import { ScalarClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `ProjectionClient`
+ * Initialize a new instance of `ScalarClient`
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   options: ClientOptions = {}
-): ProjectionClient {
+): ScalarClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-scalar-rest/1.0.0-beta.1`;
@@ -29,7 +29,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(baseUrl, options) as ProjectionClient;
+  const client = getClient(baseUrl, options) as ScalarClient;
 
   return client;
 }
