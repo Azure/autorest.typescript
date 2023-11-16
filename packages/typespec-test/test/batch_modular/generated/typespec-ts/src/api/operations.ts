@@ -318,11 +318,13 @@ export async function _listApplicationsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      displayName: p["displayName"],
-      versions: p["versions"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          displayName: p["displayName"],
+          versions: p["versions"],
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -413,13 +415,15 @@ export async function _listPoolUsageMetricsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      poolId: p["poolId"],
-      startTime: new Date(p["startTime"]),
-      endTime: new Date(p["endTime"]),
-      vmSize: p["vmSize"],
-      totalCoreHours: p["totalCoreHours"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          poolId: p["poolId"],
+          startTime: new Date(p["startTime"]),
+          endTime: new Date(p["endTime"]),
+          vmSize: p["vmSize"],
+          totalCoreHours: p["totalCoreHours"],
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -490,14 +494,14 @@ export function _createPoolSend(
                         "enableAutomaticUpdates"
                       ],
                   },
-              dataDisks: (
-                body.virtualMachineConfiguration?.["dataDisks"] ?? []
-              ).map((p) => ({
-                lun: p["lun"],
-                caching: p["caching"],
-                diskSizeGB: p["diskSizeGB"],
-                storageAccountType: p["storageAccountType"],
-              })),
+              dataDisks: !body.virtualMachineConfiguration?.["dataDisks"]
+                ? body.virtualMachineConfiguration?.["dataDisks"]
+                : body.virtualMachineConfiguration?.["dataDisks"].map((p) => ({
+                    lun: p["lun"],
+                    caching: p["caching"],
+                    diskSizeGB: p["diskSizeGB"],
+                    storageAccountType: p["storageAccountType"],
+                  })),
               licenseType: body.virtualMachineConfiguration?.["licenseType"],
               containerConfiguration: !body.virtualMachineConfiguration
                 ?.containerConfiguration
@@ -508,17 +512,22 @@ export function _createPoolSend(
                     containerImageNames:
                       body.virtualMachineConfiguration
                         ?.containerConfiguration?.["containerImageNames"],
-                    containerRegistries: (
-                      body.virtualMachineConfiguration
-                        ?.containerConfiguration?.["containerRegistries"] ?? []
-                    ).map((p) => ({
-                      username: p["username"],
-                      password: p["password"],
-                      registryServer: p["registryServer"],
-                      identityReference: !p.identityReference
-                        ? undefined
-                        : { resourceId: p.identityReference?.["resourceId"] },
-                    })),
+                    containerRegistries: !body.virtualMachineConfiguration
+                      ?.containerConfiguration?.["containerRegistries"]
+                      ? body.virtualMachineConfiguration
+                          ?.containerConfiguration?.["containerRegistries"]
+                      : body.virtualMachineConfiguration?.containerConfiguration?.[
+                          "containerRegistries"
+                        ].map((p) => ({
+                          username: p["username"],
+                          password: p["password"],
+                          registryServer: p["registryServer"],
+                          identityReference: !p.identityReference
+                            ? undefined
+                            : {
+                                resourceId: p.identityReference?.["resourceId"],
+                              },
+                        })),
                   },
               diskEncryptionConfiguration: !body.virtualMachineConfiguration
                 ?.diskEncryptionConfiguration
@@ -536,19 +545,19 @@ export function _createPoolSend(
                       body.virtualMachineConfiguration
                         ?.nodePlacementConfiguration?.["policy"],
                   },
-              extensions: (
-                body.virtualMachineConfiguration?.["extensions"] ?? []
-              ).map((p) => ({
-                name: p["name"],
-                publisher: p["publisher"],
-                type: p["type"],
-                typeHandlerVersion: p["typeHandlerVersion"],
-                autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
-                enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-                settings: p["settings"],
-                protectedSettings: p["protectedSettings"],
-                provisionAfterExtensions: p["provisionAfterExtensions"],
-              })),
+              extensions: !body.virtualMachineConfiguration?.["extensions"]
+                ? body.virtualMachineConfiguration?.["extensions"]
+                : body.virtualMachineConfiguration?.["extensions"].map((p) => ({
+                    name: p["name"],
+                    publisher: p["publisher"],
+                    type: p["type"],
+                    typeHandlerVersion: p["typeHandlerVersion"],
+                    autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
+                    enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
+                    settings: p["settings"],
+                    protectedSettings: p["protectedSettings"],
+                    provisionAfterExtensions: p["provisionAfterExtensions"],
+                  })),
               osDisk: !body.virtualMachineConfiguration?.osDisk
                 ? undefined
                 : {
@@ -579,25 +588,26 @@ export function _createPoolSend(
                 ?.endpointConfiguration
                 ? undefined
                 : {
-                    inboundNATPools: (
+                    inboundNATPools:
                       body.networkConfiguration?.endpointConfiguration?.[
                         "inboundNATPools"
-                      ] ?? []
-                    ).map((p) => ({
-                      name: p["name"],
-                      protocol: p["protocol"],
-                      backendPort: p["backendPort"],
-                      frontendPortRangeStart: p["frontendPortRangeStart"],
-                      frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                      networkSecurityGroupRules: (
-                        p["networkSecurityGroupRules"] ?? []
-                      ).map((p) => ({
-                        priority: p["priority"],
-                        access: p["access"],
-                        sourceAddressPrefix: p["sourceAddressPrefix"],
-                        sourcePortRanges: p["sourcePortRanges"],
+                      ].map((p) => ({
+                        name: p["name"],
+                        protocol: p["protocol"],
+                        backendPort: p["backendPort"],
+                        frontendPortRangeStart: p["frontendPortRangeStart"],
+                        frontendPortRangeEnd: p["frontendPortRangeEnd"],
+                        networkSecurityGroupRules: !p[
+                          "networkSecurityGroupRules"
+                        ]
+                          ? p["networkSecurityGroupRules"]
+                          : p["networkSecurityGroupRules"].map((p) => ({
+                              priority: p["priority"],
+                              access: p["access"],
+                              sourceAddressPrefix: p["sourceAddressPrefix"],
+                              sourcePortRanges: p["sourcePortRanges"],
+                            })),
                       })),
-                    })),
                   },
               publicIPAddressConfiguration: !body.networkConfiguration
                 ?.publicIPAddressConfiguration
@@ -654,22 +664,25 @@ export function _createPoolSend(
                     workingDirectory:
                       body.startTask?.containerSettings?.["workingDirectory"],
                   },
-              resourceFiles: (body.startTask?.["resourceFiles"] ?? []).map(
-                (p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })
-              ),
-              environmentSettings: (
-                body.startTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+              resourceFiles: !body.startTask?.["resourceFiles"]
+                ? body.startTask?.["resourceFiles"]
+                : body.startTask?.["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
+                      ? undefined
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              environmentSettings: !body.startTask?.["environmentSettings"]
+                ? body.startTask?.["environmentSettings"]
+                : body.startTask?.["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
               userIdentity: !body.startTask?.userIdentity
                 ? undefined
                 : {
@@ -688,98 +701,109 @@ export function _createPoolSend(
               maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
               waitForSuccess: body.startTask?.["waitForSuccess"],
             },
-        certificateReferences: (body["certificateReferences"] ?? []).map(
-          (p) => ({
-            thumbprint: p["thumbprint"],
-            thumbprintAlgorithm: p["thumbprintAlgorithm"],
-            storeLocation: p["storeLocation"],
-            storeName: p["storeName"],
-            visibility: p["visibility"],
-          })
-        ),
-        applicationPackageReferences: (
-          body["applicationPackageReferences"] ?? []
-        ).map((p) => ({
-          applicationId: p["applicationId"],
-          version: p["version"],
-        })),
+        certificateReferences: !body["certificateReferences"]
+          ? body["certificateReferences"]
+          : body["certificateReferences"].map((p) => ({
+              thumbprint: p["thumbprint"],
+              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+              storeLocation: p["storeLocation"],
+              storeName: p["storeName"],
+              visibility: p["visibility"],
+            })),
+        applicationPackageReferences: !body["applicationPackageReferences"]
+          ? body["applicationPackageReferences"]
+          : body["applicationPackageReferences"].map((p) => ({
+              applicationId: p["applicationId"],
+              version: p["version"],
+            })),
         applicationLicenses: body["applicationLicenses"],
         taskSlotsPerNode: body["taskSlotsPerNode"],
         taskSchedulingPolicy: !body.taskSchedulingPolicy
           ? undefined
           : { nodeFillType: body.taskSchedulingPolicy?.["nodeFillType"] },
-        userAccounts: (body["userAccounts"] ?? []).map((p) => ({
-          name: p["name"],
-          password: p["password"],
-          elevationLevel: p["elevationLevel"],
-          linuxUserConfiguration: !p.linuxUserConfiguration
-            ? undefined
-            : {
-                uid: p.linuxUserConfiguration?.["uid"],
-                gid: p.linuxUserConfiguration?.["gid"],
-                sshPrivateKey: p.linuxUserConfiguration?.["sshPrivateKey"],
-              },
-          windowsUserConfiguration: !p.windowsUserConfiguration
-            ? undefined
-            : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
-        })),
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
-        mountConfiguration: (body["mountConfiguration"] ?? []).map((p) => ({
-          azureBlobFileSystemConfiguration: !p.azureBlobFileSystemConfiguration
-            ? undefined
-            : {
-                accountName:
-                  p.azureBlobFileSystemConfiguration?.["accountName"],
-                containerName:
-                  p.azureBlobFileSystemConfiguration?.["containerName"],
-                accountKey: p.azureBlobFileSystemConfiguration?.["accountKey"],
-                sasKey: p.azureBlobFileSystemConfiguration?.["sasKey"],
-                blobfuseOptions:
-                  p.azureBlobFileSystemConfiguration?.["blobfuseOptions"],
-                relativeMountPath:
-                  p.azureBlobFileSystemConfiguration?.["relativeMountPath"],
-                identityReference: !p.azureBlobFileSystemConfiguration
-                  ?.identityReference
+        userAccounts: !body["userAccounts"]
+          ? body["userAccounts"]
+          : body["userAccounts"].map((p) => ({
+              name: p["name"],
+              password: p["password"],
+              elevationLevel: p["elevationLevel"],
+              linuxUserConfiguration: !p.linuxUserConfiguration
+                ? undefined
+                : {
+                    uid: p.linuxUserConfiguration?.["uid"],
+                    gid: p.linuxUserConfiguration?.["gid"],
+                    sshPrivateKey: p.linuxUserConfiguration?.["sshPrivateKey"],
+                  },
+              windowsUserConfiguration: !p.windowsUserConfiguration
+                ? undefined
+                : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
+            })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
+        mountConfiguration: !body["mountConfiguration"]
+          ? body["mountConfiguration"]
+          : body["mountConfiguration"].map((p) => ({
+              azureBlobFileSystemConfiguration:
+                !p.azureBlobFileSystemConfiguration
                   ? undefined
                   : {
-                      resourceId:
-                        p.azureBlobFileSystemConfiguration?.identityReference?.[
-                          "resourceId"
+                      accountName:
+                        p.azureBlobFileSystemConfiguration?.["accountName"],
+                      containerName:
+                        p.azureBlobFileSystemConfiguration?.["containerName"],
+                      accountKey:
+                        p.azureBlobFileSystemConfiguration?.["accountKey"],
+                      sasKey: p.azureBlobFileSystemConfiguration?.["sasKey"],
+                      blobfuseOptions:
+                        p.azureBlobFileSystemConfiguration?.["blobfuseOptions"],
+                      relativeMountPath:
+                        p.azureBlobFileSystemConfiguration?.[
+                          "relativeMountPath"
                         ],
+                      identityReference: !p.azureBlobFileSystemConfiguration
+                        ?.identityReference
+                        ? undefined
+                        : {
+                            resourceId:
+                              p.azureBlobFileSystemConfiguration
+                                ?.identityReference?.["resourceId"],
+                          },
                     },
-              },
-          nfsMountConfiguration: !p.nfsMountConfiguration
-            ? undefined
-            : {
-                source: p.nfsMountConfiguration?.["source"],
-                relativeMountPath:
-                  p.nfsMountConfiguration?.["relativeMountPath"],
-                mountOptions: p.nfsMountConfiguration?.["mountOptions"],
-              },
-          cifsMountConfiguration: !p.cifsMountConfiguration
-            ? undefined
-            : {
-                username: p.cifsMountConfiguration?.["username"],
-                source: p.cifsMountConfiguration?.["source"],
-                relativeMountPath:
-                  p.cifsMountConfiguration?.["relativeMountPath"],
-                mountOptions: p.cifsMountConfiguration?.["mountOptions"],
-                password: p.cifsMountConfiguration?.["password"],
-              },
-          azureFileShareConfiguration: !p.azureFileShareConfiguration
-            ? undefined
-            : {
-                accountName: p.azureFileShareConfiguration?.["accountName"],
-                azureFileUrl: p.azureFileShareConfiguration?.["azureFileUrl"],
-                accountKey: p.azureFileShareConfiguration?.["accountKey"],
-                relativeMountPath:
-                  p.azureFileShareConfiguration?.["relativeMountPath"],
-                mountOptions: p.azureFileShareConfiguration?.["mountOptions"],
-              },
-        })),
+              nfsMountConfiguration: !p.nfsMountConfiguration
+                ? undefined
+                : {
+                    source: p.nfsMountConfiguration?.["source"],
+                    relativeMountPath:
+                      p.nfsMountConfiguration?.["relativeMountPath"],
+                    mountOptions: p.nfsMountConfiguration?.["mountOptions"],
+                  },
+              cifsMountConfiguration: !p.cifsMountConfiguration
+                ? undefined
+                : {
+                    username: p.cifsMountConfiguration?.["username"],
+                    source: p.cifsMountConfiguration?.["source"],
+                    relativeMountPath:
+                      p.cifsMountConfiguration?.["relativeMountPath"],
+                    mountOptions: p.cifsMountConfiguration?.["mountOptions"],
+                    password: p.cifsMountConfiguration?.["password"],
+                  },
+              azureFileShareConfiguration: !p.azureFileShareConfiguration
+                ? undefined
+                : {
+                    accountName: p.azureFileShareConfiguration?.["accountName"],
+                    azureFileUrl:
+                      p.azureFileShareConfiguration?.["azureFileUrl"],
+                    accountKey: p.azureFileShareConfiguration?.["accountKey"],
+                    relativeMountPath:
+                      p.azureFileShareConfiguration?.["relativeMountPath"],
+                    mountOptions:
+                      p.azureFileShareConfiguration?.["mountOptions"],
+                  },
+            })),
         targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
       },
     });
@@ -835,423 +859,470 @@ export async function _listPoolsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      displayName: p["displayName"],
-      url: p["url"],
-      eTag: p["eTag"],
-      lastModified:
-        p["lastModified"] !== undefined
-          ? new Date(p["lastModified"])
-          : undefined,
-      creationTime:
-        p["creationTime"] !== undefined
-          ? new Date(p["creationTime"])
-          : undefined,
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      allocationState: p["allocationState"],
-      allocationStateTransitionTime:
-        p["allocationStateTransitionTime"] !== undefined
-          ? new Date(p["allocationStateTransitionTime"])
-          : undefined,
-      vmSize: p["vmSize"],
-      cloudServiceConfiguration: !p.cloudServiceConfiguration
-        ? undefined
-        : {
-            osFamily: p.cloudServiceConfiguration?.["osFamily"],
-            osVersion: p.cloudServiceConfiguration?.["osVersion"],
-          },
-      virtualMachineConfiguration: !p.virtualMachineConfiguration
-        ? undefined
-        : {
-            imageReference: {
-              publisher:
-                p.virtualMachineConfiguration?.imageReference["publisher"],
-              offer: p.virtualMachineConfiguration?.imageReference["offer"],
-              sku: p.virtualMachineConfiguration?.imageReference["sku"],
-              version: p.virtualMachineConfiguration?.imageReference["version"],
-              virtualMachineImageId:
-                p.virtualMachineConfiguration?.imageReference[
-                  "virtualMachineImageId"
-                ],
-              exactVersion:
-                p.virtualMachineConfiguration?.imageReference["exactVersion"],
-            },
-            nodeAgentSKUId: p.virtualMachineConfiguration?.["nodeAgentSKUId"],
-            windowsConfiguration: !p.virtualMachineConfiguration
-              ?.windowsConfiguration
-              ? undefined
-              : {
-                  enableAutomaticUpdates:
-                    p.virtualMachineConfiguration?.windowsConfiguration?.[
-                      "enableAutomaticUpdates"
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          displayName: p["displayName"],
+          url: p["url"],
+          eTag: p["eTag"],
+          lastModified:
+            p["lastModified"] !== undefined
+              ? new Date(p["lastModified"])
+              : undefined,
+          creationTime:
+            p["creationTime"] !== undefined
+              ? new Date(p["creationTime"])
+              : undefined,
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          allocationState: p["allocationState"],
+          allocationStateTransitionTime:
+            p["allocationStateTransitionTime"] !== undefined
+              ? new Date(p["allocationStateTransitionTime"])
+              : undefined,
+          vmSize: p["vmSize"],
+          cloudServiceConfiguration: !p.cloudServiceConfiguration
+            ? undefined
+            : {
+                osFamily: p.cloudServiceConfiguration?.["osFamily"],
+                osVersion: p.cloudServiceConfiguration?.["osVersion"],
+              },
+          virtualMachineConfiguration: !p.virtualMachineConfiguration
+            ? undefined
+            : {
+                imageReference: {
+                  publisher:
+                    p.virtualMachineConfiguration?.imageReference["publisher"],
+                  offer: p.virtualMachineConfiguration?.imageReference["offer"],
+                  sku: p.virtualMachineConfiguration?.imageReference["sku"],
+                  version:
+                    p.virtualMachineConfiguration?.imageReference["version"],
+                  virtualMachineImageId:
+                    p.virtualMachineConfiguration?.imageReference[
+                      "virtualMachineImageId"
+                    ],
+                  exactVersion:
+                    p.virtualMachineConfiguration?.imageReference[
+                      "exactVersion"
                     ],
                 },
-            dataDisks: (p.virtualMachineConfiguration?.["dataDisks"] ?? []).map(
-              (p) => ({
-                lun: p["lun"],
-                caching: p["caching"],
-                diskSizeGB: p["diskSizeGB"],
-                storageAccountType: p["storageAccountType"],
-              })
-            ),
-            licenseType: p.virtualMachineConfiguration?.["licenseType"],
-            containerConfiguration: !p.virtualMachineConfiguration
-              ?.containerConfiguration
-              ? undefined
-              : {
-                  type: p.virtualMachineConfiguration?.containerConfiguration?.[
-                    "type"
-                  ],
-                  containerImageNames:
-                    p.virtualMachineConfiguration?.containerConfiguration?.[
-                      "containerImageNames"
-                    ],
-                  containerRegistries: (
-                    p.virtualMachineConfiguration?.containerConfiguration?.[
-                      "containerRegistries"
-                    ] ?? []
-                  ).map((p) => ({
-                    username: p["username"],
-                    password: p["password"],
-                    registryServer: p["registryServer"],
-                    identityReference: !p.identityReference
-                      ? undefined
-                      : { resourceId: p.identityReference?.["resourceId"] },
-                  })),
-                },
-            diskEncryptionConfiguration: !p.virtualMachineConfiguration
-              ?.diskEncryptionConfiguration
-              ? undefined
-              : {
-                  targets:
-                    p.virtualMachineConfiguration
-                      ?.diskEncryptionConfiguration?.["targets"],
-                },
-            nodePlacementConfiguration: !p.virtualMachineConfiguration
-              ?.nodePlacementConfiguration
-              ? undefined
-              : {
-                  policy:
-                    p.virtualMachineConfiguration?.nodePlacementConfiguration?.[
-                      "policy"
-                    ],
-                },
-            extensions: (
-              p.virtualMachineConfiguration?.["extensions"] ?? []
-            ).map((p) => ({
-              name: p["name"],
-              publisher: p["publisher"],
-              type: p["type"],
-              typeHandlerVersion: p["typeHandlerVersion"],
-              autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
-              enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-              settings: p["settings"],
-              protectedSettings: p["protectedSettings"],
-              provisionAfterExtensions: p["provisionAfterExtensions"],
-            })),
-            osDisk: !p.virtualMachineConfiguration?.osDisk
-              ? undefined
-              : {
-                  ephemeralOSDiskSettings: !p.virtualMachineConfiguration
-                    ?.osDisk?.ephemeralOSDiskSettings
-                    ? undefined
-                    : {
-                        placement:
-                          p.virtualMachineConfiguration?.osDisk
-                            ?.ephemeralOSDiskSettings?.["placement"],
-                      },
-                },
-          },
-      resizeTimeout: p["resizeTimeout"],
-      resizeErrors: (p["resizeErrors"] ?? []).map((p) => ({
-        code: p["code"],
-        message: p["message"],
-        values: (p["values"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
-      })),
-      currentDedicatedNodes: p["currentDedicatedNodes"],
-      currentLowPriorityNodes: p["currentLowPriorityNodes"],
-      targetDedicatedNodes: p["targetDedicatedNodes"],
-      targetLowPriorityNodes: p["targetLowPriorityNodes"],
-      enableAutoScale: p["enableAutoScale"],
-      autoScaleFormula: p["autoScaleFormula"],
-      autoScaleEvaluationInterval: p["autoScaleEvaluationInterval"],
-      autoScaleRun: !p.autoScaleRun
-        ? undefined
-        : {
-            timestamp: new Date(p.autoScaleRun?.["timestamp"]),
-            results: p.autoScaleRun?.["results"],
-            error: !p.autoScaleRun?.error
-              ? undefined
-              : {
-                  code: p.autoScaleRun?.error?.["code"],
-                  message: p.autoScaleRun?.error?.["message"],
-                  values: (p.autoScaleRun?.error?.["values"] ?? []).map(
-                    (p) => ({ name: p["name"], value: p["value"] })
-                  ),
-                },
-          },
-      enableInterNodeCommunication: p["enableInterNodeCommunication"],
-      networkConfiguration: !p.networkConfiguration
-        ? undefined
-        : {
-            subnetId: p.networkConfiguration?.["subnetId"],
-            dynamicVNetAssignmentScope:
-              p.networkConfiguration?.["dynamicVNetAssignmentScope"],
-            endpointConfiguration: !p.networkConfiguration
-              ?.endpointConfiguration
-              ? undefined
-              : {
-                  inboundNATPools: (
-                    p.networkConfiguration?.endpointConfiguration?.[
-                      "inboundNATPools"
-                    ] ?? []
-                  ).map((p) => ({
-                    name: p["name"],
-                    protocol: p["protocol"],
-                    backendPort: p["backendPort"],
-                    frontendPortRangeStart: p["frontendPortRangeStart"],
-                    frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                    networkSecurityGroupRules: (
-                      p["networkSecurityGroupRules"] ?? []
-                    ).map((p) => ({
-                      priority: p["priority"],
-                      access: p["access"],
-                      sourceAddressPrefix: p["sourceAddressPrefix"],
-                      sourcePortRanges: p["sourcePortRanges"],
+                nodeAgentSKUId:
+                  p.virtualMachineConfiguration?.["nodeAgentSKUId"],
+                windowsConfiguration: !p.virtualMachineConfiguration
+                  ?.windowsConfiguration
+                  ? undefined
+                  : {
+                      enableAutomaticUpdates:
+                        p.virtualMachineConfiguration?.windowsConfiguration?.[
+                          "enableAutomaticUpdates"
+                        ],
+                    },
+                dataDisks: !p.virtualMachineConfiguration?.["dataDisks"]
+                  ? p.virtualMachineConfiguration?.["dataDisks"]
+                  : p.virtualMachineConfiguration?.["dataDisks"].map((p) => ({
+                      lun: p["lun"],
+                      caching: p["caching"],
+                      diskSizeGB: p["diskSizeGB"],
+                      storageAccountType: p["storageAccountType"],
                     })),
-                  })),
-                },
-            publicIPAddressConfiguration: !p.networkConfiguration
-              ?.publicIPAddressConfiguration
-              ? undefined
-              : {
-                  provision:
-                    p.networkConfiguration?.publicIPAddressConfiguration?.[
-                      "provision"
-                    ],
-                  ipAddressIds:
-                    p.networkConfiguration?.publicIPAddressConfiguration?.[
-                      "ipAddressIds"
-                    ],
-                },
-            enableAcceleratedNetworking:
-              p.networkConfiguration?.["enableAcceleratedNetworking"],
-          },
-      startTask: !p.startTask
-        ? undefined
-        : {
-            commandLine: p.startTask?.["commandLine"],
-            containerSettings: !p.startTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.startTask?.containerSettings?.["containerRunOptions"],
-                  imageName: p.startTask?.containerSettings?.["imageName"],
-                  registry: !p.startTask?.containerSettings?.registry
+                licenseType: p.virtualMachineConfiguration?.["licenseType"],
+                containerConfiguration: !p.virtualMachineConfiguration
+                  ?.containerConfiguration
+                  ? undefined
+                  : {
+                      type: p.virtualMachineConfiguration
+                        ?.containerConfiguration?.["type"],
+                      containerImageNames:
+                        p.virtualMachineConfiguration?.containerConfiguration?.[
+                          "containerImageNames"
+                        ],
+                      containerRegistries: !p.virtualMachineConfiguration
+                        ?.containerConfiguration?.["containerRegistries"]
+                        ? p.virtualMachineConfiguration
+                            ?.containerConfiguration?.["containerRegistries"]
+                        : p.virtualMachineConfiguration?.containerConfiguration?.[
+                            "containerRegistries"
+                          ].map((p) => ({
+                            username: p["username"],
+                            password: p["password"],
+                            registryServer: p["registryServer"],
+                            identityReference: !p.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.identityReference?.["resourceId"],
+                                },
+                          })),
+                    },
+                diskEncryptionConfiguration: !p.virtualMachineConfiguration
+                  ?.diskEncryptionConfiguration
+                  ? undefined
+                  : {
+                      targets:
+                        p.virtualMachineConfiguration
+                          ?.diskEncryptionConfiguration?.["targets"],
+                    },
+                nodePlacementConfiguration: !p.virtualMachineConfiguration
+                  ?.nodePlacementConfiguration
+                  ? undefined
+                  : {
+                      policy:
+                        p.virtualMachineConfiguration
+                          ?.nodePlacementConfiguration?.["policy"],
+                    },
+                extensions: !p.virtualMachineConfiguration?.["extensions"]
+                  ? p.virtualMachineConfiguration?.["extensions"]
+                  : p.virtualMachineConfiguration?.["extensions"].map((p) => ({
+                      name: p["name"],
+                      publisher: p["publisher"],
+                      type: p["type"],
+                      typeHandlerVersion: p["typeHandlerVersion"],
+                      autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
+                      enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
+                      settings: p["settings"],
+                      protectedSettings: p["protectedSettings"],
+                      provisionAfterExtensions: p["provisionAfterExtensions"],
+                    })),
+                osDisk: !p.virtualMachineConfiguration?.osDisk
+                  ? undefined
+                  : {
+                      ephemeralOSDiskSettings: !p.virtualMachineConfiguration
+                        ?.osDisk?.ephemeralOSDiskSettings
+                        ? undefined
+                        : {
+                            placement:
+                              p.virtualMachineConfiguration?.osDisk
+                                ?.ephemeralOSDiskSettings?.["placement"],
+                          },
+                    },
+              },
+          resizeTimeout: p["resizeTimeout"],
+          resizeErrors: !p["resizeErrors"]
+            ? p["resizeErrors"]
+            : p["resizeErrors"].map((p) => ({
+                code: p["code"],
+                message: p["message"],
+                values: !p["values"]
+                  ? p["values"]
+                  : p["values"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+              })),
+          currentDedicatedNodes: p["currentDedicatedNodes"],
+          currentLowPriorityNodes: p["currentLowPriorityNodes"],
+          targetDedicatedNodes: p["targetDedicatedNodes"],
+          targetLowPriorityNodes: p["targetLowPriorityNodes"],
+          enableAutoScale: p["enableAutoScale"],
+          autoScaleFormula: p["autoScaleFormula"],
+          autoScaleEvaluationInterval: p["autoScaleEvaluationInterval"],
+          autoScaleRun: !p.autoScaleRun
+            ? undefined
+            : {
+                timestamp: new Date(p.autoScaleRun?.["timestamp"]),
+                results: p.autoScaleRun?.["results"],
+                error: !p.autoScaleRun?.error
+                  ? undefined
+                  : {
+                      code: p.autoScaleRun?.error?.["code"],
+                      message: p.autoScaleRun?.error?.["message"],
+                      values: !p.autoScaleRun?.error?.["values"]
+                        ? p.autoScaleRun?.error?.["values"]
+                        : p.autoScaleRun?.error?.["values"].map((p) => ({
+                            name: p["name"],
+                            value: p["value"],
+                          })),
+                    },
+              },
+          enableInterNodeCommunication: p["enableInterNodeCommunication"],
+          networkConfiguration: !p.networkConfiguration
+            ? undefined
+            : {
+                subnetId: p.networkConfiguration?.["subnetId"],
+                dynamicVNetAssignmentScope:
+                  p.networkConfiguration?.["dynamicVNetAssignmentScope"],
+                endpointConfiguration: !p.networkConfiguration
+                  ?.endpointConfiguration
+                  ? undefined
+                  : {
+                      inboundNATPools:
+                        p.networkConfiguration?.endpointConfiguration?.[
+                          "inboundNATPools"
+                        ].map((p) => ({
+                          name: p["name"],
+                          protocol: p["protocol"],
+                          backendPort: p["backendPort"],
+                          frontendPortRangeStart: p["frontendPortRangeStart"],
+                          frontendPortRangeEnd: p["frontendPortRangeEnd"],
+                          networkSecurityGroupRules: !p[
+                            "networkSecurityGroupRules"
+                          ]
+                            ? p["networkSecurityGroupRules"]
+                            : p["networkSecurityGroupRules"].map((p) => ({
+                                priority: p["priority"],
+                                access: p["access"],
+                                sourceAddressPrefix: p["sourceAddressPrefix"],
+                                sourcePortRanges: p["sourcePortRanges"],
+                              })),
+                        })),
+                    },
+                publicIPAddressConfiguration: !p.networkConfiguration
+                  ?.publicIPAddressConfiguration
+                  ? undefined
+                  : {
+                      provision:
+                        p.networkConfiguration?.publicIPAddressConfiguration?.[
+                          "provision"
+                        ],
+                      ipAddressIds:
+                        p.networkConfiguration?.publicIPAddressConfiguration?.[
+                          "ipAddressIds"
+                        ],
+                    },
+                enableAcceleratedNetworking:
+                  p.networkConfiguration?.["enableAcceleratedNetworking"],
+              },
+          startTask: !p.startTask
+            ? undefined
+            : {
+                commandLine: p.startTask?.["commandLine"],
+                containerSettings: !p.startTask?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        p.startTask?.containerSettings?.["containerRunOptions"],
+                      imageName: p.startTask?.containerSettings?.["imageName"],
+                      registry: !p.startTask?.containerSettings?.registry
+                        ? undefined
+                        : {
+                            username:
+                              p.startTask?.containerSettings?.registry?.[
+                                "username"
+                              ],
+                            password:
+                              p.startTask?.containerSettings?.registry?.[
+                                "password"
+                              ],
+                            registryServer:
+                              p.startTask?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !p.startTask?.containerSettings
+                              ?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.startTask?.containerSettings?.registry
+                                      ?.identityReference?.["resourceId"],
+                                },
+                          },
+                      workingDirectory:
+                        p.startTask?.containerSettings?.["workingDirectory"],
+                    },
+                resourceFiles: !p.startTask?.["resourceFiles"]
+                  ? p.startTask?.["resourceFiles"]
+                  : p.startTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !p.startTask?.["environmentSettings"]
+                  ? p.startTask?.["environmentSettings"]
+                  : p.startTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                userIdentity: !p.startTask?.userIdentity
+                  ? undefined
+                  : {
+                      username: p.startTask?.userIdentity?.["username"],
+                      autoUser: !p.startTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.startTask?.userIdentity?.autoUser?.["scope"],
+                            elevationLevel:
+                              p.startTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
+                              ],
+                          },
+                    },
+                maxTaskRetryCount: p.startTask?.["maxTaskRetryCount"],
+                waitForSuccess: p.startTask?.["waitForSuccess"],
+              },
+          certificateReferences: !p["certificateReferences"]
+            ? p["certificateReferences"]
+            : p["certificateReferences"].map((p) => ({
+                thumbprint: p["thumbprint"],
+                thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                storeLocation: p["storeLocation"],
+                storeName: p["storeName"],
+                visibility: p["visibility"],
+              })),
+          applicationPackageReferences: !p["applicationPackageReferences"]
+            ? p["applicationPackageReferences"]
+            : p["applicationPackageReferences"].map((p) => ({
+                applicationId: p["applicationId"],
+                version: p["version"],
+              })),
+          applicationLicenses: p["applicationLicenses"],
+          taskSlotsPerNode: p["taskSlotsPerNode"],
+          taskSchedulingPolicy: !p.taskSchedulingPolicy
+            ? undefined
+            : { nodeFillType: p.taskSchedulingPolicy?.["nodeFillType"] },
+          userAccounts: !p["userAccounts"]
+            ? p["userAccounts"]
+            : p["userAccounts"].map((p) => ({
+                name: p["name"],
+                password: p["password"],
+                elevationLevel: p["elevationLevel"],
+                linuxUserConfiguration: !p.linuxUserConfiguration
+                  ? undefined
+                  : {
+                      uid: p.linuxUserConfiguration?.["uid"],
+                      gid: p.linuxUserConfiguration?.["gid"],
+                      sshPrivateKey:
+                        p.linuxUserConfiguration?.["sshPrivateKey"],
+                    },
+                windowsUserConfiguration: !p.windowsUserConfiguration
+                  ? undefined
+                  : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
+              })),
+          metadata: !p["metadata"]
+            ? p["metadata"]
+            : p["metadata"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          stats: !p.stats
+            ? undefined
+            : {
+                url: p.stats?.["url"],
+                startTime: new Date(p.stats?.["startTime"]),
+                lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
+                usageStats: !p.stats?.usageStats
+                  ? undefined
+                  : {
+                      startTime: new Date(p.stats?.usageStats?.["startTime"]),
+                      lastUpdateTime: new Date(
+                        p.stats?.usageStats?.["lastUpdateTime"]
+                      ),
+                      dedicatedCoreTime:
+                        p.stats?.usageStats?.["dedicatedCoreTime"],
+                    },
+                resourceStats: !p.stats?.resourceStats
+                  ? undefined
+                  : {
+                      startTime: new Date(
+                        p.stats?.resourceStats?.["startTime"]
+                      ),
+                      lastUpdateTime: new Date(
+                        p.stats?.resourceStats?.["lastUpdateTime"]
+                      ),
+                      avgCPUPercentage:
+                        p.stats?.resourceStats?.["avgCPUPercentage"],
+                      avgMemoryGiB: p.stats?.resourceStats?.["avgMemoryGiB"],
+                      peakMemoryGiB: p.stats?.resourceStats?.["peakMemoryGiB"],
+                      avgDiskGiB: p.stats?.resourceStats?.["avgDiskGiB"],
+                      peakDiskGiB: p.stats?.resourceStats?.["peakDiskGiB"],
+                      diskReadIOps: p.stats?.resourceStats?.["diskReadIOps"],
+                      diskWriteIOps: p.stats?.resourceStats?.["diskWriteIOps"],
+                      diskReadGiB: p.stats?.resourceStats?.["diskReadGiB"],
+                      diskWriteGiB: p.stats?.resourceStats?.["diskWriteGiB"],
+                      networkReadGiB:
+                        p.stats?.resourceStats?.["networkReadGiB"],
+                      networkWriteGiB:
+                        p.stats?.resourceStats?.["networkWriteGiB"],
+                    },
+              },
+          mountConfiguration: !p["mountConfiguration"]
+            ? p["mountConfiguration"]
+            : p["mountConfiguration"].map((p) => ({
+                azureBlobFileSystemConfiguration:
+                  !p.azureBlobFileSystemConfiguration
                     ? undefined
                     : {
-                        username:
-                          p.startTask?.containerSettings?.registry?.[
-                            "username"
+                        accountName:
+                          p.azureBlobFileSystemConfiguration?.["accountName"],
+                        containerName:
+                          p.azureBlobFileSystemConfiguration?.["containerName"],
+                        accountKey:
+                          p.azureBlobFileSystemConfiguration?.["accountKey"],
+                        sasKey: p.azureBlobFileSystemConfiguration?.["sasKey"],
+                        blobfuseOptions:
+                          p.azureBlobFileSystemConfiguration?.[
+                            "blobfuseOptions"
                           ],
-                        password:
-                          p.startTask?.containerSettings?.registry?.[
-                            "password"
+                        relativeMountPath:
+                          p.azureBlobFileSystemConfiguration?.[
+                            "relativeMountPath"
                           ],
-                        registryServer:
-                          p.startTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.startTask?.containerSettings
-                          ?.registry?.identityReference
+                        identityReference: !p.azureBlobFileSystemConfiguration
+                          ?.identityReference
                           ? undefined
                           : {
                               resourceId:
-                                p.startTask?.containerSettings?.registry
+                                p.azureBlobFileSystemConfiguration
                                   ?.identityReference?.["resourceId"],
                             },
                       },
-                  workingDirectory:
-                    p.startTask?.containerSettings?.["workingDirectory"],
-                },
-            resourceFiles: (p.startTask?.["resourceFiles"] ?? []).map((p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })),
-            environmentSettings: (
-              p.startTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            userIdentity: !p.startTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.startTask?.userIdentity?.["username"],
-                  autoUser: !p.startTask?.userIdentity?.autoUser
-                    ? undefined
-                    : {
-                        scope: p.startTask?.userIdentity?.autoUser?.["scope"],
-                        elevationLevel:
-                          p.startTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
-                          ],
-                      },
-                },
-            maxTaskRetryCount: p.startTask?.["maxTaskRetryCount"],
-            waitForSuccess: p.startTask?.["waitForSuccess"],
-          },
-      certificateReferences: (p["certificateReferences"] ?? []).map((p) => ({
-        thumbprint: p["thumbprint"],
-        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-        storeLocation: p["storeLocation"],
-        storeName: p["storeName"],
-        visibility: p["visibility"],
-      })),
-      applicationPackageReferences: (
-        p["applicationPackageReferences"] ?? []
-      ).map((p) => ({
-        applicationId: p["applicationId"],
-        version: p["version"],
-      })),
-      applicationLicenses: p["applicationLicenses"],
-      taskSlotsPerNode: p["taskSlotsPerNode"],
-      taskSchedulingPolicy: !p.taskSchedulingPolicy
-        ? undefined
-        : { nodeFillType: p.taskSchedulingPolicy?.["nodeFillType"] },
-      userAccounts: (p["userAccounts"] ?? []).map((p) => ({
-        name: p["name"],
-        password: p["password"],
-        elevationLevel: p["elevationLevel"],
-        linuxUserConfiguration: !p.linuxUserConfiguration
-          ? undefined
-          : {
-              uid: p.linuxUserConfiguration?.["uid"],
-              gid: p.linuxUserConfiguration?.["gid"],
-              sshPrivateKey: p.linuxUserConfiguration?.["sshPrivateKey"],
-            },
-        windowsUserConfiguration: !p.windowsUserConfiguration
-          ? undefined
-          : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
-      })),
-      metadata: (p["metadata"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-      stats: !p.stats
-        ? undefined
-        : {
-            url: p.stats?.["url"],
-            startTime: new Date(p.stats?.["startTime"]),
-            lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-            usageStats: !p.stats?.usageStats
-              ? undefined
-              : {
-                  startTime: new Date(p.stats?.usageStats?.["startTime"]),
-                  lastUpdateTime: new Date(
-                    p.stats?.usageStats?.["lastUpdateTime"]
-                  ),
-                  dedicatedCoreTime: p.stats?.usageStats?.["dedicatedCoreTime"],
-                },
-            resourceStats: !p.stats?.resourceStats
-              ? undefined
-              : {
-                  startTime: new Date(p.stats?.resourceStats?.["startTime"]),
-                  lastUpdateTime: new Date(
-                    p.stats?.resourceStats?.["lastUpdateTime"]
-                  ),
-                  avgCPUPercentage:
-                    p.stats?.resourceStats?.["avgCPUPercentage"],
-                  avgMemoryGiB: p.stats?.resourceStats?.["avgMemoryGiB"],
-                  peakMemoryGiB: p.stats?.resourceStats?.["peakMemoryGiB"],
-                  avgDiskGiB: p.stats?.resourceStats?.["avgDiskGiB"],
-                  peakDiskGiB: p.stats?.resourceStats?.["peakDiskGiB"],
-                  diskReadIOps: p.stats?.resourceStats?.["diskReadIOps"],
-                  diskWriteIOps: p.stats?.resourceStats?.["diskWriteIOps"],
-                  diskReadGiB: p.stats?.resourceStats?.["diskReadGiB"],
-                  diskWriteGiB: p.stats?.resourceStats?.["diskWriteGiB"],
-                  networkReadGiB: p.stats?.resourceStats?.["networkReadGiB"],
-                  networkWriteGiB: p.stats?.resourceStats?.["networkWriteGiB"],
-                },
-          },
-      mountConfiguration: (p["mountConfiguration"] ?? []).map((p) => ({
-        azureBlobFileSystemConfiguration: !p.azureBlobFileSystemConfiguration
-          ? undefined
-          : {
-              accountName: p.azureBlobFileSystemConfiguration?.["accountName"],
-              containerName:
-                p.azureBlobFileSystemConfiguration?.["containerName"],
-              accountKey: p.azureBlobFileSystemConfiguration?.["accountKey"],
-              sasKey: p.azureBlobFileSystemConfiguration?.["sasKey"],
-              blobfuseOptions:
-                p.azureBlobFileSystemConfiguration?.["blobfuseOptions"],
-              relativeMountPath:
-                p.azureBlobFileSystemConfiguration?.["relativeMountPath"],
-              identityReference: !p.azureBlobFileSystemConfiguration
-                ?.identityReference
-                ? undefined
-                : {
-                    resourceId:
-                      p.azureBlobFileSystemConfiguration?.identityReference?.[
-                        "resourceId"
-                      ],
-                  },
-            },
-        nfsMountConfiguration: !p.nfsMountConfiguration
-          ? undefined
-          : {
-              source: p.nfsMountConfiguration?.["source"],
-              relativeMountPath: p.nfsMountConfiguration?.["relativeMountPath"],
-              mountOptions: p.nfsMountConfiguration?.["mountOptions"],
-            },
-        cifsMountConfiguration: !p.cifsMountConfiguration
-          ? undefined
-          : {
-              username: p.cifsMountConfiguration?.["username"],
-              source: p.cifsMountConfiguration?.["source"],
-              relativeMountPath:
-                p.cifsMountConfiguration?.["relativeMountPath"],
-              mountOptions: p.cifsMountConfiguration?.["mountOptions"],
-              password: p.cifsMountConfiguration?.["password"],
-            },
-        azureFileShareConfiguration: !p.azureFileShareConfiguration
-          ? undefined
-          : {
-              accountName: p.azureFileShareConfiguration?.["accountName"],
-              azureFileUrl: p.azureFileShareConfiguration?.["azureFileUrl"],
-              accountKey: p.azureFileShareConfiguration?.["accountKey"],
-              relativeMountPath:
-                p.azureFileShareConfiguration?.["relativeMountPath"],
-              mountOptions: p.azureFileShareConfiguration?.["mountOptions"],
-            },
-      })),
-      identity: !p.identity
-        ? undefined
-        : {
-            type: p.identity?.["type"],
-            userAssignedIdentities: (
-              p.identity?.["userAssignedIdentities"] ?? []
-            ).map((p) => ({
-              resourceId: p["resourceId"],
-              clientId: p["clientId"],
-              principalId: p["principalId"],
-            })),
-          },
-      targetNodeCommunicationMode: p["targetNodeCommunicationMode"],
-      currentNodeCommunicationMode: p["currentNodeCommunicationMode"],
-    })),
+                nfsMountConfiguration: !p.nfsMountConfiguration
+                  ? undefined
+                  : {
+                      source: p.nfsMountConfiguration?.["source"],
+                      relativeMountPath:
+                        p.nfsMountConfiguration?.["relativeMountPath"],
+                      mountOptions: p.nfsMountConfiguration?.["mountOptions"],
+                    },
+                cifsMountConfiguration: !p.cifsMountConfiguration
+                  ? undefined
+                  : {
+                      username: p.cifsMountConfiguration?.["username"],
+                      source: p.cifsMountConfiguration?.["source"],
+                      relativeMountPath:
+                        p.cifsMountConfiguration?.["relativeMountPath"],
+                      mountOptions: p.cifsMountConfiguration?.["mountOptions"],
+                      password: p.cifsMountConfiguration?.["password"],
+                    },
+                azureFileShareConfiguration: !p.azureFileShareConfiguration
+                  ? undefined
+                  : {
+                      accountName:
+                        p.azureFileShareConfiguration?.["accountName"],
+                      azureFileUrl:
+                        p.azureFileShareConfiguration?.["azureFileUrl"],
+                      accountKey: p.azureFileShareConfiguration?.["accountKey"],
+                      relativeMountPath:
+                        p.azureFileShareConfiguration?.["relativeMountPath"],
+                      mountOptions:
+                        p.azureFileShareConfiguration?.["mountOptions"],
+                    },
+              })),
+          identity: !p.identity
+            ? undefined
+            : {
+                type: p.identity?.["type"],
+                userAssignedIdentities: !p.identity?.["userAssignedIdentities"]
+                  ? p.identity?.["userAssignedIdentities"]
+                  : p.identity?.["userAssignedIdentities"].map((p) => ({
+                      resourceId: p["resourceId"],
+                      clientId: p["clientId"],
+                      principalId: p["principalId"],
+                    })),
+              },
+          targetNodeCommunicationMode: p["targetNodeCommunicationMode"],
+          currentNodeCommunicationMode: p["currentNodeCommunicationMode"],
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -1479,14 +1550,16 @@ export async function _getPoolDeserialize(
                   result.body.virtualMachineConfiguration
                     ?.windowsConfiguration?.["enableAutomaticUpdates"],
               },
-          dataDisks: (
-            result.body.virtualMachineConfiguration?.["dataDisks"] ?? []
-          ).map((p) => ({
-            lun: p["lun"],
-            caching: p["caching"],
-            diskSizeGB: p["diskSizeGB"],
-            storageAccountType: p["storageAccountType"],
-          })),
+          dataDisks: !result.body.virtualMachineConfiguration?.["dataDisks"]
+            ? result.body.virtualMachineConfiguration?.["dataDisks"]
+            : result.body.virtualMachineConfiguration?.["dataDisks"].map(
+                (p) => ({
+                  lun: p["lun"],
+                  caching: p["caching"],
+                  diskSizeGB: p["diskSizeGB"],
+                  storageAccountType: p["storageAccountType"],
+                })
+              ),
           licenseType: result.body.virtualMachineConfiguration?.["licenseType"],
           containerConfiguration: !result.body.virtualMachineConfiguration
             ?.containerConfiguration
@@ -1497,17 +1570,20 @@ export async function _getPoolDeserialize(
                 containerImageNames:
                   result.body.virtualMachineConfiguration
                     ?.containerConfiguration?.["containerImageNames"],
-                containerRegistries: (
-                  result.body.virtualMachineConfiguration
-                    ?.containerConfiguration?.["containerRegistries"] ?? []
-                ).map((p) => ({
-                  username: p["username"],
-                  password: p["password"],
-                  registryServer: p["registryServer"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
+                containerRegistries: !result.body.virtualMachineConfiguration
+                  ?.containerConfiguration?.["containerRegistries"]
+                  ? result.body.virtualMachineConfiguration
+                      ?.containerConfiguration?.["containerRegistries"]
+                  : result.body.virtualMachineConfiguration?.containerConfiguration?.[
+                      "containerRegistries"
+                    ].map((p) => ({
+                      username: p["username"],
+                      password: p["password"],
+                      registryServer: p["registryServer"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
               },
           diskEncryptionConfiguration: !result.body.virtualMachineConfiguration
             ?.diskEncryptionConfiguration
@@ -1525,19 +1601,21 @@ export async function _getPoolDeserialize(
                   result.body.virtualMachineConfiguration
                     ?.nodePlacementConfiguration?.["policy"],
               },
-          extensions: (
-            result.body.virtualMachineConfiguration?.["extensions"] ?? []
-          ).map((p) => ({
-            name: p["name"],
-            publisher: p["publisher"],
-            type: p["type"],
-            typeHandlerVersion: p["typeHandlerVersion"],
-            autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
-            enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-            settings: p["settings"],
-            protectedSettings: p["protectedSettings"],
-            provisionAfterExtensions: p["provisionAfterExtensions"],
-          })),
+          extensions: !result.body.virtualMachineConfiguration?.["extensions"]
+            ? result.body.virtualMachineConfiguration?.["extensions"]
+            : result.body.virtualMachineConfiguration?.["extensions"].map(
+                (p) => ({
+                  name: p["name"],
+                  publisher: p["publisher"],
+                  type: p["type"],
+                  typeHandlerVersion: p["typeHandlerVersion"],
+                  autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
+                  enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
+                  settings: p["settings"],
+                  protectedSettings: p["protectedSettings"],
+                  provisionAfterExtensions: p["provisionAfterExtensions"],
+                })
+              ),
           osDisk: !result.body.virtualMachineConfiguration?.osDisk
             ? undefined
             : {
@@ -1552,14 +1630,15 @@ export async function _getPoolDeserialize(
               },
         },
     resizeTimeout: result.body["resizeTimeout"],
-    resizeErrors: (result.body["resizeErrors"] ?? []).map((p) => ({
-      code: p["code"],
-      message: p["message"],
-      values: (p["values"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-    })),
+    resizeErrors: !result.body["resizeErrors"]
+      ? result.body["resizeErrors"]
+      : result.body["resizeErrors"].map((p) => ({
+          code: p["code"],
+          message: p["message"],
+          values: !p["values"]
+            ? p["values"]
+            : p["values"].map((p) => ({ name: p["name"], value: p["value"] })),
+        })),
     currentDedicatedNodes: result.body["currentDedicatedNodes"],
     currentLowPriorityNodes: result.body["currentLowPriorityNodes"],
     targetDedicatedNodes: result.body["targetDedicatedNodes"],
@@ -1577,9 +1656,12 @@ export async function _getPoolDeserialize(
             : {
                 code: result.body.autoScaleRun?.error?.["code"],
                 message: result.body.autoScaleRun?.error?.["message"],
-                values: (result.body.autoScaleRun?.error?.["values"] ?? []).map(
-                  (p) => ({ name: p["name"], value: p["value"] })
-                ),
+                values: !result.body.autoScaleRun?.error?.["values"]
+                  ? result.body.autoScaleRun?.error?.["values"]
+                  : result.body.autoScaleRun?.error?.["values"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
               },
         },
     enableInterNodeCommunication: result.body["enableInterNodeCommunication"],
@@ -1593,25 +1675,24 @@ export async function _getPoolDeserialize(
             ?.endpointConfiguration
             ? undefined
             : {
-                inboundNATPools: (
+                inboundNATPools:
                   result.body.networkConfiguration?.endpointConfiguration?.[
                     "inboundNATPools"
-                  ] ?? []
-                ).map((p) => ({
-                  name: p["name"],
-                  protocol: p["protocol"],
-                  backendPort: p["backendPort"],
-                  frontendPortRangeStart: p["frontendPortRangeStart"],
-                  frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                  networkSecurityGroupRules: (
-                    p["networkSecurityGroupRules"] ?? []
-                  ).map((p) => ({
-                    priority: p["priority"],
-                    access: p["access"],
-                    sourceAddressPrefix: p["sourceAddressPrefix"],
-                    sourcePortRanges: p["sourcePortRanges"],
+                  ].map((p) => ({
+                    name: p["name"],
+                    protocol: p["protocol"],
+                    backendPort: p["backendPort"],
+                    frontendPortRangeStart: p["frontendPortRangeStart"],
+                    frontendPortRangeEnd: p["frontendPortRangeEnd"],
+                    networkSecurityGroupRules: !p["networkSecurityGroupRules"]
+                      ? p["networkSecurityGroupRules"]
+                      : p["networkSecurityGroupRules"].map((p) => ({
+                          priority: p["priority"],
+                          access: p["access"],
+                          sourceAddressPrefix: p["sourceAddressPrefix"],
+                          sourcePortRanges: p["sourcePortRanges"],
+                        })),
                   })),
-                })),
               },
           publicIPAddressConfiguration: !result.body.networkConfiguration
             ?.publicIPAddressConfiguration
@@ -1669,22 +1750,25 @@ export async function _getPoolDeserialize(
                     "workingDirectory"
                   ],
               },
-          resourceFiles: (result.body.startTask?.["resourceFiles"] ?? []).map(
-            (p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })
-          ),
-          environmentSettings: (
-            result.body.startTask?.["environmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+          resourceFiles: !result.body.startTask?.["resourceFiles"]
+            ? result.body.startTask?.["resourceFiles"]
+            : result.body.startTask?.["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
+                  ? undefined
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          environmentSettings: !result.body.startTask?.["environmentSettings"]
+            ? result.body.startTask?.["environmentSettings"]
+            : result.body.startTask?.["environmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           userIdentity: !result.body.startTask?.userIdentity
             ? undefined
             : {
@@ -1705,45 +1789,49 @@ export async function _getPoolDeserialize(
           maxTaskRetryCount: result.body.startTask?.["maxTaskRetryCount"],
           waitForSuccess: result.body.startTask?.["waitForSuccess"],
         },
-    certificateReferences: (result.body["certificateReferences"] ?? []).map(
-      (p) => ({
-        thumbprint: p["thumbprint"],
-        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-        storeLocation: p["storeLocation"],
-        storeName: p["storeName"],
-        visibility: p["visibility"],
-      })
-    ),
-    applicationPackageReferences: (
-      result.body["applicationPackageReferences"] ?? []
-    ).map((p) => ({
-      applicationId: p["applicationId"],
-      version: p["version"],
-    })),
+    certificateReferences: !result.body["certificateReferences"]
+      ? result.body["certificateReferences"]
+      : result.body["certificateReferences"].map((p) => ({
+          thumbprint: p["thumbprint"],
+          thumbprintAlgorithm: p["thumbprintAlgorithm"],
+          storeLocation: p["storeLocation"],
+          storeName: p["storeName"],
+          visibility: p["visibility"],
+        })),
+    applicationPackageReferences: !result.body["applicationPackageReferences"]
+      ? result.body["applicationPackageReferences"]
+      : result.body["applicationPackageReferences"].map((p) => ({
+          applicationId: p["applicationId"],
+          version: p["version"],
+        })),
     applicationLicenses: result.body["applicationLicenses"],
     taskSlotsPerNode: result.body["taskSlotsPerNode"],
     taskSchedulingPolicy: !result.body.taskSchedulingPolicy
       ? undefined
       : { nodeFillType: result.body.taskSchedulingPolicy?.["nodeFillType"] },
-    userAccounts: (result.body["userAccounts"] ?? []).map((p) => ({
-      name: p["name"],
-      password: p["password"],
-      elevationLevel: p["elevationLevel"],
-      linuxUserConfiguration: !p.linuxUserConfiguration
-        ? undefined
-        : {
-            uid: p.linuxUserConfiguration?.["uid"],
-            gid: p.linuxUserConfiguration?.["gid"],
-            sshPrivateKey: p.linuxUserConfiguration?.["sshPrivateKey"],
-          },
-      windowsUserConfiguration: !p.windowsUserConfiguration
-        ? undefined
-        : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
-    })),
-    metadata: (result.body["metadata"] ?? []).map((p) => ({
-      name: p["name"],
-      value: p["value"],
-    })),
+    userAccounts: !result.body["userAccounts"]
+      ? result.body["userAccounts"]
+      : result.body["userAccounts"].map((p) => ({
+          name: p["name"],
+          password: p["password"],
+          elevationLevel: p["elevationLevel"],
+          linuxUserConfiguration: !p.linuxUserConfiguration
+            ? undefined
+            : {
+                uid: p.linuxUserConfiguration?.["uid"],
+                gid: p.linuxUserConfiguration?.["gid"],
+                sshPrivateKey: p.linuxUserConfiguration?.["sshPrivateKey"],
+              },
+          windowsUserConfiguration: !p.windowsUserConfiguration
+            ? undefined
+            : { loginMode: p.windowsUserConfiguration?.["loginMode"] },
+        })),
+    metadata: !result.body["metadata"]
+      ? result.body["metadata"]
+      : result.body["metadata"].map((p) => ({
+          name: p["name"],
+          value: p["value"],
+        })),
     stats: !result.body.stats
       ? undefined
       : {
@@ -1792,67 +1880,74 @@ export async function _getPoolDeserialize(
                   result.body.stats?.resourceStats?.["networkWriteGiB"],
               },
         },
-    mountConfiguration: (result.body["mountConfiguration"] ?? []).map((p) => ({
-      azureBlobFileSystemConfiguration: !p.azureBlobFileSystemConfiguration
-        ? undefined
-        : {
-            accountName: p.azureBlobFileSystemConfiguration?.["accountName"],
-            containerName:
-              p.azureBlobFileSystemConfiguration?.["containerName"],
-            accountKey: p.azureBlobFileSystemConfiguration?.["accountKey"],
-            sasKey: p.azureBlobFileSystemConfiguration?.["sasKey"],
-            blobfuseOptions:
-              p.azureBlobFileSystemConfiguration?.["blobfuseOptions"],
-            relativeMountPath:
-              p.azureBlobFileSystemConfiguration?.["relativeMountPath"],
-            identityReference: !p.azureBlobFileSystemConfiguration
-              ?.identityReference
-              ? undefined
-              : {
-                  resourceId:
-                    p.azureBlobFileSystemConfiguration?.identityReference?.[
-                      "resourceId"
-                    ],
-                },
-          },
-      nfsMountConfiguration: !p.nfsMountConfiguration
-        ? undefined
-        : {
-            source: p.nfsMountConfiguration?.["source"],
-            relativeMountPath: p.nfsMountConfiguration?.["relativeMountPath"],
-            mountOptions: p.nfsMountConfiguration?.["mountOptions"],
-          },
-      cifsMountConfiguration: !p.cifsMountConfiguration
-        ? undefined
-        : {
-            username: p.cifsMountConfiguration?.["username"],
-            source: p.cifsMountConfiguration?.["source"],
-            relativeMountPath: p.cifsMountConfiguration?.["relativeMountPath"],
-            mountOptions: p.cifsMountConfiguration?.["mountOptions"],
-            password: p.cifsMountConfiguration?.["password"],
-          },
-      azureFileShareConfiguration: !p.azureFileShareConfiguration
-        ? undefined
-        : {
-            accountName: p.azureFileShareConfiguration?.["accountName"],
-            azureFileUrl: p.azureFileShareConfiguration?.["azureFileUrl"],
-            accountKey: p.azureFileShareConfiguration?.["accountKey"],
-            relativeMountPath:
-              p.azureFileShareConfiguration?.["relativeMountPath"],
-            mountOptions: p.azureFileShareConfiguration?.["mountOptions"],
-          },
-    })),
+    mountConfiguration: !result.body["mountConfiguration"]
+      ? result.body["mountConfiguration"]
+      : result.body["mountConfiguration"].map((p) => ({
+          azureBlobFileSystemConfiguration: !p.azureBlobFileSystemConfiguration
+            ? undefined
+            : {
+                accountName:
+                  p.azureBlobFileSystemConfiguration?.["accountName"],
+                containerName:
+                  p.azureBlobFileSystemConfiguration?.["containerName"],
+                accountKey: p.azureBlobFileSystemConfiguration?.["accountKey"],
+                sasKey: p.azureBlobFileSystemConfiguration?.["sasKey"],
+                blobfuseOptions:
+                  p.azureBlobFileSystemConfiguration?.["blobfuseOptions"],
+                relativeMountPath:
+                  p.azureBlobFileSystemConfiguration?.["relativeMountPath"],
+                identityReference: !p.azureBlobFileSystemConfiguration
+                  ?.identityReference
+                  ? undefined
+                  : {
+                      resourceId:
+                        p.azureBlobFileSystemConfiguration?.identityReference?.[
+                          "resourceId"
+                        ],
+                    },
+              },
+          nfsMountConfiguration: !p.nfsMountConfiguration
+            ? undefined
+            : {
+                source: p.nfsMountConfiguration?.["source"],
+                relativeMountPath:
+                  p.nfsMountConfiguration?.["relativeMountPath"],
+                mountOptions: p.nfsMountConfiguration?.["mountOptions"],
+              },
+          cifsMountConfiguration: !p.cifsMountConfiguration
+            ? undefined
+            : {
+                username: p.cifsMountConfiguration?.["username"],
+                source: p.cifsMountConfiguration?.["source"],
+                relativeMountPath:
+                  p.cifsMountConfiguration?.["relativeMountPath"],
+                mountOptions: p.cifsMountConfiguration?.["mountOptions"],
+                password: p.cifsMountConfiguration?.["password"],
+              },
+          azureFileShareConfiguration: !p.azureFileShareConfiguration
+            ? undefined
+            : {
+                accountName: p.azureFileShareConfiguration?.["accountName"],
+                azureFileUrl: p.azureFileShareConfiguration?.["azureFileUrl"],
+                accountKey: p.azureFileShareConfiguration?.["accountKey"],
+                relativeMountPath:
+                  p.azureFileShareConfiguration?.["relativeMountPath"],
+                mountOptions: p.azureFileShareConfiguration?.["mountOptions"],
+              },
+        })),
     identity: !result.body.identity
       ? undefined
       : {
           type: result.body.identity?.["type"],
-          userAssignedIdentities: (
-            result.body.identity?.["userAssignedIdentities"] ?? []
-          ).map((p) => ({
-            resourceId: p["resourceId"],
-            clientId: p["clientId"],
-            principalId: p["principalId"],
-          })),
+          userAssignedIdentities: !result.body.identity?.[
+            "userAssignedIdentities"
+          ]
+            ? result.body.identity?.["userAssignedIdentities"]
+            : result.body.identity?.["userAssignedIdentities"].map((p) => ({
+                resourceId: p["resourceId"],
+                clientId: p["clientId"],
+                principalId: p["principalId"],
+              })),
         },
     targetNodeCommunicationMode: result.body["targetNodeCommunicationMode"],
     currentNodeCommunicationMode: result.body["currentNodeCommunicationMode"],
@@ -1937,22 +2032,25 @@ export function _updatePoolSend(
                     workingDirectory:
                       body.startTask?.containerSettings?.["workingDirectory"],
                   },
-              resourceFiles: (body.startTask?.["resourceFiles"] ?? []).map(
-                (p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })
-              ),
-              environmentSettings: (
-                body.startTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+              resourceFiles: !body.startTask?.["resourceFiles"]
+                ? body.startTask?.["resourceFiles"]
+                : body.startTask?.["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
+                      ? undefined
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              environmentSettings: !body.startTask?.["environmentSettings"]
+                ? body.startTask?.["environmentSettings"]
+                : body.startTask?.["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
               userIdentity: !body.startTask?.userIdentity
                 ? undefined
                 : {
@@ -1971,25 +2069,27 @@ export function _updatePoolSend(
               maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
               waitForSuccess: body.startTask?.["waitForSuccess"],
             },
-        certificateReferences: (body["certificateReferences"] ?? []).map(
-          (p) => ({
-            thumbprint: p["thumbprint"],
-            thumbprintAlgorithm: p["thumbprintAlgorithm"],
-            storeLocation: p["storeLocation"],
-            storeName: p["storeName"],
-            visibility: p["visibility"],
-          })
-        ),
-        applicationPackageReferences: (
-          body["applicationPackageReferences"] ?? []
-        ).map((p) => ({
-          applicationId: p["applicationId"],
-          version: p["version"],
-        })),
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        certificateReferences: !body["certificateReferences"]
+          ? body["certificateReferences"]
+          : body["certificateReferences"].map((p) => ({
+              thumbprint: p["thumbprint"],
+              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+              storeLocation: p["storeLocation"],
+              storeName: p["storeName"],
+              visibility: p["visibility"],
+            })),
+        applicationPackageReferences: !body["applicationPackageReferences"]
+          ? body["applicationPackageReferences"]
+          : body["applicationPackageReferences"].map((p) => ({
+              applicationId: p["applicationId"],
+              version: p["version"],
+            })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
         targetNodeCommunicationMode: body["targetNodeCommunicationMode"],
       },
     });
@@ -2157,10 +2257,12 @@ export async function _evaluatePoolAutoScaleDeserialize(
       : {
           code: result.body.error?.["code"],
           message: result.body.error?.["message"],
-          values: (result.body.error?.["values"] ?? []).map((p) => ({
-            name: p["name"],
-            value: p["value"],
-          })),
+          values: !result.body.error?.["values"]
+            ? result.body.error?.["values"]
+            : result.body.error?.["values"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
         },
   };
 }
@@ -2362,22 +2464,25 @@ export function _replacePoolPropertiesSend(
                     workingDirectory:
                       body.startTask?.containerSettings?.["workingDirectory"],
                   },
-              resourceFiles: (body.startTask?.["resourceFiles"] ?? []).map(
-                (p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })
-              ),
-              environmentSettings: (
-                body.startTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+              resourceFiles: !body.startTask?.["resourceFiles"]
+                ? body.startTask?.["resourceFiles"]
+                : body.startTask?.["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
+                      ? undefined
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              environmentSettings: !body.startTask?.["environmentSettings"]
+                ? body.startTask?.["environmentSettings"]
+                : body.startTask?.["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
               userIdentity: !body.startTask?.userIdentity
                 ? undefined
                 : {
@@ -2396,22 +2501,17 @@ export function _replacePoolPropertiesSend(
               maxTaskRetryCount: body.startTask?.["maxTaskRetryCount"],
               waitForSuccess: body.startTask?.["waitForSuccess"],
             },
-        certificateReferences: (body["certificateReferences"] ?? []).map(
-          (p) => ({
-            thumbprint: p["thumbprint"],
-            thumbprintAlgorithm: p["thumbprintAlgorithm"],
-            storeLocation: p["storeLocation"],
-            storeName: p["storeName"],
-            visibility: p["visibility"],
-          })
-        ),
-        applicationPackageReferences: (
-          body["applicationPackageReferences"] ?? []
-        ).map((p) => ({
-          applicationId: p["applicationId"],
-          version: p["version"],
+        certificateReferences: body["certificateReferences"].map((p) => ({
+          thumbprint: p["thumbprint"],
+          thumbprintAlgorithm: p["thumbprintAlgorithm"],
+          storeLocation: p["storeLocation"],
+          storeName: p["storeName"],
+          visibility: p["visibility"],
         })),
-        metadata: (body["metadata"] ?? []).map((p) => ({
+        applicationPackageReferences: body["applicationPackageReferences"].map(
+          (p) => ({ applicationId: p["applicationId"], version: p["version"] })
+        ),
+        metadata: body["metadata"].map((p) => ({
           name: p["name"],
           value: p["value"],
         })),
@@ -2539,24 +2639,26 @@ export async function _listSupportedImagesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      nodeAgentSKUId: p["nodeAgentSKUId"],
-      imageReference: {
-        publisher: p.imageReference["publisher"],
-        offer: p.imageReference["offer"],
-        sku: p.imageReference["sku"],
-        version: p.imageReference["version"],
-        virtualMachineImageId: p.imageReference["virtualMachineImageId"],
-        exactVersion: p.imageReference["exactVersion"],
-      },
-      osType: p["osType"],
-      capabilities: p["capabilities"],
-      batchSupportEndOfLife:
-        p["batchSupportEndOfLife"] !== undefined
-          ? new Date(p["batchSupportEndOfLife"])
-          : undefined,
-      verificationType: p["verificationType"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          nodeAgentSKUId: p["nodeAgentSKUId"],
+          imageReference: {
+            publisher: p.imageReference["publisher"],
+            offer: p.imageReference["offer"],
+            sku: p.imageReference["sku"],
+            version: p.imageReference["version"],
+            virtualMachineImageId: p.imageReference["virtualMachineImageId"],
+            exactVersion: p.imageReference["exactVersion"],
+          },
+          osType: p["osType"],
+          capabilities: p["capabilities"],
+          batchSupportEndOfLife:
+            p["batchSupportEndOfLife"] !== undefined
+              ? new Date(p["batchSupportEndOfLife"])
+              : undefined,
+          verificationType: p["verificationType"],
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -2596,45 +2698,47 @@ export async function _listPoolNodeCountsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      poolId: p["poolId"],
-      dedicated: !p.dedicated
-        ? undefined
-        : {
-            creating: p.dedicated?.["creating"],
-            idle: p.dedicated?.["idle"],
-            offline: p.dedicated?.["offline"],
-            preempted: p.dedicated?.["preempted"],
-            rebooting: p.dedicated?.["rebooting"],
-            reimaging: p.dedicated?.["reimaging"],
-            running: p.dedicated?.["running"],
-            starting: p.dedicated?.["starting"],
-            startTaskFailed: p.dedicated?.["startTaskFailed"],
-            leavingPool: p.dedicated?.["leavingPool"],
-            unknown: p.dedicated?.["unknown"],
-            unusable: p.dedicated?.["unusable"],
-            waitingForStartTask: p.dedicated?.["waitingForStartTask"],
-            total: p.dedicated?.["total"],
-          },
-      lowPriority: !p.lowPriority
-        ? undefined
-        : {
-            creating: p.lowPriority?.["creating"],
-            idle: p.lowPriority?.["idle"],
-            offline: p.lowPriority?.["offline"],
-            preempted: p.lowPriority?.["preempted"],
-            rebooting: p.lowPriority?.["rebooting"],
-            reimaging: p.lowPriority?.["reimaging"],
-            running: p.lowPriority?.["running"],
-            starting: p.lowPriority?.["starting"],
-            startTaskFailed: p.lowPriority?.["startTaskFailed"],
-            leavingPool: p.lowPriority?.["leavingPool"],
-            unknown: p.lowPriority?.["unknown"],
-            unusable: p.lowPriority?.["unusable"],
-            waitingForStartTask: p.lowPriority?.["waitingForStartTask"],
-            total: p.lowPriority?.["total"],
-          },
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          poolId: p["poolId"],
+          dedicated: !p.dedicated
+            ? undefined
+            : {
+                creating: p.dedicated?.["creating"],
+                idle: p.dedicated?.["idle"],
+                offline: p.dedicated?.["offline"],
+                preempted: p.dedicated?.["preempted"],
+                rebooting: p.dedicated?.["rebooting"],
+                reimaging: p.dedicated?.["reimaging"],
+                running: p.dedicated?.["running"],
+                starting: p.dedicated?.["starting"],
+                startTaskFailed: p.dedicated?.["startTaskFailed"],
+                leavingPool: p.dedicated?.["leavingPool"],
+                unknown: p.dedicated?.["unknown"],
+                unusable: p.dedicated?.["unusable"],
+                waitingForStartTask: p.dedicated?.["waitingForStartTask"],
+                total: p.dedicated?.["total"],
+              },
+          lowPriority: !p.lowPriority
+            ? undefined
+            : {
+                creating: p.lowPriority?.["creating"],
+                idle: p.lowPriority?.["idle"],
+                offline: p.lowPriority?.["offline"],
+                preempted: p.lowPriority?.["preempted"],
+                rebooting: p.lowPriority?.["rebooting"],
+                reimaging: p.lowPriority?.["reimaging"],
+                running: p.lowPriority?.["running"],
+                starting: p.lowPriority?.["starting"],
+                startTaskFailed: p.lowPriority?.["startTaskFailed"],
+                leavingPool: p.lowPriority?.["leavingPool"],
+                unknown: p.lowPriority?.["unknown"],
+                unusable: p.lowPriority?.["unusable"],
+                waitingForStartTask: p.lowPriority?.["waitingForStartTask"],
+                total: p.lowPriority?.["total"],
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -2821,50 +2925,59 @@ export async function _getJobDeserialize(
                     "workingDirectory"
                   ],
               },
-          resourceFiles: (
-            result.body.jobManagerTask?.["resourceFiles"] ?? []
-          ).map((p) => ({
-            autoStorageContainerName: p["autoStorageContainerName"],
-            storageContainerUrl: p["storageContainerUrl"],
-            httpUrl: p["httpUrl"],
-            blobPrefix: p["blobPrefix"],
-            filePath: p["filePath"],
-            fileMode: p["fileMode"],
-            identityReference: !p.identityReference
-              ? undefined
-              : { resourceId: p.identityReference?.["resourceId"] },
-          })),
-          outputFiles: (result.body.jobManagerTask?.["outputFiles"] ?? []).map(
-            (p) => ({
-              filePattern: p["filePattern"],
-              destination: {
-                container: !p.destination.container
+          resourceFiles: !result.body.jobManagerTask?.["resourceFiles"]
+            ? result.body.jobManagerTask?.["resourceFiles"]
+            : result.body.jobManagerTask?.["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
                   ? undefined
-                  : {
-                      path: p.destination.container?.["path"],
-                      containerUrl: p.destination.container?.["containerUrl"],
-                      identityReference: !p.destination.container
-                        ?.identityReference
-                        ? undefined
-                        : {
-                            resourceId:
-                              p.destination.container?.identityReference?.[
-                                "resourceId"
-                              ],
-                          },
-                      uploadHeaders: (
-                        p.destination.container?.["uploadHeaders"] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
-                    },
-              },
-              uploadOptions: {
-                uploadCondition: p.uploadOptions["uploadCondition"],
-              },
-            })
-          ),
-          environmentSettings: (
-            result.body.jobManagerTask?.["environmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          outputFiles: !result.body.jobManagerTask?.["outputFiles"]
+            ? result.body.jobManagerTask?.["outputFiles"]
+            : result.body.jobManagerTask?.["outputFiles"].map((p) => ({
+                filePattern: p["filePattern"],
+                destination: {
+                  container: !p.destination.container
+                    ? undefined
+                    : {
+                        path: p.destination.container?.["path"],
+                        containerUrl: p.destination.container?.["containerUrl"],
+                        identityReference: !p.destination.container
+                          ?.identityReference
+                          ? undefined
+                          : {
+                              resourceId:
+                                p.destination.container?.identityReference?.[
+                                  "resourceId"
+                                ],
+                            },
+                        uploadHeaders: !p.destination.container?.[
+                          "uploadHeaders"
+                        ]
+                          ? p.destination.container?.["uploadHeaders"]
+                          : p.destination.container?.["uploadHeaders"].map(
+                              (p) => ({ name: p["name"], value: p["value"] })
+                            ),
+                      },
+                },
+                uploadOptions: {
+                  uploadCondition: p.uploadOptions["uploadCondition"],
+                },
+              })),
+          environmentSettings: !result.body.jobManagerTask?.[
+            "environmentSettings"
+          ]
+            ? result.body.jobManagerTask?.["environmentSettings"]
+            : result.body.jobManagerTask?.["environmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           constraints: !result.body.jobManagerTask?.constraints
             ? undefined
             : {
@@ -2899,12 +3012,16 @@ export async function _getJobDeserialize(
                     },
               },
           runExclusive: result.body.jobManagerTask?.["runExclusive"],
-          applicationPackageReferences: (
-            result.body.jobManagerTask?.["applicationPackageReferences"] ?? []
-          ).map((p) => ({
-            applicationId: p["applicationId"],
-            version: p["version"],
-          })),
+          applicationPackageReferences: !result.body.jobManagerTask?.[
+            "applicationPackageReferences"
+          ]
+            ? result.body.jobManagerTask?.["applicationPackageReferences"]
+            : result.body.jobManagerTask?.["applicationPackageReferences"].map(
+                (p) => ({
+                  applicationId: p["applicationId"],
+                  version: p["version"],
+                })
+              ),
           authenticationTokenSettings: !result.body.jobManagerTask
             ?.authenticationTokenSettings
             ? undefined
@@ -2960,22 +3077,26 @@ export async function _getJobDeserialize(
                     "workingDirectory"
                   ],
               },
-          resourceFiles: (
-            result.body.jobPreparationTask?.["resourceFiles"] ?? []
-          ).map((p) => ({
-            autoStorageContainerName: p["autoStorageContainerName"],
-            storageContainerUrl: p["storageContainerUrl"],
-            httpUrl: p["httpUrl"],
-            blobPrefix: p["blobPrefix"],
-            filePath: p["filePath"],
-            fileMode: p["fileMode"],
-            identityReference: !p.identityReference
-              ? undefined
-              : { resourceId: p.identityReference?.["resourceId"] },
-          })),
-          environmentSettings: (
-            result.body.jobPreparationTask?.["environmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+          resourceFiles: !result.body.jobPreparationTask?.["resourceFiles"]
+            ? result.body.jobPreparationTask?.["resourceFiles"]
+            : result.body.jobPreparationTask?.["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
+                  ? undefined
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          environmentSettings: !result.body.jobPreparationTask?.[
+            "environmentSettings"
+          ]
+            ? result.body.jobPreparationTask?.["environmentSettings"]
+            : result.body.jobPreparationTask?.["environmentSettings"].map(
+                (p) => ({ name: p["name"], value: p["value"] })
+              ),
           constraints: !result.body.jobPreparationTask?.constraints
             ? undefined
             : {
@@ -3054,22 +3175,27 @@ export async function _getJobDeserialize(
                     "workingDirectory"
                   ],
               },
-          resourceFiles: (
-            result.body.jobReleaseTask?.["resourceFiles"] ?? []
-          ).map((p) => ({
-            autoStorageContainerName: p["autoStorageContainerName"],
-            storageContainerUrl: p["storageContainerUrl"],
-            httpUrl: p["httpUrl"],
-            blobPrefix: p["blobPrefix"],
-            filePath: p["filePath"],
-            fileMode: p["fileMode"],
-            identityReference: !p.identityReference
-              ? undefined
-              : { resourceId: p.identityReference?.["resourceId"] },
-          })),
-          environmentSettings: (
-            result.body.jobReleaseTask?.["environmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+          resourceFiles: !result.body.jobReleaseTask?.["resourceFiles"]
+            ? result.body.jobReleaseTask?.["resourceFiles"]
+            : result.body.jobReleaseTask?.["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
+                  ? undefined
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          environmentSettings: !result.body.jobReleaseTask?.[
+            "environmentSettings"
+          ]
+            ? result.body.jobReleaseTask?.["environmentSettings"]
+            : result.body.jobReleaseTask?.["environmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           maxWallClockTime: result.body.jobReleaseTask?.["maxWallClockTime"],
           retentionTime: result.body.jobReleaseTask?.["retentionTime"],
           userIdentity: !result.body.jobReleaseTask?.userIdentity
@@ -3091,9 +3217,12 @@ export async function _getJobDeserialize(
                     },
               },
         },
-    commonEnvironmentSettings: (
-      result.body["commonEnvironmentSettings"] ?? []
-    ).map((p) => ({ name: p["name"], value: p["value"] })),
+    commonEnvironmentSettings: !result.body["commonEnvironmentSettings"]
+      ? result.body["commonEnvironmentSettings"]
+      : result.body["commonEnvironmentSettings"].map((p) => ({
+          name: p["name"],
+          value: p["value"],
+        })),
     poolInfo: {
       poolId: result.body.poolInfo["poolId"],
       autoPoolSpecification: !result.body.poolInfo.autoPoolSpecification
@@ -3179,15 +3308,18 @@ export async function _getJobDeserialize(
                                   "enableAutomaticUpdates"
                                 ],
                             },
-                        dataDisks: (
-                          result.body.poolInfo.autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.["dataDisks"] ?? []
-                        ).map((p) => ({
-                          lun: p["lun"],
-                          caching: p["caching"],
-                          diskSizeGB: p["diskSizeGB"],
-                          storageAccountType: p["storageAccountType"],
-                        })),
+                        dataDisks: !result.body.poolInfo.autoPoolSpecification
+                          ?.pool?.virtualMachineConfiguration?.["dataDisks"]
+                          ? result.body.poolInfo.autoPoolSpecification?.pool
+                              ?.virtualMachineConfiguration?.["dataDisks"]
+                          : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                              "dataDisks"
+                            ].map((p) => ({
+                              lun: p["lun"],
+                              caching: p["caching"],
+                              diskSizeGB: p["diskSizeGB"],
+                              storageAccountType: p["storageAccountType"],
+                            })),
                         licenseType:
                           result.body.poolInfo.autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.["licenseType"],
@@ -3205,23 +3337,30 @@ export async function _getJobDeserialize(
                                   ?.containerConfiguration?.[
                                   "containerImageNames"
                                 ],
-                              containerRegistries: (
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.containerConfiguration?.[
-                                  "containerRegistries"
-                                ] ?? []
-                              ).map((p) => ({
-                                username: p["username"],
-                                password: p["password"],
-                                registryServer: p["registryServer"],
-                                identityReference: !p.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.identityReference?.["resourceId"],
-                                    },
-                              })),
+                              containerRegistries: !result.body.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.containerConfiguration?.[
+                                "containerRegistries"
+                              ]
+                                ? result.body.poolInfo.autoPoolSpecification
+                                    ?.pool?.virtualMachineConfiguration
+                                    ?.containerConfiguration?.[
+                                    "containerRegistries"
+                                  ]
+                                : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                    "containerRegistries"
+                                  ].map((p) => ({
+                                    username: p["username"],
+                                    password: p["password"],
+                                    registryServer: p["registryServer"],
+                                    identityReference: !p.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.identityReference?.["resourceId"],
+                                        },
+                                  })),
                             },
                         diskEncryptionConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool
@@ -3245,21 +3384,26 @@ export async function _getJobDeserialize(
                                   ?.virtualMachineConfiguration
                                   ?.nodePlacementConfiguration?.["policy"],
                             },
-                        extensions: (
-                          result.body.poolInfo.autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.["extensions"] ?? []
-                        ).map((p) => ({
-                          name: p["name"],
-                          publisher: p["publisher"],
-                          type: p["type"],
-                          typeHandlerVersion: p["typeHandlerVersion"],
-                          autoUpgradeMinorVersion: p["autoUpgradeMinorVersion"],
-                          enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-                          settings: p["settings"],
-                          protectedSettings: p["protectedSettings"],
-                          provisionAfterExtensions:
-                            p["provisionAfterExtensions"],
-                        })),
+                        extensions: !result.body.poolInfo.autoPoolSpecification
+                          ?.pool?.virtualMachineConfiguration?.["extensions"]
+                          ? result.body.poolInfo.autoPoolSpecification?.pool
+                              ?.virtualMachineConfiguration?.["extensions"]
+                          : result.body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                              "extensions"
+                            ].map((p) => ({
+                              name: p["name"],
+                              publisher: p["publisher"],
+                              type: p["type"],
+                              typeHandlerVersion: p["typeHandlerVersion"],
+                              autoUpgradeMinorVersion:
+                                p["autoUpgradeMinorVersion"],
+                              enableAutomaticUpgrade:
+                                p["enableAutomaticUpgrade"],
+                              settings: p["settings"],
+                              protectedSettings: p["protectedSettings"],
+                              provisionAfterExtensions:
+                                p["provisionAfterExtensions"],
+                            })),
                         osDisk: !result.body.poolInfo.autoPoolSpecification
                           ?.pool?.virtualMachineConfiguration?.osDisk
                           ? undefined
@@ -3336,28 +3480,32 @@ export async function _getJobDeserialize(
                           ?.endpointConfiguration
                           ? undefined
                           : {
-                              inboundNATPools: (
-                                result.body.poolInfo.autoPoolSpecification?.pool
-                                  ?.networkConfiguration
-                                  ?.endpointConfiguration?.[
+                              inboundNATPools:
+                                result.body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                   "inboundNATPools"
-                                ] ?? []
-                              ).map((p) => ({
-                                name: p["name"],
-                                protocol: p["protocol"],
-                                backendPort: p["backendPort"],
-                                frontendPortRangeStart:
-                                  p["frontendPortRangeStart"],
-                                frontendPortRangeEnd: p["frontendPortRangeEnd"],
-                                networkSecurityGroupRules: (
-                                  p["networkSecurityGroupRules"] ?? []
-                                ).map((p) => ({
-                                  priority: p["priority"],
-                                  access: p["access"],
-                                  sourceAddressPrefix: p["sourceAddressPrefix"],
-                                  sourcePortRanges: p["sourcePortRanges"],
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  protocol: p["protocol"],
+                                  backendPort: p["backendPort"],
+                                  frontendPortRangeStart:
+                                    p["frontendPortRangeStart"],
+                                  frontendPortRangeEnd:
+                                    p["frontendPortRangeEnd"],
+                                  networkSecurityGroupRules: !p[
+                                    "networkSecurityGroupRules"
+                                  ]
+                                    ? p["networkSecurityGroupRules"]
+                                    : p["networkSecurityGroupRules"].map(
+                                        (p) => ({
+                                          priority: p["priority"],
+                                          access: p["access"],
+                                          sourceAddressPrefix:
+                                            p["sourceAddressPrefix"],
+                                          sourcePortRanges:
+                                            p["sourcePortRanges"],
+                                        })
+                                      ),
                                 })),
-                              })),
                             },
                         publicIPAddressConfiguration: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.networkConfiguration
@@ -3439,27 +3587,41 @@ export async function _getJobDeserialize(
                                   "workingDirectory"
                                 ],
                             },
-                        resourceFiles: (
-                          result.body.poolInfo.autoPoolSpecification?.pool
-                            ?.startTask?.["resourceFiles"] ?? []
-                        ).map((p) => ({
-                          autoStorageContainerName:
-                            p["autoStorageContainerName"],
-                          storageContainerUrl: p["storageContainerUrl"],
-                          httpUrl: p["httpUrl"],
-                          blobPrefix: p["blobPrefix"],
-                          filePath: p["filePath"],
-                          fileMode: p["fileMode"],
-                          identityReference: !p.identityReference
-                            ? undefined
-                            : {
-                                resourceId: p.identityReference?.["resourceId"],
-                              },
-                        })),
-                        environmentSettings: (
-                          result.body.poolInfo.autoPoolSpecification?.pool
-                            ?.startTask?.["environmentSettings"] ?? []
-                        ).map((p) => ({ name: p["name"], value: p["value"] })),
+                        resourceFiles: !result.body.poolInfo
+                          .autoPoolSpecification?.pool?.startTask?.[
+                          "resourceFiles"
+                        ]
+                          ? result.body.poolInfo.autoPoolSpecification?.pool
+                              ?.startTask?.["resourceFiles"]
+                          : result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                              "resourceFiles"
+                            ].map((p) => ({
+                              autoStorageContainerName:
+                                p["autoStorageContainerName"],
+                              storageContainerUrl: p["storageContainerUrl"],
+                              httpUrl: p["httpUrl"],
+                              blobPrefix: p["blobPrefix"],
+                              filePath: p["filePath"],
+                              fileMode: p["fileMode"],
+                              identityReference: !p.identityReference
+                                ? undefined
+                                : {
+                                    resourceId:
+                                      p.identityReference?.["resourceId"],
+                                  },
+                            })),
+                        environmentSettings: !result.body.poolInfo
+                          .autoPoolSpecification?.pool?.startTask?.[
+                          "environmentSettings"
+                        ]
+                          ? result.body.poolInfo.autoPoolSpecification?.pool
+                              ?.startTask?.["environmentSettings"]
+                          : result.body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                              "environmentSettings"
+                            ].map((p) => ({
+                              name: p["name"],
+                              value: p["value"],
+                            })),
                         userIdentity: !result.body.poolInfo
                           .autoPoolSpecification?.pool?.startTask?.userIdentity
                           ? undefined
@@ -3489,134 +3651,162 @@ export async function _getJobDeserialize(
                           result.body.poolInfo.autoPoolSpecification?.pool
                             ?.startTask?.["waitForSuccess"],
                       },
-                  certificateReferences: (
-                    result.body.poolInfo.autoPoolSpecification?.pool?.[
-                      "certificateReferences"
-                    ] ?? []
-                  ).map((p) => ({
-                    thumbprint: p["thumbprint"],
-                    thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                    storeLocation: p["storeLocation"],
-                    storeName: p["storeName"],
-                    visibility: p["visibility"],
-                  })),
-                  applicationPackageReferences: (
-                    result.body.poolInfo.autoPoolSpecification?.pool?.[
-                      "applicationPackageReferences"
-                    ] ?? []
-                  ).map((p) => ({
-                    applicationId: p["applicationId"],
-                    version: p["version"],
-                  })),
+                  certificateReferences: !result.body.poolInfo
+                    .autoPoolSpecification?.pool?.["certificateReferences"]
+                    ? result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "certificateReferences"
+                      ]
+                    : result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "certificateReferences"
+                      ].map((p) => ({
+                        thumbprint: p["thumbprint"],
+                        thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                        storeLocation: p["storeLocation"],
+                        storeName: p["storeName"],
+                        visibility: p["visibility"],
+                      })),
+                  applicationPackageReferences: !result.body.poolInfo
+                    .autoPoolSpecification?.pool?.[
+                    "applicationPackageReferences"
+                  ]
+                    ? result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "applicationPackageReferences"
+                      ]
+                    : result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "applicationPackageReferences"
+                      ].map((p) => ({
+                        applicationId: p["applicationId"],
+                        version: p["version"],
+                      })),
                   applicationLicenses:
                     result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "applicationLicenses"
                     ],
-                  userAccounts: (
-                    result.body.poolInfo.autoPoolSpecification?.pool?.[
-                      "userAccounts"
-                    ] ?? []
-                  ).map((p) => ({
-                    name: p["name"],
-                    password: p["password"],
-                    elevationLevel: p["elevationLevel"],
-                    linuxUserConfiguration: !p.linuxUserConfiguration
-                      ? undefined
-                      : {
-                          uid: p.linuxUserConfiguration?.["uid"],
-                          gid: p.linuxUserConfiguration?.["gid"],
-                          sshPrivateKey:
-                            p.linuxUserConfiguration?.["sshPrivateKey"],
-                        },
-                    windowsUserConfiguration: !p.windowsUserConfiguration
-                      ? undefined
-                      : {
-                          loginMode: p.windowsUserConfiguration?.["loginMode"],
-                        },
-                  })),
-                  metadata: (
-                    result.body.poolInfo.autoPoolSpecification?.pool?.[
-                      "metadata"
-                    ] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                  mountConfiguration: (
-                    result.body.poolInfo.autoPoolSpecification?.pool?.[
-                      "mountConfiguration"
-                    ] ?? []
-                  ).map((p) => ({
-                    azureBlobFileSystemConfiguration:
-                      !p.azureBlobFileSystemConfiguration
-                        ? undefined
-                        : {
-                            accountName:
-                              p.azureBlobFileSystemConfiguration?.[
-                                "accountName"
-                              ],
-                            containerName:
-                              p.azureBlobFileSystemConfiguration?.[
-                                "containerName"
-                              ],
-                            accountKey:
-                              p.azureBlobFileSystemConfiguration?.[
-                                "accountKey"
-                              ],
-                            sasKey:
-                              p.azureBlobFileSystemConfiguration?.["sasKey"],
-                            blobfuseOptions:
-                              p.azureBlobFileSystemConfiguration?.[
-                                "blobfuseOptions"
-                              ],
-                            relativeMountPath:
-                              p.azureBlobFileSystemConfiguration?.[
-                                "relativeMountPath"
-                              ],
-                            identityReference: !p
-                              .azureBlobFileSystemConfiguration
-                              ?.identityReference
-                              ? undefined
-                              : {
-                                  resourceId:
-                                    p.azureBlobFileSystemConfiguration
-                                      ?.identityReference?.["resourceId"],
-                                },
-                          },
-                    nfsMountConfiguration: !p.nfsMountConfiguration
-                      ? undefined
-                      : {
-                          source: p.nfsMountConfiguration?.["source"],
-                          relativeMountPath:
-                            p.nfsMountConfiguration?.["relativeMountPath"],
-                          mountOptions:
-                            p.nfsMountConfiguration?.["mountOptions"],
-                        },
-                    cifsMountConfiguration: !p.cifsMountConfiguration
-                      ? undefined
-                      : {
-                          username: p.cifsMountConfiguration?.["username"],
-                          source: p.cifsMountConfiguration?.["source"],
-                          relativeMountPath:
-                            p.cifsMountConfiguration?.["relativeMountPath"],
-                          mountOptions:
-                            p.cifsMountConfiguration?.["mountOptions"],
-                          password: p.cifsMountConfiguration?.["password"],
-                        },
-                    azureFileShareConfiguration: !p.azureFileShareConfiguration
-                      ? undefined
-                      : {
-                          accountName:
-                            p.azureFileShareConfiguration?.["accountName"],
-                          azureFileUrl:
-                            p.azureFileShareConfiguration?.["azureFileUrl"],
-                          accountKey:
-                            p.azureFileShareConfiguration?.["accountKey"],
-                          relativeMountPath:
-                            p.azureFileShareConfiguration?.[
-                              "relativeMountPath"
-                            ],
-                          mountOptions:
-                            p.azureFileShareConfiguration?.["mountOptions"],
-                        },
-                  })),
+                  userAccounts: !result.body.poolInfo.autoPoolSpecification
+                    ?.pool?.["userAccounts"]
+                    ? result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "userAccounts"
+                      ]
+                    : result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "userAccounts"
+                      ].map((p) => ({
+                        name: p["name"],
+                        password: p["password"],
+                        elevationLevel: p["elevationLevel"],
+                        linuxUserConfiguration: !p.linuxUserConfiguration
+                          ? undefined
+                          : {
+                              uid: p.linuxUserConfiguration?.["uid"],
+                              gid: p.linuxUserConfiguration?.["gid"],
+                              sshPrivateKey:
+                                p.linuxUserConfiguration?.["sshPrivateKey"],
+                            },
+                        windowsUserConfiguration: !p.windowsUserConfiguration
+                          ? undefined
+                          : {
+                              loginMode:
+                                p.windowsUserConfiguration?.["loginMode"],
+                            },
+                      })),
+                  metadata: !result.body.poolInfo.autoPoolSpecification?.pool?.[
+                    "metadata"
+                  ]
+                    ? result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "metadata"
+                      ]
+                    : result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "metadata"
+                      ].map((p) => ({ name: p["name"], value: p["value"] })),
+                  mountConfiguration: !result.body.poolInfo
+                    .autoPoolSpecification?.pool?.["mountConfiguration"]
+                    ? result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "mountConfiguration"
+                      ]
+                    : result.body.poolInfo.autoPoolSpecification?.pool?.[
+                        "mountConfiguration"
+                      ].map((p) => ({
+                        azureBlobFileSystemConfiguration:
+                          !p.azureBlobFileSystemConfiguration
+                            ? undefined
+                            : {
+                                accountName:
+                                  p.azureBlobFileSystemConfiguration?.[
+                                    "accountName"
+                                  ],
+                                containerName:
+                                  p.azureBlobFileSystemConfiguration?.[
+                                    "containerName"
+                                  ],
+                                accountKey:
+                                  p.azureBlobFileSystemConfiguration?.[
+                                    "accountKey"
+                                  ],
+                                sasKey:
+                                  p.azureBlobFileSystemConfiguration?.[
+                                    "sasKey"
+                                  ],
+                                blobfuseOptions:
+                                  p.azureBlobFileSystemConfiguration?.[
+                                    "blobfuseOptions"
+                                  ],
+                                relativeMountPath:
+                                  p.azureBlobFileSystemConfiguration?.[
+                                    "relativeMountPath"
+                                  ],
+                                identityReference: !p
+                                  .azureBlobFileSystemConfiguration
+                                  ?.identityReference
+                                  ? undefined
+                                  : {
+                                      resourceId:
+                                        p.azureBlobFileSystemConfiguration
+                                          ?.identityReference?.["resourceId"],
+                                    },
+                              },
+                        nfsMountConfiguration: !p.nfsMountConfiguration
+                          ? undefined
+                          : {
+                              source: p.nfsMountConfiguration?.["source"],
+                              relativeMountPath:
+                                p.nfsMountConfiguration?.["relativeMountPath"],
+                              mountOptions:
+                                p.nfsMountConfiguration?.["mountOptions"],
+                            },
+                        cifsMountConfiguration: !p.cifsMountConfiguration
+                          ? undefined
+                          : {
+                              username: p.cifsMountConfiguration?.["username"],
+                              source: p.cifsMountConfiguration?.["source"],
+                              relativeMountPath:
+                                p.cifsMountConfiguration?.["relativeMountPath"],
+                              mountOptions:
+                                p.cifsMountConfiguration?.["mountOptions"],
+                              password: p.cifsMountConfiguration?.["password"],
+                            },
+                        azureFileShareConfiguration:
+                          !p.azureFileShareConfiguration
+                            ? undefined
+                            : {
+                                accountName:
+                                  p.azureFileShareConfiguration?.[
+                                    "accountName"
+                                  ],
+                                azureFileUrl:
+                                  p.azureFileShareConfiguration?.[
+                                    "azureFileUrl"
+                                  ],
+                                accountKey:
+                                  p.azureFileShareConfiguration?.["accountKey"],
+                                relativeMountPath:
+                                  p.azureFileShareConfiguration?.[
+                                    "relativeMountPath"
+                                  ],
+                                mountOptions:
+                                  p.azureFileShareConfiguration?.[
+                                    "mountOptions"
+                                  ],
+                              },
+                      })),
                   targetNodeCommunicationMode:
                     result.body.poolInfo.autoPoolSpecification?.pool?.[
                       "targetNodeCommunicationMode"
@@ -3629,10 +3819,12 @@ export async function _getJobDeserialize(
     networkConfiguration: !result.body.networkConfiguration
       ? undefined
       : { subnetId: result.body.networkConfiguration?.["subnetId"] },
-    metadata: (result.body["metadata"] ?? []).map((p) => ({
-      name: p["name"],
-      value: p["value"],
-    })),
+    metadata: !result.body["metadata"]
+      ? result.body["metadata"]
+      : result.body["metadata"].map((p) => ({
+          name: p["name"],
+          value: p["value"],
+        })),
     executionInfo: !result.body.executionInfo
       ? undefined
       : {
@@ -3650,9 +3842,13 @@ export async function _getJobDeserialize(
                 code: result.body.executionInfo?.schedulingError?.["code"],
                 message:
                   result.body.executionInfo?.schedulingError?.["message"],
-                details: (
-                  result.body.executionInfo?.schedulingError?.["details"] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                details: !result.body.executionInfo?.schedulingError?.[
+                  "details"
+                ]
+                  ? result.body.executionInfo?.schedulingError?.["details"]
+                  : result.body.executionInfo?.schedulingError?.["details"].map(
+                      (p) => ({ name: p["name"], value: p["value"] })
+                    ),
               },
           terminateReason: result.body.executionInfo?.["terminateReason"],
         },
@@ -3809,17 +4005,23 @@ export function _updateJobSend(
                                           "enableAutomaticUpdates"
                                         ],
                                     },
-                                dataDisks: (
-                                  body.poolInfo?.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.[
-                                    "dataDisks"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  lun: p["lun"],
-                                  caching: p["caching"],
-                                  diskSizeGB: p["diskSizeGB"],
-                                  storageAccountType: p["storageAccountType"],
-                                })),
+                                dataDisks: !body.poolInfo?.autoPoolSpecification
+                                  ?.pool?.virtualMachineConfiguration?.[
+                                  "dataDisks"
+                                ]
+                                  ? body.poolInfo?.autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration?.[
+                                      "dataDisks"
+                                    ]
+                                  : body.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                      "dataDisks"
+                                    ].map((p) => ({
+                                      lun: p["lun"],
+                                      caching: p["caching"],
+                                      diskSizeGB: p["diskSizeGB"],
+                                      storageAccountType:
+                                        p["storageAccountType"],
+                                    })),
                                 licenseType:
                                   body.poolInfo?.autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.[
@@ -3840,25 +4042,33 @@ export function _updateJobSend(
                                           ?.containerConfiguration?.[
                                           "containerImageNames"
                                         ],
-                                      containerRegistries: (
-                                        body.poolInfo?.autoPoolSpecification
-                                          ?.pool?.virtualMachineConfiguration
-                                          ?.containerConfiguration?.[
-                                          "containerRegistries"
-                                        ] ?? []
-                                      ).map((p) => ({
-                                        username: p["username"],
-                                        password: p["password"],
-                                        registryServer: p["registryServer"],
-                                        identityReference: !p.identityReference
-                                          ? undefined
-                                          : {
-                                              resourceId:
-                                                p.identityReference?.[
-                                                  "resourceId"
-                                                ],
-                                            },
-                                      })),
+                                      containerRegistries: !body.poolInfo
+                                        ?.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.[
+                                        "containerRegistries"
+                                      ]
+                                        ? body.poolInfo?.autoPoolSpecification
+                                            ?.pool?.virtualMachineConfiguration
+                                            ?.containerConfiguration?.[
+                                            "containerRegistries"
+                                          ]
+                                        : body.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                            "containerRegistries"
+                                          ].map((p) => ({
+                                            username: p["username"],
+                                            password: p["password"],
+                                            registryServer: p["registryServer"],
+                                            identityReference:
+                                              !p.identityReference
+                                                ? undefined
+                                                : {
+                                                    resourceId:
+                                                      p.identityReference?.[
+                                                        "resourceId"
+                                                      ],
+                                                  },
+                                          })),
                                     },
                                 diskEncryptionConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
@@ -3886,25 +4096,30 @@ export function _updateJobSend(
                                           "policy"
                                         ],
                                     },
-                                extensions: (
-                                  body.poolInfo?.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.[
-                                    "extensions"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  name: p["name"],
-                                  publisher: p["publisher"],
-                                  type: p["type"],
-                                  typeHandlerVersion: p["typeHandlerVersion"],
-                                  autoUpgradeMinorVersion:
-                                    p["autoUpgradeMinorVersion"],
-                                  enableAutomaticUpgrade:
-                                    p["enableAutomaticUpgrade"],
-                                  settings: p["settings"],
-                                  protectedSettings: p["protectedSettings"],
-                                  provisionAfterExtensions:
-                                    p["provisionAfterExtensions"],
-                                })),
+                                extensions: !body.poolInfo
+                                  ?.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["extensions"]
+                                  ? body.poolInfo?.autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration?.[
+                                      "extensions"
+                                    ]
+                                  : body.poolInfo?.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                      "extensions"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      publisher: p["publisher"],
+                                      type: p["type"],
+                                      typeHandlerVersion:
+                                        p["typeHandlerVersion"],
+                                      autoUpgradeMinorVersion:
+                                        p["autoUpgradeMinorVersion"],
+                                      enableAutomaticUpgrade:
+                                        p["enableAutomaticUpgrade"],
+                                      settings: p["settings"],
+                                      protectedSettings: p["protectedSettings"],
+                                      provisionAfterExtensions:
+                                        p["provisionAfterExtensions"],
+                                    })),
                                 osDisk: !body.poolInfo?.autoPoolSpecification
                                   ?.pool?.virtualMachineConfiguration?.osDisk
                                   ? undefined
@@ -3983,31 +4198,32 @@ export function _updateJobSend(
                                   ?.networkConfiguration?.endpointConfiguration
                                   ? undefined
                                   : {
-                                      inboundNATPools: (
-                                        body.poolInfo?.autoPoolSpecification
-                                          ?.pool?.networkConfiguration
-                                          ?.endpointConfiguration?.[
+                                      inboundNATPools:
+                                        body.poolInfo?.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                           "inboundNATPools"
-                                        ] ?? []
-                                      ).map((p) => ({
-                                        name: p["name"],
-                                        protocol: p["protocol"],
-                                        backendPort: p["backendPort"],
-                                        frontendPortRangeStart:
-                                          p["frontendPortRangeStart"],
-                                        frontendPortRangeEnd:
-                                          p["frontendPortRangeEnd"],
-                                        networkSecurityGroupRules: (
-                                          p["networkSecurityGroupRules"] ?? []
-                                        ).map((p) => ({
-                                          priority: p["priority"],
-                                          access: p["access"],
-                                          sourceAddressPrefix:
-                                            p["sourceAddressPrefix"],
-                                          sourcePortRanges:
-                                            p["sourcePortRanges"],
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          protocol: p["protocol"],
+                                          backendPort: p["backendPort"],
+                                          frontendPortRangeStart:
+                                            p["frontendPortRangeStart"],
+                                          frontendPortRangeEnd:
+                                            p["frontendPortRangeEnd"],
+                                          networkSecurityGroupRules: !p[
+                                            "networkSecurityGroupRules"
+                                          ]
+                                            ? p["networkSecurityGroupRules"]
+                                            : p[
+                                                "networkSecurityGroupRules"
+                                              ].map((p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              })),
                                         })),
-                                      })),
                                     },
                                 publicIPAddressConfiguration: !body.poolInfo
                                   ?.autoPoolSpecification?.pool
@@ -4100,31 +4316,44 @@ export function _updateJobSend(
                                           "workingDirectory"
                                         ],
                                     },
-                                resourceFiles: (
-                                  body.poolInfo?.autoPoolSpecification?.pool
-                                    ?.startTask?.["resourceFiles"] ?? []
-                                ).map((p) => ({
-                                  autoStorageContainerName:
-                                    p["autoStorageContainerName"],
-                                  storageContainerUrl: p["storageContainerUrl"],
-                                  httpUrl: p["httpUrl"],
-                                  blobPrefix: p["blobPrefix"],
-                                  filePath: p["filePath"],
-                                  fileMode: p["fileMode"],
-                                  identityReference: !p.identityReference
-                                    ? undefined
-                                    : {
-                                        resourceId:
-                                          p.identityReference?.["resourceId"],
-                                      },
-                                })),
-                                environmentSettings: (
-                                  body.poolInfo?.autoPoolSpecification?.pool
-                                    ?.startTask?.["environmentSettings"] ?? []
-                                ).map((p) => ({
-                                  name: p["name"],
-                                  value: p["value"],
-                                })),
+                                resourceFiles: !body.poolInfo
+                                  ?.autoPoolSpecification?.pool?.startTask?.[
+                                  "resourceFiles"
+                                ]
+                                  ? body.poolInfo?.autoPoolSpecification?.pool
+                                      ?.startTask?.["resourceFiles"]
+                                  : body.poolInfo?.autoPoolSpecification?.pool?.startTask?.[
+                                      "resourceFiles"
+                                    ].map((p) => ({
+                                      autoStorageContainerName:
+                                        p["autoStorageContainerName"],
+                                      storageContainerUrl:
+                                        p["storageContainerUrl"],
+                                      httpUrl: p["httpUrl"],
+                                      blobPrefix: p["blobPrefix"],
+                                      filePath: p["filePath"],
+                                      fileMode: p["fileMode"],
+                                      identityReference: !p.identityReference
+                                        ? undefined
+                                        : {
+                                            resourceId:
+                                              p.identityReference?.[
+                                                "resourceId"
+                                              ],
+                                          },
+                                    })),
+                                environmentSettings: !body.poolInfo
+                                  ?.autoPoolSpecification?.pool?.startTask?.[
+                                  "environmentSettings"
+                                ]
+                                  ? body.poolInfo?.autoPoolSpecification?.pool
+                                      ?.startTask?.["environmentSettings"]
+                                  : body.poolInfo?.autoPoolSpecification?.pool?.startTask?.[
+                                      "environmentSettings"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      value: p["value"],
+                                    })),
                                 userIdentity: !body.poolInfo
                                   ?.autoPoolSpecification?.pool?.startTask
                                   ?.userIdentity
@@ -4159,158 +4388,196 @@ export function _updateJobSend(
                                   body.poolInfo?.autoPoolSpecification?.pool
                                     ?.startTask?.["waitForSuccess"],
                               },
-                          certificateReferences: (
-                            body.poolInfo?.autoPoolSpecification?.pool?.[
-                              "certificateReferences"
-                            ] ?? []
-                          ).map((p) => ({
-                            thumbprint: p["thumbprint"],
-                            thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                            storeLocation: p["storeLocation"],
-                            storeName: p["storeName"],
-                            visibility: p["visibility"],
-                          })),
-                          applicationPackageReferences: (
-                            body.poolInfo?.autoPoolSpecification?.pool?.[
-                              "applicationPackageReferences"
-                            ] ?? []
-                          ).map((p) => ({
-                            applicationId: p["applicationId"],
-                            version: p["version"],
-                          })),
+                          certificateReferences: !body.poolInfo
+                            ?.autoPoolSpecification?.pool?.[
+                            "certificateReferences"
+                          ]
+                            ? body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "certificateReferences"
+                              ]
+                            : body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "certificateReferences"
+                              ].map((p) => ({
+                                thumbprint: p["thumbprint"],
+                                thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                                storeLocation: p["storeLocation"],
+                                storeName: p["storeName"],
+                                visibility: p["visibility"],
+                              })),
+                          applicationPackageReferences: !body.poolInfo
+                            ?.autoPoolSpecification?.pool?.[
+                            "applicationPackageReferences"
+                          ]
+                            ? body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "applicationPackageReferences"
+                              ]
+                            : body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "applicationPackageReferences"
+                              ].map((p) => ({
+                                applicationId: p["applicationId"],
+                                version: p["version"],
+                              })),
                           applicationLicenses:
                             body.poolInfo?.autoPoolSpecification?.pool?.[
                               "applicationLicenses"
                             ],
-                          userAccounts: (
-                            body.poolInfo?.autoPoolSpecification?.pool?.[
-                              "userAccounts"
-                            ] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            password: p["password"],
-                            elevationLevel: p["elevationLevel"],
-                            linuxUserConfiguration: !p.linuxUserConfiguration
-                              ? undefined
-                              : {
-                                  uid: p.linuxUserConfiguration?.["uid"],
-                                  gid: p.linuxUserConfiguration?.["gid"],
-                                  sshPrivateKey:
-                                    p.linuxUserConfiguration?.["sshPrivateKey"],
-                                },
-                            windowsUserConfiguration:
-                              !p.windowsUserConfiguration
-                                ? undefined
-                                : {
-                                    loginMode:
-                                      p.windowsUserConfiguration?.["loginMode"],
-                                  },
-                          })),
-                          metadata: (
-                            body.poolInfo?.autoPoolSpecification?.pool?.[
-                              "metadata"
-                            ] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
-                          mountConfiguration: (
-                            body.poolInfo?.autoPoolSpecification?.pool?.[
-                              "mountConfiguration"
-                            ] ?? []
-                          ).map((p) => ({
-                            azureBlobFileSystemConfiguration:
-                              !p.azureBlobFileSystemConfiguration
-                                ? undefined
-                                : {
-                                    accountName:
-                                      p.azureBlobFileSystemConfiguration?.[
-                                        "accountName"
-                                      ],
-                                    containerName:
-                                      p.azureBlobFileSystemConfiguration?.[
-                                        "containerName"
-                                      ],
-                                    accountKey:
-                                      p.azureBlobFileSystemConfiguration?.[
-                                        "accountKey"
-                                      ],
-                                    sasKey:
-                                      p.azureBlobFileSystemConfiguration?.[
-                                        "sasKey"
-                                      ],
-                                    blobfuseOptions:
-                                      p.azureBlobFileSystemConfiguration?.[
-                                        "blobfuseOptions"
-                                      ],
-                                    relativeMountPath:
-                                      p.azureBlobFileSystemConfiguration?.[
-                                        "relativeMountPath"
-                                      ],
-                                    identityReference: !p
-                                      .azureBlobFileSystemConfiguration
-                                      ?.identityReference
-                                      ? undefined
-                                      : {
-                                          resourceId:
-                                            p.azureBlobFileSystemConfiguration
-                                              ?.identityReference?.[
-                                              "resourceId"
-                                            ],
-                                        },
-                                  },
-                            nfsMountConfiguration: !p.nfsMountConfiguration
-                              ? undefined
-                              : {
-                                  source: p.nfsMountConfiguration?.["source"],
-                                  relativeMountPath:
-                                    p.nfsMountConfiguration?.[
-                                      "relativeMountPath"
-                                    ],
-                                  mountOptions:
-                                    p.nfsMountConfiguration?.["mountOptions"],
-                                },
-                            cifsMountConfiguration: !p.cifsMountConfiguration
-                              ? undefined
-                              : {
-                                  username:
-                                    p.cifsMountConfiguration?.["username"],
-                                  source: p.cifsMountConfiguration?.["source"],
-                                  relativeMountPath:
-                                    p.cifsMountConfiguration?.[
-                                      "relativeMountPath"
-                                    ],
-                                  mountOptions:
-                                    p.cifsMountConfiguration?.["mountOptions"],
-                                  password:
-                                    p.cifsMountConfiguration?.["password"],
-                                },
-                            azureFileShareConfiguration:
-                              !p.azureFileShareConfiguration
-                                ? undefined
-                                : {
-                                    accountName:
-                                      p.azureFileShareConfiguration?.[
-                                        "accountName"
-                                      ],
-                                    azureFileUrl:
-                                      p.azureFileShareConfiguration?.[
-                                        "azureFileUrl"
-                                      ],
-                                    accountKey:
-                                      p.azureFileShareConfiguration?.[
-                                        "accountKey"
-                                      ],
-                                    relativeMountPath:
-                                      p.azureFileShareConfiguration?.[
-                                        "relativeMountPath"
-                                      ],
-                                    mountOptions:
-                                      p.azureFileShareConfiguration?.[
-                                        "mountOptions"
-                                      ],
-                                  },
-                          })),
+                          userAccounts: !body.poolInfo?.autoPoolSpecification
+                            ?.pool?.["userAccounts"]
+                            ? body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "userAccounts"
+                              ]
+                            : body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "userAccounts"
+                              ].map((p) => ({
+                                name: p["name"],
+                                password: p["password"],
+                                elevationLevel: p["elevationLevel"],
+                                linuxUserConfiguration:
+                                  !p.linuxUserConfiguration
+                                    ? undefined
+                                    : {
+                                        uid: p.linuxUserConfiguration?.["uid"],
+                                        gid: p.linuxUserConfiguration?.["gid"],
+                                        sshPrivateKey:
+                                          p.linuxUserConfiguration?.[
+                                            "sshPrivateKey"
+                                          ],
+                                      },
+                                windowsUserConfiguration:
+                                  !p.windowsUserConfiguration
+                                    ? undefined
+                                    : {
+                                        loginMode:
+                                          p.windowsUserConfiguration?.[
+                                            "loginMode"
+                                          ],
+                                      },
+                              })),
+                          metadata: !body.poolInfo?.autoPoolSpecification
+                            ?.pool?.["metadata"]
+                            ? body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "metadata"
+                              ]
+                            : body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "metadata"
+                              ].map((p) => ({
+                                name: p["name"],
+                                value: p["value"],
+                              })),
+                          mountConfiguration: !body.poolInfo
+                            ?.autoPoolSpecification?.pool?.[
+                            "mountConfiguration"
+                          ]
+                            ? body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "mountConfiguration"
+                              ]
+                            : body.poolInfo?.autoPoolSpecification?.pool?.[
+                                "mountConfiguration"
+                              ].map((p) => ({
+                                azureBlobFileSystemConfiguration:
+                                  !p.azureBlobFileSystemConfiguration
+                                    ? undefined
+                                    : {
+                                        accountName:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "accountName"
+                                          ],
+                                        containerName:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "containerName"
+                                          ],
+                                        accountKey:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "accountKey"
+                                          ],
+                                        sasKey:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "sasKey"
+                                          ],
+                                        blobfuseOptions:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "blobfuseOptions"
+                                          ],
+                                        relativeMountPath:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "relativeMountPath"
+                                          ],
+                                        identityReference: !p
+                                          .azureBlobFileSystemConfiguration
+                                          ?.identityReference
+                                          ? undefined
+                                          : {
+                                              resourceId:
+                                                p
+                                                  .azureBlobFileSystemConfiguration
+                                                  ?.identityReference?.[
+                                                  "resourceId"
+                                                ],
+                                            },
+                                      },
+                                nfsMountConfiguration: !p.nfsMountConfiguration
+                                  ? undefined
+                                  : {
+                                      source:
+                                        p.nfsMountConfiguration?.["source"],
+                                      relativeMountPath:
+                                        p.nfsMountConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      mountOptions:
+                                        p.nfsMountConfiguration?.[
+                                          "mountOptions"
+                                        ],
+                                    },
+                                cifsMountConfiguration:
+                                  !p.cifsMountConfiguration
+                                    ? undefined
+                                    : {
+                                        username:
+                                          p.cifsMountConfiguration?.[
+                                            "username"
+                                          ],
+                                        source:
+                                          p.cifsMountConfiguration?.["source"],
+                                        relativeMountPath:
+                                          p.cifsMountConfiguration?.[
+                                            "relativeMountPath"
+                                          ],
+                                        mountOptions:
+                                          p.cifsMountConfiguration?.[
+                                            "mountOptions"
+                                          ],
+                                        password:
+                                          p.cifsMountConfiguration?.[
+                                            "password"
+                                          ],
+                                      },
+                                azureFileShareConfiguration:
+                                  !p.azureFileShareConfiguration
+                                    ? undefined
+                                    : {
+                                        accountName:
+                                          p.azureFileShareConfiguration?.[
+                                            "accountName"
+                                          ],
+                                        azureFileUrl:
+                                          p.azureFileShareConfiguration?.[
+                                            "azureFileUrl"
+                                          ],
+                                        accountKey:
+                                          p.azureFileShareConfiguration?.[
+                                            "accountKey"
+                                          ],
+                                        relativeMountPath:
+                                          p.azureFileShareConfiguration?.[
+                                            "relativeMountPath"
+                                          ],
+                                        mountOptions:
+                                          p.azureFileShareConfiguration?.[
+                                            "mountOptions"
+                                          ],
+                                      },
+                              })),
                           targetNodeCommunicationMode:
                             body.poolInfo?.autoPoolSpecification?.pool?.[
                               "targetNodeCommunicationMode"
@@ -4319,10 +4586,12 @@ export function _updateJobSend(
                   },
             },
         onAllTasksComplete: body["onAllTasksComplete"],
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
       },
     });
 }
@@ -4469,16 +4738,18 @@ export function _replaceJobSend(
                                       "enableAutomaticUpdates"
                                     ],
                                 },
-                            dataDisks: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.["dataDisks"] ??
-                              []
-                            ).map((p) => ({
-                              lun: p["lun"],
-                              caching: p["caching"],
-                              diskSizeGB: p["diskSizeGB"],
-                              storageAccountType: p["storageAccountType"],
-                            })),
+                            dataDisks: !body.poolInfo.autoPoolSpecification
+                              ?.pool?.virtualMachineConfiguration?.["dataDisks"]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["dataDisks"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  "dataDisks"
+                                ].map((p) => ({
+                                  lun: p["lun"],
+                                  caching: p["caching"],
+                                  diskSizeGB: p["diskSizeGB"],
+                                  storageAccountType: p["storageAccountType"],
+                                })),
                             licenseType:
                               body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["licenseType"],
@@ -4497,23 +4768,32 @@ export function _replaceJobSend(
                                       ?.containerConfiguration?.[
                                       "containerImageNames"
                                     ],
-                                  containerRegistries: (
-                                    body.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.containerConfiguration?.[
-                                      "containerRegistries"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    username: p["username"],
-                                    password: p["password"],
-                                    registryServer: p["registryServer"],
-                                    identityReference: !p.identityReference
-                                      ? undefined
-                                      : {
-                                          resourceId:
-                                            p.identityReference?.["resourceId"],
-                                        },
-                                  })),
+                                  containerRegistries: !body.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.containerConfiguration?.[
+                                    "containerRegistries"
+                                  ]
+                                    ? body.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.[
+                                        "containerRegistries"
+                                      ]
+                                    : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                        "containerRegistries"
+                                      ].map((p) => ({
+                                        username: p["username"],
+                                        password: p["password"],
+                                        registryServer: p["registryServer"],
+                                        identityReference: !p.identityReference
+                                          ? undefined
+                                          : {
+                                              resourceId:
+                                                p.identityReference?.[
+                                                  "resourceId"
+                                                ],
+                                            },
+                                      })),
                                 },
                             diskEncryptionConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
@@ -4539,24 +4819,28 @@ export function _replaceJobSend(
                                       ?.virtualMachineConfiguration
                                       ?.nodePlacementConfiguration?.["policy"],
                                 },
-                            extensions: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.["extensions"] ??
-                              []
-                            ).map((p) => ({
-                              name: p["name"],
-                              publisher: p["publisher"],
-                              type: p["type"],
-                              typeHandlerVersion: p["typeHandlerVersion"],
-                              autoUpgradeMinorVersion:
-                                p["autoUpgradeMinorVersion"],
-                              enableAutomaticUpgrade:
-                                p["enableAutomaticUpgrade"],
-                              settings: p["settings"],
-                              protectedSettings: p["protectedSettings"],
-                              provisionAfterExtensions:
-                                p["provisionAfterExtensions"],
-                            })),
+                            extensions: !body.poolInfo.autoPoolSpecification
+                              ?.pool?.virtualMachineConfiguration?.[
+                              "extensions"
+                            ]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["extensions"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  "extensions"
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  publisher: p["publisher"],
+                                  type: p["type"],
+                                  typeHandlerVersion: p["typeHandlerVersion"],
+                                  autoUpgradeMinorVersion:
+                                    p["autoUpgradeMinorVersion"],
+                                  enableAutomaticUpgrade:
+                                    p["enableAutomaticUpgrade"],
+                                  settings: p["settings"],
+                                  protectedSettings: p["protectedSettings"],
+                                  provisionAfterExtensions:
+                                    p["provisionAfterExtensions"],
+                                })),
                             osDisk: !body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.osDisk
                               ? undefined
@@ -4633,30 +4917,32 @@ export function _replaceJobSend(
                               ?.endpointConfiguration
                               ? undefined
                               : {
-                                  inboundNATPools: (
-                                    body.poolInfo.autoPoolSpecification?.pool
-                                      ?.networkConfiguration
-                                      ?.endpointConfiguration?.[
+                                  inboundNATPools:
+                                    body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                       "inboundNATPools"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    name: p["name"],
-                                    protocol: p["protocol"],
-                                    backendPort: p["backendPort"],
-                                    frontendPortRangeStart:
-                                      p["frontendPortRangeStart"],
-                                    frontendPortRangeEnd:
-                                      p["frontendPortRangeEnd"],
-                                    networkSecurityGroupRules: (
-                                      p["networkSecurityGroupRules"] ?? []
-                                    ).map((p) => ({
-                                      priority: p["priority"],
-                                      access: p["access"],
-                                      sourceAddressPrefix:
-                                        p["sourceAddressPrefix"],
-                                      sourcePortRanges: p["sourcePortRanges"],
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      protocol: p["protocol"],
+                                      backendPort: p["backendPort"],
+                                      frontendPortRangeStart:
+                                        p["frontendPortRangeStart"],
+                                      frontendPortRangeEnd:
+                                        p["frontendPortRangeEnd"],
+                                      networkSecurityGroupRules: !p[
+                                        "networkSecurityGroupRules"
+                                      ]
+                                        ? p["networkSecurityGroupRules"]
+                                        : p["networkSecurityGroupRules"].map(
+                                            (p) => ({
+                                              priority: p["priority"],
+                                              access: p["access"],
+                                              sourceAddressPrefix:
+                                                p["sourceAddressPrefix"],
+                                              sourcePortRanges:
+                                                p["sourcePortRanges"],
+                                            })
+                                          ),
                                     })),
-                                  })),
                                 },
                             publicIPAddressConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
@@ -4743,31 +5029,39 @@ export function _replaceJobSend(
                                       "workingDirectory"
                                     ],
                                 },
-                            resourceFiles: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.startTask?.["resourceFiles"] ?? []
-                            ).map((p) => ({
-                              autoStorageContainerName:
-                                p["autoStorageContainerName"],
-                              storageContainerUrl: p["storageContainerUrl"],
-                              httpUrl: p["httpUrl"],
-                              blobPrefix: p["blobPrefix"],
-                              filePath: p["filePath"],
-                              fileMode: p["fileMode"],
-                              identityReference: !p.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.identityReference?.["resourceId"],
-                                  },
-                            })),
-                            environmentSettings: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.startTask?.["environmentSettings"] ?? []
-                            ).map((p) => ({
-                              name: p["name"],
-                              value: p["value"],
-                            })),
+                            resourceFiles: !body.poolInfo.autoPoolSpecification
+                              ?.pool?.startTask?.["resourceFiles"]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["resourceFiles"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  "resourceFiles"
+                                ].map((p) => ({
+                                  autoStorageContainerName:
+                                    p["autoStorageContainerName"],
+                                  storageContainerUrl: p["storageContainerUrl"],
+                                  httpUrl: p["httpUrl"],
+                                  blobPrefix: p["blobPrefix"],
+                                  filePath: p["filePath"],
+                                  fileMode: p["fileMode"],
+                                  identityReference: !p.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.identityReference?.["resourceId"],
+                                      },
+                                })),
+                            environmentSettings: !body.poolInfo
+                              .autoPoolSpecification?.pool?.startTask?.[
+                              "environmentSettings"
+                            ]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["environmentSettings"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  "environmentSettings"
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  value: p["value"],
+                                })),
                             userIdentity: !body.poolInfo.autoPoolSpecification
                               ?.pool?.startTask?.userIdentity
                               ? undefined
@@ -4796,144 +5090,176 @@ export function _replaceJobSend(
                               body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["waitForSuccess"],
                           },
-                      certificateReferences: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "certificateReferences"
-                        ] ?? []
-                      ).map((p) => ({
-                        thumbprint: p["thumbprint"],
-                        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                        storeLocation: p["storeLocation"],
-                        storeName: p["storeName"],
-                        visibility: p["visibility"],
-                      })),
-                      applicationPackageReferences: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "applicationPackageReferences"
-                        ] ?? []
-                      ).map((p) => ({
-                        applicationId: p["applicationId"],
-                        version: p["version"],
-                      })),
+                      certificateReferences: !body.poolInfo
+                        .autoPoolSpecification?.pool?.["certificateReferences"]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "certificateReferences"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "certificateReferences"
+                          ].map((p) => ({
+                            thumbprint: p["thumbprint"],
+                            thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                            storeLocation: p["storeLocation"],
+                            storeName: p["storeName"],
+                            visibility: p["visibility"],
+                          })),
+                      applicationPackageReferences: !body.poolInfo
+                        .autoPoolSpecification?.pool?.[
+                        "applicationPackageReferences"
+                      ]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationPackageReferences"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationPackageReferences"
+                          ].map((p) => ({
+                            applicationId: p["applicationId"],
+                            version: p["version"],
+                          })),
                       applicationLicenses:
                         body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationLicenses"
                         ],
-                      userAccounts: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "userAccounts"
-                        ] ?? []
-                      ).map((p) => ({
-                        name: p["name"],
-                        password: p["password"],
-                        elevationLevel: p["elevationLevel"],
-                        linuxUserConfiguration: !p.linuxUserConfiguration
-                          ? undefined
-                          : {
-                              uid: p.linuxUserConfiguration?.["uid"],
-                              gid: p.linuxUserConfiguration?.["gid"],
-                              sshPrivateKey:
-                                p.linuxUserConfiguration?.["sshPrivateKey"],
-                            },
-                        windowsUserConfiguration: !p.windowsUserConfiguration
-                          ? undefined
-                          : {
-                              loginMode:
-                                p.windowsUserConfiguration?.["loginMode"],
-                            },
-                      })),
-                      metadata: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "metadata"
-                        ] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
-                      mountConfiguration: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "mountConfiguration"
-                        ] ?? []
-                      ).map((p) => ({
-                        azureBlobFileSystemConfiguration:
-                          !p.azureBlobFileSystemConfiguration
-                            ? undefined
-                            : {
-                                accountName:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "accountName"
-                                  ],
-                                containerName:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "containerName"
-                                  ],
-                                accountKey:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "accountKey"
-                                  ],
-                                sasKey:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "sasKey"
-                                  ],
-                                blobfuseOptions:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "blobfuseOptions"
-                                  ],
-                                relativeMountPath:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                identityReference: !p
-                                  .azureBlobFileSystemConfiguration
-                                  ?.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.azureBlobFileSystemConfiguration
-                                          ?.identityReference?.["resourceId"],
-                                    },
-                              },
-                        nfsMountConfiguration: !p.nfsMountConfiguration
-                          ? undefined
-                          : {
-                              source: p.nfsMountConfiguration?.["source"],
-                              relativeMountPath:
-                                p.nfsMountConfiguration?.["relativeMountPath"],
-                              mountOptions:
-                                p.nfsMountConfiguration?.["mountOptions"],
-                            },
-                        cifsMountConfiguration: !p.cifsMountConfiguration
-                          ? undefined
-                          : {
-                              username: p.cifsMountConfiguration?.["username"],
-                              source: p.cifsMountConfiguration?.["source"],
-                              relativeMountPath:
-                                p.cifsMountConfiguration?.["relativeMountPath"],
-                              mountOptions:
-                                p.cifsMountConfiguration?.["mountOptions"],
-                              password: p.cifsMountConfiguration?.["password"],
-                            },
-                        azureFileShareConfiguration:
-                          !p.azureFileShareConfiguration
-                            ? undefined
-                            : {
-                                accountName:
-                                  p.azureFileShareConfiguration?.[
-                                    "accountName"
-                                  ],
-                                azureFileUrl:
-                                  p.azureFileShareConfiguration?.[
-                                    "azureFileUrl"
-                                  ],
-                                accountKey:
-                                  p.azureFileShareConfiguration?.["accountKey"],
-                                relativeMountPath:
-                                  p.azureFileShareConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.azureFileShareConfiguration?.[
-                                    "mountOptions"
-                                  ],
-                              },
-                      })),
+                      userAccounts: !body.poolInfo.autoPoolSpecification
+                        ?.pool?.["userAccounts"]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "userAccounts"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "userAccounts"
+                          ].map((p) => ({
+                            name: p["name"],
+                            password: p["password"],
+                            elevationLevel: p["elevationLevel"],
+                            linuxUserConfiguration: !p.linuxUserConfiguration
+                              ? undefined
+                              : {
+                                  uid: p.linuxUserConfiguration?.["uid"],
+                                  gid: p.linuxUserConfiguration?.["gid"],
+                                  sshPrivateKey:
+                                    p.linuxUserConfiguration?.["sshPrivateKey"],
+                                },
+                            windowsUserConfiguration:
+                              !p.windowsUserConfiguration
+                                ? undefined
+                                : {
+                                    loginMode:
+                                      p.windowsUserConfiguration?.["loginMode"],
+                                  },
+                          })),
+                      metadata: !body.poolInfo.autoPoolSpecification?.pool?.[
+                        "metadata"
+                      ]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "metadata"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "metadata"
+                          ].map((p) => ({
+                            name: p["name"],
+                            value: p["value"],
+                          })),
+                      mountConfiguration: !body.poolInfo.autoPoolSpecification
+                        ?.pool?.["mountConfiguration"]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "mountConfiguration"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "mountConfiguration"
+                          ].map((p) => ({
+                            azureBlobFileSystemConfiguration:
+                              !p.azureBlobFileSystemConfiguration
+                                ? undefined
+                                : {
+                                    accountName:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "accountName"
+                                      ],
+                                    containerName:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "containerName"
+                                      ],
+                                    accountKey:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "accountKey"
+                                      ],
+                                    sasKey:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "sasKey"
+                                      ],
+                                    blobfuseOptions:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "blobfuseOptions"
+                                      ],
+                                    relativeMountPath:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    identityReference: !p
+                                      .azureBlobFileSystemConfiguration
+                                      ?.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.azureBlobFileSystemConfiguration
+                                              ?.identityReference?.[
+                                              "resourceId"
+                                            ],
+                                        },
+                                  },
+                            nfsMountConfiguration: !p.nfsMountConfiguration
+                              ? undefined
+                              : {
+                                  source: p.nfsMountConfiguration?.["source"],
+                                  relativeMountPath:
+                                    p.nfsMountConfiguration?.[
+                                      "relativeMountPath"
+                                    ],
+                                  mountOptions:
+                                    p.nfsMountConfiguration?.["mountOptions"],
+                                },
+                            cifsMountConfiguration: !p.cifsMountConfiguration
+                              ? undefined
+                              : {
+                                  username:
+                                    p.cifsMountConfiguration?.["username"],
+                                  source: p.cifsMountConfiguration?.["source"],
+                                  relativeMountPath:
+                                    p.cifsMountConfiguration?.[
+                                      "relativeMountPath"
+                                    ],
+                                  mountOptions:
+                                    p.cifsMountConfiguration?.["mountOptions"],
+                                  password:
+                                    p.cifsMountConfiguration?.["password"],
+                                },
+                            azureFileShareConfiguration:
+                              !p.azureFileShareConfiguration
+                                ? undefined
+                                : {
+                                    accountName:
+                                      p.azureFileShareConfiguration?.[
+                                        "accountName"
+                                      ],
+                                    azureFileUrl:
+                                      p.azureFileShareConfiguration?.[
+                                        "azureFileUrl"
+                                      ],
+                                    accountKey:
+                                      p.azureFileShareConfiguration?.[
+                                        "accountKey"
+                                      ],
+                                    relativeMountPath:
+                                      p.azureFileShareConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.azureFileShareConfiguration?.[
+                                        "mountOptions"
+                                      ],
+                                  },
+                          })),
                       targetNodeCommunicationMode:
                         body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetNodeCommunicationMode"
@@ -4942,10 +5268,12 @@ export function _replaceJobSend(
               },
         },
         onAllTasksComplete: body["onAllTasksComplete"],
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
       },
     });
 }
@@ -5223,54 +5551,60 @@ export function _createJobSend(
                         "workingDirectory"
                       ],
                   },
-              resourceFiles: (body.jobManagerTask?.["resourceFiles"] ?? []).map(
-                (p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })
-              ),
-              outputFiles: (body.jobManagerTask?.["outputFiles"] ?? []).map(
-                (p) => ({
-                  filePattern: p["filePattern"],
-                  destination: {
-                    container: !p.destination.container
+              resourceFiles: !body.jobManagerTask?.["resourceFiles"]
+                ? body.jobManagerTask?.["resourceFiles"]
+                : body.jobManagerTask?.["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
                       ? undefined
-                      : {
-                          path: p.destination.container?.["path"],
-                          containerUrl:
-                            p.destination.container?.["containerUrl"],
-                          identityReference: !p.destination.container
-                            ?.identityReference
-                            ? undefined
-                            : {
-                                resourceId:
-                                  p.destination.container?.identityReference?.[
-                                    "resourceId"
-                                  ],
-                              },
-                          uploadHeaders: (
-                            p.destination.container?.["uploadHeaders"] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
-                        },
-                  },
-                  uploadOptions: {
-                    uploadCondition: p.uploadOptions["uploadCondition"],
-                  },
-                })
-              ),
-              environmentSettings: (
-                body.jobManagerTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              outputFiles: !body.jobManagerTask?.["outputFiles"]
+                ? body.jobManagerTask?.["outputFiles"]
+                : body.jobManagerTask?.["outputFiles"].map((p) => ({
+                    filePattern: p["filePattern"],
+                    destination: {
+                      container: !p.destination.container
+                        ? undefined
+                        : {
+                            path: p.destination.container?.["path"],
+                            containerUrl:
+                              p.destination.container?.["containerUrl"],
+                            identityReference: !p.destination.container
+                              ?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.destination.container
+                                      ?.identityReference?.["resourceId"],
+                                },
+                            uploadHeaders: !p.destination.container?.[
+                              "uploadHeaders"
+                            ]
+                              ? p.destination.container?.["uploadHeaders"]
+                              : p.destination.container?.["uploadHeaders"].map(
+                                  (p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })
+                                ),
+                          },
+                    },
+                    uploadOptions: {
+                      uploadCondition: p.uploadOptions["uploadCondition"],
+                    },
+                  })),
+              environmentSettings: !body.jobManagerTask?.["environmentSettings"]
+                ? body.jobManagerTask?.["environmentSettings"]
+                : body.jobManagerTask?.["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
               constraints: !body.jobManagerTask?.constraints
                 ? undefined
                 : {
@@ -5301,12 +5635,16 @@ export function _createJobSend(
                         },
                   },
               runExclusive: body.jobManagerTask?.["runExclusive"],
-              applicationPackageReferences: (
-                body.jobManagerTask?.["applicationPackageReferences"] ?? []
-              ).map((p) => ({
-                applicationId: p["applicationId"],
-                version: p["version"],
-              })),
+              applicationPackageReferences: !body.jobManagerTask?.[
+                "applicationPackageReferences"
+              ]
+                ? body.jobManagerTask?.["applicationPackageReferences"]
+                : body.jobManagerTask?.["applicationPackageReferences"].map(
+                    (p) => ({
+                      applicationId: p["applicationId"],
+                      version: p["version"],
+                    })
+                  ),
               authenticationTokenSettings: !body.jobManagerTask
                 ?.authenticationTokenSettings
                 ? undefined
@@ -5362,22 +5700,27 @@ export function _createJobSend(
                         "workingDirectory"
                       ],
                   },
-              resourceFiles: (
-                body.jobPreparationTask?.["resourceFiles"] ?? []
-              ).map((p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })),
-              environmentSettings: (
-                body.jobPreparationTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+              resourceFiles: !body.jobPreparationTask?.["resourceFiles"]
+                ? body.jobPreparationTask?.["resourceFiles"]
+                : body.jobPreparationTask?.["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
+                      ? undefined
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              environmentSettings: !body.jobPreparationTask?.[
+                "environmentSettings"
+              ]
+                ? body.jobPreparationTask?.["environmentSettings"]
+                : body.jobPreparationTask?.["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
               constraints: !body.jobPreparationTask?.constraints
                 ? undefined
                 : {
@@ -5459,22 +5802,25 @@ export function _createJobSend(
                         "workingDirectory"
                       ],
                   },
-              resourceFiles: (body.jobReleaseTask?.["resourceFiles"] ?? []).map(
-                (p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })
-              ),
-              environmentSettings: (
-                body.jobReleaseTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+              resourceFiles: !body.jobReleaseTask?.["resourceFiles"]
+                ? body.jobReleaseTask?.["resourceFiles"]
+                : body.jobReleaseTask?.["resourceFiles"].map((p) => ({
+                    autoStorageContainerName: p["autoStorageContainerName"],
+                    storageContainerUrl: p["storageContainerUrl"],
+                    httpUrl: p["httpUrl"],
+                    blobPrefix: p["blobPrefix"],
+                    filePath: p["filePath"],
+                    fileMode: p["fileMode"],
+                    identityReference: !p.identityReference
+                      ? undefined
+                      : { resourceId: p.identityReference?.["resourceId"] },
+                  })),
+              environmentSettings: !body.jobReleaseTask?.["environmentSettings"]
+                ? body.jobReleaseTask?.["environmentSettings"]
+                : body.jobReleaseTask?.["environmentSettings"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
               maxWallClockTime: body.jobReleaseTask?.["maxWallClockTime"],
               retentionTime: body.jobReleaseTask?.["retentionTime"],
               userIdentity: !body.jobReleaseTask?.userIdentity
@@ -5495,9 +5841,12 @@ export function _createJobSend(
                         },
                   },
             },
-        commonEnvironmentSettings: (
-          body["commonEnvironmentSettings"] ?? []
-        ).map((p) => ({ name: p["name"], value: p["value"] })),
+        commonEnvironmentSettings: !body["commonEnvironmentSettings"]
+          ? body["commonEnvironmentSettings"]
+          : body["commonEnvironmentSettings"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
         poolInfo: {
           poolId: body.poolInfo["poolId"],
           autoPoolSpecification: !body.poolInfo.autoPoolSpecification
@@ -5577,16 +5926,18 @@ export function _createJobSend(
                                       "enableAutomaticUpdates"
                                     ],
                                 },
-                            dataDisks: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.["dataDisks"] ??
-                              []
-                            ).map((p) => ({
-                              lun: p["lun"],
-                              caching: p["caching"],
-                              diskSizeGB: p["diskSizeGB"],
-                              storageAccountType: p["storageAccountType"],
-                            })),
+                            dataDisks: !body.poolInfo.autoPoolSpecification
+                              ?.pool?.virtualMachineConfiguration?.["dataDisks"]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["dataDisks"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  "dataDisks"
+                                ].map((p) => ({
+                                  lun: p["lun"],
+                                  caching: p["caching"],
+                                  diskSizeGB: p["diskSizeGB"],
+                                  storageAccountType: p["storageAccountType"],
+                                })),
                             licenseType:
                               body.poolInfo.autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.["licenseType"],
@@ -5605,23 +5956,32 @@ export function _createJobSend(
                                       ?.containerConfiguration?.[
                                       "containerImageNames"
                                     ],
-                                  containerRegistries: (
-                                    body.poolInfo.autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.containerConfiguration?.[
-                                      "containerRegistries"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    username: p["username"],
-                                    password: p["password"],
-                                    registryServer: p["registryServer"],
-                                    identityReference: !p.identityReference
-                                      ? undefined
-                                      : {
-                                          resourceId:
-                                            p.identityReference?.["resourceId"],
-                                        },
-                                  })),
+                                  containerRegistries: !body.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.containerConfiguration?.[
+                                    "containerRegistries"
+                                  ]
+                                    ? body.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.[
+                                        "containerRegistries"
+                                      ]
+                                    : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                        "containerRegistries"
+                                      ].map((p) => ({
+                                        username: p["username"],
+                                        password: p["password"],
+                                        registryServer: p["registryServer"],
+                                        identityReference: !p.identityReference
+                                          ? undefined
+                                          : {
+                                              resourceId:
+                                                p.identityReference?.[
+                                                  "resourceId"
+                                                ],
+                                            },
+                                      })),
                                 },
                             diskEncryptionConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool
@@ -5647,24 +6007,28 @@ export function _createJobSend(
                                       ?.virtualMachineConfiguration
                                       ?.nodePlacementConfiguration?.["policy"],
                                 },
-                            extensions: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.["extensions"] ??
-                              []
-                            ).map((p) => ({
-                              name: p["name"],
-                              publisher: p["publisher"],
-                              type: p["type"],
-                              typeHandlerVersion: p["typeHandlerVersion"],
-                              autoUpgradeMinorVersion:
-                                p["autoUpgradeMinorVersion"],
-                              enableAutomaticUpgrade:
-                                p["enableAutomaticUpgrade"],
-                              settings: p["settings"],
-                              protectedSettings: p["protectedSettings"],
-                              provisionAfterExtensions:
-                                p["provisionAfterExtensions"],
-                            })),
+                            extensions: !body.poolInfo.autoPoolSpecification
+                              ?.pool?.virtualMachineConfiguration?.[
+                              "extensions"
+                            ]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["extensions"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                  "extensions"
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  publisher: p["publisher"],
+                                  type: p["type"],
+                                  typeHandlerVersion: p["typeHandlerVersion"],
+                                  autoUpgradeMinorVersion:
+                                    p["autoUpgradeMinorVersion"],
+                                  enableAutomaticUpgrade:
+                                    p["enableAutomaticUpgrade"],
+                                  settings: p["settings"],
+                                  protectedSettings: p["protectedSettings"],
+                                  provisionAfterExtensions:
+                                    p["provisionAfterExtensions"],
+                                })),
                             osDisk: !body.poolInfo.autoPoolSpecification?.pool
                               ?.virtualMachineConfiguration?.osDisk
                               ? undefined
@@ -5741,30 +6105,32 @@ export function _createJobSend(
                               ?.endpointConfiguration
                               ? undefined
                               : {
-                                  inboundNATPools: (
-                                    body.poolInfo.autoPoolSpecification?.pool
-                                      ?.networkConfiguration
-                                      ?.endpointConfiguration?.[
+                                  inboundNATPools:
+                                    body.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                       "inboundNATPools"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    name: p["name"],
-                                    protocol: p["protocol"],
-                                    backendPort: p["backendPort"],
-                                    frontendPortRangeStart:
-                                      p["frontendPortRangeStart"],
-                                    frontendPortRangeEnd:
-                                      p["frontendPortRangeEnd"],
-                                    networkSecurityGroupRules: (
-                                      p["networkSecurityGroupRules"] ?? []
-                                    ).map((p) => ({
-                                      priority: p["priority"],
-                                      access: p["access"],
-                                      sourceAddressPrefix:
-                                        p["sourceAddressPrefix"],
-                                      sourcePortRanges: p["sourcePortRanges"],
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      protocol: p["protocol"],
+                                      backendPort: p["backendPort"],
+                                      frontendPortRangeStart:
+                                        p["frontendPortRangeStart"],
+                                      frontendPortRangeEnd:
+                                        p["frontendPortRangeEnd"],
+                                      networkSecurityGroupRules: !p[
+                                        "networkSecurityGroupRules"
+                                      ]
+                                        ? p["networkSecurityGroupRules"]
+                                        : p["networkSecurityGroupRules"].map(
+                                            (p) => ({
+                                              priority: p["priority"],
+                                              access: p["access"],
+                                              sourceAddressPrefix:
+                                                p["sourceAddressPrefix"],
+                                              sourcePortRanges:
+                                                p["sourcePortRanges"],
+                                            })
+                                          ),
                                     })),
-                                  })),
                                 },
                             publicIPAddressConfiguration: !body.poolInfo
                               .autoPoolSpecification?.pool?.networkConfiguration
@@ -5851,31 +6217,39 @@ export function _createJobSend(
                                       "workingDirectory"
                                     ],
                                 },
-                            resourceFiles: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.startTask?.["resourceFiles"] ?? []
-                            ).map((p) => ({
-                              autoStorageContainerName:
-                                p["autoStorageContainerName"],
-                              storageContainerUrl: p["storageContainerUrl"],
-                              httpUrl: p["httpUrl"],
-                              blobPrefix: p["blobPrefix"],
-                              filePath: p["filePath"],
-                              fileMode: p["fileMode"],
-                              identityReference: !p.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.identityReference?.["resourceId"],
-                                  },
-                            })),
-                            environmentSettings: (
-                              body.poolInfo.autoPoolSpecification?.pool
-                                ?.startTask?.["environmentSettings"] ?? []
-                            ).map((p) => ({
-                              name: p["name"],
-                              value: p["value"],
-                            })),
+                            resourceFiles: !body.poolInfo.autoPoolSpecification
+                              ?.pool?.startTask?.["resourceFiles"]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["resourceFiles"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  "resourceFiles"
+                                ].map((p) => ({
+                                  autoStorageContainerName:
+                                    p["autoStorageContainerName"],
+                                  storageContainerUrl: p["storageContainerUrl"],
+                                  httpUrl: p["httpUrl"],
+                                  blobPrefix: p["blobPrefix"],
+                                  filePath: p["filePath"],
+                                  fileMode: p["fileMode"],
+                                  identityReference: !p.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.identityReference?.["resourceId"],
+                                      },
+                                })),
+                            environmentSettings: !body.poolInfo
+                              .autoPoolSpecification?.pool?.startTask?.[
+                              "environmentSettings"
+                            ]
+                              ? body.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["environmentSettings"]
+                              : body.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                  "environmentSettings"
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  value: p["value"],
+                                })),
                             userIdentity: !body.poolInfo.autoPoolSpecification
                               ?.pool?.startTask?.userIdentity
                               ? undefined
@@ -5904,144 +6278,176 @@ export function _createJobSend(
                               body.poolInfo.autoPoolSpecification?.pool
                                 ?.startTask?.["waitForSuccess"],
                           },
-                      certificateReferences: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "certificateReferences"
-                        ] ?? []
-                      ).map((p) => ({
-                        thumbprint: p["thumbprint"],
-                        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                        storeLocation: p["storeLocation"],
-                        storeName: p["storeName"],
-                        visibility: p["visibility"],
-                      })),
-                      applicationPackageReferences: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "applicationPackageReferences"
-                        ] ?? []
-                      ).map((p) => ({
-                        applicationId: p["applicationId"],
-                        version: p["version"],
-                      })),
+                      certificateReferences: !body.poolInfo
+                        .autoPoolSpecification?.pool?.["certificateReferences"]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "certificateReferences"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "certificateReferences"
+                          ].map((p) => ({
+                            thumbprint: p["thumbprint"],
+                            thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                            storeLocation: p["storeLocation"],
+                            storeName: p["storeName"],
+                            visibility: p["visibility"],
+                          })),
+                      applicationPackageReferences: !body.poolInfo
+                        .autoPoolSpecification?.pool?.[
+                        "applicationPackageReferences"
+                      ]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationPackageReferences"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationPackageReferences"
+                          ].map((p) => ({
+                            applicationId: p["applicationId"],
+                            version: p["version"],
+                          })),
                       applicationLicenses:
                         body.poolInfo.autoPoolSpecification?.pool?.[
                           "applicationLicenses"
                         ],
-                      userAccounts: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "userAccounts"
-                        ] ?? []
-                      ).map((p) => ({
-                        name: p["name"],
-                        password: p["password"],
-                        elevationLevel: p["elevationLevel"],
-                        linuxUserConfiguration: !p.linuxUserConfiguration
-                          ? undefined
-                          : {
-                              uid: p.linuxUserConfiguration?.["uid"],
-                              gid: p.linuxUserConfiguration?.["gid"],
-                              sshPrivateKey:
-                                p.linuxUserConfiguration?.["sshPrivateKey"],
-                            },
-                        windowsUserConfiguration: !p.windowsUserConfiguration
-                          ? undefined
-                          : {
-                              loginMode:
-                                p.windowsUserConfiguration?.["loginMode"],
-                            },
-                      })),
-                      metadata: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "metadata"
-                        ] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
-                      mountConfiguration: (
-                        body.poolInfo.autoPoolSpecification?.pool?.[
-                          "mountConfiguration"
-                        ] ?? []
-                      ).map((p) => ({
-                        azureBlobFileSystemConfiguration:
-                          !p.azureBlobFileSystemConfiguration
-                            ? undefined
-                            : {
-                                accountName:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "accountName"
-                                  ],
-                                containerName:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "containerName"
-                                  ],
-                                accountKey:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "accountKey"
-                                  ],
-                                sasKey:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "sasKey"
-                                  ],
-                                blobfuseOptions:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "blobfuseOptions"
-                                  ],
-                                relativeMountPath:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                identityReference: !p
-                                  .azureBlobFileSystemConfiguration
-                                  ?.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.azureBlobFileSystemConfiguration
-                                          ?.identityReference?.["resourceId"],
-                                    },
-                              },
-                        nfsMountConfiguration: !p.nfsMountConfiguration
-                          ? undefined
-                          : {
-                              source: p.nfsMountConfiguration?.["source"],
-                              relativeMountPath:
-                                p.nfsMountConfiguration?.["relativeMountPath"],
-                              mountOptions:
-                                p.nfsMountConfiguration?.["mountOptions"],
-                            },
-                        cifsMountConfiguration: !p.cifsMountConfiguration
-                          ? undefined
-                          : {
-                              username: p.cifsMountConfiguration?.["username"],
-                              source: p.cifsMountConfiguration?.["source"],
-                              relativeMountPath:
-                                p.cifsMountConfiguration?.["relativeMountPath"],
-                              mountOptions:
-                                p.cifsMountConfiguration?.["mountOptions"],
-                              password: p.cifsMountConfiguration?.["password"],
-                            },
-                        azureFileShareConfiguration:
-                          !p.azureFileShareConfiguration
-                            ? undefined
-                            : {
-                                accountName:
-                                  p.azureFileShareConfiguration?.[
-                                    "accountName"
-                                  ],
-                                azureFileUrl:
-                                  p.azureFileShareConfiguration?.[
-                                    "azureFileUrl"
-                                  ],
-                                accountKey:
-                                  p.azureFileShareConfiguration?.["accountKey"],
-                                relativeMountPath:
-                                  p.azureFileShareConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.azureFileShareConfiguration?.[
-                                    "mountOptions"
-                                  ],
-                              },
-                      })),
+                      userAccounts: !body.poolInfo.autoPoolSpecification
+                        ?.pool?.["userAccounts"]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "userAccounts"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "userAccounts"
+                          ].map((p) => ({
+                            name: p["name"],
+                            password: p["password"],
+                            elevationLevel: p["elevationLevel"],
+                            linuxUserConfiguration: !p.linuxUserConfiguration
+                              ? undefined
+                              : {
+                                  uid: p.linuxUserConfiguration?.["uid"],
+                                  gid: p.linuxUserConfiguration?.["gid"],
+                                  sshPrivateKey:
+                                    p.linuxUserConfiguration?.["sshPrivateKey"],
+                                },
+                            windowsUserConfiguration:
+                              !p.windowsUserConfiguration
+                                ? undefined
+                                : {
+                                    loginMode:
+                                      p.windowsUserConfiguration?.["loginMode"],
+                                  },
+                          })),
+                      metadata: !body.poolInfo.autoPoolSpecification?.pool?.[
+                        "metadata"
+                      ]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "metadata"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "metadata"
+                          ].map((p) => ({
+                            name: p["name"],
+                            value: p["value"],
+                          })),
+                      mountConfiguration: !body.poolInfo.autoPoolSpecification
+                        ?.pool?.["mountConfiguration"]
+                        ? body.poolInfo.autoPoolSpecification?.pool?.[
+                            "mountConfiguration"
+                          ]
+                        : body.poolInfo.autoPoolSpecification?.pool?.[
+                            "mountConfiguration"
+                          ].map((p) => ({
+                            azureBlobFileSystemConfiguration:
+                              !p.azureBlobFileSystemConfiguration
+                                ? undefined
+                                : {
+                                    accountName:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "accountName"
+                                      ],
+                                    containerName:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "containerName"
+                                      ],
+                                    accountKey:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "accountKey"
+                                      ],
+                                    sasKey:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "sasKey"
+                                      ],
+                                    blobfuseOptions:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "blobfuseOptions"
+                                      ],
+                                    relativeMountPath:
+                                      p.azureBlobFileSystemConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    identityReference: !p
+                                      .azureBlobFileSystemConfiguration
+                                      ?.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.azureBlobFileSystemConfiguration
+                                              ?.identityReference?.[
+                                              "resourceId"
+                                            ],
+                                        },
+                                  },
+                            nfsMountConfiguration: !p.nfsMountConfiguration
+                              ? undefined
+                              : {
+                                  source: p.nfsMountConfiguration?.["source"],
+                                  relativeMountPath:
+                                    p.nfsMountConfiguration?.[
+                                      "relativeMountPath"
+                                    ],
+                                  mountOptions:
+                                    p.nfsMountConfiguration?.["mountOptions"],
+                                },
+                            cifsMountConfiguration: !p.cifsMountConfiguration
+                              ? undefined
+                              : {
+                                  username:
+                                    p.cifsMountConfiguration?.["username"],
+                                  source: p.cifsMountConfiguration?.["source"],
+                                  relativeMountPath:
+                                    p.cifsMountConfiguration?.[
+                                      "relativeMountPath"
+                                    ],
+                                  mountOptions:
+                                    p.cifsMountConfiguration?.["mountOptions"],
+                                  password:
+                                    p.cifsMountConfiguration?.["password"],
+                                },
+                            azureFileShareConfiguration:
+                              !p.azureFileShareConfiguration
+                                ? undefined
+                                : {
+                                    accountName:
+                                      p.azureFileShareConfiguration?.[
+                                        "accountName"
+                                      ],
+                                    azureFileUrl:
+                                      p.azureFileShareConfiguration?.[
+                                        "azureFileUrl"
+                                      ],
+                                    accountKey:
+                                      p.azureFileShareConfiguration?.[
+                                        "accountKey"
+                                      ],
+                                    relativeMountPath:
+                                      p.azureFileShareConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.azureFileShareConfiguration?.[
+                                        "mountOptions"
+                                      ],
+                                  },
+                          })),
                       targetNodeCommunicationMode:
                         body.poolInfo.autoPoolSpecification?.pool?.[
                           "targetNodeCommunicationMode"
@@ -6054,10 +6460,12 @@ export function _createJobSend(
         networkConfiguration: !body.networkConfiguration
           ? undefined
           : { subnetId: body.networkConfiguration?.["subnetId"] },
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
       },
     });
 }
@@ -6118,918 +6526,1067 @@ export async function _listJobsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      displayName: p["displayName"],
-      usesTaskDependencies: p["usesTaskDependencies"],
-      url: p["url"],
-      eTag: p["eTag"],
-      lastModified:
-        p["lastModified"] !== undefined
-          ? new Date(p["lastModified"])
-          : undefined,
-      creationTime:
-        p["creationTime"] !== undefined
-          ? new Date(p["creationTime"])
-          : undefined,
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      previousState: p["previousState"],
-      previousStateTransitionTime:
-        p["previousStateTransitionTime"] !== undefined
-          ? new Date(p["previousStateTransitionTime"])
-          : undefined,
-      priority: p["priority"],
-      allowTaskPreemption: p["allowTaskPreemption"],
-      maxParallelTasks: p["maxParallelTasks"],
-      constraints: !p.constraints
-        ? undefined
-        : {
-            maxWallClockTime: p.constraints?.["maxWallClockTime"],
-            maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
-          },
-      jobManagerTask: !p.jobManagerTask
-        ? undefined
-        : {
-            id: p.jobManagerTask?.["id"],
-            displayName: p.jobManagerTask?.["displayName"],
-            commandLine: p.jobManagerTask?.["commandLine"],
-            containerSettings: !p.jobManagerTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.jobManagerTask?.containerSettings?.[
-                      "containerRunOptions"
-                    ],
-                  imageName: p.jobManagerTask?.containerSettings?.["imageName"],
-                  registry: !p.jobManagerTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.jobManagerTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.jobManagerTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.jobManagerTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.jobManagerTask?.containerSettings
-                          ?.registry?.identityReference
-                          ? undefined
-                          : {
-                              resourceId:
-                                p.jobManagerTask?.containerSettings?.registry
-                                  ?.identityReference?.["resourceId"],
-                            },
-                      },
-                  workingDirectory:
-                    p.jobManagerTask?.containerSettings?.["workingDirectory"],
-                },
-            resourceFiles: (p.jobManagerTask?.["resourceFiles"] ?? []).map(
-              (p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })
-            ),
-            outputFiles: (p.jobManagerTask?.["outputFiles"] ?? []).map((p) => ({
-              filePattern: p["filePattern"],
-              destination: {
-                container: !p.destination.container
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          displayName: p["displayName"],
+          usesTaskDependencies: p["usesTaskDependencies"],
+          url: p["url"],
+          eTag: p["eTag"],
+          lastModified:
+            p["lastModified"] !== undefined
+              ? new Date(p["lastModified"])
+              : undefined,
+          creationTime:
+            p["creationTime"] !== undefined
+              ? new Date(p["creationTime"])
+              : undefined,
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          previousState: p["previousState"],
+          previousStateTransitionTime:
+            p["previousStateTransitionTime"] !== undefined
+              ? new Date(p["previousStateTransitionTime"])
+              : undefined,
+          priority: p["priority"],
+          allowTaskPreemption: p["allowTaskPreemption"],
+          maxParallelTasks: p["maxParallelTasks"],
+          constraints: !p.constraints
+            ? undefined
+            : {
+                maxWallClockTime: p.constraints?.["maxWallClockTime"],
+                maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
+              },
+          jobManagerTask: !p.jobManagerTask
+            ? undefined
+            : {
+                id: p.jobManagerTask?.["id"],
+                displayName: p.jobManagerTask?.["displayName"],
+                commandLine: p.jobManagerTask?.["commandLine"],
+                containerSettings: !p.jobManagerTask?.containerSettings
                   ? undefined
                   : {
-                      path: p.destination.container?.["path"],
-                      containerUrl: p.destination.container?.["containerUrl"],
-                      identityReference: !p.destination.container
-                        ?.identityReference
+                      containerRunOptions:
+                        p.jobManagerTask?.containerSettings?.[
+                          "containerRunOptions"
+                        ],
+                      imageName:
+                        p.jobManagerTask?.containerSettings?.["imageName"],
+                      registry: !p.jobManagerTask?.containerSettings?.registry
                         ? undefined
                         : {
-                            resourceId:
-                              p.destination.container?.identityReference?.[
-                                "resourceId"
+                            username:
+                              p.jobManagerTask?.containerSettings?.registry?.[
+                                "username"
+                              ],
+                            password:
+                              p.jobManagerTask?.containerSettings?.registry?.[
+                                "password"
+                              ],
+                            registryServer:
+                              p.jobManagerTask?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !p.jobManagerTask
+                              ?.containerSettings?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.jobManagerTask?.containerSettings
+                                      ?.registry?.identityReference?.[
+                                      "resourceId"
+                                    ],
+                                },
+                          },
+                      workingDirectory:
+                        p.jobManagerTask?.containerSettings?.[
+                          "workingDirectory"
+                        ],
+                    },
+                resourceFiles: !p.jobManagerTask?.["resourceFiles"]
+                  ? p.jobManagerTask?.["resourceFiles"]
+                  : p.jobManagerTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                outputFiles: !p.jobManagerTask?.["outputFiles"]
+                  ? p.jobManagerTask?.["outputFiles"]
+                  : p.jobManagerTask?.["outputFiles"].map((p) => ({
+                      filePattern: p["filePattern"],
+                      destination: {
+                        container: !p.destination.container
+                          ? undefined
+                          : {
+                              path: p.destination.container?.["path"],
+                              containerUrl:
+                                p.destination.container?.["containerUrl"],
+                              identityReference: !p.destination.container
+                                ?.identityReference
+                                ? undefined
+                                : {
+                                    resourceId:
+                                      p.destination.container
+                                        ?.identityReference?.["resourceId"],
+                                  },
+                              uploadHeaders: !p.destination.container?.[
+                                "uploadHeaders"
+                              ]
+                                ? p.destination.container?.["uploadHeaders"]
+                                : p.destination.container?.[
+                                    "uploadHeaders"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })),
+                            },
+                      },
+                      uploadOptions: {
+                        uploadCondition: p.uploadOptions["uploadCondition"],
+                      },
+                    })),
+                environmentSettings: !p.jobManagerTask?.["environmentSettings"]
+                  ? p.jobManagerTask?.["environmentSettings"]
+                  : p.jobManagerTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                constraints: !p.jobManagerTask?.constraints
+                  ? undefined
+                  : {
+                      maxWallClockTime:
+                        p.jobManagerTask?.constraints?.["maxWallClockTime"],
+                      retentionTime:
+                        p.jobManagerTask?.constraints?.["retentionTime"],
+                      maxTaskRetryCount:
+                        p.jobManagerTask?.constraints?.["maxTaskRetryCount"],
+                    },
+                requiredSlots: p.jobManagerTask?.["requiredSlots"],
+                killJobOnCompletion: p.jobManagerTask?.["killJobOnCompletion"],
+                userIdentity: !p.jobManagerTask?.userIdentity
+                  ? undefined
+                  : {
+                      username: p.jobManagerTask?.userIdentity?.["username"],
+                      autoUser: !p.jobManagerTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.jobManagerTask?.userIdentity?.autoUser?.[
+                                "scope"
+                              ],
+                            elevationLevel:
+                              p.jobManagerTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
                               ],
                           },
-                      uploadHeaders: (
-                        p.destination.container?.["uploadHeaders"] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
+                    },
+                runExclusive: p.jobManagerTask?.["runExclusive"],
+                applicationPackageReferences: !p.jobManagerTask?.[
+                  "applicationPackageReferences"
+                ]
+                  ? p.jobManagerTask?.["applicationPackageReferences"]
+                  : p.jobManagerTask?.["applicationPackageReferences"].map(
+                      (p) => ({
+                        applicationId: p["applicationId"],
+                        version: p["version"],
+                      })
+                    ),
+                authenticationTokenSettings: !p.jobManagerTask
+                  ?.authenticationTokenSettings
+                  ? undefined
+                  : {
+                      access:
+                        p.jobManagerTask?.authenticationTokenSettings?.[
+                          "access"
+                        ],
+                    },
+                allowLowPriorityNode:
+                  p.jobManagerTask?.["allowLowPriorityNode"],
+              },
+          jobPreparationTask: !p.jobPreparationTask
+            ? undefined
+            : {
+                id: p.jobPreparationTask?.["id"],
+                commandLine: p.jobPreparationTask?.["commandLine"],
+                containerSettings: !p.jobPreparationTask?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        p.jobPreparationTask?.containerSettings?.[
+                          "containerRunOptions"
+                        ],
+                      imageName:
+                        p.jobPreparationTask?.containerSettings?.["imageName"],
+                      registry: !p.jobPreparationTask?.containerSettings
+                        ?.registry
+                        ? undefined
+                        : {
+                            username:
+                              p.jobPreparationTask?.containerSettings
+                                ?.registry?.["username"],
+                            password:
+                              p.jobPreparationTask?.containerSettings
+                                ?.registry?.["password"],
+                            registryServer:
+                              p.jobPreparationTask?.containerSettings
+                                ?.registry?.["registryServer"],
+                            identityReference: !p.jobPreparationTask
+                              ?.containerSettings?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.jobPreparationTask?.containerSettings
+                                      ?.registry?.identityReference?.[
+                                      "resourceId"
+                                    ],
+                                },
+                          },
+                      workingDirectory:
+                        p.jobPreparationTask?.containerSettings?.[
+                          "workingDirectory"
+                        ],
+                    },
+                resourceFiles: !p.jobPreparationTask?.["resourceFiles"]
+                  ? p.jobPreparationTask?.["resourceFiles"]
+                  : p.jobPreparationTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !p.jobPreparationTask?.[
+                  "environmentSettings"
+                ]
+                  ? p.jobPreparationTask?.["environmentSettings"]
+                  : p.jobPreparationTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                constraints: !p.jobPreparationTask?.constraints
+                  ? undefined
+                  : {
+                      maxWallClockTime:
+                        p.jobPreparationTask?.constraints?.["maxWallClockTime"],
+                      retentionTime:
+                        p.jobPreparationTask?.constraints?.["retentionTime"],
+                      maxTaskRetryCount:
+                        p.jobPreparationTask?.constraints?.[
+                          "maxTaskRetryCount"
+                        ],
+                    },
+                waitForSuccess: p.jobPreparationTask?.["waitForSuccess"],
+                userIdentity: !p.jobPreparationTask?.userIdentity
+                  ? undefined
+                  : {
+                      username:
+                        p.jobPreparationTask?.userIdentity?.["username"],
+                      autoUser: !p.jobPreparationTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.jobPreparationTask?.userIdentity?.autoUser?.[
+                                "scope"
+                              ],
+                            elevationLevel:
+                              p.jobPreparationTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
+                              ],
+                          },
+                    },
+                rerunOnNodeRebootAfterSuccess:
+                  p.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
+              },
+          jobReleaseTask: !p.jobReleaseTask
+            ? undefined
+            : {
+                id: p.jobReleaseTask?.["id"],
+                commandLine: p.jobReleaseTask?.["commandLine"],
+                containerSettings: !p.jobReleaseTask?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        p.jobReleaseTask?.containerSettings?.[
+                          "containerRunOptions"
+                        ],
+                      imageName:
+                        p.jobReleaseTask?.containerSettings?.["imageName"],
+                      registry: !p.jobReleaseTask?.containerSettings?.registry
+                        ? undefined
+                        : {
+                            username:
+                              p.jobReleaseTask?.containerSettings?.registry?.[
+                                "username"
+                              ],
+                            password:
+                              p.jobReleaseTask?.containerSettings?.registry?.[
+                                "password"
+                              ],
+                            registryServer:
+                              p.jobReleaseTask?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !p.jobReleaseTask
+                              ?.containerSettings?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.jobReleaseTask?.containerSettings
+                                      ?.registry?.identityReference?.[
+                                      "resourceId"
+                                    ],
+                                },
+                          },
+                      workingDirectory:
+                        p.jobReleaseTask?.containerSettings?.[
+                          "workingDirectory"
+                        ],
+                    },
+                resourceFiles: !p.jobReleaseTask?.["resourceFiles"]
+                  ? p.jobReleaseTask?.["resourceFiles"]
+                  : p.jobReleaseTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !p.jobReleaseTask?.["environmentSettings"]
+                  ? p.jobReleaseTask?.["environmentSettings"]
+                  : p.jobReleaseTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                maxWallClockTime: p.jobReleaseTask?.["maxWallClockTime"],
+                retentionTime: p.jobReleaseTask?.["retentionTime"],
+                userIdentity: !p.jobReleaseTask?.userIdentity
+                  ? undefined
+                  : {
+                      username: p.jobReleaseTask?.userIdentity?.["username"],
+                      autoUser: !p.jobReleaseTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.jobReleaseTask?.userIdentity?.autoUser?.[
+                                "scope"
+                              ],
+                            elevationLevel:
+                              p.jobReleaseTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
+                              ],
+                          },
                     },
               },
-              uploadOptions: {
-                uploadCondition: p.uploadOptions["uploadCondition"],
-              },
-            })),
-            environmentSettings: (
-              p.jobManagerTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            constraints: !p.jobManagerTask?.constraints
+          commonEnvironmentSettings: !p["commonEnvironmentSettings"]
+            ? p["commonEnvironmentSettings"]
+            : p["commonEnvironmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          poolInfo: {
+            poolId: p.poolInfo["poolId"],
+            autoPoolSpecification: !p.poolInfo.autoPoolSpecification
               ? undefined
               : {
-                  maxWallClockTime:
-                    p.jobManagerTask?.constraints?.["maxWallClockTime"],
-                  retentionTime:
-                    p.jobManagerTask?.constraints?.["retentionTime"],
-                  maxTaskRetryCount:
-                    p.jobManagerTask?.constraints?.["maxTaskRetryCount"],
-                },
-            requiredSlots: p.jobManagerTask?.["requiredSlots"],
-            killJobOnCompletion: p.jobManagerTask?.["killJobOnCompletion"],
-            userIdentity: !p.jobManagerTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.jobManagerTask?.userIdentity?.["username"],
-                  autoUser: !p.jobManagerTask?.userIdentity?.autoUser
+                  autoPoolIdPrefix:
+                    p.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
+                  poolLifetimeOption:
+                    p.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
+                  keepAlive: p.poolInfo.autoPoolSpecification?.["keepAlive"],
+                  pool: !p.poolInfo.autoPoolSpecification?.pool
                     ? undefined
                     : {
-                        scope:
-                          p.jobManagerTask?.userIdentity?.autoUser?.["scope"],
-                        elevationLevel:
-                          p.jobManagerTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
+                        displayName:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "displayName"
                           ],
-                      },
-                },
-            runExclusive: p.jobManagerTask?.["runExclusive"],
-            applicationPackageReferences: (
-              p.jobManagerTask?.["applicationPackageReferences"] ?? []
-            ).map((p) => ({
-              applicationId: p["applicationId"],
-              version: p["version"],
-            })),
-            authenticationTokenSettings: !p.jobManagerTask
-              ?.authenticationTokenSettings
-              ? undefined
-              : {
-                  access:
-                    p.jobManagerTask?.authenticationTokenSettings?.["access"],
-                },
-            allowLowPriorityNode: p.jobManagerTask?.["allowLowPriorityNode"],
-          },
-      jobPreparationTask: !p.jobPreparationTask
-        ? undefined
-        : {
-            id: p.jobPreparationTask?.["id"],
-            commandLine: p.jobPreparationTask?.["commandLine"],
-            containerSettings: !p.jobPreparationTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.jobPreparationTask?.containerSettings?.[
-                      "containerRunOptions"
-                    ],
-                  imageName:
-                    p.jobPreparationTask?.containerSettings?.["imageName"],
-                  registry: !p.jobPreparationTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.jobPreparationTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.jobPreparationTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.jobPreparationTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.jobPreparationTask
-                          ?.containerSettings?.registry?.identityReference
+                        vmSize:
+                          p.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
+                        cloudServiceConfiguration: !p.poolInfo
+                          .autoPoolSpecification?.pool
+                          ?.cloudServiceConfiguration
                           ? undefined
                           : {
-                              resourceId:
-                                p.jobPreparationTask?.containerSettings
-                                  ?.registry?.identityReference?.["resourceId"],
+                              osFamily:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.cloudServiceConfiguration?.["osFamily"],
+                              osVersion:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.cloudServiceConfiguration?.["osVersion"],
                             },
-                      },
-                  workingDirectory:
-                    p.jobPreparationTask?.containerSettings?.[
-                      "workingDirectory"
-                    ],
-                },
-            resourceFiles: (p.jobPreparationTask?.["resourceFiles"] ?? []).map(
-              (p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })
-            ),
-            environmentSettings: (
-              p.jobPreparationTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            constraints: !p.jobPreparationTask?.constraints
-              ? undefined
-              : {
-                  maxWallClockTime:
-                    p.jobPreparationTask?.constraints?.["maxWallClockTime"],
-                  retentionTime:
-                    p.jobPreparationTask?.constraints?.["retentionTime"],
-                  maxTaskRetryCount:
-                    p.jobPreparationTask?.constraints?.["maxTaskRetryCount"],
-                },
-            waitForSuccess: p.jobPreparationTask?.["waitForSuccess"],
-            userIdentity: !p.jobPreparationTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.jobPreparationTask?.userIdentity?.["username"],
-                  autoUser: !p.jobPreparationTask?.userIdentity?.autoUser
-                    ? undefined
-                    : {
-                        scope:
-                          p.jobPreparationTask?.userIdentity?.autoUser?.[
-                            "scope"
-                          ],
-                        elevationLevel:
-                          p.jobPreparationTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
-                          ],
-                      },
-                },
-            rerunOnNodeRebootAfterSuccess:
-              p.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
-          },
-      jobReleaseTask: !p.jobReleaseTask
-        ? undefined
-        : {
-            id: p.jobReleaseTask?.["id"],
-            commandLine: p.jobReleaseTask?.["commandLine"],
-            containerSettings: !p.jobReleaseTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.jobReleaseTask?.containerSettings?.[
-                      "containerRunOptions"
-                    ],
-                  imageName: p.jobReleaseTask?.containerSettings?.["imageName"],
-                  registry: !p.jobReleaseTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.jobReleaseTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.jobReleaseTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.jobReleaseTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.jobReleaseTask?.containerSettings
-                          ?.registry?.identityReference
+                        virtualMachineConfiguration: !p.poolInfo
+                          .autoPoolSpecification?.pool
+                          ?.virtualMachineConfiguration
                           ? undefined
                           : {
-                              resourceId:
-                                p.jobReleaseTask?.containerSettings?.registry
-                                  ?.identityReference?.["resourceId"],
+                              imageReference: {
+                                publisher:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["publisher"],
+                                offer:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["offer"],
+                                sku: p.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.imageReference[
+                                  "sku"
+                                ],
+                                version:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["version"],
+                                virtualMachineImageId:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["virtualMachineImageId"],
+                                exactVersion:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["exactVersion"],
+                              },
+                              nodeAgentSKUId:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.[
+                                  "nodeAgentSKUId"
+                                ],
+                              windowsConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.windowsConfiguration
+                                ? undefined
+                                : {
+                                    enableAutomaticUpdates:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.windowsConfiguration?.[
+                                        "enableAutomaticUpdates"
+                                      ],
+                                  },
+                              dataDisks: !p.poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["dataDisks"]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.["dataDisks"]
+                                : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "dataDisks"
+                                  ].map((p) => ({
+                                    lun: p["lun"],
+                                    caching: p["caching"],
+                                    diskSizeGB: p["diskSizeGB"],
+                                    storageAccountType: p["storageAccountType"],
+                                  })),
+                              licenseType:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.[
+                                  "licenseType"
+                                ],
+                              containerConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.containerConfiguration
+                                ? undefined
+                                : {
+                                    type: p.poolInfo.autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.["type"],
+                                    containerImageNames:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.[
+                                        "containerImageNames"
+                                      ],
+                                    containerRegistries: !p.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.[
+                                      "containerRegistries"
+                                    ]
+                                      ? p.poolInfo.autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ]
+                                      : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ].map((p) => ({
+                                          username: p["username"],
+                                          password: p["password"],
+                                          registryServer: p["registryServer"],
+                                          identityReference:
+                                            !p.identityReference
+                                              ? undefined
+                                              : {
+                                                  resourceId:
+                                                    p.identityReference?.[
+                                                      "resourceId"
+                                                    ],
+                                                },
+                                        })),
+                                  },
+                              diskEncryptionConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.diskEncryptionConfiguration
+                                ? undefined
+                                : {
+                                    targets:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.diskEncryptionConfiguration?.[
+                                        "targets"
+                                      ],
+                                  },
+                              nodePlacementConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.nodePlacementConfiguration
+                                ? undefined
+                                : {
+                                    policy:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.nodePlacementConfiguration?.[
+                                        "policy"
+                                      ],
+                                  },
+                              extensions: !p.poolInfo.autoPoolSpecification
+                                ?.pool?.virtualMachineConfiguration?.[
+                                "extensions"
+                              ]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ]
+                                : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    publisher: p["publisher"],
+                                    type: p["type"],
+                                    typeHandlerVersion: p["typeHandlerVersion"],
+                                    autoUpgradeMinorVersion:
+                                      p["autoUpgradeMinorVersion"],
+                                    enableAutomaticUpgrade:
+                                      p["enableAutomaticUpgrade"],
+                                    settings: p["settings"],
+                                    protectedSettings: p["protectedSettings"],
+                                    provisionAfterExtensions:
+                                      p["provisionAfterExtensions"],
+                                  })),
+                              osDisk: !p.poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.osDisk
+                                ? undefined
+                                : {
+                                    ephemeralOSDiskSettings: !p.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration?.osDisk
+                                      ?.ephemeralOSDiskSettings
+                                      ? undefined
+                                      : {
+                                          placement:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool
+                                              ?.virtualMachineConfiguration
+                                              ?.osDisk
+                                              ?.ephemeralOSDiskSettings?.[
+                                              "placement"
+                                            ],
+                                        },
+                                  },
                             },
-                      },
-                  workingDirectory:
-                    p.jobReleaseTask?.containerSettings?.["workingDirectory"],
-                },
-            resourceFiles: (p.jobReleaseTask?.["resourceFiles"] ?? []).map(
-              (p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })
-            ),
-            environmentSettings: (
-              p.jobReleaseTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            maxWallClockTime: p.jobReleaseTask?.["maxWallClockTime"],
-            retentionTime: p.jobReleaseTask?.["retentionTime"],
-            userIdentity: !p.jobReleaseTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.jobReleaseTask?.userIdentity?.["username"],
-                  autoUser: !p.jobReleaseTask?.userIdentity?.autoUser
-                    ? undefined
-                    : {
-                        scope:
-                          p.jobReleaseTask?.userIdentity?.autoUser?.["scope"],
-                        elevationLevel:
-                          p.jobReleaseTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
+                        taskSlotsPerNode:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "taskSlotsPerNode"
                           ],
-                      },
-                },
-          },
-      commonEnvironmentSettings: (p["commonEnvironmentSettings"] ?? []).map(
-        (p) => ({ name: p["name"], value: p["value"] })
-      ),
-      poolInfo: {
-        poolId: p.poolInfo["poolId"],
-        autoPoolSpecification: !p.poolInfo.autoPoolSpecification
-          ? undefined
-          : {
-              autoPoolIdPrefix:
-                p.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
-              poolLifetimeOption:
-                p.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
-              keepAlive: p.poolInfo.autoPoolSpecification?.["keepAlive"],
-              pool: !p.poolInfo.autoPoolSpecification?.pool
-                ? undefined
-                : {
-                    displayName:
-                      p.poolInfo.autoPoolSpecification?.pool?.["displayName"],
-                    vmSize: p.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
-                    cloudServiceConfiguration: !p.poolInfo.autoPoolSpecification
-                      ?.pool?.cloudServiceConfiguration
-                      ? undefined
-                      : {
-                          osFamily:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.cloudServiceConfiguration?.["osFamily"],
-                          osVersion:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.cloudServiceConfiguration?.["osVersion"],
-                        },
-                    virtualMachineConfiguration: !p.poolInfo
-                      .autoPoolSpecification?.pool?.virtualMachineConfiguration
-                      ? undefined
-                      : {
-                          imageReference: {
-                            publisher:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "publisher"
-                              ],
-                            offer:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "offer"
-                              ],
-                            sku: p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.imageReference[
-                              "sku"
-                            ],
-                            version:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "version"
-                              ],
-                            virtualMachineImageId:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "virtualMachineImageId"
-                              ],
-                            exactVersion:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "exactVersion"
-                              ],
-                          },
-                          nodeAgentSKUId:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["nodeAgentSKUId"],
-                          windowsConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.windowsConfiguration
-                            ? undefined
-                            : {
-                                enableAutomaticUpdates:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.windowsConfiguration?.[
-                                    "enableAutomaticUpdates"
-                                  ],
-                              },
-                          dataDisks: (
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["dataDisks"] ?? []
-                          ).map((p) => ({
-                            lun: p["lun"],
-                            caching: p["caching"],
-                            diskSizeGB: p["diskSizeGB"],
-                            storageAccountType: p["storageAccountType"],
-                          })),
-                          licenseType:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["licenseType"],
-                          containerConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration
-                            ?.containerConfiguration
-                            ? undefined
-                            : {
-                                type: p.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.containerConfiguration?.["type"],
-                                containerImageNames:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.containerConfiguration?.[
-                                    "containerImageNames"
-                                  ],
-                                containerRegistries: (
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.containerConfiguration?.[
-                                    "containerRegistries"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  username: p["username"],
-                                  password: p["password"],
-                                  registryServer: p["registryServer"],
-                                  identityReference: !p.identityReference
-                                    ? undefined
-                                    : {
-                                        resourceId:
-                                          p.identityReference?.["resourceId"],
-                                      },
-                                })),
-                              },
-                          diskEncryptionConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration
-                            ?.diskEncryptionConfiguration
-                            ? undefined
-                            : {
-                                targets:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.diskEncryptionConfiguration?.["targets"],
-                              },
-                          nodePlacementConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration
-                            ?.nodePlacementConfiguration
-                            ? undefined
-                            : {
-                                policy:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.nodePlacementConfiguration?.["policy"],
-                              },
-                          extensions: (
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["extensions"] ??
-                            []
-                          ).map((p) => ({
-                            name: p["name"],
-                            publisher: p["publisher"],
-                            type: p["type"],
-                            typeHandlerVersion: p["typeHandlerVersion"],
-                            autoUpgradeMinorVersion:
-                              p["autoUpgradeMinorVersion"],
-                            enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-                            settings: p["settings"],
-                            protectedSettings: p["protectedSettings"],
-                            provisionAfterExtensions:
-                              p["provisionAfterExtensions"],
-                          })),
-                          osDisk: !p.poolInfo.autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.osDisk
-                            ? undefined
-                            : {
-                                ephemeralOSDiskSettings: !p.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.osDisk
-                                  ?.ephemeralOSDiskSettings
+                        taskSchedulingPolicy: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.taskSchedulingPolicy
+                          ? undefined
+                          : {
+                              nodeFillType:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.taskSchedulingPolicy?.["nodeFillType"],
+                            },
+                        resizeTimeout:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "resizeTimeout"
+                          ],
+                        targetDedicatedNodes:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "targetDedicatedNodes"
+                          ],
+                        targetLowPriorityNodes:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "targetLowPriorityNodes"
+                          ],
+                        enableAutoScale:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "enableAutoScale"
+                          ],
+                        autoScaleFormula:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "autoScaleFormula"
+                          ],
+                        autoScaleEvaluationInterval:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "autoScaleEvaluationInterval"
+                          ],
+                        enableInterNodeCommunication:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "enableInterNodeCommunication"
+                          ],
+                        networkConfiguration: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.networkConfiguration
+                          ? undefined
+                          : {
+                              subnetId:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.["subnetId"],
+                              dynamicVNetAssignmentScope:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.[
+                                  "dynamicVNetAssignmentScope"
+                                ],
+                              endpointConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.networkConfiguration?.endpointConfiguration
+                                ? undefined
+                                : {
+                                    inboundNATPools:
+                                      p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                        "inboundNATPools"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        protocol: p["protocol"],
+                                        backendPort: p["backendPort"],
+                                        frontendPortRangeStart:
+                                          p["frontendPortRangeStart"],
+                                        frontendPortRangeEnd:
+                                          p["frontendPortRangeEnd"],
+                                        networkSecurityGroupRules: !p[
+                                          "networkSecurityGroupRules"
+                                        ]
+                                          ? p["networkSecurityGroupRules"]
+                                          : p["networkSecurityGroupRules"].map(
+                                              (p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              })
+                                            ),
+                                      })),
+                                  },
+                              publicIPAddressConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.networkConfiguration
+                                ?.publicIPAddressConfiguration
+                                ? undefined
+                                : {
+                                    provision:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.publicIPAddressConfiguration?.[
+                                        "provision"
+                                      ],
+                                    ipAddressIds:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.publicIPAddressConfiguration?.[
+                                        "ipAddressIds"
+                                      ],
+                                  },
+                              enableAcceleratedNetworking:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.[
+                                  "enableAcceleratedNetworking"
+                                ],
+                            },
+                        startTask: !p.poolInfo.autoPoolSpecification?.pool
+                          ?.startTask
+                          ? undefined
+                          : {
+                              commandLine:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["commandLine"],
+                              containerSettings: !p.poolInfo
+                                .autoPoolSpecification?.pool?.startTask
+                                ?.containerSettings
+                                ? undefined
+                                : {
+                                    containerRunOptions:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.containerSettings?.[
+                                        "containerRunOptions"
+                                      ],
+                                    imageName:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.containerSettings?.[
+                                        "imageName"
+                                      ],
+                                    registry: !p.poolInfo.autoPoolSpecification
+                                      ?.pool?.startTask?.containerSettings
+                                      ?.registry
+                                      ? undefined
+                                      : {
+                                          username:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask
+                                              ?.containerSettings?.registry?.[
+                                              "username"
+                                            ],
+                                          password:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask
+                                              ?.containerSettings?.registry?.[
+                                              "password"
+                                            ],
+                                          registryServer:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask
+                                              ?.containerSettings?.registry?.[
+                                              "registryServer"
+                                            ],
+                                          identityReference: !p.poolInfo
+                                            .autoPoolSpecification?.pool
+                                            ?.startTask?.containerSettings
+                                            ?.registry?.identityReference
+                                            ? undefined
+                                            : {
+                                                resourceId:
+                                                  p.poolInfo
+                                                    .autoPoolSpecification?.pool
+                                                    ?.startTask
+                                                    ?.containerSettings
+                                                    ?.registry
+                                                    ?.identityReference?.[
+                                                    "resourceId"
+                                                  ],
+                                              },
+                                        },
+                                    workingDirectory:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.containerSettings?.[
+                                        "workingDirectory"
+                                      ],
+                                  },
+                              resourceFiles: !p.poolInfo.autoPoolSpecification
+                                ?.pool?.startTask?.["resourceFiles"]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.["resourceFiles"]
+                                : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "resourceFiles"
+                                  ].map((p) => ({
+                                    autoStorageContainerName:
+                                      p["autoStorageContainerName"],
+                                    storageContainerUrl:
+                                      p["storageContainerUrl"],
+                                    httpUrl: p["httpUrl"],
+                                    blobPrefix: p["blobPrefix"],
+                                    filePath: p["filePath"],
+                                    fileMode: p["fileMode"],
+                                    identityReference: !p.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.identityReference?.["resourceId"],
+                                        },
+                                  })),
+                              environmentSettings: !p.poolInfo
+                                .autoPoolSpecification?.pool?.startTask?.[
+                                "environmentSettings"
+                              ]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.["environmentSettings"]
+                                : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "environmentSettings"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })),
+                              userIdentity: !p.poolInfo.autoPoolSpecification
+                                ?.pool?.startTask?.userIdentity
+                                ? undefined
+                                : {
+                                    username:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.userIdentity?.["username"],
+                                    autoUser: !p.poolInfo.autoPoolSpecification
+                                      ?.pool?.startTask?.userIdentity?.autoUser
+                                      ? undefined
+                                      : {
+                                          scope:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask?.userIdentity
+                                              ?.autoUser?.["scope"],
+                                          elevationLevel:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask?.userIdentity
+                                              ?.autoUser?.["elevationLevel"],
+                                        },
+                                  },
+                              maxTaskRetryCount:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["maxTaskRetryCount"],
+                              waitForSuccess:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["waitForSuccess"],
+                            },
+                        certificateReferences: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.["certificateReferences"]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ].map((p) => ({
+                              thumbprint: p["thumbprint"],
+                              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                              storeLocation: p["storeLocation"],
+                              storeName: p["storeName"],
+                              visibility: p["visibility"],
+                            })),
+                        applicationPackageReferences: !p.poolInfo
+                          .autoPoolSpecification?.pool?.[
+                          "applicationPackageReferences"
+                        ]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ].map((p) => ({
+                              applicationId: p["applicationId"],
+                              version: p["version"],
+                            })),
+                        applicationLicenses:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationLicenses"
+                          ],
+                        userAccounts: !p.poolInfo.autoPoolSpecification?.pool?.[
+                          "userAccounts"
+                        ]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "userAccounts"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "userAccounts"
+                            ].map((p) => ({
+                              name: p["name"],
+                              password: p["password"],
+                              elevationLevel: p["elevationLevel"],
+                              linuxUserConfiguration: !p.linuxUserConfiguration
+                                ? undefined
+                                : {
+                                    uid: p.linuxUserConfiguration?.["uid"],
+                                    gid: p.linuxUserConfiguration?.["gid"],
+                                    sshPrivateKey:
+                                      p.linuxUserConfiguration?.[
+                                        "sshPrivateKey"
+                                      ],
+                                  },
+                              windowsUserConfiguration:
+                                !p.windowsUserConfiguration
                                   ? undefined
                                   : {
-                                      placement:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration?.osDisk
-                                          ?.ephemeralOSDiskSettings?.[
-                                          "placement"
+                                      loginMode:
+                                        p.windowsUserConfiguration?.[
+                                          "loginMode"
                                         ],
                                     },
-                              },
-                        },
-                    taskSlotsPerNode:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "taskSlotsPerNode"
-                      ],
-                    taskSchedulingPolicy: !p.poolInfo.autoPoolSpecification
-                      ?.pool?.taskSchedulingPolicy
-                      ? undefined
-                      : {
-                          nodeFillType:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.taskSchedulingPolicy?.["nodeFillType"],
-                        },
-                    resizeTimeout:
-                      p.poolInfo.autoPoolSpecification?.pool?.["resizeTimeout"],
-                    targetDedicatedNodes:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "targetDedicatedNodes"
-                      ],
-                    targetLowPriorityNodes:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "targetLowPriorityNodes"
-                      ],
-                    enableAutoScale:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "enableAutoScale"
-                      ],
-                    autoScaleFormula:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "autoScaleFormula"
-                      ],
-                    autoScaleEvaluationInterval:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "autoScaleEvaluationInterval"
-                      ],
-                    enableInterNodeCommunication:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "enableInterNodeCommunication"
-                      ],
-                    networkConfiguration: !p.poolInfo.autoPoolSpecification
-                      ?.pool?.networkConfiguration
-                      ? undefined
-                      : {
-                          subnetId:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration?.["subnetId"],
-                          dynamicVNetAssignmentScope:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration?.[
-                              "dynamicVNetAssignmentScope"
-                            ],
-                          endpointConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool?.networkConfiguration
-                            ?.endpointConfiguration
-                            ? undefined
-                            : {
-                                inboundNATPools: (
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.endpointConfiguration?.[
-                                    "inboundNATPools"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  name: p["name"],
-                                  protocol: p["protocol"],
-                                  backendPort: p["backendPort"],
-                                  frontendPortRangeStart:
-                                    p["frontendPortRangeStart"],
-                                  frontendPortRangeEnd:
-                                    p["frontendPortRangeEnd"],
-                                  networkSecurityGroupRules: (
-                                    p["networkSecurityGroupRules"] ?? []
-                                  ).map((p) => ({
-                                    priority: p["priority"],
-                                    access: p["access"],
-                                    sourceAddressPrefix:
-                                      p["sourceAddressPrefix"],
-                                    sourcePortRanges: p["sourcePortRanges"],
-                                  })),
-                                })),
-                              },
-                          publicIPAddressConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool?.networkConfiguration
-                            ?.publicIPAddressConfiguration
-                            ? undefined
-                            : {
-                                provision:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.publicIPAddressConfiguration?.[
-                                    "provision"
-                                  ],
-                                ipAddressIds:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.publicIPAddressConfiguration?.[
-                                    "ipAddressIds"
-                                  ],
-                              },
-                          enableAcceleratedNetworking:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration?.[
-                              "enableAcceleratedNetworking"
-                            ],
-                        },
-                    startTask: !p.poolInfo.autoPoolSpecification?.pool
-                      ?.startTask
-                      ? undefined
-                      : {
-                          commandLine:
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "commandLine"
-                            ],
-                          containerSettings: !p.poolInfo.autoPoolSpecification
-                            ?.pool?.startTask?.containerSettings
-                            ? undefined
-                            : {
-                                containerRunOptions:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.containerSettings?.[
-                                    "containerRunOptions"
-                                  ],
-                                imageName:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.containerSettings?.[
-                                    "imageName"
-                                  ],
-                                registry: !p.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.containerSettings?.registry
+                            })),
+                        metadata: !p.poolInfo.autoPoolSpecification?.pool?.[
+                          "metadata"
+                        ]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.["metadata"]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "metadata"
+                            ].map((p) => ({
+                              name: p["name"],
+                              value: p["value"],
+                            })),
+                        mountConfiguration: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.["mountConfiguration"]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ].map((p) => ({
+                              azureBlobFileSystemConfiguration:
+                                !p.azureBlobFileSystemConfiguration
                                   ? undefined
                                   : {
-                                      username:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.["username"],
-                                      password:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.["password"],
-                                      registryServer:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.["registryServer"],
-                                      identityReference: !p.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.containerSettings?.registry
+                                      accountName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      containerName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "containerName"
+                                        ],
+                                      accountKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      sasKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "sasKey"
+                                        ],
+                                      blobfuseOptions:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "blobfuseOptions"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      identityReference: !p
+                                        .azureBlobFileSystemConfiguration
                                         ?.identityReference
                                         ? undefined
                                         : {
                                             resourceId:
-                                              p.poolInfo.autoPoolSpecification
-                                                ?.pool?.startTask
-                                                ?.containerSettings?.registry
+                                              p.azureBlobFileSystemConfiguration
                                                 ?.identityReference?.[
                                                 "resourceId"
                                               ],
                                           },
                                     },
-                                workingDirectory:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.containerSettings?.[
-                                    "workingDirectory"
-                                  ],
-                              },
-                          resourceFiles: (
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "resourceFiles"
-                            ] ?? []
-                          ).map((p) => ({
-                            autoStorageContainerName:
-                              p["autoStorageContainerName"],
-                            storageContainerUrl: p["storageContainerUrl"],
-                            httpUrl: p["httpUrl"],
-                            blobPrefix: p["blobPrefix"],
-                            filePath: p["filePath"],
-                            fileMode: p["fileMode"],
-                            identityReference: !p.identityReference
-                              ? undefined
-                              : {
-                                  resourceId:
-                                    p.identityReference?.["resourceId"],
-                                },
-                          })),
-                          environmentSettings: (
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "environmentSettings"
-                            ] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
-                          userIdentity: !p.poolInfo.autoPoolSpecification?.pool
-                            ?.startTask?.userIdentity
-                            ? undefined
-                            : {
-                                username:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.userIdentity?.["username"],
-                                autoUser: !p.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.userIdentity?.autoUser
-                                  ? undefined
-                                  : {
-                                      scope:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.userIdentity?.autoUser?.[
-                                          "scope"
-                                        ],
-                                      elevationLevel:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.userIdentity?.autoUser?.[
-                                          "elevationLevel"
-                                        ],
-                                    },
-                              },
-                          maxTaskRetryCount:
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "maxTaskRetryCount"
-                            ],
-                          waitForSuccess:
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "waitForSuccess"
-                            ],
-                        },
-                    certificateReferences: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "certificateReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      thumbprint: p["thumbprint"],
-                      thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                      storeLocation: p["storeLocation"],
-                      storeName: p["storeName"],
-                      visibility: p["visibility"],
-                    })),
-                    applicationPackageReferences: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "applicationPackageReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      applicationId: p["applicationId"],
-                      version: p["version"],
-                    })),
-                    applicationLicenses:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "applicationLicenses"
-                      ],
-                    userAccounts: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "userAccounts"
-                      ] ?? []
-                    ).map((p) => ({
-                      name: p["name"],
-                      password: p["password"],
-                      elevationLevel: p["elevationLevel"],
-                      linuxUserConfiguration: !p.linuxUserConfiguration
-                        ? undefined
-                        : {
-                            uid: p.linuxUserConfiguration?.["uid"],
-                            gid: p.linuxUserConfiguration?.["gid"],
-                            sshPrivateKey:
-                              p.linuxUserConfiguration?.["sshPrivateKey"],
-                          },
-                      windowsUserConfiguration: !p.windowsUserConfiguration
-                        ? undefined
-                        : {
-                            loginMode:
-                              p.windowsUserConfiguration?.["loginMode"],
-                          },
-                    })),
-                    metadata: (
-                      p.poolInfo.autoPoolSpecification?.pool?.["metadata"] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
-                    mountConfiguration: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "mountConfiguration"
-                      ] ?? []
-                    ).map((p) => ({
-                      azureBlobFileSystemConfiguration:
-                        !p.azureBlobFileSystemConfiguration
-                          ? undefined
-                          : {
-                              accountName:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "accountName"
-                                ],
-                              containerName:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "containerName"
-                                ],
-                              accountKey:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "accountKey"
-                                ],
-                              sasKey:
-                                p.azureBlobFileSystemConfiguration?.["sasKey"],
-                              blobfuseOptions:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "blobfuseOptions"
-                                ],
-                              relativeMountPath:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "relativeMountPath"
-                                ],
-                              identityReference: !p
-                                .azureBlobFileSystemConfiguration
-                                ?.identityReference
+                              nfsMountConfiguration: !p.nfsMountConfiguration
                                 ? undefined
                                 : {
-                                    resourceId:
-                                      p.azureBlobFileSystemConfiguration
-                                        ?.identityReference?.["resourceId"],
+                                    source: p.nfsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.nfsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.nfsMountConfiguration?.["mountOptions"],
                                   },
-                            },
-                      nfsMountConfiguration: !p.nfsMountConfiguration
-                        ? undefined
-                        : {
-                            source: p.nfsMountConfiguration?.["source"],
-                            relativeMountPath:
-                              p.nfsMountConfiguration?.["relativeMountPath"],
-                            mountOptions:
-                              p.nfsMountConfiguration?.["mountOptions"],
-                          },
-                      cifsMountConfiguration: !p.cifsMountConfiguration
-                        ? undefined
-                        : {
-                            username: p.cifsMountConfiguration?.["username"],
-                            source: p.cifsMountConfiguration?.["source"],
-                            relativeMountPath:
-                              p.cifsMountConfiguration?.["relativeMountPath"],
-                            mountOptions:
-                              p.cifsMountConfiguration?.["mountOptions"],
-                            password: p.cifsMountConfiguration?.["password"],
-                          },
-                      azureFileShareConfiguration:
-                        !p.azureFileShareConfiguration
-                          ? undefined
-                          : {
-                              accountName:
-                                p.azureFileShareConfiguration?.["accountName"],
-                              azureFileUrl:
-                                p.azureFileShareConfiguration?.["azureFileUrl"],
-                              accountKey:
-                                p.azureFileShareConfiguration?.["accountKey"],
-                              relativeMountPath:
-                                p.azureFileShareConfiguration?.[
-                                  "relativeMountPath"
-                                ],
-                              mountOptions:
-                                p.azureFileShareConfiguration?.["mountOptions"],
-                            },
-                    })),
-                    targetNodeCommunicationMode:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "targetNodeCommunicationMode"
-                      ],
-                  },
-            },
-      },
-      onAllTasksComplete: p["onAllTasksComplete"],
-      onTaskFailure: p["onTaskFailure"],
-      networkConfiguration: !p.networkConfiguration
-        ? undefined
-        : { subnetId: p.networkConfiguration?.["subnetId"] },
-      metadata: (p["metadata"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-      executionInfo: !p.executionInfo
-        ? undefined
-        : {
-            startTime: new Date(p.executionInfo?.["startTime"]),
-            endTime:
-              p.executionInfo?.["endTime"] !== undefined
-                ? new Date(p.executionInfo?.["endTime"])
-                : undefined,
-            poolId: p.executionInfo?.["poolId"],
-            schedulingError: !p.executionInfo?.schedulingError
-              ? undefined
-              : {
-                  category: p.executionInfo?.schedulingError?.["category"],
-                  code: p.executionInfo?.schedulingError?.["code"],
-                  message: p.executionInfo?.schedulingError?.["message"],
-                  details: (
-                    p.executionInfo?.schedulingError?.["details"] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
+                              cifsMountConfiguration: !p.cifsMountConfiguration
+                                ? undefined
+                                : {
+                                    username:
+                                      p.cifsMountConfiguration?.["username"],
+                                    source:
+                                      p.cifsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.cifsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.cifsMountConfiguration?.[
+                                        "mountOptions"
+                                      ],
+                                    password:
+                                      p.cifsMountConfiguration?.["password"],
+                                  },
+                              azureFileShareConfiguration:
+                                !p.azureFileShareConfiguration
+                                  ? undefined
+                                  : {
+                                      accountName:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      azureFileUrl:
+                                        p.azureFileShareConfiguration?.[
+                                          "azureFileUrl"
+                                        ],
+                                      accountKey:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureFileShareConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      mountOptions:
+                                        p.azureFileShareConfiguration?.[
+                                          "mountOptions"
+                                        ],
+                                    },
+                            })),
+                        targetNodeCommunicationMode:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "targetNodeCommunicationMode"
+                          ],
+                      },
                 },
-            terminateReason: p.executionInfo?.["terminateReason"],
           },
-      stats: !p.stats
-        ? undefined
-        : {
-            url: p.stats?.["url"],
-            startTime: new Date(p.stats?.["startTime"]),
-            lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-            userCPUTime: p.stats?.["userCPUTime"],
-            kernelCPUTime: p.stats?.["kernelCPUTime"],
-            wallClockTime: p.stats?.["wallClockTime"],
-            readIOps: p.stats?.["readIOps"],
-            writeIOps: p.stats?.["writeIOps"],
-            readIOGiB: p.stats?.["readIOGiB"],
-            writeIOGiB: p.stats?.["writeIOGiB"],
-            numSucceededTasks: p.stats?.["numSucceededTasks"],
-            numFailedTasks: p.stats?.["numFailedTasks"],
-            numTaskRetries: p.stats?.["numTaskRetries"],
-            waitTime: p.stats?.["waitTime"],
-          },
-    })),
+          onAllTasksComplete: p["onAllTasksComplete"],
+          onTaskFailure: p["onTaskFailure"],
+          networkConfiguration: !p.networkConfiguration
+            ? undefined
+            : { subnetId: p.networkConfiguration?.["subnetId"] },
+          metadata: !p["metadata"]
+            ? p["metadata"]
+            : p["metadata"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          executionInfo: !p.executionInfo
+            ? undefined
+            : {
+                startTime: new Date(p.executionInfo?.["startTime"]),
+                endTime:
+                  p.executionInfo?.["endTime"] !== undefined
+                    ? new Date(p.executionInfo?.["endTime"])
+                    : undefined,
+                poolId: p.executionInfo?.["poolId"],
+                schedulingError: !p.executionInfo?.schedulingError
+                  ? undefined
+                  : {
+                      category: p.executionInfo?.schedulingError?.["category"],
+                      code: p.executionInfo?.schedulingError?.["code"],
+                      message: p.executionInfo?.schedulingError?.["message"],
+                      details: !p.executionInfo?.schedulingError?.["details"]
+                        ? p.executionInfo?.schedulingError?.["details"]
+                        : p.executionInfo?.schedulingError?.["details"].map(
+                            (p) => ({ name: p["name"], value: p["value"] })
+                          ),
+                    },
+                terminateReason: p.executionInfo?.["terminateReason"],
+              },
+          stats: !p.stats
+            ? undefined
+            : {
+                url: p.stats?.["url"],
+                startTime: new Date(p.stats?.["startTime"]),
+                lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
+                userCPUTime: p.stats?.["userCPUTime"],
+                kernelCPUTime: p.stats?.["kernelCPUTime"],
+                wallClockTime: p.stats?.["wallClockTime"],
+                readIOps: p.stats?.["readIOps"],
+                writeIOps: p.stats?.["writeIOps"],
+                readIOGiB: p.stats?.["readIOGiB"],
+                writeIOGiB: p.stats?.["writeIOGiB"],
+                numSucceededTasks: p.stats?.["numSucceededTasks"],
+                numFailedTasks: p.stats?.["numFailedTasks"],
+                numTaskRetries: p.stats?.["numTaskRetries"],
+                waitTime: p.stats?.["waitTime"],
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -7072,918 +7629,1067 @@ export async function _listJobsFromScheduleDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      displayName: p["displayName"],
-      usesTaskDependencies: p["usesTaskDependencies"],
-      url: p["url"],
-      eTag: p["eTag"],
-      lastModified:
-        p["lastModified"] !== undefined
-          ? new Date(p["lastModified"])
-          : undefined,
-      creationTime:
-        p["creationTime"] !== undefined
-          ? new Date(p["creationTime"])
-          : undefined,
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      previousState: p["previousState"],
-      previousStateTransitionTime:
-        p["previousStateTransitionTime"] !== undefined
-          ? new Date(p["previousStateTransitionTime"])
-          : undefined,
-      priority: p["priority"],
-      allowTaskPreemption: p["allowTaskPreemption"],
-      maxParallelTasks: p["maxParallelTasks"],
-      constraints: !p.constraints
-        ? undefined
-        : {
-            maxWallClockTime: p.constraints?.["maxWallClockTime"],
-            maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
-          },
-      jobManagerTask: !p.jobManagerTask
-        ? undefined
-        : {
-            id: p.jobManagerTask?.["id"],
-            displayName: p.jobManagerTask?.["displayName"],
-            commandLine: p.jobManagerTask?.["commandLine"],
-            containerSettings: !p.jobManagerTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.jobManagerTask?.containerSettings?.[
-                      "containerRunOptions"
-                    ],
-                  imageName: p.jobManagerTask?.containerSettings?.["imageName"],
-                  registry: !p.jobManagerTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.jobManagerTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.jobManagerTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.jobManagerTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.jobManagerTask?.containerSettings
-                          ?.registry?.identityReference
-                          ? undefined
-                          : {
-                              resourceId:
-                                p.jobManagerTask?.containerSettings?.registry
-                                  ?.identityReference?.["resourceId"],
-                            },
-                      },
-                  workingDirectory:
-                    p.jobManagerTask?.containerSettings?.["workingDirectory"],
-                },
-            resourceFiles: (p.jobManagerTask?.["resourceFiles"] ?? []).map(
-              (p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })
-            ),
-            outputFiles: (p.jobManagerTask?.["outputFiles"] ?? []).map((p) => ({
-              filePattern: p["filePattern"],
-              destination: {
-                container: !p.destination.container
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          displayName: p["displayName"],
+          usesTaskDependencies: p["usesTaskDependencies"],
+          url: p["url"],
+          eTag: p["eTag"],
+          lastModified:
+            p["lastModified"] !== undefined
+              ? new Date(p["lastModified"])
+              : undefined,
+          creationTime:
+            p["creationTime"] !== undefined
+              ? new Date(p["creationTime"])
+              : undefined,
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          previousState: p["previousState"],
+          previousStateTransitionTime:
+            p["previousStateTransitionTime"] !== undefined
+              ? new Date(p["previousStateTransitionTime"])
+              : undefined,
+          priority: p["priority"],
+          allowTaskPreemption: p["allowTaskPreemption"],
+          maxParallelTasks: p["maxParallelTasks"],
+          constraints: !p.constraints
+            ? undefined
+            : {
+                maxWallClockTime: p.constraints?.["maxWallClockTime"],
+                maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
+              },
+          jobManagerTask: !p.jobManagerTask
+            ? undefined
+            : {
+                id: p.jobManagerTask?.["id"],
+                displayName: p.jobManagerTask?.["displayName"],
+                commandLine: p.jobManagerTask?.["commandLine"],
+                containerSettings: !p.jobManagerTask?.containerSettings
                   ? undefined
                   : {
-                      path: p.destination.container?.["path"],
-                      containerUrl: p.destination.container?.["containerUrl"],
-                      identityReference: !p.destination.container
-                        ?.identityReference
+                      containerRunOptions:
+                        p.jobManagerTask?.containerSettings?.[
+                          "containerRunOptions"
+                        ],
+                      imageName:
+                        p.jobManagerTask?.containerSettings?.["imageName"],
+                      registry: !p.jobManagerTask?.containerSettings?.registry
                         ? undefined
                         : {
-                            resourceId:
-                              p.destination.container?.identityReference?.[
-                                "resourceId"
+                            username:
+                              p.jobManagerTask?.containerSettings?.registry?.[
+                                "username"
+                              ],
+                            password:
+                              p.jobManagerTask?.containerSettings?.registry?.[
+                                "password"
+                              ],
+                            registryServer:
+                              p.jobManagerTask?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !p.jobManagerTask
+                              ?.containerSettings?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.jobManagerTask?.containerSettings
+                                      ?.registry?.identityReference?.[
+                                      "resourceId"
+                                    ],
+                                },
+                          },
+                      workingDirectory:
+                        p.jobManagerTask?.containerSettings?.[
+                          "workingDirectory"
+                        ],
+                    },
+                resourceFiles: !p.jobManagerTask?.["resourceFiles"]
+                  ? p.jobManagerTask?.["resourceFiles"]
+                  : p.jobManagerTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                outputFiles: !p.jobManagerTask?.["outputFiles"]
+                  ? p.jobManagerTask?.["outputFiles"]
+                  : p.jobManagerTask?.["outputFiles"].map((p) => ({
+                      filePattern: p["filePattern"],
+                      destination: {
+                        container: !p.destination.container
+                          ? undefined
+                          : {
+                              path: p.destination.container?.["path"],
+                              containerUrl:
+                                p.destination.container?.["containerUrl"],
+                              identityReference: !p.destination.container
+                                ?.identityReference
+                                ? undefined
+                                : {
+                                    resourceId:
+                                      p.destination.container
+                                        ?.identityReference?.["resourceId"],
+                                  },
+                              uploadHeaders: !p.destination.container?.[
+                                "uploadHeaders"
+                              ]
+                                ? p.destination.container?.["uploadHeaders"]
+                                : p.destination.container?.[
+                                    "uploadHeaders"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })),
+                            },
+                      },
+                      uploadOptions: {
+                        uploadCondition: p.uploadOptions["uploadCondition"],
+                      },
+                    })),
+                environmentSettings: !p.jobManagerTask?.["environmentSettings"]
+                  ? p.jobManagerTask?.["environmentSettings"]
+                  : p.jobManagerTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                constraints: !p.jobManagerTask?.constraints
+                  ? undefined
+                  : {
+                      maxWallClockTime:
+                        p.jobManagerTask?.constraints?.["maxWallClockTime"],
+                      retentionTime:
+                        p.jobManagerTask?.constraints?.["retentionTime"],
+                      maxTaskRetryCount:
+                        p.jobManagerTask?.constraints?.["maxTaskRetryCount"],
+                    },
+                requiredSlots: p.jobManagerTask?.["requiredSlots"],
+                killJobOnCompletion: p.jobManagerTask?.["killJobOnCompletion"],
+                userIdentity: !p.jobManagerTask?.userIdentity
+                  ? undefined
+                  : {
+                      username: p.jobManagerTask?.userIdentity?.["username"],
+                      autoUser: !p.jobManagerTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.jobManagerTask?.userIdentity?.autoUser?.[
+                                "scope"
+                              ],
+                            elevationLevel:
+                              p.jobManagerTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
                               ],
                           },
-                      uploadHeaders: (
-                        p.destination.container?.["uploadHeaders"] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
+                    },
+                runExclusive: p.jobManagerTask?.["runExclusive"],
+                applicationPackageReferences: !p.jobManagerTask?.[
+                  "applicationPackageReferences"
+                ]
+                  ? p.jobManagerTask?.["applicationPackageReferences"]
+                  : p.jobManagerTask?.["applicationPackageReferences"].map(
+                      (p) => ({
+                        applicationId: p["applicationId"],
+                        version: p["version"],
+                      })
+                    ),
+                authenticationTokenSettings: !p.jobManagerTask
+                  ?.authenticationTokenSettings
+                  ? undefined
+                  : {
+                      access:
+                        p.jobManagerTask?.authenticationTokenSettings?.[
+                          "access"
+                        ],
+                    },
+                allowLowPriorityNode:
+                  p.jobManagerTask?.["allowLowPriorityNode"],
+              },
+          jobPreparationTask: !p.jobPreparationTask
+            ? undefined
+            : {
+                id: p.jobPreparationTask?.["id"],
+                commandLine: p.jobPreparationTask?.["commandLine"],
+                containerSettings: !p.jobPreparationTask?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        p.jobPreparationTask?.containerSettings?.[
+                          "containerRunOptions"
+                        ],
+                      imageName:
+                        p.jobPreparationTask?.containerSettings?.["imageName"],
+                      registry: !p.jobPreparationTask?.containerSettings
+                        ?.registry
+                        ? undefined
+                        : {
+                            username:
+                              p.jobPreparationTask?.containerSettings
+                                ?.registry?.["username"],
+                            password:
+                              p.jobPreparationTask?.containerSettings
+                                ?.registry?.["password"],
+                            registryServer:
+                              p.jobPreparationTask?.containerSettings
+                                ?.registry?.["registryServer"],
+                            identityReference: !p.jobPreparationTask
+                              ?.containerSettings?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.jobPreparationTask?.containerSettings
+                                      ?.registry?.identityReference?.[
+                                      "resourceId"
+                                    ],
+                                },
+                          },
+                      workingDirectory:
+                        p.jobPreparationTask?.containerSettings?.[
+                          "workingDirectory"
+                        ],
+                    },
+                resourceFiles: !p.jobPreparationTask?.["resourceFiles"]
+                  ? p.jobPreparationTask?.["resourceFiles"]
+                  : p.jobPreparationTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !p.jobPreparationTask?.[
+                  "environmentSettings"
+                ]
+                  ? p.jobPreparationTask?.["environmentSettings"]
+                  : p.jobPreparationTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                constraints: !p.jobPreparationTask?.constraints
+                  ? undefined
+                  : {
+                      maxWallClockTime:
+                        p.jobPreparationTask?.constraints?.["maxWallClockTime"],
+                      retentionTime:
+                        p.jobPreparationTask?.constraints?.["retentionTime"],
+                      maxTaskRetryCount:
+                        p.jobPreparationTask?.constraints?.[
+                          "maxTaskRetryCount"
+                        ],
+                    },
+                waitForSuccess: p.jobPreparationTask?.["waitForSuccess"],
+                userIdentity: !p.jobPreparationTask?.userIdentity
+                  ? undefined
+                  : {
+                      username:
+                        p.jobPreparationTask?.userIdentity?.["username"],
+                      autoUser: !p.jobPreparationTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.jobPreparationTask?.userIdentity?.autoUser?.[
+                                "scope"
+                              ],
+                            elevationLevel:
+                              p.jobPreparationTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
+                              ],
+                          },
+                    },
+                rerunOnNodeRebootAfterSuccess:
+                  p.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
+              },
+          jobReleaseTask: !p.jobReleaseTask
+            ? undefined
+            : {
+                id: p.jobReleaseTask?.["id"],
+                commandLine: p.jobReleaseTask?.["commandLine"],
+                containerSettings: !p.jobReleaseTask?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        p.jobReleaseTask?.containerSettings?.[
+                          "containerRunOptions"
+                        ],
+                      imageName:
+                        p.jobReleaseTask?.containerSettings?.["imageName"],
+                      registry: !p.jobReleaseTask?.containerSettings?.registry
+                        ? undefined
+                        : {
+                            username:
+                              p.jobReleaseTask?.containerSettings?.registry?.[
+                                "username"
+                              ],
+                            password:
+                              p.jobReleaseTask?.containerSettings?.registry?.[
+                                "password"
+                              ],
+                            registryServer:
+                              p.jobReleaseTask?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !p.jobReleaseTask
+                              ?.containerSettings?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.jobReleaseTask?.containerSettings
+                                      ?.registry?.identityReference?.[
+                                      "resourceId"
+                                    ],
+                                },
+                          },
+                      workingDirectory:
+                        p.jobReleaseTask?.containerSettings?.[
+                          "workingDirectory"
+                        ],
+                    },
+                resourceFiles: !p.jobReleaseTask?.["resourceFiles"]
+                  ? p.jobReleaseTask?.["resourceFiles"]
+                  : p.jobReleaseTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !p.jobReleaseTask?.["environmentSettings"]
+                  ? p.jobReleaseTask?.["environmentSettings"]
+                  : p.jobReleaseTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                maxWallClockTime: p.jobReleaseTask?.["maxWallClockTime"],
+                retentionTime: p.jobReleaseTask?.["retentionTime"],
+                userIdentity: !p.jobReleaseTask?.userIdentity
+                  ? undefined
+                  : {
+                      username: p.jobReleaseTask?.userIdentity?.["username"],
+                      autoUser: !p.jobReleaseTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.jobReleaseTask?.userIdentity?.autoUser?.[
+                                "scope"
+                              ],
+                            elevationLevel:
+                              p.jobReleaseTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
+                              ],
+                          },
                     },
               },
-              uploadOptions: {
-                uploadCondition: p.uploadOptions["uploadCondition"],
-              },
-            })),
-            environmentSettings: (
-              p.jobManagerTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            constraints: !p.jobManagerTask?.constraints
+          commonEnvironmentSettings: !p["commonEnvironmentSettings"]
+            ? p["commonEnvironmentSettings"]
+            : p["commonEnvironmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          poolInfo: {
+            poolId: p.poolInfo["poolId"],
+            autoPoolSpecification: !p.poolInfo.autoPoolSpecification
               ? undefined
               : {
-                  maxWallClockTime:
-                    p.jobManagerTask?.constraints?.["maxWallClockTime"],
-                  retentionTime:
-                    p.jobManagerTask?.constraints?.["retentionTime"],
-                  maxTaskRetryCount:
-                    p.jobManagerTask?.constraints?.["maxTaskRetryCount"],
-                },
-            requiredSlots: p.jobManagerTask?.["requiredSlots"],
-            killJobOnCompletion: p.jobManagerTask?.["killJobOnCompletion"],
-            userIdentity: !p.jobManagerTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.jobManagerTask?.userIdentity?.["username"],
-                  autoUser: !p.jobManagerTask?.userIdentity?.autoUser
+                  autoPoolIdPrefix:
+                    p.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
+                  poolLifetimeOption:
+                    p.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
+                  keepAlive: p.poolInfo.autoPoolSpecification?.["keepAlive"],
+                  pool: !p.poolInfo.autoPoolSpecification?.pool
                     ? undefined
                     : {
-                        scope:
-                          p.jobManagerTask?.userIdentity?.autoUser?.["scope"],
-                        elevationLevel:
-                          p.jobManagerTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
+                        displayName:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "displayName"
                           ],
-                      },
-                },
-            runExclusive: p.jobManagerTask?.["runExclusive"],
-            applicationPackageReferences: (
-              p.jobManagerTask?.["applicationPackageReferences"] ?? []
-            ).map((p) => ({
-              applicationId: p["applicationId"],
-              version: p["version"],
-            })),
-            authenticationTokenSettings: !p.jobManagerTask
-              ?.authenticationTokenSettings
-              ? undefined
-              : {
-                  access:
-                    p.jobManagerTask?.authenticationTokenSettings?.["access"],
-                },
-            allowLowPriorityNode: p.jobManagerTask?.["allowLowPriorityNode"],
-          },
-      jobPreparationTask: !p.jobPreparationTask
-        ? undefined
-        : {
-            id: p.jobPreparationTask?.["id"],
-            commandLine: p.jobPreparationTask?.["commandLine"],
-            containerSettings: !p.jobPreparationTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.jobPreparationTask?.containerSettings?.[
-                      "containerRunOptions"
-                    ],
-                  imageName:
-                    p.jobPreparationTask?.containerSettings?.["imageName"],
-                  registry: !p.jobPreparationTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.jobPreparationTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.jobPreparationTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.jobPreparationTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.jobPreparationTask
-                          ?.containerSettings?.registry?.identityReference
+                        vmSize:
+                          p.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
+                        cloudServiceConfiguration: !p.poolInfo
+                          .autoPoolSpecification?.pool
+                          ?.cloudServiceConfiguration
                           ? undefined
                           : {
-                              resourceId:
-                                p.jobPreparationTask?.containerSettings
-                                  ?.registry?.identityReference?.["resourceId"],
+                              osFamily:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.cloudServiceConfiguration?.["osFamily"],
+                              osVersion:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.cloudServiceConfiguration?.["osVersion"],
                             },
-                      },
-                  workingDirectory:
-                    p.jobPreparationTask?.containerSettings?.[
-                      "workingDirectory"
-                    ],
-                },
-            resourceFiles: (p.jobPreparationTask?.["resourceFiles"] ?? []).map(
-              (p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })
-            ),
-            environmentSettings: (
-              p.jobPreparationTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            constraints: !p.jobPreparationTask?.constraints
-              ? undefined
-              : {
-                  maxWallClockTime:
-                    p.jobPreparationTask?.constraints?.["maxWallClockTime"],
-                  retentionTime:
-                    p.jobPreparationTask?.constraints?.["retentionTime"],
-                  maxTaskRetryCount:
-                    p.jobPreparationTask?.constraints?.["maxTaskRetryCount"],
-                },
-            waitForSuccess: p.jobPreparationTask?.["waitForSuccess"],
-            userIdentity: !p.jobPreparationTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.jobPreparationTask?.userIdentity?.["username"],
-                  autoUser: !p.jobPreparationTask?.userIdentity?.autoUser
-                    ? undefined
-                    : {
-                        scope:
-                          p.jobPreparationTask?.userIdentity?.autoUser?.[
-                            "scope"
-                          ],
-                        elevationLevel:
-                          p.jobPreparationTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
-                          ],
-                      },
-                },
-            rerunOnNodeRebootAfterSuccess:
-              p.jobPreparationTask?.["rerunOnNodeRebootAfterSuccess"],
-          },
-      jobReleaseTask: !p.jobReleaseTask
-        ? undefined
-        : {
-            id: p.jobReleaseTask?.["id"],
-            commandLine: p.jobReleaseTask?.["commandLine"],
-            containerSettings: !p.jobReleaseTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.jobReleaseTask?.containerSettings?.[
-                      "containerRunOptions"
-                    ],
-                  imageName: p.jobReleaseTask?.containerSettings?.["imageName"],
-                  registry: !p.jobReleaseTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.jobReleaseTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.jobReleaseTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.jobReleaseTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.jobReleaseTask?.containerSettings
-                          ?.registry?.identityReference
+                        virtualMachineConfiguration: !p.poolInfo
+                          .autoPoolSpecification?.pool
+                          ?.virtualMachineConfiguration
                           ? undefined
                           : {
-                              resourceId:
-                                p.jobReleaseTask?.containerSettings?.registry
-                                  ?.identityReference?.["resourceId"],
+                              imageReference: {
+                                publisher:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["publisher"],
+                                offer:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["offer"],
+                                sku: p.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.imageReference[
+                                  "sku"
+                                ],
+                                version:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["version"],
+                                virtualMachineImageId:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["virtualMachineImageId"],
+                                exactVersion:
+                                  p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration
+                                    ?.imageReference["exactVersion"],
+                              },
+                              nodeAgentSKUId:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.[
+                                  "nodeAgentSKUId"
+                                ],
+                              windowsConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.windowsConfiguration
+                                ? undefined
+                                : {
+                                    enableAutomaticUpdates:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.windowsConfiguration?.[
+                                        "enableAutomaticUpdates"
+                                      ],
+                                  },
+                              dataDisks: !p.poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["dataDisks"]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.["dataDisks"]
+                                : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "dataDisks"
+                                  ].map((p) => ({
+                                    lun: p["lun"],
+                                    caching: p["caching"],
+                                    diskSizeGB: p["diskSizeGB"],
+                                    storageAccountType: p["storageAccountType"],
+                                  })),
+                              licenseType:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.[
+                                  "licenseType"
+                                ],
+                              containerConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.containerConfiguration
+                                ? undefined
+                                : {
+                                    type: p.poolInfo.autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.["type"],
+                                    containerImageNames:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.[
+                                        "containerImageNames"
+                                      ],
+                                    containerRegistries: !p.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.[
+                                      "containerRegistries"
+                                    ]
+                                      ? p.poolInfo.autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ]
+                                      : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ].map((p) => ({
+                                          username: p["username"],
+                                          password: p["password"],
+                                          registryServer: p["registryServer"],
+                                          identityReference:
+                                            !p.identityReference
+                                              ? undefined
+                                              : {
+                                                  resourceId:
+                                                    p.identityReference?.[
+                                                      "resourceId"
+                                                    ],
+                                                },
+                                        })),
+                                  },
+                              diskEncryptionConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.diskEncryptionConfiguration
+                                ? undefined
+                                : {
+                                    targets:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.diskEncryptionConfiguration?.[
+                                        "targets"
+                                      ],
+                                  },
+                              nodePlacementConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration
+                                ?.nodePlacementConfiguration
+                                ? undefined
+                                : {
+                                    policy:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.nodePlacementConfiguration?.[
+                                        "policy"
+                                      ],
+                                  },
+                              extensions: !p.poolInfo.autoPoolSpecification
+                                ?.pool?.virtualMachineConfiguration?.[
+                                "extensions"
+                              ]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ]
+                                : p.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    publisher: p["publisher"],
+                                    type: p["type"],
+                                    typeHandlerVersion: p["typeHandlerVersion"],
+                                    autoUpgradeMinorVersion:
+                                      p["autoUpgradeMinorVersion"],
+                                    enableAutomaticUpgrade:
+                                      p["enableAutomaticUpgrade"],
+                                    settings: p["settings"],
+                                    protectedSettings: p["protectedSettings"],
+                                    provisionAfterExtensions:
+                                      p["provisionAfterExtensions"],
+                                  })),
+                              osDisk: !p.poolInfo.autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.osDisk
+                                ? undefined
+                                : {
+                                    ephemeralOSDiskSettings: !p.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration?.osDisk
+                                      ?.ephemeralOSDiskSettings
+                                      ? undefined
+                                      : {
+                                          placement:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool
+                                              ?.virtualMachineConfiguration
+                                              ?.osDisk
+                                              ?.ephemeralOSDiskSettings?.[
+                                              "placement"
+                                            ],
+                                        },
+                                  },
                             },
-                      },
-                  workingDirectory:
-                    p.jobReleaseTask?.containerSettings?.["workingDirectory"],
-                },
-            resourceFiles: (p.jobReleaseTask?.["resourceFiles"] ?? []).map(
-              (p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })
-            ),
-            environmentSettings: (
-              p.jobReleaseTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            maxWallClockTime: p.jobReleaseTask?.["maxWallClockTime"],
-            retentionTime: p.jobReleaseTask?.["retentionTime"],
-            userIdentity: !p.jobReleaseTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.jobReleaseTask?.userIdentity?.["username"],
-                  autoUser: !p.jobReleaseTask?.userIdentity?.autoUser
-                    ? undefined
-                    : {
-                        scope:
-                          p.jobReleaseTask?.userIdentity?.autoUser?.["scope"],
-                        elevationLevel:
-                          p.jobReleaseTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
+                        taskSlotsPerNode:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "taskSlotsPerNode"
                           ],
-                      },
-                },
-          },
-      commonEnvironmentSettings: (p["commonEnvironmentSettings"] ?? []).map(
-        (p) => ({ name: p["name"], value: p["value"] })
-      ),
-      poolInfo: {
-        poolId: p.poolInfo["poolId"],
-        autoPoolSpecification: !p.poolInfo.autoPoolSpecification
-          ? undefined
-          : {
-              autoPoolIdPrefix:
-                p.poolInfo.autoPoolSpecification?.["autoPoolIdPrefix"],
-              poolLifetimeOption:
-                p.poolInfo.autoPoolSpecification?.["poolLifetimeOption"],
-              keepAlive: p.poolInfo.autoPoolSpecification?.["keepAlive"],
-              pool: !p.poolInfo.autoPoolSpecification?.pool
-                ? undefined
-                : {
-                    displayName:
-                      p.poolInfo.autoPoolSpecification?.pool?.["displayName"],
-                    vmSize: p.poolInfo.autoPoolSpecification?.pool?.["vmSize"],
-                    cloudServiceConfiguration: !p.poolInfo.autoPoolSpecification
-                      ?.pool?.cloudServiceConfiguration
-                      ? undefined
-                      : {
-                          osFamily:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.cloudServiceConfiguration?.["osFamily"],
-                          osVersion:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.cloudServiceConfiguration?.["osVersion"],
-                        },
-                    virtualMachineConfiguration: !p.poolInfo
-                      .autoPoolSpecification?.pool?.virtualMachineConfiguration
-                      ? undefined
-                      : {
-                          imageReference: {
-                            publisher:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "publisher"
-                              ],
-                            offer:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "offer"
-                              ],
-                            sku: p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.imageReference[
-                              "sku"
-                            ],
-                            version:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "version"
-                              ],
-                            virtualMachineImageId:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "virtualMachineImageId"
-                              ],
-                            exactVersion:
-                              p.poolInfo.autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "exactVersion"
-                              ],
-                          },
-                          nodeAgentSKUId:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["nodeAgentSKUId"],
-                          windowsConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.windowsConfiguration
-                            ? undefined
-                            : {
-                                enableAutomaticUpdates:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.windowsConfiguration?.[
-                                    "enableAutomaticUpdates"
-                                  ],
-                              },
-                          dataDisks: (
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["dataDisks"] ?? []
-                          ).map((p) => ({
-                            lun: p["lun"],
-                            caching: p["caching"],
-                            diskSizeGB: p["diskSizeGB"],
-                            storageAccountType: p["storageAccountType"],
-                          })),
-                          licenseType:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["licenseType"],
-                          containerConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration
-                            ?.containerConfiguration
-                            ? undefined
-                            : {
-                                type: p.poolInfo.autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration
-                                  ?.containerConfiguration?.["type"],
-                                containerImageNames:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.containerConfiguration?.[
-                                    "containerImageNames"
-                                  ],
-                                containerRegistries: (
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.containerConfiguration?.[
-                                    "containerRegistries"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  username: p["username"],
-                                  password: p["password"],
-                                  registryServer: p["registryServer"],
-                                  identityReference: !p.identityReference
-                                    ? undefined
-                                    : {
-                                        resourceId:
-                                          p.identityReference?.["resourceId"],
-                                      },
-                                })),
-                              },
-                          diskEncryptionConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration
-                            ?.diskEncryptionConfiguration
-                            ? undefined
-                            : {
-                                targets:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.diskEncryptionConfiguration?.["targets"],
-                              },
-                          nodePlacementConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration
-                            ?.nodePlacementConfiguration
-                            ? undefined
-                            : {
-                                policy:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.nodePlacementConfiguration?.["policy"],
-                              },
-                          extensions: (
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["extensions"] ??
-                            []
-                          ).map((p) => ({
-                            name: p["name"],
-                            publisher: p["publisher"],
-                            type: p["type"],
-                            typeHandlerVersion: p["typeHandlerVersion"],
-                            autoUpgradeMinorVersion:
-                              p["autoUpgradeMinorVersion"],
-                            enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-                            settings: p["settings"],
-                            protectedSettings: p["protectedSettings"],
-                            provisionAfterExtensions:
-                              p["provisionAfterExtensions"],
-                          })),
-                          osDisk: !p.poolInfo.autoPoolSpecification?.pool
-                            ?.virtualMachineConfiguration?.osDisk
-                            ? undefined
-                            : {
-                                ephemeralOSDiskSettings: !p.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.osDisk
-                                  ?.ephemeralOSDiskSettings
+                        taskSchedulingPolicy: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.taskSchedulingPolicy
+                          ? undefined
+                          : {
+                              nodeFillType:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.taskSchedulingPolicy?.["nodeFillType"],
+                            },
+                        resizeTimeout:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "resizeTimeout"
+                          ],
+                        targetDedicatedNodes:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "targetDedicatedNodes"
+                          ],
+                        targetLowPriorityNodes:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "targetLowPriorityNodes"
+                          ],
+                        enableAutoScale:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "enableAutoScale"
+                          ],
+                        autoScaleFormula:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "autoScaleFormula"
+                          ],
+                        autoScaleEvaluationInterval:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "autoScaleEvaluationInterval"
+                          ],
+                        enableInterNodeCommunication:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "enableInterNodeCommunication"
+                          ],
+                        networkConfiguration: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.networkConfiguration
+                          ? undefined
+                          : {
+                              subnetId:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.["subnetId"],
+                              dynamicVNetAssignmentScope:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.[
+                                  "dynamicVNetAssignmentScope"
+                                ],
+                              endpointConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.networkConfiguration?.endpointConfiguration
+                                ? undefined
+                                : {
+                                    inboundNATPools:
+                                      p.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                        "inboundNATPools"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        protocol: p["protocol"],
+                                        backendPort: p["backendPort"],
+                                        frontendPortRangeStart:
+                                          p["frontendPortRangeStart"],
+                                        frontendPortRangeEnd:
+                                          p["frontendPortRangeEnd"],
+                                        networkSecurityGroupRules: !p[
+                                          "networkSecurityGroupRules"
+                                        ]
+                                          ? p["networkSecurityGroupRules"]
+                                          : p["networkSecurityGroupRules"].map(
+                                              (p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              })
+                                            ),
+                                      })),
+                                  },
+                              publicIPAddressConfiguration: !p.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.networkConfiguration
+                                ?.publicIPAddressConfiguration
+                                ? undefined
+                                : {
+                                    provision:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.publicIPAddressConfiguration?.[
+                                        "provision"
+                                      ],
+                                    ipAddressIds:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.networkConfiguration
+                                        ?.publicIPAddressConfiguration?.[
+                                        "ipAddressIds"
+                                      ],
+                                  },
+                              enableAcceleratedNetworking:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.[
+                                  "enableAcceleratedNetworking"
+                                ],
+                            },
+                        startTask: !p.poolInfo.autoPoolSpecification?.pool
+                          ?.startTask
+                          ? undefined
+                          : {
+                              commandLine:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["commandLine"],
+                              containerSettings: !p.poolInfo
+                                .autoPoolSpecification?.pool?.startTask
+                                ?.containerSettings
+                                ? undefined
+                                : {
+                                    containerRunOptions:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.containerSettings?.[
+                                        "containerRunOptions"
+                                      ],
+                                    imageName:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.containerSettings?.[
+                                        "imageName"
+                                      ],
+                                    registry: !p.poolInfo.autoPoolSpecification
+                                      ?.pool?.startTask?.containerSettings
+                                      ?.registry
+                                      ? undefined
+                                      : {
+                                          username:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask
+                                              ?.containerSettings?.registry?.[
+                                              "username"
+                                            ],
+                                          password:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask
+                                              ?.containerSettings?.registry?.[
+                                              "password"
+                                            ],
+                                          registryServer:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask
+                                              ?.containerSettings?.registry?.[
+                                              "registryServer"
+                                            ],
+                                          identityReference: !p.poolInfo
+                                            .autoPoolSpecification?.pool
+                                            ?.startTask?.containerSettings
+                                            ?.registry?.identityReference
+                                            ? undefined
+                                            : {
+                                                resourceId:
+                                                  p.poolInfo
+                                                    .autoPoolSpecification?.pool
+                                                    ?.startTask
+                                                    ?.containerSettings
+                                                    ?.registry
+                                                    ?.identityReference?.[
+                                                    "resourceId"
+                                                  ],
+                                              },
+                                        },
+                                    workingDirectory:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.containerSettings?.[
+                                        "workingDirectory"
+                                      ],
+                                  },
+                              resourceFiles: !p.poolInfo.autoPoolSpecification
+                                ?.pool?.startTask?.["resourceFiles"]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.["resourceFiles"]
+                                : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "resourceFiles"
+                                  ].map((p) => ({
+                                    autoStorageContainerName:
+                                      p["autoStorageContainerName"],
+                                    storageContainerUrl:
+                                      p["storageContainerUrl"],
+                                    httpUrl: p["httpUrl"],
+                                    blobPrefix: p["blobPrefix"],
+                                    filePath: p["filePath"],
+                                    fileMode: p["fileMode"],
+                                    identityReference: !p.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.identityReference?.["resourceId"],
+                                        },
+                                  })),
+                              environmentSettings: !p.poolInfo
+                                .autoPoolSpecification?.pool?.startTask?.[
+                                "environmentSettings"
+                              ]
+                                ? p.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.["environmentSettings"]
+                                : p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "environmentSettings"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })),
+                              userIdentity: !p.poolInfo.autoPoolSpecification
+                                ?.pool?.startTask?.userIdentity
+                                ? undefined
+                                : {
+                                    username:
+                                      p.poolInfo.autoPoolSpecification?.pool
+                                        ?.startTask?.userIdentity?.["username"],
+                                    autoUser: !p.poolInfo.autoPoolSpecification
+                                      ?.pool?.startTask?.userIdentity?.autoUser
+                                      ? undefined
+                                      : {
+                                          scope:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask?.userIdentity
+                                              ?.autoUser?.["scope"],
+                                          elevationLevel:
+                                            p.poolInfo.autoPoolSpecification
+                                              ?.pool?.startTask?.userIdentity
+                                              ?.autoUser?.["elevationLevel"],
+                                        },
+                                  },
+                              maxTaskRetryCount:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["maxTaskRetryCount"],
+                              waitForSuccess:
+                                p.poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["waitForSuccess"],
+                            },
+                        certificateReferences: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.["certificateReferences"]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ].map((p) => ({
+                              thumbprint: p["thumbprint"],
+                              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                              storeLocation: p["storeLocation"],
+                              storeName: p["storeName"],
+                              visibility: p["visibility"],
+                            })),
+                        applicationPackageReferences: !p.poolInfo
+                          .autoPoolSpecification?.pool?.[
+                          "applicationPackageReferences"
+                        ]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ].map((p) => ({
+                              applicationId: p["applicationId"],
+                              version: p["version"],
+                            })),
+                        applicationLicenses:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationLicenses"
+                          ],
+                        userAccounts: !p.poolInfo.autoPoolSpecification?.pool?.[
+                          "userAccounts"
+                        ]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "userAccounts"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "userAccounts"
+                            ].map((p) => ({
+                              name: p["name"],
+                              password: p["password"],
+                              elevationLevel: p["elevationLevel"],
+                              linuxUserConfiguration: !p.linuxUserConfiguration
+                                ? undefined
+                                : {
+                                    uid: p.linuxUserConfiguration?.["uid"],
+                                    gid: p.linuxUserConfiguration?.["gid"],
+                                    sshPrivateKey:
+                                      p.linuxUserConfiguration?.[
+                                        "sshPrivateKey"
+                                      ],
+                                  },
+                              windowsUserConfiguration:
+                                !p.windowsUserConfiguration
                                   ? undefined
                                   : {
-                                      placement:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.virtualMachineConfiguration?.osDisk
-                                          ?.ephemeralOSDiskSettings?.[
-                                          "placement"
+                                      loginMode:
+                                        p.windowsUserConfiguration?.[
+                                          "loginMode"
                                         ],
                                     },
-                              },
-                        },
-                    taskSlotsPerNode:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "taskSlotsPerNode"
-                      ],
-                    taskSchedulingPolicy: !p.poolInfo.autoPoolSpecification
-                      ?.pool?.taskSchedulingPolicy
-                      ? undefined
-                      : {
-                          nodeFillType:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.taskSchedulingPolicy?.["nodeFillType"],
-                        },
-                    resizeTimeout:
-                      p.poolInfo.autoPoolSpecification?.pool?.["resizeTimeout"],
-                    targetDedicatedNodes:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "targetDedicatedNodes"
-                      ],
-                    targetLowPriorityNodes:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "targetLowPriorityNodes"
-                      ],
-                    enableAutoScale:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "enableAutoScale"
-                      ],
-                    autoScaleFormula:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "autoScaleFormula"
-                      ],
-                    autoScaleEvaluationInterval:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "autoScaleEvaluationInterval"
-                      ],
-                    enableInterNodeCommunication:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "enableInterNodeCommunication"
-                      ],
-                    networkConfiguration: !p.poolInfo.autoPoolSpecification
-                      ?.pool?.networkConfiguration
-                      ? undefined
-                      : {
-                          subnetId:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration?.["subnetId"],
-                          dynamicVNetAssignmentScope:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration?.[
-                              "dynamicVNetAssignmentScope"
-                            ],
-                          endpointConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool?.networkConfiguration
-                            ?.endpointConfiguration
-                            ? undefined
-                            : {
-                                inboundNATPools: (
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.endpointConfiguration?.[
-                                    "inboundNATPools"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  name: p["name"],
-                                  protocol: p["protocol"],
-                                  backendPort: p["backendPort"],
-                                  frontendPortRangeStart:
-                                    p["frontendPortRangeStart"],
-                                  frontendPortRangeEnd:
-                                    p["frontendPortRangeEnd"],
-                                  networkSecurityGroupRules: (
-                                    p["networkSecurityGroupRules"] ?? []
-                                  ).map((p) => ({
-                                    priority: p["priority"],
-                                    access: p["access"],
-                                    sourceAddressPrefix:
-                                      p["sourceAddressPrefix"],
-                                    sourcePortRanges: p["sourcePortRanges"],
-                                  })),
-                                })),
-                              },
-                          publicIPAddressConfiguration: !p.poolInfo
-                            .autoPoolSpecification?.pool?.networkConfiguration
-                            ?.publicIPAddressConfiguration
-                            ? undefined
-                            : {
-                                provision:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.publicIPAddressConfiguration?.[
-                                    "provision"
-                                  ],
-                                ipAddressIds:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.publicIPAddressConfiguration?.[
-                                    "ipAddressIds"
-                                  ],
-                              },
-                          enableAcceleratedNetworking:
-                            p.poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration?.[
-                              "enableAcceleratedNetworking"
-                            ],
-                        },
-                    startTask: !p.poolInfo.autoPoolSpecification?.pool
-                      ?.startTask
-                      ? undefined
-                      : {
-                          commandLine:
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "commandLine"
-                            ],
-                          containerSettings: !p.poolInfo.autoPoolSpecification
-                            ?.pool?.startTask?.containerSettings
-                            ? undefined
-                            : {
-                                containerRunOptions:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.containerSettings?.[
-                                    "containerRunOptions"
-                                  ],
-                                imageName:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.containerSettings?.[
-                                    "imageName"
-                                  ],
-                                registry: !p.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.containerSettings?.registry
+                            })),
+                        metadata: !p.poolInfo.autoPoolSpecification?.pool?.[
+                          "metadata"
+                        ]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.["metadata"]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "metadata"
+                            ].map((p) => ({
+                              name: p["name"],
+                              value: p["value"],
+                            })),
+                        mountConfiguration: !p.poolInfo.autoPoolSpecification
+                          ?.pool?.["mountConfiguration"]
+                          ? p.poolInfo.autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ]
+                          : p.poolInfo.autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ].map((p) => ({
+                              azureBlobFileSystemConfiguration:
+                                !p.azureBlobFileSystemConfiguration
                                   ? undefined
                                   : {
-                                      username:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.["username"],
-                                      password:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.["password"],
-                                      registryServer:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.["registryServer"],
-                                      identityReference: !p.poolInfo
-                                        .autoPoolSpecification?.pool?.startTask
-                                        ?.containerSettings?.registry
+                                      accountName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      containerName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "containerName"
+                                        ],
+                                      accountKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      sasKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "sasKey"
+                                        ],
+                                      blobfuseOptions:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "blobfuseOptions"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      identityReference: !p
+                                        .azureBlobFileSystemConfiguration
                                         ?.identityReference
                                         ? undefined
                                         : {
                                             resourceId:
-                                              p.poolInfo.autoPoolSpecification
-                                                ?.pool?.startTask
-                                                ?.containerSettings?.registry
+                                              p.azureBlobFileSystemConfiguration
                                                 ?.identityReference?.[
                                                 "resourceId"
                                               ],
                                           },
                                     },
-                                workingDirectory:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.containerSettings?.[
-                                    "workingDirectory"
-                                  ],
-                              },
-                          resourceFiles: (
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "resourceFiles"
-                            ] ?? []
-                          ).map((p) => ({
-                            autoStorageContainerName:
-                              p["autoStorageContainerName"],
-                            storageContainerUrl: p["storageContainerUrl"],
-                            httpUrl: p["httpUrl"],
-                            blobPrefix: p["blobPrefix"],
-                            filePath: p["filePath"],
-                            fileMode: p["fileMode"],
-                            identityReference: !p.identityReference
-                              ? undefined
-                              : {
-                                  resourceId:
-                                    p.identityReference?.["resourceId"],
-                                },
-                          })),
-                          environmentSettings: (
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "environmentSettings"
-                            ] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
-                          userIdentity: !p.poolInfo.autoPoolSpecification?.pool
-                            ?.startTask?.userIdentity
-                            ? undefined
-                            : {
-                                username:
-                                  p.poolInfo.autoPoolSpecification?.pool
-                                    ?.startTask?.userIdentity?.["username"],
-                                autoUser: !p.poolInfo.autoPoolSpecification
-                                  ?.pool?.startTask?.userIdentity?.autoUser
-                                  ? undefined
-                                  : {
-                                      scope:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.userIdentity?.autoUser?.[
-                                          "scope"
-                                        ],
-                                      elevationLevel:
-                                        p.poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.userIdentity?.autoUser?.[
-                                          "elevationLevel"
-                                        ],
-                                    },
-                              },
-                          maxTaskRetryCount:
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "maxTaskRetryCount"
-                            ],
-                          waitForSuccess:
-                            p.poolInfo.autoPoolSpecification?.pool?.startTask?.[
-                              "waitForSuccess"
-                            ],
-                        },
-                    certificateReferences: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "certificateReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      thumbprint: p["thumbprint"],
-                      thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                      storeLocation: p["storeLocation"],
-                      storeName: p["storeName"],
-                      visibility: p["visibility"],
-                    })),
-                    applicationPackageReferences: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "applicationPackageReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      applicationId: p["applicationId"],
-                      version: p["version"],
-                    })),
-                    applicationLicenses:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "applicationLicenses"
-                      ],
-                    userAccounts: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "userAccounts"
-                      ] ?? []
-                    ).map((p) => ({
-                      name: p["name"],
-                      password: p["password"],
-                      elevationLevel: p["elevationLevel"],
-                      linuxUserConfiguration: !p.linuxUserConfiguration
-                        ? undefined
-                        : {
-                            uid: p.linuxUserConfiguration?.["uid"],
-                            gid: p.linuxUserConfiguration?.["gid"],
-                            sshPrivateKey:
-                              p.linuxUserConfiguration?.["sshPrivateKey"],
-                          },
-                      windowsUserConfiguration: !p.windowsUserConfiguration
-                        ? undefined
-                        : {
-                            loginMode:
-                              p.windowsUserConfiguration?.["loginMode"],
-                          },
-                    })),
-                    metadata: (
-                      p.poolInfo.autoPoolSpecification?.pool?.["metadata"] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
-                    mountConfiguration: (
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "mountConfiguration"
-                      ] ?? []
-                    ).map((p) => ({
-                      azureBlobFileSystemConfiguration:
-                        !p.azureBlobFileSystemConfiguration
-                          ? undefined
-                          : {
-                              accountName:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "accountName"
-                                ],
-                              containerName:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "containerName"
-                                ],
-                              accountKey:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "accountKey"
-                                ],
-                              sasKey:
-                                p.azureBlobFileSystemConfiguration?.["sasKey"],
-                              blobfuseOptions:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "blobfuseOptions"
-                                ],
-                              relativeMountPath:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "relativeMountPath"
-                                ],
-                              identityReference: !p
-                                .azureBlobFileSystemConfiguration
-                                ?.identityReference
+                              nfsMountConfiguration: !p.nfsMountConfiguration
                                 ? undefined
                                 : {
-                                    resourceId:
-                                      p.azureBlobFileSystemConfiguration
-                                        ?.identityReference?.["resourceId"],
+                                    source: p.nfsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.nfsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.nfsMountConfiguration?.["mountOptions"],
                                   },
-                            },
-                      nfsMountConfiguration: !p.nfsMountConfiguration
-                        ? undefined
-                        : {
-                            source: p.nfsMountConfiguration?.["source"],
-                            relativeMountPath:
-                              p.nfsMountConfiguration?.["relativeMountPath"],
-                            mountOptions:
-                              p.nfsMountConfiguration?.["mountOptions"],
-                          },
-                      cifsMountConfiguration: !p.cifsMountConfiguration
-                        ? undefined
-                        : {
-                            username: p.cifsMountConfiguration?.["username"],
-                            source: p.cifsMountConfiguration?.["source"],
-                            relativeMountPath:
-                              p.cifsMountConfiguration?.["relativeMountPath"],
-                            mountOptions:
-                              p.cifsMountConfiguration?.["mountOptions"],
-                            password: p.cifsMountConfiguration?.["password"],
-                          },
-                      azureFileShareConfiguration:
-                        !p.azureFileShareConfiguration
-                          ? undefined
-                          : {
-                              accountName:
-                                p.azureFileShareConfiguration?.["accountName"],
-                              azureFileUrl:
-                                p.azureFileShareConfiguration?.["azureFileUrl"],
-                              accountKey:
-                                p.azureFileShareConfiguration?.["accountKey"],
-                              relativeMountPath:
-                                p.azureFileShareConfiguration?.[
-                                  "relativeMountPath"
-                                ],
-                              mountOptions:
-                                p.azureFileShareConfiguration?.["mountOptions"],
-                            },
-                    })),
-                    targetNodeCommunicationMode:
-                      p.poolInfo.autoPoolSpecification?.pool?.[
-                        "targetNodeCommunicationMode"
-                      ],
-                  },
-            },
-      },
-      onAllTasksComplete: p["onAllTasksComplete"],
-      onTaskFailure: p["onTaskFailure"],
-      networkConfiguration: !p.networkConfiguration
-        ? undefined
-        : { subnetId: p.networkConfiguration?.["subnetId"] },
-      metadata: (p["metadata"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-      executionInfo: !p.executionInfo
-        ? undefined
-        : {
-            startTime: new Date(p.executionInfo?.["startTime"]),
-            endTime:
-              p.executionInfo?.["endTime"] !== undefined
-                ? new Date(p.executionInfo?.["endTime"])
-                : undefined,
-            poolId: p.executionInfo?.["poolId"],
-            schedulingError: !p.executionInfo?.schedulingError
-              ? undefined
-              : {
-                  category: p.executionInfo?.schedulingError?.["category"],
-                  code: p.executionInfo?.schedulingError?.["code"],
-                  message: p.executionInfo?.schedulingError?.["message"],
-                  details: (
-                    p.executionInfo?.schedulingError?.["details"] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
+                              cifsMountConfiguration: !p.cifsMountConfiguration
+                                ? undefined
+                                : {
+                                    username:
+                                      p.cifsMountConfiguration?.["username"],
+                                    source:
+                                      p.cifsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.cifsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.cifsMountConfiguration?.[
+                                        "mountOptions"
+                                      ],
+                                    password:
+                                      p.cifsMountConfiguration?.["password"],
+                                  },
+                              azureFileShareConfiguration:
+                                !p.azureFileShareConfiguration
+                                  ? undefined
+                                  : {
+                                      accountName:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      azureFileUrl:
+                                        p.azureFileShareConfiguration?.[
+                                          "azureFileUrl"
+                                        ],
+                                      accountKey:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureFileShareConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      mountOptions:
+                                        p.azureFileShareConfiguration?.[
+                                          "mountOptions"
+                                        ],
+                                    },
+                            })),
+                        targetNodeCommunicationMode:
+                          p.poolInfo.autoPoolSpecification?.pool?.[
+                            "targetNodeCommunicationMode"
+                          ],
+                      },
                 },
-            terminateReason: p.executionInfo?.["terminateReason"],
           },
-      stats: !p.stats
-        ? undefined
-        : {
-            url: p.stats?.["url"],
-            startTime: new Date(p.stats?.["startTime"]),
-            lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-            userCPUTime: p.stats?.["userCPUTime"],
-            kernelCPUTime: p.stats?.["kernelCPUTime"],
-            wallClockTime: p.stats?.["wallClockTime"],
-            readIOps: p.stats?.["readIOps"],
-            writeIOps: p.stats?.["writeIOps"],
-            readIOGiB: p.stats?.["readIOGiB"],
-            writeIOGiB: p.stats?.["writeIOGiB"],
-            numSucceededTasks: p.stats?.["numSucceededTasks"],
-            numFailedTasks: p.stats?.["numFailedTasks"],
-            numTaskRetries: p.stats?.["numTaskRetries"],
-            waitTime: p.stats?.["waitTime"],
-          },
-    })),
+          onAllTasksComplete: p["onAllTasksComplete"],
+          onTaskFailure: p["onTaskFailure"],
+          networkConfiguration: !p.networkConfiguration
+            ? undefined
+            : { subnetId: p.networkConfiguration?.["subnetId"] },
+          metadata: !p["metadata"]
+            ? p["metadata"]
+            : p["metadata"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          executionInfo: !p.executionInfo
+            ? undefined
+            : {
+                startTime: new Date(p.executionInfo?.["startTime"]),
+                endTime:
+                  p.executionInfo?.["endTime"] !== undefined
+                    ? new Date(p.executionInfo?.["endTime"])
+                    : undefined,
+                poolId: p.executionInfo?.["poolId"],
+                schedulingError: !p.executionInfo?.schedulingError
+                  ? undefined
+                  : {
+                      category: p.executionInfo?.schedulingError?.["category"],
+                      code: p.executionInfo?.schedulingError?.["code"],
+                      message: p.executionInfo?.schedulingError?.["message"],
+                      details: !p.executionInfo?.schedulingError?.["details"]
+                        ? p.executionInfo?.schedulingError?.["details"]
+                        : p.executionInfo?.schedulingError?.["details"].map(
+                            (p) => ({ name: p["name"], value: p["value"] })
+                          ),
+                    },
+                terminateReason: p.executionInfo?.["terminateReason"],
+              },
+          stats: !p.stats
+            ? undefined
+            : {
+                url: p.stats?.["url"],
+                startTime: new Date(p.stats?.["startTime"]),
+                lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
+                userCPUTime: p.stats?.["userCPUTime"],
+                kernelCPUTime: p.stats?.["kernelCPUTime"],
+                wallClockTime: p.stats?.["wallClockTime"],
+                readIOps: p.stats?.["readIOps"],
+                writeIOps: p.stats?.["writeIOps"],
+                readIOGiB: p.stats?.["readIOGiB"],
+                writeIOGiB: p.stats?.["writeIOGiB"],
+                numSucceededTasks: p.stats?.["numSucceededTasks"],
+                numFailedTasks: p.stats?.["numFailedTasks"],
+                numTaskRetries: p.stats?.["numTaskRetries"],
+                waitTime: p.stats?.["waitTime"],
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -8035,105 +8741,136 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      poolId: p["poolId"],
-      nodeId: p["nodeId"],
-      nodeUrl: p["nodeUrl"],
-      jobPreparationTaskExecutionInfo: !p.jobPreparationTaskExecutionInfo
-        ? undefined
-        : {
-            startTime: new Date(
-              p.jobPreparationTaskExecutionInfo?.["startTime"]
-            ),
-            endTime:
-              p.jobPreparationTaskExecutionInfo?.["endTime"] !== undefined
-                ? new Date(p.jobPreparationTaskExecutionInfo?.["endTime"])
-                : undefined,
-            state: p.jobPreparationTaskExecutionInfo?.["state"],
-            taskRootDirectory:
-              p.jobPreparationTaskExecutionInfo?.["taskRootDirectory"],
-            taskRootDirectoryUrl:
-              p.jobPreparationTaskExecutionInfo?.["taskRootDirectoryUrl"],
-            exitCode: p.jobPreparationTaskExecutionInfo?.["exitCode"],
-            containerInfo: !p.jobPreparationTaskExecutionInfo?.containerInfo
-              ? undefined
-              : {
-                  containerId:
-                    p.jobPreparationTaskExecutionInfo?.containerInfo?.[
-                      "containerId"
-                    ],
-                  state:
-                    p.jobPreparationTaskExecutionInfo?.containerInfo?.["state"],
-                  error:
-                    p.jobPreparationTaskExecutionInfo?.containerInfo?.["error"],
-                },
-            failureInfo: !p.jobPreparationTaskExecutionInfo?.failureInfo
-              ? undefined
-              : {
-                  category:
-                    p.jobPreparationTaskExecutionInfo?.failureInfo?.[
-                      "category"
-                    ],
-                  code: p.jobPreparationTaskExecutionInfo?.failureInfo?.[
-                    "code"
-                  ],
-                  message:
-                    p.jobPreparationTaskExecutionInfo?.failureInfo?.["message"],
-                  details: (
-                    p.jobPreparationTaskExecutionInfo?.failureInfo?.[
-                      "details"
-                    ] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                },
-            retryCount: p.jobPreparationTaskExecutionInfo?.["retryCount"],
-            lastRetryTime:
-              p.jobPreparationTaskExecutionInfo?.["lastRetryTime"] !== undefined
-                ? new Date(p.jobPreparationTaskExecutionInfo?.["lastRetryTime"])
-                : undefined,
-            result: p.jobPreparationTaskExecutionInfo?.["result"],
-          },
-      jobReleaseTaskExecutionInfo: !p.jobReleaseTaskExecutionInfo
-        ? undefined
-        : {
-            startTime: new Date(p.jobReleaseTaskExecutionInfo?.["startTime"]),
-            endTime:
-              p.jobReleaseTaskExecutionInfo?.["endTime"] !== undefined
-                ? new Date(p.jobReleaseTaskExecutionInfo?.["endTime"])
-                : undefined,
-            state: p.jobReleaseTaskExecutionInfo?.["state"],
-            taskRootDirectory:
-              p.jobReleaseTaskExecutionInfo?.["taskRootDirectory"],
-            taskRootDirectoryUrl:
-              p.jobReleaseTaskExecutionInfo?.["taskRootDirectoryUrl"],
-            exitCode: p.jobReleaseTaskExecutionInfo?.["exitCode"],
-            containerInfo: !p.jobReleaseTaskExecutionInfo?.containerInfo
-              ? undefined
-              : {
-                  containerId:
-                    p.jobReleaseTaskExecutionInfo?.containerInfo?.[
-                      "containerId"
-                    ],
-                  state:
-                    p.jobReleaseTaskExecutionInfo?.containerInfo?.["state"],
-                  error:
-                    p.jobReleaseTaskExecutionInfo?.containerInfo?.["error"],
-                },
-            failureInfo: !p.jobReleaseTaskExecutionInfo?.failureInfo
-              ? undefined
-              : {
-                  category:
-                    p.jobReleaseTaskExecutionInfo?.failureInfo?.["category"],
-                  code: p.jobReleaseTaskExecutionInfo?.failureInfo?.["code"],
-                  message:
-                    p.jobReleaseTaskExecutionInfo?.failureInfo?.["message"],
-                  details: (
-                    p.jobReleaseTaskExecutionInfo?.failureInfo?.["details"] ??
-                    []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                },
-            result: p.jobReleaseTaskExecutionInfo?.["result"],
-          },
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          poolId: p["poolId"],
+          nodeId: p["nodeId"],
+          nodeUrl: p["nodeUrl"],
+          jobPreparationTaskExecutionInfo: !p.jobPreparationTaskExecutionInfo
+            ? undefined
+            : {
+                startTime: new Date(
+                  p.jobPreparationTaskExecutionInfo?.["startTime"]
+                ),
+                endTime:
+                  p.jobPreparationTaskExecutionInfo?.["endTime"] !== undefined
+                    ? new Date(p.jobPreparationTaskExecutionInfo?.["endTime"])
+                    : undefined,
+                state: p.jobPreparationTaskExecutionInfo?.["state"],
+                taskRootDirectory:
+                  p.jobPreparationTaskExecutionInfo?.["taskRootDirectory"],
+                taskRootDirectoryUrl:
+                  p.jobPreparationTaskExecutionInfo?.["taskRootDirectoryUrl"],
+                exitCode: p.jobPreparationTaskExecutionInfo?.["exitCode"],
+                containerInfo: !p.jobPreparationTaskExecutionInfo?.containerInfo
+                  ? undefined
+                  : {
+                      containerId:
+                        p.jobPreparationTaskExecutionInfo?.containerInfo?.[
+                          "containerId"
+                        ],
+                      state:
+                        p.jobPreparationTaskExecutionInfo?.containerInfo?.[
+                          "state"
+                        ],
+                      error:
+                        p.jobPreparationTaskExecutionInfo?.containerInfo?.[
+                          "error"
+                        ],
+                    },
+                failureInfo: !p.jobPreparationTaskExecutionInfo?.failureInfo
+                  ? undefined
+                  : {
+                      category:
+                        p.jobPreparationTaskExecutionInfo?.failureInfo?.[
+                          "category"
+                        ],
+                      code: p.jobPreparationTaskExecutionInfo?.failureInfo?.[
+                        "code"
+                      ],
+                      message:
+                        p.jobPreparationTaskExecutionInfo?.failureInfo?.[
+                          "message"
+                        ],
+                      details: !p.jobPreparationTaskExecutionInfo
+                        ?.failureInfo?.["details"]
+                        ? p.jobPreparationTaskExecutionInfo?.failureInfo?.[
+                            "details"
+                          ]
+                        : p.jobPreparationTaskExecutionInfo?.failureInfo?.[
+                            "details"
+                          ].map((p) => ({
+                            name: p["name"],
+                            value: p["value"],
+                          })),
+                    },
+                retryCount: p.jobPreparationTaskExecutionInfo?.["retryCount"],
+                lastRetryTime:
+                  p.jobPreparationTaskExecutionInfo?.["lastRetryTime"] !==
+                  undefined
+                    ? new Date(
+                        p.jobPreparationTaskExecutionInfo?.["lastRetryTime"]
+                      )
+                    : undefined,
+                result: p.jobPreparationTaskExecutionInfo?.["result"],
+              },
+          jobReleaseTaskExecutionInfo: !p.jobReleaseTaskExecutionInfo
+            ? undefined
+            : {
+                startTime: new Date(
+                  p.jobReleaseTaskExecutionInfo?.["startTime"]
+                ),
+                endTime:
+                  p.jobReleaseTaskExecutionInfo?.["endTime"] !== undefined
+                    ? new Date(p.jobReleaseTaskExecutionInfo?.["endTime"])
+                    : undefined,
+                state: p.jobReleaseTaskExecutionInfo?.["state"],
+                taskRootDirectory:
+                  p.jobReleaseTaskExecutionInfo?.["taskRootDirectory"],
+                taskRootDirectoryUrl:
+                  p.jobReleaseTaskExecutionInfo?.["taskRootDirectoryUrl"],
+                exitCode: p.jobReleaseTaskExecutionInfo?.["exitCode"],
+                containerInfo: !p.jobReleaseTaskExecutionInfo?.containerInfo
+                  ? undefined
+                  : {
+                      containerId:
+                        p.jobReleaseTaskExecutionInfo?.containerInfo?.[
+                          "containerId"
+                        ],
+                      state:
+                        p.jobReleaseTaskExecutionInfo?.containerInfo?.["state"],
+                      error:
+                        p.jobReleaseTaskExecutionInfo?.containerInfo?.["error"],
+                    },
+                failureInfo: !p.jobReleaseTaskExecutionInfo?.failureInfo
+                  ? undefined
+                  : {
+                      category:
+                        p.jobReleaseTaskExecutionInfo?.failureInfo?.[
+                          "category"
+                        ],
+                      code: p.jobReleaseTaskExecutionInfo?.failureInfo?.[
+                        "code"
+                      ],
+                      message:
+                        p.jobReleaseTaskExecutionInfo?.failureInfo?.["message"],
+                      details: !p.jobReleaseTaskExecutionInfo?.failureInfo?.[
+                        "details"
+                      ]
+                        ? p.jobReleaseTaskExecutionInfo?.failureInfo?.[
+                            "details"
+                          ]
+                        : p.jobReleaseTaskExecutionInfo?.failureInfo?.[
+                            "details"
+                          ].map((p) => ({
+                            name: p["name"],
+                            value: p["value"],
+                          })),
+                    },
+                result: p.jobReleaseTaskExecutionInfo?.["result"],
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -8288,41 +9025,45 @@ export async function _listCertificatesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      thumbprint: p["thumbprint"],
-      thumbprintAlgorithm: p["thumbprintAlgorithm"],
-      url: p["url"],
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      previousState: p["previousState"],
-      previousStateTransitionTime:
-        p["previousStateTransitionTime"] !== undefined
-          ? new Date(p["previousStateTransitionTime"])
-          : undefined,
-      publicData:
-        typeof p["publicData"] === "string"
-          ? stringToUint8Array(p["publicData"], "base64")
-          : p["publicData"],
-      deleteCertificateError: !p.deleteCertificateError
-        ? undefined
-        : {
-            code: p.deleteCertificateError?.["code"],
-            message: p.deleteCertificateError?.["message"],
-            values: (p.deleteCertificateError?.["values"] ?? []).map((p) => ({
-              name: p["name"],
-              value: p["value"],
-            })),
-          },
-      data:
-        typeof p["data"] === "string"
-          ? stringToUint8Array(p["data"], "base64")
-          : p["data"],
-      certificateFormat: p["certificateFormat"],
-      password: p["password"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          thumbprint: p["thumbprint"],
+          thumbprintAlgorithm: p["thumbprintAlgorithm"],
+          url: p["url"],
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          previousState: p["previousState"],
+          previousStateTransitionTime:
+            p["previousStateTransitionTime"] !== undefined
+              ? new Date(p["previousStateTransitionTime"])
+              : undefined,
+          publicData:
+            typeof p["publicData"] === "string"
+              ? stringToUint8Array(p["publicData"], "base64")
+              : p["publicData"],
+          deleteCertificateError: !p.deleteCertificateError
+            ? undefined
+            : {
+                code: p.deleteCertificateError?.["code"],
+                message: p.deleteCertificateError?.["message"],
+                values: !p.deleteCertificateError?.["values"]
+                  ? p.deleteCertificateError?.["values"]
+                  : p.deleteCertificateError?.["values"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+              },
+          data:
+            typeof p["data"] === "string"
+              ? stringToUint8Array(p["data"], "base64")
+              : p["data"],
+          certificateFormat: p["certificateFormat"],
+          password: p["password"],
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -8497,9 +9238,12 @@ export async function _getCertificateDeserialize(
       : {
           code: result.body.deleteCertificateError?.["code"],
           message: result.body.deleteCertificateError?.["message"],
-          values: (result.body.deleteCertificateError?.["values"] ?? []).map(
-            (p) => ({ name: p["name"], value: p["value"] })
-          ),
+          values: !result.body.deleteCertificateError?.["values"]
+            ? result.body.deleteCertificateError?.["values"]
+            : result.body.deleteCertificateError?.["values"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
         },
     data:
       typeof result.body["data"] === "string"
@@ -8777,53 +9521,69 @@ export async function _getJobScheduleDeserialize(
                     result.body.jobSpecification.jobManagerTask
                       ?.containerSettings?.["workingDirectory"],
                 },
-            resourceFiles: (
-              result.body.jobSpecification.jobManagerTask?.["resourceFiles"] ??
-              []
-            ).map((p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })),
-            outputFiles: (
-              result.body.jobSpecification.jobManagerTask?.["outputFiles"] ?? []
-            ).map((p) => ({
-              filePattern: p["filePattern"],
-              destination: {
-                container: !p.destination.container
-                  ? undefined
-                  : {
-                      path: p.destination.container?.["path"],
-                      containerUrl: p.destination.container?.["containerUrl"],
-                      identityReference: !p.destination.container
-                        ?.identityReference
-                        ? undefined
-                        : {
-                            resourceId:
-                              p.destination.container?.identityReference?.[
-                                "resourceId"
-                              ],
-                          },
-                      uploadHeaders: (
-                        p.destination.container?.["uploadHeaders"] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
-                    },
-              },
-              uploadOptions: {
-                uploadCondition: p.uploadOptions["uploadCondition"],
-              },
-            })),
-            environmentSettings: (
-              result.body.jobSpecification.jobManagerTask?.[
-                "environmentSettings"
-              ] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
+            resourceFiles: !result.body.jobSpecification.jobManagerTask?.[
+              "resourceFiles"
+            ]
+              ? result.body.jobSpecification.jobManagerTask?.["resourceFiles"]
+              : result.body.jobSpecification.jobManagerTask?.[
+                  "resourceFiles"
+                ].map((p) => ({
+                  autoStorageContainerName: p["autoStorageContainerName"],
+                  storageContainerUrl: p["storageContainerUrl"],
+                  httpUrl: p["httpUrl"],
+                  blobPrefix: p["blobPrefix"],
+                  filePath: p["filePath"],
+                  fileMode: p["fileMode"],
+                  identityReference: !p.identityReference
+                    ? undefined
+                    : { resourceId: p.identityReference?.["resourceId"] },
+                })),
+            outputFiles: !result.body.jobSpecification.jobManagerTask?.[
+              "outputFiles"
+            ]
+              ? result.body.jobSpecification.jobManagerTask?.["outputFiles"]
+              : result.body.jobSpecification.jobManagerTask?.[
+                  "outputFiles"
+                ].map((p) => ({
+                  filePattern: p["filePattern"],
+                  destination: {
+                    container: !p.destination.container
+                      ? undefined
+                      : {
+                          path: p.destination.container?.["path"],
+                          containerUrl:
+                            p.destination.container?.["containerUrl"],
+                          identityReference: !p.destination.container
+                            ?.identityReference
+                            ? undefined
+                            : {
+                                resourceId:
+                                  p.destination.container?.identityReference?.[
+                                    "resourceId"
+                                  ],
+                              },
+                          uploadHeaders: !p.destination.container?.[
+                            "uploadHeaders"
+                          ]
+                            ? p.destination.container?.["uploadHeaders"]
+                            : p.destination.container?.["uploadHeaders"].map(
+                                (p) => ({ name: p["name"], value: p["value"] })
+                              ),
+                        },
+                  },
+                  uploadOptions: {
+                    uploadCondition: p.uploadOptions["uploadCondition"],
+                  },
+                })),
+            environmentSettings: !result.body.jobSpecification.jobManagerTask?.[
+              "environmentSettings"
+            ]
+              ? result.body.jobSpecification.jobManagerTask?.[
+                  "environmentSettings"
+                ]
+              : result.body.jobSpecification.jobManagerTask?.[
+                  "environmentSettings"
+                ].map((p) => ({ name: p["name"], value: p["value"] })),
             constraints: !result.body.jobSpecification.jobManagerTask
               ?.constraints
               ? undefined
@@ -8869,14 +9629,17 @@ export async function _getJobScheduleDeserialize(
                 },
             runExclusive:
               result.body.jobSpecification.jobManagerTask?.["runExclusive"],
-            applicationPackageReferences: (
-              result.body.jobSpecification.jobManagerTask?.[
-                "applicationPackageReferences"
-              ] ?? []
-            ).map((p) => ({
-              applicationId: p["applicationId"],
-              version: p["version"],
-            })),
+            applicationPackageReferences: !result.body.jobSpecification
+              .jobManagerTask?.["applicationPackageReferences"]
+              ? result.body.jobSpecification.jobManagerTask?.[
+                  "applicationPackageReferences"
+                ]
+              : result.body.jobSpecification.jobManagerTask?.[
+                  "applicationPackageReferences"
+                ].map((p) => ({
+                  applicationId: p["applicationId"],
+                  version: p["version"],
+                })),
             authenticationTokenSettings: !result.body.jobSpecification
               .jobManagerTask?.authenticationTokenSettings
               ? undefined
@@ -8934,26 +9697,33 @@ export async function _getJobScheduleDeserialize(
                     result.body.jobSpecification.jobPreparationTask
                       ?.containerSettings?.["workingDirectory"],
                 },
-            resourceFiles: (
-              result.body.jobSpecification.jobPreparationTask?.[
-                "resourceFiles"
-              ] ?? []
-            ).map((p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })),
-            environmentSettings: (
-              result.body.jobSpecification.jobPreparationTask?.[
-                "environmentSettings"
-              ] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
+            resourceFiles: !result.body.jobSpecification.jobPreparationTask?.[
+              "resourceFiles"
+            ]
+              ? result.body.jobSpecification.jobPreparationTask?.[
+                  "resourceFiles"
+                ]
+              : result.body.jobSpecification.jobPreparationTask?.[
+                  "resourceFiles"
+                ].map((p) => ({
+                  autoStorageContainerName: p["autoStorageContainerName"],
+                  storageContainerUrl: p["storageContainerUrl"],
+                  httpUrl: p["httpUrl"],
+                  blobPrefix: p["blobPrefix"],
+                  filePath: p["filePath"],
+                  fileMode: p["fileMode"],
+                  identityReference: !p.identityReference
+                    ? undefined
+                    : { resourceId: p.identityReference?.["resourceId"] },
+                })),
+            environmentSettings: !result.body.jobSpecification
+              .jobPreparationTask?.["environmentSettings"]
+              ? result.body.jobSpecification.jobPreparationTask?.[
+                  "environmentSettings"
+                ]
+              : result.body.jobSpecification.jobPreparationTask?.[
+                  "environmentSettings"
+                ].map((p) => ({ name: p["name"], value: p["value"] })),
             constraints: !result.body.jobSpecification.jobPreparationTask
               ?.constraints
               ? undefined
@@ -9040,25 +9810,32 @@ export async function _getJobScheduleDeserialize(
                     result.body.jobSpecification.jobReleaseTask
                       ?.containerSettings?.["workingDirectory"],
                 },
-            resourceFiles: (
-              result.body.jobSpecification.jobReleaseTask?.["resourceFiles"] ??
-              []
-            ).map((p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })),
-            environmentSettings: (
-              result.body.jobSpecification.jobReleaseTask?.[
-                "environmentSettings"
-              ] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
+            resourceFiles: !result.body.jobSpecification.jobReleaseTask?.[
+              "resourceFiles"
+            ]
+              ? result.body.jobSpecification.jobReleaseTask?.["resourceFiles"]
+              : result.body.jobSpecification.jobReleaseTask?.[
+                  "resourceFiles"
+                ].map((p) => ({
+                  autoStorageContainerName: p["autoStorageContainerName"],
+                  storageContainerUrl: p["storageContainerUrl"],
+                  httpUrl: p["httpUrl"],
+                  blobPrefix: p["blobPrefix"],
+                  filePath: p["filePath"],
+                  fileMode: p["fileMode"],
+                  identityReference: !p.identityReference
+                    ? undefined
+                    : { resourceId: p.identityReference?.["resourceId"] },
+                })),
+            environmentSettings: !result.body.jobSpecification.jobReleaseTask?.[
+              "environmentSettings"
+            ]
+              ? result.body.jobSpecification.jobReleaseTask?.[
+                  "environmentSettings"
+                ]
+              : result.body.jobSpecification.jobReleaseTask?.[
+                  "environmentSettings"
+                ].map((p) => ({ name: p["name"], value: p["value"] })),
             maxWallClockTime:
               result.body.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
             retentionTime:
@@ -9084,9 +9861,13 @@ export async function _getJobScheduleDeserialize(
                       },
                 },
           },
-      commonEnvironmentSettings: (
-        result.body.jobSpecification["commonEnvironmentSettings"] ?? []
-      ).map((p) => ({ name: p["name"], value: p["value"] })),
+      commonEnvironmentSettings: !result.body.jobSpecification[
+        "commonEnvironmentSettings"
+      ]
+        ? result.body.jobSpecification["commonEnvironmentSettings"]
+        : result.body.jobSpecification["commonEnvironmentSettings"].map(
+            (p) => ({ name: p["name"], value: p["value"] })
+          ),
       poolInfo: {
         poolId: result.body.jobSpecification.poolInfo["poolId"],
         autoPoolSpecification: !result.body.jobSpecification.poolInfo
@@ -9188,16 +9969,20 @@ export async function _getJobScheduleDeserialize(
                                     "enableAutomaticUpdates"
                                   ],
                               },
-                          dataDisks: (
-                            result.body.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["dataDisks"] ?? []
-                          ).map((p) => ({
-                            lun: p["lun"],
-                            caching: p["caching"],
-                            diskSizeGB: p["diskSizeGB"],
-                            storageAccountType: p["storageAccountType"],
-                          })),
+                          dataDisks: !result.body.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool
+                            ?.virtualMachineConfiguration?.["dataDisks"]
+                            ? result.body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["dataDisks"]
+                            : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                "dataDisks"
+                              ].map((p) => ({
+                                lun: p["lun"],
+                                caching: p["caching"],
+                                diskSizeGB: p["diskSizeGB"],
+                                storageAccountType: p["storageAccountType"],
+                              })),
                           licenseType:
                             result.body.jobSpecification.poolInfo
                               .autoPoolSpecification?.pool
@@ -9219,24 +10004,34 @@ export async function _getJobScheduleDeserialize(
                                     ?.containerConfiguration?.[
                                     "containerImageNames"
                                   ],
-                                containerRegistries: (
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration
-                                    ?.containerConfiguration?.[
-                                    "containerRegistries"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  username: p["username"],
-                                  password: p["password"],
-                                  registryServer: p["registryServer"],
-                                  identityReference: !p.identityReference
-                                    ? undefined
-                                    : {
-                                        resourceId:
-                                          p.identityReference?.["resourceId"],
-                                      },
-                                })),
+                                containerRegistries: !result.body
+                                  .jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
+                                  ?.containerConfiguration?.[
+                                  "containerRegistries"
+                                ]
+                                  ? result.body.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.[
+                                      "containerRegistries"
+                                    ]
+                                  : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                      "containerRegistries"
+                                    ].map((p) => ({
+                                      username: p["username"],
+                                      password: p["password"],
+                                      registryServer: p["registryServer"],
+                                      identityReference: !p.identityReference
+                                        ? undefined
+                                        : {
+                                            resourceId:
+                                              p.identityReference?.[
+                                                "resourceId"
+                                              ],
+                                          },
+                                    })),
                               },
                           diskEncryptionConfiguration: !result.body
                             .jobSpecification.poolInfo.autoPoolSpecification
@@ -9262,24 +10057,28 @@ export async function _getJobScheduleDeserialize(
                                     ?.virtualMachineConfiguration
                                     ?.nodePlacementConfiguration?.["policy"],
                               },
-                          extensions: (
-                            result.body.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.["extensions"] ??
-                            []
-                          ).map((p) => ({
-                            name: p["name"],
-                            publisher: p["publisher"],
-                            type: p["type"],
-                            typeHandlerVersion: p["typeHandlerVersion"],
-                            autoUpgradeMinorVersion:
-                              p["autoUpgradeMinorVersion"],
-                            enableAutomaticUpgrade: p["enableAutomaticUpgrade"],
-                            settings: p["settings"],
-                            protectedSettings: p["protectedSettings"],
-                            provisionAfterExtensions:
-                              p["provisionAfterExtensions"],
-                          })),
+                          extensions: !result.body.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool
+                            ?.virtualMachineConfiguration?.["extensions"]
+                            ? result.body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["extensions"]
+                            : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                "extensions"
+                              ].map((p) => ({
+                                name: p["name"],
+                                publisher: p["publisher"],
+                                type: p["type"],
+                                typeHandlerVersion: p["typeHandlerVersion"],
+                                autoUpgradeMinorVersion:
+                                  p["autoUpgradeMinorVersion"],
+                                enableAutomaticUpgrade:
+                                  p["enableAutomaticUpgrade"],
+                                settings: p["settings"],
+                                protectedSettings: p["protectedSettings"],
+                                provisionAfterExtensions:
+                                  p["provisionAfterExtensions"],
+                              })),
                           osDisk: !result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool
                             ?.virtualMachineConfiguration?.osDisk
@@ -9360,31 +10159,32 @@ export async function _getJobScheduleDeserialize(
                             ?.networkConfiguration?.endpointConfiguration
                             ? undefined
                             : {
-                                inboundNATPools: (
-                                  result.body.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool
-                                    ?.networkConfiguration
-                                    ?.endpointConfiguration?.[
+                                inboundNATPools:
+                                  result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                     "inboundNATPools"
-                                  ] ?? []
-                                ).map((p) => ({
-                                  name: p["name"],
-                                  protocol: p["protocol"],
-                                  backendPort: p["backendPort"],
-                                  frontendPortRangeStart:
-                                    p["frontendPortRangeStart"],
-                                  frontendPortRangeEnd:
-                                    p["frontendPortRangeEnd"],
-                                  networkSecurityGroupRules: (
-                                    p["networkSecurityGroupRules"] ?? []
-                                  ).map((p) => ({
-                                    priority: p["priority"],
-                                    access: p["access"],
-                                    sourceAddressPrefix:
-                                      p["sourceAddressPrefix"],
-                                    sourcePortRanges: p["sourcePortRanges"],
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    protocol: p["protocol"],
+                                    backendPort: p["backendPort"],
+                                    frontendPortRangeStart:
+                                      p["frontendPortRangeStart"],
+                                    frontendPortRangeEnd:
+                                      p["frontendPortRangeEnd"],
+                                    networkSecurityGroupRules: !p[
+                                      "networkSecurityGroupRules"
+                                    ]
+                                      ? p["networkSecurityGroupRules"]
+                                      : p["networkSecurityGroupRules"].map(
+                                          (p) => ({
+                                            priority: p["priority"],
+                                            access: p["access"],
+                                            sourceAddressPrefix:
+                                              p["sourceAddressPrefix"],
+                                            sourcePortRanges:
+                                              p["sourcePortRanges"],
+                                          })
+                                        ),
                                   })),
-                                })),
                               },
                           publicIPAddressConfiguration: !result.body
                             .jobSpecification.poolInfo.autoPoolSpecification
@@ -9480,35 +10280,45 @@ export async function _getJobScheduleDeserialize(
                                     .autoPoolSpecification?.pool?.startTask
                                     ?.containerSettings?.["workingDirectory"],
                               },
-                          resourceFiles: (
-                            result.body.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool?.startTask?.[
-                              "resourceFiles"
-                            ] ?? []
-                          ).map((p) => ({
-                            autoStorageContainerName:
-                              p["autoStorageContainerName"],
-                            storageContainerUrl: p["storageContainerUrl"],
-                            httpUrl: p["httpUrl"],
-                            blobPrefix: p["blobPrefix"],
-                            filePath: p["filePath"],
-                            fileMode: p["fileMode"],
-                            identityReference: !p.identityReference
-                              ? undefined
-                              : {
-                                  resourceId:
-                                    p.identityReference?.["resourceId"],
-                                },
-                          })),
-                          environmentSettings: (
-                            result.body.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool?.startTask?.[
-                              "environmentSettings"
-                            ] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
+                          resourceFiles: !result.body.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.startTask?.[
+                            "resourceFiles"
+                          ]
+                            ? result.body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask?.[
+                                "resourceFiles"
+                              ]
+                            : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                "resourceFiles"
+                              ].map((p) => ({
+                                autoStorageContainerName:
+                                  p["autoStorageContainerName"],
+                                storageContainerUrl: p["storageContainerUrl"],
+                                httpUrl: p["httpUrl"],
+                                blobPrefix: p["blobPrefix"],
+                                filePath: p["filePath"],
+                                fileMode: p["fileMode"],
+                                identityReference: !p.identityReference
+                                  ? undefined
+                                  : {
+                                      resourceId:
+                                        p.identityReference?.["resourceId"],
+                                    },
+                              })),
+                          environmentSettings: !result.body.jobSpecification
+                            .poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                            "environmentSettings"
+                          ]
+                            ? result.body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask?.[
+                                "environmentSettings"
+                              ]
+                            : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                "environmentSettings"
+                              ].map((p) => ({
+                                name: p["name"],
+                                value: p["value"],
+                              })),
                           userIdentity: !result.body.jobSpecification.poolInfo
                             .autoPoolSpecification?.pool?.startTask
                             ?.userIdentity
@@ -9548,135 +10358,169 @@ export async function _getJobScheduleDeserialize(
                               "waitForSuccess"
                             ],
                         },
-                    certificateReferences: (
-                      result.body.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.[
-                        "certificateReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      thumbprint: p["thumbprint"],
-                      thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                      storeLocation: p["storeLocation"],
-                      storeName: p["storeName"],
-                      visibility: p["visibility"],
-                    })),
-                    applicationPackageReferences: (
-                      result.body.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.[
-                        "applicationPackageReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      applicationId: p["applicationId"],
-                      version: p["version"],
-                    })),
+                    certificateReferences: !result.body.jobSpecification
+                      .poolInfo.autoPoolSpecification?.pool?.[
+                      "certificateReferences"
+                    ]
+                      ? result.body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.[
+                          "certificateReferences"
+                        ]
+                      : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                          "certificateReferences"
+                        ].map((p) => ({
+                          thumbprint: p["thumbprint"],
+                          thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                          storeLocation: p["storeLocation"],
+                          storeName: p["storeName"],
+                          visibility: p["visibility"],
+                        })),
+                    applicationPackageReferences: !result.body.jobSpecification
+                      .poolInfo.autoPoolSpecification?.pool?.[
+                      "applicationPackageReferences"
+                    ]
+                      ? result.body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.[
+                          "applicationPackageReferences"
+                        ]
+                      : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                          "applicationPackageReferences"
+                        ].map((p) => ({
+                          applicationId: p["applicationId"],
+                          version: p["version"],
+                        })),
                     applicationLicenses:
                       result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.["applicationLicenses"],
-                    userAccounts: (
-                      result.body.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.["userAccounts"] ?? []
-                    ).map((p) => ({
-                      name: p["name"],
-                      password: p["password"],
-                      elevationLevel: p["elevationLevel"],
-                      linuxUserConfiguration: !p.linuxUserConfiguration
-                        ? undefined
-                        : {
-                            uid: p.linuxUserConfiguration?.["uid"],
-                            gid: p.linuxUserConfiguration?.["gid"],
-                            sshPrivateKey:
-                              p.linuxUserConfiguration?.["sshPrivateKey"],
-                          },
-                      windowsUserConfiguration: !p.windowsUserConfiguration
-                        ? undefined
-                        : {
-                            loginMode:
-                              p.windowsUserConfiguration?.["loginMode"],
-                          },
-                    })),
-                    metadata: (
-                      result.body.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.["metadata"] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
-                    mountConfiguration: (
-                      result.body.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.["mountConfiguration"] ??
-                      []
-                    ).map((p) => ({
-                      azureBlobFileSystemConfiguration:
-                        !p.azureBlobFileSystemConfiguration
-                          ? undefined
-                          : {
-                              accountName:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "accountName"
-                                ],
-                              containerName:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "containerName"
-                                ],
-                              accountKey:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "accountKey"
-                                ],
-                              sasKey:
-                                p.azureBlobFileSystemConfiguration?.["sasKey"],
-                              blobfuseOptions:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "blobfuseOptions"
-                                ],
-                              relativeMountPath:
-                                p.azureBlobFileSystemConfiguration?.[
-                                  "relativeMountPath"
-                                ],
-                              identityReference: !p
-                                .azureBlobFileSystemConfiguration
-                                ?.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.azureBlobFileSystemConfiguration
-                                        ?.identityReference?.["resourceId"],
-                                  },
-                            },
-                      nfsMountConfiguration: !p.nfsMountConfiguration
-                        ? undefined
-                        : {
-                            source: p.nfsMountConfiguration?.["source"],
-                            relativeMountPath:
-                              p.nfsMountConfiguration?.["relativeMountPath"],
-                            mountOptions:
-                              p.nfsMountConfiguration?.["mountOptions"],
-                          },
-                      cifsMountConfiguration: !p.cifsMountConfiguration
-                        ? undefined
-                        : {
-                            username: p.cifsMountConfiguration?.["username"],
-                            source: p.cifsMountConfiguration?.["source"],
-                            relativeMountPath:
-                              p.cifsMountConfiguration?.["relativeMountPath"],
-                            mountOptions:
-                              p.cifsMountConfiguration?.["mountOptions"],
-                            password: p.cifsMountConfiguration?.["password"],
-                          },
-                      azureFileShareConfiguration:
-                        !p.azureFileShareConfiguration
-                          ? undefined
-                          : {
-                              accountName:
-                                p.azureFileShareConfiguration?.["accountName"],
-                              azureFileUrl:
-                                p.azureFileShareConfiguration?.["azureFileUrl"],
-                              accountKey:
-                                p.azureFileShareConfiguration?.["accountKey"],
-                              relativeMountPath:
-                                p.azureFileShareConfiguration?.[
-                                  "relativeMountPath"
-                                ],
-                              mountOptions:
-                                p.azureFileShareConfiguration?.["mountOptions"],
-                            },
-                    })),
+                    userAccounts: !result.body.jobSpecification.poolInfo
+                      .autoPoolSpecification?.pool?.["userAccounts"]
+                      ? result.body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["userAccounts"]
+                      : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                          "userAccounts"
+                        ].map((p) => ({
+                          name: p["name"],
+                          password: p["password"],
+                          elevationLevel: p["elevationLevel"],
+                          linuxUserConfiguration: !p.linuxUserConfiguration
+                            ? undefined
+                            : {
+                                uid: p.linuxUserConfiguration?.["uid"],
+                                gid: p.linuxUserConfiguration?.["gid"],
+                                sshPrivateKey:
+                                  p.linuxUserConfiguration?.["sshPrivateKey"],
+                              },
+                          windowsUserConfiguration: !p.windowsUserConfiguration
+                            ? undefined
+                            : {
+                                loginMode:
+                                  p.windowsUserConfiguration?.["loginMode"],
+                              },
+                        })),
+                    metadata: !result.body.jobSpecification.poolInfo
+                      .autoPoolSpecification?.pool?.["metadata"]
+                      ? result.body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["metadata"]
+                      : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                          "metadata"
+                        ].map((p) => ({ name: p["name"], value: p["value"] })),
+                    mountConfiguration: !result.body.jobSpecification.poolInfo
+                      .autoPoolSpecification?.pool?.["mountConfiguration"]
+                      ? result.body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["mountConfiguration"]
+                      : result.body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                          "mountConfiguration"
+                        ].map((p) => ({
+                          azureBlobFileSystemConfiguration:
+                            !p.azureBlobFileSystemConfiguration
+                              ? undefined
+                              : {
+                                  accountName:
+                                    p.azureBlobFileSystemConfiguration?.[
+                                      "accountName"
+                                    ],
+                                  containerName:
+                                    p.azureBlobFileSystemConfiguration?.[
+                                      "containerName"
+                                    ],
+                                  accountKey:
+                                    p.azureBlobFileSystemConfiguration?.[
+                                      "accountKey"
+                                    ],
+                                  sasKey:
+                                    p.azureBlobFileSystemConfiguration?.[
+                                      "sasKey"
+                                    ],
+                                  blobfuseOptions:
+                                    p.azureBlobFileSystemConfiguration?.[
+                                      "blobfuseOptions"
+                                    ],
+                                  relativeMountPath:
+                                    p.azureBlobFileSystemConfiguration?.[
+                                      "relativeMountPath"
+                                    ],
+                                  identityReference: !p
+                                    .azureBlobFileSystemConfiguration
+                                    ?.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.azureBlobFileSystemConfiguration
+                                            ?.identityReference?.["resourceId"],
+                                      },
+                                },
+                          nfsMountConfiguration: !p.nfsMountConfiguration
+                            ? undefined
+                            : {
+                                source: p.nfsMountConfiguration?.["source"],
+                                relativeMountPath:
+                                  p.nfsMountConfiguration?.[
+                                    "relativeMountPath"
+                                  ],
+                                mountOptions:
+                                  p.nfsMountConfiguration?.["mountOptions"],
+                              },
+                          cifsMountConfiguration: !p.cifsMountConfiguration
+                            ? undefined
+                            : {
+                                username:
+                                  p.cifsMountConfiguration?.["username"],
+                                source: p.cifsMountConfiguration?.["source"],
+                                relativeMountPath:
+                                  p.cifsMountConfiguration?.[
+                                    "relativeMountPath"
+                                  ],
+                                mountOptions:
+                                  p.cifsMountConfiguration?.["mountOptions"],
+                                password:
+                                  p.cifsMountConfiguration?.["password"],
+                              },
+                          azureFileShareConfiguration:
+                            !p.azureFileShareConfiguration
+                              ? undefined
+                              : {
+                                  accountName:
+                                    p.azureFileShareConfiguration?.[
+                                      "accountName"
+                                    ],
+                                  azureFileUrl:
+                                    p.azureFileShareConfiguration?.[
+                                      "azureFileUrl"
+                                    ],
+                                  accountKey:
+                                    p.azureFileShareConfiguration?.[
+                                      "accountKey"
+                                    ],
+                                  relativeMountPath:
+                                    p.azureFileShareConfiguration?.[
+                                      "relativeMountPath"
+                                    ],
+                                  mountOptions:
+                                    p.azureFileShareConfiguration?.[
+                                      "mountOptions"
+                                    ],
+                                },
+                        })),
                     targetNodeCommunicationMode:
                       result.body.jobSpecification.poolInfo
                         .autoPoolSpecification?.pool?.[
@@ -9685,10 +10529,12 @@ export async function _getJobScheduleDeserialize(
                   },
             },
       },
-      metadata: (result.body.jobSpecification["metadata"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
+      metadata: !result.body.jobSpecification["metadata"]
+        ? result.body.jobSpecification["metadata"]
+        : result.body.jobSpecification["metadata"].map((p) => ({
+            name: p["name"],
+            value: p["value"],
+          })),
     },
     executionInfo: !result.body.executionInfo
       ? undefined
@@ -9708,10 +10554,12 @@ export async function _getJobScheduleDeserialize(
               ? new Date(result.body.executionInfo?.["endTime"])
               : undefined,
         },
-    metadata: (result.body["metadata"] ?? []).map((p) => ({
-      name: p["name"],
-      value: p["value"],
-    })),
+    metadata: !result.body["metadata"]
+      ? result.body["metadata"]
+      : result.body["metadata"].map((p) => ({
+          name: p["name"],
+          value: p["value"],
+        })),
     stats: !result.body.stats
       ? undefined
       : {
@@ -9856,58 +10704,73 @@ export function _updateJobScheduleSend(
                             body.jobSpecification?.jobManagerTask
                               ?.containerSettings?.["workingDirectory"],
                         },
-                    resourceFiles: (
-                      body.jobSpecification?.jobManagerTask?.[
-                        "resourceFiles"
-                      ] ?? []
-                    ).map((p) => ({
-                      autoStorageContainerName: p["autoStorageContainerName"],
-                      storageContainerUrl: p["storageContainerUrl"],
-                      httpUrl: p["httpUrl"],
-                      blobPrefix: p["blobPrefix"],
-                      filePath: p["filePath"],
-                      fileMode: p["fileMode"],
-                      identityReference: !p.identityReference
-                        ? undefined
-                        : { resourceId: p.identityReference?.["resourceId"] },
-                    })),
-                    outputFiles: (
-                      body.jobSpecification?.jobManagerTask?.["outputFiles"] ??
-                      []
-                    ).map((p) => ({
-                      filePattern: p["filePattern"],
-                      destination: {
-                        container: !p.destination.container
-                          ? undefined
-                          : {
-                              path: p.destination.container?.["path"],
-                              containerUrl:
-                                p.destination.container?.["containerUrl"],
-                              identityReference: !p.destination.container
-                                ?.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.destination.container
-                                        ?.identityReference?.["resourceId"],
-                                  },
-                              uploadHeaders: (
-                                p.destination.container?.["uploadHeaders"] ?? []
-                              ).map((p) => ({
-                                name: p["name"],
-                                value: p["value"],
-                              })),
-                            },
-                      },
-                      uploadOptions: {
-                        uploadCondition: p.uploadOptions["uploadCondition"],
-                      },
-                    })),
-                    environmentSettings: (
-                      body.jobSpecification?.jobManagerTask?.[
-                        "environmentSettings"
-                      ] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
+                    resourceFiles: !body.jobSpecification?.jobManagerTask?.[
+                      "resourceFiles"
+                    ]
+                      ? body.jobSpecification?.jobManagerTask?.["resourceFiles"]
+                      : body.jobSpecification?.jobManagerTask?.[
+                          "resourceFiles"
+                        ].map((p) => ({
+                          autoStorageContainerName:
+                            p["autoStorageContainerName"],
+                          storageContainerUrl: p["storageContainerUrl"],
+                          httpUrl: p["httpUrl"],
+                          blobPrefix: p["blobPrefix"],
+                          filePath: p["filePath"],
+                          fileMode: p["fileMode"],
+                          identityReference: !p.identityReference
+                            ? undefined
+                            : {
+                                resourceId: p.identityReference?.["resourceId"],
+                              },
+                        })),
+                    outputFiles: !body.jobSpecification?.jobManagerTask?.[
+                      "outputFiles"
+                    ]
+                      ? body.jobSpecification?.jobManagerTask?.["outputFiles"]
+                      : body.jobSpecification?.jobManagerTask?.[
+                          "outputFiles"
+                        ].map((p) => ({
+                          filePattern: p["filePattern"],
+                          destination: {
+                            container: !p.destination.container
+                              ? undefined
+                              : {
+                                  path: p.destination.container?.["path"],
+                                  containerUrl:
+                                    p.destination.container?.["containerUrl"],
+                                  identityReference: !p.destination.container
+                                    ?.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.destination.container
+                                            ?.identityReference?.["resourceId"],
+                                      },
+                                  uploadHeaders: !p.destination.container?.[
+                                    "uploadHeaders"
+                                  ]
+                                    ? p.destination.container?.["uploadHeaders"]
+                                    : p.destination.container?.[
+                                        "uploadHeaders"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        value: p["value"],
+                                      })),
+                                },
+                          },
+                          uploadOptions: {
+                            uploadCondition: p.uploadOptions["uploadCondition"],
+                          },
+                        })),
+                    environmentSettings: !body.jobSpecification
+                      ?.jobManagerTask?.["environmentSettings"]
+                      ? body.jobSpecification?.jobManagerTask?.[
+                          "environmentSettings"
+                        ]
+                      : body.jobSpecification?.jobManagerTask?.[
+                          "environmentSettings"
+                        ].map((p) => ({ name: p["name"], value: p["value"] })),
                     constraints: !body.jobSpecification?.jobManagerTask
                       ?.constraints
                       ? undefined
@@ -9951,14 +10814,17 @@ export function _updateJobScheduleSend(
                         },
                     runExclusive:
                       body.jobSpecification?.jobManagerTask?.["runExclusive"],
-                    applicationPackageReferences: (
-                      body.jobSpecification?.jobManagerTask?.[
-                        "applicationPackageReferences"
-                      ] ?? []
-                    ).map((p) => ({
-                      applicationId: p["applicationId"],
-                      version: p["version"],
-                    })),
+                    applicationPackageReferences: !body.jobSpecification
+                      ?.jobManagerTask?.["applicationPackageReferences"]
+                      ? body.jobSpecification?.jobManagerTask?.[
+                          "applicationPackageReferences"
+                        ]
+                      : body.jobSpecification?.jobManagerTask?.[
+                          "applicationPackageReferences"
+                        ].map((p) => ({
+                          applicationId: p["applicationId"],
+                          version: p["version"],
+                        })),
                     authenticationTokenSettings: !body.jobSpecification
                       ?.jobManagerTask?.authenticationTokenSettings
                       ? undefined
@@ -10021,26 +10887,36 @@ export function _updateJobScheduleSend(
                             body.jobSpecification?.jobPreparationTask
                               ?.containerSettings?.["workingDirectory"],
                         },
-                    resourceFiles: (
-                      body.jobSpecification?.jobPreparationTask?.[
-                        "resourceFiles"
-                      ] ?? []
-                    ).map((p) => ({
-                      autoStorageContainerName: p["autoStorageContainerName"],
-                      storageContainerUrl: p["storageContainerUrl"],
-                      httpUrl: p["httpUrl"],
-                      blobPrefix: p["blobPrefix"],
-                      filePath: p["filePath"],
-                      fileMode: p["fileMode"],
-                      identityReference: !p.identityReference
-                        ? undefined
-                        : { resourceId: p.identityReference?.["resourceId"] },
-                    })),
-                    environmentSettings: (
-                      body.jobSpecification?.jobPreparationTask?.[
-                        "environmentSettings"
-                      ] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
+                    resourceFiles: !body.jobSpecification?.jobPreparationTask?.[
+                      "resourceFiles"
+                    ]
+                      ? body.jobSpecification?.jobPreparationTask?.[
+                          "resourceFiles"
+                        ]
+                      : body.jobSpecification?.jobPreparationTask?.[
+                          "resourceFiles"
+                        ].map((p) => ({
+                          autoStorageContainerName:
+                            p["autoStorageContainerName"],
+                          storageContainerUrl: p["storageContainerUrl"],
+                          httpUrl: p["httpUrl"],
+                          blobPrefix: p["blobPrefix"],
+                          filePath: p["filePath"],
+                          fileMode: p["fileMode"],
+                          identityReference: !p.identityReference
+                            ? undefined
+                            : {
+                                resourceId: p.identityReference?.["resourceId"],
+                              },
+                        })),
+                    environmentSettings: !body.jobSpecification
+                      ?.jobPreparationTask?.["environmentSettings"]
+                      ? body.jobSpecification?.jobPreparationTask?.[
+                          "environmentSettings"
+                        ]
+                      : body.jobSpecification?.jobPreparationTask?.[
+                          "environmentSettings"
+                        ].map((p) => ({ name: p["name"], value: p["value"] })),
                     constraints: !body.jobSpecification?.jobPreparationTask
                       ?.constraints
                       ? undefined
@@ -10131,26 +11007,34 @@ export function _updateJobScheduleSend(
                             body.jobSpecification?.jobReleaseTask
                               ?.containerSettings?.["workingDirectory"],
                         },
-                    resourceFiles: (
-                      body.jobSpecification?.jobReleaseTask?.[
-                        "resourceFiles"
-                      ] ?? []
-                    ).map((p) => ({
-                      autoStorageContainerName: p["autoStorageContainerName"],
-                      storageContainerUrl: p["storageContainerUrl"],
-                      httpUrl: p["httpUrl"],
-                      blobPrefix: p["blobPrefix"],
-                      filePath: p["filePath"],
-                      fileMode: p["fileMode"],
-                      identityReference: !p.identityReference
-                        ? undefined
-                        : { resourceId: p.identityReference?.["resourceId"] },
-                    })),
-                    environmentSettings: (
-                      body.jobSpecification?.jobReleaseTask?.[
-                        "environmentSettings"
-                      ] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
+                    resourceFiles: !body.jobSpecification?.jobReleaseTask?.[
+                      "resourceFiles"
+                    ]
+                      ? body.jobSpecification?.jobReleaseTask?.["resourceFiles"]
+                      : body.jobSpecification?.jobReleaseTask?.[
+                          "resourceFiles"
+                        ].map((p) => ({
+                          autoStorageContainerName:
+                            p["autoStorageContainerName"],
+                          storageContainerUrl: p["storageContainerUrl"],
+                          httpUrl: p["httpUrl"],
+                          blobPrefix: p["blobPrefix"],
+                          filePath: p["filePath"],
+                          fileMode: p["fileMode"],
+                          identityReference: !p.identityReference
+                            ? undefined
+                            : {
+                                resourceId: p.identityReference?.["resourceId"],
+                              },
+                        })),
+                    environmentSettings: !body.jobSpecification
+                      ?.jobReleaseTask?.["environmentSettings"]
+                      ? body.jobSpecification?.jobReleaseTask?.[
+                          "environmentSettings"
+                        ]
+                      : body.jobSpecification?.jobReleaseTask?.[
+                          "environmentSettings"
+                        ].map((p) => ({ name: p["name"], value: p["value"] })),
                     maxWallClockTime:
                       body.jobSpecification?.jobReleaseTask?.[
                         "maxWallClockTime"
@@ -10179,9 +11063,13 @@ export function _updateJobScheduleSend(
                               },
                         },
                   },
-              commonEnvironmentSettings: (
-                body.jobSpecification?.["commonEnvironmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
+              commonEnvironmentSettings: !body.jobSpecification?.[
+                "commonEnvironmentSettings"
+              ]
+                ? body.jobSpecification?.["commonEnvironmentSettings"]
+                : body.jobSpecification?.["commonEnvironmentSettings"].map(
+                    (p) => ({ name: p["name"], value: p["value"] })
+                  ),
               poolInfo: {
                 poolId: body.jobSpecification?.poolInfo["poolId"],
                 autoPoolSpecification: !body.jobSpecification?.poolInfo
@@ -10279,18 +11167,23 @@ export function _updateJobScheduleSend(
                                             "enableAutomaticUpdates"
                                           ],
                                       },
-                                  dataDisks: (
-                                    body.jobSpecification?.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.[
-                                      "dataDisks"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    lun: p["lun"],
-                                    caching: p["caching"],
-                                    diskSizeGB: p["diskSizeGB"],
-                                    storageAccountType: p["storageAccountType"],
-                                  })),
+                                  dataDisks: !body.jobSpecification?.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.["dataDisks"]
+                                    ? body.jobSpecification?.poolInfo
+                                        .autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration?.[
+                                        "dataDisks"
+                                      ]
+                                    : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                        "dataDisks"
+                                      ].map((p) => ({
+                                        lun: p["lun"],
+                                        caching: p["caching"],
+                                        diskSizeGB: p["diskSizeGB"],
+                                        storageAccountType:
+                                          p["storageAccountType"],
+                                      })),
                                   licenseType:
                                     body.jobSpecification?.poolInfo
                                       .autoPoolSpecification?.pool
@@ -10314,27 +11207,36 @@ export function _updateJobScheduleSend(
                                             ?.containerConfiguration?.[
                                             "containerImageNames"
                                           ],
-                                        containerRegistries: (
-                                          body.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.virtualMachineConfiguration
-                                            ?.containerConfiguration?.[
-                                            "containerRegistries"
-                                          ] ?? []
-                                        ).map((p) => ({
-                                          username: p["username"],
-                                          password: p["password"],
-                                          registryServer: p["registryServer"],
-                                          identityReference:
-                                            !p.identityReference
-                                              ? undefined
-                                              : {
-                                                  resourceId:
-                                                    p.identityReference?.[
-                                                      "resourceId"
-                                                    ],
-                                                },
-                                        })),
+                                        containerRegistries: !body
+                                          .jobSpecification?.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ]
+                                          ? body.jobSpecification?.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.virtualMachineConfiguration
+                                              ?.containerConfiguration?.[
+                                              "containerRegistries"
+                                            ]
+                                          : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                              "containerRegistries"
+                                            ].map((p) => ({
+                                              username: p["username"],
+                                              password: p["password"],
+                                              registryServer:
+                                                p["registryServer"],
+                                              identityReference:
+                                                !p.identityReference
+                                                  ? undefined
+                                                  : {
+                                                      resourceId:
+                                                        p.identityReference?.[
+                                                          "resourceId"
+                                                        ],
+                                                    },
+                                            })),
                                       },
                                   diskEncryptionConfiguration: !body
                                     .jobSpecification?.poolInfo
@@ -10366,26 +11268,34 @@ export function _updateJobScheduleSend(
                                             "policy"
                                           ],
                                       },
-                                  extensions: (
-                                    body.jobSpecification?.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration?.[
-                                      "extensions"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    name: p["name"],
-                                    publisher: p["publisher"],
-                                    type: p["type"],
-                                    typeHandlerVersion: p["typeHandlerVersion"],
-                                    autoUpgradeMinorVersion:
-                                      p["autoUpgradeMinorVersion"],
-                                    enableAutomaticUpgrade:
-                                      p["enableAutomaticUpgrade"],
-                                    settings: p["settings"],
-                                    protectedSettings: p["protectedSettings"],
-                                    provisionAfterExtensions:
-                                      p["provisionAfterExtensions"],
-                                  })),
+                                  extensions: !body.jobSpecification?.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ]
+                                    ? body.jobSpecification?.poolInfo
+                                        .autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration?.[
+                                        "extensions"
+                                      ]
+                                    : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                        "extensions"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        publisher: p["publisher"],
+                                        type: p["type"],
+                                        typeHandlerVersion:
+                                          p["typeHandlerVersion"],
+                                        autoUpgradeMinorVersion:
+                                          p["autoUpgradeMinorVersion"],
+                                        enableAutomaticUpgrade:
+                                          p["enableAutomaticUpgrade"],
+                                        settings: p["settings"],
+                                        protectedSettings:
+                                          p["protectedSettings"],
+                                        provisionAfterExtensions:
+                                          p["provisionAfterExtensions"],
+                                      })),
                                   osDisk: !body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration?.osDisk
@@ -10478,32 +11388,32 @@ export function _updateJobScheduleSend(
                                     ?.endpointConfiguration
                                     ? undefined
                                     : {
-                                        inboundNATPools: (
-                                          body.jobSpecification?.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.networkConfiguration
-                                            ?.endpointConfiguration?.[
+                                        inboundNATPools:
+                                          body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                             "inboundNATPools"
-                                          ] ?? []
-                                        ).map((p) => ({
-                                          name: p["name"],
-                                          protocol: p["protocol"],
-                                          backendPort: p["backendPort"],
-                                          frontendPortRangeStart:
-                                            p["frontendPortRangeStart"],
-                                          frontendPortRangeEnd:
-                                            p["frontendPortRangeEnd"],
-                                          networkSecurityGroupRules: (
-                                            p["networkSecurityGroupRules"] ?? []
-                                          ).map((p) => ({
-                                            priority: p["priority"],
-                                            access: p["access"],
-                                            sourceAddressPrefix:
-                                              p["sourceAddressPrefix"],
-                                            sourcePortRanges:
-                                              p["sourcePortRanges"],
+                                          ].map((p) => ({
+                                            name: p["name"],
+                                            protocol: p["protocol"],
+                                            backendPort: p["backendPort"],
+                                            frontendPortRangeStart:
+                                              p["frontendPortRangeStart"],
+                                            frontendPortRangeEnd:
+                                              p["frontendPortRangeEnd"],
+                                            networkSecurityGroupRules: !p[
+                                              "networkSecurityGroupRules"
+                                            ]
+                                              ? p["networkSecurityGroupRules"]
+                                              : p[
+                                                  "networkSecurityGroupRules"
+                                                ].map((p) => ({
+                                                  priority: p["priority"],
+                                                  access: p["access"],
+                                                  sourceAddressPrefix:
+                                                    p["sourceAddressPrefix"],
+                                                  sourcePortRanges:
+                                                    p["sourcePortRanges"],
+                                                })),
                                           })),
-                                        })),
                                       },
                                   publicIPAddressConfiguration: !body
                                     .jobSpecification?.poolInfo
@@ -10609,36 +11519,44 @@ export function _updateJobScheduleSend(
                                             "workingDirectory"
                                           ],
                                       },
-                                  resourceFiles: (
-                                    body.jobSpecification?.poolInfo
-                                      .autoPoolSpecification?.pool?.startTask?.[
-                                      "resourceFiles"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    autoStorageContainerName:
-                                      p["autoStorageContainerName"],
-                                    storageContainerUrl:
-                                      p["storageContainerUrl"],
-                                    httpUrl: p["httpUrl"],
-                                    blobPrefix: p["blobPrefix"],
-                                    filePath: p["filePath"],
-                                    fileMode: p["fileMode"],
-                                    identityReference: !p.identityReference
-                                      ? undefined
-                                      : {
-                                          resourceId:
-                                            p.identityReference?.["resourceId"],
-                                        },
-                                  })),
-                                  environmentSettings: (
-                                    body.jobSpecification?.poolInfo
-                                      .autoPoolSpecification?.pool?.startTask?.[
-                                      "environmentSettings"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    name: p["name"],
-                                    value: p["value"],
-                                  })),
+                                  resourceFiles: !body.jobSpecification
+                                    ?.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.["resourceFiles"]
+                                    ? body.jobSpecification?.poolInfo
+                                        .autoPoolSpecification?.pool
+                                        ?.startTask?.["resourceFiles"]
+                                    : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                        "resourceFiles"
+                                      ].map((p) => ({
+                                        autoStorageContainerName:
+                                          p["autoStorageContainerName"],
+                                        storageContainerUrl:
+                                          p["storageContainerUrl"],
+                                        httpUrl: p["httpUrl"],
+                                        blobPrefix: p["blobPrefix"],
+                                        filePath: p["filePath"],
+                                        fileMode: p["fileMode"],
+                                        identityReference: !p.identityReference
+                                          ? undefined
+                                          : {
+                                              resourceId:
+                                                p.identityReference?.[
+                                                  "resourceId"
+                                                ],
+                                            },
+                                      })),
+                                  environmentSettings: !body.jobSpecification
+                                    ?.poolInfo.autoPoolSpecification?.pool
+                                    ?.startTask?.["environmentSettings"]
+                                    ? body.jobSpecification?.poolInfo
+                                        .autoPoolSpecification?.pool
+                                        ?.startTask?.["environmentSettings"]
+                                    : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                        "environmentSettings"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        value: p["value"],
+                                      })),
                                   userIdentity: !body.jobSpecification?.poolInfo
                                     .autoPoolSpecification?.pool?.startTask
                                     ?.userIdentity
@@ -10680,169 +11598,211 @@ export function _updateJobScheduleSend(
                                       "waitForSuccess"
                                     ],
                                 },
-                            certificateReferences: (
-                              body.jobSpecification?.poolInfo
-                                .autoPoolSpecification?.pool?.[
-                                "certificateReferences"
-                              ] ?? []
-                            ).map((p) => ({
-                              thumbprint: p["thumbprint"],
-                              thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                              storeLocation: p["storeLocation"],
-                              storeName: p["storeName"],
-                              visibility: p["visibility"],
-                            })),
-                            applicationPackageReferences: (
-                              body.jobSpecification?.poolInfo
-                                .autoPoolSpecification?.pool?.[
-                                "applicationPackageReferences"
-                              ] ?? []
-                            ).map((p) => ({
-                              applicationId: p["applicationId"],
-                              version: p["version"],
-                            })),
+                            certificateReferences: !body.jobSpecification
+                              ?.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ]
+                              ? body.jobSpecification?.poolInfo
+                                  .autoPoolSpecification?.pool?.[
+                                  "certificateReferences"
+                                ]
+                              : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                  "certificateReferences"
+                                ].map((p) => ({
+                                  thumbprint: p["thumbprint"],
+                                  thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                                  storeLocation: p["storeLocation"],
+                                  storeName: p["storeName"],
+                                  visibility: p["visibility"],
+                                })),
+                            applicationPackageReferences: !body.jobSpecification
+                              ?.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ]
+                              ? body.jobSpecification?.poolInfo
+                                  .autoPoolSpecification?.pool?.[
+                                  "applicationPackageReferences"
+                                ]
+                              : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                  "applicationPackageReferences"
+                                ].map((p) => ({
+                                  applicationId: p["applicationId"],
+                                  version: p["version"],
+                                })),
                             applicationLicenses:
                               body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
                                 "applicationLicenses"
                               ],
-                            userAccounts: (
-                              body.jobSpecification?.poolInfo
-                                .autoPoolSpecification?.pool?.[
-                                "userAccounts"
-                              ] ?? []
-                            ).map((p) => ({
-                              name: p["name"],
-                              password: p["password"],
-                              elevationLevel: p["elevationLevel"],
-                              linuxUserConfiguration: !p.linuxUserConfiguration
-                                ? undefined
-                                : {
-                                    uid: p.linuxUserConfiguration?.["uid"],
-                                    gid: p.linuxUserConfiguration?.["gid"],
-                                    sshPrivateKey:
-                                      p.linuxUserConfiguration?.[
-                                        "sshPrivateKey"
-                                      ],
-                                  },
-                              windowsUserConfiguration:
-                                !p.windowsUserConfiguration
-                                  ? undefined
-                                  : {
-                                      loginMode:
-                                        p.windowsUserConfiguration?.[
-                                          "loginMode"
-                                        ],
-                                    },
-                            })),
-                            metadata: (
-                              body.jobSpecification?.poolInfo
-                                .autoPoolSpecification?.pool?.["metadata"] ?? []
-                            ).map((p) => ({
-                              name: p["name"],
-                              value: p["value"],
-                            })),
-                            mountConfiguration: (
-                              body.jobSpecification?.poolInfo
-                                .autoPoolSpecification?.pool?.[
-                                "mountConfiguration"
-                              ] ?? []
-                            ).map((p) => ({
-                              azureBlobFileSystemConfiguration:
-                                !p.azureBlobFileSystemConfiguration
-                                  ? undefined
-                                  : {
-                                      accountName:
-                                        p.azureBlobFileSystemConfiguration?.[
-                                          "accountName"
-                                        ],
-                                      containerName:
-                                        p.azureBlobFileSystemConfiguration?.[
-                                          "containerName"
-                                        ],
-                                      accountKey:
-                                        p.azureBlobFileSystemConfiguration?.[
-                                          "accountKey"
-                                        ],
-                                      sasKey:
-                                        p.azureBlobFileSystemConfiguration?.[
-                                          "sasKey"
-                                        ],
-                                      blobfuseOptions:
-                                        p.azureBlobFileSystemConfiguration?.[
-                                          "blobfuseOptions"
-                                        ],
-                                      relativeMountPath:
-                                        p.azureBlobFileSystemConfiguration?.[
-                                          "relativeMountPath"
-                                        ],
-                                      identityReference: !p
-                                        .azureBlobFileSystemConfiguration
-                                        ?.identityReference
-                                        ? undefined
-                                        : {
-                                            resourceId:
-                                              p.azureBlobFileSystemConfiguration
-                                                ?.identityReference?.[
-                                                "resourceId"
-                                              ],
-                                          },
-                                    },
-                              nfsMountConfiguration: !p.nfsMountConfiguration
-                                ? undefined
-                                : {
-                                    source: p.nfsMountConfiguration?.["source"],
-                                    relativeMountPath:
-                                      p.nfsMountConfiguration?.[
-                                        "relativeMountPath"
-                                      ],
-                                    mountOptions:
-                                      p.nfsMountConfiguration?.["mountOptions"],
-                                  },
-                              cifsMountConfiguration: !p.cifsMountConfiguration
-                                ? undefined
-                                : {
-                                    username:
-                                      p.cifsMountConfiguration?.["username"],
-                                    source:
-                                      p.cifsMountConfiguration?.["source"],
-                                    relativeMountPath:
-                                      p.cifsMountConfiguration?.[
-                                        "relativeMountPath"
-                                      ],
-                                    mountOptions:
-                                      p.cifsMountConfiguration?.[
-                                        "mountOptions"
-                                      ],
-                                    password:
-                                      p.cifsMountConfiguration?.["password"],
-                                  },
-                              azureFileShareConfiguration:
-                                !p.azureFileShareConfiguration
-                                  ? undefined
-                                  : {
-                                      accountName:
-                                        p.azureFileShareConfiguration?.[
-                                          "accountName"
-                                        ],
-                                      azureFileUrl:
-                                        p.azureFileShareConfiguration?.[
-                                          "azureFileUrl"
-                                        ],
-                                      accountKey:
-                                        p.azureFileShareConfiguration?.[
-                                          "accountKey"
-                                        ],
-                                      relativeMountPath:
-                                        p.azureFileShareConfiguration?.[
-                                          "relativeMountPath"
-                                        ],
-                                      mountOptions:
-                                        p.azureFileShareConfiguration?.[
-                                          "mountOptions"
-                                        ],
-                                    },
-                            })),
+                            userAccounts: !body.jobSpecification?.poolInfo
+                              .autoPoolSpecification?.pool?.["userAccounts"]
+                              ? body.jobSpecification?.poolInfo
+                                  .autoPoolSpecification?.pool?.["userAccounts"]
+                              : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                  "userAccounts"
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  password: p["password"],
+                                  elevationLevel: p["elevationLevel"],
+                                  linuxUserConfiguration:
+                                    !p.linuxUserConfiguration
+                                      ? undefined
+                                      : {
+                                          uid: p.linuxUserConfiguration?.[
+                                            "uid"
+                                          ],
+                                          gid: p.linuxUserConfiguration?.[
+                                            "gid"
+                                          ],
+                                          sshPrivateKey:
+                                            p.linuxUserConfiguration?.[
+                                              "sshPrivateKey"
+                                            ],
+                                        },
+                                  windowsUserConfiguration:
+                                    !p.windowsUserConfiguration
+                                      ? undefined
+                                      : {
+                                          loginMode:
+                                            p.windowsUserConfiguration?.[
+                                              "loginMode"
+                                            ],
+                                        },
+                                })),
+                            metadata: !body.jobSpecification?.poolInfo
+                              .autoPoolSpecification?.pool?.["metadata"]
+                              ? body.jobSpecification?.poolInfo
+                                  .autoPoolSpecification?.pool?.["metadata"]
+                              : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                  "metadata"
+                                ].map((p) => ({
+                                  name: p["name"],
+                                  value: p["value"],
+                                })),
+                            mountConfiguration: !body.jobSpecification?.poolInfo
+                              .autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ]
+                              ? body.jobSpecification?.poolInfo
+                                  .autoPoolSpecification?.pool?.[
+                                  "mountConfiguration"
+                                ]
+                              : body.jobSpecification?.poolInfo.autoPoolSpecification?.pool?.[
+                                  "mountConfiguration"
+                                ].map((p) => ({
+                                  azureBlobFileSystemConfiguration:
+                                    !p.azureBlobFileSystemConfiguration
+                                      ? undefined
+                                      : {
+                                          accountName:
+                                            p
+                                              .azureBlobFileSystemConfiguration?.[
+                                              "accountName"
+                                            ],
+                                          containerName:
+                                            p
+                                              .azureBlobFileSystemConfiguration?.[
+                                              "containerName"
+                                            ],
+                                          accountKey:
+                                            p
+                                              .azureBlobFileSystemConfiguration?.[
+                                              "accountKey"
+                                            ],
+                                          sasKey:
+                                            p
+                                              .azureBlobFileSystemConfiguration?.[
+                                              "sasKey"
+                                            ],
+                                          blobfuseOptions:
+                                            p
+                                              .azureBlobFileSystemConfiguration?.[
+                                              "blobfuseOptions"
+                                            ],
+                                          relativeMountPath:
+                                            p
+                                              .azureBlobFileSystemConfiguration?.[
+                                              "relativeMountPath"
+                                            ],
+                                          identityReference: !p
+                                            .azureBlobFileSystemConfiguration
+                                            ?.identityReference
+                                            ? undefined
+                                            : {
+                                                resourceId:
+                                                  p
+                                                    .azureBlobFileSystemConfiguration
+                                                    ?.identityReference?.[
+                                                    "resourceId"
+                                                  ],
+                                              },
+                                        },
+                                  nfsMountConfiguration:
+                                    !p.nfsMountConfiguration
+                                      ? undefined
+                                      : {
+                                          source:
+                                            p.nfsMountConfiguration?.["source"],
+                                          relativeMountPath:
+                                            p.nfsMountConfiguration?.[
+                                              "relativeMountPath"
+                                            ],
+                                          mountOptions:
+                                            p.nfsMountConfiguration?.[
+                                              "mountOptions"
+                                            ],
+                                        },
+                                  cifsMountConfiguration:
+                                    !p.cifsMountConfiguration
+                                      ? undefined
+                                      : {
+                                          username:
+                                            p.cifsMountConfiguration?.[
+                                              "username"
+                                            ],
+                                          source:
+                                            p.cifsMountConfiguration?.[
+                                              "source"
+                                            ],
+                                          relativeMountPath:
+                                            p.cifsMountConfiguration?.[
+                                              "relativeMountPath"
+                                            ],
+                                          mountOptions:
+                                            p.cifsMountConfiguration?.[
+                                              "mountOptions"
+                                            ],
+                                          password:
+                                            p.cifsMountConfiguration?.[
+                                              "password"
+                                            ],
+                                        },
+                                  azureFileShareConfiguration:
+                                    !p.azureFileShareConfiguration
+                                      ? undefined
+                                      : {
+                                          accountName:
+                                            p.azureFileShareConfiguration?.[
+                                              "accountName"
+                                            ],
+                                          azureFileUrl:
+                                            p.azureFileShareConfiguration?.[
+                                              "azureFileUrl"
+                                            ],
+                                          accountKey:
+                                            p.azureFileShareConfiguration?.[
+                                              "accountKey"
+                                            ],
+                                          relativeMountPath:
+                                            p.azureFileShareConfiguration?.[
+                                              "relativeMountPath"
+                                            ],
+                                          mountOptions:
+                                            p.azureFileShareConfiguration?.[
+                                              "mountOptions"
+                                            ],
+                                        },
+                                })),
                             targetNodeCommunicationMode:
                               body.jobSpecification?.poolInfo
                                 .autoPoolSpecification?.pool?.[
@@ -10851,14 +11811,19 @@ export function _updateJobScheduleSend(
                           },
                     },
               },
-              metadata: (body.jobSpecification?.["metadata"] ?? []).map(
-                (p) => ({ name: p["name"], value: p["value"] })
-              ),
+              metadata: !body.jobSpecification?.["metadata"]
+                ? body.jobSpecification?.["metadata"]
+                : body.jobSpecification?.["metadata"].map((p) => ({
+                    name: p["name"],
+                    value: p["value"],
+                  })),
             },
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
       },
     });
 }
@@ -11002,56 +11967,71 @@ export function _replaceJobScheduleSend(
                         body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["workingDirectory"],
                     },
-                resourceFiles: (
-                  body.jobSpecification.jobManagerTask?.["resourceFiles"] ?? []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
-                outputFiles: (
-                  body.jobSpecification.jobManagerTask?.["outputFiles"] ?? []
-                ).map((p) => ({
-                  filePattern: p["filePattern"],
-                  destination: {
-                    container: !p.destination.container
-                      ? undefined
-                      : {
-                          path: p.destination.container?.["path"],
-                          containerUrl:
-                            p.destination.container?.["containerUrl"],
-                          identityReference: !p.destination.container
-                            ?.identityReference
+                resourceFiles: !body.jobSpecification.jobManagerTask?.[
+                  "resourceFiles"
+                ]
+                  ? body.jobSpecification.jobManagerTask?.["resourceFiles"]
+                  : body.jobSpecification.jobManagerTask?.["resourceFiles"].map(
+                      (p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })
+                    ),
+                outputFiles: !body.jobSpecification.jobManagerTask?.[
+                  "outputFiles"
+                ]
+                  ? body.jobSpecification.jobManagerTask?.["outputFiles"]
+                  : body.jobSpecification.jobManagerTask?.["outputFiles"].map(
+                      (p) => ({
+                        filePattern: p["filePattern"],
+                        destination: {
+                          container: !p.destination.container
                             ? undefined
                             : {
-                                resourceId:
-                                  p.destination.container?.identityReference?.[
-                                    "resourceId"
-                                  ],
+                                path: p.destination.container?.["path"],
+                                containerUrl:
+                                  p.destination.container?.["containerUrl"],
+                                identityReference: !p.destination.container
+                                  ?.identityReference
+                                  ? undefined
+                                  : {
+                                      resourceId:
+                                        p.destination.container
+                                          ?.identityReference?.["resourceId"],
+                                    },
+                                uploadHeaders: !p.destination.container?.[
+                                  "uploadHeaders"
+                                ]
+                                  ? p.destination.container?.["uploadHeaders"]
+                                  : p.destination.container?.[
+                                      "uploadHeaders"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      value: p["value"],
+                                    })),
                               },
-                          uploadHeaders: (
-                            p.destination.container?.["uploadHeaders"] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
                         },
-                  },
-                  uploadOptions: {
-                    uploadCondition: p.uploadOptions["uploadCondition"],
-                  },
-                })),
-                environmentSettings: (
-                  body.jobSpecification.jobManagerTask?.[
-                    "environmentSettings"
-                  ] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                        uploadOptions: {
+                          uploadCondition: p.uploadOptions["uploadCondition"],
+                        },
+                      })
+                    ),
+                environmentSettings: !body.jobSpecification.jobManagerTask?.[
+                  "environmentSettings"
+                ]
+                  ? body.jobSpecification.jobManagerTask?.[
+                      "environmentSettings"
+                    ]
+                  : body.jobSpecification.jobManagerTask?.[
+                      "environmentSettings"
+                    ].map((p) => ({ name: p["name"], value: p["value"] })),
                 constraints: !body.jobSpecification.jobManagerTask?.constraints
                   ? undefined
                   : {
@@ -11094,14 +12074,17 @@ export function _replaceJobScheduleSend(
                     },
                 runExclusive:
                   body.jobSpecification.jobManagerTask?.["runExclusive"],
-                applicationPackageReferences: (
-                  body.jobSpecification.jobManagerTask?.[
-                    "applicationPackageReferences"
-                  ] ?? []
-                ).map((p) => ({
-                  applicationId: p["applicationId"],
-                  version: p["version"],
-                })),
+                applicationPackageReferences: !body.jobSpecification
+                  .jobManagerTask?.["applicationPackageReferences"]
+                  ? body.jobSpecification.jobManagerTask?.[
+                      "applicationPackageReferences"
+                    ]
+                  : body.jobSpecification.jobManagerTask?.[
+                      "applicationPackageReferences"
+                    ].map((p) => ({
+                      applicationId: p["applicationId"],
+                      version: p["version"],
+                    })),
                 authenticationTokenSettings: !body.jobSpecification
                   .jobManagerTask?.authenticationTokenSettings
                   ? undefined
@@ -11161,25 +12144,31 @@ export function _replaceJobScheduleSend(
                         body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["workingDirectory"],
                     },
-                resourceFiles: (
-                  body.jobSpecification.jobPreparationTask?.["resourceFiles"] ??
-                  []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
-                environmentSettings: (
-                  body.jobSpecification.jobPreparationTask?.[
-                    "environmentSettings"
-                  ] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                resourceFiles: !body.jobSpecification.jobPreparationTask?.[
+                  "resourceFiles"
+                ]
+                  ? body.jobSpecification.jobPreparationTask?.["resourceFiles"]
+                  : body.jobSpecification.jobPreparationTask?.[
+                      "resourceFiles"
+                    ].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !body.jobSpecification
+                  .jobPreparationTask?.["environmentSettings"]
+                  ? body.jobSpecification.jobPreparationTask?.[
+                      "environmentSettings"
+                    ]
+                  : body.jobSpecification.jobPreparationTask?.[
+                      "environmentSettings"
+                    ].map((p) => ({ name: p["name"], value: p["value"] })),
                 constraints: !body.jobSpecification.jobPreparationTask
                   ?.constraints
                   ? undefined
@@ -11269,24 +12258,32 @@ export function _replaceJobScheduleSend(
                         body.jobSpecification.jobReleaseTask
                           ?.containerSettings?.["workingDirectory"],
                     },
-                resourceFiles: (
-                  body.jobSpecification.jobReleaseTask?.["resourceFiles"] ?? []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
-                environmentSettings: (
-                  body.jobSpecification.jobReleaseTask?.[
-                    "environmentSettings"
-                  ] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                resourceFiles: !body.jobSpecification.jobReleaseTask?.[
+                  "resourceFiles"
+                ]
+                  ? body.jobSpecification.jobReleaseTask?.["resourceFiles"]
+                  : body.jobSpecification.jobReleaseTask?.["resourceFiles"].map(
+                      (p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })
+                    ),
+                environmentSettings: !body.jobSpecification.jobReleaseTask?.[
+                  "environmentSettings"
+                ]
+                  ? body.jobSpecification.jobReleaseTask?.[
+                      "environmentSettings"
+                    ]
+                  : body.jobSpecification.jobReleaseTask?.[
+                      "environmentSettings"
+                    ].map((p) => ({ name: p["name"], value: p["value"] })),
                 maxWallClockTime:
                   body.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
                 retentionTime:
@@ -11312,9 +12309,14 @@ export function _replaceJobScheduleSend(
                           },
                     },
               },
-          commonEnvironmentSettings: (
-            body.jobSpecification["commonEnvironmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+          commonEnvironmentSettings: !body.jobSpecification[
+            "commonEnvironmentSettings"
+          ]
+            ? body.jobSpecification["commonEnvironmentSettings"]
+            : body.jobSpecification["commonEnvironmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           poolInfo: {
             poolId: body.jobSpecification.poolInfo["poolId"],
             autoPoolSpecification: !body.jobSpecification.poolInfo
@@ -11409,18 +12411,20 @@ export function _replaceJobScheduleSend(
                                         "enableAutomaticUpdates"
                                       ],
                                   },
-                              dataDisks: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.[
-                                  "dataDisks"
-                                ] ?? []
-                              ).map((p) => ({
-                                lun: p["lun"],
-                                caching: p["caching"],
-                                diskSizeGB: p["diskSizeGB"],
-                                storageAccountType: p["storageAccountType"],
-                              })),
+                              dataDisks: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["dataDisks"]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.["dataDisks"]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "dataDisks"
+                                  ].map((p) => ({
+                                    lun: p["lun"],
+                                    caching: p["caching"],
+                                    diskSizeGB: p["diskSizeGB"],
+                                    storageAccountType: p["storageAccountType"],
+                                  })),
                               licenseType:
                                 body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
@@ -11444,26 +12448,34 @@ export function _replaceJobScheduleSend(
                                         ?.containerConfiguration?.[
                                         "containerImageNames"
                                       ],
-                                    containerRegistries: (
-                                      body.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.containerConfiguration?.[
-                                        "containerRegistries"
-                                      ] ?? []
-                                    ).map((p) => ({
-                                      username: p["username"],
-                                      password: p["password"],
-                                      registryServer: p["registryServer"],
-                                      identityReference: !p.identityReference
-                                        ? undefined
-                                        : {
-                                            resourceId:
-                                              p.identityReference?.[
-                                                "resourceId"
-                                              ],
-                                          },
-                                    })),
+                                    containerRegistries: !body.jobSpecification
+                                      .poolInfo.autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.[
+                                      "containerRegistries"
+                                    ]
+                                      ? body.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ]
+                                      : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ].map((p) => ({
+                                          username: p["username"],
+                                          password: p["password"],
+                                          registryServer: p["registryServer"],
+                                          identityReference:
+                                            !p.identityReference
+                                              ? undefined
+                                              : {
+                                                  resourceId:
+                                                    p.identityReference?.[
+                                                      "resourceId"
+                                                    ],
+                                                },
+                                        })),
                                   },
                               diskEncryptionConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
@@ -11493,26 +12505,30 @@ export function _replaceJobScheduleSend(
                                         "policy"
                                       ],
                                   },
-                              extensions: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.[
-                                  "extensions"
-                                ] ?? []
-                              ).map((p) => ({
-                                name: p["name"],
-                                publisher: p["publisher"],
-                                type: p["type"],
-                                typeHandlerVersion: p["typeHandlerVersion"],
-                                autoUpgradeMinorVersion:
-                                  p["autoUpgradeMinorVersion"],
-                                enableAutomaticUpgrade:
-                                  p["enableAutomaticUpgrade"],
-                                settings: p["settings"],
-                                protectedSettings: p["protectedSettings"],
-                                provisionAfterExtensions:
-                                  p["provisionAfterExtensions"],
-                              })),
+                              extensions: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["extensions"]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    publisher: p["publisher"],
+                                    type: p["type"],
+                                    typeHandlerVersion: p["typeHandlerVersion"],
+                                    autoUpgradeMinorVersion:
+                                      p["autoUpgradeMinorVersion"],
+                                    enableAutomaticUpgrade:
+                                      p["enableAutomaticUpgrade"],
+                                    settings: p["settings"],
+                                    protectedSettings: p["protectedSettings"],
+                                    provisionAfterExtensions:
+                                      p["provisionAfterExtensions"],
+                                  })),
                               osDisk: !body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.osDisk
@@ -11588,31 +12604,32 @@ export function _replaceJobScheduleSend(
                                 ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
-                                    inboundNATPools: (
-                                      body.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.networkConfiguration
-                                        ?.endpointConfiguration?.[
+                                    inboundNATPools:
+                                      body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                         "inboundNATPools"
-                                      ] ?? []
-                                    ).map((p) => ({
-                                      name: p["name"],
-                                      protocol: p["protocol"],
-                                      backendPort: p["backendPort"],
-                                      frontendPortRangeStart:
-                                        p["frontendPortRangeStart"],
-                                      frontendPortRangeEnd:
-                                        p["frontendPortRangeEnd"],
-                                      networkSecurityGroupRules: (
-                                        p["networkSecurityGroupRules"] ?? []
-                                      ).map((p) => ({
-                                        priority: p["priority"],
-                                        access: p["access"],
-                                        sourceAddressPrefix:
-                                          p["sourceAddressPrefix"],
-                                        sourcePortRanges: p["sourcePortRanges"],
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        protocol: p["protocol"],
+                                        backendPort: p["backendPort"],
+                                        frontendPortRangeStart:
+                                          p["frontendPortRangeStart"],
+                                        frontendPortRangeEnd:
+                                          p["frontendPortRangeEnd"],
+                                        networkSecurityGroupRules: !p[
+                                          "networkSecurityGroupRules"
+                                        ]
+                                          ? p["networkSecurityGroupRules"]
+                                          : p["networkSecurityGroupRules"].map(
+                                              (p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              })
+                                            ),
                                       })),
-                                    })),
                                   },
                               publicIPAddressConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
@@ -11711,35 +12728,45 @@ export function _replaceJobScheduleSend(
                                         "workingDirectory"
                                       ],
                                   },
-                              resourceFiles: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool?.startTask?.[
-                                  "resourceFiles"
-                                ] ?? []
-                              ).map((p) => ({
-                                autoStorageContainerName:
-                                  p["autoStorageContainerName"],
-                                storageContainerUrl: p["storageContainerUrl"],
-                                httpUrl: p["httpUrl"],
-                                blobPrefix: p["blobPrefix"],
-                                filePath: p["filePath"],
-                                fileMode: p["fileMode"],
-                                identityReference: !p.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.identityReference?.["resourceId"],
-                                    },
-                              })),
-                              environmentSettings: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool?.startTask?.[
-                                  "environmentSettings"
-                                ] ?? []
-                              ).map((p) => ({
-                                name: p["name"],
-                                value: p["value"],
-                              })),
+                              resourceFiles: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask?.[
+                                "resourceFiles"
+                              ]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "resourceFiles"
+                                  ]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "resourceFiles"
+                                  ].map((p) => ({
+                                    autoStorageContainerName:
+                                      p["autoStorageContainerName"],
+                                    storageContainerUrl:
+                                      p["storageContainerUrl"],
+                                    httpUrl: p["httpUrl"],
+                                    blobPrefix: p["blobPrefix"],
+                                    filePath: p["filePath"],
+                                    fileMode: p["fileMode"],
+                                    identityReference: !p.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.identityReference?.["resourceId"],
+                                        },
+                                  })),
+                              environmentSettings: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.startTask?.["environmentSettings"]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "environmentSettings"
+                                  ]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "environmentSettings"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })),
                               userIdentity: !body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.startTask
                                 ?.userIdentity
@@ -11777,161 +12804,197 @@ export function _replaceJobScheduleSend(
                                   "waitForSuccess"
                                 ],
                             },
-                        certificateReferences: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["certificateReferences"] ?? []
-                        ).map((p) => ({
-                          thumbprint: p["thumbprint"],
-                          thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                          storeLocation: p["storeLocation"],
-                          storeName: p["storeName"],
-                          visibility: p["visibility"],
-                        })),
-                        applicationPackageReferences: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["applicationPackageReferences"] ?? []
-                        ).map((p) => ({
-                          applicationId: p["applicationId"],
-                          version: p["version"],
-                        })),
+                        certificateReferences: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.[
+                          "certificateReferences"
+                        ]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["certificateReferences"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ].map((p) => ({
+                              thumbprint: p["thumbprint"],
+                              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                              storeLocation: p["storeLocation"],
+                              storeName: p["storeName"],
+                              visibility: p["visibility"],
+                            })),
+                        applicationPackageReferences: !body.jobSpecification
+                          .poolInfo.autoPoolSpecification?.pool?.[
+                          "applicationPackageReferences"
+                        ]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["applicationPackageReferences"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ].map((p) => ({
+                              applicationId: p["applicationId"],
+                              version: p["version"],
+                            })),
                         applicationLicenses:
                           body.jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.["applicationLicenses"],
-                        userAccounts: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["userAccounts"] ?? []
-                        ).map((p) => ({
-                          name: p["name"],
-                          password: p["password"],
-                          elevationLevel: p["elevationLevel"],
-                          linuxUserConfiguration: !p.linuxUserConfiguration
-                            ? undefined
-                            : {
-                                uid: p.linuxUserConfiguration?.["uid"],
-                                gid: p.linuxUserConfiguration?.["gid"],
-                                sshPrivateKey:
-                                  p.linuxUserConfiguration?.["sshPrivateKey"],
-                              },
-                          windowsUserConfiguration: !p.windowsUserConfiguration
-                            ? undefined
-                            : {
-                                loginMode:
-                                  p.windowsUserConfiguration?.["loginMode"],
-                              },
-                        })),
-                        metadata: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["metadata"] ?? []
-                        ).map((p) => ({ name: p["name"], value: p["value"] })),
-                        mountConfiguration: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["mountConfiguration"] ?? []
-                        ).map((p) => ({
-                          azureBlobFileSystemConfiguration:
-                            !p.azureBlobFileSystemConfiguration
-                              ? undefined
-                              : {
-                                  accountName:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "accountName"
-                                    ],
-                                  containerName:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "containerName"
-                                    ],
-                                  accountKey:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "accountKey"
-                                    ],
-                                  sasKey:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "sasKey"
-                                    ],
-                                  blobfuseOptions:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "blobfuseOptions"
-                                    ],
-                                  relativeMountPath:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "relativeMountPath"
-                                    ],
-                                  identityReference: !p
-                                    .azureBlobFileSystemConfiguration
-                                    ?.identityReference
-                                    ? undefined
-                                    : {
-                                        resourceId:
-                                          p.azureBlobFileSystemConfiguration
-                                            ?.identityReference?.["resourceId"],
-                                      },
-                                },
-                          nfsMountConfiguration: !p.nfsMountConfiguration
-                            ? undefined
-                            : {
-                                source: p.nfsMountConfiguration?.["source"],
-                                relativeMountPath:
-                                  p.nfsMountConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.nfsMountConfiguration?.["mountOptions"],
-                              },
-                          cifsMountConfiguration: !p.cifsMountConfiguration
-                            ? undefined
-                            : {
-                                username:
-                                  p.cifsMountConfiguration?.["username"],
-                                source: p.cifsMountConfiguration?.["source"],
-                                relativeMountPath:
-                                  p.cifsMountConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.cifsMountConfiguration?.["mountOptions"],
-                                password:
-                                  p.cifsMountConfiguration?.["password"],
-                              },
-                          azureFileShareConfiguration:
-                            !p.azureFileShareConfiguration
-                              ? undefined
-                              : {
-                                  accountName:
-                                    p.azureFileShareConfiguration?.[
-                                      "accountName"
-                                    ],
-                                  azureFileUrl:
-                                    p.azureFileShareConfiguration?.[
-                                      "azureFileUrl"
-                                    ],
-                                  accountKey:
-                                    p.azureFileShareConfiguration?.[
-                                      "accountKey"
-                                    ],
-                                  relativeMountPath:
-                                    p.azureFileShareConfiguration?.[
-                                      "relativeMountPath"
-                                    ],
-                                  mountOptions:
-                                    p.azureFileShareConfiguration?.[
-                                      "mountOptions"
-                                    ],
-                                },
-                        })),
+                        userAccounts: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["userAccounts"]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["userAccounts"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "userAccounts"
+                            ].map((p) => ({
+                              name: p["name"],
+                              password: p["password"],
+                              elevationLevel: p["elevationLevel"],
+                              linuxUserConfiguration: !p.linuxUserConfiguration
+                                ? undefined
+                                : {
+                                    uid: p.linuxUserConfiguration?.["uid"],
+                                    gid: p.linuxUserConfiguration?.["gid"],
+                                    sshPrivateKey:
+                                      p.linuxUserConfiguration?.[
+                                        "sshPrivateKey"
+                                      ],
+                                  },
+                              windowsUserConfiguration:
+                                !p.windowsUserConfiguration
+                                  ? undefined
+                                  : {
+                                      loginMode:
+                                        p.windowsUserConfiguration?.[
+                                          "loginMode"
+                                        ],
+                                    },
+                            })),
+                        metadata: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["metadata"]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["metadata"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "metadata"
+                            ].map((p) => ({
+                              name: p["name"],
+                              value: p["value"],
+                            })),
+                        mountConfiguration: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["mountConfiguration"]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["mountConfiguration"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ].map((p) => ({
+                              azureBlobFileSystemConfiguration:
+                                !p.azureBlobFileSystemConfiguration
+                                  ? undefined
+                                  : {
+                                      accountName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      containerName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "containerName"
+                                        ],
+                                      accountKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      sasKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "sasKey"
+                                        ],
+                                      blobfuseOptions:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "blobfuseOptions"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      identityReference: !p
+                                        .azureBlobFileSystemConfiguration
+                                        ?.identityReference
+                                        ? undefined
+                                        : {
+                                            resourceId:
+                                              p.azureBlobFileSystemConfiguration
+                                                ?.identityReference?.[
+                                                "resourceId"
+                                              ],
+                                          },
+                                    },
+                              nfsMountConfiguration: !p.nfsMountConfiguration
+                                ? undefined
+                                : {
+                                    source: p.nfsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.nfsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.nfsMountConfiguration?.["mountOptions"],
+                                  },
+                              cifsMountConfiguration: !p.cifsMountConfiguration
+                                ? undefined
+                                : {
+                                    username:
+                                      p.cifsMountConfiguration?.["username"],
+                                    source:
+                                      p.cifsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.cifsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.cifsMountConfiguration?.[
+                                        "mountOptions"
+                                      ],
+                                    password:
+                                      p.cifsMountConfiguration?.["password"],
+                                  },
+                              azureFileShareConfiguration:
+                                !p.azureFileShareConfiguration
+                                  ? undefined
+                                  : {
+                                      accountName:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      azureFileUrl:
+                                        p.azureFileShareConfiguration?.[
+                                          "azureFileUrl"
+                                        ],
+                                      accountKey:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureFileShareConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      mountOptions:
+                                        p.azureFileShareConfiguration?.[
+                                          "mountOptions"
+                                        ],
+                                    },
+                            })),
                         targetNodeCommunicationMode:
                           body.jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.["targetNodeCommunicationMode"],
                       },
                 },
           },
-          metadata: (body.jobSpecification["metadata"] ?? []).map((p) => ({
-            name: p["name"],
-            value: p["value"],
-          })),
+          metadata: !body.jobSpecification["metadata"]
+            ? body.jobSpecification["metadata"]
+            : body.jobSpecification["metadata"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
         },
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
       },
     });
 }
@@ -12213,56 +13276,71 @@ export function _createJobScheduleSend(
                         body.jobSpecification.jobManagerTask
                           ?.containerSettings?.["workingDirectory"],
                     },
-                resourceFiles: (
-                  body.jobSpecification.jobManagerTask?.["resourceFiles"] ?? []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
-                outputFiles: (
-                  body.jobSpecification.jobManagerTask?.["outputFiles"] ?? []
-                ).map((p) => ({
-                  filePattern: p["filePattern"],
-                  destination: {
-                    container: !p.destination.container
-                      ? undefined
-                      : {
-                          path: p.destination.container?.["path"],
-                          containerUrl:
-                            p.destination.container?.["containerUrl"],
-                          identityReference: !p.destination.container
-                            ?.identityReference
+                resourceFiles: !body.jobSpecification.jobManagerTask?.[
+                  "resourceFiles"
+                ]
+                  ? body.jobSpecification.jobManagerTask?.["resourceFiles"]
+                  : body.jobSpecification.jobManagerTask?.["resourceFiles"].map(
+                      (p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })
+                    ),
+                outputFiles: !body.jobSpecification.jobManagerTask?.[
+                  "outputFiles"
+                ]
+                  ? body.jobSpecification.jobManagerTask?.["outputFiles"]
+                  : body.jobSpecification.jobManagerTask?.["outputFiles"].map(
+                      (p) => ({
+                        filePattern: p["filePattern"],
+                        destination: {
+                          container: !p.destination.container
                             ? undefined
                             : {
-                                resourceId:
-                                  p.destination.container?.identityReference?.[
-                                    "resourceId"
-                                  ],
+                                path: p.destination.container?.["path"],
+                                containerUrl:
+                                  p.destination.container?.["containerUrl"],
+                                identityReference: !p.destination.container
+                                  ?.identityReference
+                                  ? undefined
+                                  : {
+                                      resourceId:
+                                        p.destination.container
+                                          ?.identityReference?.["resourceId"],
+                                    },
+                                uploadHeaders: !p.destination.container?.[
+                                  "uploadHeaders"
+                                ]
+                                  ? p.destination.container?.["uploadHeaders"]
+                                  : p.destination.container?.[
+                                      "uploadHeaders"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      value: p["value"],
+                                    })),
                               },
-                          uploadHeaders: (
-                            p.destination.container?.["uploadHeaders"] ?? []
-                          ).map((p) => ({
-                            name: p["name"],
-                            value: p["value"],
-                          })),
                         },
-                  },
-                  uploadOptions: {
-                    uploadCondition: p.uploadOptions["uploadCondition"],
-                  },
-                })),
-                environmentSettings: (
-                  body.jobSpecification.jobManagerTask?.[
-                    "environmentSettings"
-                  ] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                        uploadOptions: {
+                          uploadCondition: p.uploadOptions["uploadCondition"],
+                        },
+                      })
+                    ),
+                environmentSettings: !body.jobSpecification.jobManagerTask?.[
+                  "environmentSettings"
+                ]
+                  ? body.jobSpecification.jobManagerTask?.[
+                      "environmentSettings"
+                    ]
+                  : body.jobSpecification.jobManagerTask?.[
+                      "environmentSettings"
+                    ].map((p) => ({ name: p["name"], value: p["value"] })),
                 constraints: !body.jobSpecification.jobManagerTask?.constraints
                   ? undefined
                   : {
@@ -12305,14 +13383,17 @@ export function _createJobScheduleSend(
                     },
                 runExclusive:
                   body.jobSpecification.jobManagerTask?.["runExclusive"],
-                applicationPackageReferences: (
-                  body.jobSpecification.jobManagerTask?.[
-                    "applicationPackageReferences"
-                  ] ?? []
-                ).map((p) => ({
-                  applicationId: p["applicationId"],
-                  version: p["version"],
-                })),
+                applicationPackageReferences: !body.jobSpecification
+                  .jobManagerTask?.["applicationPackageReferences"]
+                  ? body.jobSpecification.jobManagerTask?.[
+                      "applicationPackageReferences"
+                    ]
+                  : body.jobSpecification.jobManagerTask?.[
+                      "applicationPackageReferences"
+                    ].map((p) => ({
+                      applicationId: p["applicationId"],
+                      version: p["version"],
+                    })),
                 authenticationTokenSettings: !body.jobSpecification
                   .jobManagerTask?.authenticationTokenSettings
                   ? undefined
@@ -12372,25 +13453,31 @@ export function _createJobScheduleSend(
                         body.jobSpecification.jobPreparationTask
                           ?.containerSettings?.["workingDirectory"],
                     },
-                resourceFiles: (
-                  body.jobSpecification.jobPreparationTask?.["resourceFiles"] ??
-                  []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
-                environmentSettings: (
-                  body.jobSpecification.jobPreparationTask?.[
-                    "environmentSettings"
-                  ] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                resourceFiles: !body.jobSpecification.jobPreparationTask?.[
+                  "resourceFiles"
+                ]
+                  ? body.jobSpecification.jobPreparationTask?.["resourceFiles"]
+                  : body.jobSpecification.jobPreparationTask?.[
+                      "resourceFiles"
+                    ].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !body.jobSpecification
+                  .jobPreparationTask?.["environmentSettings"]
+                  ? body.jobSpecification.jobPreparationTask?.[
+                      "environmentSettings"
+                    ]
+                  : body.jobSpecification.jobPreparationTask?.[
+                      "environmentSettings"
+                    ].map((p) => ({ name: p["name"], value: p["value"] })),
                 constraints: !body.jobSpecification.jobPreparationTask
                   ?.constraints
                   ? undefined
@@ -12480,24 +13567,32 @@ export function _createJobScheduleSend(
                         body.jobSpecification.jobReleaseTask
                           ?.containerSettings?.["workingDirectory"],
                     },
-                resourceFiles: (
-                  body.jobSpecification.jobReleaseTask?.["resourceFiles"] ?? []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
-                environmentSettings: (
-                  body.jobSpecification.jobReleaseTask?.[
-                    "environmentSettings"
-                  ] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                resourceFiles: !body.jobSpecification.jobReleaseTask?.[
+                  "resourceFiles"
+                ]
+                  ? body.jobSpecification.jobReleaseTask?.["resourceFiles"]
+                  : body.jobSpecification.jobReleaseTask?.["resourceFiles"].map(
+                      (p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })
+                    ),
+                environmentSettings: !body.jobSpecification.jobReleaseTask?.[
+                  "environmentSettings"
+                ]
+                  ? body.jobSpecification.jobReleaseTask?.[
+                      "environmentSettings"
+                    ]
+                  : body.jobSpecification.jobReleaseTask?.[
+                      "environmentSettings"
+                    ].map((p) => ({ name: p["name"], value: p["value"] })),
                 maxWallClockTime:
                   body.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
                 retentionTime:
@@ -12523,9 +13618,14 @@ export function _createJobScheduleSend(
                           },
                     },
               },
-          commonEnvironmentSettings: (
-            body.jobSpecification["commonEnvironmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+          commonEnvironmentSettings: !body.jobSpecification[
+            "commonEnvironmentSettings"
+          ]
+            ? body.jobSpecification["commonEnvironmentSettings"]
+            : body.jobSpecification["commonEnvironmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           poolInfo: {
             poolId: body.jobSpecification.poolInfo["poolId"],
             autoPoolSpecification: !body.jobSpecification.poolInfo
@@ -12620,18 +13720,20 @@ export function _createJobScheduleSend(
                                         "enableAutomaticUpdates"
                                       ],
                                   },
-                              dataDisks: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.[
-                                  "dataDisks"
-                                ] ?? []
-                              ).map((p) => ({
-                                lun: p["lun"],
-                                caching: p["caching"],
-                                diskSizeGB: p["diskSizeGB"],
-                                storageAccountType: p["storageAccountType"],
-                              })),
+                              dataDisks: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["dataDisks"]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.["dataDisks"]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "dataDisks"
+                                  ].map((p) => ({
+                                    lun: p["lun"],
+                                    caching: p["caching"],
+                                    diskSizeGB: p["diskSizeGB"],
+                                    storageAccountType: p["storageAccountType"],
+                                  })),
                               licenseType:
                                 body.jobSpecification.poolInfo
                                   .autoPoolSpecification?.pool
@@ -12655,26 +13757,34 @@ export function _createJobScheduleSend(
                                         ?.containerConfiguration?.[
                                         "containerImageNames"
                                       ],
-                                    containerRegistries: (
-                                      body.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.virtualMachineConfiguration
-                                        ?.containerConfiguration?.[
-                                        "containerRegistries"
-                                      ] ?? []
-                                    ).map((p) => ({
-                                      username: p["username"],
-                                      password: p["password"],
-                                      registryServer: p["registryServer"],
-                                      identityReference: !p.identityReference
-                                        ? undefined
-                                        : {
-                                            resourceId:
-                                              p.identityReference?.[
-                                                "resourceId"
-                                              ],
-                                          },
-                                    })),
+                                    containerRegistries: !body.jobSpecification
+                                      .poolInfo.autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.containerConfiguration?.[
+                                      "containerRegistries"
+                                    ]
+                                      ? body.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ]
+                                      : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                          "containerRegistries"
+                                        ].map((p) => ({
+                                          username: p["username"],
+                                          password: p["password"],
+                                          registryServer: p["registryServer"],
+                                          identityReference:
+                                            !p.identityReference
+                                              ? undefined
+                                              : {
+                                                  resourceId:
+                                                    p.identityReference?.[
+                                                      "resourceId"
+                                                    ],
+                                                },
+                                        })),
                                   },
                               diskEncryptionConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
@@ -12704,26 +13814,30 @@ export function _createJobScheduleSend(
                                         "policy"
                                       ],
                                   },
-                              extensions: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.[
-                                  "extensions"
-                                ] ?? []
-                              ).map((p) => ({
-                                name: p["name"],
-                                publisher: p["publisher"],
-                                type: p["type"],
-                                typeHandlerVersion: p["typeHandlerVersion"],
-                                autoUpgradeMinorVersion:
-                                  p["autoUpgradeMinorVersion"],
-                                enableAutomaticUpgrade:
-                                  p["enableAutomaticUpgrade"],
-                                settings: p["settings"],
-                                protectedSettings: p["protectedSettings"],
-                                provisionAfterExtensions:
-                                  p["provisionAfterExtensions"],
-                              })),
+                              extensions: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool
+                                ?.virtualMachineConfiguration?.["extensions"]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                    "extensions"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    publisher: p["publisher"],
+                                    type: p["type"],
+                                    typeHandlerVersion: p["typeHandlerVersion"],
+                                    autoUpgradeMinorVersion:
+                                      p["autoUpgradeMinorVersion"],
+                                    enableAutomaticUpgrade:
+                                      p["enableAutomaticUpgrade"],
+                                    settings: p["settings"],
+                                    protectedSettings: p["protectedSettings"],
+                                    provisionAfterExtensions:
+                                      p["provisionAfterExtensions"],
+                                  })),
                               osDisk: !body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool
                                 ?.virtualMachineConfiguration?.osDisk
@@ -12799,31 +13913,32 @@ export function _createJobScheduleSend(
                                 ?.networkConfiguration?.endpointConfiguration
                                 ? undefined
                                 : {
-                                    inboundNATPools: (
-                                      body.jobSpecification.poolInfo
-                                        .autoPoolSpecification?.pool
-                                        ?.networkConfiguration
-                                        ?.endpointConfiguration?.[
+                                    inboundNATPools:
+                                      body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
                                         "inboundNATPools"
-                                      ] ?? []
-                                    ).map((p) => ({
-                                      name: p["name"],
-                                      protocol: p["protocol"],
-                                      backendPort: p["backendPort"],
-                                      frontendPortRangeStart:
-                                        p["frontendPortRangeStart"],
-                                      frontendPortRangeEnd:
-                                        p["frontendPortRangeEnd"],
-                                      networkSecurityGroupRules: (
-                                        p["networkSecurityGroupRules"] ?? []
-                                      ).map((p) => ({
-                                        priority: p["priority"],
-                                        access: p["access"],
-                                        sourceAddressPrefix:
-                                          p["sourceAddressPrefix"],
-                                        sourcePortRanges: p["sourcePortRanges"],
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        protocol: p["protocol"],
+                                        backendPort: p["backendPort"],
+                                        frontendPortRangeStart:
+                                          p["frontendPortRangeStart"],
+                                        frontendPortRangeEnd:
+                                          p["frontendPortRangeEnd"],
+                                        networkSecurityGroupRules: !p[
+                                          "networkSecurityGroupRules"
+                                        ]
+                                          ? p["networkSecurityGroupRules"]
+                                          : p["networkSecurityGroupRules"].map(
+                                              (p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              })
+                                            ),
                                       })),
-                                    })),
                                   },
                               publicIPAddressConfiguration: !body
                                 .jobSpecification.poolInfo.autoPoolSpecification
@@ -12922,35 +14037,45 @@ export function _createJobScheduleSend(
                                         "workingDirectory"
                                       ],
                                   },
-                              resourceFiles: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool?.startTask?.[
-                                  "resourceFiles"
-                                ] ?? []
-                              ).map((p) => ({
-                                autoStorageContainerName:
-                                  p["autoStorageContainerName"],
-                                storageContainerUrl: p["storageContainerUrl"],
-                                httpUrl: p["httpUrl"],
-                                blobPrefix: p["blobPrefix"],
-                                filePath: p["filePath"],
-                                fileMode: p["fileMode"],
-                                identityReference: !p.identityReference
-                                  ? undefined
-                                  : {
-                                      resourceId:
-                                        p.identityReference?.["resourceId"],
-                                    },
-                              })),
-                              environmentSettings: (
-                                body.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool?.startTask?.[
-                                  "environmentSettings"
-                                ] ?? []
-                              ).map((p) => ({
-                                name: p["name"],
-                                value: p["value"],
-                              })),
+                              resourceFiles: !body.jobSpecification.poolInfo
+                                .autoPoolSpecification?.pool?.startTask?.[
+                                "resourceFiles"
+                              ]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "resourceFiles"
+                                  ]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "resourceFiles"
+                                  ].map((p) => ({
+                                    autoStorageContainerName:
+                                      p["autoStorageContainerName"],
+                                    storageContainerUrl:
+                                      p["storageContainerUrl"],
+                                    httpUrl: p["httpUrl"],
+                                    blobPrefix: p["blobPrefix"],
+                                    filePath: p["filePath"],
+                                    fileMode: p["fileMode"],
+                                    identityReference: !p.identityReference
+                                      ? undefined
+                                      : {
+                                          resourceId:
+                                            p.identityReference?.["resourceId"],
+                                        },
+                                  })),
+                              environmentSettings: !body.jobSpecification
+                                .poolInfo.autoPoolSpecification?.pool
+                                ?.startTask?.["environmentSettings"]
+                                ? body.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "environmentSettings"
+                                  ]
+                                : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                    "environmentSettings"
+                                  ].map((p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })),
                               userIdentity: !body.jobSpecification.poolInfo
                                 .autoPoolSpecification?.pool?.startTask
                                 ?.userIdentity
@@ -12988,161 +14113,197 @@ export function _createJobScheduleSend(
                                   "waitForSuccess"
                                 ],
                             },
-                        certificateReferences: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["certificateReferences"] ?? []
-                        ).map((p) => ({
-                          thumbprint: p["thumbprint"],
-                          thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                          storeLocation: p["storeLocation"],
-                          storeName: p["storeName"],
-                          visibility: p["visibility"],
-                        })),
-                        applicationPackageReferences: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["applicationPackageReferences"] ?? []
-                        ).map((p) => ({
-                          applicationId: p["applicationId"],
-                          version: p["version"],
-                        })),
+                        certificateReferences: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.[
+                          "certificateReferences"
+                        ]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["certificateReferences"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "certificateReferences"
+                            ].map((p) => ({
+                              thumbprint: p["thumbprint"],
+                              thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                              storeLocation: p["storeLocation"],
+                              storeName: p["storeName"],
+                              visibility: p["visibility"],
+                            })),
+                        applicationPackageReferences: !body.jobSpecification
+                          .poolInfo.autoPoolSpecification?.pool?.[
+                          "applicationPackageReferences"
+                        ]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["applicationPackageReferences"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "applicationPackageReferences"
+                            ].map((p) => ({
+                              applicationId: p["applicationId"],
+                              version: p["version"],
+                            })),
                         applicationLicenses:
                           body.jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.["applicationLicenses"],
-                        userAccounts: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["userAccounts"] ?? []
-                        ).map((p) => ({
-                          name: p["name"],
-                          password: p["password"],
-                          elevationLevel: p["elevationLevel"],
-                          linuxUserConfiguration: !p.linuxUserConfiguration
-                            ? undefined
-                            : {
-                                uid: p.linuxUserConfiguration?.["uid"],
-                                gid: p.linuxUserConfiguration?.["gid"],
-                                sshPrivateKey:
-                                  p.linuxUserConfiguration?.["sshPrivateKey"],
-                              },
-                          windowsUserConfiguration: !p.windowsUserConfiguration
-                            ? undefined
-                            : {
-                                loginMode:
-                                  p.windowsUserConfiguration?.["loginMode"],
-                              },
-                        })),
-                        metadata: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["metadata"] ?? []
-                        ).map((p) => ({ name: p["name"], value: p["value"] })),
-                        mountConfiguration: (
-                          body.jobSpecification.poolInfo.autoPoolSpecification
-                            ?.pool?.["mountConfiguration"] ?? []
-                        ).map((p) => ({
-                          azureBlobFileSystemConfiguration:
-                            !p.azureBlobFileSystemConfiguration
-                              ? undefined
-                              : {
-                                  accountName:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "accountName"
-                                    ],
-                                  containerName:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "containerName"
-                                    ],
-                                  accountKey:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "accountKey"
-                                    ],
-                                  sasKey:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "sasKey"
-                                    ],
-                                  blobfuseOptions:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "blobfuseOptions"
-                                    ],
-                                  relativeMountPath:
-                                    p.azureBlobFileSystemConfiguration?.[
-                                      "relativeMountPath"
-                                    ],
-                                  identityReference: !p
-                                    .azureBlobFileSystemConfiguration
-                                    ?.identityReference
-                                    ? undefined
-                                    : {
-                                        resourceId:
-                                          p.azureBlobFileSystemConfiguration
-                                            ?.identityReference?.["resourceId"],
-                                      },
-                                },
-                          nfsMountConfiguration: !p.nfsMountConfiguration
-                            ? undefined
-                            : {
-                                source: p.nfsMountConfiguration?.["source"],
-                                relativeMountPath:
-                                  p.nfsMountConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.nfsMountConfiguration?.["mountOptions"],
-                              },
-                          cifsMountConfiguration: !p.cifsMountConfiguration
-                            ? undefined
-                            : {
-                                username:
-                                  p.cifsMountConfiguration?.["username"],
-                                source: p.cifsMountConfiguration?.["source"],
-                                relativeMountPath:
-                                  p.cifsMountConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.cifsMountConfiguration?.["mountOptions"],
-                                password:
-                                  p.cifsMountConfiguration?.["password"],
-                              },
-                          azureFileShareConfiguration:
-                            !p.azureFileShareConfiguration
-                              ? undefined
-                              : {
-                                  accountName:
-                                    p.azureFileShareConfiguration?.[
-                                      "accountName"
-                                    ],
-                                  azureFileUrl:
-                                    p.azureFileShareConfiguration?.[
-                                      "azureFileUrl"
-                                    ],
-                                  accountKey:
-                                    p.azureFileShareConfiguration?.[
-                                      "accountKey"
-                                    ],
-                                  relativeMountPath:
-                                    p.azureFileShareConfiguration?.[
-                                      "relativeMountPath"
-                                    ],
-                                  mountOptions:
-                                    p.azureFileShareConfiguration?.[
-                                      "mountOptions"
-                                    ],
-                                },
-                        })),
+                        userAccounts: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["userAccounts"]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["userAccounts"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "userAccounts"
+                            ].map((p) => ({
+                              name: p["name"],
+                              password: p["password"],
+                              elevationLevel: p["elevationLevel"],
+                              linuxUserConfiguration: !p.linuxUserConfiguration
+                                ? undefined
+                                : {
+                                    uid: p.linuxUserConfiguration?.["uid"],
+                                    gid: p.linuxUserConfiguration?.["gid"],
+                                    sshPrivateKey:
+                                      p.linuxUserConfiguration?.[
+                                        "sshPrivateKey"
+                                      ],
+                                  },
+                              windowsUserConfiguration:
+                                !p.windowsUserConfiguration
+                                  ? undefined
+                                  : {
+                                      loginMode:
+                                        p.windowsUserConfiguration?.[
+                                          "loginMode"
+                                        ],
+                                    },
+                            })),
+                        metadata: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["metadata"]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["metadata"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "metadata"
+                            ].map((p) => ({
+                              name: p["name"],
+                              value: p["value"],
+                            })),
+                        mountConfiguration: !body.jobSpecification.poolInfo
+                          .autoPoolSpecification?.pool?.["mountConfiguration"]
+                          ? body.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["mountConfiguration"]
+                          : body.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                              "mountConfiguration"
+                            ].map((p) => ({
+                              azureBlobFileSystemConfiguration:
+                                !p.azureBlobFileSystemConfiguration
+                                  ? undefined
+                                  : {
+                                      accountName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      containerName:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "containerName"
+                                        ],
+                                      accountKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      sasKey:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "sasKey"
+                                        ],
+                                      blobfuseOptions:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "blobfuseOptions"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureBlobFileSystemConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      identityReference: !p
+                                        .azureBlobFileSystemConfiguration
+                                        ?.identityReference
+                                        ? undefined
+                                        : {
+                                            resourceId:
+                                              p.azureBlobFileSystemConfiguration
+                                                ?.identityReference?.[
+                                                "resourceId"
+                                              ],
+                                          },
+                                    },
+                              nfsMountConfiguration: !p.nfsMountConfiguration
+                                ? undefined
+                                : {
+                                    source: p.nfsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.nfsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.nfsMountConfiguration?.["mountOptions"],
+                                  },
+                              cifsMountConfiguration: !p.cifsMountConfiguration
+                                ? undefined
+                                : {
+                                    username:
+                                      p.cifsMountConfiguration?.["username"],
+                                    source:
+                                      p.cifsMountConfiguration?.["source"],
+                                    relativeMountPath:
+                                      p.cifsMountConfiguration?.[
+                                        "relativeMountPath"
+                                      ],
+                                    mountOptions:
+                                      p.cifsMountConfiguration?.[
+                                        "mountOptions"
+                                      ],
+                                    password:
+                                      p.cifsMountConfiguration?.["password"],
+                                  },
+                              azureFileShareConfiguration:
+                                !p.azureFileShareConfiguration
+                                  ? undefined
+                                  : {
+                                      accountName:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountName"
+                                        ],
+                                      azureFileUrl:
+                                        p.azureFileShareConfiguration?.[
+                                          "azureFileUrl"
+                                        ],
+                                      accountKey:
+                                        p.azureFileShareConfiguration?.[
+                                          "accountKey"
+                                        ],
+                                      relativeMountPath:
+                                        p.azureFileShareConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      mountOptions:
+                                        p.azureFileShareConfiguration?.[
+                                          "mountOptions"
+                                        ],
+                                    },
+                            })),
                         targetNodeCommunicationMode:
                           body.jobSpecification.poolInfo.autoPoolSpecification
                             ?.pool?.["targetNodeCommunicationMode"],
                       },
                 },
           },
-          metadata: (body.jobSpecification["metadata"] ?? []).map((p) => ({
-            name: p["name"],
-            value: p["value"],
-          })),
+          metadata: !body.jobSpecification["metadata"]
+            ? body.jobSpecification["metadata"]
+            : body.jobSpecification["metadata"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
         },
-        metadata: (body["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        metadata: !body["metadata"]
+          ? body["metadata"]
+          : body["metadata"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
       },
     });
 }
@@ -13195,1027 +14356,1203 @@ export async function _listJobSchedulesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      displayName: p["displayName"],
-      url: p["url"],
-      eTag: p["eTag"],
-      lastModified:
-        p["lastModified"] !== undefined
-          ? new Date(p["lastModified"])
-          : undefined,
-      creationTime:
-        p["creationTime"] !== undefined
-          ? new Date(p["creationTime"])
-          : undefined,
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      previousState: p["previousState"],
-      previousStateTransitionTime:
-        p["previousStateTransitionTime"] !== undefined
-          ? new Date(p["previousStateTransitionTime"])
-          : undefined,
-      schedule: {
-        doNotRunUntil:
-          p.schedule["doNotRunUntil"] !== undefined
-            ? new Date(p.schedule["doNotRunUntil"])
-            : undefined,
-        doNotRunAfter:
-          p.schedule["doNotRunAfter"] !== undefined
-            ? new Date(p.schedule["doNotRunAfter"])
-            : undefined,
-        startWindow: p.schedule["startWindow"],
-        recurrenceInterval: p.schedule["recurrenceInterval"],
-      },
-      jobSpecification: {
-        priority: p.jobSpecification["priority"],
-        allowTaskPreemption: p.jobSpecification["allowTaskPreemption"],
-        maxParallelTasks: p.jobSpecification["maxParallelTasks"],
-        displayName: p.jobSpecification["displayName"],
-        usesTaskDependencies: p.jobSpecification["usesTaskDependencies"],
-        onAllTasksComplete: p.jobSpecification["onAllTasksComplete"],
-        onTaskFailure: p.jobSpecification["onTaskFailure"],
-        networkConfiguration: !p.jobSpecification.networkConfiguration
-          ? undefined
-          : { subnetId: p.jobSpecification.networkConfiguration?.["subnetId"] },
-        constraints: !p.jobSpecification.constraints
-          ? undefined
-          : {
-              maxWallClockTime:
-                p.jobSpecification.constraints?.["maxWallClockTime"],
-              maxTaskRetryCount:
-                p.jobSpecification.constraints?.["maxTaskRetryCount"],
-            },
-        jobManagerTask: !p.jobSpecification.jobManagerTask
-          ? undefined
-          : {
-              id: p.jobSpecification.jobManagerTask?.["id"],
-              displayName: p.jobSpecification.jobManagerTask?.["displayName"],
-              commandLine: p.jobSpecification.jobManagerTask?.["commandLine"],
-              containerSettings: !p.jobSpecification.jobManagerTask
-                ?.containerSettings
-                ? undefined
-                : {
-                    containerRunOptions:
-                      p.jobSpecification.jobManagerTask?.containerSettings?.[
-                        "containerRunOptions"
-                      ],
-                    imageName:
-                      p.jobSpecification.jobManagerTask?.containerSettings?.[
-                        "imageName"
-                      ],
-                    registry: !p.jobSpecification.jobManagerTask
-                      ?.containerSettings?.registry
-                      ? undefined
-                      : {
-                          username:
-                            p.jobSpecification.jobManagerTask?.containerSettings
-                              ?.registry?.["username"],
-                          password:
-                            p.jobSpecification.jobManagerTask?.containerSettings
-                              ?.registry?.["password"],
-                          registryServer:
-                            p.jobSpecification.jobManagerTask?.containerSettings
-                              ?.registry?.["registryServer"],
-                          identityReference: !p.jobSpecification.jobManagerTask
-                            ?.containerSettings?.registry?.identityReference
-                            ? undefined
-                            : {
-                                resourceId:
-                                  p.jobSpecification.jobManagerTask
-                                    ?.containerSettings?.registry
-                                    ?.identityReference?.["resourceId"],
-                              },
-                        },
-                    workingDirectory:
-                      p.jobSpecification.jobManagerTask?.containerSettings?.[
-                        "workingDirectory"
-                      ],
-                  },
-              resourceFiles: (
-                p.jobSpecification.jobManagerTask?.["resourceFiles"] ?? []
-              ).map((p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })),
-              outputFiles: (
-                p.jobSpecification.jobManagerTask?.["outputFiles"] ?? []
-              ).map((p) => ({
-                filePattern: p["filePattern"],
-                destination: {
-                  container: !p.destination.container
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          displayName: p["displayName"],
+          url: p["url"],
+          eTag: p["eTag"],
+          lastModified:
+            p["lastModified"] !== undefined
+              ? new Date(p["lastModified"])
+              : undefined,
+          creationTime:
+            p["creationTime"] !== undefined
+              ? new Date(p["creationTime"])
+              : undefined,
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          previousState: p["previousState"],
+          previousStateTransitionTime:
+            p["previousStateTransitionTime"] !== undefined
+              ? new Date(p["previousStateTransitionTime"])
+              : undefined,
+          schedule: {
+            doNotRunUntil:
+              p.schedule["doNotRunUntil"] !== undefined
+                ? new Date(p.schedule["doNotRunUntil"])
+                : undefined,
+            doNotRunAfter:
+              p.schedule["doNotRunAfter"] !== undefined
+                ? new Date(p.schedule["doNotRunAfter"])
+                : undefined,
+            startWindow: p.schedule["startWindow"],
+            recurrenceInterval: p.schedule["recurrenceInterval"],
+          },
+          jobSpecification: {
+            priority: p.jobSpecification["priority"],
+            allowTaskPreemption: p.jobSpecification["allowTaskPreemption"],
+            maxParallelTasks: p.jobSpecification["maxParallelTasks"],
+            displayName: p.jobSpecification["displayName"],
+            usesTaskDependencies: p.jobSpecification["usesTaskDependencies"],
+            onAllTasksComplete: p.jobSpecification["onAllTasksComplete"],
+            onTaskFailure: p.jobSpecification["onTaskFailure"],
+            networkConfiguration: !p.jobSpecification.networkConfiguration
+              ? undefined
+              : {
+                  subnetId:
+                    p.jobSpecification.networkConfiguration?.["subnetId"],
+                },
+            constraints: !p.jobSpecification.constraints
+              ? undefined
+              : {
+                  maxWallClockTime:
+                    p.jobSpecification.constraints?.["maxWallClockTime"],
+                  maxTaskRetryCount:
+                    p.jobSpecification.constraints?.["maxTaskRetryCount"],
+                },
+            jobManagerTask: !p.jobSpecification.jobManagerTask
+              ? undefined
+              : {
+                  id: p.jobSpecification.jobManagerTask?.["id"],
+                  displayName:
+                    p.jobSpecification.jobManagerTask?.["displayName"],
+                  commandLine:
+                    p.jobSpecification.jobManagerTask?.["commandLine"],
+                  containerSettings: !p.jobSpecification.jobManagerTask
+                    ?.containerSettings
                     ? undefined
                     : {
-                        path: p.destination.container?.["path"],
-                        containerUrl: p.destination.container?.["containerUrl"],
-                        identityReference: !p.destination.container
-                          ?.identityReference
+                        containerRunOptions:
+                          p.jobSpecification.jobManagerTask
+                            ?.containerSettings?.["containerRunOptions"],
+                        imageName:
+                          p.jobSpecification.jobManagerTask
+                            ?.containerSettings?.["imageName"],
+                        registry: !p.jobSpecification.jobManagerTask
+                          ?.containerSettings?.registry
                           ? undefined
                           : {
-                              resourceId:
-                                p.destination.container?.identityReference?.[
-                                  "resourceId"
+                              username:
+                                p.jobSpecification.jobManagerTask
+                                  ?.containerSettings?.registry?.["username"],
+                              password:
+                                p.jobSpecification.jobManagerTask
+                                  ?.containerSettings?.registry?.["password"],
+                              registryServer:
+                                p.jobSpecification.jobManagerTask
+                                  ?.containerSettings?.registry?.[
+                                  "registryServer"
                                 ],
+                              identityReference: !p.jobSpecification
+                                .jobManagerTask?.containerSettings?.registry
+                                ?.identityReference
+                                ? undefined
+                                : {
+                                    resourceId:
+                                      p.jobSpecification.jobManagerTask
+                                        ?.containerSettings?.registry
+                                        ?.identityReference?.["resourceId"],
+                                  },
                             },
-                        uploadHeaders: (
-                          p.destination.container?.["uploadHeaders"] ?? []
-                        ).map((p) => ({ name: p["name"], value: p["value"] })),
+                        workingDirectory:
+                          p.jobSpecification.jobManagerTask
+                            ?.containerSettings?.["workingDirectory"],
+                      },
+                  resourceFiles: !p.jobSpecification.jobManagerTask?.[
+                    "resourceFiles"
+                  ]
+                    ? p.jobSpecification.jobManagerTask?.["resourceFiles"]
+                    : p.jobSpecification.jobManagerTask?.["resourceFiles"].map(
+                        (p) => ({
+                          autoStorageContainerName:
+                            p["autoStorageContainerName"],
+                          storageContainerUrl: p["storageContainerUrl"],
+                          httpUrl: p["httpUrl"],
+                          blobPrefix: p["blobPrefix"],
+                          filePath: p["filePath"],
+                          fileMode: p["fileMode"],
+                          identityReference: !p.identityReference
+                            ? undefined
+                            : {
+                                resourceId: p.identityReference?.["resourceId"],
+                              },
+                        })
+                      ),
+                  outputFiles: !p.jobSpecification.jobManagerTask?.[
+                    "outputFiles"
+                  ]
+                    ? p.jobSpecification.jobManagerTask?.["outputFiles"]
+                    : p.jobSpecification.jobManagerTask?.["outputFiles"].map(
+                        (p) => ({
+                          filePattern: p["filePattern"],
+                          destination: {
+                            container: !p.destination.container
+                              ? undefined
+                              : {
+                                  path: p.destination.container?.["path"],
+                                  containerUrl:
+                                    p.destination.container?.["containerUrl"],
+                                  identityReference: !p.destination.container
+                                    ?.identityReference
+                                    ? undefined
+                                    : {
+                                        resourceId:
+                                          p.destination.container
+                                            ?.identityReference?.["resourceId"],
+                                      },
+                                  uploadHeaders: !p.destination.container?.[
+                                    "uploadHeaders"
+                                  ]
+                                    ? p.destination.container?.["uploadHeaders"]
+                                    : p.destination.container?.[
+                                        "uploadHeaders"
+                                      ].map((p) => ({
+                                        name: p["name"],
+                                        value: p["value"],
+                                      })),
+                                },
+                          },
+                          uploadOptions: {
+                            uploadCondition: p.uploadOptions["uploadCondition"],
+                          },
+                        })
+                      ),
+                  environmentSettings: !p.jobSpecification.jobManagerTask?.[
+                    "environmentSettings"
+                  ]
+                    ? p.jobSpecification.jobManagerTask?.["environmentSettings"]
+                    : p.jobSpecification.jobManagerTask?.[
+                        "environmentSettings"
+                      ].map((p) => ({ name: p["name"], value: p["value"] })),
+                  constraints: !p.jobSpecification.jobManagerTask?.constraints
+                    ? undefined
+                    : {
+                        maxWallClockTime:
+                          p.jobSpecification.jobManagerTask?.constraints?.[
+                            "maxWallClockTime"
+                          ],
+                        retentionTime:
+                          p.jobSpecification.jobManagerTask?.constraints?.[
+                            "retentionTime"
+                          ],
+                        maxTaskRetryCount:
+                          p.jobSpecification.jobManagerTask?.constraints?.[
+                            "maxTaskRetryCount"
+                          ],
+                      },
+                  requiredSlots:
+                    p.jobSpecification.jobManagerTask?.["requiredSlots"],
+                  killJobOnCompletion:
+                    p.jobSpecification.jobManagerTask?.["killJobOnCompletion"],
+                  userIdentity: !p.jobSpecification.jobManagerTask?.userIdentity
+                    ? undefined
+                    : {
+                        username:
+                          p.jobSpecification.jobManagerTask?.userIdentity?.[
+                            "username"
+                          ],
+                        autoUser: !p.jobSpecification.jobManagerTask
+                          ?.userIdentity?.autoUser
+                          ? undefined
+                          : {
+                              scope:
+                                p.jobSpecification.jobManagerTask?.userIdentity
+                                  ?.autoUser?.["scope"],
+                              elevationLevel:
+                                p.jobSpecification.jobManagerTask?.userIdentity
+                                  ?.autoUser?.["elevationLevel"],
+                            },
+                      },
+                  runExclusive:
+                    p.jobSpecification.jobManagerTask?.["runExclusive"],
+                  applicationPackageReferences: !p.jobSpecification
+                    .jobManagerTask?.["applicationPackageReferences"]
+                    ? p.jobSpecification.jobManagerTask?.[
+                        "applicationPackageReferences"
+                      ]
+                    : p.jobSpecification.jobManagerTask?.[
+                        "applicationPackageReferences"
+                      ].map((p) => ({
+                        applicationId: p["applicationId"],
+                        version: p["version"],
+                      })),
+                  authenticationTokenSettings: !p.jobSpecification
+                    .jobManagerTask?.authenticationTokenSettings
+                    ? undefined
+                    : {
+                        access:
+                          p.jobSpecification.jobManagerTask
+                            ?.authenticationTokenSettings?.["access"],
+                      },
+                  allowLowPriorityNode:
+                    p.jobSpecification.jobManagerTask?.["allowLowPriorityNode"],
+                },
+            jobPreparationTask: !p.jobSpecification.jobPreparationTask
+              ? undefined
+              : {
+                  id: p.jobSpecification.jobPreparationTask?.["id"],
+                  commandLine:
+                    p.jobSpecification.jobPreparationTask?.["commandLine"],
+                  containerSettings: !p.jobSpecification.jobPreparationTask
+                    ?.containerSettings
+                    ? undefined
+                    : {
+                        containerRunOptions:
+                          p.jobSpecification.jobPreparationTask
+                            ?.containerSettings?.["containerRunOptions"],
+                        imageName:
+                          p.jobSpecification.jobPreparationTask
+                            ?.containerSettings?.["imageName"],
+                        registry: !p.jobSpecification.jobPreparationTask
+                          ?.containerSettings?.registry
+                          ? undefined
+                          : {
+                              username:
+                                p.jobSpecification.jobPreparationTask
+                                  ?.containerSettings?.registry?.["username"],
+                              password:
+                                p.jobSpecification.jobPreparationTask
+                                  ?.containerSettings?.registry?.["password"],
+                              registryServer:
+                                p.jobSpecification.jobPreparationTask
+                                  ?.containerSettings?.registry?.[
+                                  "registryServer"
+                                ],
+                              identityReference: !p.jobSpecification
+                                .jobPreparationTask?.containerSettings?.registry
+                                ?.identityReference
+                                ? undefined
+                                : {
+                                    resourceId:
+                                      p.jobSpecification.jobPreparationTask
+                                        ?.containerSettings?.registry
+                                        ?.identityReference?.["resourceId"],
+                                  },
+                            },
+                        workingDirectory:
+                          p.jobSpecification.jobPreparationTask
+                            ?.containerSettings?.["workingDirectory"],
+                      },
+                  resourceFiles: !p.jobSpecification.jobPreparationTask?.[
+                    "resourceFiles"
+                  ]
+                    ? p.jobSpecification.jobPreparationTask?.["resourceFiles"]
+                    : p.jobSpecification.jobPreparationTask?.[
+                        "resourceFiles"
+                      ].map((p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })),
+                  environmentSettings: !p.jobSpecification.jobPreparationTask?.[
+                    "environmentSettings"
+                  ]
+                    ? p.jobSpecification.jobPreparationTask?.[
+                        "environmentSettings"
+                      ]
+                    : p.jobSpecification.jobPreparationTask?.[
+                        "environmentSettings"
+                      ].map((p) => ({ name: p["name"], value: p["value"] })),
+                  constraints: !p.jobSpecification.jobPreparationTask
+                    ?.constraints
+                    ? undefined
+                    : {
+                        maxWallClockTime:
+                          p.jobSpecification.jobPreparationTask?.constraints?.[
+                            "maxWallClockTime"
+                          ],
+                        retentionTime:
+                          p.jobSpecification.jobPreparationTask?.constraints?.[
+                            "retentionTime"
+                          ],
+                        maxTaskRetryCount:
+                          p.jobSpecification.jobPreparationTask?.constraints?.[
+                            "maxTaskRetryCount"
+                          ],
+                      },
+                  waitForSuccess:
+                    p.jobSpecification.jobPreparationTask?.["waitForSuccess"],
+                  userIdentity: !p.jobSpecification.jobPreparationTask
+                    ?.userIdentity
+                    ? undefined
+                    : {
+                        username:
+                          p.jobSpecification.jobPreparationTask?.userIdentity?.[
+                            "username"
+                          ],
+                        autoUser: !p.jobSpecification.jobPreparationTask
+                          ?.userIdentity?.autoUser
+                          ? undefined
+                          : {
+                              scope:
+                                p.jobSpecification.jobPreparationTask
+                                  ?.userIdentity?.autoUser?.["scope"],
+                              elevationLevel:
+                                p.jobSpecification.jobPreparationTask
+                                  ?.userIdentity?.autoUser?.["elevationLevel"],
+                            },
+                      },
+                  rerunOnNodeRebootAfterSuccess:
+                    p.jobSpecification.jobPreparationTask?.[
+                      "rerunOnNodeRebootAfterSuccess"
+                    ],
+                },
+            jobReleaseTask: !p.jobSpecification.jobReleaseTask
+              ? undefined
+              : {
+                  id: p.jobSpecification.jobReleaseTask?.["id"],
+                  commandLine:
+                    p.jobSpecification.jobReleaseTask?.["commandLine"],
+                  containerSettings: !p.jobSpecification.jobReleaseTask
+                    ?.containerSettings
+                    ? undefined
+                    : {
+                        containerRunOptions:
+                          p.jobSpecification.jobReleaseTask
+                            ?.containerSettings?.["containerRunOptions"],
+                        imageName:
+                          p.jobSpecification.jobReleaseTask
+                            ?.containerSettings?.["imageName"],
+                        registry: !p.jobSpecification.jobReleaseTask
+                          ?.containerSettings?.registry
+                          ? undefined
+                          : {
+                              username:
+                                p.jobSpecification.jobReleaseTask
+                                  ?.containerSettings?.registry?.["username"],
+                              password:
+                                p.jobSpecification.jobReleaseTask
+                                  ?.containerSettings?.registry?.["password"],
+                              registryServer:
+                                p.jobSpecification.jobReleaseTask
+                                  ?.containerSettings?.registry?.[
+                                  "registryServer"
+                                ],
+                              identityReference: !p.jobSpecification
+                                .jobReleaseTask?.containerSettings?.registry
+                                ?.identityReference
+                                ? undefined
+                                : {
+                                    resourceId:
+                                      p.jobSpecification.jobReleaseTask
+                                        ?.containerSettings?.registry
+                                        ?.identityReference?.["resourceId"],
+                                  },
+                            },
+                        workingDirectory:
+                          p.jobSpecification.jobReleaseTask
+                            ?.containerSettings?.["workingDirectory"],
+                      },
+                  resourceFiles: !p.jobSpecification.jobReleaseTask?.[
+                    "resourceFiles"
+                  ]
+                    ? p.jobSpecification.jobReleaseTask?.["resourceFiles"]
+                    : p.jobSpecification.jobReleaseTask?.["resourceFiles"].map(
+                        (p) => ({
+                          autoStorageContainerName:
+                            p["autoStorageContainerName"],
+                          storageContainerUrl: p["storageContainerUrl"],
+                          httpUrl: p["httpUrl"],
+                          blobPrefix: p["blobPrefix"],
+                          filePath: p["filePath"],
+                          fileMode: p["fileMode"],
+                          identityReference: !p.identityReference
+                            ? undefined
+                            : {
+                                resourceId: p.identityReference?.["resourceId"],
+                              },
+                        })
+                      ),
+                  environmentSettings: !p.jobSpecification.jobReleaseTask?.[
+                    "environmentSettings"
+                  ]
+                    ? p.jobSpecification.jobReleaseTask?.["environmentSettings"]
+                    : p.jobSpecification.jobReleaseTask?.[
+                        "environmentSettings"
+                      ].map((p) => ({ name: p["name"], value: p["value"] })),
+                  maxWallClockTime:
+                    p.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
+                  retentionTime:
+                    p.jobSpecification.jobReleaseTask?.["retentionTime"],
+                  userIdentity: !p.jobSpecification.jobReleaseTask?.userIdentity
+                    ? undefined
+                    : {
+                        username:
+                          p.jobSpecification.jobReleaseTask?.userIdentity?.[
+                            "username"
+                          ],
+                        autoUser: !p.jobSpecification.jobReleaseTask
+                          ?.userIdentity?.autoUser
+                          ? undefined
+                          : {
+                              scope:
+                                p.jobSpecification.jobReleaseTask?.userIdentity
+                                  ?.autoUser?.["scope"],
+                              elevationLevel:
+                                p.jobSpecification.jobReleaseTask?.userIdentity
+                                  ?.autoUser?.["elevationLevel"],
+                            },
                       },
                 },
-                uploadOptions: {
-                  uploadCondition: p.uploadOptions["uploadCondition"],
-                },
-              })),
-              environmentSettings: (
-                p.jobSpecification.jobManagerTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
-              constraints: !p.jobSpecification.jobManagerTask?.constraints
+            commonEnvironmentSettings: !p.jobSpecification[
+              "commonEnvironmentSettings"
+            ]
+              ? p.jobSpecification["commonEnvironmentSettings"]
+              : p.jobSpecification["commonEnvironmentSettings"].map((p) => ({
+                  name: p["name"],
+                  value: p["value"],
+                })),
+            poolInfo: {
+              poolId: p.jobSpecification.poolInfo["poolId"],
+              autoPoolSpecification: !p.jobSpecification.poolInfo
+                .autoPoolSpecification
                 ? undefined
                 : {
-                    maxWallClockTime:
-                      p.jobSpecification.jobManagerTask?.constraints?.[
-                        "maxWallClockTime"
+                    autoPoolIdPrefix:
+                      p.jobSpecification.poolInfo.autoPoolSpecification?.[
+                        "autoPoolIdPrefix"
                       ],
-                    retentionTime:
-                      p.jobSpecification.jobManagerTask?.constraints?.[
-                        "retentionTime"
+                    poolLifetimeOption:
+                      p.jobSpecification.poolInfo.autoPoolSpecification?.[
+                        "poolLifetimeOption"
                       ],
-                    maxTaskRetryCount:
-                      p.jobSpecification.jobManagerTask?.constraints?.[
-                        "maxTaskRetryCount"
+                    keepAlive:
+                      p.jobSpecification.poolInfo.autoPoolSpecification?.[
+                        "keepAlive"
                       ],
-                  },
-              requiredSlots:
-                p.jobSpecification.jobManagerTask?.["requiredSlots"],
-              killJobOnCompletion:
-                p.jobSpecification.jobManagerTask?.["killJobOnCompletion"],
-              userIdentity: !p.jobSpecification.jobManagerTask?.userIdentity
-                ? undefined
-                : {
-                    username:
-                      p.jobSpecification.jobManagerTask?.userIdentity?.[
-                        "username"
-                      ],
-                    autoUser: !p.jobSpecification.jobManagerTask?.userIdentity
-                      ?.autoUser
+                    pool: !p.jobSpecification.poolInfo.autoPoolSpecification
+                      ?.pool
                       ? undefined
                       : {
-                          scope:
-                            p.jobSpecification.jobManagerTask?.userIdentity
-                              ?.autoUser?.["scope"],
-                          elevationLevel:
-                            p.jobSpecification.jobManagerTask?.userIdentity
-                              ?.autoUser?.["elevationLevel"],
-                        },
-                  },
-              runExclusive: p.jobSpecification.jobManagerTask?.["runExclusive"],
-              applicationPackageReferences: (
-                p.jobSpecification.jobManagerTask?.[
-                  "applicationPackageReferences"
-                ] ?? []
-              ).map((p) => ({
-                applicationId: p["applicationId"],
-                version: p["version"],
-              })),
-              authenticationTokenSettings: !p.jobSpecification.jobManagerTask
-                ?.authenticationTokenSettings
-                ? undefined
-                : {
-                    access:
-                      p.jobSpecification.jobManagerTask
-                        ?.authenticationTokenSettings?.["access"],
-                  },
-              allowLowPriorityNode:
-                p.jobSpecification.jobManagerTask?.["allowLowPriorityNode"],
-            },
-        jobPreparationTask: !p.jobSpecification.jobPreparationTask
-          ? undefined
-          : {
-              id: p.jobSpecification.jobPreparationTask?.["id"],
-              commandLine:
-                p.jobSpecification.jobPreparationTask?.["commandLine"],
-              containerSettings: !p.jobSpecification.jobPreparationTask
-                ?.containerSettings
-                ? undefined
-                : {
-                    containerRunOptions:
-                      p.jobSpecification.jobPreparationTask
-                        ?.containerSettings?.["containerRunOptions"],
-                    imageName:
-                      p.jobSpecification.jobPreparationTask
-                        ?.containerSettings?.["imageName"],
-                    registry: !p.jobSpecification.jobPreparationTask
-                      ?.containerSettings?.registry
-                      ? undefined
-                      : {
-                          username:
-                            p.jobSpecification.jobPreparationTask
-                              ?.containerSettings?.registry?.["username"],
-                          password:
-                            p.jobSpecification.jobPreparationTask
-                              ?.containerSettings?.registry?.["password"],
-                          registryServer:
-                            p.jobSpecification.jobPreparationTask
-                              ?.containerSettings?.registry?.["registryServer"],
-                          identityReference: !p.jobSpecification
-                            .jobPreparationTask?.containerSettings?.registry
-                            ?.identityReference
+                          displayName:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["displayName"],
+                          vmSize:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["vmSize"],
+                          cloudServiceConfiguration: !p.jobSpecification
+                            .poolInfo.autoPoolSpecification?.pool
+                            ?.cloudServiceConfiguration
                             ? undefined
                             : {
-                                resourceId:
-                                  p.jobSpecification.jobPreparationTask
-                                    ?.containerSettings?.registry
-                                    ?.identityReference?.["resourceId"],
+                                osFamily:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.cloudServiceConfiguration?.["osFamily"],
+                                osVersion:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.cloudServiceConfiguration?.["osVersion"],
                               },
-                        },
-                    workingDirectory:
-                      p.jobSpecification.jobPreparationTask
-                        ?.containerSettings?.["workingDirectory"],
-                  },
-              resourceFiles: (
-                p.jobSpecification.jobPreparationTask?.["resourceFiles"] ?? []
-              ).map((p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })),
-              environmentSettings: (
-                p.jobSpecification.jobPreparationTask?.[
-                  "environmentSettings"
-                ] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
-              constraints: !p.jobSpecification.jobPreparationTask?.constraints
-                ? undefined
-                : {
-                    maxWallClockTime:
-                      p.jobSpecification.jobPreparationTask?.constraints?.[
-                        "maxWallClockTime"
-                      ],
-                    retentionTime:
-                      p.jobSpecification.jobPreparationTask?.constraints?.[
-                        "retentionTime"
-                      ],
-                    maxTaskRetryCount:
-                      p.jobSpecification.jobPreparationTask?.constraints?.[
-                        "maxTaskRetryCount"
-                      ],
-                  },
-              waitForSuccess:
-                p.jobSpecification.jobPreparationTask?.["waitForSuccess"],
-              userIdentity: !p.jobSpecification.jobPreparationTask?.userIdentity
-                ? undefined
-                : {
-                    username:
-                      p.jobSpecification.jobPreparationTask?.userIdentity?.[
-                        "username"
-                      ],
-                    autoUser: !p.jobSpecification.jobPreparationTask
-                      ?.userIdentity?.autoUser
-                      ? undefined
-                      : {
-                          scope:
-                            p.jobSpecification.jobPreparationTask?.userIdentity
-                              ?.autoUser?.["scope"],
-                          elevationLevel:
-                            p.jobSpecification.jobPreparationTask?.userIdentity
-                              ?.autoUser?.["elevationLevel"],
-                        },
-                  },
-              rerunOnNodeRebootAfterSuccess:
-                p.jobSpecification.jobPreparationTask?.[
-                  "rerunOnNodeRebootAfterSuccess"
-                ],
-            },
-        jobReleaseTask: !p.jobSpecification.jobReleaseTask
-          ? undefined
-          : {
-              id: p.jobSpecification.jobReleaseTask?.["id"],
-              commandLine: p.jobSpecification.jobReleaseTask?.["commandLine"],
-              containerSettings: !p.jobSpecification.jobReleaseTask
-                ?.containerSettings
-                ? undefined
-                : {
-                    containerRunOptions:
-                      p.jobSpecification.jobReleaseTask?.containerSettings?.[
-                        "containerRunOptions"
-                      ],
-                    imageName:
-                      p.jobSpecification.jobReleaseTask?.containerSettings?.[
-                        "imageName"
-                      ],
-                    registry: !p.jobSpecification.jobReleaseTask
-                      ?.containerSettings?.registry
-                      ? undefined
-                      : {
-                          username:
-                            p.jobSpecification.jobReleaseTask?.containerSettings
-                              ?.registry?.["username"],
-                          password:
-                            p.jobSpecification.jobReleaseTask?.containerSettings
-                              ?.registry?.["password"],
-                          registryServer:
-                            p.jobSpecification.jobReleaseTask?.containerSettings
-                              ?.registry?.["registryServer"],
-                          identityReference: !p.jobSpecification.jobReleaseTask
-                            ?.containerSettings?.registry?.identityReference
+                          virtualMachineConfiguration: !p.jobSpecification
+                            .poolInfo.autoPoolSpecification?.pool
+                            ?.virtualMachineConfiguration
                             ? undefined
                             : {
-                                resourceId:
-                                  p.jobSpecification.jobReleaseTask
-                                    ?.containerSettings?.registry
-                                    ?.identityReference?.["resourceId"],
-                              },
-                        },
-                    workingDirectory:
-                      p.jobSpecification.jobReleaseTask?.containerSettings?.[
-                        "workingDirectory"
-                      ],
-                  },
-              resourceFiles: (
-                p.jobSpecification.jobReleaseTask?.["resourceFiles"] ?? []
-              ).map((p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })),
-              environmentSettings: (
-                p.jobSpecification.jobReleaseTask?.["environmentSettings"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
-              maxWallClockTime:
-                p.jobSpecification.jobReleaseTask?.["maxWallClockTime"],
-              retentionTime:
-                p.jobSpecification.jobReleaseTask?.["retentionTime"],
-              userIdentity: !p.jobSpecification.jobReleaseTask?.userIdentity
-                ? undefined
-                : {
-                    username:
-                      p.jobSpecification.jobReleaseTask?.userIdentity?.[
-                        "username"
-                      ],
-                    autoUser: !p.jobSpecification.jobReleaseTask?.userIdentity
-                      ?.autoUser
-                      ? undefined
-                      : {
-                          scope:
-                            p.jobSpecification.jobReleaseTask?.userIdentity
-                              ?.autoUser?.["scope"],
-                          elevationLevel:
-                            p.jobSpecification.jobReleaseTask?.userIdentity
-                              ?.autoUser?.["elevationLevel"],
-                        },
-                  },
-            },
-        commonEnvironmentSettings: (
-          p.jobSpecification["commonEnvironmentSettings"] ?? []
-        ).map((p) => ({ name: p["name"], value: p["value"] })),
-        poolInfo: {
-          poolId: p.jobSpecification.poolInfo["poolId"],
-          autoPoolSpecification: !p.jobSpecification.poolInfo
-            .autoPoolSpecification
-            ? undefined
-            : {
-                autoPoolIdPrefix:
-                  p.jobSpecification.poolInfo.autoPoolSpecification?.[
-                    "autoPoolIdPrefix"
-                  ],
-                poolLifetimeOption:
-                  p.jobSpecification.poolInfo.autoPoolSpecification?.[
-                    "poolLifetimeOption"
-                  ],
-                keepAlive:
-                  p.jobSpecification.poolInfo.autoPoolSpecification?.[
-                    "keepAlive"
-                  ],
-                pool: !p.jobSpecification.poolInfo.autoPoolSpecification?.pool
-                  ? undefined
-                  : {
-                      displayName:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["displayName"],
-                      vmSize:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["vmSize"],
-                      cloudServiceConfiguration: !p.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.cloudServiceConfiguration
-                        ? undefined
-                        : {
-                            osFamily:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.cloudServiceConfiguration?.["osFamily"],
-                            osVersion:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.cloudServiceConfiguration?.[
-                                "osVersion"
-                              ],
-                          },
-                      virtualMachineConfiguration: !p.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool
-                        ?.virtualMachineConfiguration
-                        ? undefined
-                        : {
-                            imageReference: {
-                              publisher:
-                                p.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.imageReference[
-                                  "publisher"
-                                ],
-                              offer:
-                                p.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.imageReference[
-                                  "offer"
-                                ],
-                              sku: p.jobSpecification.poolInfo
-                                .autoPoolSpecification?.pool
-                                ?.virtualMachineConfiguration?.imageReference[
-                                "sku"
-                              ],
-                              version:
-                                p.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.imageReference[
-                                  "version"
-                                ],
-                              virtualMachineImageId:
-                                p.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.imageReference[
-                                  "virtualMachineImageId"
-                                ],
-                              exactVersion:
-                                p.jobSpecification.poolInfo
-                                  .autoPoolSpecification?.pool
-                                  ?.virtualMachineConfiguration?.imageReference[
-                                  "exactVersion"
-                                ],
-                            },
-                            nodeAgentSKUId:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration?.[
-                                "nodeAgentSKUId"
-                              ],
-                            windowsConfiguration: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration
-                              ?.windowsConfiguration
-                              ? undefined
-                              : {
-                                  enableAutomaticUpdates:
+                                imageReference: {
+                                  publisher:
                                     p.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
-                                      ?.windowsConfiguration?.[
-                                      "enableAutomaticUpdates"
-                                    ],
-                                },
-                            dataDisks: (
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration?.[
-                                "dataDisks"
-                              ] ?? []
-                            ).map((p) => ({
-                              lun: p["lun"],
-                              caching: p["caching"],
-                              diskSizeGB: p["diskSizeGB"],
-                              storageAccountType: p["storageAccountType"],
-                            })),
-                            licenseType:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration?.[
-                                "licenseType"
-                              ],
-                            containerConfiguration: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration
-                              ?.containerConfiguration
-                              ? undefined
-                              : {
-                                  type: p.jobSpecification.poolInfo
+                                      ?.imageReference["publisher"],
+                                  offer:
+                                    p.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.imageReference["offer"],
+                                  sku: p.jobSpecification.poolInfo
                                     .autoPoolSpecification?.pool
                                     ?.virtualMachineConfiguration
-                                    ?.containerConfiguration?.["type"],
-                                  containerImageNames:
+                                    ?.imageReference["sku"],
+                                  version:
                                     p.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
-                                      ?.containerConfiguration?.[
-                                      "containerImageNames"
-                                    ],
-                                  containerRegistries: (
+                                      ?.imageReference["version"],
+                                  virtualMachineImageId:
                                     p.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
                                       ?.virtualMachineConfiguration
-                                      ?.containerConfiguration?.[
-                                      "containerRegistries"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    username: p["username"],
-                                    password: p["password"],
-                                    registryServer: p["registryServer"],
-                                    identityReference: !p.identityReference
-                                      ? undefined
-                                      : {
-                                          resourceId:
-                                            p.identityReference?.["resourceId"],
-                                        },
-                                  })),
+                                      ?.imageReference["virtualMachineImageId"],
+                                  exactVersion:
+                                    p.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool
+                                      ?.virtualMachineConfiguration
+                                      ?.imageReference["exactVersion"],
                                 },
-                            diskEncryptionConfiguration: !p.jobSpecification
-                              .poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration
-                              ?.diskEncryptionConfiguration
-                              ? undefined
-                              : {
-                                  targets:
-                                    p.jobSpecification.poolInfo
+                                nodeAgentSKUId:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "nodeAgentSKUId"
+                                  ],
+                                windowsConfiguration: !p.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
+                                  ?.windowsConfiguration
+                                  ? undefined
+                                  : {
+                                      enableAutomaticUpdates:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.windowsConfiguration?.[
+                                          "enableAutomaticUpdates"
+                                        ],
+                                    },
+                                dataDisks: !p.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["dataDisks"]
+                                  ? p.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.diskEncryptionConfiguration?.[
-                                      "targets"
-                                    ],
-                                },
-                            nodePlacementConfiguration: !p.jobSpecification
-                              .poolInfo.autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration
-                              ?.nodePlacementConfiguration
-                              ? undefined
-                              : {
-                                  policy:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.virtualMachineConfiguration
-                                      ?.nodePlacementConfiguration?.["policy"],
-                                },
-                            extensions: (
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.virtualMachineConfiguration?.[
-                                "extensions"
-                              ] ?? []
-                            ).map((p) => ({
-                              name: p["name"],
-                              publisher: p["publisher"],
-                              type: p["type"],
-                              typeHandlerVersion: p["typeHandlerVersion"],
-                              autoUpgradeMinorVersion:
-                                p["autoUpgradeMinorVersion"],
-                              enableAutomaticUpgrade:
-                                p["enableAutomaticUpgrade"],
-                              settings: p["settings"],
-                              protectedSettings: p["protectedSettings"],
-                              provisionAfterExtensions:
-                                p["provisionAfterExtensions"],
-                            })),
-                            osDisk: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool
-                              ?.virtualMachineConfiguration?.osDisk
-                              ? undefined
-                              : {
-                                  ephemeralOSDiskSettings: !p.jobSpecification
-                                    .poolInfo.autoPoolSpecification?.pool
-                                    ?.virtualMachineConfiguration?.osDisk
-                                    ?.ephemeralOSDiskSettings
-                                    ? undefined
-                                    : {
-                                        placement:
-                                          p.jobSpecification.poolInfo
+                                      ?.virtualMachineConfiguration?.[
+                                      "dataDisks"
+                                    ]
+                                  : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                      "dataDisks"
+                                    ].map((p) => ({
+                                      lun: p["lun"],
+                                      caching: p["caching"],
+                                      diskSizeGB: p["diskSizeGB"],
+                                      storageAccountType:
+                                        p["storageAccountType"],
+                                    })),
+                                licenseType:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.virtualMachineConfiguration?.[
+                                    "licenseType"
+                                  ],
+                                containerConfiguration: !p.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
+                                  ?.containerConfiguration
+                                  ? undefined
+                                  : {
+                                      type: p.jobSpecification.poolInfo
+                                        .autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.["type"],
+                                      containerImageNames:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.containerConfiguration?.[
+                                          "containerImageNames"
+                                        ],
+                                      containerRegistries: !p.jobSpecification
+                                        .poolInfo.autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration
+                                        ?.containerConfiguration?.[
+                                        "containerRegistries"
+                                      ]
+                                        ? p.jobSpecification.poolInfo
                                             .autoPoolSpecification?.pool
                                             ?.virtualMachineConfiguration
-                                            ?.osDisk?.ephemeralOSDiskSettings?.[
-                                            "placement"
-                                          ],
-                                      },
-                                },
-                          },
-                      taskSlotsPerNode:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["taskSlotsPerNode"],
-                      taskSchedulingPolicy: !p.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.taskSchedulingPolicy
-                        ? undefined
-                        : {
-                            nodeFillType:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.taskSchedulingPolicy?.["nodeFillType"],
-                          },
-                      resizeTimeout:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["resizeTimeout"],
-                      targetDedicatedNodes:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["targetDedicatedNodes"],
-                      targetLowPriorityNodes:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["targetLowPriorityNodes"],
-                      enableAutoScale:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["enableAutoScale"],
-                      autoScaleFormula:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["autoScaleFormula"],
-                      autoScaleEvaluationInterval:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["autoScaleEvaluationInterval"],
-                      enableInterNodeCommunication:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["enableInterNodeCommunication"],
-                      networkConfiguration: !p.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.networkConfiguration
-                        ? undefined
-                        : {
-                            subnetId:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.networkConfiguration?.["subnetId"],
-                            dynamicVNetAssignmentScope:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.networkConfiguration?.[
-                                "dynamicVNetAssignmentScope"
-                              ],
-                            endpointConfiguration: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool?.networkConfiguration
-                              ?.endpointConfiguration
-                              ? undefined
-                              : {
-                                  inboundNATPools: (
-                                    p.jobSpecification.poolInfo
+                                            ?.containerConfiguration?.[
+                                            "containerRegistries"
+                                          ]
+                                        : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.containerConfiguration?.[
+                                            "containerRegistries"
+                                          ].map((p) => ({
+                                            username: p["username"],
+                                            password: p["password"],
+                                            registryServer: p["registryServer"],
+                                            identityReference:
+                                              !p.identityReference
+                                                ? undefined
+                                                : {
+                                                    resourceId:
+                                                      p.identityReference?.[
+                                                        "resourceId"
+                                                      ],
+                                                  },
+                                          })),
+                                    },
+                                diskEncryptionConfiguration: !p.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
+                                  ?.diskEncryptionConfiguration
+                                  ? undefined
+                                  : {
+                                      targets:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.diskEncryptionConfiguration?.[
+                                          "targets"
+                                        ],
+                                    },
+                                nodePlacementConfiguration: !p.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration
+                                  ?.nodePlacementConfiguration
+                                  ? undefined
+                                  : {
+                                      policy:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.virtualMachineConfiguration
+                                          ?.nodePlacementConfiguration?.[
+                                          "policy"
+                                        ],
+                                    },
+                                extensions: !p.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.["extensions"]
+                                  ? p.jobSpecification.poolInfo
                                       .autoPoolSpecification?.pool
-                                      ?.networkConfiguration
-                                      ?.endpointConfiguration?.[
-                                      "inboundNATPools"
-                                    ] ?? []
-                                  ).map((p) => ({
-                                    name: p["name"],
-                                    protocol: p["protocol"],
-                                    backendPort: p["backendPort"],
-                                    frontendPortRangeStart:
-                                      p["frontendPortRangeStart"],
-                                    frontendPortRangeEnd:
-                                      p["frontendPortRangeEnd"],
-                                    networkSecurityGroupRules: (
-                                      p["networkSecurityGroupRules"] ?? []
-                                    ).map((p) => ({
-                                      priority: p["priority"],
-                                      access: p["access"],
-                                      sourceAddressPrefix:
-                                        p["sourceAddressPrefix"],
-                                      sourcePortRanges: p["sourcePortRanges"],
+                                      ?.virtualMachineConfiguration?.[
+                                      "extensions"
+                                    ]
+                                  : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.virtualMachineConfiguration?.[
+                                      "extensions"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      publisher: p["publisher"],
+                                      type: p["type"],
+                                      typeHandlerVersion:
+                                        p["typeHandlerVersion"],
+                                      autoUpgradeMinorVersion:
+                                        p["autoUpgradeMinorVersion"],
+                                      enableAutomaticUpgrade:
+                                        p["enableAutomaticUpgrade"],
+                                      settings: p["settings"],
+                                      protectedSettings: p["protectedSettings"],
+                                      provisionAfterExtensions:
+                                        p["provisionAfterExtensions"],
                                     })),
-                                  })),
-                                },
-                            publicIPAddressConfiguration: !p.jobSpecification
-                              .poolInfo.autoPoolSpecification?.pool
-                              ?.networkConfiguration
-                              ?.publicIPAddressConfiguration
-                              ? undefined
-                              : {
-                                  provision:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.networkConfiguration
-                                      ?.publicIPAddressConfiguration?.[
-                                      "provision"
-                                    ],
-                                  ipAddressIds:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool
-                                      ?.networkConfiguration
-                                      ?.publicIPAddressConfiguration?.[
-                                      "ipAddressIds"
-                                    ],
-                                },
-                            enableAcceleratedNetworking:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.networkConfiguration?.[
-                                "enableAcceleratedNetworking"
-                              ],
-                          },
-                      startTask: !p.jobSpecification.poolInfo
-                        .autoPoolSpecification?.pool?.startTask
-                        ? undefined
-                        : {
-                            commandLine:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.startTask?.["commandLine"],
-                            containerSettings: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool?.startTask
-                              ?.containerSettings
-                              ? undefined
-                              : {
-                                  containerRunOptions:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool?.startTask
-                                      ?.containerSettings?.[
-                                      "containerRunOptions"
-                                    ],
-                                  imageName:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool?.startTask
-                                      ?.containerSettings?.["imageName"],
-                                  registry: !p.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.startTask
-                                    ?.containerSettings?.registry
+                                osDisk: !p.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool
+                                  ?.virtualMachineConfiguration?.osDisk
+                                  ? undefined
+                                  : {
+                                      ephemeralOSDiskSettings: !p
+                                        .jobSpecification.poolInfo
+                                        .autoPoolSpecification?.pool
+                                        ?.virtualMachineConfiguration?.osDisk
+                                        ?.ephemeralOSDiskSettings
+                                        ? undefined
+                                        : {
+                                            placement:
+                                              p.jobSpecification.poolInfo
+                                                .autoPoolSpecification?.pool
+                                                ?.virtualMachineConfiguration
+                                                ?.osDisk
+                                                ?.ephemeralOSDiskSettings?.[
+                                                "placement"
+                                              ],
+                                          },
+                                    },
+                              },
+                          taskSlotsPerNode:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["taskSlotsPerNode"],
+                          taskSchedulingPolicy: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.taskSchedulingPolicy
+                            ? undefined
+                            : {
+                                nodeFillType:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.taskSchedulingPolicy?.["nodeFillType"],
+                              },
+                          resizeTimeout:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["resizeTimeout"],
+                          targetDedicatedNodes:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["targetDedicatedNodes"],
+                          targetLowPriorityNodes:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["targetLowPriorityNodes"],
+                          enableAutoScale:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["enableAutoScale"],
+                          autoScaleFormula:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["autoScaleFormula"],
+                          autoScaleEvaluationInterval:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["autoScaleEvaluationInterval"],
+                          enableInterNodeCommunication:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["enableInterNodeCommunication"],
+                          networkConfiguration: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.networkConfiguration
+                            ? undefined
+                            : {
+                                subnetId:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.networkConfiguration?.["subnetId"],
+                                dynamicVNetAssignmentScope:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.networkConfiguration?.[
+                                    "dynamicVNetAssignmentScope"
+                                  ],
+                                endpointConfiguration: !p.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.networkConfiguration?.endpointConfiguration
+                                  ? undefined
+                                  : {
+                                      inboundNATPools:
+                                        p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.networkConfiguration?.endpointConfiguration?.[
+                                          "inboundNATPools"
+                                        ].map((p) => ({
+                                          name: p["name"],
+                                          protocol: p["protocol"],
+                                          backendPort: p["backendPort"],
+                                          frontendPortRangeStart:
+                                            p["frontendPortRangeStart"],
+                                          frontendPortRangeEnd:
+                                            p["frontendPortRangeEnd"],
+                                          networkSecurityGroupRules: !p[
+                                            "networkSecurityGroupRules"
+                                          ]
+                                            ? p["networkSecurityGroupRules"]
+                                            : p[
+                                                "networkSecurityGroupRules"
+                                              ].map((p) => ({
+                                                priority: p["priority"],
+                                                access: p["access"],
+                                                sourceAddressPrefix:
+                                                  p["sourceAddressPrefix"],
+                                                sourcePortRanges:
+                                                  p["sourcePortRanges"],
+                                              })),
+                                        })),
+                                    },
+                                publicIPAddressConfiguration: !p
+                                  .jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool
+                                  ?.networkConfiguration
+                                  ?.publicIPAddressConfiguration
+                                  ? undefined
+                                  : {
+                                      provision:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.publicIPAddressConfiguration?.[
+                                          "provision"
+                                        ],
+                                      ipAddressIds:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.networkConfiguration
+                                          ?.publicIPAddressConfiguration?.[
+                                          "ipAddressIds"
+                                        ],
+                                    },
+                                enableAcceleratedNetworking:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool
+                                    ?.networkConfiguration?.[
+                                    "enableAcceleratedNetworking"
+                                  ],
+                              },
+                          startTask: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.startTask
+                            ? undefined
+                            : {
+                                commandLine:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "commandLine"
+                                  ],
+                                containerSettings: !p.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool?.startTask
+                                  ?.containerSettings
+                                  ? undefined
+                                  : {
+                                      containerRunOptions:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.startTask?.containerSettings?.[
+                                          "containerRunOptions"
+                                        ],
+                                      imageName:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.startTask?.containerSettings?.[
+                                          "imageName"
+                                        ],
+                                      registry: !p.jobSpecification.poolInfo
+                                        .autoPoolSpecification?.pool?.startTask
+                                        ?.containerSettings?.registry
+                                        ? undefined
+                                        : {
+                                            username:
+                                              p.jobSpecification.poolInfo
+                                                .autoPoolSpecification?.pool
+                                                ?.startTask?.containerSettings
+                                                ?.registry?.["username"],
+                                            password:
+                                              p.jobSpecification.poolInfo
+                                                .autoPoolSpecification?.pool
+                                                ?.startTask?.containerSettings
+                                                ?.registry?.["password"],
+                                            registryServer:
+                                              p.jobSpecification.poolInfo
+                                                .autoPoolSpecification?.pool
+                                                ?.startTask?.containerSettings
+                                                ?.registry?.["registryServer"],
+                                            identityReference: !p
+                                              .jobSpecification.poolInfo
+                                              .autoPoolSpecification?.pool
+                                              ?.startTask?.containerSettings
+                                              ?.registry?.identityReference
+                                              ? undefined
+                                              : {
+                                                  resourceId:
+                                                    p.jobSpecification.poolInfo
+                                                      .autoPoolSpecification
+                                                      ?.pool?.startTask
+                                                      ?.containerSettings
+                                                      ?.registry
+                                                      ?.identityReference?.[
+                                                      "resourceId"
+                                                    ],
+                                                },
+                                          },
+                                      workingDirectory:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.startTask?.containerSettings?.[
+                                          "workingDirectory"
+                                        ],
+                                    },
+                                resourceFiles: !p.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool?.startTask?.[
+                                  "resourceFiles"
+                                ]
+                                  ? p.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool?.startTask?.[
+                                      "resourceFiles"
+                                    ]
+                                  : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                      "resourceFiles"
+                                    ].map((p) => ({
+                                      autoStorageContainerName:
+                                        p["autoStorageContainerName"],
+                                      storageContainerUrl:
+                                        p["storageContainerUrl"],
+                                      httpUrl: p["httpUrl"],
+                                      blobPrefix: p["blobPrefix"],
+                                      filePath: p["filePath"],
+                                      fileMode: p["fileMode"],
+                                      identityReference: !p.identityReference
+                                        ? undefined
+                                        : {
+                                            resourceId:
+                                              p.identityReference?.[
+                                                "resourceId"
+                                              ],
+                                          },
+                                    })),
+                                environmentSettings: !p.jobSpecification
+                                  .poolInfo.autoPoolSpecification?.pool
+                                  ?.startTask?.["environmentSettings"]
+                                  ? p.jobSpecification.poolInfo
+                                      .autoPoolSpecification?.pool?.startTask?.[
+                                      "environmentSettings"
+                                    ]
+                                  : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.startTask?.[
+                                      "environmentSettings"
+                                    ].map((p) => ({
+                                      name: p["name"],
+                                      value: p["value"],
+                                    })),
+                                userIdentity: !p.jobSpecification.poolInfo
+                                  .autoPoolSpecification?.pool?.startTask
+                                  ?.userIdentity
+                                  ? undefined
+                                  : {
+                                      username:
+                                        p.jobSpecification.poolInfo
+                                          .autoPoolSpecification?.pool
+                                          ?.startTask?.userIdentity?.[
+                                          "username"
+                                        ],
+                                      autoUser: !p.jobSpecification.poolInfo
+                                        .autoPoolSpecification?.pool?.startTask
+                                        ?.userIdentity?.autoUser
+                                        ? undefined
+                                        : {
+                                            scope:
+                                              p.jobSpecification.poolInfo
+                                                .autoPoolSpecification?.pool
+                                                ?.startTask?.userIdentity
+                                                ?.autoUser?.["scope"],
+                                            elevationLevel:
+                                              p.jobSpecification.poolInfo
+                                                .autoPoolSpecification?.pool
+                                                ?.startTask?.userIdentity
+                                                ?.autoUser?.["elevationLevel"],
+                                          },
+                                    },
+                                maxTaskRetryCount:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "maxTaskRetryCount"
+                                  ],
+                                waitForSuccess:
+                                  p.jobSpecification.poolInfo
+                                    .autoPoolSpecification?.pool?.startTask?.[
+                                    "waitForSuccess"
+                                  ],
+                              },
+                          certificateReferences: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.[
+                            "certificateReferences"
+                          ]
+                            ? p.jobSpecification.poolInfo.autoPoolSpecification
+                                ?.pool?.["certificateReferences"]
+                            : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                                "certificateReferences"
+                              ].map((p) => ({
+                                thumbprint: p["thumbprint"],
+                                thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                                storeLocation: p["storeLocation"],
+                                storeName: p["storeName"],
+                                visibility: p["visibility"],
+                              })),
+                          applicationPackageReferences: !p.jobSpecification
+                            .poolInfo.autoPoolSpecification?.pool?.[
+                            "applicationPackageReferences"
+                          ]
+                            ? p.jobSpecification.poolInfo.autoPoolSpecification
+                                ?.pool?.["applicationPackageReferences"]
+                            : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                                "applicationPackageReferences"
+                              ].map((p) => ({
+                                applicationId: p["applicationId"],
+                                version: p["version"],
+                              })),
+                          applicationLicenses:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["applicationLicenses"],
+                          userAccounts: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.["userAccounts"]
+                            ? p.jobSpecification.poolInfo.autoPoolSpecification
+                                ?.pool?.["userAccounts"]
+                            : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                                "userAccounts"
+                              ].map((p) => ({
+                                name: p["name"],
+                                password: p["password"],
+                                elevationLevel: p["elevationLevel"],
+                                linuxUserConfiguration:
+                                  !p.linuxUserConfiguration
                                     ? undefined
                                     : {
-                                        username:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.startTask?.containerSettings
-                                            ?.registry?.["username"],
-                                        password:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.startTask?.containerSettings
-                                            ?.registry?.["password"],
-                                        registryServer:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.startTask?.containerSettings
-                                            ?.registry?.["registryServer"],
-                                        identityReference: !p.jobSpecification
-                                          .poolInfo.autoPoolSpecification?.pool
-                                          ?.startTask?.containerSettings
-                                          ?.registry?.identityReference
+                                        uid: p.linuxUserConfiguration?.["uid"],
+                                        gid: p.linuxUserConfiguration?.["gid"],
+                                        sshPrivateKey:
+                                          p.linuxUserConfiguration?.[
+                                            "sshPrivateKey"
+                                          ],
+                                      },
+                                windowsUserConfiguration:
+                                  !p.windowsUserConfiguration
+                                    ? undefined
+                                    : {
+                                        loginMode:
+                                          p.windowsUserConfiguration?.[
+                                            "loginMode"
+                                          ],
+                                      },
+                              })),
+                          metadata: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.["metadata"]
+                            ? p.jobSpecification.poolInfo.autoPoolSpecification
+                                ?.pool?.["metadata"]
+                            : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                                "metadata"
+                              ].map((p) => ({
+                                name: p["name"],
+                                value: p["value"],
+                              })),
+                          mountConfiguration: !p.jobSpecification.poolInfo
+                            .autoPoolSpecification?.pool?.["mountConfiguration"]
+                            ? p.jobSpecification.poolInfo.autoPoolSpecification
+                                ?.pool?.["mountConfiguration"]
+                            : p.jobSpecification.poolInfo.autoPoolSpecification?.pool?.[
+                                "mountConfiguration"
+                              ].map((p) => ({
+                                azureBlobFileSystemConfiguration:
+                                  !p.azureBlobFileSystemConfiguration
+                                    ? undefined
+                                    : {
+                                        accountName:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "accountName"
+                                          ],
+                                        containerName:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "containerName"
+                                          ],
+                                        accountKey:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "accountKey"
+                                          ],
+                                        sasKey:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "sasKey"
+                                          ],
+                                        blobfuseOptions:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "blobfuseOptions"
+                                          ],
+                                        relativeMountPath:
+                                          p.azureBlobFileSystemConfiguration?.[
+                                            "relativeMountPath"
+                                          ],
+                                        identityReference: !p
+                                          .azureBlobFileSystemConfiguration
+                                          ?.identityReference
                                           ? undefined
                                           : {
                                               resourceId:
-                                                p.jobSpecification.poolInfo
-                                                  .autoPoolSpecification?.pool
-                                                  ?.startTask?.containerSettings
-                                                  ?.registry
+                                                p
+                                                  .azureBlobFileSystemConfiguration
                                                   ?.identityReference?.[
                                                   "resourceId"
                                                 ],
                                             },
                                       },
-                                  workingDirectory:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool?.startTask
-                                      ?.containerSettings?.["workingDirectory"],
-                                },
-                            resourceFiles: (
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.startTask?.["resourceFiles"] ?? []
-                            ).map((p) => ({
-                              autoStorageContainerName:
-                                p["autoStorageContainerName"],
-                              storageContainerUrl: p["storageContainerUrl"],
-                              httpUrl: p["httpUrl"],
-                              blobPrefix: p["blobPrefix"],
-                              filePath: p["filePath"],
-                              fileMode: p["fileMode"],
-                              identityReference: !p.identityReference
-                                ? undefined
-                                : {
-                                    resourceId:
-                                      p.identityReference?.["resourceId"],
-                                  },
-                            })),
-                            environmentSettings: (
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.startTask?.["environmentSettings"] ?? []
-                            ).map((p) => ({
-                              name: p["name"],
-                              value: p["value"],
-                            })),
-                            userIdentity: !p.jobSpecification.poolInfo
-                              .autoPoolSpecification?.pool?.startTask
-                              ?.userIdentity
-                              ? undefined
-                              : {
-                                  username:
-                                    p.jobSpecification.poolInfo
-                                      .autoPoolSpecification?.pool?.startTask
-                                      ?.userIdentity?.["username"],
-                                  autoUser: !p.jobSpecification.poolInfo
-                                    .autoPoolSpecification?.pool?.startTask
-                                    ?.userIdentity?.autoUser
-                                    ? undefined
-                                    : {
-                                        scope:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.startTask?.userIdentity
-                                            ?.autoUser?.["scope"],
-                                        elevationLevel:
-                                          p.jobSpecification.poolInfo
-                                            .autoPoolSpecification?.pool
-                                            ?.startTask?.userIdentity
-                                            ?.autoUser?.["elevationLevel"],
-                                      },
-                                },
-                            maxTaskRetryCount:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.startTask?.["maxTaskRetryCount"],
-                            waitForSuccess:
-                              p.jobSpecification.poolInfo.autoPoolSpecification
-                                ?.pool?.startTask?.["waitForSuccess"],
-                          },
-                      certificateReferences: (
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["certificateReferences"] ?? []
-                      ).map((p) => ({
-                        thumbprint: p["thumbprint"],
-                        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-                        storeLocation: p["storeLocation"],
-                        storeName: p["storeName"],
-                        visibility: p["visibility"],
-                      })),
-                      applicationPackageReferences: (
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["applicationPackageReferences"] ?? []
-                      ).map((p) => ({
-                        applicationId: p["applicationId"],
-                        version: p["version"],
-                      })),
-                      applicationLicenses:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["applicationLicenses"],
-                      userAccounts: (
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["userAccounts"] ?? []
-                      ).map((p) => ({
-                        name: p["name"],
-                        password: p["password"],
-                        elevationLevel: p["elevationLevel"],
-                        linuxUserConfiguration: !p.linuxUserConfiguration
-                          ? undefined
-                          : {
-                              uid: p.linuxUserConfiguration?.["uid"],
-                              gid: p.linuxUserConfiguration?.["gid"],
-                              sshPrivateKey:
-                                p.linuxUserConfiguration?.["sshPrivateKey"],
-                            },
-                        windowsUserConfiguration: !p.windowsUserConfiguration
-                          ? undefined
-                          : {
-                              loginMode:
-                                p.windowsUserConfiguration?.["loginMode"],
-                            },
-                      })),
-                      metadata: (
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["metadata"] ?? []
-                      ).map((p) => ({ name: p["name"], value: p["value"] })),
-                      mountConfiguration: (
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["mountConfiguration"] ?? []
-                      ).map((p) => ({
-                        azureBlobFileSystemConfiguration:
-                          !p.azureBlobFileSystemConfiguration
-                            ? undefined
-                            : {
-                                accountName:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "accountName"
-                                  ],
-                                containerName:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "containerName"
-                                  ],
-                                accountKey:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "accountKey"
-                                  ],
-                                sasKey:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "sasKey"
-                                  ],
-                                blobfuseOptions:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "blobfuseOptions"
-                                  ],
-                                relativeMountPath:
-                                  p.azureBlobFileSystemConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                identityReference: !p
-                                  .azureBlobFileSystemConfiguration
-                                  ?.identityReference
+                                nfsMountConfiguration: !p.nfsMountConfiguration
                                   ? undefined
                                   : {
-                                      resourceId:
-                                        p.azureBlobFileSystemConfiguration
-                                          ?.identityReference?.["resourceId"],
+                                      source:
+                                        p.nfsMountConfiguration?.["source"],
+                                      relativeMountPath:
+                                        p.nfsMountConfiguration?.[
+                                          "relativeMountPath"
+                                        ],
+                                      mountOptions:
+                                        p.nfsMountConfiguration?.[
+                                          "mountOptions"
+                                        ],
                                     },
-                              },
-                        nfsMountConfiguration: !p.nfsMountConfiguration
-                          ? undefined
-                          : {
-                              source: p.nfsMountConfiguration?.["source"],
-                              relativeMountPath:
-                                p.nfsMountConfiguration?.["relativeMountPath"],
-                              mountOptions:
-                                p.nfsMountConfiguration?.["mountOptions"],
-                            },
-                        cifsMountConfiguration: !p.cifsMountConfiguration
-                          ? undefined
-                          : {
-                              username: p.cifsMountConfiguration?.["username"],
-                              source: p.cifsMountConfiguration?.["source"],
-                              relativeMountPath:
-                                p.cifsMountConfiguration?.["relativeMountPath"],
-                              mountOptions:
-                                p.cifsMountConfiguration?.["mountOptions"],
-                              password: p.cifsMountConfiguration?.["password"],
-                            },
-                        azureFileShareConfiguration:
-                          !p.azureFileShareConfiguration
-                            ? undefined
-                            : {
-                                accountName:
-                                  p.azureFileShareConfiguration?.[
-                                    "accountName"
-                                  ],
-                                azureFileUrl:
-                                  p.azureFileShareConfiguration?.[
-                                    "azureFileUrl"
-                                  ],
-                                accountKey:
-                                  p.azureFileShareConfiguration?.["accountKey"],
-                                relativeMountPath:
-                                  p.azureFileShareConfiguration?.[
-                                    "relativeMountPath"
-                                  ],
-                                mountOptions:
-                                  p.azureFileShareConfiguration?.[
-                                    "mountOptions"
-                                  ],
-                              },
-                      })),
-                      targetNodeCommunicationMode:
-                        p.jobSpecification.poolInfo.autoPoolSpecification
-                          ?.pool?.["targetNodeCommunicationMode"],
+                                cifsMountConfiguration:
+                                  !p.cifsMountConfiguration
+                                    ? undefined
+                                    : {
+                                        username:
+                                          p.cifsMountConfiguration?.[
+                                            "username"
+                                          ],
+                                        source:
+                                          p.cifsMountConfiguration?.["source"],
+                                        relativeMountPath:
+                                          p.cifsMountConfiguration?.[
+                                            "relativeMountPath"
+                                          ],
+                                        mountOptions:
+                                          p.cifsMountConfiguration?.[
+                                            "mountOptions"
+                                          ],
+                                        password:
+                                          p.cifsMountConfiguration?.[
+                                            "password"
+                                          ],
+                                      },
+                                azureFileShareConfiguration:
+                                  !p.azureFileShareConfiguration
+                                    ? undefined
+                                    : {
+                                        accountName:
+                                          p.azureFileShareConfiguration?.[
+                                            "accountName"
+                                          ],
+                                        azureFileUrl:
+                                          p.azureFileShareConfiguration?.[
+                                            "azureFileUrl"
+                                          ],
+                                        accountKey:
+                                          p.azureFileShareConfiguration?.[
+                                            "accountKey"
+                                          ],
+                                        relativeMountPath:
+                                          p.azureFileShareConfiguration?.[
+                                            "relativeMountPath"
+                                          ],
+                                        mountOptions:
+                                          p.azureFileShareConfiguration?.[
+                                            "mountOptions"
+                                          ],
+                                      },
+                              })),
+                          targetNodeCommunicationMode:
+                            p.jobSpecification.poolInfo.autoPoolSpecification
+                              ?.pool?.["targetNodeCommunicationMode"],
+                        },
+                  },
+            },
+            metadata: !p.jobSpecification["metadata"]
+              ? p.jobSpecification["metadata"]
+              : p.jobSpecification["metadata"].map((p) => ({
+                  name: p["name"],
+                  value: p["value"],
+                })),
+          },
+          executionInfo: !p.executionInfo
+            ? undefined
+            : {
+                nextRunTime:
+                  p.executionInfo?.["nextRunTime"] !== undefined
+                    ? new Date(p.executionInfo?.["nextRunTime"])
+                    : undefined,
+                recentJob: !p.executionInfo?.recentJob
+                  ? undefined
+                  : {
+                      id: p.executionInfo?.recentJob?.["id"],
+                      url: p.executionInfo?.recentJob?.["url"],
                     },
+                endTime:
+                  p.executionInfo?.["endTime"] !== undefined
+                    ? new Date(p.executionInfo?.["endTime"])
+                    : undefined,
               },
-        },
-        metadata: (p.jobSpecification["metadata"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
+          metadata: !p["metadata"]
+            ? p["metadata"]
+            : p["metadata"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          stats: !p.stats
+            ? undefined
+            : {
+                url: p.stats?.["url"],
+                startTime: new Date(p.stats?.["startTime"]),
+                lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
+                userCPUTime: p.stats?.["userCPUTime"],
+                kernelCPUTime: p.stats?.["kernelCPUTime"],
+                wallClockTime: p.stats?.["wallClockTime"],
+                readIOps: p.stats?.["readIOps"],
+                writeIOps: p.stats?.["writeIOps"],
+                readIOGiB: p.stats?.["readIOGiB"],
+                writeIOGiB: p.stats?.["writeIOGiB"],
+                numSucceededTasks: p.stats?.["numSucceededTasks"],
+                numFailedTasks: p.stats?.["numFailedTasks"],
+                numTaskRetries: p.stats?.["numTaskRetries"],
+                waitTime: p.stats?.["waitTime"],
+              },
         })),
-      },
-      executionInfo: !p.executionInfo
-        ? undefined
-        : {
-            nextRunTime:
-              p.executionInfo?.["nextRunTime"] !== undefined
-                ? new Date(p.executionInfo?.["nextRunTime"])
-                : undefined,
-            recentJob: !p.executionInfo?.recentJob
-              ? undefined
-              : {
-                  id: p.executionInfo?.recentJob?.["id"],
-                  url: p.executionInfo?.recentJob?.["url"],
-                },
-            endTime:
-              p.executionInfo?.["endTime"] !== undefined
-                ? new Date(p.executionInfo?.["endTime"])
-                : undefined,
-          },
-      metadata: (p["metadata"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-      stats: !p.stats
-        ? undefined
-        : {
-            url: p.stats?.["url"],
-            startTime: new Date(p.stats?.["startTime"]),
-            lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-            userCPUTime: p.stats?.["userCPUTime"],
-            kernelCPUTime: p.stats?.["kernelCPUTime"],
-            wallClockTime: p.stats?.["wallClockTime"],
-            readIOps: p.stats?.["readIOps"],
-            writeIOps: p.stats?.["writeIOps"],
-            readIOGiB: p.stats?.["readIOGiB"],
-            writeIOGiB: p.stats?.["writeIOGiB"],
-            numSucceededTasks: p.stats?.["numSucceededTasks"],
-            numFailedTasks: p.stats?.["numFailedTasks"],
-            numTaskRetries: p.stats?.["numTaskRetries"],
-            waitTime: p.stats?.["waitTime"],
-          },
-    })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -14249,25 +15586,25 @@ export function _createTaskSend(
         exitConditions: !body.exitConditions
           ? undefined
           : {
-              exitCodes: (body.exitConditions?.["exitCodes"] ?? []).map(
-                (p) => ({
-                  code: p["code"],
-                  exitOptions: {
-                    jobAction: p.exitOptions["jobAction"],
-                    dependencyAction: p.exitOptions["dependencyAction"],
-                  },
-                })
-              ),
-              exitCodeRanges: (
-                body.exitConditions?.["exitCodeRanges"] ?? []
-              ).map((p) => ({
-                start: p["start"],
-                end: p["end"],
-                exitOptions: {
-                  jobAction: p.exitOptions["jobAction"],
-                  dependencyAction: p.exitOptions["dependencyAction"],
-                },
-              })),
+              exitCodes: !body.exitConditions?.["exitCodes"]
+                ? body.exitConditions?.["exitCodes"]
+                : body.exitConditions?.["exitCodes"].map((p) => ({
+                    code: p["code"],
+                    exitOptions: {
+                      jobAction: p.exitOptions["jobAction"],
+                      dependencyAction: p.exitOptions["dependencyAction"],
+                    },
+                  })),
+              exitCodeRanges: !body.exitConditions?.["exitCodeRanges"]
+                ? body.exitConditions?.["exitCodeRanges"]
+                : body.exitConditions?.["exitCodeRanges"].map((p) => ({
+                    start: p["start"],
+                    end: p["end"],
+                    exitOptions: {
+                      jobAction: p.exitOptions["jobAction"],
+                      dependencyAction: p.exitOptions["dependencyAction"],
+                    },
+                  })),
               preProcessingError: !body.exitConditions?.preProcessingError
                 ? undefined
                 : {
@@ -14321,46 +15658,55 @@ export function _createTaskSend(
                   },
               workingDirectory: body.containerSettings?.["workingDirectory"],
             },
-        resourceFiles: (body["resourceFiles"] ?? []).map((p) => ({
-          autoStorageContainerName: p["autoStorageContainerName"],
-          storageContainerUrl: p["storageContainerUrl"],
-          httpUrl: p["httpUrl"],
-          blobPrefix: p["blobPrefix"],
-          filePath: p["filePath"],
-          fileMode: p["fileMode"],
-          identityReference: !p.identityReference
-            ? undefined
-            : { resourceId: p.identityReference?.["resourceId"] },
-        })),
-        outputFiles: (body["outputFiles"] ?? []).map((p) => ({
-          filePattern: p["filePattern"],
-          destination: {
-            container: !p.destination.container
-              ? undefined
-              : {
-                  path: p.destination.container?.["path"],
-                  containerUrl: p.destination.container?.["containerUrl"],
-                  identityReference: !p.destination.container?.identityReference
-                    ? undefined
-                    : {
-                        resourceId:
-                          p.destination.container?.identityReference?.[
-                            "resourceId"
-                          ],
-                      },
-                  uploadHeaders: (
-                    p.destination.container?.["uploadHeaders"] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                },
-          },
-          uploadOptions: {
-            uploadCondition: p.uploadOptions["uploadCondition"],
-          },
-        })),
-        environmentSettings: (body["environmentSettings"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
-        })),
+        resourceFiles: !body["resourceFiles"]
+          ? body["resourceFiles"]
+          : body["resourceFiles"].map((p) => ({
+              autoStorageContainerName: p["autoStorageContainerName"],
+              storageContainerUrl: p["storageContainerUrl"],
+              httpUrl: p["httpUrl"],
+              blobPrefix: p["blobPrefix"],
+              filePath: p["filePath"],
+              fileMode: p["fileMode"],
+              identityReference: !p.identityReference
+                ? undefined
+                : { resourceId: p.identityReference?.["resourceId"] },
+            })),
+        outputFiles: !body["outputFiles"]
+          ? body["outputFiles"]
+          : body["outputFiles"].map((p) => ({
+              filePattern: p["filePattern"],
+              destination: {
+                container: !p.destination.container
+                  ? undefined
+                  : {
+                      path: p.destination.container?.["path"],
+                      containerUrl: p.destination.container?.["containerUrl"],
+                      identityReference: !p.destination.container
+                        ?.identityReference
+                        ? undefined
+                        : {
+                            resourceId:
+                              p.destination.container?.identityReference?.[
+                                "resourceId"
+                              ],
+                          },
+                      uploadHeaders: !p.destination.container?.["uploadHeaders"]
+                        ? p.destination.container?.["uploadHeaders"]
+                        : p.destination.container?.["uploadHeaders"].map(
+                            (p) => ({ name: p["name"], value: p["value"] })
+                          ),
+                    },
+              },
+              uploadOptions: {
+                uploadCondition: p.uploadOptions["uploadCondition"],
+              },
+            })),
+        environmentSettings: !body["environmentSettings"]
+          ? body["environmentSettings"]
+          : body["environmentSettings"].map((p) => ({
+              name: p["name"],
+              value: p["value"],
+            })),
         affinityInfo: !body.affinityInfo
           ? undefined
           : { affinityId: body.affinityInfo?.["affinityId"] },
@@ -14391,34 +15737,41 @@ export function _createTaskSend(
                 body.multiInstanceSettings?.["numberOfInstances"],
               coordinationCommandLine:
                 body.multiInstanceSettings?.["coordinationCommandLine"],
-              commonResourceFiles: (
-                body.multiInstanceSettings?.["commonResourceFiles"] ?? []
-              ).map((p) => ({
-                autoStorageContainerName: p["autoStorageContainerName"],
-                storageContainerUrl: p["storageContainerUrl"],
-                httpUrl: p["httpUrl"],
-                blobPrefix: p["blobPrefix"],
-                filePath: p["filePath"],
-                fileMode: p["fileMode"],
-                identityReference: !p.identityReference
-                  ? undefined
-                  : { resourceId: p.identityReference?.["resourceId"] },
-              })),
+              commonResourceFiles: !body.multiInstanceSettings?.[
+                "commonResourceFiles"
+              ]
+                ? body.multiInstanceSettings?.["commonResourceFiles"]
+                : body.multiInstanceSettings?.["commonResourceFiles"].map(
+                    (p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })
+                  ),
             },
         dependsOn: !body.dependsOn
           ? undefined
           : {
               taskIds: body.dependsOn?.["taskIds"],
-              taskIdRanges: (body.dependsOn?.["taskIdRanges"] ?? []).map(
-                (p) => ({ start: p["start"], end: p["end"] })
-              ),
+              taskIdRanges: !body.dependsOn?.["taskIdRanges"]
+                ? body.dependsOn?.["taskIdRanges"]
+                : body.dependsOn?.["taskIdRanges"].map((p) => ({
+                    start: p["start"],
+                    end: p["end"],
+                  })),
             },
-        applicationPackageReferences: (
-          body["applicationPackageReferences"] ?? []
-        ).map((p) => ({
-          applicationId: p["applicationId"],
-          version: p["version"],
-        })),
+        applicationPackageReferences: !body["applicationPackageReferences"]
+          ? body["applicationPackageReferences"]
+          : body["applicationPackageReferences"].map((p) => ({
+              applicationId: p["applicationId"],
+              version: p["version"],
+            })),
         authenticationTokenSettings: !body.authenticationTokenSettings
           ? undefined
           : { access: body.authenticationTokenSettings?.["access"] },
@@ -14478,262 +15831,293 @@ export async function _listTasksDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      displayName: p["displayName"],
-      url: p["url"],
-      eTag: p["eTag"],
-      lastModified:
-        p["lastModified"] !== undefined
-          ? new Date(p["lastModified"])
-          : undefined,
-      creationTime:
-        p["creationTime"] !== undefined
-          ? new Date(p["creationTime"])
-          : undefined,
-      exitConditions: !p.exitConditions
-        ? undefined
-        : {
-            exitCodes: (p.exitConditions?.["exitCodes"] ?? []).map((p) => ({
-              code: p["code"],
-              exitOptions: {
-                jobAction: p.exitOptions["jobAction"],
-                dependencyAction: p.exitOptions["dependencyAction"],
-              },
-            })),
-            exitCodeRanges: (p.exitConditions?.["exitCodeRanges"] ?? []).map(
-              (p) => ({
-                start: p["start"],
-                end: p["end"],
-                exitOptions: {
-                  jobAction: p.exitOptions["jobAction"],
-                  dependencyAction: p.exitOptions["dependencyAction"],
-                },
-              })
-            ),
-            preProcessingError: !p.exitConditions?.preProcessingError
-              ? undefined
-              : {
-                  jobAction:
-                    p.exitConditions?.preProcessingError?.["jobAction"],
-                  dependencyAction:
-                    p.exitConditions?.preProcessingError?.["dependencyAction"],
-                },
-            fileUploadError: !p.exitConditions?.fileUploadError
-              ? undefined
-              : {
-                  jobAction: p.exitConditions?.fileUploadError?.["jobAction"],
-                  dependencyAction:
-                    p.exitConditions?.fileUploadError?.["dependencyAction"],
-                },
-            default: !p.exitConditions?.default
-              ? undefined
-              : {
-                  jobAction: p.exitConditions?.default?.["jobAction"],
-                  dependencyAction:
-                    p.exitConditions?.default?.["dependencyAction"],
-                },
-          },
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      previousState: p["previousState"],
-      previousStateTransitionTime:
-        p["previousStateTransitionTime"] !== undefined
-          ? new Date(p["previousStateTransitionTime"])
-          : undefined,
-      commandLine: p["commandLine"],
-      containerSettings: !p.containerSettings
-        ? undefined
-        : {
-            containerRunOptions: p.containerSettings?.["containerRunOptions"],
-            imageName: p.containerSettings?.["imageName"],
-            registry: !p.containerSettings?.registry
-              ? undefined
-              : {
-                  username: p.containerSettings?.registry?.["username"],
-                  password: p.containerSettings?.registry?.["password"],
-                  registryServer:
-                    p.containerSettings?.registry?.["registryServer"],
-                  identityReference: !p.containerSettings?.registry
-                    ?.identityReference
-                    ? undefined
-                    : {
-                        resourceId:
-                          p.containerSettings?.registry?.identityReference?.[
-                            "resourceId"
-                          ],
-                      },
-                },
-            workingDirectory: p.containerSettings?.["workingDirectory"],
-          },
-      resourceFiles: (p["resourceFiles"] ?? []).map((p) => ({
-        autoStorageContainerName: p["autoStorageContainerName"],
-        storageContainerUrl: p["storageContainerUrl"],
-        httpUrl: p["httpUrl"],
-        blobPrefix: p["blobPrefix"],
-        filePath: p["filePath"],
-        fileMode: p["fileMode"],
-        identityReference: !p.identityReference
-          ? undefined
-          : { resourceId: p.identityReference?.["resourceId"] },
-      })),
-      outputFiles: (p["outputFiles"] ?? []).map((p) => ({
-        filePattern: p["filePattern"],
-        destination: {
-          container: !p.destination.container
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          displayName: p["displayName"],
+          url: p["url"],
+          eTag: p["eTag"],
+          lastModified:
+            p["lastModified"] !== undefined
+              ? new Date(p["lastModified"])
+              : undefined,
+          creationTime:
+            p["creationTime"] !== undefined
+              ? new Date(p["creationTime"])
+              : undefined,
+          exitConditions: !p.exitConditions
             ? undefined
             : {
-                path: p.destination.container?.["path"],
-                containerUrl: p.destination.container?.["containerUrl"],
-                identityReference: !p.destination.container?.identityReference
+                exitCodes: !p.exitConditions?.["exitCodes"]
+                  ? p.exitConditions?.["exitCodes"]
+                  : p.exitConditions?.["exitCodes"].map((p) => ({
+                      code: p["code"],
+                      exitOptions: {
+                        jobAction: p.exitOptions["jobAction"],
+                        dependencyAction: p.exitOptions["dependencyAction"],
+                      },
+                    })),
+                exitCodeRanges: !p.exitConditions?.["exitCodeRanges"]
+                  ? p.exitConditions?.["exitCodeRanges"]
+                  : p.exitConditions?.["exitCodeRanges"].map((p) => ({
+                      start: p["start"],
+                      end: p["end"],
+                      exitOptions: {
+                        jobAction: p.exitOptions["jobAction"],
+                        dependencyAction: p.exitOptions["dependencyAction"],
+                      },
+                    })),
+                preProcessingError: !p.exitConditions?.preProcessingError
                   ? undefined
                   : {
-                      resourceId:
-                        p.destination.container?.identityReference?.[
-                          "resourceId"
+                      jobAction:
+                        p.exitConditions?.preProcessingError?.["jobAction"],
+                      dependencyAction:
+                        p.exitConditions?.preProcessingError?.[
+                          "dependencyAction"
                         ],
                     },
-                uploadHeaders: (
-                  p.destination.container?.["uploadHeaders"] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                fileUploadError: !p.exitConditions?.fileUploadError
+                  ? undefined
+                  : {
+                      jobAction:
+                        p.exitConditions?.fileUploadError?.["jobAction"],
+                      dependencyAction:
+                        p.exitConditions?.fileUploadError?.["dependencyAction"],
+                    },
+                default: !p.exitConditions?.default
+                  ? undefined
+                  : {
+                      jobAction: p.exitConditions?.default?.["jobAction"],
+                      dependencyAction:
+                        p.exitConditions?.default?.["dependencyAction"],
+                    },
               },
-        },
-        uploadOptions: { uploadCondition: p.uploadOptions["uploadCondition"] },
-      })),
-      environmentSettings: (p["environmentSettings"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-      affinityInfo: !p.affinityInfo
-        ? undefined
-        : { affinityId: p.affinityInfo?.["affinityId"] },
-      constraints: !p.constraints
-        ? undefined
-        : {
-            maxWallClockTime: p.constraints?.["maxWallClockTime"],
-            retentionTime: p.constraints?.["retentionTime"],
-            maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
-          },
-      requiredSlots: p["requiredSlots"],
-      userIdentity: !p.userIdentity
-        ? undefined
-        : {
-            username: p.userIdentity?.["username"],
-            autoUser: !p.userIdentity?.autoUser
-              ? undefined
-              : {
-                  scope: p.userIdentity?.autoUser?.["scope"],
-                  elevationLevel: p.userIdentity?.autoUser?.["elevationLevel"],
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          previousState: p["previousState"],
+          previousStateTransitionTime:
+            p["previousStateTransitionTime"] !== undefined
+              ? new Date(p["previousStateTransitionTime"])
+              : undefined,
+          commandLine: p["commandLine"],
+          containerSettings: !p.containerSettings
+            ? undefined
+            : {
+                containerRunOptions:
+                  p.containerSettings?.["containerRunOptions"],
+                imageName: p.containerSettings?.["imageName"],
+                registry: !p.containerSettings?.registry
+                  ? undefined
+                  : {
+                      username: p.containerSettings?.registry?.["username"],
+                      password: p.containerSettings?.registry?.["password"],
+                      registryServer:
+                        p.containerSettings?.registry?.["registryServer"],
+                      identityReference: !p.containerSettings?.registry
+                        ?.identityReference
+                        ? undefined
+                        : {
+                            resourceId:
+                              p.containerSettings?.registry
+                                ?.identityReference?.["resourceId"],
+                          },
+                    },
+                workingDirectory: p.containerSettings?.["workingDirectory"],
+              },
+          resourceFiles: !p["resourceFiles"]
+            ? p["resourceFiles"]
+            : p["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
+                  ? undefined
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          outputFiles: !p["outputFiles"]
+            ? p["outputFiles"]
+            : p["outputFiles"].map((p) => ({
+                filePattern: p["filePattern"],
+                destination: {
+                  container: !p.destination.container
+                    ? undefined
+                    : {
+                        path: p.destination.container?.["path"],
+                        containerUrl: p.destination.container?.["containerUrl"],
+                        identityReference: !p.destination.container
+                          ?.identityReference
+                          ? undefined
+                          : {
+                              resourceId:
+                                p.destination.container?.identityReference?.[
+                                  "resourceId"
+                                ],
+                            },
+                        uploadHeaders: !p.destination.container?.[
+                          "uploadHeaders"
+                        ]
+                          ? p.destination.container?.["uploadHeaders"]
+                          : p.destination.container?.["uploadHeaders"].map(
+                              (p) => ({ name: p["name"], value: p["value"] })
+                            ),
+                      },
                 },
-          },
-      executionInfo: !p.executionInfo
-        ? undefined
-        : {
-            startTime:
-              p.executionInfo?.["startTime"] !== undefined
-                ? new Date(p.executionInfo?.["startTime"])
-                : undefined,
-            endTime:
-              p.executionInfo?.["endTime"] !== undefined
-                ? new Date(p.executionInfo?.["endTime"])
-                : undefined,
-            exitCode: p.executionInfo?.["exitCode"],
-            containerInfo: !p.executionInfo?.containerInfo
-              ? undefined
-              : {
-                  containerId: p.executionInfo?.containerInfo?.["containerId"],
-                  state: p.executionInfo?.containerInfo?.["state"],
-                  error: p.executionInfo?.containerInfo?.["error"],
+                uploadOptions: {
+                  uploadCondition: p.uploadOptions["uploadCondition"],
                 },
-            failureInfo: !p.executionInfo?.failureInfo
-              ? undefined
-              : {
-                  category: p.executionInfo?.failureInfo?.["category"],
-                  code: p.executionInfo?.failureInfo?.["code"],
-                  message: p.executionInfo?.failureInfo?.["message"],
-                  details: (
-                    p.executionInfo?.failureInfo?.["details"] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                },
-            retryCount: p.executionInfo?.["retryCount"],
-            lastRetryTime:
-              p.executionInfo?.["lastRetryTime"] !== undefined
-                ? new Date(p.executionInfo?.["lastRetryTime"])
-                : undefined,
-            requeueCount: p.executionInfo?.["requeueCount"],
-            lastRequeueTime:
-              p.executionInfo?.["lastRequeueTime"] !== undefined
-                ? new Date(p.executionInfo?.["lastRequeueTime"])
-                : undefined,
-            result: p.executionInfo?.["result"],
-          },
-      nodeInfo: !p.nodeInfo
-        ? undefined
-        : {
-            affinityId: p.nodeInfo?.["affinityId"],
-            nodeUrl: p.nodeInfo?.["nodeUrl"],
-            poolId: p.nodeInfo?.["poolId"],
-            nodeId: p.nodeInfo?.["nodeId"],
-            taskRootDirectory: p.nodeInfo?.["taskRootDirectory"],
-            taskRootDirectoryUrl: p.nodeInfo?.["taskRootDirectoryUrl"],
-          },
-      multiInstanceSettings: !p.multiInstanceSettings
-        ? undefined
-        : {
-            numberOfInstances: p.multiInstanceSettings?.["numberOfInstances"],
-            coordinationCommandLine:
-              p.multiInstanceSettings?.["coordinationCommandLine"],
-            commonResourceFiles: (
-              p.multiInstanceSettings?.["commonResourceFiles"] ?? []
-            ).map((p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })),
-          },
-      stats: !p.stats
-        ? undefined
-        : {
-            url: p.stats?.["url"],
-            startTime: new Date(p.stats?.["startTime"]),
-            lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
-            userCPUTime: p.stats?.["userCPUTime"],
-            kernelCPUTime: p.stats?.["kernelCPUTime"],
-            wallClockTime: p.stats?.["wallClockTime"],
-            readIOps: p.stats?.["readIOps"],
-            writeIOps: p.stats?.["writeIOps"],
-            readIOGiB: p.stats?.["readIOGiB"],
-            writeIOGiB: p.stats?.["writeIOGiB"],
-            waitTime: p.stats?.["waitTime"],
-          },
-      dependsOn: !p.dependsOn
-        ? undefined
-        : {
-            taskIds: p.dependsOn?.["taskIds"],
-            taskIdRanges: (p.dependsOn?.["taskIdRanges"] ?? []).map((p) => ({
-              start: p["start"],
-              end: p["end"],
-            })),
-          },
-      applicationPackageReferences: (
-        p["applicationPackageReferences"] ?? []
-      ).map((p) => ({
-        applicationId: p["applicationId"],
-        version: p["version"],
-      })),
-      authenticationTokenSettings: !p.authenticationTokenSettings
-        ? undefined
-        : { access: p.authenticationTokenSettings?.["access"] },
-    })),
+              })),
+          environmentSettings: !p["environmentSettings"]
+            ? p["environmentSettings"]
+            : p["environmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+          affinityInfo: !p.affinityInfo
+            ? undefined
+            : { affinityId: p.affinityInfo?.["affinityId"] },
+          constraints: !p.constraints
+            ? undefined
+            : {
+                maxWallClockTime: p.constraints?.["maxWallClockTime"],
+                retentionTime: p.constraints?.["retentionTime"],
+                maxTaskRetryCount: p.constraints?.["maxTaskRetryCount"],
+              },
+          requiredSlots: p["requiredSlots"],
+          userIdentity: !p.userIdentity
+            ? undefined
+            : {
+                username: p.userIdentity?.["username"],
+                autoUser: !p.userIdentity?.autoUser
+                  ? undefined
+                  : {
+                      scope: p.userIdentity?.autoUser?.["scope"],
+                      elevationLevel:
+                        p.userIdentity?.autoUser?.["elevationLevel"],
+                    },
+              },
+          executionInfo: !p.executionInfo
+            ? undefined
+            : {
+                startTime:
+                  p.executionInfo?.["startTime"] !== undefined
+                    ? new Date(p.executionInfo?.["startTime"])
+                    : undefined,
+                endTime:
+                  p.executionInfo?.["endTime"] !== undefined
+                    ? new Date(p.executionInfo?.["endTime"])
+                    : undefined,
+                exitCode: p.executionInfo?.["exitCode"],
+                containerInfo: !p.executionInfo?.containerInfo
+                  ? undefined
+                  : {
+                      containerId:
+                        p.executionInfo?.containerInfo?.["containerId"],
+                      state: p.executionInfo?.containerInfo?.["state"],
+                      error: p.executionInfo?.containerInfo?.["error"],
+                    },
+                failureInfo: !p.executionInfo?.failureInfo
+                  ? undefined
+                  : {
+                      category: p.executionInfo?.failureInfo?.["category"],
+                      code: p.executionInfo?.failureInfo?.["code"],
+                      message: p.executionInfo?.failureInfo?.["message"],
+                      details: !p.executionInfo?.failureInfo?.["details"]
+                        ? p.executionInfo?.failureInfo?.["details"]
+                        : p.executionInfo?.failureInfo?.["details"].map(
+                            (p) => ({ name: p["name"], value: p["value"] })
+                          ),
+                    },
+                retryCount: p.executionInfo?.["retryCount"],
+                lastRetryTime:
+                  p.executionInfo?.["lastRetryTime"] !== undefined
+                    ? new Date(p.executionInfo?.["lastRetryTime"])
+                    : undefined,
+                requeueCount: p.executionInfo?.["requeueCount"],
+                lastRequeueTime:
+                  p.executionInfo?.["lastRequeueTime"] !== undefined
+                    ? new Date(p.executionInfo?.["lastRequeueTime"])
+                    : undefined,
+                result: p.executionInfo?.["result"],
+              },
+          nodeInfo: !p.nodeInfo
+            ? undefined
+            : {
+                affinityId: p.nodeInfo?.["affinityId"],
+                nodeUrl: p.nodeInfo?.["nodeUrl"],
+                poolId: p.nodeInfo?.["poolId"],
+                nodeId: p.nodeInfo?.["nodeId"],
+                taskRootDirectory: p.nodeInfo?.["taskRootDirectory"],
+                taskRootDirectoryUrl: p.nodeInfo?.["taskRootDirectoryUrl"],
+              },
+          multiInstanceSettings: !p.multiInstanceSettings
+            ? undefined
+            : {
+                numberOfInstances:
+                  p.multiInstanceSettings?.["numberOfInstances"],
+                coordinationCommandLine:
+                  p.multiInstanceSettings?.["coordinationCommandLine"],
+                commonResourceFiles: !p.multiInstanceSettings?.[
+                  "commonResourceFiles"
+                ]
+                  ? p.multiInstanceSettings?.["commonResourceFiles"]
+                  : p.multiInstanceSettings?.["commonResourceFiles"].map(
+                      (p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })
+                    ),
+              },
+          stats: !p.stats
+            ? undefined
+            : {
+                url: p.stats?.["url"],
+                startTime: new Date(p.stats?.["startTime"]),
+                lastUpdateTime: new Date(p.stats?.["lastUpdateTime"]),
+                userCPUTime: p.stats?.["userCPUTime"],
+                kernelCPUTime: p.stats?.["kernelCPUTime"],
+                wallClockTime: p.stats?.["wallClockTime"],
+                readIOps: p.stats?.["readIOps"],
+                writeIOps: p.stats?.["writeIOps"],
+                readIOGiB: p.stats?.["readIOGiB"],
+                writeIOGiB: p.stats?.["writeIOGiB"],
+                waitTime: p.stats?.["waitTime"],
+              },
+          dependsOn: !p.dependsOn
+            ? undefined
+            : {
+                taskIds: p.dependsOn?.["taskIds"],
+                taskIdRanges: !p.dependsOn?.["taskIdRanges"]
+                  ? p.dependsOn?.["taskIdRanges"]
+                  : p.dependsOn?.["taskIdRanges"].map((p) => ({
+                      start: p["start"],
+                      end: p["end"],
+                    })),
+              },
+          applicationPackageReferences: !p["applicationPackageReferences"]
+            ? p["applicationPackageReferences"]
+            : p["applicationPackageReferences"].map((p) => ({
+                applicationId: p["applicationId"],
+                version: p["version"],
+              })),
+          authenticationTokenSettings: !p.authenticationTokenSettings
+            ? undefined
+            : { access: p.authenticationTokenSettings?.["access"] },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -14769,29 +16153,31 @@ export function _createTaskCollectionSend(
         "application/json; odata=minimalmetadata",
       queryParameters: { timeOut: options?.timeOut },
       body: {
-        value: (collection["value"] ?? []).map((p) => ({
+        value: collection["value"].map((p) => ({
           id: p["id"],
           displayName: p["displayName"],
           exitConditions: !p.exitConditions
             ? undefined
             : {
-                exitCodes: (p.exitConditions?.["exitCodes"] ?? []).map((p) => ({
-                  code: p["code"],
-                  exitOptions: {
-                    jobAction: p.exitOptions["jobAction"],
-                    dependencyAction: p.exitOptions["dependencyAction"],
-                  },
-                })),
-                exitCodeRanges: (
-                  p.exitConditions?.["exitCodeRanges"] ?? []
-                ).map((p) => ({
-                  start: p["start"],
-                  end: p["end"],
-                  exitOptions: {
-                    jobAction: p.exitOptions["jobAction"],
-                    dependencyAction: p.exitOptions["dependencyAction"],
-                  },
-                })),
+                exitCodes: !p.exitConditions?.["exitCodes"]
+                  ? p.exitConditions?.["exitCodes"]
+                  : p.exitConditions?.["exitCodes"].map((p) => ({
+                      code: p["code"],
+                      exitOptions: {
+                        jobAction: p.exitOptions["jobAction"],
+                        dependencyAction: p.exitOptions["dependencyAction"],
+                      },
+                    })),
+                exitCodeRanges: !p.exitConditions?.["exitCodeRanges"]
+                  ? p.exitConditions?.["exitCodeRanges"]
+                  : p.exitConditions?.["exitCodeRanges"].map((p) => ({
+                      start: p["start"],
+                      end: p["end"],
+                      exitOptions: {
+                        jobAction: p.exitOptions["jobAction"],
+                        dependencyAction: p.exitOptions["dependencyAction"],
+                      },
+                    })),
                 preProcessingError: !p.exitConditions?.preProcessingError
                   ? undefined
                   : {
@@ -14843,47 +16229,57 @@ export function _createTaskCollectionSend(
                     },
                 workingDirectory: p.containerSettings?.["workingDirectory"],
               },
-          resourceFiles: (p["resourceFiles"] ?? []).map((p) => ({
-            autoStorageContainerName: p["autoStorageContainerName"],
-            storageContainerUrl: p["storageContainerUrl"],
-            httpUrl: p["httpUrl"],
-            blobPrefix: p["blobPrefix"],
-            filePath: p["filePath"],
-            fileMode: p["fileMode"],
-            identityReference: !p.identityReference
-              ? undefined
-              : { resourceId: p.identityReference?.["resourceId"] },
-          })),
-          outputFiles: (p["outputFiles"] ?? []).map((p) => ({
-            filePattern: p["filePattern"],
-            destination: {
-              container: !p.destination.container
-                ? undefined
-                : {
-                    path: p.destination.container?.["path"],
-                    containerUrl: p.destination.container?.["containerUrl"],
-                    identityReference: !p.destination.container
-                      ?.identityReference
-                      ? undefined
-                      : {
-                          resourceId:
-                            p.destination.container?.identityReference?.[
-                              "resourceId"
-                            ],
-                        },
-                    uploadHeaders: (
-                      p.destination.container?.["uploadHeaders"] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
-                  },
-            },
-            uploadOptions: {
-              uploadCondition: p.uploadOptions["uploadCondition"],
-            },
-          })),
-          environmentSettings: (p["environmentSettings"] ?? []).map((p) => ({
-            name: p["name"],
-            value: p["value"],
-          })),
+          resourceFiles: !p["resourceFiles"]
+            ? p["resourceFiles"]
+            : p["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
+                  ? undefined
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          outputFiles: !p["outputFiles"]
+            ? p["outputFiles"]
+            : p["outputFiles"].map((p) => ({
+                filePattern: p["filePattern"],
+                destination: {
+                  container: !p.destination.container
+                    ? undefined
+                    : {
+                        path: p.destination.container?.["path"],
+                        containerUrl: p.destination.container?.["containerUrl"],
+                        identityReference: !p.destination.container
+                          ?.identityReference
+                          ? undefined
+                          : {
+                              resourceId:
+                                p.destination.container?.identityReference?.[
+                                  "resourceId"
+                                ],
+                            },
+                        uploadHeaders: !p.destination.container?.[
+                          "uploadHeaders"
+                        ]
+                          ? p.destination.container?.["uploadHeaders"]
+                          : p.destination.container?.["uploadHeaders"].map(
+                              (p) => ({ name: p["name"], value: p["value"] })
+                            ),
+                      },
+                },
+                uploadOptions: {
+                  uploadCondition: p.uploadOptions["uploadCondition"],
+                },
+              })),
+          environmentSettings: !p["environmentSettings"]
+            ? p["environmentSettings"]
+            : p["environmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           affinityInfo: !p.affinityInfo
             ? undefined
             : { affinityId: p.affinityInfo?.["affinityId"] },
@@ -14914,34 +16310,41 @@ export function _createTaskCollectionSend(
                   p.multiInstanceSettings?.["numberOfInstances"],
                 coordinationCommandLine:
                   p.multiInstanceSettings?.["coordinationCommandLine"],
-                commonResourceFiles: (
-                  p.multiInstanceSettings?.["commonResourceFiles"] ?? []
-                ).map((p) => ({
-                  autoStorageContainerName: p["autoStorageContainerName"],
-                  storageContainerUrl: p["storageContainerUrl"],
-                  httpUrl: p["httpUrl"],
-                  blobPrefix: p["blobPrefix"],
-                  filePath: p["filePath"],
-                  fileMode: p["fileMode"],
-                  identityReference: !p.identityReference
-                    ? undefined
-                    : { resourceId: p.identityReference?.["resourceId"] },
-                })),
+                commonResourceFiles: !p.multiInstanceSettings?.[
+                  "commonResourceFiles"
+                ]
+                  ? p.multiInstanceSettings?.["commonResourceFiles"]
+                  : p.multiInstanceSettings?.["commonResourceFiles"].map(
+                      (p) => ({
+                        autoStorageContainerName: p["autoStorageContainerName"],
+                        storageContainerUrl: p["storageContainerUrl"],
+                        httpUrl: p["httpUrl"],
+                        blobPrefix: p["blobPrefix"],
+                        filePath: p["filePath"],
+                        fileMode: p["fileMode"],
+                        identityReference: !p.identityReference
+                          ? undefined
+                          : { resourceId: p.identityReference?.["resourceId"] },
+                      })
+                    ),
               },
           dependsOn: !p.dependsOn
             ? undefined
             : {
                 taskIds: p.dependsOn?.["taskIds"],
-                taskIdRanges: (p.dependsOn?.["taskIdRanges"] ?? []).map(
-                  (p) => ({ start: p["start"], end: p["end"] })
-                ),
+                taskIdRanges: !p.dependsOn?.["taskIdRanges"]
+                  ? p.dependsOn?.["taskIdRanges"]
+                  : p.dependsOn?.["taskIdRanges"].map((p) => ({
+                      start: p["start"],
+                      end: p["end"],
+                    })),
               },
-          applicationPackageReferences: (
-            p["applicationPackageReferences"] ?? []
-          ).map((p) => ({
-            applicationId: p["applicationId"],
-            version: p["version"],
-          })),
+          applicationPackageReferences: !p["applicationPackageReferences"]
+            ? p["applicationPackageReferences"]
+            : p["applicationPackageReferences"].map((p) => ({
+                applicationId: p["applicationId"],
+                version: p["version"],
+              })),
           authenticationTokenSettings: !p.authenticationTokenSettings
             ? undefined
             : { access: p.authenticationTokenSettings?.["access"] },
@@ -14958,31 +16361,35 @@ export async function _createTaskCollectionDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      status: p["status"],
-      taskId: p["taskId"],
-      eTag: p["eTag"],
-      lastModified:
-        p["lastModified"] !== undefined
-          ? new Date(p["lastModified"])
-          : undefined,
-      location: p["location"],
-      error: !p.error
-        ? undefined
-        : {
-            code: p.error?.["code"],
-            message: !p.error?.message
-              ? undefined
-              : {
-                  lang: p.error?.message?.["lang"],
-                  value: p.error?.message?.["value"],
-                },
-            values: (p.error?.["values"] ?? []).map((p) => ({
-              key: p["key"],
-              value: p["value"],
-            })),
-          },
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          status: p["status"],
+          taskId: p["taskId"],
+          eTag: p["eTag"],
+          lastModified:
+            p["lastModified"] !== undefined
+              ? new Date(p["lastModified"])
+              : undefined,
+          location: p["location"],
+          error: !p.error
+            ? undefined
+            : {
+                code: p.error?.["code"],
+                message: !p.error?.message
+                  ? undefined
+                  : {
+                      lang: p.error?.message?.["lang"],
+                      value: p.error?.message?.["value"],
+                    },
+                values: !p.error?.["values"]
+                  ? p.error?.["values"]
+                  : p.error?.["values"].map((p) => ({
+                      key: p["key"],
+                      value: p["value"],
+                    })),
+              },
+        })),
   };
 }
 
@@ -15127,25 +16534,25 @@ export async function _getTaskDeserialize(
     exitConditions: !result.body.exitConditions
       ? undefined
       : {
-          exitCodes: (result.body.exitConditions?.["exitCodes"] ?? []).map(
-            (p) => ({
-              code: p["code"],
-              exitOptions: {
-                jobAction: p.exitOptions["jobAction"],
-                dependencyAction: p.exitOptions["dependencyAction"],
-              },
-            })
-          ),
-          exitCodeRanges: (
-            result.body.exitConditions?.["exitCodeRanges"] ?? []
-          ).map((p) => ({
-            start: p["start"],
-            end: p["end"],
-            exitOptions: {
-              jobAction: p.exitOptions["jobAction"],
-              dependencyAction: p.exitOptions["dependencyAction"],
-            },
-          })),
+          exitCodes: !result.body.exitConditions?.["exitCodes"]
+            ? result.body.exitConditions?.["exitCodes"]
+            : result.body.exitConditions?.["exitCodes"].map((p) => ({
+                code: p["code"],
+                exitOptions: {
+                  jobAction: p.exitOptions["jobAction"],
+                  dependencyAction: p.exitOptions["dependencyAction"],
+                },
+              })),
+          exitCodeRanges: !result.body.exitConditions?.["exitCodeRanges"]
+            ? result.body.exitConditions?.["exitCodeRanges"]
+            : result.body.exitConditions?.["exitCodeRanges"].map((p) => ({
+                start: p["start"],
+                end: p["end"],
+                exitOptions: {
+                  jobAction: p.exitOptions["jobAction"],
+                  dependencyAction: p.exitOptions["dependencyAction"],
+                },
+              })),
           preProcessingError: !result.body.exitConditions?.preProcessingError
             ? undefined
             : {
@@ -15209,43 +16616,55 @@ export async function _getTaskDeserialize(
               },
           workingDirectory: result.body.containerSettings?.["workingDirectory"],
         },
-    resourceFiles: (result.body["resourceFiles"] ?? []).map((p) => ({
-      autoStorageContainerName: p["autoStorageContainerName"],
-      storageContainerUrl: p["storageContainerUrl"],
-      httpUrl: p["httpUrl"],
-      blobPrefix: p["blobPrefix"],
-      filePath: p["filePath"],
-      fileMode: p["fileMode"],
-      identityReference: !p.identityReference
-        ? undefined
-        : { resourceId: p.identityReference?.["resourceId"] },
-    })),
-    outputFiles: (result.body["outputFiles"] ?? []).map((p) => ({
-      filePattern: p["filePattern"],
-      destination: {
-        container: !p.destination.container
-          ? undefined
-          : {
-              path: p.destination.container?.["path"],
-              containerUrl: p.destination.container?.["containerUrl"],
-              identityReference: !p.destination.container?.identityReference
-                ? undefined
-                : {
-                    resourceId:
-                      p.destination.container?.identityReference?.[
-                        "resourceId"
-                      ],
-                  },
-              uploadHeaders: (
-                p.destination.container?.["uploadHeaders"] ?? []
-              ).map((p) => ({ name: p["name"], value: p["value"] })),
-            },
-      },
-      uploadOptions: { uploadCondition: p.uploadOptions["uploadCondition"] },
-    })),
-    environmentSettings: (result.body["environmentSettings"] ?? []).map(
-      (p) => ({ name: p["name"], value: p["value"] })
-    ),
+    resourceFiles: !result.body["resourceFiles"]
+      ? result.body["resourceFiles"]
+      : result.body["resourceFiles"].map((p) => ({
+          autoStorageContainerName: p["autoStorageContainerName"],
+          storageContainerUrl: p["storageContainerUrl"],
+          httpUrl: p["httpUrl"],
+          blobPrefix: p["blobPrefix"],
+          filePath: p["filePath"],
+          fileMode: p["fileMode"],
+          identityReference: !p.identityReference
+            ? undefined
+            : { resourceId: p.identityReference?.["resourceId"] },
+        })),
+    outputFiles: !result.body["outputFiles"]
+      ? result.body["outputFiles"]
+      : result.body["outputFiles"].map((p) => ({
+          filePattern: p["filePattern"],
+          destination: {
+            container: !p.destination.container
+              ? undefined
+              : {
+                  path: p.destination.container?.["path"],
+                  containerUrl: p.destination.container?.["containerUrl"],
+                  identityReference: !p.destination.container?.identityReference
+                    ? undefined
+                    : {
+                        resourceId:
+                          p.destination.container?.identityReference?.[
+                            "resourceId"
+                          ],
+                      },
+                  uploadHeaders: !p.destination.container?.["uploadHeaders"]
+                    ? p.destination.container?.["uploadHeaders"]
+                    : p.destination.container?.["uploadHeaders"].map((p) => ({
+                        name: p["name"],
+                        value: p["value"],
+                      })),
+                },
+          },
+          uploadOptions: {
+            uploadCondition: p.uploadOptions["uploadCondition"],
+          },
+        })),
+    environmentSettings: !result.body["environmentSettings"]
+      ? result.body["environmentSettings"]
+      : result.body["environmentSettings"].map((p) => ({
+          name: p["name"],
+          value: p["value"],
+        })),
     affinityInfo: !result.body.affinityInfo
       ? undefined
       : { affinityId: result.body.affinityInfo?.["affinityId"] },
@@ -15295,9 +16714,11 @@ export async function _getTaskDeserialize(
                 category: result.body.executionInfo?.failureInfo?.["category"],
                 code: result.body.executionInfo?.failureInfo?.["code"],
                 message: result.body.executionInfo?.failureInfo?.["message"],
-                details: (
-                  result.body.executionInfo?.failureInfo?.["details"] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                details: !result.body.executionInfo?.failureInfo?.["details"]
+                  ? result.body.executionInfo?.failureInfo?.["details"]
+                  : result.body.executionInfo?.failureInfo?.["details"].map(
+                      (p) => ({ name: p["name"], value: p["value"] })
+                    ),
               },
           retryCount: result.body.executionInfo?.["retryCount"],
           lastRetryTime:
@@ -15328,19 +16749,23 @@ export async function _getTaskDeserialize(
             result.body.multiInstanceSettings?.["numberOfInstances"],
           coordinationCommandLine:
             result.body.multiInstanceSettings?.["coordinationCommandLine"],
-          commonResourceFiles: (
-            result.body.multiInstanceSettings?.["commonResourceFiles"] ?? []
-          ).map((p) => ({
-            autoStorageContainerName: p["autoStorageContainerName"],
-            storageContainerUrl: p["storageContainerUrl"],
-            httpUrl: p["httpUrl"],
-            blobPrefix: p["blobPrefix"],
-            filePath: p["filePath"],
-            fileMode: p["fileMode"],
-            identityReference: !p.identityReference
-              ? undefined
-              : { resourceId: p.identityReference?.["resourceId"] },
-          })),
+          commonResourceFiles: !result.body.multiInstanceSettings?.[
+            "commonResourceFiles"
+          ]
+            ? result.body.multiInstanceSettings?.["commonResourceFiles"]
+            : result.body.multiInstanceSettings?.["commonResourceFiles"].map(
+                (p) => ({
+                  autoStorageContainerName: p["autoStorageContainerName"],
+                  storageContainerUrl: p["storageContainerUrl"],
+                  httpUrl: p["httpUrl"],
+                  blobPrefix: p["blobPrefix"],
+                  filePath: p["filePath"],
+                  fileMode: p["fileMode"],
+                  identityReference: !p.identityReference
+                    ? undefined
+                    : { resourceId: p.identityReference?.["resourceId"] },
+                })
+              ),
         },
     stats: !result.body.stats
       ? undefined
@@ -15361,16 +16786,19 @@ export async function _getTaskDeserialize(
       ? undefined
       : {
           taskIds: result.body.dependsOn?.["taskIds"],
-          taskIdRanges: (result.body.dependsOn?.["taskIdRanges"] ?? []).map(
-            (p) => ({ start: p["start"], end: p["end"] })
-          ),
+          taskIdRanges: !result.body.dependsOn?.["taskIdRanges"]
+            ? result.body.dependsOn?.["taskIdRanges"]
+            : result.body.dependsOn?.["taskIdRanges"].map((p) => ({
+                start: p["start"],
+                end: p["end"],
+              })),
         },
-    applicationPackageReferences: (
-      result.body["applicationPackageReferences"] ?? []
-    ).map((p) => ({
-      applicationId: p["applicationId"],
-      version: p["version"],
-    })),
+    applicationPackageReferences: !result.body["applicationPackageReferences"]
+      ? result.body["applicationPackageReferences"]
+      : result.body["applicationPackageReferences"].map((p) => ({
+          applicationId: p["applicationId"],
+          version: p["version"],
+        })),
     authenticationTokenSettings: !result.body.authenticationTokenSettings
       ? undefined
       : { access: result.body.authenticationTokenSettings?.["access"] },
@@ -15477,52 +16905,57 @@ export async function _listSubTasksDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      nodeInfo: !p.nodeInfo
-        ? undefined
-        : {
-            affinityId: p.nodeInfo?.["affinityId"],
-            nodeUrl: p.nodeInfo?.["nodeUrl"],
-            poolId: p.nodeInfo?.["poolId"],
-            nodeId: p.nodeInfo?.["nodeId"],
-            taskRootDirectory: p.nodeInfo?.["taskRootDirectory"],
-            taskRootDirectoryUrl: p.nodeInfo?.["taskRootDirectoryUrl"],
-          },
-      startTime:
-        p["startTime"] !== undefined ? new Date(p["startTime"]) : undefined,
-      endTime: p["endTime"] !== undefined ? new Date(p["endTime"]) : undefined,
-      exitCode: p["exitCode"],
-      containerInfo: !p.containerInfo
-        ? undefined
-        : {
-            containerId: p.containerInfo?.["containerId"],
-            state: p.containerInfo?.["state"],
-            error: p.containerInfo?.["error"],
-          },
-      failureInfo: !p.failureInfo
-        ? undefined
-        : {
-            category: p.failureInfo?.["category"],
-            code: p.failureInfo?.["code"],
-            message: p.failureInfo?.["message"],
-            details: (p.failureInfo?.["details"] ?? []).map((p) => ({
-              name: p["name"],
-              value: p["value"],
-            })),
-          },
-      state: p["state"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      previousState: p["previousState"],
-      previousStateTransitionTime:
-        p["previousStateTransitionTime"] !== undefined
-          ? new Date(p["previousStateTransitionTime"])
-          : undefined,
-      result: p["result"],
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          nodeInfo: !p.nodeInfo
+            ? undefined
+            : {
+                affinityId: p.nodeInfo?.["affinityId"],
+                nodeUrl: p.nodeInfo?.["nodeUrl"],
+                poolId: p.nodeInfo?.["poolId"],
+                nodeId: p.nodeInfo?.["nodeId"],
+                taskRootDirectory: p.nodeInfo?.["taskRootDirectory"],
+                taskRootDirectoryUrl: p.nodeInfo?.["taskRootDirectoryUrl"],
+              },
+          startTime:
+            p["startTime"] !== undefined ? new Date(p["startTime"]) : undefined,
+          endTime:
+            p["endTime"] !== undefined ? new Date(p["endTime"]) : undefined,
+          exitCode: p["exitCode"],
+          containerInfo: !p.containerInfo
+            ? undefined
+            : {
+                containerId: p.containerInfo?.["containerId"],
+                state: p.containerInfo?.["state"],
+                error: p.containerInfo?.["error"],
+              },
+          failureInfo: !p.failureInfo
+            ? undefined
+            : {
+                category: p.failureInfo?.["category"],
+                code: p.failureInfo?.["code"],
+                message: p.failureInfo?.["message"],
+                details: !p.failureInfo?.["details"]
+                  ? p.failureInfo?.["details"]
+                  : p.failureInfo?.["details"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+              },
+          state: p["state"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          previousState: p["previousState"],
+          previousStateTransitionTime:
+            p["previousStateTransitionTime"] !== undefined
+              ? new Date(p["previousStateTransitionTime"])
+              : undefined,
+          result: p["result"],
+        })),
   };
 }
 
@@ -15844,23 +17277,25 @@ export async function _listTaskFilesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      name: p["name"],
-      url: p["url"],
-      isDirectory: p["isDirectory"],
-      properties: !p.properties
-        ? undefined
-        : {
-            creationTime:
-              p.properties?.["creationTime"] !== undefined
-                ? new Date(p.properties?.["creationTime"])
-                : undefined,
-            lastModified: new Date(p.properties?.["lastModified"]),
-            contentLength: p.properties?.["contentLength"],
-            contentType: p.properties?.["contentType"],
-            fileMode: p.properties?.["fileMode"],
-          },
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          name: p["name"],
+          url: p["url"],
+          isDirectory: p["isDirectory"],
+          properties: !p.properties
+            ? undefined
+            : {
+                creationTime:
+                  p.properties?.["creationTime"] !== undefined
+                    ? new Date(p.properties?.["creationTime"])
+                    : undefined,
+                lastModified: new Date(p.properties?.["lastModified"]),
+                contentLength: p.properties?.["contentLength"],
+                contentType: p.properties?.["contentType"],
+                fileMode: p.properties?.["fileMode"],
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -16094,54 +17529,59 @@ export async function _getNodeDeserialize(
     runningTasksCount: result.body["runningTasksCount"],
     runningTaskSlotsCount: result.body["runningTaskSlotsCount"],
     totalTasksSucceeded: result.body["totalTasksSucceeded"],
-    recentTasks: (result.body["recentTasks"] ?? []).map((p) => ({
-      taskUrl: p["taskUrl"],
-      jobId: p["jobId"],
-      taskId: p["taskId"],
-      subtaskId: p["subtaskId"],
-      taskState: p["taskState"],
-      executionInfo: !p.executionInfo
-        ? undefined
-        : {
-            startTime:
-              p.executionInfo?.["startTime"] !== undefined
-                ? new Date(p.executionInfo?.["startTime"])
-                : undefined,
-            endTime:
-              p.executionInfo?.["endTime"] !== undefined
-                ? new Date(p.executionInfo?.["endTime"])
-                : undefined,
-            exitCode: p.executionInfo?.["exitCode"],
-            containerInfo: !p.executionInfo?.containerInfo
-              ? undefined
-              : {
-                  containerId: p.executionInfo?.containerInfo?.["containerId"],
-                  state: p.executionInfo?.containerInfo?.["state"],
-                  error: p.executionInfo?.containerInfo?.["error"],
-                },
-            failureInfo: !p.executionInfo?.failureInfo
-              ? undefined
-              : {
-                  category: p.executionInfo?.failureInfo?.["category"],
-                  code: p.executionInfo?.failureInfo?.["code"],
-                  message: p.executionInfo?.failureInfo?.["message"],
-                  details: (
-                    p.executionInfo?.failureInfo?.["details"] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                },
-            retryCount: p.executionInfo?.["retryCount"],
-            lastRetryTime:
-              p.executionInfo?.["lastRetryTime"] !== undefined
-                ? new Date(p.executionInfo?.["lastRetryTime"])
-                : undefined,
-            requeueCount: p.executionInfo?.["requeueCount"],
-            lastRequeueTime:
-              p.executionInfo?.["lastRequeueTime"] !== undefined
-                ? new Date(p.executionInfo?.["lastRequeueTime"])
-                : undefined,
-            result: p.executionInfo?.["result"],
-          },
-    })),
+    recentTasks: !result.body["recentTasks"]
+      ? result.body["recentTasks"]
+      : result.body["recentTasks"].map((p) => ({
+          taskUrl: p["taskUrl"],
+          jobId: p["jobId"],
+          taskId: p["taskId"],
+          subtaskId: p["subtaskId"],
+          taskState: p["taskState"],
+          executionInfo: !p.executionInfo
+            ? undefined
+            : {
+                startTime:
+                  p.executionInfo?.["startTime"] !== undefined
+                    ? new Date(p.executionInfo?.["startTime"])
+                    : undefined,
+                endTime:
+                  p.executionInfo?.["endTime"] !== undefined
+                    ? new Date(p.executionInfo?.["endTime"])
+                    : undefined,
+                exitCode: p.executionInfo?.["exitCode"],
+                containerInfo: !p.executionInfo?.containerInfo
+                  ? undefined
+                  : {
+                      containerId:
+                        p.executionInfo?.containerInfo?.["containerId"],
+                      state: p.executionInfo?.containerInfo?.["state"],
+                      error: p.executionInfo?.containerInfo?.["error"],
+                    },
+                failureInfo: !p.executionInfo?.failureInfo
+                  ? undefined
+                  : {
+                      category: p.executionInfo?.failureInfo?.["category"],
+                      code: p.executionInfo?.failureInfo?.["code"],
+                      message: p.executionInfo?.failureInfo?.["message"],
+                      details: !p.executionInfo?.failureInfo?.["details"]
+                        ? p.executionInfo?.failureInfo?.["details"]
+                        : p.executionInfo?.failureInfo?.["details"].map(
+                            (p) => ({ name: p["name"], value: p["value"] })
+                          ),
+                    },
+                retryCount: p.executionInfo?.["retryCount"],
+                lastRetryTime:
+                  p.executionInfo?.["lastRetryTime"] !== undefined
+                    ? new Date(p.executionInfo?.["lastRetryTime"])
+                    : undefined,
+                requeueCount: p.executionInfo?.["requeueCount"],
+                lastRequeueTime:
+                  p.executionInfo?.["lastRequeueTime"] !== undefined
+                    ? new Date(p.executionInfo?.["lastRequeueTime"])
+                    : undefined,
+                result: p.executionInfo?.["result"],
+              },
+        })),
     startTask: !result.body.startTask
       ? undefined
       : {
@@ -16184,22 +17624,25 @@ export async function _getNodeDeserialize(
                     "workingDirectory"
                   ],
               },
-          resourceFiles: (result.body.startTask?.["resourceFiles"] ?? []).map(
-            (p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })
-          ),
-          environmentSettings: (
-            result.body.startTask?.["environmentSettings"] ?? []
-          ).map((p) => ({ name: p["name"], value: p["value"] })),
+          resourceFiles: !result.body.startTask?.["resourceFiles"]
+            ? result.body.startTask?.["resourceFiles"]
+            : result.body.startTask?.["resourceFiles"].map((p) => ({
+                autoStorageContainerName: p["autoStorageContainerName"],
+                storageContainerUrl: p["storageContainerUrl"],
+                httpUrl: p["httpUrl"],
+                blobPrefix: p["blobPrefix"],
+                filePath: p["filePath"],
+                fileMode: p["fileMode"],
+                identityReference: !p.identityReference
+                  ? undefined
+                  : { resourceId: p.identityReference?.["resourceId"] },
+              })),
+          environmentSettings: !result.body.startTask?.["environmentSettings"]
+            ? result.body.startTask?.["environmentSettings"]
+            : result.body.startTask?.["environmentSettings"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
           userIdentity: !result.body.startTask?.userIdentity
             ? undefined
             : {
@@ -16244,9 +17687,11 @@ export async function _getNodeDeserialize(
                 category: result.body.startTaskInfo?.failureInfo?.["category"],
                 code: result.body.startTaskInfo?.failureInfo?.["code"],
                 message: result.body.startTaskInfo?.failureInfo?.["message"],
-                details: (
-                  result.body.startTaskInfo?.failureInfo?.["details"] ?? []
-                ).map((p) => ({ name: p["name"], value: p["value"] })),
+                details: !result.body.startTaskInfo?.failureInfo?.["details"]
+                  ? result.body.startTaskInfo?.failureInfo?.["details"]
+                  : result.body.startTaskInfo?.failureInfo?.["details"].map(
+                      (p) => ({ name: p["name"], value: p["value"] })
+                    ),
               },
           retryCount: result.body.startTaskInfo?.["retryCount"],
           lastRetryTime:
@@ -16255,30 +17700,34 @@ export async function _getNodeDeserialize(
               : undefined,
           result: result.body.startTaskInfo?.["result"],
         },
-    certificateReferences: (result.body["certificateReferences"] ?? []).map(
-      (p) => ({
-        thumbprint: p["thumbprint"],
-        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-        storeLocation: p["storeLocation"],
-        storeName: p["storeName"],
-        visibility: p["visibility"],
-      })
-    ),
-    errors: (result.body["errors"] ?? []).map((p) => ({
-      code: p["code"],
-      message: p["message"],
-      errorDetails: (p["errorDetails"] ?? []).map((p) => ({
-        name: p["name"],
-        value: p["value"],
-      })),
-    })),
+    certificateReferences: !result.body["certificateReferences"]
+      ? result.body["certificateReferences"]
+      : result.body["certificateReferences"].map((p) => ({
+          thumbprint: p["thumbprint"],
+          thumbprintAlgorithm: p["thumbprintAlgorithm"],
+          storeLocation: p["storeLocation"],
+          storeName: p["storeName"],
+          visibility: p["visibility"],
+        })),
+    errors: !result.body["errors"]
+      ? result.body["errors"]
+      : result.body["errors"].map((p) => ({
+          code: p["code"],
+          message: p["message"],
+          errorDetails: !p["errorDetails"]
+            ? p["errorDetails"]
+            : p["errorDetails"].map((p) => ({
+                name: p["name"],
+                value: p["value"],
+              })),
+        })),
     isDedicated: result.body["isDedicated"],
     endpointConfiguration: !result.body.endpointConfiguration
       ? undefined
       : {
-          inboundEndpoints: (
-            result.body.endpointConfiguration?.["inboundEndpoints"] ?? []
-          ).map((p) => ({
+          inboundEndpoints: result.body.endpointConfiguration?.[
+            "inboundEndpoints"
+          ].map((p) => ({
             name: p["name"],
             protocol: p["protocol"],
             publicIPAddress: p["publicIPAddress"],
@@ -16716,237 +18165,263 @@ export async function _listNodesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      id: p["id"],
-      url: p["url"],
-      state: p["state"],
-      schedulingState: p["schedulingState"],
-      stateTransitionTime:
-        p["stateTransitionTime"] !== undefined
-          ? new Date(p["stateTransitionTime"])
-          : undefined,
-      lastBootTime:
-        p["lastBootTime"] !== undefined
-          ? new Date(p["lastBootTime"])
-          : undefined,
-      allocationTime:
-        p["allocationTime"] !== undefined
-          ? new Date(p["allocationTime"])
-          : undefined,
-      ipAddress: p["ipAddress"],
-      affinityId: p["affinityId"],
-      vmSize: p["vmSize"],
-      totalTasksRun: p["totalTasksRun"],
-      runningTasksCount: p["runningTasksCount"],
-      runningTaskSlotsCount: p["runningTaskSlotsCount"],
-      totalTasksSucceeded: p["totalTasksSucceeded"],
-      recentTasks: (p["recentTasks"] ?? []).map((p) => ({
-        taskUrl: p["taskUrl"],
-        jobId: p["jobId"],
-        taskId: p["taskId"],
-        subtaskId: p["subtaskId"],
-        taskState: p["taskState"],
-        executionInfo: !p.executionInfo
-          ? undefined
-          : {
-              startTime:
-                p.executionInfo?.["startTime"] !== undefined
-                  ? new Date(p.executionInfo?.["startTime"])
-                  : undefined,
-              endTime:
-                p.executionInfo?.["endTime"] !== undefined
-                  ? new Date(p.executionInfo?.["endTime"])
-                  : undefined,
-              exitCode: p.executionInfo?.["exitCode"],
-              containerInfo: !p.executionInfo?.containerInfo
-                ? undefined
-                : {
-                    containerId:
-                      p.executionInfo?.containerInfo?.["containerId"],
-                    state: p.executionInfo?.containerInfo?.["state"],
-                    error: p.executionInfo?.containerInfo?.["error"],
-                  },
-              failureInfo: !p.executionInfo?.failureInfo
-                ? undefined
-                : {
-                    category: p.executionInfo?.failureInfo?.["category"],
-                    code: p.executionInfo?.failureInfo?.["code"],
-                    message: p.executionInfo?.failureInfo?.["message"],
-                    details: (
-                      p.executionInfo?.failureInfo?.["details"] ?? []
-                    ).map((p) => ({ name: p["name"], value: p["value"] })),
-                  },
-              retryCount: p.executionInfo?.["retryCount"],
-              lastRetryTime:
-                p.executionInfo?.["lastRetryTime"] !== undefined
-                  ? new Date(p.executionInfo?.["lastRetryTime"])
-                  : undefined,
-              requeueCount: p.executionInfo?.["requeueCount"],
-              lastRequeueTime:
-                p.executionInfo?.["lastRequeueTime"] !== undefined
-                  ? new Date(p.executionInfo?.["lastRequeueTime"])
-                  : undefined,
-              result: p.executionInfo?.["result"],
-            },
-      })),
-      startTask: !p.startTask
-        ? undefined
-        : {
-            commandLine: p.startTask?.["commandLine"],
-            containerSettings: !p.startTask?.containerSettings
-              ? undefined
-              : {
-                  containerRunOptions:
-                    p.startTask?.containerSettings?.["containerRunOptions"],
-                  imageName: p.startTask?.containerSettings?.["imageName"],
-                  registry: !p.startTask?.containerSettings?.registry
-                    ? undefined
-                    : {
-                        username:
-                          p.startTask?.containerSettings?.registry?.[
-                            "username"
-                          ],
-                        password:
-                          p.startTask?.containerSettings?.registry?.[
-                            "password"
-                          ],
-                        registryServer:
-                          p.startTask?.containerSettings?.registry?.[
-                            "registryServer"
-                          ],
-                        identityReference: !p.startTask?.containerSettings
-                          ?.registry?.identityReference
-                          ? undefined
-                          : {
-                              resourceId:
-                                p.startTask?.containerSettings?.registry
-                                  ?.identityReference?.["resourceId"],
-                            },
-                      },
-                  workingDirectory:
-                    p.startTask?.containerSettings?.["workingDirectory"],
-                },
-            resourceFiles: (p.startTask?.["resourceFiles"] ?? []).map((p) => ({
-              autoStorageContainerName: p["autoStorageContainerName"],
-              storageContainerUrl: p["storageContainerUrl"],
-              httpUrl: p["httpUrl"],
-              blobPrefix: p["blobPrefix"],
-              filePath: p["filePath"],
-              fileMode: p["fileMode"],
-              identityReference: !p.identityReference
-                ? undefined
-                : { resourceId: p.identityReference?.["resourceId"] },
-            })),
-            environmentSettings: (
-              p.startTask?.["environmentSettings"] ?? []
-            ).map((p) => ({ name: p["name"], value: p["value"] })),
-            userIdentity: !p.startTask?.userIdentity
-              ? undefined
-              : {
-                  username: p.startTask?.userIdentity?.["username"],
-                  autoUser: !p.startTask?.userIdentity?.autoUser
-                    ? undefined
-                    : {
-                        scope: p.startTask?.userIdentity?.autoUser?.["scope"],
-                        elevationLevel:
-                          p.startTask?.userIdentity?.autoUser?.[
-                            "elevationLevel"
-                          ],
-                      },
-                },
-            maxTaskRetryCount: p.startTask?.["maxTaskRetryCount"],
-            waitForSuccess: p.startTask?.["waitForSuccess"],
-          },
-      startTaskInfo: !p.startTaskInfo
-        ? undefined
-        : {
-            state: p.startTaskInfo?.["state"],
-            startTime: new Date(p.startTaskInfo?.["startTime"]),
-            endTime:
-              p.startTaskInfo?.["endTime"] !== undefined
-                ? new Date(p.startTaskInfo?.["endTime"])
-                : undefined,
-            exitCode: p.startTaskInfo?.["exitCode"],
-            containerInfo: !p.startTaskInfo?.containerInfo
-              ? undefined
-              : {
-                  containerId: p.startTaskInfo?.containerInfo?.["containerId"],
-                  state: p.startTaskInfo?.containerInfo?.["state"],
-                  error: p.startTaskInfo?.containerInfo?.["error"],
-                },
-            failureInfo: !p.startTaskInfo?.failureInfo
-              ? undefined
-              : {
-                  category: p.startTaskInfo?.failureInfo?.["category"],
-                  code: p.startTaskInfo?.failureInfo?.["code"],
-                  message: p.startTaskInfo?.failureInfo?.["message"],
-                  details: (
-                    p.startTaskInfo?.failureInfo?.["details"] ?? []
-                  ).map((p) => ({ name: p["name"], value: p["value"] })),
-                },
-            retryCount: p.startTaskInfo?.["retryCount"],
-            lastRetryTime:
-              p.startTaskInfo?.["lastRetryTime"] !== undefined
-                ? new Date(p.startTaskInfo?.["lastRetryTime"])
-                : undefined,
-            result: p.startTaskInfo?.["result"],
-          },
-      certificateReferences: (p["certificateReferences"] ?? []).map((p) => ({
-        thumbprint: p["thumbprint"],
-        thumbprintAlgorithm: p["thumbprintAlgorithm"],
-        storeLocation: p["storeLocation"],
-        storeName: p["storeName"],
-        visibility: p["visibility"],
-      })),
-      errors: (p["errors"] ?? []).map((p) => ({
-        code: p["code"],
-        message: p["message"],
-        errorDetails: (p["errorDetails"] ?? []).map((p) => ({
-          name: p["name"],
-          value: p["value"],
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          id: p["id"],
+          url: p["url"],
+          state: p["state"],
+          schedulingState: p["schedulingState"],
+          stateTransitionTime:
+            p["stateTransitionTime"] !== undefined
+              ? new Date(p["stateTransitionTime"])
+              : undefined,
+          lastBootTime:
+            p["lastBootTime"] !== undefined
+              ? new Date(p["lastBootTime"])
+              : undefined,
+          allocationTime:
+            p["allocationTime"] !== undefined
+              ? new Date(p["allocationTime"])
+              : undefined,
+          ipAddress: p["ipAddress"],
+          affinityId: p["affinityId"],
+          vmSize: p["vmSize"],
+          totalTasksRun: p["totalTasksRun"],
+          runningTasksCount: p["runningTasksCount"],
+          runningTaskSlotsCount: p["runningTaskSlotsCount"],
+          totalTasksSucceeded: p["totalTasksSucceeded"],
+          recentTasks: !p["recentTasks"]
+            ? p["recentTasks"]
+            : p["recentTasks"].map((p) => ({
+                taskUrl: p["taskUrl"],
+                jobId: p["jobId"],
+                taskId: p["taskId"],
+                subtaskId: p["subtaskId"],
+                taskState: p["taskState"],
+                executionInfo: !p.executionInfo
+                  ? undefined
+                  : {
+                      startTime:
+                        p.executionInfo?.["startTime"] !== undefined
+                          ? new Date(p.executionInfo?.["startTime"])
+                          : undefined,
+                      endTime:
+                        p.executionInfo?.["endTime"] !== undefined
+                          ? new Date(p.executionInfo?.["endTime"])
+                          : undefined,
+                      exitCode: p.executionInfo?.["exitCode"],
+                      containerInfo: !p.executionInfo?.containerInfo
+                        ? undefined
+                        : {
+                            containerId:
+                              p.executionInfo?.containerInfo?.["containerId"],
+                            state: p.executionInfo?.containerInfo?.["state"],
+                            error: p.executionInfo?.containerInfo?.["error"],
+                          },
+                      failureInfo: !p.executionInfo?.failureInfo
+                        ? undefined
+                        : {
+                            category:
+                              p.executionInfo?.failureInfo?.["category"],
+                            code: p.executionInfo?.failureInfo?.["code"],
+                            message: p.executionInfo?.failureInfo?.["message"],
+                            details: !p.executionInfo?.failureInfo?.["details"]
+                              ? p.executionInfo?.failureInfo?.["details"]
+                              : p.executionInfo?.failureInfo?.["details"].map(
+                                  (p) => ({
+                                    name: p["name"],
+                                    value: p["value"],
+                                  })
+                                ),
+                          },
+                      retryCount: p.executionInfo?.["retryCount"],
+                      lastRetryTime:
+                        p.executionInfo?.["lastRetryTime"] !== undefined
+                          ? new Date(p.executionInfo?.["lastRetryTime"])
+                          : undefined,
+                      requeueCount: p.executionInfo?.["requeueCount"],
+                      lastRequeueTime:
+                        p.executionInfo?.["lastRequeueTime"] !== undefined
+                          ? new Date(p.executionInfo?.["lastRequeueTime"])
+                          : undefined,
+                      result: p.executionInfo?.["result"],
+                    },
+              })),
+          startTask: !p.startTask
+            ? undefined
+            : {
+                commandLine: p.startTask?.["commandLine"],
+                containerSettings: !p.startTask?.containerSettings
+                  ? undefined
+                  : {
+                      containerRunOptions:
+                        p.startTask?.containerSettings?.["containerRunOptions"],
+                      imageName: p.startTask?.containerSettings?.["imageName"],
+                      registry: !p.startTask?.containerSettings?.registry
+                        ? undefined
+                        : {
+                            username:
+                              p.startTask?.containerSettings?.registry?.[
+                                "username"
+                              ],
+                            password:
+                              p.startTask?.containerSettings?.registry?.[
+                                "password"
+                              ],
+                            registryServer:
+                              p.startTask?.containerSettings?.registry?.[
+                                "registryServer"
+                              ],
+                            identityReference: !p.startTask?.containerSettings
+                              ?.registry?.identityReference
+                              ? undefined
+                              : {
+                                  resourceId:
+                                    p.startTask?.containerSettings?.registry
+                                      ?.identityReference?.["resourceId"],
+                                },
+                          },
+                      workingDirectory:
+                        p.startTask?.containerSettings?.["workingDirectory"],
+                    },
+                resourceFiles: !p.startTask?.["resourceFiles"]
+                  ? p.startTask?.["resourceFiles"]
+                  : p.startTask?.["resourceFiles"].map((p) => ({
+                      autoStorageContainerName: p["autoStorageContainerName"],
+                      storageContainerUrl: p["storageContainerUrl"],
+                      httpUrl: p["httpUrl"],
+                      blobPrefix: p["blobPrefix"],
+                      filePath: p["filePath"],
+                      fileMode: p["fileMode"],
+                      identityReference: !p.identityReference
+                        ? undefined
+                        : { resourceId: p.identityReference?.["resourceId"] },
+                    })),
+                environmentSettings: !p.startTask?.["environmentSettings"]
+                  ? p.startTask?.["environmentSettings"]
+                  : p.startTask?.["environmentSettings"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+                userIdentity: !p.startTask?.userIdentity
+                  ? undefined
+                  : {
+                      username: p.startTask?.userIdentity?.["username"],
+                      autoUser: !p.startTask?.userIdentity?.autoUser
+                        ? undefined
+                        : {
+                            scope:
+                              p.startTask?.userIdentity?.autoUser?.["scope"],
+                            elevationLevel:
+                              p.startTask?.userIdentity?.autoUser?.[
+                                "elevationLevel"
+                              ],
+                          },
+                    },
+                maxTaskRetryCount: p.startTask?.["maxTaskRetryCount"],
+                waitForSuccess: p.startTask?.["waitForSuccess"],
+              },
+          startTaskInfo: !p.startTaskInfo
+            ? undefined
+            : {
+                state: p.startTaskInfo?.["state"],
+                startTime: new Date(p.startTaskInfo?.["startTime"]),
+                endTime:
+                  p.startTaskInfo?.["endTime"] !== undefined
+                    ? new Date(p.startTaskInfo?.["endTime"])
+                    : undefined,
+                exitCode: p.startTaskInfo?.["exitCode"],
+                containerInfo: !p.startTaskInfo?.containerInfo
+                  ? undefined
+                  : {
+                      containerId:
+                        p.startTaskInfo?.containerInfo?.["containerId"],
+                      state: p.startTaskInfo?.containerInfo?.["state"],
+                      error: p.startTaskInfo?.containerInfo?.["error"],
+                    },
+                failureInfo: !p.startTaskInfo?.failureInfo
+                  ? undefined
+                  : {
+                      category: p.startTaskInfo?.failureInfo?.["category"],
+                      code: p.startTaskInfo?.failureInfo?.["code"],
+                      message: p.startTaskInfo?.failureInfo?.["message"],
+                      details: !p.startTaskInfo?.failureInfo?.["details"]
+                        ? p.startTaskInfo?.failureInfo?.["details"]
+                        : p.startTaskInfo?.failureInfo?.["details"].map(
+                            (p) => ({ name: p["name"], value: p["value"] })
+                          ),
+                    },
+                retryCount: p.startTaskInfo?.["retryCount"],
+                lastRetryTime:
+                  p.startTaskInfo?.["lastRetryTime"] !== undefined
+                    ? new Date(p.startTaskInfo?.["lastRetryTime"])
+                    : undefined,
+                result: p.startTaskInfo?.["result"],
+              },
+          certificateReferences: !p["certificateReferences"]
+            ? p["certificateReferences"]
+            : p["certificateReferences"].map((p) => ({
+                thumbprint: p["thumbprint"],
+                thumbprintAlgorithm: p["thumbprintAlgorithm"],
+                storeLocation: p["storeLocation"],
+                storeName: p["storeName"],
+                visibility: p["visibility"],
+              })),
+          errors: !p["errors"]
+            ? p["errors"]
+            : p["errors"].map((p) => ({
+                code: p["code"],
+                message: p["message"],
+                errorDetails: !p["errorDetails"]
+                  ? p["errorDetails"]
+                  : p["errorDetails"].map((p) => ({
+                      name: p["name"],
+                      value: p["value"],
+                    })),
+              })),
+          isDedicated: p["isDedicated"],
+          endpointConfiguration: !p.endpointConfiguration
+            ? undefined
+            : {
+                inboundEndpoints: p.endpointConfiguration?.[
+                  "inboundEndpoints"
+                ].map((p) => ({
+                  name: p["name"],
+                  protocol: p["protocol"],
+                  publicIPAddress: p["publicIPAddress"],
+                  publicFQDN: p["publicFQDN"],
+                  frontendPort: p["frontendPort"],
+                  backendPort: p["backendPort"],
+                })),
+              },
+          nodeAgentInfo: !p.nodeAgentInfo
+            ? undefined
+            : {
+                version: p.nodeAgentInfo?.["version"],
+                lastUpdateTime: new Date(p.nodeAgentInfo?.["lastUpdateTime"]),
+              },
+          virtualMachineInfo: !p.virtualMachineInfo
+            ? undefined
+            : {
+                imageReference: !p.virtualMachineInfo?.imageReference
+                  ? undefined
+                  : {
+                      publisher:
+                        p.virtualMachineInfo?.imageReference?.["publisher"],
+                      offer: p.virtualMachineInfo?.imageReference?.["offer"],
+                      sku: p.virtualMachineInfo?.imageReference?.["sku"],
+                      version:
+                        p.virtualMachineInfo?.imageReference?.["version"],
+                      virtualMachineImageId:
+                        p.virtualMachineInfo?.imageReference?.[
+                          "virtualMachineImageId"
+                        ],
+                      exactVersion:
+                        p.virtualMachineInfo?.imageReference?.["exactVersion"],
+                    },
+              },
         })),
-      })),
-      isDedicated: p["isDedicated"],
-      endpointConfiguration: !p.endpointConfiguration
-        ? undefined
-        : {
-            inboundEndpoints: (
-              p.endpointConfiguration?.["inboundEndpoints"] ?? []
-            ).map((p) => ({
-              name: p["name"],
-              protocol: p["protocol"],
-              publicIPAddress: p["publicIPAddress"],
-              publicFQDN: p["publicFQDN"],
-              frontendPort: p["frontendPort"],
-              backendPort: p["backendPort"],
-            })),
-          },
-      nodeAgentInfo: !p.nodeAgentInfo
-        ? undefined
-        : {
-            version: p.nodeAgentInfo?.["version"],
-            lastUpdateTime: new Date(p.nodeAgentInfo?.["lastUpdateTime"]),
-          },
-      virtualMachineInfo: !p.virtualMachineInfo
-        ? undefined
-        : {
-            imageReference: !p.virtualMachineInfo?.imageReference
-              ? undefined
-              : {
-                  publisher:
-                    p.virtualMachineInfo?.imageReference?.["publisher"],
-                  offer: p.virtualMachineInfo?.imageReference?.["offer"],
-                  sku: p.virtualMachineInfo?.imageReference?.["sku"],
-                  version: p.virtualMachineInfo?.imageReference?.["version"],
-                  virtualMachineImageId:
-                    p.virtualMachineInfo?.imageReference?.[
-                      "virtualMachineImageId"
-                    ],
-                  exactVersion:
-                    p.virtualMachineInfo?.imageReference?.["exactVersion"],
-                },
-          },
-    })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -17012,22 +18487,24 @@ export async function _getNodeExtensionDeserialize(
       ? undefined
       : {
           name: result.body.instanceView?.["name"],
-          statuses: (result.body.instanceView?.["statuses"] ?? []).map((p) => ({
-            code: p["code"],
-            displayStatus: p["displayStatus"],
-            level: p["level"],
-            message: p["message"],
-            time: p["time"],
-          })),
-          subStatuses: (result.body.instanceView?.["subStatuses"] ?? []).map(
-            (p) => ({
-              code: p["code"],
-              displayStatus: p["displayStatus"],
-              level: p["level"],
-              message: p["message"],
-              time: p["time"],
-            })
-          ),
+          statuses: !result.body.instanceView?.["statuses"]
+            ? result.body.instanceView?.["statuses"]
+            : result.body.instanceView?.["statuses"].map((p) => ({
+                code: p["code"],
+                displayStatus: p["displayStatus"],
+                level: p["level"],
+                message: p["message"],
+                time: p["time"],
+              })),
+          subStatuses: !result.body.instanceView?.["subStatuses"]
+            ? result.body.instanceView?.["subStatuses"]
+            : result.body.instanceView?.["subStatuses"].map((p) => ({
+                code: p["code"],
+                displayStatus: p["displayStatus"],
+                level: p["level"],
+                message: p["message"],
+                time: p["time"],
+              })),
         },
   };
 }
@@ -17078,42 +18555,50 @@ export async function _listNodeExtensionsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      provisioningState: p["provisioningState"],
-      vmExtension: !p.vmExtension
-        ? undefined
-        : {
-            name: p.vmExtension?.["name"],
-            publisher: p.vmExtension?.["publisher"],
-            type: p.vmExtension?.["type"],
-            typeHandlerVersion: p.vmExtension?.["typeHandlerVersion"],
-            autoUpgradeMinorVersion: p.vmExtension?.["autoUpgradeMinorVersion"],
-            enableAutomaticUpgrade: p.vmExtension?.["enableAutomaticUpgrade"],
-            settings: p.vmExtension?.["settings"],
-            protectedSettings: p.vmExtension?.["protectedSettings"],
-            provisionAfterExtensions:
-              p.vmExtension?.["provisionAfterExtensions"],
-          },
-      instanceView: !p.instanceView
-        ? undefined
-        : {
-            name: p.instanceView?.["name"],
-            statuses: (p.instanceView?.["statuses"] ?? []).map((p) => ({
-              code: p["code"],
-              displayStatus: p["displayStatus"],
-              level: p["level"],
-              message: p["message"],
-              time: p["time"],
-            })),
-            subStatuses: (p.instanceView?.["subStatuses"] ?? []).map((p) => ({
-              code: p["code"],
-              displayStatus: p["displayStatus"],
-              level: p["level"],
-              message: p["message"],
-              time: p["time"],
-            })),
-          },
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          provisioningState: p["provisioningState"],
+          vmExtension: !p.vmExtension
+            ? undefined
+            : {
+                name: p.vmExtension?.["name"],
+                publisher: p.vmExtension?.["publisher"],
+                type: p.vmExtension?.["type"],
+                typeHandlerVersion: p.vmExtension?.["typeHandlerVersion"],
+                autoUpgradeMinorVersion:
+                  p.vmExtension?.["autoUpgradeMinorVersion"],
+                enableAutomaticUpgrade:
+                  p.vmExtension?.["enableAutomaticUpgrade"],
+                settings: p.vmExtension?.["settings"],
+                protectedSettings: p.vmExtension?.["protectedSettings"],
+                provisionAfterExtensions:
+                  p.vmExtension?.["provisionAfterExtensions"],
+              },
+          instanceView: !p.instanceView
+            ? undefined
+            : {
+                name: p.instanceView?.["name"],
+                statuses: !p.instanceView?.["statuses"]
+                  ? p.instanceView?.["statuses"]
+                  : p.instanceView?.["statuses"].map((p) => ({
+                      code: p["code"],
+                      displayStatus: p["displayStatus"],
+                      level: p["level"],
+                      message: p["message"],
+                      time: p["time"],
+                    })),
+                subStatuses: !p.instanceView?.["subStatuses"]
+                  ? p.instanceView?.["subStatuses"]
+                  : p.instanceView?.["subStatuses"].map((p) => ({
+                      code: p["code"],
+                      displayStatus: p["displayStatus"],
+                      level: p["level"],
+                      message: p["message"],
+                      time: p["time"],
+                    })),
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }
@@ -17333,23 +18818,25 @@ export async function _listNodeFilesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
-      name: p["name"],
-      url: p["url"],
-      isDirectory: p["isDirectory"],
-      properties: !p.properties
-        ? undefined
-        : {
-            creationTime:
-              p.properties?.["creationTime"] !== undefined
-                ? new Date(p.properties?.["creationTime"])
-                : undefined,
-            lastModified: new Date(p.properties?.["lastModified"]),
-            contentLength: p.properties?.["contentLength"],
-            contentType: p.properties?.["contentType"],
-            fileMode: p.properties?.["fileMode"],
-          },
-    })),
+    value: !result.body["value"]
+      ? result.body["value"]
+      : result.body["value"].map((p) => ({
+          name: p["name"],
+          url: p["url"],
+          isDirectory: p["isDirectory"],
+          properties: !p.properties
+            ? undefined
+            : {
+                creationTime:
+                  p.properties?.["creationTime"] !== undefined
+                    ? new Date(p.properties?.["creationTime"])
+                    : undefined,
+                lastModified: new Date(p.properties?.["lastModified"]),
+                contentLength: p.properties?.["contentLength"],
+                contentType: p.properties?.["contentType"],
+                fileMode: p.properties?.["fileMode"],
+              },
+        })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
 }

@@ -128,7 +128,7 @@ export function _headerBase64urlArraySend(
       ...operationOptionsToRequestParameters(options),
       headers: {
         value: buildCsvCollection(
-          (value ?? []).map((p) => uint8ArrayToString(p, "base64url"))
+          value.map((p) => uint8ArrayToString(p, "base64url"))
         ),
       },
     });
