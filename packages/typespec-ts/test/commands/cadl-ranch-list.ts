@@ -188,6 +188,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "scalar",
     inputPath: "type/scalar"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
   }
 ];
 
