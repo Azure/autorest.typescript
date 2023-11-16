@@ -904,7 +904,7 @@ function deserializeResponseValue(
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
     case "combined":
       return `${restValue} as any`;
-    case "list":
+    case "list": {
       const prefix =
         required && !type.nullable
           ? `${restValue}`
@@ -928,6 +928,7 @@ function deserializeResponseValue(
       } else {
         return restValue;
       }
+    }
     case "byte-array":
       if (format !== "binary") {
         if (!coreUtilSet) {
@@ -979,7 +980,7 @@ function serializeRequestValue(
         default:
           return `${clientValue}${required ? "" : "?"}.toISOString()`;
       }
-    case "list":
+    case "list": {
       const prefix =
         required && !type.nullable
           ? `${clientValue}`
@@ -1003,6 +1004,7 @@ function serializeRequestValue(
       } else {
         return clientValue;
       }
+    }
     case "byte-array":
       if (format !== "binary") {
         if (!coreUtilSet) {
