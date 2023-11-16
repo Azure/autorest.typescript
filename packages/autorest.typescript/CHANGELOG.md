@@ -1,4 +1,4 @@
-## 0.19.0 (2023-11-15)
+## 6.0.13 (2023-11-15)
 
 - [Feature] Support hierarchy client. Please refer to pr [#2080](https://github.com/Azure/autorest.typescript/pull/2080).
 - [Feature] Support unbrand core ts-http-runtime. Please refer to pr [#2083](https://github.com/Azure/autorest.typescript/pull/2083)
