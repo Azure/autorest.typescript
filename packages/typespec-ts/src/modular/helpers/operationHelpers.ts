@@ -426,9 +426,7 @@ function buildBodyParameter(
         importSet,
         runtimeImports
       );
-      return `\nbody: !${bodyParameter.clientName} ? ${
-        bodyParameter.clientName
-      } : ${bodyParameter.clientName}.map((p) => { return {
+      return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
       };}),`;
     }
@@ -908,14 +906,14 @@ function deserializeResponseValue(
       return `${restValue} as any`;
     case "list":
       if (type.elementType?.type === "model") {
-        return `${restValue} === undefined ? undefined : ${restValue}.map(p => ({${getResponseMapping(
+        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
           getAllProperties(type.elementType) ?? [],
           "p",
           importSet,
           runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
-        return `${restValue} === undefined ? undefined : ${restValue}.map(p => ${deserializeResponseValue(
+        return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
           importSet,
