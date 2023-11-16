@@ -386,7 +386,7 @@ export interface LoadTestRunClientPagedAsyncIterableIterator<TElement, TPage = T
     next(): Promise<IteratorResult<TElement>>;
 }
 
-// @public (undocumented)
+// @public
 export interface LoadTestRunClientPageSettings {
     continuationToken?: string;
 }
@@ -620,7 +620,7 @@ export interface PagedTest {
     value: Test[];
 }
 
-// @public (undocumented)
+// @public
 export interface PageSettings {
     continuationToken?: string;
 }

@@ -150,7 +150,7 @@ export interface PagedTextBlocklist {
     value: TextBlocklist[];
 }
 
-// @public (undocumented)
+// @public
 export interface PageSettings {
     continuationToken?: string;
 }

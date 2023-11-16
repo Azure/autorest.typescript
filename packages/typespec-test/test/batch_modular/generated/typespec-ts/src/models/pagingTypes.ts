@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+/**
+ * An interface that tracks the settings for paged iteration
+ */
 export interface PageSettings {
   /**
    * The token that keeps track of where to continue the iterator

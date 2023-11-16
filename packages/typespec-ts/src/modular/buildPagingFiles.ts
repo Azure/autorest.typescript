@@ -19,6 +19,10 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
   });
   fileContent.addStatements([
     `
+    
+    /**
+     * An interface that tracks the settings for paged iteration
+     */
     export interface PageSettings {
       /**
        * The token that keeps track of where to continue the iterator

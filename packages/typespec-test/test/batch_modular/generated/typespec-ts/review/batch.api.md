@@ -1654,7 +1654,7 @@ export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageS
     next(): Promise<IteratorResult<TElement>>;
 }
 
-// @public (undocumented)
+// @public
 export interface PageSettings {
     continuationToken?: string;
 }
