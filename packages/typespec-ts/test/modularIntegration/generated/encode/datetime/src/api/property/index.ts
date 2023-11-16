@@ -173,7 +173,7 @@ export function _propertyUnixTimestampArraySend(
     .path("/encode/datetime/property/unix-timestamp-array")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { value: (body["value"] ?? []).map((p) => p.getTime()) },
+      body: { value: body["value"].map((p) => p.getTime()) },
     });
 }
 
@@ -185,7 +185,7 @@ export async function _propertyUnixTimestampArrayDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => new Date(p)),
+    value: result.body["value"].map((p) => new Date(p)),
   };
 }
 

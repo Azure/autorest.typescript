@@ -56,7 +56,7 @@ export async function _createDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       url: p["url"],
       b64Json:
         typeof p["b64_json"] === "string"
@@ -108,7 +108,7 @@ export async function _createEditDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       url: p["url"],
       b64Json:
         typeof p["b64_json"] === "string"
@@ -160,7 +160,7 @@ export async function _createVariationDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       url: p["url"],
       b64Json:
         typeof p["b64_json"] === "string"

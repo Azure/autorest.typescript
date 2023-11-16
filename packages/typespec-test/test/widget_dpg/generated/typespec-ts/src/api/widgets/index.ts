@@ -63,7 +63,7 @@ export function _listWidgetsSend(
         "bytes-header": uint8ArrayToString(bytesHeader, "base64"),
         value: uint8ArrayToString(value, "base64"),
         "csv-array-header": buildCsvCollection(
-          (csvArrayHeader ?? []).map((p) => uint8ArrayToString(p, "base64url"))
+          csvArrayHeader.map((p) => uint8ArrayToString(p, "base64url"))
         ),
         "utc-date-header": utcDateHeader.toUTCString(),
         ...(options?.optionalDateHeader !== undefined
@@ -90,11 +90,13 @@ export async function _listWidgetsDeserialize(
     throw result.body;
   }
 
-  return (result.body ?? []).map((p) => ({
-    id: p["id"],
-    weight: p["weight"],
-    color: p["color"] as any,
-  }));
+  return !result.body
+    ? result.body
+    : result.body.map((p) => ({
+        id: p["id"],
+        weight: p["weight"],
+        color: p["color"] as any,
+      }));
 }
 
 /**

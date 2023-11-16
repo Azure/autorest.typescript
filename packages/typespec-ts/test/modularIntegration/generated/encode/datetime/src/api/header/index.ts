@@ -159,9 +159,7 @@ export function _headerUnixTimestampArraySend(
     .path("/encode/datetime/header/unix-timestamp-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      headers: {
-        value: buildCsvCollection((value ?? []).map((p) => p.getTime())),
-      },
+      headers: { value: buildCsvCollection(value.map((p) => p.getTime())) },
     });
 }
 

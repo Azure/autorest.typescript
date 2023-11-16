@@ -29,7 +29,7 @@ export function _createSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         model: body["model"],
-        messages: (body["messages"] ?? []).map((p) => ({
+        messages: body["messages"].map((p) => ({
           role: p["role"],
           content: p["content"],
           name: p["name"],
@@ -40,11 +40,13 @@ export function _createSend(
                 arguments: p.functionCall?.["arguments"],
               },
         })),
-        functions: (body["functions"] ?? []).map((p) => ({
-          name: p["name"],
-          description: p["description"],
-          parameters: p["parameters"],
-        })),
+        functions: !body["functions"]
+          ? body["functions"]
+          : body["functions"].map((p) => ({
+              name: p["name"],
+              description: p["description"],
+              parameters: p["parameters"],
+            })),
         function_call: body["functionCall"],
         temperature: body["temperature"],
         top_p: body["topP"],
@@ -74,23 +76,20 @@ export async function _createDeserialize(
     object: result.body["object"],
     created: new Date(result.body["created"]),
     model: result.body["model"],
-    choices:
-      result.body["choices"] === undefined
-        ? undefined
-        : result.body["choices"].map((p) => ({
-            index: p["index"],
-            message: {
-              role: p.message["role"] as any,
-              content: p.message["content"],
-              functionCall: !p.message.function_call
-                ? undefined
-                : {
-                    name: p.message.function_call?.["name"],
-                    arguments: p.message.function_call?.["arguments"],
-                  },
+    choices: result.body["choices"].map((p) => ({
+      index: p["index"],
+      message: {
+        role: p.message["role"] as any,
+        content: p.message["content"],
+        functionCall: !p.message.function_call
+          ? undefined
+          : {
+              name: p.message.function_call?.["name"],
+              arguments: p.message.function_call?.["arguments"],
             },
-            finishReason: p["finish_reason"] as any,
-          })),
+      },
+      finishReason: p["finish_reason"] as any,
+    })),
     usage: !result.body.usage
       ? undefined
       : {

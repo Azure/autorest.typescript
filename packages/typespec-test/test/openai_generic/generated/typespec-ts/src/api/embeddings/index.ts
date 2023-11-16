@@ -46,7 +46,7 @@ export async function _createDeserialize(
   return {
     object: result.body["object"],
     model: result.body["model"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       index: p["index"],
       object: p["object"],
       embedding: p["embedding"],

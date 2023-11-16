@@ -55,16 +55,13 @@ export async function _createDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data:
-      result.body["data"] === undefined
-        ? undefined
-        : result.body["data"].map((p) => ({
-            url: p["url"],
-            b64Json:
-              typeof p["b64_json"] === "string"
-                ? stringToUint8Array(p["b64_json"], "base64")
-                : p["b64_json"],
-          })),
+    data: result.body["data"].map((p) => ({
+      url: p["url"],
+      b64Json:
+        typeof p["b64_json"] === "string"
+          ? stringToUint8Array(p["b64_json"], "base64")
+          : p["b64_json"],
+    })),
   };
 }
 
@@ -110,16 +107,13 @@ export async function _createEditDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data:
-      result.body["data"] === undefined
-        ? undefined
-        : result.body["data"].map((p) => ({
-            url: p["url"],
-            b64Json:
-              typeof p["b64_json"] === "string"
-                ? stringToUint8Array(p["b64_json"], "base64")
-                : p["b64_json"],
-          })),
+    data: result.body["data"].map((p) => ({
+      url: p["url"],
+      b64Json:
+        typeof p["b64_json"] === "string"
+          ? stringToUint8Array(p["b64_json"], "base64")
+          : p["b64_json"],
+    })),
   };
 }
 
@@ -165,16 +159,13 @@ export async function _createVariationDeserialize(
 
   return {
     created: new Date(result.body["created"]),
-    data:
-      result.body["data"] === undefined
-        ? undefined
-        : result.body["data"].map((p) => ({
-            url: p["url"],
-            b64Json:
-              typeof p["b64_json"] === "string"
-                ? stringToUint8Array(p["b64_json"], "base64")
-                : p["b64_json"],
-          })),
+    data: result.body["data"].map((p) => ({
+      url: p["url"],
+      b64Json:
+        typeof p["b64_json"] === "string"
+          ? stringToUint8Array(p["b64_json"], "base64")
+          : p["b64_json"],
+    })),
   };
 }
 

@@ -44,7 +44,7 @@ export async function _createStreamingDeserialize(
   }
 
   return {
-    choices: (result.body["choices"] ?? []).map((p) => ({
+    choices: result.body["choices"].map((p) => ({
       index: p["index"],
       delta: {
         content: p.delta["content"],
@@ -94,7 +94,7 @@ export async function _createDeserialize(
   }
 
   return {
-    choices: (result.body["choices"] ?? []).map((p) => ({
+    choices: result.body["choices"].map((p) => ({
       index: p["index"],
       message: p.message as any,
       sessionState: p["session_state"],
