@@ -5,6 +5,7 @@
 - [Bugfix] Fix sample generation with special properties. Please refer to pr [#2099](https://github.com/Azure/autorest.typescript/pull/2099).
 - [Bugfix] Fix missing isUnexpected missing in overload. Please refer to pr [#2097](https://github.com/Azure/autorest.typescript/pull/2097).
 - [Bugfix] Fix the empty default value issue for array in body model. Please refer to pr [#2111](https://github.com/Azure/autorest.typescript/pull/2111).
+
 ## 0.18.0 (2023-11-01)
 
 - [Feature] Upgrade TypeSpec compiler version to v0.49.0. Please refer to pr [#2061](https://github.com/Azure/autorest.typescript/pull/2061).
