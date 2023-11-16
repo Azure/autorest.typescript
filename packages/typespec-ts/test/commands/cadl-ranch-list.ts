@@ -272,10 +272,6 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "special-headers/repeatability"
   },
   {
-    outputPath: "unions",
-    inputPath: "type/union"
-  },
-  {
     outputPath: "projection",
     inputPath: "projection/projected-name"
   },
