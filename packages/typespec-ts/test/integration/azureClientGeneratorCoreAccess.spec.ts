@@ -2,43 +2,9 @@ import { assert } from "chai";
 import AccessClientFactory, {
   AccessClient
 } from "./generated/azure/clientGeneratorCore/access/src/index.js";
-import { matrix } from "../util/matrix.js";
 
 describe("Access Client", () => {
   let client: AccessClient;
-
-  interface UrlDetail {
-    type: string;
-    value: string;
-  }
-
-  const testedUrl: UrlDetail[] = [
-    {
-      type: "publicOperation",
-      value: "noDecoratorInPublic"
-    },
-    {
-      type: "publicOperation",
-      value: "publicDecoratorInPublic"
-    },
-    {
-      type: "internalOperation",
-      value: "noDecoratorInInternal"
-    },
-    {
-      type: "internalOperation",
-      value: "internalDecoratorInInternal"
-    },
-    {
-      type: "internalOperation",
-      value: "publicDecoratorInInternal"
-    },
-    {
-      type: "sharedModelInOperation",
-      value: "public"
-    },
-    { type: "sharedModelInOperation", value: "internal" }
-  ];
 
   beforeEach(() => {
     client = AccessClientFactory({
@@ -49,26 +15,119 @@ describe("Access Client", () => {
     });
   });
 
-  matrix([testedUrl], async (params: UrlDetail) => {
-    it(`should access ${params.value} in ${params.type}`, async () => {
-      try {
-        const result = await client
-          .path(
-            `/azure/client-generator-core/access/${params.type}/${params.value}` as any
-          )
-          .get({ queryParameters: { name: "myname" } });
-        assert.strictEqual(result.status, "200");
-        assert.strictEqual(
-          JSON.stringify(result.body),
-          JSON.stringify({ name: "myname" })
-        );
-      } catch (err) {
-        assert.fail(err as string);
-      }
-    });
+  it("no decorator in public operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
   });
 
-  it(`should access relative model in operation`, async () => {
+  it("public decorator in public operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/publicOperation/publicDecoratorInPublic"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("no decorator in internal operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("internal decorator in internal operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("internal decorator in internal operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("public decorator in internal operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("public shared model in operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/sharedModelInOperation/public"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("internal shared model in operation", async () => {
+    try {
+      const result = await client
+        .path(
+          "/azure/client-generator-core/access/sharedModelInOperation/internal"
+        )
+        .get({ queryParameters: { name: "myname" } });
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.name, "myname");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("relative model in operation", async () => {
     try {
       const result = await client
         .path(
@@ -78,16 +137,14 @@ describe("Access Client", () => {
           queryParameters: { name: "Madge", inner: { name: "Madge" } }
         });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(
-        JSON.stringify(result.body),
-        JSON.stringify({ name: "Madge", inner: { name: "Madge" } })
-      );
+      assert.strictEqual(result.body.name, "Madge");
+      assert.strictEqual(result.body.inner.name, "Madge");
     } catch (err) {
       assert.fail(err as string);
     }
   });
 
-  it(`should access relative model in operation`, async () => {
+  it("relative model in discriminator", async () => {
     try {
       const result = await client
         .path(
@@ -95,10 +152,8 @@ describe("Access Client", () => {
         )
         .get({ queryParameters: { name: "Madge", kind: "real" } });
       assert.strictEqual(result.status, "200");
-      assert.strictEqual(
-        JSON.stringify(result.body),
-        JSON.stringify({ name: "Madge", kind: "real" })
-      );
+      assert.strictEqual(result.body.name, "Madge");
+      assert.strictEqual(result.body.kind, "real");
     } catch (err) {
       assert.fail(err as string);
     }
