@@ -21,6 +21,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError } from "@azure/core-rest-pipeline";
 import { stringToUint8Array } from "@azure/core-util";
 import {
   ImagesCreateOptions,
@@ -51,7 +52,13 @@ export async function _createDeserialize(
   result: ImagesCreate200Response | ImagesCreateDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -103,7 +110,13 @@ export async function _createEditDeserialize(
   result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -155,7 +168,13 @@ export async function _createVariationDeserialize(
     | ImagesCreateVariationDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {

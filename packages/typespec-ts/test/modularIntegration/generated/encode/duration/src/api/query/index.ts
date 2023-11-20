@@ -13,6 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import {
   QueryDefaultOptions,
   QueryIso8601Options,
@@ -38,7 +39,14 @@ export async function _queryDefaultDeserialize(
   result: QueryDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -70,7 +78,14 @@ export async function _queryIso8601Deserialize(
   result: QueryIso8601204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -102,7 +117,14 @@ export async function _queryInt32SecondsDeserialize(
   result: QueryInt32Seconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -134,7 +156,14 @@ export async function _queryFloatSecondsDeserialize(
   result: QueryFloatSeconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -166,7 +195,14 @@ export async function _queryInt32SecondsArrayDeserialize(
   result: QueryInt32SecondsArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;

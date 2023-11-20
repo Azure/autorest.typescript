@@ -29,6 +29,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   WidgetsListWidgetsOptions,
   WidgetsGetWidgetOptions,
@@ -87,7 +88,13 @@ export async function _listWidgetsDeserialize(
   result: ListWidgets200Response | ListWidgetsDefaultResponse
 ): Promise<Widget[]> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return (result.body ?? []).map((p) => ({
@@ -137,7 +144,13 @@ export async function _getWidgetDeserialize(
   result: GetWidget200Response | GetWidgetDefaultResponse
 ): Promise<Widget> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -174,7 +187,13 @@ export async function _createWidgetDeserialize(
   result: CreateWidget201Response | CreateWidgetDefaultResponse
 ): Promise<Widget> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -217,7 +236,13 @@ export async function _updateWidgetDeserialize(
   result: UpdateWidget200Response | UpdateWidgetDefaultResponse
 ): Promise<Widget> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -255,7 +280,13 @@ export async function _deleteWidgetDeserialize(
   result: DeleteWidget204Response | DeleteWidgetDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return;
@@ -285,7 +316,13 @@ export async function _analyzeWidgetDeserialize(
   result: AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse
 ): Promise<AnalyzeResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {

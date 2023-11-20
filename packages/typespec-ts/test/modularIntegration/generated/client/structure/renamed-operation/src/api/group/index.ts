@@ -11,6 +11,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import {
   GroupRenamedTwoOptions,
   GroupRenamedFourOptions,
@@ -30,7 +31,14 @@ export async function _renamedTwoDeserialize(
   result: Two204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body.error;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -57,7 +65,14 @@ export async function _renamedFourDeserialize(
   result: Four204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body.error;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -84,7 +99,14 @@ export async function _renamedSixDeserialize(
   result: Six204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body.error;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;

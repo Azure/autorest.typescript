@@ -13,6 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   FooOperationsGetAvatarAsPngOptions,
   FooOperationsGetAvatarAsJpegOptions,
@@ -38,7 +39,13 @@ export async function _getAvatarAsPngDeserialize(
   result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return;
@@ -76,7 +83,13 @@ export async function _getAvatarAsJpegDeserialize(
   result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return;

@@ -11,6 +11,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import {
   AliasSpreadAsRequestBodyOptions,
   AliasSpreadAsRequestParameterOptions,
@@ -34,7 +35,14 @@ export async function _aliasSpreadAsRequestBodyDeserialize(
   result: AliasSpreadAsRequestBody204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -69,7 +77,14 @@ export async function _aliasSpreadAsRequestParameterDeserialize(
   result: AliasSpreadAsRequestParameter204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -124,7 +139,14 @@ export async function _aliasSpreadWithMultipleParametersDeserialize(
   result: AliasSpreadWithMultipleParameters204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;

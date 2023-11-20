@@ -134,11 +134,24 @@ export function getDeserializePrivateFunction(
   if (needUnexpectedHelper) {
     statements.push(
       `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
-      response.type?.isCoreErrorType
-        ? "throw result.body.error"
-        : "throw result.body",
+      `const internalError = (result.body as any).error || result.body || result;
+      const message = \`Unexpected status code \${result.status}\`;
+      throw new RestError(internalError.message ?? message, {
+        statusCode: Number(result.status),
+        code: internalError.code,
+        request: result.request
+      });`,
       "}"
     );
+    const specifier = getImportSpecifier("restPipeline", runtimeImports);
+    const restPipeline = importSet.get(specifier);
+    if (!restPipeline) {
+      const restPipelineSet = new Set<string>(["RestError", "PipelineResponse"]);
+      importSet.set(specifier, restPipelineSet);
+    } else {
+      restPipeline.add("RestError");
+      restPipeline.add("PipelineResponse");
+    }
   } else {
     const validStatus = [
       ...new Set(
@@ -153,11 +166,25 @@ export function getDeserializePrivateFunction(
         `if(${validStatus
           .map((s) => `result.status !== "${s}"`)
           .join(" || ")}){`,
-        response.type?.isCoreErrorType
-          ? "throw result.body.error"
-          : "throw result.body",
+         `const internalError = (result.body as any).error || result.body || result;
+         const message = \`Unexpected status code \${result.status}\`;
+         throw new RestError(internalError.message ?? message, {
+           statusCode: Number(result.status),
+           code: internalError.code,
+           request: result.request,
+           response: result.body as PipelineResponse,
+         });`,
         "}"
       );
+      const specifier = getImportSpecifier("restPipeline", runtimeImports);
+      const restPipeline = importSet.get(specifier);
+      if (!restPipeline) {
+        const restPipelineSet = new Set<string>(["RestError", "PipelineResponse"]);
+        importSet.set(specifier, restPipelineSet);
+      } else {
+        restPipeline.add("RestError");
+        restPipeline.add("PipelineResponse");
+      }
     }
   }
 

@@ -24,6 +24,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
+import { RestError } from "@typespec/ts-http-runtime";
 import {
   FineTuningJobsCreateOptions,
   FineTuningJobsListOptions,
@@ -59,7 +60,13 @@ export async function _createDeserialize(
   result: FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -127,7 +134,13 @@ export async function _listDeserialize(
   result: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
 ): Promise<ListPaginatedFineTuningJobsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -185,7 +198,13 @@ export async function _retrieveDeserialize(
     | FineTuningJobsRetrieveDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -248,7 +267,13 @@ export async function _listEventsDeserialize(
     | FineTuningJobsListEventsDefaultResponse
 ): Promise<ListFineTuningJobEventsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -288,7 +313,13 @@ export async function _cancelDeserialize(
   result: FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {

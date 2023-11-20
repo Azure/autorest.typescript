@@ -43,6 +43,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError } from "@azure/core-rest-pipeline";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
   AnalyzeTextRequestOptions,
@@ -80,7 +81,13 @@ export async function _analyzeTextDeserialize(
   result: AnalyzeText200Response | AnalyzeTextDefaultResponse
 ): Promise<AnalyzeTextResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -135,7 +142,13 @@ export async function _analyzeImageDeserialize(
   result: AnalyzeImage200Response | AnalyzeImageDefaultResponse
 ): Promise<AnalyzeImageResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -172,7 +185,13 @@ export async function _getTextBlocklistDeserialize(
   result: GetTextBlocklist200Response | GetTextBlocklistDefaultResponse
 ): Promise<TextBlocklist> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -218,7 +237,13 @@ export async function _createOrUpdateTextBlocklistDeserialize(
     | CreateOrUpdateTextBlocklistDefaultResponse
 ): Promise<TextBlocklist> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -259,7 +284,13 @@ export async function _deleteTextBlocklistDeserialize(
   result: DeleteTextBlocklist204Response | DeleteTextBlocklistDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return;
@@ -294,7 +325,13 @@ export async function _listTextBlocklistsDeserialize(
   result: ListTextBlocklists200Response | ListTextBlocklistsDefaultResponse
 ): Promise<PagedTextBlocklist> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -345,7 +382,13 @@ export async function _addOrUpdateBlockItemsDeserialize(
     | AddOrUpdateBlockItemsDefaultResponse
 ): Promise<AddOrUpdateBlockItemsResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -393,7 +436,13 @@ export async function _removeBlockItemsDeserialize(
   result: RemoveBlockItems204Response | RemoveBlockItemsDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return;
@@ -436,7 +485,13 @@ export async function _getTextBlocklistItemDeserialize(
   result: GetTextBlocklistItem200Response | GetTextBlocklistItemDefaultResponse
 ): Promise<TextBlockItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -487,7 +542,13 @@ export async function _listTextBlocklistItemsDeserialize(
     | ListTextBlocklistItemsDefaultResponse
 ): Promise<PagedTextBlockItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {

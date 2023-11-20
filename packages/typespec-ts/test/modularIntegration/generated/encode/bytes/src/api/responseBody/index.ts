@@ -13,6 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import { stringToUint8Array } from "@azure/core-util";
 import {
   ResponseBodyDefaultOptions,
@@ -35,7 +36,14 @@ export async function _responseBodyDefaultDeserialize(
   result: ResponseBodyDefault200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return typeof result.body === "string"
@@ -64,7 +72,14 @@ export async function _responseBodyOctetStreamDeserialize(
   result: ResponseBodyOctetStream200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return result.body;
@@ -91,7 +106,14 @@ export async function _responseBodyCustomContentTypeDeserialize(
   result: ResponseBodyCustomContentType200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return result.body;
@@ -118,7 +140,14 @@ export async function _responseBodyBase64Deserialize(
   result: ResponseBodyBase64200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return typeof result.body === "string"
@@ -147,7 +176,14 @@ export async function _responseBodyBase64urlDeserialize(
   result: ResponseBodyBase64url200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return typeof result.body === "string"

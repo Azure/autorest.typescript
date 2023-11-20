@@ -19,6 +19,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
+import { RestError } from "@typespec/ts-http-runtime";
 import {
   ModelsListOptions,
   ModelsRetrieveOptions,
@@ -38,7 +39,13 @@ export async function _listDeserialize(
   result: ModelsList200Response | ModelsListDefaultResponse
 ): Promise<ListModelsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -74,7 +81,13 @@ export async function _retrieveDeserialize(
   result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
 ): Promise<Model> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -112,7 +125,13 @@ export async function _deleteOperationDeserialize(
     | ModelsDeleteOperationDefaultResponse
 ): Promise<DeleteModelResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {

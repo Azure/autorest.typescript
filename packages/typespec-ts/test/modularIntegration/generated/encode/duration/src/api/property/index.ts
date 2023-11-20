@@ -20,6 +20,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import {
   PropertyDefaultOptions,
   PropertyIso8601Options,
@@ -45,7 +46,14 @@ export async function _propertyDefaultDeserialize(
   result: PropertyDefault200Response
 ): Promise<DefaultDurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -79,7 +87,14 @@ export async function _propertyIso8601Deserialize(
   result: PropertyIso8601200Response
 ): Promise<ISO8601DurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -113,7 +128,14 @@ export async function _propertyInt32SecondsDeserialize(
   result: PropertyInt32Seconds200Response
 ): Promise<Int32SecondsDurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -147,7 +169,14 @@ export async function _propertyFloatSecondsDeserialize(
   result: PropertyFloatSeconds200Response
 ): Promise<FloatSecondsDurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -181,7 +210,14 @@ export async function _propertyFloatSecondsArrayDeserialize(
   result: PropertyFloatSecondsArray200Response
 ): Promise<FloatSecondsDurationArrayProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {

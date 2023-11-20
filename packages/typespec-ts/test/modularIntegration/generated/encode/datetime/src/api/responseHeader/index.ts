@@ -12,6 +12,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import {
   ResponseHeaderDefaultOptions,
   ResponseHeaderRfc3339Options,
@@ -32,7 +33,14 @@ export async function _responseHeaderDefaultDeserialize(
   result: ResponseHeaderDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -59,7 +67,14 @@ export async function _responseHeaderRfc3339Deserialize(
   result: ResponseHeaderRfc3339204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -86,7 +101,14 @@ export async function _responseHeaderRfc7231Deserialize(
   result: ResponseHeaderRfc7231204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;
@@ -113,7 +135,14 @@ export async function _responseHeaderUnixTimestampDeserialize(
   result: ResponseHeaderUnixTimestamp204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return;

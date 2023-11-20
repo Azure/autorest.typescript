@@ -15,6 +15,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { RestError } from "@azure/core-rest-pipeline";
 import { CompletionsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
@@ -53,7 +54,13 @@ export async function _createDeserialize(
   result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
 ): Promise<CreateCompletionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {

@@ -19,6 +19,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
 import {
   PropertyDefaultOptions,
   PropertyBase64Options,
@@ -43,7 +44,14 @@ export async function _propertyDefaultDeserialize(
   result: PropertyDefault200Response
 ): Promise<DefaultBytesProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -80,7 +88,14 @@ export async function _propertyBase64Deserialize(
   result: PropertyBase64200Response
 ): Promise<Base64BytesProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -117,7 +132,14 @@ export async function _propertyBase64urlDeserialize(
   result: PropertyBase64url200Response
 ): Promise<Base64urlBytesProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {
@@ -158,7 +180,14 @@ export async function _propertyBase64urlArrayDeserialize(
   result: PropertyBase64urlArray200Response
 ): Promise<Base64urlArrayBytesProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+      response: result.body as PipelineResponse,
+    });
   }
 
   return {

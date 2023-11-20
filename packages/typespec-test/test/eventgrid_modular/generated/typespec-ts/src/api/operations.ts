@@ -32,6 +32,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
@@ -82,7 +83,13 @@ export async function _publishCloudEventDeserialize(
   result: PublishCloudEvent200Response | PublishCloudEventDefaultResponse
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return result.body;
@@ -143,7 +150,13 @@ export async function _publishCloudEventsDeserialize(
   result: PublishCloudEvents200Response | PublishCloudEventsDefaultResponse
 ): Promise<Record<string, any>> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return result.body;
@@ -192,7 +205,13 @@ export async function _receiveCloudEventsDeserialize(
   result: ReceiveCloudEvents200Response | ReceiveCloudEventsDefaultResponse
 ): Promise<ReceiveResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -266,7 +285,13 @@ export async function _acknowledgeCloudEventsDeserialize(
     | AcknowledgeCloudEventsDefaultResponse
 ): Promise<AcknowledgeResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -324,7 +349,13 @@ export async function _releaseCloudEventsDeserialize(
   result: ReleaseCloudEvents200Response | ReleaseCloudEventsDefaultResponse
 ): Promise<ReleaseResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
@@ -382,7 +413,13 @@ export async function _rejectCloudEventsDeserialize(
   result: RejectCloudEvents200Response | RejectCloudEventsDefaultResponse
 ): Promise<RejectResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    const internalError = (result.body as any).error || result.body || result;
+    const message = `Unexpected status code ${result.status}`;
+    throw new RestError(internalError.message ?? message, {
+      statusCode: Number(result.status),
+      code: internalError.code,
+      request: result.request,
+    });
   }
 
   return {
