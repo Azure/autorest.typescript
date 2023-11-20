@@ -983,9 +983,15 @@ export function listMetricDimensionValues(
 ): PagedAsyncIterableIterator<DimensionValueList> {
   return buildPagedAsyncIterator(
     context,
-    _listMetricDimensionValuesSend,
-    _listMetricDimensionValuesDeserialize,
-    [context, testRunId, name, metricNamespace, options]
+    () =>
+      _listMetricDimensionValuesSend(
+        context,
+        testRunId,
+        name,
+        metricNamespace,
+        options
+      ),
+    _listMetricDimensionValuesDeserialize
   );
 }
 
@@ -1152,9 +1158,8 @@ export function listMetrics(
 ): PagedAsyncIterableIterator<TimeSeriesElement> {
   return buildPagedAsyncIterator(
     context,
-    _listMetricsSend,
-    _listMetricsDeserialize,
-    [context, testRunId, body, options]
+    () => _listMetricsSend(context, testRunId, body, options),
+    _listMetricsDeserialize
   );
 }
 
@@ -1451,9 +1456,8 @@ export function listTestRuns(
 ): PagedAsyncIterableIterator<TestRun> {
   return buildPagedAsyncIterator(
     context,
-    _listTestRunsSend,
-    _listTestRunsDeserialize,
-    [context, options]
+    () => _listTestRunsSend(context, options),
+    _listTestRunsDeserialize
   );
 }
 

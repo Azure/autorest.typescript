@@ -315,9 +315,8 @@ export function listTextBlocklists(
 ): PagedAsyncIterableIterator<TextBlocklist> {
   return buildPagedAsyncIterator(
     context,
-    _listTextBlocklistsSend,
-    _listTextBlocklistsDeserialize,
-    [context, options]
+    () => _listTextBlocklistsSend(context, options),
+    _listTextBlocklistsDeserialize
   );
 }
 
@@ -516,8 +515,7 @@ export function listTextBlocklistItems(
 ): PagedAsyncIterableIterator<TextBlockItem> {
   return buildPagedAsyncIterator(
     context,
-    _listTextBlocklistItemsSend,
-    _listTextBlocklistItemsDeserialize,
-    [context, blocklistName, options]
+    () => _listTextBlocklistItemsSend(context, blocklistName, options),
+    _listTextBlocklistItemsDeserialize
   );
 }

@@ -279,9 +279,9 @@ export function getOperationFunction(
   const statements: string[] = [];
   if (isPaging) {
     statements.push(
-      `return buildPagedAsyncIterator(context, _${name}Send, _${name}Deserialize, [${parameters
+      `return buildPagedAsyncIterator(context, () => _${name}Send(${parameters
         .map((p) => p.name)
-        .join(", ")}])  ;`
+        .join(", ")}), _${name}Deserialize)  ;`
     );
   } else {
     statements.push(

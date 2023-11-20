@@ -56,7 +56,7 @@ import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
 import {
   buildPagingTypes,
-  buildPagingHelpers as buildModularPaginateHelper
+  buildPagingHelpers as buildModularPagingHelpers
 } from "./modular/buildPagingFiles.js";
 
 export * from "./lib.js";
@@ -181,7 +181,7 @@ export async function $onEmit(context: EmitContext) {
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildPagingTypes(modularCodeModel, subClient);
-        buildModularPaginateHelper(modularCodeModel, subClient);
+        buildModularPagingHelpers(modularCodeModel, subClient);
         buildOperationFiles(
           dpgContext,
           modularCodeModel,

@@ -18,19 +18,29 @@ import { SdkContext } from "../utils/interfaces.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  isBranded: boolean = true
 ): HelperFunctionDetails {
   const program = dpgContext.program;
-  // Extract paged metadata from Azure.Core.Page
-  const annotationDetails = {
-    hasLongRunning: hasPollingOperations(program, client, dpgContext)
-  };
-  const details = extractPageDetailFromCore(program, client, dpgContext);
   const serializeInfo = extractSpecialSerializeInfo(
     program,
     client,
     dpgContext
   );
+  // Disbale paging and long running for non-branded clients.
+  if (!isBranded) {
+    return {
+      hasLongRunning: false,
+      hasPaging: false,
+      ...serializeInfo
+    };
+  }
+
+  // Extract paged metadata from Azure.Core.Page
+  const annotationDetails = {
+    hasLongRunning: hasPollingOperations(program, client, dpgContext)
+  };
+  const details = extractPageDetailFromCore(program, client, dpgContext);
   if (details) {
     return {
       ...details,

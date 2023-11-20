@@ -349,9 +349,8 @@ export function listApplications(
 ): PagedAsyncIterableIterator<BatchApplication> {
   return buildPagedAsyncIterator(
     context,
-    _listApplicationsSend,
-    _listApplicationsDeserialize,
-    [context, options]
+    () => _listApplicationsSend(context, options),
+    _listApplicationsDeserialize
   );
 }
 
@@ -453,9 +452,8 @@ export function listPoolUsageMetrics(
 ): PagedAsyncIterableIterator<PoolUsageMetrics> {
   return buildPagedAsyncIterator(
     context,
-    _listPoolUsageMetricsSend,
-    _listPoolUsageMetricsDeserialize,
-    [context, options]
+    () => _listPoolUsageMetricsSend(context, options),
+    _listPoolUsageMetricsDeserialize
   );
 }
 
@@ -1349,9 +1347,8 @@ export function listPools(
 ): PagedAsyncIterableIterator<BatchPool> {
   return buildPagedAsyncIterator(
     context,
-    _listPoolsSend,
-    _listPoolsDeserialize,
-    [context, options]
+    () => _listPoolsSend(context, options),
+    _listPoolsDeserialize
   );
 }
 
@@ -2689,9 +2686,8 @@ export function listSupportedImages(
 ): PagedAsyncIterableIterator<ImageInformation> {
   return buildPagedAsyncIterator(
     context,
-    _listSupportedImagesSend,
-    _listSupportedImagesDeserialize,
-    [context, options]
+    () => _listSupportedImagesSend(context, options),
+    _listSupportedImagesDeserialize
   );
 }
 
@@ -2777,9 +2773,8 @@ export function listPoolNodeCounts(
 ): PagedAsyncIterableIterator<PoolNodeCounts> {
   return buildPagedAsyncIterator(
     context,
-    _listPoolNodeCountsSend,
-    _listPoolNodeCountsDeserialize,
-    [context, options]
+    () => _listPoolNodeCountsSend(context, options),
+    _listPoolNodeCountsDeserialize
   );
 }
 
@@ -7623,10 +7618,11 @@ export function listJobs(
   context: Client,
   options: ListJobsOptions = { requestOptions: {} }
 ): PagedAsyncIterableIterator<BatchJob> {
-  return buildPagedAsyncIterator(context, _listJobsSend, _listJobsDeserialize, [
+  return buildPagedAsyncIterator(
     context,
-    options,
-  ]);
+    () => _listJobsSend(context, options),
+    _listJobsDeserialize
+  );
 }
 
 export function _listJobsFromScheduleSend(
@@ -8731,9 +8727,8 @@ export function listJobsFromSchedule(
 ): PagedAsyncIterableIterator<BatchJob> {
   return buildPagedAsyncIterator(
     context,
-    _listJobsFromScheduleSend,
-    _listJobsFromScheduleDeserialize,
-    [context, jobScheduleId, options]
+    () => _listJobsFromScheduleSend(context, jobScheduleId, options),
+    _listJobsFromScheduleDeserialize
   );
 }
 
@@ -8921,9 +8916,8 @@ export function listJobPreparationAndReleaseTaskStatus(
 ): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
   return buildPagedAsyncIterator(
     context,
-    _listJobPreparationAndReleaseTaskStatusSend,
-    _listJobPreparationAndReleaseTaskStatusDeserialize,
-    [context, jobId, options]
+    () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
+    _listJobPreparationAndReleaseTaskStatusDeserialize
   );
 }
 
@@ -9104,9 +9098,8 @@ export function listCertificates(
 ): PagedAsyncIterableIterator<BatchCertificate> {
   return buildPagedAsyncIterator(
     context,
-    _listCertificatesSend,
-    _listCertificatesDeserialize,
-    [context, options]
+    () => _listCertificatesSend(context, options),
+    _listCertificatesDeserialize
   );
 }
 
@@ -15597,9 +15590,8 @@ export function listJobSchedules(
 ): PagedAsyncIterableIterator<BatchJobSchedule> {
   return buildPagedAsyncIterator(
     context,
-    _listJobSchedulesSend,
-    _listJobSchedulesDeserialize,
-    [context, options]
+    () => _listJobSchedulesSend(context, options),
+    _listJobSchedulesDeserialize
   );
 }
 
@@ -16171,9 +16163,8 @@ export function listTasks(
 ): PagedAsyncIterableIterator<BatchTask> {
   return buildPagedAsyncIterator(
     context,
-    _listTasksSend,
-    _listTasksDeserialize,
-    [context, jobId, options]
+    () => _listTasksSend(context, jobId, options),
+    _listTasksDeserialize
   );
 }
 
@@ -17350,9 +17341,8 @@ export function listTaskFiles(
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
-    _listTaskFilesSend,
-    _listTaskFilesDeserialize,
-    [context, jobId, taskId, options]
+    () => _listTaskFilesSend(context, jobId, taskId, options),
+    _listTaskFilesDeserialize
   );
 }
 
@@ -18479,9 +18469,8 @@ export function listNodes(
 ): PagedAsyncIterableIterator<BatchNode> {
   return buildPagedAsyncIterator(
     context,
-    _listNodesSend,
-    _listNodesDeserialize,
-    [context, poolId, options]
+    () => _listNodesSend(context, poolId, options),
+    _listNodesDeserialize
   );
 }
 
@@ -18661,9 +18650,8 @@ export function listNodeExtensions(
 ): PagedAsyncIterableIterator<NodeVMExtension> {
   return buildPagedAsyncIterator(
     context,
-    _listNodeExtensionsSend,
-    _listNodeExtensionsDeserialize,
-    [context, poolId, nodeId, options]
+    () => _listNodeExtensionsSend(context, poolId, nodeId, options),
+    _listNodeExtensionsDeserialize
   );
 }
 
@@ -18898,8 +18886,7 @@ export function listNodeFiles(
 ): PagedAsyncIterableIterator<NodeFile> {
   return buildPagedAsyncIterator(
     context,
-    _listNodeFilesSend,
-    _listNodeFilesDeserialize,
-    [context, poolId, nodeId, options]
+    () => _listNodeFilesSend(context, poolId, nodeId, options),
+    _listNodeFilesDeserialize
   );
 }

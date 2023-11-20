@@ -41,8 +41,9 @@ export function list(
   context: Client,
   options: ListOptions = { requestOptions: {} }
 ): PagedAsyncIterableIterator<User> {
-  return buildPagedAsyncIterator(context, _listSend, _listDeserialize, [
+  return buildPagedAsyncIterator(
     context,
-    options,
-  ]);
+    () => _listSend(context, options),
+    _listDeserialize
+  );
 }

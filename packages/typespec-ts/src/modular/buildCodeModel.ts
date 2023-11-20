@@ -641,6 +641,16 @@ function emitOperation(
   operationGroupName: string,
   rlcModels: RLCModel
 ): HrlcOperation {
+  const isBranded = rlcModels.options?.branded ?? true;
+  // Skip to extract paging and lro information for non-branded clients.
+  if (!isBranded) {
+    return emitBasicOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
+  }
   const lro = isLongRunningOperation(
     context.program,
     ignoreDiagnostics(getHttpOperation(context.program, operation))

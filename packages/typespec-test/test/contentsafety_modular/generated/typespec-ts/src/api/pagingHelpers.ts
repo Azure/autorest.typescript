@@ -43,9 +43,8 @@ export function buildPagedAsyncIterator<
   TResponse extends PathUncheckedResponse = PathUncheckedResponse
 >(
   client: Client,
-  initialSendFunction: (...args: any[]) => PromiseLike<TResponse>,
-  deserializeFunction: (result: TResponse) => Promise<unknown>,
-  sendFunctionArgs: any[] = []
+  getInitialResponse: () => PromiseLike<TResponse>,
+  processResponseBody: (result: TResponse) => Promise<unknown>
 ): PagedAsyncIterableIterator<TElement> {
   let firstRun = true;
   let itemName: string, nextLinkName: string | undefined;
@@ -55,7 +54,7 @@ export function buildPagedAsyncIterator<
     getPage: async (pageLink: string) => {
       const result =
         firstRun && pageLink === firstPageLinkPlaceholder
-          ? await initialSendFunction(...sendFunctionArgs)
+          ? await getInitialResponse()
           : await client.pathUnchecked(pageLink).get();
       if (firstRun) {
         const pageInfo = getPaginationProperties(result);
@@ -64,7 +63,7 @@ export function buildPagedAsyncIterator<
       }
       firstRun = false;
       checkPagingRequest(result);
-      const results = await deserializeFunction(result as TResponse);
+      const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
       const values = getElements<TElement>(results, itemName);
       return {

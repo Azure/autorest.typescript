@@ -787,9 +787,8 @@ export function listTestFiles(
 ): PagedAsyncIterableIterator<FileInfo> {
   return buildPagedAsyncIterator(
     context,
-    _listTestFilesSend,
-    _listTestFilesDeserialize,
-    [context, testId, options]
+    () => _listTestFilesSend(context, testId, options),
+    _listTestFilesDeserialize
   );
 }
 
@@ -971,9 +970,8 @@ export function listTests(
 ): PagedAsyncIterableIterator<Test> {
   return buildPagedAsyncIterator(
     context,
-    _listTestsSend,
-    _listTestsDeserialize,
-    [context, options]
+    () => _listTestsSend(context, options),
+    _listTestsDeserialize
   );
 }
 

@@ -265,10 +265,11 @@ export function list(
   context: Client,
   options: ListOptions = { requestOptions: {} }
 ): PagedAsyncIterableIterator<User> {
-  return buildPagedAsyncIterator(context, _listSend, _listDeserialize, [
+  return buildPagedAsyncIterator(
     context,
-    options,
-  ]);
+    () => _listSend(context, options),
+    _listDeserialize
+  );
 }
 
 export function _listWithPageSend(
@@ -311,9 +312,8 @@ export function listWithPage(
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
-    _listWithPageSend,
-    _listWithPageDeserialize,
-    [context, options]
+    () => _listWithPageSend(context, options),
+    _listWithPageDeserialize
   );
 }
 
@@ -361,9 +361,8 @@ export function listWithCustomPageModel(
 ): PagedAsyncIterableIterator<User> {
   return buildPagedAsyncIterator(
     context,
-    _listWithCustomPageModelSend,
-    _listWithCustomPageModelDeserialize,
-    [context, options]
+    () => _listWithCustomPageModelSend(context, options),
+    _listWithCustomPageModelDeserialize
   );
 }
 
