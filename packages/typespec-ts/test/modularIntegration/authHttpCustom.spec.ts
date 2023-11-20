@@ -29,7 +29,7 @@ describe("CustomClient Classical Client", () => {
       await client.invalid();
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
-      assert.strictEqual(err.error, "invalid-api-key");
+      assert.strictEqual(err.message, "Unexpected status code 403");
     }
   });
 });

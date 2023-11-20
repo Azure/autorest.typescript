@@ -17,7 +17,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   QueryMultiOptions,
   QuerySsvOptions,
@@ -49,7 +49,6 @@ export async function _queryMultiDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -88,7 +87,6 @@ export async function _querySsvDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -127,7 +125,6 @@ export async function _queryTsvDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -166,7 +163,6 @@ export async function _queryPipesDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -205,7 +201,6 @@ export async function _queryCsvDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

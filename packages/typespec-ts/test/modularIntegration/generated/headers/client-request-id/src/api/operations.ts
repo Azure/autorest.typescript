@@ -9,7 +9,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import { GetOptions } from "../models/options.js";
 
 export function _getSend(
@@ -29,7 +29,6 @@ export async function _getDeserialize(result: Get204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

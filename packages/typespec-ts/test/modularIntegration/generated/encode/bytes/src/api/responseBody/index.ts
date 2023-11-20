@@ -13,7 +13,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import { stringToUint8Array } from "@azure/core-util";
 import {
   ResponseBodyDefaultOptions,
@@ -42,7 +42,6 @@ export async function _responseBodyDefaultDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -78,7 +77,6 @@ export async function _responseBodyOctetStreamDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -112,7 +110,6 @@ export async function _responseBodyCustomContentTypeDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -146,7 +143,6 @@ export async function _responseBodyBase64Deserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -182,7 +178,6 @@ export async function _responseBodyBase64urlDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

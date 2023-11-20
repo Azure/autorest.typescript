@@ -11,7 +11,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import { ValidOptions, InvalidOptions } from "../models/options.js";
 
 export function _validSend(
@@ -33,7 +33,6 @@ export async function _validDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -63,12 +62,12 @@ export async function _invalidDeserialize(
 ): Promise<void> {
   if (result.status !== "204") {
     const internalError = (result.body as any).error || result.body || result;
+    console.log(internalError);
     const message = `Unexpected status code ${result.status}`;
     throw new RestError(internalError.message ?? message, {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

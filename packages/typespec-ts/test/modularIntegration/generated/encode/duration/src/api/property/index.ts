@@ -20,7 +20,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   PropertyDefaultOptions,
   PropertyIso8601Options,
@@ -52,7 +52,6 @@ export async function _propertyDefaultDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -93,7 +92,6 @@ export async function _propertyIso8601Deserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -134,7 +132,6 @@ export async function _propertyInt32SecondsDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -175,7 +172,6 @@ export async function _propertyFloatSecondsDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -216,7 +212,6 @@ export async function _propertyFloatSecondsArrayDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

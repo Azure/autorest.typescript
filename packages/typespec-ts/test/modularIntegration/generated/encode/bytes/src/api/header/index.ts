@@ -14,7 +14,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   HeaderDefaultOptions,
   HeaderBase64Options,
@@ -45,7 +45,6 @@ export async function _headerDefaultDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -84,7 +83,6 @@ export async function _headerBase64Deserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -123,7 +121,6 @@ export async function _headerBase64urlDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -166,7 +163,6 @@ export async function _headerBase64urlArrayDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

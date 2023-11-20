@@ -13,7 +13,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   QueryDefaultOptions,
   QueryBase64Options,
@@ -44,7 +44,6 @@ export async function _queryDefaultDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -83,7 +82,6 @@ export async function _queryBase64Deserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -122,7 +120,6 @@ export async function _queryBase64urlDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -163,7 +160,6 @@ export async function _queryBase64urlArrayDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

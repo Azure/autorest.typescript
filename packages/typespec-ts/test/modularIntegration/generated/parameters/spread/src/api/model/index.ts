@@ -10,7 +10,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import { ModelSpreadAsRequestBodyOptions } from "../../models/options.js";
 
 export function _modelSpreadAsRequestBodySend(
@@ -36,7 +36,6 @@ export async function _modelSpreadAsRequestBodyDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

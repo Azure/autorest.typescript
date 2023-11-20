@@ -6,7 +6,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import { MyOpOptions } from "../models/options.js";
 
 export function _myOpSend(
@@ -26,7 +26,6 @@ export async function _myOpDeserialize(result: MyOp200Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

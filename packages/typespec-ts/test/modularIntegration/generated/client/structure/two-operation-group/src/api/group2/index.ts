@@ -11,7 +11,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   Group2TwoOptions,
   Group2FiveOptions,
@@ -35,7 +35,6 @@ export async function _twoDeserialize(result: Two204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -67,7 +66,6 @@ export async function _fiveDeserialize(result: Five204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -99,7 +97,6 @@ export async function _sixDeserialize(result: Six204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

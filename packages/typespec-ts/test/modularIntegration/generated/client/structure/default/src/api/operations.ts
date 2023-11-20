@@ -14,7 +14,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   OneOptions,
   TwoOptions,
@@ -41,7 +41,6 @@ export async function _oneDeserialize(result: One204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -73,7 +72,6 @@ export async function _twoDeserialize(result: Two204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -107,7 +105,6 @@ export async function _threeDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -139,7 +136,6 @@ export async function _fourDeserialize(result: Four204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -171,7 +167,6 @@ export async function _fiveDeserialize(result: Five204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -203,7 +198,6 @@ export async function _sixDeserialize(result: Six204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 

@@ -19,7 +19,7 @@ import {
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   PropertyDefaultOptions,
   PropertyBase64Options,
@@ -50,7 +50,6 @@ export async function _propertyDefaultDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -94,7 +93,6 @@ export async function _propertyBase64Deserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -138,7 +136,6 @@ export async function _propertyBase64urlDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
@@ -184,7 +181,6 @@ export async function _propertyBase64urlArrayDeserialize(
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
