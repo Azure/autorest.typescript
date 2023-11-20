@@ -91,13 +91,9 @@ describe("model property type", () => {
     }`;
     const tspType = "TranslationLanguageValues.English";
     const typeScriptType = `"English"`;
-    await verifyModularPropertyType(
-      tspType,
-      typeScriptType,
-      {
-        additionalTypeSpecDefinition: tspTypeDefinition
-      }
-    );
+    await verifyModularPropertyType(tspType, typeScriptType, {
+      additionalTypeSpecDefinition: tspTypeDefinition
+    });
   });
 });
 
@@ -411,7 +407,7 @@ describe("modular encode test for property type datetime", () => {
           .post({
             ...operationOptionsToRequestParameters(options),
             body: {
-              prop1: body["prop1"].getTime()
+              prop1: (body["prop1"].getTime() / 1000) | 0
             },
           });
       }
@@ -422,7 +418,7 @@ describe("modular encode test for property type datetime", () => {
         }
       
         return {
-          prop1: new Date(result.body["prop1"]),
+          prop1: new Date(result.body["prop1"] * 1000),
         };
       }
       

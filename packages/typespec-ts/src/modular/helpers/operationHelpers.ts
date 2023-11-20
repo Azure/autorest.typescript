@@ -897,11 +897,16 @@ function deserializeResponseValue(
   const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":
+      let dateConstructor =
+        type.format === "unixTimestamp"
+          ? `new Date(${restValue} * 1000)`
+          : `new Date(${restValue})`;
+
       return required
         ? type.nullable
-          ? `${restValue} === null ? null : new Date(${restValue})`
-          : `new Date(${restValue})`
-        : `${restValue} !== undefined? new Date(${restValue}): undefined`;
+          ? `${restValue} === null ? null : ${dateConstructor}`
+          : dateConstructor
+        : `${restValue} !== undefined? ${dateConstructor} : undefined`;
     case "combined":
       return `${restValue} as any`;
     case "list": {
@@ -975,7 +980,7 @@ function serializeRequestValue(
         case "headerDefault":
           return `${clientValue}${required ? "" : "?"}.toUTCString()`;
         case "unixTimestamp":
-          return `${clientValue}${required ? "" : "?"}.getTime()`;
+          return `(${clientValue}${required ? "" : "?"}.getTime() / 1000) | 0`;
         case "rfc3339":
         default:
           return `${clientValue}${required ? "" : "?"}.toISOString()`;
