@@ -7,7 +7,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError, PipelineResponse } from "@azure/core-rest-pipeline";
+import { RestError } from "@azure/core-rest-pipeline";
 import { BOp1Options } from "../../models/options.js";
 
 export function _op1Send(
@@ -31,7 +31,6 @@ export async function _op1Deserialize(result: BOp1204Response): Promise<void> {
       statusCode: Number(result.status),
       code: internalError.code,
       request: result.request,
-      response: result.body as PipelineResponse,
     });
   }
 
