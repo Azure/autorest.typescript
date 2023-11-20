@@ -110,32 +110,6 @@ export function buildPagingHelpers(
     } from "@azure-rest/core-client";
     import { PageSettings, PagedAsyncIterableIterator } from "${pagingTypesPath}";
     
-    export interface PageInfo {
-      continuationToken?: string;
-    }
-    
-    /**
-     * Helper type to extract the type of an array
-     */
-    export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
-    
-    /**
-     * Helper type to infer the Type of the paged elements from the response type
-     * This type is generated based on the swagger information for x-ms-pageable
-     * specifically on the itemName property which indicates the property of the response
-     * where the page items are found. The default value is \`value\`.
-     * This type will allow us to provide strongly typed Iterator based on the response we get as second parameter
-     */
-    export type PaginateReturn<TResult> = TResult extends
-      | {
-          body: { value?: infer TPage };
-        }
-      | {
-          body: { items?: infer TPage };
-        }
-      ? GetArrayType<TPage>
-      : Array<unknown>;
-    
     export function buildPagedAsyncIterator<
       TElement,
       TResponse extends PathUncheckedResponse = PathUncheckedResponse
