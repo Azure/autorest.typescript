@@ -192,6 +192,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/clientGeneratorCore/access",
     inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
   }
 ];
 
