@@ -15,7 +15,7 @@ describe("Usage Client", () => {
     });
   });
 
-  it("should input usage model in Operation", async () => {
+  it("should post input usage model in operation", async () => {
     try {
       const result = await client
         .path("/azure/client-generator-core/usage/inputToInputOutput")
@@ -26,7 +26,7 @@ describe("Usage Client", () => {
     }
   });
 
-  it("should get usage model in Operation", async () => {
+  it("should get usage model in operation", async () => {
     try {
       const result = await client
         .path("/azure/client-generator-core/usage/outputToInputOutput")

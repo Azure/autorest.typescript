@@ -196,6 +196,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/clientGeneratorCore/usage",
     inputPath: "azure/client-generator-core/usage"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   }
 ];
 

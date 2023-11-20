@@ -15,7 +15,7 @@ describe("Access Client", () => {
     });
   });
 
-  it("no decorator in public operation", async () => {
+  it("should get no decorator in public operation", async () => {
     try {
       const result = await client
         .path(
@@ -29,7 +29,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("public decorator in public operation", async () => {
+  it("should get public decorator in public operation", async () => {
     try {
       const result = await client
         .path(
@@ -43,7 +43,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("no decorator in internal operation", async () => {
+  it("should get no decorator in internal operation", async () => {
     try {
       const result = await client
         .path(
@@ -57,7 +57,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("internal decorator in internal operation", async () => {
+  it("should get internal decorator in internal operation", async () => {
     try {
       const result = await client
         .path(
@@ -71,7 +71,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("internal decorator in internal operation", async () => {
+  it("should get internal decorator in internal operation", async () => {
     try {
       const result = await client
         .path(
@@ -85,7 +85,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("public decorator in internal operation", async () => {
+  it("should get public decorator in internal operation", async () => {
     try {
       const result = await client
         .path(
@@ -99,7 +99,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("public shared model in operation", async () => {
+  it("should get public shared model in operation", async () => {
     try {
       const result = await client
         .path(
@@ -113,7 +113,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("internal shared model in operation", async () => {
+  it("should get internal shared model in operation", async () => {
     try {
       const result = await client
         .path(
@@ -127,7 +127,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("relative model in operation", async () => {
+  it("should get relative model in operation", async () => {
     try {
       const result = await client
         .path(
@@ -144,7 +144,7 @@ describe("Access Client", () => {
     }
   });
 
-  it("relative model in discriminator", async () => {
+  it("should get relative model in discriminator", async () => {
     try {
       const result = await client
         .path(
