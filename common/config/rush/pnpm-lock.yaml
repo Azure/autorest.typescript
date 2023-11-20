@@ -12,7 +12,7 @@ importers:
       '@autorest/testmodeler': ^2.4.0
       '@azure-rest/core-client': ^1.1.4
       '@azure-tools/codegen': ^2.9.1
-      '@azure-tools/rlc-common': workspace:^0.18.0
+      '@azure-tools/rlc-common': workspace:^0.19.0
       '@azure-tools/test-recorder': ^3.0.0
       '@azure/abort-controller': ^1.0.1
       '@azure/core-auth': ^1.3.2
@@ -196,7 +196,7 @@ importers:
       '@azure-tools/typespec-autorest': '>=0.35.0 <1.0.0'
       '@azure-tools/typespec-azure-core': '>=0.35.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.35.0 <1.0.0'
-      '@azure-tools/typespec-ts': workspace:^0.18.0
+      '@azure-tools/typespec-ts': workspace:^0.19.0
       '@types/mocha': ^5.2.7
       '@types/node': ^18.0.0
       '@typespec/compiler': '>=0.49.0 <1.0.0'
@@ -232,7 +232,7 @@ importers:
       '@azure-tools/cadl-ranch': ^0.9.0
       '@azure-tools/cadl-ranch-expect': ^0.8.0
       '@azure-tools/cadl-ranch-specs': ^0.24.0
-      '@azure-tools/rlc-common': workspace:^0.18.0
+      '@azure-tools/rlc-common': workspace:^0.19.0
       '@azure-tools/typespec-azure-core': '>=0.35.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.35.0 <1.0.0'
       '@azure/core-auth': ^1.3.2
