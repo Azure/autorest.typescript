@@ -135,6 +135,7 @@ describe("modular encode test for property type datetime", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -156,7 +157,13 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -194,6 +201,7 @@ describe("modular encode test for property type datetime", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -212,7 +220,13 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<void> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return;
@@ -261,6 +275,7 @@ describe("modular encode test for property type datetime", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -280,7 +295,13 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -332,6 +353,7 @@ describe("modular encode test for property type datetime", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -351,7 +373,13 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -400,6 +428,7 @@ describe("modular encode test for property type datetime", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -418,7 +447,13 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -467,6 +502,7 @@ describe("modular encode test for property type duration", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -485,7 +521,13 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -533,6 +575,7 @@ describe("modular encode test for property type duration", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -551,7 +594,13 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -602,6 +651,7 @@ describe("modular encode test for property type duration", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -621,7 +671,13 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -672,6 +728,7 @@ describe("modular encode test for property type bytes", () => {
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -690,7 +747,13 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -742,6 +805,7 @@ describe("modular encode test for property type bytes", () => {
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -760,7 +824,13 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -812,6 +882,7 @@ describe("modular encode test for property type bytes", () => {
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -830,7 +901,13 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -934,6 +1011,7 @@ describe("inheritance & polymorphism", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -946,7 +1024,13 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -1012,6 +1096,7 @@ describe("inheritance & polymorphism", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
 
       export function _readSend(
         context: Client,
@@ -1024,7 +1109,13 @@ describe("inheritance & polymorphism", () => {
 
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
 
         return {
@@ -1097,6 +1188,7 @@ describe("inheritance & polymorphism", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -1109,7 +1201,13 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -1182,6 +1280,7 @@ describe("inheritance & polymorphism", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client,
@@ -1194,7 +1293,13 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Pet> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
       
         return {
@@ -1268,6 +1373,7 @@ describe("inheritance & polymorphism", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
+      import { RestError } from "@azure/core-rest-pipeline";
 
       export function _readSend(
         context: Client,
@@ -1280,7 +1386,13 @@ describe("inheritance & polymorphism", () => {
 
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
 
         return {

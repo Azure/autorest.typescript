@@ -38,6 +38,7 @@ describe("operations", () => {
       import { TestingContext as Client } from "../rest/index.js";
       import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
       import { uint8ArrayToString } from "@azure/core-util";
+      import { RestError } from "@azure/core-rest-pipeline";
       
       export function _readSend(
         context: Client, 
@@ -81,7 +82,13 @@ describe("operations", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<void> {
           if(result.status !== "200"){
-          throw result.body
+            const internalError = (result.body as any).error || result.body || result;
+            const message = \`Unexpected status code \${result.status}\`;
+            throw new RestError(internalError.message ?? message, {
+              statusCode: Number(result.status),
+              code: internalError.code,
+              request: result.request,
+            });
           }
       
           return;
@@ -138,6 +145,7 @@ describe("operations", () => {
       `
     import { TestingContext as Client } from "../rest/index.js";
     import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+    import { RestError } from "@azure/core-rest-pipeline";
 
     export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
         return context.path("/", ).get({...operationOptionsToRequestParameters(options), 
@@ -146,7 +154,13 @@ describe("operations", () => {
 
     export async function _readDeserialize(result: Read200Response): Promise<void> {
         if(result.status !== "200"){
-        throw result.body
+          const internalError = (result.body as any).error || result.body || result;
+          const message = \`Unexpected status code \${result.status}\`;
+          throw new RestError(internalError.message ?? message, {
+            statusCode: Number(result.status),
+            code: internalError.code,
+            request: result.request,
+          });
         }
 
         return;

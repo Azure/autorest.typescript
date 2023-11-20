@@ -171,8 +171,7 @@ export function getDeserializePrivateFunction(
          throw new RestError(internalError.message ?? message, {
            statusCode: Number(result.status),
            code: internalError.code,
-           request: result.request,
-           response: result.body as PipelineResponse,
+           request: result.request
          });`,
         "}"
       );
