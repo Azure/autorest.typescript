@@ -98,7 +98,7 @@ export async function _createDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: (result.body["training_files"] ?? []).map((p) => ({
+    trainingFiles: result.body["training_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -108,7 +108,7 @@ export async function _createDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    validationFiles: (result.body["validation_files"] ?? []).map((p) => ({
+    validationFiles: result.body["validation_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -118,7 +118,7 @@ export async function _createDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    resultFiles: (result.body["result_files"] ?? []).map((p) => ({
+    resultFiles: result.body["result_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -128,12 +128,14 @@ export async function _createDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    events: (result.body["events"] ?? []).map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    events: !result.body["events"]
+      ? result.body["events"]
+      : result.body["events"].map((p) => ({
+          object: p["object"],
+          createdAt: new Date(p["created_at"]),
+          level: p["level"],
+          message: p["message"],
+        })),
   };
 }
 
@@ -170,7 +172,7 @@ export async function _listDeserialize(
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       id: p["id"],
       object: p["object"],
       createdAt: new Date(p["created_at"]),
@@ -190,7 +192,7 @@ export async function _listDeserialize(
           p.hyperparams["classification_positive_class"],
         classificationNClasses: p.hyperparams["classification_n_classes"],
       },
-      trainingFiles: (p["training_files"] ?? []).map((p) => ({
+      trainingFiles: p["training_files"].map((p) => ({
         id: p["id"],
         object: p["object"],
         bytes: p["bytes"],
@@ -200,7 +202,7 @@ export async function _listDeserialize(
         status: p["status"] as any,
         statusDetails: p["status_details"],
       })),
-      validationFiles: (p["validation_files"] ?? []).map((p) => ({
+      validationFiles: p["validation_files"].map((p) => ({
         id: p["id"],
         object: p["object"],
         bytes: p["bytes"],
@@ -210,7 +212,7 @@ export async function _listDeserialize(
         status: p["status"] as any,
         statusDetails: p["status_details"],
       })),
-      resultFiles: (p["result_files"] ?? []).map((p) => ({
+      resultFiles: p["result_files"].map((p) => ({
         id: p["id"],
         object: p["object"],
         bytes: p["bytes"],
@@ -220,12 +222,14 @@ export async function _listDeserialize(
         status: p["status"] as any,
         statusDetails: p["status_details"],
       })),
-      events: (p["events"] ?? []).map((p) => ({
-        object: p["object"],
-        createdAt: new Date(p["created_at"]),
-        level: p["level"],
-        message: p["message"],
-      })),
+      events: !p["events"]
+        ? p["events"]
+        : p["events"].map((p) => ({
+            object: p["object"],
+            createdAt: new Date(p["created_at"]),
+            level: p["level"],
+            message: p["message"],
+          })),
     })),
   };
 }
@@ -285,7 +289,7 @@ export async function _retrieveDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: (result.body["training_files"] ?? []).map((p) => ({
+    trainingFiles: result.body["training_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -295,7 +299,7 @@ export async function _retrieveDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    validationFiles: (result.body["validation_files"] ?? []).map((p) => ({
+    validationFiles: result.body["validation_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -305,7 +309,7 @@ export async function _retrieveDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    resultFiles: (result.body["result_files"] ?? []).map((p) => ({
+    resultFiles: result.body["result_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -315,12 +319,14 @@ export async function _retrieveDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    events: (result.body["events"] ?? []).map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    events: !result.body["events"]
+      ? result.body["events"]
+      : result.body["events"].map((p) => ({
+          object: p["object"],
+          createdAt: new Date(p["created_at"]),
+          level: p["level"],
+          message: p["message"],
+        })),
   };
 }
 
@@ -363,7 +369,7 @@ export async function _listEventsDeserialize(
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       object: p["object"],
       createdAt: new Date(p["created_at"]),
       level: p["level"],
@@ -428,7 +434,7 @@ export async function _cancelDeserialize(
       classificationNClasses:
         result.body.hyperparams["classification_n_classes"],
     },
-    trainingFiles: (result.body["training_files"] ?? []).map((p) => ({
+    trainingFiles: result.body["training_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -438,7 +444,7 @@ export async function _cancelDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    validationFiles: (result.body["validation_files"] ?? []).map((p) => ({
+    validationFiles: result.body["validation_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -448,7 +454,7 @@ export async function _cancelDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    resultFiles: (result.body["result_files"] ?? []).map((p) => ({
+    resultFiles: result.body["result_files"].map((p) => ({
       id: p["id"],
       object: p["object"],
       bytes: p["bytes"],
@@ -458,12 +464,14 @@ export async function _cancelDeserialize(
       status: p["status"] as any,
       statusDetails: p["status_details"],
     })),
-    events: (result.body["events"] ?? []).map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
+    events: !result.body["events"]
+      ? result.body["events"]
+      : result.body["events"].map((p) => ({
+          object: p["object"],
+          createdAt: new Date(p["created_at"]),
+          level: p["level"],
+          message: p["message"],
+        })),
   };
 }
 

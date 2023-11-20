@@ -266,6 +266,14 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "authentication/union",
     inputPath: "authentication/union"
+  },
+  {
+    outputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "azure/core-traits",
+    inputPath: "azure/core/traits"
   }
 ];
 

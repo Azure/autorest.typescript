@@ -187,7 +187,7 @@ export function _queryUnixTimestampArraySend(
     .path("/encode/datetime/query/unix-timestamp-array")
     .get({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { value: (value ?? []).map((p) => p.getTime()) },
+      queryParameters: { value: value.map((p) => p.getTime()) },
     });
 }
 

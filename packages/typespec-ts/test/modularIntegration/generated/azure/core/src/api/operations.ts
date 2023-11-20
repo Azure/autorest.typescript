@@ -59,10 +59,12 @@ export function _createOrUpdateSend(
         (options.contentType as any) ?? "application/merge-patch+json",
       body: {
         name: resource["name"],
-        orders: (resource["orders"] ?? []).map((p) => ({
-          userId: p["userId"],
-          detail: p["detail"],
-        })),
+        orders: !resource["orders"]
+          ? resource["orders"]
+          : resource["orders"].map((p) => ({
+              userId: p["userId"],
+              detail: p["detail"],
+            })),
       },
     });
 }
@@ -86,11 +88,13 @@ export async function _createOrUpdateDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: (result.body["orders"] ?? []).map((p) => ({
-      id: p["id"],
-      userId: p["userId"],
-      detail: p["detail"],
-    })),
+    orders: !result.body["orders"]
+      ? result.body["orders"]
+      : result.body["orders"].map((p) => ({
+          id: p["id"],
+          userId: p["userId"],
+          detail: p["detail"],
+        })),
     etag: result.body["etag"],
   };
 }
@@ -122,10 +126,12 @@ export function _createOrReplaceSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         name: resource["name"],
-        orders: (resource["orders"] ?? []).map((p) => ({
-          userId: p["userId"],
-          detail: p["detail"],
-        })),
+        orders: !resource["orders"]
+          ? resource["orders"]
+          : resource["orders"].map((p) => ({
+              userId: p["userId"],
+              detail: p["detail"],
+            })),
       },
     });
 }
@@ -149,11 +155,13 @@ export async function _createOrReplaceDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: (result.body["orders"] ?? []).map((p) => ({
-      id: p["id"],
-      userId: p["userId"],
-      detail: p["detail"],
-    })),
+    orders: !result.body["orders"]
+      ? result.body["orders"]
+      : result.body["orders"].map((p) => ({
+          id: p["id"],
+          userId: p["userId"],
+          detail: p["detail"],
+        })),
     etag: result.body["etag"],
   };
 }
@@ -195,11 +203,13 @@ export async function _getDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: (result.body["orders"] ?? []).map((p) => ({
-      id: p["id"],
-      userId: p["userId"],
-      detail: p["detail"],
-    })),
+    orders: !result.body["orders"]
+      ? result.body["orders"]
+      : result.body["orders"].map((p) => ({
+          id: p["id"],
+          userId: p["userId"],
+          detail: p["detail"],
+        })),
     etag: result.body["etag"],
   };
 }
@@ -257,14 +267,16 @@ export async function _listDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: (p["orders"] ?? []).map((p) => ({
-        id: p["id"],
-        userId: p["userId"],
-        detail: p["detail"],
-      })),
+      orders: !p["orders"]
+        ? p["orders"]
+        : p["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -303,14 +315,16 @@ export async function _listWithPageDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: (p["orders"] ?? []).map((p) => ({
-        id: p["id"],
-        userId: p["userId"],
-        detail: p["detail"],
-      })),
+      orders: !p["orders"]
+        ? p["orders"]
+        : p["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -353,14 +367,16 @@ export async function _listWithCustomPageModelDeserialize(
   }
 
   return {
-    items: (result.body["items"] ?? []).map((p) => ({
+    items: result.body["items"].map((p) => ({
       id: p["id"],
       name: p["name"],
-      orders: (p["orders"] ?? []).map((p) => ({
-        id: p["id"],
-        userId: p["userId"],
-        detail: p["detail"],
-      })),
+      orders: !p["orders"]
+        ? p["orders"]
+        : p["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
       etag: p["etag"],
     })),
     nextLink: result.body["nextLink"],
@@ -446,11 +462,13 @@ export async function _exportOperationDeserialize(
   return {
     id: result.body["id"],
     name: result.body["name"],
-    orders: (result.body["orders"] ?? []).map((p) => ({
-      id: p["id"],
-      userId: p["userId"],
-      detail: p["detail"],
-    })),
+    orders: !result.body["orders"]
+      ? result.body["orders"]
+      : result.body["orders"].map((p) => ({
+          id: p["id"],
+          userId: p["userId"],
+          detail: p["detail"],
+        })),
     etag: result.body["etag"],
   };
 }

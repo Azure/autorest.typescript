@@ -169,9 +169,7 @@ export function _propertyBase64urlArraySend(
     .post({
       ...operationOptionsToRequestParameters(options),
       body: {
-        value: (body["value"] ?? []).map((p) =>
-          uint8ArrayToString(p, "base64url")
-        ),
+        value: body["value"].map((p) => uint8ArrayToString(p, "base64url")),
       },
     });
 }
@@ -191,7 +189,7 @@ export async function _propertyBase64urlArrayDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) =>
+    value: result.body["value"].map((p) =>
       typeof p === "string" ? stringToUint8Array(p, "base64url") : p
     ),
   };

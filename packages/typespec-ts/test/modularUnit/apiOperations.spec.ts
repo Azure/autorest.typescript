@@ -12,7 +12,9 @@ describe("api operations in Modular", () => {
         @body body: bytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -61,7 +63,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has binary data if self defined scalar", async () => {
       const tspContent = `
       @encode("binary")
@@ -73,7 +75,9 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -122,7 +126,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has multiple form data", async () => {
       const tspContent = `
       @route("/uploadFile")
@@ -135,7 +139,9 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -186,8 +192,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
-    
+
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
       @encode("binary")
@@ -201,7 +206,9 @@ describe("api operations in Modular", () => {
         }
       ): void;
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -222,7 +229,7 @@ describe("api operations in Modular", () => {
              .post({
                ...operationOptionsToRequestParameters(options),
                contentType: (options.contentType as any) ?? "multipart/form-data",
-               body: { files: (files ?? []).map((p) => p) },
+               body: { files: files.map((p) => p) },
              });
          }
          export async function _uploadFilesDeserialize(
@@ -262,7 +269,9 @@ describe("api operations in Modular", () => {
         @body body: bytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -305,7 +314,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has binary data if self defined scalar", async () => {
       const tspContent = `
       @encode("binary")
@@ -318,7 +327,9 @@ describe("api operations in Modular", () => {
         @body body: BinaryBytes;
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -361,7 +372,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
+
     it("should handle contentTypes has multiple form data", async () => {
       const tspContent = `
       @route("/downloadFile")
@@ -376,7 +387,9 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -419,8 +432,7 @@ describe("api operations in Modular", () => {
         true
       );
     });
-  
-    
+
     it("should handle contentTypes has multiple form data array", async () => {
       const tspContent = `
       @encode("binary")
@@ -436,7 +448,9 @@ describe("api operations in Modular", () => {
         };
       };
       `;
-      const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent
+      );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
       assertEqualContent(
@@ -469,7 +483,7 @@ describe("api operations in Modular", () => {
            }
            return {
              name: result.body["name"],
-             file: (result.body["file"] ?? []).map((p) => p),
+             file: result.body["file"].map((p) => p),
            };
          }
          export async function downloadFile(

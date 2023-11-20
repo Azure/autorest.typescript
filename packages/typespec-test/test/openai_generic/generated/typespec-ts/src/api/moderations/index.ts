@@ -49,7 +49,7 @@ export async function _createDeserialize(
   return {
     id: result.body["id"],
     model: result.body["model"],
-    results: (result.body["results"] ?? []).map((p) => ({
+    results: result.body["results"].map((p) => ({
       flagged: p["flagged"],
       categories: {
         hate: p.categories["hate"],

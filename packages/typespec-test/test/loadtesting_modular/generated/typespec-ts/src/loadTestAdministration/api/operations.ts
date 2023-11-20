@@ -278,16 +278,18 @@ export async function _createOrUpdateTestDeserialize(
                     "validationFailureDetails"
                   ],
               },
-          additionalFileInfo: (
-            result.body.inputArtifacts?.["additionalFileInfo"] ?? []
-          ).map((p) => ({
-            url: p["url"],
-            fileName: p["fileName"],
-            fileType: p["fileType"],
-            expireDateTime: p["expireDateTime"],
-            validationStatus: p["validationStatus"],
-            validationFailureDetails: p["validationFailureDetails"],
-          })),
+          additionalFileInfo: !result.body.inputArtifacts?.[
+            "additionalFileInfo"
+          ]
+            ? result.body.inputArtifacts?.["additionalFileInfo"]
+            : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                url: p["url"],
+                fileName: p["fileName"],
+                fileType: p["fileType"],
+                expireDateTime: p["expireDateTime"],
+                validationStatus: p["validationStatus"],
+                validationFailureDetails: p["validationFailureDetails"],
+              })),
         },
     testId: result.body["testId"],
     description: result.body["description"],
@@ -697,16 +699,18 @@ export async function _getTestDeserialize(
                     "validationFailureDetails"
                   ],
               },
-          additionalFileInfo: (
-            result.body.inputArtifacts?.["additionalFileInfo"] ?? []
-          ).map((p) => ({
-            url: p["url"],
-            fileName: p["fileName"],
-            fileType: p["fileType"],
-            expireDateTime: p["expireDateTime"],
-            validationStatus: p["validationStatus"],
-            validationFailureDetails: p["validationFailureDetails"],
-          })),
+          additionalFileInfo: !result.body.inputArtifacts?.[
+            "additionalFileInfo"
+          ]
+            ? result.body.inputArtifacts?.["additionalFileInfo"]
+            : result.body.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                url: p["url"],
+                fileName: p["fileName"],
+                fileType: p["fileType"],
+                expireDateTime: p["expireDateTime"],
+                validationStatus: p["validationStatus"],
+                validationFailureDetails: p["validationFailureDetails"],
+              })),
         },
     testId: result.body["testId"],
     description: result.body["description"],
@@ -810,7 +814,7 @@ export async function _listTestFilesDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       url: p["url"],
       fileName: p["fileName"],
       fileType: p["fileType"],
@@ -869,7 +873,7 @@ export async function _listTestsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       passFailCriteria: !p.passFailCriteria
         ? undefined
         : { passFailMetrics: p.passFailCriteria?.["passFailMetrics"] },
@@ -980,16 +984,16 @@ export async function _listTestsDeserialize(
                       "validationFailureDetails"
                     ],
                 },
-            additionalFileInfo: (
-              p.inputArtifacts?.["additionalFileInfo"] ?? []
-            ).map((p) => ({
-              url: p["url"],
-              fileName: p["fileName"],
-              fileType: p["fileType"],
-              expireDateTime: p["expireDateTime"],
-              validationStatus: p["validationStatus"],
-              validationFailureDetails: p["validationFailureDetails"],
-            })),
+            additionalFileInfo: !p.inputArtifacts?.["additionalFileInfo"]
+              ? p.inputArtifacts?.["additionalFileInfo"]
+              : p.inputArtifacts?.["additionalFileInfo"].map((p) => ({
+                  url: p["url"],
+                  fileName: p["fileName"],
+                  fileType: p["fileType"],
+                  expireDateTime: p["expireDateTime"],
+                  validationStatus: p["validationStatus"],
+                  validationFailureDetails: p["validationFailureDetails"],
+                })),
           },
       testId: p["testId"],
       description: p["description"],
