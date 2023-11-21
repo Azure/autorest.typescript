@@ -1,5 +1,9 @@
-import { Imports } from "@azure-tools/rlc-common";
-import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import {
+  Imports,
+  OperationParameter,
+  OperationResponse,
+  RLCOptions
+} from "@azure-tools/rlc-common";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
@@ -167,9 +171,10 @@ export interface Operation {
   isOverload: boolean;
   overloads: any[];
   apiVersions: any[];
+  rlcParameter: OperationParameter;
+  rlcResponse: OperationResponse;
+  namespaceHierarchies: string[];
   itemName?: string;
   continuationTokenName?: string;
   addedOn?: string;
-  rlcResponse?: OperationResponse;
-  namespaceHierarchies: string[];
 }

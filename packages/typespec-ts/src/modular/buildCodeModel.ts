@@ -766,7 +766,16 @@ function emitBasicOperation(
   const sourceRoutePath = ignoreDiagnostics(
     getHttpOperation(context.program, operation)
   ).path;
-  const rlcResponses = rlcModels.responses?.filter((op) => {
+
+  const rlcParameter = rlcModels.parameters?.find((op) => {
+    return (
+      (sourceOperationGroupName === "" ||
+        op.operationGroup === sourceOperationGroupName) &&
+      op.operationName === sourceOperationName
+    );
+  });
+
+  const rlcResponse = rlcModels.responses?.find((op) => {
     return (
       (sourceOperationGroupName === "" ||
         op.operationGroup === sourceOperationGroupName) &&
@@ -774,6 +783,11 @@ function emitBasicOperation(
       op.path === sourceRoutePath
     );
   });
+
+  if (!rlcParameter || !rlcResponse) {
+    // should be unreachable
+    throw Error("dpg parameter/response is missing in rlc model");
+  }
 
   const namespaceHierarchies =
     context.rlcOptions?.hierarchyClient === true
@@ -887,7 +901,8 @@ function emitBasicOperation(
     isOverload,
     overloads: [],
     apiVersions: [getAddedOnVersion(context.program, operation)],
-    rlcResponse: rlcResponses?.[0],
+    rlcParameter,
+    rlcResponse,
     namespaceHierarchies
   };
 }

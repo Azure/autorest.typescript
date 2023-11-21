@@ -5,13 +5,16 @@ import {
   getOperationFunction,
   getSendPrivateFunction,
   getDeserializePrivateFunction,
-  getOperationOptionsName
+  getOperationOptionsName,
+  getRequestOptionsSerializePrivateFunction as getParameterSerializePrivateFunction,
+  getResponseDeserializePrivateFunctions
 } from "./helpers/operationHelpers.js";
 import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { isDefined } from "@azure/core-util";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -89,28 +92,41 @@ export function buildOperationFiles(
         }
       ]);
     }
+
     operationGroup.operations.forEach((o) => {
       const operationDeclaration = getOperationFunction(o, clientType);
-      const sendOperationDeclaration = getSendPrivateFunction(
-        dpgContext,
-        o,
-        clientType,
-        importSet,
-        codeModel.runtimeImports
-      );
+      const sendOperationDeclaration = getSendPrivateFunction(o, clientType);
+      const parameterSerializeDeclaration =
+        getParameterSerializePrivateFunction(
+          dpgContext,
+          o,
+          clientType,
+          importSet,
+          codeModel.runtimeImports
+        );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
-        needUnexpectedHelper,
+        needUnexpectedHelper
+      );
+
+      operationGroupFile.addFunctions(
+        [
+          operationDeclaration,
+          sendOperationDeclaration,
+          parameterSerializeDeclaration,
+          deserializeOperationDeclaration
+        ].filter(isDefined)
+      );
+    });
+
+    const responseDeserializeDeclarations =
+      getResponseDeserializePrivateFunctions(
+        operationGroup,
         importSet,
         codeModel.runtimeImports
       );
-      operationGroupFile.addFunctions([
-        sendOperationDeclaration,
-        deserializeOperationDeclaration,
-        operationDeclaration
-      ]);
-    });
+    operationGroupFile.addFunctions(responseDeserializeDeclarations);
 
     operationGroupFile.addImportDeclarations([
       {
