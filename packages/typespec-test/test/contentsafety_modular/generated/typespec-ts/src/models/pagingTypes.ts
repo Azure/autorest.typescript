@@ -12,6 +12,16 @@ export interface PageSettings {
 }
 
 /**
+ * An interface that describes a page of results.
+ */
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+  /**
+   * The token that keeps track of where to continue the iterator
+   */
+  continuationToken?: string;
+};
+
+/**
  * An interface that allows async iterable iteration both to completion and by page.
  */
 export interface PagedAsyncIterableIterator<
@@ -26,11 +36,15 @@ export interface PagedAsyncIterableIterator<
   /**
    * The connection to the async iterator, part of the iteration protocol
    */
-  [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
+  [Symbol.asyncIterator](): PagedAsyncIterableIterator<
+    TElement,
+    TPage,
+    TPageSettings
+  >;
   /**
    * Return an AsyncIterableIterator that works a page at a time
    */
   byPage: (
     settings?: TPageSettings
-  ) => AsyncIterableIterator<TPage & { continuationToken?: string }>;
+  ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
 }

@@ -37,5 +37,6 @@ export {
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
   PageSettings,
+  ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";

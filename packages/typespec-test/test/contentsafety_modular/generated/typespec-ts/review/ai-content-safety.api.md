@@ -85,6 +85,11 @@ export class ContentSafetyClient {
 export interface ContentSafetyClientOptions extends ClientOptions {
 }
 
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
 // @public (undocumented)
 export interface CreateOrUpdateTextBlocklistOptions extends OperationOptions {
     contentType?: string;
@@ -131,10 +136,8 @@ export interface ListTextBlocklistsOptions extends OperationOptions {
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage & {
-        continuationToken?: string;
-    }>;
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
 }
 

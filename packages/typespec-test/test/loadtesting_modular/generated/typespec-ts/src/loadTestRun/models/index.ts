@@ -67,4 +67,8 @@ export {
   ListTestRunsOptions,
   StopTestRunOptions,
 } from "./options.js";
-export { PageSettings, PagedAsyncIterableIterator } from "./pagingTypes.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

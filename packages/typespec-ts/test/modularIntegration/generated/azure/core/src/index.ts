@@ -16,5 +16,6 @@ export {
   DeleteOperationOptions,
   ExportOperationOptions,
   PageSettings,
+  ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";

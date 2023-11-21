@@ -33,6 +33,11 @@ export interface CertificateMetadata {
 // @public
 export type CertificateType = string;
 
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
 // @public (undocumented)
 export interface CreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
@@ -257,6 +262,11 @@ export interface LoadTestRunClientCertificateMetadata {
 // @public
 export type LoadTestRunClientCertificateType = string;
 
+// @public
+export type LoadTestRunClientContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
 // @public (undocumented)
 export interface LoadTestRunClientCreateOrUpdateAppComponentsOptions extends OperationOptions {
     // (undocumented)
@@ -379,10 +389,8 @@ export interface LoadTestRunClientOptions extends ClientOptions {
 
 // @public
 export interface LoadTestRunClientPagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = LoadTestRunClientPageSettings> {
-    [Symbol.asyncIterator](): LoadTestRunClientPagedAsyncIterableIterator<TElement>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage & {
-        continuationToken?: string;
-    }>;
+    [Symbol.asyncIterator](): LoadTestRunClientPagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<LoadTestRunClientContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
 }
 
@@ -601,10 +609,8 @@ export interface OptionalLoadTestConfig {
 
 // @public
 export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
-    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement>;
-    byPage: (settings?: TPageSettings) => AsyncIterableIterator<TPage & {
-        continuationToken?: string;
-    }>;
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
     next(): Promise<IteratorResult<TElement>>;
 }
 

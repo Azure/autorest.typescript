@@ -2,33 +2,64 @@
 // Licensed under the MIT license.
 
 import {
-  getPagedAsyncIterator,
-  PagedAsyncIterableIterator as CorePagedAsyncIterableIterator,
-  PagedResult,
-  PageSettings as CorePageSettings,
-} from "@azure/core-paging";
-import {
   Client,
   createRestError,
   PathUncheckedResponse,
 } from "@azure-rest/core-client";
 import {
+  ContinuablePage,
   PageSettings,
   PagedAsyncIterableIterator,
 } from "../models/pagingTypes.js";
 
+/**
+ * An interface that describes how to communicate with the service.
+ */
+interface PagedResult<
+  TElement,
+  TPage = TElement[],
+  TPageSettings = PageSettings
+> {
+  /**
+   * Link to the first page of results.
+   */
+  firstPageLink: string;
+  /**
+   * A method that returns a page of results.
+   */
+  getPage: (
+    pageLink: string
+  ) => Promise<{ page: TPage; nextPageLink?: string } | undefined>;
+  /**
+   * a function to implement the `byPage` method on the paged async iterator.
+   */
+  byPage?: (
+    settings?: TPageSettings
+  ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+
+  /**
+   * A function to extract elements from a page.
+   */
+  toElements?: (page: TPage) => unknown[];
+}
+
+/**
+ * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator
+ */
 export function buildPagedAsyncIterator<
   TElement,
+  TPage = TElement[],
+  TPageSettings = PageSettings,
   TResponse extends PathUncheckedResponse = PathUncheckedResponse
 >(
   client: Client,
   getInitialResponse: () => PromiseLike<TResponse>,
   processResponseBody: (result: TResponse) => Promise<unknown>
-): PagedAsyncIterableIterator<TElement> {
+): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
   let firstRun = true;
   let itemName: string, nextLinkName: string | undefined;
   const firstPageLinkPlaceholder = "";
-  const pagedResult: PagedResult<TElement[]> = {
+  const pagedResult: PagedResult<TElement, TPage, TPageSettings> = {
     firstPageLink: firstPageLinkPlaceholder,
     getPage: async (pageLink: string) => {
       const result =
@@ -44,22 +75,36 @@ export function buildPagedAsyncIterator<
       checkPagingRequest(result);
       const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
-      const values = getElements<TElement>(results, itemName);
+      const values = getElements<TElement>(results, itemName) as TPage;
       return {
         page: values,
         nextPageLink: nextLink,
       };
     },
-    byPage: (settings?: PageSettings) => {
-      const { continuationToken } = settings ?? {};
+    byPage: (settings?: TPageSettings) => {
+      const { continuationToken } = (settings as PageSettings) ?? {};
       return getPageAsyncIterator(pagedResult, {
         pageLink: continuationToken,
-      }) as any;
+      });
     },
   };
-  const iter: CorePagedAsyncIterableIterator<TElement> =
-    getPagedAsyncIterator(pagedResult);
+  return getPagedAsyncIterator(pagedResult);
+}
 
+/**
+ * returns an async iterator that iterates over results. It also has a `byPage`
+ * method that returns pages of items at once.
+ *
+ * @param pagedResult - an object that specifies how to get pages.
+ * @returns a paged async iterator that iterates over results.
+ */
+
+export function getPagedAsyncIterator<TElement, TPage, TPageSettings>(
+  pagedResult: PagedResult<TElement, TPage, TPageSettings>
+): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
+  const iter = getItemAsyncIterator<TElement, TPage, TPageSettings>(
+    pagedResult
+  );
   return {
     next() {
       return iter.next();
@@ -67,22 +112,52 @@ export function buildPagedAsyncIterator<
     [Symbol.asyncIterator]() {
       return this;
     },
-    byPage: (settings?: PageSettings) => {
-      return iter.byPage(
-        settings as CorePageSettings
-      ) as unknown as AsyncIterableIterator<
-        TElement[] & { continuationToken?: string }
-      >;
-    },
+    byPage:
+      pagedResult?.byPage ??
+      ((settings?: TPageSettings) => {
+        const { continuationToken } = (settings as PageSettings) ?? {};
+        return getPageAsyncIterator(pagedResult, {
+          pageLink: continuationToken,
+        });
+      }),
   };
 }
 
-async function* getPageAsyncIterator<TPage>(
-  pagedResult: PagedResult<TPage>,
+async function* getItemAsyncIterator<TElement, TPage, TPageSettings>(
+  pagedResult: PagedResult<TElement, TPage, TPageSettings>
+): AsyncIterableIterator<TElement> {
+  const pages = getPageAsyncIterator(pagedResult);
+  const firstVal = await pages.next();
+  // if the result does not have an array shape, i.e. TPage = TElement, then we return it as is
+  if (!Array.isArray(firstVal.value)) {
+    // can extract elements from this page
+    const { toElements } = pagedResult;
+    if (toElements) {
+      yield* toElements(firstVal.value) as TElement[];
+      for await (const page of pages) {
+        yield* toElements(page) as TElement[];
+      }
+    } else {
+      yield firstVal.value;
+      // `pages` is of type `AsyncIterableIterator<TPage>` but TPage = TElement in this case
+      yield* pages as unknown as AsyncIterableIterator<TElement>;
+    }
+  } else {
+    yield* firstVal.value;
+    for await (const page of pages) {
+      // pages is of type `AsyncIterableIterator<TPage>` so `page` is of type `TPage`. In this branch,
+      // it must be the case that `TPage = TElement[]`
+      yield* page as unknown as TElement[];
+    }
+  }
+}
+
+async function* getPageAsyncIterator<TElement, TPage, TPageSettings>(
+  pagedResult: PagedResult<TElement, TPage, TPageSettings>,
   options: {
     pageLink?: string;
   } = {}
-): AsyncIterableIterator<TPage & { continuationToken?: string }> {
+): AsyncIterableIterator<ContinuablePage<TElement, TPage>> {
   const { pageLink } = options;
   let response = await pagedResult.getPage(
     pageLink ?? pagedResult.firstPageLink
@@ -90,15 +165,17 @@ async function* getPageAsyncIterator<TPage>(
   if (!response) {
     return;
   }
-  (response.page as any).continuationToken = response.nextPageLink;
-  yield response.page as any;
+  let result = response.page as ContinuablePage<TElement, TPage>;
+  result.continuationToken = response.nextPageLink;
+  yield result;
   while (response.nextPageLink) {
     response = await pagedResult.getPage(response.nextPageLink);
     if (!response) {
       return;
     }
-    (response.page as any).continuationToken = response.nextPageLink;
-    yield response.page as any;
+    result = response.page as ContinuablePage<TElement, TPage>;
+    result.continuationToken = response.nextPageLink;
+    yield result;
   }
 }
 
@@ -133,7 +210,7 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
   if (!Array.isArray(value)) {
     throw new Error(
       `Couldn't paginate response
- Body doesn't contain an array property with name: ${itemName}`
+      Body doesn't contain an array property with name: ${itemName}`
     );
   }
 
@@ -200,9 +277,9 @@ function getPaginationProperties(initialResponse: PathUncheckedResponse) {
   if (!itemName) {
     throw new Error(
       `Couldn't paginate response
- Body doesn't contain an array property with name: ${[...itemNames].join(
-   " OR "
- )}`
+      Body doesn't contain an array property with name: ${[...itemNames].join(
+        " OR "
+      )}`
     );
   }
 

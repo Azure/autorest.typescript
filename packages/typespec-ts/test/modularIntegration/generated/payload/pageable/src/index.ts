@@ -7,5 +7,6 @@ export {
   User,
   ListOptions,
   PageSettings,
+  ContinuablePage,
   PagedAsyncIterableIterator,
 } from "./models/index.js";
