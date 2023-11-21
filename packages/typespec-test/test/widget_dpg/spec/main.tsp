@@ -1,6 +1,8 @@
 import "@typespec/http";
+import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Http;
+using Azure.Core;
 @service({
     title: "Widget Service",
     version: "1.0.0",
@@ -48,6 +50,16 @@ model WidgetError {
     message: string;
 }
 
+@pagedResult
+model ListWidgetsPagesResults {
+    @doc("The current page of results.")
+    @items
+    results: Widget[];
+    @doc("The URL to get the next set of results.")
+    @nextLink
+    `odata.nextLink`?: string;
+}
+
 @route("/widgets")
 @tag("Widgets")
 interface Widgets {
@@ -71,6 +83,13 @@ It does not accept any options or parameters.
         @header optionalDateHeader?: utcDateTime,
         @header nullableDateHeader?: utcDateTime | null,
     ): Widget[] | WidgetError;
+
+    @get
+    @route("/widgets/pages") 
+    listWidgetsPages(
+        @query page: int32,
+        @query pageSize: int32,
+    ): ListWidgetsPagesResults | WidgetError;
 
     @doc("Get a widget by ID.")
     @get getWidget(@path id: string): Widget | WidgetError;

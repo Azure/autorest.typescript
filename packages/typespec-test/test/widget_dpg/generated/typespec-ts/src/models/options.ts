@@ -10,6 +10,8 @@ export interface WidgetsListWidgetsOptions extends OperationOptions {
   nullableDateHeader?: Date | null;
 }
 
+export interface WidgetsListWidgetsPagesOptions extends OperationOptions {}
+
 export interface WidgetsGetWidgetOptions extends OperationOptions {}
 
 export interface WidgetsCreateWidgetOptions extends OperationOptions {}

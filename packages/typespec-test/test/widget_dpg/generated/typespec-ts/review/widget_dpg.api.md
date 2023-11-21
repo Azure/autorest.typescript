@@ -14,10 +14,33 @@ export interface AnalyzeResult {
     summary: string;
 }
 
+// @public
+export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
+    continuationToken?: string;
+};
+
 // @public (undocumented)
 export interface CreateWidget {
     color: "red" | "blue";
     weight: number;
+}
+
+// @public (undocumented)
+export interface ListWidgetsPagesResults {
+    "odata.nextLink"?: string;
+    results: Widget[];
+}
+
+// @public
+export interface PagedAsyncIterableIterator<TElement, TPage = TElement[], TPageSettings = PageSettings> {
+    [Symbol.asyncIterator](): PagedAsyncIterableIterator<TElement, TPage, TPageSettings>;
+    byPage: (settings?: TPageSettings) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    next(): Promise<IteratorResult<TElement>>;
+}
+
+// @public
+export interface PageSettings {
+    continuationToken?: string;
 }
 
 // @public (undocumented)
@@ -73,6 +96,10 @@ export interface WidgetsListWidgetsOptions extends OperationOptions {
 }
 
 // @public (undocumented)
+export interface WidgetsListWidgetsPagesOptions extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface WidgetsOperations {
     // (undocumented)
     analyzeWidget: (id: string, options?: WidgetsAnalyzeWidgetOptions) => Promise<AnalyzeResult>;
@@ -84,6 +111,8 @@ export interface WidgetsOperations {
     getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
     // (undocumented)
     listWidgets: (requiredHeader: string, bytesHeader: Uint8Array, value: Uint8Array, csvArrayHeader: Uint8Array[], utcDateHeader: Date, options?: WidgetsListWidgetsOptions) => Promise<Widget[]>;
+    // (undocumented)
+    listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptions) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
     updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptions) => Promise<Widget>;
 }
