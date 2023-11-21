@@ -248,6 +248,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "payload/pageable"
   },
   {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
     outputPath: "encode/duration",
     inputPath: "encode/duration"
   },
