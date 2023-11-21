@@ -24,12 +24,12 @@ interface PagedResult<
   /**
    * Link to the first page of results.
    */
-  firstPageLink: string;
+  firstPageLink?: string;
   /**
    * A method that returns a page of results.
    */
   getPage: (
-    pageLink: string
+    pageLink?: string
   ) => Promise<{ page: TPage; nextPageLink?: string } | undefined>;
   /**
    * a function to implement the `byPage` method on the paged async iterator.
@@ -66,15 +66,12 @@ export function buildPagedAsyncIterator<
   processResponseBody: (result: TResponse) => Promise<unknown>,
   options: BuildPagedAsyncIteratorOptions = {}
 ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
-  let firstRun = true;
   const itemName = options.itemName ?? "value";
   const nextLinkName = options.nextLinkName ?? "nextLink";
-  const firstPageLinkPlaceholder = "";
   const pagedResult: PagedResult<TElement, TPage, TPageSettings> = {
-    firstPageLink: firstPageLinkPlaceholder,
-    getPage: async (pageLink: string) => {
+    getPage: async (pageLink?: string) => {
       const result =
-        firstRun && pageLink === firstPageLinkPlaceholder
+        pageLink === undefined
           ? await getInitialResponse()
           : await client.pathUnchecked(pageLink).get();
       checkPagingRequest(result);

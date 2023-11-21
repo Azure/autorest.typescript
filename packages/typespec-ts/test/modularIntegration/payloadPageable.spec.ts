@@ -23,6 +23,10 @@ describe("PageableClient Classical Client", () => {
       assert.fail("Should throw exception");
     } catch (err: any) {
       assert.isNotNull(err);
+      assert.strictEqual(
+        err.message,
+        "Pagination failed with unexpected statusCode 400"
+      );
     }
   });
 

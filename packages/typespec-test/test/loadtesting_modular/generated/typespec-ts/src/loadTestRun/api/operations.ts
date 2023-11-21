@@ -991,7 +991,8 @@ export function listMetricDimensionValues(
         metricNamespace,
         options
       ),
-    _listMetricDimensionValuesDeserialize
+    _listMetricDimensionValuesDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -1159,7 +1160,8 @@ export function listMetrics(
   return buildPagedAsyncIterator(
     context,
     () => _listMetricsSend(context, testRunId, body, options),
-    _listMetricsDeserialize
+    _listMetricsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -1457,7 +1459,8 @@ export function listTestRuns(
   return buildPagedAsyncIterator(
     context,
     () => _listTestRunsSend(context, options),
-    _listTestRunsDeserialize
+    _listTestRunsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 

@@ -350,7 +350,8 @@ export function listApplications(
   return buildPagedAsyncIterator(
     context,
     () => _listApplicationsSend(context, options),
-    _listApplicationsDeserialize
+    _listApplicationsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -453,7 +454,8 @@ export function listPoolUsageMetrics(
   return buildPagedAsyncIterator(
     context,
     () => _listPoolUsageMetricsSend(context, options),
-    _listPoolUsageMetricsDeserialize
+    _listPoolUsageMetricsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -1348,7 +1350,8 @@ export function listPools(
   return buildPagedAsyncIterator(
     context,
     () => _listPoolsSend(context, options),
-    _listPoolsDeserialize
+    _listPoolsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -2687,7 +2690,8 @@ export function listSupportedImages(
   return buildPagedAsyncIterator(
     context,
     () => _listSupportedImagesSend(context, options),
-    _listSupportedImagesDeserialize
+    _listSupportedImagesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -2774,7 +2778,8 @@ export function listPoolNodeCounts(
   return buildPagedAsyncIterator(
     context,
     () => _listPoolNodeCountsSend(context, options),
-    _listPoolNodeCountsDeserialize
+    _listPoolNodeCountsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -7621,7 +7626,8 @@ export function listJobs(
   return buildPagedAsyncIterator(
     context,
     () => _listJobsSend(context, options),
-    _listJobsDeserialize
+    _listJobsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -8728,7 +8734,8 @@ export function listJobsFromSchedule(
   return buildPagedAsyncIterator(
     context,
     () => _listJobsFromScheduleSend(context, jobScheduleId, options),
-    _listJobsFromScheduleDeserialize
+    _listJobsFromScheduleDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -8917,7 +8924,8 @@ export function listJobPreparationAndReleaseTaskStatus(
   return buildPagedAsyncIterator(
     context,
     () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
-    _listJobPreparationAndReleaseTaskStatusDeserialize
+    _listJobPreparationAndReleaseTaskStatusDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -9099,7 +9107,8 @@ export function listCertificates(
   return buildPagedAsyncIterator(
     context,
     () => _listCertificatesSend(context, options),
-    _listCertificatesDeserialize
+    _listCertificatesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -15591,7 +15600,8 @@ export function listJobSchedules(
   return buildPagedAsyncIterator(
     context,
     () => _listJobSchedulesSend(context, options),
-    _listJobSchedulesDeserialize
+    _listJobSchedulesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -16164,7 +16174,8 @@ export function listTasks(
   return buildPagedAsyncIterator(
     context,
     () => _listTasksSend(context, jobId, options),
-    _listTasksDeserialize
+    _listTasksDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -17342,7 +17353,8 @@ export function listTaskFiles(
   return buildPagedAsyncIterator(
     context,
     () => _listTaskFilesSend(context, jobId, taskId, options),
-    _listTaskFilesDeserialize
+    _listTaskFilesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -18470,7 +18482,8 @@ export function listNodes(
   return buildPagedAsyncIterator(
     context,
     () => _listNodesSend(context, poolId, options),
-    _listNodesDeserialize
+    _listNodesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -18651,7 +18664,8 @@ export function listNodeExtensions(
   return buildPagedAsyncIterator(
     context,
     () => _listNodeExtensionsSend(context, poolId, nodeId, options),
-    _listNodeExtensionsDeserialize
+    _listNodeExtensionsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }
 
@@ -18887,6 +18901,7 @@ export function listNodeFiles(
   return buildPagedAsyncIterator(
     context,
     () => _listNodeFilesSend(context, poolId, nodeId, options),
-    _listNodeFilesDeserialize
+    _listNodeFilesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
 }

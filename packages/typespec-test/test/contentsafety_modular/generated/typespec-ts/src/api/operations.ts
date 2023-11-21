@@ -316,7 +316,8 @@ export function listTextBlocklists(
   return buildPagedAsyncIterator(
     context,
     () => _listTextBlocklistsSend(context, options),
-    _listTextBlocklistsDeserialize
+    _listTextBlocklistsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -516,6 +517,7 @@ export function listTextBlocklistItems(
   return buildPagedAsyncIterator(
     context,
     () => _listTextBlocklistItemsSend(context, blocklistName, options),
-    _listTextBlocklistItemsDeserialize
+    _listTextBlocklistItemsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }

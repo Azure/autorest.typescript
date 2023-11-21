@@ -788,7 +788,8 @@ export function listTestFiles(
   return buildPagedAsyncIterator(
     context,
     () => _listTestFilesSend(context, testId, options),
-    _listTestFilesDeserialize
+    _listTestFilesDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -971,7 +972,8 @@ export function listTests(
   return buildPagedAsyncIterator(
     context,
     () => _listTestsSend(context, options),
-    _listTestsDeserialize
+    _listTestsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
