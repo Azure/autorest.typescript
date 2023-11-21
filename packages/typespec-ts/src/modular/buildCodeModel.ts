@@ -107,6 +107,7 @@ import {
   getModelNamespaceName,
   getOperationNamespaceInterfaceName
 } from "../utils/namespaceUtils.js";
+import { reportDiagnostic } from "../lib.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -657,10 +658,23 @@ function emitOperation(
   );
   const pagingMetadata = getPagedResult(context.program, operation);
   // Disable the paging feature if no itemsSegments is found.
-  let paging =
+  const paging =
     pagingMetadata &&
     pagingMetadata.itemsSegments &&
     pagingMetadata.itemsSegments.length > 0;
+  if (
+    pagingMetadata &&
+    (!pagingMetadata.itemsSegments || pagingMetadata.itemsSegments.length === 0)
+  ) {
+    reportDiagnostic(context.program, {
+      code: "no-paging-items-defined",
+      format: {
+        operationName: operation.name
+      },
+      target: operation
+    });
+  }
+
   if (lro && paging) {
     return emitLroPagingOperation(
       context,
