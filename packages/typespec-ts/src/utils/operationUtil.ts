@@ -538,10 +538,6 @@ export function parseNextLinkName(
 }
 
 export function parseItemName(paged: PagedResultMetadata): string | undefined {
-  const pathComponents = paged.itemsPath?.split(".");
-  if (pathComponents) {
-    // TODO: This logic breaks down if there actually is a dotted path.
-    return pathComponents[pathComponents.length - 1];
-  }
-  return undefined;
+  // TODO: support the nested item names
+  return (paged.itemsSegments ?? [])[0];
 }
