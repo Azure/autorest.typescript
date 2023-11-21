@@ -114,7 +114,13 @@ export interface WidgetsOperations {
     // (undocumented)
     listWidgetsPages: (page: number, pageSize: number, options?: WidgetsListWidgetsPagesOptions) => PagedAsyncIterableIterator<Widget>;
     // (undocumented)
+    queryWidgetsPages: (page: number, pageSize: number, options?: WidgetsQueryWidgetsPagesOptions) => PagedAsyncIterableIterator<Widget>;
+    // (undocumented)
     updateWidget: (id: string, body: UpdateWidget, options?: WidgetsUpdateWidgetOptions) => Promise<Widget>;
+}
+
+// @public (undocumented)
+export interface WidgetsQueryWidgetsPagesOptions extends OperationOptions {
 }
 
 // @public (undocumented)

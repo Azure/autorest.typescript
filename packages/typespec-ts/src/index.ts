@@ -175,13 +175,19 @@ export async function $onEmit(context: EmitContext) {
         }
       );
 
+      const isMultiClients = modularCodeModel.clients.length > 1;
       for (const subClient of modularCodeModel.clients) {
         buildModels(modularCodeModel, subClient);
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
         buildPagingTypes(modularCodeModel, subClient);
-        buildModularPagingHelpers(modularCodeModel, subClient);
+        buildModularPagingHelpers(
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
         buildOperationFiles(
           dpgContext,
           modularCodeModel,
@@ -204,7 +210,7 @@ export async function $onEmit(context: EmitContext) {
           exportIndex: true,
           interfaceOnly: true
         });
-        if (modularCodeModel.clients.length > 1) {
+        if (isMultiClients) {
           buildSubClientIndexFile(modularCodeModel, subClient);
         }
         buildRootIndex(modularCodeModel, subClient, rootIndexFile);

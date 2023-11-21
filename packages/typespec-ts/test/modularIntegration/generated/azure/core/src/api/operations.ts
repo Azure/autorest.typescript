@@ -268,7 +268,8 @@ export function list(
   return buildPagedAsyncIterator(
     context,
     () => _listSend(context, options),
-    _listDeserialize
+    _listDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -313,7 +314,8 @@ export function listWithPage(
   return buildPagedAsyncIterator(
     context,
     () => _listWithPageSend(context, options),
-    _listWithPageDeserialize
+    _listWithPageDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }
 
@@ -362,7 +364,8 @@ export function listWithCustomPageModel(
   return buildPagedAsyncIterator(
     context,
     () => _listWithCustomPageModelSend(context, options),
-    _listWithCustomPageModelDeserialize
+    _listWithCustomPageModelDeserialize,
+    { itemName: "items", nextLinkName: "nextLink" }
   );
 }
 

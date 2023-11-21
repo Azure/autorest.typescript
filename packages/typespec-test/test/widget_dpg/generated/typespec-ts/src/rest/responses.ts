@@ -32,6 +32,17 @@ export interface ListWidgetsPagesDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
+export interface QueryWidgetsPages200Response extends HttpResponse {
+  status: "200";
+  body: ListWidgetsPagesResultsOutput;
+}
+
+export interface QueryWidgetsPagesDefaultResponse extends HttpResponse {
+  status: string;
+  body: WidgetErrorOutput;
+}
+
+/** The request has succeeded. */
 export interface GetWidget200Response extends HttpResponse {
   status: "200";
   body: WidgetOutput;

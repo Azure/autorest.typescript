@@ -6,11 +6,13 @@ import {
   createRestError,
   PathUncheckedResponse,
 } from "@azure-rest/core-client";
+import { RestError } from "@azure/core-rest-pipeline";
 import {
   ContinuablePage,
   PageSettings,
   PagedAsyncIterableIterator,
 } from "../models/pagingTypes.js";
+import { isUnexpected } from "../rest/index.js";
 
 /**
  * An interface that describes how to communicate with the service.
@@ -44,6 +46,14 @@ interface PagedResult<
 }
 
 /**
+ * Options for the paging helper
+ */
+export interface BuildPagedAsyncIteratorOptions {
+  itemName?: string;
+  nextLinkName?: string;
+}
+
+/**
  * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator
  */
 export function buildPagedAsyncIterator<
@@ -54,10 +64,12 @@ export function buildPagedAsyncIterator<
 >(
   client: Client,
   getInitialResponse: () => PromiseLike<TResponse>,
-  processResponseBody: (result: TResponse) => Promise<unknown>
+  processResponseBody: (result: TResponse) => Promise<unknown>,
+  options: BuildPagedAsyncIteratorOptions = {}
 ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
   let firstRun = true;
-  let itemName: string, nextLinkName: string | undefined;
+  const itemName = options.itemName ?? "value";
+  const nextLinkName = options.nextLinkName ?? "nextLink";
   const firstPageLinkPlaceholder = "";
   const pagedResult: PagedResult<TElement, TPage, TPageSettings> = {
     firstPageLink: firstPageLinkPlaceholder,
@@ -66,12 +78,6 @@ export function buildPagedAsyncIterator<
         firstRun && pageLink === firstPageLinkPlaceholder
           ? await getInitialResponse()
           : await client.pathUnchecked(pageLink).get();
-      if (firstRun) {
-        const pageInfo = getPaginationProperties(result);
-        itemName = pageInfo.itemName;
-        nextLinkName = pageInfo.nextLinkName;
-      }
-      firstRun = false;
       checkPagingRequest(result);
       const results = await processResponseBody(result as TResponse);
       const nextLink = getNextLink(results, nextLinkName);
@@ -190,7 +196,7 @@ function getNextLink(body: unknown, nextLinkName?: string): string | undefined {
   const nextLink = (body as Record<string, unknown>)[nextLinkName];
 
   if (typeof nextLink !== "string" && typeof nextLink !== "undefined") {
-    throw new Error(
+    throw new RestError(
       `Body Property ${nextLinkName} should be a string or undefined`
     );
   }
@@ -208,7 +214,7 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
   // The fact that this must be an array is used above to calculate the
   // type of elements in the page in PaginateReturn
   if (!Array.isArray(value)) {
-    throw new Error(
+    throw new RestError(
       `Couldn't paginate response
       Body doesn't contain an array property with name: ${itemName}`
     );
@@ -221,67 +227,10 @@ function getElements<T = unknown>(body: unknown, itemName: string): T[] {
  * Checks if a request failed
  */
 function checkPagingRequest(response: PathUncheckedResponse): void {
-  const Http2xxStatusCodes = [
-    "200",
-    "201",
-    "202",
-    "203",
-    "204",
-    "205",
-    "206",
-    "207",
-    "208",
-    "226",
-  ];
-  if (!Http2xxStatusCodes.includes(response.status)) {
+  if (isUnexpected(response)) {
     throw createRestError(
       `Pagination failed with unexpected statusCode ${response.status}`,
       response
     );
   }
-}
-
-/**
- * Extracts the itemName and nextLinkName from the initial response to use them for pagination
- */
-function getPaginationProperties(initialResponse: PathUncheckedResponse) {
-  // Build a set with the passed custom nextLinkNames
-  const nextLinkNames = new Set(["nextLink", "odata.nextLink"]);
-
-  // Build a set with the passed custom set of itemNames
-  const itemNames = new Set(["value", "items", "results"]);
-
-  let nextLinkName: string | undefined;
-  let itemName: string | undefined;
-
-  for (const name of nextLinkNames) {
-    const nextLink = (initialResponse.body as Record<string, unknown>)[
-      name
-    ] as string;
-    if (nextLink) {
-      nextLinkName = name;
-      break;
-    }
-  }
-
-  for (const name of itemNames) {
-    const item = (initialResponse.body as Record<string, unknown>)[
-      name
-    ] as string;
-    if (item) {
-      itemName = name;
-      break;
-    }
-  }
-
-  if (!itemName) {
-    throw new Error(
-      `Couldn't paginate response
-      Body doesn't contain an array property with name: ${[...itemNames].join(
-        " OR "
-      )}`
-    );
-  }
-
-  return { itemName, nextLinkName };
 }

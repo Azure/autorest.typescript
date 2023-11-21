@@ -8,6 +8,8 @@ import {
   CreateWidgetDefaultResponse,
   ListWidgetsPages200Response,
   ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
   GetWidget200Response,
   GetWidgetDefaultResponse,
   UpdateWidget200Response,
@@ -22,6 +24,7 @@ const responseMap: Record<string, string[]> = {
   "GET /widgets": ["200"],
   "POST /widgets": ["201"],
   "GET /widgets/widgets/pages": ["200"],
+  "POST /widgets/widgets/pages": ["200"],
   "GET /widgets/{id}": ["200"],
   "PATCH /widgets/{id}": ["200"],
   "DELETE /widgets/{id}": ["204"],
@@ -37,6 +40,9 @@ export function isUnexpected(
 export function isUnexpected(
   response: ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
 ): response is ListWidgetsPagesDefaultResponse;
+export function isUnexpected(
+  response: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
+): response is QueryWidgetsPagesDefaultResponse;
 export function isUnexpected(
   response: GetWidget200Response | GetWidgetDefaultResponse
 ): response is GetWidgetDefaultResponse;
@@ -57,6 +63,8 @@ export function isUnexpected(
     | CreateWidgetDefaultResponse
     | ListWidgetsPages200Response
     | ListWidgetsPagesDefaultResponse
+    | QueryWidgetsPages200Response
+    | QueryWidgetsPagesDefaultResponse
     | GetWidget200Response
     | GetWidgetDefaultResponse
     | UpdateWidget200Response
@@ -69,6 +77,7 @@ export function isUnexpected(
   | ListWidgetsDefaultResponse
   | CreateWidgetDefaultResponse
   | ListWidgetsPagesDefaultResponse
+  | QueryWidgetsPagesDefaultResponse
   | GetWidgetDefaultResponse
   | UpdateWidgetDefaultResponse
   | DeleteWidgetDefaultResponse

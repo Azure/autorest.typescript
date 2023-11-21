@@ -25,6 +25,8 @@ import {
   ListWidgetsDefaultResponse,
   ListWidgetsPages200Response,
   ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
   UpdateWidget200Response,
   UpdateWidgetDefaultResponse,
   WidgetServiceContext as Client,
@@ -37,6 +39,7 @@ import { uint8ArrayToString } from "@azure/core-util";
 import {
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
+  WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
   WidgetsUpdateWidgetOptions,
@@ -173,7 +176,55 @@ export function listWidgetsPages(
   return buildPagedAsyncIterator(
     context,
     () => _listWidgetsPagesSend(context, page, pageSize, options),
-    _listWidgetsPagesDeserialize
+    _listWidgetsPagesDeserialize,
+    { itemName: "results", nextLinkName: "odata.nextLink" }
+  );
+}
+
+export function _queryWidgetsPagesSend(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} }
+): StreamableMethod<
+  QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
+> {
+  return context
+    .path("/widgets/widgets/pages")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { page: page, pageSize: pageSize },
+    });
+}
+
+export async function _queryWidgetsPagesDeserialize(
+  result: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
+): Promise<ListWidgetsPagesResults> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    results: result.body["results"].map((p) => ({
+      id: p["id"],
+      weight: p["weight"],
+      color: p["color"] as any,
+    })),
+    "odata.nextLink": result.body["odata.nextLink"],
+  };
+}
+
+export function queryWidgetsPages(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} }
+): PagedAsyncIterableIterator<Widget> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _queryWidgetsPagesSend(context, page, pageSize, options),
+    _queryWidgetsPagesDeserialize,
+    { itemName: "results", nextLinkName: "odata.nextLink" }
   );
 }
 

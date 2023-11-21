@@ -35,6 +35,18 @@ export interface ListWidgetsPagesQueryParam {
 
 export type ListWidgetsPagesParameters = ListWidgetsPagesQueryParam &
   RequestParameters;
+
+export interface QueryWidgetsPagesQueryParamProperties {
+  page: number;
+  pageSize: number;
+}
+
+export interface QueryWidgetsPagesQueryParam {
+  queryParameters: QueryWidgetsPagesQueryParamProperties;
+}
+
+export type QueryWidgetsPagesParameters = QueryWidgetsPagesQueryParam &
+  RequestParameters;
 export type GetWidgetParameters = RequestParameters;
 
 export interface CreateWidgetBodyParam {

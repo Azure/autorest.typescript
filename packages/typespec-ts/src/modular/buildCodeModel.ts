@@ -655,7 +655,12 @@ function emitOperation(
     context.program,
     ignoreDiagnostics(getHttpOperation(context.program, operation))
   );
-  const paging = getPagedResult(context.program, operation);
+  const pagingMetadata = getPagedResult(context.program, operation);
+  // Disable the paging feature if no itemsSegments is found.
+  let paging =
+    pagingMetadata &&
+    pagingMetadata.itemsSegments &&
+    pagingMetadata.itemsSegments.length > 0;
   if (lro && paging) {
     return emitLroPagingOperation(
       context,

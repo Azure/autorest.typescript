@@ -184,7 +184,7 @@ export function importModels(
   // sourceFile.fixUnusedIdentifiers();
 }
 
-function importPagingDependencies(
+export function importPagingDependencies(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,

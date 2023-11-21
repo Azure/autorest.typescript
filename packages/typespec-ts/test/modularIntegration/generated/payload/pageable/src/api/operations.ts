@@ -44,6 +44,7 @@ export function list(
   return buildPagedAsyncIterator(
     context,
     () => _listSend(context, options),
-    _listDeserialize
+    _listDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
 }

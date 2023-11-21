@@ -11,6 +11,7 @@ export {
 export {
   WidgetsListWidgetsOptions,
   WidgetsListWidgetsPagesOptions,
+  WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
   WidgetsUpdateWidgetOptions,

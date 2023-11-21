@@ -12,6 +12,8 @@ export interface WidgetsListWidgetsOptions extends OperationOptions {
 
 export interface WidgetsListWidgetsPagesOptions extends OperationOptions {}
 
+export interface WidgetsQueryWidgetsPagesOptions extends OperationOptions {}
+
 export interface WidgetsGetWidgetOptions extends OperationOptions {}
 
 export interface WidgetsCreateWidgetOptions extends OperationOptions {}

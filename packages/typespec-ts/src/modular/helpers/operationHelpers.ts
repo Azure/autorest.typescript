@@ -278,10 +278,20 @@ export function getOperationFunction(
 
   const statements: string[] = [];
   if (isPaging) {
+    const options = [];
+    if (operation.itemName) {
+      options.push(`itemName: "${operation.itemName}"`);
+    }
+    if (operation.continuationTokenName) {
+      options.push(`nextLinkName: "${operation.continuationTokenName}"`);
+    }
     statements.push(
-      `return buildPagedAsyncIterator(context, () => _${name}Send(${parameters
-        .map((p) => p.name)
-        .join(", ")}), _${name}Deserialize)  ;`
+      `return buildPagedAsyncIterator(
+        context, 
+        () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
+        _${name}Deserialize,
+        ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+        );`
     );
   } else {
     statements.push(

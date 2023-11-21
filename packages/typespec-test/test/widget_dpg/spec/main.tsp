@@ -91,6 +91,13 @@ It does not accept any options or parameters.
         @query pageSize: int32,
     ): ListWidgetsPagesResults | WidgetError;
 
+    @post
+    @route("/widgets/pages") 
+    queryWidgetsPages(
+        @query page: int32,
+        @query pageSize: int32,
+    ): ListWidgetsPagesResults | WidgetError;
+
     @doc("Get a widget by ID.")
     @get getWidget(@path id: string): Widget | WidgetError;
 

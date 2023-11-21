@@ -5,6 +5,7 @@ import {
   ListWidgetsParameters,
   CreateWidgetParameters,
   ListWidgetsPagesParameters,
+  QueryWidgetsPagesParameters,
   GetWidgetParameters,
   UpdateWidgetParameters,
   DeleteWidgetParameters,
@@ -17,6 +18,8 @@ import {
   CreateWidgetDefaultResponse,
   ListWidgetsPages200Response,
   ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
   GetWidget200Response,
   GetWidgetDefaultResponse,
   UpdateWidget200Response,
@@ -54,6 +57,11 @@ export interface ListWidgetsPages {
   ): StreamableMethod<
     ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
   >;
+  post(
+    options: QueryWidgetsPagesParameters
+  ): StreamableMethod<
+    QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
+  >;
 }
 
 export interface GetWidget {
@@ -84,7 +92,7 @@ export interface AnalyzeWidget {
 export interface Routes {
   /** Resource for '/widgets' has methods for the following verbs: get, post */
   (path: "/widgets"): ListWidgets;
-  /** Resource for '/widgets/widgets/pages' has methods for the following verbs: get */
+  /** Resource for '/widgets/widgets/pages' has methods for the following verbs: get, post */
   (path: "/widgets/widgets/pages"): ListWidgetsPages;
   /** Resource for '/widgets/\{id\}' has methods for the following verbs: get, patch, delete */
   (path: "/widgets/{id}", id: string): GetWidget;
