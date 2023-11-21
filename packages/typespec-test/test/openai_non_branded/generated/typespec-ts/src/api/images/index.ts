@@ -20,7 +20,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@typespec/ts-http-runtime";
-import { RestError, stringToUint8Array } from "@typespec/ts-http-runtime";
+import { createRestError, stringToUint8Array } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptions,
   ImagesCreateEditOptions,
@@ -52,11 +52,7 @@ export async function _createDeserialize(
   if (isUnexpected(result)) {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return {
@@ -110,11 +106,7 @@ export async function _createEditDeserialize(
   if (isUnexpected(result)) {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return {
@@ -168,11 +160,7 @@ export async function _createVariationDeserialize(
   if (isUnexpected(result)) {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return {

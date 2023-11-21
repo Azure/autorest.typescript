@@ -41,7 +41,7 @@ describe("operations", () => {
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
         import { uint8ArrayToString } from "@azure/core-util";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client, 
@@ -87,11 +87,7 @@ describe("operations", () => {
             if(result.status !== "200"){
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
             }
         
             return;
@@ -148,7 +144,7 @@ describe("operations", () => {
         `
       import { TestingContext as Client } from "../rest/index.js";
       import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-      import { RestError } from "@azure/core-rest-pipeline";
+      import { createRestError } from "@azure-rest/core-client";
   
       export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options), 
@@ -159,11 +155,7 @@ describe("operations", () => {
           if(result.status !== "200"){
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
   
           return;
@@ -200,7 +192,7 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -218,11 +210,7 @@ describe("operations", () => {
           if(result.status !== "200"){
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
       
           return;
@@ -254,7 +242,7 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -272,11 +260,7 @@ describe("operations", () => {
           if(result.status !== "200"){
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
       
           return;
@@ -308,7 +292,7 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -326,11 +310,7 @@ describe("operations", () => {
           if(result.status !== "200"){
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
       
           return;
@@ -362,7 +342,7 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -380,11 +360,7 @@ describe("operations", () => {
           if(result.status !== "200"){
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
       
           return;
@@ -428,7 +404,7 @@ describe("operations", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client,
@@ -470,11 +446,7 @@ describe("operations", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
         
           return;
@@ -520,7 +492,7 @@ describe("operations", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client,
@@ -535,11 +507,7 @@ describe("operations", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return {
             optionalBars: !result.body["optionalBars"]

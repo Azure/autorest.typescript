@@ -46,7 +46,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -76,11 +76,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -165,7 +161,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -196,11 +192,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -283,7 +275,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -312,11 +304,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -390,7 +378,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -416,11 +404,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -463,7 +447,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -482,11 +466,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -538,7 +518,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -562,11 +542,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -624,7 +600,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           body: Test,
@@ -641,11 +617,7 @@ describe("anonymous model", () => {
           if (result.status !== "204") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -693,7 +665,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           body: Test,
@@ -710,11 +682,7 @@ describe("anonymous model", () => {
           if (result.status !== "204") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return;
         }
@@ -746,7 +714,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -759,11 +727,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return result.body;
         }
@@ -842,7 +806,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -857,11 +821,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
           return {
             foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
@@ -925,7 +885,7 @@ describe("anonymous model", () => {
           StreamableMethod,
           operationOptionsToRequestParameters,
         } from "@azure-rest/core-client";
-        import { RestError } from "@azure/core-rest-pipeline";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _readSend(
           context: Client,
@@ -942,11 +902,7 @@ describe("anonymous model", () => {
           if (result.status !== "200") {
             const internalError = (result.body as any).error || result.body || result;
             const message = \`Unexpected status code \${result.status}\`;
-            throw new RestError(internalError.message ?? message, {
-              statusCode: Number(result.status),
-              code: internalError.code,
-              request: result.request,
-            });
+            throw createRestError(internalError.message ?? message, result);
           }
 
           return {
@@ -1021,7 +977,7 @@ describe("anonymous model", () => {
             StreamableMethod,
             operationOptionsToRequestParameters,
           } from "@azure-rest/core-client";
-          import { RestError } from "@azure/core-rest-pipeline";
+          import { createRestError } from "@azure-rest/core-client";
           
           export function _readSend(
             context: Client,
@@ -1036,11 +992,7 @@ describe("anonymous model", () => {
             if (result.status !== "200") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
             }
           
             return {

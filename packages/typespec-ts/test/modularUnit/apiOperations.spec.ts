@@ -24,7 +24,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
@@ -44,11 +44,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "204") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return;
          }
@@ -87,7 +83,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
@@ -107,11 +103,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "204") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return;
          }
@@ -151,7 +143,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFileSend(
            context: Client,
            name: string,
@@ -172,11 +164,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "204") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return;
          }
@@ -218,7 +206,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFilesSend(
            context: Client,
            files: Uint8Array[],
@@ -238,11 +226,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "204") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return;
          }
@@ -281,7 +265,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -296,11 +280,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return result.body;
          }
@@ -339,7 +319,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -354,11 +334,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return result.body;
          }
@@ -399,7 +375,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -414,11 +390,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return { name: result.body["name"], file: result.body["file"] };
          }
@@ -460,7 +432,7 @@ describe("api operations in Modular", () => {
            StreamableMethod,
            operationOptionsToRequestParameters,
          } from "@azure-rest/core-client";
-         import { RestError } from "@azure/core-rest-pipeline";
+         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -475,11 +447,7 @@ describe("api operations in Modular", () => {
            if (result.status !== "200") {
               const internalError = (result.body as any).error || result.body || result;
               const message = \`Unexpected status code \${result.status}\`;
-              throw new RestError(internalError.message ?? message, {
-                statusCode: Number(result.status),
-                code: internalError.code,
-                request: result.request,
-              });
+              throw createRestError(internalError.message ?? message, result);
            }
            return {
              name: result.body["name"],

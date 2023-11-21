@@ -14,7 +14,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError } from "@azure/core-rest-pipeline";
+import { createRestError } from "@azure-rest/core-client";
 import {
   HeaderDefaultOptions,
   HeaderIso8601Options,
@@ -42,11 +42,7 @@ export async function _headerDefaultDeserialize(
   if (result.status !== "204") {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return;
@@ -80,11 +76,7 @@ export async function _headerIso8601Deserialize(
   if (result.status !== "204") {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return;
@@ -118,11 +110,7 @@ export async function _headerIso8601ArrayDeserialize(
   if (result.status !== "204") {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return;
@@ -156,11 +144,7 @@ export async function _headerInt32SecondsDeserialize(
   if (result.status !== "204") {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return;
@@ -194,11 +178,7 @@ export async function _headerFloatSecondsDeserialize(
   if (result.status !== "204") {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return;

@@ -6,7 +6,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { RestError } from "@azure/core-rest-pipeline";
+import { createRestError } from "@azure-rest/core-client";
 import { MyOpOptions } from "../models/options.js";
 
 export function _myOpSend(
@@ -22,11 +22,7 @@ export async function _myOpDeserialize(result: MyOp200Response): Promise<void> {
   if (result.status !== "200") {
     const internalError = (result.body as any).error || result.body || result;
     const message = `Unexpected status code ${result.status}`;
-    throw new RestError(internalError.message ?? message, {
-      statusCode: Number(result.status),
-      code: internalError.code,
-      request: result.request,
-    });
+    throw createRestError(internalError.message ?? message, result);
   }
 
   return;

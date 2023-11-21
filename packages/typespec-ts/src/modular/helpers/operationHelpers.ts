@@ -136,21 +136,15 @@ export function getDeserializePrivateFunction(
       `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
       `const internalError = (result.body as any).error || result.body || result;
       const message = \`Unexpected status code \${result.status}\`;
-      throw new RestError(internalError.message ?? message, {
-        statusCode: Number(result.status),
-        code: internalError.code,
-        request: result.request
-      });`,
+      throw createRestError(internalError.message ?? message, result);`,
       "}"
     );
-    const specifier = getImportSpecifier("restPipeline", runtimeImports);
+    const specifier = getImportSpecifier("restClient", runtimeImports);
     const restPipeline = importSet.get(specifier);
     if (!restPipeline) {
-      const restPipelineSet = new Set<string>(["RestError", "PipelineResponse"]);
-      importSet.set(specifier, restPipelineSet);
+      importSet.set(specifier, new Set<string>().add("createRestError"));
     } else {
-      restPipeline.add("RestError");
-      restPipeline.add("PipelineResponse");
+      restPipeline.add("createRestError");
     }
   } else {
     const validStatus = [
@@ -168,21 +162,15 @@ export function getDeserializePrivateFunction(
           .join(" || ")}){`,
          `const internalError = (result.body as any).error || result.body || result;
          const message = \`Unexpected status code \${result.status}\`;
-         throw new RestError(internalError.message ?? message, {
-           statusCode: Number(result.status),
-           code: internalError.code,
-           request: result.request
-         });`,
+         throw createRestError(internalError.message ?? message, result);`,
         "}"
       );
-      const specifier = getImportSpecifier("restPipeline", runtimeImports);
+      const specifier = getImportSpecifier("restClient", runtimeImports);
       const restPipeline = importSet.get(specifier);
       if (!restPipeline) {
-        const restPipelineSet = new Set<string>(["RestError", "PipelineResponse"]);
-        importSet.set(specifier, restPipelineSet);
+        importSet.set(specifier, new Set<string>().add("createRestError"));
       } else {
-        restPipeline.add("RestError");
-        restPipeline.add("PipelineResponse");
+        restPipeline.add("createRestError");
       }
     }
   }
