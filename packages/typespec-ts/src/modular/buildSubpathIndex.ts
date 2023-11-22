@@ -41,7 +41,7 @@ export function buildSubpathIndexFile(
       continue;
     }
 
-    const namedExports: string[] = [...file.getExportedDeclarations().entries()]
+    let namedExports: string[] = [...file.getExportedDeclarations().entries()]
       .filter((exDeclaration) => {
         if (exDeclaration[0].startsWith("_")) {
           return false;
@@ -59,6 +59,12 @@ export function buildSubpathIndexFile(
       .map((exDeclaration) => {
         return exDeclaration[0];
       });
+    // Skip to export PagedResult and BuildPagedAsyncIteratorOptions
+    if (file.getFilePath().endsWith("pagingTypes.ts")) {
+      namedExports = namedExports.filter(
+        (ex) => !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(ex)
+      );
+    }
     indexFile.addExportDeclaration({
       moduleSpecifier: `.${file
         .getFilePath()

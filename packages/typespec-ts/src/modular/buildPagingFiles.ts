@@ -19,7 +19,6 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
   });
   fileContent.addStatements([
     `
-    
     /**
      * An interface that tracks the settings for paged iteration
      */
@@ -66,6 +65,45 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
       byPage: (
         settings?: TPageSettings
       ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+    }
+
+    /**
+     * An interface that describes how to communicate with the service.
+     */
+    export interface PagedResult<
+      TElement,
+      TPage = TElement[],
+      TPageSettings extends PageSettings = PageSettings
+    > {
+      /**
+       * Link to the first page of results.
+       */
+      firstPageLink?: string;
+      /**
+       * A method that returns a page of results.
+       */
+      getPage: (
+        pageLink?: string
+      ) => Promise<{ page: TPage; nextPageLink?: string } | undefined>;
+      /**
+       * a function to implement the \`byPage\` method on the paged async iterator.
+       */
+      byPage?: (
+        settings?: TPageSettings
+      ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+
+      /**
+       * A function to extract elements from a page.
+       */
+      toElements?: (page: TPage) => unknown[];
+    }
+
+    /**
+     * Options for the paging helper
+     */
+    export interface BuildPagedAsyncIteratorOptions {
+      itemName?: string;
+      nextLinkName?: string;
     }
     `
   ]);
@@ -136,47 +174,14 @@ export function buildPagingHelpers(
       PathUncheckedResponse
     } from "@azure-rest/core-client";
     import { RestError } from "@azure/core-rest-pipeline";
-    import { ContinuablePage, PageSettings, PagedAsyncIterableIterator } from "${pagingTypesPath}";
+    import { 
+      BuildPagedAsyncIteratorOptions,
+      ContinuablePage,
+      PageSettings,
+      PagedAsyncIterableIterator,
+      PagedResult, 
+    } from "${pagingTypesPath}";
     ${unexpectedHelperImport}
-    
-    /**
-     * An interface that describes how to communicate with the service.
-     */
-    interface PagedResult<
-      TElement,
-      TPage = TElement[],
-      TPageSettings extends PageSettings = PageSettings
-    > {
-      /**
-       * Link to the first page of results.
-       */
-      firstPageLink?: string;
-      /**
-       * A method that returns a page of results.
-       */
-      getPage: (
-        pageLink?: string
-      ) => Promise<{ page: TPage; nextPageLink?: string } | undefined>;
-      /**
-       * a function to implement the \`byPage\` method on the paged async iterator.
-       */
-      byPage?: (
-        settings?: TPageSettings
-      ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-
-      /**
-       * A function to extract elements from a page.
-       */
-      toElements?: (page: TPage) => unknown[];
-      }
-
-      /**
-       * Options for the paging helper
-       */
-      export interface BuildPagedAsyncIteratorOptions {
-        itemName?: string;
-        nextLinkName?: string;
-      }
 
       /**
        * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator

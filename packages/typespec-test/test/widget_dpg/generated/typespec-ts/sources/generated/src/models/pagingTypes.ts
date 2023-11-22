@@ -48,3 +48,42 @@ export interface PagedAsyncIterableIterator<
     settings?: TPageSettings
   ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
 }
+
+/**
+ * An interface that describes how to communicate with the service.
+ */
+export interface PagedResult<
+  TElement,
+  TPage = TElement[],
+  TPageSettings extends PageSettings = PageSettings
+> {
+  /**
+   * Link to the first page of results.
+   */
+  firstPageLink?: string;
+  /**
+   * A method that returns a page of results.
+   */
+  getPage: (
+    pageLink?: string
+  ) => Promise<{ page: TPage; nextPageLink?: string } | undefined>;
+  /**
+   * a function to implement the `byPage` method on the paged async iterator.
+   */
+  byPage?: (
+    settings?: TPageSettings
+  ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
+
+  /**
+   * A function to extract elements from a page.
+   */
+  toElements?: (page: TPage) => unknown[];
+}
+
+/**
+ * Options for the paging helper
+ */
+export interface BuildPagedAsyncIteratorOptions {
+  itemName?: string;
+  nextLinkName?: string;
+}

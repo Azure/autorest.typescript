@@ -8,50 +8,13 @@ import {
 } from "@azure-rest/core-client";
 import { RestError } from "@azure/core-rest-pipeline";
 import {
+  BuildPagedAsyncIteratorOptions,
   ContinuablePage,
   PageSettings,
   PagedAsyncIterableIterator,
+  PagedResult,
 } from "../models/pagingTypes.js";
 import { isUnexpected } from "../rest/index.js";
-
-/**
- * An interface that describes how to communicate with the service.
- */
-interface PagedResult<
-  TElement,
-  TPage = TElement[],
-  TPageSettings extends PageSettings = PageSettings
-> {
-  /**
-   * Link to the first page of results.
-   */
-  firstPageLink?: string;
-  /**
-   * A method that returns a page of results.
-   */
-  getPage: (
-    pageLink?: string
-  ) => Promise<{ page: TPage; nextPageLink?: string } | undefined>;
-  /**
-   * a function to implement the `byPage` method on the paged async iterator.
-   */
-  byPage?: (
-    settings?: TPageSettings
-  ) => AsyncIterableIterator<ContinuablePage<TElement, TPage>>;
-
-  /**
-   * A function to extract elements from a page.
-   */
-  toElements?: (page: TPage) => unknown[];
-}
-
-/**
- * Options for the paging helper
- */
-export interface BuildPagedAsyncIteratorOptions {
-  itemName?: string;
-  nextLinkName?: string;
-}
 
 /**
  * Helper to paginate results in a generic way and return a PagedAsyncIterableIterator
