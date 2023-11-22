@@ -46,7 +46,7 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
     export interface PagedAsyncIterableIterator<
       TElement,
       TPage = TElement[],
-      TPageSettings = PageSettings
+      TPageSettings extends PageSettings = PageSettings
     > {
       /**
        * The next method, part of the iteration protocol

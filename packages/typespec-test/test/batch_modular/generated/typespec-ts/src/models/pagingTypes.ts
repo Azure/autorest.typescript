@@ -27,7 +27,7 @@ export type ContinuablePage<TElement, TPage = TElement[]> = TPage & {
 export interface PagedAsyncIterableIterator<
   TElement,
   TPage = TElement[],
-  TPageSettings = PageSettings
+  TPageSettings extends PageSettings = PageSettings
 > {
   /**
    * The next method, part of the iteration protocol
