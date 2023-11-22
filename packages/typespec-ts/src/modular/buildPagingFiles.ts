@@ -145,7 +145,7 @@ export function buildPagingHelpers(
     interface PagedResult<
       TElement,
       TPage = TElement[],
-      TPageSettings = PageSettings
+      TPageSettings extends PageSettings = PageSettings
     > {
       /**
        * Link to the first page of results.
@@ -184,12 +184,12 @@ export function buildPagingHelpers(
       export function buildPagedAsyncIterator<
         TElement,
         TPage = TElement[],
-        TPageSettings = PageSettings,
+        TPageSettings extends PageSettings = PageSettings,
         TResponse extends PathUncheckedResponse = PathUncheckedResponse
       >(
         client: Client,
         getInitialResponse: () => PromiseLike<TResponse>,
-        processResponseBody: (result: TResponse) => Promise<unknown>,
+        processResponseBody: (result: TResponse) => PromiseLike<unknown>,
         options: BuildPagedAsyncIteratorOptions = {}
       ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
         const itemName = options.itemName ?? "value";
@@ -210,7 +210,7 @@ export function buildPagingHelpers(
             };
           },
           byPage: (settings?: TPageSettings) => {
-            const { continuationToken } = (settings as PageSettings) ?? {};
+            const { continuationToken } = settings ?? {};
             return getPageAsyncIterator(pagedResult, {
               pageLink: continuationToken,
             });
@@ -227,7 +227,11 @@ export function buildPagingHelpers(
        * @returns a paged async iterator that iterates over results.
        */
 
-      export function getPagedAsyncIterator<TElement, TPage, TPageSettings>(
+      export function getPagedAsyncIterator<
+        TElement,
+        TPage = TElement[],
+        TPageSettings extends PageSettings = PageSettings
+      >(
         pagedResult: PagedResult<TElement, TPage, TPageSettings>
       ): PagedAsyncIterableIterator<TElement, TPage, TPageSettings> {
         const iter = getItemAsyncIterator<TElement, TPage, TPageSettings>(
@@ -243,7 +247,7 @@ export function buildPagingHelpers(
           byPage:
             pagedResult?.byPage ??
             ((settings?: TPageSettings) => {
-              const { continuationToken } = (settings as PageSettings) ?? {};
+              const { continuationToken } = settings ?? {};
               return getPageAsyncIterator(pagedResult, {
                 pageLink: continuationToken,
               });
@@ -251,36 +255,24 @@ export function buildPagingHelpers(
         };
       }
 
-      async function* getItemAsyncIterator<TElement, TPage, TPageSettings>(
+      async function* getItemAsyncIterator<
+        TElement,
+        TPage,
+        TPageSettings extends PageSettings
+      >(
         pagedResult: PagedResult<TElement, TPage, TPageSettings>
       ): AsyncIterableIterator<TElement> {
         const pages = getPageAsyncIterator(pagedResult);
-        const firstVal = await pages.next();
-        // if the result does not have an array shape, i.e. TPage = TElement, then we return it as is
-        if (!Array.isArray(firstVal.value)) {
-          // can extract elements from this page
-          const { toElements } = pagedResult;
-          if (toElements) {
-            yield* toElements(firstVal.value) as TElement[];
-            for await (const page of pages) {
-              yield* toElements(page) as TElement[];
-            }
-          } else {
-            yield firstVal.value;
-            // \`pages\` is of type \`AsyncIterableIterator<TPage>\` but TPage = TElement in this case
-            yield* pages as unknown as AsyncIterableIterator<TElement>;
-          }
-        } else {
-          yield* firstVal.value;
-          for await (const page of pages) {
-            // pages is of type \`AsyncIterableIterator<TPage>\` so \`page\` is of type \`TPage\`. In this branch,
-            // it must be the case that \`TPage = TElement[]\`
-            yield* page as unknown as TElement[];
-          }
+        for await (const page of pages) {
+          yield* page as unknown as TElement[];
         }
       }
 
-      async function* getPageAsyncIterator<TElement, TPage, TPageSettings>(
+      async function* getPageAsyncIterator<
+        TElement,
+        TPage,
+        TPageSettings extends PageSettings
+      >(
         pagedResult: PagedResult<TElement, TPage, TPageSettings>,
         options: {
           pageLink?: string;
@@ -337,8 +329,7 @@ export function buildPagingHelpers(
         // type of elements in the page in PaginateReturn
         if (!Array.isArray(value)) {
           throw new RestError(
-            \`Couldn't paginate response
-      Body doesn't contain an array property with name: \${itemName}\`
+            \`Couldn't paginate response\\n Body doesn't contain an array property with name: \${itemName}\`
           );
         }
 
