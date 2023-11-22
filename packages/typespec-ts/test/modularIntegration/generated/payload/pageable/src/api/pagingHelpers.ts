@@ -197,10 +197,6 @@ function getNextLink(body: unknown, nextLinkName?: string): string | undefined {
  */
 function getElements<T = unknown>(body: unknown, itemName: string): T[] {
   const value = (body as Record<string, unknown>)[itemName] as T[];
-
-  // value has to be an array according to the x-ms-pageable extension.
-  // The fact that this must be an array is used above to calculate the
-  // type of elements in the page in PaginateReturn
   if (!Array.isArray(value)) {
     throw new RestError(
       `Couldn't paginate response\n Body doesn't contain an array property with name: ${itemName}`
