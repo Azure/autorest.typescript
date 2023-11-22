@@ -228,7 +228,7 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': ^1.1.4
+      '@azure-rest/core-client': /Users/zhangqiaoqiao/work/code/azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.1.6.tgz
       '@azure-tools/cadl-ranch': ^0.9.0
       '@azure-tools/cadl-ranch-expect': ^0.8.0
       '@azure-tools/cadl-ranch-specs': ^0.24.0
@@ -280,7 +280,7 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.1.4
+      '@azure-rest/core-client': file:../../../azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.1.6.tgz
       '@azure-tools/cadl-ranch': 0.9.0_tezp5rjfyokhpujhigtdeqwzp4
       '@azure-tools/cadl-ranch-expect': 0.8.0_hyg5yyh7beodvmafzqxellnzky
       '@azure-tools/cadl-ranch-specs': 0.24.0_o47dwcig7y553a2ndtr7sutngq
@@ -349,6 +349,7 @@ packages:
       tslib: 2.6.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@azure-tools/async-io/3.0.254:
     resolution: {integrity: sha512-X1C7XdyCuo50ch9FzKtTvmK18FgDxxf1Bbt3cSoknQqeDaRegHSSCO+zByq2YA4NvUzKXeZ1engh29IDxZXgpQ==}
@@ -6203,4 +6204,20 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  file:../../../azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.1.6.tgz:
+    resolution: {integrity: sha512-rem0pccgYseLR8W57IIZ2Jl/QTmcRIm0Eexmm2MwD77FNd9GPEKBGMJnJWkoPFoZnW2JqD13JPgQnMIDBbmLRQ==, tarball: file:../../../azure-sdk-for-js/sdk/core/core-client-rest/azure-rest-core-client-1.1.6.tgz}
+    name: '@azure-rest/core-client'
+    version: 1.1.6
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@azure/abort-controller': 1.1.0
+      '@azure/core-auth': 1.5.0
+      '@azure/core-rest-pipeline': 1.12.1
+      '@azure/core-tracing': 1.0.1
+      '@azure/core-util': 1.5.0
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true

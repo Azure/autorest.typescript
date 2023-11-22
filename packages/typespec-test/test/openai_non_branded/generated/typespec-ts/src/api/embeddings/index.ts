@@ -40,9 +40,7 @@ export async function _createDeserialize(
   result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 ): Promise<CreateEmbeddingResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

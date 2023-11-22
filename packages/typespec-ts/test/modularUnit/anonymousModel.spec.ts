@@ -74,9 +74,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -190,9 +188,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -302,9 +298,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -402,9 +396,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -464,9 +456,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -540,9 +530,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -615,9 +603,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read204Response): Promise<void> {
           if (result.status !== "204") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -680,9 +666,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read204Response): Promise<void> {
           if (result.status !== "204") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return;
         }
@@ -725,9 +709,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<${returnType}> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return result.body;
         }
@@ -819,9 +801,7 @@ describe("anonymous model", () => {
           result: Read200Response
         ): Promise<{ foo?: { bar: string | null } }> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
           return {
             foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
@@ -900,9 +880,7 @@ describe("anonymous model", () => {
           result: Read200Response
         ): Promise<ReturnBody> {
           if (result.status !== "200") {
-            const internalError = (result.body as any).error || result.body || result;
-            const message = \`Unexpected status code \${result.status}\`;
-            throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
           }
 
           return {
@@ -990,9 +968,7 @@ describe("anonymous model", () => {
           
           export async function _readDeserialize(result: Read200Response): Promise<Foz> {
             if (result.status !== "200") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+              throw createRestError(result);
             }
           
             return {

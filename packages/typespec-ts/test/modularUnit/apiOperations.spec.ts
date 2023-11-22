@@ -42,9 +42,7 @@ describe("api operations in Modular", () => {
            result: UploadFileViaBody204Response
          ): Promise<void> {
            if (result.status !== "204") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+             throw createRestError(result);
            }
            return;
          }
@@ -101,9 +99,7 @@ describe("api operations in Modular", () => {
            result: UploadFileViaBody204Response
          ): Promise<void> {
            if (result.status !== "204") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+            throw createRestError(result);
            }
            return;
          }
@@ -162,9 +158,7 @@ describe("api operations in Modular", () => {
            result: UploadFile204Response
          ): Promise<void> {
            if (result.status !== "204") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+             throw createRestError(result);
            }
            return;
          }
@@ -224,9 +218,7 @@ describe("api operations in Modular", () => {
            result: UploadFiles204Response
          ): Promise<void> {
            if (result.status !== "204") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+             throw createRestError(result);
            }
            return;
          }
@@ -278,9 +270,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<Uint8Array> {
            if (result.status !== "200") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+             throw createRestError(result);
            }
            return result.body;
          }
@@ -332,9 +322,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<Uint8Array> {
            if (result.status !== "200") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+             throw createRestError(result);
            }
            return result.body;
          }
@@ -388,9 +376,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<{ name: string; file: Uint8Array }> {
            if (result.status !== "200") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+             throw createRestError(result);
            }
            return { name: result.body["name"], file: result.body["file"] };
          }
@@ -445,9 +431,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<{ name: string; file: Uint8Array[] }> {
            if (result.status !== "200") {
-              const internalError = (result.body as any).error || result.body || result;
-              const message = \`Unexpected status code \${result.status}\`;
-              throw createRestError(internalError.message ?? message, result);
+              throw createRestError(result);
            }
            return {
              name: result.body["name"],

@@ -43,9 +43,7 @@ export async function _queryMultiDeserialize(
   result: QueryMulti204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -77,9 +75,7 @@ export async function _querySsvDeserialize(
   result: QuerySsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -111,9 +107,7 @@ export async function _queryTsvDeserialize(
   result: QueryTsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -145,9 +139,7 @@ export async function _queryPipesDeserialize(
   result: QueryPipes204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -179,9 +171,7 @@ export async function _queryCsvDeserialize(
   result: QueryCsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

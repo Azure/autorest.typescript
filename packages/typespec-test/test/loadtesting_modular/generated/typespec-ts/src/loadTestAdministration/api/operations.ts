@@ -133,9 +133,7 @@ export async function _createOrUpdateTestDeserialize(
     | LoadTestAdministrationCreateOrUpdateTestDefaultResponse
 ): Promise<Test> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -338,9 +336,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
     | LoadTestAdministrationCreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestAppComponents> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -396,9 +392,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
     | LoadTestAdministrationCreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestServerMetricConfig> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -446,9 +440,7 @@ export async function _getAppComponentsDeserialize(
     | LoadTestAdministrationGetAppComponentsDefaultResponse
 ): Promise<TestAppComponents> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -490,9 +482,7 @@ export async function _getServerMetricsConfigDeserialize(
     | LoadTestAdministrationGetServerMetricsConfigDefaultResponse
 ): Promise<TestServerMetricConfig> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -534,9 +524,7 @@ export async function _getTestDeserialize(
     | LoadTestAdministrationGetTestDefaultResponse
 ): Promise<Test> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -731,9 +719,7 @@ export async function _getTestFileDeserialize(
     | LoadTestAdministrationGetTestFileDefaultResponse
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -776,9 +762,7 @@ export async function _listTestFilesDeserialize(
     | LoadTestAdministrationListTestFilesDefaultResponse
 ): Promise<PagedFileInfo> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -831,9 +815,7 @@ export async function _listTestsDeserialize(
     | LoadTestAdministrationListTestsDefaultResponse
 ): Promise<PagedTest> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -1012,9 +994,7 @@ export async function _uploadTestFileDeserialize(
     | LoadTestAdministrationUploadTestFileDefaultResponse
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -1069,9 +1049,7 @@ export async function _deleteTestFileDeserialize(
     | LoadTestAdministrationDeleteTestFileDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -1107,9 +1085,7 @@ export async function _deleteTestDeserialize(
     | LoadTestAdministrationDeleteTestDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

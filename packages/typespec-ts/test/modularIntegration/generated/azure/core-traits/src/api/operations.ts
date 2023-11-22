@@ -55,9 +55,7 @@ export async function _smokeTestDeserialize(
   result: SmokeTest200Response | SmokeTestDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -108,9 +106,7 @@ export async function _repeatableActionDeserialize(
   result: RepeatableAction200Response | RepeatableActionDefaultResponse
 ): Promise<UserActionResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

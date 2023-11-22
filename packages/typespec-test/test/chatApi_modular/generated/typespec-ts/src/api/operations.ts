@@ -41,9 +41,7 @@ export async function _createStreamingDeserialize(
   result: CreateStreaming200Response
 ): Promise<ChatCompletionChunk> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -93,9 +91,7 @@ export async function _createDeserialize(
   result: Create200Response
 ): Promise<ChatCompletion> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

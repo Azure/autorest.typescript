@@ -315,9 +315,7 @@ export async function _listApplicationsDeserialize(
   result: ListApplications200Response | ListApplicationsDefaultResponse
 ): Promise<ApplicationListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -364,9 +362,7 @@ export async function _getApplicationDeserialize(
   result: GetApplication200Response | GetApplicationDefaultResponse
 ): Promise<BatchApplication> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -416,9 +412,7 @@ export async function _listPoolUsageMetricsDeserialize(
   result: ListPoolUsageMetrics200Response | ListPoolUsageMetricsDefaultResponse
 ): Promise<PoolListUsageMetricsResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -820,9 +814,7 @@ export async function _createPoolDeserialize(
   result: CreatePool201Response | CreatePoolDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -864,9 +856,7 @@ export async function _listPoolsDeserialize(
   result: ListPools200Response | ListPoolsDefaultResponse
 ): Promise<BatchPoolListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -1378,9 +1368,7 @@ export async function _deletePoolDeserialize(
   result: DeletePool202Response | DeletePoolDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -1445,9 +1433,7 @@ export async function _poolExistsDeserialize(
     | PoolExistsDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -1498,9 +1484,7 @@ export async function _getPoolDeserialize(
   result: GetPool200Response | GetPoolDefaultResponse
 ): Promise<BatchPool> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -2116,9 +2100,7 @@ export async function _updatePoolDeserialize(
   result: UpdatePool200Response | UpdatePoolDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2158,9 +2140,7 @@ export async function _disablePoolAutoScaleDeserialize(
   result: DisablePoolAutoScale200Response | DisablePoolAutoScaleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2217,9 +2197,7 @@ export async function _enablePoolAutoScaleDeserialize(
   result: EnablePoolAutoScale200Response | EnablePoolAutoScaleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2269,9 +2247,7 @@ export async function _evaluatePoolAutoScaleDeserialize(
     | EvaluatePoolAutoScaleDefaultResponse
 ): Promise<AutoScaleRun> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -2353,9 +2329,7 @@ export async function _resizePoolDeserialize(
   result: ResizePool202Response | ResizePoolDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2411,9 +2385,7 @@ export async function _stopPoolResizeDeserialize(
   result: StopPoolResize202Response | StopPoolResizeDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2555,9 +2527,7 @@ export async function _replacePoolPropertiesDeserialize(
     | ReplacePoolPropertiesDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2623,9 +2593,7 @@ export async function _removeNodesDeserialize(
   result: RemoveNodes202Response | RemoveNodesDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2668,9 +2636,7 @@ export async function _listSupportedImagesDeserialize(
   result: ListSupportedImages200Response | ListSupportedImagesDefaultResponse
 ): Promise<AccountListSupportedImagesResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -2729,9 +2695,7 @@ export async function _listPoolNodeCountsDeserialize(
   result: ListPoolNodeCounts200Response | ListPoolNodeCountsDefaultResponse
 ): Promise<PoolNodeCountsListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -2824,9 +2788,7 @@ export async function _deleteJobDeserialize(
   result: DeleteJob202Response | DeleteJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -2886,9 +2848,7 @@ export async function _getJobDeserialize(
   result: GetJob200Response | GetJobDefaultResponse
 ): Promise<BatchJob> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -4641,9 +4601,7 @@ export async function _updateJobDeserialize(
   result: UpdateJob200Response | UpdateJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -5325,9 +5283,7 @@ export async function _replaceJobDeserialize(
   result: ReplaceJob200Response | ReplaceJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -5384,9 +5340,7 @@ export async function _disableJobDeserialize(
   result: DisableJob202Response | DisableJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -5443,9 +5397,7 @@ export async function _enableJobDeserialize(
   result: EnableJob202Response | EnableJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -5504,9 +5456,7 @@ export async function _terminateJobDeserialize(
   result: TerminateJob202Response | TerminateJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -6525,9 +6475,7 @@ export async function _createJobDeserialize(
   result: CreateJob201Response | CreateJobDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -6575,9 +6523,7 @@ export async function _listJobsDeserialize(
   result: ListJobs200Response | ListJobsDefaultResponse
 ): Promise<BatchJobListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -7680,9 +7626,7 @@ export async function _listJobsFromScheduleDeserialize(
   result: ListJobsFromSchedule200Response | ListJobsFromScheduleDefaultResponse
 ): Promise<BatchJobListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -8794,9 +8738,7 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
     | ListJobPreparationAndReleaseTaskStatusDefaultResponse
 ): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -8976,9 +8918,7 @@ export async function _getJobTaskCountsDeserialize(
   result: GetJobTaskCounts200Response | GetJobTaskCountsDefaultResponse
 ): Promise<TaskCountsResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -9043,9 +8983,7 @@ export async function _createCertificateDeserialize(
   result: CreateCertificate201Response | CreateCertificateDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -9084,9 +9022,7 @@ export async function _listCertificatesDeserialize(
   result: ListCertificates200Response | ListCertificatesDefaultResponse
 ): Promise<CertificateListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -9169,9 +9105,7 @@ export async function _cancelCertificateDeletionDeserialize(
     | CancelCertificateDeletionDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -9225,9 +9159,7 @@ export async function _deleteCertificateDeserialize(
   result: DeleteCertificate202Response | DeleteCertificateDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -9281,9 +9213,7 @@ export async function _getCertificateDeserialize(
   result: GetCertificate200Response | GetCertificateDefaultResponse
 ): Promise<BatchCertificate> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -9379,9 +9309,7 @@ export async function _jobScheduleExistsDeserialize(
     | JobScheduleExistsDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -9430,9 +9358,7 @@ export async function _deleteJobScheduleDeserialize(
   result: DeleteJobSchedule202Response | DeleteJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -9489,9 +9415,7 @@ export async function _getJobScheduleDeserialize(
   result: GetJobSchedule200Response | GetJobScheduleDefaultResponse
 ): Promise<BatchJobSchedule> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -11909,9 +11833,7 @@ export async function _updateJobScheduleDeserialize(
   result: UpdateJobSchedule200Response | UpdateJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -13082,9 +13004,7 @@ export async function _replaceJobScheduleDeserialize(
   result: ReplaceJobSchedule200Response | ReplaceJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -13145,9 +13065,7 @@ export async function _disableJobScheduleDeserialize(
   result: DisableJobSchedule204Response | DisableJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -13196,9 +13114,7 @@ export async function _enableJobScheduleDeserialize(
   result: EnableJobSchedule204Response | EnableJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -13247,9 +13163,7 @@ export async function _terminateJobScheduleDeserialize(
   result: TerminateJobSchedule202Response | TerminateJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -14399,9 +14313,7 @@ export async function _createJobScheduleDeserialize(
   result: CreateJobSchedule201Response | CreateJobScheduleDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -14441,9 +14353,7 @@ export async function _listJobSchedulesDeserialize(
   result: ListJobSchedules200Response | ListJobSchedulesDefaultResponse
 ): Promise<BatchJobScheduleListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -15874,9 +15784,7 @@ export async function _createTaskDeserialize(
   result: CreateTask201Response | CreateTaskDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -15920,9 +15828,7 @@ export async function _listTasksDeserialize(
   result: ListTasks200Response | ListTasksDefaultResponse
 ): Promise<BatchTaskListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -16452,9 +16358,7 @@ export async function _createTaskCollectionDeserialize(
   result: CreateTaskCollection200Response | CreateTaskCollectionDefaultResponse
 ): Promise<TaskAddCollectionResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -16553,9 +16457,7 @@ export async function _deleteTaskDeserialize(
   result: DeleteTask200Response | DeleteTaskDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -16614,9 +16516,7 @@ export async function _getTaskDeserialize(
   result: GetTask200Response | GetTaskDefaultResponse
 ): Promise<BatchTask> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -16966,9 +16866,7 @@ export async function _replaceTaskDeserialize(
   result: ReplaceTask200Response | ReplaceTaskDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17004,9 +16902,7 @@ export async function _listSubTasksDeserialize(
   result: ListSubTasks200Response | ListSubTasksDefaultResponse
 ): Promise<BatchTaskListSubtasksResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -17107,9 +17003,7 @@ export async function _terminateTaskDeserialize(
   result: TerminateTask204Response | TerminateTaskDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17162,9 +17056,7 @@ export async function _reactivateTaskDeserialize(
   result: ReactivateTask204Response | ReactivateTaskDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17216,9 +17108,7 @@ export async function _deleteTaskFileDeserialize(
   result: DeleteTaskFile200Response | DeleteTaskFileDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17277,9 +17167,7 @@ export async function _getTaskFileDeserialize(
   result: GetTaskFile200Response | GetTaskFileDefaultResponse
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return result.body;
@@ -17339,9 +17227,7 @@ export async function _getTaskFilePropertiesDeserialize(
     | GetTaskFilePropertiesDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17388,9 +17274,7 @@ export async function _listTaskFilesDeserialize(
   result: ListTaskFiles200Response | ListTaskFilesDefaultResponse
 ): Promise<NodeFileListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -17457,9 +17341,7 @@ export async function _createNodeUserDeserialize(
   result: CreateNodeUser201Response | CreateNodeUserDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17510,9 +17392,7 @@ export async function _deleteNodeUserDeserialize(
   result: DeleteNodeUser200Response | DeleteNodeUserDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17574,9 +17454,7 @@ export async function _replaceNodeUserDeserialize(
   result: ReplaceNodeUser200Response | ReplaceNodeUserDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17625,9 +17503,7 @@ export async function _getNodeDeserialize(
   result: GetNode200Response | GetNodeDefaultResponse
 ): Promise<BatchNode> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -17929,9 +17805,7 @@ export async function _rebootNodeDeserialize(
   result: RebootNode202Response | RebootNodeDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -17972,9 +17846,7 @@ export async function _reimageNodeDeserialize(
   result: ReimageNode202Response | ReimageNodeDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -18025,9 +17897,7 @@ export async function _disableNodeSchedulingDeserialize(
     | DisableNodeSchedulingDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -18074,9 +17944,7 @@ export async function _enableNodeSchedulingDeserialize(
   result: EnableNodeScheduling200Response | EnableNodeSchedulingDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -18124,9 +17992,7 @@ export async function _getNodeRemoteLoginSettingsDeserialize(
     | GetNodeRemoteLoginSettingsDefaultResponse
 ): Promise<BatchNodeRemoteLoginSettingsResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -18179,9 +18045,7 @@ export async function _getNodeRemoteDesktopFileDeserialize(
     | GetNodeRemoteDesktopFileDefaultResponse
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return typeof result.body === "string"
@@ -18244,9 +18108,7 @@ export async function _uploadNodeLogsDeserialize(
   result: UploadNodeLogs200Response | UploadNodeLogsDefaultResponse
 ): Promise<UploadBatchServiceLogsResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -18300,9 +18162,7 @@ export async function _listNodesDeserialize(
   result: ListNodes200Response | ListNodesDefaultResponse
 ): Promise<BatchNodeListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -18603,9 +18463,7 @@ export async function _getNodeExtensionDeserialize(
   result: GetNodeExtension200Response | GetNodeExtensionDefaultResponse
 ): Promise<NodeVMExtension> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -18694,9 +18552,7 @@ export async function _listNodeExtensionsDeserialize(
   result: ListNodeExtensions200Response | ListNodeExtensionsDefaultResponse
 ): Promise<NodeVMExtensionList> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -18791,9 +18647,7 @@ export async function _deleteNodeFileDeserialize(
   result: DeleteNodeFile200Response | DeleteNodeFileDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -18852,9 +18706,7 @@ export async function _getNodeFileDeserialize(
   result: GetNodeFile200Response | GetNodeFileDefaultResponse
 ): Promise<Uint8Array> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return typeof result.body === "string"
@@ -18916,9 +18768,7 @@ export async function _getNodeFilePropertiesDeserialize(
     | GetNodeFilePropertiesDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -18965,9 +18815,7 @@ export async function _listNodeFilesDeserialize(
   result: ListNodeFiles200Response | ListNodeFilesDefaultResponse
 ): Promise<NodeFileListResult> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

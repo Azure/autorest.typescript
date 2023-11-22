@@ -40,9 +40,7 @@ export async function _requestBodyDefaultDeserialize(
   result: RequestBodyDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -75,9 +73,7 @@ export async function _requestBodyOctetStreamDeserialize(
   result: RequestBodyOctetStream204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -110,9 +106,7 @@ export async function _requestBodyCustomContentTypeDeserialize(
   result: RequestBodyCustomContentType204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -148,9 +142,7 @@ export async function _requestBodyBase64Deserialize(
   result: RequestBodyBase64204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -182,9 +174,7 @@ export async function _requestBodyBase64urlDeserialize(
   result: RequestBodyBase64url204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

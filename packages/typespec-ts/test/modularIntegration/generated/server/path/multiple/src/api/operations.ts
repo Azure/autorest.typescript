@@ -29,9 +29,7 @@ export async function _noOperationParamsDeserialize(
   result: NoOperationParams204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -59,9 +57,7 @@ export async function _withOperationPathParamDeserialize(
   result: WithOperationPathParam204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

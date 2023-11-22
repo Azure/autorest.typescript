@@ -31,9 +31,7 @@ export async function _renamedTwoDeserialize(
   result: Two204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -60,9 +58,7 @@ export async function _renamedFourDeserialize(
   result: Four204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -89,9 +85,7 @@ export async function _renamedSixDeserialize(
   result: Six204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

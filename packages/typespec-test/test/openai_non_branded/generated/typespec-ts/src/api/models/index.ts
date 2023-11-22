@@ -39,9 +39,7 @@ export async function _listDeserialize(
   result: ModelsList200Response | ModelsListDefaultResponse
 ): Promise<ListModelsResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -77,9 +75,7 @@ export async function _retrieveDeserialize(
   result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
 ): Promise<Model> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -117,9 +113,7 @@ export async function _deleteOperationDeserialize(
     | ModelsDeleteOperationDefaultResponse
 ): Promise<DeleteModelResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

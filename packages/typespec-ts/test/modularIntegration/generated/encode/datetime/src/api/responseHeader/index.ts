@@ -33,9 +33,7 @@ export async function _responseHeaderDefaultDeserialize(
   result: ResponseHeaderDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -62,9 +60,7 @@ export async function _responseHeaderRfc3339Deserialize(
   result: ResponseHeaderRfc3339204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -91,9 +87,7 @@ export async function _responseHeaderRfc7231Deserialize(
   result: ResponseHeaderRfc7231204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -120,9 +114,7 @@ export async function _responseHeaderUnixTimestampDeserialize(
   result: ResponseHeaderUnixTimestamp204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

@@ -44,9 +44,7 @@ export async function _propertyDefaultDeserialize(
   result: PropertyDefault200Response
 ): Promise<DefaultBytesProperty> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -83,9 +81,7 @@ export async function _propertyBase64Deserialize(
   result: PropertyBase64200Response
 ): Promise<Base64BytesProperty> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -122,9 +118,7 @@ export async function _propertyBase64urlDeserialize(
   result: PropertyBase64url200Response
 ): Promise<Base64urlBytesProperty> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -163,9 +157,7 @@ export async function _propertyBase64urlArrayDeserialize(
   result: PropertyBase64urlArray200Response
 ): Promise<Base64urlArrayBytesProperty> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

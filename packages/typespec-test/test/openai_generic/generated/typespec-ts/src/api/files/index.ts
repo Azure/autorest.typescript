@@ -47,9 +47,7 @@ export async function _listDeserialize(
   result: FilesList200Response | FilesListDefaultResponse
 ): Promise<ListFilesResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -93,9 +91,7 @@ export async function _createDeserialize(
   result: FilesCreate200Response | FilesCreateDefaultResponse
 ): Promise<OpenAIFile> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -133,9 +129,7 @@ export async function _retrieveDeserialize(
   result: FilesRetrieve200Response | FilesRetrieveDefaultResponse
 ): Promise<OpenAIFile> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -175,9 +169,7 @@ export async function _deleteOperationDeserialize(
   result: FilesDeleteOperation200Response | FilesDeleteOperationDefaultResponse
 ): Promise<DeleteFileResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {
@@ -210,9 +202,7 @@ export async function _downloadDeserialize(
   result: FilesDownload200Response | FilesDownloadDefaultResponse
 ): Promise<string> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return result.body;

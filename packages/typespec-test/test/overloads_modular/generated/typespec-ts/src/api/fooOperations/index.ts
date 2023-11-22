@@ -39,9 +39,7 @@ export async function _getAvatarAsPngDeserialize(
   result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -79,9 +77,7 @@ export async function _getAvatarAsJpegDeserialize(
   result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;

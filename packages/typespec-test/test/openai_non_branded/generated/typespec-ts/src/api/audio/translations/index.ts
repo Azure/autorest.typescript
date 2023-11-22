@@ -45,9 +45,7 @@ export async function _createDeserialize(
     | AudioTranslationsCreateDefaultResponse
 ): Promise<CreateTranslationResponse> {
   if (isUnexpected(result)) {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return {

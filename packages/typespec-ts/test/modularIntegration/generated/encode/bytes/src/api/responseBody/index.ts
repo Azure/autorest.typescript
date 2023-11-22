@@ -36,9 +36,7 @@ export async function _responseBodyDefaultDeserialize(
   result: ResponseBodyDefault200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return typeof result.body === "string"
@@ -67,9 +65,7 @@ export async function _responseBodyOctetStreamDeserialize(
   result: ResponseBodyOctetStream200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return result.body;
@@ -96,9 +92,7 @@ export async function _responseBodyCustomContentTypeDeserialize(
   result: ResponseBodyCustomContentType200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return result.body;
@@ -125,9 +119,7 @@ export async function _responseBodyBase64Deserialize(
   result: ResponseBodyBase64200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return typeof result.body === "string"
@@ -156,9 +148,7 @@ export async function _responseBodyBase64urlDeserialize(
   result: ResponseBodyBase64url200Response
 ): Promise<Uint8Array> {
   if (result.status !== "200") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return typeof result.body === "string"

@@ -134,9 +134,7 @@ export function getDeserializePrivateFunction(
   if (needUnexpectedHelper) {
     statements.push(
       `if(${needSubClient ? "UnexpectedHelper." : ""}isUnexpected(result)){`,
-      `const internalError = (result.body as any).error || result.body || result;
-      const message = \`Unexpected status code \${result.status}\`;
-      throw createRestError(internalError.message ?? message, result);`,
+      `throw createRestError(result);`,
       "}"
     );
     const specifier = getImportSpecifier("restClient", runtimeImports);
@@ -160,9 +158,7 @@ export function getDeserializePrivateFunction(
         `if(${validStatus
           .map((s) => `result.status !== "${s}"`)
           .join(" || ")}){`,
-         `const internalError = (result.body as any).error || result.body || result;
-         const message = \`Unexpected status code \${result.status}\`;
-         throw createRestError(internalError.message ?? message, result);`,
+         `throw createRestError(result);`,
         "}"
       );
       const specifier = getImportSpecifier("restClient", runtimeImports);

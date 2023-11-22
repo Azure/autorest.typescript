@@ -157,9 +157,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -216,9 +214,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<void> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return;
@@ -287,9 +283,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -361,9 +355,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -431,9 +423,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -501,9 +491,7 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -570,9 +558,7 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -643,9 +629,7 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -715,9 +699,7 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -788,9 +770,7 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -861,9 +841,7 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -980,9 +958,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -1061,9 +1037,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
 
         return {
@@ -1149,9 +1123,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -1237,9 +1209,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Pet> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
       
         return {
@@ -1326,9 +1296,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          const internalError = (result.body as any).error || result.body || result;
-          const message = \`Unexpected status code \${result.status}\`;
-          throw createRestError(internalError.message ?? message, result);
+          throw createRestError(result);
         }
 
         return {

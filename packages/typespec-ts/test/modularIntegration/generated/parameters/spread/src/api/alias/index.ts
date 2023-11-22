@@ -35,9 +35,7 @@ export async function _aliasSpreadAsRequestBodyDeserialize(
   result: AliasSpreadAsRequestBody204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -72,9 +70,7 @@ export async function _aliasSpreadAsRequestParameterDeserialize(
   result: AliasSpreadAsRequestParameter204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
@@ -129,9 +125,7 @@ export async function _aliasSpreadWithMultipleParametersDeserialize(
   result: AliasSpreadWithMultipleParameters204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    const internalError = (result.body as any).error || result.body || result;
-    const message = `Unexpected status code ${result.status}`;
-    throw createRestError(internalError.message ?? message, result);
+    throw createRestError(result);
   }
 
   return;
