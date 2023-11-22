@@ -61,7 +61,7 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: RLCOptions = context.options;
-  const dpgContext = createSdkContext(context) as SdkContext;
+  const dpgContext = createSdkContext(context, "@azure-tools/typespec-ts") as SdkContext;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -86,6 +86,7 @@ export async function $onEmit(context: EmitContext) {
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     dpgContext.rlcOptions = options;
+    dpgContext.emitterName = "@azure-tools/typespec-ts";
   }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
