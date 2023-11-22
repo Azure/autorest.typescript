@@ -102,7 +102,7 @@ export function buildPagedAsyncIterator<
  * @returns a paged async iterator that iterates over results.
  */
 
-export function getPagedAsyncIterator<
+function getPagedAsyncIterator<
   TElement,
   TPage = TElement[],
   TPageSettings extends PageSettings = PageSettings

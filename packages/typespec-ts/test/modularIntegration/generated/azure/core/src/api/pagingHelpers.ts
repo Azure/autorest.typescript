@@ -4,13 +4,13 @@
 import {
   Client,
   createRestError,
-  PathUncheckedResponse,
+  PathUncheckedResponse
 } from "@azure-rest/core-client";
 import { RestError } from "@azure/core-rest-pipeline";
 import {
   ContinuablePage,
   PageSettings,
-  PagedAsyncIterableIterator,
+  PagedAsyncIterableIterator
 } from "../models/pagingTypes.js";
 import { isUnexpected } from "../rest/index.js";
 
@@ -81,15 +81,15 @@ export function buildPagedAsyncIterator<
       const values = getElements<TElement>(results, itemName) as TPage;
       return {
         page: values,
-        nextPageLink: nextLink,
+        nextPageLink: nextLink
       };
     },
     byPage: (settings?: TPageSettings) => {
       const { continuationToken } = settings ?? {};
       return getPageAsyncIterator(pagedResult, {
-        pageLink: continuationToken,
+        pageLink: continuationToken
       });
-    },
+    }
   };
   return getPagedAsyncIterator(pagedResult);
 }
@@ -102,7 +102,7 @@ export function buildPagedAsyncIterator<
  * @returns a paged async iterator that iterates over results.
  */
 
-export function getPagedAsyncIterator<
+function getPagedAsyncIterator<
   TElement,
   TPage = TElement[],
   TPageSettings extends PageSettings = PageSettings
@@ -124,9 +124,9 @@ export function getPagedAsyncIterator<
       ((settings?: TPageSettings) => {
         const { continuationToken } = settings ?? {};
         return getPageAsyncIterator(pagedResult, {
-          pageLink: continuationToken,
+          pageLink: continuationToken
         });
-      }),
+      })
   };
 }
 
