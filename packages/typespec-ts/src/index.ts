@@ -86,7 +86,6 @@ export async function $onEmit(context: EmitContext) {
     dpgContext.generationPathDetail = generationPathDetail;
     const options: RLCOptions = transformRLCOptions(emitterOptions, dpgContext);
     dpgContext.rlcOptions = options;
-    dpgContext.emitterName = "@azure-tools/typespec-ts";
   }
 
   async function calculateGenerationDir(): Promise<GenerationDirDetail> {
