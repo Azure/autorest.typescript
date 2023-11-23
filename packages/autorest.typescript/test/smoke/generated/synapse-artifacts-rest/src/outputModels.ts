@@ -10030,6 +10030,7 @@ export type WebLinkedServiceTypePropertiesOutput =
   | WebClientCertificateAuthenticationOutput;
 /** Base class for all control activities like IfCondition, ForEach , Until. */
 export type ControlActivityOutput =
+  | ControlActivityOutputParent
   | ExecutePipelineActivityOutput
   | IfConditionActivityOutput
   | SwitchActivityOutput
@@ -10043,6 +10044,7 @@ export type ControlActivityOutput =
   | WebHookActivityOutput;
 /** Base class for all execution activities. */
 export type ExecutionActivityOutput =
+  | ExecutionActivityOutputParent
   | CopyActivityOutput
   | HDInsightHiveActivityOutput
   | HDInsightPigActivityOutput
@@ -10245,6 +10247,7 @@ export type CopySinkOutput =
   | CosmosDbMongoDbApiSinkOutput;
 /** Copy activity sources of tabular type. */
 export type TabularSourceOutput =
+  | TabularSourceOutputParent
   | AzureTableSourceOutput
   | InformixSourceOutput
   | Db2SourceOutput
@@ -10313,6 +10316,7 @@ export type ImportSettingsOutput =
   | SnowflakeImportCopyCommandOutput;
 /** Base class for all triggers that support one to many model for trigger to pipeline. */
 export type MultiplePipelineTriggerOutput =
+  | MultiplePipelineTriggerOutputParent
   | ScheduleTriggerOutput
   | BlobTriggerOutput
   | BlobEventsTriggerOutput
@@ -10323,7 +10327,9 @@ export type DependencyReferenceOutput =
   | TumblingWindowTriggerDependencyReferenceOutput
   | SelfDependencyTumblingWindowTriggerReferenceOutput;
 /** Trigger referenced dependency. */
-export type TriggerDependencyReferenceOutput = TumblingWindowTriggerDependencyReferenceOutput;
+export type TriggerDependencyReferenceOutput =
+  | TriggerDependencyReferenceOutputParent
+  | TumblingWindowTriggerDependencyReferenceOutput;
 /** The base definition of a linked integration runtime. */
 export type LinkedIntegrationRuntimeTypeOutput =
   | LinkedIntegrationRuntimeKeyAuthorizationOutput

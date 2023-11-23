@@ -144,7 +144,6 @@ export interface Cookiecuttershark extends SharkParent {
 }
 
 export type Fish =
-  | FishParent
   | Salmon
   | SmartSalmon
   | Shark

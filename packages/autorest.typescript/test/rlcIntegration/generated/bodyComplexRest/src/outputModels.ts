@@ -192,9 +192,10 @@ export type FishOutput =
   | GoblinsharkOutput
   | CookiecuttersharkOutput;
 export type DotFishOutput = DotSalmonOutput;
-export type SalmonOutput = SmartSalmonOutput;
+export type SalmonOutput = SalmonOutputParent | SmartSalmonOutput;
 export type MyBaseTypeOutput = MyDerivedTypeOutput;
 export type SharkOutput =
+  | SharkOutputParent
   | SawsharkOutput
   | GoblinsharkOutput
   | CookiecuttersharkOutput;

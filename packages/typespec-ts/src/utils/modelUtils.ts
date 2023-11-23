@@ -684,6 +684,10 @@ function getSchemaForModel(
     if (model.baseModel) {
       const { propertyName } = getDiscriminator(program, model.baseModel) || {};
       if (propertyName && name === `"${propertyName}"`) {
+        if (modelSchema.discriminator) {
+          modelSchema.discriminator.type = propSchema.type;
+          modelSchema.discriminatorValue = propertyName;
+        }
         continue;
       }
     }

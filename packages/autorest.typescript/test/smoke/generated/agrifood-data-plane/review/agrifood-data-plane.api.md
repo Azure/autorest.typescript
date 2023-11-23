@@ -2069,7 +2069,7 @@ export interface FieldsListQueryParamProperties {
 }
 
 // @public
-export type GeoJsonObject = GeoJsonObjectParent | MultiPolygon | Point | Polygon;
+export type GeoJsonObject = MultiPolygon | Point | Polygon;
 
 // @public
 export type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;

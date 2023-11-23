@@ -34,7 +34,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -135,7 +134,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -180,7 +178,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -227,7 +224,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -274,7 +270,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -321,7 +316,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -377,7 +371,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -462,7 +455,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `

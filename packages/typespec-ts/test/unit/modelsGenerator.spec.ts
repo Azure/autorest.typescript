@@ -684,7 +684,7 @@ describe("Input/output model type", () => {
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
         export type FishOutput = SharkOutput | SalmonOutput;
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
-        export type SharkOutput = SawSharkOutput | GoblinSharkOutput;
+        export type SharkOutput = SharkOutputParent | SawSharkOutput | GoblinSharkOutput;
         `
         );
       });
@@ -745,7 +745,7 @@ describe("Input/output model type", () => {
           }
   
           /** This is a base model has discriminator name containing dot. */
-          export type BaseModel = BaseModelParent | ${inputModelName};
+          export type BaseModel = ${inputModelName};
           `,
           additionalOutputContent: `
           /** This is a model has property names of special words or characters. */

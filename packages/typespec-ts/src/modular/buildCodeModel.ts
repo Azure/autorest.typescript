@@ -293,7 +293,7 @@ function processModelProperties(
     newValue.alias = `${newValue.name}Parent`;
     newValue.name = `${newValue.name}`;
     newValue.isPolyBaseModel = true;
-    discriminatorInfo?.aliases.push(`${newValue.alias}`);
+    // discriminatorInfo?.aliases.push(`${newValue.alias}`);
     newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
   }
 }
