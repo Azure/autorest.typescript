@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 /**
- * An interface that tracks the settings for paged iteration
+ * Options for the byPage method
  */
 export interface PageSettings {
   /**
