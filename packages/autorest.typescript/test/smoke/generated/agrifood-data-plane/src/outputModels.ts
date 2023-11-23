@@ -1289,7 +1289,6 @@ export interface PolygonCoordinatesOutput {
 
 /** GeoJSON abstract class. */
 export type GeoJsonObjectOutput =
-  | GeoJsonObjectOutputParent
   | MultiPolygonOutput
   | PointOutput
   | PolygonOutput;

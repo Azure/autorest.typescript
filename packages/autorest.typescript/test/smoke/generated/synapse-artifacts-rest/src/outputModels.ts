@@ -9744,18 +9744,13 @@ export interface LinkedIntegrationRuntimeRbacAuthorizationOutput
 }
 
 /** Azure Synapse nested object which contains a flow with data movements and transformations. */
-export type DataFlowOutput =
-  | DataFlowOutputParent
-  | MappingDataFlowOutput
-  | FlowletOutput;
+export type DataFlowOutput = MappingDataFlowOutput | FlowletOutput;
 /** Azure Synapse nested object which serves as a compute resource for activities. */
 export type IntegrationRuntimeOutput =
-  | IntegrationRuntimeOutputParent
   | ManagedIntegrationRuntimeOutput
   | SelfHostedIntegrationRuntimeOutput;
 /** The Azure Data Factory nested object which identifies data within different data stores, such as tables, files, folders, and documents. */
 export type DatasetOutput =
-  | DatasetOutputParent
   | AmazonS3DatasetOutput
   | AvroDatasetOutput
   | ExcelDatasetOutput
@@ -9853,7 +9848,6 @@ export type DatasetOutput =
   | AzureDatabricksDeltaLakeDatasetOutput;
 /** The Azure Synapse nested object which contains the information and credential which can be used to connect with related store or compute resource. */
 export type LinkedServiceOutput =
-  | LinkedServiceOutputParent
   | AzureStorageLinkedServiceOutput
   | AzureBlobStorageLinkedServiceOutput
   | AzureTableStorageLinkedServiceOutput
@@ -9956,7 +9950,6 @@ export type LinkedServiceOutput =
   | SharePointOnlineListLinkedServiceOutput;
 /** A pipeline activity. */
 export type ActivityOutput =
-  | ActivityOutputParent
   | ControlActivityOutput
   | ExecutionActivityOutput
   | CopyActivityOutput
@@ -9998,7 +9991,6 @@ export type ActivityOutput =
   | SqlPoolStoredProcedureActivityOutput;
 /** Azure Synapse nested object which contains information about creating pipeline run */
 export type TriggerOutput =
-  | TriggerOutputParent
   | RerunTumblingWindowTriggerOutput
   | MultiplePipelineTriggerOutput
   | ScheduleTriggerOutput
@@ -10009,12 +10001,10 @@ export type TriggerOutput =
   | ChainingTriggerOutput;
 /** The base definition of a secret type. */
 export type SecretBaseOutput =
-  | SecretBaseOutputParent
   | SecureStringOutput
   | AzureKeyVaultSecretReferenceOutput;
 /** Dataset location. */
 export type DatasetLocationOutput =
-  | DatasetLocationOutputParent
   | AzureBlobStorageLocationOutput
   | AzureBlobFSLocationOutput
   | AzureDataLakeStoreLocationOutput
@@ -10028,7 +10018,6 @@ export type DatasetLocationOutput =
   | HdfsLocationOutput;
 /** The format definition of a storage. */
 export type DatasetStorageFormatOutput =
-  | DatasetStorageFormatOutputParent
   | TextFormatOutput
   | JsonFormatOutput
   | AvroFormatOutput
@@ -10036,13 +10025,11 @@ export type DatasetStorageFormatOutput =
   | ParquetFormatOutput;
 /** Base definition of WebLinkedServiceTypeProperties, this typeProperties is polymorphic based on authenticationType, so not flattened in SDK models. */
 export type WebLinkedServiceTypePropertiesOutput =
-  | WebLinkedServiceTypePropertiesOutputParent
   | WebAnonymousAuthenticationOutput
   | WebBasicAuthenticationOutput
   | WebClientCertificateAuthenticationOutput;
 /** Base class for all control activities like IfCondition, ForEach , Until. */
 export type ControlActivityOutput =
-  | ControlActivityOutputParent
   | ExecutePipelineActivityOutput
   | IfConditionActivityOutput
   | SwitchActivityOutput
@@ -10056,7 +10043,6 @@ export type ControlActivityOutput =
   | WebHookActivityOutput;
 /** Base class for all execution activities. */
 export type ExecutionActivityOutput =
-  | ExecutionActivityOutputParent
   | CopyActivityOutput
   | HDInsightHiveActivityOutput
   | HDInsightPigActivityOutput
@@ -10084,7 +10070,6 @@ export type ExecutionActivityOutput =
   | SynapseSparkJobDefinitionActivityOutput;
 /** Connector read setting. */
 export type StoreReadSettingsOutput =
-  | StoreReadSettingsOutputParent
   | AzureBlobStorageReadSettingsOutput
   | AzureBlobFSReadSettingsOutput
   | AzureDataLakeStoreReadSettingsOutput
@@ -10098,7 +10083,6 @@ export type StoreReadSettingsOutput =
   | HdfsReadSettingsOutput;
 /** Connector write settings. */
 export type StoreWriteSettingsOutput =
-  | StoreWriteSettingsOutputParent
   | SftpWriteSettingsOutput
   | AzureBlobStorageWriteSettingsOutput
   | AzureBlobFSWriteSettingsOutput
@@ -10107,20 +10091,17 @@ export type StoreWriteSettingsOutput =
   | AzureFileStorageWriteSettingsOutput;
 /** Format read settings. */
 export type FormatReadSettingsOutput =
-  | FormatReadSettingsOutputParent
   | DelimitedTextReadSettingsOutput
   | JsonReadSettingsOutput
   | XmlReadSettingsOutput
   | BinaryReadSettingsOutput;
 /** Compression read settings. */
 export type CompressionReadSettingsOutput =
-  | CompressionReadSettingsOutputParent
   | ZipDeflateReadSettingsOutput
   | TarReadSettingsOutput
   | TarGZipReadSettingsOutput;
 /** Format write settings. */
 export type FormatWriteSettingsOutput =
-  | FormatWriteSettingsOutputParent
   | AvroWriteSettingsOutput
   | OrcWriteSettingsOutput
   | ParquetWriteSettingsOutput
@@ -10128,7 +10109,6 @@ export type FormatWriteSettingsOutput =
   | JsonWriteSettingsOutput;
 /** A copy activity source. */
 export type CopySourceOutput =
-  | CopySourceOutputParent
   | AvroSourceOutput
   | ExcelSourceOutput
   | ParquetSourceOutput
@@ -10226,7 +10206,6 @@ export type CopySourceOutput =
   | SharePointOnlineListSourceOutput;
 /** A copy activity sink. */
 export type CopySinkOutput =
-  | CopySinkOutputParent
   | DelimitedTextSinkOutput
   | JsonSinkOutput
   | OrcSinkOutput
@@ -10266,7 +10245,6 @@ export type CopySinkOutput =
   | CosmosDbMongoDbApiSinkOutput;
 /** Copy activity sources of tabular type. */
 export type TabularSourceOutput =
-  | TabularSourceOutputParent
   | AzureTableSourceOutput
   | InformixSourceOutput
   | Db2SourceOutput
@@ -10327,33 +10305,26 @@ export type TabularSourceOutput =
   | AmazonRedshiftSourceOutput;
 /** Export command settings. */
 export type ExportSettingsOutput =
-  | ExportSettingsOutputParent
   | SnowflakeExportCopyCommandOutput
   | AzureDatabricksDeltaLakeExportCommandOutput;
 /** Import command settings. */
 export type ImportSettingsOutput =
-  | ImportSettingsOutputParent
   | AzureDatabricksDeltaLakeImportCommandOutput
   | SnowflakeImportCopyCommandOutput;
 /** Base class for all triggers that support one to many model for trigger to pipeline. */
 export type MultiplePipelineTriggerOutput =
-  | MultiplePipelineTriggerOutputParent
   | ScheduleTriggerOutput
   | BlobTriggerOutput
   | BlobEventsTriggerOutput
   | CustomEventsTriggerOutput;
 /** Referenced dependency. */
 export type DependencyReferenceOutput =
-  | DependencyReferenceOutputParent
   | TriggerDependencyReferenceOutput
   | TumblingWindowTriggerDependencyReferenceOutput
   | SelfDependencyTumblingWindowTriggerReferenceOutput;
 /** Trigger referenced dependency. */
-export type TriggerDependencyReferenceOutput =
-  | TriggerDependencyReferenceOutputParent
-  | TumblingWindowTriggerDependencyReferenceOutput;
+export type TriggerDependencyReferenceOutput = TumblingWindowTriggerDependencyReferenceOutput;
 /** The base definition of a linked integration runtime. */
 export type LinkedIntegrationRuntimeTypeOutput =
-  | LinkedIntegrationRuntimeTypeOutputParent
   | LinkedIntegrationRuntimeKeyAuthorizationOutput
   | LinkedIntegrationRuntimeRbacAuthorizationOutput;

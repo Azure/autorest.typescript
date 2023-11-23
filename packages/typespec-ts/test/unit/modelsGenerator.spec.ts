@@ -606,7 +606,7 @@ describe("Input/output model type", () => {
             bark: string;
           }
   
-          export type PetOutput = PetOutputParent | CatOutput | DogOutput;`
+          export type PetOutput = CatOutput | DogOutput;`
         );
       });
 
@@ -682,9 +682,9 @@ describe("Input/output model type", () => {
         }
         
         /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
-        export type FishOutput = FishOutputParent | SharkOutput | SalmonOutput;
+        export type FishOutput = SharkOutput | SalmonOutput;
         /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
-        export type SharkOutput = SharkOutputParent | SawSharkOutput | GoblinSharkOutput;
+        export type SharkOutput = SawSharkOutput | GoblinSharkOutput;
         `
         );
       });
@@ -761,7 +761,7 @@ describe("Input/output model type", () => {
           }
   
           /** This is a base model has discriminator name containing dot. */
-          export type BaseModelOutput = BaseModelOutputParent | ${inputModelName}Output;
+          export type BaseModelOutput = ${inputModelName}Output;
           `
         });
       });
@@ -799,7 +799,7 @@ describe("Input/output model type", () => {
               a: string;
             }
 
-            export type BOutput = BOutputParent | COutput;`
+            export type BOutput = COutput;`
             );
           });
 

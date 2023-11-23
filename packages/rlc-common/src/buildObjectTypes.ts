@@ -147,7 +147,10 @@ function getPolymorphicTypeAlias(
   const unionTypes: string[] = [];
 
   // If the object itself has a discriminatorValue add its base to the union
-  unionTypes.push(`${baseName}Parent`);
+  if (!schemaUsage.includes(SchemaContext.Output)) {
+    unionTypes.push(`${baseName}Parent`);
+  }
+
 
   for (const child of objectSchema.children?.all ?? []) {
     const nameSuffix = schemaUsage.includes(SchemaContext.Output)
