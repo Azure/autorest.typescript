@@ -22,9 +22,7 @@ import {
   getResponseBaseName,
   getResponseTypeName,
   normalizeName,
-  OperationParameter,
   getParameterBaseName,
-  getParameterTypeName,
   ResponseMetadata,
   ParameterMetadatas
 } from "@azure-tools/rlc-common";
@@ -42,26 +40,6 @@ import { Program, NoTarget } from "@typespec/compiler";
 import { reportDiagnostic } from "../../lib.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
 import { isDefined } from "@azure/core-util";
-
-function getRLCParameterType(rlcParameter: OperationParameter) {
-  const baseParameterName = getParameterBaseName(
-    rlcParameter.operationGroup,
-    rlcParameter.operationName
-  );
-  const requestCount = rlcParameter?.parameters?.length ?? 0;
-  const topParamName = getParameterTypeName(baseParameterName);
-
-  const parameterTypes = rlcParameter.parameters.map((_, i) => {
-    const nameSuffix = i > 0 ? `${i}` : "";
-    const parameterInterfaceName =
-      requestCount > 1
-        ? `${baseParameterName}RequestParameters${nameSuffix}`
-        : topParamName;
-    return parameterInterfaceName;
-  });
-
-  return parameterTypes.join(" | ");
-}
 
 function getRLCResponseType(rlcResponse?: Omit<OperationResponse, "path">) {
   if (!rlcResponse?.responses) {
@@ -139,15 +117,10 @@ export function getSendPrivateFunction(
     "...operationOptionsToRequestParameters(options)",
     hasRequestOptions ? "...requestOptions" : undefined
   ].filter(isDefined);
-  const requestOptionsTypeCast = `as ${
-    // TODO: Figure out why this needs to be cast
-    getRLCParameterType(operation.rlcParameter)
-  }`;
   const requestOptions = [
     `{
       ${requestOptionProperties.join(",\n")}
-    }`,
-    requestOptionsTypeCast
+    }`
   ].filter(isDefined);
   const responseTypeCast = operation.isOverload
     ? `as ${returnType}`
