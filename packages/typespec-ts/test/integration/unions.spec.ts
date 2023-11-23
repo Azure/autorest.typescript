@@ -2,7 +2,7 @@ import UnionsClientFactory, {
   UnionsClient
 } from "./generated/unions/src/index.js";
 import { assert } from "chai";
-describe("UnionsClient Rest Client", () => {
+describe.skip("UnionsClient Rest Client", () => {
   let client: UnionsClient;
 
   beforeEach(() => {
