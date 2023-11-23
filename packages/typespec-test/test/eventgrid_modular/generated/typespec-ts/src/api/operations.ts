@@ -196,7 +196,7 @@ export async function _receiveCloudEventsDeserialize(
   }
 
   return {
-    value: (result.body["value"] ?? []).map((p) => ({
+    value: result.body["value"].map((p) => ({
       brokerProperties: {
         lockToken: p.brokerProperties["lockToken"],
         deliveryCount: p.brokerProperties["deliveryCount"],
@@ -270,7 +270,7 @@ export async function _acknowledgeCloudEventsDeserialize(
   }
 
   return {
-    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
+    failedLockTokens: result.body["failedLockTokens"].map((p) => ({
       lockToken: p["lockToken"],
       errorCode: p["errorCode"],
       errorDescription: p["errorDescription"],
@@ -328,7 +328,7 @@ export async function _releaseCloudEventsDeserialize(
   }
 
   return {
-    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
+    failedLockTokens: result.body["failedLockTokens"].map((p) => ({
       lockToken: p["lockToken"],
       errorCode: p["errorCode"],
       errorDescription: p["errorDescription"],
@@ -386,7 +386,7 @@ export async function _rejectCloudEventsDeserialize(
   }
 
   return {
-    failedLockTokens: (result.body["failedLockTokens"] ?? []).map((p) => ({
+    failedLockTokens: result.body["failedLockTokens"].map((p) => ({
       lockToken: p["lockToken"],
       errorCode: p["errorCode"],
       errorDescription: p["errorDescription"],

@@ -132,7 +132,7 @@ export async function _listDeserialize(
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       id: p["id"],
       object: p["object"],
       createdAt: new Date(p["created_at"]),
@@ -253,7 +253,7 @@ export async function _listEventsDeserialize(
 
   return {
     object: result.body["object"],
-    data: (result.body["data"] ?? []).map((p) => ({
+    data: result.body["data"].map((p) => ({
       id: p["id"],
       object: p["object"],
       createdAt: new Date(p["created_at"]),
