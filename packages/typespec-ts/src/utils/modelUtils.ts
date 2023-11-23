@@ -681,15 +681,15 @@ function getSchemaForModel(
     propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
-    if (model.baseModel) {
-      const { propertyName } = getDiscriminator(program, model.baseModel) || {};
-      if (propertyName && name === `"${propertyName}"`) {
-        if (modelSchema.discriminator) {
-          modelSchema.discriminator.type = propSchema.type;
-          modelSchema.discriminatorValue = propertyName;
-        }
-        continue;
-      }
+    const { propertyName } = getDiscriminator(program, model) || {};
+    if (
+      propertyName &&
+      name === `"${propertyName}"` &&
+      modelSchema.discriminator
+    ) {
+      modelSchema.discriminator.type = propSchema.type;
+      modelSchema.discriminatorValue = propertyName;
+      continue;
     }
 
     // Apply decorators on the property to the type's schema

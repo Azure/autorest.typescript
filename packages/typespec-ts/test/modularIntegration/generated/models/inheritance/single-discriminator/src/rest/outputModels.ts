@@ -43,6 +43,7 @@ export interface TRexOutput extends DinosaurOutputParent {
 
 /** This is base model for polymorphic single level inheritance with a discriminator. */
 export type BirdOutput =
+  | BirdOutputParent
   | SeaGullOutput
   | SparrowOutput
   | GooseOutput

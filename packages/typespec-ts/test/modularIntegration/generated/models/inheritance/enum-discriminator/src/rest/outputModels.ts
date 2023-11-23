@@ -28,6 +28,6 @@ export interface CobraOutput extends SnakeOutputParent {
 }
 
 /** Test extensible enum type for discriminator */
-export type DogOutput = GoldenOutput;
+export type DogOutput = DogOutputParent | GoldenOutput;
 /** Test fixed enum type for discriminator */
-export type SnakeOutput = CobraOutput;
+export type SnakeOutput = SnakeOutputParent | CobraOutput;
