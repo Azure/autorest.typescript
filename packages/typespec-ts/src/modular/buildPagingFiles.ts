@@ -20,11 +20,11 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
   fileContent.addStatements([
     `
     /**
-     * An interface that tracks the settings for paged iteration
+     * Options for the byPage method
      */
     export interface PageSettings {
       /**
-       * The token that keeps track of where to continue the iterator
+       * A reference to a specific page to start iterating from.
        */
       continuationToken?: string;
     }
@@ -95,7 +95,7 @@ export function buildPagingTypes(codeModel: ModularCodeModel, client: Client) {
       /**
        * A function to extract elements from a page.
        */
-      toElements?: (page: TPage) => unknown[];
+      toElements?: (page: TPage) => TElement[];
     }
 
     /**
@@ -314,10 +314,18 @@ export function buildPagingHelpers(
 
         const nextLink = (body as Record<string, unknown>)[nextLinkName];
 
-        if (typeof nextLink !== "string" && typeof nextLink !== "undefined") {
+        if (
+          typeof nextLink !== "string" &&
+          typeof nextLink !== "undefined" &&
+          nextLink !== null
+        ) {
           throw new RestError(
-            \`Body Property \${nextLinkName} should be a string or undefined\`
+            \`Body Property \${nextLinkName} should be a string or undefined or null but got \${typeof nextLink}\`
           );
+        }
+
+        if (nextLink === null) {
+          return undefined;
         }
 
         return nextLink;

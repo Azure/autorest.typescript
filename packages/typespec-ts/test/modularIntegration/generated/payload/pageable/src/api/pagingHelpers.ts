@@ -146,10 +146,18 @@ function getNextLink(body: unknown, nextLinkName?: string): string | undefined {
 
   const nextLink = (body as Record<string, unknown>)[nextLinkName];
 
-  if (typeof nextLink !== "string" && typeof nextLink !== "undefined") {
+  if (
+    typeof nextLink !== "string" &&
+    typeof nextLink !== "undefined" &&
+    nextLink !== null
+  ) {
     throw new RestError(
-      `Body Property ${nextLinkName} should be a string or undefined`
+      `Body Property ${nextLinkName} should be a string or undefined or null but got ${typeof nextLink}`
     );
+  }
+
+  if (nextLink === null) {
+    return undefined;
   }
 
   return nextLink;

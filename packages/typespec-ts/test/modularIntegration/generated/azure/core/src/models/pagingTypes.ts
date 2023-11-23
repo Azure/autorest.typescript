@@ -2,11 +2,11 @@
 // Licensed under the MIT license.
 
 /**
- * An interface that tracks the settings for paged iteration
+ * Options for the byPage method
  */
 export interface PageSettings {
   /**
-   * The token that keeps track of where to continue the iterator
+   * A reference to a specific page to start iterating from.
    */
   continuationToken?: string;
 }
@@ -77,7 +77,7 @@ export interface PagedResult<
   /**
    * A function to extract elements from a page.
    */
-  toElements?: (page: TPage) => unknown[];
+  toElements?: (page: TPage) => TElement[];
 }
 
 /**

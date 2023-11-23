@@ -77,7 +77,7 @@ export interface PagedResult<
   /**
    * A function to extract elements from a page.
    */
-  toElements?: (page: TPage) => unknown[];
+  toElements?: (page: TPage) => TElement[];
 }
 
 /**
