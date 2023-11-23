@@ -6,7 +6,7 @@
  */
 export interface PageSettings {
   /**
-   * The token that keeps track of where to continue the iterator
+   * A reference to a specific page to start iterating from.
    */
   continuationToken?: string;
 }
