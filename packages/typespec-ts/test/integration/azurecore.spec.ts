@@ -101,6 +101,36 @@ describe("Azure Core Rest Client", () => {
     }
   });
 
+  it("should list with parameters", async () => {
+    try {
+      const result = await client.path("/azure/core/basic/parameters").get({
+        queryParameters: { another: "Second" },
+        body: { inputName: "Madge" }
+      });
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get first item as page item", async () => {
+    try {
+      const result = await client.path("/azure/core/basic/first-item").get();
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get second item as page item", async () => {
+    try {
+      const result = await client.path("/azure/core/basic/second-item").get();
+      assert.strictEqual(result.status, "200");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
   it("should list with custom pages", async () => {
     try {
       const result = await client.path("/azure/core/basic/custom-page").get();
