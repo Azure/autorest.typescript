@@ -32,7 +32,7 @@ export interface SalmonOutput extends FishOutputParent {
 }
 
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
-export type FishOutput = SharkOutput | SalmonOutput;
+export type FishOutput = FishOutputParent | SharkOutput | SalmonOutput;
 /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
 export type SharkOutput =
   | SharkOutputParent

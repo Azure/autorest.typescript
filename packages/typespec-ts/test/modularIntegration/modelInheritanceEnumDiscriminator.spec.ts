@@ -43,7 +43,8 @@ describe("EnumDiscriminatorClient Rest Client", () => {
   it("should get extensible enum if missing discriminator", async () => {
     try {
       const result = await client.getExtensibleModelMissingDiscriminator();
-      assert.deepEqual(result, { weight: 10 } as any);
+      assert.deepEqual(result.weight, 10);
+      assert.isUndefined(result.kind);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -79,7 +80,8 @@ describe("EnumDiscriminatorClient Rest Client", () => {
   it("should get fixed enum if missing discriminator", async () => {
     try {
       const result = await client.getFixedModelMissingDiscriminator();
-      assert.deepEqual(result, { length: 10 } as any);
+      assert.deepEqual(result.length, 10);
+      assert.isUndefined(result.kind);
     } catch (err) {
       assert.fail(err as string);
     }

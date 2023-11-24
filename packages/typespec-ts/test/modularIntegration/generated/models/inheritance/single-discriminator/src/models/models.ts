@@ -46,4 +46,4 @@ export interface TRex extends DinosaurParent {
 /** Base type for Bird */
 export type Bird = SeaGull | Sparrow | Goose | Eagle | BirdParent;
 /** Base type for Dinosaur */
-export type Dinosaur = TRex;
+export type Dinosaur = TRex | DinosaurParent;

@@ -1,7 +1,8 @@
 import {
   GoblinShark,
   NestedDiscriminatorClient,
-  Salmon
+  Salmon,
+  Shark
 } from "./generated/models/inheritance/nested-discriminator/src/index.js";
 import { assert } from "chai";
 
@@ -23,9 +24,8 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     try {
       const result = await client.getModel();
       assert.strictEqual(result.age, 1);
-      if (result.kind === "shark") {
-        assert.strictEqual(result.sharktype, "goblin");
-      }
+      assert.strictEqual(result.kind, "shark");
+      assert.strictEqual((result as Shark).sharktype, "goblin");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -106,7 +106,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
       );
       if (result.kind === "salmon") {
         assert.strictEqual(
-          result.partner?.kind,
+          (result as Salmon).partner?.kind,
           validRecursiveBody.partner?.kind
         );
       }

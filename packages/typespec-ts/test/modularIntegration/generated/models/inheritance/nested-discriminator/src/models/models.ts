@@ -34,6 +34,6 @@ export interface Salmon extends FishParent {
 }
 
 /** Base type for Fish */
-export type Fish = Shark | Salmon;
+export type Fish = Shark | Salmon | FishParent;
 /** Base type for Shark */
 export type Shark = SawShark | GoblinShark | SharkParent;

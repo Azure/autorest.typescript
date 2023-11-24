@@ -636,6 +636,7 @@ function getSchemaForModel(
       type: "string",
       description: `Discriminator property for ${model.name}.`
     };
+    modelSchema.discriminatorValue = propertyName;
 
     modelSchema.isPolyParent = true;
   }
@@ -688,7 +689,6 @@ function getSchemaForModel(
       modelSchema.discriminator
     ) {
       modelSchema.discriminator.type = propSchema.type;
-      modelSchema.discriminatorValue = propertyName;
       continue;
     }
 

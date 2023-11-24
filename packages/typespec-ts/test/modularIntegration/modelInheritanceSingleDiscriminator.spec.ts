@@ -77,7 +77,8 @@ describe("SingleDiscriminatorClient Rest Client", () => {
   it("should get if missing discriminator", async () => {
     try {
       const result = await client.getMissingDiscriminator();
-      assert.deepEqual(result, { wingspan: 1 } as any);
+      assert.deepEqual(result.wingspan, 1);
+      assert.isUndefined(result.kind);
     } catch (err) {
       assert.fail(err as string);
     }

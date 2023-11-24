@@ -280,17 +280,16 @@ function processModelProperties(
     if (isDiscriminator(context, model, property.name)) {
       hasDiscriminator = true;
       newProperty = { ...newProperty, ...discriminatorInfo };
-      newValue.alias = `${newValue.name}Parent`;
-      newValue.isPolyBaseModel = true;
-      discriminatorInfo?.aliases.push(`${newValue.alias}`);
-      newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
     }
     newValue.properties.push(newProperty);
   }
-  if (!hasDiscriminator && discriminatorInfo) {
-    newValue.properties.push({ ...discriminatorInfo, optional: true });
+  if (discriminatorInfo) {
+    if (!hasDiscriminator) {
+      newValue.properties.push({ ...discriminatorInfo, optional: true });
+    }
     newValue.alias = `${newValue.name}Parent`;
     newValue.isPolyBaseModel = true;
+    discriminatorInfo?.aliases.push(`${newValue.alias}`);
     newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
   }
 }

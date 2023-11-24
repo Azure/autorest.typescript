@@ -49,4 +49,4 @@ export type BirdOutput =
   | GooseOutput
   | EagleOutput;
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */
-export type DinosaurOutput = TRexOutput;
+export type DinosaurOutput = DinosaurOutputParent | TRexOutput;
