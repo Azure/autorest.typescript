@@ -57,11 +57,22 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
-    // Import the deserializeUtils 
+    // Import the deserializeUtils
     importDeserializeUtils(
       srcPath,
       operationGroupFile,
       codeModel.project,
+      "deserialize",
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
+    // Import the serializeUtils
+    importDeserializeUtils(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      "serialize",
       subfolder,
       operationGroup.namespaceHierarchies.length
     );
@@ -180,16 +191,17 @@ export function importDeserializeUtils(
   srcPath: string,
   sourceFile: SourceFile,
   project: Project,
+  serializeType: string,
   subfolder: string = "",
   importLayer: number = 0
 ) {
   const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
-    return i.getModuleSpecifierValue().endsWith(`utils/deserializeUtil.js`);
+    return i.getModuleSpecifierValue().endsWith(`utils/${serializeType}.js`);
   });
   const modelsFile = project.getSourceFile(
     `${srcPath}/${
       subfolder && subfolder !== "" ? subfolder + "/" : ""
-    }utils/deserializeUtil.ts`
+    }utils/${serializeType}Util.ts`
   );
   const deserializeUtil: string[] = [];
 
@@ -199,7 +211,9 @@ export function importDeserializeUtils(
 
   if (deserializeUtil.length > 0 && !hasModelsImport) {
     sourceFile.addImportDeclaration({
-      moduleSpecifier: `${"../".repeat(importLayer + 1)}utils/deserializeUtil.js`,
+      moduleSpecifier: `${"../".repeat(
+        importLayer + 1
+      )}utils/${serializeType}Util.js`,
       namedImports: deserializeUtil
     });
   }

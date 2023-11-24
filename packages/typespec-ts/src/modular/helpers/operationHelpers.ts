@@ -948,7 +948,7 @@ function deserializeResponseValue(
       return restValue;
     case "combined":
       if (type.types?.some((t) => isSpecialUnionVariant(t))) {
-        const deserializeFunctionName = getDeserializeFunctionName(type);
+        const deserializeFunctionName = getDeserializeFunctionName(type, "deserialize");
         return `${deserializeFunctionName}(${restValue})`;
       } else {
         return `${restValue}`;
@@ -1033,6 +1033,13 @@ function serializeRequestValue(
             }"): undefined`;
       }
       return clientValue;
+    case "combined":
+      if (type.types?.some((t) => isSpecialUnionVariant(t))) {
+        const serializeFunctionName = getDeserializeFunctionName(type, "serialize");
+        return `${serializeFunctionName}(${clientValue})`;
+      } else {
+        return `${clientValue}`;
+      }
     default:
       return clientValue;
   }

@@ -314,6 +314,7 @@ function getType(
   } else {
     newValue = emitType(context, type);
   }
+  newValue.usage = type.usage;
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
   }
@@ -1028,7 +1029,7 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isAzureCoreErrorType(type)
+    isCoreErrorType: isAzureCoreErrorType(type),
   };
 }
 

@@ -15,55 +15,62 @@ import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
  * file called operations.ts where all operations are generated.
  */
 export function buildOperationUtils(model: ModularCodeModel) {
-  const specialUnions = model.types.filter((t) => isSpecialUnion(t));
-  if (specialUnions.length === 0) {
-    return;
-  }
-  const apiUtilsFile = model.project.createSourceFile(
-    `${model.modularOptions.sourceRoot}/utils/deserializeUtil.ts`
-  );
-  const importSet = new Map<string, Set<string>>();
-
-  specialUnions.forEach((su) => {
-    let types = su.types;
-    if (su.type === "list") {
-      types = su.elementType?.types;
+  const serializeUtilFiles = [];
+  for (const serializeType of ["serialize", "deserialize"]) {
+    const specialUnions = model.types.filter((t) => isSpecialUnion(t) && t.usage );
+    if (specialUnions.length === 0) {
+      return;
     }
-    const unionDeserializeTypes = types?.filter((et) => {
-      return isSpecialUnionVariant(et);
-    });
-    unionDeserializeTypes?.forEach((et) => {
-      getTypePredictFunction(
-        apiUtilsFile,
-        et,
-        getTypeUnionName(su, true, importSet)
-      );
-      getTypeDeserializeFunction(
-        apiUtilsFile,
-        et,
-        importSet,
-        model.runtimeImports
-      );
-    });
-    const deserializeFUnctionName = getDeserializeFunctionName(su, importSet);
-    deserializeUnionTypesFunction(
-      apiUtilsFile,
-      unionDeserializeTypes ?? [],
-      deserializeFUnctionName,
-      getTypeUnionName(su, true, importSet),
-      getTypeUnionName(su, false, importSet)
+    const utilsFile = model.project.createSourceFile(
+      `${model.modularOptions.sourceRoot}/utils/${serializeType}Util.ts`
     );
-  });
-  importSettings(importSet, apiUtilsFile);
-  return apiUtilsFile;
+    const importSet = new Map<string, Set<string>>();
+
+    specialUnions.forEach((su) => {
+      let types = su.types;
+      if (su.type === "list") {
+        types = su.elementType?.types;
+      }
+      const unionDeserializeTypes = types?.filter((et) => {
+        return isSpecialUnionVariant(et);
+      });
+      unionDeserializeTypes?.forEach((et) => {
+        getTypePredictFunction(
+          utilsFile,
+          et,
+          getTypeUnionName(su, true, importSet)
+        );
+        getTypeDeserializeFunction(
+          utilsFile,
+          et,
+          serializeType,
+          importSet,
+          model.runtimeImports
+        );
+      });
+      const deserializeFUnctionName = getDeserializeFunctionName(su, serializeType, importSet);
+      deserializeUnionTypesFunction(
+        utilsFile,
+        unionDeserializeTypes ?? [],
+        deserializeFUnctionName,
+        serializeType,
+        getTypeUnionName(su, true, importSet),
+        getTypeUnionName(su, false, importSet)
+      );
+    });
+    importSettings(importSet, utilsFile);
+    serializeUtilFiles.push(utilsFile);
+  }
+  return serializeUtilFiles;
 }
 
 export function getDeserializeFunctionName(
   type: Type,
+  serializeType: string,
   importSet?: Map<string, Set<string>>
 ) {
   const typeUnionNames = getTypeUnionName(type, false, importSet);
-  const deserializeFunctionName = `deserialize${toPascalCase(
+  const deserializeFunctionName = `${serializeType}${toPascalCase(
     formalizeTypeUnionName(typeUnionNames ?? "")
   )}Union`;
   return deserializeFunctionName;
@@ -159,6 +166,7 @@ function getMappedType(modularType: string, fromRest?: boolean) {
 function getTypeDeserializeFunction(
   sourceFile: SourceFile,
   type: Type,
+  serializeType: string,
   importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
@@ -167,8 +175,8 @@ function getTypeDeserializeFunction(
   if (type.type === "model" && type.name) {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`deserialize function for ${type.name}`],
-      name: `deserialize${toPascalCase(type.name)}`,
+      docs: [`${serializeType} function for ${type.name}`],
+      name: `${serializeType}${toPascalCase(type.name)}`,
       parameters: [{ name: "obj", type: `${type.name}Output` }],
       returnType: type.name
     };
@@ -203,8 +211,8 @@ function getTypeDeserializeFunction(
   ) {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`deserialize function for ${type.elementType.name} array`],
-      name: `deserialize${toPascalCase(type.elementType.name)}Array`,
+      docs: [`${serializeType} function for ${type.elementType.name} array`],
+      name: `${serializeType}${toPascalCase(type.elementType.name)}Array`,
       parameters: [{ name: "obj", type: type.elementType.name + "Output[]" }],
       returnType: type.elementType.name + "[]"
     };
@@ -235,8 +243,8 @@ function getTypeDeserializeFunction(
   } else if (type.type === "datetime") {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`deserialize function for ${type.type}`],
-      name: `deserialize${toPascalCase("datetime")}`,
+      docs: [`${serializeType} function for ${type.type}`],
+      name: `${serializeType}${toPascalCase("datetime")}`,
       parameters: [{ name: "obj", type: "string" }],
       returnType: "Date"
     };
@@ -256,8 +264,8 @@ function getTypeDeserializeFunction(
   } else if (type.type === "byte-array") {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`deserialize function for ${type.type}`],
-      name: `deserialize${toPascalCase(type.name ?? "byte-array")}`,
+      docs: [`${serializeType} function for ${type.type}`],
+      name: `${serializeType}${toPascalCase(type.name ?? "byte-array")}`,
       parameters: [{ name: "obj", type: "string" }],
       returnType: "Uint8Array"
     };
@@ -346,12 +354,13 @@ function deserializeUnionTypesFunction(
   sourceFile: SourceFile,
   unionDeserializeTypes: Type[],
   deserializeFunctionName: string,
+  serializeType: string,
   typeUnionNamesOutput: string | undefined,
   typeUnionNames: string | undefined
 ) {
   const functionStatement: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    docs: [`deserialize function for ${typeUnionNamesOutput}`],
+    docs: [`${serializeType} function for ${typeUnionNamesOutput}`],
     name: deserializeFunctionName,
     parameters: [{ name: "obj", type: typeUnionNamesOutput }],
     returnType: typeUnionNames,
@@ -364,7 +373,7 @@ function deserializeUnionTypesFunction(
         (type.elementType?.name ? type.elementType.name + "Array" : type.type)
     );
     statements.push(
-      `if (is${functionName}(obj)) { return deserialize${functionName}(obj); }`
+      `if (is${functionName}(obj)) { return ${serializeType}${functionName}(obj); }`
     );
   }
   statements.push("return obj;");
@@ -421,7 +430,7 @@ function getTypePredictFunction(
   } else if (type.type === "model" && type.name) {
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`type predict function fpr ${type.name} from ${typeUnionNames}`],
+      docs: [`type predict function for ${type.name} from ${typeUnionNames}`],
       name: `is${toPascalCase(formalizeTypeUnionName(type.name))}`,
       parameters: [{ name: "obj", type: typeUnionNames }],
       returnType: `obj is ${type.name}Output`
