@@ -31,6 +31,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/string/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -78,6 +79,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/bytes/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -127,6 +129,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/datetime/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -176,6 +179,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/duration/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -225,6 +229,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/collections/bytes/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -274,6 +279,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/collections/model/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -323,6 +329,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/string/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -372,6 +379,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/int/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -421,6 +429,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/float/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -470,6 +479,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/boolean/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -519,6 +529,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/union/string/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -568,6 +579,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/union/int/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -617,6 +629,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/union/float/literal/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
