@@ -19,13 +19,6 @@ export default function createClient(
 ): AzureAgriFoodPlatformDataPlaneServiceClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Authorization"
-    }
-  };
-
   const userAgentInfo = `azsdk-js-agrifood-data-plane-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -38,6 +31,9 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info
+    },
+    credentials: {
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "Authorization"
     }
   };
 

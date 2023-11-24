@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createHeaderRestClient, {
-  HeaderParamExistingKeyParameters
-} from "@msinternal/header-rest";
+import createHeaderRestClient from "@msinternal/header-rest";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -18,10 +14,9 @@ dotenv.config();
  */
 async function headerParamExistingKey() {
   const client = createHeaderRestClient();
-  const options: HeaderParamExistingKeyParameters = {
-    headers: { "User-Agent": "overwrite" }
-  };
-  const result = await client.path("/header/param/existingkey").post(options);
+  const result = await client
+    .path("/header/param/existingkey")
+    .post({ headers: { "User-Agent": "overwrite" } });
   console.log(result);
 }
 

@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { RLCModel } from "../interfaces.js";
-
 const mitLicenseText = `
 The MIT License (MIT)
 

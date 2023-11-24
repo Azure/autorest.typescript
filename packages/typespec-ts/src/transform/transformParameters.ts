@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import {
-  ImportKind,
+  Imports,
   ObjectSchema,
   OperationParameter,
   ParameterBodyMetadata,
@@ -24,7 +24,6 @@ import {
   getFormattedPropertyDoc,
   getBodyType,
   predictDefaultValue,
-  getBinaryType,
   enrichBinaryTypeInBody
 } from "../utils/modelUtils.js";
 
@@ -43,7 +42,7 @@ import {
 import { SdkContext } from "../utils/interfaces.js";
 
 export function transformToParameterTypes(
-  importDetails: Map<ImportKind, Set<string>>,
+  importDetails: Imports,
   client: SdkClient,
   dpgContext: SdkContext
 ): OperationParameter[] {
@@ -75,7 +74,7 @@ export function transformToParameterTypes(
     transformToParameterTypesForRoute(program, route);
   }
   if (outputImportedSet.size > 0) {
-    importDetails.set(ImportKind.ParameterInput, outputImportedSet);
+    importDetails.parameter.importsSet = outputImportedSet;
   }
   function transformToParameterTypesForRoute(
     program: Program,
@@ -239,32 +238,16 @@ function transformBodyParameters(
   if (!bodyType) {
     return;
   }
-  const { hasBinaryContent, hasFormContent } = getBodyDetail(
+  const { hasBinaryContent } = getBodyDetail(dpgContext, bodyType, headers);
+
+  return transformNormalBody(
     dpgContext,
     bodyType,
-    headers
+    parameters,
+    importedModels,
+    headers,
+    hasBinaryContent
   );
-
-  if (!hasFormContent) {
-    // Case 1: Handle the normal case without binary or form data
-    // Case 2: Handle the binary body
-    return transformNormalBody(
-      dpgContext,
-      bodyType,
-      parameters,
-      importedModels,
-      headers,
-      hasBinaryContent
-    );
-  } else {
-    // Case 3: Handle the form data
-    return transformMultiFormBody(
-      dpgContext,
-      bodyType,
-      parameters,
-      importedModels
-    );
-  }
 }
 
 function transformNormalBody(
@@ -286,6 +269,7 @@ function transformNormalBody(
   const type = extractNameFromTypeSpecType(
     dpgContext,
     bodyType,
+    [SchemaContext.Input],
     importedModels,
     headers
   );
@@ -304,81 +288,11 @@ function transformNormalBody(
         name: "body",
         type: overrideType ?? type,
         required: parameters?.bodyParameter?.optional === false,
-        description: descriptions.join("\n\n")
+        description: descriptions.join("\n\n"),
+        oriSchema: schema
       }
     ]
   };
-}
-
-function transformMultiFormBody(
-  dpgContext: SdkContext,
-  bodyType: Type,
-  parameters: HttpOperationParameters,
-  importedModels: Set<string>
-): ParameterBodyMetadata | undefined {
-  const isModelBody = bodyType.kind === "Model";
-
-  if (!isModelBody) {
-    const type = extractNameFromTypeSpecType(
-      dpgContext,
-      bodyType,
-      importedModels
-    );
-    const description = extractDescriptionsFromBody(
-      dpgContext,
-      bodyType,
-      parameters
-    ).join("\n\n");
-    return {
-      isPartialBody: true,
-      body: [
-        {
-          name: "body",
-          type,
-          required: parameters?.bodyParameter?.optional === false,
-          description
-        }
-      ]
-    };
-  }
-
-  // If the body is model type we'll spread the properties into body parameters
-  const bodyParameters: ParameterBodyMetadata = {
-    isPartialBody: true,
-    body: []
-  };
-
-  for (const [paramName, paramType] of bodyType.properties) {
-    let type: string;
-    const bodySchema = getSchemaForType(
-      dpgContext,
-      paramType.type,
-      [SchemaContext.Exception, SchemaContext.Input],
-      false,
-      paramType
-    ) as any;
-    if (bodySchema?.format === "byte") {
-      type = getBinaryType([SchemaContext.Input, SchemaContext.Exception]);
-    } else if (bodySchema?.items?.format === "byte") {
-      type = `Array<${getBinaryType([
-        SchemaContext.Input,
-        SchemaContext.Exception
-      ])}>`;
-    } else {
-      type = extractNameFromTypeSpecType(
-        dpgContext,
-        paramType.type,
-        importedModels
-      );
-    }
-    bodyParameters.body!.push({
-      name: paramName,
-      type,
-      required: paramType.optional === false
-    });
-  }
-
-  return bodyParameters;
 }
 
 function getBodyDetail(
@@ -399,6 +313,7 @@ function getBodyDetail(
 function extractNameFromTypeSpecType(
   dpgContext: SdkContext,
   type: Type,
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   headers?: ParameterMetadata[]
 ) {
@@ -406,18 +321,10 @@ function extractNameFromTypeSpecType(
     SchemaContext.Input,
     SchemaContext.Exception
   ]) as Schema;
-  const importedNames = getImportedModelName(bodySchema);
-  if (importedNames) {
-    importedNames.forEach(importedModels.add, importedModels);
-  }
-  let typeName = getTypeName(bodySchema, [
-    SchemaContext.Input,
-    SchemaContext.Exception
-  ]);
-  if (isAnonymousModel(bodySchema)) {
-    // Handle anonymous Model
-    return generateAnomymousModelSigniture(bodySchema, importedModels);
-  }
+  const importedNames = getImportedModelName(bodySchema, schemaUsage) ?? [];
+  importedNames.forEach(importedModels.add, importedModels);
+
+  let typeName = getTypeName(bodySchema, schemaUsage);
   const contentTypes = headers
     ?.filter((h) => h.name === "contentType")
     .map((h) => h.param.type);
@@ -429,36 +336,6 @@ function extractNameFromTypeSpecType(
     typeName = `${typeName}ResourceMergeAndPatch`;
   }
   return typeName;
-}
-
-function isAnonymousModel(schema: Schema) {
-  return (
-    !schema.name &&
-    schema.type === "object" &&
-    !!(schema as ObjectSchema)?.properties
-  );
-}
-
-function generateAnomymousModelSigniture(
-  schema: ObjectSchema,
-  importedModels: Set<string>
-) {
-  let schemaSigiture = `{`;
-  for (const propName in schema.properties) {
-    const propType = schema.properties[propName]!;
-    const propTypeName = getTypeName(propType);
-    if (!propType || !propTypeName) {
-      continue;
-    }
-    const importNames = getImportedModelName(propType);
-    if (importNames) {
-      importNames!.forEach(importedModels.add, importedModels);
-    }
-    schemaSigiture += `${propName}: ${propTypeName};`;
-  }
-
-  schemaSigiture += `}`;
-  return schemaSigiture;
 }
 
 function extractDescriptionsFromBody(

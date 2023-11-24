@@ -9,7 +9,6 @@ import {
   StructureKind
 } from "ts-morph";
 import {
-  ImportKind,
   ResponseHeaderSchema,
   ResponseMetadata,
   RLCModel
@@ -20,6 +19,7 @@ import {
   getResponseBaseName,
   getResponseTypeName
 } from "./helpers/nameConstructors.js";
+import { getImportSpecifier } from "./helpers/importsUtil.js";
 
 let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
@@ -86,7 +86,10 @@ export function buildResponseTypes(model: RLCModel) {
     responsesFile.addImportDeclarations([
       {
         namedImports: ["RawHttpHeaders"],
-        moduleSpecifier: "@azure/core-rest-pipeline"
+        moduleSpecifier: getImportSpecifier(
+          "restPipeline",
+          model.importInfo.runtimeImports
+        )
       }
     ]);
   }
@@ -97,13 +100,16 @@ export function buildResponseTypes(model: RLCModel) {
   responsesFile.addImportDeclarations([
     {
       namedImports,
-      moduleSpecifier: "@azure-rest/core-client"
+      moduleSpecifier: getImportSpecifier(
+        "restClient",
+        model.importInfo.runtimeImports
+      )
     }
   ]);
 
-  if (model.importSet?.has(ImportKind.ResponseOutput)) {
+  if ((model.importInfo.internalImports.response?.importsSet?.size ?? 0) > 0) {
     const modelNamedImports = Array.from(
-      model.importSet.get(ImportKind.ResponseOutput) || []
+      model.importInfo.internalImports.response!.importsSet!
     ).filter((modelName) => {
       return !(modelName === "ErrorResponseOutput" && hasErrorResponse);
     });

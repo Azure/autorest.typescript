@@ -19,7 +19,7 @@
     "LICENSE",
     "review/*"
   ],
-  "engines": { "node": ">=14.0.0" },
+  "engines": { "node": ">=18.0.0" },
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:browser": "echo skipped.",
@@ -27,11 +27,11 @@
     "build:samples": "echo skipped.",
     "build:test": "echo skipped.",
     "build:debug": "echo skipped.",
-    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
+    "check-format": "prettier --list-different --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"samples-dev/**/*.ts\"",
     "clean": "rimraf --glob dist dist-browser dist-esm test-dist temp types *.tgz *.log",
     "execute:samples": "echo skipped",
     "extract-api": "rimraf review && mkdirp ./review && api-extractor run --local",
-    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\" ",
+    "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"*.{js,json}\"  \"samples-dev/**/*.ts\"",
     "generate:client": "echo skipped",
     "integration-test:browser": "echo skipped",
     "integration-test:node": "echo skipped",
@@ -60,14 +60,14 @@
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",
     "autorest": "latest",
-    "@types/node": "^14.0.0",
+    "@types/node": "^18.0.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.0.0",
     "mkdirp": "^2.1.2",
     "prettier": "^2.5.1",
     "rimraf": "^5.0.0",
     "source-map-support": "^0.5.9",
-    "typescript": "~5.0.0",
+    "typescript": "~5.2.0",
     "@rollup/plugin-commonjs": "^24.0.0",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-multi-entry": "^6.0.0",
@@ -76,5 +76,11 @@
     "rollup-plugin-sourcemaps": "^0.6.3",
     "uglify-js": "^3.4.9"
   },
-  "type": "module"
+  "type": "module",
+  "//sampleConfiguration": {
+    "productName": "TypeDictionary",
+    "productSlugs": ["azure"],
+    "disableDocsMs": true,
+    "apiRefLink": "https://docs.microsoft.com/javascript/api/@msinternal/dictionary"
+  }
 }

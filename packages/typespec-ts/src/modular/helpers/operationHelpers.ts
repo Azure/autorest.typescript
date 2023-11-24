@@ -14,13 +14,14 @@ import {
 } from "../modularCodeModel.js";
 import { buildType } from "./typeHelpers.js";
 import {
+  Imports as RuntimeImports,
   NameType,
   OperationResponse,
   getResponseBaseName,
   getResponseTypeName,
   normalizeName
 } from "@azure-tools/rlc-common";
-import { getOperationName } from "./namingHelpers.js";
+import { getClassicalLayerPrefix, getOperationName } from "./namingHelpers.js";
 import {
   getFixmeForMultilineDocs,
   getDocsFromDescription
@@ -33,6 +34,10 @@ import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
+import { SdkContext } from "@azure-tools/typespec-client-generator-core";
+import { Program, NoTarget } from "@typespec/compiler";
+import { reportDiagnostic } from "../../lib.js";
+import { getImportSpecifier } from "@azure-tools/rlc-common";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -52,19 +57,24 @@ function getRLCResponseType(rlcResponse?: OperationResponse) {
 }
 
 export function getSendPrivateFunction(
+  dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
   const { name } = getOperationName(operation);
+  const returnType = `StreamableMethod<${getRLCResponseType(
+    operation.rlcResponse
+  )}>`;
 
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     isAsync: false,
     isExported: true,
     name: `_${name}Send`,
     parameters,
-    returnType: `StreamableMethod<${getRLCResponseType(operation.rlcResponse)}>`
+    returnType
   };
 
   const operationPath = operation.url;
@@ -75,9 +85,11 @@ export function getSendPrivateFunction(
     `return context.path("${operationPath}", ${getPathParameters(
       operation
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
+      dpgContext,
       operation,
-      importSet
-    )}});`
+      importSet,
+      runtimeImports
+    )}}) ${operation.isOverload ? `as ${returnType}` : ``} ;`
   );
 
   return {
@@ -90,7 +102,8 @@ export function getDeserializePrivateFunction(
   operation: Operation,
   needSubClient: boolean,
   needUnexpectedHelper: boolean,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
 
@@ -148,33 +161,32 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  const properties = [];
-  response.type?.parents?.forEach((p) => {
-    properties.push(...(p.properties ?? []));
-  });
-  properties.push(...(response.type?.properties ?? []));
-  if (response?.type?.type === "any") {
+  if (response?.type?.type === "any" || response.isBinaryPayload) {
     statements.push(`return result.body`);
-  } else if (response?.type?.elementType) {
-    statements.push(
-      `return ${deserializeResponseValue(
-        response.type,
-        "result.body",
-        importSet,
-        response.type.nullable !== undefined ? !response.type.nullable : false,
-        response.type.format
-      )}`
-    );
-  } else if (properties.length > 0) {
+  } else if (getAllProperties(response?.type).length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(properties, "result.body", importSet).join(","),
+      getResponseMapping(
+        getAllProperties(response.type) ?? [],
+        "result.body",
+        importSet,
+        runtimeImports
+      ).join(","),
       `}`
     );
   } else if (returnType.type === "void") {
     statements.push(`return;`);
   } else {
-    statements.push(`return result.body;`);
+    statements.push(
+      `return ${deserializeResponseValue(
+        response.type,
+        "result.body",
+        importSet,
+        runtimeImports,
+        response.type.nullable !== undefined ? !response.type.nullable : false,
+        response.type.format
+      )}`
+    );
   }
   return {
     ...functionStatement,
@@ -186,33 +198,11 @@ function getOperationSignatureParameters(
   operation: Operation,
   clientType: string
 ): OptionalKind<ParameterDeclarationStructure>[] {
-  const optionsType = getOperationOptionsName(operation);
+  const optionsType = getOperationOptionsName(operation, true);
   const parameters: Map<
     string,
     OptionalKind<ParameterDeclarationStructure>
   > = new Map();
-  if (operation.bodyParameter?.type.type === "model") {
-    (operation.bodyParameter?.type.properties ?? [])
-      .filter((p) => !p.optional)
-      .filter((p) => !p.readonly)
-      .map((p) => buildType(p.clientName, p.type, p.format))
-      .forEach((p) => parameters.set(p.name, p));
-  } else if (operation.bodyParameter?.type.type === "list") {
-    const bodyArray = operation.bodyParameter;
-    parameters.set(
-      bodyArray.clientName,
-      buildType(bodyArray.clientName, bodyArray.type, bodyArray.type.format)
-    );
-  } else if (operation.bodyParameter?.type.type === "byte-array") {
-    parameters.set(
-      operation.bodyParameter.clientName,
-      buildType(
-        operation.bodyParameter.clientName,
-        operation.bodyParameter.type,
-        operation.bodyParameter.type.format
-      )
-    );
-  }
 
   operation.parameters
     .filter(
@@ -227,6 +217,16 @@ function getOperationSignatureParameters(
       parameters.set(p.name, p);
     });
 
+  if (operation.bodyParameter) {
+    parameters.set(
+      operation.bodyParameter?.clientName,
+      buildType(
+        operation.bodyParameter.clientName,
+        operation.bodyParameter.type,
+        operation.bodyParameter.type.format
+      )
+    );
+  }
   // Add context as the first parameter
   const contextParam = { name: "context", type: clientType };
 
@@ -284,12 +284,14 @@ export function getOperationFunction(
     statements
   };
 }
-
 export function getOperationOptionsName(
   operation: Operation,
   includeGroupName = false
 ) {
-  const prefix = includeGroupName ? toPascalCase(operation.groupName) : "";
+  const prefix =
+    includeGroupName && operation.name.indexOf("_") === -1
+      ? getClassicalLayerPrefix(operation, NameType.Interface)
+      : "";
   const optionName = `${prefix}${toPascalCase(operation.name)}Options`;
   if (operation.bodyParameter?.type.name === optionName) {
     return optionName.replace(/Options$/, "RequestOptions");
@@ -303,8 +305,10 @@ export function getOperationOptionsName(
  * Figuring out what goes in headers, body, path and qsp.
  */
 function getRequestParameters(
+  dpgContext: SdkContext,
   operation: Operation,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ): string {
   if (!operation.parameters) {
     return "";
@@ -317,7 +321,7 @@ function getRequestParameters(
 
   const parametersImplementation: Record<
     "header" | "query" | "body",
-    string[]
+    { paramMap: string; param: Parameter }[]
   > = {
     header: [],
     query: [],
@@ -325,10 +329,15 @@ function getRequestParameters(
   };
 
   for (const param of operationParameters) {
-    if (param.location === "header" || param.location === "query") {
-      parametersImplementation[param.location].push(
-        getParameterMap(param, importSet)
-      );
+    if (
+      param.location === "header" ||
+      param.location === "query" ||
+      param.location === "body"
+    ) {
+      parametersImplementation[param.location].push({
+        paramMap: getParameterMap(param, importSet, runtimeImports),
+        param
+      });
     }
   }
 
@@ -339,52 +348,76 @@ function getRequestParameters(
   }
 
   if (parametersImplementation.header.length) {
-    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nheaders: {${parametersImplementation.header
+      .map((i) => buildHeaderParameter(dpgContext.program, i.paramMap, i.param))
+      .join(",\n")}},`;
   }
 
   if (parametersImplementation.query.length) {
-    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query.join(
-      ",\n"
-    )}},`;
+    paramStr = `${paramStr}\nqueryParameters: {${parametersImplementation.query
+      .map((i) => i.paramMap)
+      .join(",\n")}},`;
   }
-
-  paramStr = `${paramStr}${buildBodyParameter(
-    operation.bodyParameter,
-    importSet
-  )}`;
-
+  if (
+    operation.bodyParameter === undefined &&
+    parametersImplementation.body.length
+  ) {
+    paramStr = `${paramStr}\nbody: {${parametersImplementation.body
+      .map((i) => i.paramMap)
+      .join(",\n")}}`;
+  } else if (operation.bodyParameter !== undefined) {
+    paramStr = `${paramStr}${buildBodyParameter(
+      operation.bodyParameter,
+      importSet,
+      runtimeImports
+    )}`;
+  }
   return paramStr;
+}
+
+// Specially handle the type for headers because we only allow string/number/boolean values
+function buildHeaderParameter(
+  program: Program,
+  paramMap: string,
+  param: Parameter
+): string {
+  if (!param.optional && param.type.nullable === true) {
+    reportDiagnostic(program, {
+      code: "nullable-required-header",
+      target: NoTarget
+    });
+    return paramMap;
+  }
+  const conditions = [];
+  if (param.optional) {
+    conditions.push(`options?.${param.clientName} !== undefined`);
+  }
+  if (param.type.nullable === true) {
+    conditions.push(`options?.${param.clientName} !== null`);
+  }
+  return conditions.length > 0
+    ? `...(${conditions.join(" && ")} ? {${paramMap}} : {})`
+    : paramMap;
 }
 
 function buildBodyParameter(
   bodyParameter: BodyParameter | undefined,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ) {
   if (!bodyParameter) {
     return "";
   }
 
   if (bodyParameter.type.type === "model") {
-    const bodyParts: string[] = [];
-    for (const param of bodyParameter?.type.properties?.filter(
-      (p) => !p.readonly
-    ) ?? []) {
-      if (param.type.type === "model" && isRequired(param)) {
-        bodyParts.push(
-          `"${param.restApiName}": {${getRequestModelMapping(
-            param.type,
-            param.clientName,
-            importSet
-          ).join(",\n")}}`
-        );
-      } else {
-        bodyParts.push(getParameterMap(param, importSet));
-      }
-    }
+    const bodyParts: string[] = getRequestModelMapping(
+      bodyParameter.type,
+      bodyParameter.clientName,
+      importSet,
+      runtimeImports
+    );
 
-    if (bodyParameter && bodyParameter.type.properties) {
+    if (bodyParameter && bodyParts.length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
     }
   }
@@ -394,7 +427,8 @@ function buildBodyParameter(
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p",
-        importSet
+        importSet,
+        runtimeImports
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
         ${bodyParts.join(", ")}
@@ -403,11 +437,41 @@ function buildBodyParameter(
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
-  if (bodyParameter.type.type === "byte-array") {
+  if (
+    bodyParameter.type.type === "byte-array" &&
+    !bodyParameter.isBinaryPayload
+  ) {
+    const specifier = getImportSpecifier("coreUtil", runtimeImports);
+    const coreUtilSet = importSet.get(specifier);
+    if (!coreUtilSet) {
+      importSet.set(specifier, new Set<string>().add("uint8ArrayToString"));
+    } else {
+      coreUtilSet.add("uint8ArrayToString");
+    }
+    return bodyParameter.optional
+      ? `body: typeof ${bodyParameter.clientName} === 'string'
+    ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
+          bodyParameter.type
+        )}")
+    : ${bodyParameter.clientName}`
+      : `body: uint8ArrayToString(${
+          bodyParameter.clientName
+        }, "${getEncodingFormat(bodyParameter.type)}")`;
+  } else if (bodyParameter.isBinaryPayload) {
     return `\nbody: ${bodyParameter.clientName},`;
   }
 
   return "";
+}
+
+function getEncodingFormat(type: { format?: string }) {
+  const supportedFormats = ["base64url", "base64", "byte"];
+
+  if (!supportedFormats.includes(type.format ?? "")) {
+    return "base64";
+  }
+
+  return type.format;
 }
 
 /**
@@ -415,23 +479,24 @@ function buildBodyParameter(
  */
 function getParameterMap(
   param: Parameter | Property,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ): string {
   if (isConstant(param)) {
     return getConstantValue(param);
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(param as Parameter, importSet);
+    return getCollectionFormat(param as Parameter, importSet, runtimeImports);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(param, importSet);
+    return getOptional(param, importSet, runtimeImports);
   }
 
   if (isRequired(param)) {
-    return getRequired(param, importSet);
+    return getRequired(param, importSet, runtimeImports);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -439,7 +504,8 @@ function getParameterMap(
 
 function getCollectionFormat(
   param: Parameter,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
@@ -455,6 +521,7 @@ function getCollectionFormat(
       param.type,
       param.clientName,
       importSet,
+      runtimeImports,
       true,
       param.format
     )}${additionalParam})`;
@@ -465,6 +532,7 @@ function getCollectionFormat(
     param.type,
     "options?." + param.clientName,
     importSet,
+    runtimeImports,
     false,
     param.format
   )}${additionalParam}): undefined`;
@@ -502,18 +570,24 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType, importSet: Map<string, Set<string>>) {
+function getRequired(
+  param: RequiredType,
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
+) {
   if (param.type.type === "model") {
-    return `"${param.restApiName}": ${getRequestModelMapping(
+    return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
-      importSet
-    ).join(",")}`;
+      importSet,
+      runtimeImports
+    ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     param.clientName,
     importSet,
+    runtimeImports,
     true,
     param.format === undefined &&
       (param as Parameter).location === "header" &&
@@ -554,18 +628,24 @@ function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(param: OptionalType, importSet: Map<string, Set<string>>) {
+function getOptional(
+  param: OptionalType,
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
-      importSet
+      importSet,
+      runtimeImports
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
     importSet,
+    runtimeImports,
     false,
     param.format === undefined &&
       (param as Parameter).location === "header" &&
@@ -634,13 +714,14 @@ function getNullableCheck(name: string, type: Type) {
 function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ) {
-  if (!modelPropertyType.properties || !modelPropertyType.properties) {
+  if (getAllProperties(modelPropertyType).length <= 0) {
     return [];
   }
   const props: string[] = [];
-  const properties: Property[] = modelPropertyType.properties;
+  const properties: Property[] = getAllProperties(modelPropertyType) ?? [];
   for (const property of properties) {
     if (property.readonly) {
       continue;
@@ -677,7 +758,8 @@ function getRequestModelMapping(
           `${propertyPath}.${property.clientName}${
             property.optional ? "?" : ""
           }`,
-          importSet
+          importSet,
+          runtimeImports
         )}}`;
       }
 
@@ -704,6 +786,7 @@ function getRequestModelMapping(
           property.type,
           clientValue,
           importSet,
+          runtimeImports,
           !property.optional,
           property.format
         )}`
@@ -721,7 +804,8 @@ function getRequestModelMapping(
 export function getResponseMapping(
   properties: Property[],
   propertyPath: string = "result.body",
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ) {
   const props: string[] = [];
   for (const property of properties) {
@@ -754,11 +838,12 @@ export function getResponseMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } {${getResponseMapping(
-          property.type.properties ?? [],
+          getAllProperties(property.type) ?? [],
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
-          importSet
+          importSet,
+          runtimeImports
         )}}`;
       }
 
@@ -787,6 +872,7 @@ export function getResponseMapping(
             property.type,
             restValue,
             importSet,
+            runtimeImports,
             property.optional !== undefined ? !property.optional : false,
             property.format
           )}`
@@ -807,57 +893,69 @@ function deserializeResponseValue(
   type: Type,
   restValue: string,
   importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports,
   required: boolean,
   format?: string
 ): string {
-  const coreUtilSet = importSet.get("@azure/core-util");
-  const deserializeUtils = importSet.get("../utils/deserializeUtil.js");
-  let deserializeFunctionName;
+  const coreSpecifier = getImportSpecifier("coreUtil", runtimeImports);
+  const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":
       return required
-        ? `new Date(${restValue})`
+        ? type.nullable
+          ? `${restValue} === null ? null : new Date(${restValue})`
+          : `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
-    case "list":
+    case "list": {
+      const prefix =
+        required && !type.nullable
+          ? `${restValue}`
+          : `!${restValue} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
-        return `(${restValue} ?? []).map(p => ({${getResponseMapping(
-          type.elementType?.properties ?? [],
+        return `${prefix}.map(p => ({${getResponseMapping(
+          getAllProperties(type.elementType) ?? [],
           "p",
-          importSet
+          importSet,
+          runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
-        return `(${restValue} ?? []).map(p => ${deserializeResponseValue(
+        return `${prefix}.map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
           importSet,
+          runtimeImports,
           required,
           type.elementType?.format
         )})`;
       } else {
         return restValue;
       }
+    }
     case "byte-array":
-      if (!coreUtilSet) {
-        importSet.set(
-          "@azure/core-util",
-          new Set<string>().add("stringToUint8Array")
-        );
-      } else {
-        coreUtilSet.add("stringToUint8Array");
+      if (format !== "binary") {
+        if (!coreUtilSet) {
+          importSet.set(
+            coreSpecifier,
+            new Set<string>().add("stringToUint8Array")
+          );
+        } else {
+          coreUtilSet.add("stringToUint8Array");
+        }
+        return `typeof ${restValue} === 'string'
+        ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
+        : ${restValue}`;
       }
-      return `typeof ${restValue} === 'string'
-      ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
-      : ${restValue}`;
+      return restValue;
     case "combined":
       if (type.types?.some((t) => isSpecialUnionVariant(t))) {
-        deserializeFunctionName = getDeserializeFunctionName(type);
-        if (!deserializeUtils) {
+        const deserializeFunctionName = getDeserializeFunctionName(type);
+        if (!coreUtilSet) {
           importSet.set(
             "../utils/deserializeUtil.js",
             new Set<string>().add(deserializeFunctionName)
           );
         } else {
-          deserializeUtils.add(deserializeFunctionName);
+          coreUtilSet.add(deserializeFunctionName);
         }
         return `${deserializeFunctionName}(${restValue})`;
       } else {
@@ -877,10 +975,12 @@ function serializeRequestValue(
   type: Type,
   clientValue: string,
   importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports,
   required: boolean,
   format?: string
 ): string {
-  const coreUtilSet = importSet.get("@azure/core-util");
+  const utilSpecifier = getImportSpecifier("coreUtil", runtimeImports);
+  const coreUtilSet = importSet.get(utilSpecifier);
   switch (type.type) {
     case "datetime":
       switch (type.format ?? format) {
@@ -897,38 +997,50 @@ function serializeRequestValue(
         default:
           return `${clientValue}${required ? "" : "?"}.toISOString()`;
       }
-    case "list":
+    case "list": {
+      const prefix =
+        required && !type.nullable
+          ? `${clientValue}`
+          : `!${clientValue} ? ${clientValue} : ${clientValue}`;
       if (type.elementType?.type === "model") {
-        return `(${clientValue} ?? []).map(p => ({${getRequestModelMapping(
+        return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
-          importSet
+          importSet,
+          runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
-        return `(${clientValue} ?? []).map(p => ${serializeRequestValue(
+        return `${prefix}.map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
           importSet,
+          runtimeImports,
           required,
           type.elementType?.format
         )})`;
       } else {
         return clientValue;
       }
+    }
     case "byte-array":
-      if (!coreUtilSet) {
-        importSet.set(
-          "@azure/core-util",
-          new Set<string>().add("uint8ArrayToString")
-        );
-      } else {
-        coreUtilSet.add("uint8ArrayToString");
+      if (format !== "binary") {
+        if (!coreUtilSet) {
+          importSet.set(
+            utilSpecifier,
+            new Set<string>().add("uint8ArrayToString")
+          );
+        } else {
+          coreUtilSet.add("uint8ArrayToString");
+        }
+        return required
+          ? `uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }")`
+          : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
+              getEncodingFormat({ format }) ?? "base64"
+            }"): undefined`;
       }
-      return required
-        ? `uint8ArrayToString(${clientValue}, "${format ?? "base64"}")`
-        : `${clientValue} !== undefined ? uint8ArrayToString(${clientValue}, "${
-            format ?? "base64"
-          }"): undefined`;
+      return clientValue;
     default:
       return clientValue;
   }
@@ -962,4 +1074,20 @@ export function hasPagingOperation(codeModel: ModularCodeModel) {
       )
     )
   );
+}
+
+function getAllProperties(type: Type): Property[] {
+  const propertiesMap: Map<string, Property> = new Map();
+  if (!type) {
+    return [];
+  }
+  type.parents?.forEach((p) => {
+    getAllProperties(p).forEach((prop) => {
+      propertiesMap.set(prop.clientName, prop);
+    });
+  });
+  type.properties?.forEach((p) => {
+    propertiesMap.set(p.clientName, p);
+  });
+  return [...propertiesMap.values()];
 }

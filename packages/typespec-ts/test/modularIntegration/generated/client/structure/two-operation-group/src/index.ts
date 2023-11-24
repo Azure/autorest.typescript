@@ -7,10 +7,11 @@ export {
 } from "./TwoOperationGroupClient.js";
 export {
   ClientType,
-  OneOptions,
-  ThreeOptions,
-  FourOptions,
-  TwoOptions,
-  FiveOptions,
-  SixOptions,
+  Group1OneOptions,
+  Group1ThreeOptions,
+  Group1FourOptions,
+  Group2TwoOptions,
+  Group2FiveOptions,
+  Group2SixOptions,
 } from "./models/index.js";
+export { Group1Operations, Group2Operations } from "./classic/index.js";

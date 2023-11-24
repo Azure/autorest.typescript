@@ -44,12 +44,6 @@ export interface GetWidgetOperationStatusDefaultResponse extends HttpResponse {
   headers: RawHttpHeaders & GetWidgetOperationStatusDefaultHeaders;
 }
 
-/** The final response for long-running getWidgetOperationStatus operation */
-export interface GetWidgetOperationStatusLogicalResponse extends HttpResponse {
-  status: "200";
-  body: ResourceOperationStatusOutput;
-}
-
 export interface CreateOrUpdateWidget200Headers {
   /** The location for monitoring the operation state. */
   "operation-location": string;

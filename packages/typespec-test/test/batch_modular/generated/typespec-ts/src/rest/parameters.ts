@@ -4,27 +4,34 @@
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  BatchPool,
-  BatchPoolEnableAutoScaleParameters,
-  BatchPoolEvaluateAutoScaleParameters,
-  BatchPoolResizeParameters,
-  NodeRemoveParameters,
+  BatchPoolCreateOptions,
+  BatchPoolUpdateOptions,
+  BatchPoolEnableAutoScaleOptions,
+  BatchPoolEvaluateAutoScaleOptions,
+  BatchPoolResizeOptions,
+  BatchPoolReplaceOptions,
+  NodeRemoveOptions,
+  BatchJobUpdateOptions,
   BatchJob,
-  BatchJobDisableParameters,
-  BatchJobTerminateParameters,
-  Certificate,
+  BatchJobDisableOptions,
+  BatchJobTerminateOptions,
+  BatchJobCreateOptions,
+  BatchCertificate,
+  BatchJobScheduleUpdateOptions,
   BatchJobSchedule,
-  BatchTask,
+  BatchJobScheduleCreateOptions,
+  BatchTaskCreateOptions,
   BatchTaskCollection,
-  ComputeNodeUser,
-  NodeUpdateUserParameters,
-  NodeRebootParameters,
-  NodeReimageParameters,
-  NodeDisableSchedulingParameters,
-  UploadBatchServiceLogsConfiguration,
+  BatchTask,
+  BatchNodeUserCreateOptions,
+  BatchNodeUserUpdateOptions,
+  NodeRebootOptions,
+  NodeReimageOptions,
+  NodeDisableSchedulingOptions,
+  UploadBatchServiceLogsOptions,
 } from "./models.js";
 
-export interface ApplicationsListApplicationsHeaders {
+export interface ListApplicationsHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -40,7 +47,7 @@ export interface ApplicationsListApplicationsHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface ApplicationsListApplicationsQueryParamProperties {
+export interface ListApplicationsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -53,101 +60,55 @@ export interface ApplicationsListApplicationsQueryParamProperties {
   timeOut?: number;
 }
 
-export interface ApplicationsListApplicationsQueryParam {
-  queryParameters?: ApplicationsListApplicationsQueryParamProperties;
+export interface ListApplicationsQueryParam {
+  queryParameters?: ListApplicationsQueryParamProperties;
 }
 
-export interface ApplicationsListApplicationsHeaderParam {
-  headers?: RawHttpHeadersInput & ApplicationsListApplicationsHeaders;
+export interface ListApplicationsHeaderParam {
+  headers?: RawHttpHeadersInput & ListApplicationsHeaders;
 }
 
-export type ApplicationsListApplicationsParameters =
-  ApplicationsListApplicationsQueryParam &
-    ApplicationsListApplicationsHeaderParam &
-    RequestParameters;
-export type ApplicationsGetParameters = RequestParameters;
-export type PoolListUsageMetricsParameters = RequestParameters;
-
-export interface PoolGetAllPoolLifetimeStatisticsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface PoolGetAllPoolLifetimeStatisticsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface PoolGetAllPoolLifetimeStatisticsQueryParam {
-  queryParameters?: PoolGetAllPoolLifetimeStatisticsQueryParamProperties;
-}
-
-export interface PoolGetAllPoolLifetimeStatisticsHeaderParam {
-  headers?: RawHttpHeadersInput & PoolGetAllPoolLifetimeStatisticsHeaders;
-}
-
-export type PoolGetAllPoolLifetimeStatisticsParameters =
-  PoolGetAllPoolLifetimeStatisticsQueryParam &
-    PoolGetAllPoolLifetimeStatisticsHeaderParam &
-    RequestParameters;
-
-export interface PoolAddPoolHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface PoolAddPoolBodyParam {
-  /** The Pool to be added. */
-  body: BatchPool;
-}
-
-export interface PoolAddPoolQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface PoolAddPoolQueryParam {
-  queryParameters?: PoolAddPoolQueryParamProperties;
-}
-
-export interface PoolAddPoolHeaderParam {
-  headers?: RawHttpHeadersInput & PoolAddPoolHeaders;
-}
-
-export type PoolAddPoolParameters = PoolAddPoolQueryParam &
-  PoolAddPoolHeaderParam &
-  PoolAddPoolBodyParam &
+export type ListApplicationsParameters = ListApplicationsQueryParam &
+  ListApplicationsHeaderParam &
   RequestParameters;
 
-export interface PoolListPoolsHeaders {
+export interface GetApplicationHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface GetApplicationQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface GetApplicationQueryParam {
+  queryParameters?: GetApplicationQueryParamProperties;
+}
+
+export interface GetApplicationHeaderParam {
+  headers?: RawHttpHeadersInput & GetApplicationHeaders;
+}
+
+export type GetApplicationParameters = GetApplicationQueryParam &
+  GetApplicationHeaderParam &
+  RequestParameters;
+
+export interface ListPoolUsageMetricsHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -163,7 +124,113 @@ export interface PoolListPoolsHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface PoolListPoolsQueryParamProperties {
+export interface ListPoolUsageMetricsQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * The earliest time from which to include metrics. This must be at least two and
+   * a half hours before the current time. If not specified this defaults to the
+   * start time of the last aggregation interval currently available.
+   */
+  starttime?: Date | string;
+  /**
+   * The latest time from which to include metrics. This must be at least two hours
+   * before the current time. If not specified this defaults to the end time of the
+   * last aggregation interval currently available.
+   */
+  endtime?: Date | string;
+  /**
+   * An OData $filter clause. For more information on constructing this filter, see
+   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-account-usage-metrics.
+   */
+  $filter?: string;
+}
+
+export interface ListPoolUsageMetricsQueryParam {
+  queryParameters?: ListPoolUsageMetricsQueryParamProperties;
+}
+
+export interface ListPoolUsageMetricsHeaderParam {
+  headers?: RawHttpHeadersInput & ListPoolUsageMetricsHeaders;
+}
+
+export type ListPoolUsageMetricsParameters = ListPoolUsageMetricsQueryParam &
+  ListPoolUsageMetricsHeaderParam &
+  RequestParameters;
+
+export interface CreatePoolHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface CreatePoolBodyParam {
+  /** The Pool to be created. */
+  body: BatchPoolCreateOptions;
+}
+
+export interface CreatePoolQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface CreatePoolQueryParam {
+  queryParameters?: CreatePoolQueryParamProperties;
+}
+
+export interface CreatePoolHeaderParam {
+  headers?: RawHttpHeadersInput & CreatePoolHeaders;
+}
+
+export interface CreatePoolMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type CreatePoolParameters = CreatePoolQueryParam &
+  CreatePoolHeaderParam &
+  CreatePoolMediaTypesParam &
+  CreatePoolBodyParam &
+  RequestParameters;
+
+export interface ListPoolsHeaders {
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+}
+
+export interface ListPoolsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -180,24 +247,24 @@ export interface PoolListPoolsQueryParamProperties {
    */
   $filter?: string;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
   /** An OData $expand clause. */
-  $expand?: string;
+  $expand?: string[];
 }
 
-export interface PoolListPoolsQueryParam {
-  queryParameters?: PoolListPoolsQueryParamProperties;
+export interface ListPoolsQueryParam {
+  queryParameters?: ListPoolsQueryParamProperties;
 }
 
-export interface PoolListPoolsHeaderParam {
-  headers?: RawHttpHeadersInput & PoolListPoolsHeaders;
+export interface ListPoolsHeaderParam {
+  headers?: RawHttpHeadersInput & ListPoolsHeaders;
 }
 
-export type PoolListPoolsParameters = PoolListPoolsQueryParam &
-  PoolListPoolsHeaderParam &
+export type ListPoolsParameters = ListPoolsQueryParam &
+  ListPoolsHeaderParam &
   RequestParameters;
 
-export interface PoolDeletePoolHeaders {
+export interface DeletePoolHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -237,7 +304,7 @@ export interface PoolDeletePoolHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface PoolDeletePoolQueryParamProperties {
+export interface DeletePoolQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -245,16 +312,16 @@ export interface PoolDeletePoolQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolDeletePoolQueryParam {
-  queryParameters?: PoolDeletePoolQueryParamProperties;
+export interface DeletePoolQueryParam {
+  queryParameters?: DeletePoolQueryParamProperties;
 }
 
-export interface PoolDeletePoolHeaderParam {
-  headers?: RawHttpHeadersInput & PoolDeletePoolHeaders;
+export interface DeletePoolHeaderParam {
+  headers?: RawHttpHeadersInput & DeletePoolHeaders;
 }
 
-export type PoolDeletePoolParameters = PoolDeletePoolQueryParam &
-  PoolDeletePoolHeaderParam &
+export type DeletePoolParameters = DeletePoolQueryParam &
+  DeletePoolHeaderParam &
   RequestParameters;
 
 export interface PoolExistsHeaders {
@@ -317,7 +384,7 @@ export type PoolExistsParameters = PoolExistsQueryParam &
   PoolExistsHeaderParam &
   RequestParameters;
 
-export interface PoolGetPoolHeaders {
+export interface GetPoolHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -357,31 +424,31 @@ export interface PoolGetPoolHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface PoolGetPoolQueryParamProperties {
+export interface GetPoolQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   timeOut?: number;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
   /** An OData $expand clause. */
-  $expand?: string;
+  $expand?: string[];
 }
 
-export interface PoolGetPoolQueryParam {
-  queryParameters?: PoolGetPoolQueryParamProperties;
+export interface GetPoolQueryParam {
+  queryParameters?: GetPoolQueryParamProperties;
 }
 
-export interface PoolGetPoolHeaderParam {
-  headers?: RawHttpHeadersInput & PoolGetPoolHeaders;
+export interface GetPoolHeaderParam {
+  headers?: RawHttpHeadersInput & GetPoolHeaders;
 }
 
-export type PoolGetPoolParameters = PoolGetPoolQueryParam &
-  PoolGetPoolHeaderParam &
+export type GetPoolParameters = GetPoolQueryParam &
+  GetPoolHeaderParam &
   RequestParameters;
 
-export interface PoolPatchPoolHeaders {
+export interface UpdatePoolHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -421,12 +488,12 @@ export interface PoolPatchPoolHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface PoolPatchPoolBodyParam {
-  /** The parameters for the request. */
-  body: BatchPool;
+export interface UpdatePoolBodyParam {
+  /** The pool properties to update. */
+  body: BatchPoolUpdateOptions;
 }
 
-export interface PoolPatchPoolQueryParamProperties {
+export interface UpdatePoolQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -434,20 +501,26 @@ export interface PoolPatchPoolQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolPatchPoolQueryParam {
-  queryParameters?: PoolPatchPoolQueryParamProperties;
+export interface UpdatePoolQueryParam {
+  queryParameters?: UpdatePoolQueryParamProperties;
 }
 
-export interface PoolPatchPoolHeaderParam {
-  headers?: RawHttpHeadersInput & PoolPatchPoolHeaders;
+export interface UpdatePoolHeaderParam {
+  headers?: RawHttpHeadersInput & UpdatePoolHeaders;
 }
 
-export type PoolPatchPoolParameters = PoolPatchPoolQueryParam &
-  PoolPatchPoolHeaderParam &
-  PoolPatchPoolBodyParam &
+export interface UpdatePoolMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type UpdatePoolParameters = UpdatePoolQueryParam &
+  UpdatePoolHeaderParam &
+  UpdatePoolMediaTypesParam &
+  UpdatePoolBodyParam &
   RequestParameters;
 
-export interface PoolDisableAutoScaleHeaders {
+export interface DisablePoolAutoScaleHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -463,7 +536,7 @@ export interface PoolDisableAutoScaleHeaders {
   "ocp-date"?: string;
 }
 
-export interface PoolDisableAutoScaleQueryParamProperties {
+export interface DisablePoolAutoScaleQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -471,127 +544,19 @@ export interface PoolDisableAutoScaleQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolDisableAutoScaleQueryParam {
-  queryParameters?: PoolDisableAutoScaleQueryParamProperties;
+export interface DisablePoolAutoScaleQueryParam {
+  queryParameters?: DisablePoolAutoScaleQueryParamProperties;
 }
 
-export interface PoolDisableAutoScaleHeaderParam {
-  headers?: RawHttpHeadersInput & PoolDisableAutoScaleHeaders;
+export interface DisablePoolAutoScaleHeaderParam {
+  headers?: RawHttpHeadersInput & DisablePoolAutoScaleHeaders;
 }
 
-export type PoolDisableAutoScaleParameters = PoolDisableAutoScaleQueryParam &
-  PoolDisableAutoScaleHeaderParam &
+export type DisablePoolAutoScaleParameters = DisablePoolAutoScaleQueryParam &
+  DisablePoolAutoScaleHeaderParam &
   RequestParameters;
 
-export interface PoolEnableAutoScaleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface PoolEnableAutoScaleBodyParam {
-  /** The parameters for the request. */
-  body: BatchPoolEnableAutoScaleParameters;
-}
-
-export interface PoolEnableAutoScaleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface PoolEnableAutoScaleQueryParam {
-  queryParameters?: PoolEnableAutoScaleQueryParamProperties;
-}
-
-export interface PoolEnableAutoScaleHeaderParam {
-  headers?: RawHttpHeadersInput & PoolEnableAutoScaleHeaders;
-}
-
-export type PoolEnableAutoScaleParameters = PoolEnableAutoScaleQueryParam &
-  PoolEnableAutoScaleHeaderParam &
-  PoolEnableAutoScaleBodyParam &
-  RequestParameters;
-
-export interface PoolEvaluateAutoScaleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface PoolEvaluateAutoScaleBodyParam {
-  /** The parameters for the request. */
-  body: BatchPoolEvaluateAutoScaleParameters;
-}
-
-export interface PoolEvaluateAutoScaleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface PoolEvaluateAutoScaleQueryParam {
-  queryParameters?: PoolEvaluateAutoScaleQueryParamProperties;
-}
-
-export interface PoolEvaluateAutoScaleHeaderParam {
-  headers?: RawHttpHeadersInput & PoolEvaluateAutoScaleHeaders;
-}
-
-export type PoolEvaluateAutoScaleParameters = PoolEvaluateAutoScaleQueryParam &
-  PoolEvaluateAutoScaleHeaderParam &
-  PoolEvaluateAutoScaleBodyParam &
-  RequestParameters;
-
-export interface PoolResizeHeaders {
+export interface EnablePoolAutoScaleHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -631,12 +596,12 @@ export interface PoolResizeHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface PoolResizeBodyParam {
-  /** The parameters for the request. */
-  body: BatchPoolResizeParameters;
+export interface EnablePoolAutoScaleBodyParam {
+  /** The options to use for enabling automatic scaling. */
+  body: BatchPoolEnableAutoScaleOptions;
 }
 
-export interface PoolResizeQueryParamProperties {
+export interface EnablePoolAutoScaleQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -644,20 +609,74 @@ export interface PoolResizeQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolResizeQueryParam {
-  queryParameters?: PoolResizeQueryParamProperties;
+export interface EnablePoolAutoScaleQueryParam {
+  queryParameters?: EnablePoolAutoScaleQueryParamProperties;
 }
 
-export interface PoolResizeHeaderParam {
-  headers?: RawHttpHeadersInput & PoolResizeHeaders;
+export interface EnablePoolAutoScaleHeaderParam {
+  headers?: RawHttpHeadersInput & EnablePoolAutoScaleHeaders;
 }
 
-export type PoolResizeParameters = PoolResizeQueryParam &
-  PoolResizeHeaderParam &
-  PoolResizeBodyParam &
+export interface EnablePoolAutoScaleMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type EnablePoolAutoScaleParameters = EnablePoolAutoScaleQueryParam &
+  EnablePoolAutoScaleHeaderParam &
+  EnablePoolAutoScaleMediaTypesParam &
+  EnablePoolAutoScaleBodyParam &
   RequestParameters;
 
-export interface PoolStopResizeHeaders {
+export interface EvaluatePoolAutoScaleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface EvaluatePoolAutoScaleBodyParam {
+  /** The options to use for evaluating the automatic scaling formula. */
+  body: BatchPoolEvaluateAutoScaleOptions;
+}
+
+export interface EvaluatePoolAutoScaleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface EvaluatePoolAutoScaleQueryParam {
+  queryParameters?: EvaluatePoolAutoScaleQueryParamProperties;
+}
+
+export interface EvaluatePoolAutoScaleHeaderParam {
+  headers?: RawHttpHeadersInput & EvaluatePoolAutoScaleHeaders;
+}
+
+export interface EvaluatePoolAutoScaleMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type EvaluatePoolAutoScaleParameters = EvaluatePoolAutoScaleQueryParam &
+  EvaluatePoolAutoScaleHeaderParam &
+  EvaluatePoolAutoScaleMediaTypesParam &
+  EvaluatePoolAutoScaleBodyParam &
+  RequestParameters;
+
+export interface ResizePoolHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -697,7 +716,12 @@ export interface PoolStopResizeHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface PoolStopResizeQueryParamProperties {
+export interface ResizePoolBodyParam {
+  /** The options to use for resizing the pool. */
+  body: BatchPoolResizeOptions;
+}
+
+export interface ResizePoolQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -705,61 +729,26 @@ export interface PoolStopResizeQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolStopResizeQueryParam {
-  queryParameters?: PoolStopResizeQueryParamProperties;
+export interface ResizePoolQueryParam {
+  queryParameters?: ResizePoolQueryParamProperties;
 }
 
-export interface PoolStopResizeHeaderParam {
-  headers?: RawHttpHeadersInput & PoolStopResizeHeaders;
+export interface ResizePoolHeaderParam {
+  headers?: RawHttpHeadersInput & ResizePoolHeaders;
 }
 
-export type PoolStopResizeParameters = PoolStopResizeQueryParam &
-  PoolStopResizeHeaderParam &
+export interface ResizePoolMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ResizePoolParameters = ResizePoolQueryParam &
+  ResizePoolHeaderParam &
+  ResizePoolMediaTypesParam &
+  ResizePoolBodyParam &
   RequestParameters;
 
-export interface PoolUpdatePropertiesHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface PoolUpdatePropertiesBodyParam {
-  /** The parameters for the request. */
-  body: BatchPool;
-}
-
-export interface PoolUpdatePropertiesQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface PoolUpdatePropertiesQueryParam {
-  queryParameters?: PoolUpdatePropertiesQueryParamProperties;
-}
-
-export interface PoolUpdatePropertiesHeaderParam {
-  headers?: RawHttpHeadersInput & PoolUpdatePropertiesHeaders;
-}
-
-export type PoolUpdatePropertiesParameters = PoolUpdatePropertiesQueryParam &
-  PoolUpdatePropertiesHeaderParam &
-  PoolUpdatePropertiesBodyParam &
-  RequestParameters;
-
-export interface PoolRemoveNodesHeaders {
+export interface StopPoolResizeHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -799,12 +788,7 @@ export interface PoolRemoveNodesHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface PoolRemoveNodesBodyParam {
-  /** The parameters for the request. */
-  body: NodeRemoveParameters;
-}
-
-export interface PoolRemoveNodesQueryParamProperties {
+export interface StopPoolResizeQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -812,20 +796,139 @@ export interface PoolRemoveNodesQueryParamProperties {
   timeOut?: number;
 }
 
-export interface PoolRemoveNodesQueryParam {
-  queryParameters?: PoolRemoveNodesQueryParamProperties;
+export interface StopPoolResizeQueryParam {
+  queryParameters?: StopPoolResizeQueryParamProperties;
 }
 
-export interface PoolRemoveNodesHeaderParam {
-  headers?: RawHttpHeadersInput & PoolRemoveNodesHeaders;
+export interface StopPoolResizeHeaderParam {
+  headers?: RawHttpHeadersInput & StopPoolResizeHeaders;
 }
 
-export type PoolRemoveNodesParameters = PoolRemoveNodesQueryParam &
-  PoolRemoveNodesHeaderParam &
-  PoolRemoveNodesBodyParam &
+export type StopPoolResizeParameters = StopPoolResizeQueryParam &
+  StopPoolResizeHeaderParam &
   RequestParameters;
 
-export interface AccountListSupportedImagesHeaders {
+export interface ReplacePoolPropertiesHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface ReplacePoolPropertiesBodyParam {
+  /** The options to use for replacing properties on the pool. */
+  body: BatchPoolReplaceOptions;
+}
+
+export interface ReplacePoolPropertiesQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface ReplacePoolPropertiesQueryParam {
+  queryParameters?: ReplacePoolPropertiesQueryParamProperties;
+}
+
+export interface ReplacePoolPropertiesHeaderParam {
+  headers?: RawHttpHeadersInput & ReplacePoolPropertiesHeaders;
+}
+
+export interface ReplacePoolPropertiesMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ReplacePoolPropertiesParameters = ReplacePoolPropertiesQueryParam &
+  ReplacePoolPropertiesHeaderParam &
+  ReplacePoolPropertiesMediaTypesParam &
+  ReplacePoolPropertiesBodyParam &
+  RequestParameters;
+
+export interface RemoveNodesHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface RemoveNodesBodyParam {
+  /** The options to use for removing the node. */
+  body: NodeRemoveOptions;
+}
+
+export interface RemoveNodesQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface RemoveNodesQueryParam {
+  queryParameters?: RemoveNodesQueryParamProperties;
+}
+
+export interface RemoveNodesHeaderParam {
+  headers?: RawHttpHeadersInput & RemoveNodesHeaders;
+}
+
+export interface RemoveNodesMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type RemoveNodesParameters = RemoveNodesQueryParam &
+  RemoveNodesHeaderParam &
+  RemoveNodesMediaTypesParam &
+  RemoveNodesBodyParam &
+  RequestParameters;
+
+export interface ListSupportedImagesHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -841,7 +944,7 @@ export interface AccountListSupportedImagesHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface AccountListSupportedImagesQueryParamProperties {
+export interface ListSupportedImagesQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -859,20 +962,19 @@ export interface AccountListSupportedImagesQueryParamProperties {
   $filter?: string;
 }
 
-export interface AccountListSupportedImagesQueryParam {
-  queryParameters?: AccountListSupportedImagesQueryParamProperties;
+export interface ListSupportedImagesQueryParam {
+  queryParameters?: ListSupportedImagesQueryParamProperties;
 }
 
-export interface AccountListSupportedImagesHeaderParam {
-  headers?: RawHttpHeadersInput & AccountListSupportedImagesHeaders;
+export interface ListSupportedImagesHeaderParam {
+  headers?: RawHttpHeadersInput & ListSupportedImagesHeaders;
 }
 
-export type AccountListSupportedImagesParameters =
-  AccountListSupportedImagesQueryParam &
-    AccountListSupportedImagesHeaderParam &
-    RequestParameters;
+export type ListSupportedImagesParameters = ListSupportedImagesQueryParam &
+  ListSupportedImagesHeaderParam &
+  RequestParameters;
 
-export interface AccountListPoolNodeCountsHeaders {
+export interface ListPoolNodeCountsHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -888,7 +990,7 @@ export interface AccountListPoolNodeCountsHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface AccountListPoolNodeCountsQueryParamProperties {
+export interface ListPoolNodeCountsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -906,117 +1008,19 @@ export interface AccountListPoolNodeCountsQueryParamProperties {
   $filter?: string;
 }
 
-export interface AccountListPoolNodeCountsQueryParam {
-  queryParameters?: AccountListPoolNodeCountsQueryParamProperties;
+export interface ListPoolNodeCountsQueryParam {
+  queryParameters?: ListPoolNodeCountsQueryParamProperties;
 }
 
-export interface AccountListPoolNodeCountsHeaderParam {
-  headers?: RawHttpHeadersInput & AccountListPoolNodeCountsHeaders;
+export interface ListPoolNodeCountsHeaderParam {
+  headers?: RawHttpHeadersInput & ListPoolNodeCountsHeaders;
 }
 
-export type AccountListPoolNodeCountsParameters =
-  AccountListPoolNodeCountsQueryParam &
-    AccountListPoolNodeCountsHeaderParam &
-    RequestParameters;
-
-export interface JobGetAllJobLifetimeStatisticsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface JobGetAllJobLifetimeStatisticsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobGetAllJobLifetimeStatisticsQueryParam {
-  queryParameters?: JobGetAllJobLifetimeStatisticsQueryParamProperties;
-}
-
-export interface JobGetAllJobLifetimeStatisticsHeaderParam {
-  headers?: RawHttpHeadersInput & JobGetAllJobLifetimeStatisticsHeaders;
-}
-
-export type JobGetAllJobLifetimeStatisticsParameters =
-  JobGetAllJobLifetimeStatisticsQueryParam &
-    JobGetAllJobLifetimeStatisticsHeaderParam &
-    RequestParameters;
-
-export interface JobDeleteJobHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobDeleteJobQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobDeleteJobQueryParam {
-  queryParameters?: JobDeleteJobQueryParamProperties;
-}
-
-export interface JobDeleteJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobDeleteJobHeaders;
-}
-
-export type JobDeleteJobParameters = JobDeleteJobQueryParam &
-  JobDeleteJobHeaderParam &
+export type ListPoolNodeCountsParameters = ListPoolNodeCountsQueryParam &
+  ListPoolNodeCountsHeaderParam &
   RequestParameters;
 
-export interface JobGetJobHeaders {
+export interface DeleteJobHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1056,31 +1060,91 @@ export interface JobGetJobHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface JobGetJobQueryParamProperties {
+export interface DeleteJobQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface DeleteJobQueryParam {
+  queryParameters?: DeleteJobQueryParamProperties;
+}
+
+export interface DeleteJobHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteJobHeaders;
+}
+
+export type DeleteJobParameters = DeleteJobQueryParam &
+  DeleteJobHeaderParam &
+  RequestParameters;
+
+export interface GetJobHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface GetJobQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   timeOut?: number;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
   /** An OData $expand clause. */
-  $expand?: string;
+  $expand?: string[];
 }
 
-export interface JobGetJobQueryParam {
-  queryParameters?: JobGetJobQueryParamProperties;
+export interface GetJobQueryParam {
+  queryParameters?: GetJobQueryParamProperties;
 }
 
-export interface JobGetJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobGetJobHeaders;
+export interface GetJobHeaderParam {
+  headers?: RawHttpHeadersInput & GetJobHeaders;
 }
 
-export type JobGetJobParameters = JobGetJobQueryParam &
-  JobGetJobHeaderParam &
+export type GetJobParameters = GetJobQueryParam &
+  GetJobHeaderParam &
   RequestParameters;
 
-export interface JobPatchJobHeaders {
+export interface UpdateJobHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1120,12 +1184,84 @@ export interface JobPatchJobHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface JobPatchJobBodyParam {
-  /** The parameters for the request. */
+export interface UpdateJobBodyParam {
+  /** The options to use for updating the Job. */
+  body: BatchJobUpdateOptions;
+}
+
+export interface UpdateJobQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface UpdateJobQueryParam {
+  queryParameters?: UpdateJobQueryParamProperties;
+}
+
+export interface UpdateJobHeaderParam {
+  headers?: RawHttpHeadersInput & UpdateJobHeaders;
+}
+
+export interface UpdateJobMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type UpdateJobParameters = UpdateJobQueryParam &
+  UpdateJobHeaderParam &
+  UpdateJobMediaTypesParam &
+  UpdateJobBodyParam &
+  RequestParameters;
+
+export interface ReplaceJobHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface ReplaceJobBodyParam {
+  /** A job with updated properties */
   body: BatchJob;
 }
 
-export interface JobPatchJobQueryParamProperties {
+export interface ReplaceJobQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1133,20 +1269,26 @@ export interface JobPatchJobQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobPatchJobQueryParam {
-  queryParameters?: JobPatchJobQueryParamProperties;
+export interface ReplaceJobQueryParam {
+  queryParameters?: ReplaceJobQueryParamProperties;
 }
 
-export interface JobPatchJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobPatchJobHeaders;
+export interface ReplaceJobHeaderParam {
+  headers?: RawHttpHeadersInput & ReplaceJobHeaders;
 }
 
-export type JobPatchJobParameters = JobPatchJobQueryParam &
-  JobPatchJobHeaderParam &
-  JobPatchJobBodyParam &
+export interface ReplaceJobMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ReplaceJobParameters = ReplaceJobQueryParam &
+  ReplaceJobHeaderParam &
+  ReplaceJobMediaTypesParam &
+  ReplaceJobBodyParam &
   RequestParameters;
 
-export interface JobUpdateJobHeaders {
+export interface DisableJobHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1186,12 +1328,12 @@ export interface JobUpdateJobHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface JobUpdateJobBodyParam {
-  /** The parameters for the request. */
-  body: BatchJob;
+export interface DisableJobBodyParam {
+  /** The options to use for disabling the Job. */
+  body: BatchJobDisableOptions;
 }
 
-export interface JobUpdateJobQueryParamProperties {
+export interface DisableJobQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1199,20 +1341,26 @@ export interface JobUpdateJobQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobUpdateJobQueryParam {
-  queryParameters?: JobUpdateJobQueryParamProperties;
+export interface DisableJobQueryParam {
+  queryParameters?: DisableJobQueryParamProperties;
 }
 
-export interface JobUpdateJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobUpdateJobHeaders;
+export interface DisableJobHeaderParam {
+  headers?: RawHttpHeadersInput & DisableJobHeaders;
 }
 
-export type JobUpdateJobParameters = JobUpdateJobQueryParam &
-  JobUpdateJobHeaderParam &
-  JobUpdateJobBodyParam &
+export interface DisableJobMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type DisableJobParameters = DisableJobQueryParam &
+  DisableJobHeaderParam &
+  DisableJobMediaTypesParam &
+  DisableJobBodyParam &
   RequestParameters;
 
-export interface JobDisableJobHeaders {
+export interface EnableJobHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1252,12 +1400,7 @@ export interface JobDisableJobHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface JobDisableJobBodyParam {
-  /** The parameters for the request. */
-  body: BatchJobDisableParameters;
-}
-
-export interface JobDisableJobQueryParamProperties {
+export interface EnableJobQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1265,20 +1408,19 @@ export interface JobDisableJobQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobDisableJobQueryParam {
-  queryParameters?: JobDisableJobQueryParamProperties;
+export interface EnableJobQueryParam {
+  queryParameters?: EnableJobQueryParamProperties;
 }
 
-export interface JobDisableJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobDisableJobHeaders;
+export interface EnableJobHeaderParam {
+  headers?: RawHttpHeadersInput & EnableJobHeaders;
 }
 
-export type JobDisableJobParameters = JobDisableJobQueryParam &
-  JobDisableJobHeaderParam &
-  JobDisableJobBodyParam &
+export type EnableJobParameters = EnableJobQueryParam &
+  EnableJobHeaderParam &
   RequestParameters;
 
-export interface JobEnableJobHeaders {
+export interface TerminateJobHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1318,7 +1460,12 @@ export interface JobEnableJobHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface JobEnableJobQueryParamProperties {
+export interface TerminateJobBodyParam {
+  /** The options to use for terminating the Job. */
+  body?: BatchJobTerminateOptions;
+}
+
+export interface TerminateJobQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1326,85 +1473,26 @@ export interface JobEnableJobQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobEnableJobQueryParam {
-  queryParameters?: JobEnableJobQueryParamProperties;
+export interface TerminateJobQueryParam {
+  queryParameters?: TerminateJobQueryParamProperties;
 }
 
-export interface JobEnableJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobEnableJobHeaders;
+export interface TerminateJobHeaderParam {
+  headers?: RawHttpHeadersInput & TerminateJobHeaders;
 }
 
-export type JobEnableJobParameters = JobEnableJobQueryParam &
-  JobEnableJobHeaderParam &
+export interface TerminateJobMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type TerminateJobParameters = TerminateJobQueryParam &
+  TerminateJobHeaderParam &
+  TerminateJobMediaTypesParam &
+  TerminateJobBodyParam &
   RequestParameters;
 
-export interface JobTerminateJobHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobTerminateJobBodyParam {
-  /** The parameters for the request. */
-  body?: BatchJobTerminateParameters;
-}
-
-export interface JobTerminateJobQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobTerminateJobQueryParam {
-  queryParameters?: JobTerminateJobQueryParamProperties;
-}
-
-export interface JobTerminateJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobTerminateJobHeaders;
-}
-
-export type JobTerminateJobParameters = JobTerminateJobQueryParam &
-  JobTerminateJobHeaderParam &
-  JobTerminateJobBodyParam &
-  RequestParameters;
-
-export interface JobAddJobHeaders {
+export interface CreateJobHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1420,12 +1508,12 @@ export interface JobAddJobHeaders {
   "ocp-date"?: string;
 }
 
-export interface JobAddJobBodyParam {
-  /** The Job to be added. */
-  body: BatchJob;
+export interface CreateJobBodyParam {
+  /** The Job to be created. */
+  body: BatchJobCreateOptions;
 }
 
-export interface JobAddJobQueryParamProperties {
+export interface CreateJobQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1433,20 +1521,26 @@ export interface JobAddJobQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobAddJobQueryParam {
-  queryParameters?: JobAddJobQueryParamProperties;
+export interface CreateJobQueryParam {
+  queryParameters?: CreateJobQueryParamProperties;
 }
 
-export interface JobAddJobHeaderParam {
-  headers?: RawHttpHeadersInput & JobAddJobHeaders;
+export interface CreateJobHeaderParam {
+  headers?: RawHttpHeadersInput & CreateJobHeaders;
 }
 
-export type JobAddJobParameters = JobAddJobQueryParam &
-  JobAddJobHeaderParam &
-  JobAddJobBodyParam &
+export interface CreateJobMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type CreateJobParameters = CreateJobQueryParam &
+  CreateJobHeaderParam &
+  CreateJobMediaTypesParam &
+  CreateJobBodyParam &
   RequestParameters;
 
-export interface JobListJobsHeaders {
+export interface ListJobsHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -1462,7 +1556,7 @@ export interface JobListJobsHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface JobListJobsQueryParamProperties {
+export interface ListJobsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1479,24 +1573,24 @@ export interface JobListJobsQueryParamProperties {
    */
   $filter?: string;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
   /** An OData $expand clause. */
-  $expand?: string;
+  $expand?: string[];
 }
 
-export interface JobListJobsQueryParam {
-  queryParameters?: JobListJobsQueryParamProperties;
+export interface ListJobsQueryParam {
+  queryParameters?: ListJobsQueryParamProperties;
 }
 
-export interface JobListJobsHeaderParam {
-  headers?: RawHttpHeadersInput & JobListJobsHeaders;
+export interface ListJobsHeaderParam {
+  headers?: RawHttpHeadersInput & ListJobsHeaders;
 }
 
-export type JobListJobsParameters = JobListJobsQueryParam &
-  JobListJobsHeaderParam &
+export type ListJobsParameters = ListJobsQueryParam &
+  ListJobsHeaderParam &
   RequestParameters;
 
-export interface JobListFromJobScheduleHeaders {
+export interface ListJobsFromScheduleHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -1512,7 +1606,7 @@ export interface JobListFromJobScheduleHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface JobListFromJobScheduleQueryParamProperties {
+export interface ListJobsFromScheduleQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1529,25 +1623,24 @@ export interface JobListFromJobScheduleQueryParamProperties {
    */
   $filter?: string;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
   /** An OData $expand clause. */
-  $expand?: string;
+  $expand?: string[];
 }
 
-export interface JobListFromJobScheduleQueryParam {
-  queryParameters?: JobListFromJobScheduleQueryParamProperties;
+export interface ListJobsFromScheduleQueryParam {
+  queryParameters?: ListJobsFromScheduleQueryParamProperties;
 }
 
-export interface JobListFromJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobListFromJobScheduleHeaders;
+export interface ListJobsFromScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & ListJobsFromScheduleHeaders;
 }
 
-export type JobListFromJobScheduleParameters =
-  JobListFromJobScheduleQueryParam &
-    JobListFromJobScheduleHeaderParam &
-    RequestParameters;
+export type ListJobsFromScheduleParameters = ListJobsFromScheduleQueryParam &
+  ListJobsFromScheduleHeaderParam &
+  RequestParameters;
 
-export interface JobListPreparationAndReleaseTaskStatusHeaders {
+export interface ListJobPreparationAndReleaseTaskStatusHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -1563,7 +1656,7 @@ export interface JobListPreparationAndReleaseTaskStatusHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface JobListPreparationAndReleaseTaskStatusQueryParamProperties {
+export interface ListJobPreparationAndReleaseTaskStatusQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1580,23 +1673,23 @@ export interface JobListPreparationAndReleaseTaskStatusQueryParamProperties {
    */
   $filter?: string;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
 }
 
-export interface JobListPreparationAndReleaseTaskStatusQueryParam {
-  queryParameters?: JobListPreparationAndReleaseTaskStatusQueryParamProperties;
+export interface ListJobPreparationAndReleaseTaskStatusQueryParam {
+  queryParameters?: ListJobPreparationAndReleaseTaskStatusQueryParamProperties;
 }
 
-export interface JobListPreparationAndReleaseTaskStatusHeaderParam {
-  headers?: RawHttpHeadersInput & JobListPreparationAndReleaseTaskStatusHeaders;
+export interface ListJobPreparationAndReleaseTaskStatusHeaderParam {
+  headers?: RawHttpHeadersInput & ListJobPreparationAndReleaseTaskStatusHeaders;
 }
 
-export type JobListPreparationAndReleaseTaskStatusParameters =
-  JobListPreparationAndReleaseTaskStatusQueryParam &
-    JobListPreparationAndReleaseTaskStatusHeaderParam &
+export type ListJobPreparationAndReleaseTaskStatusParameters =
+  ListJobPreparationAndReleaseTaskStatusQueryParam &
+    ListJobPreparationAndReleaseTaskStatusHeaderParam &
     RequestParameters;
 
-export interface JobGetTaskCountsHeaders {
+export interface GetJobTaskCountsHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1612,7 +1705,7 @@ export interface JobGetTaskCountsHeaders {
   "ocp-date"?: string;
 }
 
-export interface JobGetTaskCountsQueryParamProperties {
+export interface GetJobTaskCountsQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1620,19 +1713,19 @@ export interface JobGetTaskCountsQueryParamProperties {
   timeOut?: number;
 }
 
-export interface JobGetTaskCountsQueryParam {
-  queryParameters?: JobGetTaskCountsQueryParamProperties;
+export interface GetJobTaskCountsQueryParam {
+  queryParameters?: GetJobTaskCountsQueryParamProperties;
 }
 
-export interface JobGetTaskCountsHeaderParam {
-  headers?: RawHttpHeadersInput & JobGetTaskCountsHeaders;
+export interface GetJobTaskCountsHeaderParam {
+  headers?: RawHttpHeadersInput & GetJobTaskCountsHeaders;
 }
 
-export type JobGetTaskCountsParameters = JobGetTaskCountsQueryParam &
-  JobGetTaskCountsHeaderParam &
+export type GetJobTaskCountsParameters = GetJobTaskCountsQueryParam &
+  GetJobTaskCountsHeaderParam &
   RequestParameters;
 
-export interface CertificatesAddCertificateHeaders {
+export interface CreateCertificateHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1648,12 +1741,12 @@ export interface CertificatesAddCertificateHeaders {
   "ocp-date"?: string;
 }
 
-export interface CertificatesAddCertificateBodyParam {
-  /** The Certificate to be added. */
-  body: Certificate;
+export interface CreateCertificateBodyParam {
+  /** The Certificate to be created. */
+  body: BatchCertificate;
 }
 
-export interface CertificatesAddCertificateQueryParamProperties {
+export interface CreateCertificateQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1661,21 +1754,26 @@ export interface CertificatesAddCertificateQueryParamProperties {
   timeOut?: number;
 }
 
-export interface CertificatesAddCertificateQueryParam {
-  queryParameters?: CertificatesAddCertificateQueryParamProperties;
+export interface CreateCertificateQueryParam {
+  queryParameters?: CreateCertificateQueryParamProperties;
 }
 
-export interface CertificatesAddCertificateHeaderParam {
-  headers?: RawHttpHeadersInput & CertificatesAddCertificateHeaders;
+export interface CreateCertificateHeaderParam {
+  headers?: RawHttpHeadersInput & CreateCertificateHeaders;
 }
 
-export type CertificatesAddCertificateParameters =
-  CertificatesAddCertificateQueryParam &
-    CertificatesAddCertificateHeaderParam &
-    CertificatesAddCertificateBodyParam &
-    RequestParameters;
+export interface CreateCertificateMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
 
-export interface CertificatesListCertificatesHeaders {
+export type CreateCertificateParameters = CreateCertificateQueryParam &
+  CreateCertificateHeaderParam &
+  CreateCertificateMediaTypesParam &
+  CreateCertificateBodyParam &
+  RequestParameters;
+
+export interface ListCertificatesHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -1691,7 +1789,7 @@ export interface CertificatesListCertificatesHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface CertificatesListCertificatesQueryParamProperties {
+export interface ListCertificatesQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1708,23 +1806,22 @@ export interface CertificatesListCertificatesQueryParamProperties {
    */
   $filter?: string;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
 }
 
-export interface CertificatesListCertificatesQueryParam {
-  queryParameters?: CertificatesListCertificatesQueryParamProperties;
+export interface ListCertificatesQueryParam {
+  queryParameters?: ListCertificatesQueryParamProperties;
 }
 
-export interface CertificatesListCertificatesHeaderParam {
-  headers?: RawHttpHeadersInput & CertificatesListCertificatesHeaders;
+export interface ListCertificatesHeaderParam {
+  headers?: RawHttpHeadersInput & ListCertificatesHeaders;
 }
 
-export type CertificatesListCertificatesParameters =
-  CertificatesListCertificatesQueryParam &
-    CertificatesListCertificatesHeaderParam &
-    RequestParameters;
+export type ListCertificatesParameters = ListCertificatesQueryParam &
+  ListCertificatesHeaderParam &
+  RequestParameters;
 
-export interface CertificatesCancelCertificateDeletionHeaders {
+export interface CancelCertificateDeletionHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1740,7 +1837,7 @@ export interface CertificatesCancelCertificateDeletionHeaders {
   "ocp-date"?: string;
 }
 
-export interface CertificatesCancelCertificateDeletionQueryParamProperties {
+export interface CancelCertificateDeletionQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1748,20 +1845,20 @@ export interface CertificatesCancelCertificateDeletionQueryParamProperties {
   timeOut?: number;
 }
 
-export interface CertificatesCancelCertificateDeletionQueryParam {
-  queryParameters?: CertificatesCancelCertificateDeletionQueryParamProperties;
+export interface CancelCertificateDeletionQueryParam {
+  queryParameters?: CancelCertificateDeletionQueryParamProperties;
 }
 
-export interface CertificatesCancelCertificateDeletionHeaderParam {
-  headers?: RawHttpHeadersInput & CertificatesCancelCertificateDeletionHeaders;
+export interface CancelCertificateDeletionHeaderParam {
+  headers?: RawHttpHeadersInput & CancelCertificateDeletionHeaders;
 }
 
-export type CertificatesCancelCertificateDeletionParameters =
-  CertificatesCancelCertificateDeletionQueryParam &
-    CertificatesCancelCertificateDeletionHeaderParam &
+export type CancelCertificateDeletionParameters =
+  CancelCertificateDeletionQueryParam &
+    CancelCertificateDeletionHeaderParam &
     RequestParameters;
 
-export interface CertificatesDeleteCertificateHeaders {
+export interface DeleteCertificateHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1777,7 +1874,7 @@ export interface CertificatesDeleteCertificateHeaders {
   "ocp-date"?: string;
 }
 
-export interface CertificatesDeleteCertificateQueryParamProperties {
+export interface DeleteCertificateQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1785,20 +1882,19 @@ export interface CertificatesDeleteCertificateQueryParamProperties {
   timeOut?: number;
 }
 
-export interface CertificatesDeleteCertificateQueryParam {
-  queryParameters?: CertificatesDeleteCertificateQueryParamProperties;
+export interface DeleteCertificateQueryParam {
+  queryParameters?: DeleteCertificateQueryParamProperties;
 }
 
-export interface CertificatesDeleteCertificateHeaderParam {
-  headers?: RawHttpHeadersInput & CertificatesDeleteCertificateHeaders;
+export interface DeleteCertificateHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteCertificateHeaders;
 }
 
-export type CertificatesDeleteCertificateParameters =
-  CertificatesDeleteCertificateQueryParam &
-    CertificatesDeleteCertificateHeaderParam &
-    RequestParameters;
+export type DeleteCertificateParameters = DeleteCertificateQueryParam &
+  DeleteCertificateHeaderParam &
+  RequestParameters;
 
-export interface CertificatesGetCertificateHeaders {
+export interface GetCertificateHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1814,30 +1910,537 @@ export interface CertificatesGetCertificateHeaders {
   "ocp-date"?: string;
 }
 
-export interface CertificatesGetCertificateQueryParamProperties {
+export interface GetCertificateQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
    */
   timeOut?: number;
   /** An OData $select clause. */
-  $select?: string;
+  $select?: string[];
 }
 
-export interface CertificatesGetCertificateQueryParam {
-  queryParameters?: CertificatesGetCertificateQueryParamProperties;
+export interface GetCertificateQueryParam {
+  queryParameters?: GetCertificateQueryParamProperties;
 }
 
-export interface CertificatesGetCertificateHeaderParam {
-  headers?: RawHttpHeadersInput & CertificatesGetCertificateHeaders;
+export interface GetCertificateHeaderParam {
+  headers?: RawHttpHeadersInput & GetCertificateHeaders;
 }
 
-export type CertificatesGetCertificateParameters =
-  CertificatesGetCertificateQueryParam &
-    CertificatesGetCertificateHeaderParam &
-    RequestParameters;
+export type GetCertificateParameters = GetCertificateQueryParam &
+  GetCertificateHeaderParam &
+  RequestParameters;
 
-export interface FileDeleteFromTaskHeaders {
+export interface JobScheduleExistsHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface JobScheduleExistsQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface JobScheduleExistsQueryParam {
+  queryParameters?: JobScheduleExistsQueryParamProperties;
+}
+
+export interface JobScheduleExistsHeaderParam {
+  headers?: RawHttpHeadersInput & JobScheduleExistsHeaders;
+}
+
+export type JobScheduleExistsParameters = JobScheduleExistsQueryParam &
+  JobScheduleExistsHeaderParam &
+  RequestParameters;
+
+export interface DeleteJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface DeleteJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface DeleteJobScheduleQueryParam {
+  queryParameters?: DeleteJobScheduleQueryParamProperties;
+}
+
+export interface DeleteJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteJobScheduleHeaders;
+}
+
+export type DeleteJobScheduleParameters = DeleteJobScheduleQueryParam &
+  DeleteJobScheduleHeaderParam &
+  RequestParameters;
+
+export interface GetJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface GetJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** An OData $select clause. */
+  $select?: string[];
+  /** An OData $expand clause. */
+  $expand?: string[];
+}
+
+export interface GetJobScheduleQueryParam {
+  queryParameters?: GetJobScheduleQueryParamProperties;
+}
+
+export interface GetJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & GetJobScheduleHeaders;
+}
+
+export type GetJobScheduleParameters = GetJobScheduleQueryParam &
+  GetJobScheduleHeaderParam &
+  RequestParameters;
+
+export interface UpdateJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface UpdateJobScheduleBodyParam {
+  /** The options to use for updating the Job Schedule. */
+  body: BatchJobScheduleUpdateOptions;
+}
+
+export interface UpdateJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface UpdateJobScheduleQueryParam {
+  queryParameters?: UpdateJobScheduleQueryParamProperties;
+}
+
+export interface UpdateJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & UpdateJobScheduleHeaders;
+}
+
+export interface UpdateJobScheduleMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type UpdateJobScheduleParameters = UpdateJobScheduleQueryParam &
+  UpdateJobScheduleHeaderParam &
+  UpdateJobScheduleMediaTypesParam &
+  UpdateJobScheduleBodyParam &
+  RequestParameters;
+
+export interface ReplaceJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface ReplaceJobScheduleBodyParam {
+  /** A Job Schedule with updated properties */
+  body: BatchJobSchedule;
+}
+
+export interface ReplaceJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface ReplaceJobScheduleQueryParam {
+  queryParameters?: ReplaceJobScheduleQueryParamProperties;
+}
+
+export interface ReplaceJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & ReplaceJobScheduleHeaders;
+}
+
+export interface ReplaceJobScheduleMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ReplaceJobScheduleParameters = ReplaceJobScheduleQueryParam &
+  ReplaceJobScheduleHeaderParam &
+  ReplaceJobScheduleMediaTypesParam &
+  ReplaceJobScheduleBodyParam &
+  RequestParameters;
+
+export interface DisableJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface DisableJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface DisableJobScheduleQueryParam {
+  queryParameters?: DisableJobScheduleQueryParamProperties;
+}
+
+export interface DisableJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & DisableJobScheduleHeaders;
+}
+
+export type DisableJobScheduleParameters = DisableJobScheduleQueryParam &
+  DisableJobScheduleHeaderParam &
+  RequestParameters;
+
+export interface EnableJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface EnableJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface EnableJobScheduleQueryParam {
+  queryParameters?: EnableJobScheduleQueryParamProperties;
+}
+
+export interface EnableJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & EnableJobScheduleHeaders;
+}
+
+export type EnableJobScheduleParameters = EnableJobScheduleQueryParam &
+  EnableJobScheduleHeaderParam &
+  RequestParameters;
+
+export interface TerminateJobScheduleHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface TerminateJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface TerminateJobScheduleQueryParam {
+  queryParameters?: TerminateJobScheduleQueryParamProperties;
+}
+
+export interface TerminateJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & TerminateJobScheduleHeaders;
+}
+
+export type TerminateJobScheduleParameters = TerminateJobScheduleQueryParam &
+  TerminateJobScheduleHeaderParam &
+  RequestParameters;
+
+export interface CreateJobScheduleHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1853,7 +2456,605 @@ export interface FileDeleteFromTaskHeaders {
   "ocp-date"?: string;
 }
 
-export interface FileDeleteFromTaskQueryParamProperties {
+export interface CreateJobScheduleBodyParam {
+  /** The Job Schedule to be created. */
+  body: BatchJobScheduleCreateOptions;
+}
+
+export interface CreateJobScheduleQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface CreateJobScheduleQueryParam {
+  queryParameters?: CreateJobScheduleQueryParamProperties;
+}
+
+export interface CreateJobScheduleHeaderParam {
+  headers?: RawHttpHeadersInput & CreateJobScheduleHeaders;
+}
+
+export interface CreateJobScheduleMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type CreateJobScheduleParameters = CreateJobScheduleQueryParam &
+  CreateJobScheduleHeaderParam &
+  CreateJobScheduleMediaTypesParam &
+  CreateJobScheduleBodyParam &
+  RequestParameters;
+
+export interface ListJobSchedulesHeaders {
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+}
+
+export interface ListJobSchedulesQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An OData $filter clause. For more information on constructing this filter, see
+   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
+   */
+  $filter?: string;
+  /** An OData $select clause. */
+  $select?: string[];
+  /** An OData $expand clause. */
+  $expand?: string[];
+}
+
+export interface ListJobSchedulesQueryParam {
+  queryParameters?: ListJobSchedulesQueryParamProperties;
+}
+
+export interface ListJobSchedulesHeaderParam {
+  headers?: RawHttpHeadersInput & ListJobSchedulesHeaders;
+}
+
+export type ListJobSchedulesParameters = ListJobSchedulesQueryParam &
+  ListJobSchedulesHeaderParam &
+  RequestParameters;
+
+export interface CreateTaskHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface CreateTaskBodyParam {
+  /** The Task to be created. */
+  body: BatchTaskCreateOptions;
+}
+
+export interface CreateTaskQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface CreateTaskQueryParam {
+  queryParameters?: CreateTaskQueryParamProperties;
+}
+
+export interface CreateTaskHeaderParam {
+  headers?: RawHttpHeadersInput & CreateTaskHeaders;
+}
+
+export interface CreateTaskMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type CreateTaskParameters = CreateTaskQueryParam &
+  CreateTaskHeaderParam &
+  CreateTaskMediaTypesParam &
+  CreateTaskBodyParam &
+  RequestParameters;
+
+export interface ListTasksHeaders {
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+}
+
+export interface ListTasksQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An OData $filter clause. For more information on constructing this filter, see
+   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
+   */
+  $filter?: string;
+  /** An OData $select clause. */
+  $select?: string[];
+  /** An OData $expand clause. */
+  $expand?: string[];
+}
+
+export interface ListTasksQueryParam {
+  queryParameters?: ListTasksQueryParamProperties;
+}
+
+export interface ListTasksHeaderParam {
+  headers?: RawHttpHeadersInput & ListTasksHeaders;
+}
+
+export type ListTasksParameters = ListTasksQueryParam &
+  ListTasksHeaderParam &
+  RequestParameters;
+
+export interface CreateTaskCollectionHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface CreateTaskCollectionBodyParam {
+  /** The Tasks to be added. */
+  body: BatchTaskCollection;
+}
+
+export interface CreateTaskCollectionQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface CreateTaskCollectionQueryParam {
+  queryParameters?: CreateTaskCollectionQueryParamProperties;
+}
+
+export interface CreateTaskCollectionHeaderParam {
+  headers?: RawHttpHeadersInput & CreateTaskCollectionHeaders;
+}
+
+export interface CreateTaskCollectionMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type CreateTaskCollectionParameters = CreateTaskCollectionQueryParam &
+  CreateTaskCollectionHeaderParam &
+  CreateTaskCollectionMediaTypesParam &
+  CreateTaskCollectionBodyParam &
+  RequestParameters;
+
+export interface DeleteTaskHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface DeleteTaskQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface DeleteTaskQueryParam {
+  queryParameters?: DeleteTaskQueryParamProperties;
+}
+
+export interface DeleteTaskHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteTaskHeaders;
+}
+
+export type DeleteTaskParameters = DeleteTaskQueryParam &
+  DeleteTaskHeaderParam &
+  RequestParameters;
+
+export interface GetTaskHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface GetTaskQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** An OData $select clause. */
+  $select?: string[];
+  /** An OData $expand clause. */
+  $expand?: string[];
+}
+
+export interface GetTaskQueryParam {
+  queryParameters?: GetTaskQueryParamProperties;
+}
+
+export interface GetTaskHeaderParam {
+  headers?: RawHttpHeadersInput & GetTaskHeaders;
+}
+
+export type GetTaskParameters = GetTaskQueryParam &
+  GetTaskHeaderParam &
+  RequestParameters;
+
+export interface ReplaceTaskHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface ReplaceTaskBodyParam {
+  /** The Task to update. */
+  body: BatchTask;
+}
+
+export interface ReplaceTaskQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface ReplaceTaskQueryParam {
+  queryParameters?: ReplaceTaskQueryParamProperties;
+}
+
+export interface ReplaceTaskHeaderParam {
+  headers?: RawHttpHeadersInput & ReplaceTaskHeaders;
+}
+
+export interface ReplaceTaskMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ReplaceTaskParameters = ReplaceTaskQueryParam &
+  ReplaceTaskHeaderParam &
+  ReplaceTaskMediaTypesParam &
+  ReplaceTaskBodyParam &
+  RequestParameters;
+
+export interface ListSubTasksHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface ListSubTasksQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** An OData $select clause. */
+  $select?: string[];
+}
+
+export interface ListSubTasksQueryParam {
+  queryParameters?: ListSubTasksQueryParamProperties;
+}
+
+export interface ListSubTasksHeaderParam {
+  headers?: RawHttpHeadersInput & ListSubTasksHeaders;
+}
+
+export type ListSubTasksParameters = ListSubTasksQueryParam &
+  ListSubTasksHeaderParam &
+  RequestParameters;
+
+export interface TerminateTaskHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface TerminateTaskQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface TerminateTaskQueryParam {
+  queryParameters?: TerminateTaskQueryParamProperties;
+}
+
+export interface TerminateTaskHeaderParam {
+  headers?: RawHttpHeadersInput & TerminateTaskHeaders;
+}
+
+export type TerminateTaskParameters = TerminateTaskQueryParam &
+  TerminateTaskHeaderParam &
+  RequestParameters;
+
+export interface ReactivateTaskHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service exactly matches the value specified by the client.
+   */
+  "if-match"?: string;
+  /**
+   * An ETag value associated with the version of the resource known to the client.
+   * The operation will be performed only if the resource's current ETag on the
+   * service does not match the value specified by the client.
+   */
+  "if-none-match"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface ReactivateTaskQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface ReactivateTaskQueryParam {
+  queryParameters?: ReactivateTaskQueryParamProperties;
+}
+
+export interface ReactivateTaskHeaderParam {
+  headers?: RawHttpHeadersInput & ReactivateTaskHeaders;
+}
+
+export type ReactivateTaskParameters = ReactivateTaskQueryParam &
+  ReactivateTaskHeaderParam &
+  RequestParameters;
+
+export interface DeleteTaskFileHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface DeleteTaskFileQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1868,19 +3069,19 @@ export interface FileDeleteFromTaskQueryParamProperties {
   recursive?: boolean;
 }
 
-export interface FileDeleteFromTaskQueryParam {
-  queryParameters?: FileDeleteFromTaskQueryParamProperties;
+export interface DeleteTaskFileQueryParam {
+  queryParameters?: DeleteTaskFileQueryParamProperties;
 }
 
-export interface FileDeleteFromTaskHeaderParam {
-  headers?: RawHttpHeadersInput & FileDeleteFromTaskHeaders;
+export interface DeleteTaskFileHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteTaskFileHeaders;
 }
 
-export type FileDeleteFromTaskParameters = FileDeleteFromTaskQueryParam &
-  FileDeleteFromTaskHeaderParam &
+export type DeleteTaskFileParameters = DeleteTaskFileQueryParam &
+  DeleteTaskFileHeaderParam &
   RequestParameters;
 
-export interface FileGetFromTaskHeaders {
+export interface GetTaskFileHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1913,7 +3114,7 @@ export interface FileGetFromTaskHeaders {
   "ocp-range"?: string;
 }
 
-export interface FileGetFromTaskQueryParamProperties {
+export interface GetTaskFileQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1921,19 +3122,19 @@ export interface FileGetFromTaskQueryParamProperties {
   timeOut?: number;
 }
 
-export interface FileGetFromTaskQueryParam {
-  queryParameters?: FileGetFromTaskQueryParamProperties;
+export interface GetTaskFileQueryParam {
+  queryParameters?: GetTaskFileQueryParamProperties;
 }
 
-export interface FileGetFromTaskHeaderParam {
-  headers?: RawHttpHeadersInput & FileGetFromTaskHeaders;
+export interface GetTaskFileHeaderParam {
+  headers?: RawHttpHeadersInput & GetTaskFileHeaders;
 }
 
-export type FileGetFromTaskParameters = FileGetFromTaskQueryParam &
-  FileGetFromTaskHeaderParam &
+export type GetTaskFileParameters = GetTaskFileQueryParam &
+  GetTaskFileHeaderParam &
   RequestParameters;
 
-export interface FileGetPropertiesFromTaskHeaders {
+export interface GetTaskFilePropertiesHeaders {
   /**
    * The caller-generated request identity, in the form of a GUID with no decoration
    * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
@@ -1961,7 +3162,7 @@ export interface FileGetPropertiesFromTaskHeaders {
   "if-unmodified-since"?: string;
 }
 
-export interface FileGetPropertiesFromTaskQueryParamProperties {
+export interface GetTaskFilePropertiesQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -1969,167 +3170,19 @@ export interface FileGetPropertiesFromTaskQueryParamProperties {
   timeOut?: number;
 }
 
-export interface FileGetPropertiesFromTaskQueryParam {
-  queryParameters?: FileGetPropertiesFromTaskQueryParamProperties;
+export interface GetTaskFilePropertiesQueryParam {
+  queryParameters?: GetTaskFilePropertiesQueryParamProperties;
 }
 
-export interface FileGetPropertiesFromTaskHeaderParam {
-  headers?: RawHttpHeadersInput & FileGetPropertiesFromTaskHeaders;
+export interface GetTaskFilePropertiesHeaderParam {
+  headers?: RawHttpHeadersInput & GetTaskFilePropertiesHeaders;
 }
 
-export type FileGetPropertiesFromTaskParameters =
-  FileGetPropertiesFromTaskQueryParam &
-    FileGetPropertiesFromTaskHeaderParam &
-    RequestParameters;
+export type GetTaskFilePropertiesParameters = GetTaskFilePropertiesQueryParam &
+  GetTaskFilePropertiesHeaderParam &
+  RequestParameters;
 
-export interface FileDeleteFromComputeNodeHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface FileDeleteFromComputeNodeQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * Whether to delete children of a directory. If the filePath parameter represents
-   * a directory instead of a file, you can set recursive to true to delete the
-   * directory and all of the files and subdirectories in it. If recursive is false
-   * then the directory must be empty or deletion will fail.
-   */
-  recursive?: boolean;
-}
-
-export interface FileDeleteFromComputeNodeQueryParam {
-  queryParameters?: FileDeleteFromComputeNodeQueryParamProperties;
-}
-
-export interface FileDeleteFromComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & FileDeleteFromComputeNodeHeaders;
-}
-
-export type FileDeleteFromComputeNodeParameters =
-  FileDeleteFromComputeNodeQueryParam &
-    FileDeleteFromComputeNodeHeaderParam &
-    RequestParameters;
-
-export interface FileGetFromComputeNodeHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-  /**
-   * The byte range to be retrieved. The default is to retrieve the entire file. The
-   * format is bytes=startRange-endRange.
-   */
-  "ocp-range"?: string;
-}
-
-export interface FileGetFromComputeNodeQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface FileGetFromComputeNodeQueryParam {
-  queryParameters?: FileGetFromComputeNodeQueryParamProperties;
-}
-
-export interface FileGetFromComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & FileGetFromComputeNodeHeaders;
-}
-
-export type FileGetFromComputeNodeParameters =
-  FileGetFromComputeNodeQueryParam &
-    FileGetFromComputeNodeHeaderParam &
-    RequestParameters;
-
-export interface FileGetPropertiesFromComputeNodeHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface FileGetPropertiesFromComputeNodeQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface FileGetPropertiesFromComputeNodeQueryParam {
-  queryParameters?: FileGetPropertiesFromComputeNodeQueryParamProperties;
-}
-
-export interface FileGetPropertiesFromComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & FileGetPropertiesFromComputeNodeHeaders;
-}
-
-export type FileGetPropertiesFromComputeNodeParameters =
-  FileGetPropertiesFromComputeNodeQueryParam &
-    FileGetPropertiesFromComputeNodeHeaderParam &
-    RequestParameters;
-
-export interface FileListFromTaskHeaders {
+export interface ListTaskFilesHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -2145,7 +3198,7 @@ export interface FileListFromTaskHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface FileListFromTaskQueryParamProperties {
+export interface ListTaskFilesQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2168,19 +3221,491 @@ export interface FileListFromTaskQueryParamProperties {
   recursive?: boolean;
 }
 
-export interface FileListFromTaskQueryParam {
-  queryParameters?: FileListFromTaskQueryParamProperties;
+export interface ListTaskFilesQueryParam {
+  queryParameters?: ListTaskFilesQueryParamProperties;
 }
 
-export interface FileListFromTaskHeaderParam {
-  headers?: RawHttpHeadersInput & FileListFromTaskHeaders;
+export interface ListTaskFilesHeaderParam {
+  headers?: RawHttpHeadersInput & ListTaskFilesHeaders;
 }
 
-export type FileListFromTaskParameters = FileListFromTaskQueryParam &
-  FileListFromTaskHeaderParam &
+export type ListTaskFilesParameters = ListTaskFilesQueryParam &
+  ListTaskFilesHeaderParam &
   RequestParameters;
 
-export interface FileListFromComputeNodeHeaders {
+export interface CreateNodeUserHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface CreateNodeUserBodyParam {
+  /** The options to use for creating the user. */
+  body: BatchNodeUserCreateOptions;
+}
+
+export interface CreateNodeUserQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface CreateNodeUserQueryParam {
+  queryParameters?: CreateNodeUserQueryParamProperties;
+}
+
+export interface CreateNodeUserHeaderParam {
+  headers?: RawHttpHeadersInput & CreateNodeUserHeaders;
+}
+
+export interface CreateNodeUserMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type CreateNodeUserParameters = CreateNodeUserQueryParam &
+  CreateNodeUserHeaderParam &
+  CreateNodeUserMediaTypesParam &
+  CreateNodeUserBodyParam &
+  RequestParameters;
+
+export interface DeleteNodeUserHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface DeleteNodeUserQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface DeleteNodeUserQueryParam {
+  queryParameters?: DeleteNodeUserQueryParamProperties;
+}
+
+export interface DeleteNodeUserHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteNodeUserHeaders;
+}
+
+export type DeleteNodeUserParameters = DeleteNodeUserQueryParam &
+  DeleteNodeUserHeaderParam &
+  RequestParameters;
+
+export interface ReplaceNodeUserHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface ReplaceNodeUserBodyParam {
+  /** The options to use for updating the user. */
+  body: BatchNodeUserUpdateOptions;
+}
+
+export interface ReplaceNodeUserQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface ReplaceNodeUserQueryParam {
+  queryParameters?: ReplaceNodeUserQueryParamProperties;
+}
+
+export interface ReplaceNodeUserHeaderParam {
+  headers?: RawHttpHeadersInput & ReplaceNodeUserHeaders;
+}
+
+export interface ReplaceNodeUserMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ReplaceNodeUserParameters = ReplaceNodeUserQueryParam &
+  ReplaceNodeUserHeaderParam &
+  ReplaceNodeUserMediaTypesParam &
+  ReplaceNodeUserBodyParam &
+  RequestParameters;
+
+export interface GetNodeHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface GetNodeQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** An OData $select clause. */
+  $select?: string[];
+}
+
+export interface GetNodeQueryParam {
+  queryParameters?: GetNodeQueryParamProperties;
+}
+
+export interface GetNodeHeaderParam {
+  headers?: RawHttpHeadersInput & GetNodeHeaders;
+}
+
+export type GetNodeParameters = GetNodeQueryParam &
+  GetNodeHeaderParam &
+  RequestParameters;
+
+export interface RebootNodeHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface RebootNodeBodyParam {
+  /** The options to use for rebooting the Compute Node. */
+  body?: NodeRebootOptions;
+}
+
+export interface RebootNodeQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface RebootNodeQueryParam {
+  queryParameters?: RebootNodeQueryParamProperties;
+}
+
+export interface RebootNodeHeaderParam {
+  headers?: RawHttpHeadersInput & RebootNodeHeaders;
+}
+
+export interface RebootNodeMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type RebootNodeParameters = RebootNodeQueryParam &
+  RebootNodeHeaderParam &
+  RebootNodeMediaTypesParam &
+  RebootNodeBodyParam &
+  RequestParameters;
+
+export interface ReimageNodeHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface ReimageNodeBodyParam {
+  /** The options to use for reimaging the Compute Node. */
+  body?: NodeReimageOptions;
+}
+
+export interface ReimageNodeQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface ReimageNodeQueryParam {
+  queryParameters?: ReimageNodeQueryParamProperties;
+}
+
+export interface ReimageNodeHeaderParam {
+  headers?: RawHttpHeadersInput & ReimageNodeHeaders;
+}
+
+export interface ReimageNodeMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type ReimageNodeParameters = ReimageNodeQueryParam &
+  ReimageNodeHeaderParam &
+  ReimageNodeMediaTypesParam &
+  ReimageNodeBodyParam &
+  RequestParameters;
+
+export interface DisableNodeSchedulingHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface DisableNodeSchedulingBodyParam {
+  /** The options to use for disabling scheduling on the Compute Node. */
+  body?: NodeDisableSchedulingOptions;
+}
+
+export interface DisableNodeSchedulingQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface DisableNodeSchedulingQueryParam {
+  queryParameters?: DisableNodeSchedulingQueryParamProperties;
+}
+
+export interface DisableNodeSchedulingHeaderParam {
+  headers?: RawHttpHeadersInput & DisableNodeSchedulingHeaders;
+}
+
+export interface DisableNodeSchedulingMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type DisableNodeSchedulingParameters = DisableNodeSchedulingQueryParam &
+  DisableNodeSchedulingHeaderParam &
+  DisableNodeSchedulingMediaTypesParam &
+  DisableNodeSchedulingBodyParam &
+  RequestParameters;
+
+export interface EnableNodeSchedulingHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface EnableNodeSchedulingQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface EnableNodeSchedulingQueryParam {
+  queryParameters?: EnableNodeSchedulingQueryParamProperties;
+}
+
+export interface EnableNodeSchedulingHeaderParam {
+  headers?: RawHttpHeadersInput & EnableNodeSchedulingHeaders;
+}
+
+export type EnableNodeSchedulingParameters = EnableNodeSchedulingQueryParam &
+  EnableNodeSchedulingHeaderParam &
+  RequestParameters;
+
+export interface GetNodeRemoteLoginSettingsHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface GetNodeRemoteLoginSettingsQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface GetNodeRemoteLoginSettingsQueryParam {
+  queryParameters?: GetNodeRemoteLoginSettingsQueryParamProperties;
+}
+
+export interface GetNodeRemoteLoginSettingsHeaderParam {
+  headers?: RawHttpHeadersInput & GetNodeRemoteLoginSettingsHeaders;
+}
+
+export type GetNodeRemoteLoginSettingsParameters =
+  GetNodeRemoteLoginSettingsQueryParam &
+    GetNodeRemoteLoginSettingsHeaderParam &
+    RequestParameters;
+
+export interface GetNodeRemoteDesktopFileHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface GetNodeRemoteDesktopFileQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface GetNodeRemoteDesktopFileQueryParam {
+  queryParameters?: GetNodeRemoteDesktopFileQueryParamProperties;
+}
+
+export interface GetNodeRemoteDesktopFileHeaderParam {
+  headers?: RawHttpHeadersInput & GetNodeRemoteDesktopFileHeaders;
+}
+
+export type GetNodeRemoteDesktopFileParameters =
+  GetNodeRemoteDesktopFileQueryParam &
+    GetNodeRemoteDesktopFileHeaderParam &
+    RequestParameters;
+
+export interface UploadNodeLogsHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface UploadNodeLogsBodyParam {
+  /** The Azure Batch service log files upload options. */
+  body: UploadBatchServiceLogsOptions;
+}
+
+export interface UploadNodeLogsQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface UploadNodeLogsQueryParam {
+  queryParameters?: UploadNodeLogsQueryParamProperties;
+}
+
+export interface UploadNodeLogsHeaderParam {
+  headers?: RawHttpHeadersInput & UploadNodeLogsHeaders;
+}
+
+export interface UploadNodeLogsMediaTypesParam {
+  /** Type of content */
+  contentType: "application/json; odata=minimalmetadata";
+}
+
+export type UploadNodeLogsParameters = UploadNodeLogsQueryParam &
+  UploadNodeLogsHeaderParam &
+  UploadNodeLogsMediaTypesParam &
+  UploadNodeLogsBodyParam &
+  RequestParameters;
+
+export interface ListNodesHeaders {
   /**
    * The time the request was issued. Client libraries typically set this to the
    * current system clock time; set it explicitly if you are calling the REST API
@@ -2196,7 +3721,280 @@ export interface FileListFromComputeNodeHeaders {
   "return-client-request-id"?: boolean;
 }
 
-export interface FileListFromComputeNodeQueryParamProperties {
+export interface ListNodesQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * An OData $filter clause. For more information on constructing this filter, see
+   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
+   */
+  $filter?: string;
+  /** An OData $select clause. */
+  $select?: string[];
+}
+
+export interface ListNodesQueryParam {
+  queryParameters?: ListNodesQueryParamProperties;
+}
+
+export interface ListNodesHeaderParam {
+  headers?: RawHttpHeadersInput & ListNodesHeaders;
+}
+
+export type ListNodesParameters = ListNodesQueryParam &
+  ListNodesHeaderParam &
+  RequestParameters;
+
+export interface GetNodeExtensionHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface GetNodeExtensionQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** An OData $select clause. */
+  $select?: string[];
+}
+
+export interface GetNodeExtensionQueryParam {
+  queryParameters?: GetNodeExtensionQueryParamProperties;
+}
+
+export interface GetNodeExtensionHeaderParam {
+  headers?: RawHttpHeadersInput & GetNodeExtensionHeaders;
+}
+
+export type GetNodeExtensionParameters = GetNodeExtensionQueryParam &
+  GetNodeExtensionHeaderParam &
+  RequestParameters;
+
+export interface ListNodeExtensionsHeaders {
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+}
+
+export interface ListNodeExtensionsQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  maxresults?: number;
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /** An OData $select clause. */
+  $select?: string[];
+}
+
+export interface ListNodeExtensionsQueryParam {
+  queryParameters?: ListNodeExtensionsQueryParamProperties;
+}
+
+export interface ListNodeExtensionsHeaderParam {
+  headers?: RawHttpHeadersInput & ListNodeExtensionsHeaders;
+}
+
+export type ListNodeExtensionsParameters = ListNodeExtensionsQueryParam &
+  ListNodeExtensionsHeaderParam &
+  RequestParameters;
+
+export interface DeleteNodeFileHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+}
+
+export interface DeleteNodeFileQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+  /**
+   * Whether to delete children of a directory. If the filePath parameter represents
+   * a directory instead of a file, you can set recursive to true to delete the
+   * directory and all of the files and subdirectories in it. If recursive is false
+   * then the directory must be empty or deletion will fail.
+   */
+  recursive?: boolean;
+}
+
+export interface DeleteNodeFileQueryParam {
+  queryParameters?: DeleteNodeFileQueryParamProperties;
+}
+
+export interface DeleteNodeFileHeaderParam {
+  headers?: RawHttpHeadersInput & DeleteNodeFileHeaders;
+}
+
+export type DeleteNodeFileParameters = DeleteNodeFileQueryParam &
+  DeleteNodeFileHeaderParam &
+  RequestParameters;
+
+export interface GetNodeFileHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+  /**
+   * The byte range to be retrieved. The default is to retrieve the entire file. The
+   * format is bytes=startRange-endRange.
+   */
+  "ocp-range"?: string;
+}
+
+export interface GetNodeFileQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface GetNodeFileQueryParam {
+  queryParameters?: GetNodeFileQueryParamProperties;
+}
+
+export interface GetNodeFileHeaderParam {
+  headers?: RawHttpHeadersInput & GetNodeFileHeaders;
+}
+
+export type GetNodeFileParameters = GetNodeFileQueryParam &
+  GetNodeFileHeaderParam &
+  RequestParameters;
+
+export interface GetNodeFilePropertiesHeaders {
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * been modified since the specified time.
+   */
+  "if-modified-since"?: string;
+  /**
+   * A timestamp indicating the last modified time of the resource known to the
+   * client. The operation will be performed only if the resource on the service has
+   * not been modified since the specified time.
+   */
+  "if-unmodified-since"?: string;
+}
+
+export interface GetNodeFilePropertiesQueryParamProperties {
+  /**
+   * The maximum number of items to return in the response. A maximum of 1000
+   * applications can be returned.
+   */
+  timeOut?: number;
+}
+
+export interface GetNodeFilePropertiesQueryParam {
+  queryParameters?: GetNodeFilePropertiesQueryParamProperties;
+}
+
+export interface GetNodeFilePropertiesHeaderParam {
+  headers?: RawHttpHeadersInput & GetNodeFilePropertiesHeaders;
+}
+
+export type GetNodeFilePropertiesParameters = GetNodeFilePropertiesQueryParam &
+  GetNodeFilePropertiesHeaderParam &
+  RequestParameters;
+
+export interface ListNodeFilesHeaders {
+  /**
+   * The time the request was issued. Client libraries typically set this to the
+   * current system clock time; set it explicitly if you are calling the REST API
+   * directly.
+   */
+  "ocp-date"?: string;
+  /**
+   * The caller-generated request identity, in the form of a GUID with no decoration
+   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+   */
+  "client-request-id"?: string;
+  /** Whether the server should return the client-request-id in the response. */
+  "return-client-request-id"?: boolean;
+}
+
+export interface ListNodeFilesQueryParamProperties {
   /**
    * The maximum number of items to return in the response. A maximum of 1000
    * applications can be returned.
@@ -2216,1676 +4014,14 @@ export interface FileListFromComputeNodeQueryParamProperties {
   recursive?: boolean;
 }
 
-export interface FileListFromComputeNodeQueryParam {
-  queryParameters?: FileListFromComputeNodeQueryParamProperties;
+export interface ListNodeFilesQueryParam {
+  queryParameters?: ListNodeFilesQueryParamProperties;
 }
 
-export interface FileListFromComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & FileListFromComputeNodeHeaders;
+export interface ListNodeFilesHeaderParam {
+  headers?: RawHttpHeadersInput & ListNodeFilesHeaders;
 }
 
-export type FileListFromComputeNodeParameters =
-  FileListFromComputeNodeQueryParam &
-    FileListFromComputeNodeHeaderParam &
-    RequestParameters;
-
-export interface JobScheduleJobScheduleExistsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleJobScheduleExistsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleJobScheduleExistsQueryParam {
-  queryParameters?: JobScheduleJobScheduleExistsQueryParamProperties;
-}
-
-export interface JobScheduleJobScheduleExistsHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleJobScheduleExistsHeaders;
-}
-
-export type JobScheduleJobScheduleExistsParameters =
-  JobScheduleJobScheduleExistsQueryParam &
-    JobScheduleJobScheduleExistsHeaderParam &
-    RequestParameters;
-
-export interface JobScheduleDeleteJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleDeleteJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleDeleteJobScheduleQueryParam {
-  queryParameters?: JobScheduleDeleteJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleDeleteJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleDeleteJobScheduleHeaders;
-}
-
-export type JobScheduleDeleteJobScheduleParameters =
-  JobScheduleDeleteJobScheduleQueryParam &
-    JobScheduleDeleteJobScheduleHeaderParam &
-    RequestParameters;
-
-export interface JobScheduleGetJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleGetJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** An OData $select clause. */
-  $select?: string;
-  /** An OData $expand clause. */
-  $expand?: string;
-}
-
-export interface JobScheduleGetJobScheduleQueryParam {
-  queryParameters?: JobScheduleGetJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleGetJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleGetJobScheduleHeaders;
-}
-
-export type JobScheduleGetJobScheduleParameters =
-  JobScheduleGetJobScheduleQueryParam &
-    JobScheduleGetJobScheduleHeaderParam &
-    RequestParameters;
-
-export interface JobSchedulePatchJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobSchedulePatchJobScheduleBodyParam {
-  /** The parameters for the request. */
-  body: BatchJobSchedule;
-}
-
-export interface JobSchedulePatchJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobSchedulePatchJobScheduleQueryParam {
-  queryParameters?: JobSchedulePatchJobScheduleQueryParamProperties;
-}
-
-export interface JobSchedulePatchJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobSchedulePatchJobScheduleHeaders;
-}
-
-export type JobSchedulePatchJobScheduleParameters =
-  JobSchedulePatchJobScheduleQueryParam &
-    JobSchedulePatchJobScheduleHeaderParam &
-    JobSchedulePatchJobScheduleBodyParam &
-    RequestParameters;
-
-export interface JobScheduleUpdateJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleUpdateJobScheduleBodyParam {
-  /** The parameters for the request. */
-  body: BatchJobSchedule;
-}
-
-export interface JobScheduleUpdateJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleUpdateJobScheduleQueryParam {
-  queryParameters?: JobScheduleUpdateJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleUpdateJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleUpdateJobScheduleHeaders;
-}
-
-export type JobScheduleUpdateJobScheduleParameters =
-  JobScheduleUpdateJobScheduleQueryParam &
-    JobScheduleUpdateJobScheduleHeaderParam &
-    JobScheduleUpdateJobScheduleBodyParam &
-    RequestParameters;
-
-export interface JobScheduleDisableJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleDisableJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleDisableJobScheduleQueryParam {
-  queryParameters?: JobScheduleDisableJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleDisableJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleDisableJobScheduleHeaders;
-}
-
-export type JobScheduleDisableJobScheduleParameters =
-  JobScheduleDisableJobScheduleQueryParam &
-    JobScheduleDisableJobScheduleHeaderParam &
-    RequestParameters;
-
-export interface JobScheduleEnableJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleEnableJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleEnableJobScheduleQueryParam {
-  queryParameters?: JobScheduleEnableJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleEnableJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleEnableJobScheduleHeaders;
-}
-
-export type JobScheduleEnableJobScheduleParameters =
-  JobScheduleEnableJobScheduleQueryParam &
-    JobScheduleEnableJobScheduleHeaderParam &
-    RequestParameters;
-
-export interface JobScheduleTerminateJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface JobScheduleTerminateJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleTerminateJobScheduleQueryParam {
-  queryParameters?: JobScheduleTerminateJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleTerminateJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleTerminateJobScheduleHeaders;
-}
-
-export type JobScheduleTerminateJobScheduleParameters =
-  JobScheduleTerminateJobScheduleQueryParam &
-    JobScheduleTerminateJobScheduleHeaderParam &
-    RequestParameters;
-
-export interface JobScheduleAddJobScheduleHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface JobScheduleAddJobScheduleBodyParam {
-  /** The Job Schedule to be added. */
-  body: BatchJobSchedule;
-}
-
-export interface JobScheduleAddJobScheduleQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface JobScheduleAddJobScheduleQueryParam {
-  queryParameters?: JobScheduleAddJobScheduleQueryParamProperties;
-}
-
-export interface JobScheduleAddJobScheduleHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleAddJobScheduleHeaders;
-}
-
-export type JobScheduleAddJobScheduleParameters =
-  JobScheduleAddJobScheduleQueryParam &
-    JobScheduleAddJobScheduleHeaderParam &
-    JobScheduleAddJobScheduleBodyParam &
-    RequestParameters;
-
-export interface JobScheduleListJobSchedulesHeaders {
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-}
-
-export interface JobScheduleListJobSchedulesQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults?: number;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-job-schedules.
-   */
-  $filter?: string;
-  /** An OData $select clause. */
-  $select?: string;
-  /** An OData $expand clause. */
-  $expand?: string;
-}
-
-export interface JobScheduleListJobSchedulesQueryParam {
-  queryParameters?: JobScheduleListJobSchedulesQueryParamProperties;
-}
-
-export interface JobScheduleListJobSchedulesHeaderParam {
-  headers?: RawHttpHeadersInput & JobScheduleListJobSchedulesHeaders;
-}
-
-export type JobScheduleListJobSchedulesParameters =
-  JobScheduleListJobSchedulesQueryParam &
-    JobScheduleListJobSchedulesHeaderParam &
-    RequestParameters;
-
-export interface TaskAddTaskHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface TaskAddTaskBodyParam {
-  /** The Task to be added. */
-  body: BatchTask;
-}
-
-export interface TaskAddTaskQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface TaskAddTaskQueryParam {
-  queryParameters?: TaskAddTaskQueryParamProperties;
-}
-
-export interface TaskAddTaskHeaderParam {
-  headers?: RawHttpHeadersInput & TaskAddTaskHeaders;
-}
-
-export type TaskAddTaskParameters = TaskAddTaskQueryParam &
-  TaskAddTaskHeaderParam &
-  TaskAddTaskBodyParam &
+export type ListNodeFilesParameters = ListNodeFilesQueryParam &
+  ListNodeFilesHeaderParam &
   RequestParameters;
-
-export interface TaskListTasksHeaders {
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-}
-
-export interface TaskListTasksQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults?: number;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-tasks.
-   */
-  $filter?: string;
-  /** An OData $select clause. */
-  $select?: string;
-  /** An OData $expand clause. */
-  $expand?: string;
-}
-
-export interface TaskListTasksQueryParam {
-  queryParameters?: TaskListTasksQueryParamProperties;
-}
-
-export interface TaskListTasksHeaderParam {
-  headers?: RawHttpHeadersInput & TaskListTasksHeaders;
-}
-
-export type TaskListTasksParameters = TaskListTasksQueryParam &
-  TaskListTasksHeaderParam &
-  RequestParameters;
-
-export interface TaskAddTaskCollectionHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface TaskAddTaskCollectionBodyParam {
-  /** The Tasks to be added. */
-  body: BatchTaskCollection;
-}
-
-export interface TaskAddTaskCollectionQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface TaskAddTaskCollectionQueryParam {
-  queryParameters?: TaskAddTaskCollectionQueryParamProperties;
-}
-
-export interface TaskAddTaskCollectionHeaderParam {
-  headers?: RawHttpHeadersInput & TaskAddTaskCollectionHeaders;
-}
-
-export type TaskAddTaskCollectionParameters = TaskAddTaskCollectionQueryParam &
-  TaskAddTaskCollectionHeaderParam &
-  TaskAddTaskCollectionBodyParam &
-  RequestParameters;
-
-export interface TaskDeleteTaskCollectionHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface TaskDeleteTaskCollectionQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface TaskDeleteTaskCollectionQueryParam {
-  queryParameters?: TaskDeleteTaskCollectionQueryParamProperties;
-}
-
-export interface TaskDeleteTaskCollectionHeaderParam {
-  headers?: RawHttpHeadersInput & TaskDeleteTaskCollectionHeaders;
-}
-
-export type TaskDeleteTaskCollectionParameters =
-  TaskDeleteTaskCollectionQueryParam &
-    TaskDeleteTaskCollectionHeaderParam &
-    RequestParameters;
-
-export interface TaskGetTaskCollectionHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface TaskGetTaskCollectionQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** An OData $select clause. */
-  $select?: string;
-  /** An OData $expand clause. */
-  $expand?: string;
-}
-
-export interface TaskGetTaskCollectionQueryParam {
-  queryParameters?: TaskGetTaskCollectionQueryParamProperties;
-}
-
-export interface TaskGetTaskCollectionHeaderParam {
-  headers?: RawHttpHeadersInput & TaskGetTaskCollectionHeaders;
-}
-
-export type TaskGetTaskCollectionParameters = TaskGetTaskCollectionQueryParam &
-  TaskGetTaskCollectionHeaderParam &
-  RequestParameters;
-
-export interface TaskUpdateTaskCollectionHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface TaskUpdateTaskCollectionBodyParam {
-  /** The parameters for the request. */
-  body: BatchTask;
-}
-
-export interface TaskUpdateTaskCollectionQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface TaskUpdateTaskCollectionQueryParam {
-  queryParameters?: TaskUpdateTaskCollectionQueryParamProperties;
-}
-
-export interface TaskUpdateTaskCollectionHeaderParam {
-  headers?: RawHttpHeadersInput & TaskUpdateTaskCollectionHeaders;
-}
-
-export type TaskUpdateTaskCollectionParameters =
-  TaskUpdateTaskCollectionQueryParam &
-    TaskUpdateTaskCollectionHeaderParam &
-    TaskUpdateTaskCollectionBodyParam &
-    RequestParameters;
-
-export interface TaskListSubtasksHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface TaskListSubtasksQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** An OData $select clause. */
-  $select?: string;
-}
-
-export interface TaskListSubtasksQueryParam {
-  queryParameters?: TaskListSubtasksQueryParamProperties;
-}
-
-export interface TaskListSubtasksHeaderParam {
-  headers?: RawHttpHeadersInput & TaskListSubtasksHeaders;
-}
-
-export type TaskListSubtasksParameters = TaskListSubtasksQueryParam &
-  TaskListSubtasksHeaderParam &
-  RequestParameters;
-
-export interface TaskTerminateTaskCollectionHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface TaskTerminateTaskCollectionQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface TaskTerminateTaskCollectionQueryParam {
-  queryParameters?: TaskTerminateTaskCollectionQueryParamProperties;
-}
-
-export interface TaskTerminateTaskCollectionHeaderParam {
-  headers?: RawHttpHeadersInput & TaskTerminateTaskCollectionHeaders;
-}
-
-export type TaskTerminateTaskCollectionParameters =
-  TaskTerminateTaskCollectionQueryParam &
-    TaskTerminateTaskCollectionHeaderParam &
-    RequestParameters;
-
-export interface TaskReactivateTaskCollectionHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service exactly matches the value specified by the client.
-   */
-  "if-match"?: string;
-  /**
-   * An ETag value associated with the version of the resource known to the client.
-   * The operation will be performed only if the resource's current ETag on the
-   * service does not match the value specified by the client.
-   */
-  "if-none-match"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * been modified since the specified time.
-   */
-  "if-modified-since"?: string;
-  /**
-   * A timestamp indicating the last modified time of the resource known to the
-   * client. The operation will be performed only if the resource on the service has
-   * not been modified since the specified time.
-   */
-  "if-unmodified-since"?: string;
-}
-
-export interface TaskReactivateTaskCollectionQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface TaskReactivateTaskCollectionQueryParam {
-  queryParameters?: TaskReactivateTaskCollectionQueryParamProperties;
-}
-
-export interface TaskReactivateTaskCollectionHeaderParam {
-  headers?: RawHttpHeadersInput & TaskReactivateTaskCollectionHeaders;
-}
-
-export type TaskReactivateTaskCollectionParameters =
-  TaskReactivateTaskCollectionQueryParam &
-    TaskReactivateTaskCollectionHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodesAddUserHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesAddUserBodyParam {
-  /** The user Account to be created. */
-  body: ComputeNodeUser;
-}
-
-export interface ComputeNodesAddUserQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesAddUserQueryParam {
-  queryParameters?: ComputeNodesAddUserQueryParamProperties;
-}
-
-export interface ComputeNodesAddUserHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesAddUserHeaders;
-}
-
-export type ComputeNodesAddUserParameters = ComputeNodesAddUserQueryParam &
-  ComputeNodesAddUserHeaderParam &
-  ComputeNodesAddUserBodyParam &
-  RequestParameters;
-
-export interface ComputeNodesDeleteUserHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesDeleteUserQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesDeleteUserQueryParam {
-  queryParameters?: ComputeNodesDeleteUserQueryParamProperties;
-}
-
-export interface ComputeNodesDeleteUserHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesDeleteUserHeaders;
-}
-
-export type ComputeNodesDeleteUserParameters =
-  ComputeNodesDeleteUserQueryParam &
-    ComputeNodesDeleteUserHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodesUpdateUserHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesUpdateUserBodyParam {
-  /** The parameters for the request. */
-  body: NodeUpdateUserParameters;
-}
-
-export interface ComputeNodesUpdateUserQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesUpdateUserQueryParam {
-  queryParameters?: ComputeNodesUpdateUserQueryParamProperties;
-}
-
-export interface ComputeNodesUpdateUserHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesUpdateUserHeaders;
-}
-
-export type ComputeNodesUpdateUserParameters =
-  ComputeNodesUpdateUserQueryParam &
-    ComputeNodesUpdateUserHeaderParam &
-    ComputeNodesUpdateUserBodyParam &
-    RequestParameters;
-
-export interface ComputeNodesGetComputeNodeHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesGetComputeNodeQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** An OData $select clause. */
-  $select?: string;
-}
-
-export interface ComputeNodesGetComputeNodeQueryParam {
-  queryParameters?: ComputeNodesGetComputeNodeQueryParamProperties;
-}
-
-export interface ComputeNodesGetComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesGetComputeNodeHeaders;
-}
-
-export type ComputeNodesGetComputeNodeParameters =
-  ComputeNodesGetComputeNodeQueryParam &
-    ComputeNodesGetComputeNodeHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodesRebootComputeNodeHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesRebootComputeNodeBodyParam {
-  /** The parameters for the request. */
-  body?: NodeRebootParameters;
-}
-
-export interface ComputeNodesRebootComputeNodeQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesRebootComputeNodeQueryParam {
-  queryParameters?: ComputeNodesRebootComputeNodeQueryParamProperties;
-}
-
-export interface ComputeNodesRebootComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesRebootComputeNodeHeaders;
-}
-
-export type ComputeNodesRebootComputeNodeParameters =
-  ComputeNodesRebootComputeNodeQueryParam &
-    ComputeNodesRebootComputeNodeHeaderParam &
-    ComputeNodesRebootComputeNodeBodyParam &
-    RequestParameters;
-
-export interface ComputeNodesReimageComputeNodeHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesReimageComputeNodeBodyParam {
-  /** The parameters for the request. */
-  body?: NodeReimageParameters;
-}
-
-export interface ComputeNodesReimageComputeNodeQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesReimageComputeNodeQueryParam {
-  queryParameters?: ComputeNodesReimageComputeNodeQueryParamProperties;
-}
-
-export interface ComputeNodesReimageComputeNodeHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesReimageComputeNodeHeaders;
-}
-
-export type ComputeNodesReimageComputeNodeParameters =
-  ComputeNodesReimageComputeNodeQueryParam &
-    ComputeNodesReimageComputeNodeHeaderParam &
-    ComputeNodesReimageComputeNodeBodyParam &
-    RequestParameters;
-
-export interface ComputeNodesDisableSchedulingHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesDisableSchedulingBodyParam {
-  /** The parameters for the request. */
-  body?: NodeDisableSchedulingParameters;
-}
-
-export interface ComputeNodesDisableSchedulingQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesDisableSchedulingQueryParam {
-  queryParameters?: ComputeNodesDisableSchedulingQueryParamProperties;
-}
-
-export interface ComputeNodesDisableSchedulingHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesDisableSchedulingHeaders;
-}
-
-export type ComputeNodesDisableSchedulingParameters =
-  ComputeNodesDisableSchedulingQueryParam &
-    ComputeNodesDisableSchedulingHeaderParam &
-    ComputeNodesDisableSchedulingBodyParam &
-    RequestParameters;
-
-export interface ComputeNodesEnableSchedulingHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesEnableSchedulingQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesEnableSchedulingQueryParam {
-  queryParameters?: ComputeNodesEnableSchedulingQueryParamProperties;
-}
-
-export interface ComputeNodesEnableSchedulingHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesEnableSchedulingHeaders;
-}
-
-export type ComputeNodesEnableSchedulingParameters =
-  ComputeNodesEnableSchedulingQueryParam &
-    ComputeNodesEnableSchedulingHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodesGetRemoteLoginSettingsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesGetRemoteLoginSettingsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesGetRemoteLoginSettingsQueryParam {
-  queryParameters?: ComputeNodesGetRemoteLoginSettingsQueryParamProperties;
-}
-
-export interface ComputeNodesGetRemoteLoginSettingsHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesGetRemoteLoginSettingsHeaders;
-}
-
-export type ComputeNodesGetRemoteLoginSettingsParameters =
-  ComputeNodesGetRemoteLoginSettingsQueryParam &
-    ComputeNodesGetRemoteLoginSettingsHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodesGetRemoteDesktopHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesGetRemoteDesktopQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesGetRemoteDesktopQueryParam {
-  queryParameters?: ComputeNodesGetRemoteDesktopQueryParamProperties;
-}
-
-export interface ComputeNodesGetRemoteDesktopHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesGetRemoteDesktopHeaders;
-}
-
-export type ComputeNodesGetRemoteDesktopParameters =
-  ComputeNodesGetRemoteDesktopQueryParam &
-    ComputeNodesGetRemoteDesktopHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodesUploadBatchServiceLogsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodesUploadBatchServiceLogsBodyParam {
-  /** The Azure Batch service log files upload configuration. */
-  body: UploadBatchServiceLogsConfiguration;
-}
-
-export interface ComputeNodesUploadBatchServiceLogsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-}
-
-export interface ComputeNodesUploadBatchServiceLogsQueryParam {
-  queryParameters?: ComputeNodesUploadBatchServiceLogsQueryParamProperties;
-}
-
-export interface ComputeNodesUploadBatchServiceLogsHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesUploadBatchServiceLogsHeaders;
-}
-
-export type ComputeNodesUploadBatchServiceLogsParameters =
-  ComputeNodesUploadBatchServiceLogsQueryParam &
-    ComputeNodesUploadBatchServiceLogsHeaderParam &
-    ComputeNodesUploadBatchServiceLogsBodyParam &
-    RequestParameters;
-
-export interface ComputeNodesListHeaders {
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-}
-
-export interface ComputeNodesListQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults?: number;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /**
-   * An OData $filter clause. For more information on constructing this filter, see
-   * https://docs.microsoft.com/en-us/rest/api/batchservice/odata-filters-in-batch#list-nodes-in-a-pool.
-   */
-  $filter?: string;
-  /** An OData $select clause. */
-  $select?: string;
-}
-
-export interface ComputeNodesListQueryParam {
-  queryParameters?: ComputeNodesListQueryParamProperties;
-}
-
-export interface ComputeNodesListHeaderParam {
-  headers?: RawHttpHeadersInput & ComputeNodesListHeaders;
-}
-
-export type ComputeNodesListParameters = ComputeNodesListQueryParam &
-  ComputeNodesListHeaderParam &
-  RequestParameters;
-
-export interface ComputeNodeExtensionsGetComputeNodeExtensionsHeaders {
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-}
-
-export interface ComputeNodeExtensionsGetComputeNodeExtensionsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** An OData $select clause. */
-  $select?: string;
-}
-
-export interface ComputeNodeExtensionsGetComputeNodeExtensionsQueryParam {
-  queryParameters?: ComputeNodeExtensionsGetComputeNodeExtensionsQueryParamProperties;
-}
-
-export interface ComputeNodeExtensionsGetComputeNodeExtensionsHeaderParam {
-  headers?: RawHttpHeadersInput &
-    ComputeNodeExtensionsGetComputeNodeExtensionsHeaders;
-}
-
-export type ComputeNodeExtensionsGetComputeNodeExtensionsParameters =
-  ComputeNodeExtensionsGetComputeNodeExtensionsQueryParam &
-    ComputeNodeExtensionsGetComputeNodeExtensionsHeaderParam &
-    RequestParameters;
-
-export interface ComputeNodeExtensionsListComputeNodeExtensionsHeaders {
-  /**
-   * The time the request was issued. Client libraries typically set this to the
-   * current system clock time; set it explicitly if you are calling the REST API
-   * directly.
-   */
-  "ocp-date"?: string;
-  /**
-   * The caller-generated request identity, in the form of a GUID with no decoration
-   * such as curly braces, e.g. 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   */
-  "client-request-id"?: string;
-  /** Whether the server should return the client-request-id in the response. */
-  "return-client-request-id"?: boolean;
-}
-
-export interface ComputeNodeExtensionsListComputeNodeExtensionsQueryParamProperties {
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  maxresults?: number;
-  /**
-   * The maximum number of items to return in the response. A maximum of 1000
-   * applications can be returned.
-   */
-  timeOut?: number;
-  /** An OData $select clause. */
-  $select?: string;
-}
-
-export interface ComputeNodeExtensionsListComputeNodeExtensionsQueryParam {
-  queryParameters?: ComputeNodeExtensionsListComputeNodeExtensionsQueryParamProperties;
-}
-
-export interface ComputeNodeExtensionsListComputeNodeExtensionsHeaderParam {
-  headers?: RawHttpHeadersInput &
-    ComputeNodeExtensionsListComputeNodeExtensionsHeaders;
-}
-
-export type ComputeNodeExtensionsListComputeNodeExtensionsParameters =
-  ComputeNodeExtensionsListComputeNodeExtensionsQueryParam &
-    ComputeNodeExtensionsListComputeNodeExtensionsHeaderParam &
-    RequestParameters;

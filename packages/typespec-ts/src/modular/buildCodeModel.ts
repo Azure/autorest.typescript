@@ -1,6 +1,5 @@
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import {
-  EnumMember,
   Enum,
   getDoc,
   getFriendlyName,
@@ -36,8 +35,7 @@ import {
   getProjectedName,
   isNullType,
   getEncode,
-  isTemplateDeclarationOrInstance,
-  getFormat
+  isTemplateDeclarationOrInstance
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -52,8 +50,8 @@ import {
   HttpServer,
   isStatusCode,
   HttpOperation,
-  isHeader,
-  getHttpOperation
+  getHttpOperation,
+  isSharedRoute
 } from "@typespec/http";
 import { getAddedOnVersions } from "@typespec/versioning";
 import {
@@ -66,8 +64,10 @@ import {
   getClientNamespaceString,
   getSdkUnion,
   getAllModels,
-  SdkSimpleType,
-  getSdkSimpleType
+  SdkBuiltInType,
+  getSdkBuiltInType,
+  getClientType,
+  SdkEnumValueType
 } from "@azure-tools/typespec-client-generator-core";
 import { getResourceOperation } from "@typespec/rest";
 import {
@@ -94,10 +94,17 @@ import {
 import {
   getOperationGroupName,
   getOperationName,
-  isIgnoredHeaderParam
+  isBinaryPayload,
+  isIgnoredHeaderParam,
+  isLongRunningOperation
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
+import { buildRuntimeImports } from "@azure-tools/rlc-common";
+import {
+  getModelNamespaceName,
+  getOperationNamespaceInterfaceName
+} from "../utils/namespaceUtils.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -171,47 +178,56 @@ function getDocStr(program: Program, target: Type): string {
   return getDoc(program, target) ?? "";
 }
 
-function isLro(_program: Program, operation: Operation): boolean {
-  for (const decorator of operation.decorators) {
-    if (decorator.decorator.name === "$pollingOperation") {
-      return true;
-    }
+function isDiscriminator(
+  context: SdkContext,
+  type: Model,
+  propertyName: string
+): boolean {
+  const discriminator = getDiscriminator(context.program, type);
+  if (discriminator && discriminator.propertyName === propertyName) {
+    return true;
   }
   return false;
 }
 
-function handleDiscriminator(context: SdkContext, type: Model, model: any) {
+function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
-    let discriminatorProperty;
+    const discriminatorValues: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
-          property.isDiscriminator = true;
-          model.discriminatedSubtypes[property.type.value] = modelType;
-          discriminatorProperty = property;
+          discriminatorValues.push(modelType.discriminatorValue);
         }
       }
     }
     // it is not included in properties of typespec but needed by python codegen
-    if (discriminatorProperty) {
-      const discriminatorType = { ...discriminatorProperty.type };
-      discriminatorType.value = null;
-      const propertyCopy = {
-        ...discriminatorProperty,
+    if (discriminatorValues.length > 0) {
+      const discriminatorInfo = {
+        description: `the discriminator possible values ${discriminatorValues.join(
+          ", "
+        )}`,
         isPolymorphic: true,
-        type: discriminatorType
+        isDiscriminator: true
       };
-      propertyCopy.description = "";
-      model.properties.push(propertyCopy);
+      return discriminatorInfo;
     }
   }
+  return undefined;
+}
+
+function isSchemaProperty(program: Program, property: ModelProperty): boolean {
+  const headerInfo = getHeaderFieldName(program, property);
+  const queryInfo = getQueryParamName(program, property);
+  const pathInfo = getPathParamName(program, property);
+  const statusCodeinfo = isStatusCode(program, property);
+  return !(headerInfo || queryInfo || pathInfo || statusCodeinfo);
 }
 
 function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
-  function isSchemaProperty(property: ModelProperty) {
+  function isSchemaProperty(property: ModelProperty): boolean {
     const headerInfo = getHeaderFieldName(program, property);
     const queryInfo = getQueryParamName(program, property);
     const pathInfo = getPathParamName(program, property);
@@ -238,17 +254,6 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
   return type as Model;
 }
 
-function isEmptyModel(type: EmitterType): boolean {
-  // object, {}, Model{} all will be treated as empty model
-  return (
-    type.kind === "Model" &&
-    type.properties.size === 0 &&
-    !type.baseModel &&
-    type.derivedModels.length === 0 &&
-    !type.indexer
-  );
-}
-
 function processModelProperties(
   context: SdkContext,
   newValue: any,
@@ -256,20 +261,32 @@ function processModelProperties(
 ) {
   // need to do properties after insertion to avoid infinite recursion
   for (const property of model.properties.values()) {
-    if (
-      isStatusCode(context.program, property) ||
-      isNeverType(property.type) ||
-      isHeader(context.program, property)
-    ) {
+    if (!isSchemaProperty(context.program, property)) {
       continue;
     }
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
-    newValue.properties.push(emitProperty(context, property));
+    let newProperty = emitProperty(context, property);
+    if (isDiscriminator(context, model, property.name)) {
+      newProperty = { ...newProperty, ...handleDiscriminator(context, model) };
+    }
+    newValue.properties.push(newProperty);
   }
   // need to do discriminator outside `emitModel` to avoid infinite recursion
-  handleDiscriminator(context, model, newValue);
+  // handleDiscriminator(context, model, newValue);
+}
+
+function isEmptyAnonymousModel(type: EmitterType): boolean {
+  // object, {}, all will be treated as empty model
+  return (
+    type.kind === "Model" &&
+    type.name === "" &&
+    type.properties.size === 0 &&
+    !type.baseModel &&
+    type.derivedModels.length === 0 &&
+    !type.indexer
+  );
 }
 
 function getType(
@@ -291,19 +308,20 @@ function getType(
     }
   }
   let newValue: any;
-  if (isEmptyModel(type)) {
+  if (isEmptyAnonymousModel(type)) {
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
     newValue = emitType(context, type);
   }
-
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
   }
 
   if (enableCache) {
-    typesMap.set(effectiveModel, newValue);
+    if (!options.disableEffectiveModel) {
+      typesMap.set(effectiveModel, newValue);
+    }
     if (type.kind === "Union") {
       for (const t of type.variants.values()) {
         if (t.type.kind === "Model") {
@@ -379,6 +397,7 @@ type BodyParameter = ParamBase & {
   restApiName: string;
   location: "body";
   defaultContentType: string;
+  isBinaryPayload: boolean;
 };
 
 function getBodyType(program: Program, route: HttpOperation): Type {
@@ -437,20 +456,19 @@ function emitBodyParameter(
   const type = getType(context, getBodyType(context.program, httpOperation), {
     disableEffectiveModel: true
   });
-  if (type.type === "model" && type.name === "") {
-    type.name = capitalize(httpOperation.operation.name) + "Request";
-  }
 
+  const defaultContentType =
+    body.parameter?.default ?? contentTypes.includes("application/json")
+      ? "application/json"
+      : contentTypes[0]!;
   return {
     contentTypes,
     type,
     restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
-    defaultContentType:
-      body.parameter?.default ?? contentTypes.includes("application/json")
-        ? "application/json"
-        : contentTypes[0]!
+    defaultContentType,
+    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
   };
 }
 
@@ -604,7 +622,14 @@ function emitResponse(
     statusCodes: statusCodes ?? [],
     addedOn: getAddedOnVersion(context.program, response.type),
     discriminator: "basic",
-    type: type
+    type: type,
+    isBinaryPayload: innerResponse.body?.type
+      ? isBinaryPayload(
+          context,
+          innerResponse.body?.type,
+          innerResponse.body?.contentTypes![0] ?? "application/json"
+        )
+      : false
   };
 }
 
@@ -614,7 +639,10 @@ function emitOperation(
   operationGroupName: string,
   rlcModels: RLCModel
 ): HrlcOperation {
-  const lro = isLro(context.program, operation);
+  const lro = isLongRunningOperation(
+    context.program,
+    ignoreDiagnostics(getHttpOperation(context.program, operation))
+  );
   const paging = getPagedResult(context.program, operation);
   if (lro && paging) {
     return emitLroPagingOperation(
@@ -747,6 +775,20 @@ function emitBasicOperation(
     );
   });
 
+  const namespaceHierarchies =
+    context.rlcOptions?.hierarchyClient === true
+      ? getOperationNamespaceInterfaceName(context, operation)
+      : [];
+
+  if (
+    namespaceHierarchies.length === 0 &&
+    context.rlcOptions?.hierarchyClient === false &&
+    operationGroupName !== "" &&
+    namespaceHierarchies[0] !== operationGroupName
+  ) {
+    namespaceHierarchies.push(operationGroupName);
+  }
+
   for (const param of httpOperation.parameters.parameters) {
     if (isIgnoredHeaderParam(param)) {
       continue;
@@ -761,7 +803,7 @@ function emitBasicOperation(
   // Set up responses for operation
   const responses: Response[] = [];
   const exceptions: Response[] = [];
-  const isOverload: boolean = false;
+  const isOverload = isSharedRoute(context.program, operation);
   for (const response of httpOperation.responses) {
     for (const innerResponse of response.responses) {
       const emittedResponse: Response = emitResponse(
@@ -785,7 +827,19 @@ function emitBasicOperation(
     bodyParameter = undefined;
   } else {
     bodyParameter = emitBodyParameter(context, httpOperation);
+    // Flatten the body parameter if it is an anonymous model
     if (
+      bodyParameter.type.type === "model" &&
+      bodyParameter.type.name === "" &&
+      bodyParameter.type.properties.length > 0
+    ) {
+      for (const param of bodyParameter.type.properties) {
+        param.implementation = "Method";
+        param.location = param.location ?? "body";
+        parameters.push(param);
+      }
+      bodyParameter = undefined;
+    } else if (
       bodyParameter.type.type === "model" &&
       bodyParameter.type.base === "json"
     ) {
@@ -800,9 +854,25 @@ function emitBasicOperation(
       }
     }
   }
+
   const name = applyCasing(operation.name, { casing: CASING });
+
+  /** handle name collision between operation name and parameter signature */
+  if (bodyParameter) {
+    bodyParameter.clientName =
+      bodyParameter.clientName === name
+        ? bodyParameter.clientName + "Parameter"
+        : bodyParameter.clientName;
+  }
+  parameters
+    .filter((param) => {
+      return param.clientName === name && !param.isReadOnly && param.required;
+    })
+    .forEach((param) => {
+      param.clientName = param.clientName + "Parameter";
+    });
   return {
-    name: name,
+    name: normalizeName(name, NameType.Operation, true),
     description: getDocStr(context.program, operation),
     summary: getSummary(context.program, operation) ?? "",
     url: httpOperation.path,
@@ -814,10 +884,11 @@ function emitBasicOperation(
     groupName: operationGroupName,
     addedOn: getAddedOnVersion(context.program, operation),
     discriminator: "basic",
-    isOverload: false,
+    isOverload,
     overloads: [],
     apiVersions: [getAddedOnVersion(context.program, operation)],
-    rlcResponse: rlcResponses?.[0]
+    rlcResponse: rlcResponses?.[0],
+    namespaceHierarchies
   };
 }
 
@@ -909,9 +980,20 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
     getProjectedName(context.program, type, "javascript") ??
     getProjectedName(context.program, type, "client") ??
     getFriendlyName(context.program, type);
+  const fullNamespaceName =
+    getModelNamespaceName(context, type.namespace!)
+      .map((nsName) => {
+        return normalizeName(nsName, NameType.Interface);
+      })
+      .join("") +
+    (effectiveName ? effectiveName : getName(context.program, type));
   let modelName =
     overridedModelName ??
-    (effectiveName ? effectiveName : getName(context.program, type));
+    (context.rlcOptions?.enableModelNamespace
+      ? fullNamespaceName
+      : effectiveName
+      ? effectiveName
+      : getName(context.program, type));
   if (
     !overridedModelName &&
     type.templateMapper &&
@@ -979,12 +1061,13 @@ function emitEnum(program: Program, type: Enum): Record<string, any> {
     values: enumValues,
     isFixed: isFixed(program, type)
   };
-  function enumMemberType(member: EnumMember) {
-    if (typeof member.value === "number") {
-      return intOrFloat(member.value);
-    }
-    return "string";
+}
+
+function enumMemberType(member: SdkEnumValueType) {
+  if (typeof member.value === "number") {
+    return "number";
   }
+  return "string";
 }
 
 function constantType(value: any, valueType: string): Record<string, any> {
@@ -1013,6 +1096,14 @@ function emitCredential(auth: HttpAuth): Record<string, any> {
       policy: {
         type: "AzureKeyCredentialPolicy",
         key: auth.name
+      }
+    };
+  } else if (auth.type === "http") {
+    credential_type = {
+      type: "Key",
+      policy: {
+        type: "AzureKeyCredentialPolicy",
+        key: "Authorization"
       }
     };
   }
@@ -1066,7 +1157,7 @@ function emitStdScalar(
     case "plainTime":
       return { type: "datetime", format: newScalar.format ?? "time" };
     case "offsetDateTime":
-      return { type: "datetime", format: newScalar.format ?? "rfc7231" };
+      return { type: "string" };
     case "duration":
       return { type: "duration", format: newScalar.format };
     case "numeric":
@@ -1082,8 +1173,6 @@ function applyEncoding(
   target: any = {}
 ) {
   const encodeData = getEncode(program, typespecType);
-  const formatData = getFormat(program, typespecType);
-  formatData;
   if (encodeData) {
     const newTarget = { ...target };
     const newType = emitScalar(program, encodeData.type);
@@ -1215,12 +1304,9 @@ function mapTypeSpecType(context: SdkContext, type: Type): any {
   }
 }
 
-function capitalize(name: string): string {
-  return name[0]!.toUpperCase() + name.slice(1);
-}
-
 function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   const sdkType = getSdkUnion(context, type);
+  const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
     throw Error("Should not have an empty union");
   }
@@ -1232,67 +1318,94 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw)),
+      types: sdkType.values.map((x) => getType(context, x.__raw!)),
       xmlMetadata: {}
     };
   } else if (sdkType.kind === "enum") {
     return {
       name: sdkType.name,
       nullable: sdkType.nullable,
-      description: sdkType.doc || `Type of ${sdkType.name}`,
+      description: sdkType.description || `Type of ${sdkType.name}`,
       internal: true,
       type: sdkType.kind,
-      valueType: emitSimpleType(context, sdkType.valueType as SdkSimpleType),
-      values: sdkType.values.map((x) => emitEnumMember(x)),
-      isFixed: sdkType.isFixed === false ? false : true,
+      valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
+      values: sdkType.values.map((x) => emitEnumMember(context, x)),
+      isFixed: sdkType.isFixed,
+      xmlMetadata: {}
+    };
+  } else if (
+    isStringOrNumberKind(context.program, sdkType.kind) &&
+    isStringOrNumberKind(context.program, nonNullOptions[0]?.kind)
+  ) {
+    return {
+      name: undefined, // string/number union will be mapped as fixed enum without name
+      nullable: sdkType.nullable,
+      internal: true,
+      type: "enum",
+      valueType: emitSimpleType(context, sdkType as SdkBuiltInType),
+      values: nonNullOptions
+        .map((x) => getClientType(context, x))
+        .map((x) => emitEnumMember(context, x)),
+      isFixed: true,
       xmlMetadata: {}
     };
   } else {
-    return { nullable: sdkType.nullable, ...emitType(context, sdkType.__raw) };
+    return { ...emitType(context, sdkType.__raw!), nullable: sdkType.nullable };
   }
 }
 
-function emitEnumMember(type: any): Record<string, any> {
+function isStringOrNumberKind(program: Program, kind?: string): boolean {
+  if (!kind) {
+    return false;
+  }
+  kind = kind.toLowerCase();
+  try {
+    const type = emitStdScalar(program, { name: kind } as any);
+    kind = type["type"] ?? kind;
+  } catch (e: any) {
+    // ignore
+  }
+  return ["string", "number", "integer", "float"].includes(kind!);
+}
+
+function getNonNullOptions(type: Union) {
+  return [...type.variants.values()]
+    .map((x) => x.type)
+    .filter((t) => !isNullType(t));
+}
+
+function emitEnumMember(context: SdkContext, member: any): Record<string, any> {
+  const value = member.value ?? member.name;
   return {
-    name: enumName(type.name),
-    value: type.value,
-    description: type.doc
+    type: "constant",
+    valueType: {
+      type: enumMemberType(member)
+    },
+    value,
+    name: member.name ? enumName(member.name) : undefined,
+    description: getDoc(context.program, member),
+    isConstant: true
   };
 }
 
 function emitSimpleType(
   context: SdkContext,
-  type: Scalar | IntrinsicType | SdkSimpleType
+  type: Scalar | IntrinsicType | SdkBuiltInType
 ): Record<string, any> {
-  let sdkType: SdkSimpleType;
+  let sdkType: SdkBuiltInType;
   if (type.kind === "Scalar" || type.kind === "Intrinsic") {
-    sdkType = getSdkSimpleType(context, type);
+    sdkType = getSdkBuiltInType(context, type);
   } else {
     sdkType = type;
   }
 
-  const extraInformation: Record<string, any> = {};
-  if (sdkType.kind === "string") {
-    extraInformation["pattern"] = sdkType.pattern;
-    extraInformation["minLength"] = sdkType.minLength;
-    extraInformation["maxLength"] = sdkType.maxLength;
-  } else if (
-    sdkType.kind === "int32" ||
-    sdkType.kind === "int64" ||
-    sdkType.kind === "float32" ||
-    sdkType.kind === "float64"
-  ) {
-    extraInformation["minValue"] = sdkType.minValue;
-    extraInformation["maxValue"] = sdkType.maxValue;
-  }
   return {
     nullable: sdkType.nullable,
     type: "number", // TODO: switch to kind
-    doc: sdkType.doc,
-    apiVersions: sdkType.apiVersions,
-    sdkDefaultValue: sdkType.sdkDefaultValue,
-    format: sdkType.format,
-    ...extraInformation
+    doc: "",
+    apiVersions: [],
+    sdkDefaultValue: undefined,
+    format: undefined
   };
 }
 
@@ -1326,6 +1439,8 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
       return {};
     case "Enum":
       return emitEnum(context.program, type);
+    case "EnumMember":
+      return emitEnumMember(context, type);
     default:
       throw Error(`Not supported ${type.kind}`);
   }
@@ -1337,6 +1452,10 @@ function emitOperationGroups(
   rlcModels: RLCModel
 ): OperationGroup[] {
   const operationGroups: OperationGroup[] = [];
+  const groupMapping: Map<string, OperationGroup> = new Map<
+    string,
+    OperationGroup
+  >();
   for (const operationGroup of listOperationGroups(context, client)) {
     const operations: HrlcOperation[] = [];
     const name = operationGroup.type.name;
@@ -1346,25 +1465,51 @@ function emitOperationGroups(
     )) {
       operations.push(emitOperation(context, operation, name, rlcModels));
     }
-    operationGroups.push({
-      className: name,
-      propertyName: name,
-      operations: operations
-    });
+    if (operations.length > 0) {
+      addHierarchyOperationGroup(operations, groupMapping);
+    }
   }
   const clientOperations: HrlcOperation[] = [];
   for (const operation of listOperationsInOperationGroup(context, client)) {
     clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
-    operationGroups.push({
-      className: "",
-      propertyName: "",
-      operations: clientOperations
-    });
+    addHierarchyOperationGroup(clientOperations, groupMapping);
   }
-  resolveConflictIfExist(operationGroups);
+
+  groupMapping.forEach((value) => {
+    operationGroups.push(value);
+  });
+  if (
+    context.rlcOptions?.hierarchyClient === false &&
+    context.rlcOptions?.enableOperationGroup
+  ) {
+    resolveConflictIfExist(operationGroups);
+  }
   return operationGroups;
+}
+
+function addHierarchyOperationGroup(
+  operations: HrlcOperation[],
+  groupMapping: Map<string, OperationGroup>
+): OperationGroup[] {
+  if (operations.length > 0) {
+    operations.forEach((op) => {
+      const groupName = op.namespaceHierarchies.join("") ?? "";
+      if (!groupMapping.has(groupName)) {
+        groupMapping.set(groupName, {
+          className: groupName,
+          propertyName: groupName,
+          operations: [op],
+          namespaceHierarchies: op.namespaceHierarchies
+        });
+      } else {
+        groupMapping.get(groupName)!.operations.push(op);
+      }
+    });
+    return [...groupMapping.values()];
+  }
+  return [];
 }
 
 function resolveConflictIfExist(operationGroups: OperationGroup[]) {
@@ -1623,14 +1768,15 @@ export function emitCodeModel(
     subnamespaceToClients: {},
     clients: [],
     types: [],
-    project
+    project,
+    runtimeImports: buildRuntimeImports(dpgContext.rlcOptions?.branded ?? true)
   };
 
   typesMap.clear();
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model);
+    getType(dpgContext, model.__raw!);
   }
 
   for (const namespace of getNamespaces(dpgContext)) {

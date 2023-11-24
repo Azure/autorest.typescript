@@ -7,6 +7,7 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
+import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -37,7 +38,12 @@ export function buildOperationUtils(model: ModularCodeModel) {
         et,
         getTypeUnionName(su, true, importSet)
       );
-      getTypeDeserializeFunction(apiUtilsFile, et, importSet);
+      getTypeDeserializeFunction(
+        apiUtilsFile,
+        et,
+        importSet,
+        model.runtimeImports
+      );
     });
     const deserializeFUnctionName = getDeserializeFunctionName(su, importSet);
     deserializeUnionTypesFunction(
@@ -153,7 +159,8 @@ function getMappedType(modularType: string, fromRest?: boolean) {
 function getTypeDeserializeFunction(
   sourceFile: SourceFile,
   type: Type,
-  importSet: Map<string, Set<string>>
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
 ) {
   const statements: string[] = [];
 
@@ -167,7 +174,12 @@ function getTypeDeserializeFunction(
     };
     if (type.properties) {
       statements.push(
-        `return {${getResponseMapping(type.properties, "obj", importSet)}};`
+        `return {${getResponseMapping(
+          type.properties,
+          "obj",
+          importSet,
+          runtimeImports
+        )}};`
       );
     } else {
       statements.push(`return {};`);
@@ -200,7 +212,8 @@ function getTypeDeserializeFunction(
       `return (obj || []).map(item => { return {${getResponseMapping(
         type.elementType.properties ?? [],
         "item",
-        importSet
+        importSet,
+        runtimeImports
       )}}})`
     );
     functionStatement.statements = statements.join("\n");

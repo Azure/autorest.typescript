@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-import createAnomalyDetectorRestClient, {
-  CreateMultivariateModelParameters
-} from "@msinternal/anomaly-detector-rest";
+import createAnomalyDetectorRestClient from "@msinternal/anomaly-detector-rest";
 import { AzureKeyCredential } from "@azure/core-auth";
 import * as dotenv from "dotenv";
 
@@ -26,24 +22,25 @@ async function trainMultivariateModel() {
     apiVersion,
     credential
   );
-  const options: CreateMultivariateModelParameters = {
-    body: {
-      alignPolicy: {
-        alignMode: "Outer",
-        fillNAMethod: "Linear",
-        paddingValue: 0
+  const result = await client
+    .path("/multivariate/models")
+    .post({
+      body: {
+        alignPolicy: {
+          alignMode: "Outer",
+          fillNAMethod: "Linear",
+          paddingValue: 0
+        },
+        dataSchema: "OneTable",
+        dataSource:
+          "https://multiadsample.blob.core.windows.net/data/sample_data_2_1000.csv",
+        displayName: "Devops-MultiAD",
+        endTime: new Date("2019-04-02T00:00:00Z"),
+        slidingWindow: 20,
+        startTime: new Date("2019-04-01T00:00:00Z")
       },
-      dataSchema: "OneTable",
-      dataSource:
-        "https://multiadsample.blob.core.windows.net/data/sample_data_2_1000.csv",
-      displayName: "Devops-MultiAD",
-      endTime: new Date("2019-04-02T00:00:00Z"),
-      slidingWindow: 20,
-      startTime: new Date("2019-04-01T00:00:00Z")
-    },
-    headers: { "Content-Type": "application/json" }
-  };
-  const result = await client.path("/multivariate/models").post(options);
+      headers: { "Content-Type": "application/json" }
+    });
   console.log(result);
 }
 

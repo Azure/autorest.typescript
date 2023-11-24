@@ -4,17 +4,17 @@
 import {
   CodeModel,
   ImplementationLocation,
-  ParameterLocation,
-  Protocol
+  ParameterLocation
 } from "@autorest/codemodel";
 import {
-  ImportKind,
   RLCModel,
   HelperFunctionDetails,
   UrlInfo,
   ApiVersionInfo,
   extractPathApiVersion,
-  extractDefinedPosition
+  extractDefinedPosition,
+  buildRuntimeImports,
+  initInternalImports
 } from "@azure-tools/rlc-common";
 import { getAutorestOptions } from "../../autorestSession";
 import { transformBaseUrl } from "../../transforms/urlTransforms";
@@ -34,10 +34,11 @@ import {
 import { transformPaths } from "./transformPaths";
 import { transformResponseTypes } from "./transformResponseTypes";
 import { transformSchemas } from "./transformSchemas";
+import { transformRLCSampleData } from "../../generators/samples/rlcSampleGenerator";
 
 export function transform(model: CodeModel): RLCModel {
   const { srcPath } = getAutorestOptions();
-  const importDetails = new Map<ImportKind, Set<string>>();
+  const importDetails = initInternalImports();
   const urlInfo = transformUrlInfo(model);
   const rlcModel: RLCModel = {
     libraryName: normalizeName(
@@ -49,12 +50,16 @@ export function transform(model: CodeModel): RLCModel {
     options: transformOptions(model),
     schemas: transformSchemas(model),
     responses: transformResponseTypes(model, importDetails),
-    importSet: importDetails,
     parameters: transformParameterTypes(model, importDetails),
     helperDetails: transformHelperDetails(model),
     urlInfo: transformUrlInfo(model),
-    apiVersionInfo: transformApiVersion(model, urlInfo)
+    apiVersionInfo: transformApiVersion(model, urlInfo),
+    importInfo: {
+      internalImports: importDetails,
+      runtimeImports: buildRuntimeImports()
+    }
   };
+  rlcModel.sampleGroups = transformRLCSampleData(model, rlcModel);
   return rlcModel;
 }
 
@@ -125,6 +130,7 @@ export function transformHelperDetails(
   let hasPipeCollection = false;
   let hasSsvCollection = false;
   let hasTsvCollection = false;
+  let hasCsvCollection = false;
   for (let operationGroup of model.operationGroups) {
     for (let operation of operationGroup.operations) {
       const paginationDetails = extractPaginationDetails(operation);
@@ -147,6 +153,9 @@ export function transformHelperDetails(
         hasTsvCollection = hasTsvCollection
           ? hasTsvCollection
           : serializeInfo.hasTsvCollection;
+        hasCsvCollection = hasCsvCollection
+          ? hasCsvCollection
+          : serializeInfo.hasCsvCollection;
       });
     }
   }

@@ -19,14 +19,6 @@ export default function createClient(
 ): AuthoringClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/language`;
   options.apiVersion = options.apiVersion ?? "2022-05-15-preview";
-  options = {
-    ...options,
-    credentials: {
-      apiKeyHeaderName:
-        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
-    },
-  };
-
   const userAgentInfo = `azsdk-js-customWrapper-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -39,6 +31,10 @@ export default function createClient(
     },
     loggingOptions: {
       logger: options.loggingOptions?.logger ?? logger.info,
+    },
+    credentials: {
+      apiKeyHeaderName:
+        options.credentials?.apiKeyHeaderName ?? "Ocp-Apim-Subscription-Key",
     },
   };
 

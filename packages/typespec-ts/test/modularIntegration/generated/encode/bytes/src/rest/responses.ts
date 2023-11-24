@@ -72,3 +72,60 @@ export interface HeaderBase64url204Response extends HttpResponse {
 export interface HeaderBase64urlArray204Response extends HttpResponse {
   status: "204";
 }
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface RequestBodyDefault204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface RequestBodyOctetStream204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface RequestBodyCustomContentType204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface RequestBodyBase64204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface RequestBodyBase64url204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface ResponseBodyDefault200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}
+
+/** The request has succeeded. */
+export interface ResponseBodyOctetStream200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+}
+
+/** The request has succeeded. */
+export interface ResponseBodyCustomContentType200Response extends HttpResponse {
+  status: "200";
+  /** Value may contain any sequence of octets */
+  body: Uint8Array;
+}
+
+/** The request has succeeded. */
+export interface ResponseBodyBase64200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}
+
+/** The request has succeeded. */
+export interface ResponseBodyBase64url200Response extends HttpResponse {
+  status: "200";
+  body: string;
+}

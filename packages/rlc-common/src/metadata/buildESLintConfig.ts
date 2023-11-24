@@ -13,7 +13,11 @@ const esLintConfig = {
   }
 };
 
-export function buildEsLintConfig() {
+export function buildEsLintConfig(model: RLCModel) {
+  const branded = model.options?.branded ?? true;
+  if (branded === false) {
+    return;
+  }
   const project = new Project();
   const filePath = ".eslintrc.json";
   const configFile = project.createSourceFile(

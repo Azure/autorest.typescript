@@ -21,6 +21,7 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { getOperationName } from "../utils/operationUtil.js";
+import { detectModelConflicts } from "../utils/namespaceUtils.js";
 
 export function transformRLCOptions(
   emitterOptions: RLCOptions,
@@ -56,9 +57,15 @@ function extractRLCOptions(
     dpgContext,
     emitterOptions
   );
+  const enableModelNamespace = getEnableModelNamespace(
+    dpgContext,
+    emitterOptions
+  );
+  const hierarchyClient = getHierarchyClient(emitterOptions);
   return {
     ...emitterOptions,
     ...credentialInfo,
+    branded: getBranded(emitterOptions),
     includeShortcuts,
     packageDetails,
     generateMetadata,
@@ -67,7 +74,9 @@ function extractRLCOptions(
     serviceInfo,
     azureOutputDirectory,
     sourceFrom: "TypeSpec",
-    enableOperationGroup
+    enableOperationGroup,
+    enableModelNamespace,
+    hierarchyClient
   };
 }
 
@@ -136,15 +145,41 @@ function getEnableOperationGroup(
   ) {
     return emitterOptions.enableOperationGroup;
   }
-  // Detect if existing name conflicts if customers didn't set the option explicitly
+  // Only detect if existing name conflicts if customers don't set hierarchyClient to true
   return detectIfNameConflicts(dpgContext);
+}
+
+function getEnableModelNamespace(
+  dpgContext: SdkContext,
+  emitterOptions: RLCOptions
+) {
+  if (
+    emitterOptions.enableModelNamespace === true ||
+    emitterOptions.enableModelNamespace === false
+  ) {
+    return emitterOptions.enableModelNamespace;
+  }
+  // Detect if existing name conflicts if customers didn't set the option explicitly
+  return detectModelConflicts(dpgContext);
+}
+
+function getHierarchyClient(emitterOptions: RLCOptions) {
+  if (
+    emitterOptions.hierarchyClient === true ||
+    emitterOptions.hierarchyClient === false
+  ) {
+    return emitterOptions.hierarchyClient;
+  }
+  // enable hierarchy client by default if customers didn't set the option explicitly
+  return true;
 }
 
 function detectIfNameConflicts(dpgContext: SdkContext) {
   const clients = getRLCClients(dpgContext);
   const program = dpgContext.program;
-  const nameSet = new Set<string>();
   for (const client of clients) {
+    // only consider it's conflict when there are conflicts in the same client
+    const nameSet = new Set<string>();
     const operationGroups = listOperationGroups(dpgContext, client);
     for (const operationGroup of operationGroups) {
       const operations = listOperationsInOperationGroup(
@@ -179,6 +214,10 @@ function detectIfNameConflicts(dpgContext: SdkContext) {
 
 function getIncludeShortcuts(emitterOptions: RLCOptions) {
   return Boolean(emitterOptions.includeShortcuts);
+}
+
+function getBranded(emitterOptions: RLCOptions) {
+  return emitterOptions.branded !== undefined ? emitterOptions.branded : true;
 }
 
 function getPackageDetails(
@@ -246,7 +285,7 @@ export function getCredentialInfo(
 ) {
   const securityInfo = processAuth(program);
   const addCredentials =
-    !securityInfo && emitterOptions.addCredentials === false
+    emitterOptions.addCredentials === false
       ? false
       : securityInfo
       ? securityInfo.addCredentials

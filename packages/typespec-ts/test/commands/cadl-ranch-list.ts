@@ -103,7 +103,7 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   },
   {
     outputPath: "models/propertyOptional",
-    inputPath: "type/property/optional"
+    inputPath: "type/property/optionality"
   },
   {
     outputPath: "models/propertyNullable",
@@ -154,10 +154,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "projection/projected-name"
   },
   {
-    outputPath: "internal",
-    inputPath: "azure/client-generator-core/internal"
-  },
-  {
     outputPath: "server/path/single",
     inputPath: "server/path/single"
   },
@@ -188,6 +184,29 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "client/structure/two-operation-group",
     inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "scalar",
+    inputPath: "type/scalar"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/access",
+    inputPath: "azure/client-generator-core/access"
+  },
+  {
+    outputPath: "azure/clientGeneratorCore/usage",
+    inputPath: "azure/client-generator-core/usage"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
+  }
+];
+
+export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];
 
@@ -235,5 +254,48 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "encode/datetime",
     inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  },
+  {
+    outputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "azure/core-traits",
+    inputPath: "azure/core/traits"
+  }
+];
+
+export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
   }
 ];

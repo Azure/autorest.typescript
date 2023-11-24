@@ -1,5 +1,5 @@
 import { toCamelCase, toPascalCase } from "../../utils/casingUtils.js";
-import { Client, Operation } from "../modularCodeModel.js";
+import { Client, Operation, OperationGroup } from "../modularCodeModel.js";
 import {
   ReservedModelNames,
   NameType,
@@ -41,4 +41,28 @@ export function isReservedName(name: string, nameType: NameType): boolean {
       reservedName.name === name.toLowerCase() &&
       reservedName.reservedFor.includes(nameType)
   );
+}
+
+export function getClassicalLayerPrefix(
+  operationGroup: OperationGroup | Operation,
+  nameType: NameType,
+  separator: string = "",
+  layer: number = operationGroup.namespaceHierarchies.length - 1
+): string {
+  const prefix: string[] = [];
+  if (layer < 0) {
+    return prefix.join(separator);
+  }
+  if (layer === 0) {
+    return normalizeName(
+      operationGroup.namespaceHierarchies[0] ?? "",
+      nameType
+    );
+  }
+  for (let i = 0; i <= layer; i++) {
+    prefix.push(
+      normalizeName(operationGroup.namespaceHierarchies[i] ?? "", nameType)
+    );
+  }
+  return prefix.join(separator);
 }

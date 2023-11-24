@@ -16,7 +16,7 @@ export interface ProjectOutput {
   /** The storage container name. */
   storageInputContainerName: string;
   /** The project settings. */
-  settings?: Record<string, string>;
+  settings?: ProjectSettingsOutput;
   /** Whether the project would be used for multiple languages or not. */
   multilingual?: boolean;
   /** The project description. */
@@ -33,6 +33,9 @@ export interface ProjectOutput {
   readonly lastDeployedDateTime: string;
 }
 
+/** Represents the settings used to define the project behavior. */
+export interface ProjectSettingsOutput extends Record<string, string> {}
+
 /** Provides status details for long running operations. */
 export interface OperationStatusOutput {
   /** The unique ID of the operation. */
@@ -40,7 +43,7 @@ export interface OperationStatusOutput {
   /**
    * The status of the operation
    *
-   * Possible values: InProgress, Succeeded, Failed, Canceled
+   * Possible values: NotStarted, Running, Succeeded, Failed, Canceled
    */
   status: string;
   /** Error object that describes the error when status is "Failed". */

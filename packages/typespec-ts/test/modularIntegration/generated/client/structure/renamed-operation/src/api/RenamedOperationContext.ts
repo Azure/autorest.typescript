@@ -11,10 +11,10 @@ export interface RenamedOperationClientOptions extends ClientOptions {}
 export { ServiceContext } from "../rest/index.js";
 
 export function createRenamedOperation(
+  endpoint: string,
   client: ClientType,
   options: RenamedOperationClientOptions = {}
 ): ServiceContext {
-  const baseUrl = client;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(endpoint, client, options);
   return clientContext;
 }

@@ -1,19 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+import { Pipeline } from "@azure/core-rest-pipeline";
 import { ClientType } from "./models/models.js";
 import {
-  RenamedTwoOptions,
-  RenamedFourOptions,
-  RenamedSixOptions,
   RenamedOneOptions,
   RenamedThreeOptions,
   RenamedFiveOptions,
 } from "./models/options.js";
+import { getGroupOperations, GroupOperations } from "./classic/group/index.js";
 import {
-  renamedTwo,
-  renamedFour,
-  renamedSix,
   renamedOne,
   renamedThree,
   renamedFive,
@@ -26,22 +22,21 @@ export { RenamedOperationClientOptions } from "./api/RenamedOperationContext.js"
 
 export class RenamedOperationClient {
   private _client: ServiceContext;
+  /** The pipeline used by this client to make requests */
+  public readonly pipeline: Pipeline;
 
-  constructor(client: ClientType, options: RenamedOperationClientOptions = {}) {
-    this._client = createRenamedOperation(client, options);
+  constructor(
+    endpoint: string,
+    client: ClientType,
+    options: RenamedOperationClientOptions = {}
+  ) {
+    this._client = createRenamedOperation(endpoint, client, options);
+    this.pipeline = this._client.pipeline;
+    this.group = getGroupOperations(this._client);
   }
 
-  group = {
-    renamedTwo: (options?: RenamedTwoOptions): Promise<void> => {
-      return renamedTwo(this._client, options);
-    },
-    renamedFour: (options?: RenamedFourOptions): Promise<void> => {
-      return renamedFour(this._client, options);
-    },
-    renamedSix: (options?: RenamedSixOptions): Promise<void> => {
-      return renamedSix(this._client, options);
-    },
-  };
+  /** The operation groups for Group */
+  public readonly group: GroupOperations;
 
   renamedOne(
     options: RenamedOneOptions = { requestOptions: {} }

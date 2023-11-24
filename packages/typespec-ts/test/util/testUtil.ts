@@ -76,7 +76,7 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
         main: "@azure-tools/typespec-ts",
         metadata: { name: "@azure-tools/typespec-ts" }
       }
-    ]
+    ],
   };
   const resolvedOptions = { ...defaultOptions };
   program.emitters = resolvedOptions.emitters as any;
@@ -86,7 +86,8 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
     generateProtocolMethods: resolvedOptions.generateProtocolMethods,
     generateConvenienceMethods: resolvedOptions.generateConvenienceMethods,
     rlcOptions: {},
-    generationPathDetail: {}
+    generationPathDetail: {},
+    emitterName: "@azure-tools/typespec-ts"
   } as SdkContext;
 }
 
@@ -106,3 +107,10 @@ export function assertEqualContent(
     )
   );
 }
+
+export type VerifyPropertyConfig = {
+  additionalTypeSpecDefinition?: string;
+  outputType?: string;
+  additionalInputContent?: string;
+  additionalOutputContent?: string;
+};

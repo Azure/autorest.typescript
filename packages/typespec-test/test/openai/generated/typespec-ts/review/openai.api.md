@@ -6,45 +6,182 @@
 
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
+import { CreateHttpPollerOptions } from '@azure/core-lro';
+import { ErrorModel } from '@azure-rest/core-client';
 import { ErrorResponse } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
 import { KeyCredential } from '@azure/core-auth';
+import { OperationState } from '@azure/core-lro';
 import { RawHttpHeaders } from '@azure/core-rest-pipeline';
 import { RequestParameters } from '@azure-rest/core-client';
+import { SimplePollerLike } from '@azure/core-lro';
 import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public
-export interface ChoiceOutput {
-    finish_reason?: string;
-    index?: number;
-    logprobs?: CompletionsLogProbsOutput;
-    text?: string;
+export interface AzureChatExtensionConfiguration {
+    parameters: unknown;
+    type: string;
 }
 
 // @public
-export interface CompletionsLogProbsOutput {
-    text_offset?: number[];
-    token_logprobs?: number[];
-    tokens?: string[];
-    top_logprobs?: Record<string, number>[];
+export interface AzureChatExtensionsMessageContext {
+    messages?: Array<ChatMessage>;
+}
+
+// @public
+export interface AzureChatExtensionsMessageContextOutput {
+    messages?: Array<ChatMessageOutput>;
+}
+
+// @public
+export interface BatchImageGenerationOperationResponseOutput {
+    created: number;
+    error?: ErrorModel;
+    expires?: number;
+    id: string;
+    result?: ImageGenerationsOutput;
+    status: string;
+}
+
+// @public (undocumented)
+export interface BeginAzureBatchImageGeneration {
+    post(options?: BeginAzureBatchImageGenerationParameters): StreamableMethod<BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationDefaultResponse>;
+}
+
+// @public (undocumented)
+export interface BeginAzureBatchImageGeneration202Headers {
+    "operation-location": string;
+}
+
+// @public
+export interface BeginAzureBatchImageGeneration202Response extends HttpResponse {
+    // (undocumented)
+    body: BatchImageGenerationOperationResponseOutput;
+    // (undocumented)
+    headers: RawHttpHeaders & BeginAzureBatchImageGeneration202Headers;
+    // (undocumented)
+    status: "202";
+}
+
+// @public (undocumented)
+export interface BeginAzureBatchImageGenerationBodyParam {
+    // (undocumented)
+    body?: ImageGenerationOptions;
+}
+
+// @public (undocumented)
+export interface BeginAzureBatchImageGenerationDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface BeginAzureBatchImageGenerationDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & BeginAzureBatchImageGenerationDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public
+export interface BeginAzureBatchImageGenerationLogicalResponse extends HttpResponse {
+    // (undocumented)
+    body: BatchImageGenerationOperationResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export type BeginAzureBatchImageGenerationParameters = BeginAzureBatchImageGenerationBodyParam & RequestParameters;
+
+// @public
+export interface ChatChoiceOutput {
+    content_filter_results?: ContentFilterResultsOutput;
+    delta?: ChatMessageOutput;
+    finish_reason: string | null;
+    index: number;
+    message?: ChatMessageOutput;
+}
+
+// @public
+export interface ChatCompletionsOptions {
+    dataSources?: Array<AzureChatExtensionConfiguration>;
+    frequency_penalty?: number;
+    function_call?: string | FunctionName;
+    functions?: Array<FunctionDefinition>;
+    logit_bias?: Record<string, number>;
+    max_tokens?: number;
+    messages: Array<ChatMessage>;
+    model?: string;
+    n?: number;
+    presence_penalty?: number;
+    stop?: string[];
+    stream?: boolean;
+    temperature?: number;
+    top_p?: number;
+    user?: string;
+}
+
+// @public
+export interface ChatCompletionsOutput {
+    choices: Array<ChatChoiceOutput>;
+    created: number;
+    id: string;
+    prompt_annotations?: Array<PromptFilterResultOutput>;
+    usage: CompletionsUsageOutput;
+}
+
+// @public
+export interface ChatMessage {
+    content: string | null;
+    context?: AzureChatExtensionsMessageContext;
+    function_call?: FunctionCall;
+    name?: string;
+    role: string;
+}
+
+// @public
+export interface ChatMessageOutput {
+    content: string | null;
+    context?: AzureChatExtensionsMessageContextOutput;
+    function_call?: FunctionCallOutput;
+    name?: string;
+    role: string;
+}
+
+// @public
+export interface ChoiceOutput {
+    content_filter_results?: ContentFilterResultsOutput;
+    finish_reason: string | null;
+    index: number;
+    logprobs: CompletionsLogProbabilityModelOutput | null;
+    text: string;
+}
+
+// @public
+export interface CompletionsLogProbabilityModelOutput {
+    text_offset: number[];
+    token_logprobs: (number | null)[];
+    tokens: string[];
+    top_logprobs: Record<string, number | null>[];
 }
 
 // @public
 export interface CompletionsOptions {
     best_of?: number;
-    cache_level?: number;
-    completion_config?: string;
     echo?: boolean;
     frequency_penalty?: number;
     logit_bias?: Record<string, number>;
     logprobs?: number;
     max_tokens?: number;
-    model: string;
+    model?: string;
     n?: number;
     presence_penalty?: number;
-    prompt?: string[];
+    prompt: string[];
     stop?: string[];
+    stream?: boolean;
     temperature?: number;
     top_p?: number;
     user?: string;
@@ -52,19 +189,32 @@ export interface CompletionsOptions {
 
 // @public
 export interface CompletionsOutput {
-    choices?: Array<ChoiceOutput>;
-    created?: number;
-    id?: string;
-    model?: string;
-    object: "text_completion";
+    choices: Array<ChoiceOutput>;
+    created: number;
+    id: string;
+    prompt_annotations?: Array<PromptFilterResultOutput>;
     usage: CompletionsUsageOutput;
 }
 
 // @public
 export interface CompletionsUsageOutput {
-    completion_token: number;
+    completion_tokens: number;
     prompt_tokens: number;
     total_tokens: number;
+}
+
+// @public
+export interface ContentFilterResultOutput {
+    filtered: boolean;
+    severity: string;
+}
+
+// @public
+export interface ContentFilterResultsOutput {
+    hate?: ContentFilterResultOutput;
+    self_harm?: ContentFilterResultOutput;
+    sexual?: ContentFilterResultOutput;
+    violence?: ContentFilterResultOutput;
 }
 
 // @public
@@ -80,13 +230,11 @@ export interface DeploymentOutput {
 export interface EmbeddingItemOutput {
     embedding: number[];
     index: number;
-    object: "embedding";
 }
 
 // @public
 export interface EmbeddingsOptions {
-    input: string | string[];
-    input_type?: string;
+    input: string[];
     model?: string;
     user?: string;
 }
@@ -94,8 +242,6 @@ export interface EmbeddingsOptions {
 // @public
 export interface EmbeddingsOutput {
     data: Array<EmbeddingItemOutput>;
-    model?: string;
-    object: "list";
     usage: EmbeddingsUsageOutput;
 }
 
@@ -105,22 +251,144 @@ export interface EmbeddingsUsageOutput {
     total_tokens: number;
 }
 
-// @public (undocumented)
-export interface GetCompletions {
-    post(options?: GetCompletionsParameters): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse>;
+// @public
+export interface FunctionCall {
+    arguments: string;
+    name: string;
+}
+
+// @public
+export interface FunctionCallOutput {
+    arguments: string;
+    name: string;
+}
+
+// @public
+export interface FunctionDefinition {
+    description?: string;
+    name: string;
+    parameters?: unknown;
+}
+
+// @public
+export interface FunctionName {
+    name: string;
 }
 
 // @public (undocumented)
-export interface GetCompletions200Headers {
-    "apim-request-id": string;
+export interface GetAzureBatchImageGenerationOperationStatus {
+    get(options?: GetAzureBatchImageGenerationOperationStatusParameters): StreamableMethod<GetAzureBatchImageGenerationOperationStatus200Response | GetAzureBatchImageGenerationOperationStatusDefaultResponse>;
+}
+
+// @public
+export interface GetAzureBatchImageGenerationOperationStatus200Response extends HttpResponse {
+    // (undocumented)
+    body: BatchImageGenerationOperationResponseOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetAzureBatchImageGenerationOperationStatusDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetAzureBatchImageGenerationOperationStatusDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetAzureBatchImageGenerationOperationStatusDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetAzureBatchImageGenerationOperationStatusParameters = RequestParameters;
+
+// @public (undocumented)
+export interface GetChatCompletions {
+    post(options?: GetChatCompletionsParameters): StreamableMethod<GetChatCompletions200Response | GetChatCompletionsDefaultResponse>;
+}
+
+// @public
+export interface GetChatCompletions200Response extends HttpResponse {
+    // (undocumented)
+    body: ChatCompletionsOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsBodyParam {
+    // (undocumented)
+    body?: ChatCompletionsOptions;
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetChatCompletionsDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetChatCompletionsParameters = GetChatCompletionsBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetChatCompletionsWithAzureExtensions {
+    post(options?: GetChatCompletionsWithAzureExtensionsParameters): StreamableMethod<GetChatCompletionsWithAzureExtensions200Response | GetChatCompletionsWithAzureExtensionsDefaultResponse>;
+}
+
+// @public
+export interface GetChatCompletionsWithAzureExtensions200Response extends HttpResponse {
+    // (undocumented)
+    body: ChatCompletionsOutput;
+    // (undocumented)
+    status: "200";
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsWithAzureExtensionsBodyParam {
+    // (undocumented)
+    body?: ChatCompletionsOptions;
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsWithAzureExtensionsDefaultHeaders {
+    "x-ms-error-code"?: string;
+}
+
+// @public (undocumented)
+export interface GetChatCompletionsWithAzureExtensionsDefaultResponse extends HttpResponse {
+    // (undocumented)
+    body: ErrorResponse;
+    // (undocumented)
+    headers: RawHttpHeaders & GetChatCompletionsWithAzureExtensionsDefaultHeaders;
+    // (undocumented)
+    status: string;
+}
+
+// @public (undocumented)
+export type GetChatCompletionsWithAzureExtensionsParameters = GetChatCompletionsWithAzureExtensionsBodyParam & RequestParameters;
+
+// @public (undocumented)
+export interface GetCompletions {
+    post(options?: GetCompletionsParameters): StreamableMethod<GetCompletions200Response | GetCompletionsDefaultResponse>;
 }
 
 // @public
 export interface GetCompletions200Response extends HttpResponse {
     // (undocumented)
     body: CompletionsOutput;
-    // (undocumented)
-    headers: RawHttpHeaders & GetCompletions200Headers;
     // (undocumented)
     status: "200";
 }
@@ -186,6 +454,43 @@ export interface GetEmbeddingsDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export type GetEmbeddingsParameters = GetEmbeddingsBodyParam & RequestParameters;
 
+// @public
+export function getLongRunningPoller<TResult extends BeginAzureBatchImageGenerationLogicalResponse | BeginAzureBatchImageGenerationDefaultResponse>(client: Client, initialResponse: BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationDefaultResponse, options?: CreateHttpPollerOptions<TResult, OperationState<TResult>>): Promise<SimplePollerLike<OperationState<TResult>, TResult>>;
+
+// @public
+export interface ImageGenerationOptions {
+    n?: number;
+    prompt: string;
+    response_format?: string;
+    size?: string;
+    user?: string;
+}
+
+// @public
+export interface ImageGenerationOptionsOutput {
+    n?: number;
+    prompt: string;
+    response_format?: string;
+    size?: string;
+    user?: string;
+}
+
+// @public
+export interface ImageGenerationsOutput {
+    created: number;
+    data: Array<ImageLocationOutput> | Array<ImagePayloadOutput>;
+}
+
+// @public
+export interface ImageLocationOutput {
+    url: string;
+}
+
+// @public
+export interface ImagePayloadOutput {
+    b64_json: string;
+}
+
 // @public (undocumented)
 export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsDefaultResponse): response is GetEmbeddingsDefaultResponse;
 
@@ -193,14 +498,36 @@ export function isUnexpected(response: GetEmbeddings200Response | GetEmbeddingsD
 export function isUnexpected(response: GetCompletions200Response | GetCompletionsDefaultResponse): response is GetCompletionsDefaultResponse;
 
 // @public (undocumented)
+export function isUnexpected(response: GetChatCompletions200Response | GetChatCompletionsDefaultResponse): response is GetChatCompletionsDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetChatCompletionsWithAzureExtensions200Response | GetChatCompletionsWithAzureExtensionsDefaultResponse): response is GetChatCompletionsWithAzureExtensionsDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: GetAzureBatchImageGenerationOperationStatus200Response | GetAzureBatchImageGenerationOperationStatusDefaultResponse): response is GetAzureBatchImageGenerationOperationStatusDefaultResponse;
+
+// @public (undocumented)
+export function isUnexpected(response: BeginAzureBatchImageGeneration202Response | BeginAzureBatchImageGenerationLogicalResponse | BeginAzureBatchImageGenerationDefaultResponse): response is BeginAzureBatchImageGenerationDefaultResponse;
+
+// @public (undocumented)
 export type OpenAIClient = Client & {
     path: Routes;
 };
+
+// @public
+export interface PromptFilterResultOutput {
+    content_filter_results?: ContentFilterResultsOutput;
+    prompt_index: number;
+}
 
 // @public (undocumented)
 export interface Routes {
     (path: "/deployments/{deploymentId}/embeddings", deploymentId: string): GetEmbeddings;
     (path: "/deployments/{deploymentId}/completions", deploymentId: string): GetCompletions;
+    (path: "/deployments/{deploymentId}/chat/completions", deploymentId: string): GetChatCompletions;
+    (path: "/deployments/{deploymentId}/extensions/chat/completions", deploymentId: string): GetChatCompletionsWithAzureExtensions;
+    (path: "/operations/images/{operationId}", operationId: string): GetAzureBatchImageGenerationOperationStatus;
+    (path: "/images/generations:submit"): BeginAzureBatchImageGeneration;
 }
 
 // (No @packageDocumentation comment for this package)

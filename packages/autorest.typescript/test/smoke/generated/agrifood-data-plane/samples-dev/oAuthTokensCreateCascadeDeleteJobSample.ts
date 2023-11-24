@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
 import createAzureAgriFoodPlatformDataPlaneServiceClient, {
-  OAuthTokensCreateCascadeDeleteJobParameters,
   getLongRunningPoller
 } from "@msinternal/agrifood-data-plane";
 import { AzureKeyCredential } from "@azure/core-auth";
@@ -26,12 +23,11 @@ async function oAuthTokensCreateCascadeDeleteJob() {
     credential
   );
   const jobId = "JOBID123";
-  const options: OAuthTokensCreateCascadeDeleteJobParameters = {
-    queryParameters: { farmerId: "FARMER123", oauthProviderId: "JOHNDEERE" }
-  };
   const initialResponse = await client
     .path("/oauth/tokens/remove/{jobId}", jobId)
-    .put(options);
+    .put({
+      queryParameters: { farmerId: "FARMER123", oauthProviderId: "JOHNDEERE" }
+    });
   const poller = await getLongRunningPoller(client, initialResponse);
   const result = await poller.pollUntilDone();
   console.log(result);

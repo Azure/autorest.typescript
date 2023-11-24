@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 /** The response of entire anomaly detection. */
-export interface UnivariateEntireDetectionResultOutput {
+export interface UnivariateUnivariateEntireDetectionResultOutput {
   /**
    * Frequency extracted from the series, zero means no recurrent pattern has been
    * found.
@@ -58,7 +58,7 @@ export interface UnivariateEntireDetectionResultOutput {
 }
 
 /** Error information returned by the API. */
-export interface AnomalyDetectorErrorOutput {
+export interface UnivariateAnomalyDetectorErrorOutput {
   /**
    * The error code.
    *
@@ -70,7 +70,7 @@ export interface AnomalyDetectorErrorOutput {
 }
 
 /** The response of last anomaly detection. */
-export interface UnivariateLastDetectionResultOutput {
+export interface UnivariateUnivariateLastDetectionResultOutput {
   /**
    * Frequency extracted from the series, zero means no recurrent pattern has been
    * found.
@@ -117,7 +117,7 @@ export interface UnivariateLastDetectionResultOutput {
 }
 
 /** The response of change point detection. */
-export interface UnivariateChangePointDetectionResultOutput {
+export interface UnivariateUnivariateChangePointDetectionResultOutput {
   /**
    * Frequency extracted from the series, zero means no recurrent pattern has been
    * found.
@@ -134,32 +134,32 @@ export interface UnivariateChangePointDetectionResultOutput {
 }
 
 /** Detection results for the given resultId. */
-export interface MultivariateDetectionResultOutput {
+export interface MultivariateMultivariateDetectionResultOutput {
   /** Result identifier, which is used to fetch the results of an inference call. */
   readonly resultId: string;
   /** Multivariate anomaly detection status. */
-  summary: MultivariateBatchDetectionResultSummaryOutput;
+  summary: MultivariateMultivariateBatchDetectionResultSummaryOutput;
   /** Detection result for each timestamp. */
-  results: Array<AnomalyStateOutput>;
+  results: Array<MultivariateAnomalyStateOutput>;
 }
 
 /** Multivariate anomaly detection status. */
-export interface MultivariateBatchDetectionResultSummaryOutput {
+export interface MultivariateMultivariateBatchDetectionResultSummaryOutput {
   /** Status of detection results. One of CREATED, RUNNING, READY, and FAILED. */
   status: "CREATED" | "RUNNING" | "READY" | "FAILED";
   /** Error message when detection is failed. */
-  errors?: Array<ErrorResponseOutput>;
+  errors?: Array<MultivariateErrorResponseOutput>;
   /** Variable Status. */
-  variableStates?: Array<VariableStateOutput>;
+  variableStates?: Array<MultivariateVariableStateOutput>;
   /**
    * Detection request for batch inference. This is an asynchronous inference which
    * will need another API to get detection results.
    */
-  setupInfo: MultivariateBatchDetectionOptionsOutput;
+  setupInfo: MultivariateMultivariateBatchDetectionOptionsOutput;
 }
 
 /** ErrorResponse contains code and message that shows the error information. */
-export interface ErrorResponseOutput {
+export interface MultivariateErrorResponseOutput {
   /** The error code. */
   code: string;
   /** The message explaining the error reported by the service. */
@@ -167,7 +167,7 @@ export interface ErrorResponseOutput {
 }
 
 /** Variable Status. */
-export interface VariableStateOutput {
+export interface MultivariateVariableStateOutput {
   /** Variable name in variable states. */
   variable?: string;
   /** Proportion of missing values that need to be filled by fillNAMethod. */
@@ -184,7 +184,7 @@ export interface VariableStateOutput {
  * Detection request for batch inference. This is an asynchronous inference which
  * will need another API to get detection results.
  */
-export interface MultivariateBatchDetectionOptionsOutput {
+export interface MultivariateMultivariateBatchDetectionOptionsOutput {
   /**
    * Source link to the input data to indicate an accessible Azure storage Uri,
    * either pointed to an Azure blob storage folder, or pointed to a CSV file in
@@ -211,17 +211,17 @@ export interface MultivariateBatchDetectionOptionsOutput {
 }
 
 /** Anomaly status and information. */
-export interface AnomalyStateOutput {
+export interface MultivariateAnomalyStateOutput {
   /** The timestamp for this anomaly. */
   timestamp: string;
   /** The detailed value of this anomalous timestamp. */
-  value?: AnomalyValueOutput;
+  value?: MultivariateAnomalyValueOutput;
   /** Error message for the current timestamp. */
-  errors?: Array<ErrorResponseOutput>;
+  errors?: Array<MultivariateErrorResponseOutput>;
 }
 
 /** Detailed information of the anomalous timestamp. */
-export interface AnomalyValueOutput {
+export interface MultivariateAnomalyValueOutput {
   /** True if an anomaly is detected at the current timestamp. */
   isAnomaly: boolean;
   /**
@@ -235,11 +235,11 @@ export interface AnomalyValueOutput {
    */
   score: number;
   /** Interpretation of this anomalous timestamp. */
-  interpretation?: Array<AnomalyInterpretationOutput>;
+  interpretation?: Array<MultivariateAnomalyInterpretationOutput>;
 }
 
 /** Interpretation of the anomalous timestamp. */
-export interface AnomalyInterpretationOutput {
+export interface MultivariateAnomalyInterpretationOutput {
   /** Variable. */
   variable?: string;
   /**
@@ -248,11 +248,11 @@ export interface AnomalyInterpretationOutput {
    */
   contributionScore?: number;
   /** Correlation changes among the anomalous variables */
-  correlationChanges?: CorrelationChangesOutput;
+  correlationChanges?: MultivariateCorrelationChangesOutput;
 }
 
 /** Correlation changes among the anomalous variables */
-export interface CorrelationChangesOutput {
+export interface MultivariateCorrelationChangesOutput {
   /** The correlated variables that have correlation changes under an anomaly. */
   changedVariables?: string[];
 }
@@ -261,7 +261,7 @@ export interface CorrelationChangesOutput {
  * Training result of a model including its status, errors and diagnostics
  * information.
  */
-export interface ModelInfoOutput {
+export interface MultivariateModelInfoOutput {
   /**
    * Source link to the input data to indicate an accessible Azure storage Uri,
    * either pointed to an Azure blob storage folder, or pointed to a CSV file in
@@ -296,17 +296,17 @@ export interface ModelInfoOutput {
    */
   slidingWindow?: number;
   /** An optional field, indicating the manner to align multiple variables. */
-  alignPolicy?: AlignPolicyOutput;
+  alignPolicy?: MultivariateAlignPolicyOutput;
   /** Model status. One of CREATED, RUNNING, READY, and FAILED. */
   status?: "CREATED" | "RUNNING" | "READY" | "FAILED";
   /** Error messages when failed to create a model. */
-  readonly errors?: Array<ErrorResponseOutput>;
+  readonly errors?: Array<MultivariateErrorResponseOutput>;
   /** Diagnostics information to help inspect the states of model or variable. */
-  diagnosticsInfo?: DiagnosticsInfoOutput;
+  diagnosticsInfo?: MultivariateDiagnosticsInfoOutput;
 }
 
 /** An optional field, indicating the manner to align multiple variables. */
-export interface AlignPolicyOutput {
+export interface MultivariateAlignPolicyOutput {
   /**
    * An optional field, indicating how to align different variables to the same
    * time-range. Either Inner or Outer.
@@ -324,15 +324,15 @@ export interface AlignPolicyOutput {
 }
 
 /** Diagnostics information to help inspect the states of model or variable. */
-export interface DiagnosticsInfoOutput {
+export interface MultivariateDiagnosticsInfoOutput {
   /** Model status. */
-  modelState?: ModelStateOutput;
+  modelState?: MultivariateModelStateOutput;
   /** Variable Status. */
-  variableStates?: Array<VariableStateOutput>;
+  variableStates?: Array<MultivariateVariableStateOutput>;
 }
 
 /** Model status. */
-export interface ModelStateOutput {
+export interface MultivariateModelStateOutput {
   /**
    * This indicates the number of passes of the entire training dataset the
    * algorithm has completed.
@@ -353,7 +353,7 @@ export interface ModelStateOutput {
 }
 
 /** Response of getting a model. */
-export interface AnomalyDetectionModelOutput {
+export interface MultivariateAnomalyDetectionModelOutput {
   /** Model identifier. */
   readonly modelId: string;
   /** Date and time (UTC) when the model was created. */
@@ -364,13 +364,13 @@ export interface AnomalyDetectionModelOutput {
    * Training result of a model including its status, errors and diagnostics
    * information.
    */
-  modelInfo?: ModelInfoOutput;
+  modelInfo?: MultivariateModelInfoOutput;
 }
 
 /** Response of listing models. */
-export interface ModelListOutput {
+export interface MultivariateModelListOutput {
   /** List of models. */
-  models: Array<AnomalyDetectionModelOutput>;
+  models: Array<MultivariateAnomalyDetectionModelOutput>;
   /** Number of trained multivariate models. */
   currentCount: number;
   /** Maximum number of models that can be trained for this Anomaly Detector resource. */
@@ -380,9 +380,9 @@ export interface ModelListOutput {
 }
 
 /** Results of last detection. */
-export interface MultivariateLastDetectionResultOutput {
+export interface MultivariateMultivariateLastDetectionResultOutput {
   /** Variable Status. */
-  variableStates?: Array<VariableStateOutput>;
+  variableStates?: Array<MultivariateVariableStateOutput>;
   /** Anomaly status and information. */
-  results?: Array<AnomalyStateOutput>;
+  results?: Array<MultivariateAnomalyStateOutput>;
 }

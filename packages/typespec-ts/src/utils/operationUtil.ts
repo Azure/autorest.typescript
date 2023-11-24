@@ -7,13 +7,12 @@ import {
   ResponseMetadata,
   ResponseTypes,
   getLroLogicalResponseName,
+  getResponseTypeName,
   normalizeName
 } from "@azure-tools/rlc-common";
 import {
   getProjectedName,
   ignoreDiagnostics,
-  isGlobalNamespace,
-  isService,
   Model,
   Operation,
   Program,
@@ -23,7 +22,7 @@ import {
   HttpOperation,
   HttpOperationParameter,
   HttpOperationResponse,
-  StatusCode,
+  HttpStatusCodesEntry,
   getHttpOperation
 } from "@typespec/http";
 import {
@@ -43,15 +42,87 @@ import {
 } from "@azure-tools/rlc-common";
 import { isByteOrByteUnion } from "./modelUtils.js";
 import { SdkContext } from "./interfaces.js";
+import { getOperationNamespaceInterfaceName } from "./namespaceUtils.js";
+
+// Sorts the responses by status code
+export function sortedOperationResponses(responses: HttpOperationResponse[]) {
+  return responses.sort((a, b) => {
+    if (a.statusCodes === "*") {
+      return 1;
+    }
+    if (b.statusCodes === "*") {
+      return -1;
+    }
+    const aStatus =
+      typeof a.statusCodes === "number" ? a.statusCodes : a.statusCodes.start;
+    const bStatus =
+      typeof b.statusCodes === "number" ? b.statusCodes : b.statusCodes.start;
+    return aStatus - bStatus;
+  });
+}
+
+/**
+ * This function computes all the response types error and success
+ * an operation can end up returning.
+ */
+export function getOperationResponseTypes(
+  dpgContext: SdkContext,
+  operation: HttpOperation
+): ResponseTypes {
+  const returnTypes: ResponseTypes = {
+    error: [],
+    success: []
+  };
+  function getResponseType(responses: HttpOperationResponse[]) {
+    return responses.map((r) => {
+      const statusCode = getOperationStatuscode(r);
+      const responseName = getResponseTypeName(
+        getOperationGroupName(dpgContext, operation),
+        getOperationName(dpgContext.program, operation.operation),
+        statusCode
+      );
+      return responseName;
+    });
+  }
+  if (operation.responses && operation.responses.length) {
+    returnTypes.error = getResponseType(
+      operation.responses.filter((r) => isDefaultStatusCode(r.statusCodes))
+    );
+    returnTypes.success = getResponseType(
+      operation.responses.filter((r) => isDefinedStatusCode(r.statusCodes))
+    );
+  }
+  return returnTypes;
+}
+
+/**
+ * Extracts all success or defined status codes for a give operation
+ */
+export function getOperationSuccessStatus(operation: HttpOperation): string[] {
+  const responses = operation.responses ?? [];
+  const status: string[] = [];
+
+  for (const response of responses) {
+    if (isDefinedStatusCode(response.statusCodes)) {
+      status.push(getOperationStatuscode(response));
+    }
+  }
+
+  return status;
+}
 
 export function getOperationStatuscode(
   response: HttpOperationResponse
 ): string {
-  switch (response.statusCode) {
-    case "*":
-      return "default";
-    default:
-      return `${response.statusCode}`;
+  const statusCodes = response.statusCodes;
+  if (statusCodes === "*") {
+    return "default";
+  } else if (typeof statusCodes === "number") {
+    return String(statusCodes);
+  } else {
+    // FIXME - this is a hack to get the first status code
+    // https://github.com/Azure/autorest.typescript/issues/2063
+    return String(statusCodes.start);
   }
 }
 
@@ -70,29 +141,21 @@ export function getOperationGroupName(
   if (!dpgContext.rlcOptions?.enableOperationGroup || !operationOrRoute) {
     return "";
   }
-  const program = dpgContext.program;
   // If this is a HttpOperation
   if ((operationOrRoute as any).kind !== "Operation") {
     operationOrRoute = (operationOrRoute as HttpOperation).operation;
   }
   const operation = operationOrRoute as Operation;
-  if (operation.interface) {
-    return normalizeName(
-      operation.interface?.name ?? "",
-      NameType.Interface,
-      true
-    );
-  }
-  const namespace = operation.namespace;
-  if (
-    namespace === undefined ||
-    isGlobalNamespace(program, namespace) ||
-    isService(program, namespace)
-  ) {
-    return "";
-  }
+  const namespaceNames = getOperationNamespaceInterfaceName(
+    dpgContext,
+    operation
+  );
 
-  return normalizeName(namespace.name ?? "", NameType.Interface, true);
+  return namespaceNames
+    .map((name) => {
+      return normalizeName(name, NameType.Interface, true);
+    })
+    .join("");
 }
 
 export function getOperationName(program: Program, operation: Operation) {
@@ -105,12 +168,12 @@ export function getOperationName(program: Program, operation: Operation) {
   );
 }
 
-export function isDefaultStatusCode(statusCode: StatusCode) {
-  return statusCode === "*";
+export function isDefaultStatusCode(statusCodes: HttpStatusCodesEntry) {
+  return statusCodes === "*";
 }
 
-export function isDefinedStatusCode(statusCode: StatusCode) {
-  return statusCode !== "*";
+export function isDefinedStatusCode(statusCodes: HttpStatusCodesEntry) {
+  return statusCodes !== "*";
 }
 
 export function isBinaryPayload(

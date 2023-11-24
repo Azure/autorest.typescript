@@ -2,7 +2,12 @@
 // Licensed under the MIT license.
 
 import { RequestParameters } from "@azure-rest/core-client";
-import { EmbeddingsOptions, CompletionsOptions } from "./models";
+import {
+  EmbeddingsOptions,
+  CompletionsOptions,
+  ChatCompletionsOptions,
+  ImageGenerationOptions,
+} from "./models";
 
 export interface GetEmbeddingsBodyParam {
   body?: EmbeddingsOptions;
@@ -17,3 +22,26 @@ export interface GetCompletionsBodyParam {
 
 export type GetCompletionsParameters = GetCompletionsBodyParam &
   RequestParameters;
+
+export interface GetChatCompletionsBodyParam {
+  body?: ChatCompletionsOptions;
+}
+
+export type GetChatCompletionsParameters = GetChatCompletionsBodyParam &
+  RequestParameters;
+
+export interface GetChatCompletionsWithAzureExtensionsBodyParam {
+  body?: ChatCompletionsOptions;
+}
+
+export type GetChatCompletionsWithAzureExtensionsParameters =
+  GetChatCompletionsWithAzureExtensionsBodyParam & RequestParameters;
+export type GetAzureBatchImageGenerationOperationStatusParameters =
+  RequestParameters;
+
+export interface BeginAzureBatchImageGenerationBodyParam {
+  body?: ImageGenerationOptions;
+}
+
+export type BeginAzureBatchImageGenerationParameters =
+  BeginAzureBatchImageGenerationBodyParam & RequestParameters;

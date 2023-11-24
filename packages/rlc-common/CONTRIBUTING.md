@@ -27,4 +27,12 @@ If there's a new feature request, Contributors can
 
 ## Testing
 
-We don't have tests in this library as it is invoked by autorest.typescript and typespec-ts, adding tests in those two libraries directly if you want to test a feature.
+We have added unit tests for this lib and you can debug them by following these steps.
+
+#### How to debug an unit test case
+
+- We have set up a debugging profile for unit tests that you can use:
+  1. Put breakpoints in your test or source code where you want to pause the execution
+  2. Switch to the debugger tab on the left side
+  3. Choose the "[RLC-Common] Debug Unit Test" profile from the dropdown menu
+  4. Press the "Play" button to start debugging
