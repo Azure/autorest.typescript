@@ -6,175 +6,13 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
-
-// @public (undocumented)
-export type ColorType = "red" | "blue";
-
-// @public (undocumented)
-export interface CustomGet10Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet11Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet12Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet13Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet14Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet15Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet16Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet17Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet18Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet19Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet1Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet20Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet21Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet22Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet23Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet24Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet25Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet26Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet2Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet3Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet4Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet5Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet6Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet7Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet8Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGet9Options extends OperationOptions {
-}
-
-// @public (undocumented)
-export interface CustomGetOptions extends OperationOptions {
-}
+import { Pipeline } from '@azure/core-rest-pipeline';
 
 // @public (undocumented)
 export class DemoServiceClient {
     constructor(endpoint: string, options?: DemoServiceClientOptions);
-    // (undocumented)
-    customGet(options?: CustomGetOptions): Promise<Widget>;
-    // (undocumented)
-    customGet1(options?: CustomGet1Options): Promise<Widget1>;
-    // (undocumented)
-    customGet10(options?: CustomGet10Options): Promise<Widget10>;
-    // (undocumented)
-    customGet11(options?: CustomGet11Options): Promise<Widget11>;
-    // (undocumented)
-    customGet12(options?: CustomGet12Options): Promise<Widget12>;
-    // (undocumented)
-    customGet13(options?: CustomGet13Options): Promise<Widget13>;
-    // (undocumented)
-    customGet14(options?: CustomGet14Options): Promise<Widget14>;
-    // (undocumented)
-    customGet15(options?: CustomGet15Options): Promise<Widget15>;
-    // (undocumented)
-    customGet16(options?: CustomGet16Options): Promise<Widget16>;
-    // (undocumented)
-    customGet17(options?: CustomGet17Options): Promise<Widget17>;
-    // (undocumented)
-    customGet18(options?: CustomGet18Options): Promise<Widget18>;
-    // (undocumented)
-    customGet19(options?: CustomGet19Options): Promise<Widget19>;
-    // (undocumented)
-    customGet2(options?: CustomGet2Options): Promise<Widget2>;
-    // (undocumented)
-    customGet20(options?: CustomGet20Options): Promise<Widget20>;
-    // (undocumented)
-    customGet21(options?: CustomGet21Options): Promise<Widget21>;
-    // (undocumented)
-    customGet22(options?: CustomGet22Options): Promise<Widget22>;
-    // (undocumented)
-    customGet23(options?: CustomGet23Options): Promise<Widget23>;
-    // (undocumented)
-    customGet24(options?: CustomGet24Options): Promise<Widget24>;
-    // (undocumented)
-    customGet25(options?: CustomGet25Options): Promise<Widget25>;
-    // (undocumented)
-    customGet26(options?: CustomGet26Options): Promise<Widget26>;
-    // (undocumented)
-    customGet3(options?: CustomGet3Options): Promise<Widget3>;
-    // (undocumented)
-    customGet4(options?: CustomGet4Options): Promise<Widget4>;
-    // (undocumented)
-    customGet5(options?: CustomGet5Options): Promise<Widget5>;
-    // (undocumented)
-    customGet6(options?: CustomGet6Options): Promise<Widget6>;
-    // (undocumented)
-    customGet7(options?: CustomGet7Options): Promise<Widget7>;
-    // (undocumented)
-    customGet8(options?: CustomGet8Options): Promise<Widget8>;
-    // (undocumented)
-    customGet9(options?: CustomGet9Options): Promise<Widget9>;
+    readonly pipeline: Pipeline;
+    readonly widgetService: WidgetServiceOperations;
 }
 
 // @public (undocumented)
@@ -184,7 +22,7 @@ export interface DemoServiceClientOptions extends ClientOptions {
 // @public (undocumented)
 export interface Widget {
     // (undocumented)
-    color: ColorType;
+    color: "red" | "blue";
     // (undocumented)
     readonly id: string;
     // (undocumented)
@@ -389,6 +227,172 @@ export interface WidgetData5 {
 export interface WidgetData6 {
     // (undocumented)
     data: WidgetData5;
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet10Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet11Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet12Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet13Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet14Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet15Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet16Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet17Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet18Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet19Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet1Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet20Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet21Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet22Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet23Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet24Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet25Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet26Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet2Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet3Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet4Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet5Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet6Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet7Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet8Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGet9Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetOptions extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceOperations {
+    // (undocumented)
+    customGet: (options?: WidgetServiceCustomGetOptions) => Promise<Widget>;
+    // (undocumented)
+    customGet1: (options?: WidgetServiceCustomGet1Options) => Promise<Widget1>;
+    // (undocumented)
+    customGet10: (options?: WidgetServiceCustomGet10Options) => Promise<Widget10>;
+    // (undocumented)
+    customGet11: (options?: WidgetServiceCustomGet11Options) => Promise<Widget11>;
+    // (undocumented)
+    customGet12: (options?: WidgetServiceCustomGet12Options) => Promise<Widget12>;
+    // (undocumented)
+    customGet13: (options?: WidgetServiceCustomGet13Options) => Promise<Widget13>;
+    // (undocumented)
+    customGet14: (options?: WidgetServiceCustomGet14Options) => Promise<Widget14>;
+    // (undocumented)
+    customGet15: (options?: WidgetServiceCustomGet15Options) => Promise<Widget15>;
+    // (undocumented)
+    customGet16: (options?: WidgetServiceCustomGet16Options) => Promise<Widget16>;
+    // (undocumented)
+    customGet17: (options?: WidgetServiceCustomGet17Options) => Promise<Widget17>;
+    // (undocumented)
+    customGet18: (options?: WidgetServiceCustomGet18Options) => Promise<Widget18>;
+    // (undocumented)
+    customGet19: (options?: WidgetServiceCustomGet19Options) => Promise<Widget19>;
+    // (undocumented)
+    customGet2: (options?: WidgetServiceCustomGet2Options) => Promise<Widget2>;
+    // (undocumented)
+    customGet20: (options?: WidgetServiceCustomGet20Options) => Promise<Widget20>;
+    // (undocumented)
+    customGet21: (options?: WidgetServiceCustomGet21Options) => Promise<Widget21>;
+    // (undocumented)
+    customGet22: (options?: WidgetServiceCustomGet22Options) => Promise<Widget22>;
+    // (undocumented)
+    customGet23: (options?: WidgetServiceCustomGet23Options) => Promise<Widget23>;
+    // (undocumented)
+    customGet24: (options?: WidgetServiceCustomGet24Options) => Promise<Widget24>;
+    // (undocumented)
+    customGet25: (options?: WidgetServiceCustomGet25Options) => Promise<Widget25>;
+    // (undocumented)
+    customGet26: (options?: WidgetServiceCustomGet26Options) => Promise<Widget26>;
+    // (undocumented)
+    customGet3: (options?: WidgetServiceCustomGet3Options) => Promise<Widget3>;
+    // (undocumented)
+    customGet4: (options?: WidgetServiceCustomGet4Options) => Promise<Widget4>;
+    // (undocumented)
+    customGet5: (options?: WidgetServiceCustomGet5Options) => Promise<Widget5>;
+    // (undocumented)
+    customGet6: (options?: WidgetServiceCustomGet6Options) => Promise<Widget6>;
+    // (undocumented)
+    customGet7: (options?: WidgetServiceCustomGet7Options) => Promise<Widget7>;
+    // (undocumented)
+    customGet8: (options?: WidgetServiceCustomGet8Options) => Promise<Widget8>;
+    // (undocumented)
+    customGet9: (options?: WidgetServiceCustomGet9Options) => Promise<Widget9>;
 }
 
 // (No @packageDocumentation comment for this package)

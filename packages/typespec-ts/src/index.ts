@@ -176,13 +176,13 @@ export async function $onEmit(context: EmitContext) {
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildOperationUtils(modularCodeModel);
         buildOperationFiles(
           dpgContext,
           modularCodeModel,
           subClient,
           hasClientUnexpectedHelper
         );
-        buildOperationUtils(modularCodeModel);
         buildClientContext(dpgContext, modularCodeModel, subClient);
         buildSubpathIndexFile(modularCodeModel, subClient, "models");
         if (dpgContext.rlcOptions?.hierarchyClient) {

@@ -57,6 +57,15 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
+    // Import the deserializeUtils 
+    importDeserializeUtils(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
     const namedImports: string[] = [];
     let clientType = "Client";
     if (isRLCMultiEndpoint(dpgContext)) {
@@ -163,6 +172,39 @@ export function importModels(
   }
 
   // Import all models and then let ts-morph clean up the unused ones
+  // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
+  // sourceFile.fixUnusedIdentifiers();
+}
+
+export function importDeserializeUtils(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  subfolder: string = "",
+  importLayer: number = 0
+) {
+  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
+    return i.getModuleSpecifierValue().endsWith(`utils/deserializeUtil.js`);
+  });
+  const modelsFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }utils/deserializeUtil.ts`
+  );
+  const deserializeUtil: string[] = [];
+
+  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    deserializeUtil.push(entry[0]);
+  }
+
+  if (deserializeUtil.length > 0 && !hasModelsImport) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: `${"../".repeat(importLayer + 1)}utils/deserializeUtil.js`,
+      namedImports: deserializeUtil
+    });
+  }
+
+  // Import all deserializeUtil and then let ts-morph clean up the unused ones
   // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
   // sourceFile.fixUnusedIdentifiers();
 }

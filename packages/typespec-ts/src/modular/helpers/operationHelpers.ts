@@ -949,14 +949,6 @@ function deserializeResponseValue(
     case "combined":
       if (type.types?.some((t) => isSpecialUnionVariant(t))) {
         const deserializeFunctionName = getDeserializeFunctionName(type);
-        if (!coreUtilSet) {
-          importSet.set(
-            "../utils/deserializeUtil.js",
-            new Set<string>().add(deserializeFunctionName)
-          );
-        } else {
-          coreUtilSet.add(deserializeFunctionName);
-        }
         return `${deserializeFunctionName}(${restValue})`;
       } else {
         return `${restValue}`;

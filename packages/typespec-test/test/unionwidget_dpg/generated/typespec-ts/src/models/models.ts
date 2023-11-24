@@ -4,12 +4,8 @@
 export interface Widget {
   readonly id: string;
   weight: number;
-  color: ColorType;
+  color: "red" | "blue";
 }
-
-/** Type of ColorType */
-/** */
-export type ColorType = "red" | "blue";
 
 export interface Widget1 extends Widget {
   data: WidgetData0 | WidgetData1;

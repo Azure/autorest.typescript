@@ -13,7 +13,6 @@ export function createDemoService(
   endpoint: string,
   options: DemoServiceClientOptions = {}
 ): DemoServiceContext {
-  const baseUrl = endpoint;
-  const clientContext = getClient(baseUrl, options);
+  const clientContext = getClient(endpoint, options);
   return clientContext;
 }
