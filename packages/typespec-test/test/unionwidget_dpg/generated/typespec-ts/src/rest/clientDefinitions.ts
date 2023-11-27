@@ -2,262 +2,552 @@
 // Licensed under the MIT license.
 
 import {
-  CustomGetParameters,
-  CustomGet1Parameters,
-  CustomGet2Parameters,
-  CustomGet3Parameters,
-  CustomGet4Parameters,
-  CustomGet5Parameters,
-  CustomGet6Parameters,
-  CustomGet7Parameters,
-  CustomGet8Parameters,
-  CustomGet9Parameters,
-  CustomGet10Parameters,
-  CustomGet11Parameters,
-  CustomGet12Parameters,
-  CustomGet13Parameters,
-  CustomGet14Parameters,
-  CustomGet15Parameters,
-  CustomGet16Parameters,
-  CustomGet17Parameters,
-  CustomGet18Parameters,
-  CustomGet19Parameters,
-  CustomGet20Parameters,
-  CustomGet21Parameters,
-  CustomGet22Parameters,
-  CustomGet23Parameters,
-  CustomGet24Parameters,
-  CustomGet25Parameters,
-  CustomGet26Parameters,
+  CustomGetResponseParameters,
+  CustomGetResponse1Parameters,
+  CustomGetResponse2Parameters,
+  CustomGetResponse3Parameters,
+  CustomGetResponse4Parameters,
+  CustomGetResponse5Parameters,
+  CustomGetResponse6Parameters,
+  CustomGetResponse7Parameters,
+  CustomGetResponse8Parameters,
+  CustomGetResponse9Parameters,
+  CustomGetResponse10Parameters,
+  CustomGetResponse11Parameters,
+  CustomGetResponse12Parameters,
+  CustomGetResponse13Parameters,
+  CustomGetResponse14Parameters,
+  CustomGetResponse15Parameters,
+  CustomGetResponse16Parameters,
+  CustomGetResponse17Parameters,
+  CustomGetResponse18Parameters,
+  CustomGetResponse19Parameters,
+  CustomGetResponse20Parameters,
+  CustomGetResponse21Parameters,
+  CustomGetResponse22Parameters,
+  CustomGetResponse23Parameters,
+  CustomGetResponse24Parameters,
+  CustomGetResponse25Parameters,
+  CustomGetResponse26Parameters,
+  CustomGetRequestParameters,
+  CustomGetRequest1Parameters,
+  CustomGetRequest2Parameters,
+  CustomGetRequest3Parameters,
+  CustomGetRequest4Parameters,
+  CustomGetRequest5Parameters,
+  CustomGetRequest6Parameters,
+  CustomGetRequest7Parameters,
+  CustomGetRequest8Parameters,
+  CustomGetRequest9Parameters,
+  CustomGetRequest10Parameters,
+  CustomGetRequest11Parameters,
+  CustomGetRequest12Parameters,
+  CustomGetRequest13Parameters,
+  CustomGetRequest14Parameters,
+  CustomGetRequest15Parameters,
+  CustomGetRequest16Parameters,
+  CustomGetRequest17Parameters,
+  CustomGetRequest18Parameters,
+  CustomGetRequest19Parameters,
+  CustomGetRequest20Parameters,
+  CustomGetRequest21Parameters,
+  CustomGetRequest22Parameters,
+  CustomGetRequest23Parameters,
+  CustomGetRequest24Parameters,
+  CustomGetRequest25Parameters,
+  CustomGetRequest26Parameters,
 } from "./parameters.js";
 import {
-  CustomGet200Response,
-  CustomGet1200Response,
-  CustomGet2200Response,
-  CustomGet3200Response,
-  CustomGet4200Response,
-  CustomGet5200Response,
-  CustomGet6200Response,
-  CustomGet7200Response,
-  CustomGet8200Response,
-  CustomGet9200Response,
-  CustomGet10200Response,
-  CustomGet11200Response,
-  CustomGet12200Response,
-  CustomGet13200Response,
-  CustomGet14200Response,
-  CustomGet15200Response,
-  CustomGet16200Response,
-  CustomGet17200Response,
-  CustomGet18200Response,
-  CustomGet19200Response,
-  CustomGet20200Response,
-  CustomGet21200Response,
-  CustomGet22200Response,
-  CustomGet23200Response,
-  CustomGet24200Response,
-  CustomGet25200Response,
-  CustomGet26200Response,
+  CustomGetResponse200Response,
+  CustomGetResponse1200Response,
+  CustomGetResponse2200Response,
+  CustomGetResponse3200Response,
+  CustomGetResponse4200Response,
+  CustomGetResponse5200Response,
+  CustomGetResponse6200Response,
+  CustomGetResponse7200Response,
+  CustomGetResponse8200Response,
+  CustomGetResponse9200Response,
+  CustomGetResponse10200Response,
+  CustomGetResponse11200Response,
+  CustomGetResponse12200Response,
+  CustomGetResponse13200Response,
+  CustomGetResponse14200Response,
+  CustomGetResponse15200Response,
+  CustomGetResponse16200Response,
+  CustomGetResponse17200Response,
+  CustomGetResponse18200Response,
+  CustomGetResponse19200Response,
+  CustomGetResponse20200Response,
+  CustomGetResponse21200Response,
+  CustomGetResponse22200Response,
+  CustomGetResponse23200Response,
+  CustomGetResponse24200Response,
+  CustomGetResponse25200Response,
+  CustomGetResponse26200Response,
+  CustomGetRequest204Response,
+  CustomGetRequest1204Response,
+  CustomGetRequest2204Response,
+  CustomGetRequest3204Response,
+  CustomGetRequest4204Response,
+  CustomGetRequest5204Response,
+  CustomGetRequest6204Response,
+  CustomGetRequest7204Response,
+  CustomGetRequest8204Response,
+  CustomGetRequest9204Response,
+  CustomGetRequest10204Response,
+  CustomGetRequest11204Response,
+  CustomGetRequest12204Response,
+  CustomGetRequest13204Response,
+  CustomGetRequest14204Response,
+  CustomGetRequest15204Response,
+  CustomGetRequest16204Response,
+  CustomGetRequest17204Response,
+  CustomGetRequest18204Response,
+  CustomGetRequest19204Response,
+  CustomGetRequest20204Response,
+  CustomGetRequest21204Response,
+  CustomGetRequest22204Response,
+  CustomGetRequest23204Response,
+  CustomGetRequest24204Response,
+  CustomGetRequest25204Response,
+  CustomGetRequest26204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
-export interface CustomGet {
-  get(options?: CustomGetParameters): StreamableMethod<CustomGet200Response>;
-}
-
-export interface CustomGet1 {
-  get(options?: CustomGet1Parameters): StreamableMethod<CustomGet1200Response>;
-}
-
-export interface CustomGet2 {
-  get(options?: CustomGet2Parameters): StreamableMethod<CustomGet2200Response>;
-}
-
-export interface CustomGet3 {
-  get(options?: CustomGet3Parameters): StreamableMethod<CustomGet3200Response>;
-}
-
-export interface CustomGet4 {
-  get(options?: CustomGet4Parameters): StreamableMethod<CustomGet4200Response>;
-}
-
-export interface CustomGet5 {
-  get(options?: CustomGet5Parameters): StreamableMethod<CustomGet5200Response>;
-}
-
-export interface CustomGet6 {
-  get(options?: CustomGet6Parameters): StreamableMethod<CustomGet6200Response>;
-}
-
-export interface CustomGet7 {
-  get(options?: CustomGet7Parameters): StreamableMethod<CustomGet7200Response>;
-}
-
-export interface CustomGet8 {
-  get(options?: CustomGet8Parameters): StreamableMethod<CustomGet8200Response>;
-}
-
-export interface CustomGet9 {
-  get(options?: CustomGet9Parameters): StreamableMethod<CustomGet9200Response>;
-}
-
-export interface CustomGet10 {
+export interface CustomGetResponse {
   get(
-    options?: CustomGet10Parameters
-  ): StreamableMethod<CustomGet10200Response>;
+    options?: CustomGetResponseParameters
+  ): StreamableMethod<CustomGetResponse200Response>;
 }
 
-export interface CustomGet11 {
+export interface CustomGetResponse1 {
   get(
-    options?: CustomGet11Parameters
-  ): StreamableMethod<CustomGet11200Response>;
+    options?: CustomGetResponse1Parameters
+  ): StreamableMethod<CustomGetResponse1200Response>;
 }
 
-export interface CustomGet12 {
+export interface CustomGetResponse2 {
   get(
-    options?: CustomGet12Parameters
-  ): StreamableMethod<CustomGet12200Response>;
+    options?: CustomGetResponse2Parameters
+  ): StreamableMethod<CustomGetResponse2200Response>;
 }
 
-export interface CustomGet13 {
+export interface CustomGetResponse3 {
   get(
-    options?: CustomGet13Parameters
-  ): StreamableMethod<CustomGet13200Response>;
+    options?: CustomGetResponse3Parameters
+  ): StreamableMethod<CustomGetResponse3200Response>;
 }
 
-export interface CustomGet14 {
+export interface CustomGetResponse4 {
   get(
-    options?: CustomGet14Parameters
-  ): StreamableMethod<CustomGet14200Response>;
+    options?: CustomGetResponse4Parameters
+  ): StreamableMethod<CustomGetResponse4200Response>;
 }
 
-export interface CustomGet15 {
+export interface CustomGetResponse5 {
   get(
-    options?: CustomGet15Parameters
-  ): StreamableMethod<CustomGet15200Response>;
+    options?: CustomGetResponse5Parameters
+  ): StreamableMethod<CustomGetResponse5200Response>;
 }
 
-export interface CustomGet16 {
+export interface CustomGetResponse6 {
   get(
-    options?: CustomGet16Parameters
-  ): StreamableMethod<CustomGet16200Response>;
+    options?: CustomGetResponse6Parameters
+  ): StreamableMethod<CustomGetResponse6200Response>;
 }
 
-export interface CustomGet17 {
+export interface CustomGetResponse7 {
   get(
-    options?: CustomGet17Parameters
-  ): StreamableMethod<CustomGet17200Response>;
+    options?: CustomGetResponse7Parameters
+  ): StreamableMethod<CustomGetResponse7200Response>;
 }
 
-export interface CustomGet18 {
+export interface CustomGetResponse8 {
   get(
-    options?: CustomGet18Parameters
-  ): StreamableMethod<CustomGet18200Response>;
+    options?: CustomGetResponse8Parameters
+  ): StreamableMethod<CustomGetResponse8200Response>;
 }
 
-export interface CustomGet19 {
+export interface CustomGetResponse9 {
   get(
-    options?: CustomGet19Parameters
-  ): StreamableMethod<CustomGet19200Response>;
+    options?: CustomGetResponse9Parameters
+  ): StreamableMethod<CustomGetResponse9200Response>;
 }
 
-export interface CustomGet20 {
+export interface CustomGetResponse10 {
   get(
-    options?: CustomGet20Parameters
-  ): StreamableMethod<CustomGet20200Response>;
+    options?: CustomGetResponse10Parameters
+  ): StreamableMethod<CustomGetResponse10200Response>;
 }
 
-export interface CustomGet21 {
+export interface CustomGetResponse11 {
   get(
-    options?: CustomGet21Parameters
-  ): StreamableMethod<CustomGet21200Response>;
+    options?: CustomGetResponse11Parameters
+  ): StreamableMethod<CustomGetResponse11200Response>;
 }
 
-export interface CustomGet22 {
+export interface CustomGetResponse12 {
   get(
-    options?: CustomGet22Parameters
-  ): StreamableMethod<CustomGet22200Response>;
+    options?: CustomGetResponse12Parameters
+  ): StreamableMethod<CustomGetResponse12200Response>;
 }
 
-export interface CustomGet23 {
+export interface CustomGetResponse13 {
   get(
-    options?: CustomGet23Parameters
-  ): StreamableMethod<CustomGet23200Response>;
+    options?: CustomGetResponse13Parameters
+  ): StreamableMethod<CustomGetResponse13200Response>;
 }
 
-export interface CustomGet24 {
+export interface CustomGetResponse14 {
   get(
-    options?: CustomGet24Parameters
-  ): StreamableMethod<CustomGet24200Response>;
+    options?: CustomGetResponse14Parameters
+  ): StreamableMethod<CustomGetResponse14200Response>;
 }
 
-export interface CustomGet25 {
+export interface CustomGetResponse15 {
   get(
-    options?: CustomGet25Parameters
-  ): StreamableMethod<CustomGet25200Response>;
+    options?: CustomGetResponse15Parameters
+  ): StreamableMethod<CustomGetResponse15200Response>;
 }
 
-export interface CustomGet26 {
+export interface CustomGetResponse16 {
   get(
-    options?: CustomGet26Parameters
-  ): StreamableMethod<CustomGet26200Response>;
+    options?: CustomGetResponse16Parameters
+  ): StreamableMethod<CustomGetResponse16200Response>;
+}
+
+export interface CustomGetResponse17 {
+  get(
+    options?: CustomGetResponse17Parameters
+  ): StreamableMethod<CustomGetResponse17200Response>;
+}
+
+export interface CustomGetResponse18 {
+  get(
+    options?: CustomGetResponse18Parameters
+  ): StreamableMethod<CustomGetResponse18200Response>;
+}
+
+export interface CustomGetResponse19 {
+  get(
+    options?: CustomGetResponse19Parameters
+  ): StreamableMethod<CustomGetResponse19200Response>;
+}
+
+export interface CustomGetResponse20 {
+  get(
+    options?: CustomGetResponse20Parameters
+  ): StreamableMethod<CustomGetResponse20200Response>;
+}
+
+export interface CustomGetResponse21 {
+  get(
+    options?: CustomGetResponse21Parameters
+  ): StreamableMethod<CustomGetResponse21200Response>;
+}
+
+export interface CustomGetResponse22 {
+  get(
+    options?: CustomGetResponse22Parameters
+  ): StreamableMethod<CustomGetResponse22200Response>;
+}
+
+export interface CustomGetResponse23 {
+  get(
+    options?: CustomGetResponse23Parameters
+  ): StreamableMethod<CustomGetResponse23200Response>;
+}
+
+export interface CustomGetResponse24 {
+  get(
+    options?: CustomGetResponse24Parameters
+  ): StreamableMethod<CustomGetResponse24200Response>;
+}
+
+export interface CustomGetResponse25 {
+  get(
+    options?: CustomGetResponse25Parameters
+  ): StreamableMethod<CustomGetResponse25200Response>;
+}
+
+export interface CustomGetResponse26 {
+  get(
+    options?: CustomGetResponse26Parameters
+  ): StreamableMethod<CustomGetResponse26200Response>;
+}
+
+export interface CustomGetRequest {
+  get(
+    options: CustomGetRequestParameters
+  ): StreamableMethod<CustomGetRequest204Response>;
+}
+
+export interface CustomGetRequest1 {
+  get(
+    options: CustomGetRequest1Parameters
+  ): StreamableMethod<CustomGetRequest1204Response>;
+}
+
+export interface CustomGetRequest2 {
+  get(
+    options: CustomGetRequest2Parameters
+  ): StreamableMethod<CustomGetRequest2204Response>;
+}
+
+export interface CustomGetRequest3 {
+  get(
+    options: CustomGetRequest3Parameters
+  ): StreamableMethod<CustomGetRequest3204Response>;
+}
+
+export interface CustomGetRequest4 {
+  get(
+    options: CustomGetRequest4Parameters
+  ): StreamableMethod<CustomGetRequest4204Response>;
+}
+
+export interface CustomGetRequest5 {
+  get(
+    options: CustomGetRequest5Parameters
+  ): StreamableMethod<CustomGetRequest5204Response>;
+}
+
+export interface CustomGetRequest6 {
+  get(
+    options: CustomGetRequest6Parameters
+  ): StreamableMethod<CustomGetRequest6204Response>;
+}
+
+export interface CustomGetRequest7 {
+  get(
+    options: CustomGetRequest7Parameters
+  ): StreamableMethod<CustomGetRequest7204Response>;
+}
+
+export interface CustomGetRequest8 {
+  get(
+    options: CustomGetRequest8Parameters
+  ): StreamableMethod<CustomGetRequest8204Response>;
+}
+
+export interface CustomGetRequest9 {
+  get(
+    options: CustomGetRequest9Parameters
+  ): StreamableMethod<CustomGetRequest9204Response>;
+}
+
+export interface CustomGetRequest10 {
+  get(
+    options: CustomGetRequest10Parameters
+  ): StreamableMethod<CustomGetRequest10204Response>;
+}
+
+export interface CustomGetRequest11 {
+  get(
+    options: CustomGetRequest11Parameters
+  ): StreamableMethod<CustomGetRequest11204Response>;
+}
+
+export interface CustomGetRequest12 {
+  get(
+    options: CustomGetRequest12Parameters
+  ): StreamableMethod<CustomGetRequest12204Response>;
+}
+
+export interface CustomGetRequest13 {
+  get(
+    options: CustomGetRequest13Parameters
+  ): StreamableMethod<CustomGetRequest13204Response>;
+}
+
+export interface CustomGetRequest14 {
+  get(
+    options: CustomGetRequest14Parameters
+  ): StreamableMethod<CustomGetRequest14204Response>;
+}
+
+export interface CustomGetRequest15 {
+  get(
+    options: CustomGetRequest15Parameters
+  ): StreamableMethod<CustomGetRequest15204Response>;
+}
+
+export interface CustomGetRequest16 {
+  get(
+    options: CustomGetRequest16Parameters
+  ): StreamableMethod<CustomGetRequest16204Response>;
+}
+
+export interface CustomGetRequest17 {
+  get(
+    options: CustomGetRequest17Parameters
+  ): StreamableMethod<CustomGetRequest17204Response>;
+}
+
+export interface CustomGetRequest18 {
+  get(
+    options: CustomGetRequest18Parameters
+  ): StreamableMethod<CustomGetRequest18204Response>;
+}
+
+export interface CustomGetRequest19 {
+  get(
+    options: CustomGetRequest19Parameters
+  ): StreamableMethod<CustomGetRequest19204Response>;
+}
+
+export interface CustomGetRequest20 {
+  get(
+    options: CustomGetRequest20Parameters
+  ): StreamableMethod<CustomGetRequest20204Response>;
+}
+
+export interface CustomGetRequest21 {
+  get(
+    options: CustomGetRequest21Parameters
+  ): StreamableMethod<CustomGetRequest21204Response>;
+}
+
+export interface CustomGetRequest22 {
+  get(
+    options: CustomGetRequest22Parameters
+  ): StreamableMethod<CustomGetRequest22204Response>;
+}
+
+export interface CustomGetRequest23 {
+  get(
+    options: CustomGetRequest23Parameters
+  ): StreamableMethod<CustomGetRequest23204Response>;
+}
+
+export interface CustomGetRequest24 {
+  get(
+    options: CustomGetRequest24Parameters
+  ): StreamableMethod<CustomGetRequest24204Response>;
+}
+
+export interface CustomGetRequest25 {
+  get(
+    options: CustomGetRequest25Parameters
+  ): StreamableMethod<CustomGetRequest25204Response>;
+}
+
+export interface CustomGetRequest26 {
+  get(
+    options: CustomGetRequest26Parameters
+  ): StreamableMethod<CustomGetRequest26204Response>;
 }
 
 export interface Routes {
-  /** Resource for '/customGet' has methods for the following verbs: get */
-  (path: "/customGet"): CustomGet;
-  /** Resource for '/customGet1' has methods for the following verbs: get */
-  (path: "/customGet1"): CustomGet1;
-  /** Resource for '/customGet2' has methods for the following verbs: get */
-  (path: "/customGet2"): CustomGet2;
-  /** Resource for '/customGet3' has methods for the following verbs: get */
-  (path: "/customGet3"): CustomGet3;
-  /** Resource for '/customGet4' has methods for the following verbs: get */
-  (path: "/customGet4"): CustomGet4;
-  /** Resource for '/customGet5' has methods for the following verbs: get */
-  (path: "/customGet5"): CustomGet5;
-  /** Resource for '/customGet6' has methods for the following verbs: get */
-  (path: "/customGet6"): CustomGet6;
-  /** Resource for '/customGet7' has methods for the following verbs: get */
-  (path: "/customGet7"): CustomGet7;
-  /** Resource for '/customGet8' has methods for the following verbs: get */
-  (path: "/customGet8"): CustomGet8;
-  /** Resource for '/customGet9' has methods for the following verbs: get */
-  (path: "/customGet9"): CustomGet9;
-  /** Resource for '/customGet10' has methods for the following verbs: get */
-  (path: "/customGet10"): CustomGet10;
-  /** Resource for '/customGet11' has methods for the following verbs: get */
-  (path: "/customGet11"): CustomGet11;
-  /** Resource for '/customGet12' has methods for the following verbs: get */
-  (path: "/customGet12"): CustomGet12;
-  /** Resource for '/customGet13' has methods for the following verbs: get */
-  (path: "/customGet13"): CustomGet13;
-  /** Resource for '/customGet14' has methods for the following verbs: get */
-  (path: "/customGet14"): CustomGet14;
-  /** Resource for '/customGet15' has methods for the following verbs: get */
-  (path: "/customGet15"): CustomGet15;
-  /** Resource for '/customGet16' has methods for the following verbs: get */
-  (path: "/customGet16"): CustomGet16;
-  /** Resource for '/customGet17' has methods for the following verbs: get */
-  (path: "/customGet17"): CustomGet17;
-  /** Resource for '/customGet18' has methods for the following verbs: get */
-  (path: "/customGet18"): CustomGet18;
-  /** Resource for '/customGet19' has methods for the following verbs: get */
-  (path: "/customGet19"): CustomGet19;
-  /** Resource for '/customGet20' has methods for the following verbs: get */
-  (path: "/customGet20"): CustomGet20;
-  /** Resource for '/customGet21' has methods for the following verbs: get */
-  (path: "/customGet21"): CustomGet21;
-  /** Resource for '/customGet22' has methods for the following verbs: get */
-  (path: "/customGet22"): CustomGet22;
-  /** Resource for '/customGet23' has methods for the following verbs: get */
-  (path: "/customGet23"): CustomGet23;
-  /** Resource for '/customGet24' has methods for the following verbs: get */
-  (path: "/customGet24"): CustomGet24;
-  /** Resource for '/customGet25' has methods for the following verbs: get */
-  (path: "/customGet25"): CustomGet25;
-  /** Resource for '/customGet26' has methods for the following verbs: get */
-  (path: "/customGet26"): CustomGet26;
+  /** Resource for '/customGet/response' has methods for the following verbs: get */
+  (path: "/customGet/response"): CustomGetResponse;
+  /** Resource for '/customGet1/response' has methods for the following verbs: get */
+  (path: "/customGet1/response"): CustomGetResponse1;
+  /** Resource for '/customGet2/response' has methods for the following verbs: get */
+  (path: "/customGet2/response"): CustomGetResponse2;
+  /** Resource for '/customGet3/response' has methods for the following verbs: get */
+  (path: "/customGet3/response"): CustomGetResponse3;
+  /** Resource for '/customGet4/response' has methods for the following verbs: get */
+  (path: "/customGet4/response"): CustomGetResponse4;
+  /** Resource for '/customGet5/response' has methods for the following verbs: get */
+  (path: "/customGet5/response"): CustomGetResponse5;
+  /** Resource for '/customGet6/response' has methods for the following verbs: get */
+  (path: "/customGet6/response"): CustomGetResponse6;
+  /** Resource for '/customGet7/response' has methods for the following verbs: get */
+  (path: "/customGet7/response"): CustomGetResponse7;
+  /** Resource for '/customGet8/response' has methods for the following verbs: get */
+  (path: "/customGet8/response"): CustomGetResponse8;
+  /** Resource for '/customGet9/response' has methods for the following verbs: get */
+  (path: "/customGet9/response"): CustomGetResponse9;
+  /** Resource for '/customGet10/response' has methods for the following verbs: get */
+  (path: "/customGet10/response"): CustomGetResponse10;
+  /** Resource for '/customGet11/response' has methods for the following verbs: get */
+  (path: "/customGet11/response"): CustomGetResponse11;
+  /** Resource for '/customGet12/response' has methods for the following verbs: get */
+  (path: "/customGet12/response"): CustomGetResponse12;
+  /** Resource for '/customGet13/response' has methods for the following verbs: get */
+  (path: "/customGet13/response"): CustomGetResponse13;
+  /** Resource for '/customGet14/response' has methods for the following verbs: get */
+  (path: "/customGet14/response"): CustomGetResponse14;
+  /** Resource for '/customGet15/response' has methods for the following verbs: get */
+  (path: "/customGet15/response"): CustomGetResponse15;
+  /** Resource for '/customGet16/response' has methods for the following verbs: get */
+  (path: "/customGet16/response"): CustomGetResponse16;
+  /** Resource for '/customGet17/response' has methods for the following verbs: get */
+  (path: "/customGet17/response"): CustomGetResponse17;
+  /** Resource for '/customGet18/response' has methods for the following verbs: get */
+  (path: "/customGet18/response"): CustomGetResponse18;
+  /** Resource for '/customGet19/response' has methods for the following verbs: get */
+  (path: "/customGet19/response"): CustomGetResponse19;
+  /** Resource for '/customGet20/response' has methods for the following verbs: get */
+  (path: "/customGet20/response"): CustomGetResponse20;
+  /** Resource for '/customGet21/response' has methods for the following verbs: get */
+  (path: "/customGet21/response"): CustomGetResponse21;
+  /** Resource for '/customGet22/response' has methods for the following verbs: get */
+  (path: "/customGet22/response"): CustomGetResponse22;
+  /** Resource for '/customGet23/response' has methods for the following verbs: get */
+  (path: "/customGet23/response"): CustomGetResponse23;
+  /** Resource for '/customGet24/response' has methods for the following verbs: get */
+  (path: "/customGet24/response"): CustomGetResponse24;
+  /** Resource for '/customGet25/response' has methods for the following verbs: get */
+  (path: "/customGet25/response"): CustomGetResponse25;
+  /** Resource for '/customGet26/response' has methods for the following verbs: get */
+  (path: "/customGet26/response"): CustomGetResponse26;
+  /** Resource for '/customGet/request' has methods for the following verbs: get */
+  (path: "/customGet/request"): CustomGetRequest;
+  /** Resource for '/customGet1/request' has methods for the following verbs: get */
+  (path: "/customGet1/request"): CustomGetRequest1;
+  /** Resource for '/customGet2/request' has methods for the following verbs: get */
+  (path: "/customGet2/request"): CustomGetRequest2;
+  /** Resource for '/customGet3/request' has methods for the following verbs: get */
+  (path: "/customGet3/request"): CustomGetRequest3;
+  /** Resource for '/customGet4/request' has methods for the following verbs: get */
+  (path: "/customGet4/request"): CustomGetRequest4;
+  /** Resource for '/customGet5/request' has methods for the following verbs: get */
+  (path: "/customGet5/request"): CustomGetRequest5;
+  /** Resource for '/customGet6/request' has methods for the following verbs: get */
+  (path: "/customGet6/request"): CustomGetRequest6;
+  /** Resource for '/customGet7/request' has methods for the following verbs: get */
+  (path: "/customGet7/request"): CustomGetRequest7;
+  /** Resource for '/customGet8/request' has methods for the following verbs: get */
+  (path: "/customGet8/request"): CustomGetRequest8;
+  /** Resource for '/customGet9/request' has methods for the following verbs: get */
+  (path: "/customGet9/request"): CustomGetRequest9;
+  /** Resource for '/customGet10/request' has methods for the following verbs: get */
+  (path: "/customGet10/request"): CustomGetRequest10;
+  /** Resource for '/customGet11/request' has methods for the following verbs: get */
+  (path: "/customGet11/request"): CustomGetRequest11;
+  /** Resource for '/customGet12/request' has methods for the following verbs: get */
+  (path: "/customGet12/request"): CustomGetRequest12;
+  /** Resource for '/customGet13/request' has methods for the following verbs: get */
+  (path: "/customGet13/request"): CustomGetRequest13;
+  /** Resource for '/customGet14/request' has methods for the following verbs: get */
+  (path: "/customGet14/request"): CustomGetRequest14;
+  /** Resource for '/customGet15/request' has methods for the following verbs: get */
+  (path: "/customGet15/request"): CustomGetRequest15;
+  /** Resource for '/customGet16/request' has methods for the following verbs: get */
+  (path: "/customGet16/request"): CustomGetRequest16;
+  /** Resource for '/customGet17/request' has methods for the following verbs: get */
+  (path: "/customGet17/request"): CustomGetRequest17;
+  /** Resource for '/customGet18/request' has methods for the following verbs: get */
+  (path: "/customGet18/request"): CustomGetRequest18;
+  /** Resource for '/customGet19/request' has methods for the following verbs: get */
+  (path: "/customGet19/request"): CustomGetRequest19;
+  /** Resource for '/customGet20/request' has methods for the following verbs: get */
+  (path: "/customGet20/request"): CustomGetRequest20;
+  /** Resource for '/customGet21/request' has methods for the following verbs: get */
+  (path: "/customGet21/request"): CustomGetRequest21;
+  /** Resource for '/customGet22/request' has methods for the following verbs: get */
+  (path: "/customGet22/request"): CustomGetRequest22;
+  /** Resource for '/customGet23/request' has methods for the following verbs: get */
+  (path: "/customGet23/request"): CustomGetRequest23;
+  /** Resource for '/customGet24/request' has methods for the following verbs: get */
+  (path: "/customGet24/request"): CustomGetRequest24;
+  /** Resource for '/customGet25/request' has methods for the following verbs: get */
+  (path: "/customGet25/request"): CustomGetRequest25;
+  /** Resource for '/customGet26/request' has methods for the following verbs: get */
+  (path: "/customGet26/request"): CustomGetRequest26;
 }
 
 export type DemoServiceContext = Client & {

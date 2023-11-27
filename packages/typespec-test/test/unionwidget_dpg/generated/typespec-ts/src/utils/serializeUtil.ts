@@ -65,27 +65,27 @@ function isWidgetData2(
   return (obj as WidgetData2Output).foo_prop !== undefined;
 }
 
-/** deserialize function for WidgetData2 */
-function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
+/** serialize function for WidgetData2 */
+function serializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
   return { fooProp: obj["foo_prop"] };
 }
 
-/** deserialize function for WidgetData0Output | WidgetData2Output */
-export function deserializeWidgetData0AndWidgetData2Union(
+/** serialize function for WidgetData0Output | WidgetData2Output */
+export function serializeWidgetData0AndWidgetData2Union(
   obj: WidgetData0Output | WidgetData2Output
 ): WidgetData0 | WidgetData2 {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData1Output | WidgetData2Output */
-export function deserializeWidgetData1AndWidgetData2Union(
+/** serialize function for WidgetData1Output | WidgetData2Output */
+export function serializeWidgetData1AndWidgetData2Union(
   obj: WidgetData1Output | WidgetData2Output
 ): WidgetData1 | WidgetData2 {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   return obj;
 }
@@ -114,20 +114,20 @@ function isWidgetData3(
   return (obj as WidgetData3Output).bar_prop !== undefined;
 }
 
-/** deserialize function for WidgetData3 */
-function deserializeWidgetData3(obj: WidgetData3Output): WidgetData3 {
+/** serialize function for WidgetData3 */
+function serializeWidgetData3(obj: WidgetData3Output): WidgetData3 {
   return { barProp: obj["bar_prop"] };
 }
 
-/** deserialize function for WidgetData2Output | WidgetData3Output */
-export function deserializeWidgetData2AndWidgetData3Union(
+/** serialize function for WidgetData2Output | WidgetData3Output */
+export function serializeWidgetData2AndWidgetData3Union(
   obj: WidgetData2Output | WidgetData3Output
 ): WidgetData2 | WidgetData3 {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   if (isWidgetData3(obj)) {
-    return deserializeWidgetData3(obj);
+    return serializeWidgetData3(obj);
   }
   return obj;
 }
@@ -156,20 +156,20 @@ function isWidgetData4(
   return (obj as WidgetData4Output).start !== undefined;
 }
 
-/** deserialize function for WidgetData4 */
-function deserializeWidgetData4(obj: WidgetData4Output): WidgetData4 {
+/** serialize function for WidgetData4 */
+function serializeWidgetData4(obj: WidgetData4Output): WidgetData4 {
   return {
     start: new Date(obj["start"]),
     end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
   };
 }
 
-/** deserialize function for WidgetData0Output | WidgetData4Output */
-export function deserializeWidgetData0AndWidgetData4Union(
+/** serialize function for WidgetData0Output | WidgetData4Output */
+export function serializeWidgetData0AndWidgetData4Union(
   obj: WidgetData0Output | WidgetData4Output
 ): WidgetData0 | WidgetData4 {
   if (isWidgetData4(obj)) {
-    return deserializeWidgetData4(obj);
+    return serializeWidgetData4(obj);
   }
   return obj;
 }
@@ -189,8 +189,8 @@ function isWidgetData5(
   return (obj as WidgetData5Output).data !== undefined;
 }
 
-/** deserialize function for WidgetData5 */
-function deserializeWidgetData5(obj: WidgetData5Output): WidgetData5 {
+/** serialize function for WidgetData5 */
+function serializeWidgetData5(obj: WidgetData5Output): WidgetData5 {
   return {
     data:
       typeof obj["data"] === "string"
@@ -199,12 +199,12 @@ function deserializeWidgetData5(obj: WidgetData5Output): WidgetData5 {
   };
 }
 
-/** deserialize function for WidgetData0Output | WidgetData5Output */
-export function deserializeWidgetData0AndWidgetData5Union(
+/** serialize function for WidgetData0Output | WidgetData5Output */
+export function serializeWidgetData0AndWidgetData5Union(
   obj: WidgetData0Output | WidgetData5Output
 ): WidgetData0 | WidgetData5 {
   if (isWidgetData5(obj)) {
-    return deserializeWidgetData5(obj);
+    return serializeWidgetData5(obj);
   }
   return obj;
 }
@@ -251,29 +251,29 @@ function isWidgetData2Array(
   return false;
 }
 
-/** deserialize function for WidgetData2 array */
-function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[] {
+/** serialize function for WidgetData2 array */
+function serializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[] {
   return (obj || []).map((item) => {
     return { fooProp: item["foo_prop"] };
   });
 }
 
-/** deserialize function for WidgetData0Output[] | WidgetData2Output[] */
-export function deserializeWidgetData0ArrayAndWidgetData2ArrayUnion(
+/** serialize function for WidgetData0Output[] | WidgetData2Output[] */
+export function serializeWidgetData0ArrayAndWidgetData2ArrayUnion(
   obj: WidgetData0Output[] | WidgetData2Output[]
 ): WidgetData0[] | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
-    return deserializeWidgetData2Array(obj);
+    return serializeWidgetData2Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData1Output[] | WidgetData2Output[] */
-export function deserializeWidgetData1ArrayAndWidgetData2ArrayUnion(
+/** serialize function for WidgetData1Output[] | WidgetData2Output[] */
+export function serializeWidgetData1ArrayAndWidgetData2ArrayUnion(
   obj: WidgetData1Output[] | WidgetData2Output[]
 ): WidgetData1[] | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
-    return deserializeWidgetData2Array(obj);
+    return serializeWidgetData2Array(obj);
   }
   return obj;
 }
@@ -297,22 +297,22 @@ function isWidgetData3Array(
   return false;
 }
 
-/** deserialize function for WidgetData3 array */
-function deserializeWidgetData3Array(obj: WidgetData3Output[]): WidgetData3[] {
+/** serialize function for WidgetData3 array */
+function serializeWidgetData3Array(obj: WidgetData3Output[]): WidgetData3[] {
   return (obj || []).map((item) => {
     return { barProp: item["bar_prop"] };
   });
 }
 
-/** deserialize function for WidgetData2Output[] | WidgetData3Output[] */
-export function deserializeWidgetData2ArrayAndWidgetData3ArrayUnion(
+/** serialize function for WidgetData2Output[] | WidgetData3Output[] */
+export function serializeWidgetData2ArrayAndWidgetData3ArrayUnion(
   obj: WidgetData2Output[] | WidgetData3Output[]
 ): WidgetData2[] | WidgetData3[] {
   if (isWidgetData2Array(obj)) {
-    return deserializeWidgetData2Array(obj);
+    return serializeWidgetData2Array(obj);
   }
   if (isWidgetData3Array(obj)) {
-    return deserializeWidgetData3Array(obj);
+    return serializeWidgetData3Array(obj);
   }
   return obj;
 }
@@ -336,8 +336,8 @@ function isWidgetData4Array(
   return false;
 }
 
-/** deserialize function for WidgetData4 array */
-function deserializeWidgetData4Array(obj: WidgetData4Output[]): WidgetData4[] {
+/** serialize function for WidgetData4 array */
+function serializeWidgetData4Array(obj: WidgetData4Output[]): WidgetData4[] {
   return (obj || []).map((item) => {
     return {
       start: new Date(item["start"]),
@@ -346,12 +346,12 @@ function deserializeWidgetData4Array(obj: WidgetData4Output[]): WidgetData4[] {
   });
 }
 
-/** deserialize function for WidgetData0Output[] | WidgetData4Output[] */
-export function deserializeWidgetData0ArrayAndWidgetData4ArrayUnion(
+/** serialize function for WidgetData0Output[] | WidgetData4Output[] */
+export function serializeWidgetData0ArrayAndWidgetData4ArrayUnion(
   obj: WidgetData0Output[] | WidgetData4Output[]
 ): WidgetData0[] | WidgetData4[] {
   if (isWidgetData4Array(obj)) {
-    return deserializeWidgetData4Array(obj);
+    return serializeWidgetData4Array(obj);
   }
   return obj;
 }
@@ -383,8 +383,8 @@ function isWidgetData5Array(
   return false;
 }
 
-/** deserialize function for WidgetData5 array */
-function deserializeWidgetData5Array(obj: WidgetData5Output[]): WidgetData5[] {
+/** serialize function for WidgetData5 array */
+function serializeWidgetData5Array(obj: WidgetData5Output[]): WidgetData5[] {
   return (obj || []).map((item) => {
     return {
       data:
@@ -395,131 +395,131 @@ function deserializeWidgetData5Array(obj: WidgetData5Output[]): WidgetData5[] {
   });
 }
 
-/** deserialize function for WidgetData0Output[] | WidgetData5Output[] */
-export function deserializeWidgetData0ArrayAndWidgetData5ArrayUnion(
+/** serialize function for WidgetData0Output[] | WidgetData5Output[] */
+export function serializeWidgetData0ArrayAndWidgetData5ArrayUnion(
   obj: WidgetData0Output[] | WidgetData5Output[]
 ): WidgetData0[] | WidgetData5[] {
   if (isWidgetData5Array(obj)) {
-    return deserializeWidgetData5Array(obj);
+    return serializeWidgetData5Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output[] | WidgetData2Output */
-export function deserializeWidgetData0ArrayAndWidgetData2Union(
+/** serialize function for WidgetData0Output[] | WidgetData2Output */
+export function serializeWidgetData0ArrayAndWidgetData2Union(
   obj: WidgetData0Output[] | WidgetData2Output
 ): WidgetData0[] | WidgetData2 {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output | WidgetData2Output[] */
-export function deserializeWidgetData0AndWidgetData2ArrayUnion(
+/** serialize function for WidgetData0Output | WidgetData2Output[] */
+export function serializeWidgetData0AndWidgetData2ArrayUnion(
   obj: WidgetData0Output | WidgetData2Output[]
 ): WidgetData0 | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
-    return deserializeWidgetData2Array(obj);
+    return serializeWidgetData2Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData1Output[] | WidgetData2Output */
-export function deserializeWidgetData1ArrayAndWidgetData2Union(
+/** serialize function for WidgetData1Output[] | WidgetData2Output */
+export function serializeWidgetData1ArrayAndWidgetData2Union(
   obj: WidgetData1Output[] | WidgetData2Output
 ): WidgetData1[] | WidgetData2 {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData1Output | WidgetData2Output[] */
-export function deserializeWidgetData1AndWidgetData2ArrayUnion(
+/** serialize function for WidgetData1Output | WidgetData2Output[] */
+export function serializeWidgetData1AndWidgetData2ArrayUnion(
   obj: WidgetData1Output | WidgetData2Output[]
 ): WidgetData1 | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
-    return deserializeWidgetData2Array(obj);
+    return serializeWidgetData2Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData2Output[] | WidgetData3Output */
-export function deserializeWidgetData2ArrayAndWidgetData3Union(
+/** serialize function for WidgetData2Output[] | WidgetData3Output */
+export function serializeWidgetData2ArrayAndWidgetData3Union(
   obj: WidgetData2Output[] | WidgetData3Output
 ): WidgetData2[] | WidgetData3 {
   if (isWidgetData2Array(obj)) {
-    return deserializeWidgetData2Array(obj);
+    return serializeWidgetData2Array(obj);
   }
   if (isWidgetData3(obj)) {
-    return deserializeWidgetData3(obj);
+    return serializeWidgetData3(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData2Output | WidgetData3Output[] */
-export function deserializeWidgetData2AndWidgetData3ArrayUnion(
+/** serialize function for WidgetData2Output | WidgetData3Output[] */
+export function serializeWidgetData2AndWidgetData3ArrayUnion(
   obj: WidgetData2Output | WidgetData3Output[]
 ): WidgetData2 | WidgetData3[] {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   if (isWidgetData3Array(obj)) {
-    return deserializeWidgetData3Array(obj);
+    return serializeWidgetData3Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output[] | WidgetData4Output */
-export function deserializeWidgetData0ArrayAndWidgetData4Union(
+/** serialize function for WidgetData0Output[] | WidgetData4Output */
+export function serializeWidgetData0ArrayAndWidgetData4Union(
   obj: WidgetData0Output[] | WidgetData4Output
 ): WidgetData0[] | WidgetData4 {
   if (isWidgetData4(obj)) {
-    return deserializeWidgetData4(obj);
+    return serializeWidgetData4(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output | WidgetData4Output[] */
-export function deserializeWidgetData0AndWidgetData4ArrayUnion(
+/** serialize function for WidgetData0Output | WidgetData4Output[] */
+export function serializeWidgetData0AndWidgetData4ArrayUnion(
   obj: WidgetData0Output | WidgetData4Output[]
 ): WidgetData0 | WidgetData4[] {
   if (isWidgetData4Array(obj)) {
-    return deserializeWidgetData4Array(obj);
+    return serializeWidgetData4Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output[] | WidgetData5Output */
-export function deserializeWidgetData0ArrayAndWidgetData5Union(
+/** serialize function for WidgetData0Output[] | WidgetData5Output */
+export function serializeWidgetData0ArrayAndWidgetData5Union(
   obj: WidgetData0Output[] | WidgetData5Output
 ): WidgetData0[] | WidgetData5 {
   if (isWidgetData5(obj)) {
-    return deserializeWidgetData5(obj);
+    return serializeWidgetData5(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output | WidgetData5Output[] */
-export function deserializeWidgetData0AndWidgetData5ArrayUnion(
+/** serialize function for WidgetData0Output | WidgetData5Output[] */
+export function serializeWidgetData0AndWidgetData5ArrayUnion(
   obj: WidgetData0Output | WidgetData5Output[]
 ): WidgetData0 | WidgetData5[] {
   if (isWidgetData5Array(obj)) {
-    return deserializeWidgetData5Array(obj);
+    return serializeWidgetData5Array(obj);
   }
   return obj;
 }
 
-/** deserialize function for WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
-export function deserializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion(
+/** serialize function for WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
+export function serializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion(
   obj: WidgetData0Output | WidgetData3Output | WidgetData5Output[]
 ): WidgetData0 | WidgetData3 | WidgetData5[] {
   if (isWidgetData3(obj)) {
-    return deserializeWidgetData3(obj);
+    return serializeWidgetData3(obj);
   }
   if (isWidgetData5Array(obj)) {
-    return deserializeWidgetData5Array(obj);
+    return serializeWidgetData5Array(obj);
   }
   return obj;
 }
@@ -538,8 +538,8 @@ function isWidgetData6Array(
   return false;
 }
 
-/** deserialize function for WidgetData6 array */
-function deserializeWidgetData6Array(obj: WidgetData6Output[]): WidgetData6[] {
+/** serialize function for WidgetData6 array */
+function serializeWidgetData6Array(obj: WidgetData6Output[]): WidgetData6[] {
   return (obj || []).map((item) => {
     return {
       data: {
@@ -552,18 +552,18 @@ function deserializeWidgetData6Array(obj: WidgetData6Output[]): WidgetData6[] {
   });
 }
 
-/** deserialize function for WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
-export function deserializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion(
+/** serialize function for WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+export function serializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion(
   obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
 ): WidgetData2 | WidgetData4 | WidgetData6[] {
   if (isWidgetData2(obj)) {
-    return deserializeWidgetData2(obj);
+    return serializeWidgetData2(obj);
   }
   if (isWidgetData4(obj)) {
-    return deserializeWidgetData4(obj);
+    return serializeWidgetData4(obj);
   }
   if (isWidgetData6Array(obj)) {
-    return deserializeWidgetData6Array(obj);
+    return serializeWidgetData6Array(obj);
   }
   return obj;
 }
