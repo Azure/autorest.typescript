@@ -8,6 +8,7 @@ import {
   StructureKind
 } from "ts-morph";
 import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
+import { UsageFlags } from "@typespec/compiler";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -17,9 +18,13 @@ import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 export function buildOperationUtils(model: ModularCodeModel) {
   const serializeUtilFiles = [];
   for (const serializeType of ["serialize", "deserialize"]) {
-    const specialUnions = model.types.filter((t) => isSpecialUnion(t) && t.usage );
+    const usageCondition =
+      serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
+    const specialUnions = model.types.filter(
+      (t) => isSpecialUnion(t) && (t.usage ?? 0) & usageCondition
+    );
     if (specialUnions.length === 0) {
-      return;
+      continue;
     }
     const utilsFile = model.project.createSourceFile(
       `${model.modularOptions.sourceRoot}/utils/${serializeType}Util.ts`
@@ -48,7 +53,11 @@ export function buildOperationUtils(model: ModularCodeModel) {
           model.runtimeImports
         );
       });
-      const deserializeFUnctionName = getDeserializeFunctionName(su, serializeType, importSet);
+      const deserializeFUnctionName = getDeserializeFunctionName(
+        su,
+        serializeType,
+        importSet
+      );
       deserializeUnionTypesFunction(
         utilsFile,
         unionDeserializeTypes ?? [],

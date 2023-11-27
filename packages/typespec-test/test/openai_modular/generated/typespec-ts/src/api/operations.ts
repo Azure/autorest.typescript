@@ -11,6 +11,7 @@ import {
   BatchImageGenerationOperationResponse,
   ImageGenerationOptions,
 } from "../models/models.js";
+import { deserializeImageLocationArrayAndImagePayloadArrayUnion } from "../utils/deserializeUtil.js";
 import {
   BeginAzureBatchImageGeneration202Response,
   BeginAzureBatchImageGenerationDefaultResponse,
@@ -32,7 +33,6 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
-import { deserializeImageLocationArrayAndImagePayloadArrayUnion } from "../utils/deserializeUtil.js";
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,

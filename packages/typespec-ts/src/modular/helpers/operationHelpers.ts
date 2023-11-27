@@ -948,7 +948,10 @@ function deserializeResponseValue(
       return restValue;
     case "combined":
       if (type.types?.some((t) => isSpecialUnionVariant(t))) {
-        const deserializeFunctionName = getDeserializeFunctionName(type, "deserialize");
+        const deserializeFunctionName = getDeserializeFunctionName(
+          type,
+          "deserialize"
+        );
         return `${deserializeFunctionName}(${restValue})`;
       } else {
         return `${restValue}`;
@@ -1035,7 +1038,10 @@ function serializeRequestValue(
       return clientValue;
     case "combined":
       if (type.types?.some((t) => isSpecialUnionVariant(t))) {
-        const serializeFunctionName = getDeserializeFunctionName(type, "serialize");
+        const serializeFunctionName = getDeserializeFunctionName(
+          type,
+          "serialize"
+        );
         return `${serializeFunctionName}(${clientValue})`;
       } else {
         return `${clientValue}`;
