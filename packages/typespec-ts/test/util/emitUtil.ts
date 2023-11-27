@@ -33,7 +33,6 @@ import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 import { buildClientContext } from "../../src/modular/buildClientContext.js";
 import { Project } from "ts-morph";
 import { buildOperationUtils } from "../../src/modular/buildOperationUtils.js";
-import { buildOperationFiles } from "../../src/modular/buildOperations.js";
 
 export async function emitPageHelperFromTypeSpec(
   tspContent: string,

@@ -58,7 +58,7 @@ export async function _listDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
   };
@@ -100,7 +100,7 @@ export async function _createDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     statusDetails: result.body["status_details"],
   };
 }
@@ -138,7 +138,7 @@ export async function _retrieveDeserialize(
     createdAt: new Date(result.body["createdAt"]),
     filename: result.body["filename"],
     purpose: result.body["purpose"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     statusDetails: result.body["status_details"],
   };
 }

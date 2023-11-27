@@ -76,7 +76,7 @@ export async function _createDeserialize(
     model: result.body["model"],
     fineTunedModel: result.body["fine_tuned_model"],
     organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     hyperparams: {
       nEpochs: result.body.hyperparams["n_epochs"],
       batchSize: result.body.hyperparams["batch_size"],
@@ -97,7 +97,7 @@ export async function _createDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     validationFiles: result.body["validation_files"].map((p) => ({
@@ -107,7 +107,7 @@ export async function _createDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     resultFiles: result.body["result_files"].map((p) => ({
@@ -117,7 +117,7 @@ export async function _createDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     events: !result.body["events"]
@@ -166,7 +166,7 @@ export async function _listDeserialize(
       model: p["model"],
       fineTunedModel: p["fine_tuned_model"],
       organizationId: p["organization_id"],
-      status: p["status"] as any,
+      status: p["status"],
       hyperparams: {
         nEpochs: p.hyperparams["n_epochs"],
         batchSize: p.hyperparams["batch_size"],
@@ -185,7 +185,7 @@ export async function _listDeserialize(
         createdAt: new Date(p["createdAt"]),
         filename: p["filename"],
         purpose: p["purpose"],
-        status: p["status"] as any,
+        status: p["status"],
         statusDetails: p["status_details"],
       })),
       validationFiles: p["validation_files"].map((p) => ({
@@ -195,7 +195,7 @@ export async function _listDeserialize(
         createdAt: new Date(p["createdAt"]),
         filename: p["filename"],
         purpose: p["purpose"],
-        status: p["status"] as any,
+        status: p["status"],
         statusDetails: p["status_details"],
       })),
       resultFiles: p["result_files"].map((p) => ({
@@ -205,7 +205,7 @@ export async function _listDeserialize(
         createdAt: new Date(p["createdAt"]),
         filename: p["filename"],
         purpose: p["purpose"],
-        status: p["status"] as any,
+        status: p["status"],
         statusDetails: p["status_details"],
       })),
       events: !p["events"]
@@ -255,7 +255,7 @@ export async function _retrieveDeserialize(
     model: result.body["model"],
     fineTunedModel: result.body["fine_tuned_model"],
     organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     hyperparams: {
       nEpochs: result.body.hyperparams["n_epochs"],
       batchSize: result.body.hyperparams["batch_size"],
@@ -276,7 +276,7 @@ export async function _retrieveDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     validationFiles: result.body["validation_files"].map((p) => ({
@@ -286,7 +286,7 @@ export async function _retrieveDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     resultFiles: result.body["result_files"].map((p) => ({
@@ -296,7 +296,7 @@ export async function _retrieveDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     events: !result.body["events"]
@@ -388,7 +388,7 @@ export async function _cancelDeserialize(
     model: result.body["model"],
     fineTunedModel: result.body["fine_tuned_model"],
     organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
+    status: result.body["status"],
     hyperparams: {
       nEpochs: result.body.hyperparams["n_epochs"],
       batchSize: result.body.hyperparams["batch_size"],
@@ -409,7 +409,7 @@ export async function _cancelDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     validationFiles: result.body["validation_files"].map((p) => ({
@@ -419,7 +419,7 @@ export async function _cancelDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     resultFiles: result.body["result_files"].map((p) => ({
@@ -429,7 +429,7 @@ export async function _cancelDeserialize(
       createdAt: new Date(p["createdAt"]),
       filename: p["filename"],
       purpose: p["purpose"],
-      status: p["status"] as any,
+      status: p["status"],
       statusDetails: p["status_details"],
     })),
     events: !result.body["events"]
