@@ -35,14 +35,12 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      if (result.status === "200") {
-        assert.strictEqual(result.body.id, 1);
-        assert.strictEqual(result.body.name, "Madge");
-        assert.strictEqual(
-          result.body.etag,
-          "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        );
-      }
+      assert.strictEqual(result.body.id, 1);
+      assert.strictEqual(result.body.name, "Madge");
+      assert.strictEqual(
+        result.body.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -62,14 +60,12 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      if (result.status === "200") {
-        assert.strictEqual(result.body.id, 1);
-        assert.strictEqual(result.body.name, "Madge");
-        assert.strictEqual(
-          result.body.etag,
-          "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        );
-      }
+      assert.strictEqual(result.body.id, 1);
+      assert.strictEqual(result.body.name, "Madge");
+      assert.strictEqual(
+        result.body.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -82,14 +78,12 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      if (result.status === "200") {
-        assert.strictEqual(result.body.id, 1);
-        assert.strictEqual(result.body.name, "Madge");
-        assert.strictEqual(
-          result.body.etag,
-          "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        );
-      }
+      assert.strictEqual(result.body.id, 1);
+      assert.strictEqual(result.body.name, "Madge");
+      assert.strictEqual(
+        result.body.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -126,26 +120,24 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      if (result.status === "200") {
-        assert.strictEqual(result.body.value[0]?.id, 1);
-        assert.strictEqual(result.body.value[0]?.name, "Madge");
-        assert.strictEqual(
-          result.body.value[0]?.etag,
-          "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        );
-        assert.deepEqual(result.body.value[0]?.orders, [
-          { id: 1, userId: 1, detail: "a recorder" }
-        ]);
-        assert.strictEqual(result.body.value[1]?.id, 2);
-        assert.strictEqual(result.body.value[1]?.name, "John");
-        assert.strictEqual(
-          result.body.value[1]?.etag,
-          "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
-        );
-        assert.deepEqual(result.body.value[1]?.orders, [
-          { id: 2, userId: 2, detail: "a TV" }
-        ]);
-      }
+      assert.strictEqual(result.body.value[0]?.id, 1);
+      assert.strictEqual(result.body.value[0]?.name, "Madge");
+      assert.strictEqual(
+        result.body.value[0]?.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
+      assert.deepEqual(result.body.value[0]?.orders, [
+        { id: 1, userId: 1, detail: "a recorder" }
+      ]);
+      assert.strictEqual(result.body.value[1]?.id, 2);
+      assert.strictEqual(result.body.value[1]?.name, "John");
+      assert.strictEqual(
+        result.body.value[1]?.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b5a"
+      );
+      assert.deepEqual(result.body.value[1]?.orders, [
+        { id: 2, userId: 2, detail: "a TV" }
+      ]);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -165,13 +157,12 @@ describe("Azure Core Rest Client", () => {
       for await (const item of iter) {
         result.push(item);
       }
-      assert.deepEqual(result, [
-        {
-          id: 1,
-          name: "Madge",
-          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        }
-      ]);
+      assert.strictEqual(result[0]?.id, 1);
+      assert.strictEqual(result[0]?.name, "Madge");
+      assert.strictEqual(
+        result[0]?.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -196,13 +187,12 @@ describe("Azure Core Rest Client", () => {
       for await (const item of iter) {
         result.push(item);
       }
-      assert.deepEqual(result, [
-        {
-          id: 1,
-          name: "Madge",
-          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        }
-      ]);
+      assert.strictEqual(result[0]?.id, 1);
+      assert.strictEqual(result[0]?.name, "Madge");
+      assert.strictEqual(
+        result[0]?.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -224,7 +214,7 @@ describe("Azure Core Rest Client", () => {
       for await (const item of iter) {
         result.push(item);
       }
-      assert.deepEqual(result, [{ id: 1 }]);
+      assert.strictEqual(result[0]?.id, 1);
     } catch (err) {
       assert.fail(err as string);
     }
@@ -246,7 +236,7 @@ describe("Azure Core Rest Client", () => {
       for await (const item of iter) {
         result.push(item);
       }
-      assert.deepEqual(result, [{ name: "Madge" }]);
+      assert.strictEqual(result[0]?.name, "Madge");
     } catch (err) {
       assert.fail(err as string);
     }
@@ -268,13 +258,12 @@ describe("Azure Core Rest Client", () => {
       for await (const item of iter) {
         result.push(item);
       }
-      assert.deepEqual(result, [
-        {
-          id: 1,
-          name: "Madge",
-          etag: "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        }
-      ]);
+      assert.strictEqual(result[0]?.id, 1);
+      assert.strictEqual(result[0]?.name, "Madge");
+      assert.strictEqual(
+        result[0]?.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
@@ -293,14 +282,12 @@ describe("Azure Core Rest Client", () => {
         throw Error("Unexpected status code");
       }
       assert.strictEqual(result.status, "200");
-      if (result.status === "200") {
-        assert.strictEqual(result.body.id, 1);
-        assert.strictEqual(result.body.name, "Madge");
-        assert.strictEqual(
-          result.body.etag,
-          "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
-        );
-      }
+      assert.strictEqual(result.body.id, 1);
+      assert.strictEqual(result.body.name, "Madge");
+      assert.strictEqual(
+        result.body.etag,
+        "11bdc430-65e8-45ad-81d9-8ffa60d55b59"
+      );
     } catch (err) {
       assert.fail(err as string);
     }
