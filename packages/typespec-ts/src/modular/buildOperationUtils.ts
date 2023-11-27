@@ -348,12 +348,13 @@ function getTypeSerializeFunction(
   const statements: string[] = [];
 
   if (type.type === "model" && type.name) {
+    const typeName = type.name + "Rest";
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.name}`],
       name: `${serializeType}${toPascalCase(type.name)}`,
       parameters: [{ name: "obj", type: `${type.name}` }],
-      returnType: type.name + "Rest"
+      returnType: typeName
     };
     if (type.properties) {
       statements.push(
@@ -374,7 +375,7 @@ function getTypeSerializeFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        addOverload(sourceFile, type.name + "Output", functionStatement);
+        addOverload(sourceFile, typeName, functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -384,12 +385,13 @@ function getTypeSerializeFunction(
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
+    const typeName = type.elementType.name + "Rest";
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.elementType.name} array`],
       name: `${serializeType}${toPascalCase(type.elementType.name)}Array`,
-      parameters: [{ name: "obj", type: type.elementType.name + "Output[]" }],
-      returnType: type.elementType.name + "[]"
+      parameters: [{ name: "obj", type: type.elementType.name + "[]" }],
+      returnType: `${typeName}[]`
     };
     statements.push(
       `return (obj || []).map(item => { return {${getResponseMapping(
@@ -408,7 +410,7 @@ function getTypeSerializeFunction(
       ) {
         addOverload(
           sourceFile,
-          type.elementType.name ?? "Output[]",
+          `${typeName}[]`,
           functionStatement
         );
       } else {

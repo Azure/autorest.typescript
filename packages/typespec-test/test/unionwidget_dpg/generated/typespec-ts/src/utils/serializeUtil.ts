@@ -244,7 +244,7 @@ function isWidgetData2Array(
 }
 
 /** serialize function for WidgetData2 array */
-function serializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[] {
+function serializeWidgetData2Array(obj: WidgetData2[]): WidgetData2Rest[] {
   return (obj || []).map((item) => {
     return { fooProp: item["foo_prop"] };
   });
@@ -290,7 +290,7 @@ function isWidgetData3Array(
 }
 
 /** serialize function for WidgetData3 array */
-function serializeWidgetData3Array(obj: WidgetData3Output[]): WidgetData3[] {
+function serializeWidgetData3Array(obj: WidgetData3[]): WidgetData3Rest[] {
   return (obj || []).map((item) => {
     return { barProp: item["bar_prop"] };
   });
@@ -329,7 +329,7 @@ function isWidgetData4Array(
 }
 
 /** serialize function for WidgetData4 array */
-function serializeWidgetData4Array(obj: WidgetData4Output[]): WidgetData4[] {
+function serializeWidgetData4Array(obj: WidgetData4[]): WidgetData4Rest[] {
   return (obj || []).map((item) => {
     return {
       start: new Date(item["start"]),
@@ -372,7 +372,7 @@ function isWidgetData5Array(
 }
 
 /** serialize function for WidgetData5 array */
-function serializeWidgetData5Array(obj: WidgetData5Output[]): WidgetData5[] {
+function serializeWidgetData5Array(obj: WidgetData5[]): WidgetData5Rest[] {
   return (obj || []).map((item) => {
     return {
       data:
@@ -527,7 +527,7 @@ function isWidgetData6Array(
 }
 
 /** serialize function for WidgetData6 array */
-function serializeWidgetData6Array(obj: WidgetData6Output[]): WidgetData6[] {
+function serializeWidgetData6Array(obj: WidgetData6[]): WidgetData6Rest[] {
   return (obj || []).map((item) => {
     return {
       data: {
