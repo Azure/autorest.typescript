@@ -87,6 +87,34 @@ const testedTypes: TypeDetail[] = [
   {
     type: "unknown/array",
     defaultValue: ["hello", "world"]
+  },
+  {
+    type: "string/literal",
+    defaultValue: "hello"
+  },
+  {
+    type: "int/literal",
+    defaultValue: 42
+  },
+  {
+    type: "float/literal",
+    defaultValue: 42.42
+  },
+  {
+    type: "boolean/literal",
+    defaultValue: true
+  },
+  {
+    type: "union/string/literal",
+    defaultValue: "world"
+  },
+  {
+    type: "union/int/literal",
+    defaultValue: 42
+  },
+  {
+    type: "union/float/literal",
+    defaultValue: 43.43
   }
 ];
 describe("ModelsPropertyTypesClient Rest Client", () => {

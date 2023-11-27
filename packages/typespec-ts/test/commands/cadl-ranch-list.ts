@@ -137,10 +137,11 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "specialWords",
     inputPath: "special-words"
   },
-  {
-    outputPath: "unions",
-    inputPath: "type/union"
-  },
+  // TODO: union has issues need to fix in https://github.com/Azure/autorest.typescript/issues/2141
+  // {
+  //   outputPath: "unions",
+  //   inputPath: "type/union"
+  // },
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"

@@ -31,6 +31,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/string/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -78,6 +79,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/bytes/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -127,6 +129,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/datetime/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -176,6 +179,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/duration/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -225,6 +229,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/collections/bytes/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -274,6 +279,7 @@ describe("ModelsPropertyOptional Rest Client", () => {
         .path("/type/property/optional/collections/model/default")
         .get();
       assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
     } catch (err) {
       assert.fail(err as string);
     }
@@ -296,6 +302,356 @@ describe("ModelsPropertyOptional Rest Client", () => {
     try {
       const result = await client
         .path("/type/property/optional/collections/model/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/string/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, "hello");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/string/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/string/literal/all")
+        .put({
+          body: { property: "hello" }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/string/literal/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/int/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, 1);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/int/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/int/literal/all")
+        .put({
+          body: { property: 1 }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/int/literal/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/float/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, 1.2);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/float/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/float/literal/all")
+        .put({
+          body: { property: 1.2 }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/float/literal/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all boolean literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/boolean/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, true);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default boolean literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/boolean/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all boolean literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/boolean/literal/all")
+        .put({
+          body: { property: true }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default boolean literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/boolean/literal/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all union string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/string/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, "world");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default union string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/string/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all union string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/string/literal/all")
+        .put({
+          body: { property: "world" }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default union string literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/string/literal/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all union int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/int/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, 2);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default union int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/int/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all union int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/int/literal/all")
+        .put({
+          body: { property: 2 }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default union int literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/int/literal/default")
+        .put({
+          body: {}
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get all union float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/float/literal/all")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body.property, 2.3);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get default union float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/float/literal/default")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.deepEqual(result.body, {});
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put all union float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/float/literal/all")
+        .put({
+          body: { property: 2.3 }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put default union float literal", async () => {
+    try {
+      const result = await client
+        .path("/type/property/optional/union/float/literal/default")
         .put({
           body: {}
         });
