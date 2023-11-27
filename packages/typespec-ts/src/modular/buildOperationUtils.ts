@@ -1,6 +1,9 @@
 import { toPascalCase } from "../utils/casingUtils.js";
 import { importSettings } from "../utils/importUtils.js";
-import { getResponseMapping } from "./helpers/operationHelpers.js";
+import {
+  getResponseMapping,
+  getRequestModelMapping
+} from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Property, Type } from "./modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
@@ -45,13 +48,23 @@ export function buildOperationUtils(model: ModularCodeModel) {
           et,
           getTypeUnionName(su, true, importSet)
         );
-        getTypeDeserializeFunction(
-          utilsFile,
-          et,
-          serializeType,
-          importSet,
-          model.runtimeImports
-        );
+        if (serializeType === "serialize") {
+          getTypeSerializeFunction(
+            utilsFile,
+            et,
+            serializeType,
+            importSet,
+            model.runtimeImports
+          );
+        } else {
+          getTypeDeserializeFunction(
+            utilsFile,
+            et,
+            serializeType,
+            importSet,
+            model.runtimeImports
+          );
+        }
       });
       const deserializeFUnctionName = getDeserializeFunctionName(
         su,
@@ -197,6 +210,129 @@ function getTypeDeserializeFunction(
           importSet,
           runtimeImports
         )}};`
+      );
+    } else {
+      statements.push(`return {};`);
+    }
+    functionStatement.statements = statements.join("\n");
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        addOverload(sourceFile, type.name + "Output", functionStatement);
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
+  } else if (
+    type.type === "list" &&
+    type.elementType?.type === "model" &&
+    type.elementType.name
+  ) {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      docs: [`${serializeType} function for ${type.elementType.name} array`],
+      name: `${serializeType}${toPascalCase(type.elementType.name)}Array`,
+      parameters: [{ name: "obj", type: type.elementType.name + "Output[]" }],
+      returnType: type.elementType.name + "[]"
+    };
+    statements.push(
+      `return (obj || []).map(item => { return {${getResponseMapping(
+        type.elementType.properties ?? [],
+        "item",
+        importSet,
+        runtimeImports
+      )}}})`
+    );
+    functionStatement.statements = statements.join("\n");
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        addOverload(
+          sourceFile,
+          type.elementType.name ?? "Output[]",
+          functionStatement
+        );
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
+  } else if (type.type === "datetime") {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      docs: [`${serializeType} function for ${type.type}`],
+      name: `${serializeType}${toPascalCase("datetime")}`,
+      parameters: [{ name: "obj", type: "string" }],
+      returnType: "Date"
+    };
+    statements.push(`return new Date(obj);`);
+    functionStatement.statements = statements.join("\n");
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        addOverload(sourceFile, type.name ?? "", functionStatement);
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
+  } else if (type.type === "byte-array") {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      docs: [`${serializeType} function for ${type.type}`],
+      name: `${serializeType}${toPascalCase(type.name ?? "byte-array")}`,
+      parameters: [{ name: "obj", type: "string" }],
+      returnType: "Uint8Array"
+    };
+    statements.push(`return stringToUint8Array(obj);`);
+    addImportSet(importSet, "@azure-rest/core-util", "stringToUint8Array");
+    functionStatement.statements = statements.join("\n");
+    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+      if (
+        sourceFile
+          .getFunctions()
+          .some((f) => f.getName() === functionStatement.name)
+      ) {
+        addOverload(sourceFile, type.name ?? "", functionStatement);
+      } else {
+        sourceFile.addFunction(functionStatement);
+      }
+    }
+  }
+}
+
+function getTypeSerializeFunction(
+  sourceFile: SourceFile,
+  type: Type,
+  serializeType: string,
+  importSet: Map<string, Set<string>>,
+  runtimeImports: RuntimeImports
+) {
+  const statements: string[] = [];
+
+  if (type.type === "model" && type.name) {
+    const functionStatement: FunctionDeclarationStructure = {
+      kind: StructureKind.Function,
+      docs: [`${serializeType} function for ${type.name}`],
+      name: `${serializeType}${toPascalCase(type.name)}`,
+      parameters: [{ name: "obj", type: `${type.name}` }],
+      returnType: type.name + "RestPayload"
+    };
+    if (type.properties) {
+      statements.push(
+        `return {${getRequestModelMapping(
+          type,
+          "obj",
+          importSet,
+          runtimeImports
+        ).join(", ")}};`
       );
     } else {
       statements.push(`return {};`);

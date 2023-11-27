@@ -711,7 +711,7 @@ function getNullableCheck(name: string, type: Type) {
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
-function getRequestModelMapping(
+export function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
   importSet: Map<string, Set<string>>,

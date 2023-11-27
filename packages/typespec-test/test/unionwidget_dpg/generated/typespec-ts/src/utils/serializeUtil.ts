@@ -19,7 +19,7 @@ import {
   WidgetData5,
   WidgetData6,
 } from "../models/models.js";
-import { stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
 /** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
 function isWidgetData2(
@@ -66,8 +66,8 @@ function isWidgetData2(
 }
 
 /** serialize function for WidgetData2 */
-function serializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
-  return { fooProp: obj["foo_prop"] };
+function serializeWidgetData2(obj: WidgetData2): WidgetData2RestPayload {
+  return { foo_prop: obj["fooProp"] };
 }
 
 /** serialize function for WidgetData0Output | WidgetData2Output */
@@ -115,8 +115,8 @@ function isWidgetData3(
 }
 
 /** serialize function for WidgetData3 */
-function serializeWidgetData3(obj: WidgetData3Output): WidgetData3 {
-  return { barProp: obj["bar_prop"] };
+function serializeWidgetData3(obj: WidgetData3): WidgetData3RestPayload {
+  return { bar_prop: obj["barProp"] };
 }
 
 /** serialize function for WidgetData2Output | WidgetData3Output */
@@ -157,11 +157,8 @@ function isWidgetData4(
 }
 
 /** serialize function for WidgetData4 */
-function serializeWidgetData4(obj: WidgetData4Output): WidgetData4 {
-  return {
-    start: new Date(obj["start"]),
-    end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
-  };
+function serializeWidgetData4(obj: WidgetData4): WidgetData4RestPayload {
+  return { start: obj["start"].toISOString(), end: obj["end"]?.toISOString() };
 }
 
 /** serialize function for WidgetData0Output | WidgetData4Output */
@@ -190,13 +187,8 @@ function isWidgetData5(
 }
 
 /** serialize function for WidgetData5 */
-function serializeWidgetData5(obj: WidgetData5Output): WidgetData5 {
-  return {
-    data:
-      typeof obj["data"] === "string"
-        ? stringToUint8Array(obj["data"], "base64")
-        : obj["data"],
-  };
+function serializeWidgetData5(obj: WidgetData5): WidgetData5RestPayload {
+  return { data: uint8ArrayToString(obj["data"], "base64") };
 }
 
 /** serialize function for WidgetData0Output | WidgetData5Output */
