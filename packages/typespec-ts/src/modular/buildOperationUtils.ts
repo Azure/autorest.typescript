@@ -403,7 +403,7 @@ function getTypePredictFunctionForBasicType(
   const statements: string[] = [];
   const functionStatement: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    docs: [`type predict function fpr ${type.type} from ${typeUnionNames}`],
+    docs: [`type predict function for ${type.type} from ${typeUnionNames}`],
     name: `is${toPascalCase(formalizeTypeUnionName(type.type))}`,
     parameters: [{ name: "obj", type: typeUnionNames }],
     returnType: `obj is ${getMappedType(type.type, true)}`
@@ -475,7 +475,7 @@ function getTypePredictFunction(
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [
-        `type predict function fpr ${type.elementType.name}Output array from ${typeUnionNames}`
+        `type predict function for ${type.elementType.name}Output array from ${typeUnionNames}`
       ],
       name: `is${toPascalCase(
         formalizeTypeUnionName(type.elementType.name + "Array")

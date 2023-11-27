@@ -27,7 +27,7 @@ describe("modular special union deserialization", () => {
         @get @route("customGet1") customGet1(): Widget1;
       }
       `);
-    assert.ok(operationUtil === undefined);
+    assert.ok(operationUtil?.length === 0);
   });
 
   it("should generate deserialize util if there's a special union variant of datatime", async () => {
@@ -55,12 +55,12 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output } from "../rest/index.js";
       import { WidgetData0 } from "../models/models.js";
       
-      /** type predict function fpr datetime from WidgetData0Output | string */
+      /** type predict function for datetime from WidgetData0Output | string */
       function isDatetime(obj: WidgetData0Output | string): obj is string {
         if (typeof obj === "string") {
           return true;
@@ -95,7 +95,6 @@ describe("modular special union deserialization", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { deserializeWidgetData0AndDateUnion } from "../utils/deserializeUtil.js";
       
       export function _customGet1Send(
         context: Client,
@@ -156,13 +155,13 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output } from "../rest/index.js";
       import { stringToUint8Array } from "@azure-rest/core-util";
       import { WidgetData0 } from "../models/models.js";
       
-      /** type predict function fpr byte-array from WidgetData0Output | string */
+      /** type predict function for byte-array from WidgetData0Output | string */
       function isByteArray(obj: WidgetData0Output | string): obj is string {
         if (typeof obj === "string") {
           return true;
@@ -197,7 +196,6 @@ describe("modular special union deserialization", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { deserializeWidgetData0AndUint8ArrayUnion } from "../utils/deserializeUtil.js";
       
       export function _customGet1Send(
         context: Client,
@@ -263,12 +261,12 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1 from WidgetData0Output | WidgetData1Output */
+      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
       function isWidgetData1(
         obj: WidgetData0Output | WidgetData1Output
       ): obj is WidgetData1Output {
@@ -306,7 +304,6 @@ describe("modular special union deserialization", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { deserializeWidgetData0AndWidgetData1Union } from "../utils/deserializeUtil.js";
       
       export function _customGet1Send(
         context: Client,
@@ -371,13 +368,13 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1 from WidgetData0Output | WidgetData1Output */
+      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
       function isWidgetData1(
         obj: WidgetData0Output | WidgetData1Output
       ): obj is WidgetData1Output {
@@ -417,7 +414,6 @@ describe("modular special union deserialization", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { deserializeWidgetData0AndWidgetData1Union } from "../utils/deserializeUtil.js";
       
       export function _customGet1Send(
         context: Client,
@@ -483,12 +479,12 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1 from WidgetData0Output | WidgetData1Output */
+      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
       function isWidgetData1(
         obj: WidgetData0Output | WidgetData1Output
       ): obj is WidgetData1Output {
@@ -523,8 +519,7 @@ describe("modular special union deserialization", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-      import { deserializeWidgetData0AndWidgetData1Union } from "../utils/deserializeUtil.js";
-      
+     
       export function _customGet1Send(
         context: Client,
         options: CustomGet1Options = { requestOptions: {} }
@@ -592,13 +587,13 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData2Output } from "../rest/index.js";
       import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData2 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData2 from WidgetData0Output | WidgetData2Output */
+      /** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
       function isWidgetData2(
         obj: WidgetData0Output | WidgetData2Output
       ): obj is WidgetData2Output {
@@ -663,12 +658,12 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      /** type predict function for WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
       function isWidgetData1Array(
         obj: WidgetData0Output | WidgetData1Output[]
       ): obj is WidgetData1Output[] {
@@ -731,13 +726,13 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      /** type predict function for WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
       function isWidgetData1Array(
         obj: WidgetData0Output | WidgetData1Output[]
       ): obj is WidgetData1Output[] {
@@ -803,12 +798,12 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      /** type predict function for WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
       function isWidgetData1Array(
         obj: WidgetData0Output | WidgetData1Output[]
       ): obj is WidgetData1Output[] {
@@ -871,13 +866,13 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output, WidgetData2Output } from "../rest/index.js";
       import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData2 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData2Output array from WidgetData0Output | WidgetData2Output[] */
+      /** type predict function for WidgetData2Output array from WidgetData0Output | WidgetData2Output[] */
       function isWidgetData2Array(
         obj: WidgetData0Output | WidgetData2Output[]
       ): obj is WidgetData2Output[] {
@@ -950,12 +945,12 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData1Output, WidgetData2Output } from "../rest/index.js";
       import { WidgetData1, WidgetData2 } from "../models/models.js";
       
-      /** type predict function fpr WidgetData1 from WidgetData1Output | WidgetData2Output */
+      /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output */
       function isWidgetData1(
         obj: WidgetData1Output | WidgetData2Output
       ): obj is WidgetData1Output {
@@ -967,7 +962,7 @@ describe("modular special union deserialization", () => {
         return { barProp: obj["bar_prop"] };
       }
 
-      /** type predict function fpr WidgetData2 from WidgetData1Output | WidgetData2Output */
+      /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
       function isWidgetData2(
         obj: WidgetData1Output | WidgetData2Output
       ): obj is WidgetData2Output {
@@ -1037,7 +1032,7 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       ` import {
           WidgetData1Output,
           WidgetData2Output,
@@ -1046,7 +1041,7 @@ describe("modular special union deserialization", () => {
         import { stringToUint8Array } from "@azure/core-util";
         import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
         
-        /** type predict function fpr WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData1Output {
@@ -1058,7 +1053,7 @@ describe("modular special union deserialization", () => {
           return { barProp: obj["bar_prop"] };
         }
         
-        /** type predict function fpr WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData2Output {
@@ -1073,7 +1068,7 @@ describe("modular special union deserialization", () => {
           };
         }
         
-        /** type predict function fpr WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData4(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData4Output {
@@ -1158,7 +1153,7 @@ describe("modular special union deserialization", () => {
     const operationUtil = await emitModularDeserializeUtilsFromTypeSpec(tspContent);
     assert.ok(operationUtil);
     assertEqualContent(
-      operationUtil?.getFullText()!,
+      operationUtil?.[0]?.getFullText()!,
       ` import {
           WidgetData1Output,
           WidgetData2Output,
@@ -1167,15 +1162,15 @@ describe("modular special union deserialization", () => {
         import { stringToUint8Array } from "@azure/core-util";
         import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
         
-        /** type predict function fpr WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData1Output;
-        /** type predict function fpr WidgetData1 from WidgetData1Output | WidgetData2Output */
+        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output
         ): obj is WidgetData1Output;
-        /** type predict function fpr WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData1Output {
@@ -1187,15 +1182,15 @@ describe("modular special union deserialization", () => {
           return { barProp: obj["bar_prop"] };
         }
         
-        /** type predict function fpr WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData2Output;
-        /** type predict function fpr WidgetData2 from WidgetData1Output | WidgetData2Output */
+        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output
         ): obj is WidgetData2Output;
-        /** type predict function fpr WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData2Output {
@@ -1210,7 +1205,7 @@ describe("modular special union deserialization", () => {
           };
         }
         
-        /** type predict function fpr WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData4(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData4Output {
