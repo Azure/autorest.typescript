@@ -2,13 +2,11 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { User } from "./models/models.js";
+import {
   User,
   ListItemInputBody,
-  UserListResults,
-  PagedUser,
-  PagedFirstItem,
-  PagedSecondItem,
+  FirstItem,
+  SecondItem,
 } from "./models/models.js";
 import {
   CreateOrUpdateOptions,
@@ -95,7 +93,7 @@ export class BasicClient {
   listWithParameters(
     bodyInput: ListItemInputBody,
     options: ListWithParametersOptions = { requestOptions: {} }
-  ): Promise<PagedUser> {
+  ): PagedAsyncIterableIterator<User> {
     return listWithParameters(this._client, bodyInput, options);
   }
 
@@ -126,14 +124,14 @@ export class BasicClient {
   /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
   listFirstItem(
     options: ListFirstItemOptions = { requestOptions: {} }
-  ): Promise<PagedFirstItem> {
+  ): PagedAsyncIterableIterator<FirstItem> {
     return listFirstItem(this._client, options);
   }
 
   /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
   listSecondItem(
     options: ListSecondItemOptions = { requestOptions: {} }
-  ): Promise<PagedSecondItem> {
+  ): PagedAsyncIterableIterator<SecondItem> {
     return listSecondItem(this._client, options);
   }
 }

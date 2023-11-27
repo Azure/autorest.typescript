@@ -22,6 +22,8 @@ export {
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
   PageSettings,
   ContinuablePage,
   PagedAsyncIterableIterator,
