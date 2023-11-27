@@ -122,4 +122,41 @@ describe("BasicClient Classical Client", () => {
     assert.strictEqual(items[0]?.name, "Madge");
     assert.strictEqual(items[0]?.etag, "11bdc430-65e8-45ad-81d9-8ffa60d55b59");
   });
+
+  it("should list with parameters", async () => {
+    const customPageIter = await client.listWithParameters(
+      {
+        inputName: "Madge"
+      },
+      {
+        another: "Second"
+      }
+    );
+    const items = [];
+    for await (const user of customPageIter) {
+      items.push(user);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.name, "Madge");
+  });
+
+  it("should list first item", async () => {
+    const customPageIter = await client.listFirstItem();
+    const items = [];
+    for await (const user of customPageIter) {
+      items.push(user);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.id, 1);
+  });
+
+  it("should list second item", async () => {
+    const customPageIter = await client.listSecondItem();
+    const items = [];
+    for await (const user of customPageIter) {
+      items.push(user);
+    }
+    assert.strictEqual(items.length, 1);
+    assert.strictEqual(items[0]?.name, "Madge");
+  });
 });
