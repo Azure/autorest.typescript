@@ -40,6 +40,20 @@ import {
   UnknownDictPutParameters,
   UnknownArrayGetParameters,
   UnknownArrayPutParameters,
+  StringLiteralGetParameters,
+  StringLiteralPutParameters,
+  IntLiteralGetParameters,
+  IntLiteralPutParameters,
+  FloatLiteralGetParameters,
+  FloatLiteralPutParameters,
+  BooleanLiteralGetParameters,
+  BooleanLiteralPutParameters,
+  UnionStringLiteralGetParameters,
+  UnionStringLiteralPutParameters,
+  UnionIntLiteralGetParameters,
+  UnionIntLiteralPutParameters,
+  UnionFloatLiteralGetParameters,
+  UnionFloatLiteralPutParameters,
 } from "./parameters";
 import {
   BooleanModelGet200Response,
@@ -80,6 +94,20 @@ import {
   UnknownDictPut204Response,
   UnknownArrayGet200Response,
   UnknownArrayPut204Response,
+  StringLiteralGet200Response,
+  StringLiteralPut204Response,
+  IntLiteralGet200Response,
+  IntLiteralPut204Response,
+  FloatLiteralGet200Response,
+  FloatLiteralPut204Response,
+  BooleanLiteralGet200Response,
+  BooleanLiteralPut204Response,
+  UnionStringLiteralGet200Response,
+  UnionStringLiteralPut204Response,
+  UnionIntLiteralGet200Response,
+  UnionIntLiteralPut204Response,
+  UnionFloatLiteralGet200Response,
+  UnionFloatLiteralPut204Response,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -264,6 +292,83 @@ export interface UnknownArrayGet {
   ): StreamableMethod<UnknownArrayPut204Response>;
 }
 
+export interface StringLiteralGet {
+  /** Get call */
+  get(
+    options?: StringLiteralGetParameters
+  ): StreamableMethod<StringLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: StringLiteralPutParameters
+  ): StreamableMethod<StringLiteralPut204Response>;
+}
+
+export interface IntLiteralGet {
+  /** Get call */
+  get(
+    options?: IntLiteralGetParameters
+  ): StreamableMethod<IntLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: IntLiteralPutParameters
+  ): StreamableMethod<IntLiteralPut204Response>;
+}
+
+export interface FloatLiteralGet {
+  /** Get call */
+  get(
+    options?: FloatLiteralGetParameters
+  ): StreamableMethod<FloatLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: FloatLiteralPutParameters
+  ): StreamableMethod<FloatLiteralPut204Response>;
+}
+
+export interface BooleanLiteralGet {
+  /** Get call */
+  get(
+    options?: BooleanLiteralGetParameters
+  ): StreamableMethod<BooleanLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: BooleanLiteralPutParameters
+  ): StreamableMethod<BooleanLiteralPut204Response>;
+}
+
+export interface UnionStringLiteralGet {
+  /** Get call */
+  get(
+    options?: UnionStringLiteralGetParameters
+  ): StreamableMethod<UnionStringLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: UnionStringLiteralPutParameters
+  ): StreamableMethod<UnionStringLiteralPut204Response>;
+}
+
+export interface UnionIntLiteralGet {
+  /** Get call */
+  get(
+    options?: UnionIntLiteralGetParameters
+  ): StreamableMethod<UnionIntLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: UnionIntLiteralPutParameters
+  ): StreamableMethod<UnionIntLiteralPut204Response>;
+}
+
+export interface UnionFloatLiteralGet {
+  /** Get call */
+  get(
+    options?: UnionFloatLiteralGetParameters
+  ): StreamableMethod<UnionFloatLiteralGet200Response>;
+  /** Put operation */
+  put(
+    options: UnionFloatLiteralPutParameters
+  ): StreamableMethod<UnionFloatLiteralPut204Response>;
+}
+
 export interface Routes {
   /** Resource for '/type/property/value-types/boolean' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/boolean"): BooleanModelGet;
@@ -303,6 +408,24 @@ export interface Routes {
   (path: "/type/property/value-types/unknown/dict"): UnknownDictGet;
   /** Resource for '/type/property/value-types/unknown/array' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/unknown/array"): UnknownArrayGet;
+  /** Resource for '/type/property/value-types/string/literal' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/string/literal"): StringLiteralGet;
+  /** Resource for '/type/property/value-types/int/literal' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/int/literal"): IntLiteralGet;
+  /** Resource for '/type/property/value-types/float/literal' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/float/literal"): FloatLiteralGet;
+  /** Resource for '/type/property/value-types/boolean/literal' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/boolean/literal"): BooleanLiteralGet;
+  /** Resource for '/type/property/value-types/union/string/literal' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/value-types/union/string/literal"
+  ): UnionStringLiteralGet;
+  /** Resource for '/type/property/value-types/union/int/literal' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/union/int/literal"): UnionIntLiteralGet;
+  /** Resource for '/type/property/value-types/union/float/literal' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/value-types/union/float/literal"
+  ): UnionFloatLiteralGet;
 }
 
 export type ValueTypesClient = Client & {

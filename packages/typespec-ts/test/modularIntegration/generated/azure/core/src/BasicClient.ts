@@ -2,16 +2,26 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import { User, UserListResults, PagedUser } from "./models/models.js";
+import {
+  User,
+  ListItemInputBody,
+  UserListResults,
+  PagedUser,
+  PagedFirstItem,
+  PagedSecondItem,
+} from "./models/models.js";
 import {
   CreateOrUpdateOptions,
   CreateOrReplaceOptions,
   GetOptions,
   ListOptions,
   ListWithPageOptions,
+  ListWithParametersOptions,
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
 } from "./models/options.js";
 import {
   createBasic,
@@ -22,9 +32,12 @@ import {
   get,
   list,
   listWithPage,
+  listWithParameters,
   listWithCustomPageModel,
   deleteOperation,
   exportOperation,
+  listFirstItem,
+  listSecondItem,
 } from "./api/index.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
@@ -75,6 +88,14 @@ export class BasicClient {
     return listWithPage(this._client, options);
   }
 
+  /** List with extensible enum parameter Azure.Core.Page<>. */
+  listWithParameters(
+    bodyInput: ListItemInputBody,
+    options: ListWithParametersOptions = { requestOptions: {} }
+  ): Promise<PagedUser> {
+    return listWithParameters(this._client, bodyInput, options);
+  }
+
   /** List with custom page model. */
   listWithCustomPageModel(
     options: ListWithCustomPageModelOptions = { requestOptions: {} }
@@ -97,5 +118,19 @@ export class BasicClient {
     options: ExportOperationOptions = { requestOptions: {} }
   ): Promise<User> {
     return exportOperation(this._client, id, format, options);
+  }
+
+  /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
+  listFirstItem(
+    options: ListFirstItemOptions = { requestOptions: {} }
+  ): Promise<PagedFirstItem> {
+    return listFirstItem(this._client, options);
+  }
+
+  /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
+  listSecondItem(
+    options: ListSecondItemOptions = { requestOptions: {} }
+  ): Promise<PagedSecondItem> {
+    return listSecondItem(this._client, options);
   }
 }

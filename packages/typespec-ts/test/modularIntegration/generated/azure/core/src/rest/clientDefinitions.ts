@@ -8,8 +8,11 @@ import {
   DeleteParameters,
   ListParameters,
   ListWithPageParameters,
+  ListWithParametersParameters,
   ListWithCustomPageModelParameters,
   ExportParameters,
+  ListFirstItemParameters,
+  ListSecondItemParameters,
 } from "./parameters.js";
 import {
   CreateOrUpdate200Response,
@@ -26,10 +29,16 @@ import {
   ListDefaultResponse,
   ListWithPage200Response,
   ListWithPageDefaultResponse,
+  ListWithParameters200Response,
+  ListWithParametersDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
   ExportOperation200Response,
   ExportOperationDefaultResponse,
+  ListFirstItem200Response,
+  ListFirstItemDefaultResponse,
+  ListSecondItem200Response,
+  ListSecondItemDefaultResponse,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -76,6 +85,15 @@ export interface ListWithPage {
   ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse>;
 }
 
+export interface ListWithParameters {
+  /** List with extensible enum parameter Azure.Core.Page<>. */
+  get(
+    options: ListWithParametersParameters
+  ): StreamableMethod<
+    ListWithParameters200Response | ListWithParametersDefaultResponse
+  >;
+}
+
 export interface ListWithCustomPageModel {
   /** List with custom page model. */
   get(
@@ -94,6 +112,22 @@ export interface Export {
   >;
 }
 
+export interface ListFirstItem {
+  /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
+  get(
+    options?: ListFirstItemParameters
+  ): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse>;
+}
+
+export interface ListSecondItem {
+  /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
+  get(
+    options?: ListSecondItemParameters
+  ): StreamableMethod<
+    ListSecondItem200Response | ListSecondItemDefaultResponse
+  >;
+}
+
 export interface Routes {
   /** Resource for '/azure/core/basic/users/\{id\}' has methods for the following verbs: patch, put, get, delete */
   (path: "/azure/core/basic/users/{id}", id: number): CreateOrUpdate;
@@ -101,10 +135,16 @@ export interface Routes {
   (path: "/azure/core/basic/users"): List;
   /** Resource for '/azure/core/basic/page' has methods for the following verbs: get */
   (path: "/azure/core/basic/page"): ListWithPage;
+  /** Resource for '/azure/core/basic/parameters' has methods for the following verbs: get */
+  (path: "/azure/core/basic/parameters"): ListWithParameters;
   /** Resource for '/azure/core/basic/custom-page' has methods for the following verbs: get */
   (path: "/azure/core/basic/custom-page"): ListWithCustomPageModel;
   /** Resource for '/azure/core/basic/users/\{id\}:export' has methods for the following verbs: post */
   (path: "/azure/core/basic/users/{id}:export", id: number): Export;
+  /** Resource for '/azure/core/basic/first-item' has methods for the following verbs: get */
+  (path: "/azure/core/basic/first-item"): ListFirstItem;
+  /** Resource for '/azure/core/basic/second-item' has methods for the following verbs: get */
+  (path: "/azure/core/basic/second-item"): ListSecondItem;
 }
 
 export type BasicContext = Client & {

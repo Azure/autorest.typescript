@@ -2,33 +2,39 @@
 // Licensed under the MIT license.
 
 import {
-  CreateJob200Response,
+  GetJob200Response,
+  GetJobDefaultResponse,
   CreateJob202Response,
   CreateJobLogicalResponse,
   CreateJobDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
+  "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs/{jobId}":
+    ["200"],
   "POST /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
-    ["200", "202"],
+    ["202"],
   "GET /azure/core/lro/rpc/legacy/create-resource-poll-via-operation-location/jobs":
     ["200", "202"],
 };
 
 export function isUnexpected(
+  response: GetJob200Response | GetJobDefaultResponse
+): response is GetJobDefaultResponse;
+export function isUnexpected(
   response:
-    | CreateJob200Response
     | CreateJob202Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse
 ): response is CreateJobDefaultResponse;
 export function isUnexpected(
   response:
-    | CreateJob200Response
+    | GetJob200Response
+    | GetJobDefaultResponse
     | CreateJob202Response
     | CreateJobLogicalResponse
     | CreateJobDefaultResponse
-): response is CreateJobDefaultResponse {
+): response is GetJobDefaultResponse | CreateJobDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
   const method = response.request.method;

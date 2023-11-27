@@ -23,6 +23,12 @@ export interface UserOrder {
   detail: string;
 }
 
+/** The body of the input. */
+export interface ListItemInputBody {
+  /** The name of the input. */
+  inputName: string;
+}
+
 export interface UserListResults {
   /** List of items. */
   items: User[];
@@ -44,4 +50,36 @@ export interface PagedUser {
   value: User[];
   /** The link to the next page of items */
   nextLink?: string;
+}
+
+/** An extensible enum input parameter. */
+/** "First", "Second" */
+export type ListItemInputExtensibleEnum = string;
+
+/** Paged collection of FirstItem items */
+export interface PagedFirstItem {
+  /** The FirstItem items on this page */
+  value: FirstItem[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** First item. */
+export interface FirstItem {
+  /** The id of the item. */
+  readonly id: number;
+}
+
+/** Paged collection of SecondItem items */
+export interface PagedSecondItem {
+  /** The SecondItem items on this page */
+  value: SecondItem[];
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+
+/** Second item. */
+export interface SecondItem {
+  /** The name of the item. */
+  readonly name: string;
 }

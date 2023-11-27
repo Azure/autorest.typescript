@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { User, UserListResults, PagedUser } from "../models/models.js";
+import {
+  User,
+  ListItemInputBody,
+  UserListResults,
+  PagedUser,
+  PagedFirstItem,
+  PagedSecondItem,
+} from "../models/models.js";
 import {
   isUnexpected,
   BasicContext as Client,
@@ -20,10 +27,16 @@ import {
   GetDefaultResponse,
   List200Response,
   ListDefaultResponse,
+  ListFirstItem200Response,
+  ListFirstItemDefaultResponse,
+  ListSecondItem200Response,
+  ListSecondItemDefaultResponse,
   ListWithCustomPageModel200Response,
   ListWithCustomPageModelDefaultResponse,
   ListWithPage200Response,
   ListWithPageDefaultResponse,
+  ListWithParameters200Response,
+  ListWithParametersDefaultResponse,
 } from "../rest/index.js";
 import {
   StreamableMethod,
@@ -35,9 +48,12 @@ import {
   GetOptions,
   ListOptions,
   ListWithPageOptions,
+  ListWithParametersOptions,
   ListWithCustomPageModelOptions,
   DeleteOperationOptions,
   ExportOperationOptions,
+  ListFirstItemOptions,
+  ListSecondItemOptions,
 } from "../models/options.js";
 
 export function _createOrUpdateSend(
@@ -309,6 +325,56 @@ export async function listWithPage(
   return _listWithPageDeserialize(result);
 }
 
+export function _listWithParametersSend(
+  context: Client,
+  bodyInput: ListItemInputBody,
+  options: ListWithParametersOptions = { requestOptions: {} }
+): StreamableMethod<
+  ListWithParameters200Response | ListWithParametersDefaultResponse
+> {
+  return context
+    .path("/azure/core/basic/parameters")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { another: options?.another },
+      body: { inputName: bodyInput["inputName"] },
+    });
+}
+
+export async function _listWithParametersDeserialize(
+  result: ListWithParameters200Response | ListWithParametersDefaultResponse
+): Promise<PagedUser> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    value: result.body["value"].map((p) => ({
+      id: p["id"],
+      name: p["name"],
+      orders: !p["orders"]
+        ? p["orders"]
+        : p["orders"].map((p) => ({
+            id: p["id"],
+            userId: p["userId"],
+            detail: p["detail"],
+          })),
+      etag: p["etag"],
+    })),
+    nextLink: result.body["nextLink"],
+  };
+}
+
+/** List with extensible enum parameter Azure.Core.Page<>. */
+export async function listWithParameters(
+  context: Client,
+  bodyInput: ListItemInputBody,
+  options: ListWithParametersOptions = { requestOptions: {} }
+): Promise<PagedUser> {
+  const result = await _listWithParametersSend(context, bodyInput, options);
+  return _listWithParametersDeserialize(result);
+}
+
 export function _listWithCustomPageModelSend(
   context: Client,
   options: ListWithCustomPageModelOptions = { requestOptions: {} }
@@ -433,4 +499,66 @@ export async function exportOperation(
 ): Promise<User> {
   const result = await _exportOperationSend(context, id, format, options);
   return _exportOperationDeserialize(result);
+}
+
+export function _listFirstItemSend(
+  context: Client,
+  options: ListFirstItemOptions = { requestOptions: {} }
+): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse> {
+  return context
+    .path("/azure/core/basic/first-item")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _listFirstItemDeserialize(
+  result: ListFirstItem200Response | ListFirstItemDefaultResponse
+): Promise<PagedFirstItem> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    value: result.body["value"].map((p) => ({ id: p["id"] })),
+    nextLink: result.body["nextLink"],
+  };
+}
+
+/** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
+export async function listFirstItem(
+  context: Client,
+  options: ListFirstItemOptions = { requestOptions: {} }
+): Promise<PagedFirstItem> {
+  const result = await _listFirstItemSend(context, options);
+  return _listFirstItemDeserialize(result);
+}
+
+export function _listSecondItemSend(
+  context: Client,
+  options: ListSecondItemOptions = { requestOptions: {} }
+): StreamableMethod<ListSecondItem200Response | ListSecondItemDefaultResponse> {
+  return context
+    .path("/azure/core/basic/second-item")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _listSecondItemDeserialize(
+  result: ListSecondItem200Response | ListSecondItemDefaultResponse
+): Promise<PagedSecondItem> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    value: result.body["value"].map((p) => ({ name: p["name"] })),
+    nextLink: result.body["nextLink"],
+  };
+}
+
+/** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
+export async function listSecondItem(
+  context: Client,
+  options: ListSecondItemOptions = { requestOptions: {} }
+): Promise<PagedSecondItem> {
+  const result = await _listSecondItemSend(context, options);
+  return _listSecondItemDeserialize(result);
 }
