@@ -2,13 +2,13 @@
 // Licensed under the MIT license.
 
 import {
-  WidgetData0Output,
-  WidgetData2Output,
-  WidgetData1Output,
-  WidgetData3Output,
-  WidgetData4Output,
-  WidgetData5Output,
-  WidgetData6Output,
+  WidgetData0 as WidgetData0Rest,
+  WidgetData2 as WidgetData2Rest,
+  WidgetData1 as WidgetData1Rest,
+  WidgetData3 as WidgetData3Rest,
+  WidgetData4 as WidgetData4Rest,
+  WidgetData5 as WidgetData5Rest,
+  WidgetData6 as WidgetData6Rest,
 } from "../rest/index.js";
 import {
   WidgetData0,
@@ -21,58 +21,58 @@ import {
 } from "../models/models.js";
 import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
 
-/** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
+/** type predict function for WidgetData2Rest from WidgetData0Rest | WidgetData2Rest */
 function isWidgetData2(
-  obj: WidgetData0Output | WidgetData2Output
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
+  obj: WidgetData0Rest | WidgetData2Rest
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData1Rest | WidgetData2Rest */
 function isWidgetData2(
-  obj: WidgetData1Output | WidgetData2Output
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData2Output | WidgetData3Output */
+  obj: WidgetData1Rest | WidgetData2Rest
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData2Rest | WidgetData3Rest */
 function isWidgetData2(
-  obj: WidgetData2Output | WidgetData3Output
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData0Output[] | WidgetData2Output */
+  obj: WidgetData2Rest | WidgetData3Rest
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData0Rest[] | WidgetData2Rest */
 function isWidgetData2(
-  obj: WidgetData0Output[] | WidgetData2Output
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData1Output[] | WidgetData2Output */
+  obj: WidgetData0Rest[] | WidgetData2Rest
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData1Rest[] | WidgetData2Rest */
 function isWidgetData2(
-  obj: WidgetData1Output[] | WidgetData2Output
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData2Output | WidgetData3Output[] */
+  obj: WidgetData1Rest[] | WidgetData2Rest
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData2Rest | WidgetData3Rest[] */
 function isWidgetData2(
-  obj: WidgetData2Output | WidgetData3Output[]
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+  obj: WidgetData2Rest | WidgetData3Rest[]
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[] */
 function isWidgetData2(
-  obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
-): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
+  obj: WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[]
+): obj is WidgetData2Rest;
+/** type predict function for WidgetData2Rest from WidgetData0Rest | WidgetData2Rest */
 function isWidgetData2(
   obj:
-    | WidgetData2Output
-    | WidgetData4Output
-    | WidgetData6Output[]
-    | WidgetData3Output[]
-    | WidgetData1Output[]
-    | WidgetData0Output[]
-    | WidgetData3Output
-    | WidgetData1Output
-    | WidgetData0Output
-): obj is WidgetData2Output {
-  return (obj as WidgetData2Output).foo_prop !== undefined;
+    | WidgetData2Rest
+    | WidgetData4Rest
+    | WidgetData6Rest[]
+    | WidgetData3Rest[]
+    | WidgetData1Rest[]
+    | WidgetData0Rest[]
+    | WidgetData3Rest
+    | WidgetData1Rest
+    | WidgetData0Rest
+): obj is WidgetData2Rest {
+  return (obj as WidgetData2Rest).foo_prop !== undefined;
 }
 
 /** serialize function for WidgetData2 */
-function serializeWidgetData2(obj: WidgetData2): WidgetData2RestPayload {
+function serializeWidgetData2(obj: WidgetData2): WidgetData2Rest {
   return { foo_prop: obj["fooProp"] };
 }
 
-/** serialize function for WidgetData0Output | WidgetData2Output */
+/** serialize function for WidgetData0Rest | WidgetData2Rest */
 export function serializeWidgetData0AndWidgetData2Union(
-  obj: WidgetData0Output | WidgetData2Output
+  obj: WidgetData0Rest | WidgetData2Rest
 ): WidgetData0 | WidgetData2 {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);
@@ -80,9 +80,9 @@ export function serializeWidgetData0AndWidgetData2Union(
   return obj;
 }
 
-/** serialize function for WidgetData1Output | WidgetData2Output */
+/** serialize function for WidgetData1Rest | WidgetData2Rest */
 export function serializeWidgetData1AndWidgetData2Union(
-  obj: WidgetData1Output | WidgetData2Output
+  obj: WidgetData1Rest | WidgetData2Rest
 ): WidgetData1 | WidgetData2 {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);
@@ -90,38 +90,38 @@ export function serializeWidgetData1AndWidgetData2Union(
   return obj;
 }
 
-/** type predict function for WidgetData3 from WidgetData2Output | WidgetData3Output */
+/** type predict function for WidgetData3Rest from WidgetData2Rest | WidgetData3Rest */
 function isWidgetData3(
-  obj: WidgetData2Output | WidgetData3Output
-): obj is WidgetData3Output;
-/** type predict function for WidgetData3 from WidgetData2Output[] | WidgetData3Output */
+  obj: WidgetData2Rest | WidgetData3Rest
+): obj is WidgetData3Rest;
+/** type predict function for WidgetData3Rest from WidgetData2Rest[] | WidgetData3Rest */
 function isWidgetData3(
-  obj: WidgetData2Output[] | WidgetData3Output
-): obj is WidgetData3Output;
-/** type predict function for WidgetData3 from WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
+  obj: WidgetData2Rest[] | WidgetData3Rest
+): obj is WidgetData3Rest;
+/** type predict function for WidgetData3Rest from WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[] */
 function isWidgetData3(
-  obj: WidgetData0Output | WidgetData3Output | WidgetData5Output[]
-): obj is WidgetData3Output;
-/** type predict function for WidgetData3 from WidgetData2Output | WidgetData3Output */
+  obj: WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[]
+): obj is WidgetData3Rest;
+/** type predict function for WidgetData3Rest from WidgetData2Rest | WidgetData3Rest */
 function isWidgetData3(
   obj:
-    | WidgetData0Output
-    | WidgetData3Output
-    | WidgetData5Output[]
-    | WidgetData2Output[]
-    | WidgetData2Output
-): obj is WidgetData3Output {
-  return (obj as WidgetData3Output).bar_prop !== undefined;
+    | WidgetData0Rest
+    | WidgetData3Rest
+    | WidgetData5Rest[]
+    | WidgetData2Rest[]
+    | WidgetData2Rest
+): obj is WidgetData3Rest {
+  return (obj as WidgetData3Rest).bar_prop !== undefined;
 }
 
 /** serialize function for WidgetData3 */
-function serializeWidgetData3(obj: WidgetData3): WidgetData3RestPayload {
+function serializeWidgetData3(obj: WidgetData3): WidgetData3Rest {
   return { bar_prop: obj["barProp"] };
 }
 
-/** serialize function for WidgetData2Output | WidgetData3Output */
+/** serialize function for WidgetData2Rest | WidgetData3Rest */
 export function serializeWidgetData2AndWidgetData3Union(
-  obj: WidgetData2Output | WidgetData3Output
+  obj: WidgetData2Rest | WidgetData3Rest
 ): WidgetData2 | WidgetData3 {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);
@@ -132,38 +132,38 @@ export function serializeWidgetData2AndWidgetData3Union(
   return obj;
 }
 
-/** type predict function for WidgetData4 from WidgetData0Output | WidgetData4Output */
+/** type predict function for WidgetData4Rest from WidgetData0Rest | WidgetData4Rest */
 function isWidgetData4(
-  obj: WidgetData0Output | WidgetData4Output
-): obj is WidgetData4Output;
-/** type predict function for WidgetData4 from WidgetData0Output[] | WidgetData4Output */
+  obj: WidgetData0Rest | WidgetData4Rest
+): obj is WidgetData4Rest;
+/** type predict function for WidgetData4Rest from WidgetData0Rest[] | WidgetData4Rest */
 function isWidgetData4(
-  obj: WidgetData0Output[] | WidgetData4Output
-): obj is WidgetData4Output;
-/** type predict function for WidgetData4 from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+  obj: WidgetData0Rest[] | WidgetData4Rest
+): obj is WidgetData4Rest;
+/** type predict function for WidgetData4Rest from WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[] */
 function isWidgetData4(
-  obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
-): obj is WidgetData4Output;
-/** type predict function for WidgetData4 from WidgetData0Output | WidgetData4Output */
+  obj: WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[]
+): obj is WidgetData4Rest;
+/** type predict function for WidgetData4Rest from WidgetData0Rest | WidgetData4Rest */
 function isWidgetData4(
   obj:
-    | WidgetData2Output
-    | WidgetData4Output
-    | WidgetData6Output[]
-    | WidgetData0Output[]
-    | WidgetData0Output
-): obj is WidgetData4Output {
-  return (obj as WidgetData4Output).start !== undefined;
+    | WidgetData2Rest
+    | WidgetData4Rest
+    | WidgetData6Rest[]
+    | WidgetData0Rest[]
+    | WidgetData0Rest
+): obj is WidgetData4Rest {
+  return (obj as WidgetData4Rest).start !== undefined;
 }
 
 /** serialize function for WidgetData4 */
-function serializeWidgetData4(obj: WidgetData4): WidgetData4RestPayload {
+function serializeWidgetData4(obj: WidgetData4): WidgetData4Rest {
   return { start: obj["start"].toISOString(), end: obj["end"]?.toISOString() };
 }
 
-/** serialize function for WidgetData0Output | WidgetData4Output */
+/** serialize function for WidgetData0Rest | WidgetData4Rest */
 export function serializeWidgetData0AndWidgetData4Union(
-  obj: WidgetData0Output | WidgetData4Output
+  obj: WidgetData0Rest | WidgetData4Rest
 ): WidgetData0 | WidgetData4 {
   if (isWidgetData4(obj)) {
     return serializeWidgetData4(obj);
@@ -171,29 +171,29 @@ export function serializeWidgetData0AndWidgetData4Union(
   return obj;
 }
 
-/** type predict function for WidgetData5 from WidgetData0Output | WidgetData5Output */
+/** type predict function for WidgetData5Rest from WidgetData0Rest | WidgetData5Rest */
 function isWidgetData5(
-  obj: WidgetData0Output | WidgetData5Output
-): obj is WidgetData5Output;
-/** type predict function for WidgetData5 from WidgetData0Output[] | WidgetData5Output */
+  obj: WidgetData0Rest | WidgetData5Rest
+): obj is WidgetData5Rest;
+/** type predict function for WidgetData5Rest from WidgetData0Rest[] | WidgetData5Rest */
 function isWidgetData5(
-  obj: WidgetData0Output[] | WidgetData5Output
-): obj is WidgetData5Output;
-/** type predict function for WidgetData5 from WidgetData0Output | WidgetData5Output */
+  obj: WidgetData0Rest[] | WidgetData5Rest
+): obj is WidgetData5Rest;
+/** type predict function for WidgetData5Rest from WidgetData0Rest | WidgetData5Rest */
 function isWidgetData5(
-  obj: WidgetData0Output[] | WidgetData5Output | WidgetData0Output
-): obj is WidgetData5Output {
-  return (obj as WidgetData5Output).data !== undefined;
+  obj: WidgetData0Rest[] | WidgetData5Rest | WidgetData0Rest
+): obj is WidgetData5Rest {
+  return (obj as WidgetData5Rest).data !== undefined;
 }
 
 /** serialize function for WidgetData5 */
-function serializeWidgetData5(obj: WidgetData5): WidgetData5RestPayload {
+function serializeWidgetData5(obj: WidgetData5): WidgetData5Rest {
   return { data: uint8ArrayToString(obj["data"], "base64") };
 }
 
-/** serialize function for WidgetData0Output | WidgetData5Output */
+/** serialize function for WidgetData0Rest | WidgetData5Rest */
 export function serializeWidgetData0AndWidgetData5Union(
-  obj: WidgetData0Output | WidgetData5Output
+  obj: WidgetData0Rest | WidgetData5Rest
 ): WidgetData0 | WidgetData5 {
   if (isWidgetData5(obj)) {
     return serializeWidgetData5(obj);
@@ -201,43 +201,43 @@ export function serializeWidgetData0AndWidgetData5Union(
   return obj;
 }
 
-/** type predict function for WidgetData2Output array from WidgetData0Output[] | WidgetData2Output[] */
+/** type predict function for WidgetData2Rest array from WidgetData0Rest[] | WidgetData2Rest[] */
 function isWidgetData2Array(
-  obj: WidgetData0Output[] | WidgetData2Output[]
-): obj is WidgetData2Output[];
-/** type predict function for WidgetData2Output array from WidgetData1Output[] | WidgetData2Output[] */
+  obj: WidgetData0Rest[] | WidgetData2Rest[]
+): obj is WidgetData2Rest[];
+/** type predict function for WidgetData2Rest array from WidgetData1Rest[] | WidgetData2Rest[] */
 function isWidgetData2Array(
-  obj: WidgetData1Output[] | WidgetData2Output[]
-): obj is WidgetData2Output[];
-/** type predict function for WidgetData2Output array from WidgetData2Output[] | WidgetData3Output[] */
+  obj: WidgetData1Rest[] | WidgetData2Rest[]
+): obj is WidgetData2Rest[];
+/** type predict function for WidgetData2Rest array from WidgetData2Rest[] | WidgetData3Rest[] */
 function isWidgetData2Array(
-  obj: WidgetData2Output[] | WidgetData3Output[]
-): obj is WidgetData2Output[];
-/** type predict function for WidgetData2Output array from WidgetData0Output | WidgetData2Output[] */
+  obj: WidgetData2Rest[] | WidgetData3Rest[]
+): obj is WidgetData2Rest[];
+/** type predict function for WidgetData2Rest array from WidgetData0Rest | WidgetData2Rest[] */
 function isWidgetData2Array(
-  obj: WidgetData0Output | WidgetData2Output[]
-): obj is WidgetData2Output[];
-/** type predict function for WidgetData2Output array from WidgetData1Output | WidgetData2Output[] */
+  obj: WidgetData0Rest | WidgetData2Rest[]
+): obj is WidgetData2Rest[];
+/** type predict function for WidgetData2Rest array from WidgetData1Rest | WidgetData2Rest[] */
 function isWidgetData2Array(
-  obj: WidgetData1Output | WidgetData2Output[]
-): obj is WidgetData2Output[];
-/** type predict function for WidgetData2Output array from WidgetData2Output[] | WidgetData3Output */
+  obj: WidgetData1Rest | WidgetData2Rest[]
+): obj is WidgetData2Rest[];
+/** type predict function for WidgetData2Rest array from WidgetData2Rest[] | WidgetData3Rest */
 function isWidgetData2Array(
-  obj: WidgetData2Output[] | WidgetData3Output
-): obj is WidgetData2Output[];
-/** type predict function for WidgetData2Output array from WidgetData0Output[] | WidgetData2Output[] */
+  obj: WidgetData2Rest[] | WidgetData3Rest
+): obj is WidgetData2Rest[];
+/** type predict function for WidgetData2Rest array from WidgetData0Rest[] | WidgetData2Rest[] */
 function isWidgetData2Array(
   obj:
-    | WidgetData2Output[]
-    | WidgetData3Output
-    | WidgetData1Output
-    | WidgetData0Output
-    | WidgetData3Output[]
-    | WidgetData1Output[]
-    | WidgetData0Output[]
-): obj is WidgetData2Output[] {
+    | WidgetData2Rest[]
+    | WidgetData3Rest
+    | WidgetData1Rest
+    | WidgetData0Rest
+    | WidgetData3Rest[]
+    | WidgetData1Rest[]
+    | WidgetData0Rest[]
+): obj is WidgetData2Rest[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData2Output[])[0].foo_prop !== undefined;
+    return (obj as WidgetData2Rest[])[0].foo_prop !== undefined;
   }
 
   return false;
@@ -250,9 +250,9 @@ function serializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[] {
   });
 }
 
-/** serialize function for WidgetData0Output[] | WidgetData2Output[] */
+/** serialize function for WidgetData0Rest[] | WidgetData2Rest[] */
 export function serializeWidgetData0ArrayAndWidgetData2ArrayUnion(
-  obj: WidgetData0Output[] | WidgetData2Output[]
+  obj: WidgetData0Rest[] | WidgetData2Rest[]
 ): WidgetData0[] | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
     return serializeWidgetData2Array(obj);
@@ -260,9 +260,9 @@ export function serializeWidgetData0ArrayAndWidgetData2ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData1Output[] | WidgetData2Output[] */
+/** serialize function for WidgetData1Rest[] | WidgetData2Rest[] */
 export function serializeWidgetData1ArrayAndWidgetData2ArrayUnion(
-  obj: WidgetData1Output[] | WidgetData2Output[]
+  obj: WidgetData1Rest[] | WidgetData2Rest[]
 ): WidgetData1[] | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
     return serializeWidgetData2Array(obj);
@@ -270,20 +270,20 @@ export function serializeWidgetData1ArrayAndWidgetData2ArrayUnion(
   return obj;
 }
 
-/** type predict function for WidgetData3Output array from WidgetData2Output[] | WidgetData3Output[] */
+/** type predict function for WidgetData3Rest array from WidgetData2Rest[] | WidgetData3Rest[] */
 function isWidgetData3Array(
-  obj: WidgetData2Output[] | WidgetData3Output[]
-): obj is WidgetData3Output[];
-/** type predict function for WidgetData3Output array from WidgetData2Output | WidgetData3Output[] */
+  obj: WidgetData2Rest[] | WidgetData3Rest[]
+): obj is WidgetData3Rest[];
+/** type predict function for WidgetData3Rest array from WidgetData2Rest | WidgetData3Rest[] */
 function isWidgetData3Array(
-  obj: WidgetData2Output | WidgetData3Output[]
-): obj is WidgetData3Output[];
-/** type predict function for WidgetData3Output array from WidgetData2Output[] | WidgetData3Output[] */
+  obj: WidgetData2Rest | WidgetData3Rest[]
+): obj is WidgetData3Rest[];
+/** type predict function for WidgetData3Rest array from WidgetData2Rest[] | WidgetData3Rest[] */
 function isWidgetData3Array(
-  obj: WidgetData2Output | WidgetData3Output[] | WidgetData2Output[]
-): obj is WidgetData3Output[] {
+  obj: WidgetData2Rest | WidgetData3Rest[] | WidgetData2Rest[]
+): obj is WidgetData3Rest[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData3Output[])[0].bar_prop !== undefined;
+    return (obj as WidgetData3Rest[])[0].bar_prop !== undefined;
   }
 
   return false;
@@ -296,9 +296,9 @@ function serializeWidgetData3Array(obj: WidgetData3Output[]): WidgetData3[] {
   });
 }
 
-/** serialize function for WidgetData2Output[] | WidgetData3Output[] */
+/** serialize function for WidgetData2Rest[] | WidgetData3Rest[] */
 export function serializeWidgetData2ArrayAndWidgetData3ArrayUnion(
-  obj: WidgetData2Output[] | WidgetData3Output[]
+  obj: WidgetData2Rest[] | WidgetData3Rest[]
 ): WidgetData2[] | WidgetData3[] {
   if (isWidgetData2Array(obj)) {
     return serializeWidgetData2Array(obj);
@@ -309,20 +309,20 @@ export function serializeWidgetData2ArrayAndWidgetData3ArrayUnion(
   return obj;
 }
 
-/** type predict function for WidgetData4Output array from WidgetData0Output[] | WidgetData4Output[] */
+/** type predict function for WidgetData4Rest array from WidgetData0Rest[] | WidgetData4Rest[] */
 function isWidgetData4Array(
-  obj: WidgetData0Output[] | WidgetData4Output[]
-): obj is WidgetData4Output[];
-/** type predict function for WidgetData4Output array from WidgetData0Output | WidgetData4Output[] */
+  obj: WidgetData0Rest[] | WidgetData4Rest[]
+): obj is WidgetData4Rest[];
+/** type predict function for WidgetData4Rest array from WidgetData0Rest | WidgetData4Rest[] */
 function isWidgetData4Array(
-  obj: WidgetData0Output | WidgetData4Output[]
-): obj is WidgetData4Output[];
-/** type predict function for WidgetData4Output array from WidgetData0Output[] | WidgetData4Output[] */
+  obj: WidgetData0Rest | WidgetData4Rest[]
+): obj is WidgetData4Rest[];
+/** type predict function for WidgetData4Rest array from WidgetData0Rest[] | WidgetData4Rest[] */
 function isWidgetData4Array(
-  obj: WidgetData0Output | WidgetData4Output[] | WidgetData0Output[]
-): obj is WidgetData4Output[] {
+  obj: WidgetData0Rest | WidgetData4Rest[] | WidgetData0Rest[]
+): obj is WidgetData4Rest[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData4Output[])[0].start !== undefined;
+    return (obj as WidgetData4Rest[])[0].start !== undefined;
   }
 
   return false;
@@ -338,9 +338,9 @@ function serializeWidgetData4Array(obj: WidgetData4Output[]): WidgetData4[] {
   });
 }
 
-/** serialize function for WidgetData0Output[] | WidgetData4Output[] */
+/** serialize function for WidgetData0Rest[] | WidgetData4Rest[] */
 export function serializeWidgetData0ArrayAndWidgetData4ArrayUnion(
-  obj: WidgetData0Output[] | WidgetData4Output[]
+  obj: WidgetData0Rest[] | WidgetData4Rest[]
 ): WidgetData0[] | WidgetData4[] {
   if (isWidgetData4Array(obj)) {
     return serializeWidgetData4Array(obj);
@@ -348,28 +348,24 @@ export function serializeWidgetData0ArrayAndWidgetData4ArrayUnion(
   return obj;
 }
 
-/** type predict function for WidgetData5Output array from WidgetData0Output[] | WidgetData5Output[] */
+/** type predict function for WidgetData5Rest array from WidgetData0Rest[] | WidgetData5Rest[] */
 function isWidgetData5Array(
-  obj: WidgetData0Output[] | WidgetData5Output[]
-): obj is WidgetData5Output[];
-/** type predict function for WidgetData5Output array from WidgetData0Output | WidgetData5Output[] */
+  obj: WidgetData0Rest[] | WidgetData5Rest[]
+): obj is WidgetData5Rest[];
+/** type predict function for WidgetData5Rest array from WidgetData0Rest | WidgetData5Rest[] */
 function isWidgetData5Array(
-  obj: WidgetData0Output | WidgetData5Output[]
-): obj is WidgetData5Output[];
-/** type predict function for WidgetData5Output array from WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
+  obj: WidgetData0Rest | WidgetData5Rest[]
+): obj is WidgetData5Rest[];
+/** type predict function for WidgetData5Rest array from WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[] */
 function isWidgetData5Array(
-  obj: WidgetData0Output | WidgetData3Output | WidgetData5Output[]
-): obj is WidgetData5Output[];
-/** type predict function for WidgetData5Output array from WidgetData0Output[] | WidgetData5Output[] */
+  obj: WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[]
+): obj is WidgetData5Rest[];
+/** type predict function for WidgetData5Rest array from WidgetData0Rest[] | WidgetData5Rest[] */
 function isWidgetData5Array(
-  obj:
-    | WidgetData0Output
-    | WidgetData3Output
-    | WidgetData5Output[]
-    | WidgetData0Output[]
-): obj is WidgetData5Output[] {
+  obj: WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[] | WidgetData0Rest[]
+): obj is WidgetData5Rest[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData5Output[])[0].data !== undefined;
+    return (obj as WidgetData5Rest[])[0].data !== undefined;
   }
 
   return false;
@@ -387,9 +383,9 @@ function serializeWidgetData5Array(obj: WidgetData5Output[]): WidgetData5[] {
   });
 }
 
-/** serialize function for WidgetData0Output[] | WidgetData5Output[] */
+/** serialize function for WidgetData0Rest[] | WidgetData5Rest[] */
 export function serializeWidgetData0ArrayAndWidgetData5ArrayUnion(
-  obj: WidgetData0Output[] | WidgetData5Output[]
+  obj: WidgetData0Rest[] | WidgetData5Rest[]
 ): WidgetData0[] | WidgetData5[] {
   if (isWidgetData5Array(obj)) {
     return serializeWidgetData5Array(obj);
@@ -397,9 +393,9 @@ export function serializeWidgetData0ArrayAndWidgetData5ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData0Output[] | WidgetData2Output */
+/** serialize function for WidgetData0Rest[] | WidgetData2Rest */
 export function serializeWidgetData0ArrayAndWidgetData2Union(
-  obj: WidgetData0Output[] | WidgetData2Output
+  obj: WidgetData0Rest[] | WidgetData2Rest
 ): WidgetData0[] | WidgetData2 {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);
@@ -407,9 +403,9 @@ export function serializeWidgetData0ArrayAndWidgetData2Union(
   return obj;
 }
 
-/** serialize function for WidgetData0Output | WidgetData2Output[] */
+/** serialize function for WidgetData0Rest | WidgetData2Rest[] */
 export function serializeWidgetData0AndWidgetData2ArrayUnion(
-  obj: WidgetData0Output | WidgetData2Output[]
+  obj: WidgetData0Rest | WidgetData2Rest[]
 ): WidgetData0 | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
     return serializeWidgetData2Array(obj);
@@ -417,9 +413,9 @@ export function serializeWidgetData0AndWidgetData2ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData1Output[] | WidgetData2Output */
+/** serialize function for WidgetData1Rest[] | WidgetData2Rest */
 export function serializeWidgetData1ArrayAndWidgetData2Union(
-  obj: WidgetData1Output[] | WidgetData2Output
+  obj: WidgetData1Rest[] | WidgetData2Rest
 ): WidgetData1[] | WidgetData2 {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);
@@ -427,9 +423,9 @@ export function serializeWidgetData1ArrayAndWidgetData2Union(
   return obj;
 }
 
-/** serialize function for WidgetData1Output | WidgetData2Output[] */
+/** serialize function for WidgetData1Rest | WidgetData2Rest[] */
 export function serializeWidgetData1AndWidgetData2ArrayUnion(
-  obj: WidgetData1Output | WidgetData2Output[]
+  obj: WidgetData1Rest | WidgetData2Rest[]
 ): WidgetData1 | WidgetData2[] {
   if (isWidgetData2Array(obj)) {
     return serializeWidgetData2Array(obj);
@@ -437,9 +433,9 @@ export function serializeWidgetData1AndWidgetData2ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData2Output[] | WidgetData3Output */
+/** serialize function for WidgetData2Rest[] | WidgetData3Rest */
 export function serializeWidgetData2ArrayAndWidgetData3Union(
-  obj: WidgetData2Output[] | WidgetData3Output
+  obj: WidgetData2Rest[] | WidgetData3Rest
 ): WidgetData2[] | WidgetData3 {
   if (isWidgetData2Array(obj)) {
     return serializeWidgetData2Array(obj);
@@ -450,9 +446,9 @@ export function serializeWidgetData2ArrayAndWidgetData3Union(
   return obj;
 }
 
-/** serialize function for WidgetData2Output | WidgetData3Output[] */
+/** serialize function for WidgetData2Rest | WidgetData3Rest[] */
 export function serializeWidgetData2AndWidgetData3ArrayUnion(
-  obj: WidgetData2Output | WidgetData3Output[]
+  obj: WidgetData2Rest | WidgetData3Rest[]
 ): WidgetData2 | WidgetData3[] {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);
@@ -463,9 +459,9 @@ export function serializeWidgetData2AndWidgetData3ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData0Output[] | WidgetData4Output */
+/** serialize function for WidgetData0Rest[] | WidgetData4Rest */
 export function serializeWidgetData0ArrayAndWidgetData4Union(
-  obj: WidgetData0Output[] | WidgetData4Output
+  obj: WidgetData0Rest[] | WidgetData4Rest
 ): WidgetData0[] | WidgetData4 {
   if (isWidgetData4(obj)) {
     return serializeWidgetData4(obj);
@@ -473,9 +469,9 @@ export function serializeWidgetData0ArrayAndWidgetData4Union(
   return obj;
 }
 
-/** serialize function for WidgetData0Output | WidgetData4Output[] */
+/** serialize function for WidgetData0Rest | WidgetData4Rest[] */
 export function serializeWidgetData0AndWidgetData4ArrayUnion(
-  obj: WidgetData0Output | WidgetData4Output[]
+  obj: WidgetData0Rest | WidgetData4Rest[]
 ): WidgetData0 | WidgetData4[] {
   if (isWidgetData4Array(obj)) {
     return serializeWidgetData4Array(obj);
@@ -483,9 +479,9 @@ export function serializeWidgetData0AndWidgetData4ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData0Output[] | WidgetData5Output */
+/** serialize function for WidgetData0Rest[] | WidgetData5Rest */
 export function serializeWidgetData0ArrayAndWidgetData5Union(
-  obj: WidgetData0Output[] | WidgetData5Output
+  obj: WidgetData0Rest[] | WidgetData5Rest
 ): WidgetData0[] | WidgetData5 {
   if (isWidgetData5(obj)) {
     return serializeWidgetData5(obj);
@@ -493,9 +489,9 @@ export function serializeWidgetData0ArrayAndWidgetData5Union(
   return obj;
 }
 
-/** serialize function for WidgetData0Output | WidgetData5Output[] */
+/** serialize function for WidgetData0Rest | WidgetData5Rest[] */
 export function serializeWidgetData0AndWidgetData5ArrayUnion(
-  obj: WidgetData0Output | WidgetData5Output[]
+  obj: WidgetData0Rest | WidgetData5Rest[]
 ): WidgetData0 | WidgetData5[] {
   if (isWidgetData5Array(obj)) {
     return serializeWidgetData5Array(obj);
@@ -503,9 +499,9 @@ export function serializeWidgetData0AndWidgetData5ArrayUnion(
   return obj;
 }
 
-/** serialize function for WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
+/** serialize function for WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[] */
 export function serializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion(
-  obj: WidgetData0Output | WidgetData3Output | WidgetData5Output[]
+  obj: WidgetData0Rest | WidgetData3Rest | WidgetData5Rest[]
 ): WidgetData0 | WidgetData3 | WidgetData5[] {
   if (isWidgetData3(obj)) {
     return serializeWidgetData3(obj);
@@ -516,14 +512,14 @@ export function serializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion(
   return obj;
 }
 
-/** type predict function for WidgetData6Output array from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+/** type predict function for WidgetData6Rest array from WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[] */
 function isWidgetData6Array(
-  obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
-): obj is WidgetData6Output[] {
+  obj: WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[]
+): obj is WidgetData6Rest[] {
   if (Array.isArray(obj) && obj.length > 0) {
     return (
-      (obj as WidgetData6Output[])[0].data !== undefined &&
-      (obj as WidgetData6Output[])[0].data.data !== undefined
+      (obj as WidgetData6Rest[])[0].data !== undefined &&
+      (obj as WidgetData6Rest[])[0].data.data !== undefined
     );
   }
 
@@ -544,9 +540,9 @@ function serializeWidgetData6Array(obj: WidgetData6Output[]): WidgetData6[] {
   });
 }
 
-/** serialize function for WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+/** serialize function for WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[] */
 export function serializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion(
-  obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
+  obj: WidgetData2Rest | WidgetData4Rest | WidgetData6Rest[]
 ): WidgetData2 | WidgetData4 | WidgetData6[] {
   if (isWidgetData2(obj)) {
     return serializeWidgetData2(obj);

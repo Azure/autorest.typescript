@@ -21,35 +21,35 @@ import {
 } from "../models/models.js";
 import { stringToUint8Array } from "@azure/core-util";
 
-/** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
+/** type predict function for WidgetData2Output from WidgetData0Output | WidgetData2Output */
 function isWidgetData2(
   obj: WidgetData0Output | WidgetData2Output
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
+/** type predict function for WidgetData2Output from WidgetData1Output | WidgetData2Output */
 function isWidgetData2(
   obj: WidgetData1Output | WidgetData2Output
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData2Output | WidgetData3Output */
+/** type predict function for WidgetData2Output from WidgetData2Output | WidgetData3Output */
 function isWidgetData2(
   obj: WidgetData2Output | WidgetData3Output
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData0Output[] | WidgetData2Output */
+/** type predict function for WidgetData2Output from WidgetData0Output[] | WidgetData2Output */
 function isWidgetData2(
   obj: WidgetData0Output[] | WidgetData2Output
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData1Output[] | WidgetData2Output */
+/** type predict function for WidgetData2Output from WidgetData1Output[] | WidgetData2Output */
 function isWidgetData2(
   obj: WidgetData1Output[] | WidgetData2Output
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData2Output | WidgetData3Output[] */
+/** type predict function for WidgetData2Output from WidgetData2Output | WidgetData3Output[] */
 function isWidgetData2(
   obj: WidgetData2Output | WidgetData3Output[]
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+/** type predict function for WidgetData2Output from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
 function isWidgetData2(
   obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
 ): obj is WidgetData2Output;
-/** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
+/** type predict function for WidgetData2Output from WidgetData0Output | WidgetData2Output */
 function isWidgetData2(
   obj:
     | WidgetData2Output
@@ -90,19 +90,19 @@ export function deserializeWidgetData1AndWidgetData2Union(
   return obj;
 }
 
-/** type predict function for WidgetData3 from WidgetData2Output | WidgetData3Output */
+/** type predict function for WidgetData3Output from WidgetData2Output | WidgetData3Output */
 function isWidgetData3(
   obj: WidgetData2Output | WidgetData3Output
 ): obj is WidgetData3Output;
-/** type predict function for WidgetData3 from WidgetData2Output[] | WidgetData3Output */
+/** type predict function for WidgetData3Output from WidgetData2Output[] | WidgetData3Output */
 function isWidgetData3(
   obj: WidgetData2Output[] | WidgetData3Output
 ): obj is WidgetData3Output;
-/** type predict function for WidgetData3 from WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
+/** type predict function for WidgetData3Output from WidgetData0Output | WidgetData3Output | WidgetData5Output[] */
 function isWidgetData3(
   obj: WidgetData0Output | WidgetData3Output | WidgetData5Output[]
 ): obj is WidgetData3Output;
-/** type predict function for WidgetData3 from WidgetData2Output | WidgetData3Output */
+/** type predict function for WidgetData3Output from WidgetData2Output | WidgetData3Output */
 function isWidgetData3(
   obj:
     | WidgetData0Output
@@ -132,19 +132,19 @@ export function deserializeWidgetData2AndWidgetData3Union(
   return obj;
 }
 
-/** type predict function for WidgetData4 from WidgetData0Output | WidgetData4Output */
+/** type predict function for WidgetData4Output from WidgetData0Output | WidgetData4Output */
 function isWidgetData4(
   obj: WidgetData0Output | WidgetData4Output
 ): obj is WidgetData4Output;
-/** type predict function for WidgetData4 from WidgetData0Output[] | WidgetData4Output */
+/** type predict function for WidgetData4Output from WidgetData0Output[] | WidgetData4Output */
 function isWidgetData4(
   obj: WidgetData0Output[] | WidgetData4Output
 ): obj is WidgetData4Output;
-/** type predict function for WidgetData4 from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
+/** type predict function for WidgetData4Output from WidgetData2Output | WidgetData4Output | WidgetData6Output[] */
 function isWidgetData4(
   obj: WidgetData2Output | WidgetData4Output | WidgetData6Output[]
 ): obj is WidgetData4Output;
-/** type predict function for WidgetData4 from WidgetData0Output | WidgetData4Output */
+/** type predict function for WidgetData4Output from WidgetData0Output | WidgetData4Output */
 function isWidgetData4(
   obj:
     | WidgetData2Output
@@ -174,15 +174,15 @@ export function deserializeWidgetData0AndWidgetData4Union(
   return obj;
 }
 
-/** type predict function for WidgetData5 from WidgetData0Output | WidgetData5Output */
+/** type predict function for WidgetData5Output from WidgetData0Output | WidgetData5Output */
 function isWidgetData5(
   obj: WidgetData0Output | WidgetData5Output
 ): obj is WidgetData5Output;
-/** type predict function for WidgetData5 from WidgetData0Output[] | WidgetData5Output */
+/** type predict function for WidgetData5Output from WidgetData0Output[] | WidgetData5Output */
 function isWidgetData5(
   obj: WidgetData0Output[] | WidgetData5Output
 ): obj is WidgetData5Output;
-/** type predict function for WidgetData5 from WidgetData0Output | WidgetData5Output */
+/** type predict function for WidgetData5Output from WidgetData0Output | WidgetData5Output */
 function isWidgetData5(
   obj: WidgetData0Output[] | WidgetData5Output | WidgetData0Output
 ): obj is WidgetData5Output {

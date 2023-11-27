@@ -46,7 +46,8 @@ export function buildOperationUtils(model: ModularCodeModel) {
         getTypePredictFunction(
           utilsFile,
           et,
-          getTypeUnionName(su, true, importSet)
+          serializeType,
+          getTypeUnionName(su, true, importSet, serializeType)
         );
         if (serializeType === "serialize") {
           getTypeSerializeFunction(
@@ -76,8 +77,8 @@ export function buildOperationUtils(model: ModularCodeModel) {
         unionDeserializeTypes ?? [],
         deserializeFUnctionName,
         serializeType,
-        getTypeUnionName(su, true, importSet),
-        getTypeUnionName(su, false, importSet)
+        getTypeUnionName(su, true, importSet, serializeType),
+        getTypeUnionName(su, false, importSet, serializeType)
       );
     });
     importSettings(importSet, utilsFile);
@@ -91,7 +92,12 @@ export function getDeserializeFunctionName(
   serializeType: string,
   importSet?: Map<string, Set<string>>
 ) {
-  const typeUnionNames = getTypeUnionName(type, false, importSet);
+  const typeUnionNames = getTypeUnionName(
+    type,
+    false,
+    importSet,
+    serializeType
+  );
   const deserializeFunctionName = `${serializeType}${toPascalCase(
     formalizeTypeUnionName(typeUnionNames ?? "")
   )}Union`;
@@ -142,7 +148,8 @@ function addImportSet(
 function getTypeUnionName(
   type: Type,
   fromRest: boolean,
-  importSet?: Map<string, Set<string>>
+  importSet?: Map<string, Set<string>>,
+  serializeType?: string
 ) {
   const types = type.types;
   if (type.type === "list") {
@@ -155,20 +162,43 @@ function getTypeUnionName(
           addImportSet(
             importSet,
             "../rest/index.js",
-            t.elementType.name + "Output"
+            t.elementType.name +
+              (serializeType === "serialize"
+                ? " as " + t.elementType.name + "Rest"
+                : "Output")
           );
         } else if (t.elementType.name && importSet) {
           addImportSet(importSet, "../models/models.js", t.elementType.name);
         }
-        return t.elementType.name + (fromRest ? "Output" : "") + "[]";
+        return (
+          t.elementType.name +
+          (fromRest
+            ? serializeType === "serialize"
+              ? "Rest"
+              : "Output"
+            : "") +
+          "[]"
+        );
       }
       if (fromRest && t.name && importSet) {
-        addImportSet(importSet, "../rest/index.js", t.name + "Output");
+        addImportSet(
+          importSet,
+          "../rest/index.js",
+          t.name +
+            (serializeType === "serialize"
+              ? " as " + t.name + "Rest"
+              : "Output")
+        );
       } else if (t.name && importSet) {
         addImportSet(importSet, "../models/models.js", t.name);
       }
       return t.name
-        ? t.name + (fromRest ? "Output" : "")
+        ? t.name +
+            (fromRest
+              ? serializeType === "serialize"
+                ? "Rest"
+                : "Output"
+              : "")
         : getMappedType(t.type, fromRest);
     })
     .join(" | ");
@@ -323,7 +353,7 @@ function getTypeSerializeFunction(
       docs: [`${serializeType} function for ${type.name}`],
       name: `${serializeType}${toPascalCase(type.name)}`,
       parameters: [{ name: "obj", type: `${type.name}` }],
-      returnType: type.name + "RestPayload"
+      returnType: type.name + "Rest"
     };
     if (type.properties) {
       statements.push(
@@ -563,6 +593,7 @@ function getTypePredictFunctionForBasicType(
 function getTypePredictFunction(
   sourceFile: SourceFile,
   type: Type,
+  serializeType: string,
   typeUnionNames: string | undefined
 ): void {
   if (typeUnionNames === undefined) {
@@ -573,20 +604,18 @@ function getTypePredictFunction(
   if (type.type === "datetime" || type.type === "byte-array") {
     getTypePredictFunctionForBasicType(sourceFile, type, typeUnionNames);
   } else if (type.type === "model" && type.name) {
+    const typeName = type.name + (serializeType === "serialize" ? "Rest" : "Output");
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
-      docs: [`type predict function for ${type.name} from ${typeUnionNames}`],
+      docs: [`type predict function for ${typeName} from ${typeUnionNames}`],
       name: `is${toPascalCase(formalizeTypeUnionName(type.name))}`,
       parameters: [{ name: "obj", type: typeUnionNames }],
-      returnType: `obj is ${type.name}Output`
+      returnType: `obj is ${typeName}`
     };
     const typeProperties = getAllProperties(type);
     if (typeProperties.length > 0) {
       statements.push(
-        `return ${buildTypePredictCondition(
-          type,
-          `(obj as ${type.name}Output)`
-        )};`
+        `return ${buildTypePredictCondition(type, `(obj as ${typeName})`)};`
       );
     } else {
       statements.push(`return true;`);
@@ -608,16 +637,19 @@ function getTypePredictFunction(
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
+    const typeName =
+      type.elementType.name +
+      (serializeType === "serialize" ? "Rest" : "Output");
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [
-        `type predict function for ${type.elementType.name}Output array from ${typeUnionNames}`
+        `type predict function for ${typeName} array from ${typeUnionNames}`
       ],
       name: `is${toPascalCase(
         formalizeTypeUnionName(type.elementType.name + "Array")
       )}`,
       parameters: [{ name: "obj", type: typeUnionNames }],
-      returnType: `obj is ${type.elementType.name}Output[]`
+      returnType: `obj is ${typeName}[]`
     };
     if (type.elementType?.type === "model") {
       const properties = getAllProperties(type.elementType);
@@ -626,7 +658,7 @@ function getTypePredictFunction(
         statements.push(
           `return ${buildTypePredictCondition(
             type.elementType,
-            `(obj as ${type.elementType?.name}Output[])[0]`
+            `(obj as ${typeName}[])[0]`
           )};`
         );
         statements.push("}");
