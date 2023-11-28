@@ -7,8 +7,12 @@ import {
   UserListResults,
   PagedUser,
   PagedFirstItem,
-  PagedSecondItem
+  FirstItem,
+  PagedSecondItem,
+  SecondItem
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   BasicContext as Client,
@@ -378,54 +382,6 @@ export function listWithParameters(
   );
 }
 
-export function _listWithParametersSend(
-  context: Client,
-  bodyInput: ListItemInputBody,
-  options: ListWithParametersOptions = { requestOptions: {} }
-): StreamableMethod<
-  ListWithParameters200Response | ListWithParametersDefaultResponse
-> {
-  return context.path("/azure/core/basic/parameters").get({
-    ...operationOptionsToRequestParameters(options),
-    queryParameters: { another: options?.another },
-    body: { inputName: bodyInput["inputName"] }
-  });
-}
-
-export async function _listWithParametersDeserialize(
-  result: ListWithParameters200Response | ListWithParametersDefaultResponse
-): Promise<PagedUser> {
-  if (isUnexpected(result)) {
-    throw result.body;
-  }
-
-  return {
-    value: result.body["value"].map((p) => ({
-      id: p["id"],
-      name: p["name"],
-      orders: !p["orders"]
-        ? p["orders"]
-        : p["orders"].map((p) => ({
-            id: p["id"],
-            userId: p["userId"],
-            detail: p["detail"]
-          })),
-      etag: p["etag"]
-    })),
-    nextLink: result.body["nextLink"]
-  };
-}
-
-/** List with extensible enum parameter Azure.Core.Page<>. */
-export async function listWithParameters(
-  context: Client,
-  bodyInput: ListItemInputBody,
-  options: ListWithParametersOptions = { requestOptions: {} }
-): Promise<PagedUser> {
-  const result = await _listWithParametersSend(context, bodyInput, options);
-  return _listWithParametersDeserialize(result);
-}
-
 export function _listWithCustomPageModelSend(
   context: Client,
   options: ListWithCustomPageModelOptions = { requestOptions: {} }
@@ -577,12 +533,16 @@ export async function _listFirstItemDeserialize(
 }
 
 /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
-export async function listFirstItem(
+export function listFirstItem(
   context: Client,
   options: ListFirstItemOptions = { requestOptions: {} }
-): Promise<PagedFirstItem> {
-  const result = await _listFirstItemSend(context, options);
-  return _listFirstItemDeserialize(result);
+): PagedAsyncIterableIterator<FirstItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listFirstItemSend(context, options),
+    _listFirstItemDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listSecondItemSend(
@@ -608,10 +568,14 @@ export async function _listSecondItemDeserialize(
 }
 
 /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
-export async function listSecondItem(
+export function listSecondItem(
   context: Client,
   options: ListSecondItemOptions = { requestOptions: {} }
-): Promise<PagedSecondItem> {
-  const result = await _listSecondItemSend(context, options);
-  return _listSecondItemDeserialize(result);
+): PagedAsyncIterableIterator<SecondItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSecondItemSend(context, options),
+    _listSecondItemDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }

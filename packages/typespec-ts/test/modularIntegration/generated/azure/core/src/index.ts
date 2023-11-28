@@ -23,5 +23,8 @@ export {
   DeleteOperationOptions,
   ExportOperationOptions,
   ListFirstItemOptions,
-  ListSecondItemOptions
+  ListSecondItemOptions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator
 } from "./models/index.js";
