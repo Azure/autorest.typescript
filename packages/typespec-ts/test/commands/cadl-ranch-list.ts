@@ -18,6 +18,14 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "special-headers/repeatability"
   },
   {
+    outputPath: "headers/clientRequestId",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
+    outputPath: "headers/conditionalRequest",
+    inputPath: "special-headers/conditional-request"
+  },
+  {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
   },
@@ -112,6 +120,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/propertyTypes",
     inputPath: "type/property/value-types"
+  },
+  {
+    outputPath: "models/propertyAdditional",
+    inputPath: "type/property/additional-properties"
   },
   {
     outputPath: "models/visibility",
