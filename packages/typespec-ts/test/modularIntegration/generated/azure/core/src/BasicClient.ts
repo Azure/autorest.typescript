@@ -5,10 +5,8 @@ import { Pipeline } from "@azure/core-rest-pipeline";
 import {
   User,
   ListItemInputBody,
-  UserListResults,
-  PagedUser,
-  PagedFirstItem,
-  PagedSecondItem,
+  FirstItem,
+  SecondItem,
 } from "./models/models.js";
 import {
   CreateOrUpdateOptions,
@@ -23,6 +21,7 @@ import {
   ListFirstItemOptions,
   ListSecondItemOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
   BasicClientOptions,
@@ -77,14 +76,16 @@ export class BasicClient {
   }
 
   /** Lists all Users */
-  list(options: ListOptions = { requestOptions: {} }): Promise<PagedUser> {
+  list(
+    options: ListOptions = { requestOptions: {} }
+  ): PagedAsyncIterableIterator<User> {
     return list(this._client, options);
   }
 
   /** List with Azure.Core.Page<>. */
   listWithPage(
     options: ListWithPageOptions = { requestOptions: {} }
-  ): Promise<PagedUser> {
+  ): PagedAsyncIterableIterator<User> {
     return listWithPage(this._client, options);
   }
 
@@ -92,14 +93,14 @@ export class BasicClient {
   listWithParameters(
     bodyInput: ListItemInputBody,
     options: ListWithParametersOptions = { requestOptions: {} }
-  ): Promise<PagedUser> {
+  ): PagedAsyncIterableIterator<User> {
     return listWithParameters(this._client, bodyInput, options);
   }
 
   /** List with custom page model. */
   listWithCustomPageModel(
     options: ListWithCustomPageModelOptions = { requestOptions: {} }
-  ): Promise<UserListResults> {
+  ): PagedAsyncIterableIterator<User> {
     return listWithCustomPageModel(this._client, options);
   }
 
@@ -123,14 +124,14 @@ export class BasicClient {
   /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
   listFirstItem(
     options: ListFirstItemOptions = { requestOptions: {} }
-  ): Promise<PagedFirstItem> {
+  ): PagedAsyncIterableIterator<FirstItem> {
     return listFirstItem(this._client, options);
   }
 
   /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
   listSecondItem(
     options: ListSecondItemOptions = { requestOptions: {} }
-  ): Promise<PagedSecondItem> {
+  ): PagedAsyncIterableIterator<SecondItem> {
     return listSecondItem(this._client, options);
   }
 }

@@ -11,9 +11,8 @@ import {
   MetricDefinitionCollection,
   MetricNamespaceCollection,
   MetricRequestPayload,
-  PagedTimeSeriesElement,
-  PagedTestRun,
-  PagedDimensionValueList,
+  TimeSeriesElement,
+  DimensionValueList,
 } from "./models/models.js";
 import {
   TestRunOptions,
@@ -31,6 +30,7 @@ import {
   ListTestRunsOptions,
   StopTestRunOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createLoadTestRun,
   LoadTestRunClientOptions,
@@ -149,7 +149,7 @@ export class LoadTestRunClient {
     name: string,
     metricNamespace: string,
     options: ListMetricDimensionValuesOptions = { requestOptions: {} }
-  ): Promise<PagedDimensionValueList> {
+  ): PagedAsyncIterableIterator<DimensionValueList> {
     return listMetricDimensionValues(
       this._client,
       testRunId,
@@ -180,14 +180,14 @@ export class LoadTestRunClient {
     testRunId: string,
     body: MetricRequestPayload,
     options: ListMetricsOptions = { requestOptions: {} }
-  ): Promise<PagedTimeSeriesElement> {
+  ): PagedAsyncIterableIterator<TimeSeriesElement> {
     return listMetrics(this._client, testRunId, body, options);
   }
 
   /** Get all test runs with given filters */
   listTestRuns(
     options: ListTestRunsOptions = { requestOptions: {} }
-  ): Promise<PagedTestRun> {
+  ): PagedAsyncIterableIterator<TestRun> {
     return listTestRuns(this._client, options);
   }
 

@@ -245,6 +245,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "azure/core/basic"
   },
   {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
+  },
+  {
     outputPath: "encode/bytes",
     inputPath: "encode/bytes"
   },

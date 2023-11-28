@@ -36,4 +36,7 @@ export {
   RemoveBlockItemsRequestOptions,
   GetTextBlocklistItemOptions,
   ListTextBlocklistItemsOptions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";

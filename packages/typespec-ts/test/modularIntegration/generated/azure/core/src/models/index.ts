@@ -26,3 +26,8 @@ export {
   ListFirstItemOptions,
   ListSecondItemOptions,
 } from "./options.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";

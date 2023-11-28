@@ -9,6 +9,8 @@ import {
   PagedFileInfo,
   PagedTest,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
@@ -778,13 +780,17 @@ export async function _listTestFilesDeserialize(
 }
 
 /** Get all test files. */
-export async function listTestFiles(
+export function listTestFiles(
   context: Client,
   testId: string,
   options: ListTestFilesOptions = { requestOptions: {} }
-): Promise<PagedFileInfo> {
-  const result = await _listTestFilesSend(context, testId, options);
-  return _listTestFilesDeserialize(result);
+): PagedAsyncIterableIterator<FileInfo> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestFilesSend(context, testId, options),
+    _listTestFilesDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listTestsSend(
@@ -959,12 +965,16 @@ export async function _listTestsDeserialize(
  * Get all load tests by the fully qualified resource Id e.g
  * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
  */
-export async function listTests(
+export function listTests(
   context: Client,
   options: ListTestsOptions = { requestOptions: {} }
-): Promise<PagedTest> {
-  const result = await _listTestsSend(context, options);
-  return _listTestsDeserialize(result);
+): PagedAsyncIterableIterator<Test> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestsSend(context, options),
+    _listTestsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _uploadTestFileSend(

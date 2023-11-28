@@ -7,8 +7,12 @@ import {
   UserListResults,
   PagedUser,
   PagedFirstItem,
+  FirstItem,
   PagedSecondItem,
+  SecondItem,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   BasicContext as Client,
@@ -275,12 +279,16 @@ export async function _listDeserialize(
 }
 
 /** Lists all Users */
-export async function list(
+export function list(
   context: Client,
   options: ListOptions = { requestOptions: {} }
-): Promise<PagedUser> {
-  const result = await _listSend(context, options);
-  return _listDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSend(context, options),
+    _listDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listWithPageSend(
@@ -317,12 +325,16 @@ export async function _listWithPageDeserialize(
 }
 
 /** List with Azure.Core.Page<>. */
-export async function listWithPage(
+export function listWithPage(
   context: Client,
   options: ListWithPageOptions = { requestOptions: {} }
-): Promise<PagedUser> {
-  const result = await _listWithPageSend(context, options);
-  return _listWithPageDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listWithPageSend(context, options),
+    _listWithPageDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listWithParametersSend(
@@ -366,13 +378,17 @@ export async function _listWithParametersDeserialize(
 }
 
 /** List with extensible enum parameter Azure.Core.Page<>. */
-export async function listWithParameters(
+export function listWithParameters(
   context: Client,
   bodyInput: ListItemInputBody,
   options: ListWithParametersOptions = { requestOptions: {} }
-): Promise<PagedUser> {
-  const result = await _listWithParametersSend(context, bodyInput, options);
-  return _listWithParametersDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listWithParametersSend(context, bodyInput, options),
+    _listWithParametersDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listWithCustomPageModelSend(
@@ -413,12 +429,16 @@ export async function _listWithCustomPageModelDeserialize(
 }
 
 /** List with custom page model. */
-export async function listWithCustomPageModel(
+export function listWithCustomPageModel(
   context: Client,
   options: ListWithCustomPageModelOptions = { requestOptions: {} }
-): Promise<UserListResults> {
-  const result = await _listWithCustomPageModelSend(context, options);
-  return _listWithCustomPageModelDeserialize(result);
+): PagedAsyncIterableIterator<User> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listWithCustomPageModelSend(context, options),
+    _listWithCustomPageModelDeserialize,
+    { itemName: "items", nextLinkName: "nextLink" }
+  );
 }
 
 export function _deleteOperationSend(
@@ -524,12 +544,16 @@ export async function _listFirstItemDeserialize(
 }
 
 /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
-export async function listFirstItem(
+export function listFirstItem(
   context: Client,
   options: ListFirstItemOptions = { requestOptions: {} }
-): Promise<PagedFirstItem> {
-  const result = await _listFirstItemSend(context, options);
-  return _listFirstItemDeserialize(result);
+): PagedAsyncIterableIterator<FirstItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listFirstItemSend(context, options),
+    _listFirstItemDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listSecondItemSend(
@@ -555,10 +579,14 @@ export async function _listSecondItemDeserialize(
 }
 
 /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
-export async function listSecondItem(
+export function listSecondItem(
   context: Client,
   options: ListSecondItemOptions = { requestOptions: {} }
-): Promise<PagedSecondItem> {
-  const result = await _listSecondItemSend(context, options);
-  return _listSecondItemDeserialize(result);
+): PagedAsyncIterableIterator<SecondItem> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSecondItemSend(context, options),
+    _listSecondItemDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }

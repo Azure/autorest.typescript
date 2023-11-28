@@ -56,6 +56,15 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
+    // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
+    importPagingDependencies(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
     const namedImports: string[] = [];
     let clientType = "Client";
     if (isRLCMultiEndpoint(dpgContext)) {
@@ -173,6 +182,48 @@ export function importModels(
   // Import all models and then let ts-morph clean up the unused ones
   // we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
   // sourceFile.fixUnusedIdentifiers();
+}
+
+export function importPagingDependencies(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  subfolder: string = "",
+  importLayer: number = 0
+) {
+  const pagingTypes = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}models/pagingTypes.ts`
+  );
+
+  if (!pagingTypes) {
+    return;
+  }
+
+  const exportedPaingTypes = [...pagingTypes.getExportedDeclarations().keys()];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${"../".repeat(importLayer + 1)}models/pagingTypes.js`,
+    namedImports: exportedPaingTypes
+  });
+
+  const pagingHelper = project.getSourceFile(
+    `${srcPath}/${subfolder !== "" ? subfolder + "/" : ""}api/pagingHelpers.ts`
+  );
+
+  if (!pagingHelper) {
+    return;
+  }
+
+  const exportedPaingHelpers = [
+    ...pagingHelper.getExportedDeclarations().keys()
+  ];
+
+  sourceFile.addImportDeclaration({
+    moduleSpecifier: `${
+      importLayer === 0 ? "./" : "../".repeat(importLayer)
+    }pagingHelpers.js`,
+    namedImports: exportedPaingHelpers
+  });
 }
 
 /**

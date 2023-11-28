@@ -96,7 +96,9 @@ import {
   getOperationName,
   isBinaryPayload,
   isIgnoredHeaderParam,
-  isLongRunningOperation
+  isLongRunningOperation,
+  parseItemName,
+  parseNextLinkName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 import { Project } from "ts-morph";
@@ -105,6 +107,7 @@ import {
   getModelNamespaceName,
   getOperationNamespaceInterfaceName
 } from "../utils/namespaceUtils.js";
+import { reportDiagnostic } from "../lib.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -639,11 +642,39 @@ function emitOperation(
   operationGroupName: string,
   rlcModels: RLCModel
 ): HrlcOperation {
+  const isBranded = rlcModels.options?.branded ?? true;
+  // Skip to extract paging and lro information for non-branded clients.
+  if (!isBranded) {
+    return emitBasicOperation(
+      context,
+      operation,
+      operationGroupName,
+      rlcModels
+    );
+  }
   const lro = isLongRunningOperation(
     context.program,
     ignoreDiagnostics(getHttpOperation(context.program, operation))
   );
-  const paging = getPagedResult(context.program, operation);
+  const pagingMetadata = getPagedResult(context.program, operation);
+  // Disable the paging feature if no itemsSegments is found.
+  const paging =
+    pagingMetadata &&
+    pagingMetadata.itemsSegments &&
+    pagingMetadata.itemsSegments.length > 0;
+  if (
+    pagingMetadata &&
+    (!pagingMetadata.itemsSegments || pagingMetadata.itemsSegments.length === 0)
+  ) {
+    reportDiagnostic(context.program, {
+      code: "no-paging-items-defined",
+      format: {
+        operationName: operation.name
+      },
+      target: operation
+    });
+  }
+
   if (lro && paging) {
     return emitLroPagingOperation(
       context,
@@ -680,8 +711,8 @@ function addPagingInformation(
       "Trying to add paging information, but not paging metadata for this operation"
     );
   }
-  emittedOperation["itemName"] = pagedResult.itemsPath;
-  emittedOperation["continuationTokenName"] = pagedResult.nextLinkPath;
+  emittedOperation["itemName"] = parseItemName(pagedResult);
+  emittedOperation["continuationTokenName"] = parseNextLinkName(pagedResult);
 }
 
 function emitLroPagingOperation(

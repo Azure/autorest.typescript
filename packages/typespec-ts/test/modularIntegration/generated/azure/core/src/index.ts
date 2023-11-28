@@ -24,4 +24,7 @@ export {
   ExportOperationOptions,
   ListFirstItemOptions,
   ListSecondItemOptions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./models/index.js";
