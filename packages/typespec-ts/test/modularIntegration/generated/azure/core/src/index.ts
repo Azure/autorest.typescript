@@ -23,5 +23,5 @@ export {
   DeleteOperationOptions,
   ExportOperationOptions,
   ListFirstItemOptions,
-  ListSecondItemOptions,
+  ListSecondItemOptions
 } from "./models/index.js";

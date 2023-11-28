@@ -1,4 +1,3 @@
-import { PagedResultMetadata } from "@azure-tools/typespec-azure-core";
 import {
   SdkClient,
   listOperationGroups,
@@ -11,25 +10,37 @@ import {
   hasPagingOperations,
   extractPagedMetadataNested,
   hasPollingOperations,
-  getSpecialSerializeInfo
+  getSpecialSerializeInfo,
+  parseNextLinkName,
+  parseItemName
 } from "../utils/operationUtil.js";
 import { SdkContext } from "../utils/interfaces.js";
 
 export function transformHelperFunctionDetails(
   client: SdkClient,
-  dpgContext: SdkContext
+  dpgContext: SdkContext,
+  isBranded: boolean = true
 ): HelperFunctionDetails {
   const program = dpgContext.program;
-  // Extract paged metadata from Azure.Core.Page
-  const annotationDetails = {
-    hasLongRunning: hasPollingOperations(program, client, dpgContext)
-  };
-  const details = extractPageDetailFromCore(program, client, dpgContext);
   const serializeInfo = extractSpecialSerializeInfo(
     program,
     client,
     dpgContext
   );
+  // Disbale paging and long running for non-branded clients.
+  if (!isBranded) {
+    return {
+      hasLongRunning: false,
+      hasPaging: false,
+      ...serializeInfo
+    };
+  }
+
+  // Extract paged metadata from Azure.Core.Page
+  const annotationDetails = {
+    hasLongRunning: hasPollingOperations(program, client, dpgContext)
+  };
+  const details = extractPageDetailFromCore(program, client, dpgContext);
   if (details) {
     return {
       ...details,
@@ -165,19 +176,6 @@ function extractPageDetailFromCore(
       isComplexPaging
     }
   };
-}
-
-function parseNextLinkName(paged: PagedResultMetadata): string | undefined {
-  return paged.nextLinkProperty?.name;
-}
-
-function parseItemName(paged: PagedResultMetadata): string | undefined {
-  const pathComponents = paged.itemsPath?.split(".");
-  if (pathComponents) {
-    // TODO: This logic breaks down if there actually is a dotted path.
-    return pathComponents[pathComponents.length - 1];
-  }
-  return undefined;
 }
 
 function extractSpecialSerializeInfo(

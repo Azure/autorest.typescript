@@ -8,7 +8,7 @@ import {
   UserListResults,
   PagedUser,
   PagedFirstItem,
-  PagedSecondItem,
+  PagedSecondItem
 } from "./models/models.js";
 import {
   CreateOrUpdateOptions,
@@ -21,8 +21,9 @@ import {
   DeleteOperationOptions,
   ExportOperationOptions,
   ListFirstItemOptions,
-  ListSecondItemOptions,
+  ListSecondItemOptions
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createBasic,
   BasicClientOptions,
@@ -37,7 +38,7 @@ import {
   deleteOperation,
   exportOperation,
   listFirstItem,
-  listSecondItem,
+  listSecondItem
 } from "./api/index.js";
 
 export { BasicClientOptions } from "./api/BasicContext.js";
@@ -77,14 +78,16 @@ export class BasicClient {
   }
 
   /** Lists all Users */
-  list(options: ListOptions = { requestOptions: {} }): Promise<PagedUser> {
+  list(
+    options: ListOptions = { requestOptions: {} }
+  ): PagedAsyncIterableIterator<User> {
     return list(this._client, options);
   }
 
   /** List with Azure.Core.Page<>. */
   listWithPage(
     options: ListWithPageOptions = { requestOptions: {} }
-  ): Promise<PagedUser> {
+  ): PagedAsyncIterableIterator<User> {
     return listWithPage(this._client, options);
   }
 
@@ -99,7 +102,7 @@ export class BasicClient {
   /** List with custom page model. */
   listWithCustomPageModel(
     options: ListWithCustomPageModelOptions = { requestOptions: {} }
-  ): Promise<UserListResults> {
+  ): PagedAsyncIterableIterator<User> {
     return listWithCustomPageModel(this._client, options);
   }
 

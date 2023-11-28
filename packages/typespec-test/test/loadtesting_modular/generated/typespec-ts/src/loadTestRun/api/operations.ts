@@ -10,9 +10,13 @@ import {
   MetricNamespaceCollection,
   MetricRequestPayload,
   PagedTimeSeriesElement,
+  TimeSeriesElement,
   PagedTestRun,
   PagedDimensionValueList,
+  DimensionValueList,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   AzureLoadTestingContext as Client,
@@ -970,21 +974,26 @@ export async function _listMetricDimensionValuesDeserialize(
 }
 
 /** List the dimension values for the given metric dimension name. */
-export async function listMetricDimensionValues(
+export function listMetricDimensionValues(
   context: Client,
   testRunId: string,
   name: string,
   metricNamespace: string,
   options: ListMetricDimensionValuesOptions = { requestOptions: {} }
-): Promise<PagedDimensionValueList> {
-  const result = await _listMetricDimensionValuesSend(
+): PagedAsyncIterableIterator<DimensionValueList> {
+  return buildPagedAsyncIterator(
     context,
-    testRunId,
-    name,
-    metricNamespace,
-    options
+    () =>
+      _listMetricDimensionValuesSend(
+        context,
+        testRunId,
+        name,
+        metricNamespace,
+        options
+      ),
+    _listMetricDimensionValuesDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
-  return _listMetricDimensionValuesDeserialize(result);
 }
 
 export function _listMetricDefinitionsSend(
@@ -1142,14 +1151,18 @@ export async function _listMetricsDeserialize(
 }
 
 /** List the metric values for a load test run. */
-export async function listMetrics(
+export function listMetrics(
   context: Client,
   testRunId: string,
   body: MetricRequestPayload,
   options: ListMetricsOptions = { requestOptions: {} }
-): Promise<PagedTimeSeriesElement> {
-  const result = await _listMetricsSend(context, testRunId, body, options);
-  return _listMetricsDeserialize(result);
+): PagedAsyncIterableIterator<TimeSeriesElement> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listMetricsSend(context, testRunId, body, options),
+    _listMetricsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _listTestRunsSend(
@@ -1439,12 +1452,16 @@ export async function _listTestRunsDeserialize(
 }
 
 /** Get all test runs with given filters */
-export async function listTestRuns(
+export function listTestRuns(
   context: Client,
   options: ListTestRunsOptions = { requestOptions: {} }
-): Promise<PagedTestRun> {
-  const result = await _listTestRunsSend(context, options);
-  return _listTestRunsDeserialize(result);
+): PagedAsyncIterableIterator<TestRun> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTestRunsSend(context, options),
+    _listTestRunsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _stopTestRunSend(

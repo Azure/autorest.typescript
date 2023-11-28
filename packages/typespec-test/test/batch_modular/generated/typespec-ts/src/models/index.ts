@@ -285,3 +285,8 @@ export {
   GetNodeFilePropertiesOptions,
   ListNodeFilesOptions,
 } from "./options.js";
+export {
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
+} from "./pagingTypes.js";
