@@ -18,10 +18,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "special-headers/repeatability"
   },
   {
-    outputPath: "headers/clientRequestId",
-    inputPath: "special-headers/client-request-id"
-  },
-  {
     outputPath: "headers/conditionalRequest",
     inputPath: "special-headers/conditional-request"
   },
