@@ -43,13 +43,13 @@ export function buildOperationUtils(model: ModularCodeModel) {
         return isSpecialUnionVariant(et);
       });
       unionDeserializeTypes?.forEach((et) => {
-        getTypePredictFunction(
-          utilsFile,
-          et,
-          serializeType,
-          getTypeUnionName(su, true, importSet, serializeType)
-        );
         if (serializeType === "serialize") {
+          getTypePredictFunction(
+            utilsFile,
+            et,
+            serializeType,
+            getTypeUnionName(su, false, importSet, serializeType)
+          );
           getTypeSerializeFunction(
             utilsFile,
             et,
@@ -57,7 +57,14 @@ export function buildOperationUtils(model: ModularCodeModel) {
             importSet,
             model.runtimeImports
           );
+
         } else {
+          getTypePredictFunction(
+            utilsFile,
+            et,
+            serializeType,
+            getTypeUnionName(su, true, importSet, serializeType)
+          );
           getTypeDeserializeFunction(
             utilsFile,
             et,
@@ -72,14 +79,25 @@ export function buildOperationUtils(model: ModularCodeModel) {
         serializeType,
         importSet
       );
-      deserializeUnionTypesFunction(
-        utilsFile,
-        unionDeserializeTypes ?? [],
-        deserializeFUnctionName,
-        serializeType,
-        getTypeUnionName(su, true, importSet, serializeType),
-        getTypeUnionName(su, false, importSet, serializeType)
-      );
+      if (serializeType === "serialize") {
+        deserializeUnionTypesFunction(
+          utilsFile,
+          unionDeserializeTypes ?? [],
+          deserializeFUnctionName,
+          serializeType,
+          getTypeUnionName(su, false, importSet, serializeType),
+          getTypeUnionName(su, true, importSet, serializeType)
+        );
+      } else {
+        deserializeUnionTypesFunction(
+          utilsFile,
+          unionDeserializeTypes ?? [],
+          deserializeFUnctionName,
+          serializeType,
+          getTypeUnionName(su, true, importSet, serializeType),
+          getTypeUnionName(su, false, importSet, serializeType)
+        );
+      }
     });
     importSettings(importSet, utilsFile);
     serializeUtilFiles.push(utilsFile);
@@ -408,11 +426,7 @@ function getTypeSerializeFunction(
           .getFunctions()
           .some((f) => f.getName() === functionStatement.name)
       ) {
-        addOverload(
-          sourceFile,
-          `${typeName}[]`,
-          functionStatement
-        );
+        addOverload(sourceFile, `${typeName}[]`, functionStatement);
       } else {
         sourceFile.addFunction(functionStatement);
       }
@@ -606,7 +620,8 @@ function getTypePredictFunction(
   if (type.type === "datetime" || type.type === "byte-array") {
     getTypePredictFunctionForBasicType(sourceFile, type, typeUnionNames);
   } else if (type.type === "model" && type.name) {
-    const typeName = type.name + (serializeType === "serialize" ? "Rest" : "Output");
+    const typeName =
+      type.name + (serializeType === "serialize" ? "" : "Output");
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`type predict function for ${typeName} from ${typeUnionNames}`],
@@ -641,7 +656,7 @@ function getTypePredictFunction(
   ) {
     const typeName =
       type.elementType.name +
-      (serializeType === "serialize" ? "Rest" : "Output");
+      (serializeType === "serialize" ? "" : "Output");
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [
