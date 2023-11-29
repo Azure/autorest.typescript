@@ -40,10 +40,7 @@ export async function _getModelDeserialize(
     throw result.body;
   }
 
-  return {
-    age: result.body["age"],
-    kind: result.body["kind"],
-  };
+  return result.body;
 }
 
 export async function getModel(
@@ -63,7 +60,7 @@ export function _putModelSend(
     .path("/type/model/inheritance/nested-discriminator/model")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: input["age"], kind: input["kind"] },
+      body: input,
     });
 }
 
@@ -102,10 +99,7 @@ export async function _getRecursiveModelDeserialize(
     throw result.body;
   }
 
-  return {
-    age: result.body["age"],
-    kind: result.body["kind"],
-  };
+  return result.body;
 }
 
 export async function getRecursiveModel(
@@ -125,7 +119,7 @@ export function _putRecursiveModelSend(
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { age: input["age"], kind: input["kind"] },
+      body: input,
     });
 }
 

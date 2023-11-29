@@ -104,10 +104,7 @@ export async function _getRecursiveModelDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    wingspan: result.body["wingspan"],
-  };
+  return result.body;
 }
 
 export async function getRecursiveModel(
@@ -127,7 +124,7 @@ export function _putRecursiveModelSend(
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { kind: input["kind"], wingspan: input["wingspan"] },
+      body: input,
     });
 }
 
