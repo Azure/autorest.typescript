@@ -1203,11 +1203,7 @@ describe("inheritance & polymorphism", () => {
           throw result.body;
         }
       
-        return {
-          kind: result.body["kind"],
-          name: result.body["name"],
-          weight: result.body["weight"]
-        };
+        return result.body;
       }
       
       export async function read(
