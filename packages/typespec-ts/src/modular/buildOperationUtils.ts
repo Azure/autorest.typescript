@@ -57,7 +57,6 @@ export function buildOperationUtils(model: ModularCodeModel) {
             importSet,
             model.runtimeImports
           );
-
         } else {
           getTypePredictFunction(
             utilsFile,
@@ -412,12 +411,12 @@ function getTypeSerializeFunction(
       returnType: `${typeName}[]`
     };
     statements.push(
-      `return (obj || []).map(item => { return {${getResponseMapping(
-        type.elementType.properties ?? [],
+      `return (obj || []).map(item => { return {${getRequestModelMapping(
+        type.elementType,
         "item",
         importSet,
         runtimeImports
-      )}}})`
+      ).join(", ")}}})`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
@@ -439,7 +438,9 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: "string" }],
       returnType: "Date"
     };
-    statements.push(`return new Date(obj);`);
+    statements.push(
+      `return ${getRequestModelMapping(type, "obj", importSet, runtimeImports)}`
+    );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
       if (
@@ -460,8 +461,9 @@ function getTypeSerializeFunction(
       parameters: [{ name: "obj", type: "string" }],
       returnType: "Uint8Array"
     };
-    statements.push(`return stringToUint8Array(obj);`);
-    addImportSet(importSet, "@azure-rest/core-util", "stringToUint8Array");
+    statements.push(
+      `return ${getRequestModelMapping(type, "obj", importSet, runtimeImports)}`
+    );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
       if (
@@ -632,7 +634,11 @@ function getTypePredictFunction(
     const typeProperties = getAllProperties(type);
     if (typeProperties.length > 0) {
       statements.push(
-        `return ${buildTypePredictCondition(type, `(obj as ${typeName})`)};`
+        `return ${buildTypePredictCondition(
+          type,
+          `(obj as ${typeName})`,
+          serializeType
+        )};`
       );
     } else {
       statements.push(`return true;`);
@@ -655,8 +661,7 @@ function getTypePredictFunction(
     type.elementType.name
   ) {
     const typeName =
-      type.elementType.name +
-      (serializeType === "serialize" ? "" : "Output");
+      type.elementType.name + (serializeType === "serialize" ? "" : "Output");
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [
@@ -675,7 +680,8 @@ function getTypePredictFunction(
         statements.push(
           `return ${buildTypePredictCondition(
             type.elementType,
-            `(obj as ${typeName}[])[0]`
+            `(obj as ${typeName}[])[0]`,
+            serializeType
           )};`
         );
         statements.push("}");
@@ -708,7 +714,11 @@ function getAllProperties(type: Type): Property[] {
   return properties;
 }
 
-function buildTypePredictCondition(type: Type, prefix: string): string {
+function buildTypePredictCondition(
+  type: Type,
+  prefix: string,
+  serializeType: string
+): string {
   const typeProperties = getAllProperties(type);
   return typeProperties
     .filter((p) => !p.optional)
@@ -720,11 +730,30 @@ function buildTypePredictCondition(type: Type, prefix: string): string {
           properties.push(...(pp.properties ?? []));
         });
         properties.push(...(p.type.properties ?? []));
-        condition.push(
-          buildTypePredictCondition(p.type, `${prefix}.${p.restApiName}`)
-        );
+        if (serializeType === "serialize") {
+          condition.push(
+            buildTypePredictCondition(
+              p.type,
+              `${prefix}.${p.clientName}`,
+              serializeType
+            )
+          );
+        } else {
+          condition.push(
+            buildTypePredictCondition(
+              p.type,
+              `${prefix}.${p.restApiName}`,
+              serializeType
+            )
+          );
+        }
       }
-      const result = [`${prefix}.${p.restApiName} !== undefined`];
+      const result = [];
+      if (serializeType === "serialize") {
+        result.push(`${prefix}.${p.clientName} !== undefined`);
+      } else {
+        result.push(`${prefix}.${p.restApiName} !== undefined`);
+      }
       result.push(...condition);
       return result.join(" && ");
     })

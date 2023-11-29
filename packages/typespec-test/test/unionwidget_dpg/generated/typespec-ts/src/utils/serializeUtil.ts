@@ -19,7 +19,7 @@ import {
   WidgetData5 as WidgetData5Rest,
   WidgetData6 as WidgetData6Rest,
 } from "../rest/index.js";
-import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
+import { uint8ArrayToString } from "@azure/core-util";
 
 /** type predict function for WidgetData2 from WidgetData0 | WidgetData2 */
 function isWidgetData2(obj: WidgetData0 | WidgetData2): obj is WidgetData2;
@@ -50,7 +50,7 @@ function isWidgetData2(
     | WidgetData1
     | WidgetData0
 ): obj is WidgetData2 {
-  return (obj as WidgetData2).foo_prop !== undefined;
+  return (obj as WidgetData2).fooProp !== undefined;
 }
 
 /** serialize function for WidgetData2 */
@@ -90,7 +90,7 @@ function isWidgetData3(
 function isWidgetData3(
   obj: WidgetData0 | WidgetData3 | WidgetData5[] | WidgetData2[] | WidgetData2
 ): obj is WidgetData3 {
-  return (obj as WidgetData3).bar_prop !== undefined;
+  return (obj as WidgetData3).barProp !== undefined;
 }
 
 /** serialize function for WidgetData3 */
@@ -203,7 +203,7 @@ function isWidgetData2Array(
     | WidgetData0[]
 ): obj is WidgetData2[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData2[])[0].foo_prop !== undefined;
+    return (obj as WidgetData2[])[0].fooProp !== undefined;
   }
 
   return false;
@@ -212,7 +212,7 @@ function isWidgetData2Array(
 /** serialize function for WidgetData2 array */
 function serializeWidgetData2Array(obj: WidgetData2[]): WidgetData2Rest[] {
   return (obj || []).map((item) => {
-    return { fooProp: item["foo_prop"] };
+    return { foo_prop: item["fooProp"] };
   });
 }
 
@@ -249,7 +249,7 @@ function isWidgetData3Array(
   obj: WidgetData2 | WidgetData3[] | WidgetData2[]
 ): obj is WidgetData3[] {
   if (Array.isArray(obj) && obj.length > 0) {
-    return (obj as WidgetData3[])[0].bar_prop !== undefined;
+    return (obj as WidgetData3[])[0].barProp !== undefined;
   }
 
   return false;
@@ -258,7 +258,7 @@ function isWidgetData3Array(
 /** serialize function for WidgetData3 array */
 function serializeWidgetData3Array(obj: WidgetData3[]): WidgetData3Rest[] {
   return (obj || []).map((item) => {
-    return { barProp: item["bar_prop"] };
+    return { bar_prop: item["barProp"] };
   });
 }
 
@@ -298,8 +298,8 @@ function isWidgetData4Array(
 function serializeWidgetData4Array(obj: WidgetData4[]): WidgetData4Rest[] {
   return (obj || []).map((item) => {
     return {
-      start: new Date(item["start"]),
-      end: item["end"] !== undefined ? new Date(item["end"]) : undefined,
+      start: item["start"].toISOString(),
+      end: item["end"]?.toISOString(),
     };
   });
 }
@@ -340,12 +340,7 @@ function isWidgetData5Array(
 /** serialize function for WidgetData5 array */
 function serializeWidgetData5Array(obj: WidgetData5[]): WidgetData5Rest[] {
   return (obj || []).map((item) => {
-    return {
-      data:
-        typeof item["data"] === "string"
-          ? stringToUint8Array(item["data"], "base64")
-          : item["data"],
-    };
+    return { data: uint8ArrayToString(item["data"], "base64") };
   });
 }
 
@@ -495,14 +490,7 @@ function isWidgetData6Array(
 /** serialize function for WidgetData6 array */
 function serializeWidgetData6Array(obj: WidgetData6[]): WidgetData6Rest[] {
   return (obj || []).map((item) => {
-    return {
-      data: {
-        data:
-          typeof item.data["data"] === "string"
-            ? stringToUint8Array(item.data["data"], "base64")
-            : item.data["data"],
-      },
-    };
+    return { data: { data: uint8ArrayToString(item.data["data"], "base64") } };
   });
 }
 
