@@ -26,6 +26,34 @@ import {
   CollectionsModelPutAllParameters,
   CollectionsModelGetDefaultParameters,
   CollectionsModelPutDefaultParameters,
+  StringLiteralGetAllParameters,
+  StringLiteralPutAllParameters,
+  StringLiteralGetDefaultParameters,
+  StringLiteralPutDefaultParameters,
+  IntLiteralGetAllParameters,
+  IntLiteralPutAllParameters,
+  IntLiteralGetDefaultParameters,
+  IntLiteralPutDefaultParameters,
+  FloatLiteralGetAllParameters,
+  FloatLiteralPutAllParameters,
+  FloatLiteralGetDefaultParameters,
+  FloatLiteralPutDefaultParameters,
+  BooleanLiteralGetAllParameters,
+  BooleanLiteralPutAllParameters,
+  BooleanLiteralGetDefaultParameters,
+  BooleanLiteralPutDefaultParameters,
+  UnionStringLiteralGetAllParameters,
+  UnionStringLiteralPutAllParameters,
+  UnionStringLiteralGetDefaultParameters,
+  UnionStringLiteralPutDefaultParameters,
+  UnionIntLiteralGetAllParameters,
+  UnionIntLiteralPutAllParameters,
+  UnionIntLiteralGetDefaultParameters,
+  UnionIntLiteralPutDefaultParameters,
+  UnionFloatLiteralGetAllParameters,
+  UnionFloatLiteralPutAllParameters,
+  UnionFloatLiteralGetDefaultParameters,
+  UnionFloatLiteralPutDefaultParameters,
   RequiredAndOptionalGetAllParameters,
   RequiredAndOptionalPutAllParameters,
   RequiredAndOptionalGetRequiredOnlyParameters,
@@ -56,6 +84,34 @@ import {
   CollectionsModelPutAll204Response,
   CollectionsModelGetDefault200Response,
   CollectionsModelPutDefault204Response,
+  StringLiteralGetAll200Response,
+  StringLiteralPutAll204Response,
+  StringLiteralGetDefault200Response,
+  StringLiteralPutDefault204Response,
+  IntLiteralGetAll200Response,
+  IntLiteralPutAll204Response,
+  IntLiteralGetDefault200Response,
+  IntLiteralPutDefault204Response,
+  FloatLiteralGetAll200Response,
+  FloatLiteralPutAll204Response,
+  FloatLiteralGetDefault200Response,
+  FloatLiteralPutDefault204Response,
+  BooleanLiteralGetAll200Response,
+  BooleanLiteralPutAll204Response,
+  BooleanLiteralGetDefault200Response,
+  BooleanLiteralPutDefault204Response,
+  UnionStringLiteralGetAll200Response,
+  UnionStringLiteralPutAll204Response,
+  UnionStringLiteralGetDefault200Response,
+  UnionStringLiteralPutDefault204Response,
+  UnionIntLiteralGetAll200Response,
+  UnionIntLiteralPutAll204Response,
+  UnionIntLiteralGetDefault200Response,
+  UnionIntLiteralPutDefault204Response,
+  UnionFloatLiteralGetAll200Response,
+  UnionFloatLiteralPutAll204Response,
+  UnionFloatLiteralGetDefault200Response,
+  UnionFloatLiteralPutDefault204Response,
   RequiredAndOptionalGetAll200Response,
   RequiredAndOptionalPutAll204Response,
   RequiredAndOptionalGetRequiredOnly200Response,
@@ -193,6 +249,160 @@ export interface CollectionsModelGetDefault {
   ): StreamableMethod<CollectionsModelPutDefault204Response>;
 }
 
+export interface StringLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: StringLiteralGetAllParameters
+  ): StreamableMethod<StringLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: StringLiteralPutAllParameters
+  ): StreamableMethod<StringLiteralPutAll204Response>;
+}
+
+export interface StringLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: StringLiteralGetDefaultParameters
+  ): StreamableMethod<StringLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: StringLiteralPutDefaultParameters
+  ): StreamableMethod<StringLiteralPutDefault204Response>;
+}
+
+export interface IntLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: IntLiteralGetAllParameters
+  ): StreamableMethod<IntLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: IntLiteralPutAllParameters
+  ): StreamableMethod<IntLiteralPutAll204Response>;
+}
+
+export interface IntLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: IntLiteralGetDefaultParameters
+  ): StreamableMethod<IntLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: IntLiteralPutDefaultParameters
+  ): StreamableMethod<IntLiteralPutDefault204Response>;
+}
+
+export interface FloatLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: FloatLiteralGetAllParameters
+  ): StreamableMethod<FloatLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: FloatLiteralPutAllParameters
+  ): StreamableMethod<FloatLiteralPutAll204Response>;
+}
+
+export interface FloatLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: FloatLiteralGetDefaultParameters
+  ): StreamableMethod<FloatLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: FloatLiteralPutDefaultParameters
+  ): StreamableMethod<FloatLiteralPutDefault204Response>;
+}
+
+export interface BooleanLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: BooleanLiteralGetAllParameters
+  ): StreamableMethod<BooleanLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: BooleanLiteralPutAllParameters
+  ): StreamableMethod<BooleanLiteralPutAll204Response>;
+}
+
+export interface BooleanLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: BooleanLiteralGetDefaultParameters
+  ): StreamableMethod<BooleanLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: BooleanLiteralPutDefaultParameters
+  ): StreamableMethod<BooleanLiteralPutDefault204Response>;
+}
+
+export interface UnionStringLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: UnionStringLiteralGetAllParameters
+  ): StreamableMethod<UnionStringLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: UnionStringLiteralPutAllParameters
+  ): StreamableMethod<UnionStringLiteralPutAll204Response>;
+}
+
+export interface UnionStringLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: UnionStringLiteralGetDefaultParameters
+  ): StreamableMethod<UnionStringLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: UnionStringLiteralPutDefaultParameters
+  ): StreamableMethod<UnionStringLiteralPutDefault204Response>;
+}
+
+export interface UnionIntLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: UnionIntLiteralGetAllParameters
+  ): StreamableMethod<UnionIntLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: UnionIntLiteralPutAllParameters
+  ): StreamableMethod<UnionIntLiteralPutAll204Response>;
+}
+
+export interface UnionIntLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: UnionIntLiteralGetDefaultParameters
+  ): StreamableMethod<UnionIntLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: UnionIntLiteralPutDefaultParameters
+  ): StreamableMethod<UnionIntLiteralPutDefault204Response>;
+}
+
+export interface UnionFloatLiteralGetAll {
+  /** Get models that will return all properties in the model */
+  get(
+    options?: UnionFloatLiteralGetAllParameters
+  ): StreamableMethod<UnionFloatLiteralGetAll200Response>;
+  /** Put a body with all properties present. */
+  put(
+    options: UnionFloatLiteralPutAllParameters
+  ): StreamableMethod<UnionFloatLiteralPutAll204Response>;
+}
+
+export interface UnionFloatLiteralGetDefault {
+  /** Get models that will return the default object */
+  get(
+    options?: UnionFloatLiteralGetDefaultParameters
+  ): StreamableMethod<UnionFloatLiteralGetDefault200Response>;
+  /** Put a body with default properties. */
+  put(
+    options: UnionFloatLiteralPutDefaultParameters
+  ): StreamableMethod<UnionFloatLiteralPutDefault204Response>;
+}
+
 export interface RequiredAndOptionalGetAll {
   /** Get models that will return all properties in the model */
   get(
@@ -248,6 +458,52 @@ export interface Routes {
   (
     path: "/type/property/optional/collections/model/default"
   ): CollectionsModelGetDefault;
+  /** Resource for '/type/property/optional/string/literal/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/string/literal/all"): StringLiteralGetAll;
+  /** Resource for '/type/property/optional/string/literal/default' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/string/literal/default"
+  ): StringLiteralGetDefault;
+  /** Resource for '/type/property/optional/int/literal/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/int/literal/all"): IntLiteralGetAll;
+  /** Resource for '/type/property/optional/int/literal/default' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/int/literal/default"): IntLiteralGetDefault;
+  /** Resource for '/type/property/optional/float/literal/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/float/literal/all"): FloatLiteralGetAll;
+  /** Resource for '/type/property/optional/float/literal/default' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/float/literal/default"
+  ): FloatLiteralGetDefault;
+  /** Resource for '/type/property/optional/boolean/literal/all' has methods for the following verbs: get, put */
+  (path: "/type/property/optional/boolean/literal/all"): BooleanLiteralGetAll;
+  /** Resource for '/type/property/optional/boolean/literal/default' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/boolean/literal/default"
+  ): BooleanLiteralGetDefault;
+  /** Resource for '/type/property/optional/union/string/literal/all' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/union/string/literal/all"
+  ): UnionStringLiteralGetAll;
+  /** Resource for '/type/property/optional/union/string/literal/default' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/union/string/literal/default"
+  ): UnionStringLiteralGetDefault;
+  /** Resource for '/type/property/optional/union/int/literal/all' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/union/int/literal/all"
+  ): UnionIntLiteralGetAll;
+  /** Resource for '/type/property/optional/union/int/literal/default' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/union/int/literal/default"
+  ): UnionIntLiteralGetDefault;
+  /** Resource for '/type/property/optional/union/float/literal/all' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/union/float/literal/all"
+  ): UnionFloatLiteralGetAll;
+  /** Resource for '/type/property/optional/union/float/literal/default' has methods for the following verbs: get, put */
+  (
+    path: "/type/property/optional/union/float/literal/default"
+  ): UnionFloatLiteralGetDefault;
   /** Resource for '/type/property/optional/requiredAndOptional/all' has methods for the following verbs: get, put */
   (
     path: "/type/property/optional/requiredAndOptional/all"

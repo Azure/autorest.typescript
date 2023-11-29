@@ -5,6 +5,7 @@ import {
   ApplicationListResult,
   BatchApplication,
   PoolListUsageMetricsResult,
+  PoolUsageMetrics,
   BatchPoolCreateOptions,
   BatchPoolListResult,
   BatchPool,
@@ -16,7 +17,9 @@ import {
   BatchPoolReplaceOptions,
   NodeRemoveOptions,
   AccountListSupportedImagesResult,
+  ImageInformation,
   PoolNodeCountsListResult,
+  PoolNodeCounts,
   BatchJob,
   BatchJobUpdateOptions,
   BatchJobDisableOptions,
@@ -24,6 +27,7 @@ import {
   BatchJobCreateOptions,
   BatchJobListResult,
   BatchJobListPreparationAndReleaseTaskStatusResult,
+  JobPreparationAndReleaseTaskExecutionInformation,
   TaskCountsResult,
   BatchCertificate,
   CertificateListResult,
@@ -38,6 +42,7 @@ import {
   TaskAddCollectionResult,
   BatchTaskListSubtasksResult,
   NodeFileListResult,
+  NodeFile,
   BatchNodeUserCreateOptions,
   BatchNodeUserUpdateOptions,
   BatchNode,
@@ -51,6 +56,8 @@ import {
   NodeVMExtension,
   NodeVMExtensionList,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   BatchContext as Client,
@@ -336,12 +343,16 @@ export async function _listApplicationsDeserialize(
  * available to Compute Nodes, use the Azure portal or the Azure Resource Manager
  * API.
  */
-export async function listApplications(
+export function listApplications(
   context: Client,
   options: ListApplicationsOptions = { requestOptions: {} }
-): Promise<ApplicationListResult> {
-  const result = await _listApplicationsSend(context, options);
-  return _listApplicationsDeserialize(result);
+): PagedAsyncIterableIterator<BatchApplication> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listApplicationsSend(context, options),
+    _listApplicationsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _getApplicationSend(
@@ -436,12 +447,16 @@ export async function _listPoolUsageMetricsDeserialize(
  * times of the last aggregation interval currently available; that is, only the
  * last aggregation interval is returned.
  */
-export async function listPoolUsageMetrics(
+export function listPoolUsageMetrics(
   context: Client,
   options: ListPoolUsageMetricsOptions = { requestOptions: {} }
-): Promise<PoolListUsageMetricsResult> {
-  const result = await _listPoolUsageMetricsSend(context, options);
-  return _listPoolUsageMetricsDeserialize(result);
+): PagedAsyncIterableIterator<PoolUsageMetrics> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listPoolUsageMetricsSend(context, options),
+    _listPoolUsageMetricsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _createPoolSend(
@@ -1328,12 +1343,16 @@ export async function _listPoolsDeserialize(
 }
 
 /** Lists all of the Pools in the specified Account. */
-export async function listPools(
+export function listPools(
   context: Client,
   options: ListPoolsOptions = { requestOptions: {} }
-): Promise<BatchPoolListResult> {
-  const result = await _listPoolsSend(context, options);
-  return _listPoolsDeserialize(result);
+): PagedAsyncIterableIterator<BatchPool> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listPoolsSend(context, options),
+    _listPoolsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _deletePoolSend(
@@ -2664,12 +2683,16 @@ export async function _listSupportedImagesDeserialize(
 }
 
 /** Lists all Virtual Machine Images supported by the Azure Batch service. */
-export async function listSupportedImages(
+export function listSupportedImages(
   context: Client,
   options: ListSupportedImagesOptions = { requestOptions: {} }
-): Promise<AccountListSupportedImagesResult> {
-  const result = await _listSupportedImagesSend(context, options);
-  return _listSupportedImagesDeserialize(result);
+): PagedAsyncIterableIterator<ImageInformation> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listSupportedImagesSend(context, options),
+    _listSupportedImagesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _listPoolNodeCountsSend(
@@ -2748,12 +2771,16 @@ export async function _listPoolNodeCountsDeserialize(
  * numbers returned may not always be up to date. If you need exact node counts,
  * use a list query.
  */
-export async function listPoolNodeCounts(
+export function listPoolNodeCounts(
   context: Client,
   options: ListPoolNodeCountsOptions = { requestOptions: {} }
-): Promise<PoolNodeCountsListResult> {
-  const result = await _listPoolNodeCountsSend(context, options);
-  return _listPoolNodeCountsDeserialize(result);
+): PagedAsyncIterableIterator<PoolNodeCounts> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listPoolNodeCountsSend(context, options),
+    _listPoolNodeCountsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _deleteJobSend(
@@ -7592,12 +7619,16 @@ export async function _listJobsDeserialize(
 }
 
 /** Lists all of the Jobs in the specified Account. */
-export async function listJobs(
+export function listJobs(
   context: Client,
   options: ListJobsOptions = { requestOptions: {} }
-): Promise<BatchJobListResult> {
-  const result = await _listJobsSend(context, options);
-  return _listJobsDeserialize(result);
+): PagedAsyncIterableIterator<BatchJob> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listJobsSend(context, options),
+    _listJobsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _listJobsFromScheduleSend(
@@ -8695,17 +8726,17 @@ export async function _listJobsFromScheduleDeserialize(
 }
 
 /** Lists the Jobs that have been created under the specified Job Schedule. */
-export async function listJobsFromSchedule(
+export function listJobsFromSchedule(
   context: Client,
   jobScheduleId: string,
   options: ListJobsFromScheduleOptions = { requestOptions: {} }
-): Promise<BatchJobListResult> {
-  const result = await _listJobsFromScheduleSend(
+): PagedAsyncIterableIterator<BatchJob> {
+  return buildPagedAsyncIterator(
     context,
-    jobScheduleId,
-    options
+    () => _listJobsFromScheduleSend(context, jobScheduleId, options),
+    _listJobsFromScheduleDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
-  return _listJobsFromScheduleDeserialize(result);
 }
 
 export function _listJobPreparationAndReleaseTaskStatusSend(
@@ -8883,19 +8914,19 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
  * service returns HTTP status code 409 (Conflict) with an error code of
  * JobPreparationTaskNotSpecified.
  */
-export async function listJobPreparationAndReleaseTaskStatus(
+export function listJobPreparationAndReleaseTaskStatus(
   context: Client,
   jobId: string,
   options: ListJobPreparationAndReleaseTaskStatusOptions = {
     requestOptions: {},
   }
-): Promise<BatchJobListPreparationAndReleaseTaskStatusResult> {
-  const result = await _listJobPreparationAndReleaseTaskStatusSend(
+): PagedAsyncIterableIterator<JobPreparationAndReleaseTaskExecutionInformation> {
+  return buildPagedAsyncIterator(
     context,
-    jobId,
-    options
+    () => _listJobPreparationAndReleaseTaskStatusSend(context, jobId, options),
+    _listJobPreparationAndReleaseTaskStatusDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
-  return _listJobPreparationAndReleaseTaskStatusDeserialize(result);
 }
 
 export function _getJobTaskCountsSend(
@@ -9069,12 +9100,16 @@ export async function _listCertificatesDeserialize(
 }
 
 /** Lists all of the Certificates that have been added to the specified Account. */
-export async function listCertificates(
+export function listCertificates(
   context: Client,
   options: ListCertificatesOptions = { requestOptions: {} }
-): Promise<CertificateListResult> {
-  const result = await _listCertificatesSend(context, options);
-  return _listCertificatesDeserialize(result);
+): PagedAsyncIterableIterator<BatchCertificate> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listCertificatesSend(context, options),
+    _listCertificatesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _cancelCertificateDeletionSend(
@@ -15558,12 +15593,16 @@ export async function _listJobSchedulesDeserialize(
 }
 
 /** Lists all of the Job Schedules in the specified Account. */
-export async function listJobSchedules(
+export function listJobSchedules(
   context: Client,
   options: ListJobSchedulesOptions = { requestOptions: {} }
-): Promise<BatchJobScheduleListResult> {
-  const result = await _listJobSchedulesSend(context, options);
-  return _listJobSchedulesDeserialize(result);
+): PagedAsyncIterableIterator<BatchJobSchedule> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listJobSchedulesSend(context, options),
+    _listJobSchedulesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _createTaskSend(
@@ -16127,13 +16166,17 @@ export async function _listTasksDeserialize(
  * nodeInfo refer to the primary Task. Use the list subtasks API to retrieve
  * information about subtasks.
  */
-export async function listTasks(
+export function listTasks(
   context: Client,
   jobId: string,
   options: ListTasksOptions = { requestOptions: {} }
-): Promise<BatchTaskListResult> {
-  const result = await _listTasksSend(context, jobId, options);
-  return _listTasksDeserialize(result);
+): PagedAsyncIterableIterator<BatchTask> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTasksSend(context, jobId, options),
+    _listTasksDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _createTaskCollectionSend(
@@ -17301,14 +17344,18 @@ export async function _listTaskFilesDeserialize(
 }
 
 /** Lists the files in a Task's directory on its Compute Node. */
-export async function listTaskFiles(
+export function listTaskFiles(
   context: Client,
   jobId: string,
   taskId: string,
   options: ListTaskFilesOptions = { requestOptions: {} }
-): Promise<NodeFileListResult> {
-  const result = await _listTaskFilesSend(context, jobId, taskId, options);
-  return _listTaskFilesDeserialize(result);
+): PagedAsyncIterableIterator<NodeFile> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTaskFilesSend(context, jobId, taskId, options),
+    _listTaskFilesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _createNodeUserSend(
@@ -18427,13 +18474,17 @@ export async function _listNodesDeserialize(
 }
 
 /** Lists the Compute Nodes in the specified Pool. */
-export async function listNodes(
+export function listNodes(
   context: Client,
   poolId: string,
   options: ListNodesOptions = { requestOptions: {} }
-): Promise<BatchNodeListResult> {
-  const result = await _listNodesSend(context, poolId, options);
-  return _listNodesDeserialize(result);
+): PagedAsyncIterableIterator<BatchNode> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listNodesSend(context, poolId, options),
+    _listNodesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _getNodeExtensionSend(
@@ -18604,19 +18655,18 @@ export async function _listNodeExtensionsDeserialize(
 }
 
 /** Lists the Compute Nodes Extensions in the specified Pool. */
-export async function listNodeExtensions(
+export function listNodeExtensions(
   context: Client,
   poolId: string,
   nodeId: string,
   options: ListNodeExtensionsOptions = { requestOptions: {} }
-): Promise<NodeVMExtensionList> {
-  const result = await _listNodeExtensionsSend(
+): PagedAsyncIterableIterator<NodeVMExtension> {
+  return buildPagedAsyncIterator(
     context,
-    poolId,
-    nodeId,
-    options
+    () => _listNodeExtensionsSend(context, poolId, nodeId, options),
+    _listNodeExtensionsDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
   );
-  return _listNodeExtensionsDeserialize(result);
 }
 
 export function _deleteNodeFileSend(
@@ -18842,12 +18892,16 @@ export async function _listNodeFilesDeserialize(
 }
 
 /** Lists all of the files in Task directories on the specified Compute Node. */
-export async function listNodeFiles(
+export function listNodeFiles(
   context: Client,
   poolId: string,
   nodeId: string,
   options: ListNodeFilesOptions = { requestOptions: {} }
-): Promise<NodeFileListResult> {
-  const result = await _listNodeFilesSend(context, poolId, nodeId, options);
-  return _listNodeFilesDeserialize(result);
+): PagedAsyncIterableIterator<NodeFile> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listNodeFilesSend(context, poolId, nodeId, options),
+    _listNodeFilesDeserialize,
+    { itemName: "value", nextLinkName: "odata.nextLink" }
+  );
 }

@@ -137,10 +137,11 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "specialWords",
     inputPath: "special-words"
   },
-  {
-    outputPath: "unions",
-    inputPath: "type/union"
-  },
+  // TODO: union has issues need to fix in https://github.com/Azure/autorest.typescript/issues/2141
+  // {
+  //   outputPath: "unions",
+  //   inputPath: "type/union"
+  // },
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
@@ -211,54 +212,54 @@ export const nonBrandedRlcTsps: TypeSpecRanchConfig[] = [
 ];
 
 export const modularTsps: TypeSpecRanchConfig[] = [
-  // {
-  //   outputPath: "models/usage",
-  //   inputPath: "type/model/usage"
-  // },
-  // {
-  //   outputPath: "client/structure/default",
-  //   inputPath: "client/structure/default"
-  // },
-  // {
-  //   outputPath: "client/structure/multi-client",
-  //   inputPath: "client/structure/multi-client"
-  // },
-  // {
-  //   outputPath: "client/structure/renamed-operation",
-  //   inputPath: "client/structure/renamed-operation"
-  // },
-  // {
-  //   outputPath: "client/structure/two-operation-group",
-  //   inputPath: "client/structure/two-operation-group"
-  // },
-  // {
-  //   outputPath: "headers/client-request-id",
-  //   inputPath: "special-headers/client-request-id"
-  // },
-  // {
-  //   outputPath: "parameters/collection-format",
-  //   inputPath: "parameters/collection-format"
-  // },
-  // {
-  //   outputPath: "azure/core",
-  //   inputPath: "azure/core/basic"
-  // },
-  // {
-  //   outputPath: "encode/bytes",
-  //   inputPath: "encode/bytes"
-  // },
-  // {
-  //   outputPath: "encode/duration",
-  //   inputPath: "encode/duration"
-  // },
-  // {
-  //   outputPath: "encode/datetime",
-  //   inputPath: "encode/datetime"
-  // },
-  // {
-  //   outputPath: "parameters/spread",
-  //   inputPath: "parameters/spread"
-  // },
+  {
+    outputPath: "models/usage",
+    inputPath: "type/model/usage"
+  },
+  {
+    outputPath: "client/structure/default",
+    inputPath: "client/structure/default"
+  },
+  {
+    outputPath: "client/structure/multi-client",
+    inputPath: "client/structure/multi-client"
+  },
+  {
+    outputPath: "client/structure/renamed-operation",
+    inputPath: "client/structure/renamed-operation"
+  },
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "headers/client-request-id",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "azure/core",
+    inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
   {
     outputPath: "models/inheritance/nested-discriminator",
     inputPath: "type/model/inheritance/nested-discriminator"
@@ -275,38 +276,74 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     outputPath: "models/inheritance/single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
   },
-  // {
-  //   outputPath: "server/path/single",
-  //   inputPath: "server/path/single"
-  // },
-  // {
-  //   outputPath: "authentication/api-key",
-  //   inputPath: "authentication/api-key"
-  // },
-  // {
-  //   outputPath: "authentication/http-custom",
-  //   inputPath: "authentication/http/custom"
-  // },
-  // {
-  //   outputPath: "server/path/multiple",
-  //   inputPath: "server/path/multiple"
-  // },
-  // {
-  //   outputPath: "authentication/oauth2",
-  //   inputPath: "authentication/oauth2"
-  // },
-  // {
-  //   outputPath: "authentication/union",
-  //   inputPath: "authentication/union"
-  // },
-  // {
-  //   outputPath: "headers/repeatability",
-  //   inputPath: "special-headers/repeatability"
-  // },
-  // {
-  //   outputPath: "azure/core-traits",
-  //   inputPath: "azure/core/traits"
-  // }
+  {
+    outputPath: "client/structure/two-operation-group",
+    inputPath: "client/structure/two-operation-group"
+  },
+  {
+    outputPath: "headers/client-request-id",
+    inputPath: "special-headers/client-request-id"
+  },
+  {
+    outputPath: "parameters/collection-format",
+    inputPath: "parameters/collection-format"
+  },
+  {
+    outputPath: "azure/core",
+    inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
+  },
+  {
+    outputPath: "encode/bytes",
+    inputPath: "encode/bytes"
+  },
+  {
+    outputPath: "encode/duration",
+    inputPath: "encode/duration"
+  },
+  {
+    outputPath: "encode/datetime",
+    inputPath: "encode/datetime"
+  },
+  {
+    outputPath: "parameters/spread",
+    inputPath: "parameters/spread"
+  },
+  {
+    outputPath: "server/path/single",
+    inputPath: "server/path/single"
+  },
+  {
+    outputPath: "authentication/api-key",
+    inputPath: "authentication/api-key"
+  },
+  {
+    outputPath: "authentication/http-custom",
+    inputPath: "authentication/http/custom"
+  },
+  {
+    outputPath: "server/path/multiple",
+    inputPath: "server/path/multiple"
+  },
+  {
+    outputPath: "authentication/oauth2",
+    inputPath: "authentication/oauth2"
+  },
+  {
+    outputPath: "authentication/union",
+    inputPath: "authentication/union"
+  },
+  {
+    outputPath: "headers/repeatability",
+    inputPath: "special-headers/repeatability"
+  },
+  {
+    outputPath: "azure/core-traits",
+    inputPath: "azure/core/traits"
+  }
 ];
 
 export const nonBrandedModularTsps: TypeSpecRanchConfig[] = [

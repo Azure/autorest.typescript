@@ -8,8 +8,6 @@ import {
   FileInfo,
   TestAppComponents,
   TestServerMetricConfig,
-  PagedFileInfo,
-  PagedTest,
 } from "./models/models.js";
 import {
   CreateOrUpdateTestOptions,
@@ -25,6 +23,7 @@ import {
   DeleteTestFileOptions,
   DeleteTestOptions,
 } from "./models/options.js";
+import { PagedAsyncIterableIterator } from "./models/pagingTypes.js";
 import {
   createLoadTestAdministration,
   LoadTestAdministrationClientOptions,
@@ -128,7 +127,7 @@ export class LoadTestAdministrationClient {
   listTestFiles(
     testId: string,
     options: ListTestFilesOptions = { requestOptions: {} }
-  ): Promise<PagedFileInfo> {
+  ): PagedAsyncIterableIterator<FileInfo> {
     return listTestFiles(this._client, testId, options);
   }
 
@@ -138,7 +137,7 @@ export class LoadTestAdministrationClient {
    */
   listTests(
     options: ListTestsOptions = { requestOptions: {} }
-  ): Promise<PagedTest> {
+  ): PagedAsyncIterableIterator<Test> {
     return listTests(this._client, options);
   }
 

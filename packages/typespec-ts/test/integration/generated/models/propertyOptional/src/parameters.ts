@@ -9,6 +9,13 @@ import {
   DurationProperty,
   CollectionsByteProperty,
   CollectionsModelProperty,
+  StringLiteralProperty,
+  IntLiteralProperty,
+  FloatLiteralProperty,
+  BooleanLiteralProperty,
+  UnionStringLiteralProperty,
+  UnionIntLiteralProperty,
+  UnionFloatLiteralProperty,
   RequiredAndOptionalProperty,
 } from "./models";
 
@@ -107,6 +114,118 @@ export interface CollectionsModelPutDefaultBodyParam {
 
 export type CollectionsModelPutDefaultParameters =
   CollectionsModelPutDefaultBodyParam & RequestParameters;
+export type StringLiteralGetAllParameters = RequestParameters;
+export type StringLiteralGetDefaultParameters = RequestParameters;
+
+export interface StringLiteralPutAllBodyParam {
+  body: StringLiteralProperty;
+}
+
+export type StringLiteralPutAllParameters = StringLiteralPutAllBodyParam &
+  RequestParameters;
+
+export interface StringLiteralPutDefaultBodyParam {
+  body: StringLiteralProperty;
+}
+
+export type StringLiteralPutDefaultParameters =
+  StringLiteralPutDefaultBodyParam & RequestParameters;
+export type IntLiteralGetAllParameters = RequestParameters;
+export type IntLiteralGetDefaultParameters = RequestParameters;
+
+export interface IntLiteralPutAllBodyParam {
+  body: IntLiteralProperty;
+}
+
+export type IntLiteralPutAllParameters = IntLiteralPutAllBodyParam &
+  RequestParameters;
+
+export interface IntLiteralPutDefaultBodyParam {
+  body: IntLiteralProperty;
+}
+
+export type IntLiteralPutDefaultParameters = IntLiteralPutDefaultBodyParam &
+  RequestParameters;
+export type FloatLiteralGetAllParameters = RequestParameters;
+export type FloatLiteralGetDefaultParameters = RequestParameters;
+
+export interface FloatLiteralPutAllBodyParam {
+  body: FloatLiteralProperty;
+}
+
+export type FloatLiteralPutAllParameters = FloatLiteralPutAllBodyParam &
+  RequestParameters;
+
+export interface FloatLiteralPutDefaultBodyParam {
+  body: FloatLiteralProperty;
+}
+
+export type FloatLiteralPutDefaultParameters = FloatLiteralPutDefaultBodyParam &
+  RequestParameters;
+export type BooleanLiteralGetAllParameters = RequestParameters;
+export type BooleanLiteralGetDefaultParameters = RequestParameters;
+
+export interface BooleanLiteralPutAllBodyParam {
+  body: BooleanLiteralProperty;
+}
+
+export type BooleanLiteralPutAllParameters = BooleanLiteralPutAllBodyParam &
+  RequestParameters;
+
+export interface BooleanLiteralPutDefaultBodyParam {
+  body: BooleanLiteralProperty;
+}
+
+export type BooleanLiteralPutDefaultParameters =
+  BooleanLiteralPutDefaultBodyParam & RequestParameters;
+export type UnionStringLiteralGetAllParameters = RequestParameters;
+export type UnionStringLiteralGetDefaultParameters = RequestParameters;
+
+export interface UnionStringLiteralPutAllBodyParam {
+  body: UnionStringLiteralProperty;
+}
+
+export type UnionStringLiteralPutAllParameters =
+  UnionStringLiteralPutAllBodyParam & RequestParameters;
+
+export interface UnionStringLiteralPutDefaultBodyParam {
+  body: UnionStringLiteralProperty;
+}
+
+export type UnionStringLiteralPutDefaultParameters =
+  UnionStringLiteralPutDefaultBodyParam & RequestParameters;
+export type UnionIntLiteralGetAllParameters = RequestParameters;
+export type UnionIntLiteralGetDefaultParameters = RequestParameters;
+
+export interface UnionIntLiteralPutAllBodyParam {
+  body: UnionIntLiteralProperty;
+}
+
+export type UnionIntLiteralPutAllParameters = UnionIntLiteralPutAllBodyParam &
+  RequestParameters;
+
+export interface UnionIntLiteralPutDefaultBodyParam {
+  body: UnionIntLiteralProperty;
+}
+
+export type UnionIntLiteralPutDefaultParameters =
+  UnionIntLiteralPutDefaultBodyParam & RequestParameters;
+export type UnionFloatLiteralGetAllParameters = RequestParameters;
+export type UnionFloatLiteralGetDefaultParameters = RequestParameters;
+
+export interface UnionFloatLiteralPutAllBodyParam {
+  body: UnionFloatLiteralProperty;
+}
+
+export type UnionFloatLiteralPutAllParameters =
+  UnionFloatLiteralPutAllBodyParam & RequestParameters;
+
+export interface UnionFloatLiteralPutDefaultBodyParam {
+  body: UnionFloatLiteralProperty;
+}
+
+export type UnionFloatLiteralPutDefaultParameters =
+  UnionFloatLiteralPutDefaultBodyParam & RequestParameters;
 export type RequiredAndOptionalGetAllParameters = RequestParameters;
 export type RequiredAndOptionalGetRequiredOnlyParameters = RequestParameters;
 

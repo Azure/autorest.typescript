@@ -17,6 +17,13 @@ export interface WidgetErrorOutput {
   message: string;
 }
 
+export interface ListWidgetsPagesResultsOutput {
+  /** The current page of results. */
+  results: Array<WidgetOutput>;
+  /** The URL to get the next set of results. */
+  "odata.nextLink"?: string;
+}
+
 export interface AnalyzeResultOutput {
   summary: string;
 }
