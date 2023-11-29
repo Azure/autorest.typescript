@@ -1082,7 +1082,7 @@ export function _customGetRequestSend(
     .path("/customGet/request")
     .get({
       ...operationOptionsToRequestParameters(options),
-      body: { weight: body["weight"], color: body["color"] },
+      body: { id: body["id"], weight: body["weight"], color: body["color"] },
     });
 }
 
@@ -1115,6 +1115,7 @@ export function _customGetRequest1Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: body["data"],
@@ -1151,6 +1152,7 @@ export function _customGetRequest2Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData2Union(body["data"]),
@@ -1187,6 +1189,7 @@ export function _customGetRequest3Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData1AndWidgetData2Union(body["data"]),
@@ -1223,6 +1226,7 @@ export function _customGetRequest4Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData2AndWidgetData3Union(body["data"]),
@@ -1259,6 +1263,7 @@ export function _customGetRequest5Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData4Union(body["data"]),
@@ -1295,6 +1300,7 @@ export function _customGetRequest6Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData5Union(body["data"]),
@@ -1331,6 +1337,7 @@ export function _customGetRequest7Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: body["data"],
@@ -1367,6 +1374,7 @@ export function _customGetRequest8Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0ArrayAndWidgetData2ArrayUnion(body["data"]),
@@ -1403,6 +1411,7 @@ export function _customGetRequest9Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData1ArrayAndWidgetData2ArrayUnion(body["data"]),
@@ -1439,6 +1448,7 @@ export function _customGetRequest10Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData2ArrayAndWidgetData3ArrayUnion(body["data"]),
@@ -1475,6 +1485,7 @@ export function _customGetRequest11Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0ArrayAndWidgetData4ArrayUnion(body["data"]),
@@ -1511,6 +1522,7 @@ export function _customGetRequest12Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0ArrayAndWidgetData5ArrayUnion(body["data"]),
@@ -1547,6 +1559,7 @@ export function _customGetRequest13Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: body["data"],
@@ -1583,6 +1596,7 @@ export function _customGetRequest14Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: body["data"],
@@ -1619,6 +1633,7 @@ export function _customGetRequest15Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0ArrayAndWidgetData2Union(body["data"]),
@@ -1655,6 +1670,7 @@ export function _customGetRequest16Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData2ArrayUnion(body["data"]),
@@ -1691,6 +1707,7 @@ export function _customGetRequest17Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData1ArrayAndWidgetData2Union(body["data"]),
@@ -1727,6 +1744,7 @@ export function _customGetRequest18Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData1AndWidgetData2ArrayUnion(body["data"]),
@@ -1763,6 +1781,7 @@ export function _customGetRequest19Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData2ArrayAndWidgetData3Union(body["data"]),
@@ -1799,6 +1818,7 @@ export function _customGetRequest20Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData2AndWidgetData3ArrayUnion(body["data"]),
@@ -1835,6 +1855,7 @@ export function _customGetRequest21Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0ArrayAndWidgetData4Union(body["data"]),
@@ -1871,6 +1892,7 @@ export function _customGetRequest22Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData4ArrayUnion(body["data"]),
@@ -1907,6 +1929,7 @@ export function _customGetRequest23Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0ArrayAndWidgetData5Union(body["data"]),
@@ -1943,6 +1966,7 @@ export function _customGetRequest24Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData5ArrayUnion(body["data"]),
@@ -1979,6 +2003,7 @@ export function _customGetRequest25Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion(
@@ -2017,6 +2042,7 @@ export function _customGetRequest26Send(
     .get({
       ...operationOptionsToRequestParameters(options),
       body: {
+        id: body["id"],
         weight: body["weight"],
         color: body["color"],
         data: serializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion(

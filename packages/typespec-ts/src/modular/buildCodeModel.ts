@@ -20,7 +20,6 @@ import {
   getEffectiveModelType,
   getDiscriminator,
   Operation,
-  isKey,
   Scalar,
   IntrinsicScalarName,
   isStringType,
@@ -955,7 +954,7 @@ function emitProperty(
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
     readonly:
-      isReadOnly(context.program, property) || isKey(context.program, property),
+      isReadOnly(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };

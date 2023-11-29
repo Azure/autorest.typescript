@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export interface Widget {
-  readonly id: string;
+  id: string;
   weight: number;
   color: "red" | "blue";
 }
