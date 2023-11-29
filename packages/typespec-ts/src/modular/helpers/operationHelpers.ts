@@ -157,7 +157,11 @@ export function getDeserializePrivateFunction(
     }
   }
 
-  if (response?.type?.type === "any" || response.isBinaryPayload) {
+  if (
+    response?.type?.type === "any" ||
+    response.isBinaryPayload ||
+    response?.type?.aliasType
+  ) {
     statements.push(`return result.body`);
   } else if (getAllProperties(response?.type).length > 0) {
     statements.push(
@@ -405,7 +409,7 @@ function buildBodyParameter(
     return "";
   }
 
-  if (bodyParameter.type.type === "model") {
+  if (bodyParameter.type.type === "model" && !bodyParameter.type.aliasType) {
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
@@ -416,10 +420,18 @@ function buildBodyParameter(
     if (bodyParameter && bodyParts.length > 0) {
       return `\nbody: {${bodyParts.join(",\n")}},`;
     }
+  } else if (
+    bodyParameter.type.type === "model" &&
+    bodyParameter.type.aliasType
+  ) {
+    return `\nbody: ${bodyParameter.clientName},`;
   }
 
   if (bodyParameter.type.type === "list") {
-    if (bodyParameter.type.elementType?.type === "model") {
+    if (
+      bodyParameter.type.elementType?.type === "model" &&
+      !bodyParameter.type.elementType.aliasType
+    ) {
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p",
@@ -910,13 +922,19 @@ function deserializeResponseValue(
           ? `${restValue}`
           : `!${restValue} ? ${restValue} : ${restValue}`;
       if (type.elementType?.type === "model") {
-        return `${prefix}.map(p => ({${getResponseMapping(
-          getAllProperties(type.elementType) ?? [],
-          "p",
-          importSet,
-          runtimeImports
-        )}}))`;
-      } else if (needsDeserialize(type.elementType)) {
+        if (!type.elementType.aliasType) {
+          return `${prefix}.map(p => ({${getResponseMapping(
+            getAllProperties(type.elementType) ?? [],
+            "p",
+            importSet,
+            runtimeImports
+          )}}))`;
+        }
+        return `${prefix}`;
+      } else if (
+        needsDeserialize(type.elementType) &&
+        !type.elementType?.aliasType
+      ) {
         return `${prefix}.map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
@@ -985,14 +1003,17 @@ function serializeRequestValue(
         required && !type.nullable
           ? `${clientValue}`
           : `!${clientValue} ? ${clientValue} : ${clientValue}`;
-      if (type.elementType?.type === "model") {
+      if (type.elementType?.type === "model" && !type.elementType.aliasType) {
         return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
           importSet,
           runtimeImports
         )}}))`;
-      } else if (needsDeserialize(type.elementType)) {
+      } else if (
+        needsDeserialize(type.elementType) &&
+        !type.elementType?.aliasType
+      ) {
         return `${prefix}.map(p => ${serializeRequestValue(
           type.elementType!,
           "p",

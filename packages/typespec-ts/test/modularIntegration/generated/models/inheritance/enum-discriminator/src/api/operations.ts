@@ -44,10 +44,7 @@ export async function _getExtensibleModelDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    weight: result.body["weight"],
-  };
+  return result.body;
 }
 
 /** Receive model with extensible enum discriminator type. */
@@ -66,10 +63,7 @@ export function _putExtensibleModelSend(
 ): StreamableMethod<PutExtensibleModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/extensible-enum")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { kind: input["kind"], weight: input["weight"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putExtensibleModelDeserialize(
@@ -112,10 +106,7 @@ export async function _getExtensibleModelMissingDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    weight: result.body["weight"],
-  };
+  return result.body;
 }
 
 /** Get a model omitting the discriminator. */
@@ -150,10 +141,7 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    weight: result.body["weight"],
-  };
+  return result.body;
 }
 
 /** Get a model containing discriminator value never defined. */
@@ -184,10 +172,7 @@ export async function _getFixedModelDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    length: result.body["length"],
-  };
+  return result.body;
 }
 
 /** Receive model with fixed enum discriminator type. */
@@ -206,10 +191,7 @@ export function _putFixedModelSend(
 ): StreamableMethod<PutFixedModel204Response> {
   return context
     .path("/type/model/inheritance/enum-discriminator/fixed-enum")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { kind: input["kind"], length: input["length"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putFixedModelDeserialize(
@@ -250,10 +232,7 @@ export async function _getFixedModelMissingDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    length: result.body["length"],
-  };
+  return result.body;
 }
 
 /** Get a model omitting the discriminator. */
@@ -283,10 +262,7 @@ export async function _getFixedModelWrongDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    length: result.body["length"],
-  };
+  return result.body;
 }
 
 /** Get a model containing discriminator value never defined. */

@@ -58,10 +58,7 @@ export function _putModelSend(
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/model")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: input,
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putModelDeserialize(
@@ -117,10 +114,7 @@ export function _putRecursiveModelSend(
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/nested-discriminator/recursivemodel")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: input,
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putRecursiveModelDeserialize(
@@ -158,10 +152,7 @@ export async function _getMissingDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    age: result.body["age"],
-    kind: result.body["kind"],
-  };
+  return result.body;
 }
 
 export async function getMissingDiscriminator(
@@ -188,10 +179,7 @@ export async function _getWrongDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    age: result.body["age"],
-    kind: result.body["kind"],
-  };
+  return result.body;
 }
 
 export async function getWrongDiscriminator(

@@ -42,10 +42,7 @@ export async function _getModelDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    wingspan: result.body["wingspan"],
-  };
+  return result.body;
 }
 
 export async function getModel(
@@ -63,10 +60,7 @@ export function _putModelSend(
 ): StreamableMethod<PutModel204Response> {
   return context
     .path("/type/model/inheritance/single-discriminator/model")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { kind: input["kind"], wingspan: input["wingspan"] },
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putModelDeserialize(
@@ -122,10 +116,7 @@ export function _putRecursiveModelSend(
 ): StreamableMethod<PutRecursiveModel204Response> {
   return context
     .path("/type/model/inheritance/single-discriminator/recursivemodel")
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: input,
-    });
+    .put({ ...operationOptionsToRequestParameters(options), body: input });
 }
 
 export async function _putRecursiveModelDeserialize(
@@ -163,10 +154,7 @@ export async function _getMissingDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    wingspan: result.body["wingspan"],
-  };
+  return result.body;
 }
 
 export async function getMissingDiscriminator(
@@ -193,10 +181,7 @@ export async function _getWrongDiscriminatorDeserialize(
     throw result.body;
   }
 
-  return {
-    kind: result.body["kind"],
-    wingspan: result.body["wingspan"],
-  };
+  return result.body;
 }
 
 export async function getWrongDiscriminator(
@@ -223,10 +208,7 @@ export async function _getLegacyModelDeserialize(
     throw result.body;
   }
 
-  return {
-    size: result.body["size"],
-    kind: result.body["kind"],
-  };
+  return result.body;
 }
 
 export async function getLegacyModel(
