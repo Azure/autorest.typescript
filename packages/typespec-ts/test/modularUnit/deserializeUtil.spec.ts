@@ -57,11 +57,11 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output } from "../rest/index.js";
       import { WidgetData0 } from "../models/models.js";
+      import { WidgetData0 as WidgetData0Rest } from "../rest/index.js";
       
-      /** type predict function for datetime from WidgetData0Output | string */
-      function isDatetime(obj: WidgetData0Output | string): obj is string {
+      /** type predict function for datetime from WidgetData0 | Date */
+      function isDatetime(obj: WidgetData0 | Date): obj is string {
         if (typeof obj === "string") {
           return true;
         }
@@ -69,19 +69,20 @@ describe("modular special union serialization", () => {
       }
       
       /** serialize function for datetime */
-      function serializeDatetime(obj: Date): string {
-        return obj.toISOString();
+      function serializeDatetime(obj: string): Date {
+        return;
       }
       
-      /** serialize function for WidgetData0Output | string */
+      /** serialize function for WidgetData0 | Date */
       export function serializeWidgetData0AndDateUnion(
-        obj: WidgetData0Output | string
-      ): WidgetData0 | Date {
+        obj: WidgetData0 | Date
+      ): WidgetData0Rest | string {
         if (isDatetime(obj)) {
           return serializeDatetime(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
