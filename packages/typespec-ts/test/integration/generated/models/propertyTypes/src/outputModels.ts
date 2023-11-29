@@ -121,3 +121,45 @@ export interface UnknownArrayPropertyOutput {
   /** Property */
   property: any;
 }
+
+/** Model with a string literal property. */
+export interface StringLiteralPropertyOutput {
+  /** Property */
+  property: "hello";
+}
+
+/** Model with a int literal property. */
+export interface IntLiteralPropertyOutput {
+  /** Property */
+  property: 42;
+}
+
+/** Model with a float literal property. */
+export interface FloatLiteralPropertyOutput {
+  /** Property */
+  property: 42.42;
+}
+
+/** Model with a boolean literal property. */
+export interface BooleanLiteralPropertyOutput {
+  /** Property */
+  property: true;
+}
+
+/** Model with a union of string literal as property. */
+export interface UnionStringLiteralPropertyOutput {
+  /** Property */
+  property: "hello" | "world";
+}
+
+/** Model with a union of int literal as property. */
+export interface UnionIntLiteralPropertyOutput {
+  /** Property */
+  property: 42 | 43;
+}
+
+/** Model with a union of float literal as property. */
+export interface UnionFloatLiteralPropertyOutput {
+  /** Property */
+  property: 42.42 | 43.43;
+}

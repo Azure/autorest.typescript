@@ -192,6 +192,12 @@ const libDef = {
         default:
           "Required header cannot be nullable. Please remove the nullable modifier."
       }
+    },
+    "no-paging-items-defined": {
+      severity: "warning",
+      messages: {
+        default: paramMessage`Please specify @items property for the paging operation - ${"operationName"}.`
+      }
     }
   },
   emitter: {

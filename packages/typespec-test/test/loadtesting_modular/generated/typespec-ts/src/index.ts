@@ -62,6 +62,9 @@ export {
   UploadTestFileOptions,
   DeleteTestFileOptions,
   DeleteTestOptions,
+  PageSettings,
+  ContinuablePage,
+  PagedAsyncIterableIterator,
 } from "./loadTestAdministration/models/index.js";
 export {
   LoadTestRunClient,
@@ -122,4 +125,7 @@ export {
   ListMetricsOptions,
   ListTestRunsOptions,
   StopTestRunOptions,
+  PageSettings as LoadTestRunClientPageSettings,
+  ContinuablePage as LoadTestRunClientContinuablePage,
+  PagedAsyncIterableIterator as LoadTestRunClientPagedAsyncIterableIterator,
 } from "./loadTestRun/models/index.js";

@@ -32,11 +32,16 @@ export function buildSubpathIndexFile(
     if (!options.exportIndex && file.getFilePath().endsWith("index.ts")) {
       continue;
     }
+    // Skip to export pagingHelpers.ts
+    // pagingHelpers.ts is a file that is used internally and is not exported.
+    if (file.getFilePath().endsWith("pagingHelpers.ts")) {
+      continue;
+    }
     if (file.getFilePath() === indexFile.getFilePath()) {
       continue;
     }
 
-    const namedExports: string[] = [...file.getExportedDeclarations().entries()]
+    let namedExports: string[] = [...file.getExportedDeclarations().entries()]
       .filter((exDeclaration) => {
         if (exDeclaration[0].startsWith("_")) {
           return false;
@@ -54,6 +59,12 @@ export function buildSubpathIndexFile(
       .map((exDeclaration) => {
         return exDeclaration[0];
       });
+    // Skip to export PagedResult and BuildPagedAsyncIteratorOptions
+    if (file.getFilePath().endsWith("pagingTypes.ts")) {
+      namedExports = namedExports.filter(
+        (ex) => !["PagedResult", "BuildPagedAsyncIteratorOptions"].includes(ex)
+      );
+    }
     indexFile.addExportDeclaration({
       moduleSpecifier: `.${file
         .getFilePath()
