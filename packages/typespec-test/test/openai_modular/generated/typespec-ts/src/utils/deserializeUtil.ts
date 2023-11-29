@@ -4,7 +4,7 @@
 import { ImageLocationOutput, ImagePayloadOutput } from "../rest/index.js";
 import { ImageLocation, ImagePayload } from "../models/models.js";
 
-/** type predict function fpr ImagePayloadOutput array from ImageLocationOutput[] | ImagePayloadOutput[] */
+/** type predict function for ImagePayloadOutput array from ImageLocationOutput[] | ImagePayloadOutput[] */
 function isImagePayloadArray(
   obj: ImageLocationOutput[] | ImagePayloadOutput[]
 ): obj is ImagePayloadOutput[] {

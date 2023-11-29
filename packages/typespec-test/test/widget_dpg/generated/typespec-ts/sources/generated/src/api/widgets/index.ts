@@ -161,7 +161,7 @@ export async function _listWidgetsPagesDeserialize(
     results: result.body["results"].map((p) => ({
       id: p["id"],
       weight: p["weight"],
-      color: p["color"] as any,
+      color: p["color"],
     })),
     "odata.nextLink": result.body["odata.nextLink"],
   };
@@ -208,7 +208,7 @@ export async function _queryWidgetsPagesDeserialize(
     results: result.body["results"].map((p) => ({
       id: p["id"],
       weight: p["weight"],
-      color: p["color"] as any,
+      color: p["color"],
     })),
     "odata.nextLink": result.body["odata.nextLink"],
   };

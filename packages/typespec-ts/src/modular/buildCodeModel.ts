@@ -984,8 +984,7 @@ function emitProperty(
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
-    readonly:
-      isReadOnly(context.program, property),
+    readonly: isReadOnly(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };
