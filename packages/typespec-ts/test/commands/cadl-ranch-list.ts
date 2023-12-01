@@ -114,6 +114,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/property/value-types"
   },
   {
+    outputPath: "models/propertyAdditional",
+    inputPath: "type/property/additional-properties"
+  },
+  {
     outputPath: "models/visibility",
     inputPath: "type/model/visibility"
   },
