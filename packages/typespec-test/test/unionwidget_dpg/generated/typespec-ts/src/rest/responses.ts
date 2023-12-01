@@ -30,6 +30,8 @@ import {
   Widget24Output,
   Widget25Output,
   Widget26Output,
+  Widget27Output,
+  Widget28Output,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -194,6 +196,18 @@ export interface CustomGetResponse26200Response extends HttpResponse {
   body: Widget26Output;
 }
 
+/** The request has succeeded. */
+export interface CustomGetResponse27200Response extends HttpResponse {
+  status: "200";
+  body: Widget27Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGetResponse28200Response extends HttpResponse {
+  status: "200";
+  body: Widget28Output;
+}
+
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CustomGetRequest204Response extends HttpResponse {
   status: "204";
@@ -326,5 +340,15 @@ export interface CustomGetRequest25204Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CustomGetRequest26204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest27204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest28204Response extends HttpResponse {
   status: "204";
 }

@@ -30,6 +30,8 @@ import {
   Widget24,
   Widget25,
   Widget26,
+  Widget27,
+  Widget28,
 } from "../../models/models.js";
 import {
   customGetResponse,
@@ -59,6 +61,8 @@ import {
   customGetResponse24,
   customGetResponse25,
   customGetResponse26,
+  customGetResponse27,
+  customGetResponse28,
   customGetRequest,
   customGetRequest1,
   customGetRequest2,
@@ -86,6 +90,8 @@ import {
   customGetRequest24,
   customGetRequest25,
   customGetRequest26,
+  customGetRequest27,
+  customGetRequest28,
 } from "../../api/widgetService/index.js";
 import {
   WidgetServiceCustomGetResponseOptions,
@@ -115,6 +121,8 @@ import {
   WidgetServiceCustomGetResponse24Options,
   WidgetServiceCustomGetResponse25Options,
   WidgetServiceCustomGetResponse26Options,
+  WidgetServiceCustomGetResponse27Options,
+  WidgetServiceCustomGetResponse28Options,
   WidgetServiceCustomGetRequestOptions,
   WidgetServiceCustomGetRequest1Options,
   WidgetServiceCustomGetRequest2Options,
@@ -142,6 +150,8 @@ import {
   WidgetServiceCustomGetRequest24Options,
   WidgetServiceCustomGetRequest25Options,
   WidgetServiceCustomGetRequest26Options,
+  WidgetServiceCustomGetRequest27Options,
+  WidgetServiceCustomGetRequest28Options,
 } from "../../models/options.js";
 
 export interface WidgetServiceOperations {
@@ -226,6 +236,12 @@ export interface WidgetServiceOperations {
   customGetResponse26: (
     options?: WidgetServiceCustomGetResponse26Options
   ) => Promise<Widget26>;
+  customGetResponse27: (
+    options?: WidgetServiceCustomGetResponse27Options
+  ) => Promise<Widget27>;
+  customGetResponse28: (
+    options?: WidgetServiceCustomGetResponse28Options
+  ) => Promise<Widget28>;
   customGetRequest: (
     body: Widget,
     options?: WidgetServiceCustomGetRequestOptions
@@ -334,6 +350,14 @@ export interface WidgetServiceOperations {
     body: Widget26,
     options?: WidgetServiceCustomGetRequest26Options
   ) => Promise<void>;
+  customGetRequest27: (
+    body: Widget27,
+    options?: WidgetServiceCustomGetRequest27Options
+  ) => Promise<void>;
+  customGetRequest28: (
+    body: Widget28,
+    options?: WidgetServiceCustomGetRequest28Options
+  ) => Promise<void>;
 }
 
 export function getWidgetService(context: DemoServiceContext) {
@@ -392,6 +416,10 @@ export function getWidgetService(context: DemoServiceContext) {
       customGetResponse25(context, options),
     customGetResponse26: (options?: WidgetServiceCustomGetResponse26Options) =>
       customGetResponse26(context, options),
+    customGetResponse27: (options?: WidgetServiceCustomGetResponse27Options) =>
+      customGetResponse27(context, options),
+    customGetResponse28: (options?: WidgetServiceCustomGetResponse28Options) =>
+      customGetResponse28(context, options),
     customGetRequest: (
       body: Widget,
       options?: WidgetServiceCustomGetRequestOptions
@@ -500,6 +528,14 @@ export function getWidgetService(context: DemoServiceContext) {
       body: Widget26,
       options?: WidgetServiceCustomGetRequest26Options
     ) => customGetRequest26(context, body, options),
+    customGetRequest27: (
+      body: Widget27,
+      options?: WidgetServiceCustomGetRequest27Options
+    ) => customGetRequest27(context, body, options),
+    customGetRequest28: (
+      body: Widget28,
+      options?: WidgetServiceCustomGetRequest28Options
+    ) => customGetRequest28(context, body, options),
   };
 }
 

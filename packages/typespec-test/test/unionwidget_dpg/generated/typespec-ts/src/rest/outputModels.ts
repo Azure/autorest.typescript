@@ -139,3 +139,11 @@ export interface Widget26Output extends WidgetOutput {
 export interface WidgetData6Output {
   data: WidgetData5Output;
 }
+
+export interface Widget27Output extends WidgetOutput {
+  data: WidgetData0Output | string;
+}
+
+export interface Widget28Output extends WidgetOutput {
+  data: WidgetData0Output | string;
+}

@@ -29,6 +29,8 @@ import {
   CustomGetResponse24Parameters,
   CustomGetResponse25Parameters,
   CustomGetResponse26Parameters,
+  CustomGetResponse27Parameters,
+  CustomGetResponse28Parameters,
   CustomGetRequestParameters,
   CustomGetRequest1Parameters,
   CustomGetRequest2Parameters,
@@ -56,6 +58,8 @@ import {
   CustomGetRequest24Parameters,
   CustomGetRequest25Parameters,
   CustomGetRequest26Parameters,
+  CustomGetRequest27Parameters,
+  CustomGetRequest28Parameters,
 } from "./parameters.js";
 import {
   CustomGetResponse200Response,
@@ -85,6 +89,8 @@ import {
   CustomGetResponse24200Response,
   CustomGetResponse25200Response,
   CustomGetResponse26200Response,
+  CustomGetResponse27200Response,
+  CustomGetResponse28200Response,
   CustomGetRequest204Response,
   CustomGetRequest1204Response,
   CustomGetRequest2204Response,
@@ -112,6 +118,8 @@ import {
   CustomGetRequest24204Response,
   CustomGetRequest25204Response,
   CustomGetRequest26204Response,
+  CustomGetRequest27204Response,
+  CustomGetRequest28204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -277,6 +285,18 @@ export interface CustomGetResponse26 {
   ): StreamableMethod<CustomGetResponse26200Response>;
 }
 
+export interface CustomGetResponse27 {
+  get(
+    options?: CustomGetResponse27Parameters
+  ): StreamableMethod<CustomGetResponse27200Response>;
+}
+
+export interface CustomGetResponse28 {
+  get(
+    options?: CustomGetResponse28Parameters
+  ): StreamableMethod<CustomGetResponse28200Response>;
+}
+
 export interface CustomGetRequest {
   get(
     options: CustomGetRequestParameters
@@ -439,6 +459,18 @@ export interface CustomGetRequest26 {
   ): StreamableMethod<CustomGetRequest26204Response>;
 }
 
+export interface CustomGetRequest27 {
+  get(
+    options: CustomGetRequest27Parameters
+  ): StreamableMethod<CustomGetRequest27204Response>;
+}
+
+export interface CustomGetRequest28 {
+  get(
+    options: CustomGetRequest28Parameters
+  ): StreamableMethod<CustomGetRequest28204Response>;
+}
+
 export interface Routes {
   /** Resource for '/customGet/response' has methods for the following verbs: get */
   (path: "/customGet/response"): CustomGetResponse;
@@ -494,6 +526,10 @@ export interface Routes {
   (path: "/customGet25/response"): CustomGetResponse25;
   /** Resource for '/customGet26/response' has methods for the following verbs: get */
   (path: "/customGet26/response"): CustomGetResponse26;
+  /** Resource for '/customGet27/response' has methods for the following verbs: get */
+  (path: "/customGet27/response"): CustomGetResponse27;
+  /** Resource for '/customGet28/response' has methods for the following verbs: get */
+  (path: "/customGet28/response"): CustomGetResponse28;
   /** Resource for '/customGet/request' has methods for the following verbs: get */
   (path: "/customGet/request"): CustomGetRequest;
   /** Resource for '/customGet1/request' has methods for the following verbs: get */
@@ -548,6 +584,10 @@ export interface Routes {
   (path: "/customGet25/request"): CustomGetRequest25;
   /** Resource for '/customGet26/request' has methods for the following verbs: get */
   (path: "/customGet26/request"): CustomGetRequest26;
+  /** Resource for '/customGet27/request' has methods for the following verbs: get */
+  (path: "/customGet27/request"): CustomGetRequest27;
+  /** Resource for '/customGet28/request' has methods for the following verbs: get */
+  (path: "/customGet28/request"): CustomGetRequest28;
 }
 
 export type DemoServiceContext = Client & {

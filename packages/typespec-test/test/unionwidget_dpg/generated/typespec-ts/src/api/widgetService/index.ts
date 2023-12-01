@@ -29,6 +29,8 @@ import {
   Widget24,
   Widget25,
   Widget26,
+  Widget27,
+  Widget28,
 } from "../../models/models.js";
 import {
   deserializeWidgetData0AndWidgetData2Union,
@@ -53,6 +55,8 @@ import {
   deserializeWidgetData0AndWidgetData5ArrayUnion,
   deserializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion,
   deserializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion,
+  deserializeWidgetData0AndDateUnion,
+  deserializeWidgetData0AndUint8ArrayUnion,
 } from "../../utils/deserializeUtil.js";
 import {
   serializeWidgetData0AndWidgetData2Union,
@@ -77,6 +81,8 @@ import {
   serializeWidgetData0AndWidgetData5ArrayUnion,
   serializeWidgetData0AndWidgetData3AndWidgetData5ArrayUnion,
   serializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion,
+  serializeWidgetData0AndDateUnion,
+  serializeWidgetData0AndUint8ArrayUnion,
 } from "../../utils/serializeUtil.js";
 import {
   CustomGetRequest10204Response,
@@ -99,6 +105,8 @@ import {
   CustomGetRequest24204Response,
   CustomGetRequest25204Response,
   CustomGetRequest26204Response,
+  CustomGetRequest27204Response,
+  CustomGetRequest28204Response,
   CustomGetRequest3204Response,
   CustomGetRequest4204Response,
   CustomGetRequest5204Response,
@@ -126,6 +134,8 @@ import {
   CustomGetResponse24200Response,
   CustomGetResponse25200Response,
   CustomGetResponse26200Response,
+  CustomGetResponse27200Response,
+  CustomGetResponse28200Response,
   CustomGetResponse3200Response,
   CustomGetResponse4200Response,
   CustomGetResponse5200Response,
@@ -167,6 +177,8 @@ import {
   WidgetServiceCustomGetResponse24Options,
   WidgetServiceCustomGetResponse25Options,
   WidgetServiceCustomGetResponse26Options,
+  WidgetServiceCustomGetResponse27Options,
+  WidgetServiceCustomGetResponse28Options,
   WidgetServiceCustomGetRequestOptions,
   WidgetServiceCustomGetRequest1Options,
   WidgetServiceCustomGetRequest2Options,
@@ -194,6 +206,8 @@ import {
   WidgetServiceCustomGetRequest24Options,
   WidgetServiceCustomGetRequest25Options,
   WidgetServiceCustomGetRequest26Options,
+  WidgetServiceCustomGetRequest27Options,
+  WidgetServiceCustomGetRequest28Options,
 } from "../../models/options.js";
 
 export function _customGetResponseSend(
@@ -1071,6 +1085,70 @@ export async function customGetResponse26(
 ): Promise<Widget26> {
   const result = await _customGetResponse26Send(context, options);
   return _customGetResponse26Deserialize(result);
+}
+
+export function _customGetResponse27Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse27Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse27200Response> {
+  return context
+    .path("/customGet27/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse27Deserialize(
+  result: CustomGetResponse27200Response
+): Promise<Widget27> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: deserializeWidgetData0AndDateUnion(result.body["data"]),
+  };
+}
+
+export async function customGetResponse27(
+  context: Client,
+  options: WidgetServiceCustomGetResponse27Options = { requestOptions: {} }
+): Promise<Widget27> {
+  const result = await _customGetResponse27Send(context, options);
+  return _customGetResponse27Deserialize(result);
+}
+
+export function _customGetResponse28Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse28Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse28200Response> {
+  return context
+    .path("/customGet28/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse28Deserialize(
+  result: CustomGetResponse28200Response
+): Promise<Widget28> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: deserializeWidgetData0AndUint8ArrayUnion(result.body["data"]),
+  };
+}
+
+export async function customGetResponse28(
+  context: Client,
+  options: WidgetServiceCustomGetResponse28Options = { requestOptions: {} }
+): Promise<Widget28> {
+  const result = await _customGetResponse28Send(context, options);
+  return _customGetResponse28Deserialize(result);
 }
 
 export function _customGetRequestSend(
@@ -2069,4 +2147,78 @@ export async function customGetRequest26(
 ): Promise<void> {
   const result = await _customGetRequest26Send(context, body, options);
   return _customGetRequest26Deserialize(result);
+}
+
+export function _customGetRequest27Send(
+  context: Client,
+  body: Widget27,
+  options: WidgetServiceCustomGetRequest27Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest27204Response> {
+  return context
+    .path("/customGet27/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: serializeWidgetData0AndDateUnion(body["data"]),
+      },
+    });
+}
+
+export async function _customGetRequest27Deserialize(
+  result: CustomGetRequest27204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest27(
+  context: Client,
+  body: Widget27,
+  options: WidgetServiceCustomGetRequest27Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest27Send(context, body, options);
+  return _customGetRequest27Deserialize(result);
+}
+
+export function _customGetRequest28Send(
+  context: Client,
+  body: Widget28,
+  options: WidgetServiceCustomGetRequest28Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest28204Response> {
+  return context
+    .path("/customGet28/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: serializeWidgetData0AndUint8ArrayUnion(body["data"]),
+      },
+    });
+}
+
+export async function _customGetRequest28Deserialize(
+  result: CustomGetRequest28204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest28(
+  context: Client,
+  body: Widget28,
+  options: WidgetServiceCustomGetRequest28Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest28Send(context, body, options);
+  return _customGetRequest28Deserialize(result);
 }

@@ -15,9 +15,7 @@ import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
 
 /**
- * This function creates a file under /api for each operation group.
- * If there is no operation group in the TypeSpec program, we create a single
- * file called operations.ts where all operations are generated.
+ * This function creates serialize and deserialize utils for special unions and that are used in the operation.
  */
 export function buildOperationUtils(model: ModularCodeModel) {
   const serializeUtilFiles = [];
@@ -74,7 +72,7 @@ export function buildOperationUtils(model: ModularCodeModel) {
           );
         }
       });
-      const deserializeFUnctionName = getDeserializeFunctionName(
+      const deserializeFunctionName = getDeserializeFunctionName(
         su,
         serializeType,
         importSet
@@ -83,7 +81,7 @@ export function buildOperationUtils(model: ModularCodeModel) {
         deserializeUnionTypesFunction(
           utilsFile,
           unionDeserializeTypes ?? [],
-          deserializeFUnctionName,
+          deserializeFunctionName,
           serializeType,
           getTypeUnionName(su, false, importSet, serializeType),
           getTypeUnionName(su, true, importSet, serializeType)
@@ -92,7 +90,7 @@ export function buildOperationUtils(model: ModularCodeModel) {
         deserializeUnionTypesFunction(
           utilsFile,
           unionDeserializeTypes ?? [],
-          deserializeFUnctionName,
+          deserializeFunctionName,
           serializeType,
           getTypeUnionName(su, true, importSet, serializeType),
           getTypeUnionName(su, false, importSet, serializeType)
@@ -465,8 +463,8 @@ function getTypeSerializeFunction(
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.type}`],
       name: `${serializeType}${toPascalCase(type.name ?? "byte-array")}`,
-      parameters: [{ name: "obj", type: "string" }],
-      returnType: "Uint8Array"
+      parameters: [{ name: "obj", type: "Uint8Array" }],
+      returnType: "string"
     };
     statements.push(
       `return ${serializeRequestValue(
@@ -592,20 +590,45 @@ function deserializeUnionTypesFunction(
 function getTypePredictFunctionForBasicType(
   sourceFile: SourceFile,
   type: Type,
+  serializeType: string,
   typeUnionNames: string | undefined
 ) {
   if (typeUnionNames === undefined) {
     return;
   }
   const statements: string[] = [];
+  const fromRest = serializeType === "deserialize";
   const functionStatement: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
-    docs: [`type predict function for ${type.type} from ${typeUnionNames}`],
-    name: `is${toPascalCase(formalizeTypeUnionName(type.type))}`,
+    docs: [
+      `type predict function for ${getMappedType(
+        type.type,
+        fromRest
+      )} from ${typeUnionNames}`
+    ],
+    name: `is${toPascalCase(
+      formalizeTypeUnionName(
+        getMappedType(type.type) + (fromRest ? "Rest" : "")
+      )
+    )}`,
     parameters: [{ name: "obj", type: typeUnionNames }],
-    returnType: `obj is ${getMappedType(type.type, true)}`
+    returnType: `obj is ${getMappedType(type.type, fromRest)}`
   };
-  statements.push(`if (typeof obj === "string") { return true;}`);
+  if (!fromRest) {
+    statements.push(
+      `if (obj instanceof ${getMappedType(
+        type.type,
+        fromRest
+      )}) { return true;}`
+    );
+  } else {
+    statements.push(
+      `if (typeof obj === "${getMappedType(
+        type.type,
+        fromRest
+      )}") { return true;}`
+    );
+  }
   statements.push("return false;");
   functionStatement.statements = statements.join("\n");
   if (!hasDuplicateFunction(sourceFile, functionStatement)) {
@@ -633,7 +656,12 @@ function getTypePredictFunction(
 
   const statements: string[] = [];
   if (type.type === "datetime" || type.type === "byte-array") {
-    getTypePredictFunctionForBasicType(sourceFile, type, typeUnionNames);
+    getTypePredictFunctionForBasicType(
+      sourceFile,
+      type,
+      serializeType,
+      typeUnionNames
+    );
   } else if (type.type === "model" && type.name) {
     const typeName =
       type.name + (serializeType === "serialize" ? "" : "Output");

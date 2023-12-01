@@ -509,3 +509,49 @@ export function serializeWidgetData2AndWidgetData4AndWidgetData6ArrayUnion(
   }
   return obj;
 }
+
+/** type predict function for Date from WidgetData0 | Date */
+function isDate(obj: WidgetData0 | Date): obj is Date {
+  if (obj instanceof Date) {
+    return true;
+  }
+  return false;
+}
+
+/** serialize function for datetime */
+function serializeDatetime(obj: Date): string {
+  return obj.toISOString();
+}
+
+/** serialize function for WidgetData0 | Date */
+export function serializeWidgetData0AndDateUnion(
+  obj: WidgetData0 | Date
+): WidgetData0Rest | string {
+  if (isDatetime(obj)) {
+    return serializeDatetime(obj);
+  }
+  return obj;
+}
+
+/** type predict function for Uint8Array from WidgetData0 | Uint8Array */
+function isUint8Array(obj: WidgetData0 | Uint8Array): obj is Uint8Array {
+  if (obj instanceof Uint8Array) {
+    return true;
+  }
+  return false;
+}
+
+/** serialize function for byte-array */
+function serializeByteArray(obj: Uint8Array): string {
+  return uint8ArrayToString(obj, "base64");
+}
+
+/** serialize function for WidgetData0 | Uint8Array */
+export function serializeWidgetData0AndUint8ArrayUnion(
+  obj: WidgetData0 | Uint8Array
+): WidgetData0Rest | string {
+  if (isByteArray(obj)) {
+    return serializeByteArray(obj);
+  }
+  return obj;
+}

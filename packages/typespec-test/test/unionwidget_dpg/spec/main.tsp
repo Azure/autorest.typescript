@@ -150,6 +150,14 @@ model Widget26 extends Widget {
   data: WidgetData2 | WidgetData4 | WidgetData6[]
 }
 
+model Widget27 extends Widget {
+  data: WidgetData0 | utcDateTime;
+}
+
+model Widget28 extends Widget {
+  data: WidgetData0 | bytes;
+}
+
 @error
 model Error {
   code: int32;
@@ -184,6 +192,8 @@ interface WidgetService {
   @get @route("customGet24/response") customGetResponse24(): Widget24; 
   @get @route("customGet25/response") customGetResponse25(): Widget25;
   @get @route("customGet26/response") customGetResponse26(): Widget26;
+  @get @route("customGet27/response") customGetResponse27(): Widget27;
+  @get @route("customGet28/response") customGetResponse28(): Widget28;
   @get @route("customGet/request") customGetRequest(@body body: Widget): void;
   @get @route("customGet1/request") customGetRequest1(@body body: Widget1): void;
   @get @route("customGet2/request") customGetRequest2(@body body: Widget2): void;
@@ -210,6 +220,8 @@ interface WidgetService {
   @get @route("customGet23/request") customGetRequest23(@body body: Widget23): void;
   @get @route("customGet24/request") customGetRequest24(@body body: Widget24): void; 
   @get @route("customGet25/request") customGetRequest25(@body body: Widget25): void;
-  @get @route("customGet26/request") customGetRequest26(@body body: Widget26): void;  
+  @get @route("customGet26/request") customGetRequest26(@body body: Widget26): void;
+  @get @route("customGet27/request") customGetRequest27(@body body: Widget27): void;
+  @get @route("customGet28/request") customGetRequest28(@body body: Widget28): void;  
 }
 

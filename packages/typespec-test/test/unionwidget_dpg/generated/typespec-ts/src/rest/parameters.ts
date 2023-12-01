@@ -30,6 +30,8 @@ import {
   Widget24,
   Widget25,
   Widget26,
+  Widget27,
+  Widget28,
 } from "./models.js";
 
 export type CustomGetResponseParameters = RequestParameters;
@@ -59,6 +61,8 @@ export type CustomGetResponse23Parameters = RequestParameters;
 export type CustomGetResponse24Parameters = RequestParameters;
 export type CustomGetResponse25Parameters = RequestParameters;
 export type CustomGetResponse26Parameters = RequestParameters;
+export type CustomGetResponse27Parameters = RequestParameters;
+export type CustomGetResponse28Parameters = RequestParameters;
 
 export interface CustomGetRequestBodyParam {
   body: Widget;
@@ -247,4 +251,18 @@ export interface CustomGetRequest26BodyParam {
 }
 
 export type CustomGetRequest26Parameters = CustomGetRequest26BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest27BodyParam {
+  body: Widget27;
+}
+
+export type CustomGetRequest27Parameters = CustomGetRequest27BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest28BodyParam {
+  body: Widget28;
+}
+
+export type CustomGetRequest28Parameters = CustomGetRequest28BodyParam &
   RequestParameters;

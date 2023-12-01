@@ -36,6 +36,8 @@ export {
   Widget25,
   Widget26,
   WidgetData6,
+  Widget27,
+  Widget28,
 } from "./models.js";
 export {
   WidgetServiceCustomGetResponseOptions,
@@ -65,6 +67,8 @@ export {
   WidgetServiceCustomGetResponse24Options,
   WidgetServiceCustomGetResponse25Options,
   WidgetServiceCustomGetResponse26Options,
+  WidgetServiceCustomGetResponse27Options,
+  WidgetServiceCustomGetResponse28Options,
   WidgetServiceCustomGetRequestOptions,
   WidgetServiceCustomGetRequest1Options,
   WidgetServiceCustomGetRequest2Options,
@@ -92,4 +96,6 @@ export {
   WidgetServiceCustomGetRequest24Options,
   WidgetServiceCustomGetRequest25Options,
   WidgetServiceCustomGetRequest26Options,
+  WidgetServiceCustomGetRequest27Options,
+  WidgetServiceCustomGetRequest28Options,
 } from "./options.js";
