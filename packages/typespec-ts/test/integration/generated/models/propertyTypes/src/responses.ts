@@ -8,6 +8,8 @@ import {
   BytesPropertyOutput,
   IntPropertyOutput,
   FloatPropertyOutput,
+  DecimalPropertyOutput,
+  Decimal128PropertyOutput,
   DatetimePropertyOutput,
   DurationPropertyOutput,
   EnumPropertyOutput,
@@ -83,6 +85,28 @@ export interface FloatGet200Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface FloatPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface DecimalGet200Response extends HttpResponse {
+  status: "200";
+  body: DecimalPropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface DecimalPut204Response extends HttpResponse {
+  status: "204";
+}
+
+/** The request has succeeded. */
+export interface Decimal128Get200Response extends HttpResponse {
+  status: "200";
+  body: Decimal128PropertyOutput;
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface Decimal128Put204Response extends HttpResponse {
   status: "204";
 }
 
