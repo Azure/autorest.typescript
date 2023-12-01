@@ -265,10 +265,6 @@ export const modularTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/model/inheritance/single-discriminator"
   },
   {
-    outputPath: "client/structure/two-operation-group",
-    inputPath: "client/structure/two-operation-group"
-  },
-  {
     outputPath: "payload/pageable",
     inputPath: "payload/pageable"
   },
