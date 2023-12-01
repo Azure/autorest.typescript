@@ -288,7 +288,7 @@ function processModelProperties(
   }
   if (discriminatorInfo) {
     if (!hasDiscriminator) {
-      newValue.properties.push({ ...discriminatorInfo, optional: true });
+      newValue.properties.push({ ...discriminatorInfo });
     }
     newValue.alias = `${newValue.name}Parent`;
     newValue.isPolyBaseModel = true;

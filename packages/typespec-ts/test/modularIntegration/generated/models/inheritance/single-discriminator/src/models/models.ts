@@ -35,7 +35,7 @@ export interface Eagle extends BirdParent {
 export interface DinosaurParent {
   size: number;
   /** the discriminator possible values t-rex */
-  kind?: string;
+  kind: string;
 }
 
 /** The second level legacy model in polymorphic single level inheritance. */

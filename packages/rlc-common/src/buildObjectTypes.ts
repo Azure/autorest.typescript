@@ -151,7 +151,6 @@ function getPolymorphicTypeAlias(
     unionTypes.push(`${baseName}Parent`);
   }
 
-
   for (const child of objectSchema.children?.all ?? []) {
     const nameSuffix = schemaUsage.includes(SchemaContext.Output)
       ? "Output"
@@ -239,12 +238,6 @@ function addDiscriminatorProperty(
     const filteredProperties = properties.filter(
       (p) => p.name !== polymorphicProperty.name
     );
-    const existingDiscriminator = properties.filter(
-      (p) => p.name === polymorphicProperty.name
-    );
-    polymorphicProperty.hasQuestionToken =
-      existingDiscriminator[0]?.hasQuestionToken ??
-      polymorphicProperty.hasQuestionToken;
     return [...filteredProperties, polymorphicProperty];
   }
 
@@ -275,8 +268,7 @@ function getDiscriminatorProperty(
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
-      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`,
-      hasQuestionToken: model.options?.sourceFrom === "Swagger" ? false : true
+      type: model.options?.sourceFrom === "Swagger" ? discriminators : `string`
     };
   }
 

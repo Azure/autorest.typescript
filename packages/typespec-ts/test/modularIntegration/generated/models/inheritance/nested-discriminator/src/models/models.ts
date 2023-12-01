@@ -5,7 +5,7 @@
 export interface FishParent {
   age: number;
   /** the discriminator possible values shark, salmon */
-  kind?: string;
+  kind: string;
 }
 
 /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */

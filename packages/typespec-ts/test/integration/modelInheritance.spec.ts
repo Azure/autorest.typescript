@@ -149,6 +149,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
+      assert.isUndefined(result.body.kind);
     } catch (err) {
       assert.fail(err as string);
     }

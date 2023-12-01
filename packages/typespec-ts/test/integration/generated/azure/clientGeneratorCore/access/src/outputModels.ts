@@ -49,7 +49,7 @@ export interface BaseModelOutput {
 /** Used in internal operations, should be generated but not exported. */
 export interface AbstractModelOutputParent {
   name: string;
-  kind?: string;
+  kind: string;
 }
 
 /** Used in internal operations, should be generated but not exported. */

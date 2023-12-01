@@ -128,6 +128,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
     try {
       const result = await client.getMissingDiscriminator();
       assert.strictEqual(result.age, 1);
+      assert.isUndefined(result.kind);
     } catch (err) {
       assert.fail(err as string);
     }
