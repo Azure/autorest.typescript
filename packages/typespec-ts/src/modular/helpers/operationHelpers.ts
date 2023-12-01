@@ -519,7 +519,7 @@ function getEncodingFormat(type: { format?: string }) {
 /**
  * This function helps with renames, translating client names to rest api names
  */
-function getParameterMap(
+export function getParameterMap(
   param: Parameter | Property,
   importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
@@ -1008,7 +1008,7 @@ function deserializeResponseValue(
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function serializeRequestValue(
+export function serializeRequestValue(
   type: Type,
   clientValue: string,
   importSet: Map<string, Set<string>>,

@@ -30,7 +30,7 @@ describe("modular special union serialization", () => {
     assert.ok(operationUtil?.length === 0);
   });
 
-  it.only("should generate serialize util if there's a special union variant of datatime", async () => {
+  it("should generate serialize util if there's a special union variant of datatime", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -69,8 +69,8 @@ describe("modular special union serialization", () => {
       }
       
       /** serialize function for datetime */
-      function serializeDatetime(obj: string): Date {
-        return;
+      function serializeDatetime(obj: Date): string {
+        return obj.toISOString();
       }
       
       /** serialize function for WidgetData0 | Date */
@@ -107,6 +107,7 @@ describe("modular special union serialization", () => {
           .get({
               ...operationOptionsToRequestParameters(options),
               body: {
+                id: body["id"],
                 weight: body["weight"],
                 color: body["color"],
                 data: serializeWidgetData0AndDateUnion(body["data"]),
@@ -136,7 +137,7 @@ describe("modular special union serialization", () => {
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of bytes", async () => {
+  it("should generate serialize util if there's a special union variant of bytes", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -153,7 +154,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -163,29 +164,29 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output } from "../rest/index.js";
-      import { stringToUint8Array } from "@azure-rest/core-util";
       import { WidgetData0 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import { WidgetData0 as WidgetData0Rest } from "../rest/index.js";
       
-      /** type predict function for byte-array from WidgetData0Output | string */
-      function isByteArray(obj: WidgetData0Output | string): obj is string {
+      /** type predict function for byte-array from WidgetData0 | Uint8Array */
+      function isByteArray(obj: WidgetData0 | Uint8Array): obj is string {
         if (typeof obj === "string") {
           return true;
         }
         return false;
       }
       
-      /** deserialize function for byte-array */
-      function deserializeByteArray(obj: string): Uint8Array {
-        return stringToUint8Array(obj);
+      /** serialize function for byte-array */
+      function serializeByteArray(obj: string): Uint8Array {
+        return uint8ArrayToString(obj, "base64");
       }
       
-      /** deserialize function for WidgetData0Output | string */
-      export function deserializeWidgetData0AndUint8ArrayUnion(
-        obj: WidgetData0Output | string
-      ): WidgetData0 | Uint8Array {
+      /** serialize function for WidgetData0 | Uint8Array */
+      export function serializeWidgetData0AndUint8ArrayUnion(
+        obj: WidgetData0 | Uint8Array
+      ): WidgetData0Rest | string {
         if (isByteArray(obj)) {
-          return deserializeByteArray(obj);
+          return serializeByteArray(obj);
         }
         return obj;
       }`
@@ -205,39 +206,45 @@ describe("modular special union serialization", () => {
       
       export function _customGet1Send(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
-          .get({ ...operationOptionsToRequestParameters(options) });
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              id: body["id"],
+              weight: body["weight"],
+              color: body["color"],
+              data: serializeWidgetData0AndUint8ArrayUnion(body["data"]),
+            },
+          });
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
-      ): Promise<Widget1> {
-        if (result.status !== "200") {
+        result: CustomGet1204Response
+      ): Promise<void> {
+        if (result.status !== "204") {
           throw result.body;
         }
-
-        return {
-          id: result.body["id"],
-          weight: result.body["weight"],
-          color: result.body["color"],
-          data: deserializeWidgetData0AndUint8ArrayUnion(result.body["data"]),
-        };
+      
+        return;
       }
       
       export async function customGet1(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): Promise<Widget1> {
-        const result = await _customGet1Send(context, options);
+      ): Promise<void> {
+        const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
-      }`
+      }`,
+      true
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of model with datatime property", async () => {
+  it("should generate serialize util if there's a special union variant of model with datatime property", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -259,7 +266,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -269,34 +276,32 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
-      function isWidgetData1(
-        obj: WidgetData0Output | WidgetData1Output
-      ): obj is WidgetData1Output {
-        return (obj as WidgetData1Output).start !== undefined;
+      /** type predict function for WidgetData1 from WidgetData0 | WidgetData1 */
+      function isWidgetData1(obj: WidgetData0 | WidgetData1): obj is WidgetData1 {
+        return (obj as WidgetData1).start !== undefined;
       }
       
-      
-      /** deserialize function for WidgetData1 */
-      function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
-        return {
-          start: new Date(obj["start"]),
-          end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
-        };
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { start: obj["start"].toISOString(), end: obj["end"]?.toISOString() };
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData1Output */
-      export function deserializeWidgetData0AndWidgetData1Union(
-        obj: WidgetData0Output | WidgetData1Output
-      ): WidgetData0 | WidgetData1 {
+      /** serialize function for WidgetData0 | WidgetData1 */
+      export function serializeWidgetData0AndWidgetData1Union(
+        obj: WidgetData0 | WidgetData1
+      ): WidgetData0Rest | WidgetData1Rest {
         if (isWidgetData1(obj)) {
-          return deserializeWidgetData1(obj);
+          return serializeWidgetData1(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -313,39 +318,46 @@ describe("modular special union serialization", () => {
       
       export function _customGet1Send(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
-          .get({ ...operationOptionsToRequestParameters(options) });
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              id: body["id"],
+              weight: body["weight"],
+              color: body["color"],
+              data: serializeWidgetData0AndWidgetData1Union(body["data"]),
+            },
+          });
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
-      ): Promise<Widget1> {
-        if (result.status !== "200") {
+        result: CustomGet1204Response
+      ): Promise<void> {
+        if (result.status !== "204") {
           throw result.body;
         }
-
-        return {
-          id: result.body["id"],
-          weight: result.body["weight"],
-          color: result.body["color"],
-          data: deserializeWidgetData0AndWidgetData1Union(result.body["data"]),
-        };
+      
+        return;
       }
       
       export async function customGet1(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): Promise<Widget1> {
-        const result = await _customGet1Send(context, options);
+      ): Promise<void> {
+        const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
-      }`
+      }
+      `,
+      true
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of model with byte array property", async () => {
+  it("should generate serialize util if there's a special union variant of model with byte array property", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -366,7 +378,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -376,37 +388,33 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
-      function isWidgetData1(
-        obj: WidgetData0Output | WidgetData1Output
-      ): obj is WidgetData1Output {
-        return (obj as WidgetData1Output).data !== undefined;
+      /** type predict function for WidgetData1 from WidgetData0 | WidgetData1 */
+      function isWidgetData1(obj: WidgetData0 | WidgetData1): obj is WidgetData1 {
+        return (obj as WidgetData1).data !== undefined;
       }
       
-      
-      /** deserialize function for WidgetData1 */
-      function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
-        return {
-          data:
-            typeof obj["data"] === "string"
-              ? stringToUint8Array(obj["data"], "base64")
-              : obj["data"],
-        };
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { data: uint8ArrayToString(obj["data"], "base64") };
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData1Output */
-      export function deserializeWidgetData0AndWidgetData1Union(
-        obj: WidgetData0Output | WidgetData1Output
-      ): WidgetData0 | WidgetData1 {
+      /** serialize function for WidgetData0 | WidgetData1 */
+      export function serializeWidgetData0AndWidgetData1Union(
+        obj: WidgetData0 | WidgetData1
+      ): WidgetData0Rest | WidgetData1Rest {
         if (isWidgetData1(obj)) {
-          return deserializeWidgetData1(obj);
+          return serializeWidgetData1(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -423,39 +431,46 @@ describe("modular special union serialization", () => {
       
       export function _customGet1Send(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
-          .get({ ...operationOptionsToRequestParameters(options) });
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              id: body["id"],
+              weight: body["weight"],
+              color: body["color"],
+              data: serializeWidgetData0AndWidgetData1Union(body["data"]),
+            },
+          });
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
-      ): Promise<Widget1> {
-        if (result.status !== "200") {
+        result: CustomGet1204Response
+      ): Promise<void> {
+        if (result.status !== "204") {
           throw result.body;
         }
-
-        return {
-          id: result.body["id"],
-          weight: result.body["weight"],
-          color: result.body["color"],
-          data: deserializeWidgetData0AndWidgetData1Union(result.body["data"]),
-        };
+      
+        return;
       }
       
       export async function customGet1(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): Promise<Widget1> {
-        const result = await _customGet1Send(context, options);
+      ): Promise<void> {
+        const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
-      }`
+      }
+      `,
+      true
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of model with different property name between rest api and client", async () => {
+  it("should generate serialize util if there's a special union variant of model with different property name between rest api and client", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -477,7 +492,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -487,31 +502,32 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
-      function isWidgetData1(
-        obj: WidgetData0Output | WidgetData1Output
-      ): obj is WidgetData1Output {
-        return (obj as WidgetData1Output).bar_prop !== undefined;
+      /** type predict function for WidgetData1 from WidgetData0 | WidgetData1 */
+      function isWidgetData1(obj: WidgetData0 | WidgetData1): obj is WidgetData1 {
+        return (obj as WidgetData1).barProp !== undefined;
       }
       
-      
-      /** deserialize function for WidgetData1 */
-      function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
-        return { barProp: obj["bar_prop"] };
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { bar_prop: obj["barProp"] };
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData1Output */
-      export function deserializeWidgetData0AndWidgetData1Union(
-        obj: WidgetData0Output | WidgetData1Output
-      ): WidgetData0 | WidgetData1 {
+      /** serialize function for WidgetData0 | WidgetData1 */
+      export function serializeWidgetData0AndWidgetData1Union(
+        obj: WidgetData0 | WidgetData1
+      ): WidgetData0Rest | WidgetData1Rest {
         if (isWidgetData1(obj)) {
-          return deserializeWidgetData1(obj);
+          return serializeWidgetData1(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -525,42 +541,49 @@ describe("modular special union serialization", () => {
         StreamableMethod,
         operationOptionsToRequestParameters,
       } from "@azure-rest/core-client";
-     
+      
       export function _customGet1Send(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): StreamableMethod<CustomGet1200Response> {
+      ): StreamableMethod<CustomGet1204Response> {
         return context
           .path("/customGet1")
-          .get({ ...operationOptionsToRequestParameters(options) });
+          .get({
+            ...operationOptionsToRequestParameters(options),
+            body: {
+              id: body["id"],
+              weight: body["weight"],
+              color: body["color"],
+              data: serializeWidgetData0AndWidgetData1Union(body["data"]),
+            },
+          });
       }
       
       export async function _customGet1Deserialize(
-        result: CustomGet1200Response
-      ): Promise<Widget1> {
-        if (result.status !== "200") {
+        result: CustomGet1204Response
+      ): Promise<void> {
+        if (result.status !== "204") {
           throw result.body;
         }
-
-        return {
-          id: result.body["id"],
-          weight: result.body["weight"],
-          color: result.body["color"],
-          data: deserializeWidgetData0AndWidgetData1Union(result.body["data"]),
-        };
+      
+        return;
       }
       
       export async function customGet1(
         context: Client,
+        body: Widget1,
         options: CustomGet1Options = { requestOptions: {} }
-      ): Promise<Widget1> {
-        const result = await _customGet1Send(context, options);
+      ): Promise<void> {
+        const result = await _customGet1Send(context, body, options);
         return _customGet1Deserialize(result);
-      }`
+      }
+      `,
+      true
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of model with a property which is model type with byte array property", async () => {
+  it("should generate serialize util if there's a special union variant of model with a property which is model type with byte array property", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -585,7 +608,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -595,46 +618,41 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData2Output } from "../rest/index.js";
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData2 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData2 as WidgetData2Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
-      function isWidgetData2(
-        obj: WidgetData0Output | WidgetData2Output
-      ): obj is WidgetData2Output {
+      /** type predict function for WidgetData2 from WidgetData0 | WidgetData2 */
+      function isWidgetData2(obj: WidgetData0 | WidgetData2): obj is WidgetData2 {
         return (
-          (obj as WidgetData2Output).nestedData !== undefined &&
-          (obj as WidgetData2Output).nestedData.data !== undefined
+          (obj as WidgetData2).nestedData !== undefined &&
+          (obj as WidgetData2).nestedData.data !== undefined
         );
       }
       
-      
-      /** deserialize function for WidgetData2 */
-      function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
+      /** serialize function for WidgetData2 */
+      function serializeWidgetData2(obj: WidgetData2): WidgetData2Rest {
         return {
-          nestedData: {
-            data:
-              typeof obj.nestedData["data"] === "string"
-                ? stringToUint8Array(obj.nestedData["data"], "base64")
-                : obj.nestedData["data"],
-            },
+          nestedData: { data: uint8ArrayToString(obj.nestedData["data"], "base64") },
         };
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData2Output */
-      export function deserializeWidgetData0AndWidgetData2Union(
-        obj: WidgetData0Output | WidgetData2Output
-      ): WidgetData0 | WidgetData2 {
+      /** serialize function for WidgetData0 | WidgetData2 */
+      export function serializeWidgetData0AndWidgetData2Union(
+        obj: WidgetData0 | WidgetData2
+      ): WidgetData0Rest | WidgetData2Rest {
         if (isWidgetData2(obj)) {
-          return deserializeWidgetData2(obj);
+          return serializeWidgetData2(obj);
         }
         return obj;
       }`
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of an array with model element which has datatime properties", async () => {
+  it("should generate serialize util if there's a special union variant of an array with model element which has datatime properties", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -656,7 +674,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -666,44 +684,47 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      /** type predict function for WidgetData1 array from WidgetData0 | WidgetData1[] */
       function isWidgetData1Array(
-        obj: WidgetData0Output | WidgetData1Output[]
-      ): obj is WidgetData1Output[] {
+        obj: WidgetData0 | WidgetData1[]
+      ): obj is WidgetData1[] {
         if (Array.isArray(obj) && obj.length > 0) {
-          return (obj as WidgetData1Output[])[0].start !== undefined;
+          return (obj as WidgetData1[])[0].start !== undefined;
         }
-
+      
         return false;
       }
       
-      
-      /** deserialize function for WidgetData1 array */
-      function deserializeWidgetData1Array(obj: WidgetData1Output[]): WidgetData1[] {
+      /** serialize function for WidgetData1 array */
+      function serializeWidgetData1Array(obj: WidgetData1[]): WidgetData1Rest[] {
         return (obj || []).map((item) => {
           return {
-            start: new Date(item["start"]),
-            end: item["end"] !== undefined ? new Date(item["end"]) : undefined,
+            start: item["start"].toISOString(),
+            end: item["end"]?.toISOString(),
           };
         });
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData1Output[] */
-      export function deserializeWidgetData0AndWidgetData1ArrayUnion(
-        obj: WidgetData0Output | WidgetData1Output[]
-      ): WidgetData0 | WidgetData1[] {
+      /** serialize function for WidgetData0 | WidgetData1[] */
+      export function serializeWidgetData0AndWidgetData1ArrayUnion(
+        obj: WidgetData0 | WidgetData1[]
+      ): WidgetData0Rest | WidgetData1Rest[] {
         if (isWidgetData1Array(obj)) {
-          return deserializeWidgetData1Array(obj);
+          return serializeWidgetData1Array(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of an array with model element which has a byte array property", async () => {
+  it("should generate serialize util if there's a special union variant of an array with model element which has a byte array property", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -724,7 +745,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -734,47 +755,45 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      /** type predict function for WidgetData1 array from WidgetData0 | WidgetData1[] */
       function isWidgetData1Array(
-        obj: WidgetData0Output | WidgetData1Output[]
-      ): obj is WidgetData1Output[] {
+        obj: WidgetData0 | WidgetData1[]
+      ): obj is WidgetData1[] {
         if (Array.isArray(obj) && obj.length > 0) {
-          return (obj as WidgetData1Output[])[0].data !== undefined;
+          return (obj as WidgetData1[])[0].data !== undefined;
         }
-
+      
         return false;
       }
       
-      
-      /** deserialize function for WidgetData1 array */
-      function deserializeWidgetData1Array(obj: WidgetData1Output[]): WidgetData1[] {
+      /** serialize function for WidgetData1 array */
+      function serializeWidgetData1Array(obj: WidgetData1[]): WidgetData1Rest[] {
         return (obj || []).map((item) => {
-          return {
-            data:
-              typeof item["data"] === "string"
-                ? stringToUint8Array(item["data"], "base64")
-                : item["data"],
-          };
+          return { data: uint8ArrayToString(item["data"], "base64") };
         });
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData1Output[] */
-      export function deserializeWidgetData0AndWidgetData1ArrayUnion(
-        obj: WidgetData0Output | WidgetData1Output[]
-      ): WidgetData0 | WidgetData1[] {
+      /** serialize function for WidgetData0 | WidgetData1[] */
+      export function serializeWidgetData0AndWidgetData1ArrayUnion(
+        obj: WidgetData0 | WidgetData1[]
+      ): WidgetData0Rest | WidgetData1Rest[] {
         if (isWidgetData1Array(obj)) {
-          return deserializeWidgetData1Array(obj);
+          return serializeWidgetData1Array(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of an array with model element which has different property name between rest api and client", async () => {
+  it("should generate serialize util if there's a special union variant of an array with model element which has different property name between rest api and client", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -796,7 +815,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -806,40 +825,44 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData1 as WidgetData1Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1Output array from WidgetData0Output | WidgetData1Output[] */
+      /** type predict function for WidgetData1 array from WidgetData0 | WidgetData1[] */
       function isWidgetData1Array(
-        obj: WidgetData0Output | WidgetData1Output[]
-      ): obj is WidgetData1Output[] {
+        obj: WidgetData0 | WidgetData1[]
+      ): obj is WidgetData1[] {
         if (Array.isArray(obj) && obj.length > 0) {
-          return (obj as WidgetData1Output[])[0].bar_prop !== undefined;
+          return (obj as WidgetData1[])[0].barProp !== undefined;
         }
       
         return false;
       }
       
-      /** deserialize function for WidgetData1 array */
-      function deserializeWidgetData1Array(obj: WidgetData1Output[]): WidgetData1[] {
+      /** serialize function for WidgetData1 array */
+      function serializeWidgetData1Array(obj: WidgetData1[]): WidgetData1Rest[] {
         return (obj || []).map((item) => {
-          return { barProp: item["bar_prop"] };
+          return { bar_prop: item["barProp"] };
         });
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData1Output[] */
-      export function deserializeWidgetData0AndWidgetData1ArrayUnion(
-        obj: WidgetData0Output | WidgetData1Output[]
-      ): WidgetData0 | WidgetData1[] {
+      /** serialize function for WidgetData0 | WidgetData1[] */
+      export function serializeWidgetData0AndWidgetData1ArrayUnion(
+        obj: WidgetData0 | WidgetData1[]
+      ): WidgetData0Rest | WidgetData1Rest[] {
         if (isWidgetData1Array(obj)) {
-          return deserializeWidgetData1Array(obj);
+          return serializeWidgetData1Array(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
   });
 
-  it("should generate deserialize util if there's a special union variant of an array with model element which has a property which is model type with byte array property", async () => {
+  it("should generate serialize util if there's a special union variant of an array with model element which has a property which is model type with byte array property", async () => {
     const tspContent = `
     model WidgetData0 {
       fooProp: string;
@@ -864,7 +887,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -874,52 +897,52 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData0Output, WidgetData2Output } from "../rest/index.js";
-      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData2 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData0 as WidgetData0Rest,
+        WidgetData2 as WidgetData2Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData2Output array from WidgetData0Output | WidgetData2Output[] */
+      /** type predict function for WidgetData2 array from WidgetData0 | WidgetData2[] */
       function isWidgetData2Array(
-        obj: WidgetData0Output | WidgetData2Output[]
-      ): obj is WidgetData2Output[] {
+        obj: WidgetData0 | WidgetData2[]
+      ): obj is WidgetData2[] {
         if (Array.isArray(obj) && obj.length > 0) {
           return (
-            (obj as WidgetData2Output[])[0].nestedData !== undefined &&
-            (obj as WidgetData2Output[])[0].nestedData.data !== undefined
+            (obj as WidgetData2[])[0].nestedData !== undefined &&
+            (obj as WidgetData2[])[0].nestedData.data !== undefined
           );
         }
-
+      
         return false;
       }
       
-      
-      /** deserialize function for WidgetData2 array */
-      function deserializeWidgetData2Array(obj: WidgetData2Output[]): WidgetData2[] {
+      /** serialize function for WidgetData2 array */
+      function serializeWidgetData2Array(obj: WidgetData2[]): WidgetData2Rest[] {
         return (obj || []).map((item) => {
           return {
             nestedData: {
-              data:
-                typeof item.nestedData["data"] === "string"
-                  ? stringToUint8Array(item.nestedData["data"], "base64")
-                  : item.nestedData["data"],
-              },
+              data: uint8ArrayToString(item.nestedData["data"], "base64"),
+            },
           };
         });
       }
       
-      /** deserialize function for WidgetData0Output | WidgetData2Output[] */
-      export function deserializeWidgetData0AndWidgetData2ArrayUnion(
-        obj: WidgetData0Output | WidgetData2Output[]
-      ): WidgetData0 | WidgetData2[] {
+      /** serialize function for WidgetData0 | WidgetData2[] */
+      export function serializeWidgetData0AndWidgetData2ArrayUnion(
+        obj: WidgetData0 | WidgetData2[]
+      ): WidgetData0Rest | WidgetData2Rest[] {
         if (isWidgetData2Array(obj)) {
-          return deserializeWidgetData2Array(obj);
+          return serializeWidgetData2Array(obj);
         }
         return obj;
-      }`
+      }
+      `
     );
   });
 
-  it("should generate deserialize util if there're two kinds of special union variants", async () => {
+  it("should generate serialize util if there're two kinds of special union variants", async () => {
     const tspContent = `
     
     model WidgetData1 {
@@ -943,7 +966,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -953,52 +976,48 @@ describe("modular special union serialization", () => {
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
       `
-      import { WidgetData1Output, WidgetData2Output } from "../rest/index.js";
       import { WidgetData1, WidgetData2 } from "../models/models.js";
+      import {
+        WidgetData1 as WidgetData1Rest,
+        WidgetData2 as WidgetData2Rest,
+      } from "../rest/index.js";
       
-      /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output */
-      function isWidgetData1(
-        obj: WidgetData1Output | WidgetData2Output
-      ): obj is WidgetData1Output {
-        return (obj as WidgetData1Output).bar_prop !== undefined;
-      }
-      
-      /** deserialize function for WidgetData1 */
-      function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
-        return { barProp: obj["bar_prop"] };
-      }
-
-      /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
-      function isWidgetData2(
-        obj: WidgetData1Output | WidgetData2Output
-      ): obj is WidgetData2Output {
-        return (obj as WidgetData2Output).start !== undefined;
-      }
-
-      /** deserialize function for WidgetData2 */
-      function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
-        return {
-          start: new Date(obj["start"]),
-          end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
-        };
+      /** type predict function for WidgetData1 from WidgetData1 | WidgetData2 */
+      function isWidgetData1(obj: WidgetData1 | WidgetData2): obj is WidgetData1 {
+        return (obj as WidgetData1).barProp !== undefined;
       }
       
-      /** deserialize function for WidgetData1Output | WidgetData2Output */
-      export function deserializeWidgetData1AndWidgetData2Union(
-        obj: WidgetData1Output | WidgetData2Output
-      ): WidgetData1 | WidgetData2 {
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { bar_prop: obj["barProp"] };
+      }
+      
+      /** type predict function for WidgetData2 from WidgetData1 | WidgetData2 */
+      function isWidgetData2(obj: WidgetData1 | WidgetData2): obj is WidgetData2 {
+        return (obj as WidgetData2).start !== undefined;
+      }
+      
+      /** serialize function for WidgetData2 */
+      function serializeWidgetData2(obj: WidgetData2): WidgetData2Rest {
+        return { start: obj["start"].toISOString(), end: obj["end"]?.toISOString() };
+      }
+      
+      /** serialize function for WidgetData1 | WidgetData2 */
+      export function serializeWidgetData1AndWidgetData2Union(
+        obj: WidgetData1 | WidgetData2
+      ): WidgetData1Rest | WidgetData2Rest {
         if (isWidgetData1(obj)) {
-          return deserializeWidgetData1(obj);
+          return serializeWidgetData1(obj);
         }
         if (isWidgetData2(obj)) {
-          return deserializeWidgetData2(obj);
+          return serializeWidgetData2(obj);
         }
         return obj;
       }`
     );
   });
 
-  it("should generate deserialize util if there're three kinds special union variants", async () => {
+  it("should generate serialize util if there're three kinds special union variants", async () => {
     const tspContent = `
     
     model WidgetData1 {
@@ -1030,7 +1049,7 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
 
@@ -1039,78 +1058,72 @@ describe("modular special union serialization", () => {
     assert.ok(operationUtil);
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
-      ` import {
-          WidgetData1Output,
-          WidgetData2Output,
-          WidgetData4Output,
-        } from "../rest/index.js";
-        import { stringToUint8Array } from "@azure/core-util";
-        import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
-        
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData1(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData1Output {
-          return (obj as WidgetData1Output).bar_prop !== undefined;
+      `
+      import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData1 as WidgetData1Rest,
+        WidgetData2 as WidgetData2Rest,
+        WidgetData4 as WidgetData4Rest,
+      } from "../rest/index.js";
+      
+      /** type predict function for WidgetData1 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData1(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData1 {
+        return (obj as WidgetData1).barProp !== undefined;
+      }
+      
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { bar_prop: obj["barProp"] };
+      }
+      
+      /** type predict function for WidgetData2 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData2(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData2 {
+        return (obj as WidgetData2).start !== undefined;
+      }
+      
+      /** serialize function for WidgetData2 */
+      function serializeWidgetData2(obj: WidgetData2): WidgetData2Rest {
+        return { start: obj["start"].toISOString(), end: obj["end"]?.toISOString() };
+      }
+      
+      /** type predict function for WidgetData4 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData4(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData4 {
+        return (
+          (obj as WidgetData4).nestedData !== undefined &&
+          (obj as WidgetData4).nestedData.data !== undefined
+        );
+      }
+      
+      /** serialize function for WidgetData4 */
+      function serializeWidgetData4(obj: WidgetData4): WidgetData4Rest {
+        return {
+          nestedData: { data: uint8ArrayToString(obj.nestedData["data"], "base64") },
+        };
+      }
+      
+      /** serialize function for WidgetData1 | WidgetData2 | WidgetData4 */
+      export function serializeWidgetData1AndWidgetData2AndWidgetData4Union(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): WidgetData1Rest | WidgetData2Rest | WidgetData4Rest {
+        if (isWidgetData1(obj)) {
+          return serializeWidgetData1(obj);
         }
-        
-        /** deserialize function for WidgetData1 */
-        function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
-          return { barProp: obj["bar_prop"] };
+        if (isWidgetData2(obj)) {
+          return serializeWidgetData2(obj);
         }
-        
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData2(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData2Output {
-          return (obj as WidgetData2Output).start !== undefined;
+        if (isWidgetData4(obj)) {
+          return serializeWidgetData4(obj);
         }
-        
-        /** deserialize function for WidgetData2 */
-        function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
-          return {
-            start: new Date(obj["start"]),
-            end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
-          };
-        }
-        
-        /** type predict function for WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData4(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData4Output {
-          return (
-            (obj as WidgetData4Output).nestedData !== undefined &&
-            (obj as WidgetData4Output).nestedData.data !== undefined
-          );
-        }
-        
-        /** deserialize function for WidgetData4 */
-        function deserializeWidgetData4(obj: WidgetData4Output): WidgetData4 {
-          return {
-            nestedData: {
-              data:
-                typeof obj.nestedData["data"] === "string"
-                  ? stringToUint8Array(obj.nestedData["data"], "base64")
-                  : obj.nestedData["data"],
-            },
-          };
-        }
-        
-        /** deserialize function for WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        export function deserializeWidgetData1AndWidgetData2AndWidgetData4Union(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): WidgetData1 | WidgetData2 | WidgetData4 {
-          if (isWidgetData1(obj)) {
-            return deserializeWidgetData1(obj);
-          }
-          if (isWidgetData2(obj)) {
-            return deserializeWidgetData2(obj);
-          }
-          if (isWidgetData4(obj)) {
-            return deserializeWidgetData4(obj);
-          }
-          return obj;
-        }`
+        return obj;
+      }
+      `
     );
   });
 
@@ -1150,8 +1163,8 @@ describe("modular special union serialization", () => {
     }
 
     interface WidgetService {
-      @get @route("customGet1") customGet1(): Widget1;
-      @get @route("customGet2") customGet2(): Widget2;
+      @get @route("customGet1") customGet1(@body body: Widget1): void;
+      @get @route("customGet2") customGet2(@body body: Widget2): void;
     }
     `;
 
@@ -1160,108 +1173,97 @@ describe("modular special union serialization", () => {
     assert.ok(operationUtil);
     assertEqualContent(
       operationUtil?.[0]?.getFullText()!,
-      ` import {
-          WidgetData1Output,
-          WidgetData2Output,
-          WidgetData4Output,
-        } from "../rest/index.js";
-        import { stringToUint8Array } from "@azure/core-util";
-        import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
-        
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData1(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData1Output;
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output */
-        function isWidgetData1(
-          obj: WidgetData1Output | WidgetData2Output
-        ): obj is WidgetData1Output;
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData1(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData1Output {
-          return (obj as WidgetData1Output).bar_prop !== undefined;
+      `
+      import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
+      import { uint8ArrayToString } from "@azure/core-util";
+      import {
+        WidgetData1 as WidgetData1Rest,
+        WidgetData2 as WidgetData2Rest,
+        WidgetData4 as WidgetData4Rest,
+      } from "../rest/index.js";
+      
+      /** type predict function for WidgetData1 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData1(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData1;
+      /** type predict function for WidgetData1 from WidgetData1 | WidgetData2 */
+      function isWidgetData1(obj: WidgetData1 | WidgetData2): obj is WidgetData1;
+      /** type predict function for WidgetData1 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData1(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData1 {
+        return (obj as WidgetData1).barProp !== undefined;
+      }
+      
+      /** serialize function for WidgetData1 */
+      function serializeWidgetData1(obj: WidgetData1): WidgetData1Rest {
+        return { bar_prop: obj["barProp"] };
+      }
+      
+      /** type predict function for WidgetData2 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData2(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData2;
+      /** type predict function for WidgetData2 from WidgetData1 | WidgetData2 */
+      function isWidgetData2(obj: WidgetData1 | WidgetData2): obj is WidgetData2;
+      /** type predict function for WidgetData2 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData2(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData2 {
+        return (obj as WidgetData2).start !== undefined;
+      }
+      
+      /** serialize function for WidgetData2 */
+      function serializeWidgetData2(obj: WidgetData2): WidgetData2Rest {
+        return { start: obj["start"].toISOString(), end: obj["end"]?.toISOString() };
+      }
+      
+      /** type predict function for WidgetData4 from WidgetData1 | WidgetData2 | WidgetData4 */
+      function isWidgetData4(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): obj is WidgetData4 {
+        return (
+          (obj as WidgetData4).nestedData !== undefined &&
+          (obj as WidgetData4).nestedData.data !== undefined
+        );
+      }
+      
+      /** serialize function for WidgetData4 */
+      function serializeWidgetData4(obj: WidgetData4): WidgetData4Rest {
+        return {
+          nestedData: { data: uint8ArrayToString(obj.nestedData["data"], "base64") },
+        };
+      }
+      
+      /** serialize function for WidgetData1 | WidgetData2 | WidgetData4 */
+      export function serializeWidgetData1AndWidgetData2AndWidgetData4Union(
+        obj: WidgetData1 | WidgetData2 | WidgetData4
+      ): WidgetData1Rest | WidgetData2Rest | WidgetData4Rest {
+        if (isWidgetData1(obj)) {
+          return serializeWidgetData1(obj);
         }
-        
-        /** deserialize function for WidgetData1 */
-        function deserializeWidgetData1(obj: WidgetData1Output): WidgetData1 {
-          return { barProp: obj["bar_prop"] };
+        if (isWidgetData2(obj)) {
+          return serializeWidgetData2(obj);
         }
-        
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData2(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData2Output;
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
-        function isWidgetData2(
-          obj: WidgetData1Output | WidgetData2Output
-        ): obj is WidgetData2Output;
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData2(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData2Output {
-          return (obj as WidgetData2Output).start !== undefined;
+        if (isWidgetData4(obj)) {
+          return serializeWidgetData4(obj);
         }
-        
-        /** deserialize function for WidgetData2 */
-        function deserializeWidgetData2(obj: WidgetData2Output): WidgetData2 {
-          return {
-            start: new Date(obj["start"]),
-            end: obj["end"] !== undefined ? new Date(obj["end"]) : undefined,
-          };
+        return obj;
+      }
+      
+      /** serialize function for WidgetData1 | WidgetData2 */
+      export function serializeWidgetData1AndWidgetData2Union(
+        obj: WidgetData1 | WidgetData2
+      ): WidgetData1Rest | WidgetData2Rest {
+        if (isWidgetData1(obj)) {
+          return serializeWidgetData1(obj);
         }
-        
-        /** type predict function for WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        function isWidgetData4(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): obj is WidgetData4Output {
-          return (
-            (obj as WidgetData4Output).nestedData !== undefined &&
-            (obj as WidgetData4Output).nestedData.data !== undefined
-          );
+        if (isWidgetData2(obj)) {
+          return serializeWidgetData2(obj);
         }
-        
-        /** deserialize function for WidgetData4 */
-        function deserializeWidgetData4(obj: WidgetData4Output): WidgetData4 {
-          return {
-            nestedData: {
-              data:
-                typeof obj.nestedData["data"] === "string"
-                  ? stringToUint8Array(obj.nestedData["data"], "base64")
-                  : obj.nestedData["data"],
-            },
-          };
-        }
-        
-        /** deserialize function for WidgetData1Output | WidgetData2Output | WidgetData4Output */
-        export function deserializeWidgetData1AndWidgetData2AndWidgetData4Union(
-          obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
-        ): WidgetData1 | WidgetData2 | WidgetData4 {
-          if (isWidgetData1(obj)) {
-            return deserializeWidgetData1(obj);
-          }
-          if (isWidgetData2(obj)) {
-            return deserializeWidgetData2(obj);
-          }
-          if (isWidgetData4(obj)) {
-            return deserializeWidgetData4(obj);
-          }
-          return obj;
-        }
-        
-        /** deserialize function for WidgetData1Output | WidgetData2Output */
-        export function deserializeWidgetData1AndWidgetData2Union(
-          obj: WidgetData1Output | WidgetData2Output
-        ): WidgetData1 | WidgetData2 {
-          if (isWidgetData1(obj)) {
-            return deserializeWidgetData1(obj);
-          }
-          if (isWidgetData2(obj)) {
-            return deserializeWidgetData2(obj);
-          }
-          return obj;
-        } 
-        `
+        return obj;
+      }
+      `
     );
   });
 
@@ -1531,7 +1533,7 @@ describe("modular special union deserialization", () => {
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
+      /** type predict function for WidgetData1Output from WidgetData0Output | WidgetData1Output */
       function isWidgetData1(
         obj: WidgetData0Output | WidgetData1Output
       ): obj is WidgetData1Output {
@@ -1639,7 +1641,7 @@ describe("modular special union deserialization", () => {
       import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
+      /** type predict function for WidgetData1Output from WidgetData0Output | WidgetData1Output */
       function isWidgetData1(
         obj: WidgetData0Output | WidgetData1Output
       ): obj is WidgetData1Output {
@@ -1749,7 +1751,7 @@ describe("modular special union deserialization", () => {
       import { WidgetData0Output, WidgetData1Output } from "../rest/index.js";
       import { WidgetData0, WidgetData1 } from "../models/models.js";
       
-      /** type predict function for WidgetData1 from WidgetData0Output | WidgetData1Output */
+      /** type predict function for WidgetData1Output from WidgetData0Output | WidgetData1Output */
       function isWidgetData1(
         obj: WidgetData0Output | WidgetData1Output
       ): obj is WidgetData1Output {
@@ -1858,7 +1860,7 @@ describe("modular special union deserialization", () => {
       import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0, WidgetData2 } from "../models/models.js";
       
-      /** type predict function for WidgetData2 from WidgetData0Output | WidgetData2Output */
+      /** type predict function for WidgetData2Output from WidgetData0Output | WidgetData2Output */
       function isWidgetData2(
         obj: WidgetData0Output | WidgetData2Output
       ): obj is WidgetData2Output {
@@ -2215,7 +2217,7 @@ describe("modular special union deserialization", () => {
       import { WidgetData1Output, WidgetData2Output } from "../rest/index.js";
       import { WidgetData1, WidgetData2 } from "../models/models.js";
       
-      /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output */
+      /** type predict function for WidgetData1Output from WidgetData1Output | WidgetData2Output */
       function isWidgetData1(
         obj: WidgetData1Output | WidgetData2Output
       ): obj is WidgetData1Output {
@@ -2227,7 +2229,7 @@ describe("modular special union deserialization", () => {
         return { barProp: obj["bar_prop"] };
       }
 
-      /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
+      /** type predict function for WidgetData2Output from WidgetData1Output | WidgetData2Output */
       function isWidgetData2(
         obj: WidgetData1Output | WidgetData2Output
       ): obj is WidgetData2Output {
@@ -2306,7 +2308,7 @@ describe("modular special union deserialization", () => {
         import { stringToUint8Array } from "@azure/core-util";
         import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
         
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData1Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData1Output {
@@ -2318,7 +2320,7 @@ describe("modular special union deserialization", () => {
           return { barProp: obj["bar_prop"] };
         }
         
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData2Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData2Output {
@@ -2333,7 +2335,7 @@ describe("modular special union deserialization", () => {
           };
         }
         
-        /** type predict function for WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData4Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData4(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData4Output {
@@ -2427,15 +2429,15 @@ describe("modular special union deserialization", () => {
         import { stringToUint8Array } from "@azure/core-util";
         import { WidgetData1, WidgetData2, WidgetData4 } from "../models/models.js";
         
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData1Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData1Output;
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output */
+        /** type predict function for WidgetData1Output from WidgetData1Output | WidgetData2Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output
         ): obj is WidgetData1Output;
-        /** type predict function for WidgetData1 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData1Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData1(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData1Output {
@@ -2447,15 +2449,15 @@ describe("modular special union deserialization", () => {
           return { barProp: obj["bar_prop"] };
         }
         
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData2Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData2Output;
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output */
+        /** type predict function for WidgetData2Output from WidgetData1Output | WidgetData2Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output
         ): obj is WidgetData2Output;
-        /** type predict function for WidgetData2 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData2Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData2(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData2Output {
@@ -2470,7 +2472,7 @@ describe("modular special union deserialization", () => {
           };
         }
         
-        /** type predict function for WidgetData4 from WidgetData1Output | WidgetData2Output | WidgetData4Output */
+        /** type predict function for WidgetData4Output from WidgetData1Output | WidgetData2Output | WidgetData4Output */
         function isWidgetData4(
           obj: WidgetData1Output | WidgetData2Output | WidgetData4Output
         ): obj is WidgetData4Output {

@@ -2,7 +2,8 @@ import { toPascalCase } from "../utils/casingUtils.js";
 import { importSettings } from "../utils/importUtils.js";
 import {
   getResponseMapping,
-  getRequestModelMapping
+  getRequestModelMapping,
+  serializeRequestValue
 } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Property, Type } from "./modularCodeModel.js";
 import {
@@ -435,11 +436,17 @@ function getTypeSerializeFunction(
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.type}`],
       name: `${serializeType}${toPascalCase("datetime")}`,
-      parameters: [{ name: "obj", type: "string" }],
-      returnType: "Date"
+      parameters: [{ name: "obj", type: "Date" }],
+      returnType: "string"
     };
     statements.push(
-      `return ${getRequestModelMapping(type, "obj", importSet, runtimeImports)}`
+      `return ${serializeRequestValue(
+        type,
+        "obj",
+        importSet,
+        runtimeImports,
+        true
+      )}`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
@@ -462,7 +469,13 @@ function getTypeSerializeFunction(
       returnType: "Uint8Array"
     };
     statements.push(
-      `return ${getRequestModelMapping(type, "obj", importSet, runtimeImports)}`
+      `return ${serializeRequestValue(
+        type,
+        "obj",
+        importSet,
+        runtimeImports,
+        true
+      )}`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
