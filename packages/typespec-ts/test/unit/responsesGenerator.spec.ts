@@ -286,6 +286,76 @@ describe("Responses.ts", () => {
       `
       );
     });
+
+    it("mixed custom error response and core error response", async () => {
+      const tsp = `
+      #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for testing"
+      #suppress "@azure-tools/typespec-azure-core/use-standard-names" "for testing"
+      @doc("testing")
+      @route("/foo")
+      @get op foo(): Azure.Core.Foundations.ErrorResponse;
+
+      model Error {
+        type: string;
+        message: string;
+        param: string | null;
+        code: string | null;
+      }
+      
+      @error
+      model ErrorResponse {
+        error: Error;
+      }
+
+      #suppress "@azure-tools/typespec-azure-core/use-standard-operations" "for testing"
+      #suppress "@azure-tools/typespec-azure-core/use-standard-names" "for testing"
+      @doc("testing")
+      @route("/bar")
+      @get op bar(): ErrorResponse;
+      `;
+      const parameters = await emitResponsesFromTypeSpec(tsp, true);
+      const models = await emitModelsFromTypeSpec(tsp, true);
+      assert.ok(parameters);
+      assertEqualContent(
+        models?.outputModelFile?.content!,
+        `
+      export interface ErrorResponseOutput {
+        error: ErrorModelOutput;
+      }
+      
+      export interface ErrorModelOutput {
+        type: string;
+        message: string;
+        param: string | null;
+        code: string | null;
+      } `
+      );
+      // console.log(parameters?.content);
+      assertEqualContent(
+        parameters?.content!,
+        `
+        import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+        import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
+        import { ErrorResponseOutput } from "./outputModels";
+
+        export interface FooDefaultHeaders {
+            /** String error code indicating what went wrong. */
+            "x-ms-error-code"?: string;
+        }
+
+        export interface FooDefaultResponse extends HttpResponse {
+            status: string;
+            body: ErrorResponse;
+            headers: RawHttpHeaders & FooDefaultHeaders;
+        }
+
+        export interface BarDefaultResponse extends HttpResponse {
+            status: string;
+            body: ErrorResponseOutput;
+        }
+      `
+      );
+    });
   });
 
   describe("headers generation", () => {

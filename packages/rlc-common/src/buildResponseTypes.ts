@@ -9,9 +9,11 @@ import {
   StructureKind
 } from "ts-morph";
 import {
+  OperationResponse,
   ResponseHeaderSchema,
   ResponseMetadata,
-  RLCModel
+  RLCModel,
+  Schema
 } from "./interfaces.js";
 import * as path from "path";
 import {
@@ -21,12 +23,10 @@ import {
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
 
-let hasErrorResponse = false;
 export function buildResponseTypes(model: RLCModel) {
   const project = new Project();
   const srcPath = model.srcPath;
   const filePath = path.join(srcPath, `responses.ts`);
-  hasErrorResponse = false;
   const responsesFile = project.createSourceFile(filePath, undefined, {
     overwrite: true
   });
@@ -94,7 +94,7 @@ export function buildResponseTypes(model: RLCModel) {
     ]);
   }
   const namedImports = ["HttpResponse"];
-  if (hasErrorResponse) {
+  if (isCoreErrorResponse(model.responses)) {
     namedImports.push("ErrorResponse");
   }
   responsesFile.addImportDeclarations([
@@ -110,9 +110,7 @@ export function buildResponseTypes(model: RLCModel) {
   if ((model.importInfo.internalImports.response?.importsSet?.size ?? 0) > 0) {
     const modelNamedImports = Array.from(
       model.importInfo.internalImports.response!.importsSet!
-    ).filter((modelName) => {
-      return !(modelName === "ErrorResponseOutput" && hasErrorResponse);
-    });
+    );
     responsesFile.addImportDeclarations([
       {
         namedImports: modelNamedImports,
@@ -173,12 +171,8 @@ function getResponseInterfaceProperties(
   if (response.body) {
     const description = response.body.description;
     let type = response.body.type;
-    if (
-      response.body.type === "ErrorResponseOutput" &&
-      response.body.fromCore
-    ) {
+    if (isErrorResponseCoreModel(response.body)) {
       type = "ErrorResponse";
-      hasErrorResponse = true;
     }
     responseProperties.push({
       name: "body",
@@ -197,4 +191,24 @@ function getResponseInterfaceProperties(
   }
 
   return responseProperties;
+}
+
+function isCoreErrorResponse(responses?: OperationResponse[]) {
+  responses = responses ?? [];
+  for (const response of responses) {
+    for (const resp of response.responses) {
+      if (isErrorResponseCoreModel(resp.body)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function isErrorResponseCoreModel(schema?: Schema) {
+  if (!schema) {
+    return false;
+  }
+
+  return Boolean(schema.fromCore) && schema.type === "ErrorResponseOutput";
 }
