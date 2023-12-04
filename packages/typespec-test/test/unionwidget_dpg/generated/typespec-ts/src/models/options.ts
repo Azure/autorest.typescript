@@ -90,6 +90,21 @@ export interface WidgetServiceCustomGetResponse27Options
 export interface WidgetServiceCustomGetResponse28Options
   extends OperationOptions {}
 
+export interface WidgetServiceCustomGetResponse29Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetResponse30Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetResponse31Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetResponse32Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetResponse33Options
+  extends OperationOptions {}
+
 export interface WidgetServiceCustomGetRequestOptions
   extends OperationOptions {}
 
@@ -175,4 +190,19 @@ export interface WidgetServiceCustomGetRequest27Options
   extends OperationOptions {}
 
 export interface WidgetServiceCustomGetRequest28Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetRequest29Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetRequest30Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetRequest31Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetRequest32Options
+  extends OperationOptions {}
+
+export interface WidgetServiceCustomGetRequest33Options
   extends OperationOptions {}

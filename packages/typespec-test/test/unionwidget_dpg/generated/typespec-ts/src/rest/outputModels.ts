@@ -147,3 +147,23 @@ export interface Widget27Output extends WidgetOutput {
 export interface Widget28Output extends WidgetOutput {
   data: WidgetData0Output | string;
 }
+
+export interface Widget29Output extends WidgetOutput {
+  data: string | string;
+}
+
+export interface Widget30Output extends WidgetOutput {
+  data: string | string;
+}
+
+export interface Widget31Output extends WidgetOutput {
+  data: string | string;
+}
+
+export interface Widget32Output extends WidgetOutput {
+  data: WidgetData0Output | Record<string, string>;
+}
+
+export interface Widget33Output extends WidgetOutput {
+  data: WidgetData2Output | Record<string, string>;
+}

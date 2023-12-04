@@ -31,6 +31,11 @@ import {
   CustomGetResponse26Parameters,
   CustomGetResponse27Parameters,
   CustomGetResponse28Parameters,
+  CustomGetResponse29Parameters,
+  CustomGetResponse30Parameters,
+  CustomGetResponse31Parameters,
+  CustomGetResponse32Parameters,
+  CustomGetResponse33Parameters,
   CustomGetRequestParameters,
   CustomGetRequest1Parameters,
   CustomGetRequest2Parameters,
@@ -60,6 +65,11 @@ import {
   CustomGetRequest26Parameters,
   CustomGetRequest27Parameters,
   CustomGetRequest28Parameters,
+  CustomGetRequest29Parameters,
+  CustomGetRequest30Parameters,
+  CustomGetRequest31Parameters,
+  CustomGetRequest32Parameters,
+  CustomGetRequest33Parameters,
 } from "./parameters.js";
 import {
   CustomGetResponse200Response,
@@ -91,6 +101,11 @@ import {
   CustomGetResponse26200Response,
   CustomGetResponse27200Response,
   CustomGetResponse28200Response,
+  CustomGetResponse29200Response,
+  CustomGetResponse30200Response,
+  CustomGetResponse31200Response,
+  CustomGetResponse32200Response,
+  CustomGetResponse33200Response,
   CustomGetRequest204Response,
   CustomGetRequest1204Response,
   CustomGetRequest2204Response,
@@ -120,6 +135,11 @@ import {
   CustomGetRequest26204Response,
   CustomGetRequest27204Response,
   CustomGetRequest28204Response,
+  CustomGetRequest29204Response,
+  CustomGetRequest30204Response,
+  CustomGetRequest31204Response,
+  CustomGetRequest32204Response,
+  CustomGetRequest33204Response,
 } from "./responses.js";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -297,6 +317,36 @@ export interface CustomGetResponse28 {
   ): StreamableMethod<CustomGetResponse28200Response>;
 }
 
+export interface CustomGetResponse29 {
+  get(
+    options?: CustomGetResponse29Parameters
+  ): StreamableMethod<CustomGetResponse29200Response>;
+}
+
+export interface CustomGetResponse30 {
+  get(
+    options?: CustomGetResponse30Parameters
+  ): StreamableMethod<CustomGetResponse30200Response>;
+}
+
+export interface CustomGetResponse31 {
+  get(
+    options?: CustomGetResponse31Parameters
+  ): StreamableMethod<CustomGetResponse31200Response>;
+}
+
+export interface CustomGetResponse32 {
+  get(
+    options?: CustomGetResponse32Parameters
+  ): StreamableMethod<CustomGetResponse32200Response>;
+}
+
+export interface CustomGetResponse33 {
+  get(
+    options?: CustomGetResponse33Parameters
+  ): StreamableMethod<CustomGetResponse33200Response>;
+}
+
 export interface CustomGetRequest {
   get(
     options: CustomGetRequestParameters
@@ -471,6 +521,36 @@ export interface CustomGetRequest28 {
   ): StreamableMethod<CustomGetRequest28204Response>;
 }
 
+export interface CustomGetRequest29 {
+  get(
+    options: CustomGetRequest29Parameters
+  ): StreamableMethod<CustomGetRequest29204Response>;
+}
+
+export interface CustomGetRequest30 {
+  get(
+    options: CustomGetRequest30Parameters
+  ): StreamableMethod<CustomGetRequest30204Response>;
+}
+
+export interface CustomGetRequest31 {
+  get(
+    options: CustomGetRequest31Parameters
+  ): StreamableMethod<CustomGetRequest31204Response>;
+}
+
+export interface CustomGetRequest32 {
+  get(
+    options: CustomGetRequest32Parameters
+  ): StreamableMethod<CustomGetRequest32204Response>;
+}
+
+export interface CustomGetRequest33 {
+  get(
+    options: CustomGetRequest33Parameters
+  ): StreamableMethod<CustomGetRequest33204Response>;
+}
+
 export interface Routes {
   /** Resource for '/customGet/response' has methods for the following verbs: get */
   (path: "/customGet/response"): CustomGetResponse;
@@ -530,6 +610,16 @@ export interface Routes {
   (path: "/customGet27/response"): CustomGetResponse27;
   /** Resource for '/customGet28/response' has methods for the following verbs: get */
   (path: "/customGet28/response"): CustomGetResponse28;
+  /** Resource for '/customGet29/response' has methods for the following verbs: get */
+  (path: "/customGet29/response"): CustomGetResponse29;
+  /** Resource for '/customGet30/response' has methods for the following verbs: get */
+  (path: "/customGet30/response"): CustomGetResponse30;
+  /** Resource for '/customGet31/response' has methods for the following verbs: get */
+  (path: "/customGet31/response"): CustomGetResponse31;
+  /** Resource for '/customGet32/response' has methods for the following verbs: get */
+  (path: "/customGet32/response"): CustomGetResponse32;
+  /** Resource for '/customGet33/response' has methods for the following verbs: get */
+  (path: "/customGet33/response"): CustomGetResponse33;
   /** Resource for '/customGet/request' has methods for the following verbs: get */
   (path: "/customGet/request"): CustomGetRequest;
   /** Resource for '/customGet1/request' has methods for the following verbs: get */
@@ -588,6 +678,16 @@ export interface Routes {
   (path: "/customGet27/request"): CustomGetRequest27;
   /** Resource for '/customGet28/request' has methods for the following verbs: get */
   (path: "/customGet28/request"): CustomGetRequest28;
+  /** Resource for '/customGet29/request' has methods for the following verbs: get */
+  (path: "/customGet29/request"): CustomGetRequest29;
+  /** Resource for '/customGet30/request' has methods for the following verbs: get */
+  (path: "/customGet30/request"): CustomGetRequest30;
+  /** Resource for '/customGet31/request' has methods for the following verbs: get */
+  (path: "/customGet31/request"): CustomGetRequest31;
+  /** Resource for '/customGet32/request' has methods for the following verbs: get */
+  (path: "/customGet32/request"): CustomGetRequest32;
+  /** Resource for '/customGet33/request' has methods for the following verbs: get */
+  (path: "/customGet33/request"): CustomGetRequest33;
 }
 
 export type DemoServiceContext = Client & {

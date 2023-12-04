@@ -32,6 +32,11 @@ import {
   Widget26,
   Widget27,
   Widget28,
+  Widget29,
+  Widget30,
+  Widget31,
+  Widget32,
+  Widget33,
 } from "../../models/models.js";
 import {
   customGetResponse,
@@ -63,6 +68,11 @@ import {
   customGetResponse26,
   customGetResponse27,
   customGetResponse28,
+  customGetResponse29,
+  customGetResponse30,
+  customGetResponse31,
+  customGetResponse32,
+  customGetResponse33,
   customGetRequest,
   customGetRequest1,
   customGetRequest2,
@@ -92,6 +102,11 @@ import {
   customGetRequest26,
   customGetRequest27,
   customGetRequest28,
+  customGetRequest29,
+  customGetRequest30,
+  customGetRequest31,
+  customGetRequest32,
+  customGetRequest33,
 } from "../../api/widgetService/index.js";
 import {
   WidgetServiceCustomGetResponseOptions,
@@ -123,6 +138,11 @@ import {
   WidgetServiceCustomGetResponse26Options,
   WidgetServiceCustomGetResponse27Options,
   WidgetServiceCustomGetResponse28Options,
+  WidgetServiceCustomGetResponse29Options,
+  WidgetServiceCustomGetResponse30Options,
+  WidgetServiceCustomGetResponse31Options,
+  WidgetServiceCustomGetResponse32Options,
+  WidgetServiceCustomGetResponse33Options,
   WidgetServiceCustomGetRequestOptions,
   WidgetServiceCustomGetRequest1Options,
   WidgetServiceCustomGetRequest2Options,
@@ -152,6 +172,11 @@ import {
   WidgetServiceCustomGetRequest26Options,
   WidgetServiceCustomGetRequest27Options,
   WidgetServiceCustomGetRequest28Options,
+  WidgetServiceCustomGetRequest29Options,
+  WidgetServiceCustomGetRequest30Options,
+  WidgetServiceCustomGetRequest31Options,
+  WidgetServiceCustomGetRequest32Options,
+  WidgetServiceCustomGetRequest33Options,
 } from "../../models/options.js";
 
 export interface WidgetServiceOperations {
@@ -242,6 +267,21 @@ export interface WidgetServiceOperations {
   customGetResponse28: (
     options?: WidgetServiceCustomGetResponse28Options
   ) => Promise<Widget28>;
+  customGetResponse29: (
+    options?: WidgetServiceCustomGetResponse29Options
+  ) => Promise<Widget29>;
+  customGetResponse30: (
+    options?: WidgetServiceCustomGetResponse30Options
+  ) => Promise<Widget30>;
+  customGetResponse31: (
+    options?: WidgetServiceCustomGetResponse31Options
+  ) => Promise<Widget31>;
+  customGetResponse32: (
+    options?: WidgetServiceCustomGetResponse32Options
+  ) => Promise<Widget32>;
+  customGetResponse33: (
+    options?: WidgetServiceCustomGetResponse33Options
+  ) => Promise<Widget33>;
   customGetRequest: (
     body: Widget,
     options?: WidgetServiceCustomGetRequestOptions
@@ -358,6 +398,26 @@ export interface WidgetServiceOperations {
     body: Widget28,
     options?: WidgetServiceCustomGetRequest28Options
   ) => Promise<void>;
+  customGetRequest29: (
+    body: Widget29,
+    options?: WidgetServiceCustomGetRequest29Options
+  ) => Promise<void>;
+  customGetRequest30: (
+    body: Widget30,
+    options?: WidgetServiceCustomGetRequest30Options
+  ) => Promise<void>;
+  customGetRequest31: (
+    body: Widget31,
+    options?: WidgetServiceCustomGetRequest31Options
+  ) => Promise<void>;
+  customGetRequest32: (
+    body: Widget32,
+    options?: WidgetServiceCustomGetRequest32Options
+  ) => Promise<void>;
+  customGetRequest33: (
+    body: Widget33,
+    options?: WidgetServiceCustomGetRequest33Options
+  ) => Promise<void>;
 }
 
 export function getWidgetService(context: DemoServiceContext) {
@@ -420,6 +480,16 @@ export function getWidgetService(context: DemoServiceContext) {
       customGetResponse27(context, options),
     customGetResponse28: (options?: WidgetServiceCustomGetResponse28Options) =>
       customGetResponse28(context, options),
+    customGetResponse29: (options?: WidgetServiceCustomGetResponse29Options) =>
+      customGetResponse29(context, options),
+    customGetResponse30: (options?: WidgetServiceCustomGetResponse30Options) =>
+      customGetResponse30(context, options),
+    customGetResponse31: (options?: WidgetServiceCustomGetResponse31Options) =>
+      customGetResponse31(context, options),
+    customGetResponse32: (options?: WidgetServiceCustomGetResponse32Options) =>
+      customGetResponse32(context, options),
+    customGetResponse33: (options?: WidgetServiceCustomGetResponse33Options) =>
+      customGetResponse33(context, options),
     customGetRequest: (
       body: Widget,
       options?: WidgetServiceCustomGetRequestOptions
@@ -536,6 +606,26 @@ export function getWidgetService(context: DemoServiceContext) {
       body: Widget28,
       options?: WidgetServiceCustomGetRequest28Options
     ) => customGetRequest28(context, body, options),
+    customGetRequest29: (
+      body: Widget29,
+      options?: WidgetServiceCustomGetRequest29Options
+    ) => customGetRequest29(context, body, options),
+    customGetRequest30: (
+      body: Widget30,
+      options?: WidgetServiceCustomGetRequest30Options
+    ) => customGetRequest30(context, body, options),
+    customGetRequest31: (
+      body: Widget31,
+      options?: WidgetServiceCustomGetRequest31Options
+    ) => customGetRequest31(context, body, options),
+    customGetRequest32: (
+      body: Widget32,
+      options?: WidgetServiceCustomGetRequest32Options
+    ) => customGetRequest32(context, body, options),
+    customGetRequest33: (
+      body: Widget33,
+      options?: WidgetServiceCustomGetRequest33Options
+    ) => customGetRequest33(context, body, options),
   };
 }
 

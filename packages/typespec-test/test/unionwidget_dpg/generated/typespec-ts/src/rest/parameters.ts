@@ -32,6 +32,11 @@ import {
   Widget26,
   Widget27,
   Widget28,
+  Widget29,
+  Widget30,
+  Widget31,
+  Widget32,
+  Widget33,
 } from "./models.js";
 
 export type CustomGetResponseParameters = RequestParameters;
@@ -63,6 +68,11 @@ export type CustomGetResponse25Parameters = RequestParameters;
 export type CustomGetResponse26Parameters = RequestParameters;
 export type CustomGetResponse27Parameters = RequestParameters;
 export type CustomGetResponse28Parameters = RequestParameters;
+export type CustomGetResponse29Parameters = RequestParameters;
+export type CustomGetResponse30Parameters = RequestParameters;
+export type CustomGetResponse31Parameters = RequestParameters;
+export type CustomGetResponse32Parameters = RequestParameters;
+export type CustomGetResponse33Parameters = RequestParameters;
 
 export interface CustomGetRequestBodyParam {
   body: Widget;
@@ -265,4 +275,39 @@ export interface CustomGetRequest28BodyParam {
 }
 
 export type CustomGetRequest28Parameters = CustomGetRequest28BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest29BodyParam {
+  body: Widget29;
+}
+
+export type CustomGetRequest29Parameters = CustomGetRequest29BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest30BodyParam {
+  body: Widget30;
+}
+
+export type CustomGetRequest30Parameters = CustomGetRequest30BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest31BodyParam {
+  body: Widget31;
+}
+
+export type CustomGetRequest31Parameters = CustomGetRequest31BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest32BodyParam {
+  body: Widget32;
+}
+
+export type CustomGetRequest32Parameters = CustomGetRequest32BodyParam &
+  RequestParameters;
+
+export interface CustomGetRequest33BodyParam {
+  body: Widget33;
+}
+
+export type CustomGetRequest33Parameters = CustomGetRequest33BodyParam &
   RequestParameters;

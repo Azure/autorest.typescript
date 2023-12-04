@@ -31,6 +31,11 @@ import {
   Widget26,
   Widget27,
   Widget28,
+  Widget29,
+  Widget30,
+  Widget31,
+  Widget32,
+  Widget33,
 } from "../../models/models.js";
 import {
   deserializeWidgetData0AndWidgetData2Union,
@@ -107,7 +112,12 @@ import {
   CustomGetRequest26204Response,
   CustomGetRequest27204Response,
   CustomGetRequest28204Response,
+  CustomGetRequest29204Response,
+  CustomGetRequest30204Response,
+  CustomGetRequest31204Response,
   CustomGetRequest3204Response,
+  CustomGetRequest32204Response,
+  CustomGetRequest33204Response,
   CustomGetRequest4204Response,
   CustomGetRequest5204Response,
   CustomGetRequest6204Response,
@@ -136,7 +146,12 @@ import {
   CustomGetResponse26200Response,
   CustomGetResponse27200Response,
   CustomGetResponse28200Response,
+  CustomGetResponse29200Response,
+  CustomGetResponse30200Response,
+  CustomGetResponse31200Response,
   CustomGetResponse3200Response,
+  CustomGetResponse32200Response,
+  CustomGetResponse33200Response,
   CustomGetResponse4200Response,
   CustomGetResponse5200Response,
   CustomGetResponse6200Response,
@@ -179,6 +194,11 @@ import {
   WidgetServiceCustomGetResponse26Options,
   WidgetServiceCustomGetResponse27Options,
   WidgetServiceCustomGetResponse28Options,
+  WidgetServiceCustomGetResponse29Options,
+  WidgetServiceCustomGetResponse30Options,
+  WidgetServiceCustomGetResponse31Options,
+  WidgetServiceCustomGetResponse32Options,
+  WidgetServiceCustomGetResponse33Options,
   WidgetServiceCustomGetRequestOptions,
   WidgetServiceCustomGetRequest1Options,
   WidgetServiceCustomGetRequest2Options,
@@ -208,6 +228,11 @@ import {
   WidgetServiceCustomGetRequest26Options,
   WidgetServiceCustomGetRequest27Options,
   WidgetServiceCustomGetRequest28Options,
+  WidgetServiceCustomGetRequest29Options,
+  WidgetServiceCustomGetRequest30Options,
+  WidgetServiceCustomGetRequest31Options,
+  WidgetServiceCustomGetRequest32Options,
+  WidgetServiceCustomGetRequest33Options,
 } from "../../models/options.js";
 
 export function _customGetResponseSend(
@@ -1149,6 +1174,166 @@ export async function customGetResponse28(
 ): Promise<Widget28> {
   const result = await _customGetResponse28Send(context, options);
   return _customGetResponse28Deserialize(result);
+}
+
+export function _customGetResponse29Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse29Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse29200Response> {
+  return context
+    .path("/customGet29/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse29Deserialize(
+  result: CustomGetResponse29200Response
+): Promise<Widget29> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: result.body["data"] as any,
+  };
+}
+
+export async function customGetResponse29(
+  context: Client,
+  options: WidgetServiceCustomGetResponse29Options = { requestOptions: {} }
+): Promise<Widget29> {
+  const result = await _customGetResponse29Send(context, options);
+  return _customGetResponse29Deserialize(result);
+}
+
+export function _customGetResponse30Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse30Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse30200Response> {
+  return context
+    .path("/customGet30/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse30Deserialize(
+  result: CustomGetResponse30200Response
+): Promise<Widget30> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: result.body["data"] as any,
+  };
+}
+
+export async function customGetResponse30(
+  context: Client,
+  options: WidgetServiceCustomGetResponse30Options = { requestOptions: {} }
+): Promise<Widget30> {
+  const result = await _customGetResponse30Send(context, options);
+  return _customGetResponse30Deserialize(result);
+}
+
+export function _customGetResponse31Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse31Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse31200Response> {
+  return context
+    .path("/customGet31/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse31Deserialize(
+  result: CustomGetResponse31200Response
+): Promise<Widget31> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: result.body["data"] as any,
+  };
+}
+
+export async function customGetResponse31(
+  context: Client,
+  options: WidgetServiceCustomGetResponse31Options = { requestOptions: {} }
+): Promise<Widget31> {
+  const result = await _customGetResponse31Send(context, options);
+  return _customGetResponse31Deserialize(result);
+}
+
+export function _customGetResponse32Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse32Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse32200Response> {
+  return context
+    .path("/customGet32/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse32Deserialize(
+  result: CustomGetResponse32200Response
+): Promise<Widget32> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: result.body["data"],
+  };
+}
+
+export async function customGetResponse32(
+  context: Client,
+  options: WidgetServiceCustomGetResponse32Options = { requestOptions: {} }
+): Promise<Widget32> {
+  const result = await _customGetResponse32Send(context, options);
+  return _customGetResponse32Deserialize(result);
+}
+
+export function _customGetResponse33Send(
+  context: Client,
+  options: WidgetServiceCustomGetResponse33Options = { requestOptions: {} }
+): StreamableMethod<CustomGetResponse33200Response> {
+  return context
+    .path("/customGet33/response")
+    .get({ ...operationOptionsToRequestParameters(options) });
+}
+
+export async function _customGetResponse33Deserialize(
+  result: CustomGetResponse33200Response
+): Promise<Widget33> {
+  if (result.status !== "200") {
+    throw result.body;
+  }
+
+  return {
+    id: result.body["id"],
+    weight: result.body["weight"],
+    color: result.body["color"],
+    data: result.body["data"] as any,
+  };
+}
+
+export async function customGetResponse33(
+  context: Client,
+  options: WidgetServiceCustomGetResponse33Options = { requestOptions: {} }
+): Promise<Widget33> {
+  const result = await _customGetResponse33Send(context, options);
+  return _customGetResponse33Deserialize(result);
 }
 
 export function _customGetRequestSend(
@@ -2221,4 +2406,189 @@ export async function customGetRequest28(
 ): Promise<void> {
   const result = await _customGetRequest28Send(context, body, options);
   return _customGetRequest28Deserialize(result);
+}
+
+export function _customGetRequest29Send(
+  context: Client,
+  body: Widget29,
+  options: WidgetServiceCustomGetRequest29Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest29204Response> {
+  return context
+    .path("/customGet29/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: body["data"] as any,
+      },
+    });
+}
+
+export async function _customGetRequest29Deserialize(
+  result: CustomGetRequest29204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest29(
+  context: Client,
+  body: Widget29,
+  options: WidgetServiceCustomGetRequest29Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest29Send(context, body, options);
+  return _customGetRequest29Deserialize(result);
+}
+
+export function _customGetRequest30Send(
+  context: Client,
+  body: Widget30,
+  options: WidgetServiceCustomGetRequest30Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest30204Response> {
+  return context
+    .path("/customGet30/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: body["data"] as any,
+      },
+    });
+}
+
+export async function _customGetRequest30Deserialize(
+  result: CustomGetRequest30204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest30(
+  context: Client,
+  body: Widget30,
+  options: WidgetServiceCustomGetRequest30Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest30Send(context, body, options);
+  return _customGetRequest30Deserialize(result);
+}
+
+export function _customGetRequest31Send(
+  context: Client,
+  body: Widget31,
+  options: WidgetServiceCustomGetRequest31Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest31204Response> {
+  return context
+    .path("/customGet31/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: body["data"] as any,
+      },
+    });
+}
+
+export async function _customGetRequest31Deserialize(
+  result: CustomGetRequest31204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest31(
+  context: Client,
+  body: Widget31,
+  options: WidgetServiceCustomGetRequest31Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest31Send(context, body, options);
+  return _customGetRequest31Deserialize(result);
+}
+
+export function _customGetRequest32Send(
+  context: Client,
+  body: Widget32,
+  options: WidgetServiceCustomGetRequest32Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest32204Response> {
+  return context
+    .path("/customGet32/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: body["data"],
+      },
+    });
+}
+
+export async function _customGetRequest32Deserialize(
+  result: CustomGetRequest32204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest32(
+  context: Client,
+  body: Widget32,
+  options: WidgetServiceCustomGetRequest32Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest32Send(context, body, options);
+  return _customGetRequest32Deserialize(result);
+}
+
+export function _customGetRequest33Send(
+  context: Client,
+  body: Widget33,
+  options: WidgetServiceCustomGetRequest33Options = { requestOptions: {} }
+): StreamableMethod<CustomGetRequest33204Response> {
+  return context
+    .path("/customGet33/request")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      body: {
+        id: body["id"],
+        weight: body["weight"],
+        color: body["color"],
+        data: body["data"] as any,
+      },
+    });
+}
+
+export async function _customGetRequest33Deserialize(
+  result: CustomGetRequest33204Response
+): Promise<void> {
+  if (result.status !== "204") {
+    throw result.body;
+  }
+
+  return;
+}
+
+export async function customGetRequest33(
+  context: Client,
+  body: Widget33,
+  options: WidgetServiceCustomGetRequest33Options = { requestOptions: {} }
+): Promise<void> {
+  const result = await _customGetRequest33Send(context, body, options);
+  return _customGetRequest33Deserialize(result);
 }

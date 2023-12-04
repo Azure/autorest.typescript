@@ -32,6 +32,11 @@ import {
   Widget26Output,
   Widget27Output,
   Widget28Output,
+  Widget29Output,
+  Widget30Output,
+  Widget31Output,
+  Widget32Output,
+  Widget33Output,
 } from "./outputModels.js";
 
 /** The request has succeeded. */
@@ -208,6 +213,36 @@ export interface CustomGetResponse28200Response extends HttpResponse {
   body: Widget28Output;
 }
 
+/** The request has succeeded. */
+export interface CustomGetResponse29200Response extends HttpResponse {
+  status: "200";
+  body: Widget29Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGetResponse30200Response extends HttpResponse {
+  status: "200";
+  body: Widget30Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGetResponse31200Response extends HttpResponse {
+  status: "200";
+  body: Widget31Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGetResponse32200Response extends HttpResponse {
+  status: "200";
+  body: Widget32Output;
+}
+
+/** The request has succeeded. */
+export interface CustomGetResponse33200Response extends HttpResponse {
+  status: "200";
+  body: Widget33Output;
+}
+
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CustomGetRequest204Response extends HttpResponse {
   status: "204";
@@ -350,5 +385,30 @@ export interface CustomGetRequest27204Response extends HttpResponse {
 
 /** There is no content to send for this request, but the headers may be useful. */
 export interface CustomGetRequest28204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest29204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest30204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest31204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest32204Response extends HttpResponse {
+  status: "204";
+}
+
+/** There is no content to send for this request, but the headers may be useful. */
+export interface CustomGetRequest33204Response extends HttpResponse {
   status: "204";
 }

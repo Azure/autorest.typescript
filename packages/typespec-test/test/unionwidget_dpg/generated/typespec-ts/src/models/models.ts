@@ -147,3 +147,23 @@ export interface Widget27 extends Widget {
 export interface Widget28 extends Widget {
   data: WidgetData0 | Uint8Array;
 }
+
+export interface Widget29 extends Widget {
+  data: Date | string;
+}
+
+export interface Widget30 extends Widget {
+  data: Uint8Array | string;
+}
+
+export interface Widget31 extends Widget {
+  data: Date | Uint8Array;
+}
+
+export interface Widget32 extends Widget {
+  data: WidgetData0 | Record<string, string>;
+}
+
+export interface Widget33 extends Widget {
+  data: WidgetData2 | Record<string, string>;
+}

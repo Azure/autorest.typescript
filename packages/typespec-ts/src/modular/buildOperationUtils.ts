@@ -24,7 +24,7 @@ export function buildOperationUtils(model: ModularCodeModel) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(
-      (t) => isSpecialUnion(t) && (t.usage ?? 0) & usageCondition
+      (t) => !isSpecialExcludeUnion(t) && isSpecialUnion(t) && (t.usage ?? 0) & usageCondition
     );
     if (specialUnions.length === 0) {
       continue;
@@ -128,6 +128,18 @@ function formalizeTypeUnionName(typeUnionName: string) {
     .replace(/\|/g, "And");
 }
 
+/**
+ *
+ * In general, we have two kinds of basic special union variants.
+ * 1. datetime type
+ * 2. bytes type
+ * If we consider model type, we have the following three type.
+ * 3. model with property of datetime type.
+ * 4. model with property of binary array type.
+ * 5. model that has different property name between rest layer and modular layer.
+ * 6. nested model i.e. model with property that is a model with one of the above three conditions.
+ * If we consider array type, with all the above 6 types as the element types.
+ */
 export function isSpecialUnionVariant(t: Type): boolean {
   if (
     t.type === "datetime" ||
@@ -141,6 +153,36 @@ export function isSpecialUnionVariant(t: Type): boolean {
     return true;
   }
   return false;
+}
+
+/**
+ * to exclude union type that
+ * 1. contains special union variant and also has dict in the unions. as we can not know how to correctly generate the serialize/deserialize function.
+ * 2. contains unions of datetime/byte-array and string. as they both serialize to string. we can not tell if we should deserialize to datetime/byte-array.
+ * 3. contains unions of datetime and byte-array. as they both serialize to string. we can not tell if we should deserialize to datetime or byte-array.
+ */
+export function isSpecialExcludeUnion(t: Type): boolean {
+  return (
+    (t.type === "combined" &&
+      t.types &&
+      ((t.types.some(isSpecialUnionVariant) &&
+        t.types.some((type) => {
+          return type.type === "dict";
+        })) ||
+        (t.types.some((type) => {
+          return type.type === "datetime" || type.type === "byte-array";
+        }) &&
+          t.types.some((type) => {
+            return type.type === "string";
+          })) ||
+        (t.types.some((type) => {
+          return type.type === "datetime";
+        }) &&
+          t.types.some((type) => {
+            return type.type === "byte-array";
+          })))) ??
+    false
+  );
 }
 
 function isSpecialUnion(t: Type): boolean {

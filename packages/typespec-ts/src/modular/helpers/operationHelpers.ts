@@ -29,6 +29,7 @@ import {
 } from "./docsHelpers.js";
 import {
   getDeserializeFunctionName,
+  isSpecialExcludeUnion,
   isSpecialUnionVariant
 } from "../buildOperationUtils.js";
 import {
@@ -989,7 +990,9 @@ export function deserializeResponseValue(
       }
       return restValue;
     case "combined":
-      if (type.types?.some((t) => isSpecialUnionVariant(t))) {
+      if (isSpecialExcludeUnion(type)) {
+        return `${restValue} as any`;
+      } else if (type.types?.some((t) => isSpecialUnionVariant(t))) {
         const deserializeFunctionName = getDeserializeFunctionName(
           type,
           "deserialize"
@@ -1079,7 +1082,9 @@ export function serializeRequestValue(
       }
       return clientValue;
     case "combined":
-      if (type.types?.some((t) => isSpecialUnionVariant(t))) {
+      if (isSpecialExcludeUnion(type)) {
+        return `${clientValue} as any`;
+      } else if (type.types?.some((t) => isSpecialUnionVariant(t))) {
         const serializeFunctionName = getDeserializeFunctionName(
           type,
           "serialize"

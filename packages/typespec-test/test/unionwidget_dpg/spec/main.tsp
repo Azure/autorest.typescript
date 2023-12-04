@@ -158,6 +158,26 @@ model Widget28 extends Widget {
   data: WidgetData0 | bytes;
 }
 
+model Widget29 extends Widget {
+  data: utcDateTime | string;
+}
+
+model Widget30 extends Widget {
+  data: bytes | string;
+}
+
+model Widget31 extends Widget {
+  data: utcDateTime | bytes;
+}
+
+model Widget32 extends Widget {
+  data: WidgetData0 | Record<string>;
+}
+
+model Widget33 extends Widget {
+  data: WidgetData2 | Record<string>;
+}
+
 @error
 model Error {
   code: int32;
@@ -194,6 +214,11 @@ interface WidgetService {
   @get @route("customGet26/response") customGetResponse26(): Widget26;
   @get @route("customGet27/response") customGetResponse27(): Widget27;
   @get @route("customGet28/response") customGetResponse28(): Widget28;
+  @get @route("customGet29/response") customGetResponse29(): Widget29;
+  @get @route("customGet30/response") customGetResponse30(): Widget30;
+  @get @route("customGet31/response") customGetResponse31(): Widget31;
+  @get @route("customGet32/response") customGetResponse32(): Widget32;
+  @get @route("customGet33/response") customGetResponse33(): Widget33;
   @get @route("customGet/request") customGetRequest(@body body: Widget): void;
   @get @route("customGet1/request") customGetRequest1(@body body: Widget1): void;
   @get @route("customGet2/request") customGetRequest2(@body body: Widget2): void;
@@ -222,6 +247,11 @@ interface WidgetService {
   @get @route("customGet25/request") customGetRequest25(@body body: Widget25): void;
   @get @route("customGet26/request") customGetRequest26(@body body: Widget26): void;
   @get @route("customGet27/request") customGetRequest27(@body body: Widget27): void;
-  @get @route("customGet28/request") customGetRequest28(@body body: Widget28): void;  
+  @get @route("customGet28/request") customGetRequest28(@body body: Widget28): void;
+  @get @route("customGet29/request") customGetRequest29(@body body: Widget29): void;
+  @get @route("customGet30/request") customGetRequest30(@body body: Widget30): void;
+  @get @route("customGet31/request") customGetRequest31(@body body: Widget31): void;
+  @get @route("customGet32/request") customGetRequest32(@body body: Widget32): void;
+  @get @route("customGet33/request") customGetRequest33(@body body: Widget33): void;
 }
 
