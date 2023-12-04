@@ -7,7 +7,7 @@ import { assert } from "chai";
 describe("UnionsClient Rest Client", () => {
   let client: UnionsClient;
 
-  function isCat(
+  function isCatOutput(
     pet: CatOutput | DogOutput | "a" | number | boolean
   ): pet is CatOutput {
     return (pet as CatOutput).name !== undefined;
@@ -140,7 +140,7 @@ describe("UnionsClient Rest Client", () => {
     try {
       const result = await client.path("/type/union/models-only").get();
       assert.strictEqual(result.status, "200");
-      if (isCat(result.body.prop)) {
+      if (isCatOutput(result.body.prop)) {
         assert.strictEqual(result.body.prop.name, "test");
       }
     } catch (err) {
@@ -251,7 +251,7 @@ describe("UnionsClient Rest Client", () => {
     try {
       const result = await client.path("/type/union/mixed-types").get();
       assert.strictEqual(result.status, "200");
-      if (isCat(result.body.prop.model)) {
+      if (isCatOutput(result.body.prop.model)) {
         assert.strictEqual(result.body.prop.model.name, "test");
         assert.strictEqual(result.body.prop.literal, "a");
         assert.strictEqual(result.body.prop.int, 2);
