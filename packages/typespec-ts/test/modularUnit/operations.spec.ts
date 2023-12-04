@@ -563,6 +563,7 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
@@ -570,7 +571,7 @@ describe("operations", () => {
 
         export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
             if(result.status !== "200"){
-              throw result.body
+              throw createRestError(result);
             }
 
             return {
@@ -633,6 +634,7 @@ describe("operations", () => {
         `
         import { TestingContext as Client } from "../rest/index.js";
         import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { createRestError } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
@@ -640,7 +642,7 @@ describe("operations", () => {
 
         export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
             if(result.status !== "200"){
-            throw result.body
+            throw createRestError(result);
             }
 
             return {

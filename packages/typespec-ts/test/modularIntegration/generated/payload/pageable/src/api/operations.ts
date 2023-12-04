@@ -9,6 +9,7 @@ import {
   StreamableMethod,
   operationOptionsToRequestParameters,
 } from "@azure-rest/core-client";
+import { createRestError } from "@azure-rest/core-client";
 import { ListOptions } from "../models/options.js";
 
 export function _listSend(
@@ -27,7 +28,7 @@ export async function _listDeserialize(
   result: List200Response
 ): Promise<PagedUser> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

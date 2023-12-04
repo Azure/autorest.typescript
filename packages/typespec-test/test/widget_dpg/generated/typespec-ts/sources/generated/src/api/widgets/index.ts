@@ -155,7 +155,7 @@ export async function _listWidgetsPagesDeserialize(
   result: ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
 ): Promise<ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -202,7 +202,7 @@ export async function _queryWidgetsPagesDeserialize(
   result: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
 ): Promise<ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

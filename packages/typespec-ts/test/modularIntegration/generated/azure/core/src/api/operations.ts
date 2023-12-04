@@ -358,7 +358,7 @@ export async function _listWithParametersDeserialize(
   result: ListWithParameters200Response | ListWithParametersDefaultResponse
 ): Promise<PagedUser> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -535,7 +535,7 @@ export async function _listFirstItemDeserialize(
   result: ListFirstItem200Response | ListFirstItemDefaultResponse
 ): Promise<PagedFirstItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -570,7 +570,7 @@ export async function _listSecondItemDeserialize(
   result: ListSecondItem200Response | ListSecondItemDefaultResponse
 ): Promise<PagedSecondItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
