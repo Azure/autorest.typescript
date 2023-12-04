@@ -10,7 +10,7 @@ describe("UnionsClient Rest Client", () => {
   function isCatOutput(
     pet: CatOutput | DogOutput | "a" | number | boolean
   ): pet is CatOutput {
-    return (pet as CatOutput).name !== undefined;
+    return (pet as CatOutput)?.name !== undefined;
   }
 
   beforeEach(() => {
