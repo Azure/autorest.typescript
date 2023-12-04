@@ -3,7 +3,8 @@ import { importSettings } from "../utils/importUtils.js";
 import {
   getResponseMapping,
   getRequestModelMapping,
-  serializeRequestValue
+  serializeRequestValue,
+  deserializeResponseValue
 } from "./helpers/operationHelpers.js";
 import { ModularCodeModel, Property, Type } from "./modularCodeModel.js";
 import {
@@ -312,7 +313,10 @@ function getTypeDeserializeFunction(
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.type}`],
-      name: `${serializeType}${toPascalCase("datetime")}`,
+      name: `${serializeType}${toPascalCase(
+        getMappedType(type.type) +
+          (serializeType === "deserialize" ? "Rest" : "")
+      )}`,
       parameters: [{ name: "obj", type: "string" }],
       returnType: "Date"
     };
@@ -333,12 +337,23 @@ function getTypeDeserializeFunction(
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.type}`],
-      name: `${serializeType}${toPascalCase(type.name ?? "byte-array")}`,
+      name: `${serializeType}${toPascalCase(
+        getMappedType(type.name ?? "byte-array") +
+          (serializeType === "deserialize" ? "Rest" : "")
+      )}`,
       parameters: [{ name: "obj", type: "string" }],
       returnType: "Uint8Array"
     };
-    statements.push(`return stringToUint8Array(obj);`);
-    addImportSet(importSet, "@azure-rest/core-util", "stringToUint8Array");
+    statements.push(
+      `return ${deserializeResponseValue(
+        type,
+        "obj",
+        importSet,
+        runtimeImports,
+        true,
+        type.format ?? "base64"
+      )}`
+    );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
       if (
@@ -433,7 +448,10 @@ function getTypeSerializeFunction(
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.type}`],
-      name: `${serializeType}${toPascalCase("datetime")}`,
+      name: `${serializeType}${toPascalCase(
+        getMappedType(type.type) +
+          (serializeType === "deserialize" ? "Rest" : "")
+      )}`,
       parameters: [{ name: "obj", type: "Date" }],
       returnType: "string"
     };
@@ -462,7 +480,10 @@ function getTypeSerializeFunction(
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.type}`],
-      name: `${serializeType}${toPascalCase(type.name ?? "byte-array")}`,
+      name: `${serializeType}${toPascalCase(
+        getMappedType(type.type) +
+          (serializeType === "deserialize" ? "Rest" : "")
+      )}`,
       parameters: [{ name: "obj", type: "Uint8Array" }],
       returnType: "string"
     };
@@ -574,7 +595,10 @@ function deserializeUnionTypesFunction(
   for (const type of unionDeserializeTypes) {
     const functionName = toPascalCase(
       type.name ??
-        (type.elementType?.name ? type.elementType.name + "Array" : type.type)
+        (type.elementType?.name
+          ? type.elementType.name + "Array"
+          : getMappedType(type.type) +
+            (serializeType === "deserialize" ? "Rest" : ""))
     );
     statements.push(
       `if (is${functionName}(obj)) { return ${serializeType}${functionName}(obj); }`

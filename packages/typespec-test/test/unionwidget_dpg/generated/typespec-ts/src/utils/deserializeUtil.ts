@@ -20,7 +20,6 @@ import {
   WidgetData6,
 } from "../models/models.js";
 import { stringToUint8Array } from "@azure/core-util";
-import { stringToUint8Array } from "@azure-rest/core-util";
 
 /** type predict function for WidgetData2Output from WidgetData0Output | WidgetData2Output */
 function isWidgetData2(
@@ -578,7 +577,7 @@ function isDateRest(obj: WidgetData0Output | string): obj is string {
 }
 
 /** deserialize function for datetime */
-function deserializeDatetime(obj: string): Date {
+function deserializeDateRest(obj: string): Date {
   return new Date(obj);
 }
 
@@ -586,8 +585,8 @@ function deserializeDatetime(obj: string): Date {
 export function deserializeWidgetData0AndDateUnion(
   obj: WidgetData0Output | string
 ): WidgetData0 | Date {
-  if (isDatetime(obj)) {
-    return deserializeDatetime(obj);
+  if (isDateRest(obj)) {
+    return deserializeDateRest(obj);
   }
   return obj;
 }
@@ -601,16 +600,16 @@ function isUint8ArrayRest(obj: WidgetData0Output | string): obj is string {
 }
 
 /** deserialize function for byte-array */
-function deserializeByteArray(obj: string): Uint8Array {
-  return stringToUint8Array(obj);
+function deserializeUint8ArrayRest(obj: string): Uint8Array {
+  return typeof obj === "string" ? stringToUint8Array(obj, "base64") : obj;
 }
 
 /** deserialize function for WidgetData0Output | string */
 export function deserializeWidgetData0AndUint8ArrayUnion(
   obj: WidgetData0Output | string
 ): WidgetData0 | Uint8Array {
-  if (isByteArray(obj)) {
-    return deserializeByteArray(obj);
+  if (isUint8ArrayRest(obj)) {
+    return deserializeUint8ArrayRest(obj);
   }
   return obj;
 }

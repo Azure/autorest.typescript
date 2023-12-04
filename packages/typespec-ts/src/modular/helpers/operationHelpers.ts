@@ -931,7 +931,7 @@ export function getResponseMapping(
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function deserializeResponseValue(
+export function deserializeResponseValue(
   type: Type,
   restValue: string,
   importSet: Map<string, Set<string>>,

@@ -519,7 +519,7 @@ function isDate(obj: WidgetData0 | Date): obj is Date {
 }
 
 /** serialize function for datetime */
-function serializeDatetime(obj: Date): string {
+function serializeDate(obj: Date): string {
   return obj.toISOString();
 }
 
@@ -527,8 +527,8 @@ function serializeDatetime(obj: Date): string {
 export function serializeWidgetData0AndDateUnion(
   obj: WidgetData0 | Date
 ): WidgetData0Rest | string {
-  if (isDatetime(obj)) {
-    return serializeDatetime(obj);
+  if (isDate(obj)) {
+    return serializeDate(obj);
   }
   return obj;
 }
@@ -542,7 +542,7 @@ function isUint8Array(obj: WidgetData0 | Uint8Array): obj is Uint8Array {
 }
 
 /** serialize function for byte-array */
-function serializeByteArray(obj: Uint8Array): string {
+function serializeUint8Array(obj: Uint8Array): string {
   return uint8ArrayToString(obj, "base64");
 }
 
@@ -550,8 +550,8 @@ function serializeByteArray(obj: Uint8Array): string {
 export function serializeWidgetData0AndUint8ArrayUnion(
   obj: WidgetData0 | Uint8Array
 ): WidgetData0Rest | string {
-  if (isByteArray(obj)) {
-    return serializeByteArray(obj);
+  if (isUint8Array(obj)) {
+    return serializeUint8Array(obj);
   }
   return obj;
 }

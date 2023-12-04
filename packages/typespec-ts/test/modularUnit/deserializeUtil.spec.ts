@@ -60,16 +60,16 @@ describe("modular special union serialization", () => {
       import { WidgetData0 } from "../models/models.js";
       import { WidgetData0 as WidgetData0Rest } from "../rest/index.js";
       
-      /** type predict function for datetime from WidgetData0 | Date */
-      function isDatetime(obj: WidgetData0 | Date): obj is string {
-        if (typeof obj === "string") {
+      /** type predict function for Date from WidgetData0 | Date */
+      function isDate(obj: WidgetData0 | Date): obj is Date {
+        if (obj instanceof Date) {
           return true;
         }
         return false;
       }
       
       /** serialize function for datetime */
-      function serializeDatetime(obj: Date): string {
+      function serializeDate(obj: Date): string {
         return obj.toISOString();
       }
       
@@ -77,8 +77,8 @@ describe("modular special union serialization", () => {
       export function serializeWidgetData0AndDateUnion(
         obj: WidgetData0 | Date
       ): WidgetData0Rest | string {
-        if (isDatetime(obj)) {
-          return serializeDatetime(obj);
+        if (isDate(obj)) {
+          return serializeDate(obj);
         }
         return obj;
       }
@@ -168,16 +168,16 @@ describe("modular special union serialization", () => {
       import { uint8ArrayToString } from "@azure/core-util";
       import { WidgetData0 as WidgetData0Rest } from "../rest/index.js";
       
-      /** type predict function for byte-array from WidgetData0 | Uint8Array */
-      function isByteArray(obj: WidgetData0 | Uint8Array): obj is string {
-        if (typeof obj === "string") {
+      /** type predict function for Uint8Array from WidgetData0 | Uint8Array */
+      function isUint8Array(obj: WidgetData0 | Uint8Array): obj is Uint8Array {
+        if (obj instanceof Uint8Array) {
           return true;
         }
         return false;
       }
       
       /** serialize function for byte-array */
-      function serializeByteArray(obj: string): Uint8Array {
+      function serializeUint8Array(obj: Uint8Array): string {
         return uint8ArrayToString(obj, "base64");
       }
       
@@ -185,8 +185,8 @@ describe("modular special union serialization", () => {
       export function serializeWidgetData0AndUint8ArrayUnion(
         obj: WidgetData0 | Uint8Array
       ): WidgetData0Rest | string {
-        if (isByteArray(obj)) {
-          return serializeByteArray(obj);
+        if (isUint8Array(obj)) {
+          return serializeUint8Array(obj);
         }
         return obj;
       }`
@@ -1327,8 +1327,8 @@ describe("modular special union deserialization", () => {
       import { WidgetData0Output } from "../rest/index.js";
       import { WidgetData0 } from "../models/models.js";
       
-      /** type predict function for datetime from WidgetData0Output | string */
-      function isDatetime(obj: WidgetData0Output | string): obj is string {
+      /** type predict function for string from WidgetData0Output | string */
+      function isDateRest(obj: WidgetData0Output | string): obj is string {
         if (typeof obj === "string") {
           return true;
         }
@@ -1336,7 +1336,7 @@ describe("modular special union deserialization", () => {
       }
       
       /** deserialize function for datetime */
-      function deserializeDatetime(obj: string): Date {
+      function deserializeDateRest(obj: string): Date {
         return new Date(obj);
       }
       
@@ -1344,8 +1344,8 @@ describe("modular special union deserialization", () => {
       export function deserializeWidgetData0AndDateUnion(
         obj: WidgetData0Output | string
       ): WidgetData0 | Date {
-        if (isDatetime(obj)) {
-          return deserializeDatetime(obj);
+        if (isDateRest(obj)) {
+          return deserializeDateRest(obj);
         }
         return obj;
       }`
@@ -1425,11 +1425,11 @@ describe("modular special union deserialization", () => {
       operationUtil?.[0]?.getFullText()!,
       `
       import { WidgetData0Output } from "../rest/index.js";
-      import { stringToUint8Array } from "@azure-rest/core-util";
+      import { stringToUint8Array } from "@azure/core-util";
       import { WidgetData0 } from "../models/models.js";
       
-      /** type predict function for byte-array from WidgetData0Output | string */
-      function isByteArray(obj: WidgetData0Output | string): obj is string {
+      /** type predict function for string from WidgetData0Output | string */
+      function isUint8ArrayRest(obj: WidgetData0Output | string): obj is string {
         if (typeof obj === "string") {
           return true;
         }
@@ -1437,16 +1437,16 @@ describe("modular special union deserialization", () => {
       }
       
       /** deserialize function for byte-array */
-      function deserializeByteArray(obj: string): Uint8Array {
-        return stringToUint8Array(obj);
+      function deserializeUint8ArrayRest(obj: string): Uint8Array {
+        return typeof obj === "string" ? stringToUint8Array(obj, "base64") : obj;
       }
       
       /** deserialize function for WidgetData0Output | string */
       export function deserializeWidgetData0AndUint8ArrayUnion(
         obj: WidgetData0Output | string
       ): WidgetData0 | Uint8Array {
-        if (isByteArray(obj)) {
-          return deserializeByteArray(obj);
+        if (isUint8ArrayRest(obj)) {
+          return deserializeUint8ArrayRest(obj);
         }
         return obj;
       }`
