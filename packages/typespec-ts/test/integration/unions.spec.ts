@@ -4,7 +4,7 @@ import UnionsClientFactory, {
   UnionsClient
 } from "./generated/unions/src/index.js";
 import { assert } from "chai";
-describe.only("UnionsClient Rest Client", () => {
+describe("UnionsClient Rest Client", () => {
   let client: UnionsClient;
 
   function isCat(
