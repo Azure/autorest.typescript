@@ -130,8 +130,9 @@ export function transformSchemas(
         getGeneratedModels(indexer.value, context);
       }
       for (const prop of model.properties) {
+        const [, propType] = prop;
         if (
-          prop[1].type.kind === "Model" &&
+          propType.type.kind === "Model" &&
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
@@ -141,12 +142,11 @@ export function transformSchemas(
           getGeneratedModels(prop[1].type, context);
         }
         if (
-          prop[1].type.kind === "Union" &&
+          propType.type.kind === "Union" &&
           (!program.stateMap(modelKey).get(prop[1].type) ||
             !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
         ) {
-          const variants = Array.from(prop[1].type.variants.values());
-          let hasModels = false;
+          const variants = Array.from(propType.type.variants.values());
           for (const variant of variants) {
             if (
               (variant.type.kind === "Model" ||
@@ -157,12 +157,12 @@ export function transformSchemas(
                   .get(variant.type)
                   ?.includes(context))
             ) {
-              hasModels = true;
               getGeneratedModels(variant.type, context);
             }
           }
-          if (hasModels) {
-            setModelMap(prop[1].type, context);
+          // build type details for named union
+          if (!propType.type.expression) {
+            setModelMap(propType.type, context);
           }
         }
       }
@@ -189,18 +189,17 @@ export function transformSchemas(
       }
     } else if (model.kind === "Union") {
       const variants = Array.from(model.variants.values());
-      let hasModels = false;
       for (const variant of variants) {
         if (
           (variant.type.kind === "Model" || variant.type.kind === "Union") &&
           (!program.stateMap(modelKey).get(variant.type) ||
             !program.stateMap(modelKey).get(variant.type)?.includes(context))
         ) {
-          hasModels = true;
           getGeneratedModels(variant.type, context);
         }
       }
-      if (hasModels) {
+      // build type details for named union
+      if (!model.expression) {
         setModelMap(model, context);
       }
     }

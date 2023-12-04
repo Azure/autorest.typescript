@@ -59,6 +59,7 @@ describe("Input/output model type", () => {
     );
     assert.ok(schemaOutput);
     const { inputModelFile, outputModelFile } = schemaOutput!;
+    // console.log(inputModelFile?.content);
     assert.strictEqual(inputModelFile?.path, "models.ts");
     assertEqualContent(
       inputModelFile?.content!,
@@ -540,7 +541,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it.skip("should handle anonymous model -> effective type/interface", async () => {
+    it("should handle anonymous model -> effective type/interface", async () => {
       const tspDefinition = `
       model SimpleModel {
         prop1: string;
@@ -1800,7 +1801,7 @@ describe("Input/output model type", () => {
       });
     });
   });
-  describe("Union basic generation", () => {
+  describe("union expression", () => {
     it("should handle string | integer -> string | number", async () => {
       const tspType = "string | integer";
       const typeScriptType = "string | number";
@@ -1842,10 +1843,70 @@ describe("Input/output model type", () => {
       const typeScriptType = `"job"[] | string[]`;
       await verifyPropertyType(tspType, typeScriptType);
     });
+
+    it("should handle Model1[] | Model2[] -> Array<Model1> | Array<Model2>", async () => {
+      const tspDefinition = `
+      @doc("This is a base model.")
+      model BaseModel {
+        name: string;
+      }
+      
+      @doc("The first one of the unioned model type.")
+      model Model1 extends BaseModel {
+        prop1: int32;
+      }
+      
+      @doc("The second one of the unioned model type.")
+      model Model2 extends BaseModel {
+        prop2: int32;
+      }
+      
+      union MyNamedUnion {
+        one: Model1,
+        two: Model2,
+      }
+      `;
+      const tspType = "Model1[] | Model2[]";
+      const inputModelName = "Array<Model1> | Array<Model2>";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `Array<Model1Output> | Array<Model2Output>`,
+        additionalInputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1 extends BaseModel {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModel {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2 extends BaseModel {
+          prop2: number;
+        }`,
+        additionalOutputContent: `
+        /** The first one of the unioned model type. */
+        export interface Model1Output extends BaseModelOutput {
+          prop1: number;
+        }
+        
+        /** This is a base model. */
+        export interface BaseModelOutput {
+          name: string;
+        }
+        
+        /** The second one of the unioned model type. */
+        export interface Model2Output extends BaseModelOutput {
+          prop2: number;
+        }`
+      });
+    });
   });
 
-  describe("Union Models generation", () => {
-    it("should handle named unions", async () => {
+  describe("Named union", () => {
+    it("union variants are models", async () => {
       const tspDefinition = `
       @doc("This is a base model.")
       model BaseModel {
@@ -1909,22 +1970,22 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle named unions with null variant", async () => {
+    it("union variants are mixed with nullable/primitive/model", async () => {
       const tspDefinition = `
       @doc("The first one of the unioned model type.")
       model Model1 {
         prop1: int32;
       }
-      
-      @doc("The second one of the unioned model type.")
-      model Model2 {
-        prop2: int32;
-      }
+
+      alias A = "X" | "Y";
       
       union MyNamedUnion {
         one: Model1,
-        two: Model2,
-        three: null
+        two: "foo",
+        three: null,
+        four: 1,
+        five: A,
+        six: Model1[],
       }
       `;
       const tspType = "MyNamedUnion";
@@ -1937,43 +1998,23 @@ describe("Input/output model type", () => {
         export interface Model1 {
           prop1: number;
         }
-      
-        /** The second one of the unioned model type. */
-        export interface Model2 {
-          prop2: number;
-        }
-       
-        export type MyNamedUnion = Model1 | Model2 | null;`,
+
+        export type MyNamedUnion = Model1 | "foo" | null | 1 | "X" | "Y" | Array<Model1>;`,
         additionalOutputContent: `
         /** The first one of the unioned model type. */
         export interface Model1Output {
           prop1: number;
         }
-        
-        /** The second one of the unioned model type. */
-        export interface Model2Output {
-          prop2: number;
-        }
-       
-       export type MyNamedUnionOutput = Model1Output | Model2Output | null;`
+
+        export type MyNamedUnionOutput = Model1Output | "foo" | null | 1 | "X" | "Y" | Array<Model1Output>;`
       });
     });
 
-    it("should handle nullable named unions", async () => {
+    it("union variants are pure primitive types", async () => {
       const tspDefinition = `
-      @doc("The first one of the unioned model type.")
-      model Model1 {
-        prop1: int32;
-      }
-      
-      @doc("The second one of the unioned model type.")
-      model Model2 {
-        prop2: int32;
-      }
-      
       union MyNamedUnion {
-        one: Model1,
-        two: Model2,
+        one: string,
+        two: int32,
       }
       `;
       const tspType = "MyNamedUnion | null";
@@ -1982,29 +2023,29 @@ describe("Input/output model type", () => {
         additionalTypeSpecDefinition: tspDefinition,
         outputType: `MyNamedUnionOutput | null`,
         additionalInputContent: `
-        /** The first one of the unioned model type. */
-        export interface Model1 {
-          prop1: number;
-        }
-      
-        /** The second one of the unioned model type. */
-        export interface Model2 {
-          prop2: number;
-        }
-       
-        export type MyNamedUnion = Model1 | Model2;`,
+        export type MyNamedUnion = string | number;`,
         additionalOutputContent: `
-        /** The first one of the unioned model type. */
-        export interface Model1Output {
-          prop1: number;
-        }
-        
-        /** The second one of the unioned model type. */
-        export interface Model2Output {
-          prop2: number;
-        }
-       
-       export type MyNamedUnionOutput = Model1Output | Model2Output;`
+        export type MyNamedUnionOutput = string | number;`
+      });
+    });
+
+    it("union variants are pure constants", async () => {
+      const tspDefinition = `
+      union StringExtensibleNamedUnion {
+        OptionB: "b",
+        "c",
+        foo: 1,
+      }
+      `;
+      const tspType = "StringExtensibleNamedUnion";
+      const inputModelName = "StringExtensibleNamedUnion";
+      await verifyPropertyType(tspType, inputModelName, {
+        additionalTypeSpecDefinition: tspDefinition,
+        outputType: `StringExtensibleNamedUnionOutput`,
+        additionalInputContent: `
+        export type StringExtensibleNamedUnion = "b" | "c" | 1;`,
+        additionalOutputContent: `
+        export type StringExtensibleNamedUnionOutput = "b" | "c" | 1;`
       });
     });
   });
