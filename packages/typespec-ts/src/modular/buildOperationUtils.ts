@@ -24,7 +24,10 @@ export function buildOperationUtils(model: ModularCodeModel) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(
-      (t) => !isSpecialExcludeUnion(t) && isSpecialUnion(t) && (t.usage ?? 0) & usageCondition
+      (t) =>
+        !isSpecialExcludeUnion(t) &&
+        isSpecialUnion(t) &&
+        (t.usage ?? 0) & usageCondition
     );
     if (specialUnions.length === 0) {
       continue;
