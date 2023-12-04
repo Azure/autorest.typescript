@@ -1048,7 +1048,7 @@ function getSchemaForStdScalar(
     case "safeint":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "int64"
+        format: "safeint"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
@@ -1073,17 +1073,27 @@ function getSchemaForStdScalar(
     case "float64":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "double"
+        format: "float64"
       });
     case "float32":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "float"
+        format: "float32"
       });
     case "float":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
+      });
+    case "decimal":
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal"
+      });
+    case "decimal128":
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal128"
       });
     case "string":
       if (format === "binary") {
