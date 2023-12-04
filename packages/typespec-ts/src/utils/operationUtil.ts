@@ -530,3 +530,14 @@ export function isIgnoredHeaderParam(param: HttpOperationParameter) {
       ))
   );
 }
+
+export function parseNextLinkName(
+  paged: PagedResultMetadata
+): string | undefined {
+  return paged.nextLinkProperty?.name;
+}
+
+export function parseItemName(paged: PagedResultMetadata): string | undefined {
+  // TODO: support the nested item names
+  return (paged.itemsSegments ?? [])[0];
+}

@@ -3,10 +3,13 @@
 
 import {
   Widget,
+  ListWidgetsPagesResults,
   CreateWidget,
   UpdateWidget,
   AnalyzeResult,
 } from "../../models/models.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "../pagingHelpers.js";
 import {
   AnalyzeWidget200Response,
   AnalyzeWidgetDefaultResponse,
@@ -20,6 +23,10 @@ import {
   isUnexpected,
   ListWidgets200Response,
   ListWidgetsDefaultResponse,
+  ListWidgetsPages200Response,
+  ListWidgetsPagesDefaultResponse,
+  QueryWidgetsPages200Response,
+  QueryWidgetsPagesDefaultResponse,
   UpdateWidget200Response,
   UpdateWidgetDefaultResponse,
   WidgetServiceContext as Client,
@@ -32,6 +39,8 @@ import { uint8ArrayToString } from "@azure/core-util";
 import { createRestError } from "@azure-rest/core-client";
 import {
   WidgetsListWidgetsOptions,
+  WidgetsListWidgetsPagesOptions,
+  WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
   WidgetsUpdateWidgetOptions,
@@ -124,6 +133,100 @@ export async function listWidgets(
     options
   );
   return _listWidgetsDeserialize(result);
+}
+
+export function _listWidgetsPagesSend(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsListWidgetsPagesOptions = { requestOptions: {} }
+): StreamableMethod<
+  ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
+> {
+  return context
+    .path("/widgets/widgets/pages")
+    .get({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { page: page, pageSize: pageSize },
+    });
+}
+
+export async function _listWidgetsPagesDeserialize(
+  result: ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
+): Promise<ListWidgetsPagesResults> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    results: result.body["results"].map((p) => ({
+      id: p["id"],
+      weight: p["weight"],
+      color: p["color"] as any,
+    })),
+    "odata.nextLink": result.body["odata.nextLink"],
+  };
+}
+
+export function listWidgetsPages(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsListWidgetsPagesOptions = { requestOptions: {} }
+): PagedAsyncIterableIterator<Widget> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listWidgetsPagesSend(context, page, pageSize, options),
+    _listWidgetsPagesDeserialize,
+    { itemName: "results", nextLinkName: "odata.nextLink" }
+  );
+}
+
+export function _queryWidgetsPagesSend(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} }
+): StreamableMethod<
+  QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
+> {
+  return context
+    .path("/widgets/widgets/pages")
+    .post({
+      ...operationOptionsToRequestParameters(options),
+      queryParameters: { page: page, pageSize: pageSize },
+    });
+}
+
+export async function _queryWidgetsPagesDeserialize(
+  result: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
+): Promise<ListWidgetsPagesResults> {
+  if (isUnexpected(result)) {
+    throw result.body;
+  }
+
+  return {
+    results: result.body["results"].map((p) => ({
+      id: p["id"],
+      weight: p["weight"],
+      color: p["color"] as any,
+    })),
+    "odata.nextLink": result.body["odata.nextLink"],
+  };
+}
+
+export function queryWidgetsPages(
+  context: Client,
+  page: number,
+  pageSize: number,
+  options: WidgetsQueryWidgetsPagesOptions = { requestOptions: {} }
+): PagedAsyncIterableIterator<Widget> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _queryWidgetsPagesSend(context, page, pageSize, options),
+    _queryWidgetsPagesDeserialize,
+    { itemName: "results", nextLinkName: "odata.nextLink" }
+  );
 }
 
 export function _getWidgetSend(

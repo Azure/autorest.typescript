@@ -10,14 +10,19 @@ import {
 } from "../../models/models.js";
 import {
   listWidgets,
+  listWidgetsPages,
+  queryWidgetsPages,
   getWidget,
   createWidget,
   updateWidget,
   deleteWidget,
   analyzeWidget,
 } from "../../api/widgets/index.js";
+import { PagedAsyncIterableIterator } from "../../models/pagingTypes.js";
 import {
   WidgetsListWidgetsOptions,
+  WidgetsListWidgetsPagesOptions,
+  WidgetsQueryWidgetsPagesOptions,
   WidgetsGetWidgetOptions,
   WidgetsCreateWidgetOptions,
   WidgetsUpdateWidgetOptions,
@@ -34,6 +39,16 @@ export interface WidgetsOperations {
     utcDateHeader: Date,
     options?: WidgetsListWidgetsOptions
   ) => Promise<Widget[]>;
+  listWidgetsPages: (
+    page: number,
+    pageSize: number,
+    options?: WidgetsListWidgetsPagesOptions
+  ) => PagedAsyncIterableIterator<Widget>;
+  queryWidgetsPages: (
+    page: number,
+    pageSize: number,
+    options?: WidgetsQueryWidgetsPagesOptions
+  ) => PagedAsyncIterableIterator<Widget>;
   getWidget: (id: string, options?: WidgetsGetWidgetOptions) => Promise<Widget>;
   createWidget: (
     body: CreateWidget,
@@ -73,6 +88,16 @@ export function getWidgets(context: WidgetServiceContext) {
         utcDateHeader,
         options
       ),
+    listWidgetsPages: (
+      page: number,
+      pageSize: number,
+      options?: WidgetsListWidgetsPagesOptions
+    ) => listWidgetsPages(context, page, pageSize, options),
+    queryWidgetsPages: (
+      page: number,
+      pageSize: number,
+      options?: WidgetsQueryWidgetsPagesOptions
+    ) => queryWidgetsPages(context, page, pageSize, options),
     getWidget: (id: string, options?: WidgetsGetWidgetOptions) =>
       getWidget(context, id, options),
     createWidget: (body: CreateWidget, options?: WidgetsCreateWidgetOptions) =>

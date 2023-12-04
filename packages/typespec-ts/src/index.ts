@@ -17,7 +17,7 @@ import {
   buildApiExtractorConfig,
   buildPackageFile,
   buildPollingHelper,
-  buildPaginateHelper,
+  buildPaginateHelper as buildRLCPaginateHelper,
   buildEsLintConfig,
   buildKarmaConfigFile,
   buildEnvFile,
@@ -54,6 +54,10 @@ import { GenerationDirDetail, SdkContext } from "./utils/interfaces.js";
 import { transformRLCOptions } from "./transform/transfromRLCOptions.js";
 import { ModularCodeModel } from "./modular/modularCodeModel.js";
 import { getClientName } from "@azure-tools/rlc-common";
+import {
+  buildPagingTypes,
+  buildPagingHelpers as buildModularPagingHelpers
+} from "./modular/buildPagingFiles.js";
 
 export * from "./lib.js";
 
@@ -61,7 +65,7 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: RLCOptions = context.options;
-  const dpgContext = createSdkContext(context) as SdkContext;
+  const dpgContext = createSdkContext(context, "@azure-tools/typespec-ts") as SdkContext;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -136,7 +140,7 @@ export async function $onEmit(context: EmitContext) {
       await emitContentByBuilder(program, buildIndexFile, rlcModels);
       await emitContentByBuilder(program, buildLogger, rlcModels);
       await emitContentByBuilder(program, buildTopLevelIndex, rlcModels);
-      await emitContentByBuilder(program, buildPaginateHelper, rlcModels);
+      await emitContentByBuilder(program, buildRLCPaginateHelper, rlcModels);
       await emitContentByBuilder(program, buildPollingHelper, rlcModels);
       await emitContentByBuilder(program, buildSerializeHelper, rlcModels);
       await emitContentByBuilder(
@@ -170,11 +174,20 @@ export async function $onEmit(context: EmitContext) {
           overwrite: true
         }
       );
+
+      const isMultiClients = modularCodeModel.clients.length > 1;
       for (const subClient of modularCodeModel.clients) {
         buildModels(modularCodeModel, subClient);
         buildModelsOptions(modularCodeModel, subClient);
         const hasClientUnexpectedHelper =
           needUnexpectedHelper.get(subClient.rlcClientName) ?? false;
+        buildPagingTypes(modularCodeModel, subClient);
+        buildModularPagingHelpers(
+          modularCodeModel,
+          subClient,
+          hasClientUnexpectedHelper,
+          isMultiClients
+        );
         buildOperationFiles(
           dpgContext,
           modularCodeModel,
@@ -197,7 +210,7 @@ export async function $onEmit(context: EmitContext) {
           exportIndex: true,
           interfaceOnly: true
         });
-        if (modularCodeModel.clients.length > 1) {
+        if (isMultiClients) {
           buildSubClientIndexFile(modularCodeModel, subClient);
         }
         buildRootIndex(modularCodeModel, subClient, rootIndexFile);

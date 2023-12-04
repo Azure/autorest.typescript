@@ -114,6 +114,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "type/property/value-types"
   },
   {
+    outputPath: "models/propertyAdditional",
+    inputPath: "type/property/additional-properties"
+  },
+  {
     outputPath: "models/visibility",
     inputPath: "type/model/visibility"
   },
@@ -137,10 +141,11 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "specialWords",
     inputPath: "special-words"
   },
-  {
-    outputPath: "unions",
-    inputPath: "type/union"
-  },
+  // TODO: union has issues need to fix in https://github.com/Azure/autorest.typescript/issues/2141
+  // {
+  //   outputPath: "unions",
+  //   inputPath: "type/union"
+  // },
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
@@ -242,6 +247,10 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "payload/pageable",
+    inputPath: "payload/pageable"
   },
   {
     outputPath: "encode/bytes",

@@ -6,6 +6,7 @@ import {
 import { toPascalCase } from "../../utils/casingUtils.js";
 import {
   BodyParameter,
+  Client,
   ModularCodeModel,
   Operation,
   Parameter,
@@ -262,37 +263,78 @@ export function getOperationFunction(
   // Extract required parameters
   const parameters: OptionalKind<ParameterDeclarationStructure>[] =
     getOperationSignatureParameters(operation, clientType);
+  const isPaging = isPagingOperation(operation);
 
   // TODO: Support operation overloads
   const response = operation.responses[0]!;
-  const returnType = response?.type?.type
-    ? buildType(response.type.name, response.type, response.type.format)
-    : { name: "", type: "void" };
-
+  let returnType = { name: "", type: "void" };
+  if (response.type?.type) {
+    let type = response.type;
+    if (isPaging) {
+      type = extractPagingType(type, operation.itemName) ?? type;
+    }
+    returnType = buildType(type.name, type, type.format);
+  }
   const { name, fixme = [] } = getOperationName(operation);
   const functionStatement: OptionalKind<FunctionDeclarationStructure> = {
     docs: [
       ...getDocsFromDescription(operation.description),
       ...getFixmeForMultilineDocs(fixme)
     ],
-    isAsync: true,
+    isAsync: !isPaging,
     isExported: true,
     name: normalizeName(operation.name, NameType.Operation, true),
     parameters,
-    returnType: `Promise<${returnType.type}>`
+    returnType: isPaging
+      ? `PagedAsyncIterableIterator<${returnType.type}>`
+      : `Promise<${returnType.type}>`
   };
 
   const statements: string[] = [];
-  statements.push(
-    `const result = await _${name}Send(${parameters
-      .map((p) => p.name)
-      .join(", ")});`
-  );
-  statements.push(`return _${name}Deserialize(result);`);
+  if (isPaging) {
+    const options = [];
+    if (operation.itemName) {
+      options.push(`itemName: "${operation.itemName}"`);
+    }
+    if (operation.continuationTokenName) {
+      options.push(`nextLinkName: "${operation.continuationTokenName}"`);
+    }
+    statements.push(
+      `return buildPagedAsyncIterator(
+        context, 
+        () => _${name}Send(${parameters.map((p) => p.name).join(", ")}), 
+        _${name}Deserialize,
+        ${options.length > 0 ? `{${options.join(", ")}}` : ``}
+        );`
+    );
+  } else {
+    statements.push(
+      `const result = await _${name}Send(${parameters
+        .map((p) => p.name)
+        .join(", ")});`
+    );
+    statements.push(`return _${name}Deserialize(result);`);
+  }
+
   return {
     ...functionStatement,
     statements
   };
+}
+
+function extractPagingType(type: Type, itemName?: string): Type | undefined {
+  if (!itemName) {
+    return undefined;
+  }
+  const prop = (type.properties ?? [])
+    ?.filter((prop) => prop.restApiName === itemName)
+    .map((prop) => prop.type);
+  if (prop.length === 0) {
+    return undefined;
+  }
+  return prop[0]?.type === "list" && prop[0].elementType
+    ? prop[0].elementType
+    : undefined;
 }
 export function getOperationOptionsName(
   operation: Operation,
@@ -1055,22 +1097,35 @@ function needsDeserialize(type?: Type) {
 export function hasLROOperation(codeModel: ModularCodeModel) {
   return (codeModel.clients ?? []).some((c) =>
     (c.operationGroups ?? []).some((og) =>
-      (og.operations ?? []).some(
-        (op) => op.discriminator === "lro" || op.discriminator === "lropaging"
-      )
+      (og.operations ?? []).some(isLROOperation)
     )
   );
 }
 
-export function hasPagingOperation(codeModel: ModularCodeModel) {
-  return (codeModel.clients ?? []).some((c) =>
+export function isLROOperation(op: Operation): boolean {
+  return op.discriminator === "lro" || op.discriminator === "lropaging";
+}
+
+export function hasPagingOperation(client: Client): boolean;
+export function hasPagingOperation(codeModel: ModularCodeModel): boolean;
+export function hasPagingOperation(
+  clientOrCodeModel: Client | ModularCodeModel
+): boolean {
+  let clients: Client[] = [];
+  if ((clientOrCodeModel as any)?.operationGroups) {
+    clients = [clientOrCodeModel as Client];
+  } else if ((clientOrCodeModel as any)?.clients) {
+    clients = (clientOrCodeModel as ModularCodeModel).clients;
+  }
+  return clients.some((c) =>
     (c.operationGroups ?? []).some((og) =>
-      (og.operations ?? []).some(
-        (op) =>
-          op.discriminator === "paging" || op.discriminator === "lropaging"
-      )
+      (og.operations ?? []).some(isPagingOperation)
     )
   );
+}
+
+export function isPagingOperation(op: Operation): boolean {
+  return op.discriminator === "paging" || op.discriminator === "lropaging";
 }
 
 function getAllProperties(type: Type): Property[] {

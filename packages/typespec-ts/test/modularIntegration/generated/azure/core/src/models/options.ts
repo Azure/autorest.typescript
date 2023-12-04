@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { OperationOptions } from "@azure-rest/core-client";
+import { ListItemInputExtensibleEnum } from "./models.js";
 
 export interface CreateOrUpdateOptions extends OperationOptions {
   /** This request has a JSON Merge Patch body. */
@@ -31,8 +32,17 @@ export interface ListOptions extends OperationOptions {
 
 export interface ListWithPageOptions extends OperationOptions {}
 
+export interface ListWithParametersOptions extends OperationOptions {
+  /** Another query parameter. */
+  another?: ListItemInputExtensibleEnum;
+}
+
 export interface ListWithCustomPageModelOptions extends OperationOptions {}
 
 export interface DeleteOperationOptions extends OperationOptions {}
 
 export interface ExportOperationOptions extends OperationOptions {}
+
+export interface ListFirstItemOptions extends OperationOptions {}
+
+export interface ListSecondItemOptions extends OperationOptions {}

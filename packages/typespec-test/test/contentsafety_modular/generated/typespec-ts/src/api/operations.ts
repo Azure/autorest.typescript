@@ -14,6 +14,8 @@ import {
   PagedTextBlocklist,
   PagedTextBlockItem,
 } from "../models/models.js";
+import { PagedAsyncIterableIterator } from "../models/pagingTypes.js";
+import { buildPagedAsyncIterator } from "./pagingHelpers.js";
 import {
   isUnexpected,
   ContentSafetyContext as Client,
@@ -308,12 +310,16 @@ export async function _listTextBlocklistsDeserialize(
 }
 
 /** Get all text blocklists details. */
-export async function listTextBlocklists(
+export function listTextBlocklists(
   context: Client,
   options: ListTextBlocklistsOptions = { requestOptions: {} }
-): Promise<PagedTextBlocklist> {
-  const result = await _listTextBlocklistsSend(context, options);
-  return _listTextBlocklistsDeserialize(result);
+): PagedAsyncIterableIterator<TextBlocklist> {
+  return buildPagedAsyncIterator(
+    context,
+    () => _listTextBlocklistsSend(context, options),
+    _listTextBlocklistsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
+  );
 }
 
 export function _addOrUpdateBlockItemsSend(
@@ -504,15 +510,15 @@ export async function _listTextBlocklistItemsDeserialize(
 }
 
 /** Get all blockItems in a text blocklist */
-export async function listTextBlocklistItems(
+export function listTextBlocklistItems(
   context: Client,
   blocklistName: string,
   options: ListTextBlocklistItemsOptions = { requestOptions: {} }
-): Promise<PagedTextBlockItem> {
-  const result = await _listTextBlocklistItemsSend(
+): PagedAsyncIterableIterator<TextBlockItem> {
+  return buildPagedAsyncIterator(
     context,
-    blocklistName,
-    options
+    () => _listTextBlocklistItemsSend(context, blocklistName, options),
+    _listTextBlocklistItemsDeserialize,
+    { itemName: "value", nextLinkName: "nextLink" }
   );
-  return _listTextBlocklistItemsDeserialize(result);
 }

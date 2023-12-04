@@ -12,7 +12,10 @@ export {
   get,
   list,
   listWithPage,
+  listWithParameters,
   listWithCustomPageModel,
   deleteOperation,
   exportOperation,
+  listFirstItem,
+  listSecondItem,
 } from "./operations.js";

@@ -530,4 +530,130 @@ describe("operations", () => {
       );
     });
   });
+
+  describe("paging operations", () => {
+    it("should generate paging if @items defined", async () => {
+      const tspContent = `
+        @error
+        model Error {
+          code: int32;
+          message: string;
+        }
+
+        @pagedResult
+        model Bar {
+          @items
+          lists: string[];
+        }
+        @post
+        op test(): Error | Bar;
+          `;
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        true,
+        true,
+        true
+      );
+      assert.ok(operationFiles);
+
+      assert.equal(operationFiles?.length, 1);
+      // console.log(operationFiles?.[0]?.getFullText()!);
+      assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+
+        export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
+            return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
+        }
+
+        export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
+            if(result.status !== "200"){
+              throw result.body
+            }
+
+            return {
+              "lists": result.body["lists"]
+            }
+        }
+
+        export function test(context: Client, options: TestOptions = { requestOptions: {} }): PagedAsyncIterableIterator<string> {
+            return buildPagedAsyncIterator(
+                    context,
+                    () => _testSend(context, options),
+                    _testDeserialize,
+                    {itemName: "lists"}
+                    );
+        }`,
+        true
+      );
+    });
+
+    it("should generate paging if no @items defined", async () => {
+      const tspContent = `
+        @error
+        model Error {
+          code: int32;
+          message: string;
+        }
+
+        @pagedResult
+        model Bar {
+          lists: string[];
+        }
+        @post
+        op test(): Error | Bar;
+          `;
+
+      try {
+        await emitModularOperationsFromTypeSpec(tspContent, true, true, true);
+        assert.fail("Should throw diagnostic warnings");
+      } catch (e) {
+        const diagnostics = e as Diagnostic[];
+        // console.log(diagnostics);
+        assert.equal(diagnostics.length, 1);
+        assert.equal(
+          diagnostics[0]?.code,
+          "@azure-tools/typespec-ts/no-paging-items-defined"
+        );
+        assert.equal(diagnostics[0]?.severity, "warning");
+      }
+      const operationFiles = await emitModularOperationsFromTypeSpec(
+        tspContent,
+        false,
+        true,
+        true
+      );
+      assert.ok(operationFiles);
+      assert.equal(operationFiles?.length, 1);
+      // console.log(operationFiles?.[0]?.getFullText()!);
+      assertEqualContent(
+        operationFiles?.[0]?.getFullText()!,
+        `
+        import { TestingContext as Client } from "../rest/index.js";
+        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+
+        export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
+            return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
+        }
+
+        export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
+            if(result.status !== "200"){
+            throw result.body
+            }
+
+            return {
+            "lists": result.body["lists"]
+            }
+        }
+
+        export async function test(context: Client, options: TestOptions = { requestOptions: {} }): Promise<Bar> {
+            const result = await _testSend(context, options);
+            return _testDeserialize(result);
+        }`,
+        true
+      );
+    });
+  });
 });
