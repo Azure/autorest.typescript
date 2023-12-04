@@ -156,9 +156,39 @@ export interface Widget28 extends Widget {
 }
 
 // @public (undocumented)
+export interface Widget29 extends Widget {
+    // (undocumented)
+    data: Date | string;
+}
+
+// @public (undocumented)
 export interface Widget3 extends Widget {
     // (undocumented)
     data: WidgetData1 | WidgetData2;
+}
+
+// @public (undocumented)
+export interface Widget30 extends Widget {
+    // (undocumented)
+    data: Uint8Array | string;
+}
+
+// @public (undocumented)
+export interface Widget31 extends Widget {
+    // (undocumented)
+    data: Date | Uint8Array;
+}
+
+// @public (undocumented)
+export interface Widget32 extends Widget {
+    // (undocumented)
+    data: WidgetData0 | Record<string, string>;
+}
+
+// @public (undocumented)
+export interface Widget33 extends Widget {
+    // (undocumented)
+    data: WidgetData2 | Record<string, string>;
 }
 
 // @public (undocumented)
@@ -322,7 +352,27 @@ export interface WidgetServiceCustomGetRequest28Options extends OperationOptions
 }
 
 // @public (undocumented)
+export interface WidgetServiceCustomGetRequest29Options extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface WidgetServiceCustomGetRequest2Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetRequest30Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetRequest31Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetRequest32Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetRequest33Options extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -438,7 +488,27 @@ export interface WidgetServiceCustomGetResponse28Options extends OperationOption
 }
 
 // @public (undocumented)
+export interface WidgetServiceCustomGetResponse29Options extends OperationOptions {
+}
+
+// @public (undocumented)
 export interface WidgetServiceCustomGetResponse2Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetResponse30Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetResponse31Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetResponse32Options extends OperationOptions {
+}
+
+// @public (undocumented)
+export interface WidgetServiceCustomGetResponse33Options extends OperationOptions {
 }
 
 // @public (undocumented)
@@ -520,7 +590,17 @@ export interface WidgetServiceOperations {
     // (undocumented)
     customGetRequest28: (body: Widget28, options?: WidgetServiceCustomGetRequest28Options) => Promise<void>;
     // (undocumented)
+    customGetRequest29: (body: Widget29, options?: WidgetServiceCustomGetRequest29Options) => Promise<void>;
+    // (undocumented)
     customGetRequest3: (body: Widget3, options?: WidgetServiceCustomGetRequest3Options) => Promise<void>;
+    // (undocumented)
+    customGetRequest30: (body: Widget30, options?: WidgetServiceCustomGetRequest30Options) => Promise<void>;
+    // (undocumented)
+    customGetRequest31: (body: Widget31, options?: WidgetServiceCustomGetRequest31Options) => Promise<void>;
+    // (undocumented)
+    customGetRequest32: (body: Widget32, options?: WidgetServiceCustomGetRequest32Options) => Promise<void>;
+    // (undocumented)
+    customGetRequest33: (body: Widget33, options?: WidgetServiceCustomGetRequest33Options) => Promise<void>;
     // (undocumented)
     customGetRequest4: (body: Widget4, options?: WidgetServiceCustomGetRequest4Options) => Promise<void>;
     // (undocumented)
@@ -578,7 +658,17 @@ export interface WidgetServiceOperations {
     // (undocumented)
     customGetResponse28: (options?: WidgetServiceCustomGetResponse28Options) => Promise<Widget28>;
     // (undocumented)
+    customGetResponse29: (options?: WidgetServiceCustomGetResponse29Options) => Promise<Widget29>;
+    // (undocumented)
     customGetResponse3: (options?: WidgetServiceCustomGetResponse3Options) => Promise<Widget3>;
+    // (undocumented)
+    customGetResponse30: (options?: WidgetServiceCustomGetResponse30Options) => Promise<Widget30>;
+    // (undocumented)
+    customGetResponse31: (options?: WidgetServiceCustomGetResponse31Options) => Promise<Widget31>;
+    // (undocumented)
+    customGetResponse32: (options?: WidgetServiceCustomGetResponse32Options) => Promise<Widget32>;
+    // (undocumented)
+    customGetResponse33: (options?: WidgetServiceCustomGetResponse33Options) => Promise<Widget33>;
     // (undocumented)
     customGetResponse4: (options?: WidgetServiceCustomGetResponse4Options) => Promise<Widget4>;
     // (undocumented)
