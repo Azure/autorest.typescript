@@ -99,4 +99,34 @@ describe("Projected Name Rest Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should post model client", async () => {
+    try {
+      const result = await client
+        .path("/projection/projected-name/model/client")
+        .post({
+          body: {
+            defaultName: true
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should post model language", async () => {
+    try {
+      const result = await client
+        .path("/projection/projected-name/model/language")
+        .post({
+          body: {
+            defaultName: true
+          }
+        });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });

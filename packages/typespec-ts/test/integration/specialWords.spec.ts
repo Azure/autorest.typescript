@@ -424,6 +424,21 @@ describe("SpecialWordsClient Rest Client", () => {
       }
     });
 
+    it("should get special words for operation `cancellationToken`", async () => {
+      try {
+        const result = await client
+          .path("/special-words/parameters/cancellationToken")
+          .get({
+            queryParameters: {
+              cancellationToken: "ok"
+            }
+          });
+        assert.strictEqual(result.status, "204");
+      } catch (err) {
+        assert.fail(err as string);
+      }
+    });
+
     it("should get special words for operation `class`", async () => {
       try {
         const result = await client
