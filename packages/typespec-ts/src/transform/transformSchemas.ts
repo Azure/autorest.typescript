@@ -133,18 +133,18 @@ export function transformSchemas(
         const [, propType] = prop;
         if (
           propType.type.kind === "Model" &&
-          (!program.stateMap(modelKey).get(prop[1].type) ||
-            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
+          (!program.stateMap(modelKey).get(propType.type) ||
+            !program.stateMap(modelKey).get(propType.type)?.includes(context))
         ) {
-          if (isAzureCoreErrorType(prop[1].type)) {
+          if (isAzureCoreErrorType(propType.type)) {
             continue;
           }
-          getGeneratedModels(prop[1].type, context);
+          getGeneratedModels(propType.type, context);
         }
         if (
           propType.type.kind === "Union" &&
-          (!program.stateMap(modelKey).get(prop[1].type) ||
-            !program.stateMap(modelKey).get(prop[1].type)?.includes(context))
+          (!program.stateMap(modelKey).get(propType.type) ||
+            !program.stateMap(modelKey).get(propType.type)?.includes(context))
         ) {
           const variants = Array.from(propType.type.variants.values());
           for (const variant of variants) {
