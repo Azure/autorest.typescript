@@ -228,7 +228,7 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': 1.1.6-alpha.20231129.4
+      '@azure-rest/core-client': ^1.1.6
       '@azure-tools/cadl-ranch': ^0.10.0
       '@azure-tools/cadl-ranch-expect': ^0.9.0
       '@azure-tools/cadl-ranch-specs': ^0.26.1
@@ -280,7 +280,7 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.1.6-alpha.20231129.4
+      '@azure-rest/core-client': 1.1.6
       '@azure-tools/cadl-ranch': 0.10.1_3hgbimueyj4cov2ejjvw37nlra
       '@azure-tools/cadl-ranch-expect': 0.9.0_34oeiyjczsyn4xxwbbzj3xeide
       '@azure-tools/cadl-ranch-specs': 0.26.2_d6rreab6h3zzjhymhpmevgdlii
@@ -351,8 +351,8 @@ packages:
       - supports-color
     dev: false
 
-  /@azure-rest/core-client/1.1.6-alpha.20231129.4:
-    resolution: {integrity: sha512-aIVuGBaiCxCO3mXppXT1mg2EYszRrQ+MUP907NWA+1dBhC9m4+SSeNoTWv8DRYqvkIF1BFfaUNLloobiA3EIUg==}
+  /@azure-rest/core-client/1.1.6:
+    resolution: {integrity: sha512-f/eM9o7BHVvjz2HciCwM7LhRcUO4o+okj6NStQK/BNqeTTg5hGWC+ja2vDPfh5ldkXAcBRFC7zyiGUNQYtPyAg==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
