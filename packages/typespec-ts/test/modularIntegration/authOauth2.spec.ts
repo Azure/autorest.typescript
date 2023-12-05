@@ -58,7 +58,7 @@ describe("OAuth2Context in API Layer", () => {
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
       console.log(err);
-      assert.strictEqual(err.message, "Unexpected status code 403");
+      assert.strictEqual(err.message, "Unexpected status code: 403");
     }
   });
 });

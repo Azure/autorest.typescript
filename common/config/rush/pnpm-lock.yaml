@@ -251,7 +251,7 @@ importers:
       '@typespec/compiler': '>=0.50.0 <1.0.0'
       '@typespec/http': '>=0.50.0 <1.0.0'
       '@typespec/rest': '>=0.50.0 <1.0.0'
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231103.1
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20231129.4
       '@typespec/versioning': '>=0.50.0 <1.0.0'
       chai: ^4.3.6
       chalk: ^4.0.0
@@ -297,7 +297,7 @@ importers:
       '@types/prettier': 2.7.3
       '@typescript-eslint/eslint-plugin': 6.8.0_qc27boxdfajyxyoyktucppwpla
       '@typescript-eslint/parser': 6.8.0_jk7qbkaijtltyu4ajmze3dfiwa
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231103.1
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20231129.4
       chai: 4.3.8
       chalk: 4.1.2
       cross-env: 7.0.3
@@ -1407,11 +1407,10 @@ packages:
       '@typespec/compiler': 0.50.0
       '@typespec/http': 0.50.0_@typespec+compiler@0.50.0
 
-  /@typespec/ts-http-runtime/1.0.0-alpha.20231103.1:
-    resolution: {integrity: sha512-ouAAPny3OHIVcC44YfevSH08etbBvg+v6tMBJZMHX1YR2FT0tKBRb4PU47OdEmH74u7JXyccXlZhEENA38RRCw==}
+  /@typespec/ts-http-runtime/1.0.0-alpha.20231129.4:
+    resolution: {integrity: sha512-H2bI/Pxc31/y0p9bMzKoplA/BuoxpHrT71NJkdPCRugvyTlYFPbrdxWOBqrFr175HKjy4pzaiBn4Dg5+tXpfhg==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      form-data: 4.0.0
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
       tslib: 2.6.2

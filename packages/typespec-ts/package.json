@@ -71,7 +71,7 @@
     "@azure/logger": "^1.0.4",
     "@azure/core-util": "^1.4.0",
     "eslint-plugin-require-extensions": "0.1.3",
-    "@typespec/ts-http-runtime": "1.0.0-alpha.20231103.1"
+    "@typespec/ts-http-runtime": "1.0.0-alpha.20231129.4"
   },
   "peerDependencies": {
     "@azure-tools/typespec-azure-core": ">=0.36.0 <1.0.0",
