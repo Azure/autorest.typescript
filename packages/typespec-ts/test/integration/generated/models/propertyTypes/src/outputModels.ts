@@ -31,6 +31,18 @@ export interface FloatPropertyOutput {
   property: number;
 }
 
+/** Model with a decimal property */
+export interface DecimalPropertyOutput {
+  /** Property */
+  property: number;
+}
+
+/** Model with a decimal128 property */
+export interface Decimal128PropertyOutput {
+  /** Property */
+  property: number;
+}
+
 /** Model with a datetime property */
 export interface DatetimePropertyOutput {
   /** Property */
