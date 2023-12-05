@@ -77,4 +77,122 @@ describe("Scalar Client", () => {
       assert.fail(err as string);
     }
   });
+
+  it("should get decimal type response body", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal/response_body")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body, 0.33333);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put decimal type request body", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal/resquest_body")
+        .put({ body: 0.33333 });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get decimal type request parameter", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal/request_parameter")
+        .get({ queryParameters: { value: 0.33333 } });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get decimal128 type response body", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal128/response_body")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body, 0.33333);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should put decimal128 type request body", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal128/resquest_body")
+        .put({ body: 0.33333 });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get decimal128 type request parameter", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal128/request_parameter")
+        .get({ queryParameters: { value: 0.33333 } });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get decimal prepare verify", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal/prepare_verify")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body[0], 0.1);
+      assert.strictEqual(result.body[1], 0.1);
+      assert.strictEqual(result.body[2], 0.1);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should post decimal verify", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal/verify")
+        .post({ body: 0.3 });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should get decimal128 prepare verify", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal128/prepare_verify")
+        .get();
+      assert.strictEqual(result.status, "200");
+      assert.strictEqual(result.body[0], 0.1);
+      assert.strictEqual(result.body[1], 0.1);
+      assert.strictEqual(result.body[2], 0.1);
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
+
+  it("should post decimal128 verify", async () => {
+    try {
+      const result = await client
+        .path("/type/scalar/decimal128/verify")
+        .post({ body: 0.3 });
+      assert.strictEqual(result.status, "204");
+    } catch (err) {
+      assert.fail(err as string);
+    }
+  });
 });
