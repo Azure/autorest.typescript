@@ -7,6 +7,8 @@ import {
   ClientProjectedNameModel,
   LanguageProjectedNameModel,
   JsonAndClientProjectedNameModel,
+  ModelWithClientProjectedName,
+  ModelWithLanguageProjectedName,
 } from "./models";
 
 export interface PropertyJsonBodyParam {
@@ -34,6 +36,19 @@ export interface PropertyJsonAndClientBodyParam {
 }
 
 export type PropertyJsonAndClientParameters = PropertyJsonAndClientBodyParam &
+  RequestParameters;
+
+export interface ModelClientBodyParam {
+  body?: ModelWithClientProjectedName;
+}
+
+export type ModelClientParameters = ModelClientBodyParam & RequestParameters;
+
+export interface ModelLanguageBodyParam {
+  body?: ModelWithLanguageProjectedName;
+}
+
+export type ModelLanguageParameters = ModelLanguageBodyParam &
   RequestParameters;
 export type OperationParameters = RequestParameters;
 
