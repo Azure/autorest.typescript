@@ -241,7 +241,6 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["esm"] = "^3.2.18";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
-    packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";
