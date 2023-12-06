@@ -191,7 +191,7 @@ function regularAutorestPackage(
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
-    packageInfo.devDependencies["rollup"] = "^2.66.1";
+    packageInfo.devDependencies["rollup"] = "^4.0.0";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
   }
 
