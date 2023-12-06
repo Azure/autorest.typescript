@@ -12,8 +12,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import {
   QueryDefaultOptions,
   QueryIso8601Options,

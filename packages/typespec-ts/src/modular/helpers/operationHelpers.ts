@@ -34,7 +34,7 @@ import {
 import { SdkContext } from "@azure-tools/typespec-client-generator-core";
 import { Program, NoTarget } from "@typespec/compiler";
 import { reportDiagnostic } from "../../lib.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { addImportToSpecifier } from "@azure-tools/rlc-common";
 
 function getRLCResponseType(rlcResponse?: OperationResponse) {
   if (!rlcResponse?.responses) {
@@ -57,7 +57,6 @@ export function getSendPrivateFunction(
   dpgContext: SdkContext,
   operation: Operation,
   clientType: string,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const parameters = getOperationSignatureParameters(operation, clientType);
@@ -84,7 +83,6 @@ export function getSendPrivateFunction(
     )}).${operationMethod}({...operationOptionsToRequestParameters(options), ${getRequestParameters(
       dpgContext,
       operation,
-      importSet,
       runtimeImports
     )}}) ${operation.isOverload ? `as ${returnType}` : ``} ;`
   );
@@ -99,7 +97,6 @@ export function getDeserializePrivateFunction(
   operation: Operation,
   needSubClient: boolean,
   needUnexpectedHelper: boolean,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ): OptionalKind<FunctionDeclarationStructure> {
   const { name } = getOperationName(operation);
@@ -138,13 +135,7 @@ export function getDeserializePrivateFunction(
       `throw createRestError(result);`,
       "}"
     );
-    const specifier = getImportSpecifier("restClient", runtimeImports);
-    const restPipeline = importSet.get(specifier);
-    if (!restPipeline) {
-      importSet.set(specifier, new Set<string>().add("createRestError"));
-    } else {
-      restPipeline.add("createRestError");
-    }
+    addImportToSpecifier("restClient", runtimeImports, "createRestError");
   } else {
     const validStatus = [
       ...new Set(
@@ -162,13 +153,7 @@ export function getDeserializePrivateFunction(
          `throw createRestError(result);`,
         "}"
       );
-      const specifier = getImportSpecifier("restClient", runtimeImports);
-      const restPipeline = importSet.get(specifier);
-      if (!restPipeline) {
-        importSet.set(specifier, new Set<string>().add("createRestError"));
-      } else {
-        restPipeline.add("createRestError");
-      }
+      addImportToSpecifier("restClient", runtimeImports, "createRestError");
     }
   }
 
@@ -180,7 +165,6 @@ export function getDeserializePrivateFunction(
       getResponseMapping(
         getAllProperties(response.type) ?? [],
         "result.body",
-        importSet,
         runtimeImports
       ).join(","),
       `}`
@@ -192,7 +176,6 @@ export function getDeserializePrivateFunction(
       `return ${deserializeResponseValue(
         response.type,
         "result.body",
-        importSet,
         runtimeImports,
         response.type.nullable !== undefined ? !response.type.nullable : false,
         response.type.format
@@ -359,7 +342,6 @@ export function getOperationOptionsName(
 function getRequestParameters(
   dpgContext: SdkContext,
   operation: Operation,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ): string {
   if (!operation.parameters) {
@@ -387,7 +369,7 @@ function getRequestParameters(
       param.location === "body"
     ) {
       parametersImplementation[param.location].push({
-        paramMap: getParameterMap(param, importSet, runtimeImports),
+        paramMap: getParameterMap(param, runtimeImports),
         param
       });
     }
@@ -420,7 +402,6 @@ function getRequestParameters(
   } else if (operation.bodyParameter !== undefined) {
     paramStr = `${paramStr}${buildBodyParameter(
       operation.bodyParameter,
-      importSet,
       runtimeImports
     )}`;
   }
@@ -454,7 +435,6 @@ function buildHeaderParameter(
 
 function buildBodyParameter(
   bodyParameter: BodyParameter | undefined,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   if (!bodyParameter) {
@@ -465,7 +445,6 @@ function buildBodyParameter(
     const bodyParts: string[] = getRequestModelMapping(
       bodyParameter.type,
       bodyParameter.clientName,
-      importSet,
       runtimeImports
     );
 
@@ -479,7 +458,6 @@ function buildBodyParameter(
       const bodyParts = getRequestModelMapping(
         bodyParameter.type.elementType,
         "p",
-        importSet,
         runtimeImports
       );
       return `\nbody: (${bodyParameter.clientName} ?? []).map((p) => { return {
@@ -493,13 +471,7 @@ function buildBodyParameter(
     bodyParameter.type.type === "byte-array" &&
     !bodyParameter.isBinaryPayload
   ) {
-    const specifier = getImportSpecifier("coreUtil", runtimeImports);
-    const coreUtilSet = importSet.get(specifier);
-    if (!coreUtilSet) {
-      importSet.set(specifier, new Set<string>().add("uint8ArrayToString"));
-    } else {
-      coreUtilSet.add("uint8ArrayToString");
-    }
+    addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
     return bodyParameter.optional
       ? `body: typeof ${bodyParameter.clientName} === 'string'
     ? uint8ArrayToString(${bodyParameter.clientName}, "${getEncodingFormat(
@@ -531,7 +503,6 @@ function getEncodingFormat(type: { format?: string }) {
  */
 function getParameterMap(
   param: Parameter | Property,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ): string {
   if (isConstant(param)) {
@@ -539,16 +510,16 @@ function getParameterMap(
   }
 
   if (hasCollectionFormatInfo((param as any).location, (param as any).format)) {
-    return getCollectionFormat(param as Parameter, importSet, runtimeImports);
+    return getCollectionFormat(param as Parameter, runtimeImports);
   }
 
   // if the parameter or property is optional, we don't need to handle the default value
   if (isOptional(param)) {
-    return getOptional(param, importSet, runtimeImports);
+    return getOptional(param, runtimeImports);
   }
 
   if (isRequired(param)) {
-    return getRequired(param, importSet, runtimeImports);
+    return getRequired(param, runtimeImports);
   }
 
   throw new Error(`Parameter ${param.clientName} is not supported`);
@@ -556,7 +527,6 @@ function getParameterMap(
 
 function getCollectionFormat(
   param: Parameter,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   const collectionInfo = getCollectionFormatHelper(
@@ -572,7 +542,6 @@ function getCollectionFormat(
     return `"${param.restApiName}": ${collectionInfo}(${serializeRequestValue(
       param.type,
       param.clientName,
-      importSet,
       runtimeImports,
       true,
       param.format
@@ -583,7 +552,6 @@ function getCollectionFormat(
   } !== undefined ? ${collectionInfo}(${serializeRequestValue(
     param.type,
     "options?." + param.clientName,
-    importSet,
     runtimeImports,
     false,
     param.format
@@ -624,21 +592,18 @@ function isRequired(param: Parameter | Property): param is RequiredType {
 
 function getRequired(
   param: RequiredType,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       param.clientName,
-      importSet,
       runtimeImports
     ).join(",")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     param.clientName,
-    importSet,
     runtimeImports,
     true,
     param.format === undefined &&
@@ -682,21 +647,18 @@ function isOptional(param: Parameter | Property): param is OptionalType {
 
 function getOptional(
   param: OptionalType,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
       "options?." + param.clientName + "?",
-      importSet,
       runtimeImports
     ).join(", ")}}`;
   }
   return `"${param.restApiName}": ${serializeRequestValue(
     param.type,
     `options?.${param.clientName}`,
-    importSet,
     runtimeImports,
     false,
     param.format === undefined &&
@@ -766,7 +728,6 @@ function getNullableCheck(name: string, type: Type) {
 function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   if (getAllProperties(modelPropertyType).length <= 0) {
@@ -810,7 +771,6 @@ function getRequestModelMapping(
           `${propertyPath}.${property.clientName}${
             property.optional ? "?" : ""
           }`,
-          importSet,
           runtimeImports
         )}}`;
       }
@@ -837,7 +797,6 @@ function getRequestModelMapping(
         `"${property.restApiName}": ${serializeRequestValue(
           property.type,
           clientValue,
-          importSet,
           runtimeImports,
           !property.optional,
           property.format
@@ -856,7 +815,6 @@ function getRequestModelMapping(
 export function getResponseMapping(
   properties: Property[],
   propertyPath: string = "result.body",
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   const props: string[] = [];
@@ -894,7 +852,6 @@ export function getResponseMapping(
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
-          importSet,
           runtimeImports
         )}}`;
       }
@@ -923,7 +880,6 @@ export function getResponseMapping(
           `"${property.clientName}": ${deserializeResponseValue(
             property.type,
             restValue,
-            importSet,
             runtimeImports,
             property.optional !== undefined ? !property.optional : false,
             property.format
@@ -944,13 +900,10 @@ export function getResponseMapping(
 function deserializeResponseValue(
   type: Type,
   restValue: string,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports,
   required: boolean,
   format?: string
 ): string {
-  const coreSpecifier = getImportSpecifier("coreUtil", runtimeImports);
-  const coreUtilSet = importSet.get(coreSpecifier);
   switch (type.type) {
     case "datetime":
       return required
@@ -969,14 +922,12 @@ function deserializeResponseValue(
         return `${prefix}.map(p => ({${getResponseMapping(
           getAllProperties(type.elementType) ?? [],
           "p",
-          importSet,
           runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
         return `${prefix}.map(p => ${deserializeResponseValue(
           type.elementType!,
           "p",
-          importSet,
           runtimeImports,
           required,
           type.elementType?.format
@@ -987,14 +938,7 @@ function deserializeResponseValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        if (!coreUtilSet) {
-          importSet.set(
-            coreSpecifier,
-            new Set<string>().add("stringToUint8Array")
-          );
-        } else {
-          coreUtilSet.add("stringToUint8Array");
-        }
+        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array"); 
         return `typeof ${restValue} === 'string'
         ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
@@ -1013,13 +957,10 @@ function deserializeResponseValue(
 function serializeRequestValue(
   type: Type,
   clientValue: string,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports,
   required: boolean,
   format?: string
 ): string {
-  const utilSpecifier = getImportSpecifier("coreUtil", runtimeImports);
-  const coreUtilSet = importSet.get(utilSpecifier);
   switch (type.type) {
     case "datetime":
       switch (type.format ?? format) {
@@ -1045,14 +986,12 @@ function serializeRequestValue(
         return `${prefix}.map(p => ({${getRequestModelMapping(
           type.elementType,
           "p",
-          importSet,
           runtimeImports
         )}}))`;
       } else if (needsDeserialize(type.elementType)) {
         return `${prefix}.map(p => ${serializeRequestValue(
           type.elementType!,
           "p",
-          importSet,
           runtimeImports,
           required,
           type.elementType?.format
@@ -1063,14 +1002,7 @@ function serializeRequestValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        if (!coreUtilSet) {
-          importSet.set(
-            utilSpecifier,
-            new Set<string>().add("uint8ArrayToString")
-          );
-        } else {
-          coreUtilSet.add("uint8ArrayToString");
-        }
+        addImportToSpecifier("coreUtil", runtimeImports, "uint8ArrayToString");
         return required
           ? `uint8ArrayToString(${clientValue}, "${
               getEncodingFormat({ format }) ?? "base64"

@@ -9,8 +9,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import { BECOp1Options } from "../../../../models/options.js";
 
 export function _op1Send(

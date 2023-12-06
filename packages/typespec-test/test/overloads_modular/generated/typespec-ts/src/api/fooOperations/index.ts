@@ -12,8 +12,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import {
   FooOperationsGetAvatarAsPngOptions,
   FooOperationsGetAvatarAsJpegOptions,

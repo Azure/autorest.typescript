@@ -1,3 +1,4 @@
+import { SourceFile } from "ts-morph";
 import { ImportType, Imports } from "../interfaces.js";
 
 /**
@@ -94,4 +95,62 @@ export function getImportSpecifier(
     defaultPackageMap[importType] ??
     ""
   );
+}
+
+export function addImportToSpecifier(
+  importType: ImportType,
+  runtimeImports: Imports,
+  importedName: string
+): void {
+  const specifier = getImportSpecifier(importType, runtimeImports);
+  const importSet = runtimeImports[importType]?.importsSet;
+  if (!importSet) {
+    runtimeImports[importType] = {
+      type: importType,
+      specifier,
+      importsSet: new Set<string>().add(importedName)
+    };
+  } else {
+    importSet.add(importedName);
+  }
+}
+
+export function clearImportSets(runtimeImports: Imports): void {
+  for (const importType of Object.values(runtimeImports)) {
+    importType.importsSet?.clear();
+  }
+}
+
+export function addImportsToFiles(
+  runtimeImports: Imports,
+  file: SourceFile
+): void {
+  Object.values(runtimeImports)
+    .filter((importType) => {
+      return importType.specifier && importType.importsSet?.size;
+    })
+    .forEach((importType) => {
+      let hasModifier = false;
+      file
+        .getImportDeclarations()
+        .filter((importDeclaration) => {
+          return (
+            importDeclaration.getModuleSpecifierValue() === importType.specifier
+          );
+        })
+        .forEach((importDeclaration) => {
+          hasModifier = true;
+          importDeclaration.addNamedImports([
+            ...importType.importsSet!.values()
+          ]);
+        });
+
+      if (!hasModifier) {
+        return file.addImportDeclaration({
+          moduleSpecifier: importType.specifier!,
+          namedImports: [...importType.importsSet!.values()]
+        });
+      }
+    });
+  clearImportSets(runtimeImports);
 }

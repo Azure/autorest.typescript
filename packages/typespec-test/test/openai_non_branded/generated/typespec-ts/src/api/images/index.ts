@@ -19,8 +19,9 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
+  stringToUint8Array,
 } from "@typespec/ts-http-runtime";
-import { createRestError, stringToUint8Array } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptions,
   ImagesCreateEditOptions,

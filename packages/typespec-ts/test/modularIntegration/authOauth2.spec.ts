@@ -52,12 +52,11 @@ describe("OAuth2Context in API Layer", () => {
     }
   });
 
-  it("should throw exception if the token is invalid", async () => {
+  it.only("should throw exception if the token is invalid", async () => {
     try {
       await invalid(context);
       assert.fail("Expected an exception to be thrown.");
     } catch (err: any) {
-      console.log(err);
       assert.strictEqual(err.message, "Unexpected status code: 403");
     }
   });

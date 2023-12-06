@@ -39,9 +39,8 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
         import { uint8ArrayToString } from "@azure/core-util";
-        import { createRestError } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client, 
@@ -141,8 +140,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
       import { TestingContext as Client } from "../rest/index.js";
-      import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
+      import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
   
       export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options), 
@@ -187,8 +185,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -235,8 +232,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -283,8 +279,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -331,8 +326,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -391,8 +385,8 @@ describe("operations", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client,
@@ -477,8 +471,8 @@ describe("operations", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         
         export function _readSend(
           context: Client,
@@ -562,8 +556,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
@@ -633,8 +626,7 @@ describe("operations", () => {
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 

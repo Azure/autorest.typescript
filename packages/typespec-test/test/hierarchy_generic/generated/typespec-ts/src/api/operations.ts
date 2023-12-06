@@ -6,8 +6,8 @@ import { FooContext as Client, Op1204Response } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import { Op1Options } from "../models/options.js";
 
 export function _op1Send(

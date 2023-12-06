@@ -45,8 +45,9 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -158,8 +159,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -270,8 +271,9 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
+
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -371,8 +373,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -438,8 +440,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -507,8 +509,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -587,8 +589,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           body: Test,
@@ -650,8 +652,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           body: Test,
@@ -697,8 +699,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -787,8 +789,8 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -864,9 +866,9 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-        import { createRestError } from "@azure-rest/core-client";
-
+        
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -954,8 +956,8 @@ describe("anonymous model", () => {
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            createRestError
           } from "@azure-rest/core-client";
-          import { createRestError } from "@azure-rest/core-client";
           
           export function _readSend(
             context: Client,

@@ -23,8 +23,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
@@ -80,8 +80,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
            body: Uint8Array,
@@ -138,8 +138,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFileSend(
            context: Client,
            name: string,
@@ -199,8 +199,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _uploadFilesSend(
            context: Client,
            files: Uint8Array[],
@@ -256,8 +256,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -308,8 +308,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -362,8 +362,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }
@@ -417,8 +417,8 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
-         import { createRestError } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
            options: DownloadFileOptions = { requestOptions: {} }

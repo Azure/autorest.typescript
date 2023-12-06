@@ -13,8 +13,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
-import { createRestError } from "@typespec/ts-http-runtime";
 import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(

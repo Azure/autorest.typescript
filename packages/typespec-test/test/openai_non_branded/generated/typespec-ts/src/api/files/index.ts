@@ -23,8 +23,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
-import { createRestError } from "@typespec/ts-http-runtime";
 import {
   FilesListOptions,
   FilesCreateOptions,

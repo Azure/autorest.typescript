@@ -12,8 +12,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import { stringToUint8Array } from "@azure/core-util";
 import {
   ResponseBodyDefaultOptions,

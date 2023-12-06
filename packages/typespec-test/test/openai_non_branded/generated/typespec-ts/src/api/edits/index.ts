@@ -10,8 +10,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
-import { createRestError } from "@typespec/ts-http-runtime";
 import { EditsCreateOptions } from "../../models/options.js";
 
 export function _createSend(

@@ -134,8 +134,8 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -194,8 +194,8 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -262,8 +262,8 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -334,8 +334,8 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -403,8 +403,8 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -471,8 +471,8 @@ describe("modular encode test for property type duration", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -538,8 +538,8 @@ describe("modular encode test for property type duration", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -608,8 +608,8 @@ describe("modular encode test for property type duration", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -678,9 +678,9 @@ describe("modular encode test for property type bytes", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -749,9 +749,9 @@ describe("modular encode test for property type bytes", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -820,9 +820,9 @@ describe("modular encode test for property type bytes", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -944,8 +944,8 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -1023,8 +1023,8 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
 
       export function _readSend(
         context: Client,
@@ -1109,8 +1109,8 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -1195,8 +1195,8 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
       
       export function _readSend(
         context: Client,
@@ -1282,8 +1282,8 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
-      import { createRestError } from "@azure-rest/core-client";
 
       export function _readSend(
         context: Client,

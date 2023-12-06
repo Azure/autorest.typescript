@@ -6,8 +6,8 @@ import { BcOp1204Response, FooContext as Client } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import { BCOp1Options } from "../../../models/options.js";
 
 export function _op1Send(

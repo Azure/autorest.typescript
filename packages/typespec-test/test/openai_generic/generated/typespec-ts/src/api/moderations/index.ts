@@ -14,8 +14,8 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import { ModerationsCreateOptions } from "../../models/options.js";
 
 export function _createSend(

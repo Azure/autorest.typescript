@@ -5,8 +5,8 @@ import { MyOp200Response, SingleContext as Client } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
-import { createRestError } from "@azure-rest/core-client";
 import { MyOpOptions } from "../models/options.js";
 
 export function _myOpSend(
