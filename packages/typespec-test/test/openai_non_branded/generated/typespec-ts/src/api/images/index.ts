@@ -19,8 +19,9 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
+  stringToUint8Array,
 } from "@typespec/ts-http-runtime";
-import { stringToUint8Array } from "@typespec/ts-http-runtime";
 import {
   ImagesCreateOptions,
   ImagesCreateEditOptions,
@@ -50,7 +51,7 @@ export async function _createDeserialize(
   result: ImagesCreate200Response | ImagesCreateDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -102,7 +103,7 @@ export async function _createEditDeserialize(
   result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -154,7 +155,7 @@ export async function _createVariationDeserialize(
     | ImagesCreateVariationDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

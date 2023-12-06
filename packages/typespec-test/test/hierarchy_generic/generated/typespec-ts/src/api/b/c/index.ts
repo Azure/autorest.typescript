@@ -6,6 +6,7 @@ import { BcOp1204Response, FooContext as Client } from "../../../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { BCOp1Options } from "../../../models/options.js";
 
@@ -24,7 +25,7 @@ export function _op1Send(
 
 export async function _op1Deserialize(result: BcOp1204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

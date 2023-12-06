@@ -6,6 +6,7 @@ import { FooContext as Client, Op1204Response } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { Op1Options } from "../models/options.js";
 
@@ -24,7 +25,7 @@ export function _op1Send(
 
 export async function _op1Deserialize(result: Op1204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

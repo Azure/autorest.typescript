@@ -19,6 +19,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   PropertyDefaultOptions,
@@ -45,7 +46,7 @@ export async function _propertyDefaultDeserialize(
   result: PropertyDefault200Response
 ): Promise<DefaultDurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -79,7 +80,7 @@ export async function _propertyIso8601Deserialize(
   result: PropertyIso8601200Response
 ): Promise<ISO8601DurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -113,7 +114,7 @@ export async function _propertyInt32SecondsDeserialize(
   result: PropertyInt32Seconds200Response
 ): Promise<Int32SecondsDurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -147,7 +148,7 @@ export async function _propertyFloatSecondsDeserialize(
   result: PropertyFloatSeconds200Response
 ): Promise<FloatSecondsDurationProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -181,7 +182,7 @@ export async function _propertyFloatSecondsArrayDeserialize(
   result: PropertyFloatSecondsArray200Response
 ): Promise<FloatSecondsDurationArrayProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

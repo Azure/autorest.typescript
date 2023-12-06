@@ -10,6 +10,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   GroupRenamedTwoOptions,
@@ -30,7 +31,7 @@ export async function _renamedTwoDeserialize(
   result: Two204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -57,7 +58,7 @@ export async function _renamedFourDeserialize(
   result: Four204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -84,7 +85,7 @@ export async function _renamedSixDeserialize(
   result: Six204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

@@ -23,6 +23,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
@@ -41,7 +42,7 @@ describe("api operations in Modular", () => {
            result: UploadFileViaBody204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+             throw createRestError(result);
            }
            return;
          }
@@ -79,6 +80,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFileViaBodySend(
            context: Client,
@@ -97,7 +99,7 @@ describe("api operations in Modular", () => {
            result: UploadFileViaBody204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+            throw createRestError(result);
            }
            return;
          }
@@ -136,6 +138,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFileSend(
            context: Client,
@@ -155,7 +158,7 @@ describe("api operations in Modular", () => {
            result: UploadFile204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+             throw createRestError(result);
            }
            return;
          }
@@ -196,6 +199,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _uploadFilesSend(
            context: Client,
@@ -214,7 +218,7 @@ describe("api operations in Modular", () => {
            result: UploadFiles204Response
          ): Promise<void> {
            if (result.status !== "204") {
-             throw result.body;
+             throw createRestError(result);
            }
            return;
          }
@@ -252,6 +256,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -265,7 +270,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<Uint8Array> {
            if (result.status !== "200") {
-             throw result.body;
+             throw createRestError(result);
            }
            return result.body;
          }
@@ -303,6 +308,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -316,7 +322,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<Uint8Array> {
            if (result.status !== "200") {
-             throw result.body;
+             throw createRestError(result);
            }
            return result.body;
          }
@@ -356,6 +362,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -369,7 +376,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<{ name: string; file: Uint8Array }> {
            if (result.status !== "200") {
-             throw result.body;
+             throw createRestError(result);
            }
            return { name: result.body["name"], file: result.body["file"] };
          }
@@ -410,6 +417,7 @@ describe("api operations in Modular", () => {
          import {
            StreamableMethod,
            operationOptionsToRequestParameters,
+           createRestError
          } from "@azure-rest/core-client";
          export function _downloadFileSend(
            context: Client,
@@ -423,7 +431,7 @@ describe("api operations in Modular", () => {
            result: DownloadFile200Response
          ): Promise<{ name: string; file: Uint8Array[] }> {
            if (result.status !== "200") {
-             throw result.body;
+              throw createRestError(result);
            }
            return {
              name: result.body["name"],

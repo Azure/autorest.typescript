@@ -134,6 +134,7 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -156,7 +157,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -193,6 +194,7 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -212,7 +214,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<void> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return;
@@ -260,6 +262,7 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -280,7 +283,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -331,6 +334,7 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -351,7 +355,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -399,6 +403,7 @@ describe("modular encode test for property type datetime", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -418,7 +423,7 @@ describe("modular encode test for property type datetime", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -466,6 +471,7 @@ describe("modular encode test for property type duration", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -485,7 +491,7 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -532,6 +538,7 @@ describe("modular encode test for property type duration", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -551,7 +558,7 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -601,6 +608,7 @@ describe("modular encode test for property type duration", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -621,7 +629,7 @@ describe("modular encode test for property type duration", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -670,6 +678,7 @@ describe("modular encode test for property type bytes", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
@@ -690,7 +699,7 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -740,6 +749,7 @@ describe("modular encode test for property type bytes", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
@@ -760,7 +770,7 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -810,6 +820,7 @@ describe("modular encode test for property type bytes", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       import { uint8ArrayToString, stringToUint8Array } from "@azure/core-util";
       
@@ -830,7 +841,7 @@ describe("modular encode test for property type bytes", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Foo> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -933,6 +944,7 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -946,7 +958,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -1011,6 +1023,7 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
 
       export function _readSend(
@@ -1024,7 +1037,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
 
         return {
@@ -1096,6 +1109,7 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1109,7 +1123,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -1181,6 +1195,7 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
       
       export function _readSend(
@@ -1194,7 +1209,7 @@ describe("inheritance & polymorphism", () => {
       
       export async function _readDeserialize(result: Read200Response): Promise<Pet> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
       
         return {
@@ -1267,6 +1282,7 @@ describe("inheritance & polymorphism", () => {
       import {
         StreamableMethod,
         operationOptionsToRequestParameters,
+        createRestError
       } from "@azure-rest/core-client";
 
       export function _readSend(
@@ -1280,7 +1296,7 @@ describe("inheritance & polymorphism", () => {
 
       export async function _readDeserialize(result: Read200Response): Promise<Cat> {
         if (result.status !== "200") {
-          throw result.body;
+          throw createRestError(result);
         }
 
         return {

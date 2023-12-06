@@ -10,6 +10,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ValidOptions, InvalidOptions } from "../models/options.js";
 
@@ -26,7 +27,7 @@ export async function _validDeserialize(
   result: Valid204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -54,7 +55,7 @@ export async function _invalidDeserialize(
   result: Invalid204Response | Invalid403Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

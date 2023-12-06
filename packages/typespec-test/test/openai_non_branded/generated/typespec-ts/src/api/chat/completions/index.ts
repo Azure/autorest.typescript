@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
@@ -68,7 +69,7 @@ export async function _createDeserialize(
     | ChatCompletionsCreateDefaultResponse
 ): Promise<CreateChatCompletionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
