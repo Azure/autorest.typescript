@@ -187,10 +187,10 @@ function regularAutorestPackage(
     packageInfo.scripts["build"] =
       "npm run clean && tsc && dev-tool run bundle && npm run minify && mkdirp ./review && npm run extract-api";
   } else {
-    packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
+    packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^25.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
-    packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^13.1.3";
+    packageInfo.devDependencies["@rollup/plugin-node-resolve"] = "^15.0.0";
     packageInfo.devDependencies["rollup"] = "^4.0.0";
     packageInfo.devDependencies["rollup-plugin-sourcemaps"] = "^0.6.3";
   }
