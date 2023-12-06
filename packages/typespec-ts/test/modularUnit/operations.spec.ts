@@ -34,7 +34,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -135,7 +134,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -180,7 +178,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -227,7 +224,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -274,7 +270,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -321,7 +316,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -377,7 +371,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -463,7 +456,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -551,7 +543,6 @@ describe("operations", () => {
       assert.ok(operationFiles);
 
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -605,7 +596,6 @@ describe("operations", () => {
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];
-        // console.log(diagnostics);
         assert.equal(diagnostics.length, 1);
         assert.equal(
           diagnostics[0]?.code,
@@ -621,7 +611,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
