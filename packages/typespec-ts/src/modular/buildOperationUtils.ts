@@ -165,30 +165,21 @@ export function isSpecialUnionVariant(t: Type): boolean {
  * 3. contains unions of datetime and byte-array. as they both serialize to string. we can not tell if we should deserialize to datetime or byte-array.
  */
 export function isSpecialExcludeUnion(t: Type): boolean {
+  if (isSpecialUnion(t)) {
+    const specialVariants = t.types?.filter(isSpecialUnionVariant);
+    if (specialVariants) {
+
+    }
+  }
+}
+
+export function isNormalUnion(t: Type): boolean {
   return (
-    (t.type === "combined" &&
-      t.types &&
-      ((t.types.some(isSpecialUnionVariant) &&
-        t.types.some((type) => {
-          return type.type === "dict";
-        })) ||
-        (t.types.some((type) => {
-          return type.type === "datetime" || type.type === "byte-array";
-        }) &&
-          t.types.some((type) => {
-            return type.type === "string";
-          })) ||
-        (t.types.some((type) => {
-          return type.type === "datetime";
-        }) &&
-          t.types.some((type) => {
-            return type.type === "byte-array";
-          })))) ??
-    false
+    t.type === "combined" && !(t.types?.some(isSpecialUnionVariant) ?? false)
   );
 }
 
-function isSpecialUnion(t: Type): boolean {
+export function isSpecialUnion(t: Type): boolean {
   return (
     t.type === "combined" && (t.types?.some(isSpecialUnionVariant) ?? false)
   );
