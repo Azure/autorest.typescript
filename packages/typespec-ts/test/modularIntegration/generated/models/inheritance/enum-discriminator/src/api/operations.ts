@@ -16,6 +16,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   GetExtensibleModelOptions,
@@ -41,7 +42,7 @@ export async function _getExtensibleModelDeserialize(
   result: GetExtensibleModel200Response
 ): Promise<Dog> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -70,7 +71,7 @@ export async function _putExtensibleModelDeserialize(
   result: PutExtensibleModel204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -103,7 +104,7 @@ export async function _getExtensibleModelMissingDiscriminatorDeserialize(
   result: GetExtensibleModelMissingDiscriminator200Response
 ): Promise<Dog> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -138,7 +139,7 @@ export async function _getExtensibleModelWrongDiscriminatorDeserialize(
   result: GetExtensibleModelWrongDiscriminator200Response
 ): Promise<Dog> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -169,7 +170,7 @@ export async function _getFixedModelDeserialize(
   result: GetFixedModel200Response
 ): Promise<Snake> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -198,7 +199,7 @@ export async function _putFixedModelDeserialize(
   result: PutFixedModel204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -229,7 +230,7 @@ export async function _getFixedModelMissingDiscriminatorDeserialize(
   result: GetFixedModelMissingDiscriminator200Response
 ): Promise<Snake> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -259,7 +260,7 @@ export async function _getFixedModelWrongDiscriminatorDeserialize(
   result: GetFixedModelWrongDiscriminator200Response
 ): Promise<Snake> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;

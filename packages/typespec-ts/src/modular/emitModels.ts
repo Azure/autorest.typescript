@@ -51,7 +51,7 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
   return models;
 }
 
-function extractAliases(codeModel: ModularCodeModel): Type[] {
+export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
     (t) => t.type === "model" && t.alias && t.aliasType
   );
@@ -84,7 +84,7 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends: string[];
 };
 
-function buildModelInterface(
+export function buildModelInterface(
   model: Type,
   cache: { coreClientTypes: Set<string> }
 ): InterfaceStructure {
@@ -174,14 +174,18 @@ export function buildModels(
 
   const aliases = extractAliases(codeModel);
   aliases.forEach((alias) => {
-    modelsFile.addTypeAlias({
-      name: alias.name!,
-      isExported: true,
-      docs: ["Base type for " + alias.name],
-      type: alias.aliasType!
-    });
+    modelsFile.addTypeAlias(buildModelTypeAlias(alias));
   });
   return modelsFile;
+}
+
+export function buildModelTypeAlias(model: Type) {
+  return {
+    name: model.name!,
+    isExported: true,
+    docs: ["Base type for " + model.name],
+    type: model.aliasType!
+  };
 }
 
 export function buildModelsOptions(

@@ -3,7 +3,7 @@
 
 /** This is base model for polymorphic single level inheritance with a discriminator. */
 export interface BirdParent {
-  /** the discriminator possible values seagull, sparrow, goose, eagle */
+  /** the discriminator possible values: seagull, sparrow, goose, eagle */
   kind: string;
   wingspan: number;
 }
@@ -34,7 +34,7 @@ export interface Eagle extends BirdParent {
 /** Define a base class in the legacy way. Discriminator property is not explicitly defined in the model. */
 export interface DinosaurParent {
   size: number;
-  /** the discriminator possible values t-rex */
+  /** the discriminator possible values: t-rex */
   kind: string;
 }
 

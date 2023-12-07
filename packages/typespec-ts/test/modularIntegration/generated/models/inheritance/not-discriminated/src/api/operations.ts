@@ -11,6 +11,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   PostValidOptions,
@@ -35,7 +36,7 @@ export async function _postValidDeserialize(
   result: PostValid204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -63,7 +64,7 @@ export async function _getValidDeserialize(
   result: GetValid200Response
 ): Promise<Siamese> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -98,7 +99,7 @@ export async function _putValidDeserialize(
   result: PutValid200Response
 ): Promise<Siamese> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

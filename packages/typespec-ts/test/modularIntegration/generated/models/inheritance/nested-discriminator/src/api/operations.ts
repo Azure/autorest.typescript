@@ -14,6 +14,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   GetModelOptions,
@@ -37,7 +38,7 @@ export async function _getModelDeserialize(
   result: GetModel200Response
 ): Promise<Fish> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -65,7 +66,7 @@ export async function _putModelDeserialize(
   result: PutModel204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -93,7 +94,7 @@ export async function _getRecursiveModelDeserialize(
   result: GetRecursiveModel200Response
 ): Promise<Fish> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -121,7 +122,7 @@ export async function _putRecursiveModelDeserialize(
   result: PutRecursiveModel204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -149,7 +150,7 @@ export async function _getMissingDiscriminatorDeserialize(
   result: GetMissingDiscriminator200Response
 ): Promise<Fish> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;
@@ -176,7 +177,7 @@ export async function _getWrongDiscriminatorDeserialize(
   result: GetWrongDiscriminator200Response
 ): Promise<Fish> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return result.body;

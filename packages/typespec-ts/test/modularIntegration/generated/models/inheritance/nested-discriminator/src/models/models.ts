@@ -4,14 +4,14 @@
 /** This is base model for polymorphic multiple levels inheritance with a discriminator. */
 export interface FishParent {
   age: number;
-  /** the discriminator possible values shark, salmon */
+  /** the discriminator possible values: shark, salmon */
   kind: string;
 }
 
 /** The second level model in polymorphic multiple levels inheritance and it defines a new discriminator. */
 export interface SharkParent extends FishParent {
   kind: "shark";
-  /** the discriminator possible values saw, goblin */
+  /** the discriminator possible values: saw, goblin */
   sharktype: string;
 }
 

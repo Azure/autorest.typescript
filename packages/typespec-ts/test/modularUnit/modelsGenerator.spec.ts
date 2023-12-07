@@ -1083,7 +1083,7 @@ describe("inheritance & polymorphism", () => {
       modelFile?.getFullText()!,
       `
       export interface PetParent {
-        /** the discriminator possible values cat, dog */
+        /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
@@ -1172,7 +1172,7 @@ describe("inheritance & polymorphism", () => {
       modelFile?.getFullText()!,
       `
       export interface PetParent {
-        /** the discriminator possible values cat, dog */
+        /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
