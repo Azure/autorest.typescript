@@ -8,6 +8,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ImmediateSuccessOptions } from "../models/options.js";
 
@@ -32,7 +33,7 @@ export async function _immediateSuccessDeserialize(
   result: ImmediateSuccess204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

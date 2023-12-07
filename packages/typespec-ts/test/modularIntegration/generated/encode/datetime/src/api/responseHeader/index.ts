@@ -11,6 +11,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   ResponseHeaderDefaultOptions,
@@ -32,7 +33,7 @@ export async function _responseHeaderDefaultDeserialize(
   result: ResponseHeaderDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -59,7 +60,7 @@ export async function _responseHeaderRfc3339Deserialize(
   result: ResponseHeaderRfc3339204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -86,7 +87,7 @@ export async function _responseHeaderRfc7231Deserialize(
   result: ResponseHeaderRfc7231204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -113,7 +114,7 @@ export async function _responseHeaderUnixTimestampDeserialize(
   result: ResponseHeaderUnixTimestamp204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

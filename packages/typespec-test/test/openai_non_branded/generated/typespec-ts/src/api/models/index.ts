@@ -18,6 +18,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import {
   ModelsListOptions,
@@ -38,7 +39,7 @@ export async function _listDeserialize(
   result: ModelsList200Response | ModelsListDefaultResponse
 ): Promise<ListModelsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -74,7 +75,7 @@ export async function _retrieveDeserialize(
   result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
 ): Promise<Model> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -112,7 +113,7 @@ export async function _deleteOperationDeserialize(
     | ModelsDeleteOperationDefaultResponse
 ): Promise<DeleteModelResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

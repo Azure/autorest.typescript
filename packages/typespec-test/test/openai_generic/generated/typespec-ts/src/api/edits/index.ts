@@ -11,6 +11,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { EditsCreateOptions } from "../../models/options.js";
 
@@ -38,7 +39,7 @@ export async function _createDeserialize(
   result: EditsCreate200Response | EditsCreateDefaultResponse
 ): Promise<CreateEditResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

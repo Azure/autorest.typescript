@@ -10,6 +10,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   Group1OneOptions,
@@ -28,7 +29,7 @@ export function _oneSend(
 
 export async function _oneDeserialize(result: One204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -55,7 +56,7 @@ export async function _threeDeserialize(
   result: Three204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -80,7 +81,7 @@ export function _fourSend(
 
 export async function _fourDeserialize(result: Four204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

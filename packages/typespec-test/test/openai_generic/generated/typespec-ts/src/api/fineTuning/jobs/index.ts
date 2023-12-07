@@ -24,6 +24,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   FineTuningJobsCreateOptions,
@@ -60,7 +61,7 @@ export async function _createDeserialize(
   result: FineTuningJobsCreate200Response | FineTuningJobsCreateDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -128,7 +129,7 @@ export async function _listDeserialize(
   result: FineTuningJobsList200Response | FineTuningJobsListDefaultResponse
 ): Promise<ListPaginatedFineTuningJobsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -186,7 +187,7 @@ export async function _retrieveDeserialize(
     | FineTuningJobsRetrieveDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -249,7 +250,7 @@ export async function _listEventsDeserialize(
     | FineTuningJobsListEventsDefaultResponse
 ): Promise<ListFineTuningJobEventsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -289,7 +290,7 @@ export async function _cancelDeserialize(
   result: FineTuningJobsCancel200Response | FineTuningJobsCancelDefaultResponse
 ): Promise<FineTuningJob> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

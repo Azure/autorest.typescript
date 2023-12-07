@@ -12,6 +12,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   QueryDefaultOptions,
@@ -38,7 +39,7 @@ export async function _queryDefaultDeserialize(
   result: QueryDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -70,7 +71,7 @@ export async function _queryIso8601Deserialize(
   result: QueryIso8601204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -102,7 +103,7 @@ export async function _queryInt32SecondsDeserialize(
   result: QueryInt32Seconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -134,7 +135,7 @@ export async function _queryFloatSecondsDeserialize(
   result: QueryFloatSeconds204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -166,7 +167,7 @@ export async function _queryInt32SecondsArrayDeserialize(
   result: QueryInt32SecondsArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

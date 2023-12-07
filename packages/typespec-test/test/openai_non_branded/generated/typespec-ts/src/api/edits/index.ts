@@ -10,6 +10,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { EditsCreateOptions } from "../../models/options.js";
 
@@ -37,7 +38,7 @@ export async function _createDeserialize(
   result: EditsCreate200Response | EditsCreateDefaultResponse
 ): Promise<CreateEditResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

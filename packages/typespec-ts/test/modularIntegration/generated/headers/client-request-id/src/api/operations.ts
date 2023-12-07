@@ -8,6 +8,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { GetOptions } from "../models/options.js";
 
@@ -22,7 +23,7 @@ export function _getSend(
 
 export async function _getDeserialize(result: Get204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

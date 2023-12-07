@@ -20,6 +20,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { stringToUint8Array } from "@azure/core-util";
 import {
@@ -51,7 +52,7 @@ export async function _createDeserialize(
   result: ImagesCreate200Response | ImagesCreateDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -103,7 +104,7 @@ export async function _createEditDeserialize(
   result: ImagesCreateEdit200Response | ImagesCreateEditDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -155,7 +156,7 @@ export async function _createVariationDeserialize(
     | ImagesCreateVariationDefaultResponse
 ): Promise<ImagesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
