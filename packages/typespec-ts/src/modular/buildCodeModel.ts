@@ -282,7 +282,11 @@ function processModelProperties(
     let newProperty = emitProperty(context, property);
     if (isDiscriminator(context, model, property.name)) {
       hasDiscriminator = true;
-      newProperty = { ...newProperty, ...discriminatorInfo };
+      newProperty = {
+        ...newProperty,
+        ...discriminatorInfo,
+        type: newProperty["type"]
+      };
     }
     newValue.properties.push(newProperty);
   }

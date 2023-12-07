@@ -654,6 +654,9 @@ function getSchemaForModel(
   for (const [propName, prop] of model.properties) {
     const restApiName = getProjectedName(program, prop, "json");
     const name = `"${restApiName ?? propName}"`;
+    if (name === '"kind"') {
+      prop;
+    }
     if (!isSchemaProperty(program, prop)) {
       continue;
     }
@@ -688,7 +691,7 @@ function getSchemaForModel(
       name === `"${propertyName}"` &&
       modelSchema.discriminator
     ) {
-      modelSchema.discriminator.type = propSchema.type;
+      modelSchema.discriminator.type = propSchema.typeName ?? propSchema.type;
       continue;
     }
 

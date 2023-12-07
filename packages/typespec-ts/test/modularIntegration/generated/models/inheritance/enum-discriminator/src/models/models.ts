@@ -4,7 +4,7 @@
 /** Test extensible enum type for discriminator */
 export interface DogParent {
   /** the discriminator possible values: golden */
-  kind: string;
+  kind: DogKind;
   /** Weight of the dog */
   weight: number;
 }
@@ -22,7 +22,7 @@ export type DogKind = string;
 /** Test fixed enum type for discriminator */
 export interface SnakeParent {
   /** the discriminator possible values: cobra */
-  kind: string;
+  kind: SnakeKind;
   /** Length of the snake */
   length: number;
 }
