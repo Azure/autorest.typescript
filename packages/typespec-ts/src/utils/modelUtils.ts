@@ -654,9 +654,6 @@ function getSchemaForModel(
   for (const [propName, prop] of model.properties) {
     const restApiName = getProjectedName(program, prop, "json");
     const name = `"${restApiName ?? propName}"`;
-    if (name === '"kind"') {
-      prop;
-    }
     if (!isSchemaProperty(program, prop)) {
       continue;
     }

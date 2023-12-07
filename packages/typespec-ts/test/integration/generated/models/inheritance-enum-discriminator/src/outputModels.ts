@@ -18,7 +18,7 @@ export interface GoldenOutput extends DogOutputParent {
 export interface SnakeOutputParent {
   /** Length of the snake */
   length: number;
-  kind: string;
+  kind: "cobra";
 }
 
 /** Cobra model */
