@@ -18,6 +18,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     inputPath: "special-headers/repeatability"
   },
   {
+    outputPath: "headers/conditionalRequest",
+    inputPath: "special-headers/conditional-request"
+  },
+  {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
   },
@@ -100,6 +104,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "models/inheritance-single-discriminator",
     inputPath: "type/model/inheritance/single-discriminator"
+  },
+  {
+    outputPath: "models/inheritance-recursive",
+    inputPath: "type/model/inheritance/recursive"
   },
   {
     outputPath: "models/propertyOptional",
