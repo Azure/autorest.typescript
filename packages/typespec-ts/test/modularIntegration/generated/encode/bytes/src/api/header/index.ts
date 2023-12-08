@@ -12,6 +12,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
@@ -38,7 +39,7 @@ export async function _headerDefaultDeserialize(
   result: HeaderDefault204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -70,7 +71,7 @@ export async function _headerBase64Deserialize(
   result: HeaderBase64204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -102,7 +103,7 @@ export async function _headerBase64urlDeserialize(
   result: HeaderBase64url204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -138,7 +139,7 @@ export async function _headerBase64urlArrayDeserialize(
   result: HeaderBase64urlArray204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

@@ -10,7 +10,7 @@ importers:
       '@autorest/codemodel': ~4.19.2
       '@autorest/extension-base': ^3.5.0
       '@autorest/testmodeler': ^2.4.0
-      '@azure-rest/core-client': ^1.1.4
+      '@azure-rest/core-client': ^1.1.6
       '@azure-tools/codegen': ^2.9.1
       '@azure-tools/rlc-common': workspace:^0.19.0
       '@azure-tools/test-recorder': ^3.0.0
@@ -79,7 +79,7 @@ importers:
       '@autorest/codemodel': 4.19.3
       '@autorest/extension-base': 3.5.2
       '@autorest/testmodeler': 2.6.1
-      '@azure-rest/core-client': 1.1.4
+      '@azure-rest/core-client': 1.1.6
       '@azure-tools/codegen': 2.9.2
       '@azure-tools/rlc-common': link:../rlc-common
       '@azure/core-auth': 1.5.0
@@ -228,7 +228,7 @@ importers:
 
   ../../packages/typespec-ts:
     specifiers:
-      '@azure-rest/core-client': ^1.1.4
+      '@azure-rest/core-client': ^1.1.6
       '@azure-tools/cadl-ranch': ^0.11.0
       '@azure-tools/cadl-ranch-expect': ^0.10.0
       '@azure-tools/cadl-ranch-specs': ^0.28.0
@@ -251,7 +251,7 @@ importers:
       '@typespec/compiler': '>=0.50.0 <1.0.0'
       '@typespec/http': '>=0.50.0 <1.0.0'
       '@typespec/rest': '>=0.50.0 <1.0.0'
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231103.1
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20231129.4
       '@typespec/versioning': '>=0.50.0 <1.0.0'
       chai: ^4.3.6
       chalk: ^4.0.0
@@ -280,7 +280,7 @@ importers:
       ts-morph: 15.1.0
       tslib: 2.6.2
     devDependencies:
-      '@azure-rest/core-client': 1.1.4
+      '@azure-rest/core-client': 1.1.6
       '@azure-tools/cadl-ranch': 0.11.0_3hgbimueyj4cov2ejjvw37nlra
       '@azure-tools/cadl-ranch-expect': 0.10.0_34oeiyjczsyn4xxwbbzj3xeide
       '@azure-tools/cadl-ranch-specs': 0.28.0_u3a2c4xsgmauwzauvnnjo3iivm
@@ -297,7 +297,7 @@ importers:
       '@types/prettier': 2.7.3
       '@typescript-eslint/eslint-plugin': 6.8.0_qc27boxdfajyxyoyktucppwpla
       '@typescript-eslint/parser': 6.8.0_jk7qbkaijtltyu4ajmze3dfiwa
-      '@typespec/ts-http-runtime': 1.0.0-alpha.20231103.1
+      '@typespec/ts-http-runtime': 1.0.0-alpha.20231129.4
       chai: 4.3.8
       chalk: 4.1.2
       cross-env: 7.0.3
@@ -337,9 +337,9 @@ packages:
     resolution: {integrity: sha512-7OXzYet3S/Hiow9LzHUY5qdNRnceSQd41wKEGzfcGVleyWRobYJgYxGmUEyFZP4ZSerAb+QqygSvo9yWIC3nrQ==}
     dev: false
 
-  /@azure-rest/core-client/1.1.4:
-    resolution: {integrity: sha512-RUIQOA8T0WcbNlddr8hjl2MuC5GVRqmMwPXqBVsgvdKesLy+eg3y/6nf3qe2fvcJMI1gF6VtgU5U4hRaR4w4ag==}
-    engines: {node: '>=14.0.0'}
+  /@azure-rest/core-client/1.1.6:
+    resolution: {integrity: sha512-f/eM9o7BHVvjz2HciCwM7LhRcUO4o+okj6NStQK/BNqeTTg5hGWC+ja2vDPfh5ldkXAcBRFC7zyiGUNQYtPyAg==}
+    engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
@@ -1464,11 +1464,8 @@ packages:
       '@typespec/http': 0.51.0_@typespec+compiler@0.51.0
     dev: true
 
-  /@typespec/ts-http-runtime/1.0.0-alpha.20231103.1:
-    resolution: {integrity: sha512-ouAAPny3OHIVcC44YfevSH08etbBvg+v6tMBJZMHX1YR2FT0tKBRb4PU47OdEmH74u7JXyccXlZhEENA38RRCw==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      form-data: 4.0.0
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
       tslib: 2.6.2

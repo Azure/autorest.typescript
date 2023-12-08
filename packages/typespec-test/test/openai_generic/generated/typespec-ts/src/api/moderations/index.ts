@@ -14,6 +14,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ModerationsCreateOptions } from "../../models/options.js";
 
@@ -36,7 +37,7 @@ export async function _createDeserialize(
   result: ModerationsCreate200Response | ModerationsCreateDefaultResponse
 ): Promise<CreateModerationResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

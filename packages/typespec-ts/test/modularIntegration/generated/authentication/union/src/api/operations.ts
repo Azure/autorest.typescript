@@ -9,6 +9,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ValidKeyOptions, ValidTokenOptions } from "../models/options.js";
 
@@ -25,7 +26,7 @@ export async function _validKeyDeserialize(
   result: ValidKey204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -53,7 +54,7 @@ export async function _validTokenDeserialize(
   result: ValidToken204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

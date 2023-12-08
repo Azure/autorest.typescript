@@ -34,12 +34,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
         import { uint8ArrayToString } from "@azure/core-util";
         
         export function _readSend(
@@ -84,7 +83,7 @@ describe("operations", () => {
         
         export async function _readDeserialize(result: Read200Response): Promise<void> {
             if(result.status !== "200"){
-            throw result.body
+              throw createRestError(result);
             }
         
             return;
@@ -135,12 +134,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
       import { TestingContext as Client } from "../rest/index.js";
-      import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+      import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
   
       export function _readSend(context: Client, nullableRequiredHeader: (string | null), options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
           return context.path("/", ).get({...operationOptionsToRequestParameters(options), 
@@ -149,7 +147,7 @@ describe("operations", () => {
   
       export async function _readDeserialize(result: Read200Response): Promise<void> {
           if(result.status !== "200"){
-          throw result.body
+            throw createRestError(result);
           }
   
           return;
@@ -180,12 +178,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -201,7 +198,7 @@ describe("operations", () => {
 
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if(result.status !== "200"){
-          throw result.body
+            throw createRestError(result);
           }
       
           return;
@@ -227,12 +224,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -248,7 +244,7 @@ describe("operations", () => {
 
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if(result.status !== "200"){
-          throw result.body
+            throw createRestError(result);
           }
       
           return;
@@ -274,12 +270,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -295,7 +290,7 @@ describe("operations", () => {
 
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if(result.status !== "200"){
-          throw result.body
+            throw createRestError(result);
           }
       
           return;
@@ -321,12 +316,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _readSend(context: Client, bars: Bar[], options: ReadOptions = { requestOptions: {} }): StreamableMethod<Read200Response> {
            return context.path("/").post({
@@ -342,7 +336,7 @@ describe("operations", () => {
 
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if(result.status !== "200"){
-          throw result.body
+            throw createRestError(result);
           }
       
           return;
@@ -377,7 +371,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -385,6 +378,7 @@ describe("operations", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         
         export function _readSend(
@@ -425,7 +419,7 @@ describe("operations", () => {
         
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
         
           return;
@@ -462,7 +456,6 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
@@ -470,6 +463,7 @@ describe("operations", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         
         export function _readSend(
@@ -483,7 +477,7 @@ describe("operations", () => {
         
         export async function _readDeserialize(result: Read200Response): Promise<Foo> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return {
             optionalBars: !result.body["optionalBars"]
@@ -549,12 +543,11 @@ describe("operations", () => {
       assert.ok(operationFiles);
 
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ;  
@@ -562,7 +555,7 @@ describe("operations", () => {
 
         export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
             if(result.status !== "200"){
-              throw result.body
+              throw createRestError(result);
             }
 
             return {
@@ -603,7 +596,6 @@ describe("operations", () => {
         assert.fail("Should throw diagnostic warnings");
       } catch (e) {
         const diagnostics = e as Diagnostic[];
-        // console.log(diagnostics);
         assert.equal(diagnostics.length, 1);
         assert.equal(
           diagnostics[0]?.code,
@@ -619,12 +611,11 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      // console.log(operationFiles?.[0]?.getFullText()!);
       assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
-        import { StreamableMethod, operationOptionsToRequestParameters } from "@azure-rest/core-client";
+        import { StreamableMethod, operationOptionsToRequestParameters, createRestError } from "@azure-rest/core-client";
 
         export function _testSend(context: Client, options: TestOptions = { requestOptions: {} }): StreamableMethod<Test200Response | TestDefaultResponse> {
             return context.path("/", ).post({...operationOptionsToRequestParameters(options), })  ; 
@@ -632,7 +623,7 @@ describe("operations", () => {
 
         export async function _testDeserialize(result: Test200Response | TestDefaultResponse): Promise<Bar> {
             if(result.status !== "200"){
-            throw result.body
+            throw createRestError(result);
             }
 
             return {

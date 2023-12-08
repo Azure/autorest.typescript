@@ -634,9 +634,9 @@ function getSchemaForModel(
     modelSchema.discriminator = {
       name: propertyName,
       type: "string",
-      required: true,
       description: `Discriminator property for ${model.name}.`
     };
+    modelSchema.discriminatorValue = propertyName;
 
     modelSchema.isPolyParent = true;
   }
@@ -678,15 +678,18 @@ function getSchemaForModel(
       propSchema
     );
     propSchema.usage = usage;
-    // Use the description from ModelProperty not devired from Model Type
+    // Use the description from ModelProperty not derived from Model Type
     propSchema.description = propertyDescription;
     modelSchema.properties[name] = propSchema;
     // if this property is a discriminator property, remove it to keep autorest validation happy
-    if (model.baseModel) {
-      const { propertyName } = getDiscriminator(program, model.baseModel) || {};
-      if (propertyName && name === `"${propertyName}"`) {
-        continue;
-      }
+    const { propertyName } = getDiscriminator(program, model) || {};
+    if (
+      propertyName &&
+      name === `"${propertyName}"` &&
+      modelSchema.discriminator
+    ) {
+      modelSchema.discriminator.type = propSchema.typeName ?? propSchema.type;
+      continue;
     }
 
     // Apply decorators on the property to the type's schema

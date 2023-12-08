@@ -15,6 +15,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
 
@@ -40,7 +41,7 @@ export async function _createStreamingDeserialize(
   result: CreateStreaming200Response
 ): Promise<ChatCompletionChunk> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -90,7 +91,7 @@ export async function _createDeserialize(
   result: Create200Response
 ): Promise<ChatCompletion> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

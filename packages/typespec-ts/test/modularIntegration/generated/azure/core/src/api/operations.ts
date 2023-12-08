@@ -45,6 +45,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   CreateOrUpdateOptions,
@@ -95,7 +96,7 @@ export async function _createOrUpdateDeserialize(
     | CreateOrUpdateDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -156,7 +157,7 @@ export async function _createOrReplaceDeserialize(
     | CreateOrReplaceDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -198,7 +199,7 @@ export async function _getDeserialize(
   result: Get200Response | GetDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -258,7 +259,7 @@ export async function _listDeserialize(
   result: List200Response | ListDefaultResponse
 ): Promise<PagedUser> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -304,7 +305,7 @@ export async function _listWithPageDeserialize(
   result: ListWithPage200Response | ListWithPageDefaultResponse
 ): Promise<PagedUser> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -357,7 +358,7 @@ export async function _listWithParametersDeserialize(
   result: ListWithParameters200Response | ListWithParametersDefaultResponse
 ): Promise<PagedUser> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -408,7 +409,7 @@ export async function _listWithCustomPageModelDeserialize(
     | ListWithCustomPageModelDefaultResponse
 ): Promise<UserListResults> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -457,7 +458,7 @@ export async function _deleteOperationDeserialize(
   result: DeleteOperation204Response | DeleteOperationDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -493,7 +494,7 @@ export async function _exportOperationDeserialize(
   result: ExportOperation200Response | ExportOperationDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -534,7 +535,7 @@ export async function _listFirstItemDeserialize(
   result: ListFirstItem200Response | ListFirstItemDefaultResponse
 ): Promise<PagedFirstItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -569,7 +570,7 @@ export async function _listSecondItemDeserialize(
   result: ListSecondItem200Response | ListSecondItemDefaultResponse
 ): Promise<PagedSecondItem> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

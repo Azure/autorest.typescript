@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   SmokeTestOptions,
@@ -54,7 +55,7 @@ export async function _smokeTestDeserialize(
   result: SmokeTest200Response | SmokeTestDefaultResponse
 ): Promise<User> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -105,7 +106,7 @@ export async function _repeatableActionDeserialize(
   result: RepeatableAction200Response | RepeatableActionDefaultResponse
 ): Promise<UserActionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

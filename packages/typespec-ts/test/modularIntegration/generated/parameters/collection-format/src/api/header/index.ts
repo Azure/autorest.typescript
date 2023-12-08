@@ -9,6 +9,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { HeaderCsvOptions } from "../../models/options.js";
 
@@ -29,7 +30,7 @@ export async function _headerCsvDeserialize(
   result: HeaderCsv204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

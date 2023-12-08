@@ -149,11 +149,10 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "specialWords",
     inputPath: "special-words"
   },
-  // TODO: union has issues need to fix in https://github.com/Azure/autorest.typescript/issues/2141
-  // {
-  //   outputPath: "unions",
-  //   inputPath: "type/union"
-  // },
+  {
+    outputPath: "unions",
+    inputPath: "type/union"
+  },
   {
     outputPath: "parameters/collection-format",
     inputPath: "parameters/collection-format"
@@ -255,6 +254,22 @@ export const modularTsps: TypeSpecRanchConfig[] = [
   {
     outputPath: "azure/core",
     inputPath: "azure/core/basic"
+  },
+  {
+    outputPath: "models/inheritance/nested-discriminator",
+    inputPath: "type/model/inheritance/nested-discriminator"
+  },
+  {
+    outputPath: "models/inheritance/not-discriminated",
+    inputPath: "type/model/inheritance/not-discriminated"
+  },
+  {
+    outputPath: "models/inheritance/enum-discriminator",
+    inputPath: "type/model/inheritance/enum-discriminator"
+  },
+  {
+    outputPath: "models/inheritance/single-discriminator",
+    inputPath: "type/model/inheritance/single-discriminator"
   },
   {
     outputPath: "payload/pageable",

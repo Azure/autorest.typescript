@@ -9,6 +9,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   NoOperationParamsOptions,
@@ -28,7 +29,7 @@ export async function _noOperationParamsDeserialize(
   result: NoOperationParams204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -56,7 +57,7 @@ export async function _withOperationPathParamDeserialize(
   result: WithOperationPathParam204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

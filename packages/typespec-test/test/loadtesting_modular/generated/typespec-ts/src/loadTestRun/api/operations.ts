@@ -56,6 +56,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   TestRunOptions,
@@ -150,7 +151,7 @@ export async function _testRunDeserialize(
     | LoadTestRunCreateOrUpdateTestRunLogicalResponse
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -418,7 +419,7 @@ export async function _createOrUpdateAppComponentsDeserialize(
     | LoadTestRunCreateOrUpdateAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -474,7 +475,7 @@ export async function _createOrUpdateServerMetricsConfigDeserialize(
     | LoadTestRunCreateOrUpdateServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -521,7 +522,7 @@ export async function _deleteTestRunDeserialize(
     | LoadTestRunDeleteTestRunDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -556,7 +557,7 @@ export async function _getAppComponentsDeserialize(
     | LoadTestRunGetAppComponentsDefaultResponse
 ): Promise<TestRunAppComponents> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -601,7 +602,7 @@ export async function _getServerMetricsConfigDeserialize(
     | LoadTestRunTestRunListServerMetricsConfigDefaultResponse
 ): Promise<TestRunServerMetricConfig> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -642,7 +643,7 @@ export async function _getTestRunDeserialize(
     | LoadTestRunGetTestRunDefaultResponse
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -902,7 +903,7 @@ export async function _getTestRunFileDeserialize(
     | LoadTestRunGetTestRunFileDefaultResponse
 ): Promise<FileInfo> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -964,7 +965,7 @@ export async function _listMetricDimensionValuesDeserialize(
     | LoadTestRunListMetricDimensionValuesDefaultResponse
 ): Promise<PagedDimensionValueList> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1018,7 +1019,7 @@ export async function _listMetricDefinitionsDeserialize(
     | LoadTestRunListMetricDefinitionsDefaultResponse
 ): Promise<MetricDefinitionCollection> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1071,7 +1072,7 @@ export async function _listMetricNamespacesDeserialize(
     | LoadTestRunListMetricNamespacesDefaultResponse
 ): Promise<MetricNamespaceCollection> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1128,7 +1129,7 @@ export async function _listMetricsDeserialize(
     | LoadTestRunListMetricsDefaultResponse
 ): Promise<PagedTimeSeriesElement> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1193,7 +1194,7 @@ export async function _listTestRunsDeserialize(
     | LoadTestRunListTestRunsDefaultResponse
 ): Promise<PagedTestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -1482,7 +1483,7 @@ export async function _stopTestRunDeserialize(
     | LoadTestRunStopTestRunDefaultResponse
 ): Promise<TestRun> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
