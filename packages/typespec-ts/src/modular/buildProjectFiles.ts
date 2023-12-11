@@ -189,7 +189,7 @@ export function emitPackage(
 function emitNonBrandedPackage(codeModel: ModularCodeModel) {
   const runtimeLibVersion =
     codeModel.runtimeImports?.commonFallback?.version ??
-    "1.0.0-alpha.20231103.1";
+    "1.0.0-alpha.20231129.4";
   const packageInfo = {
     ...initPackageInfo(codeModel),
     scripts: {
@@ -306,7 +306,7 @@ function emitBrandedPackage(
     autoPublish: false,
     dependencies: {
       "@azure/core-auth": "^1.3.0",
-      "@azure-rest/core-client": "^1.1.4",
+      "@azure-rest/core-client": "^1.1.6",
       "@azure/core-rest-pipeline": "^1.12.0",
       "@azure/logger": "^1.0.0",
       tslib: "^2.2.0",
@@ -383,7 +383,6 @@ function emitBrandedPackage(
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^3.0.0";
     packageInfo.devDependencies["mocha"] = "^10.0.0";
     packageInfo.devDependencies["@types/mocha"] = "^10.0.0";
-    packageInfo.devDependencies["mocha-junit-reporter"] = "^1.18.0";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
     packageInfo.devDependencies["@types/chai"] = "^4.2.8";
     packageInfo.devDependencies["chai"] = "^4.2.0";

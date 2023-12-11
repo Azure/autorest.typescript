@@ -45,7 +45,9 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
+
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -73,7 +75,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -157,6 +159,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -186,7 +189,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -268,7 +271,9 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
+
         export function _readSend(
           context: Client,
           pathParam: string,
@@ -295,7 +300,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -368,6 +373,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -392,7 +398,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -434,6 +440,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -451,7 +458,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -502,6 +509,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -524,7 +532,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<void> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -581,6 +589,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -596,7 +605,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read204Response): Promise<void> {
           if (result.status !== "204") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -643,6 +652,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -658,7 +668,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read204Response): Promise<void> {
           if (result.status !== "204") {
-            throw result.body;
+            throw createRestError(result);
           }
           return;
         }
@@ -689,6 +699,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -700,7 +711,7 @@ describe("anonymous model", () => {
         }
         export async function _readDeserialize(result: Read200Response): Promise<${returnType}> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return result.body;
         }
@@ -777,6 +788,7 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
         export function _readSend(
           context: Client,
@@ -790,7 +802,7 @@ describe("anonymous model", () => {
           result: Read200Response
         ): Promise<{ foo?: { bar: string | null } }> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
           return {
             foo: !result.body.foo ? undefined : { bar: result.body.foo?.["bar"] },
@@ -852,8 +864,9 @@ describe("anonymous model", () => {
         import {
           StreamableMethod,
           operationOptionsToRequestParameters,
+          createRestError
         } from "@azure-rest/core-client";
-
+        
         export function _readSend(
           context: Client,
           options: ReadOptions = { requestOptions: {} }
@@ -867,7 +880,7 @@ describe("anonymous model", () => {
           result: Read200Response
         ): Promise<ReturnBody> {
           if (result.status !== "200") {
-            throw result.body;
+            throw createRestError(result);
           }
 
           return {
@@ -940,6 +953,7 @@ describe("anonymous model", () => {
           import {
             StreamableMethod,
             operationOptionsToRequestParameters,
+            createRestError
           } from "@azure-rest/core-client";
           
           export function _readSend(
@@ -953,7 +967,7 @@ describe("anonymous model", () => {
           
           export async function _readDeserialize(result: Read200Response): Promise<Foz> {
             if (result.status !== "200") {
-              throw result.body;
+              throw createRestError(result);
             }
           
             return {

@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { ModerationsCreateOptions } from "../../models/options.js";
 
@@ -35,7 +36,7 @@ export async function _createDeserialize(
   result: ModerationsCreate200Response | ModerationsCreateDefaultResponse
 ): Promise<CreateModerationResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

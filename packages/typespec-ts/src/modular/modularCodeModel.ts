@@ -101,6 +101,8 @@ export interface Type {
   types?: Type[];
   isCoreErrorType?: boolean;
   usage?: UsageFlags;
+  alias?: string;
+  aliasType?: string;
 }
 
 export interface Client {

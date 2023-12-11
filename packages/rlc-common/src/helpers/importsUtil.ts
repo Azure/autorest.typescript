@@ -1,3 +1,4 @@
+import { SourceFile } from "ts-morph";
 import { ImportType, Imports } from "../interfaces.js";
 
 /**
@@ -12,7 +13,7 @@ export function buildRuntimeImports(branded = true): Imports {
       commonFallback: {
         type: "commonFallback",
         specifier: "@typespec/ts-http-runtime",
-        version: "1.0.0-alpha.20231103.1"
+        version: "1.0.0-alpha.20231129.4"
       }
     } as Imports;
   } else {
@@ -20,7 +21,7 @@ export function buildRuntimeImports(branded = true): Imports {
       restClient: {
         type: "restClient",
         specifier: "@azure-rest/core-client",
-        version: "^1.1.4"
+        version: "^1.1.6"
       },
       coreAuth: {
         type: "coreAuth",
@@ -69,7 +70,15 @@ export function initInternalImports(): Imports {
     response: {
       type: "response",
       importsSet: new Set<string>()
-    }
+    },
+    rlcIndex: {
+      type: "rlcIndex",
+      importsSet: new Set<string>()
+    },
+    modularModel: {
+      type: "modularModel",
+      importsSet: new Set<string>()
+    },
   } as Imports;
 }
 
@@ -94,4 +103,64 @@ export function getImportSpecifier(
     defaultPackageMap[importType] ??
     ""
   );
+}
+
+export function addImportToSpecifier(
+  importType: ImportType,
+  runtimeImports: Imports,
+  importedName: string
+): void {
+  const specifier = getImportSpecifier(importType, runtimeImports);
+  const importSet = runtimeImports[importType]?.importsSet;
+  if (!importSet) {
+    runtimeImports[importType] = {
+      type: importType,
+      specifier,
+      importsSet: new Set<string>().add(importedName)
+    };
+  } else {
+    importSet.add(importedName);
+  }
+}
+
+export function clearImportSets(runtimeImports: Imports): void {
+  for (const importType of Object.values(runtimeImports)) {
+    importType.importsSet?.clear();
+  }
+}
+
+export function addImportsToFiles(
+  runtimeImports: Imports,
+  file: SourceFile,
+  internalSpecifierMap?: Record<string, string>
+): void {
+  Object.values(runtimeImports)
+    .filter((importType) => {
+      return importType.specifier && importType.importsSet?.size;
+    })
+    .forEach((importType) => {
+      const specifier = internalSpecifierMap?.[importType.specifier!] ?? importType.specifier!;
+      let hasModifier = false;
+      file
+        .getImportDeclarations()
+        .filter((importDeclaration) => {
+          return (
+            importDeclaration.getModuleSpecifierValue() === specifier
+          );
+        })
+        .forEach((importDeclaration) => {
+          hasModifier = true;
+          importDeclaration.addNamedImports([
+            ...importType.importsSet!.values()
+          ]);
+        });
+
+      if (!hasModifier) {
+        return file.addImportDeclaration({
+          moduleSpecifier: specifier,
+          namedImports: [...importType.importsSet!.values()]
+        });
+      }
+    });
+  clearImportSets(runtimeImports);
 }

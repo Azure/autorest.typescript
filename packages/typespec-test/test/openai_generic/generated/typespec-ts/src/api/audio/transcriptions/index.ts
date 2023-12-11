@@ -14,6 +14,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { AudioTranscriptionsCreateOptions } from "../../../models/options.js";
 
@@ -47,7 +48,7 @@ export async function _createDeserialize(
     | AudioTranscriptionsCreateDefaultResponse
 ): Promise<CreateTranscriptionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

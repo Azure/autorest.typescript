@@ -1,5 +1,4 @@
 import { toPascalCase } from "../utils/casingUtils.js";
-import { importSettings } from "../utils/importUtils.js";
 import {
   getResponseMapping,
   getRequestModelMapping,
@@ -12,7 +11,12 @@ import {
   SourceFile,
   StructureKind
 } from "ts-morph";
-import { Imports as RuntimeImports } from "@azure-tools/rlc-common";
+import {
+  Imports as RuntimeImports,
+  addImportToSpecifier,
+  addImportsToFiles,
+  clearImportSets
+} from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
 
 /**
@@ -32,10 +36,10 @@ export function buildOperationUtils(model: ModularCodeModel) {
     if (specialUnions.length === 0) {
       continue;
     }
+    clearImportSets(model.runtimeImports);
     const utilsFile = model.project.createSourceFile(
       `${model.modularOptions.sourceRoot}/utils/${serializeType}Util.ts`
     );
-    const importSet = new Map<string, Set<string>>();
 
     specialUnions.forEach((su) => {
       let types = su.types;
@@ -51,13 +55,12 @@ export function buildOperationUtils(model: ModularCodeModel) {
             utilsFile,
             et,
             serializeType,
-            getTypeUnionName(su, false, importSet, serializeType)
+            getTypeUnionName(su, false, model.runtimeImports, serializeType)
           );
           getTypeSerializeFunction(
             utilsFile,
             et,
             serializeType,
-            importSet,
             model.runtimeImports
           );
         } else {
@@ -65,13 +68,12 @@ export function buildOperationUtils(model: ModularCodeModel) {
             utilsFile,
             et,
             serializeType,
-            getTypeUnionName(su, true, importSet, serializeType)
+            getTypeUnionName(su, true, model.runtimeImports, serializeType)
           );
           getTypeDeserializeFunction(
             utilsFile,
             et,
             serializeType,
-            importSet,
             model.runtimeImports
           );
         }
@@ -79,7 +81,7 @@ export function buildOperationUtils(model: ModularCodeModel) {
       const deserializeFunctionName = getDeserializeFunctionName(
         su,
         serializeType,
-        importSet
+        model.runtimeImports
       );
       if (serializeType === "serialize") {
         deserializeUnionTypesFunction(
@@ -87,8 +89,8 @@ export function buildOperationUtils(model: ModularCodeModel) {
           unionDeserializeTypes ?? [],
           deserializeFunctionName,
           serializeType,
-          getTypeUnionName(su, false, importSet, serializeType),
-          getTypeUnionName(su, true, importSet, serializeType)
+          getTypeUnionName(su, false, model.runtimeImports, serializeType),
+          getTypeUnionName(su, true, model.runtimeImports, serializeType)
         );
       } else {
         deserializeUnionTypesFunction(
@@ -96,12 +98,15 @@ export function buildOperationUtils(model: ModularCodeModel) {
           unionDeserializeTypes ?? [],
           deserializeFunctionName,
           serializeType,
-          getTypeUnionName(su, true, importSet, serializeType),
-          getTypeUnionName(su, false, importSet, serializeType)
+          getTypeUnionName(su, true, model.runtimeImports, serializeType),
+          getTypeUnionName(su, false, model.runtimeImports, serializeType)
         );
       }
     });
-    importSettings(importSet, utilsFile);
+    addImportsToFiles(model.runtimeImports, utilsFile, {
+      rlcIndex: "../rest/index.js",
+      modularModel: "../models/model.js"
+    });
     serializeUtilFiles.push(utilsFile);
   }
   return serializeUtilFiles;
@@ -110,12 +115,12 @@ export function buildOperationUtils(model: ModularCodeModel) {
 export function getDeserializeFunctionName(
   type: Type,
   serializeType: string,
-  importSet?: Map<string, Set<string>>
+  runtimeImports?: RuntimeImports
 ) {
   const typeUnionNames = getTypeUnionName(
     type,
     false,
-    importSet,
+    runtimeImports,
     serializeType
   );
   const deserializeFunctionName = `${serializeType}${toPascalCase(
@@ -166,11 +171,9 @@ export function isSpecialUnionVariant(t: Type): boolean {
  */
 export function isSpecialExcludeUnion(t: Type): boolean {
   if (isSpecialUnion(t)) {
-    const specialVariants = t.types?.filter(isSpecialUnionVariant);
-    if (specialVariants) {
-
-    }
+    return true;
   }
+  return false;
 }
 
 export function isNormalUnion(t: Type): boolean {
@@ -185,23 +188,10 @@ export function isSpecialUnion(t: Type): boolean {
   );
 }
 
-function addImportSet(
-  importSet: Map<string, Set<string>>,
-  sourceFile: string,
-  importName: string
-) {
-  const set = importSet.get(sourceFile);
-  if (!set) {
-    importSet.set(sourceFile, new Set<string>().add(importName));
-  } else {
-    set.add(importName);
-  }
-}
-
 function getTypeUnionName(
   type: Type,
   fromRest: boolean,
-  importSet?: Map<string, Set<string>>,
+  runtimeImports?: RuntimeImports,
   serializeType?: string
 ) {
   const types = type.types;
@@ -211,17 +201,21 @@ function getTypeUnionName(
   return types
     ?.map((t) => {
       if (t.type === "list" && t.elementType?.type === "model") {
-        if (fromRest && t.elementType.name && importSet) {
-          addImportSet(
-            importSet,
-            "../rest/index.js",
+        if (fromRest && t.elementType.name && runtimeImports) {
+          addImportToSpecifier(
+            "rlcIndex",
+            runtimeImports,
             t.elementType.name +
               (serializeType === "serialize"
                 ? " as " + t.elementType.name + "Rest"
                 : "Output")
           );
-        } else if (t.elementType.name && importSet) {
-          addImportSet(importSet, "../models/models.js", t.elementType.name);
+        } else if (t.elementType.name && runtimeImports) {
+          addImportToSpecifier(
+            "modularModel",
+            runtimeImports,
+            t.elementType.name
+          );
         }
         return (
           t.elementType.name +
@@ -233,17 +227,17 @@ function getTypeUnionName(
           "[]"
         );
       }
-      if (fromRest && t.name && importSet) {
-        addImportSet(
-          importSet,
-          "../rest/index.js",
+      if (fromRest && t.name && runtimeImports) {
+        addImportToSpecifier(
+          "rlcIndex",
+          runtimeImports,
           t.name +
             (serializeType === "serialize"
               ? " as " + t.name + "Rest"
               : "Output")
         );
-      } else if (t.name && importSet) {
-        addImportSet(importSet, "../models/models.js", t.name);
+      } else if (t.name && runtimeImports) {
+        addImportToSpecifier("modularModel", runtimeImports, t.name);
       }
       return t.name
         ? t.name +
@@ -272,7 +266,6 @@ function getTypeDeserializeFunction(
   sourceFile: SourceFile,
   type: Type,
   serializeType: string,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   const statements: string[] = [];
@@ -290,7 +283,6 @@ function getTypeDeserializeFunction(
         `return {${getResponseMapping(
           type.properties,
           "obj",
-          importSet,
           runtimeImports
         )}};`
       );
@@ -325,7 +317,6 @@ function getTypeDeserializeFunction(
       `return (obj || []).map(item => { return {${getResponseMapping(
         type.elementType.properties ?? [],
         "item",
-        importSet,
         runtimeImports
       )}}})`
     );
@@ -384,7 +375,6 @@ function getTypeDeserializeFunction(
       `return ${deserializeResponseValue(
         type,
         "obj",
-        importSet,
         runtimeImports,
         true,
         type.format ?? "base64"
@@ -409,7 +399,6 @@ function getTypeSerializeFunction(
   sourceFile: SourceFile,
   type: Type,
   serializeType: string,
-  importSet: Map<string, Set<string>>,
   runtimeImports: RuntimeImports
 ) {
   const statements: string[] = [];
@@ -425,12 +414,9 @@ function getTypeSerializeFunction(
     };
     if (type.properties) {
       statements.push(
-        `return {${getRequestModelMapping(
-          type,
-          "obj",
-          importSet,
-          runtimeImports
-        ).join(", ")}};`
+        `return {${getRequestModelMapping(type, "obj", runtimeImports).join(
+          ", "
+        )}};`
       );
     } else {
       statements.push(`return {};`);
@@ -464,7 +450,6 @@ function getTypeSerializeFunction(
       `return (obj || []).map(item => { return {${getRequestModelMapping(
         type.elementType,
         "item",
-        importSet,
         runtimeImports
       ).join(", ")}}})`
     );
@@ -492,13 +477,7 @@ function getTypeSerializeFunction(
       returnType: "string"
     };
     statements.push(
-      `return ${serializeRequestValue(
-        type,
-        "obj",
-        importSet,
-        runtimeImports,
-        true
-      )}`
+      `return ${serializeRequestValue(type, "obj", runtimeImports, true)}`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
@@ -524,13 +503,7 @@ function getTypeSerializeFunction(
       returnType: "string"
     };
     statements.push(
-      `return ${serializeRequestValue(
-        type,
-        "obj",
-        importSet,
-        runtimeImports,
-        true
-      )}`
+      `return ${serializeRequestValue(type, "obj", runtimeImports, true)}`
     );
     functionStatement.statements = statements.join("\n");
     if (!hasDuplicateFunction(sourceFile, functionStatement)) {

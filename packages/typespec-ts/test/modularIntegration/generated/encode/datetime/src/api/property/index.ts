@@ -19,6 +19,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   PropertyDefaultOptions,
@@ -45,7 +46,7 @@ export async function _propertyDefaultDeserialize(
   result: PropertyDefault200Response
 ): Promise<DefaultDatetimeProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -79,7 +80,7 @@ export async function _propertyRfc3339Deserialize(
   result: PropertyRfc3339200Response
 ): Promise<Rfc3339DatetimeProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -113,7 +114,7 @@ export async function _propertyRfc7231Deserialize(
   result: PropertyRfc7231200Response
 ): Promise<Rfc7231DatetimeProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -147,7 +148,7 @@ export async function _propertyUnixTimestampDeserialize(
   result: PropertyUnixTimestamp200Response
 ): Promise<UnixTimestampDatetimeProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -181,7 +182,7 @@ export async function _propertyUnixTimestampArrayDeserialize(
   result: PropertyUnixTimestampArray200Response
 ): Promise<UnixTimestampArrayDatetimeProperty> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

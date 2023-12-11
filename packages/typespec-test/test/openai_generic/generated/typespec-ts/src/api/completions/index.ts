@@ -14,6 +14,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { CompletionsCreateOptions } from "../../models/options.js";
 
@@ -53,7 +54,7 @@ export async function _createDeserialize(
   result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
 ): Promise<CreateCompletionResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

@@ -51,6 +51,12 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
   return models;
 }
 
+export function extractAliases(codeModel: ModularCodeModel): Type[] {
+  const models = codeModel.types.filter(
+    (t) => t.type === "model" && t.alias && t.aliasType
+  );
+  return models;
+}
 // ====== TYPE BUILDERS ======
 function buildEnumModel(
   model: Type
@@ -78,13 +84,13 @@ type InterfaceStructure = OptionalKind<InterfaceDeclarationStructure> & {
   extends: string[];
 };
 
-function buildModelInterface(
+export function buildModelInterface(
   model: Type,
   cache: { coreClientTypes: Set<string> }
 ): InterfaceStructure {
   const modelProperties = model.properties ?? [];
   const modelInterface = {
-    name: model.name ?? "FIXMYNAME",
+    name: model.alias ?? model.name ?? "FIXMYNAME",
     isExported: true,
     docs: getDocsFromDescription(model.description),
     extends: [] as string[],
@@ -147,7 +153,7 @@ export function buildModels(
       const modelInterface = buildModelInterface(model, { coreClientTypes });
       model.type === "model"
         ? model.parents?.forEach((p) =>
-            modelInterface.extends.push(getType(p, p.format).name)
+            modelInterface.extends.push(p.alias ?? getType(p, p.format).name)
           )
         : undefined;
       modelsFile.addInterface(modelInterface);
@@ -166,7 +172,20 @@ export function buildModels(
     ]);
   }
 
+  const aliases = extractAliases(codeModel);
+  aliases.forEach((alias) => {
+    modelsFile.addTypeAlias(buildModelTypeAlias(alias));
+  });
   return modelsFile;
+}
+
+export function buildModelTypeAlias(model: Type) {
+  return {
+    name: model.name!,
+    isExported: true,
+    docs: ["Base type for " + model.name],
+    type: model.aliasType!
+  };
 }
 
 export function buildModelsOptions(

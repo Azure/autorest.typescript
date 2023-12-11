@@ -14,6 +14,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import {
   InputOptions,
@@ -38,7 +39,7 @@ export async function _inputDeserialize(
   result: Input204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -66,7 +67,7 @@ export async function _outputDeserialize(
   result: Output200Response
 ): Promise<OutputRecord> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -99,7 +100,7 @@ export async function _inputAndOutputDeserialize(
   result: InputAndOutput200Response
 ): Promise<InputOutputRecord> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

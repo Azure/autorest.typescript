@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { EmbeddingsCreateOptions } from "../../models/options.js";
 
@@ -39,7 +40,7 @@ export async function _createDeserialize(
   result: EmbeddingsCreate200Response | EmbeddingsCreateDefaultResponse
 ): Promise<CreateEmbeddingResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

@@ -24,6 +24,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   FineTunesCreateOptions,
@@ -66,7 +67,7 @@ export async function _createDeserialize(
   result: FineTunesCreate200Response | FineTunesCreateDefaultResponse
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -154,7 +155,7 @@ export async function _listDeserialize(
   result: FineTunesList200Response | FineTunesListDefaultResponse
 ): Promise<ListFineTunesResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -245,7 +246,7 @@ export async function _retrieveDeserialize(
   result: FineTunesRetrieve200Response | FineTunesRetrieveDefaultResponse
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -339,7 +340,7 @@ export async function _listEventsDeserialize(
   result: FineTunesListEvents200Response | FineTunesListEventsDefaultResponse
 ): Promise<ListFineTuneEventsResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -378,7 +379,7 @@ export async function _cancelDeserialize(
   result: FineTunesCancel200Response | FineTunesCancelDefaultResponse
 ): Promise<FineTune> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

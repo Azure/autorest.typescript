@@ -11,8 +11,9 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { importSettings } from "../utils/importUtils.js";
 import { getImportSpecifier } from "@azure-tools/rlc-common";
+import { addImportsToFiles } from "@azure-tools/rlc-common";
+import { clearImportSets } from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.
@@ -27,7 +28,7 @@ export function buildOperationFiles(
 ) {
   const operationFiles = [];
   for (const operationGroup of client.operationGroups) {
-    const importSet: Map<string, Set<string>> = new Map<string, Set<string>>();
+    clearImportSets(codeModel.runtimeImports);
     const operationFileName =
       operationGroup.className && operationGroup.namespaceHierarchies.length > 0
         ? `${operationGroup.namespaceHierarchies
@@ -125,14 +126,12 @@ export function buildOperationFiles(
         dpgContext,
         o,
         clientType,
-        importSet,
         codeModel.runtimeImports
       );
       const deserializeOperationDeclaration = getDeserializePrivateFunction(
         o,
         isRLCMultiEndpoint(dpgContext),
         needUnexpectedHelper,
-        importSet,
         codeModel.runtimeImports
       );
       operationGroupFile.addFunctions([
@@ -154,7 +153,7 @@ export function buildOperationFiles(
         ]
       }
     ]);
-    importSettings(importSet, operationGroupFile);
+    addImportsToFiles(codeModel.runtimeImports, operationGroupFile);
     operationGroupFile.fixMissingImports();
     // have to fixUnusedIdentifiers after everything get generated.
     operationGroupFile.fixUnusedIdentifiers();

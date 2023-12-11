@@ -12,6 +12,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   FooOperationsGetAvatarAsPngOptions,
@@ -38,7 +39,7 @@ export async function _getAvatarAsPngDeserialize(
   result: GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -76,7 +77,7 @@ export async function _getAvatarAsJpegDeserialize(
   result: GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

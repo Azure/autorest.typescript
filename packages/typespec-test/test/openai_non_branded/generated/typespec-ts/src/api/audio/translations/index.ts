@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@typespec/ts-http-runtime";
 import { AudioTranslationsCreateOptions } from "../../../models/options.js";
 
@@ -44,7 +45,7 @@ export async function _createDeserialize(
     | AudioTranslationsCreateDefaultResponse
 ): Promise<CreateTranslationResponse> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

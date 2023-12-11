@@ -13,6 +13,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import {
   OneOptions,
@@ -34,7 +35,7 @@ export function _oneSend(
 
 export async function _oneDeserialize(result: One204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -59,7 +60,7 @@ export function _twoSend(
 
 export async function _twoDeserialize(result: Two204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -86,7 +87,7 @@ export async function _threeDeserialize(
   result: Three204Response
 ): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -111,7 +112,7 @@ export function _fourSend(
 
 export async function _fourDeserialize(result: Four204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -136,7 +137,7 @@ export function _fiveSend(
 
 export async function _fiveDeserialize(result: Five204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -161,7 +162,7 @@ export function _sixSend(
 
 export async function _sixDeserialize(result: Six204Response): Promise<void> {
   if (result.status !== "204") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;

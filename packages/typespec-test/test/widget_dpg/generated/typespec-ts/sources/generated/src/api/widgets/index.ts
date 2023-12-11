@@ -34,6 +34,7 @@ import {
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { uint8ArrayToString } from "@azure/core-util";
 import {
@@ -96,7 +97,7 @@ export async function _listWidgetsDeserialize(
   result: ListWidgets200Response | ListWidgetsDefaultResponse
 ): Promise<Widget[]> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return !result.body
@@ -154,7 +155,7 @@ export async function _listWidgetsPagesDeserialize(
   result: ListWidgetsPages200Response | ListWidgetsPagesDefaultResponse
 ): Promise<ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -201,7 +202,7 @@ export async function _queryWidgetsPagesDeserialize(
   result: QueryWidgetsPages200Response | QueryWidgetsPagesDefaultResponse
 ): Promise<ListWidgetsPagesResults> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -242,7 +243,7 @@ export async function _getWidgetDeserialize(
   result: GetWidget200Response | GetWidgetDefaultResponse
 ): Promise<Widget> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -279,7 +280,7 @@ export async function _createWidgetDeserialize(
   result: CreateWidget201Response | CreateWidgetDefaultResponse
 ): Promise<Widget> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -322,7 +323,7 @@ export async function _updateWidgetDeserialize(
   result: UpdateWidget200Response | UpdateWidgetDefaultResponse
 ): Promise<Widget> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
@@ -360,7 +361,7 @@ export async function _deleteWidgetDeserialize(
   result: DeleteWidget204Response | DeleteWidgetDefaultResponse
 ): Promise<void> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return;
@@ -390,7 +391,7 @@ export async function _analyzeWidgetDeserialize(
   result: AnalyzeWidget200Response | AnalyzeWidgetDefaultResponse
 ): Promise<AnalyzeResult> {
   if (isUnexpected(result)) {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {

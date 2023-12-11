@@ -8,6 +8,7 @@ import { List200Response, PageableContext as Client } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
+  createRestError,
 } from "@azure-rest/core-client";
 import { ListOptions } from "../models/options.js";
 
@@ -27,7 +28,7 @@ export async function _listDeserialize(
   result: List200Response
 ): Promise<PagedUser> {
   if (result.status !== "200") {
-    throw result.body;
+    throw createRestError(result);
   }
 
   return {
