@@ -3,14 +3,12 @@
 
 import { RequestParameters } from "@azure-rest/core-client";
 import {
-  AssetResource,
+  AssetUpdateData,
   DataConnectionData,
-  DataConnection,
   DiscoGroupData,
-  DiscoGroup,
   ReportAssetSnapshotRequest,
   ReportAssetSummaryRequest,
-  SavedFilter,
+  SavedFilterData,
 } from "./models";
 
 export interface ListAssetResourceQueryParamProperties {
@@ -34,7 +32,7 @@ export type ListAssetResourceParameters = ListAssetResourceQueryParam &
   RequestParameters;
 
 export interface UpdateAssetsBodyParam {
-  body?: AssetResource;
+  body?: AssetUpdateData;
 }
 
 export interface UpdateAssetsQueryParamProperties {
@@ -74,7 +72,7 @@ export type ValidateDataConnectionParameters = ValidateDataConnectionBodyParam &
 export type GetDataConnectionParameters = RequestParameters;
 
 export interface CreateOrReplaceDataConnectionBodyParam {
-  body?: DataConnection;
+  body?: DataConnectionData;
 }
 
 export type CreateOrReplaceDataConnectionParameters =
@@ -106,7 +104,7 @@ export type ValidateDiscoGroupParameters = ValidateDiscoGroupBodyParam &
 export type GetDiscoGroupParameters = RequestParameters;
 
 export interface CreateOrReplaceDiscoGroupBodyParam {
-  body?: DiscoGroup;
+  body?: DiscoGroupData;
 }
 
 export type CreateOrReplaceDiscoGroupParameters =
@@ -176,7 +174,7 @@ export type ListSavedFilterParameters = ListSavedFilterQueryParam &
 export type GetSavedFilterParameters = RequestParameters;
 
 export interface CreateOrReplaceSavedFilterBodyParam {
-  body?: SavedFilter;
+  body?: SavedFilterData;
 }
 
 export type CreateOrReplaceSavedFilterParameters =

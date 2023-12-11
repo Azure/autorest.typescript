@@ -17,22 +17,6 @@ import { StreamableMethod } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
 // @public (undocumented)
-export interface AlexaInfo {
-    // (undocumented)
-    alexaRank?: number;
-    // (undocumented)
-    category?: string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    recent?: boolean;
-}
-
-// @public (undocumented)
 export interface AlexaInfoOutput {
     // (undocumented)
     alexaRank?: number;
@@ -46,60 +30,6 @@ export interface AlexaInfoOutput {
     lastSeen?: string;
     // (undocumented)
     recent?: boolean;
-}
-
-// @public (undocumented)
-export interface AsAsset extends InventoryAsset {
-    // (undocumented)
-    adminContacts?: Array<ObservedString>;
-    // (undocumented)
-    adminNames?: Array<ObservedString>;
-    // (undocumented)
-    adminOrgs?: Array<ObservedString>;
-    // (undocumented)
-    adminPhones?: Array<ObservedString>;
-    // (undocumented)
-    asn?: number;
-    // (undocumented)
-    asNames?: Array<ObservedString>;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    countries?: Array<ObservedString>;
-    // (undocumented)
-    detailedFromWhoisAt?: Date | string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    orgIds?: Array<ObservedString>;
-    // (undocumented)
-    orgNames?: Array<ObservedString>;
-    // (undocumented)
-    registrantContacts?: Array<ObservedString>;
-    // (undocumented)
-    registrantNames?: Array<ObservedString>;
-    // (undocumented)
-    registrantPhones?: Array<ObservedString>;
-    // (undocumented)
-    registrarCreatedAt?: Array<ObservedLong>;
-    // (undocumented)
-    registrarNames?: Array<ObservedString>;
-    // (undocumented)
-    registrarUpdatedAt?: Array<ObservedLong>;
-    // (undocumented)
-    registries?: Array<ObservedString>;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    technicalContacts?: Array<ObservedString>;
-    // (undocumented)
-    technicalNames?: Array<ObservedString>;
-    // (undocumented)
-    technicalOrgs?: Array<ObservedString>;
-    // (undocumented)
-    technicalPhones?: Array<ObservedString>;
 }
 
 // @public (undocumented)
@@ -157,12 +87,6 @@ export interface AsAssetOutput extends InventoryAssetOutput {
 }
 
 // @public (undocumented)
-export interface AsAssetResource extends AssetResourceParent {
-    asset: AsAsset;
-    kind: "as";
-}
-
-// @public (undocumented)
 export interface AsAssetResourceOutput extends AssetResourceOutputParent {
     asset: AsAssetOutput;
     kind: "as";
@@ -175,9 +99,6 @@ export interface AssetPageResultOutput {
     totalElements?: number;
     value?: Array<AssetResourceOutput>;
 }
-
-// @public
-export type AssetResource = AsAssetResource | ContactAssetResource | DomainAssetResource | HostAssetResource | IpAddressAssetResource | IpBlockAssetResource | PageAssetResource | SslCertAssetResource;
 
 // @public
 export type AssetResourceOutput = AsAssetResourceOutput | ContactAssetResourceOutput | DomainAssetResourceOutput | HostAssetResourceOutput | IpAddressAssetResourceOutput | IpBlockAssetResourceOutput | PageAssetResourceOutput | SslCertAssetResourceOutput;
@@ -200,45 +121,6 @@ export interface AssetResourceOutputParent {
     updatedDate?: string;
     uuid?: string;
     wildcard?: boolean;
-}
-
-// @public
-export interface AssetResourceParent {
-    auditTrail?: Array<AuditTrailItem>;
-    createdDate?: Date | string;
-    discoGroupName?: string;
-    displayName?: string;
-    externalId?: string;
-    // (undocumented)
-    kind: string;
-    labels?: string[];
-    name?: string;
-    // (undocumented)
-    reason?: string;
-    state?: string;
-    updatedDate?: Date | string;
-    uuid?: string;
-    wildcard?: boolean;
-}
-
-// @public (undocumented)
-export interface AssetSecurityPolicy {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    description?: string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    isAffected?: boolean;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    policyName?: string;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    sources?: Array<Source>;
 }
 
 // @public (undocumented)
@@ -284,24 +166,6 @@ export interface AssetUpdateData {
 }
 
 // @public (undocumented)
-export interface Attribute {
-    // (undocumented)
-    attributeType?: string;
-    // (undocumented)
-    attributeValue?: string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    sources?: Array<Source>;
-}
-
-// @public (undocumented)
 export interface AttributeOutput {
     // (undocumented)
     attributeType?: string;
@@ -320,27 +184,12 @@ export interface AttributeOutput {
 }
 
 // @public
-export interface AuditTrailItem {
-    displayName?: string;
-    id?: string;
-    kind?: string;
-    name?: string;
-    reason?: string;
-}
-
-// @public
 export interface AuditTrailItemOutput {
     displayName?: string;
     id?: string;
     kind?: string;
     name?: string;
     reason?: string;
-}
-
-// @public (undocumented)
-export interface AzureDataExplorerDataConnection extends DataConnectionParent {
-    kind: "azureDataExplorer";
-    properties: AzureDataExplorerDataConnectionProperties;
 }
 
 // @public (undocumented)
@@ -367,30 +216,6 @@ export interface AzureDataExplorerDataConnectionPropertiesOutput extends DataCon
     clusterName?: string;
     databaseName?: string;
     region?: string;
-}
-
-// @public (undocumented)
-export interface Banner {
-    // (undocumented)
-    banner?: string;
-    // (undocumented)
-    bannerMetadata?: string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    port?: number;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    scanType?: string;
-    // (undocumented)
-    sha256?: string;
-    // (undocumented)
-    sources?: Array<Source>;
 }
 
 // @public (undocumented)
@@ -449,24 +274,6 @@ export interface CancelTaskDefaultResponse extends HttpResponse {
 export type CancelTaskParameters = RequestParameters;
 
 // @public (undocumented)
-export interface ContactAsset extends InventoryAsset {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    email?: string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    names?: Array<ObservedString>;
-    // (undocumented)
-    organizations?: Array<ObservedString>;
-    // (undocumented)
-    sources?: Array<Source>;
-}
-
-// @public (undocumented)
 export interface ContactAssetOutput extends InventoryAssetOutput {
     // (undocumented)
     count?: number;
@@ -485,33 +292,9 @@ export interface ContactAssetOutput extends InventoryAssetOutput {
 }
 
 // @public (undocumented)
-export interface ContactAssetResource extends AssetResourceParent {
-    asset: ContactAsset;
-    kind: "contact";
-}
-
-// @public (undocumented)
 export interface ContactAssetResourceOutput extends AssetResourceOutputParent {
     asset: ContactAssetOutput;
     kind: "contact";
-}
-
-// @public (undocumented)
-export interface Cookie {
-    // (undocumented)
-    cookieDomain?: string;
-    // (undocumented)
-    cookieExpiryDate?: Date | string;
-    // (undocumented)
-    cookieName?: string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    recent?: boolean;
 }
 
 // @public (undocumented)
@@ -547,7 +330,7 @@ export interface CreateOrReplaceDataConnection200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateOrReplaceDataConnectionBodyParam {
     // (undocumented)
-    body?: DataConnection;
+    body?: DataConnectionData;
 }
 
 // @public (undocumented)
@@ -579,7 +362,7 @@ export interface CreateOrReplaceDiscoGroup200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateOrReplaceDiscoGroupBodyParam {
     // (undocumented)
-    body?: DiscoGroup;
+    body?: DiscoGroupData;
 }
 
 // @public (undocumented)
@@ -611,7 +394,7 @@ export interface CreateOrReplaceSavedFilter200Response extends HttpResponse {
 // @public (undocumented)
 export interface CreateOrReplaceSavedFilterBodyParam {
     // (undocumented)
-    body?: SavedFilter;
+    body?: SavedFilterData;
 }
 
 // @public (undocumented)
@@ -633,18 +416,6 @@ export interface CreateOrReplaceSavedFilterDefaultResponse extends HttpResponse 
 export type CreateOrReplaceSavedFilterParameters = CreateOrReplaceSavedFilterBodyParam & RequestParameters;
 
 // @public (undocumented)
-export interface Cve {
-    // (undocumented)
-    cvss3Summary?: Cvss3Summary;
-    // (undocumented)
-    cvssScore?: number;
-    // (undocumented)
-    cweId?: string;
-    // (undocumented)
-    name?: string;
-}
-
-// @public (undocumented)
 export interface CveOutput {
     // (undocumented)
     cvss3Summary?: Cvss3SummaryOutput;
@@ -654,44 +425,6 @@ export interface CveOutput {
     cweId?: string;
     // (undocumented)
     name?: string;
-}
-
-// @public (undocumented)
-export interface Cvss3Summary {
-    // (undocumented)
-    attackComplexity?: string;
-    // (undocumented)
-    attackVector?: string;
-    // (undocumented)
-    availabilityImpact?: string;
-    // (undocumented)
-    baseScore?: number;
-    // (undocumented)
-    baseSeverity?: string;
-    // (undocumented)
-    confidentialityImpact?: string;
-    // (undocumented)
-    exploitabilityScore?: number;
-    // (undocumented)
-    exploitCodeMaturity?: string;
-    // (undocumented)
-    impactScore?: number;
-    // (undocumented)
-    integrityImpact?: string;
-    // (undocumented)
-    privilegesRequired?: string;
-    // (undocumented)
-    remediationLevel?: string;
-    // (undocumented)
-    reportConfidence?: string;
-    // (undocumented)
-    scope?: string;
-    // (undocumented)
-    userInteraction?: string;
-    // (undocumented)
-    vectorString?: string;
-    // (undocumented)
-    version?: string;
 }
 
 // @public (undocumented)
@@ -733,9 +466,6 @@ export interface Cvss3SummaryOutput {
 }
 
 // @public (undocumented)
-export type DataConnection = LogAnalyticsDataConnection | AzureDataExplorerDataConnection;
-
-// @public (undocumented)
 export type DataConnectionData = LogAnalyticsDataConnectionData | AzureDataExplorerDataConnectionData;
 
 // @public (undocumented)
@@ -766,18 +496,6 @@ export interface DataConnectionOutputParent {
     readonly name: string;
     readonly updatedDate?: string;
     readonly userUpdatedAt?: string;
-}
-
-// @public (undocumented)
-export interface DataConnectionParent {
-    active?: boolean;
-    content?: string;
-    displayName?: string;
-    frequency?: string;
-    frequencyOffset?: number;
-    id?: string;
-    // (undocumented)
-    kind: string;
 }
 
 // @public
@@ -837,58 +555,6 @@ export interface DeleteSavedFilterDefaultResponse extends HttpResponse {
 export type DeleteSavedFilterParameters = RequestParameters;
 
 // @public (undocumented)
-export interface DependentResource {
-    // (undocumented)
-    cached?: boolean;
-    // (undocumented)
-    contentType?: string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    firstSeenCrawlGuid?: string;
-    // (undocumented)
-    firstSeenPageGuid?: string;
-    // (undocumented)
-    firstSeenResourceGuid?: string;
-    // (undocumented)
-    host?: string;
-    // (undocumented)
-    lastObservedActualSriHash?: string;
-    // (undocumented)
-    lastObservedExpectedSriHash?: string;
-    // (undocumented)
-    lastObservedValidation?: Date | string;
-    // (undocumented)
-    lastObservedViolation?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    lastSeenCrawlGuid?: string;
-    // (undocumented)
-    lastSeenPageGuid?: string;
-    // (undocumented)
-    lastSeenResourceGuid?: string;
-    // (undocumented)
-    md5?: string;
-    // (undocumented)
-    responseBodyMinhash?: number[];
-    // (undocumented)
-    responseBodySize?: number;
-    // (undocumented)
-    sha256?: string;
-    // (undocumented)
-    sha384?: string;
-    // (undocumented)
-    sha512?: string;
-    // (undocumented)
-    sriChecks?: Array<SubResourceIntegrityCheck>;
-    // (undocumented)
-    url?: string;
-}
-
-// @public (undocumented)
 export interface DependentResourceOutput {
     // (undocumented)
     cached?: boolean;
@@ -940,21 +606,6 @@ export interface DependentResourceOutput {
     url?: string;
 }
 
-// @public (undocumented)
-export interface DiscoGroup {
-    createdDate?: Date | string;
-    description?: string;
-    displayName?: string;
-    excludes?: Array<DiscoSource>;
-    frequencyMilliseconds?: number;
-    id?: string;
-    latestRun?: DiscoRunResult;
-    names?: string[];
-    seeds?: Array<DiscoSource>;
-    templateId?: string;
-    tier?: string;
-}
-
 // @public
 export interface DiscoGroupData {
     description?: string;
@@ -988,19 +639,6 @@ export interface DiscoRunPageResultOutput {
     nextLink?: string;
     totalElements?: number;
     value?: Array<DiscoRunResultOutput>;
-}
-
-// @public
-export interface DiscoRunResult {
-    completedDate?: Date | string;
-    excludes?: Array<DiscoSource>;
-    names?: string[];
-    seeds?: Array<DiscoSource>;
-    startedDate?: Date | string;
-    state?: string;
-    submittedDate?: Date | string;
-    tier?: string;
-    totalAssetsFoundCount?: number;
 }
 
 // @public
@@ -1040,72 +678,6 @@ export interface DiscoTemplateOutput {
     region?: string;
     seeds?: Array<DiscoSourceOutput>;
     stateCode?: string;
-}
-
-// @public (undocumented)
-export interface DomainAsset extends InventoryAsset {
-    // (undocumented)
-    adminContacts?: Array<ObservedString>;
-    // (undocumented)
-    adminNames?: Array<ObservedString>;
-    // (undocumented)
-    adminOrgs?: Array<ObservedString>;
-    // (undocumented)
-    adminPhones?: Array<ObservedString>;
-    // (undocumented)
-    alexaInfos?: Array<AlexaInfo>;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    detailedFromWhoisAt?: Date | string;
-    // (undocumented)
-    domain?: string;
-    // (undocumented)
-    domainStatuses?: Array<ObservedString>;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    mailServers?: Array<ObservedString>;
-    // (undocumented)
-    nameServers?: Array<ObservedString>;
-    // (undocumented)
-    parkedDomain?: Array<ObservedBoolean>;
-    // (undocumented)
-    registrantContacts?: Array<ObservedString>;
-    // (undocumented)
-    registrantNames?: Array<ObservedString>;
-    // (undocumented)
-    registrantOrgs?: Array<ObservedString>;
-    // (undocumented)
-    registrantPhones?: Array<ObservedString>;
-    // (undocumented)
-    registrarCreatedAt?: Array<ObservedLong>;
-    // (undocumented)
-    registrarExpiresAt?: Array<ObservedLong>;
-    // (undocumented)
-    registrarIanaIds?: Array<ObservedInteger>;
-    // (undocumented)
-    registrarNames?: Array<ObservedString>;
-    // (undocumented)
-    registrarUpdatedAt?: Array<ObservedLong>;
-    // (undocumented)
-    soaRecords?: Array<SoaRecord>;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    technicalContacts?: Array<ObservedString>;
-    // (undocumented)
-    technicalNames?: Array<ObservedString>;
-    // (undocumented)
-    technicalOrgs?: Array<ObservedString>;
-    // (undocumented)
-    technicalPhones?: Array<ObservedString>;
-    // (undocumented)
-    whoisId?: number;
-    // (undocumented)
-    whoisServers?: Array<ObservedString>;
 }
 
 // @public (undocumented)
@@ -1172,12 +744,6 @@ export interface DomainAssetOutput extends InventoryAssetOutput {
     whoisId?: number;
     // (undocumented)
     whoisServers?: Array<ObservedStringOutput>;
-}
-
-// @public (undocumented)
-export interface DomainAssetResource extends AssetResourceParent {
-    asset: DomainAsset;
-    kind: "domain";
 }
 
 // @public (undocumented)
@@ -1506,18 +1072,6 @@ export interface GetTaskDefaultResponse extends HttpResponse {
 export type GetTaskParameters = RequestParameters;
 
 // @public (undocumented)
-export interface GuidPair {
-    // (undocumented)
-    crawlStateGuid?: string;
-    // (undocumented)
-    loadDate?: Date | string;
-    // (undocumented)
-    pageGuid?: string;
-    // (undocumented)
-    recent?: boolean;
-}
-
-// @public (undocumented)
 export interface GuidPairOutput {
     // (undocumented)
     crawlStateGuid?: string;
@@ -1527,76 +1081,6 @@ export interface GuidPairOutput {
     pageGuid?: string;
     // (undocumented)
     recent?: boolean;
-}
-
-// @public (undocumented)
-export interface HostAsset extends InventoryAsset {
-    // (undocumented)
-    asns?: Array<ObservedLong>;
-    // (undocumented)
-    attributes?: Array<Attribute>;
-    // (undocumented)
-    banners?: Array<Banner>;
-    // (undocumented)
-    childHosts?: Array<ObservedString>;
-    // (undocumented)
-    cnames?: Array<ObservedString>;
-    // (undocumented)
-    cookies?: Array<Cookie>;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    domain?: string;
-    // (undocumented)
-    domainAsset?: DomainAsset;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    headers?: Array<ObservedHeader>;
-    // (undocumented)
-    host?: string;
-    // (undocumented)
-    hostCore?: HostCore;
-    // (undocumented)
-    ipAddresses?: Array<ObservedString>;
-    // (undocumented)
-    ipBlocks?: Array<IpBlock>;
-    // (undocumented)
-    ipv4?: Array<ObservedBoolean>;
-    // (undocumented)
-    ipv6?: Array<ObservedBoolean>;
-    // (undocumented)
-    isWildcard?: Array<ObservedBoolean>;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    location?: Array<ObservedLocation>;
-    // (undocumented)
-    mxRecord?: Array<ObservedBoolean>;
-    // (undocumented)
-    nsRecord?: Array<ObservedBoolean>;
-    // (undocumented)
-    nxdomain?: Array<ObservedBoolean>;
-    // (undocumented)
-    parentHosts?: Array<ObservedString>;
-    // (undocumented)
-    resourceUrls?: Array<ResourceUrl>;
-    // (undocumented)
-    responseBodies?: Array<ObservedString>;
-    // (undocumented)
-    scanMetadata?: Array<ScanMetadata>;
-    // (undocumented)
-    services?: Array<Service>;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    sslCerts?: Array<SslCertAsset>;
-    // (undocumented)
-    sslServerConfig?: Array<SslServerConfig>;
-    // (undocumented)
-    webComponents?: Array<WebComponent>;
-    // (undocumented)
-    webserver?: Array<ObservedBoolean>;
 }
 
 // @public (undocumented)
@@ -1670,95 +1154,9 @@ export interface HostAssetOutput extends InventoryAssetOutput {
 }
 
 // @public (undocumented)
-export interface HostAssetResource extends AssetResourceParent {
-    asset: HostAsset;
-    kind: "host";
-}
-
-// @public (undocumented)
 export interface HostAssetResourceOutput extends AssetResourceOutputParent {
     asset: HostAssetOutput;
     kind: "host";
-}
-
-// @public (undocumented)
-export interface HostCore {
-    // (undocumented)
-    alexaRank?: number;
-    // (undocumented)
-    blacklistCauseCount?: number;
-    // (undocumented)
-    blacklistCauseFirstSeen?: Date | string;
-    // (undocumented)
-    blacklistCauseLastSeen?: Date | string;
-    // (undocumented)
-    blacklistResourceCount?: number;
-    // (undocumented)
-    blacklistResourceFirstSeen?: Date | string;
-    // (undocumented)
-    blacklistResourceLastSeen?: Date | string;
-    // (undocumented)
-    blacklistSequenceCount?: number;
-    // (undocumented)
-    blacklistSequenceFirstSeen?: Date | string;
-    // (undocumented)
-    blacklistSequenceLastSeen?: Date | string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    domain?: string;
-    // (undocumented)
-    domainMalwareReputationScore?: number;
-    // (undocumented)
-    domainPhishReputationScore?: number;
-    // (undocumented)
-    domainReputationScore?: number;
-    // (undocumented)
-    domainScamReputationScore?: number;
-    // (undocumented)
-    domainSpamReputationScore?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    host?: string;
-    // (undocumented)
-    hostMalwareReputationScore?: number;
-    // (undocumented)
-    hostPhishReputationScore?: number;
-    // (undocumented)
-    hostReputationScore?: number;
-    // (undocumented)
-    hostScamReputationScore?: number;
-    // (undocumented)
-    hostSpamReputationScore?: number;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    malwareCauseCount?: number;
-    // (undocumented)
-    malwareResourceCount?: number;
-    // (undocumented)
-    malwareSequenceCount?: number;
-    // (undocumented)
-    phishCauseCount?: number;
-    // (undocumented)
-    phishResourceCount?: number;
-    // (undocumented)
-    phishSequenceCount?: number;
-    // (undocumented)
-    scamCauseCount?: number;
-    // (undocumented)
-    scamResourceCount?: number;
-    // (undocumented)
-    scamSequenceCount?: number;
-    // (undocumented)
-    spamCauseCount?: number;
-    // (undocumented)
-    spamResourceCount?: number;
-    // (undocumented)
-    spamSequenceCount?: number;
-    // (undocumented)
-    uuid?: string;
 }
 
 // @public (undocumented)
@@ -1848,65 +1246,7 @@ export interface InnerErrorOutput {
 }
 
 // @public (undocumented)
-export interface InventoryAsset {
-}
-
-// @public (undocumented)
 export interface InventoryAssetOutput {
-}
-
-// @public (undocumented)
-export interface IpAddressAsset extends InventoryAsset {
-    // (undocumented)
-    asns?: Array<ObservedLong>;
-    // (undocumented)
-    attributes?: Array<Attribute>;
-    // (undocumented)
-    banners?: Array<Banner>;
-    // (undocumented)
-    cookies?: Array<Cookie>;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    headers?: Array<ObservedHeader>;
-    // (undocumented)
-    hosts?: Array<ObservedString>;
-    // (undocumented)
-    ipAddress?: string;
-    // (undocumented)
-    ipBlocks?: Array<IpBlock>;
-    // (undocumented)
-    ipv4?: boolean;
-    // (undocumented)
-    ipv6?: boolean;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    location?: Array<ObservedLocation>;
-    // (undocumented)
-    mxRecord?: Array<ObservedBoolean>;
-    // (undocumented)
-    netRanges?: Array<ObservedString>;
-    // (undocumented)
-    nsRecord?: Array<ObservedBoolean>;
-    // (undocumented)
-    nxdomain?: Array<ObservedBoolean>;
-    // (undocumented)
-    reputations?: Array<Reputation>;
-    // (undocumented)
-    scanMetadata?: Array<ScanMetadata>;
-    // (undocumented)
-    services?: Array<Service>;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    sslCerts?: Array<SslCertAsset>;
-    // (undocumented)
-    sslServerConfig?: Array<SslServerConfig>;
-    // (undocumented)
-    webComponents?: Array<WebComponent>;
 }
 
 // @public (undocumented)
@@ -1964,97 +1304,9 @@ export interface IpAddressAssetOutput extends InventoryAssetOutput {
 }
 
 // @public (undocumented)
-export interface IpAddressAssetResource extends AssetResourceParent {
-    asset: IpAddressAsset;
-    kind: "ipAddress";
-}
-
-// @public (undocumented)
 export interface IpAddressAssetResourceOutput extends AssetResourceOutputParent {
     asset: IpAddressAssetOutput;
     kind: "ipAddress";
-}
-
-// @public (undocumented)
-export interface IpBlock {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    ipBlock?: string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    sources?: Array<Source>;
-}
-
-// @public (undocumented)
-export interface IpBlockAsset extends InventoryAsset {
-    // (undocumented)
-    adminContacts?: Array<ObservedString>;
-    // (undocumented)
-    adminNames?: Array<ObservedString>;
-    // (undocumented)
-    adminOrgs?: Array<ObservedString>;
-    // (undocumented)
-    adminPhones?: Array<ObservedString>;
-    // (undocumented)
-    asns?: Array<ObservedLong>;
-    // (undocumented)
-    bgpPrefixes?: Array<ObservedString>;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    detailedFromWhoisAt?: Date | string;
-    // (undocumented)
-    endIp?: string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    ipBlock?: string;
-    // (undocumented)
-    ipv4?: boolean;
-    // (undocumented)
-    ipv6?: boolean;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    location?: Array<ObservedLocation>;
-    // (undocumented)
-    netNames?: Array<ObservedString>;
-    // (undocumented)
-    netRanges?: Array<ObservedString>;
-    // (undocumented)
-    registrantContacts?: Array<ObservedString>;
-    // (undocumented)
-    registrantNames?: Array<ObservedString>;
-    // (undocumented)
-    registrantOrgs?: Array<ObservedString>;
-    // (undocumented)
-    registrantPhones?: Array<ObservedString>;
-    // (undocumented)
-    registrarCreatedAt?: Array<ObservedLong>;
-    // (undocumented)
-    registrarExpiresAt?: Array<ObservedLong>;
-    // (undocumented)
-    registrarUpdatedAt?: Array<ObservedLong>;
-    // (undocumented)
-    reputations?: Array<Reputation>;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    startIp?: string;
-    // (undocumented)
-    technicalContacts?: Array<ObservedString>;
-    // (undocumented)
-    technicalNames?: Array<ObservedString>;
-    // (undocumented)
-    technicalOrgs?: Array<ObservedString>;
-    // (undocumented)
-    technicalPhones?: Array<ObservedString>;
 }
 
 // @public (undocumented)
@@ -2121,12 +1373,6 @@ export interface IpBlockAssetOutput extends InventoryAssetOutput {
     technicalOrgs?: Array<ObservedStringOutput>;
     // (undocumented)
     technicalPhones?: Array<ObservedStringOutput>;
-}
-
-// @public (undocumented)
-export interface IpBlockAssetResource extends AssetResourceParent {
-    asset: IpBlockAsset;
-    kind: "ipBlock";
 }
 
 // @public (undocumented)
@@ -2541,32 +1787,6 @@ export interface ListTaskQueryParamProperties {
 }
 
 // @public (undocumented)
-export interface Location {
-    // (undocumented)
-    areaCode?: number;
-    // (undocumented)
-    city?: string;
-    // (undocumented)
-    countryCode?: string;
-    // (undocumented)
-    countryName?: string;
-    // (undocumented)
-    dmaCode?: number;
-    // (undocumented)
-    latitude?: number;
-    // (undocumented)
-    longitude?: number;
-    // (undocumented)
-    metroCodeId?: number;
-    // (undocumented)
-    postalCode?: string;
-    // (undocumented)
-    region?: string;
-    // (undocumented)
-    regionName?: string;
-}
-
-// @public (undocumented)
 export interface LocationOutput {
     // (undocumented)
     areaCode?: number;
@@ -2590,12 +1810,6 @@ export interface LocationOutput {
     region?: string;
     // (undocumented)
     regionName?: string;
-}
-
-// @public (undocumented)
-export interface LogAnalyticsDataConnection extends DataConnectionParent {
-    kind: "logAnalytics";
-    properties: LogAnalyticsDataConnectionProperties;
 }
 
 // @public (undocumented)
@@ -2623,27 +1837,11 @@ export interface LogAnalyticsDataConnectionPropertiesOutput extends DataConnecti
 }
 
 // @public (undocumented)
-export interface ObservedBoolean extends ObservedValue {
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    value?: boolean;
-}
-
-// @public (undocumented)
 export interface ObservedBooleanOutput extends ObservedValueOutput {
     // (undocumented)
     sources?: Array<SourceOutput>;
     // (undocumented)
     value?: boolean;
-}
-
-// @public (undocumented)
-export interface ObservedHeader extends ObservedValue {
-    // (undocumented)
-    headerName?: string;
-    // (undocumented)
-    headerValue?: string;
 }
 
 // @public (undocumented)
@@ -2655,27 +1853,11 @@ export interface ObservedHeaderOutput extends ObservedValueOutput {
 }
 
 // @public (undocumented)
-export interface ObservedInteger extends ObservedValue {
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    value?: number;
-}
-
-// @public (undocumented)
 export interface ObservedIntegerOutput extends ObservedValueOutput {
     // (undocumented)
     sources?: Array<SourceOutput>;
     // (undocumented)
     value?: number;
-}
-
-// @public (undocumented)
-export interface ObservedIntegers extends ObservedValue {
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    values?: number[];
 }
 
 // @public (undocumented)
@@ -2687,27 +1869,11 @@ export interface ObservedIntegersOutput extends ObservedValueOutput {
 }
 
 // @public (undocumented)
-export interface ObservedLocation extends ObservedValue {
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    value?: Location;
-}
-
-// @public (undocumented)
 export interface ObservedLocationOutput extends ObservedValueOutput {
     // (undocumented)
     sources?: Array<SourceOutput>;
     // (undocumented)
     value?: LocationOutput;
-}
-
-// @public (undocumented)
-export interface ObservedLong extends ObservedValue {
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    value?: number;
 }
 
 // @public (undocumented)
@@ -2719,24 +1885,9 @@ export interface ObservedLongOutput extends ObservedValueOutput {
 }
 
 // @public (undocumented)
-export interface ObservedPortState extends ObservedValue {
-    // (undocumented)
-    port?: number;
-    value?: string;
-}
-
-// @public (undocumented)
 export interface ObservedPortStateOutput extends ObservedValueOutput {
     // (undocumented)
     port?: number;
-    value?: string;
-}
-
-// @public (undocumented)
-export interface ObservedString extends ObservedValue {
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
     value?: string;
 }
 
@@ -2749,18 +1900,6 @@ export interface ObservedStringOutput extends ObservedValueOutput {
 }
 
 // @public
-export interface ObservedValue {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    recent?: boolean;
-}
-
-// @public
 export interface ObservedValueOutput {
     // (undocumented)
     count?: number;
@@ -2770,131 +1909,6 @@ export interface ObservedValueOutput {
     lastSeen?: string;
     // (undocumented)
     recent?: boolean;
-}
-
-// @public (undocumented)
-export interface PageAsset extends InventoryAsset {
-    // (undocumented)
-    asns?: Array<ObservedLong>;
-    // (undocumented)
-    assetSecurityPolicies?: Array<AssetSecurityPolicy>;
-    // (undocumented)
-    attributes?: Array<Attribute>;
-    // (undocumented)
-    cause?: PageCause;
-    // (undocumented)
-    cdns?: Array<ObservedString>;
-    // (undocumented)
-    charsets?: Array<ObservedString>;
-    // (undocumented)
-    cnames?: Array<ObservedString>;
-    // (undocumented)
-    contentLengths?: Array<ObservedLong>;
-    // (undocumented)
-    contentTypes?: Array<ObservedString>;
-    // (undocumented)
-    cookies?: Array<Cookie>;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    domain?: string;
-    // (undocumented)
-    domainAsset?: DomainAsset;
-    // (undocumented)
-    errors?: Array<ObservedString>;
-    // (undocumented)
-    finalAsns?: Array<ObservedLong>;
-    // (undocumented)
-    finalIpAddresses?: Array<ObservedString>;
-    // (undocumented)
-    finalIpBlocks?: Array<IpBlock>;
-    // (undocumented)
-    finalResponseCodes?: Array<ObservedInteger>;
-    // (undocumented)
-    finalUrls?: Array<ObservedString>;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    frames?: Array<ObservedBoolean>;
-    // (undocumented)
-    fullDomMinhashSignatures?: Array<ObservedIntegers>;
-    // (undocumented)
-    gdprAssetSecurityPolicies?: Array<AssetSecurityPolicy>;
-    // (undocumented)
-    guids?: Array<GuidPair>;
-    // (undocumented)
-    host?: string;
-    // (undocumented)
-    httpMethod?: string;
-    // (undocumented)
-    httpResponseCodes?: Array<ObservedInteger>;
-    // (undocumented)
-    httpResponseMessages?: Array<ObservedString>;
-    // (undocumented)
-    ipAddresses?: Array<ObservedString>;
-    // (undocumented)
-    ipBlocks?: Array<IpBlock>;
-    // (undocumented)
-    ipv4?: Array<ObservedBoolean>;
-    // (undocumented)
-    ipv6?: Array<ObservedBoolean>;
-    // (undocumented)
-    isRootUrl?: boolean;
-    // (undocumented)
-    languages?: Array<ObservedString>;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    location?: Array<ObservedLocation>;
-    // (undocumented)
-    nonHtmlFrames?: Array<ObservedBoolean>;
-    // (undocumented)
-    parkedPage?: Array<ObservedBoolean>;
-    redirectType?: string;
-    // (undocumented)
-    redirectUrls?: Array<ObservedString>;
-    // (undocumented)
-    referrer?: string;
-    // (undocumented)
-    resourceUrls?: Array<ResourceUrl>;
-    // (undocumented)
-    responseBodies?: Array<ObservedString>;
-    // (undocumented)
-    responseBodyHashSignatures?: Array<ObservedString>;
-    // (undocumented)
-    responseBodyMinhashSignatures?: Array<ObservedIntegers>;
-    // (undocumented)
-    responseHeaders?: Array<ObservedHeader>;
-    // (undocumented)
-    responseTimes?: Array<ObservedLong>;
-    // (undocumented)
-    rootUrl?: ObservedBoolean;
-    // (undocumented)
-    service?: string;
-    // (undocumented)
-    services?: Array<Service>;
-    // (undocumented)
-    siteStatus?: string;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    sslCerts?: Array<SslCertAsset>;
-    // (undocumented)
-    sslServerConfig?: Array<SslServerConfig>;
-    // (undocumented)
-    successful?: Array<ObservedBoolean>;
-    // (undocumented)
-    titles?: Array<ObservedString>;
-    // (undocumented)
-    undirectedContent?: Array<ObservedBoolean>;
-    // (undocumented)
-    url?: string;
-    // (undocumented)
-    webComponents?: Array<WebComponent>;
-    // (undocumented)
-    windowNames?: Array<ObservedString>;
-    // (undocumented)
-    windows?: Array<ObservedBoolean>;
 }
 
 // @public (undocumented)
@@ -3023,33 +2037,9 @@ export interface PageAssetOutput extends InventoryAssetOutput {
 }
 
 // @public (undocumented)
-export interface PageAssetResource extends AssetResourceParent {
-    asset: PageAsset;
-    kind: "page";
-}
-
-// @public (undocumented)
 export interface PageAssetResourceOutput extends AssetResourceOutputParent {
     asset: PageAssetOutput;
     kind: "page";
-}
-
-// @public (undocumented)
-export interface PageCause {
-    // (undocumented)
-    cause?: string;
-    // (undocumented)
-    causeElementXPath?: string;
-    // (undocumented)
-    domChangeIndex?: number;
-    // (undocumented)
-    location?: string;
-    // (undocumented)
-    loopDetected?: boolean;
-    // (undocumented)
-    possibleMatches?: number;
-    // (undocumented)
-    version?: number;
 }
 
 // @public (undocumented)
@@ -3101,18 +2091,6 @@ export type PaginateReturn<TResult> = TResult extends {
 // @public
 export interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
-}
-
-// @public (undocumented)
-export interface Port {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    port?: number;
 }
 
 // @public (undocumented)
@@ -3180,26 +2158,6 @@ export interface ReportBillableAssetSummaryResultOutput {
 }
 
 // @public (undocumented)
-export interface Reputation {
-    // (undocumented)
-    cidr?: string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    listName?: string;
-    // (undocumented)
-    listUpdatedAt?: Date | string;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    threatType?: string;
-    // (undocumented)
-    trusted?: boolean;
-}
-
-// @public (undocumented)
 export interface ReputationOutput {
     // (undocumented)
     cidr?: string;
@@ -3217,22 +2175,6 @@ export interface ReputationOutput {
     threatType?: string;
     // (undocumented)
     trusted?: boolean;
-}
-
-// @public (undocumented)
-export interface ResourceUrl {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    resources?: Array<DependentResource>;
-    // (undocumented)
-    url?: string;
 }
 
 // @public (undocumented)
@@ -3304,16 +2246,6 @@ export interface RunDiscoGroupDefaultResponse extends HttpResponse {
 // @public (undocumented)
 export type RunDiscoGroupParameters = RequestParameters;
 
-// @public (undocumented)
-export interface SavedFilter {
-    // (undocumented)
-    description?: string;
-    displayName?: string;
-    // (undocumented)
-    filter?: string;
-    id?: string;
-}
-
 // @public
 export interface SavedFilterData {
     description: string;
@@ -3332,18 +2264,6 @@ export interface SavedFilterOutput {
 }
 
 // @public (undocumented)
-export interface ScanMetadata {
-    // (undocumented)
-    bannerMetadata?: string;
-    // (undocumented)
-    endScan?: Date | string;
-    // (undocumented)
-    port?: number;
-    // (undocumented)
-    startScan?: Date | string;
-}
-
-// @public (undocumented)
 export interface ScanMetadataOutput {
     // (undocumented)
     bannerMetadata?: string;
@@ -3353,32 +2273,6 @@ export interface ScanMetadataOutput {
     port?: number;
     // (undocumented)
     startScan?: string;
-}
-
-// @public (undocumented)
-export interface Service {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    exceptions?: Array<ObservedString>;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    port?: number;
-    // (undocumented)
-    portStates?: Array<ObservedPortState>;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    scheme?: string;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    sslCerts?: Array<SslCertAsset>;
-    // (undocumented)
-    webComponents?: Array<WebComponent>;
 }
 
 // @public (undocumented)
@@ -3408,24 +2302,6 @@ export interface ServiceOutput {
 }
 
 // @public (undocumented)
-export interface SoaRecord {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    email?: string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    nameServer?: string;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    serialNumber?: number;
-}
-
-// @public (undocumented)
 export interface SoaRecordOutput {
     // (undocumented)
     count?: number;
@@ -3444,20 +2320,6 @@ export interface SoaRecordOutput {
 }
 
 // @public (undocumented)
-export interface Source {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    reason?: string;
-    // (undocumented)
-    source?: string;
-}
-
-// @public (undocumented)
 export interface SourceOutput {
     // (undocumented)
     count?: number;
@@ -3469,75 +2331,6 @@ export interface SourceOutput {
     reason?: string;
     // (undocumented)
     source?: string;
-}
-
-// @public (undocumented)
-export interface SslCertAsset extends InventoryAsset {
-    // (undocumented)
-    certificateAuthority?: boolean;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    invalidAfter?: Date | string;
-    // (undocumented)
-    invalidBefore?: Date | string;
-    // (undocumented)
-    issuerAlternativeNames?: string[];
-    // (undocumented)
-    issuerCommonNames?: string[];
-    // (undocumented)
-    issuerCountry?: string[];
-    // (undocumented)
-    issuerLocality?: string[];
-    // (undocumented)
-    issuerOrganizationalUnits?: string[];
-    // (undocumented)
-    issuerOrganizations?: string[];
-    // (undocumented)
-    issuerState?: string[];
-    // (undocumented)
-    keyAlgorithm?: string;
-    // (undocumented)
-    keySize?: number;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    organizationalUnits?: string[];
-    // (undocumented)
-    organizations?: string[];
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    selfSigned?: boolean;
-    // (undocumented)
-    serialNumber?: string;
-    // (undocumented)
-    sha1?: string;
-    // (undocumented)
-    sigAlgName?: string;
-    // (undocumented)
-    sigAlgOid?: string;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    subjectAlternativeNames?: string[];
-    // (undocumented)
-    subjectCommonNames?: string[];
-    // (undocumented)
-    subjectCountry?: string[];
-    // (undocumented)
-    subjectLocality?: string[];
-    // (undocumented)
-    subjectOrganizationalUnits?: string[];
-    // (undocumented)
-    subjectOrganizations?: string[];
-    // (undocumented)
-    subjectState?: string[];
-    validationType?: string;
-    // (undocumented)
-    version?: number;
 }
 
 // @public (undocumented)
@@ -3610,31 +2403,9 @@ export interface SslCertAssetOutput extends InventoryAssetOutput {
 }
 
 // @public (undocumented)
-export interface SslCertAssetResource extends AssetResourceParent {
-    asset: SslCertAsset;
-    kind: "sslCert";
-}
-
-// @public (undocumented)
 export interface SslCertAssetResourceOutput extends AssetResourceOutputParent {
     asset: SslCertAssetOutput;
     kind: "sslCert";
-}
-
-// @public (undocumented)
-export interface SslServerConfig {
-    // (undocumented)
-    cipherSuites?: string[];
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    tlsVersions?: string[];
 }
 
 // @public (undocumented)
@@ -3651,28 +2422,6 @@ export interface SslServerConfigOutput {
     sources?: Array<SourceOutput>;
     // (undocumented)
     tlsVersions?: string[];
-}
-
-// @public (undocumented)
-export interface SubResourceIntegrityCheck {
-    // (undocumented)
-    causePageUrl?: string;
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    crawlGuid?: string;
-    // (undocumented)
-    expectedHash?: string;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    pageGuid?: string;
-    // (undocumented)
-    resourceGuid?: string;
-    // (undocumented)
-    violation?: boolean;
 }
 
 // @public (undocumented)
@@ -3720,7 +2469,7 @@ export interface UpdateAssets200Response extends HttpResponse {
 // @public (undocumented)
 export interface UpdateAssetsBodyParam {
     // (undocumented)
-    body?: AssetResource;
+    body?: AssetUpdateData;
 }
 
 // @public (undocumented)
@@ -3829,36 +2578,6 @@ export type ValidateDiscoGroupParameters = ValidateDiscoGroupBodyParam & Request
 // @public (undocumented)
 export interface ValidateResultOutput {
     error?: ErrorDetailOutput;
-}
-
-// @public (undocumented)
-export interface WebComponent {
-    // (undocumented)
-    count?: number;
-    // (undocumented)
-    cve?: Array<Cve>;
-    // (undocumented)
-    endOfLife?: number;
-    // (undocumented)
-    firstSeen?: Date | string;
-    // (undocumented)
-    lastSeen?: Date | string;
-    // (undocumented)
-    name?: string;
-    // (undocumented)
-    ports?: Array<Port>;
-    // (undocumented)
-    recent?: boolean;
-    // (undocumented)
-    ruleId?: string[];
-    // (undocumented)
-    service?: string;
-    // (undocumented)
-    sources?: Array<Source>;
-    // (undocumented)
-    type?: string;
-    // (undocumented)
-    version?: string;
 }
 
 // @public (undocumented)

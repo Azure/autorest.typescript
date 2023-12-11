@@ -8,12 +8,7 @@ import {
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
 import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
-import {
-  createMetadataInfo,
-  getHttpOperation,
-  HttpOperation,
-  resolveRequestVisibility
-} from "@typespec/http";
+import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
   includeDerivedModel,
@@ -35,7 +30,6 @@ export function transformSchemas(
   const schemaMap: Map<any, any> = new Map<any, any>();
   const operationGroups = listOperationGroups(dpgContext, client);
   const modelKey = Symbol("typescript-models-" + client.name);
-  const metadataInfo = createMetadataInfo(program);
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -65,16 +59,6 @@ export function transformSchemas(
       bodyModel &&
       (bodyModel.kind === "Model" || bodyModel.kind === "Union")
     ) {
-      const visibility = resolveRequestVisibility(
-        program,
-        route.operation,
-        route.verb
-      );
-      const payloadType = metadataInfo.getEffectivePayloadType(
-        route.parameters.body?.type!,
-        visibility
-      );
-      getGeneratedModels(payloadType, SchemaContext.Input);
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {

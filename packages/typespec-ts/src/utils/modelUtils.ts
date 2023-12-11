@@ -61,7 +61,9 @@ import {
   getPathParamName,
   getQueryParamName,
   isStatusCode,
-  HttpOperation
+  HttpOperation,
+  createMetadataInfo,
+  resolveRequestVisibility
 } from "@typespec/http";
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
@@ -1290,7 +1292,17 @@ export function getBodyType(
       }
     }
     if (resourceType && bodyModel.name === "") {
-      bodyModel = resourceType;
+      const metadataInfo = createMetadataInfo(program);
+      const visibility = resolveRequestVisibility(
+        program,
+        route.operation,
+        route.verb
+      );
+      const payloadType = metadataInfo.getEffectivePayloadType(
+        bodyModel,
+        visibility
+      );
+      bodyModel = payloadType;
     }
   }
   return bodyModel;
