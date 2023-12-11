@@ -101,7 +101,7 @@ export interface AssetPageResultOutput {
 }
 
 // @public
-export type AssetResourceOutput = AsAssetResourceOutput | ContactAssetResourceOutput | DomainAssetResourceOutput | HostAssetResourceOutput | IpAddressAssetResourceOutput | IpBlockAssetResourceOutput | PageAssetResourceOutput | SslCertAssetResourceOutput;
+export type AssetResourceOutput = AssetResourceOutputParent | AsAssetResourceOutput | ContactAssetResourceOutput | DomainAssetResourceOutput | HostAssetResourceOutput | IpAddressAssetResourceOutput | IpBlockAssetResourceOutput | PageAssetResourceOutput | SslCertAssetResourceOutput;
 
 // @public
 export interface AssetResourceOutputParent {
@@ -466,7 +466,7 @@ export interface Cvss3SummaryOutput {
 }
 
 // @public (undocumented)
-export type DataConnectionData = LogAnalyticsDataConnectionData | AzureDataExplorerDataConnectionData;
+export type DataConnectionData = DataConnectionDataParent | LogAnalyticsDataConnectionData | AzureDataExplorerDataConnectionData;
 
 // @public (undocumented)
 export interface DataConnectionDataParent {
@@ -479,7 +479,7 @@ export interface DataConnectionDataParent {
 }
 
 // @public (undocumented)
-export type DataConnectionOutput = LogAnalyticsDataConnectionOutput | AzureDataExplorerDataConnectionOutput;
+export type DataConnectionOutput = DataConnectionOutputParent | LogAnalyticsDataConnectionOutput | AzureDataExplorerDataConnectionOutput;
 
 // @public (undocumented)
 export interface DataConnectionOutputParent {
