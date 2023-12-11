@@ -1040,6 +1040,7 @@ export interface SavedFilterOutput {
 
 /** The items in the current page of results. */
 export type AssetResourceOutput =
+  | AssetResourceOutputParent
   | AsAssetResourceOutput
   | ContactAssetResourceOutput
   | DomainAssetResourceOutput
@@ -1049,6 +1050,7 @@ export type AssetResourceOutput =
   | PageAssetResourceOutput
   | SslCertAssetResourceOutput;
 export type DataConnectionOutput =
+  | DataConnectionOutputParent
   | LogAnalyticsDataConnectionOutput
   | AzureDataExplorerDataConnectionOutput;
 /** Paged collection of AssetResource items */

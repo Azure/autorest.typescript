@@ -147,5 +147,6 @@ export interface SavedFilterData {
 }
 
 export type DataConnectionData =
+  | DataConnectionDataParent
   | LogAnalyticsDataConnectionData
   | AzureDataExplorerDataConnectionData;
