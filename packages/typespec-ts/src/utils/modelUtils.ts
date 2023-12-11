@@ -1294,7 +1294,7 @@ export function getBodyType(
         }
       }
     }
-    if (resourceType && bodyModel.name === "") {
+    if (bodyModel.name === "") {
       const metadataInfo = createMetadataInfo(program);
       const visibility = resolveRequestVisibility(
         program,
