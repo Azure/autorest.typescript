@@ -1,7 +1,9 @@
 import NestedDiscriminatorClientFactory, {
   GoblinShark,
   NestedDiscriminatorClient,
-  Salmon
+  Salmon,
+  SalmonOutput,
+  SharkOutput
 } from "./generated/models/inheritance/src/index.js";
 import { assert } from "chai";
 
@@ -27,7 +29,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
       if (result.body.kind === "shark") {
-        assert.strictEqual(result.body.sharktype, "goblin");
+        assert.strictEqual((result.body as SharkOutput).sharktype, "goblin");
       }
     } catch (err) {
       assert.fail(err as string);
@@ -116,7 +118,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
       );
       if (result.body.kind === "salmon") {
         assert.strictEqual(
-          result.body.partner?.kind,
+          (result.body as SalmonOutput).partner?.kind,
           validRecursiveBody.partner?.kind
         );
       }
@@ -147,6 +149,7 @@ describe("NestedDiscriminatorClient Rest Client", () => {
         .get();
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result.body.age, 1);
+      assert.isUndefined(result.body.kind);
     } catch (err) {
       assert.fail(err as string);
     }

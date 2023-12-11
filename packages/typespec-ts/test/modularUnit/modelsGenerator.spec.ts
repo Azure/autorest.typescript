@@ -1082,22 +1082,25 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
-        /** the discriminator possible values cat, dog */
+      export interface PetParent {
+        /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends Pet {
+      export interface Cat extends PetParent {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends Pet {
+      export interface Dog extends PetParent {
         kind: "dog";
         bark: string;
-      }`
+      }
+      
+      /** Base type for Pet */
+      export type Pet = Cat | Dog | PetParent;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1168,22 +1171,25 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface Pet {
-        /** the discriminator possible values cat, dog */
+      export interface PetParent {
+        /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends Pet {
+      export interface Cat extends PetParent {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends Pet {
+      export interface Dog extends PetParent {
         kind: "dog";
         bark: string;
-      }`
+      }
+      
+      /** Base type for Pet */
+      export type Pet = Cat | Dog | PetParent;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1212,11 +1218,7 @@ describe("inheritance & polymorphism", () => {
           throw createRestError(result);
         }
       
-        return {
-          kind: result.body["kind"],
-          name: result.body["name"],
-          weight: result.body["weight"]
-        };
+        return result.body;
       }
       
       export async function read(

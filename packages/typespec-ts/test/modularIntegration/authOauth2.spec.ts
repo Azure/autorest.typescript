@@ -52,7 +52,7 @@ describe("OAuth2Context in API Layer", () => {
     }
   });
 
-  it.only("should throw exception if the token is invalid", async () => {
+  it("should throw exception if the token is invalid", async () => {
     try {
       await invalid(context);
       assert.fail("Expected an exception to be thrown.");

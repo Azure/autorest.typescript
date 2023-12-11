@@ -197,8 +197,10 @@ function handleDiscriminator(context: SdkContext, type: Model) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
     const discriminatorValues: string[] = [];
+    const aliases: string[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel);
+      aliases.push(modelType.name);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
           modelType.discriminatorValue = property.type.value;
@@ -206,17 +208,22 @@ function handleDiscriminator(context: SdkContext, type: Model) {
         }
       }
     }
-    // it is not included in properties of typespec but needed by python codegen
-    if (discriminatorValues.length > 0) {
-      const discriminatorInfo = {
-        description: `the discriminator possible values ${discriminatorValues.join(
-          ", "
-        )}`,
-        isPolymorphic: true,
-        isDiscriminator: true
-      };
-      return discriminatorInfo;
-    }
+    const discriminatorInfo = {
+      description:
+        discriminatorValues.length > 0
+          ? `the discriminator possible values: ${discriminatorValues.join(
+              ", "
+            )}`
+          : "discriminator property",
+      type: { type: "string" },
+      restApiName: discriminator.propertyName,
+      clientName: discriminator.propertyName,
+      name: discriminator.propertyName,
+      isPolymorphic: true,
+      isDiscriminator: true,
+      aliases
+    };
+    return discriminatorInfo;
   }
   return undefined;
 }
@@ -263,6 +270,8 @@ function processModelProperties(
   model: Model
 ) {
   // need to do properties after insertion to avoid infinite recursion
+  const discriminatorInfo = handleDiscriminator(context, model);
+  let hasDiscriminator = false;
   for (const property of model.properties.values()) {
     if (!isSchemaProperty(context.program, property)) {
       continue;
@@ -272,12 +281,24 @@ function processModelProperties(
     }
     let newProperty = emitProperty(context, property);
     if (isDiscriminator(context, model, property.name)) {
-      newProperty = { ...newProperty, ...handleDiscriminator(context, model) };
+      hasDiscriminator = true;
+      newProperty = {
+        ...newProperty,
+        ...discriminatorInfo,
+        type: newProperty["type"]
+      };
     }
     newValue.properties.push(newProperty);
   }
-  // need to do discriminator outside `emitModel` to avoid infinite recursion
-  // handleDiscriminator(context, model, newValue);
+  if (discriminatorInfo) {
+    if (!hasDiscriminator) {
+      newValue.properties.push({ ...discriminatorInfo });
+    }
+    newValue.alias = `${newValue.name}Parent`;
+    newValue.isPolyBaseModel = true;
+    discriminatorInfo?.aliases.push(`${newValue.alias}`);
+    newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+  }
 }
 
 function isEmptyAnonymousModel(type: EmitterType): boolean {
