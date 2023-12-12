@@ -111,8 +111,6 @@ function restLevelPackage(model: RLCModel) {
       node: ">=18.0.0"
     },
     scripts: {
-      audit:
-        "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
       "build:browser": "echo skipped.",
       "build:node": "echo skipped.",
       "build:samples": "echo skipped.",
