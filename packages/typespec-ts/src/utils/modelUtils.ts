@@ -1261,7 +1261,7 @@ export function getBodyType(
   program: Program,
   route: HttpOperation
 ): Type | undefined {
-  let bodyModel = route.parameters.body?.type;
+  const bodyModel = route.parameters.body?.type;
   if (bodyModel) {
     const metadataInfo = createMetadataInfo(program);
     const payloadType = metadataInfo.getEffectivePayloadType(
