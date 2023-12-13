@@ -150,7 +150,7 @@ export function getDeserializePrivateFunction(
         `if(${validStatus
           .map((s) => `result.status !== "${s}"`)
           .join(" || ")}){`,
-         `throw createRestError(result);`,
+        `throw createRestError(result);`,
         "}"
       );
       addImportToSpecifier("restClient", runtimeImports, "createRestError");
@@ -537,10 +537,7 @@ function getParameterMap(
   throw new Error(`Parameter ${param.clientName} is not supported`);
 }
 
-function getCollectionFormat(
-  param: Parameter,
-  runtimeImports: RuntimeImports
-) {
+function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
     param.format ?? ""
@@ -602,10 +599,7 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(
-  param: RequiredType,
-  runtimeImports: RuntimeImports
-) {
+function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
@@ -657,10 +651,7 @@ function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(
-  param: OptionalType,
-  runtimeImports: RuntimeImports
-) {
+function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
@@ -956,7 +947,7 @@ function deserializeResponseValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array"); 
+        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array");
         return `typeof ${restValue} === 'string'
         ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;

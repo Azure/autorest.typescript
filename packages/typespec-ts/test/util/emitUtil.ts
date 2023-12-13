@@ -92,14 +92,16 @@ export async function emitSchemasFromTypeSpec(
 export async function emitModelsFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
-  needTCGC: boolean = false
+  needTCGC: boolean = false,
+  withRawContent: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     false,
-    needTCGC
+    needTCGC,
+    withRawContent
   );
   const program = context.program;
   const dpgContext = createDpgContextTestHelper(context.program);
