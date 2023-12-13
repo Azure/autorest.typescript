@@ -19,7 +19,7 @@ jobs:
         Windows_Latest:
           Pool:
           OSVmImage: "Windows-latest"
-          NodeTestVersion: "18.x"
+          NodeTestVersion: "20.x"
     steps:
       - template: build.yml
       - script: npm run clone:specs

@@ -110,7 +110,7 @@ stages:
             Windows_Latest:
               Pool:
               OSVmImage: "Windows-latest"
-              NodeTestVersion: "18.x"
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -140,7 +140,7 @@ stages:
             Windows_Latest:
               Pool:
               OSVmImage: "Windows-latest"
-              NodeTestVersion: "18.x"
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -237,7 +237,7 @@ stages:
             Windows_Latest:
               Pool:
               OSVmImage: "Windows-latest"
-              NodeTestVersion: "18.x"
+              NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
@@ -267,7 +267,7 @@ stages:
             # Windows_Latest:
             #   Pool:
             #   OSVmImage: "Windows-latest"
-            #   NodeTestVersion: "18.x"
+            #   NodeTestVersion: "20.x"
         pool:
           name: $[coalesce(variables['Pool'], '')]
           vmImage: $[coalesce(variables['OSVmImage'], '')]
