@@ -65,7 +65,10 @@ export async function $onEmit(context: EmitContext) {
   /** Shared status */
   const program: Program = context.program;
   const emitterOptions: RLCOptions = context.options;
-  const dpgContext = createSdkContext(context, "@azure-tools/typespec-ts") as SdkContext;
+  const dpgContext = createSdkContext(
+    context,
+    "@azure-tools/typespec-ts"
+  ) as SdkContext;
   const needUnexpectedHelper: Map<string, boolean> = new Map<string, boolean>();
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,

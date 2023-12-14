@@ -55,13 +55,14 @@ import {
   Schema,
   SchemaContext
 } from "@azure-tools/rlc-common";
-import { getResourceOperation } from "@typespec/rest";
 import {
   getHeaderFieldName,
   getPathParamName,
   getQueryParamName,
   isStatusCode,
-  HttpOperation
+  HttpOperation,
+  createMetadataInfo,
+  Visibility
 } from "@typespec/http";
 import { getPagedResult, isFixed } from "@azure-tools/typespec-azure-core";
 import { extractPagedMetadataNested } from "./operationUtil.js";
@@ -1260,41 +1261,14 @@ export function getBodyType(
   program: Program,
   route: HttpOperation
 ): Type | undefined {
-  let bodyModel = route.parameters.bodyType;
-  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-    const resourceType = getResourceOperation(
-      program,
-      route.operation
-    )?.resourceType;
-    if (resourceType && route.responses && route.responses.length > 0) {
-      const resp = route.responses[0];
-      if (resp && resp.responses && resp.responses.length > 0) {
-        const responseBody = resp.responses[0]?.body;
-        if (responseBody) {
-          const bodyTypeInResponse = getEffectiveModelFromType(
-            program,
-
-            responseBody.type
-          );
-          // response body type is reosurce type, and request body type (if templated) contains resource type
-          if (
-            bodyTypeInResponse === resourceType &&
-            bodyModel.templateMapper &&
-            bodyModel.templateMapper.args &&
-            bodyModel.templateMapper.args.some((it) => {
-              return it.kind === "Model" || it.kind === "Union"
-                ? it === bodyTypeInResponse
-                : false;
-            })
-          ) {
-            bodyModel = resourceType;
-          }
-        }
-      }
-    }
-    if (resourceType && bodyModel.name === "") {
-      bodyModel = resourceType;
-    }
+  const bodyModel = route.parameters.body?.type;
+  if (bodyModel) {
+    const metadataInfo = createMetadataInfo(program);
+    const payloadType = metadataInfo.getEffectivePayloadType(
+      bodyModel,
+      Visibility.All
+    );
+    return payloadType;
   }
   return bodyModel;
 }
