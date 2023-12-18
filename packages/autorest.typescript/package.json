@@ -58,7 +58,7 @@
     "@azure-rest/core-client": "^1.1.6",
     "@azure-tools/codegen": "^2.9.1",
     "@azure/core-client": "^1.6.1",
-    "@azure/core-http": "^1.2.4",
+    "@azure/core-http": "^3.0.0",
     "@azure/core-http-compat": "^1.2.0",
     "@azure/core-lro": "^2.5.4",
     "@azure/core-paging": "^1.5.0",

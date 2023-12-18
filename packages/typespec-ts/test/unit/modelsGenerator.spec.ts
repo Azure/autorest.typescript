@@ -1525,7 +1525,7 @@ describe("Input/output model type", () => {
       });
     });
 
-    it("should handle offsetDateTime  -> string in output model &  `Date | string` in input model", async () => {
+    it("should handle offsetDateTime> string in output model &  `Date | string` in input model", async () => {
       const inputType = "string";
       const outputType = "string";
       await verifyPropertyType("offsetDateTime ", inputType, {
@@ -2539,4 +2539,412 @@ describe("Input/output model type", () => {
       );
     });
   });
+
+  describe("operation templates", () => {
+    it("should generate models correctly for operation with service traits templates", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+      import "@azure-tools/typespec-azure-core";
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using TypeSpec.Versioning;
+      using Azure.Core;
+      using Azure.Core.Traits;
+      using Azure.Core.Foundations;
+      
+      @service({
+        title: "Defender EASM",
+      })
+      @doc("Contoso Resource Provider management API.")
+      @useDependency(Versions.v1_0_Preview_1)
+      namespace Microsoft.ContosoProviderHub;
+      alias ServiceTraits = NoRepeatableRequests &
+        NoConditionalRequests &
+        NoClientRequestId;
+      
+      alias Operations = Azure.Core.ResourceOperations<ServiceTraits>;
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      model DataConnectionData {
+        @doc("The name of data connection")
+        name?: string;
+      
+        @doc("The day to update the data connection on. (1-7 for weekly, 1-31 for monthly)")
+        frequencyOffset?: int32;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 propery")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      @resource("dataConnections")
+      model DataConnection {
+        @doc("The system generated unique id for the resource.")
+        id?: string;
+      
+        @doc("The caller provided unique name for the resource.")
+        @key("dataConnectionName")
+        @visibility("read")
+        name: string;
+      
+        @doc("The name that can be used for display purposes.")
+        displayName?: string;
+      
+        @doc("The date the data connection was created.")
+        @visibility("read")
+        createdDate?: utcDateTime;
+      
+        @doc("The day to update the data connection on.")
+        frequencyOffset?: int32;
+      
+        @doc("The date the data connection was last updated.")
+        @visibility("read")
+        updatedDate?: utcDateTime;
+      
+        @doc("The date the data connection was last updated by user.")
+        @visibility("read")
+        userUpdatedAt?: utcDateTime;
+      
+        @doc("An indicator of whether the data connection is active.")
+        active?: boolean;
+      
+        @doc("A message that specifies details about data connection if inactive.")
+        @visibility("read")
+        inactiveMessage?: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 property")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model ValidateResult {
+        @doc("This is the top-level error object whose code matches the x-ms-error-code response header.")
+        error?: Error;
+      }
+      
+      interface DataConnections {
+        @doc("Validate a data connection with a given dataConnectionName.")
+        @action("validate")
+        validateDataConnection is Operations.ResourceCollectionAction<
+          DataConnection,
+          DataConnectionData,
+          ValidateResult
+        >;
+      }
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, true, true);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      // console.log(inputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface DataConnectionDataParent {
+          /** The name of data connection */
+          name?: string;
+          /** The day to update the data connection on. (1-7 for weekly, 1-31 for monthly) */ 
+          frequencyOffset?: number;
+          kind: string;
+        }
+        export interface LogAnalyticsDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "logAnalytics";
+          /** logAnalyticsProperty1 property */ 
+          logAnalyticsProperty1: number;
+          /** logAnalyticsProperty2 propery */ 
+          logAnalyticsProperty2: string;
+        }
+        export interface AzureDataExplorerDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "azureDataExplorer";
+          azureDataExplorerProperty1: number;
+          azureDataExplorerProperty2: string;
+        }
+        export type DataConnectionData =
+          | DataConnectionDataParent
+          | LogAnalyticsDataConnectionData
+          | AzureDataExplorerDataConnectionData;
+        `,
+        true
+      );
+
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        import { ErrorModel } from "@azure-rest/core-client";
+        export interface ValidateResultOutput {
+          /** This is the top-level error object whose code matches the x-ms-error-code response header. */ 
+          error?: ErrorModel;
+        }
+        `,
+        true
+      );
+    });
+
+    it("should generate models correctly for operation with foundation templates", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@typespec/versioning";
+      import "@azure-tools/typespec-azure-core";
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using TypeSpec.Versioning;
+      using Azure.Core;
+      using Azure.Core.Traits;
+      using Azure.Core.Foundations;
+      
+      @service({
+        title: "Defender EASM",
+      })
+      @doc("Contoso Resource Provider management API.")
+      @useDependency(Versions.v1_0_Preview_1)
+      namespace Microsoft.ContosoProviderHub;
+      alias ServiceTraits = NoRepeatableRequests &
+        NoConditionalRequests &
+        NoClientRequestId;
+      
+      alias Operations = Azure.Core.ResourceOperations<ServiceTraits>;
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      model DataConnectionData {
+        @doc("The name of data connection")
+        name?: string;
+      
+        @doc("The day to update the data connection on. (1-7 for weekly, 1-31 for monthly)")
+        frequencyOffset?: int32;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 propery")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnectionData extends DataConnectionData {
+        @doc("The kind of DataConnectionData")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      @discriminator("kind")
+      @resource("dataConnections")
+      model DataConnection {
+        @doc("The system generated unique id for the resource.")
+        id?: string;
+      
+        @doc("The caller provided unique name for the resource.")
+        @key("dataConnectionName")
+        @visibility("read")
+        name: string;
+      
+        @doc("The name that can be used for display purposes.")
+        displayName?: string;
+      
+        @doc("The date the data connection was created.")
+        @visibility("read")
+        createdDate?: utcDateTime;
+      
+        @doc("The day to update the data connection on.")
+        frequencyOffset?: int32;
+      
+        @doc("The date the data connection was last updated.")
+        @visibility("read")
+        updatedDate?: utcDateTime;
+      
+        @doc("The date the data connection was last updated by user.")
+        @visibility("read")
+        userUpdatedAt?: utcDateTime;
+      
+        @doc("An indicator of whether the data connection is active.")
+        active?: boolean;
+      
+        @doc("A message that specifies details about data connection if inactive.")
+        @visibility("read")
+        inactiveMessage?: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model LogAnalyticsDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "logAnalytics";
+      
+        @doc("logAnalyticsProperty1 property")
+        logAnalyticsProperty1: int64;
+      
+        @doc("logAnalyticsProperty2 property")
+        logAnalyticsProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model AzureDataExplorerDataConnection extends DataConnection {
+        @doc("The kind of DataConnection")
+        kind: "azureDataExplorer";
+      
+        azureDataExplorerProperty1: int32;
+        azureDataExplorerProperty2: string;
+      }
+      
+      #suppress "@azure-tools/typespec-azure-core/documentation-required" "Documentation will be added next preview version"
+      model ValidateResult {
+        @doc("This is the top-level error object whose code matches the x-ms-error-code response header.")
+        error?: Error;
+      }
+      
+      interface DataConnections {
+        #suppress "@azure-tools/typespec-azure-core/use-standard-operations"
+        @doc("Create or replace a data connection with a given dataConnectionName.")
+        @createsOrReplacesResource(DataConnection)
+        @put
+        createOrReplaceDataConnection is Foundations.ResourceOperation<
+          DataConnection,
+          DataConnectionData,
+          DataConnection
+        >;
+      }
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, true, true);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      // console.log(inputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export interface DataConnectionDataParent {
+          /** The name of data connection */
+          name?: string;
+          /** The day to update the data connection on. (1-7 for weekly, 1-31 for monthly) */ 
+          frequencyOffset?: number;
+          kind: string;
+        }
+        export interface LogAnalyticsDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "logAnalytics";
+          /** logAnalyticsProperty1 property */ 
+          logAnalyticsProperty1: number;
+          /** logAnalyticsProperty2 propery */ 
+          logAnalyticsProperty2: string;
+        }
+        export interface AzureDataExplorerDataConnectionData
+          extends DataConnectionDataParent {
+          /** The kind of DataConnectionData */ 
+          kind: "azureDataExplorer";
+          azureDataExplorerProperty1: number;
+          azureDataExplorerProperty2: string;
+        }
+        export type DataConnectionData =
+          | DataConnectionDataParent
+          | LogAnalyticsDataConnectionData
+          | AzureDataExplorerDataConnectionData;
+        `,
+        true
+      );
+
+      assert.strictEqual(outputModelFile?.path, "outputModels.ts");
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+        export interface DataConnectionOutputParent {
+          /** The system generated unique id for the resource. */ 
+          id?: string;
+          /** The caller provided unique name for the resource. */ 
+          readonly name: string;
+          /** The name that can be used for display purposes. */ 
+          displayName?: string;
+          /** The date the data connection was created. */ 
+          readonly createdDate?: string;
+          /** The day to update the data connection on. */ 
+          frequencyOffset?: number;
+          /** The date the data connection was last updated. */ 
+          readonly updatedDate?: string;
+          /** The date the data connection was last updated by user. */ 
+          readonly userUpdatedAt?: string;
+          /** An indicator of whether the data connection is active. */ 
+          active?: boolean;
+          /** A message that specifies details about data connection if inactive. */ 
+          readonly inactiveMessage?: string;       
+          kind: string;
+        }
+        export interface LogAnalyticsDataConnectionOutput
+          extends DataConnectionOutputParent {
+          /** The kind of DataConnection */ 
+          kind: "logAnalytics";
+          /** logAnalyticsProperty1 property */ 
+          logAnalyticsProperty1: number;
+          /** logAnalyticsProperty2 property */ 
+          logAnalyticsProperty2: string;
+        }
+        export interface AzureDataExplorerDataConnectionOutput
+          extends DataConnectionOutputParent {
+          /** The kind of DataConnection */ 
+          kind: "azureDataExplorer";
+          azureDataExplorerProperty1: number;
+          azureDataExplorerProperty2: string;
+        }
+        export type DataConnectionOutput =
+          | DataConnectionOutputParent
+          | LogAnalyticsDataConnectionOutput
+          | AzureDataExplorerDataConnectionOutput;
+        `,
+        true
+      );
+    });
+  })
 });
