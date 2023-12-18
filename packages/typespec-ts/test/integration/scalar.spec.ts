@@ -3,7 +3,7 @@ import ScalarClientFactory, {
   ScalarClient
 } from "./generated/scalar/src/index.js";
 
-describe.only("Scalar Client", () => {
+describe("Scalar Client", () => {
   let client: ScalarClient;
 
   beforeEach(() => {
