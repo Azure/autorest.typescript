@@ -33,7 +33,7 @@ export interface SmokeTestDefaultResponse extends HttpResponse {
 
 export interface RepeatableAction200Headers {
   /** Indicates whether the repeatable request was accepted or rejected. */
-  "repeatability-result"?: "accepted" | "rejected";
+  "repeatability-result"?: RepeatabilityResultOutput;
 }
 
 /** The request has succeeded. */
