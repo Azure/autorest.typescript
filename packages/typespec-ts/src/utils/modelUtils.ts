@@ -1092,12 +1092,14 @@ function getSchemaForStdScalar(
     case "decimal":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "decimal"
+        format: "decimal",
+        description: "decimal"
       });
     case "decimal128":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "decimal128"
+        format: "decimal128",
+        description: "decimal128"
       });
     case "string":
       if (format === "binary") {
@@ -1253,6 +1255,16 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
+function getDecimalDescription(type: any) {
+  if (
+    (type.format === "decimal" || type.format === "decimal128") &&
+    type.type === "number"
+  ) {
+    return `Please note the field was supposed to be a ${type.format} but JavaScript does not have a native 'BigDecimal' data type.\nSo it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle\nany calculations.`;
+  }
+  return undefined;
+}
+
 export function getFormattedPropertyDoc(
   program: Program,
   type: ModelProperty | Type,
@@ -1260,7 +1272,8 @@ export function getFormattedPropertyDoc(
   sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, type);
-  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  const enhancedDocFromType =
+    getEnumStringDescription(schemaType) ?? getDecimalDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
