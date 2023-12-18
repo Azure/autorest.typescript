@@ -190,7 +190,9 @@ export function isSpecialUnion(t: Type): boolean {
 
 export function isDiscriminatedUnion(t: Type): boolean {
   return (
-    t.type === "combined" && (t.types?.some(isSpecialUnionVariant) ?? false)
+    t.type === "combined" &&
+    (t.discriminator ? true : false) &&
+    (t.types?.some(isSpecialUnionVariant) ?? false)
   );
 }
 

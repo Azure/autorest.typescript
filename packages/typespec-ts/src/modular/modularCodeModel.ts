@@ -103,6 +103,7 @@ export interface Type {
   usage?: UsageFlags;
   alias?: string;
   aliasType?: string;
+  discriminator?: string;
 }
 
 export interface Client {

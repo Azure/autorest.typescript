@@ -1388,6 +1388,14 @@ function emitUnion(
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
+    // if (unionName === "WidgetData") {
+    //   const discriminator = getDiscriminator(context.program, type);
+    //   if (discriminator) {
+    //     discriminator;
+    //     const discriminatedUnion = getDiscriminatedUnion(type, discriminator);
+    //     discriminator.propertyName;
+    //   }
+    // }
     return {
       nullable: sdkType.nullable,
       name: unionName,
@@ -1396,7 +1404,8 @@ function emitUnion(
       type: "combined",
       types: sdkType.values.map((x) => getType(context, x.__raw!, { usage })),
       xmlMetadata: {},
-      usage
+      usage,
+      discriminator: getDiscriminator(context.program, type)?.propertyName
     };
   } else if (sdkType.kind === "enum") {
     return {
