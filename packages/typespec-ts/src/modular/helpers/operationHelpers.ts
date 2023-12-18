@@ -28,6 +28,12 @@ import {
   getDocsFromDescription
 } from "./docsHelpers.js";
 import {
+  getDeserializeFunctionName,
+  isDiscriminatedUnion,
+  isNormalUnion,
+  isSpecialUnion,
+} from "../buildSerializeUtils.js";
+import {
   getCollectionFormatHelper,
   hasCollectionFormatInfo
 } from "../../utils/operationUtil.js";
@@ -150,7 +156,7 @@ export function getDeserializePrivateFunction(
         `if(${validStatus
           .map((s) => `result.status !== "${s}"`)
           .join(" || ")}){`,
-        `throw createRestError(result);`,
+         `throw createRestError(result);`,
         "}"
       );
       addImportToSpecifier("restClient", runtimeImports, "createRestError");
@@ -513,7 +519,7 @@ function getEncodingFormat(type: { format?: string }) {
 /**
  * This function helps with renames, translating client names to rest api names
  */
-function getParameterMap(
+export function getParameterMap(
   param: Parameter | Property,
   runtimeImports: RuntimeImports
 ): string {
@@ -537,7 +543,10 @@ function getParameterMap(
   throw new Error(`Parameter ${param.clientName} is not supported`);
 }
 
-function getCollectionFormat(param: Parameter, runtimeImports: RuntimeImports) {
+function getCollectionFormat(
+  param: Parameter,
+  runtimeImports: RuntimeImports
+) {
   const collectionInfo = getCollectionFormatHelper(
     param.location,
     param.format ?? ""
@@ -599,7 +608,10 @@ function isRequired(param: Parameter | Property): param is RequiredType {
   return !param.optional;
 }
 
-function getRequired(param: RequiredType, runtimeImports: RuntimeImports) {
+function getRequired(
+  param: RequiredType,
+  runtimeImports: RuntimeImports
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
@@ -651,7 +663,10 @@ function isOptional(param: Parameter | Property): param is OptionalType {
   return Boolean(param.optional);
 }
 
-function getOptional(param: OptionalType, runtimeImports: RuntimeImports) {
+function getOptional(
+  param: OptionalType,
+  runtimeImports: RuntimeImports
+) {
   if (param.type.type === "model") {
     return `"${param.restApiName}": {${getRequestModelMapping(
       param.type,
@@ -728,7 +743,7 @@ function getNullableCheck(name: string, type: Type) {
  * This function helps translating an HLC request to RLC request,
  * extracting properties from body and headers and building the RLC response object
  */
-function getRequestModelMapping(
+export function getRequestModelMapping(
   modelPropertyType: Type,
   propertyPath: string = "body",
   runtimeImports: RuntimeImports
@@ -900,7 +915,7 @@ export function getResponseMapping(
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function deserializeResponseValue(
+export function deserializeResponseValue(
   type: Type,
   restValue: string,
   runtimeImports: RuntimeImports,
@@ -914,8 +929,6 @@ function deserializeResponseValue(
           ? `${restValue} === null ? null : new Date(${restValue})`
           : `new Date(${restValue})`
         : `${restValue} !== undefined? new Date(${restValue}): undefined`;
-    case "combined":
-      return `${restValue} as any`;
     case "list": {
       const prefix =
         required && !type.nullable
@@ -947,12 +960,24 @@ function deserializeResponseValue(
     }
     case "byte-array":
       if (format !== "binary") {
-        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array");
+        addImportToSpecifier("coreUtil", runtimeImports, "stringToUint8Array"); 
         return `typeof ${restValue} === 'string'
         ? stringToUint8Array(${restValue}, "${format ?? "base64"}")
         : ${restValue}`;
       }
       return restValue;
+    case "combined":
+      if (isNormalUnion(type)) {
+        return `${restValue}`;
+      } else if (isSpecialUnion(type) && isDiscriminatedUnion(type)) {
+        const deserializeFunctionName = getDeserializeFunctionName(
+          type,
+          "deserialize"
+        );
+        return `${deserializeFunctionName}(${restValue})`;
+      } else {
+        return `${restValue} as any`;
+      }
     default:
       return restValue;
   }
@@ -963,7 +988,7 @@ function deserializeResponseValue(
  * We need to drill down into Array elements to make sure that the element type is
  * deserialized correctly
  */
-function serializeRequestValue(
+export function serializeRequestValue(
   type: Type,
   clientValue: string,
   runtimeImports: RuntimeImports,
@@ -1024,6 +1049,18 @@ function serializeRequestValue(
             }"): undefined`;
       }
       return clientValue;
+    case "combined":
+      if (isNormalUnion(type)) {
+        return `${clientValue}`;
+      } else if (isSpecialUnion(type) && isDiscriminatedUnion(type)) {
+        const serializeFunctionName = getDeserializeFunctionName(
+          type,
+          "serialize"
+        );
+        return `${serializeFunctionName}(${clientValue})`;
+      } else {
+        return `${clientValue} as any`;
+      }
     default:
       return clientValue;
   }

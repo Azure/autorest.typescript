@@ -58,6 +58,26 @@ export function buildOperationFiles(
       operationGroup.namespaceHierarchies.length
     );
 
+    // Import the deserializeUtils
+    importDeserializeUtils(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      "deserialize",
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
+    // Import the serializeUtils
+    importDeserializeUtils(
+      srcPath,
+      operationGroupFile,
+      codeModel.project,
+      "serialize",
+      subfolder,
+      operationGroup.namespaceHierarchies.length
+    );
+
     // We need to import the paging helpers and types explicitly because ts-morph may not be able to find them.
     importPagingDependencies(
       srcPath,
@@ -175,6 +195,40 @@ export function importModels(
   // sourceFile.fixUnusedIdentifiers();
 }
 
+export function importDeserializeUtils(
+  srcPath: string,
+  sourceFile: SourceFile,
+  project: Project,
+  serializeType: string,
+  subfolder: string = "",
+  importLayer: number = 0
+) {
+  const hasModelsImport = sourceFile.getImportDeclarations().some((i) => {
+    return i.getModuleSpecifierValue().endsWith(`utils/${serializeType}.js`);
+  });
+  const modelsFile = project.getSourceFile(
+    `${srcPath}/${
+      subfolder && subfolder !== "" ? subfolder + "/" : ""
+    }utils/${serializeType}Util.ts`
+  );
+  const deserializeUtil: string[] = [];
+
+  for (const entry of modelsFile?.getExportedDeclarations().entries() ?? []) {
+    deserializeUtil.push(entry[0]);
+  }
+
+  if (deserializeUtil.length > 0 && !hasModelsImport) {
+    sourceFile.addImportDeclaration({
+      moduleSpecifier: `${"../".repeat(
+        importLayer + 1
+      )}utils/${serializeType}Util.js`,
+      namedImports: deserializeUtil
+    });
+  }
+}
+// Import all deserializeUtil and then let ts-morph clean up the unused ones
+// we can't fixUnusedIdentifiers here because the operaiton files are still being generated.
+// sourceFile.fixUnusedIdentifiers();
 export function importPagingDependencies(
   srcPath: string,
   sourceFile: SourceFile,

@@ -1,5 +1,6 @@
 import { Imports } from "@azure-tools/rlc-common";
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
+import { UsageFlags } from "@typespec/compiler";
 import { Project } from "ts-morph";
 
 export interface ModularOptions {
@@ -99,6 +100,7 @@ export interface Type {
   properties?: Property[];
   types?: Type[];
   isCoreErrorType?: boolean;
+  usage?: UsageFlags;
   alias?: string;
   aliasType?: string;
 }

@@ -1,0 +1,40 @@
+import "@typespec/http";
+import "@typespec/rest";
+
+@service({
+  title: "Widget Service",
+})
+namespace DemoService;
+
+using TypeSpec.Http;
+using TypeSpec.Rest;
+
+@discriminator("kind")
+union WidgetData {
+  kind0: WidgetData0;
+  kind1: WidgetData1;
+}
+
+model WidgetData0 {
+  kind: "kind0";
+  fooProp: string;
+}
+
+model WidgetData1 {
+  kind: "kind1";
+  data: bytes;
+}
+
+model Widget {
+  @key id: string;
+  weight: int32;
+  color: "red" | "blue";
+}
+
+model Widget1 extends Widget {
+  data: WidgetData
+}
+
+interface WidgetService {
+  @get @route("customGet1") customGet1(@body body: Widget1): void;
+}

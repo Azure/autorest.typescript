@@ -70,7 +70,15 @@ export function initInternalImports(): Imports {
     response: {
       type: "response",
       importsSet: new Set<string>()
-    }
+    },
+    rlcIndex: {
+      type: "rlcIndex",
+      importsSet: new Set<string>()
+    },
+    modularModel: {
+      type: "modularModel",
+      importsSet: new Set<string>()
+    },
   } as Imports;
 }
 
@@ -123,19 +131,21 @@ export function clearImportSets(runtimeImports: Imports): void {
 
 export function addImportsToFiles(
   runtimeImports: Imports,
-  file: SourceFile
+  file: SourceFile,
+  internalSpecifierMap?: Record<string, string>
 ): void {
   Object.values(runtimeImports)
     .filter((importType) => {
       return importType.specifier && importType.importsSet?.size;
     })
     .forEach((importType) => {
+      const specifier = internalSpecifierMap?.[importType.specifier!] ?? importType.specifier!;
       let hasModifier = false;
       file
         .getImportDeclarations()
         .filter((importDeclaration) => {
           return (
-            importDeclaration.getModuleSpecifierValue() === importType.specifier
+            importDeclaration.getModuleSpecifierValue() === specifier
           );
         })
         .forEach((importDeclaration) => {
@@ -147,7 +157,7 @@ export function addImportsToFiles(
 
       if (!hasModifier) {
         return file.addImportDeclaration({
-          moduleSpecifier: importType.specifier!,
+          moduleSpecifier: specifier,
           namedImports: [...importType.importsSet!.values()]
         });
       }

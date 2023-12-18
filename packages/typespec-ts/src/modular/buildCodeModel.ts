@@ -20,7 +20,6 @@ import {
   getEffectiveModelType,
   getDiscriminator,
   Operation,
-  isKey,
   Scalar,
   IntrinsicScalarName,
   isStringType,
@@ -35,7 +34,8 @@ import {
   getProjectedName,
   isNullType,
   getEncode,
-  isTemplateDeclarationOrInstance
+  isTemplateDeclarationOrInstance,
+  UsageFlags
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -69,6 +69,7 @@ import {
   getClientType,
   SdkEnumValueType
 } from "@azure-tools/typespec-client-generator-core";
+import { getResourceOperation } from "@typespec/rest";
 import {
   ModularCodeModel,
   Client as HrlcClient,
@@ -80,7 +81,6 @@ import {
   Header
 } from "./modularCodeModel.js";
 import {
-  getBodyType,
   getEnrichedDefaultApiVersion,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
@@ -193,13 +193,17 @@ function isDiscriminator(
   return false;
 }
 
-function handleDiscriminator(context: SdkContext, type: Model) {
+function handleDiscriminator(
+  context: SdkContext,
+  type: Model,
+  usage: UsageFlags
+) {
   const discriminator = getDiscriminator(context.program, type);
   if (discriminator) {
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
     for (const childModel of type.derivedModels) {
-      const modelType = getType(context, childModel);
+      const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
       for (const property of modelType.properties) {
         if (property.restApiName === discriminator.propertyName) {
@@ -267,10 +271,11 @@ function getEffectiveSchemaType(program: Program, type: Model | Union): Model {
 function processModelProperties(
   context: SdkContext,
   newValue: any,
-  model: Model
+  model: Model,
+  usage: UsageFlags
 ) {
   // need to do properties after insertion to avoid infinite recursion
-  const discriminatorInfo = handleDiscriminator(context, model);
+  const discriminatorInfo = handleDiscriminator(context, model, usage);
   let hasDiscriminator = false;
   for (const property of model.properties.values()) {
     if (!isSchemaProperty(context.program, property)) {
@@ -279,7 +284,7 @@ function processModelProperties(
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
-    let newProperty = emitProperty(context, property);
+    let newProperty = emitProperty(context, property, usage);
     if (isDiscriminator(context, model, property.name)) {
       hasDiscriminator = true;
       newProperty = {
@@ -316,7 +321,7 @@ function isEmptyAnonymousModel(type: EmitterType): boolean {
 function getType(
   context: SdkContext,
   type: EmitterType,
-  options: { disableEffectiveModel?: boolean } = {}
+  options: { disableEffectiveModel?: boolean; usage?: UsageFlags } = {}
 ): any {
   // don't cache simple type(string, int, etc) since decorators may change the result
   const enableCache = !isSimpleType(context.program, type);
@@ -336,7 +341,7 @@ function getType(
     // do not generate model for empty model, treat it as any
     newValue = { type: "any" };
   } else {
-    newValue = emitType(context, type);
+    newValue = emitType(context, type, options.usage!);
   }
   if (type.kind === "ModelProperty" || type.kind === "Scalar") {
     newValue = applyEncoding(context.program, type, newValue);
@@ -349,13 +354,13 @@ function getType(
     if (type.kind === "Union") {
       for (const t of type.variants.values()) {
         if (t.type.kind === "Model") {
-          processModelProperties(context, newValue, t.type);
+          processModelProperties(context, newValue, t.type, options.usage!);
         }
       }
     }
     if (type.kind === "Model") {
       // need to do properties after insertion to avoid infinite recursion
-      processModelProperties(context, newValue, type);
+      processModelProperties(context, newValue, type, options.usage!);
     }
   } else {
     const key = JSON.stringify(newValue);
@@ -424,6 +429,45 @@ type BodyParameter = ParamBase & {
   isBinaryPayload: boolean;
 };
 
+function getBodyType(program: Program, route: HttpOperation): Type {
+  let bodyModel = route.parameters.body?.type;
+  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
+    const resourceType = getResourceOperation(
+      program,
+      route.operation
+    )?.resourceType;
+    if (resourceType && route.responses && route.responses.length > 0) {
+      const resp = route.responses[0];
+      if (resp && resp.responses && resp.responses.length > 0) {
+        const responseBody = resp.responses[0]?.body;
+        if (responseBody?.type?.kind === "Model") {
+          const bodyTypeInResponse = getEffectiveSchemaType(
+            program,
+            responseBody.type
+          );
+          // response body type is reosurce type, and request body type (if templated) contains resource type
+          if (
+            bodyTypeInResponse === resourceType &&
+            bodyModel.templateMapper &&
+            bodyModel.templateMapper.args &&
+            bodyModel.templateMapper.args.some((it) => {
+              return it.kind === "Model" || it.kind === "Union"
+                ? it === bodyTypeInResponse
+                : false;
+            })
+          ) {
+            bodyModel = resourceType;
+          }
+        }
+      }
+    }
+    if (resourceType && bodyModel.name === "") {
+      bodyModel = resourceType;
+    }
+  }
+  return bodyModel!;
+}
+
 function emitBodyParameter(
   context: SdkContext,
   httpOperation: HttpOperation
@@ -438,8 +482,9 @@ function emitBodyParameter(
   if (contentTypes.length !== 1) {
     throw Error("Currently only one kind of content-type!");
   }
-  const type = getType(context, getBodyType(context.program, httpOperation)!, {
-    disableEffectiveModel: true
+  const type = getType(context, getBodyType(context.program, httpOperation), {
+    disableEffectiveModel: true,
+    usage: UsageFlags.Input
   });
 
   const defaultContentType =
@@ -463,7 +508,9 @@ function emitParameter(
   implementation: string
 ): Parameter {
   const base = emitParamBase(context.program, parameter.param);
-  let type = getType(context, parameter.param.type);
+  let type = getType(context, parameter.param.type, {
+    usage: UsageFlags.Input
+  });
   let clientDefaultValue = undefined;
   if (
     parameter.name.toLowerCase() === "content-type" &&
@@ -562,7 +609,7 @@ function emitResponseHeaders(
   }
   for (const [key, value] of Object.entries(headers)) {
     retval.push({
-      type: getType(context, value.type),
+      type: getType(context, value.type, { usage: UsageFlags.Output }),
       restApiName: key
     });
   }
@@ -591,9 +638,11 @@ function emitResponse(
       candidate.find((e) => e === originType.name)
     ) {
       const modelType = getEffectiveSchemaType(context.program, originType);
-      type = getType(context, modelType);
+      type = getType(context, modelType, { usage: UsageFlags.Output });
     } else {
-      type = getType(context, innerResponse.body.type);
+      type = getType(context, innerResponse.body.type, {
+        usage: UsageFlags.Output
+      });
     }
   }
   const statusCodes: (number | "default")[] = [];
@@ -918,7 +967,8 @@ function isReadOnly(program: Program, type: ModelProperty): boolean {
 
 function emitProperty(
   context: SdkContext,
-  property: ModelProperty
+  property: ModelProperty,
+  usage: UsageFlags
 ): Record<string, any> {
   const newProperty = applyEncoding(context.program, property, property);
   let clientDefaultValue = undefined;
@@ -942,9 +992,9 @@ function emitProperty(
     getProjectedName(context.program, property, "json") ?? property.name;
 
   if (property.model) {
-    getType(context, property.model);
+    getType(context, property.model, { usage });
   }
-  const type = getType(context, property.type);
+  const type = getType(context, property.type, { usage });
   return {
     clientName: applyCasing(clientName, { casing: CASING }),
     restApiName: jsonName,
@@ -952,8 +1002,7 @@ function emitProperty(
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
-    readonly:
-      isReadOnly(context.program, property) || isKey(context.program, property),
+    readonly: isReadOnly(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };
@@ -981,12 +1030,16 @@ function getName(program: Program, type: Model): string {
   }
 }
 
-function emitModel(context: SdkContext, type: Model): Record<string, any> {
+function emitModel(
+  context: SdkContext,
+  type: Model,
+  usage: UsageFlags
+): Record<string, any> {
   // Now we know it's a defined model
   const properties: Record<string, any>[] = [];
   let baseModel = undefined;
   if (type.baseModel) {
-    baseModel = getType(context, type.baseModel);
+    baseModel = getType(context, type.baseModel, { usage });
   }
   const effectiveName = getEffectiveSchemaType(context.program, type).name;
   const overridedModelName =
@@ -1041,7 +1094,8 @@ function emitModel(context: SdkContext, type: Model): Record<string, any> {
       ? applyCasing(modelName, { casing: CASING })
       : modelName,
     base: modelName === "" ? "json" : "dpg",
-    isCoreErrorType: isAzureCoreErrorType(type)
+    isCoreErrorType: isAzureCoreErrorType(type),
+    usage
   };
 }
 
@@ -1283,7 +1337,8 @@ function emitScalar(program: Program, scalar: Scalar): Record<string, any> {
 
 function emitListOrDict(
   context: SdkContext,
-  type: Model
+  type: Model,
+  usage: UsageFlags
 ): Record<string, any> | undefined {
   if (type.indexer !== undefined) {
     if (!isNeverType(type.indexer.key)) {
@@ -1291,12 +1346,12 @@ function emitListOrDict(
       if (name === "string") {
         return {
           type: "dict",
-          elementType: getType(context, type.indexer.value!)
+          elementType: getType(context, type.indexer.value!, { usage })
         };
       } else if (name === "integer") {
         return {
           type: "list",
-          elementType: getType(context, type.indexer.value!)
+          elementType: getType(context, type.indexer.value!, { usage })
         };
       }
     }
@@ -1304,7 +1359,11 @@ function emitListOrDict(
   return undefined;
 }
 
-function mapTypeSpecType(context: SdkContext, type: Type): any {
+function mapTypeSpecType(
+  context: SdkContext,
+  type: Type,
+  usage: UsageFlags
+): any {
   switch (type.kind) {
     case "Number":
       return constantType(type.value, intOrFloat(type.value));
@@ -1313,11 +1372,15 @@ function mapTypeSpecType(context: SdkContext, type: Type): any {
     case "Boolean":
       return constantType(type.value, "boolean");
     case "Model":
-      return emitListOrDict(context, type);
+      return emitListOrDict(context, type, usage);
   }
 }
 
-function emitUnion(context: SdkContext, type: Union): Record<string, any> {
+function emitUnion(
+  context: SdkContext,
+  type: Union,
+  usage: UsageFlags
+): Record<string, any> {
   const sdkType = getSdkUnion(context, type);
   const nonNullOptions = getNonNullOptions(type);
   if (sdkType === undefined) {
@@ -1331,8 +1394,9 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw!)),
-      xmlMetadata: {}
+      types: sdkType.values.map((x) => getType(context, x.__raw!, { usage })),
+      xmlMetadata: {},
+      usage
     };
   } else if (sdkType.kind === "enum") {
     return {
@@ -1344,7 +1408,8 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       valueType: emitSimpleType(context, sdkType.valueType as SdkBuiltInType),
       values: sdkType.values.map((x) => emitEnumMember(context, x)),
       isFixed: sdkType.isFixed,
-      xmlMetadata: {}
+      xmlMetadata: {},
+      usage
     };
   } else if (
     isStringOrNumberKind(context.program, sdkType.kind) &&
@@ -1363,7 +1428,10 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
       xmlMetadata: {}
     };
   } else {
-    return { ...emitType(context, sdkType.__raw!), nullable: sdkType.nullable };
+    return {
+      ...emitType(context, sdkType.__raw!, usage),
+      nullable: sdkType.nullable
+    };
   }
 }
 
@@ -1422,14 +1490,18 @@ function emitSimpleType(
   };
 }
 
-function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
+function emitType(
+  context: SdkContext,
+  type: EmitterType,
+  usage: UsageFlags
+): Record<string, any> {
   if (type.kind === "Credential") {
     return emitCredential(type.scheme);
   }
   if (type.kind === "CredentialTypeUnion") {
     return emitCredentialUnion(type);
   }
-  const builtinType = mapTypeSpecType(context, type);
+  const builtinType = mapTypeSpecType(context, type, usage);
   if (builtinType !== undefined) {
     // add in description elements for types derived from primitive types (SecureString, etc.)
     const doc = getDoc(context.program, type);
@@ -1443,11 +1515,11 @@ function emitType(context: SdkContext, type: EmitterType): Record<string, any> {
     case "Intrinsic":
       return { type: type.name };
     case "Model":
-      return emitModel(context, type);
+      return emitModel(context, type, usage);
     case "Scalar":
       return emitScalar(context.program, type);
     case "Union":
-      return emitUnion(context, type);
+      return emitUnion(context, type, usage);
     case "UnionVariant":
       return {};
     case "Enum":
@@ -1652,7 +1724,7 @@ function emitCredentialParam(
         };
       }
       return {
-        type: getType(context, type),
+        type: getType(context, type, { usage: UsageFlags.Input }),
         optional: false,
         description: "Credential needed for the client to connect to Azure.",
         clientName: "credential",
@@ -1789,7 +1861,7 @@ export function emitCodeModel(
   simpleTypesMap.clear();
   const allModels = getAllModels(dpgContext);
   for (const model of allModels) {
-    getType(dpgContext, model.__raw!);
+    getType(dpgContext, model.__raw!, { usage: model.usage });
   }
 
   for (const namespace of getNamespaces(dpgContext)) {
