@@ -348,10 +348,88 @@ describe("Input/output model type", () => {
 
   describe("decimal generation", () => {
     it("should handle decimal -> number", async () => {
-      await verifyPropertyType("decimal", "number");
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        prop: decimal;
+      }
+      @route("/decimal/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        /**
+         * Please note the field was supposed to be a decimal but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        /**
+         * Please note the field was supposed to be a decimal but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
     });
     it("should handle decimal128 -> number", async () => {
-      await verifyPropertyType("decimal128", "number");
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        prop: decimal128;
+      }
+      @route("/decimal128/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        /**
+         * Please note the field was supposed to be a decimal128 but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        /**
+         * Please note the field was supposed to be a decimal128 but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
     });
 
     it("should handle decimal/decimal128 with encode `string`", async () => {
