@@ -29,3 +29,5 @@ export interface UserActionResponseOutput {
   /** User action result. */
   userActionResult: string;
 }
+
+export type RepeatabilityResultOutput = "accepted" | "rejected";
