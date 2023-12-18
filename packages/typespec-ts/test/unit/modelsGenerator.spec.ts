@@ -346,6 +346,53 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("decimal generation", () => {
+    it("should handle decimal -> number", async () => {
+      await verifyPropertyType("decimal", "number");
+    });
+    it("should handle decimal128 -> number", async () => {
+      await verifyPropertyType("decimal128", "number");
+    });
+
+    it("should handle decimal/decimal128 with encode `string`", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        @encode("string")
+        prop1: decimal;
+        @encode("string")
+        prop2: decimal128;
+      }
+      @route("/decimal/prop/encode")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "prop1": string;
+        "prop2": string;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "prop1": string;
+        "prop2": string;
+      }
+      `
+      );
+    });
+  });
+
   describe("array basic generation", () => {
     it("should handle string[] -> string[]", async () => {
       const tspType = "string[]";
@@ -2672,7 +2719,12 @@ describe("Input/output model type", () => {
         >;
       }
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, true, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        true,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       // console.log(inputModelFile?.content);
@@ -2858,7 +2910,12 @@ describe("Input/output model type", () => {
         >;
       }
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, true, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        true,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       // console.log(inputModelFile?.content);
@@ -2946,5 +3003,5 @@ describe("Input/output model type", () => {
         true
       );
     });
-  })
+  });
 });
