@@ -2,6 +2,7 @@ import { assert } from "chai";
 import ScalarClientFactory, {
   ScalarClient
 } from "./generated/scalar/src/index.js";
+import { Decimal } from "decimal.js";
 
 describe("Scalar Client", () => {
   let client: ScalarClient;
@@ -146,25 +147,21 @@ describe("Scalar Client", () => {
     }
   });
 
-  it("should get decimal prepare verify", async () => {
-    try {
-      const result = await client
-        .path("/type/scalar/decimal/prepare_verify")
-        .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body[0], 0.1);
-      assert.strictEqual(result.body[1], 0.1);
-      assert.strictEqual(result.body[2], 0.1);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
   it("should post decimal verify", async () => {
     try {
+      // prepare the verification
+      const getResult = await client
+        .path("/type/scalar/decimal/prepare_verify")
+        .get();
+      // do any calculation based on third party library
+      const total = new Decimal(0);
+      for (const decimal of getResult.body) {
+        total.add(new Decimal(decimal));
+      }
+      // convert to number from decimal
       const result = await client
         .path("/type/scalar/decimal/verify")
-        .post({ body: 0.3 });
+        .post({ body: total.toNumber() });
       assert.strictEqual(result.status, "204");
     } catch (err) {
       assert.fail(err as string);

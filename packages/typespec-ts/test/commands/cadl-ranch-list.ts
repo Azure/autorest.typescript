@@ -17,10 +17,6 @@ export const rlcTsps: TypeSpecRanchConfig[] = [
     outputPath: "headers/repeatability",
     inputPath: "special-headers/repeatability"
   },
-  // {
-  //   outputPath: "headers/conditionalRequest",
-  //   inputPath: "special-headers/conditional-request"
-  // },
   {
     outputPath: "parameters/body-optionality",
     inputPath: "parameters/body-optionality"
