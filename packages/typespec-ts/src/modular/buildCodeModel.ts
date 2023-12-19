@@ -1469,12 +1469,13 @@ function emitOperationGroups(
     string,
     OperationGroup
   >();
-  for (const operationGroup of listOperationGroups(context, client)) {
+  for (const operationGroup of listOperationGroups(context, client, true)) {
     const operations: HrlcOperation[] = [];
     const name = operationGroup.type.name;
     for (const operation of listOperationsInOperationGroup(
       context,
-      operationGroup
+      operationGroup,
+      true
     )) {
       operations.push(emitOperation(context, operation, name, rlcModels));
     }
@@ -1483,7 +1484,11 @@ function emitOperationGroups(
     }
   }
   const clientOperations: HrlcOperation[] = [];
-  for (const operation of listOperationsInOperationGroup(context, client)) {
+  for (const operation of listOperationsInOperationGroup(
+    context,
+    client,
+    true
+  )) {
     clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
