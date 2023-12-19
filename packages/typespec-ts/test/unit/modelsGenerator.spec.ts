@@ -346,6 +346,166 @@ describe("Input/output model type", () => {
     });
   });
 
+  describe("decimal generation", () => {
+    it("should handle decimal -> number", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        prop: decimal;
+      }
+      @route("/decimal/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true,
+        false,
+        false // disable diagnostics
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        /**
+         * Please note the field was supposed to be a decimal but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        /**
+         * Please note the field was supposed to be a decimal but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
+    });
+
+    it("should report decimal-to-number diagnostic warning for decimal -> number", async () => {
+      try {
+        await emitModelsFromTypeSpec(
+          `
+      model SimpleModel {
+        prop: decimal;
+      }
+      @route("/decimal/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+          false,
+          true,
+          false,
+          true // throw exception for diagnostics
+        );
+      } catch (err: any) {
+        assert.strictEqual(err.length, 1);
+        assert.strictEqual(
+          err[0].code,
+          "@azure-tools/typespec-ts/decimal-to-number"
+        );
+        assert.strictEqual(
+          err[0].message,
+          "Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - prop."
+        );
+      }
+    });
+
+    it("should handle decimal128 -> number", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        prop: decimal128;
+      }
+      @route("/decimal128/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true,
+        false,
+        false // disable diagnostics
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        /**
+         * Please note the field was supposed to be a decimal128 but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        /**
+         * Please note the field was supposed to be a decimal128 but JavaScript does not have a native 'BigDecimal' data type.
+         * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+         * any calculations.
+        */
+        prop: number;
+      }
+      `
+      );
+    });
+
+    // TODO: pending with typespec definition https://github.com/microsoft/typespec/issues/2762
+    it.skip("should handle decimal/decimal128 with encode `string`", async () => {
+      const schemaOutput = await emitModelsFromTypeSpec(
+        `
+      model SimpleModel {
+        @encode("string")
+        prop1: decimal;
+        @encode("string")
+        prop2: decimal128;
+      }
+      @route("/decimal/prop/encode")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+      export interface SimpleModel { 
+        "prop1": string;
+        "prop2": string;
+      }
+      `
+      );
+      assertEqualContent(
+        outputModelFile?.content!,
+        `
+      export interface SimpleModelOutput { 
+        "prop1": string;
+        "prop2": string;
+      }
+      `
+      );
+    });
+  });
+
   describe("array basic generation", () => {
     it("should handle string[] -> string[]", async () => {
       const tspType = "string[]";
@@ -2672,7 +2832,12 @@ describe("Input/output model type", () => {
         >;
       }
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, true, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        true,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       // console.log(inputModelFile?.content);
@@ -2858,7 +3023,12 @@ describe("Input/output model type", () => {
         >;
       }
       `;
-      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, true, true, true);
+      const schemaOutput = await emitModelsFromTypeSpec(
+        tspDefinition,
+        true,
+        true,
+        true
+      );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
       // console.log(inputModelFile?.content);
@@ -2946,5 +3116,5 @@ describe("Input/output model type", () => {
         true
       );
     });
-  })
+  });
 });

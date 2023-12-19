@@ -1052,7 +1052,7 @@ function getSchemaForStdScalar(
     case "safeint":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "int64"
+        format: "safeint"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
@@ -1077,17 +1077,43 @@ function getSchemaForStdScalar(
     case "float64":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "double"
+        format: "float64"
       });
     case "float32":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "float"
+        format: "float32"
       });
     case "float":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
+      });
+    case "decimal":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal",
+        description: "decimal"
+      });
+    case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal128",
+        description: "decimal128"
       });
     case "string":
       if (format === "binary") {
@@ -1243,6 +1269,16 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
+function getDecimalDescription(type: any) {
+  if (
+    (type.format === "decimal" || type.format === "decimal128") &&
+    type.type === "number"
+  ) {
+    return `Please note the field was supposed to be a ${type.format} but JavaScript does not have a native 'BigDecimal' data type.\nSo it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle\nany calculations.`;
+  }
+  return undefined;
+}
+
 export function getFormattedPropertyDoc(
   program: Program,
   type: ModelProperty | Type,
@@ -1250,7 +1286,8 @@ export function getFormattedPropertyDoc(
   sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, type);
-  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  const enhancedDocFromType =
+    getEnumStringDescription(schemaType) ?? getDecimalDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
