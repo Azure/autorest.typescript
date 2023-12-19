@@ -3,7 +3,7 @@ import RecursiveClientFactory, {
 } from "./generated/models/inheritance-recursive/src/index.js";
 import { assert } from "chai";
 
-describe("NotDiscriminatedClient Rest Client", () => {
+describe("RecursiveClient Rest Client", () => {
   let client: RecursiveClient;
 
   beforeEach(() => {
