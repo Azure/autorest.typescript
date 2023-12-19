@@ -268,7 +268,10 @@ function getDiscriminatorProperty(
     return {
       kind: StructureKind.PropertySignature,
       name: `"${discriminatorPropertyName}"`,
-      type: model.options?.sourceFrom === "Swagger" ? discriminators : objectSchema.discriminator?.type
+      type:
+        model.options?.sourceFrom === "Swagger"
+          ? discriminators
+          : objectSchema.discriminator?.type
     };
   }
 

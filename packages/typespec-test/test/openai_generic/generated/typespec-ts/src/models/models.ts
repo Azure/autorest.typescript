@@ -139,7 +139,7 @@ export interface CreateChatCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: string | string[];
+  stop?: Stop;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -408,7 +408,7 @@ export interface CreateCompletionRequest {
    * Note that <|endoftext|> is the document separator that the model sees during training, so if a
    * prompt is not specified the model will generate as if from the beginning of a new document.
    */
-  prompt: string | string[] | number[] | number[][];
+  prompt: Prompt;
   /** The suffix that comes after a completion of inserted text. */
   suffix?: string | null;
   /**
@@ -441,7 +441,7 @@ export interface CreateCompletionRequest {
    */
   maxTokens?: number | null;
   /** Up to 4 sequences where the API will stop generating further tokens. */
-  stop?: string | string[];
+  stop?: Stop;
   /**
    * Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear
    * in the text so far, increasing the model's likelihood to talk about new topics.
@@ -971,3 +971,8 @@ export interface CreateModerationResponse {
     };
   }[];
 }
+
+/** Base type for Stop */
+export type Stop = string | string[];
+/** Base type for Prompt */
+export type Prompt = string | string[] | number[] | number[][];

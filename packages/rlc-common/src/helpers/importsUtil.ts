@@ -78,7 +78,7 @@ export function initInternalImports(): Imports {
     modularModel: {
       type: "modularModel",
       importsSet: new Set<string>()
-    },
+    }
   } as Imports;
 }
 
@@ -139,14 +139,13 @@ export function addImportsToFiles(
       return importType.importsSet?.size;
     })
     .forEach((importType) => {
-      const specifier = internalSpecifierMap?.[importType.type] ?? importType.specifier!;
+      const specifier =
+        internalSpecifierMap?.[importType.type] ?? importType.specifier!;
       let hasModifier = false;
       file
         .getImportDeclarations()
         .filter((importDeclaration) => {
-          return (
-            importDeclaration.getModuleSpecifierValue() === specifier
-          );
+          return importDeclaration.getModuleSpecifierValue() === specifier;
         })
         .forEach((importDeclaration) => {
           hasModifier = true;

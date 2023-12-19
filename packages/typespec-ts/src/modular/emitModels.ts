@@ -184,7 +184,7 @@ export function buildModelTypeAlias(model: Type) {
   return {
     name: model.name!,
     isExported: true,
-    docs: ["Base type for " + model.name],
+    docs: ["Alias for " + model.name],
     type: model.aliasType!
   };
 }

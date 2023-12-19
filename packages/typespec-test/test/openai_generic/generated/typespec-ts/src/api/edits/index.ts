@@ -48,7 +48,7 @@ export async function _createDeserialize(
     choices: result.body["choices"].map((p) => ({
       text: p["text"],
       index: p["index"],
-      finishReason: p["finish_reason"] as any,
+      finishReason: p["finish_reason"],
     })),
     usage: {
       promptTokens: result.body.usage["prompt_tokens"],
