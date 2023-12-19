@@ -8,7 +8,7 @@ export interface Widget {
 }
 
 export interface Widget1 extends Widget {
-  data: WidgetData0 | WidgetData1;
+  data: WidgetData;
 }
 
 export interface WidgetData0 {
@@ -20,3 +20,6 @@ export interface WidgetData1 {
   kind: "kind1";
   data: Uint8Array;
 }
+
+/** Base type for WidgetData */
+export type WidgetData = WidgetData0 | WidgetData1;

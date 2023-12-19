@@ -104,6 +104,7 @@ export interface Type {
   alias?: string;
   aliasType?: string;
   discriminator?: string;
+  discriminatorValue?: string;
 }
 
 export interface Client {

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 import { Widget1 } from "../../models/models.js";
+import { serializeWidgetDataUnion } from "../../utils/serializeUtil.js";
 import {
   CustomGet1204Response,
   DemoServiceContext as Client,
@@ -26,7 +27,7 @@ export function _customGet1Send(
         id: body["id"],
         weight: body["weight"],
         color: body["color"],
-        data: serializeWidgetData0AndWidgetData1Union(body["data"]),
+        data: serializeWidgetDataUnion(body["data"]),
       },
     });
 }

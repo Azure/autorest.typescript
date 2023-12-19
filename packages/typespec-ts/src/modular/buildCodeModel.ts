@@ -78,7 +78,8 @@ import {
   OperationGroup,
   Response,
   Type as HrlcType,
-  Header
+  Header,
+  Property
 } from "./modularCodeModel.js";
 import {
   getEnrichedDefaultApiVersion,
@@ -1396,16 +1397,31 @@ function emitUnion(
     //     discriminator.propertyName;
     //   }
     // }
+    const discriminatorPropertyName = getDiscriminator(
+      context.program,
+      type
+    )?.propertyName;
+    const variantTypes = sdkType.values.map((x) => {
+      const valueType = getType(context, x.__raw!, { usage });
+      if (valueType.properties) {
+        valueType.discriminatorValue = valueType.properties.filter(
+          (p: Property) => p.clientName === discriminatorPropertyName
+        )[0].type.value;
+      }
+      return valueType;
+    });
     return {
       nullable: sdkType.nullable,
       name: unionName,
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw!, { usage })),
+      types: variantTypes,
       xmlMetadata: {},
       usage,
-      discriminator: getDiscriminator(context.program, type)?.propertyName
+      discriminator: discriminatorPropertyName,
+      alias: unionName,
+      aliasType: variantTypes.map((x) => x.name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
     return {

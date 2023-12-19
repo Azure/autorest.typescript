@@ -10,6 +10,7 @@ export {
   Widget1,
   WidgetData0,
   WidgetData1,
+  WidgetData,
   WidgetServiceCustomGet1Options,
 } from "./models/index.js";
 export { WidgetServiceOperations } from "./classic/index.js";

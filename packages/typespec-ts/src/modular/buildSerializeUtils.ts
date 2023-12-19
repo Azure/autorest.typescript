@@ -5,7 +5,7 @@ import {
   serializeRequestValue,
   deserializeResponseValue
 } from "./helpers/operationHelpers.js";
-import { ModularCodeModel, Property, Type } from "./modularCodeModel.js";
+import { ModularCodeModel, Type } from "./modularCodeModel.js";
 import {
   FunctionDeclarationStructure,
   SourceFile,
@@ -28,10 +28,7 @@ export function buildSerializeUtils(model: ModularCodeModel) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(
-      (t) =>
-        !isSpecialExcludeUnion(t) &&
-        isSpecialUnion(t) &&
-        (t.usage ?? 0) & usageCondition
+      (t) => isDiscriminatedUnion(t) && (t.usage ?? 0) & usageCondition
     );
     if (specialUnions.length === 0) {
       continue;
@@ -51,12 +48,12 @@ export function buildSerializeUtils(model: ModularCodeModel) {
       });
       unionDeserializeTypes?.forEach((et) => {
         if (serializeType === "serialize") {
-          getTypePredictFunction(
-            utilsFile,
-            et,
-            serializeType,
-            getTypeUnionName(su, false, model.runtimeImports, serializeType)
-          );
+          // getTypePredictFunction(
+          //   utilsFile,
+          //   et,
+          //   serializeType,
+          //   getTypeUnionName(su, false, model.runtimeImports, serializeType)
+          // );
           getTypeSerializeFunction(
             utilsFile,
             et,
@@ -64,12 +61,12 @@ export function buildSerializeUtils(model: ModularCodeModel) {
             model.runtimeImports
           );
         } else {
-          getTypePredictFunction(
-            utilsFile,
-            et,
-            serializeType,
-            getTypeUnionName(su, true, model.runtimeImports, serializeType)
-          );
+          // getTypePredictFunction(
+          //   utilsFile,
+          //   et,
+          //   serializeType,
+          //   getTypeUnionName(su, true, model.runtimeImports, serializeType)
+          // );
           getTypeDeserializeFunction(
             utilsFile,
             et,
@@ -90,7 +87,8 @@ export function buildSerializeUtils(model: ModularCodeModel) {
           deserializeFunctionName,
           serializeType,
           getTypeUnionName(su, false, model.runtimeImports, serializeType),
-          getTypeUnionName(su, true, model.runtimeImports, serializeType)
+          getTypeUnionName(su, true, model.runtimeImports, serializeType),
+          su.discriminator
         );
       } else {
         deserializeUnionTypesFunction(
@@ -99,13 +97,14 @@ export function buildSerializeUtils(model: ModularCodeModel) {
           deserializeFunctionName,
           serializeType,
           getTypeUnionName(su, true, model.runtimeImports, serializeType),
-          getTypeUnionName(su, false, model.runtimeImports, serializeType)
+          getTypeUnionName(su, false, model.runtimeImports, serializeType),
+          su.discriminator
         );
       }
     });
     addImportsToFiles(model.runtimeImports, utilsFile, {
       rlcIndex: "../rest/index.js",
-      modularModel: "../models/model.js"
+      modularModel: "../models/models.js"
     });
     serializeUtilFiles.push(utilsFile);
   }
@@ -205,6 +204,24 @@ function getTypeUnionName(
   const types = type.types;
   if (type.type === "list") {
     types === type.elementType?.types;
+  }
+  if (type.name) {
+    const typeName =
+      type.name +
+      (fromRest ? (serializeType === "serialize" ? "Rest" : "Output") : "");
+    if (fromRest && runtimeImports) {
+      addImportToSpecifier(
+        "rlcIndex",
+        runtimeImports,
+        type.name +
+          (serializeType === "serialize"
+            ? " as " + type.name + "Rest"
+            : "Output")
+      );
+    } else if (runtimeImports) {
+      addImportToSpecifier("modularModel", runtimeImports, type.name);
+    }
+    return typeName;
   }
   return types
     ?.map((t) => {
@@ -413,6 +430,8 @@ function getTypeSerializeFunction(
 
   if (type.type === "model" && type.name) {
     const typeName = type.name + "Rest";
+    addImportToSpecifier("rlcIndex", runtimeImports, `${type.name} as ${typeName}`);
+    addImportToSpecifier("modularModel", runtimeImports, type.name);
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.name}`],
@@ -447,6 +466,8 @@ function getTypeSerializeFunction(
     type.elementType.name
   ) {
     const typeName = type.elementType.name + "Rest";
+    addImportToSpecifier("rlcIndex", runtimeImports, `${type.elementType.name} as ${typeName}`);
+    addImportToSpecifier("modularModel", runtimeImports, type.elementType.name);
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.elementType.name} array`],
@@ -598,7 +619,8 @@ function deserializeUnionTypesFunction(
   deserializeFunctionName: string,
   serializeType: string,
   typeUnionNamesOutput: string | undefined,
-  typeUnionNames: string | undefined
+  typeUnionNames: string | undefined,
+  discriminator?: string
 ) {
   const functionStatement: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -609,6 +631,7 @@ function deserializeUnionTypesFunction(
     isExported: true
   };
   const statements: string[] = [];
+  statements.push(`switch (obj.${discriminator}) {`);
   for (const type of unionDeserializeTypes) {
     const functionName = toPascalCase(
       type.name ??
@@ -618,226 +641,226 @@ function deserializeUnionTypesFunction(
             (serializeType === "deserialize" ? "Rest" : ""))
     );
     statements.push(
-      `if (is${functionName}(obj)) { return ${serializeType}${functionName}(obj); }`
+      `case "${type.discriminatorValue}": return ${serializeType}${functionName}(obj); `
     );
   }
-  statements.push("return obj;");
+  statements.push("default: return obj; }");
   functionStatement.statements = statements.join("\n");
   if (!hasDuplicateFunction(sourceFile, functionStatement)) {
     sourceFile.addFunction(functionStatement);
   }
 }
 
-function getTypePredictFunctionForBasicType(
-  sourceFile: SourceFile,
-  type: Type,
-  serializeType: string,
-  typeUnionNames: string | undefined
-) {
-  if (typeUnionNames === undefined) {
-    return;
-  }
-  const statements: string[] = [];
-  const fromRest = serializeType === "deserialize";
-  const functionStatement: FunctionDeclarationStructure = {
-    kind: StructureKind.Function,
-    docs: [
-      `type predict function for ${getMappedType(
-        type.type,
-        fromRest
-      )} from ${typeUnionNames}`
-    ],
-    name: `is${toPascalCase(
-      formalizeTypeUnionName(
-        getMappedType(type.type) + (fromRest ? "Rest" : "")
-      )
-    )}`,
-    parameters: [{ name: "obj", type: typeUnionNames }],
-    returnType: `obj is ${getMappedType(type.type, fromRest)}`
-  };
-  if (!fromRest) {
-    statements.push(
-      `if (obj instanceof ${getMappedType(
-        type.type,
-        fromRest
-      )}) { return true;}`
-    );
-  } else {
-    statements.push(
-      `if (typeof obj === "${getMappedType(
-        type.type,
-        fromRest
-      )}") { return true;}`
-    );
-  }
-  statements.push("return false;");
-  functionStatement.statements = statements.join("\n");
-  if (!hasDuplicateFunction(sourceFile, functionStatement)) {
-    if (
-      sourceFile
-        .getFunctions()
-        .some((f) => f.getName() === functionStatement.name)
-    ) {
-      addOverload(sourceFile, typeUnionNames, functionStatement);
-    } else {
-      sourceFile.addFunction(functionStatement);
-    }
-  }
-}
+// function getTypePredictFunctionForBasicType(
+//   sourceFile: SourceFile,
+//   type: Type,
+//   serializeType: string,
+//   typeUnionNames: string | undefined
+// ) {
+//   if (typeUnionNames === undefined) {
+//     return;
+//   }
+//   const statements: string[] = [];
+//   const fromRest = serializeType === "deserialize";
+//   const functionStatement: FunctionDeclarationStructure = {
+//     kind: StructureKind.Function,
+//     docs: [
+//       `type predict function for ${getMappedType(
+//         type.type,
+//         fromRest
+//       )} from ${typeUnionNames}`
+//     ],
+//     name: `is${toPascalCase(
+//       formalizeTypeUnionName(
+//         getMappedType(type.type) + (fromRest ? "Rest" : "")
+//       )
+//     )}`,
+//     parameters: [{ name: "obj", type: typeUnionNames }],
+//     returnType: `obj is ${getMappedType(type.type, fromRest)}`
+//   };
+//   if (!fromRest) {
+//     statements.push(
+//       `if (obj instanceof ${getMappedType(
+//         type.type,
+//         fromRest
+//       )}) { return true;}`
+//     );
+//   } else {
+//     statements.push(
+//       `if (typeof obj === "${getMappedType(
+//         type.type,
+//         fromRest
+//       )}") { return true;}`
+//     );
+//   }
+//   statements.push("return false;");
+//   functionStatement.statements = statements.join("\n");
+//   if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+//     if (
+//       sourceFile
+//         .getFunctions()
+//         .some((f) => f.getName() === functionStatement.name)
+//     ) {
+//       addOverload(sourceFile, typeUnionNames, functionStatement);
+//     } else {
+//       sourceFile.addFunction(functionStatement);
+//     }
+//   }
+// }
 
-function getTypePredictFunction(
-  sourceFile: SourceFile,
-  type: Type,
-  serializeType: string,
-  typeUnionNames: string | undefined
-): void {
-  if (typeUnionNames === undefined) {
-    return;
-  }
+// function getTypePredictFunction(
+//   sourceFile: SourceFile,
+//   type: Type,
+//   serializeType: string,
+//   typeUnionNames: string | undefined
+// ): void {
+//   if (typeUnionNames === undefined) {
+//     return;
+//   }
 
-  const statements: string[] = [];
-  if (type.type === "datetime" || type.type === "byte-array") {
-    getTypePredictFunctionForBasicType(
-      sourceFile,
-      type,
-      serializeType,
-      typeUnionNames
-    );
-  } else if (type.type === "model" && type.name) {
-    const typeName =
-      type.name + (serializeType === "serialize" ? "" : "Output");
-    const functionStatement: FunctionDeclarationStructure = {
-      kind: StructureKind.Function,
-      docs: [`type predict function for ${typeName} from ${typeUnionNames}`],
-      name: `is${toPascalCase(formalizeTypeUnionName(type.name))}`,
-      parameters: [{ name: "obj", type: typeUnionNames }],
-      returnType: `obj is ${typeName}`
-    };
-    const typeProperties = getAllProperties(type);
-    if (typeProperties.length > 0) {
-      statements.push(
-        `return ${buildTypePredictCondition(
-          type,
-          `(obj as ${typeName})`,
-          serializeType
-        )};`
-      );
-    } else {
-      statements.push(`return true;`);
-    }
-    functionStatement.statements = statements.join("\n");
-    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
-      if (
-        sourceFile
-          .getFunctions()
-          .some((f) => f.getName() === functionStatement.name)
-      ) {
-        addOverload(sourceFile, typeUnionNames, functionStatement);
-      } else {
-        sourceFile.addFunction(functionStatement);
-      }
-    }
-  } else if (
-    type.type === "list" &&
-    type.elementType?.type === "model" &&
-    type.elementType.name
-  ) {
-    const typeName =
-      type.elementType.name + (serializeType === "serialize" ? "" : "Output");
-    const functionStatement: FunctionDeclarationStructure = {
-      kind: StructureKind.Function,
-      docs: [
-        `type predict function for ${typeName} array from ${typeUnionNames}`
-      ],
-      name: `is${toPascalCase(
-        formalizeTypeUnionName(type.elementType.name + "Array")
-      )}`,
-      parameters: [{ name: "obj", type: typeUnionNames }],
-      returnType: `obj is ${typeName}[]`
-    };
-    if (type.elementType?.type === "model") {
-      const properties = getAllProperties(type.elementType);
-      if (properties && properties.length > 0) {
-        statements.push("if (Array.isArray(obj) && obj.length > 0) {");
-        statements.push(
-          `return ${buildTypePredictCondition(
-            type.elementType,
-            `(obj as ${typeName}[])[0]`,
-            serializeType
-          )};`
-        );
-        statements.push("}");
-        statements.push("return false;");
-      } else {
-        statements.push(`return true;`);
-      }
-      functionStatement.statements = statements;
-    }
-    if (!hasDuplicateFunction(sourceFile, functionStatement)) {
-      if (
-        sourceFile
-          .getFunctions()
-          .some((f) => f.getName() === functionStatement.name)
-      ) {
-        addOverload(sourceFile, typeUnionNames, functionStatement);
-      } else {
-        sourceFile.addFunction(functionStatement);
-      }
-    }
-  }
-}
+//   const statements: string[] = [];
+//   if (type.type === "datetime" || type.type === "byte-array") {
+//     getTypePredictFunctionForBasicType(
+//       sourceFile,
+//       type,
+//       serializeType,
+//       typeUnionNames
+//     );
+//   } else if (type.type === "model" && type.name) {
+//     const typeName =
+//       type.name + (serializeType === "serialize" ? "" : "Output");
+//     const functionStatement: FunctionDeclarationStructure = {
+//       kind: StructureKind.Function,
+//       docs: [`type predict function for ${typeName} from ${typeUnionNames}`],
+//       name: `is${toPascalCase(formalizeTypeUnionName(type.name))}`,
+//       parameters: [{ name: "obj", type: typeUnionNames }],
+//       returnType: `obj is ${typeName}`
+//     };
+//     const typeProperties = getAllProperties(type);
+//     if (typeProperties.length > 0) {
+//       statements.push(
+//         `return ${buildTypePredictCondition(
+//           type,
+//           `(obj as ${typeName})`,
+//           serializeType
+//         )};`
+//       );
+//     } else {
+//       statements.push(`return true;`);
+//     }
+//     functionStatement.statements = statements.join("\n");
+//     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+//       if (
+//         sourceFile
+//           .getFunctions()
+//           .some((f) => f.getName() === functionStatement.name)
+//       ) {
+//         addOverload(sourceFile, typeUnionNames, functionStatement);
+//       } else {
+//         sourceFile.addFunction(functionStatement);
+//       }
+//     }
+//   } else if (
+//     type.type === "list" &&
+//     type.elementType?.type === "model" &&
+//     type.elementType.name
+//   ) {
+//     const typeName =
+//       type.elementType.name + (serializeType === "serialize" ? "" : "Output");
+//     const functionStatement: FunctionDeclarationStructure = {
+//       kind: StructureKind.Function,
+//       docs: [
+//         `type predict function for ${typeName} array from ${typeUnionNames}`
+//       ],
+//       name: `is${toPascalCase(
+//         formalizeTypeUnionName(type.elementType.name + "Array")
+//       )}`,
+//       parameters: [{ name: "obj", type: typeUnionNames }],
+//       returnType: `obj is ${typeName}[]`
+//     };
+//     if (type.elementType?.type === "model") {
+//       const properties = getAllProperties(type.elementType);
+//       if (properties && properties.length > 0) {
+//         statements.push("if (Array.isArray(obj) && obj.length > 0) {");
+//         statements.push(
+//           `return ${buildTypePredictCondition(
+//             type.elementType,
+//             `(obj as ${typeName}[])[0]`,
+//             serializeType
+//           )};`
+//         );
+//         statements.push("}");
+//         statements.push("return false;");
+//       } else {
+//         statements.push(`return true;`);
+//       }
+//       functionStatement.statements = statements;
+//     }
+//     if (!hasDuplicateFunction(sourceFile, functionStatement)) {
+//       if (
+//         sourceFile
+//           .getFunctions()
+//           .some((f) => f.getName() === functionStatement.name)
+//       ) {
+//         addOverload(sourceFile, typeUnionNames, functionStatement);
+//       } else {
+//         sourceFile.addFunction(functionStatement);
+//       }
+//     }
+//   }
+// }
 
-function getAllProperties(type: Type): Property[] {
-  const properties = [];
-  type.parents?.forEach((p) => {
-    properties.push(...(p.properties ?? []));
-  });
-  properties.push(...(type.properties ?? []));
-  return properties;
-}
+// function getAllProperties(type: Type): Property[] {
+//   const properties = [];
+//   type.parents?.forEach((p) => {
+//     properties.push(...(p.properties ?? []));
+//   });
+//   properties.push(...(type.properties ?? []));
+//   return properties;
+// }
 
-function buildTypePredictCondition(
-  type: Type,
-  prefix: string,
-  serializeType: string
-): string {
-  const typeProperties = getAllProperties(type);
-  return typeProperties
-    .filter((p) => !p.optional)
-    .map((p) => {
-      const condition: string[] = [];
-      if (p.type.type === "model") {
-        const properties = [];
-        p.type.parents?.forEach((pp) => {
-          properties.push(...(pp.properties ?? []));
-        });
-        properties.push(...(p.type.properties ?? []));
-        if (serializeType === "serialize") {
-          condition.push(
-            buildTypePredictCondition(
-              p.type,
-              `${prefix}.${p.clientName}`,
-              serializeType
-            )
-          );
-        } else {
-          condition.push(
-            buildTypePredictCondition(
-              p.type,
-              `${prefix}.${p.restApiName}`,
-              serializeType
-            )
-          );
-        }
-      }
-      const result = [];
-      if (serializeType === "serialize") {
-        result.push(`${prefix}.${p.clientName} !== undefined`);
-      } else {
-        result.push(`${prefix}.${p.restApiName} !== undefined`);
-      }
-      result.push(...condition);
-      return result.join(" && ");
-    })
-    .join(" && ");
-}
+// function buildTypePredictCondition(
+//   type: Type,
+//   prefix: string,
+//   serializeType: string
+// ): string {
+//   const typeProperties = getAllProperties(type);
+//   return typeProperties
+//     .filter((p) => !p.optional)
+//     .map((p) => {
+//       const condition: string[] = [];
+//       if (p.type.type === "model") {
+//         const properties = [];
+//         p.type.parents?.forEach((pp) => {
+//           properties.push(...(pp.properties ?? []));
+//         });
+//         properties.push(...(p.type.properties ?? []));
+//         if (serializeType === "serialize") {
+//           condition.push(
+//             buildTypePredictCondition(
+//               p.type,
+//               `${prefix}.${p.clientName}`,
+//               serializeType
+//             )
+//           );
+//         } else {
+//           condition.push(
+//             buildTypePredictCondition(
+//               p.type,
+//               `${prefix}.${p.restApiName}`,
+//               serializeType
+//             )
+//           );
+//         }
+//       }
+//       const result = [];
+//       if (serializeType === "serialize") {
+//         result.push(`${prefix}.${p.clientName} !== undefined`);
+//       } else {
+//         result.push(`${prefix}.${p.restApiName} !== undefined`);
+//       }
+//       result.push(...condition);
+//       return result.join(" && ");
+//     })
+//     .join(" && ");
+// }

@@ -136,10 +136,10 @@ export function addImportsToFiles(
 ): void {
   Object.values(runtimeImports)
     .filter((importType) => {
-      return importType.specifier && importType.importsSet?.size;
+      return importType.importsSet?.size;
     })
     .forEach((importType) => {
-      const specifier = internalSpecifierMap?.[importType.specifier!] ?? importType.specifier!;
+      const specifier = internalSpecifierMap?.[importType.type] ?? importType.specifier!;
       let hasModifier = false;
       file
         .getImportDeclarations()

@@ -53,7 +53,8 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
 
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
-    (t) => t.type === "model" && t.alias && t.aliasType
+    (t) =>
+      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
   );
   return models;
 }
