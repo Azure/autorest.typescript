@@ -154,10 +154,10 @@ describe("Scalar Client", () => {
         .path("/type/scalar/decimal/prepare_verify")
         .get();
       // do any calculation based on third party library
-      const total = new Decimal(0);
-      for (const decimal of getResult.body) {
-        total.add(new Decimal(decimal));
-      }
+      let total = new Decimal(0);
+      getResult.body.forEach((decimal: number) => {
+        total = total.add(decimal);
+      });
       // convert to number from decimal
       const result = await client
         .path("/type/scalar/decimal/verify")
