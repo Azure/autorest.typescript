@@ -31,6 +31,30 @@ export interface FloatPropertyOutput {
   property: number;
 }
 
+/** Model with a decimal property */
+export interface DecimalPropertyOutput {
+  /**
+   * Property
+   *
+   * Please note the field was supposed to be a decimal but JavaScript does not have a native 'BigDecimal' data type.
+   * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+   * any calculations.
+   */
+  property: number;
+}
+
+/** Model with a decimal128 property */
+export interface Decimal128PropertyOutput {
+  /**
+   * Property
+   *
+   * Please note the field was supposed to be a decimal128 but JavaScript does not have a native 'BigDecimal' data type.
+   * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
+   * any calculations.
+   */
+  property: number;
+}
+
 /** Model with a datetime property */
 export interface DatetimePropertyOutput {
   /** Property */
