@@ -358,7 +358,9 @@ describe("Input/output model type", () => {
       op getModel(...SimpleModel): SimpleModel;
       `,
         false,
-        true
+        true,
+        false,
+        false // disable diagnostics
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;
@@ -389,6 +391,36 @@ describe("Input/output model type", () => {
       `
       );
     });
+
+    it("should report decimal-to-number diagnostic warning for decimal -> number", async () => {
+      try {
+        await emitModelsFromTypeSpec(
+          `
+      model SimpleModel {
+        prop: decimal;
+      }
+      @route("/decimal/prop")
+      @get
+      op getModel(...SimpleModel): SimpleModel;
+      `,
+          false,
+          true,
+          false,
+          true // throw exception for diagnostics
+        );
+      } catch (err: any) {
+        assert.strictEqual(err.length, 1);
+        assert.strictEqual(
+          err[0].code,
+          "@azure-tools/typespec-ts/decimal-to-number"
+        );
+        assert.strictEqual(
+          err[0].message,
+          "Please note the decimal type will be converted to number. If you strongly care about precision you can use @encode to encode it as a string for the property - prop."
+        );
+      }
+    });
+
     it("should handle decimal128 -> number", async () => {
       const schemaOutput = await emitModelsFromTypeSpec(
         `
@@ -400,7 +432,9 @@ describe("Input/output model type", () => {
       op getModel(...SimpleModel): SimpleModel;
       `,
         false,
-        true
+        true,
+        false,
+        false // disable diagnostics
       );
       assert.ok(schemaOutput);
       const { inputModelFile, outputModelFile } = schemaOutput!;

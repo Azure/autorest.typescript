@@ -1090,12 +1090,26 @@ function getSchemaForStdScalar(
         format: "float"
       });
     case "decimal":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "decimal",
         description: "decimal"
       });
     case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "decimal128",
