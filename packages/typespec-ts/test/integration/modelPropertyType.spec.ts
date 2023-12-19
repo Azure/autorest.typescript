@@ -32,6 +32,14 @@ const testedTypes: TypeDetail[] = [
     defaultValue: 42.42
   },
   {
+    type: "decimal",
+    defaultValue: 0.33333
+  },
+  {
+    type: "decimal128",
+    defaultValue: 0.33333
+  },
+  {
     type: "datetime",
     defaultValue: "2022-08-26T18:38:00Z",
     convertedToFn: (value: string) => new Date(value).toISOString()
