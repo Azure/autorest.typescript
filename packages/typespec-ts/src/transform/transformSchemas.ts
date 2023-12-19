@@ -7,7 +7,13 @@ import {
   listOperationsInOperationGroup
 } from "@azure-tools/typespec-client-generator-core";
 import { SchemaContext } from "@azure-tools/rlc-common";
-import { ignoreDiagnostics, Model, Program, Type } from "@typespec/compiler";
+import {
+  ignoreDiagnostics,
+  Model,
+  Program,
+  Type,
+  Union
+} from "@typespec/compiler";
 import { getHttpOperation, HttpOperation } from "@typespec/http";
 import {
   getSchemaForType,
@@ -54,11 +60,9 @@ export function transformSchemas(
     transformSchemaForRoute(route);
   }
   function transformSchemaForRoute(route: HttpOperation) {
+    // parse request body
     const bodyModel = getBodyType(program, route);
-    if (
-      bodyModel &&
-      (bodyModel.kind === "Model" || bodyModel.kind === "Union")
-    ) {
+    if (isGeneratedModelType(bodyModel)) {
       getGeneratedModels(bodyModel, SchemaContext.Input);
     }
     for (const resp of route.responses) {
@@ -66,6 +70,14 @@ export function transformSchemas(
         continue;
       }
       for (const resps of resp.responses) {
+        // parse response headers
+        for (const header in resps.headers) {
+          const headerModel = resps.headers[header]?.type;
+          if (isGeneratedModelType(headerModel)) {
+            getGeneratedModels(headerModel, SchemaContext.Output);
+          }
+        }
+        // parse response body
         const respModel = resps.body;
         if (!respModel) {
           continue;
@@ -208,4 +220,8 @@ export function transformSchemas(
     return { ...schemaMap.get(item[0]), usage: item[1] };
   });
   return allSchemas;
+}
+
+function isGeneratedModelType(type?: Type): type is Model | Union {
+  return Boolean(type) && (type?.kind === "Model" || type?.kind === "Union");
 }

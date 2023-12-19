@@ -3,7 +3,11 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { UserOutput, UserActionResponseOutput } from "./outputModels";
+import {
+  UserOutput,
+  RepeatabilityResultOutput,
+  UserActionResponseOutput,
+} from "./outputModels";
 
 export interface SmokeTest200Headers {
   bar: string;
