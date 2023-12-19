@@ -3,10 +3,8 @@ import "@typespec/rest";
 import "@typespec/http";
 import "@typespec/versioning";
 
-import "./models/completions.create.tsp";
-import "./models/chat.completions.tsp";
-import "./models/embeddings.create.tsp";
-import "./models/images.tsp";
+import "../models/completions/completions_create.tsp";
+import "../models/completions/chat_completions.tsp";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
@@ -15,15 +13,6 @@ using TypeSpec.Versioning;
 using Azure.Core;
 
 namespace Azure.OpenAI;
-
-@doc("Return the embeddings for a given prompt.")
-@actionSeparator("/")
-@action("embeddings") //@convenientAPI(true)
-op getEmbeddings is Azure.Core.ResourceAction<
-  Deployment,
-  EmbeddingsOptions,
-  Embeddings
->;
 
 @doc("""
 Gets completions for the provided input prompts.
@@ -68,34 +57,4 @@ op getChatCompletionsWithAzureExtensions is ResourceAction<
   Deployment,
   ChatCompletionsOptions,
   ChatCompletions
->;
-
-// Note: pending resolution of  cross-language code emission behavior for long-running operations, image generation
-//        reuses its final operation response model as its status polling model.
-#suppress "@azure-tools/typespec-azure-core/rpc-operation-request-body" "MUST fix in next update"
-#suppress "@azure-tools/typespec-azure-core/no-rpc-path-params" "Allowed because this is a non-standard status polling operation."
-@doc("Returns the status of the images operation")
-@added(ServiceApiVersions.v2023_06_01_Preview)
-@route("/operations/images/{operationId}")
-op getAzureBatchImageGenerationOperationStatus is RpcOperation<
-  {
-    @doc(".") @path operationId: string;
-  },
-  BatchImageGenerationOperationResponse
->;
-
-#suppress "@azure-tools/typespec-azure-core/use-standard-operations" ""
-@doc("Starts the generation of a batch of images from a text caption")
-@added(ServiceApiVersions.v2023_06_01_Preview)
-@route("/images/generations:submit")
-@pollingOperation(
-  getAzureBatchImageGenerationOperationStatus,
-  {
-    operationId: ResponseProperty<"id">,
-  }
-)
-op beginAzureBatchImageGeneration is OaiLongRunningRpcOperation<
-  ImageGenerationOptions,
-  BatchImageGenerationOperationResponse,
-  BatchImageGenerationOperationResponse
 >;

@@ -163,17 +163,18 @@ export function getDeserializePrivateFunction(
     }
   }
 
+  const properties = getAllProperties(response.type) ?? [];
   if (
     response?.type?.type === "any" ||
     response.isBinaryPayload ||
     response?.type?.aliasType
   ) {
     statements.push(`return result.body`);
-  } else if (getAllProperties(response?.type).length > 0) {
+  } else if (properties.length > 0) {
     statements.push(
       `return {`,
       getResponseMapping(
-        getAllProperties(response.type) ?? [],
+        properties,
         "result.body",
         runtimeImports
       ).join(","),
@@ -739,11 +740,11 @@ export function getRequestModelMapping(
   propertyPath: string = "body",
   runtimeImports: RuntimeImports
 ) {
-  if (getAllProperties(modelPropertyType).length <= 0) {
-    return [];
-  }
   const props: string[] = [];
   const properties: Property[] = getAllProperties(modelPropertyType) ?? [];
+  if (properties.length <= 0) {
+    return [];
+  }
   for (const property of properties) {
     if (property.readonly) {
       continue;
