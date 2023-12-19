@@ -173,11 +173,7 @@ export function getDeserializePrivateFunction(
   } else if (properties.length > 0) {
     statements.push(
       `return {`,
-      getResponseMapping(
-        properties,
-        "result.body",
-        runtimeImports
-      ).join(","),
+      getResponseMapping(properties, "result.body", runtimeImports).join(","),
       `}`
     );
   } else if (returnType.type === "void") {
@@ -844,7 +840,9 @@ export function getResponseMapping(
         (property.restApiName === "message" ||
           property.restApiName === "messages") &&
         (property.type.name === "ChatMessage" ||
-          property.type.elementType?.name === "ChatMessage")
+          property.type.elementType?.name === "ChatMessage" ||
+          property.type.name === "ChatResponseMessage" ||
+          property.type.elementType?.name === "ChatResponseMessage")
       ) {
         definition = `"${property.clientName}": ${
           !property.optional
@@ -876,7 +874,9 @@ export function getResponseMapping(
         (property.restApiName === "message" ||
           property.restApiName === "messages") &&
         (property.type.name === "ChatMessage" ||
-          property.type.elementType?.name === "ChatMessage")
+          property.type.elementType?.name === "ChatMessage" ||
+          property.type.name === "ChatResponseMessage" ||
+          property.type.elementType?.name === "ChatResponseMessage")
       ) {
         props.push(
           `"${property.clientName}": ${

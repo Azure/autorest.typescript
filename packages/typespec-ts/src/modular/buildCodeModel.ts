@@ -35,7 +35,7 @@ import {
   isNullType,
   getEncode,
   isTemplateDeclarationOrInstance,
-  UsageFlags  
+  UsageFlags
 } from "@typespec/compiler";
 import {
   getAuthentication,
@@ -109,7 +109,7 @@ import {
   getOperationNamespaceInterfaceName
 } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
-import { getType as getTypeName } from "./helpers/typeHelpers.js"
+import { getType as getTypeName } from "./helpers/typeHelpers.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -1421,8 +1421,11 @@ function emitUnion(
       xmlMetadata: {},
       usage,
       discriminator: discriminatorPropertyName,
-      alias: unionName,
-      aliasType: variantTypes.map((x) => getTypeName(x).name).join(" | ")
+      alias: unionName === "" ? undefined : unionName,
+      aliasType:
+        unionName === ""
+          ? undefined
+          : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
     return {
