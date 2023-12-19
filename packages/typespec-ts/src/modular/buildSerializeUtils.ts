@@ -162,19 +162,6 @@ export function isSpecialUnionVariant(t: Type): boolean {
   return false;
 }
 
-/**
- * to exclude union type that
- * 1. contains special union variant and also has dict in the unions. as we can not know how to correctly generate the serialize/deserialize function.
- * 2. contains unions of datetime/byte-array and string. as they both serialize to string. we can not tell if we should deserialize to datetime/byte-array.
- * 3. contains unions of datetime and byte-array. as they both serialize to string. we can not tell if we should deserialize to datetime or byte-array.
- */
-export function isSpecialExcludeUnion(t: Type): boolean {
-  if (isSpecialUnion(t)) {
-    return true;
-  }
-  return false;
-}
-
 export function isNormalUnion(t: Type): boolean {
   return (
     t.type === "combined" && !(t.types?.some(isSpecialUnionVariant) ?? false)
@@ -296,6 +283,8 @@ function getTypeDeserializeFunction(
   const statements: string[] = [];
 
   if (type.type === "model" && type.name) {
+    addImportToSpecifier("rlcIndex", runtimeImports, `${type.name}Output`);
+    addImportToSpecifier("modularModel", runtimeImports, type.name);
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.name}`],
@@ -331,6 +320,12 @@ function getTypeDeserializeFunction(
     type.elementType?.type === "model" &&
     type.elementType.name
   ) {
+    addImportToSpecifier(
+      "rlcIndex",
+      runtimeImports,
+      `${type.elementType.name}Output`
+    );
+    addImportToSpecifier("modularModel", runtimeImports, type.elementType.name);
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
       docs: [`${serializeType} function for ${type.elementType.name} array`],
@@ -430,7 +425,11 @@ function getTypeSerializeFunction(
 
   if (type.type === "model" && type.name) {
     const typeName = type.name + "Rest";
-    addImportToSpecifier("rlcIndex", runtimeImports, `${type.name} as ${typeName}`);
+    addImportToSpecifier(
+      "rlcIndex",
+      runtimeImports,
+      `${type.name} as ${typeName}`
+    );
     addImportToSpecifier("modularModel", runtimeImports, type.name);
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
@@ -466,7 +465,11 @@ function getTypeSerializeFunction(
     type.elementType.name
   ) {
     const typeName = type.elementType.name + "Rest";
-    addImportToSpecifier("rlcIndex", runtimeImports, `${type.elementType.name} as ${typeName}`);
+    addImportToSpecifier(
+      "rlcIndex",
+      runtimeImports,
+      `${type.elementType.name} as ${typeName}`
+    );
     addImportToSpecifier("modularModel", runtimeImports, type.elementType.name);
     const functionStatement: FunctionDeclarationStructure = {
       kind: StructureKind.Function,
