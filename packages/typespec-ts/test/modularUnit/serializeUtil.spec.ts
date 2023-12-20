@@ -5,7 +5,7 @@ import {
 } from "../util/emitUtil.js";
 import { assertEqualContent } from "../util/testUtil.js";
 
-describe.only("modular special union serialization", () => {
+describe("modular special union serialization", () => {
   it("shouldn't generate serialize util or as any if there's no special union variant without discriminator", async () => {
     const tspContent = `
     model WidgetData0 {
