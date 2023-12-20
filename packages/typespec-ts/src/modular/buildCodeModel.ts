@@ -204,6 +204,7 @@ function handleDiscriminator(
   if (discriminator) {
     const discriminatorValues: string[] = [];
     const aliases: string[] = [];
+    const discriminatedSubtypes: Type[] = [];
     for (const childModel of type.derivedModels) {
       const modelType = getType(context, childModel, { usage });
       aliases.push(modelType.name);
@@ -213,6 +214,7 @@ function handleDiscriminator(
           discriminatorValues.push(modelType.discriminatorValue);
         }
       }
+      discriminatedSubtypes.push(modelType);
     }
     const discriminatorInfo = {
       description:
@@ -227,7 +229,8 @@ function handleDiscriminator(
       name: discriminator.propertyName,
       isPolymorphic: true,
       isDiscriminator: true,
-      aliases
+      aliases,
+      discriminatedSubtypes
     };
     return discriminatorInfo;
   }
@@ -305,6 +308,8 @@ function processModelProperties(
     newValue.isPolyBaseModel = true;
     discriminatorInfo?.aliases.push(`${newValue.alias}`);
     newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+    newValue.discriminator = discriminatorInfo.restApiName;
+    newValue.types = discriminatorInfo?.discriminatedSubtypes;
   }
 }
 
@@ -1089,7 +1094,7 @@ function emitModel(
     name: modelName,
     description: getDocStr(context.program, type),
     parents: baseModel ? [baseModel] : [],
-    discriminatedSubtypes: {},
+    discriminatedSubtypes: [],
     properties: properties,
     addedOn: getAddedOnVersion(context.program, type),
     snakeCaseName: modelName

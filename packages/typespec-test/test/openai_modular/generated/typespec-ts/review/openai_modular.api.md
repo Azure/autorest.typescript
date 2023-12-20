@@ -302,7 +302,7 @@ export interface ChatCompletionsOptions {
     stop?: string[];
     stream?: boolean;
     temperature?: number;
-    toolChoice?: ChatCompletionsToolSelectionPreset | ChatCompletionsNamedToolSelection;
+    toolChoice?: ChatCompletionsNamedFunctionToolSelection;
     tools?: ChatCompletionsToolDefinition[];
     topP?: number;
     user?: string;

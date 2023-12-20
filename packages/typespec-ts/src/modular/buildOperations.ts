@@ -11,9 +11,11 @@ import { Client, ModularCodeModel, Operation } from "./modularCodeModel.js";
 import { isRLCMultiEndpoint } from "../utils/clientUtils.js";
 import { getDocsFromDescription } from "./helpers/docsHelpers.js";
 import { SdkContext } from "../utils/interfaces.js";
-import { getImportSpecifier } from "@azure-tools/rlc-common";
-import { addImportsToFiles } from "@azure-tools/rlc-common";
-import { clearImportSets } from "@azure-tools/rlc-common";
+import {
+  getImportSpecifier,
+  addImportsToFiles,
+  clearImportSets
+} from "@azure-tools/rlc-common";
 
 /**
  * This function creates a file under /api for each operation group.

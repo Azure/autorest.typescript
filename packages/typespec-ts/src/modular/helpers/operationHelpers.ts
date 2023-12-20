@@ -29,9 +29,9 @@ import {
 } from "./docsHelpers.js";
 import {
   getDeserializeFunctionName,
-  isDiscriminatedUnion,
   isNormalUnion,
-  isSpecialUnion
+  isPolymorphicUnion,
+  isSpecialHandledUnion
 } from "../buildSerializeUtils.js";
 import {
   getCollectionFormatHelper,
@@ -741,7 +741,19 @@ export function getRequestModelMapping(
   if (properties.length <= 0) {
     return [];
   }
+  if (isSpecialHandledUnion(modelPropertyType)) {
+    const deserializeFunctionName = getDeserializeFunctionName(
+      modelPropertyType,
+      "serialize"
+    );
+    const definition = `${deserializeFunctionName}(${propertyPath})`; 
+    props.push(definition);  
+    return props;
+  }
   for (const property of properties) {
+    if (property.clientName === "message" || property.clientName === "messages") {
+      property;
+    }
     if (property.readonly) {
       continue;
     }
@@ -766,6 +778,12 @@ export function getRequestModelMapping(
             ? `${propertyFullName} as any`
             : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
         }`;
+      } else if (isPolymorphicUnion(property.type)) {
+        const deserializeFunctionName = getDeserializeFunctionName(
+          property.type,
+          "serialize"
+        );
+        definition = `"${property.restApiName}": ${deserializeFunctionName}(${propertyFullName})`;
       } else {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
@@ -849,6 +867,12 @@ export function getResponseMapping(
             ? `${propertyFullName} as any`
             : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
         }`;
+      } else if (isSpecialHandledUnion(property.type)) {
+        const deserializeFunctionName = getDeserializeFunctionName(
+          property.type,
+          "deserialize"
+        );
+        definition = `"${property.clientName}": ${deserializeFunctionName}(${propertyFullName})`;
       } else {
         definition = `"${property.clientName}": ${getNullableCheck(
           propertyFullName,
@@ -933,6 +957,12 @@ export function deserializeResponseValue(
             "p",
             runtimeImports
           )}}))`;
+        } else if (isPolymorphicUnion(type.elementType)) {
+          const deserializeFunctionName = getDeserializeFunctionName(
+            type.elementType,
+            "deserialize"
+          );
+          return `${prefix}.map(p => ${deserializeFunctionName}(p))`;
         }
         return `${prefix}`;
       } else if (
@@ -961,7 +991,7 @@ export function deserializeResponseValue(
     case "combined":
       if (isNormalUnion(type)) {
         return `${restValue}`;
-      } else if (isSpecialUnion(type) && isDiscriminatedUnion(type)) {
+      } else if (isSpecialHandledUnion(type)) {
         const deserializeFunctionName = getDeserializeFunctionName(
           type,
           "deserialize"
@@ -1025,6 +1055,12 @@ export function serializeRequestValue(
           required,
           type.elementType?.format
         )})`;
+      } else if (type.elementType?.type === "model" && isPolymorphicUnion(type.elementType)) {
+        const serializeFunctionName = getDeserializeFunctionName(
+          type.elementType,
+          "serialize"
+        );
+        return `${prefix}.map(p => ${serializeFunctionName}(p))`;
       } else {
         return clientValue;
       }
@@ -1044,7 +1080,7 @@ export function serializeRequestValue(
     case "combined":
       if (isNormalUnion(type)) {
         return `${clientValue}`;
-      } else if (isSpecialUnion(type) && isDiscriminatedUnion(type)) {
+      } else if (isSpecialHandledUnion(type)) {
         const serializeFunctionName = getDeserializeFunctionName(
           type,
           "serialize"

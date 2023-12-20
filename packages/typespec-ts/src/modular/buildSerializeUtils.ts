@@ -28,7 +28,7 @@ export function buildSerializeUtils(model: ModularCodeModel) {
     const usageCondition =
       serializeType === "serialize" ? UsageFlags.Input : UsageFlags.Output;
     const specialUnions = model.types.filter(
-      (t) => isDiscriminatedUnion(t) && (t.usage ?? 0) & usageCondition
+      (t) => isSpecialHandledUnion(t) && (t.usage ?? 0) & usageCondition
     );
     if (specialUnions.length === 0) {
       continue;
@@ -88,7 +88,8 @@ export function buildSerializeUtils(model: ModularCodeModel) {
           serializeType,
           getTypeUnionName(su, false, model.runtimeImports, serializeType),
           getTypeUnionName(su, true, model.runtimeImports, serializeType),
-          su.discriminator
+          su.discriminator,
+          su.isPolyBaseModel
         );
       } else {
         deserializeUnionTypesFunction(
@@ -98,7 +99,8 @@ export function buildSerializeUtils(model: ModularCodeModel) {
           serializeType,
           getTypeUnionName(su, true, model.runtimeImports, serializeType),
           getTypeUnionName(su, false, model.runtimeImports, serializeType),
-          su.discriminator
+          su.discriminator,
+          su.isPolyBaseModel
         );
       }
     });
@@ -148,6 +150,9 @@ function formalizeTypeUnionName(typeUnionName: string) {
  * If we consider array type, with all the above 6 types as the element types.
  */
 export function isSpecialUnionVariant(t: Type): boolean {
+  if (t.type === "model" && t.name === "ChatRequestUserMessage") {
+    t;
+  }
   if (
     t.type === "datetime" ||
     t.type === "byte-array" ||
@@ -155,7 +160,13 @@ export function isSpecialUnionVariant(t: Type): boolean {
       t.properties?.some(
         (p) => p.clientName !== p.restApiName || isSpecialUnionVariant(p.type)
       )) ||
-    (t.type === "list" && t.elementType && isSpecialUnionVariant(t.elementType))
+    (t.type === "model" &&
+      t.isPolyBaseModel &&
+      t.types?.some(isSpecialUnionVariant)) ||
+    (t.type === "list" &&
+      t.elementType &&
+      isSpecialUnionVariant(t.elementType)) ||
+    (t.type === "combined" && t.types?.some(isSpecialUnionVariant))
   ) {
     return true;
   }
@@ -168,18 +179,27 @@ export function isNormalUnion(t: Type): boolean {
   );
 }
 
-export function isSpecialUnion(t: Type): boolean {
-  return (
-    t.type === "combined" && (t.types?.some(isSpecialUnionVariant) ?? false)
-  );
-}
-
 export function isDiscriminatedUnion(t: Type): boolean {
   return (
     t.type === "combined" &&
     (t.discriminator ? true : false) &&
     (t.types?.some(isSpecialUnionVariant) ?? false)
   );
+}
+
+export function isSpecialHandledUnion(t: Type): boolean {
+  return isDiscriminatedUnion(t) || isPolymorphicUnion(t);
+}
+
+export function isPolymorphicUnion(t: Type): boolean {
+  if (
+    t.type === "model" &&
+    t.isPolyBaseModel &&
+    t.types?.some(isSpecialUnionVariant)
+  ) {
+    return true;
+  }
+  return false;
 }
 
 function getTypeUnionName(
@@ -623,7 +643,8 @@ function deserializeUnionTypesFunction(
   serializeType: string,
   typeUnionNamesOutput: string | undefined,
   typeUnionNames: string | undefined,
-  discriminator?: string
+  discriminator?: string,
+  isPolyBaseModel?: boolean
 ) {
   const functionStatement: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -644,7 +665,13 @@ function deserializeUnionTypesFunction(
             (serializeType === "deserialize" ? "Rest" : ""))
     );
     statements.push(
-      `case "${type.discriminatorValue}": return ${serializeType}${functionName}(obj); `
+      `case "${
+        type.discriminatorValue
+      }": return ${serializeType}${functionName}(obj${
+        isPolyBaseModel
+          ? " as " + (type.name ?? type.elementType?.name + "[]")
+          : ""
+      }); `
     );
   }
   statements.push("default: return obj; }");

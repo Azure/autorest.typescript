@@ -592,9 +592,7 @@ export interface ChatCompletionsOptions {
   /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
   tools?: ChatCompletionsToolDefinition[];
   /** If specified, the model will configure which of the provided tools it can use for the chat completions response. */
-  toolChoice?:
-    | ChatCompletionsToolSelectionPreset
-    | ChatCompletionsNamedToolSelection;
+  toolChoice?: ChatCompletionsNamedFunctionToolSelection;
 }
 
 /** An abstract representation of a chat message as provided in a request. */
