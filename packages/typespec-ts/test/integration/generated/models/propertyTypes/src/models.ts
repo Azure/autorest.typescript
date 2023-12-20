@@ -36,9 +36,12 @@ export interface DecimalProperty {
   /**
    * Property
    *
-   * Please note the field was supposed to be a decimal but JavaScript does not have a native 'BigDecimal' data type.
-   * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
-   * any calculations.
+   * NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+   * Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+   * If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+   * For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+   * Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+   *
    */
   property: number;
 }
@@ -48,9 +51,12 @@ export interface Decimal128Property {
   /**
    * Property
    *
-   * Please note the field was supposed to be a decimal128 but JavaScript does not have a native 'BigDecimal' data type.
-   * So it was converted to a number instead. It is recommended to use a third-party library like 'decimal.js' to handle
-   * any calculations.
+   * NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+   * Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+   * If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+   * For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+   * Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+   *
    */
   property: number;
 }
