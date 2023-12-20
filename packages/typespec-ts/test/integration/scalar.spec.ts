@@ -157,7 +157,6 @@ describe("Scalar Client", () => {
       getResult.body.forEach((decimal: number) => {
         total += decimal;
       });
-      // convert to number from decimal
       const result = await client
         .path("/type/scalar/decimal/verify")
         .post({ body: total });
