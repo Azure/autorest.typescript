@@ -740,7 +740,7 @@ describe("modular special union serialization", () => {
   });
 });
 
-describe.only("modular special union deserialization", () => {
+describe("modular special union deserialization", () => {
   it("shouldn't generate deserialize util or as any if there's no special union variant without discriminator", async () => {
     const tspContent = `
     model WidgetData0 {
