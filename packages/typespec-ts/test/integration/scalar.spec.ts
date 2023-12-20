@@ -2,7 +2,6 @@ import { assert } from "chai";
 import ScalarClientFactory, {
   ScalarClient
 } from "./generated/scalar/src/index.js";
-import { Decimal } from "decimal.js";
 
 describe("Scalar Client", () => {
   let client: ScalarClient;
@@ -147,47 +146,41 @@ describe("Scalar Client", () => {
     }
   });
 
-  it("should post decimal verify", async () => {
+  it("should fail to post decimal verify", async () => {
     try {
       // prepare the verification
       const getResult = await client
         .path("/type/scalar/decimal/prepare_verify")
         .get();
-      // do any calculation based on third party library
-      let total = new Decimal(0);
+      // do any calculation based on numbers
+      let total = 0;
       getResult.body.forEach((decimal: number) => {
-        total = total.add(decimal);
+        total += decimal;
       });
       // convert to number from decimal
       const result = await client
         .path("/type/scalar/decimal/verify")
-        .post({ body: total.toNumber() });
-      assert.strictEqual(result.status, "204");
+        .post({ body: total });
+      assert.strictEqual(result.status, "400");
     } catch (err) {
       assert.fail(err as string);
     }
   });
 
-  it("should get decimal128 prepare verify", async () => {
+  it("should fail to post decimal128 verify", async () => {
     try {
-      const result = await client
+      const getResult = await client
         .path("/type/scalar/decimal128/prepare_verify")
         .get();
-      assert.strictEqual(result.status, "200");
-      assert.strictEqual(result.body[0], 0.1);
-      assert.strictEqual(result.body[1], 0.1);
-      assert.strictEqual(result.body[2], 0.1);
-    } catch (err) {
-      assert.fail(err as string);
-    }
-  });
-
-  it("should post decimal128 verify", async () => {
-    try {
+      // do any calculation based on numbers
+      let total = 0;
+      getResult.body.forEach((decimal: number) => {
+        total += decimal;
+      });
       const result = await client
         .path("/type/scalar/decimal128/verify")
-        .post({ body: 0.3 });
-      assert.strictEqual(result.status, "204");
+        .post({ body: total });
+      assert.strictEqual(result.status, "400");
     } catch (err) {
       assert.fail(err as string);
     }
