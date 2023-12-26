@@ -26,7 +26,7 @@ importers:
       '@azure/core-util': ^1.4.0
       '@azure/core-xml': ^1.0.0-beta.1
       '@azure/logger': ^1.0.0
-      '@microsoft.azure/autorest.testserver': ^3.3.48
+      '@microsoft.azure/autorest.testserver': ^3.3.34
       '@types/chai': ^4.2.8
       '@types/chai-as-promised': ^7.1.4
       '@types/fs-extra': ^9.0.13
