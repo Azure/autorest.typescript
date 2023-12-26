@@ -25,6 +25,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { reshape } from "@azure/core-util";
 import {
   FineTunesCreateOptions,
   FineTunesListOptions,
@@ -69,67 +70,53 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
-      learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
-      classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    trainingFiles: result.body["training_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    validationFiles: result.body["validation_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    resultFiles: result.body["result_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    events: !result.body["events"]
-      ? result.body["events"]
-      : result.body["events"].map((p) => ({
-          object: p["object"],
-          createdAt: new Date(p["created_at"]),
-          level: p["level"],
-          message: p["message"],
-        })),
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "updated_at",
+    "updatedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "updated_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_files",
+    "trainingFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "validation_files",
+    "validationFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result_files",
+    "resultFiles"
+  );
+  return deserializedResponse as FineTune;
 }
 
 export async function create(
@@ -157,68 +144,8 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      updatedAt: new Date(p["updated_at"]),
-      model: p["model"],
-      fineTunedModel: p["fine_tuned_model"],
-      organizationId: p["organization_id"],
-      status: p["status"] as any,
-      hyperparams: {
-        nEpochs: p.hyperparams["n_epochs"],
-        batchSize: p.hyperparams["batch_size"],
-        promptLossWeight: p.hyperparams["prompt_loss_weight"],
-        learningRateMultiplier: p.hyperparams["learning_rate_multiplier"],
-        computeClassificationMetrics:
-          p.hyperparams["compute_classification_metrics"],
-        classificationPositiveClass:
-          p.hyperparams["classification_positive_class"],
-        classificationNClasses: p.hyperparams["classification_n_classes"],
-      },
-      trainingFiles: p["training_files"].map((p) => ({
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"] as any,
-        statusDetails: p["status_details"],
-      })),
-      validationFiles: p["validation_files"].map((p) => ({
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"] as any,
-        statusDetails: p["status_details"],
-      })),
-      resultFiles: p["result_files"].map((p) => ({
-        id: p["id"],
-        object: p["object"],
-        bytes: p["bytes"],
-        createdAt: new Date(p["createdAt"]),
-        filename: p["filename"],
-        purpose: p["purpose"],
-        status: p["status"] as any,
-        statusDetails: p["status_details"],
-      })),
-      events: !p["events"]
-        ? p["events"]
-        : p["events"].map((p) => ({
-            object: p["object"],
-            createdAt: new Date(p["created_at"]),
-            level: p["level"],
-            message: p["message"],
-          })),
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListFineTunesResponse;
 }
 
 export async function list(
@@ -248,67 +175,53 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
-      learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
-      classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    trainingFiles: result.body["training_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    validationFiles: result.body["validation_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    resultFiles: result.body["result_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    events: !result.body["events"]
-      ? result.body["events"]
-      : result.body["events"].map((p) => ({
-          object: p["object"],
-          createdAt: new Date(p["created_at"]),
-          level: p["level"],
-          message: p["message"],
-        })),
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "updated_at",
+    "updatedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "updated_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_files",
+    "trainingFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "validation_files",
+    "validationFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result_files",
+    "resultFiles"
+  );
+  return deserializedResponse as FineTune;
 }
 
 export async function retrieve(
@@ -342,15 +255,8 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"],
-      message: p["message"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListFineTuneEventsResponse;
 }
 
 export async function listEvents(
@@ -381,67 +287,53 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    updatedAt: new Date(result.body["updated_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparams: {
-      nEpochs: result.body.hyperparams["n_epochs"],
-      batchSize: result.body.hyperparams["batch_size"],
-      promptLossWeight: result.body.hyperparams["prompt_loss_weight"],
-      learningRateMultiplier:
-        result.body.hyperparams["learning_rate_multiplier"],
-      computeClassificationMetrics:
-        result.body.hyperparams["compute_classification_metrics"],
-      classificationPositiveClass:
-        result.body.hyperparams["classification_positive_class"],
-      classificationNClasses:
-        result.body.hyperparams["classification_n_classes"],
-    },
-    trainingFiles: result.body["training_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    validationFiles: result.body["validation_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    resultFiles: result.body["result_files"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-    events: !result.body["events"]
-      ? result.body["events"]
-      : result.body["events"].map((p) => ({
-          object: p["object"],
-          createdAt: new Date(p["created_at"]),
-          level: p["level"],
-          message: p["message"],
-        })),
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "updated_at",
+    "updatedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "updated_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_files",
+    "trainingFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "validation_files",
+    "validationFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result_files",
+    "resultFiles"
+  );
+  return deserializedResponse as FineTune;
 }
 
 export async function cancel(

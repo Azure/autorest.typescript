@@ -21,6 +21,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { reshape } from "@azure/core-util";
 import {
   ModelsListOptions,
   ModelsRetrieveOptions,
@@ -43,15 +44,8 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      created: new Date(p["created"]),
-      ownedBy: p["owned_by"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListModelsResponse;
 }
 
 export async function list(
@@ -79,12 +73,14 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    ownedBy: result.body["owned_by"],
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(deserializedResponse, "owned_by", "ownedBy");
+  return deserializedResponse as Model;
 }
 
 export async function retrieve(
@@ -117,11 +113,8 @@ export async function _deleteOperationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as DeleteModelResponse;
 }
 
 export async function deleteOperation(

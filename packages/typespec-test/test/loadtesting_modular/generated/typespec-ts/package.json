@@ -91,7 +91,7 @@
     "@azure/core-paging": "^1.5.0",
     "@azure/core-lro": "^2.5.4",
     "@azure/abort-controller": "^1.0.0",
-    "@azure/core-util": "^1.4.0"
+    "@azure/core-util": "~/microsoft/azure-sdk-for-js/sdk/core/core-util"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",

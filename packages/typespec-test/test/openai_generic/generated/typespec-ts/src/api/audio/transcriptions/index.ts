@@ -51,9 +51,8 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    text: result.body["text"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as CreateTranscriptionResponse;
 }
 
 export async function create(

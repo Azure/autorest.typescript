@@ -26,6 +26,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { reshape } from "@azure/core-util";
 import {
   FineTuningJobsCreateOptions,
   FineTuningJobsListOptions,
@@ -64,34 +65,58 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    finishedAt:
-      result.body["finished_at"] === null
-        ? null
-        : new Date(result.body["finished_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparameters: {
-      nEpochs: result.body.hyperparameters["n_epochs"] as any,
-    },
-    trainingFile: result.body["training_file"],
-    validationFile: result.body["validation_file"],
-    resultFiles: result.body["result_files"],
-    trainedTokens: result.body["trained_tokens"],
-    error:
-      result.body.error === null
-        ? null
-        : {
-            message: result.body.error["message"],
-            code: result.body.error["code"],
-            param: result.body.error["param"],
-          },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "finished_at",
+    "finishedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "finished_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_file",
+    "trainingFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "validation_file",
+    "validationFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result_files",
+    "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "trained_tokens",
+    "trainedTokens"
+  );
+  return deserializedResponse as FineTuningJob;
 }
 
 /**
@@ -132,33 +157,9 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      finishedAt: p["finished_at"] === null ? null : new Date(p["finished_at"]),
-      model: p["model"],
-      fineTunedModel: p["fine_tuned_model"],
-      organizationId: p["organization_id"],
-      status: p["status"] as any,
-      hyperparameters: { nEpochs: p.hyperparameters["n_epochs"] as any },
-      trainingFile: p["training_file"],
-      validationFile: p["validation_file"],
-      resultFiles: p["result_files"],
-      trainedTokens: p["trained_tokens"],
-      error:
-        p.error === null
-          ? null
-          : {
-              message: p.error["message"],
-              code: p.error["code"],
-              param: p.error["param"],
-            },
-    })),
-    hasMore: result.body["has_more"],
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(deserializedResponse, "has_more", "hasMore");
+  return deserializedResponse as ListPaginatedFineTuningJobsResponse;
 }
 
 export async function list(
@@ -190,34 +191,58 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    finishedAt:
-      result.body["finished_at"] === null
-        ? null
-        : new Date(result.body["finished_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparameters: {
-      nEpochs: result.body.hyperparameters["n_epochs"] as any,
-    },
-    trainingFile: result.body["training_file"],
-    validationFile: result.body["validation_file"],
-    resultFiles: result.body["result_files"],
-    trainedTokens: result.body["trained_tokens"],
-    error:
-      result.body.error === null
-        ? null
-        : {
-            message: result.body.error["message"],
-            code: result.body.error["code"],
-            param: result.body.error["param"],
-          },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "finished_at",
+    "finishedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "finished_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_file",
+    "trainingFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "validation_file",
+    "validationFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result_files",
+    "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "trained_tokens",
+    "trainedTokens"
+  );
+  return deserializedResponse as FineTuningJob;
 }
 
 export async function retrieve(
@@ -253,16 +278,8 @@ export async function _listEventsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      createdAt: new Date(p["created_at"]),
-      level: p["level"] as any,
-      message: p["message"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListFineTuningJobEventsResponse;
 }
 
 export async function listEvents(
@@ -293,34 +310,58 @@ export async function _cancelDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    createdAt: new Date(result.body["created_at"]),
-    finishedAt:
-      result.body["finished_at"] === null
-        ? null
-        : new Date(result.body["finished_at"]),
-    model: result.body["model"],
-    fineTunedModel: result.body["fine_tuned_model"],
-    organizationId: result.body["organization_id"],
-    status: result.body["status"] as any,
-    hyperparameters: {
-      nEpochs: result.body.hyperparameters["n_epochs"] as any,
-    },
-    trainingFile: result.body["training_file"],
-    validationFile: result.body["validation_file"],
-    resultFiles: result.body["result_files"],
-    trainedTokens: result.body["trained_tokens"],
-    error:
-      result.body.error === null
-        ? null
-        : {
-            message: result.body.error["message"],
-            code: result.body.error["code"],
-            param: result.body.error["param"],
-          },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "finished_at",
+    "finishedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "finished_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_file",
+    "trainingFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "validation_file",
+    "validationFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result_files",
+    "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "trained_tokens",
+    "trainedTokens"
+  );
+  return deserializedResponse as FineTuningJob;
 }
 
 export async function cancel(

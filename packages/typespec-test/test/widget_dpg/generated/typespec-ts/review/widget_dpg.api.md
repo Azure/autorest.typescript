@@ -52,8 +52,17 @@ export interface UpdateWidget {
 // @public (undocumented)
 export interface Widget {
     color: "red" | "blue";
+    // (undocumented)
+    context?: WidgetContext;
+    createdAt: Date;
     id: string;
     weight: number;
+}
+
+// @public (undocumented)
+export interface WidgetContext {
+    // (undocumented)
+    widget?: Widget;
 }
 
 // @public (undocumented)

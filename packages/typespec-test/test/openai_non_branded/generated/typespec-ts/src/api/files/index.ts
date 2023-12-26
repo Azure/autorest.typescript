@@ -25,6 +25,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@typespec/ts-http-runtime";
+import { reshape } from "@azure/core-util";
 import {
   FilesListOptions,
   FilesCreateOptions,
@@ -49,19 +50,8 @@ export async function _listDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    data: result.body["data"].map((p) => ({
-      id: p["id"],
-      object: p["object"],
-      bytes: p["bytes"],
-      createdAt: new Date(p["createdAt"]),
-      filename: p["filename"],
-      purpose: p["purpose"],
-      status: p["status"] as any,
-      statusDetails: p["status_details"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListFilesResponse;
 }
 
 export async function list(
@@ -93,16 +83,18 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"] as any,
-    statusDetails: result.body["status_details"],
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "status_details",
+    "statusDetails"
+  );
+  return deserializedResponse as OpenAIFile;
 }
 
 export async function create(
@@ -131,16 +123,18 @@ export async function _retrieveDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    bytes: result.body["bytes"],
-    createdAt: new Date(result.body["createdAt"]),
-    filename: result.body["filename"],
-    purpose: result.body["purpose"],
-    status: result.body["status"] as any,
-    statusDetails: result.body["status_details"],
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "status_details",
+    "statusDetails"
+  );
+  return deserializedResponse as OpenAIFile;
 }
 
 export async function retrieve(
@@ -171,11 +165,8 @@ export async function _deleteOperationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    deleted: result.body["deleted"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as DeleteFileResponse;
 }
 
 export async function deleteOperation(

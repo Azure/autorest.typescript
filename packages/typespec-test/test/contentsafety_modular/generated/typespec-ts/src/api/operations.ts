@@ -86,19 +86,8 @@ export async function _analyzeTextDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blocklistsMatchResults: !result.body["blocklistsMatchResults"]
-      ? result.body["blocklistsMatchResults"]
-      : result.body["blocklistsMatchResults"].map((p) => ({
-          blocklistName: p["blocklistName"],
-          blockItemId: p["blockItemId"],
-          blockItemText: p["blockItemText"],
-        })),
-    analyzeResults: result.body["analyzeResults"].map((p) => ({
-      category: p["category"],
-      severity: p["severity"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as AnalyzeTextResult;
 }
 
 /** A sync API for harmful content analysis for text. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
@@ -141,12 +130,8 @@ export async function _analyzeImageDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    analyzeResults: result.body["analyzeResults"].map((p) => ({
-      category: p["category"],
-      severity: p["severity"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as AnalyzeImageResult;
 }
 
 /** A sync API for harmful content analysis for image. Currently, we support four categories: Hate, SelfHarm, Sexual, Violence. */
@@ -178,10 +163,8 @@ export async function _getTextBlocklistDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blocklistName: result.body["blocklistName"],
-    description: result.body["description"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as TextBlocklist;
 }
 
 /** Returns text blocklist details. */
@@ -224,10 +207,8 @@ export async function _createOrUpdateTextBlocklistDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blocklistName: result.body["blocklistName"],
-    description: result.body["description"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as TextBlocklist;
 }
 
 /** Updates a text blocklist, if blocklistName does not exist, create a new blocklist. */
@@ -300,13 +281,8 @@ export async function _listTextBlocklistsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p) => ({
-      blocklistName: p["blocklistName"],
-      description: p["description"],
-    })),
-    nextLink: result.body["nextLink"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as PagedTextBlocklist;
 }
 
 /** Get all text blocklists details. */
@@ -355,15 +331,8 @@ export async function _addOrUpdateBlockItemsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: !result.body["value"]
-      ? result.body["value"]
-      : result.body["value"].map((p) => ({
-          blockItemId: p["blockItemId"],
-          description: p["description"],
-          text: p["text"],
-        })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as AddOrUpdateBlockItemsResult;
 }
 
 /** Add or update blockItems to a text blocklist. You can add or update at most 100 BlockItems in one request. */
@@ -448,11 +417,8 @@ export async function _getTextBlocklistItemDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    blockItemId: result.body["blockItemId"],
-    description: result.body["description"],
-    text: result.body["text"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as TextBlockItem;
 }
 
 /** Get blockItem By blockItemId from a text blocklist. */
@@ -499,14 +465,8 @@ export async function _listTextBlocklistItemsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    value: result.body["value"].map((p) => ({
-      blockItemId: p["blockItemId"],
-      description: p["description"],
-      text: p["text"],
-    })),
-    nextLink: result.body["nextLink"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as PagedTextBlockItem;
 }
 
 /** Get all blockItems in a text blocklist */

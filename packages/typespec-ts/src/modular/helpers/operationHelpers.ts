@@ -164,15 +164,8 @@ export function getDeserializePrivateFunction(
   ) {
     statements.push(`return result.body`);
   } else if (getAllProperties(response?.type).length > 0) {
-    statements.push(
-      `return {`,
-      getResponseMapping(
-        getAllProperties(response.type) ?? [],
-        "result.body",
-        runtimeImports
-      ).join(","),
-      `}`
-    );
+    const reshaped = reshapeResponse(operation, returnType.type).join("\n");
+    statements.push(reshaped);
   } else if (returnType.type === "void") {
     statements.push(`return;`);
   } else {
@@ -190,6 +183,74 @@ export function getDeserializePrivateFunction(
     ...functionStatement,
     statements
   };
+}
+
+function reshapeResponse(operation: Operation, resultType: string) {
+  const response = operation.responses[0]!;
+
+  const responseProperties = getAllProperties(response.type);
+  const statements: string[] = [];
+  const visitedTypes = new Set<string>(); // Set to track visited types
+
+  statements.push(`let deserializedResponse: unknown = result.body;`);
+
+  deserialize(responseProperties, statements, visitedTypes);
+  statements.push(`return deserializedResponse as ${resultType};`);
+
+  return statements;
+}
+
+function deserialize(
+  properties: Property[],
+  statements: string[],
+  visitedTypes: Set<string> = new Set(), // Add a new parameter to track visited types
+  objectPath?: string
+) {
+  for (const property of properties) {
+    if (property.clientName !== property.restApiName) {
+      const propPath = Boolean(objectPath)
+        ? `${objectPath}.${property.restApiName}`
+        : property.restApiName;
+      statements.push(
+        `deserializedResponse = reshape(deserializedResponse, "${propPath}", "${property.clientName}");`
+      );
+    }
+
+    if (property.type.type === "model") {
+      if (property.type.name && !visitedTypes.has(property.type.name)) {
+        visitedTypes.add(property.type.name);
+        const properties = getAllProperties(property.type);
+        const propPath = Boolean(objectPath)
+          ? `${objectPath}.${property.restApiName}`
+          : property.restApiName;
+        deserialize(properties, statements, visitedTypes, `${propPath}`);
+      }
+    }
+
+    if (
+      property.type.type === "list" &&
+      property.type.elementType?.type === "model"
+    ) {
+      if (property.type.name && !visitedTypes.has(property.type.name)) {
+        visitedTypes.add(property.type.name);
+        const propPath = Boolean(objectPath)
+          ? `${objectPath}.${property.restApiName}`
+          : property.restApiName;
+        const properties = getAllProperties(property.type.elementType);
+        deserialize(properties, statements, visitedTypes, `${propPath}[]`);
+      }
+    }
+
+    const transformation = reshapeValue(property.type);
+    if (transformation) {
+      const propPath = Boolean(objectPath)
+        ? `${objectPath}.${property.restApiName}`
+        : property.restApiName;
+      statements.push(
+        `deserializedResponse = reshape(deserializedResponse, "${propPath}", ${transformation});`
+      );
+    }
+  }
 }
 
 function getOperationSignatureParameters(
@@ -752,17 +813,6 @@ function getRequestModelMapping(
         )} ${
           !property.optional ? "" : `!${propertyFullName} ? undefined :`
         } ${propertyFullName}`;
-      } else if (
-        (property.restApiName === "message" ||
-          property.restApiName === "messages") &&
-        (property.type.name === "ChatMessage" ||
-          property.type.elementType?.name === "ChatMessage")
-      ) {
-        definition = `"${property.restApiName}": ${
-          !property.optional
-            ? `${propertyFullName} as any`
-            : `!${propertyFullName} ? undefined : ${propertyFullName} as any`
-        }`;
       } else {
         definition = `"${property.restApiName}": ${getNullableCheck(
           propertyFullName,
@@ -818,13 +868,21 @@ function getRequestModelMapping(
 export function getResponseMapping(
   properties: Property[],
   propertyPath: string = "result.body",
-  runtimeImports: RuntimeImports
+  runtimeImports: RuntimeImports,
+  visitedTypes: Set<string> = new Set() // Add a new parameter to track visited types
 ) {
   const props: string[] = [];
   for (const property of properties) {
+    // Avoid processing if this type has already been visited
+    if (property.type.name && visitedTypes.has(property.type.name)) {
+      continue;
+    }
+
     // TODO: Do we need to also add headers in the result type?
     const propertyFullName = `${propertyPath}.${property.restApiName}`;
     if (property.type.type === "model") {
+      // Add the type to the visited set to avoid circular references
+      property.type.name && visitedTypes.add(property.type.name);
       let definition;
       if (property.type.isCoreErrorType) {
         definition = `"${property.clientName}": ${getNullableCheck(
@@ -855,7 +913,8 @@ export function getResponseMapping(
           `${propertyPath}.${property.restApiName}${
             property.optional ? "?" : ""
           }`,
-          runtimeImports
+          runtimeImports,
+          visitedTypes
         )}}`;
       }
 
@@ -893,6 +952,15 @@ export function getResponseMapping(
   }
 
   return props;
+}
+
+function reshapeValue(type: Type) {
+  switch (type.type) {
+    case "datetime":
+      return "(value) => new Date(value as string)";
+    default:
+      return undefined;
+  }
 }
 
 /**

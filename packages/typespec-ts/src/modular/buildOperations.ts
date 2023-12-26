@@ -131,6 +131,10 @@ export function buildOperationFiles(
           "StreamableMethod",
           "operationOptionsToRequestParameters"
         ]
+      },
+      {
+        moduleSpecifier: "@azure/core-util",
+        namedImports: ["reshape"]
       }
     ]);
     addImportsToFiles(codeModel.runtimeImports, operationGroupFile);

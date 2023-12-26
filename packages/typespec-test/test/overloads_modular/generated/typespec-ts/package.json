@@ -76,7 +76,7 @@
     "@azure/core-rest-pipeline": "^1.12.0",
     "@azure/logger": "^1.0.0",
     "tslib": "^2.2.0",
-    "@azure/core-util": "^1.4.0"
+    "@azure/core-util": "~/microsoft/azure-sdk-for-js/sdk/core/core-util"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.1",

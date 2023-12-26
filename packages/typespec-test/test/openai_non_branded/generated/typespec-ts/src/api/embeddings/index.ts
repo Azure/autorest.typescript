@@ -43,19 +43,8 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    model: result.body["model"],
-    data: result.body["data"].map((p) => ({
-      index: p["index"],
-      object: p["object"],
-      embedding: p["embedding"],
-    })),
-    usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as CreateEmbeddingResponse;
 }
 
 export async function create(

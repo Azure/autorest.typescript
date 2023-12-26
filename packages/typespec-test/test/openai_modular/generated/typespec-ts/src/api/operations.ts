@@ -33,6 +33,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { reshape } from "@azure/core-util";
 import {
   GetEmbeddingsOptions,
   GetCompletionsOptions,
@@ -63,16 +64,18 @@ export async function _getEmbeddingsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    data: result.body["data"].map((p) => ({
-      embedding: p["embedding"],
-      index: p["index"],
-    })),
-    usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.prompt_tokens",
+    "promptTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.total_tokens",
+    "totalTokens"
+  );
+  return deserializedResponse as Embeddings;
 }
 
 /** Return the embeddings for a given prompt. */
@@ -123,94 +126,33 @@ export async function _getCompletionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    promptFilterResults: !result.body["prompt_annotations"]
-      ? result.body["prompt_annotations"]
-      : result.body["prompt_annotations"].map((p) => ({
-          promptIndex: p["prompt_index"],
-          contentFilterResults: !p.content_filter_results
-            ? undefined
-            : {
-                sexual: !p.content_filter_results?.sexual
-                  ? undefined
-                  : {
-                      severity: p.content_filter_results?.sexual?.["severity"],
-                      filtered: p.content_filter_results?.sexual?.["filtered"],
-                    },
-                violence: !p.content_filter_results?.violence
-                  ? undefined
-                  : {
-                      severity:
-                        p.content_filter_results?.violence?.["severity"],
-                      filtered:
-                        p.content_filter_results?.violence?.["filtered"],
-                    },
-                hate: !p.content_filter_results?.hate
-                  ? undefined
-                  : {
-                      severity: p.content_filter_results?.hate?.["severity"],
-                      filtered: p.content_filter_results?.hate?.["filtered"],
-                    },
-                selfHarm: !p.content_filter_results?.self_harm
-                  ? undefined
-                  : {
-                      severity:
-                        p.content_filter_results?.self_harm?.["severity"],
-                      filtered:
-                        p.content_filter_results?.self_harm?.["filtered"],
-                    },
-              },
-        })),
-    choices: result.body["choices"].map((p) => ({
-      text: p["text"],
-      index: p["index"],
-      contentFilterResults: !p.content_filter_results
-        ? undefined
-        : {
-            sexual: !p.content_filter_results?.sexual
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.sexual?.["severity"],
-                  filtered: p.content_filter_results?.sexual?.["filtered"],
-                },
-            violence: !p.content_filter_results?.violence
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.violence?.["severity"],
-                  filtered: p.content_filter_results?.violence?.["filtered"],
-                },
-            hate: !p.content_filter_results?.hate
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.hate?.["severity"],
-                  filtered: p.content_filter_results?.hate?.["filtered"],
-                },
-            selfHarm: !p.content_filter_results?.self_harm
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.self_harm?.["severity"],
-                  filtered: p.content_filter_results?.self_harm?.["filtered"],
-                },
-          },
-      logprobs:
-        p.logprobs === null
-          ? null
-          : {
-              tokens: p.logprobs["tokens"],
-              tokenLogprobs: p.logprobs["token_logprobs"],
-              topLogprobs: p.logprobs["top_logprobs"],
-              textOffset: p.logprobs["text_offset"],
-            },
-      finishReason: p["finish_reason"],
-    })),
-    usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations",
+    "promptFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.completion_tokens",
+    "completionTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.prompt_tokens",
+    "promptTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.total_tokens",
+    "totalTokens"
+  );
+  return deserializedResponse as Completions;
 }
 
 /**
@@ -283,105 +225,33 @@ export async function _getChatCompletionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => ({
-      message: !p.message ? undefined : (p.message as any),
-      index: p["index"],
-      finishReason: p["finish_reason"],
-      delta: !p.delta
-        ? undefined
-        : {
-            role: p.delta?.["role"],
-            content: p.delta?.["content"],
-            name: p.delta?.["name"],
-            functionCall: !p.delta?.function_call
-              ? undefined
-              : {
-                  name: p.delta?.function_call?.["name"],
-                  arguments: p.delta?.function_call?.["arguments"],
-                },
-            context: !p.delta?.context
-              ? undefined
-              : {
-                  messages: !p.delta?.context?.messages
-                    ? undefined
-                    : (p.delta?.context?.messages as any),
-                },
-          },
-      contentFilterResults: !p.content_filter_results
-        ? undefined
-        : {
-            sexual: !p.content_filter_results?.sexual
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.sexual?.["severity"],
-                  filtered: p.content_filter_results?.sexual?.["filtered"],
-                },
-            violence: !p.content_filter_results?.violence
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.violence?.["severity"],
-                  filtered: p.content_filter_results?.violence?.["filtered"],
-                },
-            hate: !p.content_filter_results?.hate
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.hate?.["severity"],
-                  filtered: p.content_filter_results?.hate?.["filtered"],
-                },
-            selfHarm: !p.content_filter_results?.self_harm
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.self_harm?.["severity"],
-                  filtered: p.content_filter_results?.self_harm?.["filtered"],
-                },
-          },
-    })),
-    promptFilterResults: !result.body["prompt_annotations"]
-      ? result.body["prompt_annotations"]
-      : result.body["prompt_annotations"].map((p) => ({
-          promptIndex: p["prompt_index"],
-          contentFilterResults: !p.content_filter_results
-            ? undefined
-            : {
-                sexual: !p.content_filter_results?.sexual
-                  ? undefined
-                  : {
-                      severity: p.content_filter_results?.sexual?.["severity"],
-                      filtered: p.content_filter_results?.sexual?.["filtered"],
-                    },
-                violence: !p.content_filter_results?.violence
-                  ? undefined
-                  : {
-                      severity:
-                        p.content_filter_results?.violence?.["severity"],
-                      filtered:
-                        p.content_filter_results?.violence?.["filtered"],
-                    },
-                hate: !p.content_filter_results?.hate
-                  ? undefined
-                  : {
-                      severity: p.content_filter_results?.hate?.["severity"],
-                      filtered: p.content_filter_results?.hate?.["filtered"],
-                    },
-                selfHarm: !p.content_filter_results?.self_harm
-                  ? undefined
-                  : {
-                      severity:
-                        p.content_filter_results?.self_harm?.["severity"],
-                      filtered:
-                        p.content_filter_results?.self_harm?.["filtered"],
-                    },
-              },
-        })),
-    usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations",
+    "promptFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.completion_tokens",
+    "completionTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.prompt_tokens",
+    "promptTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.total_tokens",
+    "totalTokens"
+  );
+  return deserializedResponse as ChatCompletions;
 }
 
 /**
@@ -460,105 +330,33 @@ export async function _getChatCompletionsWithAzureExtensionsDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => ({
-      message: !p.message ? undefined : (p.message as any),
-      index: p["index"],
-      finishReason: p["finish_reason"],
-      delta: !p.delta
-        ? undefined
-        : {
-            role: p.delta?.["role"],
-            content: p.delta?.["content"],
-            name: p.delta?.["name"],
-            functionCall: !p.delta?.function_call
-              ? undefined
-              : {
-                  name: p.delta?.function_call?.["name"],
-                  arguments: p.delta?.function_call?.["arguments"],
-                },
-            context: !p.delta?.context
-              ? undefined
-              : {
-                  messages: !p.delta?.context?.messages
-                    ? undefined
-                    : (p.delta?.context?.messages as any),
-                },
-          },
-      contentFilterResults: !p.content_filter_results
-        ? undefined
-        : {
-            sexual: !p.content_filter_results?.sexual
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.sexual?.["severity"],
-                  filtered: p.content_filter_results?.sexual?.["filtered"],
-                },
-            violence: !p.content_filter_results?.violence
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.violence?.["severity"],
-                  filtered: p.content_filter_results?.violence?.["filtered"],
-                },
-            hate: !p.content_filter_results?.hate
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.hate?.["severity"],
-                  filtered: p.content_filter_results?.hate?.["filtered"],
-                },
-            selfHarm: !p.content_filter_results?.self_harm
-              ? undefined
-              : {
-                  severity: p.content_filter_results?.self_harm?.["severity"],
-                  filtered: p.content_filter_results?.self_harm?.["filtered"],
-                },
-          },
-    })),
-    promptFilterResults: !result.body["prompt_annotations"]
-      ? result.body["prompt_annotations"]
-      : result.body["prompt_annotations"].map((p) => ({
-          promptIndex: p["prompt_index"],
-          contentFilterResults: !p.content_filter_results
-            ? undefined
-            : {
-                sexual: !p.content_filter_results?.sexual
-                  ? undefined
-                  : {
-                      severity: p.content_filter_results?.sexual?.["severity"],
-                      filtered: p.content_filter_results?.sexual?.["filtered"],
-                    },
-                violence: !p.content_filter_results?.violence
-                  ? undefined
-                  : {
-                      severity:
-                        p.content_filter_results?.violence?.["severity"],
-                      filtered:
-                        p.content_filter_results?.violence?.["filtered"],
-                    },
-                hate: !p.content_filter_results?.hate
-                  ? undefined
-                  : {
-                      severity: p.content_filter_results?.hate?.["severity"],
-                      filtered: p.content_filter_results?.hate?.["filtered"],
-                    },
-                selfHarm: !p.content_filter_results?.self_harm
-                  ? undefined
-                  : {
-                      severity:
-                        p.content_filter_results?.self_harm?.["severity"],
-                      filtered:
-                        p.content_filter_results?.self_harm?.["filtered"],
-                    },
-              },
-        })),
-    usage: {
-      completionTokens: result.body.usage["completion_tokens"],
-      promptTokens: result.body.usage["prompt_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations",
+    "promptFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.completion_tokens",
+    "completionTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.prompt_tokens",
+    "promptTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.total_tokens",
+    "totalTokens"
+  );
+  return deserializedResponse as ChatCompletions;
 }
 
 /**
@@ -605,19 +403,18 @@ export async function _getAzureBatchImageGenerationOperationStatusDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    expires: result.body["expires"],
-    result: !result.body.result
-      ? undefined
-      : {
-          created: new Date(result.body.result?.["created"]),
-          data: result.body.result?.["data"] as any,
-        },
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result.created",
+    (value) => new Date(value as string)
+  );
+  return deserializedResponse as BatchImageGenerationOperationResponse;
 }
 
 /** Returns the status of the images operation */
@@ -669,19 +466,18 @@ export async function _beginAzureBatchImageGenerationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    created: new Date(result.body["created"]),
-    expires: result.body["expires"],
-    result: !result.body.result
-      ? undefined
-      : {
-          created: new Date(result.body.result?.["created"]),
-          data: result.body.result?.["data"] as any,
-        },
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "result.created",
+    (value) => new Date(value as string)
+  );
+  return deserializedResponse as BatchImageGenerationOperationResponse;
 }
 
 /** Starts the generation of a batch of images from a text caption */

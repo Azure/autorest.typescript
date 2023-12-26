@@ -16,6 +16,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { reshape } from "@azure/core-util";
 import { ChatCompletionsCreateOptions } from "../../../models/options.js";
 
 export function _createSend(
@@ -73,33 +74,28 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    model: result.body["model"],
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      message: {
-        role: p.message["role"] as any,
-        content: p.message["content"],
-        functionCall: !p.message.function_call
-          ? undefined
-          : {
-              name: p.message.function_call?.["name"],
-              arguments: p.message.function_call?.["arguments"],
-            },
-      },
-      finishReason: p["finish_reason"] as any,
-    })),
-    usage: !result.body.usage
-      ? undefined
-      : {
-          promptTokens: result.body.usage?.["prompt_tokens"],
-          completionTokens: result.body.usage?.["completion_tokens"],
-          totalTokens: result.body.usage?.["total_tokens"],
-        },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.prompt_tokens",
+    "promptTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.completion_tokens",
+    "completionTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.total_tokens",
+    "totalTokens"
+  );
+  return deserializedResponse as CreateChatCompletionResponse;
 }
 
 export async function create(

@@ -318,7 +318,7 @@ function emitBrandedPackage(
         "@azure/abort-controller": "^1.0.0"
       }),
       ...(isModularLibrary && {
-        "@azure/core-util": "^1.4.0"
+        "@azure/core-util": "~/microsoft/azure-sdk-for-js/sdk/core/core-util"
       })
     },
     devDependencies: {

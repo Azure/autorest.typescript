@@ -13,6 +13,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { reshape } from "@azure/core-util";
 import { EditsCreateOptions } from "../../models/options.js";
 
 export function _createSend(
@@ -42,20 +43,28 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    object: result.body["object"],
-    created: new Date(result.body["created"]),
-    choices: result.body["choices"].map((p) => ({
-      text: p["text"],
-      index: p["index"],
-      finishReason: p["finish_reason"] as any,
-    })),
-    usage: {
-      promptTokens: result.body.usage["prompt_tokens"],
-      completionTokens: result.body.usage["completion_tokens"],
-      totalTokens: result.body.usage["total_tokens"],
-    },
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.prompt_tokens",
+    "promptTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.completion_tokens",
+    "completionTokens"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "usage.total_tokens",
+    "totalTokens"
+  );
+  return deserializedResponse as CreateEditResponse;
 }
 
 export async function create(

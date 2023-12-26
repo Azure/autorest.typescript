@@ -44,19 +44,8 @@ export async function _createStreamingDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      delta: {
-        content: p.delta["content"],
-        role: p.delta["role"],
-        sessionState: p.delta["session_state"],
-      },
-      sessionState: p["session_state"],
-      context: p["context"],
-      finishReason: p["finish_reason"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ChatCompletionChunk;
 }
 
 /** Creates a new streaming chat completion. */
@@ -94,15 +83,8 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    choices: result.body["choices"].map((p) => ({
-      index: p["index"],
-      message: p.message as any,
-      sessionState: p["session_state"],
-      context: p["context"],
-      finishReason: p["finish_reason"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ChatCompletion;
 }
 
 /** Creates a new chat completion. */

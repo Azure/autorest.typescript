@@ -22,7 +22,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { stringToUint8Array } from "@azure/core-util";
+import { reshape } from "@azure/core-util";
 import {
   ImagesCreateOptions,
   ImagesCreateEditOptions,
@@ -55,16 +55,13 @@ export async function _createDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  return deserializedResponse as ImagesResponse;
 }
 
 export async function create(
@@ -107,16 +104,13 @@ export async function _createEditDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  return deserializedResponse as ImagesResponse;
 }
 
 export async function createEdit(
@@ -159,16 +153,13 @@ export async function _createVariationDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    created: new Date(result.body["created"]),
-    data: result.body["data"].map((p) => ({
-      url: p["url"],
-      b64Json:
-        typeof p["b64_json"] === "string"
-          ? stringToUint8Array(p["b64_json"], "base64")
-          : p["b64_json"],
-    })),
-  };
+  let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "created",
+    (value) => new Date(value as string)
+  );
+  return deserializedResponse as ImagesResponse;
 }
 
 export async function createVariation(
