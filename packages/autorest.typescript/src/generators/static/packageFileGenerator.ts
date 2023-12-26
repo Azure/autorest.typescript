@@ -95,7 +95,7 @@ function regularAutorestPackage(
       ...(useCoreV2 &&
         coreHttpCompatMode && { "@azure/core-http-compat": "^1.2.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.12.0"
+        "@azure/core-rest-pipeline": "^1.13.0"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "^1.0.0"
