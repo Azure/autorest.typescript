@@ -4,9 +4,10 @@ import MultiPartClientFactory, {
   MultiPartClient
 } from "./generated/payload/multipart/src/index.js";
 import { resolve } from "path";
-import { readFileSync } from "fs";
+// import { readFileSync } from "fs";
+import { readFile } from "fs/promises";
 import { fileURLToPath } from "url";
-import { createFile } from "@azure/core-rest-pipeline";
+// import { createFile } from "@azure/core-rest-pipeline";
 describe.only("MultiPartClient Rest Client", () => {
   let client: MultiPartClient;
 
@@ -18,19 +19,21 @@ describe.only("MultiPartClient Rest Client", () => {
 
   it("client should be created", async () => {
     const root = resolvePath(fileURLToPath(import.meta.url), "../../../temp");
-    console.log(root);
-    const file = readFileSync(resolve(root, "./assets/image.png"));
+    console.log(resolve(root, "./assets/image.png"));
+    const path = resolve(root, "./assets/image.png");
+    const file = await readFile(path);
     // const blob = new File([file]) as any;
     // blob.name = "image.png";
     // blob.type = "application/octet-stream";
-    const images = createFile(file, "image.png", {
-      type: "application/octet-stream"
-    }) as any;
+    // const images = createFile(file, "image.png", {
+    //   type: "application/octet-stream"
+    // }) as any;
     const result = await client.path("/multipart/form-data/mixed-parts").post({
       contentType: "multipart/form-data",
       body: {
         id: "123",
-        profileImage: images
+        // profileImage: images
+        profileImage: file
       }
     });
     assert.strictEqual(result.status, "204");
