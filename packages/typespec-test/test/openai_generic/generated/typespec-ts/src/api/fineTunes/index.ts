@@ -109,6 +109,16 @@ export async function _createDeserialize(
   );
   deserializedResponse = reshape(
     deserializedResponse,
+    "training_files[].createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_files[].status_details",
+    "statusDetails"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
     "validation_files",
     "validationFiles"
   );
@@ -116,6 +126,16 @@ export async function _createDeserialize(
     deserializedResponse,
     "result_files",
     "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "events[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "events[].created_at",
+    (value) => new Date(value as string)
   );
   return deserializedResponse as FineTune;
 }
@@ -146,6 +166,71 @@ export async function _listDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].updated_at",
+    "updatedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].updated_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].training_files",
+    "trainingFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].training_files[].createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].training_files[].status_details",
+    "statusDetails"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].validation_files",
+    "validationFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].result_files",
+    "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].events[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].events[].created_at",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as ListFineTunesResponse;
 }
 
@@ -214,6 +299,16 @@ export async function _retrieveDeserialize(
   );
   deserializedResponse = reshape(
     deserializedResponse,
+    "training_files[].createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_files[].status_details",
+    "statusDetails"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
     "validation_files",
     "validationFiles"
   );
@@ -221,6 +316,16 @@ export async function _retrieveDeserialize(
     deserializedResponse,
     "result_files",
     "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "events[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "events[].created_at",
+    (value) => new Date(value as string)
   );
   return deserializedResponse as FineTune;
 }
@@ -257,6 +362,16 @@ export async function _listEventsDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as ListFineTuneEventsResponse;
 }
 
@@ -326,6 +441,16 @@ export async function _cancelDeserialize(
   );
   deserializedResponse = reshape(
     deserializedResponse,
+    "training_files[].createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "training_files[].status_details",
+    "statusDetails"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
     "validation_files",
     "validationFiles"
   );
@@ -333,6 +458,16 @@ export async function _cancelDeserialize(
     deserializedResponse,
     "result_files",
     "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "events[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "events[].created_at",
+    (value) => new Date(value as string)
   );
   return deserializedResponse as FineTune;
 }

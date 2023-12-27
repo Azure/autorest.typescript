@@ -158,14 +158,8 @@ export async function _listWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    results: result.body["results"].map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"] as any,
-    })),
-    "odata.nextLink": result.body["odata.nextLink"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListWidgetsPagesResults;
 }
 
 export function listWidgetsPages(
@@ -205,14 +199,8 @@ export async function _queryWidgetsPagesDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    results: result.body["results"].map((p) => ({
-      id: p["id"],
-      weight: p["weight"],
-      color: p["color"] as any,
-    })),
-    "odata.nextLink": result.body["odata.nextLink"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as ListWidgetsPagesResults;
 }
 
 export function queryWidgetsPages(
@@ -246,11 +234,8 @@ export async function _getWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"] as any,
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as Widget;
 }
 
 /** Get a widget by ID. */
@@ -283,11 +268,8 @@ export async function _createWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"] as any,
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as Widget;
 }
 
 /**
@@ -326,11 +308,8 @@ export async function _updateWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    weight: result.body["weight"],
-    color: result.body["color"] as any,
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as Widget;
 }
 
 /**
@@ -394,9 +373,8 @@ export async function _analyzeWidgetDeserialize(
     throw createRestError(result);
   }
 
-  return {
-    summary: result.body["summary"],
-  };
+  let deserializedResponse: unknown = result.body;
+  return deserializedResponse as AnalyzeResult;
 }
 
 /** Analyze a widget. The only guarantee is that this method will return a string containing the results of the analysis. */

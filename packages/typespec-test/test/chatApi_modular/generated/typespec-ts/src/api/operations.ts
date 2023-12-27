@@ -17,6 +17,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
+import { reshape } from "@azure/core-util";
 import { CreateStreamingOptions, CreateOptions } from "../models/options.js";
 
 export function _createStreamingSend(
@@ -45,6 +46,21 @@ export async function _createStreamingDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].delta.session_state",
+    "sessionState"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].session_state",
+    "sessionState"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].finish_reason",
+    "finishReason"
+  );
   return deserializedResponse as ChatCompletionChunk;
 }
 
@@ -84,6 +100,21 @@ export async function _createDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].message.session_state",
+    "sessionState"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].session_state",
+    "sessionState"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].finish_reason",
+    "finishReason"
+  );
   return deserializedResponse as ChatCompletion;
 }
 

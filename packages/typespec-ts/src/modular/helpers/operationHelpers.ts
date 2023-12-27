@@ -231,8 +231,11 @@ function deserialize(
       property.type.type === "list" &&
       property.type.elementType?.type === "model"
     ) {
-      if (property.type.name && !visitedTypes.has(property.type.name)) {
-        visitedTypes.add(property.type.name);
+      if (
+        property.type.elementType.name &&
+        !visitedTypes.has(property.type.elementType.name)
+      ) {
+        visitedTypes.add(property.type.elementType.name);
         const propPath = Boolean(objectPath)
           ? `${objectPath}.${property.restApiName}`
           : property.restApiName;

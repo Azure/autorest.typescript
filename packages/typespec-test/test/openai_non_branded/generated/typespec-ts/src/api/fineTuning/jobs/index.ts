@@ -157,6 +157,56 @@ export async function _listDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].finished_at",
+    "finishedAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].finished_at",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].fine_tuned_model",
+    "fineTunedModel"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].organization_id",
+    "organizationId"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].training_file",
+    "trainingFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].validation_file",
+    "validationFile"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].result_files",
+    "resultFiles"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].trained_tokens",
+    "trainedTokens"
+  );
   deserializedResponse = reshape(deserializedResponse, "has_more", "hasMore");
   return deserializedResponse as ListPaginatedFineTuningJobsResponse;
 }
@@ -278,6 +328,16 @@ export async function _listEventsDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    "createdAt"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created_at",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as ListFineTuningJobEventsResponse;
 }
 

@@ -45,6 +45,16 @@ export async function _listDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].created",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].owned_by",
+    "ownedBy"
+  );
   return deserializedResponse as ListModelsResponse;
 }
 

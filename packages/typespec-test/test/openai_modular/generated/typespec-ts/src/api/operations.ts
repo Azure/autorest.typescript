@@ -139,6 +139,46 @@ export async function _getCompletionsDeserialize(
   );
   deserializedResponse = reshape(
     deserializedResponse,
+    "prompt_annotations[].prompt_index",
+    "promptIndex"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations[].content_filter_results",
+    "contentFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations[].content_filter_results.self_harm",
+    "selfHarm"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].content_filter_results",
+    "contentFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].logprobs.token_logprobs",
+    "tokenLogprobs"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].logprobs.top_logprobs",
+    "topLogprobs"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].logprobs.text_offset",
+    "textOffset"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].finish_reason",
+    "finishReason"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
     "usage.completion_tokens",
     "completionTokens"
   );
@@ -233,8 +273,38 @@ export async function _getChatCompletionsDeserialize(
   );
   deserializedResponse = reshape(
     deserializedResponse,
+    "choices[].message.function_call",
+    "functionCall"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].finish_reason",
+    "finishReason"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].content_filter_results",
+    "contentFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].content_filter_results.self_harm",
+    "selfHarm"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
     "prompt_annotations",
     "promptFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations[].prompt_index",
+    "promptIndex"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations[].content_filter_results",
+    "contentFilterResults"
   );
   deserializedResponse = reshape(
     deserializedResponse,
@@ -338,8 +408,38 @@ export async function _getChatCompletionsWithAzureExtensionsDeserialize(
   );
   deserializedResponse = reshape(
     deserializedResponse,
+    "choices[].message.function_call",
+    "functionCall"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].finish_reason",
+    "finishReason"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].content_filter_results",
+    "contentFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "choices[].content_filter_results.self_harm",
+    "selfHarm"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
     "prompt_annotations",
     "promptFilterResults"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations[].prompt_index",
+    "promptIndex"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "prompt_annotations[].content_filter_results",
+    "contentFilterResults"
   );
   deserializedResponse = reshape(
     deserializedResponse,

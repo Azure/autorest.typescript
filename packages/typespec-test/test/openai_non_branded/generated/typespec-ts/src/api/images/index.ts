@@ -60,6 +60,11 @@ export async function _createDeserialize(
     "created",
     (value) => new Date(value as string)
   );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].b64_json",
+    "b64Json"
+  );
   return deserializedResponse as ImagesResponse;
 }
 
@@ -109,6 +114,11 @@ export async function _createEditDeserialize(
     "created",
     (value) => new Date(value as string)
   );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].b64_json",
+    "b64Json"
+  );
   return deserializedResponse as ImagesResponse;
 }
 
@@ -157,6 +167,11 @@ export async function _createVariationDeserialize(
     deserializedResponse,
     "created",
     (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].b64_json",
+    "b64Json"
   );
   return deserializedResponse as ImagesResponse;
 }

@@ -32,7 +32,7 @@ import {
   operationOptionsToRequestParameters,
   createRestError,
 } from "@azure-rest/core-client";
-import { uint8ArrayToString } from "@azure/core-util";
+import { reshape, uint8ArrayToString } from "@azure/core-util";
 import {
   PublishCloudEventOptions,
   PublishCloudEventsOptions,
@@ -197,6 +197,16 @@ export async function _receiveCloudEventsDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].event.data_base64",
+    "dataBase64"
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].event.time",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as ReceiveResult;
 }
 

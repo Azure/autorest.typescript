@@ -51,6 +51,16 @@ export async function _listDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].createdAt",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "data[].status_details",
+    "statusDetails"
+  );
   return deserializedResponse as ListFilesResponse;
 }
 

@@ -420,6 +420,16 @@ export async function _listPoolUsageMetricsDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].endTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as PoolListUsageMetricsResult;
 }
 
@@ -858,6 +868,61 @@ export async function _listPoolsDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastModified",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].allocationStateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].autoScaleRun.timestamp",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.usageStats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.usageStats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.resourceStats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.resourceStats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchPoolListResult;
 }
 
@@ -1759,6 +1824,11 @@ export async function _listSupportedImagesDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].batchSupportEndOfLife",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as AccountListSupportedImagesResult;
 }
 
@@ -4612,6 +4682,46 @@ export async function _listJobsDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastModified",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].previousStateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchJobListResult;
 }
 
@@ -4657,6 +4767,46 @@ export async function _listJobsFromScheduleDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastModified",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].previousStateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchJobListResult;
 }
 
@@ -4707,6 +4857,31 @@ export async function _listJobPreparationAndReleaseTaskStatusDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].jobPreparationTaskExecutionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].jobPreparationTaskExecutionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].jobPreparationTaskExecutionInfo.lastRetryTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].jobReleaseTaskExecutionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].jobReleaseTaskExecutionInfo.endTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchJobListPreparationAndReleaseTaskStatusResult;
 }
 
@@ -4846,6 +5021,16 @@ export async function _listCertificatesDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].previousStateTransitionTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as CertificateListResult;
 }
 
@@ -9006,6 +9191,56 @@ export async function _listJobSchedulesDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastModified",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].previousStateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].schedule.doNotRunUntil",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].schedule.doNotRunAfter",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.nextRunTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchJobScheduleListResult;
 }
 
@@ -9287,6 +9522,56 @@ export async function _listTasksDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastModified",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].previousStateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.lastRetryTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].executionInfo.lastRequeueTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stats.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchTaskListResult;
 }
 
@@ -9533,6 +9818,11 @@ export async function _createTaskCollectionDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastModified",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as TaskAddCollectionResult;
 }
 
@@ -9815,6 +10105,26 @@ export async function _listSubTasksDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].previousStateTransitionTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchTaskListSubtasksResult;
 }
 
@@ -10136,6 +10446,16 @@ export async function _listTaskFilesDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].properties.creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].properties.lastModified",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as NodeFileListResult;
 }
 
@@ -10362,6 +10682,26 @@ export async function _getNodeDeserialize(
   deserializedResponse = reshape(
     deserializedResponse,
     "allocationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "recentTasks[].executionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "recentTasks[].executionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "recentTasks[].executionInfo.lastRetryTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "recentTasks[].executionInfo.lastRequeueTime",
     (value) => new Date(value as string)
   );
   deserializedResponse = reshape(
@@ -10778,6 +11118,61 @@ export async function _listNodesDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].stateTransitionTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].lastBootTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].allocationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].recentTasks[].executionInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].recentTasks[].executionInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].recentTasks[].executionInfo.lastRetryTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].recentTasks[].executionInfo.lastRequeueTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].startTaskInfo.startTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].startTaskInfo.endTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].startTaskInfo.lastRetryTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].nodeAgentInfo.lastUpdateTime",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as BatchNodeListResult;
 }
 
@@ -11091,6 +11486,16 @@ export async function _listNodeFilesDeserialize(
   }
 
   let deserializedResponse: unknown = result.body;
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].properties.creationTime",
+    (value) => new Date(value as string)
+  );
+  deserializedResponse = reshape(
+    deserializedResponse,
+    "value[].properties.lastModified",
+    (value) => new Date(value as string)
+  );
   return deserializedResponse as NodeFileListResult;
 }
 
