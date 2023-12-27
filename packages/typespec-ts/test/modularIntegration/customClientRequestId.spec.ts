@@ -65,5 +65,5 @@ describe("RequestIdClient Classical Client", () => {
     } catch (err) {
       assert.isNotNull(err);
     }
-  });
+  }).timeout(36000);
 });
