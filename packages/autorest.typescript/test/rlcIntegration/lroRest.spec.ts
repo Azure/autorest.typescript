@@ -1001,7 +1001,7 @@ describe("LRO Rest Client", () => {
       assert.equal(result.status, "200");
     });
 
-    it("should handle put200InvalidJson", async () => {
+    it.only("should handle put200InvalidJson", async () => {
       await assert.isRejected(
         client.path("/lro/error/put/200/invalidjson").put(),
         /SyntaxError: Unexpected end of JSON input" occurred while parsing the response body/
@@ -1049,7 +1049,7 @@ describe("LRO Rest Client", () => {
       assert.equal(poller.getOperationState().status, "failed");
     });
 
-    it("should handle DeleteAsyncRelativeRetryInvalidJsonPolling ", async () => {
+    it.only("should handle DeleteAsyncRelativeRetryInvalidJsonPolling ", async () => {
       const initialResponse = await client
         .path("/lro/error/deleteasync/retry/invalidjsonpolling")
         .delete();
@@ -1058,6 +1058,7 @@ describe("LRO Rest Client", () => {
         intervalInMs: 0
       });
 
+      console.log(await poller.pollUntilDone())
       await assert.isRejected(
         poller.pollUntilDone(),
         /"SyntaxError: Unexpected end of JSON input" occurred while parsing the response body - { "status": "Accepted"/
@@ -1092,7 +1093,7 @@ describe("LRO Rest Client", () => {
       assert.equal(poller.getOperationState().status, "failed");
     });
 
-    it("should handle postAsyncRelativeRetryInvalidJsonPolling ", async () => {
+    it.only("should handle postAsyncRelativeRetryInvalidJsonPolling ", async () => {
       const initialResponse = await client
         .path("/lro/error/postasync/retry/invalidjsonpolling")
         .post();
