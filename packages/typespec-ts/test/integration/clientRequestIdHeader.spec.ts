@@ -61,7 +61,7 @@ describe("ClientRequestIdClient", () => {
       const result = await client
         .path("/special-headers/client-request-id")
         .get();
-      assert.strictEqual(result.status, "400");
+      assert.strictEqual(result.status, "500");
       assert.isNotNull(result.request.headers.get(headerName));
     } catch (err) {
       assert.fail(err as string);

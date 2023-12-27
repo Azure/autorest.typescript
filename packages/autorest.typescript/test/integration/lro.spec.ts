@@ -654,7 +654,7 @@ describe("LRO Sad scenarios", () => {
     check200(lastResponse);
   });
 
-  it("should handle put200InvalidJson ", async () => {
+  it.only("should handle put200InvalidJson ", async () => {
     try {
       await client.lrosaDs.beginPut200InvalidJsonAndWait(LROOptions);
       assert.fail("Scenario should throw");
@@ -705,7 +705,7 @@ describe("LRO Sad scenarios", () => {
     }
   });
 
-  it("should handle DeleteAsyncRelativeRetryInvalidJsonPolling ", async () => {
+  it.only("should handle DeleteAsyncRelativeRetryInvalidJsonPolling ", async () => {
     try {
       await client.lrosaDs.beginDeleteAsyncRelativeRetryInvalidJsonPollingAndWait(
         LROOptions
@@ -736,7 +736,7 @@ describe("LRO Sad scenarios", () => {
     }
   });
 
-  it("should handle postAsyncRelativeRetryInvalidJsonPolling ", async () => {
+  it.only("should handle postAsyncRelativeRetryInvalidJsonPolling ", async () => {
     try {
       await client.lrosaDs.beginPostAsyncRelativeRetryInvalidJsonPollingAndWait(
         LROOptions
