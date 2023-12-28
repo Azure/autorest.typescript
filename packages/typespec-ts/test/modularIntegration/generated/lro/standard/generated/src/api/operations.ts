@@ -4,7 +4,7 @@
 import {
   User,
   OperationStatus,
-  ResourceOperationStatus,
+  ResourceOperationStatus
 } from "../models/models.js";
 import {
   CreateOrReplace200Response,
@@ -18,17 +18,17 @@ import {
   ExportOperation202Response,
   ExportOperationDefaultResponse,
   isUnexpected,
-  StandardContext as Client,
+  StandardContext as Client
 } from "../rest/index.js";
 import {
   StreamableMethod,
   operationOptionsToRequestParameters,
-  createRestError,
+  createRestError
 } from "@azure-rest/core-client";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions,
+  ExportOperationOptions
 } from "../models/options.js";
 
 export function _createOrReplaceSend(
@@ -42,12 +42,10 @@ export function _createOrReplaceSend(
   | CreateOrReplaceDefaultResponse
   | CreateOrReplaceLogicalResponse
 > {
-  return context
-    .path("/azure/core/lro/standard/users/{name}", name)
-    .put({
-      ...operationOptionsToRequestParameters(options),
-      body: { role: resource["role"] },
-    });
+  return context.path("/azure/core/lro/standard/users/{name}", name).put({
+    ...operationOptionsToRequestParameters(options),
+    body: { role: resource["role"] }
+  });
 }
 
 export async function _createOrReplaceDeserialize(
@@ -63,7 +61,7 @@ export async function _createOrReplaceDeserialize(
 
   return {
     name: result.body["name"],
-    role: result.body["role"],
+    role: result.body["role"]
   };
 }
 
@@ -105,8 +103,8 @@ export async function _deleteOperationDeserialize(
   return {
     id: result.body["id"],
     status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
-    result: result.body["result"],
+    error: !result.body.error ? undefined : result.body.error
+    // result: result.body["result"],
   };
 }
 
@@ -134,7 +132,7 @@ export function _exportOperationSend(
     .path("/azure/core/lro/standard/users/{name}:export", name)
     .post({
       ...operationOptionsToRequestParameters(options),
-      queryParameters: { format: format },
+      queryParameters: { format: format }
     });
 }
 
@@ -156,8 +154,8 @@ export async function _exportOperationDeserialize(
       ? undefined
       : {
           name: result.body.result?.["name"],
-          resourceUri: result.body.result?.["resourceUri"],
-        },
+          resourceUri: result.body.result?.["resourceUri"]
+        }
   };
 }
 
