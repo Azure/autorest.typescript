@@ -15,7 +15,7 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
-import { serializeChatRequestMessageUnion } from "../utils/serializeUtil.js";
+import { serializeChatRequestMessageUnionUnion } from "../utils/serializeUtil.js";
 import {
   GetAudioTranscriptionAsPlainText200Response,
   GetAudioTranscriptionAsPlainTextDefaultResponse,
@@ -548,7 +548,7 @@ export function _getChatCompletionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnion(p)
+          serializeChatRequestMessageUnionUnion(p)
         ),
         functions: !body["functions"]
           ? body["functions"]
@@ -825,7 +825,7 @@ export function _getChatCompletionsWithAzureExtensionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnion(p)
+          serializeChatRequestMessageUnionUnion(p)
         ),
         functions: !body["functions"]
           ? body["functions"]

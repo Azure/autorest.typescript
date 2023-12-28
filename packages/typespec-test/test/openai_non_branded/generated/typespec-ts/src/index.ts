@@ -45,6 +45,8 @@ export {
   CreateImageVariationRequest,
   CreateModerationRequest,
   CreateModerationResponse,
+  Stop,
+  Prompt,
   AudioTranscriptionsCreateOptions,
   AudioTranslationsCreateOptions,
   ChatCompletionsCreateOptions,

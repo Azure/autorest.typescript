@@ -286,6 +286,9 @@ function processModelProperties(
     if (!isSchemaProperty(context.program, property)) {
       continue;
     }
+    if (property.name === "toolChoice") {
+      property;
+    }
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }
@@ -304,12 +307,15 @@ function processModelProperties(
     if (!hasDiscriminator) {
       newValue.properties.push({ ...discriminatorInfo });
     }
-    newValue.alias = `${newValue.name}Parent`;
-    newValue.isPolyBaseModel = true;
-    discriminatorInfo?.aliases.push(`${newValue.alias}`);
-    newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
-    newValue.discriminator = discriminatorInfo.restApiName;
-    newValue.types = discriminatorInfo?.discriminatedSubtypes;
+    if (newValue.name && newValue.name !== "") {
+      discriminatorInfo?.aliases.push(`${newValue.name}`);
+      newValue.alias = `${newValue.name}`;
+      newValue.name = `${newValue.name}Union`;
+      newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
+      newValue.types = discriminatorInfo?.discriminatedSubtypes;
+      newValue.isPolyBaseModel = true;
+      newValue.discriminator = discriminatorInfo.restApiName;
+    }
   }
 }
 
@@ -1395,14 +1401,6 @@ function emitUnion(
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
-    // if (unionName === "WidgetData") {
-    //   const discriminator = getDiscriminator(context.program, type);
-    //   if (discriminator) {
-    //     discriminator;
-    //     const discriminatedUnion = getDiscriminatedUnion(type, discriminator);
-    //     discriminator.propertyName;
-    //   }
-    // }
     const discriminatorPropertyName = getDiscriminator(
       context.program,
       type
@@ -1426,9 +1424,10 @@ function emitUnion(
       xmlMetadata: {},
       usage,
       discriminator: discriminatorPropertyName,
-      alias: unionName === "" ? undefined : unionName,
+      alias:
+        unionName === "" || unionName === undefined ? undefined : unionName,
       aliasType:
-        unionName === ""
+        unionName === "" || unionName === undefined
           ? undefined
           : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };

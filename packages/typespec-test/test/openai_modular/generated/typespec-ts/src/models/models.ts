@@ -501,7 +501,7 @@ export interface ChatCompletionsOptions {
    * the behavior of the assistant, followed by alternating messages between the User and
    * Assistant roles.
    */
-  messages: ChatRequestMessage[];
+  messages: ChatRequestMessageUnion[];
   /** A list of functions the model may generate JSON inputs for. */
   functions?: FunctionDefinition[];
   /**
@@ -578,7 +578,7 @@ export interface ChatCompletionsOptions {
    *   The configuration entries for Azure OpenAI chat extensions that use them.
    *   This additional specification is only compatible with Azure OpenAI.
    */
-  dataSources?: AzureChatExtensionConfiguration[];
+  dataSources?: AzureChatExtensionConfigurationUnion[];
   /** If provided, the configuration options for available Azure OpenAI chat enhancements. */
   enhancements?: AzureChatEnhancementConfiguration;
   /**
@@ -588,15 +588,17 @@ export interface ChatCompletionsOptions {
    */
   seed?: number;
   /** An object specifying the format that the model must output. Used to enable JSON mode. */
-  responseFormat?: ChatCompletionsResponseFormat;
+  responseFormat?: ChatCompletionsResponseFormatUnion;
   /** The available tool definitions that the chat completions request can use, including caller-defined functions. */
-  tools?: ChatCompletionsToolDefinition[];
+  tools?: ChatCompletionsToolDefinitionUnion[];
   /** If specified, the model will configure which of the provided tools it can use for the chat completions response. */
-  toolChoice?: ChatCompletionsNamedFunctionToolSelection;
+  toolChoice?:
+    | ChatCompletionsToolSelectionPreset
+    | ChatCompletionsNamedToolSelectionUnion;
 }
 
 /** An abstract representation of a chat message as provided in a request. */
-export interface ChatRequestMessageParent {
+export interface ChatRequestMessage {
   /** the discriminator possible values: system, user, assistant, tool, function */
   role: ChatRole;
 }
@@ -605,7 +607,7 @@ export interface ChatRequestMessageParent {
  * A request chat message containing system instructions that influence how the model will generate a chat completions
  * response.
  */
-export interface ChatRequestSystemMessage extends ChatRequestMessageParent {
+export interface ChatRequestSystemMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'system' for system messages. */
   role: "system";
   /** The contents of the system message. */
@@ -615,24 +617,23 @@ export interface ChatRequestSystemMessage extends ChatRequestMessageParent {
 }
 
 /** A request chat message representing user input to the assistant. */
-export interface ChatRequestUserMessage extends ChatRequestMessageParent {
+export interface ChatRequestUserMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'user' for user messages. */
   role: "user";
   /** The contents of the user message, with available input types varying by selected model. */
-  content: string | ChatMessageContentItem[];
+  content: string | ChatMessageContentItemUnion[];
   /** An optional name for the participant. */
   name?: string;
 }
 
 /** An abstract representation of a structured content item within a chat message. */
-export interface ChatMessageContentItemParent {
+export interface ChatMessageContentItem {
   /** the discriminator possible values: text, image_url */
   type: string;
 }
 
 /** A structured chat content item containing plain text. */
-export interface ChatMessageTextContentItem
-  extends ChatMessageContentItemParent {
+export interface ChatMessageTextContentItem extends ChatMessageContentItem {
   /** The discriminated object type: always 'text' for this type. */
   type: "text";
   /** The content of the message. */
@@ -640,8 +641,7 @@ export interface ChatMessageTextContentItem
 }
 
 /** A structured chat content item containing an image reference. */
-export interface ChatMessageImageContentItem
-  extends ChatMessageContentItemParent {
+export interface ChatMessageImageContentItem extends ChatMessageContentItem {
   /** The discriminated object type: always 'image_url' for this type. */
   type: "image_url";
   /** An internet location, which must be accessible to the model,from which the image may be retrieved. */
@@ -664,7 +664,7 @@ export interface ChatMessageImageUrl {
 export type ChatMessageImageDetailLevel = string;
 
 /** A request chat message representing response or action from the assistant. */
-export interface ChatRequestAssistantMessage extends ChatRequestMessageParent {
+export interface ChatRequestAssistantMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'assistant' for assistant messages. */
   role: "assistant";
   /** The content of the message. */
@@ -675,7 +675,7 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessageParent {
    * The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
    * completions request to resolve as configured.
    */
-  toolCalls?: ChatCompletionsToolCall[];
+  toolCalls?: ChatCompletionsToolCallUnion[];
   /**
    * The function call that must be resolved and have its output appended to subsequent input messages for the chat
    * completions request to resolve as configured.
@@ -687,7 +687,7 @@ export interface ChatRequestAssistantMessage extends ChatRequestMessageParent {
  * An abstract representation of a tool call that must be resolved in a subsequent request to perform the requested
  * chat completion.
  */
-export interface ChatCompletionsToolCallParent {
+export interface ChatCompletionsToolCall {
   /** the discriminator possible values: function */
   type: string;
   /** The ID of the tool call. */
@@ -699,7 +699,7 @@ export interface ChatCompletionsToolCallParent {
  * a function invocation needed for a subsequent chat completions request to resolve.
  */
 export interface ChatCompletionsFunctionToolCall
-  extends ChatCompletionsToolCallParent {
+  extends ChatCompletionsToolCall {
   /** The type of tool call, in this case always 'function'. */
   type: "function";
   /** The details of the function invocation requested by the tool call. */
@@ -720,7 +720,7 @@ export interface FunctionCall {
 }
 
 /** A request chat message representing requested output from a configured tool. */
-export interface ChatRequestToolMessage extends ChatRequestMessageParent {
+export interface ChatRequestToolMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'tool' for tool messages. */
   role: "tool";
   /** The content of the message. */
@@ -730,7 +730,7 @@ export interface ChatRequestToolMessage extends ChatRequestMessageParent {
 }
 
 /** A request chat message representing requested output from a configured function. */
-export interface ChatRequestFunctionMessage extends ChatRequestMessageParent {
+export interface ChatRequestFunctionMessage extends ChatRequestMessage {
   /** The chat role associated with this message, which is always 'function' for function messages. */
   role: "function";
   /** The name of the function that was called to produce output. */
@@ -777,7 +777,7 @@ export interface FunctionName {
  *   completions request that should use Azure OpenAI chat extensions to augment the response behavior.
  *   The use of this configuration is compatible only with Azure OpenAI.
  */
-export interface AzureChatExtensionConfigurationParent {
+export interface AzureChatExtensionConfiguration {
   /** the discriminator possible values: AzureCognitiveSearch, AzureMLIndex, AzureCosmosDB, Elasticsearch, Pinecone */
   type: AzureChatExtensionType;
 }
@@ -787,7 +787,7 @@ export interface AzureChatExtensionConfigurationParent {
  * extension.
  */
 export interface AzureCognitiveSearchChatExtensionConfiguration
-  extends AzureChatExtensionConfigurationParent {
+  extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Azure Cognitive Search.
@@ -806,7 +806,7 @@ export interface AzureCognitiveSearchChatExtensionParameters {
    * If not otherwise provided, On Your Data will attempt to use System Managed Identity (default credential)
    * authentication.
    */
-  authentication?: OnYourDataAuthenticationOptions;
+  authentication?: OnYourDataAuthenticationOptionsUnion;
   /** The configured top number of documents to feature for the configured query. */
   topNDocuments?: number;
   /** Whether queries should be restricted to use of indexed data. */
@@ -834,18 +834,18 @@ export interface AzureCognitiveSearchChatExtensionParameters {
   /** When using embeddings, specifies the API key to use with the provided embeddings endpoint. */
   embeddingKey?: string;
   /** The embedding dependency for vector search. */
-  embeddingDependency?: OnYourDataVectorizationSource;
+  embeddingDependency?: OnYourDataVectorizationSourceUnion;
 }
 
 /** The authentication options for Azure OpenAI On Your Data. */
-export interface OnYourDataAuthenticationOptionsParent {
+export interface OnYourDataAuthenticationOptions {
   /** the discriminator possible values: APIKey, ConnectionString, KeyAndKeyId, SystemAssignedManagedIdentity, UserAssignedManagedIdentity */
   type: OnYourDataAuthenticationType;
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using an API key. */
 export interface OnYourDataApiKeyAuthenticationOptions
-  extends OnYourDataAuthenticationOptionsParent {
+  extends OnYourDataAuthenticationOptions {
   /** The authentication type of API key. */
   type: "APIKey";
   /** The API key to use for authentication. */
@@ -854,7 +854,7 @@ export interface OnYourDataApiKeyAuthenticationOptions
 
 /** The authentication options for Azure OpenAI On Your Data when using a connection string. */
 export interface OnYourDataConnectionStringAuthenticationOptions
-  extends OnYourDataAuthenticationOptionsParent {
+  extends OnYourDataAuthenticationOptions {
   /** The authentication type of connection string. */
   type: "ConnectionString";
   /** The connection string to use for authentication. */
@@ -863,7 +863,7 @@ export interface OnYourDataConnectionStringAuthenticationOptions
 
 /** The authentication options for Azure OpenAI On Your Data when using an Elasticsearch key and key ID pair. */
 export interface OnYourDataKeyAndKeyIdAuthenticationOptions
-  extends OnYourDataAuthenticationOptionsParent {
+  extends OnYourDataAuthenticationOptions {
   /** The authentication type of Elasticsearch key and key ID pair. */
   type: "KeyAndKeyId";
   /** The key to use for authentication. */
@@ -874,14 +874,14 @@ export interface OnYourDataKeyAndKeyIdAuthenticationOptions
 
 /** The authentication options for Azure OpenAI On Your Data when using a system-assigned managed identity. */
 export interface OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
-  extends OnYourDataAuthenticationOptionsParent {
+  extends OnYourDataAuthenticationOptions {
   /** The authentication type of system-assigned managed identity. */
   type: "SystemAssignedManagedIdentity";
 }
 
 /** The authentication options for Azure OpenAI On Your Data when using a user-assigned managed identity. */
 export interface OnYourDataUserAssignedManagedIdentityAuthenticationOptions
-  extends OnYourDataAuthenticationOptionsParent {
+  extends OnYourDataAuthenticationOptions {
   /** The authentication type of user-assigned managed identity. */
   type: "UserAssignedManagedIdentity";
   /** The resource ID of the user-assigned managed identity to use for authentication. */
@@ -915,7 +915,7 @@ export interface AzureCognitiveSearchIndexFieldMappingOptions {
 export type AzureCognitiveSearchQueryType = string;
 
 /** An abstract representation of a vectorization source for Azure OpenAI On Your Data with vector search. */
-export interface OnYourDataVectorizationSourceParent {
+export interface OnYourDataVectorizationSource {
   /** the discriminator possible values: Endpoint, DeploymentName, ModelId */
   type: OnYourDataVectorizationSourceType;
 }
@@ -925,13 +925,13 @@ export interface OnYourDataVectorizationSourceParent {
  * on a public Azure OpenAI endpoint call for embeddings.
  */
 export interface OnYourDataEndpointVectorizationSource
-  extends OnYourDataVectorizationSourceParent {
+  extends OnYourDataVectorizationSource {
   /** The type of vectorization source to use. Always 'Endpoint' for this type. */
   type: "Endpoint";
   /** Specifies the resource endpoint URL from which embeddings should be retrieved. It should be in the format of https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings. The api-version query parameter is not allowed. */
   endpoint: string;
   /** Specifies the authentication options to use when retrieving embeddings from the specified endpoint. */
-  authentication: OnYourDataAuthenticationOptions;
+  authentication: OnYourDataAuthenticationOptionsUnion;
 }
 
 /**
@@ -939,7 +939,7 @@ export interface OnYourDataEndpointVectorizationSource
  * on an internal embeddings model deployment name in the same Azure OpenAI resource.
  */
 export interface OnYourDataDeploymentNameVectorizationSource
-  extends OnYourDataVectorizationSourceParent {
+  extends OnYourDataVectorizationSource {
   /** The type of vectorization source to use. Always 'DeploymentName' for this type. */
   type: "DeploymentName";
   /** The embedding model deployment name within the same Azure OpenAI resource. This enables you to use vector search without Azure OpenAI api-key and without Azure OpenAI public network access. */
@@ -951,7 +951,7 @@ export interface OnYourDataDeploymentNameVectorizationSource
  * on a search service model ID. Currently only supported by Elasticsearch®.
  */
 export interface OnYourDataModelIdVectorizationSource
-  extends OnYourDataVectorizationSourceParent {
+  extends OnYourDataVectorizationSource {
   /** The type of vectorization source to use. Always 'ModelId' for this type. */
   type: "ModelId";
   /** The embedding model ID build inside the search service. Currently only supported by Elasticsearch®. */
@@ -970,7 +970,7 @@ export type OnYourDataVectorizationSourceType = string;
  * OpenAI chat extension.
  */
 export interface AzureMachineLearningIndexChatExtensionConfiguration
-  extends AzureChatExtensionConfigurationParent {
+  extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Azure Machine Learning vector index.
@@ -989,7 +989,7 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
    * If not otherwise provided, On Your Data will attempt to use System Managed Identity (default credential)
    * authentication.
    */
-  authentication?: OnYourDataAuthenticationOptions;
+  authentication?: OnYourDataAuthenticationOptionsUnion;
   /** The configured top number of documents to feature for the configured query. */
   topNDocuments?: number;
   /** Whether queries should be restricted to use of indexed data. */
@@ -1013,7 +1013,7 @@ export interface AzureMachineLearningIndexChatExtensionParameters {
  * extension.
  */
 export interface AzureCosmosDBChatExtensionConfiguration
-  extends AzureChatExtensionConfigurationParent {
+  extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Azure Cosmos DB.
@@ -1035,7 +1035,7 @@ export interface AzureCosmosDBChatExtensionParameters {
    * If not otherwise provided, On Your Data will attempt to use System Managed Identity (default credential)
    * authentication.
    */
-  authentication?: OnYourDataAuthenticationOptions;
+  authentication?: OnYourDataAuthenticationOptionsUnion;
   /** The configured top number of documents to feature for the configured query. */
   topNDocuments?: number;
   /** Whether queries should be restricted to use of indexed data. */
@@ -1053,7 +1053,7 @@ export interface AzureCosmosDBChatExtensionParameters {
   /** Customized field mapping behavior to use when interacting with the search index. */
   fieldsMapping: AzureCosmosDBFieldMappingOptions;
   /** The embedding dependency for vector search. */
-  embeddingDependency?: OnYourDataVectorizationSource;
+  embeddingDependency?: OnYourDataVectorizationSourceUnion;
 }
 
 /** Optional settings to control how fields are processed when using a configured Azure Cosmos DB resource. */
@@ -1067,7 +1067,7 @@ export interface AzureCosmosDBFieldMappingOptions {
  * extension.
  */
 export interface ElasticsearchChatExtensionConfiguration
-  extends AzureChatExtensionConfigurationParent {
+  extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Elasticsearch®.
@@ -1086,7 +1086,7 @@ export interface ElasticsearchChatExtensionParameters {
    * If not otherwise provided, On Your Data will attempt to use System Managed Identity (default credential)
    * authentication.
    */
-  authentication?: OnYourDataAuthenticationOptions;
+  authentication?: OnYourDataAuthenticationOptionsUnion;
   /** The configured top number of documents to feature for the configured query. */
   topNDocuments?: number;
   /** Whether queries should be restricted to use of indexed data. */
@@ -1104,7 +1104,7 @@ export interface ElasticsearchChatExtensionParameters {
   /** The query type of Elasticsearch®. */
   queryType?: ElasticsearchQueryType;
   /** The embedding dependency for vector search. */
-  embeddingDependency?: OnYourDataVectorizationSource;
+  embeddingDependency?: OnYourDataVectorizationSourceUnion;
 }
 
 /** Optional settings to control how fields are processed when using a configured Elasticsearch® resource. */
@@ -1132,7 +1132,7 @@ export type ElasticsearchQueryType = string;
  * extension.
  */
 export interface PineconeChatExtensionConfiguration
-  extends AzureChatExtensionConfigurationParent {
+  extends AzureChatExtensionConfiguration {
   /**
    * The type label to use when configuring Azure OpenAI chat extensions. This should typically not be changed from its
    * default value for Pinecone.
@@ -1151,7 +1151,7 @@ export interface PineconeChatExtensionParameters {
    * If not otherwise provided, On Your Data will attempt to use System Managed Identity (default credential)
    * authentication.
    */
-  authentication?: OnYourDataAuthenticationOptions;
+  authentication?: OnYourDataAuthenticationOptionsUnion;
   /** The configured top number of documents to feature for the configured query. */
   topNDocuments?: number;
   /** Whether queries should be restricted to use of indexed data. */
@@ -1167,7 +1167,7 @@ export interface PineconeChatExtensionParameters {
   /** Customized field mapping behavior to use when interacting with the search index. */
   fieldsMapping: PineconeFieldMappingOptions;
   /** The embedding dependency for vector search. */
-  embeddingDependency?: OnYourDataVectorizationSource;
+  embeddingDependency?: OnYourDataVectorizationSourceUnion;
 }
 
 /** Optional settings to control how fields are processed when using a configured Pinecone resource. */
@@ -1220,7 +1220,7 @@ export interface AzureChatOCREnhancementConfiguration {
  * An abstract representation of a response format configuration usable by Chat Completions. Can be used to enable JSON
  * mode.
  */
-export interface ChatCompletionsResponseFormatParent {
+export interface ChatCompletionsResponseFormat {
   /** the discriminator possible values: text, json_object */
   type: string;
 }
@@ -1230,27 +1230,27 @@ export interface ChatCompletionsResponseFormatParent {
  * content that adheres to a specific schema.
  */
 export interface ChatCompletionsTextResponseFormat
-  extends ChatCompletionsResponseFormatParent {
+  extends ChatCompletionsResponseFormat {
   /** The discriminated object type, which is always 'text' for this format. */
   type: "text";
 }
 
 /** A response format for Chat Completions that restricts responses to emitting valid JSON objects. */
 export interface ChatCompletionsJsonResponseFormat
-  extends ChatCompletionsResponseFormatParent {
+  extends ChatCompletionsResponseFormat {
   /** The discriminated object type, which is always 'json_object' for this format. */
   type: "json_object";
 }
 
 /** An abstract representation of a tool that can be used by the model to improve a chat completions response. */
-export interface ChatCompletionsToolDefinitionParent {
+export interface ChatCompletionsToolDefinition {
   /** the discriminator possible values: function */
   type: string;
 }
 
 /** The definition information for a chat completions function tool that can call a function in response to a tool call. */
 export interface ChatCompletionsFunctionToolDefinition
-  extends ChatCompletionsToolDefinitionParent {
+  extends ChatCompletionsToolDefinition {
   /** The object name, which is always 'function'. */
   type: "function";
   /** The function definition details for the function tool. */
@@ -1262,14 +1262,14 @@ export interface ChatCompletionsFunctionToolDefinition
 export type ChatCompletionsToolSelectionPreset = string;
 
 /** An abstract representation of an explicit, named tool selection to use for a chat completions request. */
-export interface ChatCompletionsNamedToolSelectionParent {
+export interface ChatCompletionsNamedToolSelection {
   /** the discriminator possible values: function */
   type: string;
 }
 
 /** A tool selection of a specific, named function tool that will limit chat completions to using the named function. */
 export interface ChatCompletionsNamedFunctionToolSelection
-  extends ChatCompletionsNamedToolSelectionParent {
+  extends ChatCompletionsNamedToolSelection {
   /** The object type, which is always 'function'. */
   type: "function";
   /** The name of the function that should be called. */
@@ -1325,7 +1325,7 @@ export interface ChatChoice {
    * The reason the model stopped generating tokens, together with any applicable details.
    * This structured representation replaces 'finish_reason' for some models.
    */
-  finishDetails?: ChatFinishDetails;
+  finishDetails?: ChatFinishDetailsUnion;
   /** The delta message content for a streaming response. */
   delta?: ChatResponseMessage;
   /**
@@ -1352,7 +1352,7 @@ export interface ChatResponseMessage {
    * The tool calls that must be resolved and have their outputs appended to subsequent input messages for the chat
    * completions request to resolve as configured.
    */
-  toolCalls?: ChatCompletionsToolCall[];
+  toolCalls?: ChatCompletionsToolCallUnion[];
   /**
    * The function call that must be resolved and have its output appended to subsequent input messages for the chat
    * completions request to resolve as configured.
@@ -1381,13 +1381,13 @@ export interface AzureChatExtensionsMessageContext {
 }
 
 /** An abstract representation of structured information about why a chat completions response terminated. */
-export interface ChatFinishDetailsParent {
+export interface ChatFinishDetails {
   /** the discriminator possible values: stop, max_tokens */
   type: string;
 }
 
 /** A structured representation of a stop reason that signifies natural termination by the model. */
-export interface StopFinishDetails extends ChatFinishDetailsParent {
+export interface StopFinishDetails extends ChatFinishDetails {
   /** The object type, which is always 'stop' for this object. */
   type: "stop";
   /** The token sequence that the model terminated with. */
@@ -1398,7 +1398,7 @@ export interface StopFinishDetails extends ChatFinishDetailsParent {
  * A structured representation of a stop reason that signifies a token limit was reached before the model could naturally
  * complete.
  */
-export interface MaxTokensFinishDetails extends ChatFinishDetailsParent {
+export interface MaxTokensFinishDetails extends ChatFinishDetails {
   /** The object type, which is always 'max_tokens' for this object. */
   type: "max_tokens";
 }
@@ -1590,60 +1590,60 @@ export interface EmbeddingsUsage {
   totalTokens: number;
 }
 
-/** Alias for ChatRequestMessage */
-export type ChatRequestMessage =
+/** Alias for ChatRequestMessageUnion */
+export type ChatRequestMessageUnion =
   | ChatRequestSystemMessage
   | ChatRequestUserMessage
   | ChatRequestAssistantMessage
   | ChatRequestToolMessage
   | ChatRequestFunctionMessage
-  | ChatRequestMessageParent;
-/** Alias for ChatMessageContentItem */
-export type ChatMessageContentItem =
+  | ChatRequestMessage;
+/** Alias for ChatMessageContentItemUnion */
+export type ChatMessageContentItemUnion =
   | ChatMessageTextContentItem
   | ChatMessageImageContentItem
-  | ChatMessageContentItemParent;
-/** Alias for ChatCompletionsToolCall */
-export type ChatCompletionsToolCall =
+  | ChatMessageContentItem;
+/** Alias for ChatCompletionsToolCallUnion */
+export type ChatCompletionsToolCallUnion =
   | ChatCompletionsFunctionToolCall
-  | ChatCompletionsToolCallParent;
-/** Alias for AzureChatExtensionConfiguration */
-export type AzureChatExtensionConfiguration =
+  | ChatCompletionsToolCall;
+/** Alias for AzureChatExtensionConfigurationUnion */
+export type AzureChatExtensionConfigurationUnion =
   | AzureCognitiveSearchChatExtensionConfiguration
   | AzureMachineLearningIndexChatExtensionConfiguration
   | AzureCosmosDBChatExtensionConfiguration
   | ElasticsearchChatExtensionConfiguration
   | PineconeChatExtensionConfiguration
-  | AzureChatExtensionConfigurationParent;
-/** Alias for OnYourDataAuthenticationOptions */
-export type OnYourDataAuthenticationOptions =
+  | AzureChatExtensionConfiguration;
+/** Alias for OnYourDataAuthenticationOptionsUnion */
+export type OnYourDataAuthenticationOptionsUnion =
   | OnYourDataApiKeyAuthenticationOptions
   | OnYourDataConnectionStringAuthenticationOptions
   | OnYourDataKeyAndKeyIdAuthenticationOptions
   | OnYourDataSystemAssignedManagedIdentityAuthenticationOptions
   | OnYourDataUserAssignedManagedIdentityAuthenticationOptions
-  | OnYourDataAuthenticationOptionsParent;
-/** Alias for OnYourDataVectorizationSource */
-export type OnYourDataVectorizationSource =
+  | OnYourDataAuthenticationOptions;
+/** Alias for OnYourDataVectorizationSourceUnion */
+export type OnYourDataVectorizationSourceUnion =
   | OnYourDataEndpointVectorizationSource
   | OnYourDataDeploymentNameVectorizationSource
   | OnYourDataModelIdVectorizationSource
-  | OnYourDataVectorizationSourceParent;
-/** Alias for ChatCompletionsResponseFormat */
-export type ChatCompletionsResponseFormat =
+  | OnYourDataVectorizationSource;
+/** Alias for ChatCompletionsResponseFormatUnion */
+export type ChatCompletionsResponseFormatUnion =
   | ChatCompletionsTextResponseFormat
   | ChatCompletionsJsonResponseFormat
-  | ChatCompletionsResponseFormatParent;
-/** Alias for ChatCompletionsToolDefinition */
-export type ChatCompletionsToolDefinition =
+  | ChatCompletionsResponseFormat;
+/** Alias for ChatCompletionsToolDefinitionUnion */
+export type ChatCompletionsToolDefinitionUnion =
   | ChatCompletionsFunctionToolDefinition
-  | ChatCompletionsToolDefinitionParent;
-/** Alias for ChatCompletionsNamedToolSelection */
-export type ChatCompletionsNamedToolSelection =
+  | ChatCompletionsToolDefinition;
+/** Alias for ChatCompletionsNamedToolSelectionUnion */
+export type ChatCompletionsNamedToolSelectionUnion =
   | ChatCompletionsNamedFunctionToolSelection
-  | ChatCompletionsNamedToolSelectionParent;
-/** Alias for ChatFinishDetails */
-export type ChatFinishDetails =
+  | ChatCompletionsNamedToolSelection;
+/** Alias for ChatFinishDetailsUnion */
+export type ChatFinishDetailsUnion =
   | StopFinishDetails
   | MaxTokensFinishDetails
-  | ChatFinishDetailsParent;
+  | ChatFinishDetails;

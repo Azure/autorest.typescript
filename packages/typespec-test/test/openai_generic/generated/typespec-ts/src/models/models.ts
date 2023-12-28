@@ -972,7 +972,7 @@ export interface CreateModerationResponse {
   }[];
 }
 
-/** Base type for Stop */
+/** Alias for Stop */
 export type Stop = string | string[];
-/** Base type for Prompt */
+/** Alias for Prompt */
 export type Prompt = string | string[] | number[] | number[][];

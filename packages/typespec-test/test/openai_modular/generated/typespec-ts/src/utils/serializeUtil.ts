@@ -13,9 +13,9 @@ import {
   ChatRequestUserMessage,
   ChatRequestAssistantMessage,
   ChatRequestToolMessage,
-  ChatRequestMessage,
+  ChatRequestMessageUnion,
   ChatMessageImageContentItem,
-  ChatMessageContentItem,
+  ChatMessageContentItemUnion,
 } from "../models/models.js";
 
 /** serialize function for ChatRequestUserMessage */
@@ -58,9 +58,9 @@ function serializeChatRequestToolMessage(
   };
 }
 
-/** serialize function for ChatRequestMessage */
-export function serializeChatRequestMessageUnion(
-  obj: ChatRequestMessage
+/** serialize function for ChatRequestMessageUnion */
+export function serializeChatRequestMessageUnionUnion(
+  obj: ChatRequestMessageUnion
 ): ChatRequestMessageRest {
   switch (obj.role) {
     case "user":
@@ -86,9 +86,9 @@ function serializeChatMessageImageContentItem(
   };
 }
 
-/** serialize function for ChatMessageContentItem */
-export function serializeChatMessageContentItemUnion(
-  obj: ChatMessageContentItem
+/** serialize function for ChatMessageContentItemUnion */
+export function serializeChatMessageContentItemUnionUnion(
+  obj: ChatMessageContentItemUnion
 ): ChatMessageContentItemRest {
   switch (obj.type) {
     case "image_url":

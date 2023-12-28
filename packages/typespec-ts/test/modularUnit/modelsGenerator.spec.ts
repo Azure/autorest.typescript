@@ -1082,25 +1082,25 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface PetParent {
+      export interface Pet {
         /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends PetParent {
+      export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends PetParent {
+      export interface Dog extends Pet {
         kind: "dog";
         bark: string;
       }
       
-      /** Alias for Pet */
-      export type Pet = Cat | Dog | PetParent;`
+      /** Alias for PetUnion */
+      export type PetUnion = Cat | Dog | Pet;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1171,25 +1171,25 @@ describe("inheritance & polymorphism", () => {
     assertEqualContent(
       modelFile?.getFullText()!,
       `
-      export interface PetParent {
+      export interface Pet {
         /** the discriminator possible values: cat, dog */
         kind: string;
         name: string;
         weight?: number;
       }
 
-      export interface Cat extends PetParent {
+      export interface Cat extends Pet {
         kind: "cat";
         meow: number;
       }
 
-      export interface Dog extends PetParent {
+      export interface Dog extends Pet {
         kind: "dog";
         bark: string;
       }
       
-      /** Alias for Pet */
-      export type Pet = Cat | Dog | PetParent;`
+      /** Alias for PetUnion */
+      export type PetUnion = Cat | Dog | Pet;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1213,7 +1213,7 @@ describe("inheritance & polymorphism", () => {
           .get({ ...operationOptionsToRequestParameters(options) });
       }
       
-      export async function _readDeserialize(result: Read200Response): Promise<Pet> {
+      export async function _readDeserialize(result: Read200Response): Promise<PetUnion> {
         if (result.status !== "200") {
           throw createRestError(result);
         }

@@ -211,15 +211,15 @@ function getTypeUnionName(
   }
   if (type.name) {
     const typeName =
-      type.name +
+      (fromRest && type.alias ? type.alias : type.name) +
       (fromRest ? (serializeType === "serialize" ? "Rest" : "Output") : "");
     if (fromRest && runtimeImports) {
       addImportToSpecifier(
         "rlcIndex",
         runtimeImports,
-        type.name +
+        (type.alias ?? type.name) +
           (serializeType === "serialize"
-            ? " as " + type.name + "Rest"
+            ? " as " + (type.alias ?? type.name) + "Rest"
             : "Output")
       );
     } else if (runtimeImports) {
@@ -234,7 +234,7 @@ function getTypeUnionName(
           addImportToSpecifier(
             "rlcIndex",
             runtimeImports,
-            t.elementType.name +
+            (t.elementType.alias ?? t.elementType.name) +
               (serializeType === "serialize"
                 ? " as " + t.elementType.name + "Rest"
                 : "Output")
@@ -247,7 +247,7 @@ function getTypeUnionName(
           );
         }
         return (
-          t.elementType.name +
+          (t.elementType.alias ?? t.elementType.name) +
           (fromRest
             ? serializeType === "serialize"
               ? "Rest"
@@ -260,16 +260,16 @@ function getTypeUnionName(
         addImportToSpecifier(
           "rlcIndex",
           runtimeImports,
-          t.name +
+          (t.alias ?? t.name) +
             (serializeType === "serialize"
-              ? " as " + t.name + "Rest"
+              ? " as " + (t.alias ?? t.name) + "Rest"
               : "Output")
         );
       } else if (t.name && runtimeImports) {
         addImportToSpecifier("modularModel", runtimeImports, t.name);
       }
       return t.name
-        ? t.name +
+        ? (fromRest && t.alias ? t.alias : t.name) +
             (fromRest
               ? serializeType === "serialize"
                 ? "Rest"

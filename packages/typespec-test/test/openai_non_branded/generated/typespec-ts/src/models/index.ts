@@ -44,6 +44,8 @@ export {
   CreateImageVariationRequest,
   CreateModerationRequest,
   CreateModerationResponse,
+  Stop,
+  Prompt,
 } from "./models.js";
 export {
   AudioTranscriptionsCreateOptions,
