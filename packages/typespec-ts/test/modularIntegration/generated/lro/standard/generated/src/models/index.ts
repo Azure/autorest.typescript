@@ -1,15 +1,9 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export {
-  User,
-  ExportedUser,
-  OperationStatus,
-  OperationState,
-  ResourceOperationStatus,
-} from "./models.js";
+export { User, ExportedUser } from "./models.js";
 export {
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions,
+  ExportOperationOptions
 } from "./options.js";

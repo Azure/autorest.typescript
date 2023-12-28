@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  User,
-  OperationStatus,
-  ResourceOperationStatus
-} from "../models/models.js";
+import { User, ExportedUser } from "../models/models.js";
 import {
   CreateOrReplace200Response,
   CreateOrReplace201Response,
@@ -30,6 +26,8 @@ import {
   DeleteOperationOptions,
   ExportOperationOptions
 } from "../models/options.js";
+import { OperationState, PromisePollerLike } from "@azure/core-lro";
+import { getLongRunningPoller } from "./pollingHelpers.js";
 
 export function _createOrReplaceSend(
   context: Client,
@@ -66,14 +64,22 @@ export async function _createOrReplaceDeserialize(
 }
 
 /** Creates or replaces a User */
-export async function createOrReplace(
+export function createOrReplace(
   context: Client,
   name: string,
   resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
-): Promise<User> {
-  const result = await _createOrReplaceSend(context, name, resource, options);
-  return _createOrReplaceDeserialize(result);
+): PromisePollerLike<OperationState<User>, User> {
+  return getLongRunningPoller(
+    context,
+    () => _createOrReplaceSend(context, name, resource, options),
+    _createOrReplaceDeserialize,
+    {
+      method: "PUT",
+      url: "/azure/core/lro/standard/users/{name}",
+      updateIntervalInMs: options?.updateIntervalInMs
+    }
+  ) as PromisePollerLike<OperationState<User>, User>;
 }
 
 export function _deleteOperationSend(
@@ -95,27 +101,30 @@ export async function _deleteOperationDeserialize(
     | DeleteOperation202Response
     | DeleteOperationDefaultResponse
     | DeleteLogicalResponse
-): Promise<OperationStatus> {
+): Promise<void> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  return {
-    id: result.body["id"],
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error
-    // result: result.body["result"],
-  };
+  return;
 }
 
 /** Deletes a User */
-export async function deleteOperation(
+export function deleteOperation(
   context: Client,
   name: string,
   options: DeleteOperationOptions = { requestOptions: {} }
-): Promise<OperationStatus> {
-  const result = await _deleteOperationSend(context, name, options);
-  return _deleteOperationDeserialize(result);
+): PromisePollerLike<OperationState<void>, void> {
+  return getLongRunningPoller(
+    context,
+    () => _deleteOperationSend(context, name, options),
+    _deleteOperationDeserialize,
+    {
+      method: "DELETE",
+      url: "/azure/core/lro/standard/users/{name}",
+      updateIntervalInMs: options?.updateIntervalInMs
+    }
+  ) as PromisePollerLike<OperationState<void>, void>;
 }
 
 export function _exportOperationSend(
@@ -141,12 +150,12 @@ export async function _exportOperationDeserialize(
     | ExportOperation202Response
     | ExportOperationDefaultResponse
     | ExportLogicalResponse
-): Promise<ResourceOperationStatus> {
+): Promise<ExportedUser> {
   if (isUnexpected(result)) {
     throw createRestError(result);
   }
 
-  return {
+  const body = {
     id: result.body["id"],
     status: result.body["status"],
     error: !result.body.error ? undefined : result.body.error,
@@ -157,15 +166,25 @@ export async function _exportOperationDeserialize(
           resourceUri: result.body.result?.["resourceUri"]
         }
   };
+
+  return body.result as ExportedUser;
 }
 
 /** Exports a User */
-export async function exportOperation(
+export function exportOperation(
   context: Client,
   name: string,
   format: string,
   options: ExportOperationOptions = { requestOptions: {} }
-): Promise<ResourceOperationStatus> {
-  const result = await _exportOperationSend(context, name, format, options);
-  return _exportOperationDeserialize(result);
+): PromisePollerLike<OperationState<ExportedUser>, ExportedUser> {
+  return getLongRunningPoller(
+    context,
+    () => _exportOperationSend(context, name, format, options),
+    _exportOperationDeserialize,
+    {
+      method: "GET",
+      url: "/azure/core/lro/standard/users/{name}",
+      updateIntervalInMs: options?.updateIntervalInMs
+    }
+  ) as PromisePollerLike<OperationState<ExportedUser>, ExportedUser>;
 }

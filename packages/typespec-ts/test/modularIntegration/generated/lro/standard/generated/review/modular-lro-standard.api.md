@@ -5,16 +5,19 @@
 ```ts
 
 import { ClientOptions } from '@azure-rest/core-client';
-import { ErrorModel } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
+import { OperationState } from '@azure/core-lro';
 import { Pipeline } from '@azure/core-rest-pipeline';
+import { PromisePollerLike } from '@azure/core-lro';
 
 // @public (undocumented)
 export interface CreateOrReplaceOptions extends OperationOptions {
+    updateIntervalInMs?: number;
 }
 
 // @public (undocumented)
 export interface DeleteOperationOptions extends OperationOptions {
+    updateIntervalInMs?: number;
 }
 
 // @public
@@ -25,33 +28,15 @@ export interface ExportedUser {
 
 // @public (undocumented)
 export interface ExportOperationOptions extends OperationOptions {
-}
-
-// @public
-export type OperationState = string;
-
-// @public (undocumented)
-export interface OperationStatus {
-    error?: ErrorModel;
-    readonly id: string;
-    result?: never;
-    status: OperationState;
-}
-
-// @public (undocumented)
-export interface ResourceOperationStatus {
-    error?: ErrorModel;
-    readonly id: string;
-    result?: ExportedUser;
-    status: OperationState;
+    updateIntervalInMs?: number;
 }
 
 // @public (undocumented)
 export class StandardClient {
     constructor(options?: StandardClientOptions);
-    createOrReplace(name: string, resource: User, options?: CreateOrReplaceOptions): Promise<User>;
-    deleteOperation(name: string, options?: DeleteOperationOptions): Promise<OperationStatus>;
-    exportOperation(name: string, format: string, options?: ExportOperationOptions): Promise<ResourceOperationStatus>;
+    createOrReplace(name: string, resource: User, options?: CreateOrReplaceOptions): PromisePollerLike<OperationState<User>, User>;
+    deleteOperation(name: string, options?: DeleteOperationOptions): PromisePollerLike<OperationState<void>, void>;
+    exportOperation(name: string, format: string, options?: ExportOperationOptions): PromisePollerLike<OperationState<ExportedUser>, ExportedUser>;
     readonly pipeline: Pipeline;
 }
 

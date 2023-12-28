@@ -2,15 +2,11 @@
 // Licensed under the MIT license.
 
 import { Pipeline } from "@azure/core-rest-pipeline";
-import {
-  User,
-  OperationStatus,
-  ResourceOperationStatus,
-} from "./models/models.js";
+import { User, ExportedUser } from "./models/models.js";
 import {
   CreateOrReplaceOptions,
   DeleteOperationOptions,
-  ExportOperationOptions,
+  ExportOperationOptions
 } from "./models/options.js";
 import {
   createOrReplace,
@@ -18,8 +14,9 @@ import {
   exportOperation,
   createStandard,
   StandardClientOptions,
-  StandardContext,
+  StandardContext
 } from "./api/index.js";
+import { OperationState, PromisePollerLike } from "@azure/core-lro";
 
 export { StandardClientOptions } from "./api/StandardContext.js";
 
@@ -39,7 +36,7 @@ export class StandardClient {
     name: string,
     resource: User,
     options: CreateOrReplaceOptions = { requestOptions: {} }
-  ): Promise<User> {
+  ): PromisePollerLike<OperationState<User>, User> {
     return createOrReplace(this._client, name, resource, options);
   }
 
@@ -47,7 +44,7 @@ export class StandardClient {
   deleteOperation(
     name: string,
     options: DeleteOperationOptions = { requestOptions: {} }
-  ): Promise<OperationStatus> {
+  ): PromisePollerLike<OperationState<void>, void> {
     return deleteOperation(this._client, name, options);
   }
 
@@ -56,7 +53,7 @@ export class StandardClient {
     name: string,
     format: string,
     options: ExportOperationOptions = { requestOptions: {} }
-  ): Promise<ResourceOperationStatus> {
+  ): PromisePollerLike<OperationState<ExportedUser>, ExportedUser> {
     return exportOperation(this._client, name, format, options);
   }
 }
