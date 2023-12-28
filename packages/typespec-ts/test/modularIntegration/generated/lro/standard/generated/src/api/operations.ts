@@ -155,19 +155,7 @@ export async function _exportOperationDeserialize(
     throw createRestError(result);
   }
 
-  const body = {
-    id: result.body["id"],
-    status: result.body["status"],
-    error: !result.body.error ? undefined : result.body.error,
-    result: !result.body.result
-      ? undefined
-      : {
-          name: result.body.result?.["name"],
-          resourceUri: result.body.result?.["resourceUri"]
-        }
-  };
-
-  return body.result as ExportedUser;
+  return result.body.result as ExportedUser;
 }
 
 /** Exports a User */

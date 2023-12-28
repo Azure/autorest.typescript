@@ -33,7 +33,7 @@ export function getLongRunningPoller<TResponse extends HttpResponse>(
     requestPath: options.url,
     sendInitialRequest: async () => {
       initialResponse = (await getInitialResponse()) as TResponse;
-      return getLroResponse(initialResponse, processResponseBody);
+      return getLroResponse(initialResponse);
     },
     sendPollRequest: async (path) => {
       // This is the callback that is going to be called to poll the service
@@ -45,16 +45,19 @@ export function getLongRunningPoller<TResponse extends HttpResponse>(
       }
       const response = await client.pathUnchecked(path).get();
       response.headers["x-ms-original-url"] = initialResponse.request.url;
-      const lroResponse = getLroResponse(
-        response as TResponse,
-        processResponseBody
-      );
+      const lroResponse = getLroResponse(response as TResponse);
       return lroResponse;
     }
   };
   return createHttpPromisePoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
-    resourceLocationConfig: options?.resourceLocationConfig
+    resourceLocationConfig: options?.resourceLocationConfig,
+    processResult: (result: unknown, state: OperationState<unknown>) => {
+      if (["succeeded", "failed", "canceled"].includes(state.status)) {
+        return processResponseBody(result as TResponse);
+      }
+      return result;
+    }
   });
 }
 /**
@@ -64,8 +67,7 @@ export function getLongRunningPoller<TResponse extends HttpResponse>(
  * @returns - An LRO response that the LRO implementation understands
  */
 function getLroResponse<TResponse extends HttpResponse>(
-  response: TResponse,
-  deserializeFn: (result: TResponse) => PromiseLike<unknown>
+  response: TResponse
 ): LroResponse {
   if (Number.isNaN(response.status)) {
     createRestError(
@@ -74,7 +76,7 @@ function getLroResponse<TResponse extends HttpResponse>(
     );
   }
   return {
-    flatResponse: deserializeFn(response),
+    flatResponse: response,
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
