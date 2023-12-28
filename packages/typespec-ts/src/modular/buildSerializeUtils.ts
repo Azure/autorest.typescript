@@ -150,9 +150,6 @@ function formalizeTypeUnionName(typeUnionName: string) {
  * If we consider array type, with all the above 6 types as the element types.
  */
 export function isSpecialUnionVariant(t: Type): boolean {
-  if (t.type === "model" && t.name === "ChatRequestUserMessage") {
-    t;
-  }
   if (
     t.type === "datetime" ||
     t.type === "byte-array" ||

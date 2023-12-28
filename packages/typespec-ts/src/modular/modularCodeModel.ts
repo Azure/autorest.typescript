@@ -1,4 +1,5 @@
 import { Imports } from "@azure-tools/rlc-common";
+import { HelperFunctionDetails } from "@azure-tools/rlc-common";
 import { OperationResponse, RLCOptions } from "@azure-tools/rlc-common";
 import { UsageFlags } from "@typespec/compiler";
 import { Project } from "ts-morph";
@@ -117,6 +118,7 @@ export interface Client {
   apiVersions: any[];
   rlcClientName: string;
   subfolder?: string;
+  rlcHelperDetails: HelperFunctionDetails;
 }
 
 export type ParameterLocation =

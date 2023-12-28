@@ -751,9 +751,6 @@ export function getRequestModelMapping(
     return props;
   }
   for (const property of properties) {
-    if (property.clientName === "message" || property.clientName === "messages") {
-      property;
-    }
     if (property.readonly) {
       continue;
     }
@@ -1105,6 +1102,7 @@ function needsDeserialize(type?: Type) {
 
 export function hasLROOperation(codeModel: ModularCodeModel) {
   return (codeModel.clients ?? []).some((c) =>
+    c.rlcHelperDetails.hasLongRunning ||
     (c.operationGroups ?? []).some((og) =>
       (og.operations ?? []).some(isLROOperation)
     )
@@ -1127,6 +1125,7 @@ export function hasPagingOperation(
     clients = (clientOrCodeModel as ModularCodeModel).clients;
   }
   return clients.some((c) =>
+    c.rlcHelperDetails.hasPaging ||
     (c.operationGroups ?? []).some((og) =>
       (og.operations ?? []).some(isPagingOperation)
     )

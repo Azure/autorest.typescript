@@ -1099,7 +1099,7 @@ describe("inheritance & polymorphism", () => {
         bark: string;
       }
       
-      /** Base type for Pet */
+      /** Alias for Pet */
       export type Pet = Cat | Dog | PetParent;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
@@ -1188,7 +1188,7 @@ describe("inheritance & polymorphism", () => {
         bark: string;
       }
       
-      /** Base type for Pet */
+      /** Alias for Pet */
       export type Pet = Cat | Dog | PetParent;`
     );
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);

@@ -1589,7 +1589,8 @@ function emitOperationGroups(
     }
   }
   const clientOperations: HrlcOperation[] = [];
-  for (const operation of listOperationsInOperationGroup(context, client)) {
+  const allClientOperations = listOperationsInOperationGroup(context, client);
+  for (const operation of allClientOperations) {
     clientOperations.push(emitOperation(context, operation, "", rlcModels));
   }
   if (clientOperations.length > 0) {
@@ -1837,7 +1838,9 @@ function emitClients(
       url: server ? server.url : "",
       apiVersions: [],
       rlcClientName: rlcModels ? getClientName(rlcModels) : client.name,
-      subfolder: ""
+      subfolder: "",
+      rlcHelperDetails:
+        rlcModels && rlcModels.helperDetails ? rlcModels.helperDetails : {}
     };
     const emittedApiVersionParam = getApiVersionParameter(context);
     if (emittedApiVersionParam) {
