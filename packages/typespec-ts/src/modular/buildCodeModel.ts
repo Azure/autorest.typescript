@@ -286,9 +286,6 @@ function processModelProperties(
     if (!isSchemaProperty(context.program, property)) {
       continue;
     }
-    if (property.name === "toolChoice") {
-      property;
-    }
     if (newValue.properties === undefined || newValue.properties === null) {
       newValue.properties = [];
     }

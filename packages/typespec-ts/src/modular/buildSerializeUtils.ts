@@ -156,19 +156,33 @@ export function isSpecialUnionVariant(t: Type): boolean {
     (t.type === "model" &&
       t.properties
         ?.filter((p) => {
-          !t.parents?.includes(p.type);
+          return !(
+            t.parents?.includes(p.type) ||
+            (p.type.type === "list" &&
+              p.type.elementType &&
+              t.parents?.includes(p.type.elementType))
+          );
         })
-        .some(
-          (p) =>
-            p.clientName !== p.restApiName ||
-            (p.type.type === "combined" &&
-              p.type.types?.some(isSpecialUnionVariant)) ||
-            isSpecialUnionVariant(p.type)
+        ?.some(
+          (p) => p.clientName !== p.restApiName || isSpecialUnionVariant(p.type)
         )) ||
     (t.type === "model" &&
       t.isPolyBaseModel &&
-      t.types?.some(isSpecialUnionVariant)) ||
-    (t.type === "list" && t.elementType && isSpecialUnionVariant(t.elementType))
+      t.types
+        ?.filter((p) => {
+          return !t.parents?.includes(p);
+        })
+        ?.some(isSpecialUnionVariant)) ||
+    (t.type === "list" &&
+      t.elementType &&
+      !t.parents?.includes(t.elementType) &&
+      isSpecialUnionVariant(t.elementType)) ||
+    (t.type === "combined" &&
+      t.types
+        ?.filter((p) => {
+          return !t.parents?.includes(p);
+        })
+        ?.some(isSpecialUnionVariant))
   ) {
     return true;
   }

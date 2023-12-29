@@ -214,9 +214,6 @@ function handleCombinedType(type: Type): TypeMetadata {
         return `${sdkType}`;
       })
       .join(" | ");
-  if (name === "ChatCompletionsNamedFunctionToolSelection") {
-    type;
-  }
   return { name: `(${name})`, nullable: type.nullable };
 }
 

@@ -1136,7 +1136,7 @@ export function isPagingOperation(op: Operation): boolean {
   return op.discriminator === "paging" || op.discriminator === "lropaging";
 }
 
-function getAllProperties(type: Type): Property[] {
+export function getAllProperties(type: Type): Property[] {
   const propertiesMap: Map<string, Property> = new Map();
   if (!type) {
     return [];
