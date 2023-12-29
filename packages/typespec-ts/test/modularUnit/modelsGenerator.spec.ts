@@ -1224,7 +1224,7 @@ describe("inheritance & polymorphism", () => {
       export async function read(
         context: Client,
         options: ReadOptions = { requestOptions: {} }
-      ): Promise<Pet> {
+      ): Promise<PetUnion> {
         const result = await _readSend(context, options);
         return _readDeserialize(result);
       }      
