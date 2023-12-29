@@ -154,16 +154,21 @@ export function isSpecialUnionVariant(t: Type): boolean {
     t.type === "datetime" ||
     t.type === "byte-array" ||
     (t.type === "model" &&
-      t.properties?.some(
-        (p) => p.clientName !== p.restApiName || isSpecialUnionVariant(p.type)
-      )) ||
+      t.properties
+        ?.filter((p) => {
+          !t.parents?.includes(p.type);
+        })
+        .some(
+          (p) =>
+            p.clientName !== p.restApiName ||
+            (p.type.type === "combined" &&
+              p.type.types?.some(isSpecialUnionVariant)) ||
+            isSpecialUnionVariant(p.type)
+        )) ||
     (t.type === "model" &&
       t.isPolyBaseModel &&
       t.types?.some(isSpecialUnionVariant)) ||
-    (t.type === "list" &&
-      t.elementType &&
-      isSpecialUnionVariant(t.elementType)) ||
-    (t.type === "combined" && t.types?.some(isSpecialUnionVariant))
+    (t.type === "list" && t.elementType && isSpecialUnionVariant(t.elementType))
   ) {
     return true;
   }
