@@ -212,6 +212,11 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.scripts["build:node"] = "tsc -p . && dev-tool run bundle";
     packageInfo.devDependencies["@azure/dev-tool"] = "^1.0.0";
     packageInfo.devDependencies["@azure/eslint-plugin-azure-sdk"] = "^3.0.0";
+    // azsdkjs repo use dev-tool to run vendored prettier
+    const dtxPrettierCmd = "dev-tool run vendored ";
+    packageInfo.scripts["check-format"] = dtxPrettierCmd + packageInfo.scripts["check-format"];
+    packageInfo.scripts["format"] = dtxPrettierCmd + packageInfo.scripts["format"];
+    delete packageInfo.devDependencies.prettier;
   } else {
     packageInfo.scripts["build"] =
       "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api";
