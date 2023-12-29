@@ -1,5 +1,6 @@
 import { StandardClient } from "./generated/lro/standard/generated/src/index.js";
 import { assert } from "chai";
+import { restorePoller } from "./generated/lro/standard/generated/src/restorePollerHelpers.js";
 
 describe.only("LROStandardClient Classical Client", () => {
   let client: StandardClient;
@@ -91,6 +92,17 @@ describe.only("LROStandardClient Classical Client", () => {
       } catch (err) {
         assert.fail(err as string);
       }
+    });
+
+    it.only("serialize and rehydration", async () => {
+      const poller = client.deleteOperation("madge");
+      const restoredPoller = await poller.serialize();
+      console.log(restoredPoller);
+      setTimeout(async () => {
+        const newPoller = restorePoller(client, restoredPoller);
+        const result = await newPoller.pollUntilDone();
+        console.log(result);
+      }, 10000);
     });
   });
 

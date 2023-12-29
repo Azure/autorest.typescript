@@ -20,6 +20,10 @@ export interface GetLongRunningPollerOptions {
    * The potential location of the result of the LRO if specified by the LRO extension in the swagger.
    */
   resourceLocationConfig?: LroResourceLocationConfig;
+  /**
+   * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
+   */
+  restoreFrom?: string;
 }
 export function getLongRunningPoller<TResponse extends HttpResponse>(
   client: Client,
@@ -44,7 +48,7 @@ export function getLongRunningPoller<TResponse extends HttpResponse>(
         path = initialResponse.request.url ?? options.url;
       }
       const response = await client.pathUnchecked(path).get();
-      response.headers["x-ms-original-url"] = initialResponse.request.url;
+      response.headers["x-ms-original-url"] = initialResponse?.request?.url;
       const lroResponse = getLroResponse(response as TResponse);
       return lroResponse;
     }
@@ -52,6 +56,7 @@ export function getLongRunningPoller<TResponse extends HttpResponse>(
   return createHttpPromisePoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
     resourceLocationConfig: options?.resourceLocationConfig,
+    restoreFrom: options?.restoreFrom,
     processResult: (result: unknown, state: OperationState<unknown>) => {
       if (["succeeded", "failed", "canceled"].includes(state.status)) {
         return processResponseBody(result as TResponse);
