@@ -28,7 +28,7 @@ export function _postValidSend(
     .path("/type/model/inheritance/not-discriminated/valid")
     .post({
       ...operationOptionsToRequestParameters(options),
-      body: { name: input["name"], age: input["age"], smart: input["smart"] },
+      body: { age: input["age"], name: input["name"], smart: input["smart"] },
     });
 }
 
@@ -68,8 +68,8 @@ export async function _getValidDeserialize(
   }
 
   return {
-    name: result.body["name"],
     age: result.body["age"],
+    name: result.body["name"],
     smart: result.body["smart"],
   };
 }
@@ -91,7 +91,7 @@ export function _putValidSend(
     .path("/type/model/inheritance/not-discriminated/valid")
     .put({
       ...operationOptionsToRequestParameters(options),
-      body: { name: input["name"], age: input["age"], smart: input["smart"] },
+      body: { age: input["age"], name: input["name"], smart: input["smart"] },
     });
 }
 
@@ -103,8 +103,8 @@ export async function _putValidDeserialize(
   }
 
   return {
-    name: result.body["name"],
     age: result.body["age"],
+    name: result.body["name"],
     smart: result.body["smart"],
   };
 }
