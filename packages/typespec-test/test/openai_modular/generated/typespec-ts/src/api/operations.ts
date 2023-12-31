@@ -15,7 +15,7 @@ import {
   EmbeddingsOptions,
   Embeddings,
 } from "../models/models.js";
-import { serializeChatRequestMessageUnionUnion } from "../utils/serializeUtil.js";
+import { serializeChatRequestMessageUnion } from "../utils/serializeUtil.js";
 import {
   GetAudioTranscriptionAsPlainText200Response,
   GetAudioTranscriptionAsPlainTextDefaultResponse,
@@ -548,7 +548,7 @@ export function _getChatCompletionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnionUnion(p)
+          serializeChatRequestMessageUnion(p)
         ),
         functions: !body["functions"]
           ? body["functions"]
@@ -601,7 +601,41 @@ export async function _getChatCompletionsDeserialize(
     id: result.body["id"],
     created: new Date(result.body["created"]),
     choices: result.body["choices"].map((p) => ({
-      message: !p.message ? undefined : (p.message as any),
+      message: !p.message
+        ? undefined
+        : {
+            role: p.message?.["role"],
+            content: p.message?.["content"],
+            toolCalls: !p.message?.["tool_calls"]
+              ? p.message?.["tool_calls"]
+              : p.message?.["tool_calls"],
+            functionCall: !p.message?.function_call
+              ? undefined
+              : {
+                  name: p.message?.function_call?.["name"],
+                  arguments: p.message?.function_call?.["arguments"],
+                },
+            context: !p.message?.context
+              ? undefined
+              : {
+                  messages: !p.message?.context?.["messages"]
+                    ? p.message?.context?.["messages"]
+                    : p.message?.context?.["messages"].map((p) => ({
+                        role: p["role"],
+                        content: p["content"],
+                        toolCalls: !p["tool_calls"]
+                          ? p["tool_calls"]
+                          : p["tool_calls"],
+                        functionCall: !p.function_call
+                          ? undefined
+                          : {
+                              name: p.function_call?.["name"],
+                              arguments: p.function_call?.["arguments"],
+                            },
+                        context: !p.context ? undefined : (p.context as any),
+                      })),
+                },
+          },
       index: p["index"],
       finishReason: p["finish_reason"],
       finishDetails: !p.finish_details
@@ -624,9 +658,22 @@ export async function _getChatCompletionsDeserialize(
             context: !p.delta?.context
               ? undefined
               : {
-                  messages: !p.delta?.context?.messages
-                    ? undefined
-                    : (p.delta?.context?.messages as any),
+                  messages: !p.delta?.context?.["messages"]
+                    ? p.delta?.context?.["messages"]
+                    : p.delta?.context?.["messages"].map((p) => ({
+                        role: p["role"],
+                        content: p["content"],
+                        toolCalls: !p["tool_calls"]
+                          ? p["tool_calls"]
+                          : p["tool_calls"],
+                        functionCall: !p.function_call
+                          ? undefined
+                          : {
+                              name: p.function_call?.["name"],
+                              arguments: p.function_call?.["arguments"],
+                            },
+                        context: !p.context ? undefined : (p.context as any),
+                      })),
                 },
           },
       contentFilterResults: !p.content_filter_results
@@ -825,7 +872,7 @@ export function _getChatCompletionsWithAzureExtensionsSend(
       ...operationOptionsToRequestParameters(options),
       body: {
         messages: body["messages"].map((p) =>
-          serializeChatRequestMessageUnionUnion(p)
+          serializeChatRequestMessageUnion(p)
         ),
         functions: !body["functions"]
           ? body["functions"]
@@ -880,7 +927,41 @@ export async function _getChatCompletionsWithAzureExtensionsDeserialize(
     id: result.body["id"],
     created: new Date(result.body["created"]),
     choices: result.body["choices"].map((p) => ({
-      message: !p.message ? undefined : (p.message as any),
+      message: !p.message
+        ? undefined
+        : {
+            role: p.message?.["role"],
+            content: p.message?.["content"],
+            toolCalls: !p.message?.["tool_calls"]
+              ? p.message?.["tool_calls"]
+              : p.message?.["tool_calls"],
+            functionCall: !p.message?.function_call
+              ? undefined
+              : {
+                  name: p.message?.function_call?.["name"],
+                  arguments: p.message?.function_call?.["arguments"],
+                },
+            context: !p.message?.context
+              ? undefined
+              : {
+                  messages: !p.message?.context?.["messages"]
+                    ? p.message?.context?.["messages"]
+                    : p.message?.context?.["messages"].map((p) => ({
+                        role: p["role"],
+                        content: p["content"],
+                        toolCalls: !p["tool_calls"]
+                          ? p["tool_calls"]
+                          : p["tool_calls"],
+                        functionCall: !p.function_call
+                          ? undefined
+                          : {
+                              name: p.function_call?.["name"],
+                              arguments: p.function_call?.["arguments"],
+                            },
+                        context: !p.context ? undefined : (p.context as any),
+                      })),
+                },
+          },
       index: p["index"],
       finishReason: p["finish_reason"],
       finishDetails: !p.finish_details
@@ -903,9 +984,22 @@ export async function _getChatCompletionsWithAzureExtensionsDeserialize(
             context: !p.delta?.context
               ? undefined
               : {
-                  messages: !p.delta?.context?.messages
-                    ? undefined
-                    : (p.delta?.context?.messages as any),
+                  messages: !p.delta?.context?.["messages"]
+                    ? p.delta?.context?.["messages"]
+                    : p.delta?.context?.["messages"].map((p) => ({
+                        role: p["role"],
+                        content: p["content"],
+                        toolCalls: !p["tool_calls"]
+                          ? p["tool_calls"]
+                          : p["tool_calls"],
+                        functionCall: !p.function_call
+                          ? undefined
+                          : {
+                              name: p.function_call?.["name"],
+                              arguments: p.function_call?.["arguments"],
+                            },
+                        context: !p.context ? undefined : (p.context as any),
+                      })),
                 },
           },
       contentFilterResults: !p.content_filter_results

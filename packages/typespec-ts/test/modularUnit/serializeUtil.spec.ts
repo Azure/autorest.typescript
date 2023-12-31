@@ -30,7 +30,9 @@ describe("modular special union serialization", () => {
       @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
-    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(tspContent);
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
     assert.ok(serializeUtil?.length === 0);
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -116,7 +118,9 @@ describe("modular special union serialization", () => {
       @get @route("customGet1") customGet1(@body body: Widget1): void;
     }
     `;
-    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(tspContent);
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
     assert.ok(serializeUtil?.length === 0);
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -560,7 +564,7 @@ describe("modular special union serialization", () => {
       }
       
       /** serialize function for WidgetData */
-      export function serializeWidgetDataUnion(obj: WidgetData): WidgetDataRest {
+      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
         switch (obj.kind) {
           case "kind1":
             return serializeWidgetData1(obj);
@@ -568,7 +572,8 @@ describe("modular special union serialization", () => {
             return obj;
         }
       }
-      `);
+      `
+    );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -595,7 +600,7 @@ describe("modular special union serialization", () => {
               id: body["id"],
               weight: body["weight"],
               color: body["color"],
-              data: serializeWidgetDataUnion(body["data"]),
+              data: serializeWidgetData(body["data"]),
             },
           });
       }
@@ -674,7 +679,7 @@ describe("modular special union serialization", () => {
       }
       
       /** serialize function for WidgetData */
-      export function serializeWidgetDataUnion(obj: WidgetData): WidgetDataRest {
+      export function serializeWidgetData(obj: WidgetData): WidgetDataRest {
         switch (obj.kind) {
           case "kind1":
             return serializeWidgetData1(obj);
@@ -711,7 +716,7 @@ describe("modular special union serialization", () => {
               id: body["id"],
               weight: body["weight"],
               color: body["color"],
-              data: serializeWidgetDataUnion(body["data"]),
+              data: serializeWidgetData(body["data"]),
             },
           });
       }
@@ -765,7 +770,9 @@ describe("modular special union deserialization", () => {
       @get @route("customGet1") customGet1(): Widget1;
     }
     `;
-    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(tspContent);
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
     assert.ok(serializeUtil?.length === 0);
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -843,7 +850,9 @@ describe("modular special union deserialization", () => {
       @get @route("customGet1") customGet1(): Widget1;
     }
     `;
-    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(tspContent);
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
     assert.ok(serializeUtil?.length === 0);
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1241,7 +1250,7 @@ describe("modular special union deserialization", () => {
       }
       
       /** deserialize function for WidgetDataOutput */
-      export function deserializeWidgetDataUnion(obj: WidgetDataOutput): WidgetData {
+      export function deserializeWidgetData(obj: WidgetDataOutput): WidgetData {
         switch (obj.kind) {
           case "kind1":
             return deserializeWidgetData1(obj);
@@ -1249,7 +1258,8 @@ describe("modular special union deserialization", () => {
             return obj;
         }
       }
-      `);
+      `
+    );
 
     const operationFiles = await emitModularOperationsFromTypeSpec(tspContent);
     assert.ok(operationFiles);
@@ -1281,7 +1291,7 @@ describe("modular special union deserialization", () => {
           id: result.body["id"],
           weight: result.body["weight"],
           color: result.body["color"],
-          data: deserializeWidgetDataUnion(result.body["data"]),
+          data: deserializeWidgetData(result.body["data"]),
         };
       }
       export async function customGet1(
@@ -1353,7 +1363,7 @@ describe("modular special union deserialization", () => {
       }
       
       /** deserialize function for WidgetDataOutput */
-      export function deserializeWidgetDataUnion(obj: WidgetDataOutput): WidgetData {
+      export function deserializeWidgetData(obj: WidgetDataOutput): WidgetData {
         switch (obj.kind) {
           case "kind1":
             return deserializeWidgetData1(obj);
@@ -1393,7 +1403,7 @@ describe("modular special union deserialization", () => {
           id: result.body["id"],
           weight: result.body["weight"],
           color: result.body["color"],
-          data: deserializeWidgetDataUnion(result.body["data"]),
+          data: deserializeWidgetData(result.body["data"]),
         };
       }
       export async function customGet1(
@@ -1405,6 +1415,107 @@ describe("modular special union deserialization", () => {
       }
       `,
       true
+    );
+  });
+
+  it("should not generate deserialize util even if circular in model properties but no other special variants", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    model Pet {
+      kind: string;
+      name: string;
+      weight?: float32;
+    }
+    model Cat extends Pet {
+      kind: "cat";
+      meow: int32;
+    }
+    @discriminator("type")
+    model Dog extends Pet {
+      kind: "dog";
+      type: string;
+      bark: string;
+    }
+    model Gold extends Dog {
+      type: "gold";
+      friends: Pet[];
+    }
+    op read(): { @body body: Pet };
+    `;
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
+    assert.ok(serializeUtil?.length === 0);
+  });
+
+  it("should not generate deserialize util even if circular in model properties but no other special variants", async () => {
+    const tspContent = `
+    @discriminator("kind")
+    model Pet {
+      kind: string;
+      name: string;
+      weight?: float32;
+    }
+    model Cat extends Pet {
+      kind: "cat";
+      meow: int32;
+    }
+    @discriminator("type")
+    model Dog extends Pet {
+      kind: "dog";
+      type: string;
+      bark: string;
+    }
+    model Gold extends Dog {
+      type: "gold";
+      friends: Pet[];
+      birthDay: utcDateTime;
+    }
+    op read(): { @body body: Pet };
+    `;
+    const serializeUtil = await emitModularSerializeUtilsFromTypeSpec(
+      tspContent
+    );
+    assert.equal(serializeUtil?.length, 1);
+    assertEqualContent(
+      serializeUtil?.[0]?.getFullText()!,
+      `
+      import { PetUnion, Gold, DogUnion } from "../models/models.js";
+      import { PetOutput, GoldOutput, DogOutput } from "../rest/index.js";
+      
+      /** deserialize function for PetOutput */
+      export function deserializePetUnion(obj: PetOutput): PetUnion {
+        switch (obj.kind) {
+          case "dog":
+            return deserializeDogUnion(obj as DogUnion);
+          default:
+            return obj;
+        }
+      }
+      
+      /** deserialize function for Gold */
+      function deserializeGold(obj: GoldOutput): Gold {
+        return {
+          kind: obj["kind"],
+          type: obj["type"],
+          bark: obj["bark"],
+          name: obj["name"],
+          weight: obj["weight"],
+          friends: obj["friends"].map((p) => deserializePetUnion(p)),
+          birthDay: new Date(obj["birthDay"]),
+        };
+      }
+      
+      /** deserialize function for DogOutput */
+      export function deserializeDogUnion(obj: DogOutput): DogUnion {
+        switch (obj.type) {
+          case "gold":
+            return deserializeGold(obj as Gold);
+          default:
+            return obj;
+        }
+      }
+      `
     );
   });
 });

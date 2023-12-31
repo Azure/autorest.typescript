@@ -59,7 +59,7 @@ function serializeChatRequestToolMessage(
 }
 
 /** serialize function for ChatRequestMessageUnion */
-export function serializeChatRequestMessageUnionUnion(
+export function serializeChatRequestMessageUnion(
   obj: ChatRequestMessageUnion
 ): ChatRequestMessageRest {
   switch (obj.role) {
@@ -87,7 +87,7 @@ function serializeChatMessageImageContentItem(
 }
 
 /** serialize function for ChatMessageContentItemUnion */
-export function serializeChatMessageContentItemUnionUnion(
+export function serializeChatMessageContentItemUnion(
   obj: ChatMessageContentItemUnion
 ): ChatMessageContentItemRest {
   switch (obj.type) {
