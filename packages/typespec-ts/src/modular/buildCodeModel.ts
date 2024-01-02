@@ -82,6 +82,7 @@ import {
   Property
 } from "./modularCodeModel.js";
 import {
+  getBodyType,
   getEnrichedDefaultApiVersion,
   isAzureCoreErrorType
 } from "../utils/modelUtils.js";
@@ -439,45 +440,6 @@ type BodyParameter = ParamBase & {
   isBinaryPayload: boolean;
 };
 
-function getBodyType(program: Program, route: HttpOperation): Type {
-  let bodyModel = route.parameters.body?.type;
-  if (bodyModel && bodyModel.kind === "Model" && route.operation) {
-    const resourceType = getResourceOperation(
-      program,
-      route.operation
-    )?.resourceType;
-    if (resourceType && route.responses && route.responses.length > 0) {
-      const resp = route.responses[0];
-      if (resp && resp.responses && resp.responses.length > 0) {
-        const responseBody = resp.responses[0]?.body;
-        if (responseBody?.type?.kind === "Model") {
-          const bodyTypeInResponse = getEffectiveSchemaType(
-            program,
-            responseBody.type
-          );
-          // response body type is reosurce type, and request body type (if templated) contains resource type
-          if (
-            bodyTypeInResponse === resourceType &&
-            bodyModel.templateMapper &&
-            bodyModel.templateMapper.args &&
-            bodyModel.templateMapper.args.some((it) => {
-              return it.kind === "Model" || it.kind === "Union"
-                ? it === bodyTypeInResponse
-                : false;
-            })
-          ) {
-            bodyModel = resourceType;
-          }
-        }
-      }
-    }
-    if (resourceType && bodyModel.name === "") {
-      bodyModel = resourceType;
-    }
-  }
-  return bodyModel!;
-}
-
 function emitBodyParameter(
   context: SdkContext,
   httpOperation: HttpOperation
@@ -492,7 +454,7 @@ function emitBodyParameter(
   if (contentTypes.length !== 1) {
     throw Error("Currently only one kind of content-type!");
   }
-  const type = getType(context, getBodyType(context.program, httpOperation), {
+  const type = getType(context, getBodyType(context.program, httpOperation)!, {
     disableEffectiveModel: true,
     usage: UsageFlags.Input
   });
