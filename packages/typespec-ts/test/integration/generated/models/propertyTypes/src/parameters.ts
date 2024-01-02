@@ -8,6 +8,8 @@ import {
   BytesProperty,
   IntProperty,
   FloatProperty,
+  DecimalProperty,
+  Decimal128Property,
   DatetimeProperty,
   DurationProperty,
   EnumProperty,
@@ -73,6 +75,23 @@ export interface FloatPutBodyParam {
 }
 
 export type FloatPutParameters = FloatPutBodyParam & RequestParameters;
+export type DecimalGetParameters = RequestParameters;
+
+export interface DecimalPutBodyParam {
+  /** body */
+  body: DecimalProperty;
+}
+
+export type DecimalPutParameters = DecimalPutBodyParam & RequestParameters;
+export type Decimal128GetParameters = RequestParameters;
+
+export interface Decimal128PutBodyParam {
+  /** body */
+  body: Decimal128Property;
+}
+
+export type Decimal128PutParameters = Decimal128PutBodyParam &
+  RequestParameters;
 export type DatetimeGetParameters = RequestParameters;
 
 export interface DatetimePutBodyParam {

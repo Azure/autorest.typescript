@@ -12,6 +12,10 @@ import {
   IntPutParameters,
   FloatGetParameters,
   FloatPutParameters,
+  DecimalGetParameters,
+  DecimalPutParameters,
+  Decimal128GetParameters,
+  Decimal128PutParameters,
   DatetimeGetParameters,
   DatetimePutParameters,
   DurationGetParameters,
@@ -66,6 +70,10 @@ import {
   IntPut204Response,
   FloatGet200Response,
   FloatPut204Response,
+  DecimalGet200Response,
+  DecimalPut204Response,
+  Decimal128Get200Response,
+  Decimal128Put204Response,
   DatetimeGet200Response,
   DatetimePut204Response,
   DurationGet200Response,
@@ -152,6 +160,24 @@ export interface FloatGet {
   get(options?: FloatGetParameters): StreamableMethod<FloatGet200Response>;
   /** Put operation */
   put(options: FloatPutParameters): StreamableMethod<FloatPut204Response>;
+}
+
+export interface DecimalGet {
+  /** Get call */
+  get(options?: DecimalGetParameters): StreamableMethod<DecimalGet200Response>;
+  /** Put operation */
+  put(options: DecimalPutParameters): StreamableMethod<DecimalPut204Response>;
+}
+
+export interface Decimal128Get {
+  /** Get call */
+  get(
+    options?: Decimal128GetParameters
+  ): StreamableMethod<Decimal128Get200Response>;
+  /** Put operation */
+  put(
+    options: Decimal128PutParameters
+  ): StreamableMethod<Decimal128Put204Response>;
 }
 
 export interface DatetimeGet {
@@ -380,6 +406,10 @@ export interface Routes {
   (path: "/type/property/value-types/int"): IntGet;
   /** Resource for '/type/property/value-types/float' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/float"): FloatGet;
+  /** Resource for '/type/property/value-types/decimal' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/decimal"): DecimalGet;
+  /** Resource for '/type/property/value-types/decimal128' has methods for the following verbs: get, put */
+  (path: "/type/property/value-types/decimal128"): Decimal128Get;
   /** Resource for '/type/property/value-types/datetime' has methods for the following verbs: get, put */
   (path: "/type/property/value-types/datetime"): DatetimeGet;
   /** Resource for '/type/property/value-types/duration' has methods for the following verbs: get, put */

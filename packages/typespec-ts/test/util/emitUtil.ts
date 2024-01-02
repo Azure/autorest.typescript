@@ -94,7 +94,8 @@ export async function emitModelsFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
   needTCGC: boolean = false,
-  withRawContent: boolean = false
+  withRawContent: boolean = false,
+  mustEmptyDiagnostic: boolean = true
 ) {
   const context = await rlcEmitterFor(
     tspContent,
@@ -111,7 +112,9 @@ export async function emitModelsFromTypeSpec(
   if (clients && clients[0]) {
     rlcSchemas = transformSchemas(program, clients[0], dpgContext);
   }
-  expectDiagnosticEmpty(program.diagnostics);
+  if (mustEmptyDiagnostic && dpgContext.program.diagnostics.length > 0) {
+    throw dpgContext.program.diagnostics;
+  }
   return buildSchemaTypes({
     schemas: rlcSchemas,
     srcPath: "",

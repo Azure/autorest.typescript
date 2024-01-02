@@ -1052,7 +1052,7 @@ function getSchemaForStdScalar(
     case "safeint":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "int64"
+        format: "safeint"
       });
     case "uint8":
       return applyIntrinsicDecorators(program, type, {
@@ -1077,17 +1077,43 @@ function getSchemaForStdScalar(
     case "float64":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "double"
+        format: "float64"
       });
     case "float32":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
-        format: "float"
+        format: "float32"
       });
     case "float":
       return applyIntrinsicDecorators(program, type, {
         type: "number",
         format: "float"
+      });
+    case "decimal":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal",
+        description: "decimal"
+      });
+    case "decimal128":
+      reportDiagnostic(program, {
+        code: "decimal-to-number",
+        format: {
+          propertyName: relevantProperty?.name ?? ""
+        },
+        target: relevantProperty ?? type
+      });
+      return applyIntrinsicDecorators(program, type, {
+        type: "number",
+        format: "decimal128",
+        description: "decimal128"
       });
     case "string":
       if (format === "binary") {
@@ -1243,6 +1269,21 @@ function getEnumStringDescription(type: any) {
   return undefined;
 }
 
+function getDecimalDescription(type: any) {
+  if (
+    (type.format === "decimal" || type.format === "decimal128") &&
+    type.type === "number"
+  ) {
+    return `NOTE: This property is represented as a 'number' in JavaScript, but it corresponds to a 'decimal' type in other languages.
+Due to the inherent limitations of floating-point arithmetic in JavaScript, precision issues may arise when performing arithmetic operations.
+If your application requires high precision for arithmetic operations or when round-tripping data back to other languages, consider using a library like decimal.js, which provides an arbitrary-precision Decimal type.
+For simpler cases, where you need to control the number of decimal places for display purposes, you can use the 'toFixed()' method. However, be aware that 'toFixed()' returns a string and may not be suitable for all arithmetic precision requirements.
+Always be cautious with direct arithmetic operations and consider implementing appropriate rounding strategies to maintain accuracy.
+   `;
+  }
+  return undefined;
+}
+
 export function getFormattedPropertyDoc(
   program: Program,
   type: ModelProperty | Type,
@@ -1250,7 +1291,8 @@ export function getFormattedPropertyDoc(
   sperator: string = "\n\n"
 ) {
   const propertyDoc = getDoc(program, type);
-  const enhancedDocFromType = getEnumStringDescription(schemaType);
+  const enhancedDocFromType =
+    getEnumStringDescription(schemaType) ?? getDecimalDescription(schemaType);
   if (propertyDoc && enhancedDocFromType) {
     return `${propertyDoc}${sperator}${enhancedDocFromType}`;
   }
