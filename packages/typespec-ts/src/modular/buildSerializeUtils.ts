@@ -162,13 +162,6 @@ export function isSpecialUnionVariant(
     variantStack.pop();
     return specialVariantMap.get(t) ?? false;
   }
-  if (
-    t.name === "ChatResponseMessage" ||
-    t.name === "ChatMessage" ||
-    t.name === "Error"
-  ) {
-    t;
-  }
 
   if (
     t.type === "datetime" ||

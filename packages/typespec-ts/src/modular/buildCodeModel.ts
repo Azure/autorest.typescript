@@ -69,7 +69,6 @@ import {
   getClientType,
   SdkEnumValueType
 } from "@azure-tools/typespec-client-generator-core";
-import { getResourceOperation } from "@typespec/rest";
 import {
   ModularCodeModel,
   Client as HrlcClient,
