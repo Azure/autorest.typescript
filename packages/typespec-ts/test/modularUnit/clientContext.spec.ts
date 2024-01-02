@@ -39,7 +39,7 @@ describe("modular client context type", () => {
         `
     const clientContext = await emitModularClientContextFromTypeSpec(tspContent, true);
     assert.ok(clientContext);
-    assertEqualContent(
+    await assertEqualContent(
         clientContext?.getFullText()!,
         `
         import { ClientOptions } from "@azure-rest/core-client";
@@ -96,7 +96,7 @@ describe("modular client context type", () => {
     op one(): void;
         `, true);
     assert.ok(clientContext);
-    assertEqualContent(
+    await assertEqualContent(
         clientContext?.getFullText()!,
         `
         import { ClientOptions } from "@azure-rest/core-client";

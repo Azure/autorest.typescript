@@ -25,7 +25,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -38,7 +38,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -124,7 +124,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -137,7 +137,7 @@ describe("anonymous model", () => {
           true
         );
         assert.ok(optionFile);
-        assertEqualContent(
+        await assertEqualContent(
           optionFile?.getFullText()!,
           `
         import { OperationOptions } from "@azure-rest/core-client";
@@ -152,7 +152,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -236,7 +236,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -249,7 +249,7 @@ describe("anonymous model", () => {
           true
         );
         assert.ok(optionFile);
-        assertEqualContent(
+        await assertEqualContent(
           optionFile?.getFullText()!,
           `
         import { OperationOptions } from "@azure-rest/core-client";
@@ -264,7 +264,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -345,7 +345,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
         export interface Foo {
@@ -366,7 +366,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -433,7 +433,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -489,7 +489,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Bar {
@@ -502,7 +502,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -569,7 +569,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile!.getFullText()!,
           `
         export interface Test {
@@ -582,7 +582,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -632,7 +632,7 @@ describe("anonymous model", () => {
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
         assert.ok(modelFile);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile!.getFullText()!,
           `
         export interface Test {
@@ -645,7 +645,7 @@ describe("anonymous model", () => {
         );
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -692,7 +692,7 @@ describe("anonymous model", () => {
         operationDetail: string,
         returnType: string
       ) {
-        assertEqualContent(
+        await assertEqualContent(
           operationDetail,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -752,7 +752,7 @@ describe("anonymous model", () => {
         op read(): PublishResult;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface PublishResult {}
@@ -781,7 +781,7 @@ describe("anonymous model", () => {
         );
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]!.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -838,7 +838,7 @@ describe("anonymous model", () => {
         op read(): ReturnBody;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
         export interface ReturnBody {
@@ -857,7 +857,7 @@ describe("anonymous model", () => {
           tspContent
         );
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
         import { TestingContext as Client } from "../rest/index.js";
@@ -922,7 +922,7 @@ describe("anonymous model", () => {
         op read(): Foz;
         `;
         const modelFile = await emitModularModelsFromTypeSpec(tspContent);
-        assertEqualContent(
+        await assertEqualContent(
           modelFile?.getFullText()!,
           `
           export interface Foz {
@@ -946,7 +946,7 @@ describe("anonymous model", () => {
           tspContent
         );
         assert.equal(operationFiles?.length, 1);
-        assertEqualContent(
+        await assertEqualContent(
           operationFiles?.[0]?.getFullText()!,
           `
           import { TestingContext as Client } from "../rest/index.js";
