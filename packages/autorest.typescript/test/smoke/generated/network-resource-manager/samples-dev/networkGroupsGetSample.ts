@@ -31,7 +31,7 @@ async function networkGroupsGet() {
   const result = await client.networkGroups.get(
     resourceGroupName,
     networkManagerName,
-    networkGroupName
+    networkGroupName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   InstanceFailoverGroup,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,15 +35,15 @@ async function createFailoverGroup() {
         partnerManagedInstanceId:
           "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/failover-group-secondary-mngdInstance",
         primaryManagedInstanceId:
-          "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/failover-group-primary-mngdInstance"
-      }
+          "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default/providers/Microsoft.Sql/managedInstances/failover-group-primary-mngdInstance",
+      },
     ],
     partnerRegions: [{ location: "Japan West" }],
     readOnlyEndpoint: { failoverPolicy: "Disabled" },
     readWriteEndpoint: {
       failoverPolicy: "Automatic",
-      failoverWithDataLossGracePeriodMinutes: 480
-    }
+      failoverWithDataLossGracePeriodMinutes: 480,
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -51,7 +51,7 @@ async function createFailoverGroup() {
     resourceGroupName,
     locationName,
     failoverGroupName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

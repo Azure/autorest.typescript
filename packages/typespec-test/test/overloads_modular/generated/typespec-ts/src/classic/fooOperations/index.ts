@@ -14,11 +14,11 @@ import {
 export interface FooOperationsOperations {
   getAvatarAsPng: (
     image: Uint8Array,
-    options?: FooOperationsGetAvatarAsPngOptions
+    options?: FooOperationsGetAvatarAsPngOptions,
   ) => Promise<void>;
   getAvatarAsJpeg: (
     image: Uint8Array,
-    options?: FooOperationsGetAvatarAsJpegOptions
+    options?: FooOperationsGetAvatarAsJpegOptions,
   ) => Promise<void>;
 }
 
@@ -26,17 +26,17 @@ export function getFooOperations(context: WidgetManagerContext) {
   return {
     getAvatarAsPng: (
       image: Uint8Array,
-      options?: FooOperationsGetAvatarAsPngOptions
+      options?: FooOperationsGetAvatarAsPngOptions,
     ) => getAvatarAsPng(context, image, options),
     getAvatarAsJpeg: (
       image: Uint8Array,
-      options?: FooOperationsGetAvatarAsJpegOptions
+      options?: FooOperationsGetAvatarAsJpegOptions,
     ) => getAvatarAsJpeg(context, image, options),
   };
 }
 
 export function getFooOperationsOperations(
-  context: WidgetManagerContext
+  context: WidgetManagerContext,
 ): FooOperationsOperations {
   return {
     ...getFooOperations(context),

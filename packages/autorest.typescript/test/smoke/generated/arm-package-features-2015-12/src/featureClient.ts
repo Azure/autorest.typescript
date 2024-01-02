@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import * as coreAuth from "@azure/core-auth";
 import { PagedAsyncIterableIterator, PageSettings } from "@azure/core-paging";
@@ -25,7 +25,7 @@ import {
   ListOperationsNextOptionalParams,
   ListOperationsOptionalParams,
   ListOperationsResponse,
-  ListOperationsNextResponse
+  ListOperationsNextResponse,
 } from "./models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -43,16 +43,16 @@ export class FeatureClient extends coreClient.ServiceClient {
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionId: string,
-    options?: FeatureClientOptionalParams
+    options?: FeatureClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: FeatureClientOptionalParams
+    options?: FeatureClientOptionalParams,
   );
   constructor(
     credentials: coreAuth.TokenCredential,
     subscriptionIdOrOptions?: FeatureClientOptionalParams | string,
-    options?: FeatureClientOptionalParams
+    options?: FeatureClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -72,7 +72,7 @@ export class FeatureClient extends coreClient.ServiceClient {
     }
     const defaults: FeatureClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-arm-package-features-2015-12/1.0.0-beta.1`;
@@ -85,10 +85,10 @@ export class FeatureClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -110,7 +110,7 @@ export class FeatureClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -124,7 +124,7 @@ export class FeatureClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }
@@ -134,7 +134,7 @@ export class FeatureClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   public listOperations(
-    options?: ListOperationsOptionalParams
+    options?: ListOperationsOptionalParams,
   ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listOperationsPagingAll(options);
     return {
@@ -149,13 +149,13 @@ export class FeatureClient extends coreClient.ServiceClient {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listOperationsPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listOperationsPagingPage(
     options?: ListOperationsOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Operation[]> {
     let result: ListOperationsResponse;
     let continuationToken = settings?.continuationToken;
@@ -176,7 +176,7 @@ export class FeatureClient extends coreClient.ServiceClient {
   }
 
   private async *listOperationsPagingAll(
-    options?: ListOperationsOptionalParams
+    options?: ListOperationsOptionalParams,
   ): AsyncIterableIterator<Operation> {
     for await (const page of this.listOperationsPagingPage(options)) {
       yield* page;
@@ -188,7 +188,7 @@ export class FeatureClient extends coreClient.ServiceClient {
    * @param options The options parameters.
    */
   private _listOperations(
-    options?: ListOperationsOptionalParams
+    options?: ListOperationsOptionalParams,
   ): Promise<ListOperationsResponse> {
     return this.sendOperationRequest({ options }, listOperationsOperationSpec);
   }
@@ -200,11 +200,11 @@ export class FeatureClient extends coreClient.ServiceClient {
    */
   private _listOperationsNext(
     nextLink: string,
-    options?: ListOperationsNextOptionalParams
+    options?: ListOperationsNextOptionalParams,
   ): Promise<ListOperationsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
-      listOperationsNextOperationSpec
+      listOperationsNextOperationSpec,
     );
   }
 
@@ -218,23 +218,23 @@ const listOperationsOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationListResult
-    }
+      bodyMapper: Mappers.OperationListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.OperationListResult
-    }
+      bodyMapper: Mappers.OperationListResult,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

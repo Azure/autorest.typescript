@@ -30,7 +30,7 @@ import {
   ResourceSetRulesDeleteResourceSetRule204Response,
   ResourceSetRulesDeleteResourceSetRuleDefaultResponse,
   ResourceSetRulesListResourceSetRules200Response,
-  ResourceSetRulesListResourceSetRulesDefaultResponse
+  ResourceSetRulesListResourceSetRulesDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -47,79 +47,79 @@ const responseMap: Record<string, string[]> = {
   "GET /resourceSetRuleConfigs/defaultResourceSetRuleConfig": ["200"],
   "PUT /resourceSetRuleConfigs/defaultResourceSetRuleConfig": ["200"],
   "DELETE /resourceSetRuleConfigs/defaultResourceSetRuleConfig": ["200", "204"],
-  "GET /resourceSetRuleConfigs": ["200"]
+  "GET /resourceSetRuleConfigs": ["200"],
 };
 
 export function isUnexpected(
   response:
     | AccountsGetAccountProperties200Response
-    | AccountsGetAccountPropertiesDefaultResponse
+    | AccountsGetAccountPropertiesDefaultResponse,
 ): response is AccountsGetAccountPropertiesDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsUpdateAccountProperties200Response
-    | AccountsUpdateAccountPropertiesDefaultResponse
+    | AccountsUpdateAccountPropertiesDefaultResponse,
 ): response is AccountsUpdateAccountPropertiesDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsGetAccessKeys200Response
-    | AccountsGetAccessKeysDefaultResponse
+    | AccountsGetAccessKeysDefaultResponse,
 ): response is AccountsGetAccessKeysDefaultResponse;
 export function isUnexpected(
   response:
     | AccountsRegenerateAccessKey200Response
-    | AccountsRegenerateAccessKeyDefaultResponse
+    | AccountsRegenerateAccessKeyDefaultResponse,
 ): response is AccountsRegenerateAccessKeyDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsGetCollection200Response
-    | CollectionsGetCollectionDefaultResponse
+    | CollectionsGetCollectionDefaultResponse,
 ): response is CollectionsGetCollectionDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsCreateOrUpdateCollection200Response
-    | CollectionsCreateOrUpdateCollectionDefaultResponse
+    | CollectionsCreateOrUpdateCollectionDefaultResponse,
 ): response is CollectionsCreateOrUpdateCollectionDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsDeleteCollection204Response
-    | CollectionsDeleteCollectionDefaultResponse
+    | CollectionsDeleteCollectionDefaultResponse,
 ): response is CollectionsDeleteCollectionDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsListCollections200Response
-    | CollectionsListCollectionsDefaultResponse
+    | CollectionsListCollectionsDefaultResponse,
 ): response is CollectionsListCollectionsDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsListChildCollectionNames200Response
-    | CollectionsListChildCollectionNamesDefaultResponse
+    | CollectionsListChildCollectionNamesDefaultResponse,
 ): response is CollectionsListChildCollectionNamesDefaultResponse;
 export function isUnexpected(
   response:
     | CollectionsGetCollectionPath200Response
-    | CollectionsGetCollectionPathDefaultResponse
+    | CollectionsGetCollectionPathDefaultResponse,
 ): response is CollectionsGetCollectionPathDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesGetResourceSetRule200Response
-    | ResourceSetRulesGetResourceSetRuleDefaultResponse
+    | ResourceSetRulesGetResourceSetRuleDefaultResponse,
 ): response is ResourceSetRulesGetResourceSetRuleDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesCreateOrUpdateResourceSetRule200Response
-    | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
+    | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse,
 ): response is ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesDeleteResourceSetRule200Response
     | ResourceSetRulesDeleteResourceSetRule204Response
-    | ResourceSetRulesDeleteResourceSetRuleDefaultResponse
+    | ResourceSetRulesDeleteResourceSetRuleDefaultResponse,
 ): response is ResourceSetRulesDeleteResourceSetRuleDefaultResponse;
 export function isUnexpected(
   response:
     | ResourceSetRulesListResourceSetRules200Response
-    | ResourceSetRulesListResourceSetRulesDefaultResponse
+    | ResourceSetRulesListResourceSetRulesDefaultResponse,
 ): response is ResourceSetRulesListResourceSetRulesDefaultResponse;
 export function isUnexpected(
   response:
@@ -151,7 +151,7 @@ export function isUnexpected(
     | ResourceSetRulesDeleteResourceSetRule204Response
     | ResourceSetRulesDeleteResourceSetRuleDefaultResponse
     | ResourceSetRulesListResourceSetRules200Response
-    | ResourceSetRulesListResourceSetRulesDefaultResponse
+    | ResourceSetRulesListResourceSetRulesDefaultResponse,
 ): response is
   | AccountsGetAccountPropertiesDefaultResponse
   | AccountsUpdateAccountPropertiesDefaultResponse
@@ -215,7 +215,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

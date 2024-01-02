@@ -21,25 +21,25 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Json {
   post(
-    options?: PropertyJsonParameters
+    options?: PropertyJsonParameters,
   ): StreamableMethod<PropertyJson204Response>;
 }
 
 export interface _Client {
   post(
-    options?: PropertyClientParameters
+    options?: PropertyClientParameters,
   ): StreamableMethod<PropertyClient204Response>;
 }
 
 export interface Language {
   post(
-    options?: PropertyLanguageParameters
+    options?: PropertyLanguageParameters,
   ): StreamableMethod<PropertyLanguage204Response>;
 }
 
 export interface JsonAndClient {
   post(
-    options?: PropertyJsonAndClientParameters
+    options?: PropertyJsonAndClientParameters,
   ): StreamableMethod<PropertyJsonAndClient204Response>;
 }
 

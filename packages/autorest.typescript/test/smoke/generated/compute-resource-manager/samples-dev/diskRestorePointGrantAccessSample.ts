@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GrantAccessData,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,17 +32,18 @@ async function grantsAccessToADiskRestorePoint() {
     "TestDisk45ceb03433006d1baee0_b70cd924-3362-4a80-93c2-9415eaa12745";
   const grantAccessData: GrantAccessData = {
     access: "Read",
-    durationInSeconds: 300
+    durationInSeconds: 300,
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
-  const result = await client.diskRestorePointOperations.beginGrantAccessAndWait(
-    resourceGroupName,
-    restorePointCollectionName,
-    vmRestorePointName,
-    diskRestorePointName,
-    grantAccessData
-  );
+  const result =
+    await client.diskRestorePointOperations.beginGrantAccessAndWait(
+      resourceGroupName,
+      restorePointCollectionName,
+      vmRestorePointName,
+      diskRestorePointName,
+      grantAccessData,
+    );
   console.log(result);
 }
 

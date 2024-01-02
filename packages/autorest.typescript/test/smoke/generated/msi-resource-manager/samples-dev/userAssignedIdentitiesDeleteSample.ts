@@ -28,7 +28,7 @@ async function identityDelete() {
   const client = new ManagedServiceIdentityClient(credential, subscriptionId);
   const result = await client.userAssignedIdentities.delete(
     resourceGroupName,
-    resourceName
+    resourceName,
   );
   console.log(result);
 }

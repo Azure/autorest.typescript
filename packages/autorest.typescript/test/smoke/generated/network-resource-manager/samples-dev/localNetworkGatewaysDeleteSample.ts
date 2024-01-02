@@ -28,7 +28,7 @@ async function deleteLocalNetworkGateway() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.localNetworkGateways.beginDeleteAndWait(
     resourceGroupName,
-    localNetworkGatewayName
+    localNetworkGatewayName,
   );
   console.log(result);
 }

@@ -31,7 +31,7 @@ async function getCustomDomainForAStaticSite() {
   const result = await client.staticSites.getStaticSiteCustomDomain(
     resourceGroupName,
     name,
-    domainName
+    domainName,
   );
   console.log(result);
 }

@@ -30,7 +30,7 @@ async function deleteConnectionMonitor() {
   const result = await client.connectionMonitors.beginDeleteAndWait(
     resourceGroupName,
     networkWatcherName,
-    connectionMonitorName
+    connectionMonitorName,
   );
   console.log(result);
 }

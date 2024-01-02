@@ -28,7 +28,7 @@ async function storageAccountRevokeUserDelegationKeys() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.revokeUserDelegationKeys(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

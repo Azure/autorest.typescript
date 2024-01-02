@@ -18,7 +18,7 @@ import {
   UnlinkParameters,
   ReplicationLinksUnlinkOptionalParams,
   ReplicationLinksGetOptionalParams,
-  ReplicationLinksGetResponse
+  ReplicationLinksGetResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -36,7 +36,7 @@ export interface ReplicationLinks {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: ReplicationLinksListByDatabaseOptionalParams
+    options?: ReplicationLinksListByDatabaseOptionalParams,
   ): PagedAsyncIterableIterator<ReplicationLink>;
   /**
    * Gets a list of replication links.
@@ -48,7 +48,7 @@ export interface ReplicationLinks {
   listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: ReplicationLinksListByServerOptionalParams
+    options?: ReplicationLinksListByServerOptionalParams,
   ): PagedAsyncIterableIterator<ReplicationLink>;
   /**
    * Deletes a database replication link. Cannot be done during failover.
@@ -64,7 +64,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksDeleteOptionalParams
+    options?: ReplicationLinksDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
@@ -80,7 +80,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverOptionalParams
+    options?: ReplicationLinksFailoverOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
@@ -96,7 +96,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverOptionalParams
+    options?: ReplicationLinksFailoverOptionalParams,
   ): Promise<void>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
@@ -113,7 +113,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverAllowDataLossOptionalParams
+    options?: ReplicationLinksFailoverAllowDataLossOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Sets which replica database is primary by failing over from the current primary replica database.
@@ -130,7 +130,7 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksFailoverAllowDataLossOptionalParams
+    options?: ReplicationLinksFailoverAllowDataLossOptionalParams,
   ): Promise<void>;
   /**
    * Deletes a database replication link in forced or friendly way.
@@ -148,7 +148,7 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     parameters: UnlinkParameters,
-    options?: ReplicationLinksUnlinkOptionalParams
+    options?: ReplicationLinksUnlinkOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a database replication link in forced or friendly way.
@@ -166,7 +166,7 @@ export interface ReplicationLinks {
     databaseName: string,
     linkId: string,
     parameters: UnlinkParameters,
-    options?: ReplicationLinksUnlinkOptionalParams
+    options?: ReplicationLinksUnlinkOptionalParams,
   ): Promise<void>;
   /**
    * Gets a replication link.
@@ -182,6 +182,6 @@ export interface ReplicationLinks {
     serverName: string,
     databaseName: string,
     linkId: string,
-    options?: ReplicationLinksGetOptionalParams
+    options?: ReplicationLinksGetOptionalParams,
   ): Promise<ReplicationLinksGetResponse>;
 }

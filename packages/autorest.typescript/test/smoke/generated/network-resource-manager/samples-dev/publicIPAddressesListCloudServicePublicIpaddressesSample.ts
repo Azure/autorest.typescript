@@ -29,7 +29,7 @@ async function listVmssPublicIP() {
   const resArray = new Array();
   for await (let item of client.publicIPAddresses.listCloudServicePublicIPAddresses(
     resourceGroupName,
-    cloudServiceName
+    cloudServiceName,
   )) {
     resArray.push(item);
   }

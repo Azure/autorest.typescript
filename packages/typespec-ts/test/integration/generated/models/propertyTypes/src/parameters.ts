@@ -8,8 +8,6 @@ import {
   BytesProperty,
   IntProperty,
   FloatProperty,
-  DecimalProperty,
-  Decimal128Property,
   DatetimeProperty,
   DurationProperty,
   EnumProperty,
@@ -24,13 +22,6 @@ import {
   UnknownIntProperty,
   UnknownDictProperty,
   UnknownArrayProperty,
-  StringLiteralProperty,
-  IntLiteralProperty,
-  FloatLiteralProperty,
-  BooleanLiteralProperty,
-  UnionStringLiteralProperty,
-  UnionIntLiteralProperty,
-  UnionFloatLiteralProperty,
 } from "./models";
 
 export type BooleanModelGetParameters = RequestParameters;
@@ -75,23 +66,6 @@ export interface FloatPutBodyParam {
 }
 
 export type FloatPutParameters = FloatPutBodyParam & RequestParameters;
-export type DecimalGetParameters = RequestParameters;
-
-export interface DecimalPutBodyParam {
-  /** body */
-  body: DecimalProperty;
-}
-
-export type DecimalPutParameters = DecimalPutBodyParam & RequestParameters;
-export type Decimal128GetParameters = RequestParameters;
-
-export interface Decimal128PutBodyParam {
-  /** body */
-  body: Decimal128Property;
-}
-
-export type Decimal128PutParameters = Decimal128PutBodyParam &
-  RequestParameters;
 export type DatetimeGetParameters = RequestParameters;
 
 export interface DatetimePutBodyParam {
@@ -212,67 +186,4 @@ export interface UnknownArrayPutBodyParam {
 }
 
 export type UnknownArrayPutParameters = UnknownArrayPutBodyParam &
-  RequestParameters;
-export type StringLiteralGetParameters = RequestParameters;
-
-export interface StringLiteralPutBodyParam {
-  /** body */
-  body: StringLiteralProperty;
-}
-
-export type StringLiteralPutParameters = StringLiteralPutBodyParam &
-  RequestParameters;
-export type IntLiteralGetParameters = RequestParameters;
-
-export interface IntLiteralPutBodyParam {
-  /** body */
-  body: IntLiteralProperty;
-}
-
-export type IntLiteralPutParameters = IntLiteralPutBodyParam &
-  RequestParameters;
-export type FloatLiteralGetParameters = RequestParameters;
-
-export interface FloatLiteralPutBodyParam {
-  /** body */
-  body: FloatLiteralProperty;
-}
-
-export type FloatLiteralPutParameters = FloatLiteralPutBodyParam &
-  RequestParameters;
-export type BooleanLiteralGetParameters = RequestParameters;
-
-export interface BooleanLiteralPutBodyParam {
-  /** body */
-  body: BooleanLiteralProperty;
-}
-
-export type BooleanLiteralPutParameters = BooleanLiteralPutBodyParam &
-  RequestParameters;
-export type UnionStringLiteralGetParameters = RequestParameters;
-
-export interface UnionStringLiteralPutBodyParam {
-  /** body */
-  body: UnionStringLiteralProperty;
-}
-
-export type UnionStringLiteralPutParameters = UnionStringLiteralPutBodyParam &
-  RequestParameters;
-export type UnionIntLiteralGetParameters = RequestParameters;
-
-export interface UnionIntLiteralPutBodyParam {
-  /** body */
-  body: UnionIntLiteralProperty;
-}
-
-export type UnionIntLiteralPutParameters = UnionIntLiteralPutBodyParam &
-  RequestParameters;
-export type UnionFloatLiteralGetParameters = RequestParameters;
-
-export interface UnionFloatLiteralPutBodyParam {
-  /** body */
-  body: UnionFloatLiteralProperty;
-}
-
-export type UnionFloatLiteralPutParameters = UnionFloatLiteralPutBodyParam &
   RequestParameters;

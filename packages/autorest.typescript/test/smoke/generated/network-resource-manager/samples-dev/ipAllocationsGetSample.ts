@@ -28,7 +28,7 @@ async function getIPAllocation() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipAllocations.get(
     resourceGroupName,
-    ipAllocationName
+    ipAllocationName,
   );
   console.log(result);
 }

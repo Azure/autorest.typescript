@@ -16,7 +16,7 @@ import {
   VirtualMachineImagesListPublishersOptionalParams,
   VirtualMachineImagesListPublishersResponse,
   VirtualMachineImagesListSkusOptionalParams,
-  VirtualMachineImagesListSkusResponse
+  VirtualMachineImagesListSkusResponse,
 } from "../models";
 
 /** Interface representing a VirtualMachineImages. */
@@ -36,7 +36,7 @@ export interface VirtualMachineImages {
     offer: string,
     skus: string,
     version: string,
-    options?: VirtualMachineImagesGetOptionalParams
+    options?: VirtualMachineImagesGetOptionalParams,
   ): Promise<VirtualMachineImagesGetResponse>;
   /**
    * Gets a list of all virtual machine image versions for the specified location, publisher, offer, and
@@ -52,7 +52,7 @@ export interface VirtualMachineImages {
     publisherName: string,
     offer: string,
     skus: string,
-    options?: VirtualMachineImagesListOptionalParams
+    options?: VirtualMachineImagesListOptionalParams,
   ): Promise<VirtualMachineImagesListResponse>;
   /**
    * Gets a list of virtual machine image offers for the specified location and publisher.
@@ -63,7 +63,7 @@ export interface VirtualMachineImages {
   listOffers(
     location: string,
     publisherName: string,
-    options?: VirtualMachineImagesListOffersOptionalParams
+    options?: VirtualMachineImagesListOffersOptionalParams,
   ): Promise<VirtualMachineImagesListOffersResponse>;
   /**
    * Gets a list of virtual machine image publishers for the specified Azure location.
@@ -72,7 +72,7 @@ export interface VirtualMachineImages {
    */
   listPublishers(
     location: string,
-    options?: VirtualMachineImagesListPublishersOptionalParams
+    options?: VirtualMachineImagesListPublishersOptionalParams,
   ): Promise<VirtualMachineImagesListPublishersResponse>;
   /**
    * Gets a list of virtual machine image SKUs for the specified location, publisher, and offer.
@@ -85,6 +85,6 @@ export interface VirtualMachineImages {
     location: string,
     publisherName: string,
     offer: string,
-    options?: VirtualMachineImagesListSkusOptionalParams
+    options?: VirtualMachineImagesListSkusOptionalParams,
   ): Promise<VirtualMachineImagesListSkusResponse>;
 }

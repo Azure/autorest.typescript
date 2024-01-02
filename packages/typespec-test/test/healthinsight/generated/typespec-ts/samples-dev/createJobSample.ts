@@ -19,7 +19,7 @@ async function createJobSample() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createHealthInsightsClinicalMatchingClient(
     endpoint,
-    credential
+    credential,
   );
   const initialResponse = await client
     .path("/trialmatcher/jobs")

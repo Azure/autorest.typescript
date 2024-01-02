@@ -27,11 +27,12 @@ async function virtualRouterPeerListLearnedRoutes() {
   const connectionName = "peer1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualHubBgpConnections.beginListLearnedRoutesAndWait(
-    resourceGroupName,
-    hubName,
-    connectionName
-  );
+  const result =
+    await client.virtualHubBgpConnections.beginListLearnedRoutesAndWait(
+      resourceGroupName,
+      hubName,
+      connectionName,
+    );
   console.log(result);
 }
 

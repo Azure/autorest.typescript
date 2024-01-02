@@ -16,9 +16,3 @@ export interface UserOrder {
   /** The user's order detail */
   detail: string;
 }
-
-/** The body of the input. */
-export interface ListItemInputBody {
-  /** The name of the input. */
-  inputName: string;
-}

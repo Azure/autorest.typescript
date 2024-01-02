@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ApplicationSecurityGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,11 +30,12 @@ async function createApplicationSecurityGroup() {
   const parameters: ApplicationSecurityGroup = { location: "westus" };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.applicationSecurityGroups.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    applicationSecurityGroupName,
-    parameters
-  );
+  const result =
+    await client.applicationSecurityGroups.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      applicationSecurityGroupName,
+      parameters,
+    );
   console.log(result);
 }
 

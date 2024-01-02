@@ -11,7 +11,7 @@ export { FooContext } from "../rest/index.js";
 
 export function createFoo(
   endpoint: string,
-  options: FooClientOptions = {}
+  options: FooClientOptions = {},
 ): FooContext {
   const clientContext = getClient(endpoint, options);
   return clientContext;

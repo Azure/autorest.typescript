@@ -16,7 +16,7 @@ import { ResourceManagementClient } from "../resourceManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -104,7 +104,7 @@ import {
   DeploymentsListAtTenantScopeNextResponse,
   DeploymentsListAtManagementGroupScopeNextResponse,
   DeploymentsListAtSubscriptionScopeNextResponse,
-  DeploymentsListByResourceGroupNextResponse
+  DeploymentsListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -127,7 +127,7 @@ export class DeploymentsImpl implements Deployments {
    */
   public listAtScope(
     scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
+    options?: DeploymentsListAtScopeOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtScopePagingAll(scope, options);
     return {
@@ -142,14 +142,14 @@ export class DeploymentsImpl implements Deployments {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listAtScopePagingPage(scope, options, settings);
-      }
+      },
     };
   }
 
   private async *listAtScopePagingPage(
     scope: string,
     options?: DeploymentsListAtScopeOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentExtended[]> {
     let result: DeploymentsListAtScopeResponse;
     let continuationToken = settings?.continuationToken;
@@ -171,7 +171,7 @@ export class DeploymentsImpl implements Deployments {
 
   private async *listAtScopePagingAll(
     scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
+    options?: DeploymentsListAtScopeOptionalParams,
   ): AsyncIterableIterator<DeploymentExtended> {
     for await (const page of this.listAtScopePagingPage(scope, options)) {
       yield* page;
@@ -183,7 +183,7 @@ export class DeploymentsImpl implements Deployments {
    * @param options The options parameters.
    */
   public listAtTenantScope(
-    options?: DeploymentsListAtTenantScopeOptionalParams
+    options?: DeploymentsListAtTenantScopeOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtTenantScopePagingAll(options);
     return {
@@ -198,13 +198,13 @@ export class DeploymentsImpl implements Deployments {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listAtTenantScopePagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listAtTenantScopePagingPage(
     options?: DeploymentsListAtTenantScopeOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentExtended[]> {
     let result: DeploymentsListAtTenantScopeResponse;
     let continuationToken = settings?.continuationToken;
@@ -225,7 +225,7 @@ export class DeploymentsImpl implements Deployments {
   }
 
   private async *listAtTenantScopePagingAll(
-    options?: DeploymentsListAtTenantScopeOptionalParams
+    options?: DeploymentsListAtTenantScopeOptionalParams,
   ): AsyncIterableIterator<DeploymentExtended> {
     for await (const page of this.listAtTenantScopePagingPage(options)) {
       yield* page;
@@ -239,7 +239,7 @@ export class DeploymentsImpl implements Deployments {
    */
   public listAtManagementGroupScope(
     groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
+    options?: DeploymentsListAtManagementGroupScopeOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtManagementGroupScopePagingAll(groupId, options);
     return {
@@ -256,16 +256,16 @@ export class DeploymentsImpl implements Deployments {
         return this.listAtManagementGroupScopePagingPage(
           groupId,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listAtManagementGroupScopePagingPage(
     groupId: string,
     options?: DeploymentsListAtManagementGroupScopeOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentExtended[]> {
     let result: DeploymentsListAtManagementGroupScopeResponse;
     let continuationToken = settings?.continuationToken;
@@ -280,7 +280,7 @@ export class DeploymentsImpl implements Deployments {
       result = await this._listAtManagementGroupScopeNext(
         groupId,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -291,11 +291,11 @@ export class DeploymentsImpl implements Deployments {
 
   private async *listAtManagementGroupScopePagingAll(
     groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
+    options?: DeploymentsListAtManagementGroupScopeOptionalParams,
   ): AsyncIterableIterator<DeploymentExtended> {
     for await (const page of this.listAtManagementGroupScopePagingPage(
       groupId,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -306,7 +306,7 @@ export class DeploymentsImpl implements Deployments {
    * @param options The options parameters.
    */
   public listAtSubscriptionScope(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
+    options?: DeploymentsListAtSubscriptionScopeOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listAtSubscriptionScopePagingAll(options);
     return {
@@ -321,13 +321,13 @@ export class DeploymentsImpl implements Deployments {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listAtSubscriptionScopePagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listAtSubscriptionScopePagingPage(
     options?: DeploymentsListAtSubscriptionScopeOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentExtended[]> {
     let result: DeploymentsListAtSubscriptionScopeResponse;
     let continuationToken = settings?.continuationToken;
@@ -341,7 +341,7 @@ export class DeploymentsImpl implements Deployments {
     while (continuationToken) {
       result = await this._listAtSubscriptionScopeNext(
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -351,7 +351,7 @@ export class DeploymentsImpl implements Deployments {
   }
 
   private async *listAtSubscriptionScopePagingAll(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
+    options?: DeploymentsListAtSubscriptionScopeOptionalParams,
   ): AsyncIterableIterator<DeploymentExtended> {
     for await (const page of this.listAtSubscriptionScopePagingPage(options)) {
       yield* page;
@@ -366,7 +366,7 @@ export class DeploymentsImpl implements Deployments {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
+    options?: DeploymentsListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<DeploymentExtended> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -383,16 +383,16 @@ export class DeploymentsImpl implements Deployments {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: DeploymentsListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<DeploymentExtended[]> {
     let result: DeploymentsListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -407,7 +407,7 @@ export class DeploymentsImpl implements Deployments {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -418,11 +418,11 @@ export class DeploymentsImpl implements Deployments {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
+    options?: DeploymentsListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<DeploymentExtended> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -443,25 +443,24 @@ export class DeploymentsImpl implements Deployments {
   async beginDeleteAtScope(
     scope: string,
     deploymentName: string,
-    options?: DeploymentsDeleteAtScopeOptionalParams
+    options?: DeploymentsDeleteAtScopeOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -470,8 +469,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -479,19 +478,19 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { scope, deploymentName, options },
-      spec: deleteAtScopeOperationSpec
+      spec: deleteAtScopeOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -512,12 +511,12 @@ export class DeploymentsImpl implements Deployments {
   async beginDeleteAtScopeAndWait(
     scope: string,
     deploymentName: string,
-    options?: DeploymentsDeleteAtScopeOptionalParams
+    options?: DeploymentsDeleteAtScopeOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteAtScope(
       scope,
       deploymentName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -531,11 +530,11 @@ export class DeploymentsImpl implements Deployments {
   checkExistenceAtScope(
     scope: string,
     deploymentName: string,
-    options?: DeploymentsCheckExistenceAtScopeOptionalParams
+    options?: DeploymentsCheckExistenceAtScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { scope, deploymentName, options },
-      checkExistenceAtScopeOperationSpec
+      checkExistenceAtScopeOperationSpec,
     );
   }
 
@@ -550,7 +549,7 @@ export class DeploymentsImpl implements Deployments {
     scope: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsCreateOrUpdateAtScopeResponse>,
@@ -559,21 +558,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsCreateOrUpdateAtScopeResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -582,8 +580,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -591,22 +589,22 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { scope, deploymentName, parameters, options },
-      spec: createOrUpdateAtScopeOperationSpec
+      spec: createOrUpdateAtScopeOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsCreateOrUpdateAtScopeResponse,
       OperationState<DeploymentsCreateOrUpdateAtScopeResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -623,13 +621,13 @@ export class DeploymentsImpl implements Deployments {
     scope: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtScopeOptionalParams,
   ): Promise<DeploymentsCreateOrUpdateAtScopeResponse> {
     const poller = await this.beginCreateOrUpdateAtScope(
       scope,
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -643,11 +641,11 @@ export class DeploymentsImpl implements Deployments {
   getAtScope(
     scope: string,
     deploymentName: string,
-    options?: DeploymentsGetAtScopeOptionalParams
+    options?: DeploymentsGetAtScopeOptionalParams,
   ): Promise<DeploymentsGetAtScopeResponse> {
     return this.client.sendOperationRequest(
       { scope, deploymentName, options },
-      getAtScopeOperationSpec
+      getAtScopeOperationSpec,
     );
   }
 
@@ -662,11 +660,11 @@ export class DeploymentsImpl implements Deployments {
   cancelAtScope(
     scope: string,
     deploymentName: string,
-    options?: DeploymentsCancelAtScopeOptionalParams
+    options?: DeploymentsCancelAtScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { scope, deploymentName, options },
-      cancelAtScopeOperationSpec
+      cancelAtScopeOperationSpec,
     );
   }
 
@@ -682,11 +680,11 @@ export class DeploymentsImpl implements Deployments {
     scope: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsValidateAtScopeOptionalParams
+    options?: DeploymentsValidateAtScopeOptionalParams,
   ): Promise<DeploymentsValidateAtScopeResponse> {
     return this.client.sendOperationRequest(
       { scope, deploymentName, parameters, options },
-      validateAtScopeOperationSpec
+      validateAtScopeOperationSpec,
     );
   }
 
@@ -699,11 +697,11 @@ export class DeploymentsImpl implements Deployments {
   exportTemplateAtScope(
     scope: string,
     deploymentName: string,
-    options?: DeploymentsExportTemplateAtScopeOptionalParams
+    options?: DeploymentsExportTemplateAtScopeOptionalParams,
   ): Promise<DeploymentsExportTemplateAtScopeResponse> {
     return this.client.sendOperationRequest(
       { scope, deploymentName, options },
-      exportTemplateAtScopeOperationSpec
+      exportTemplateAtScopeOperationSpec,
     );
   }
 
@@ -714,11 +712,11 @@ export class DeploymentsImpl implements Deployments {
    */
   private _listAtScope(
     scope: string,
-    options?: DeploymentsListAtScopeOptionalParams
+    options?: DeploymentsListAtScopeOptionalParams,
   ): Promise<DeploymentsListAtScopeResponse> {
     return this.client.sendOperationRequest(
       { scope, options },
-      listAtScopeOperationSpec
+      listAtScopeOperationSpec,
     );
   }
 
@@ -735,25 +733,24 @@ export class DeploymentsImpl implements Deployments {
    */
   async beginDeleteAtTenantScope(
     deploymentName: string,
-    options?: DeploymentsDeleteAtTenantScopeOptionalParams
+    options?: DeploymentsDeleteAtTenantScopeOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -762,8 +759,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -771,19 +768,19 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { deploymentName, options },
-      spec: deleteAtTenantScopeOperationSpec
+      spec: deleteAtTenantScopeOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -802,7 +799,7 @@ export class DeploymentsImpl implements Deployments {
    */
   async beginDeleteAtTenantScopeAndWait(
     deploymentName: string,
-    options?: DeploymentsDeleteAtTenantScopeOptionalParams
+    options?: DeploymentsDeleteAtTenantScopeOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteAtTenantScope(deploymentName, options);
     return poller.pollUntilDone();
@@ -815,11 +812,11 @@ export class DeploymentsImpl implements Deployments {
    */
   checkExistenceAtTenantScope(
     deploymentName: string,
-    options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams
+    options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      checkExistenceAtTenantScopeOperationSpec
+      checkExistenceAtTenantScopeOperationSpec,
     );
   }
 
@@ -832,7 +829,7 @@ export class DeploymentsImpl implements Deployments {
   async beginCreateOrUpdateAtTenantScope(
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>,
@@ -841,21 +838,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsCreateOrUpdateAtTenantScopeResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -864,8 +860,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -873,22 +869,22 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { deploymentName, parameters, options },
-      spec: createOrUpdateAtTenantScopeOperationSpec
+      spec: createOrUpdateAtTenantScopeOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsCreateOrUpdateAtTenantScopeResponse,
       OperationState<DeploymentsCreateOrUpdateAtTenantScopeResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -903,12 +899,12 @@ export class DeploymentsImpl implements Deployments {
   async beginCreateOrUpdateAtTenantScopeAndWait(
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtTenantScopeOptionalParams,
   ): Promise<DeploymentsCreateOrUpdateAtTenantScopeResponse> {
     const poller = await this.beginCreateOrUpdateAtTenantScope(
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -920,11 +916,11 @@ export class DeploymentsImpl implements Deployments {
    */
   getAtTenantScope(
     deploymentName: string,
-    options?: DeploymentsGetAtTenantScopeOptionalParams
+    options?: DeploymentsGetAtTenantScopeOptionalParams,
   ): Promise<DeploymentsGetAtTenantScopeResponse> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      getAtTenantScopeOperationSpec
+      getAtTenantScopeOperationSpec,
     );
   }
 
@@ -937,11 +933,11 @@ export class DeploymentsImpl implements Deployments {
    */
   cancelAtTenantScope(
     deploymentName: string,
-    options?: DeploymentsCancelAtTenantScopeOptionalParams
+    options?: DeploymentsCancelAtTenantScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      cancelAtTenantScopeOperationSpec
+      cancelAtTenantScopeOperationSpec,
     );
   }
 
@@ -955,11 +951,11 @@ export class DeploymentsImpl implements Deployments {
   validateAtTenantScope(
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: DeploymentsValidateAtTenantScopeOptionalParams
+    options?: DeploymentsValidateAtTenantScopeOptionalParams,
   ): Promise<DeploymentsValidateAtTenantScopeResponse> {
     return this.client.sendOperationRequest(
       { deploymentName, parameters, options },
-      validateAtTenantScopeOperationSpec
+      validateAtTenantScopeOperationSpec,
     );
   }
 
@@ -970,11 +966,11 @@ export class DeploymentsImpl implements Deployments {
    */
   exportTemplateAtTenantScope(
     deploymentName: string,
-    options?: DeploymentsExportTemplateAtTenantScopeOptionalParams
+    options?: DeploymentsExportTemplateAtTenantScopeOptionalParams,
   ): Promise<DeploymentsExportTemplateAtTenantScopeResponse> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      exportTemplateAtTenantScopeOperationSpec
+      exportTemplateAtTenantScopeOperationSpec,
     );
   }
 
@@ -983,11 +979,11 @@ export class DeploymentsImpl implements Deployments {
    * @param options The options parameters.
    */
   private _listAtTenantScope(
-    options?: DeploymentsListAtTenantScopeOptionalParams
+    options?: DeploymentsListAtTenantScopeOptionalParams,
   ): Promise<DeploymentsListAtTenantScopeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listAtTenantScopeOperationSpec
+      listAtTenantScopeOperationSpec,
     );
   }
 
@@ -1006,25 +1002,24 @@ export class DeploymentsImpl implements Deployments {
   async beginDeleteAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
+    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1033,8 +1028,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1042,19 +1037,19 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { groupId, deploymentName, options },
-      spec: deleteAtManagementGroupScopeOperationSpec
+      spec: deleteAtManagementGroupScopeOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1075,12 +1070,12 @@ export class DeploymentsImpl implements Deployments {
   async beginDeleteAtManagementGroupScopeAndWait(
     groupId: string,
     deploymentName: string,
-    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
+    options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteAtManagementGroupScope(
       groupId,
       deploymentName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1094,11 +1089,11 @@ export class DeploymentsImpl implements Deployments {
   checkExistenceAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
+    options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { groupId, deploymentName, options },
-      checkExistenceAtManagementGroupScopeOperationSpec
+      checkExistenceAtManagementGroupScopeOperationSpec,
     );
   }
 
@@ -1113,7 +1108,7 @@ export class DeploymentsImpl implements Deployments {
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>,
@@ -1122,21 +1117,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1145,8 +1139,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1154,22 +1148,22 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { groupId, deploymentName, parameters, options },
-      spec: createOrUpdateAtManagementGroupScopeOperationSpec
+      spec: createOrUpdateAtManagementGroupScopeOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsCreateOrUpdateAtManagementGroupScopeResponse,
       OperationState<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1186,13 +1180,13 @@ export class DeploymentsImpl implements Deployments {
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams,
   ): Promise<DeploymentsCreateOrUpdateAtManagementGroupScopeResponse> {
     const poller = await this.beginCreateOrUpdateAtManagementGroupScope(
       groupId,
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1206,11 +1200,11 @@ export class DeploymentsImpl implements Deployments {
   getAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: DeploymentsGetAtManagementGroupScopeOptionalParams
+    options?: DeploymentsGetAtManagementGroupScopeOptionalParams,
   ): Promise<DeploymentsGetAtManagementGroupScopeResponse> {
     return this.client.sendOperationRequest(
       { groupId, deploymentName, options },
-      getAtManagementGroupScopeOperationSpec
+      getAtManagementGroupScopeOperationSpec,
     );
   }
 
@@ -1225,11 +1219,11 @@ export class DeploymentsImpl implements Deployments {
   cancelAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: DeploymentsCancelAtManagementGroupScopeOptionalParams
+    options?: DeploymentsCancelAtManagementGroupScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { groupId, deploymentName, options },
-      cancelAtManagementGroupScopeOperationSpec
+      cancelAtManagementGroupScopeOperationSpec,
     );
   }
 
@@ -1245,11 +1239,11 @@ export class DeploymentsImpl implements Deployments {
     groupId: string,
     deploymentName: string,
     parameters: ScopedDeployment,
-    options?: DeploymentsValidateAtManagementGroupScopeOptionalParams
+    options?: DeploymentsValidateAtManagementGroupScopeOptionalParams,
   ): Promise<DeploymentsValidateAtManagementGroupScopeResponse> {
     return this.client.sendOperationRequest(
       { groupId, deploymentName, parameters, options },
-      validateAtManagementGroupScopeOperationSpec
+      validateAtManagementGroupScopeOperationSpec,
     );
   }
 
@@ -1262,11 +1256,11 @@ export class DeploymentsImpl implements Deployments {
   exportTemplateAtManagementGroupScope(
     groupId: string,
     deploymentName: string,
-    options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
+    options?: DeploymentsExportTemplateAtManagementGroupScopeOptionalParams,
   ): Promise<DeploymentsExportTemplateAtManagementGroupScopeResponse> {
     return this.client.sendOperationRequest(
       { groupId, deploymentName, options },
-      exportTemplateAtManagementGroupScopeOperationSpec
+      exportTemplateAtManagementGroupScopeOperationSpec,
     );
   }
 
@@ -1277,11 +1271,11 @@ export class DeploymentsImpl implements Deployments {
    */
   private _listAtManagementGroupScope(
     groupId: string,
-    options?: DeploymentsListAtManagementGroupScopeOptionalParams
+    options?: DeploymentsListAtManagementGroupScopeOptionalParams,
   ): Promise<DeploymentsListAtManagementGroupScopeResponse> {
     return this.client.sendOperationRequest(
       { groupId, options },
-      listAtManagementGroupScopeOperationSpec
+      listAtManagementGroupScopeOperationSpec,
     );
   }
 
@@ -1298,25 +1292,24 @@ export class DeploymentsImpl implements Deployments {
    */
   async beginDeleteAtSubscriptionScope(
     deploymentName: string,
-    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
+    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1325,8 +1318,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1334,19 +1327,19 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { deploymentName, options },
-      spec: deleteAtSubscriptionScopeOperationSpec
+      spec: deleteAtSubscriptionScopeOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1365,11 +1358,11 @@ export class DeploymentsImpl implements Deployments {
    */
   async beginDeleteAtSubscriptionScopeAndWait(
     deploymentName: string,
-    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
+    options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDeleteAtSubscriptionScope(
       deploymentName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1381,11 +1374,11 @@ export class DeploymentsImpl implements Deployments {
    */
   checkExistenceAtSubscriptionScope(
     deploymentName: string,
-    options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
+    options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      checkExistenceAtSubscriptionScopeOperationSpec
+      checkExistenceAtSubscriptionScopeOperationSpec,
     );
   }
 
@@ -1398,7 +1391,7 @@ export class DeploymentsImpl implements Deployments {
   async beginCreateOrUpdateAtSubscriptionScope(
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>,
@@ -1407,21 +1400,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1430,8 +1422,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1439,22 +1431,22 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { deploymentName, parameters, options },
-      spec: createOrUpdateAtSubscriptionScopeOperationSpec
+      spec: createOrUpdateAtSubscriptionScopeOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsCreateOrUpdateAtSubscriptionScopeResponse,
       OperationState<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1469,12 +1461,12 @@ export class DeploymentsImpl implements Deployments {
   async beginCreateOrUpdateAtSubscriptionScopeAndWait(
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
+    options?: DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams,
   ): Promise<DeploymentsCreateOrUpdateAtSubscriptionScopeResponse> {
     const poller = await this.beginCreateOrUpdateAtSubscriptionScope(
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1486,11 +1478,11 @@ export class DeploymentsImpl implements Deployments {
    */
   getAtSubscriptionScope(
     deploymentName: string,
-    options?: DeploymentsGetAtSubscriptionScopeOptionalParams
+    options?: DeploymentsGetAtSubscriptionScopeOptionalParams,
   ): Promise<DeploymentsGetAtSubscriptionScopeResponse> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      getAtSubscriptionScopeOperationSpec
+      getAtSubscriptionScopeOperationSpec,
     );
   }
 
@@ -1503,11 +1495,11 @@ export class DeploymentsImpl implements Deployments {
    */
   cancelAtSubscriptionScope(
     deploymentName: string,
-    options?: DeploymentsCancelAtSubscriptionScopeOptionalParams
+    options?: DeploymentsCancelAtSubscriptionScopeOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      cancelAtSubscriptionScopeOperationSpec
+      cancelAtSubscriptionScopeOperationSpec,
     );
   }
 
@@ -1521,11 +1513,11 @@ export class DeploymentsImpl implements Deployments {
   validateAtSubscriptionScope(
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsValidateAtSubscriptionScopeOptionalParams
+    options?: DeploymentsValidateAtSubscriptionScopeOptionalParams,
   ): Promise<DeploymentsValidateAtSubscriptionScopeResponse> {
     return this.client.sendOperationRequest(
       { deploymentName, parameters, options },
-      validateAtSubscriptionScopeOperationSpec
+      validateAtSubscriptionScopeOperationSpec,
     );
   }
 
@@ -1538,7 +1530,7 @@ export class DeploymentsImpl implements Deployments {
   async beginWhatIfAtSubscriptionScope(
     deploymentName: string,
     parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
+    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>,
@@ -1547,21 +1539,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsWhatIfAtSubscriptionScopeResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1570,8 +1561,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1579,15 +1570,15 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { deploymentName, parameters, options },
-      spec: whatIfAtSubscriptionScopeOperationSpec
+      spec: whatIfAtSubscriptionScopeOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsWhatIfAtSubscriptionScopeResponse,
@@ -1595,7 +1586,7 @@ export class DeploymentsImpl implements Deployments {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -1610,12 +1601,12 @@ export class DeploymentsImpl implements Deployments {
   async beginWhatIfAtSubscriptionScopeAndWait(
     deploymentName: string,
     parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams
+    options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams,
   ): Promise<DeploymentsWhatIfAtSubscriptionScopeResponse> {
     const poller = await this.beginWhatIfAtSubscriptionScope(
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1627,11 +1618,11 @@ export class DeploymentsImpl implements Deployments {
    */
   exportTemplateAtSubscriptionScope(
     deploymentName: string,
-    options?: DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
+    options?: DeploymentsExportTemplateAtSubscriptionScopeOptionalParams,
   ): Promise<DeploymentsExportTemplateAtSubscriptionScopeResponse> {
     return this.client.sendOperationRequest(
       { deploymentName, options },
-      exportTemplateAtSubscriptionScopeOperationSpec
+      exportTemplateAtSubscriptionScopeOperationSpec,
     );
   }
 
@@ -1640,11 +1631,11 @@ export class DeploymentsImpl implements Deployments {
    * @param options The options parameters.
    */
   private _listAtSubscriptionScope(
-    options?: DeploymentsListAtSubscriptionScopeOptionalParams
+    options?: DeploymentsListAtSubscriptionScopeOptionalParams,
   ): Promise<DeploymentsListAtSubscriptionScopeResponse> {
     return this.client.sendOperationRequest(
       { options },
-      listAtSubscriptionScopeOperationSpec
+      listAtSubscriptionScopeOperationSpec,
     );
   }
 
@@ -1665,25 +1656,24 @@ export class DeploymentsImpl implements Deployments {
   async beginDelete(
     resourceGroupName: string,
     deploymentName: string,
-    options?: DeploymentsDeleteOptionalParams
+    options?: DeploymentsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1692,8 +1682,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1701,19 +1691,19 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, deploymentName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1736,12 +1726,12 @@ export class DeploymentsImpl implements Deployments {
   async beginDeleteAndWait(
     resourceGroupName: string,
     deploymentName: string,
-    options?: DeploymentsDeleteOptionalParams
+    options?: DeploymentsDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       deploymentName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1756,11 +1746,11 @@ export class DeploymentsImpl implements Deployments {
   checkExistence(
     resourceGroupName: string,
     deploymentName: string,
-    options?: DeploymentsCheckExistenceOptionalParams
+    options?: DeploymentsCheckExistenceOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { resourceGroupName, deploymentName, options },
-      checkExistenceOperationSpec
+      checkExistenceOperationSpec,
     );
   }
 
@@ -1776,7 +1766,7 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateOptionalParams
+    options?: DeploymentsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsCreateOrUpdateResponse>,
@@ -1785,21 +1775,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1808,8 +1797,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1817,22 +1806,22 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, deploymentName, parameters, options },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsCreateOrUpdateResponse,
       OperationState<DeploymentsCreateOrUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1850,13 +1839,13 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsCreateOrUpdateOptionalParams
+    options?: DeploymentsCreateOrUpdateOptionalParams,
   ): Promise<DeploymentsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1870,11 +1859,11 @@ export class DeploymentsImpl implements Deployments {
   get(
     resourceGroupName: string,
     deploymentName: string,
-    options?: DeploymentsGetOptionalParams
+    options?: DeploymentsGetOptionalParams,
   ): Promise<DeploymentsGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, deploymentName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -1889,11 +1878,11 @@ export class DeploymentsImpl implements Deployments {
   cancel(
     resourceGroupName: string,
     deploymentName: string,
-    options?: DeploymentsCancelOptionalParams
+    options?: DeploymentsCancelOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { resourceGroupName, deploymentName, options },
-      cancelOperationSpec
+      cancelOperationSpec,
     );
   }
 
@@ -1910,11 +1899,11 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: Deployment,
-    options?: DeploymentsValidateOptionalParams
+    options?: DeploymentsValidateOptionalParams,
   ): Promise<DeploymentsValidateResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, deploymentName, parameters, options },
-      validateOperationSpec
+      validateOperationSpec,
     );
   }
 
@@ -1930,7 +1919,7 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfOptionalParams
+    options?: DeploymentsWhatIfOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DeploymentsWhatIfResponse>,
@@ -1939,21 +1928,20 @@ export class DeploymentsImpl implements Deployments {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DeploymentsWhatIfResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1962,8 +1950,8 @@ export class DeploymentsImpl implements Deployments {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1971,15 +1959,15 @@ export class DeploymentsImpl implements Deployments {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, deploymentName, parameters, options },
-      spec: whatIfOperationSpec
+      spec: whatIfOperationSpec,
     });
     const poller = await createHttpPoller<
       DeploymentsWhatIfResponse,
@@ -1987,7 +1975,7 @@ export class DeploymentsImpl implements Deployments {
     >(lro, {
       restoreFrom: options?.resumeFrom,
       intervalInMs: options?.updateIntervalInMs,
-      resourceLocationConfig: "location"
+      resourceLocationConfig: "location",
     });
     await poller.poll();
     return poller;
@@ -2005,13 +1993,13 @@ export class DeploymentsImpl implements Deployments {
     resourceGroupName: string,
     deploymentName: string,
     parameters: DeploymentWhatIf,
-    options?: DeploymentsWhatIfOptionalParams
+    options?: DeploymentsWhatIfOptionalParams,
   ): Promise<DeploymentsWhatIfResponse> {
     const poller = await this.beginWhatIf(
       resourceGroupName,
       deploymentName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -2025,11 +2013,11 @@ export class DeploymentsImpl implements Deployments {
   exportTemplate(
     resourceGroupName: string,
     deploymentName: string,
-    options?: DeploymentsExportTemplateOptionalParams
+    options?: DeploymentsExportTemplateOptionalParams,
   ): Promise<DeploymentsExportTemplateResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, deploymentName, options },
-      exportTemplateOperationSpec
+      exportTemplateOperationSpec,
     );
   }
 
@@ -2041,11 +2029,11 @@ export class DeploymentsImpl implements Deployments {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: DeploymentsListByResourceGroupOptionalParams
+    options?: DeploymentsListByResourceGroupOptionalParams,
   ): Promise<DeploymentsListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -2056,11 +2044,11 @@ export class DeploymentsImpl implements Deployments {
    */
   calculateTemplateHash(
     template: Record<string, unknown>,
-    options?: DeploymentsCalculateTemplateHashOptionalParams
+    options?: DeploymentsCalculateTemplateHashOptionalParams,
   ): Promise<DeploymentsCalculateTemplateHashResponse> {
     return this.client.sendOperationRequest(
       { template, options },
-      calculateTemplateHashOperationSpec
+      calculateTemplateHashOperationSpec,
     );
   }
 
@@ -2073,11 +2061,11 @@ export class DeploymentsImpl implements Deployments {
   private _listAtScopeNext(
     scope: string,
     nextLink: string,
-    options?: DeploymentsListAtScopeNextOptionalParams
+    options?: DeploymentsListAtScopeNextOptionalParams,
   ): Promise<DeploymentsListAtScopeNextResponse> {
     return this.client.sendOperationRequest(
       { scope, nextLink, options },
-      listAtScopeNextOperationSpec
+      listAtScopeNextOperationSpec,
     );
   }
 
@@ -2088,11 +2076,11 @@ export class DeploymentsImpl implements Deployments {
    */
   private _listAtTenantScopeNext(
     nextLink: string,
-    options?: DeploymentsListAtTenantScopeNextOptionalParams
+    options?: DeploymentsListAtTenantScopeNextOptionalParams,
   ): Promise<DeploymentsListAtTenantScopeNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listAtTenantScopeNextOperationSpec
+      listAtTenantScopeNextOperationSpec,
     );
   }
 
@@ -2106,11 +2094,11 @@ export class DeploymentsImpl implements Deployments {
   private _listAtManagementGroupScopeNext(
     groupId: string,
     nextLink: string,
-    options?: DeploymentsListAtManagementGroupScopeNextOptionalParams
+    options?: DeploymentsListAtManagementGroupScopeNextOptionalParams,
   ): Promise<DeploymentsListAtManagementGroupScopeNextResponse> {
     return this.client.sendOperationRequest(
       { groupId, nextLink, options },
-      listAtManagementGroupScopeNextOperationSpec
+      listAtManagementGroupScopeNextOperationSpec,
     );
   }
 
@@ -2122,11 +2110,11 @@ export class DeploymentsImpl implements Deployments {
    */
   private _listAtSubscriptionScopeNext(
     nextLink: string,
-    options?: DeploymentsListAtSubscriptionScopeNextOptionalParams
+    options?: DeploymentsListAtSubscriptionScopeNextOptionalParams,
   ): Promise<DeploymentsListAtSubscriptionScopeNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listAtSubscriptionScopeNextOperationSpec
+      listAtSubscriptionScopeNextOperationSpec,
     );
   }
 
@@ -2140,11 +2128,11 @@ export class DeploymentsImpl implements Deployments {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: DeploymentsListByResourceGroupNextOptionalParams
+    options?: DeploymentsListByResourceGroupNextOptionalParams,
   ): Promise<DeploymentsListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -2160,17 +2148,17 @@ const deleteAtScopeOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const checkExistenceAtScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
@@ -2179,150 +2167,147 @@ const checkExistenceAtScopeOperationSpec: coreClient.OperationSpec = {
     204: {},
     404: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateAtScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     201: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     202: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     204: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getAtScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const cancelAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+  path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
   httpMethod: "POST",
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const validateAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+  path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     400: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const exportTemplateAtScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+  path: "/{scope}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExportResult
+      bodyMapper: Mappers.DeploymentExportResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.scope,
-    Parameters.deploymentName
+    Parameters.deploymentName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/deployments/",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.scope],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
@@ -2333,13 +2318,13 @@ const deleteAtTenantScopeOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const checkExistenceAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
@@ -2348,56 +2333,56 @@ const checkExistenceAtTenantScopeOperationSpec: coreClient.OperationSpec = {
     204: {},
     404: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     201: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     202: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     204: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const cancelAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
@@ -2405,71 +2390,69 @@ const cancelAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const validateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     400: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const exportTemplateAtTenantScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+  path: "/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExportResult
+      bodyMapper: Mappers.DeploymentExportResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.deploymentName],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/deployments/",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -2477,177 +2460,172 @@ const deleteAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.groupId
+    Parameters.groupId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const checkExistenceAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const createOrUpdateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
+const checkExistenceAtManagementGroupScopeOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+    httpMethod: "HEAD",
+    responses: {
+      204: {},
+      404: {},
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    201: {
-      bodyMapper: Mappers.DeploymentExtended
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.deploymentName,
+      Parameters.groupId,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const createOrUpdateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+    httpMethod: "PUT",
+    responses: {
+      200: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      201: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      202: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      204: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    202: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    204: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  requestBody: Parameters.parameters1,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
+    requestBody: Parameters.parameters1,
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.deploymentName,
+      Parameters.groupId,
+    ],
+    headerParameters: [Parameters.accept, Parameters.contentType],
+    mediaType: "json",
+    serializer,
+  };
 const getAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.groupId
+    Parameters.groupId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const cancelAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+  path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
   httpMethod: "POST",
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.groupId
+    Parameters.groupId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const validateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+  path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     400: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.groupId
+    Parameters.groupId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
-const exportTemplateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
+const exportTemplateAtManagementGroupScopeOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.DeploymentExportResult,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.groupId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.deploymentName,
+      Parameters.groupId,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const listAtManagementGroupScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/",
+  path: "/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.groupId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -2655,209 +2633,203 @@ const deleteAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
-const checkExistenceAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "HEAD",
-  responses: {
-    204: {},
-    404: {},
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const createOrUpdateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
-  httpMethod: "PUT",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExtended
+const checkExistenceAtSubscriptionScopeOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+    httpMethod: "HEAD",
+    responses: {
+      204: {},
+      404: {},
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    201: {
-      bodyMapper: Mappers.DeploymentExtended
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.deploymentName,
+      Parameters.subscriptionId,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
+const createOrUpdateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+    httpMethod: "PUT",
+    responses: {
+      200: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      201: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      202: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      204: {
+        bodyMapper: Mappers.DeploymentExtended,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    202: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    204: {
-      bodyMapper: Mappers.DeploymentExtended
-    },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  requestBody: Parameters.parameters,
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept, Parameters.contentType],
-  mediaType: "json",
-  serializer
-};
+    requestBody: Parameters.parameters,
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.deploymentName,
+      Parameters.subscriptionId,
+    ],
+    headerParameters: [Parameters.accept, Parameters.contentType],
+    mediaType: "json",
+    serializer,
+  };
 const getAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const cancelAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
   httpMethod: "POST",
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const validateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     400: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const whatIfAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/whatIf",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/whatIf",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     201: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     202: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     204: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
-const exportTemplateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      bodyMapper: Mappers.DeploymentExportResult
+const exportTemplateAtSubscriptionScopeOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        bodyMapper: Mappers.DeploymentExportResult,
+      },
+      default: {
+        bodyMapper: Mappers.CloudError,
+      },
     },
-    default: {
-      bodyMapper: Mappers.CloudError
-    }
-  },
-  queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.deploymentName,
-    Parameters.subscriptionId
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
+    queryParameters: [Parameters.apiVersion],
+    urlParameters: [
+      Parameters.$host,
+      Parameters.deploymentName,
+      Parameters.subscriptionId,
+    ],
+    headerParameters: [Parameters.accept],
+    serializer,
+  };
 const listAtSubscriptionScopeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "DELETE",
   responses: {
     200: {},
@@ -2865,60 +2837,58 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     202: {},
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const checkExistenceOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "HEAD",
   responses: {
     204: {},
     404: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     201: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     202: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     204: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
@@ -2926,68 +2896,65 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExtended
+      bodyMapper: Mappers.DeploymentExtended,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const cancelOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/cancel",
   httpMethod: "POST",
   responses: {
     204: {},
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const validateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/validate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     400: {
-      bodyMapper: Mappers.DeploymentValidateResult
+      bodyMapper: Mappers.DeploymentValidateResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters,
   queryParameters: [Parameters.apiVersion],
@@ -2995,32 +2962,31 @@ const validateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const whatIfOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/whatIf",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/whatIf",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     201: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     202: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     204: {
-      bodyMapper: Mappers.WhatIfOperationResult
+      bodyMapper: Mappers.WhatIfOperationResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.parameters2,
   queryParameters: [Parameters.apiVersion],
@@ -3028,154 +2994,152 @@ const whatIfOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const exportTemplateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}/exportTemplate",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentExportResult
+      bodyMapper: Mappers.DeploymentExportResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.deploymentName,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/",
+  path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter, Parameters.top],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const calculateTemplateHashOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Resources/calculateTemplateHash",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.TemplateHashResult
+      bodyMapper: Mappers.TemplateHashResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   requestBody: Parameters.template,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listAtScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.scope],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtTenantScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtManagementGroupScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.nextLink, Parameters.groupId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listAtSubscriptionScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
-    Parameters.subscriptionId
+    Parameters.subscriptionId,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DeploymentListResult
+      bodyMapper: Mappers.DeploymentListResult,
     },
     default: {
-      bodyMapper: Mappers.CloudError
-    }
+      bodyMapper: Mappers.CloudError,
+    },
   },
   urlParameters: [
     Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

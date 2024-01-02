@@ -11,7 +11,7 @@
 import {
   CloudServiceUpdate,
   CloudServicesUpdateOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function updateExistingCloudServiceToAddTags() {
   const result = await client.cloudServices.beginUpdateAndWait(
     resourceGroupName,
     cloudServiceName,
-    options
+    options,
   );
   console.log(result);
 }

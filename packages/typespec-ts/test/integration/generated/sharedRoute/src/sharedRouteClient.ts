@@ -12,7 +12,7 @@ import { SharedRouteClient } from "./clientDefinitions";
  */
 export default function createClient(
   $host: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SharedRouteClient {
   const baseUrl = options.baseUrl ?? `${$host}`;
 

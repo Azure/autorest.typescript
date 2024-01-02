@@ -16,7 +16,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -36,7 +36,7 @@ import {
   VirtualClustersUpdateOptionalParams,
   VirtualClustersUpdateResponse,
   VirtualClustersListNextResponse,
-  VirtualClustersListByResourceGroupNextResponse
+  VirtualClustersListByResourceGroupNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -57,7 +57,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param options The options parameters.
    */
   public list(
-    options?: VirtualClustersListOptionalParams
+    options?: VirtualClustersListOptionalParams,
   ): PagedAsyncIterableIterator<VirtualCluster> {
     const iter = this.listPagingAll(options);
     return {
@@ -72,13 +72,13 @@ export class VirtualClustersImpl implements VirtualClusters {
           throw new Error("maxPageSize is not supported by this operation.");
         }
         return this.listPagingPage(options, settings);
-      }
+      },
     };
   }
 
   private async *listPagingPage(
     options?: VirtualClustersListOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<VirtualCluster[]> {
     let result: VirtualClustersListResponse;
     let continuationToken = settings?.continuationToken;
@@ -99,7 +99,7 @@ export class VirtualClustersImpl implements VirtualClusters {
   }
 
   private async *listPagingAll(
-    options?: VirtualClustersListOptionalParams
+    options?: VirtualClustersListOptionalParams,
   ): AsyncIterableIterator<VirtualCluster> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
@@ -114,7 +114,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    */
   public listByResourceGroup(
     resourceGroupName: string,
-    options?: VirtualClustersListByResourceGroupOptionalParams
+    options?: VirtualClustersListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<VirtualCluster> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
@@ -131,16 +131,16 @@ export class VirtualClustersImpl implements VirtualClusters {
         return this.listByResourceGroupPagingPage(
           resourceGroupName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: VirtualClustersListByResourceGroupOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<VirtualCluster[]> {
     let result: VirtualClustersListByResourceGroupResponse;
     let continuationToken = settings?.continuationToken;
@@ -155,7 +155,7 @@ export class VirtualClustersImpl implements VirtualClusters {
       result = await this._listByResourceGroupNext(
         resourceGroupName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -166,11 +166,11 @@ export class VirtualClustersImpl implements VirtualClusters {
 
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
-    options?: VirtualClustersListByResourceGroupOptionalParams
+    options?: VirtualClustersListByResourceGroupOptionalParams,
   ): AsyncIterableIterator<VirtualCluster> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -186,11 +186,11 @@ export class VirtualClustersImpl implements VirtualClusters {
   updateDnsServers(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersUpdateDnsServersOptionalParams
+    options?: VirtualClustersUpdateDnsServersOptionalParams,
   ): Promise<VirtualClustersUpdateDnsServersResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, virtualClusterName, options },
-      updateDnsServersOperationSpec
+      updateDnsServersOperationSpec,
     );
   }
 
@@ -199,7 +199,7 @@ export class VirtualClustersImpl implements VirtualClusters {
    * @param options The options parameters.
    */
   private _list(
-    options?: VirtualClustersListOptionalParams
+    options?: VirtualClustersListOptionalParams,
   ): Promise<VirtualClustersListResponse> {
     return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
@@ -212,11 +212,11 @@ export class VirtualClustersImpl implements VirtualClusters {
    */
   private _listByResourceGroup(
     resourceGroupName: string,
-    options?: VirtualClustersListByResourceGroupOptionalParams
+    options?: VirtualClustersListByResourceGroupOptionalParams,
   ): Promise<VirtualClustersListByResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      listByResourceGroupOperationSpec
+      listByResourceGroupOperationSpec,
     );
   }
 
@@ -230,11 +230,11 @@ export class VirtualClustersImpl implements VirtualClusters {
   get(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersGetOptionalParams
+    options?: VirtualClustersGetOptionalParams,
   ): Promise<VirtualClustersGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, virtualClusterName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -248,25 +248,24 @@ export class VirtualClustersImpl implements VirtualClusters {
   async beginDelete(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersDeleteOptionalParams
+    options?: VirtualClustersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -275,8 +274,8 @@ export class VirtualClustersImpl implements VirtualClusters {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -284,19 +283,19 @@ export class VirtualClustersImpl implements VirtualClusters {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, virtualClusterName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -312,12 +311,12 @@ export class VirtualClustersImpl implements VirtualClusters {
   async beginDeleteAndWait(
     resourceGroupName: string,
     virtualClusterName: string,
-    options?: VirtualClustersDeleteOptionalParams
+    options?: VirtualClustersDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       virtualClusterName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -334,7 +333,7 @@ export class VirtualClustersImpl implements VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
-    options?: VirtualClustersUpdateOptionalParams
+    options?: VirtualClustersUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<VirtualClustersUpdateResponse>,
@@ -343,21 +342,20 @@ export class VirtualClustersImpl implements VirtualClusters {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<VirtualClustersUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -366,8 +364,8 @@ export class VirtualClustersImpl implements VirtualClusters {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -375,22 +373,22 @@ export class VirtualClustersImpl implements VirtualClusters {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, virtualClusterName, parameters, options },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       VirtualClustersUpdateResponse,
       OperationState<VirtualClustersUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -408,13 +406,13 @@ export class VirtualClustersImpl implements VirtualClusters {
     resourceGroupName: string,
     virtualClusterName: string,
     parameters: VirtualClusterUpdate,
-    options?: VirtualClustersUpdateOptionalParams
+    options?: VirtualClustersUpdateOptionalParams,
   ): Promise<VirtualClustersUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       virtualClusterName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -426,11 +424,11 @@ export class VirtualClustersImpl implements VirtualClusters {
    */
   private _listNext(
     nextLink: string,
-    options?: VirtualClustersListNextOptionalParams
+    options?: VirtualClustersListNextOptionalParams,
   ): Promise<VirtualClustersListNextResponse> {
     return this.client.sendOperationRequest(
       { nextLink, options },
-      listNextOperationSpec
+      listNextOperationSpec,
     );
   }
 
@@ -444,11 +442,11 @@ export class VirtualClustersImpl implements VirtualClusters {
   private _listByResourceGroupNext(
     resourceGroupName: string,
     nextLink: string,
-    options?: VirtualClustersListByResourceGroupNextOptionalParams
+    options?: VirtualClustersListByResourceGroupNextOptionalParams,
   ): Promise<VirtualClustersListByResourceGroupNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, nextLink, options },
-      listByResourceGroupNextOperationSpec
+      listByResourceGroupNextOperationSpec,
     );
   }
 }
@@ -456,82 +454,77 @@ export class VirtualClustersImpl implements VirtualClusters {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const updateDnsServersOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}/updateManagedInstanceDnsServers",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}/updateManagedInstanceDnsServers",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.UpdateManagedInstanceDnsServersOperation
+      bodyMapper: Mappers.UpdateManagedInstanceDnsServersOperation,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.virtualClusterName
+    Parameters.virtualClusterName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/virtualClusters",
+  path: "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/virtualClusters",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualClusterListResult
+      bodyMapper: Mappers.VirtualClusterListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualClusterListResult
+      bodyMapper: Mappers.VirtualClusterListResult,
     },
-    default: {}
-  },
-  queryParameters: [Parameters.apiVersion2],
-  urlParameters: [
-    Parameters.$host,
-    Parameters.subscriptionId,
-    Parameters.resourceGroupName
-  ],
-  headerParameters: [Parameters.accept],
-  serializer
-};
-const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
-  httpMethod: "GET",
-  responses: {
-    200: {
-      bodyMapper: Mappers.VirtualCluster
-    },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.virtualClusterName
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
+};
+const getOperationSpec: coreClient.OperationSpec = {
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.VirtualCluster,
+    },
+    default: {},
+  },
+  queryParameters: [Parameters.apiVersion2],
+  urlParameters: [
+    Parameters.$host,
+    Parameters.subscriptionId,
+    Parameters.resourceGroupName,
+    Parameters.virtualClusterName,
+  ],
+  headerParameters: [Parameters.accept],
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
@@ -539,28 +532,27 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.virtualClusterName
+    Parameters.virtualClusterName,
   ],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/virtualClusters/{virtualClusterName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualCluster
+      bodyMapper: Mappers.VirtualCluster,
     },
     201: {
-      bodyMapper: Mappers.VirtualCluster
+      bodyMapper: Mappers.VirtualCluster,
     },
     202: {
-      bodyMapper: Mappers.VirtualCluster
+      bodyMapper: Mappers.VirtualCluster,
     },
     204: {
-      bodyMapper: Mappers.VirtualCluster
+      bodyMapper: Mappers.VirtualCluster,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters71,
   queryParameters: [Parameters.apiVersion2],
@@ -568,44 +560,44 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.virtualClusterName
+    Parameters.virtualClusterName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualClusterListResult
+      bodyMapper: Mappers.VirtualClusterListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.VirtualClusterListResult
+      bodyMapper: Mappers.VirtualClusterListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

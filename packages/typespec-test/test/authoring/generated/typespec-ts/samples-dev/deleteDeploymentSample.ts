@@ -24,7 +24,7 @@ async function deleteDeploymentSample() {
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
       projectName,
-      deploymentName
+      deploymentName,
     )
     .delete();
   const poller = await getLongRunningPoller(client, initialResponse);

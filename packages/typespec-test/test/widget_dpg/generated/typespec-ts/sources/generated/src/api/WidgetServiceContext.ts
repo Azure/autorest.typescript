@@ -11,7 +11,7 @@ export { WidgetServiceContext } from "../rest/index.js";
 
 export function createWidgetService(
   endpoint: string,
-  options: WidgetServiceClientOptions = {}
+  options: WidgetServiceClientOptions = {},
 ): WidgetServiceContext {
   const clientContext = getClient(endpoint, options);
   return clientContext;

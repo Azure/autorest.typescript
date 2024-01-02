@@ -11,7 +11,7 @@ import {
   DpsCertificateGenerateVerificationCodeResponse,
   VerificationCodeRequest,
   DpsCertificateVerifyCertificateOptionalParams,
-  DpsCertificateVerifyCertificateResponse
+  DpsCertificateVerifyCertificateResponse,
 } from "../models";
 
 /** Interface representing a DpsCertificate. */
@@ -27,7 +27,7 @@ export interface DpsCertificate {
     certificateName: string,
     resourceGroupName: string,
     provisioningServiceName: string,
-    options?: DpsCertificateGetOptionalParams
+    options?: DpsCertificateGetOptionalParams,
   ): Promise<DpsCertificateGetResponse>;
   /**
    * Add new certificate or update an existing certificate.
@@ -42,7 +42,7 @@ export interface DpsCertificate {
     provisioningServiceName: string,
     certificateName: string,
     certificateDescription: CertificateBodyDescription,
-    options?: DpsCertificateCreateOrUpdateOptionalParams
+    options?: DpsCertificateCreateOrUpdateOptionalParams,
   ): Promise<DpsCertificateCreateOrUpdateResponse>;
   /**
    * Deletes the specified certificate associated with the Provisioning Service
@@ -58,7 +58,7 @@ export interface DpsCertificate {
     ifMatch: string,
     provisioningServiceName: string,
     certificateName: string,
-    options?: DpsCertificateDeleteOptionalParams
+    options?: DpsCertificateDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Get all the certificates tied to the provisioning service.
@@ -69,7 +69,7 @@ export interface DpsCertificate {
   list(
     resourceGroupName: string,
     provisioningServiceName: string,
-    options?: DpsCertificateListOptionalParams
+    options?: DpsCertificateListOptionalParams,
   ): Promise<DpsCertificateListResponse>;
   /**
    * Generate verification code for Proof of Possession.
@@ -86,7 +86,7 @@ export interface DpsCertificate {
     ifMatch: string,
     resourceGroupName: string,
     provisioningServiceName: string,
-    options?: DpsCertificateGenerateVerificationCodeOptionalParams
+    options?: DpsCertificateGenerateVerificationCodeOptionalParams,
   ): Promise<DpsCertificateGenerateVerificationCodeResponse>;
   /**
    * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying
@@ -105,6 +105,6 @@ export interface DpsCertificate {
     resourceGroupName: string,
     provisioningServiceName: string,
     request: VerificationCodeRequest,
-    options?: DpsCertificateVerifyCertificateOptionalParams
+    options?: DpsCertificateVerifyCertificateOptionalParams,
   ): Promise<DpsCertificateVerifyCertificateResponse>;
 }

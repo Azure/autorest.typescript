@@ -13,7 +13,7 @@ import { SecurityKeyRestClient } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SecurityKeyRestClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   const userAgentInfo = `azsdk-js-security-key-rest/1.0.0-preview1`;
@@ -24,20 +24,20 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key"
-    }
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "security-key",
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as SecurityKeyRestClient;
 
   return {
@@ -45,7 +45,7 @@ export default function createClient(
     ...{
       head: (options) => {
         return client.path("/securitykey").head(options);
-      }
-    }
+      },
+    },
   };
 }

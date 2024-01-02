@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PrivateLinkConnectionApprovalRequestResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,17 +33,18 @@ async function approvesOrRejectsAPrivateEndpointConnectionForASite() {
     privateLinkServiceConnectionState: {
       description: "Approved by admin.",
       actionsRequired: "",
-      status: "Approved"
-    }
+      status: "Approved",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
-  const result = await client.staticSites.beginApproveOrRejectPrivateEndpointConnectionAndWait(
-    resourceGroupName,
-    name,
-    privateEndpointConnectionName,
-    privateEndpointWrapper
-  );
+  const result =
+    await client.staticSites.beginApproveOrRejectPrivateEndpointConnectionAndWait(
+      resourceGroupName,
+      name,
+      privateEndpointConnectionName,
+      privateEndpointWrapper,
+    );
   console.log(result);
 }
 

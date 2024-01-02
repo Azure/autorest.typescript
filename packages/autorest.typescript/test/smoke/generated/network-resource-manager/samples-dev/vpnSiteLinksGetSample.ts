@@ -30,7 +30,7 @@ async function vpnSiteGet() {
   const result = await client.vpnSiteLinks.get(
     resourceGroupName,
     vpnSiteName,
-    vpnSiteLinkName
+    vpnSiteLinkName,
   );
   console.log(result);
 }

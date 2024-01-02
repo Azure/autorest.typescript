@@ -15,7 +15,7 @@ import { SynapseArtifactsClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SynapseArtifactsClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
   options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
@@ -27,22 +27,22 @@ export default function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
       scopes: options.credentials?.scopes ?? [
-        "https://dev.azuresynapse.net/.default"
-      ]
-    }
+        "https://dev.azuresynapse.net/.default",
+      ],
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as SynapseArtifactsClient;
 
   return {
@@ -50,7 +50,7 @@ export default function createClient(
     kqlScripts: {
       getAll: (options) => {
         return client.path("/kqlScripts").get(options);
-      }
+      },
     },
     kqlScript: {
       createOrUpdate: (kqlScriptName, options) => {
@@ -72,7 +72,7 @@ export default function createClient(
         return client
           .path("/kqlScripts/{kqlScriptName}/rename", kqlScriptName)
           .post(options);
-      }
+      },
     },
     metastore: {
       register: (id, options) => {
@@ -92,7 +92,7 @@ export default function createClient(
       },
       delete: (id, options) => {
         return client.path("/metastore/databases/{id}", id).delete(options);
-      }
+      },
     },
     sparkConfiguration: {
       getSparkConfigurationsByWorkspace: (options) => {
@@ -102,7 +102,7 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .put(options);
       },
@@ -110,7 +110,7 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .get(options);
       },
@@ -118,7 +118,7 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .delete(options);
       },
@@ -126,10 +126,10 @@ export default function createClient(
         return client
           .path(
             "/sparkconfigurations/{sparkConfigurationName}/rename",
-            sparkConfigurationName
+            sparkConfigurationName,
           )
           .post(options);
-      }
+      },
     },
     bigDataPools: {
       list: (options) => {
@@ -139,7 +139,7 @@ export default function createClient(
         return client
           .path("/bigDataPools/{bigDataPoolName}", bigDataPoolName)
           .get(options);
-      }
+      },
     },
     dataFlow: {
       createOrUpdateDataFlow: (dataFlowName, options) => {
@@ -164,7 +164,7 @@ export default function createClient(
       },
       getDataFlowsByWorkspace: (options) => {
         return client.path("/dataflows").get(options);
-      }
+      },
     },
     dataFlowDebugSession: {
       createDataFlowDebugSession: (options) => {
@@ -181,7 +181,7 @@ export default function createClient(
       },
       executeCommand: (options) => {
         return client.path("/executeDataFlowDebugCommand").post(options);
-      }
+      },
     },
     dataset: {
       getDatasetsByWorkspace: (options) => {
@@ -202,12 +202,12 @@ export default function createClient(
         return client
           .path("/datasets/{datasetName}/rename", datasetName)
           .post(options);
-      }
+      },
     },
     workspaceGitRepoManagement: {
       getGitHubAccessToken: (options) => {
         return client.path("/getGitHubAccessToken").post(options);
-      }
+      },
     },
     integrationRuntimes: {
       list: (options) => {
@@ -217,10 +217,10 @@ export default function createClient(
         return client
           .path(
             "/integrationRuntimes/{integrationRuntimeName}",
-            integrationRuntimeName
+            integrationRuntimeName,
           )
           .get(options);
-      }
+      },
     },
     library: {
       list: (options) => {
@@ -255,7 +255,7 @@ export default function createClient(
         return client
           .path("/libraries/{libraryName}", libraryName)
           .put(options);
-      }
+      },
     },
     linkedService: {
       getLinkedServicesByWorkspace: (options) => {
@@ -280,7 +280,7 @@ export default function createClient(
         return client
           .path("/linkedservices/{linkedServiceName}/rename", linkedServiceName)
           .post(options);
-      }
+      },
     },
     notebook: {
       getNotebooksByWorkspace: (options) => {
@@ -308,14 +308,14 @@ export default function createClient(
         return client
           .path("/notebooks/{notebookName}/rename", notebookName)
           .post(options);
-      }
+      },
     },
     notebookOperationResult: {
       get: (operationId, options) => {
         return client
           .path("/notebookOperationResults/{operationId}", operationId)
           .get(options);
-      }
+      },
     },
     pipelineOperations: {
       getPipelinesByWorkspace: (options) => {
@@ -345,7 +345,7 @@ export default function createClient(
         return client
           .path("/pipelines/{pipelineName}/createRun", pipelineName)
           .post(options);
-      }
+      },
     },
     pipelineRun: {
       queryPipelineRunsByWorkspace: (options) => {
@@ -359,13 +359,13 @@ export default function createClient(
           .path(
             "/pipelines/{pipelineName}/pipelineruns/{runId}/queryActivityruns",
             pipelineName,
-            runId
+            runId,
           )
           .post(options);
       },
       cancelPipelineRun: (runId, options) => {
         return client.path("/pipelineruns/{runId}/cancel", runId).post(options);
-      }
+      },
     },
     sparkJobDefinition: {
       getSparkJobDefinitionsByWorkspace: (options) => {
@@ -375,7 +375,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .put(options);
       },
@@ -383,7 +383,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .get(options);
       },
@@ -391,7 +391,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .delete(options);
       },
@@ -399,7 +399,7 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}/execute",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .post(options);
       },
@@ -407,13 +407,13 @@ export default function createClient(
         return client
           .path(
             "/sparkJobDefinitions/{sparkJobDefinitionName}/rename",
-            sparkJobDefinitionName
+            sparkJobDefinitionName,
           )
           .post(options);
       },
       debugSparkJobDefinition: (options) => {
         return client.path("/debugSparkJobDefinition").post(options);
-      }
+      },
     },
     sqlPools: {
       list: (options) => {
@@ -421,7 +421,7 @@ export default function createClient(
       },
       get: (sqlPoolName, options) => {
         return client.path("/sqlPools/{sqlPoolName}", sqlPoolName).get(options);
-      }
+      },
     },
     sqlScript: {
       getSqlScriptsByWorkspace: (options) => {
@@ -446,7 +446,7 @@ export default function createClient(
         return client
           .path("/sqlScripts/{sqlScriptName}/rename", sqlScriptName)
           .post(options);
-      }
+      },
     },
     trigger: {
       getTriggersByWorkspace: (options) => {
@@ -472,7 +472,7 @@ export default function createClient(
         return client
           .path(
             "/triggers/{triggerName}/getEventSubscriptionStatus",
-            triggerName
+            triggerName,
           )
           .post(options);
       },
@@ -490,7 +490,7 @@ export default function createClient(
         return client
           .path("/triggers/{triggerName}/stop", triggerName)
           .post(options);
-      }
+      },
     },
     triggerRun: {
       rerunTriggerInstance: (triggerName, runId, options) => {
@@ -498,7 +498,7 @@ export default function createClient(
           .path(
             "/triggers/{triggerName}/triggerRuns/{runId}/rerun",
             triggerName,
-            runId
+            runId,
           )
           .post(options);
       },
@@ -507,18 +507,18 @@ export default function createClient(
           .path(
             "/triggers/{triggerName}/triggerRuns/{runId}/cancel",
             triggerName,
-            runId
+            runId,
           )
           .post(options);
       },
       queryTriggerRunsByWorkspace: (options) => {
         return client.path("/queryTriggerRuns").post(options);
-      }
+      },
     },
     workspace: {
       get: (options) => {
         return client.path("/workspace").get(options);
-      }
-    }
+      },
+    },
   };
 }

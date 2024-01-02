@@ -4,8 +4,6 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { JobData } from "./models";
 
-export type GetJobParameters = RequestParameters;
-
 export interface CreateJobBodyParam {
   body?: JobData;
 }

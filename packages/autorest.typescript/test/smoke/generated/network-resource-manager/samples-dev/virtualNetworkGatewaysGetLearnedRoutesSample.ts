@@ -26,10 +26,11 @@ async function getVirtualNetworkGatewayLearnedRoutes() {
   const virtualNetworkGatewayName = "vpngw";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGateways.beginGetLearnedRoutesAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName
-  );
+  const result =
+    await client.virtualNetworkGateways.beginGetLearnedRoutesAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+    );
   console.log(result);
 }
 

@@ -32,7 +32,7 @@ async function vpnSiteLinkConnectionGet() {
     resourceGroupName,
     gatewayName,
     connectionName,
-    linkConnectionName
+    linkConnectionName,
   );
   console.log(result);
 }

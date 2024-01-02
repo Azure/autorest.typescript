@@ -28,7 +28,7 @@ async function getBackendHealth() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.applicationGateways.beginBackendHealthAndWait(
     resourceGroupName,
-    applicationGatewayName
+    applicationGatewayName,
   );
   console.log(result);
 }

@@ -11,7 +11,7 @@ import {
   DirectoryObjectUnion,
   ObjectsGetObjectsByObjectIdsNextOptionalParams,
   GetObjectsParameters,
-  ObjectsGetObjectsByObjectIdsOptionalParams
+  ObjectsGetObjectsByObjectIdsOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -25,7 +25,7 @@ export interface Objects {
    */
   listObjectsByObjectIds(
     parameters: GetObjectsParameters,
-    options?: ObjectsGetObjectsByObjectIdsOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
   /**
    * Gets AD group membership for the specified AD object IDs.
@@ -34,6 +34,6 @@ export interface Objects {
    */
   listObjectsByObjectIdsNext(
     nextLink: string,
-    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
+    options?: ObjectsGetObjectsByObjectIdsNextOptionalParams,
   ): PagedAsyncIterableIterator<DirectoryObjectUnion>;
 }

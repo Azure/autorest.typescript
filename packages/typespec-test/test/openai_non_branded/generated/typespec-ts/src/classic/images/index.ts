@@ -17,15 +17,15 @@ import {
 export interface ImagesOperations {
   create: (
     image: CreateImageRequest,
-    options?: ImagesCreateOptions
+    options?: ImagesCreateOptions,
   ) => Promise<ImagesResponse>;
   createEdit: (
     image: CreateImageEditRequest,
-    options?: ImagesCreateEditOptions
+    options?: ImagesCreateEditOptions,
   ) => Promise<ImagesResponse>;
   createVariation: (
     image: CreateImageVariationRequest,
-    options?: ImagesCreateVariationOptions
+    options?: ImagesCreateVariationOptions,
   ) => Promise<ImagesResponse>;
 }
 
@@ -35,11 +35,11 @@ export function getImages(context: OpenAIContext) {
       create(context, image, options),
     createEdit: (
       image: CreateImageEditRequest,
-      options?: ImagesCreateEditOptions
+      options?: ImagesCreateEditOptions,
     ) => createEdit(context, image, options),
     createVariation: (
       image: CreateImageVariationRequest,
-      options?: ImagesCreateVariationOptions
+      options?: ImagesCreateVariationOptions,
     ) => createVariation(context, image, options),
   };
 }

@@ -30,7 +30,7 @@ async function getInstanceViewOfCloudServiceRoleInstance() {
   const result = await client.cloudServiceRoleInstances.getInstanceView(
     roleInstanceName,
     resourceGroupName,
-    cloudServiceName
+    cloudServiceName,
   );
   console.log(result);
 }

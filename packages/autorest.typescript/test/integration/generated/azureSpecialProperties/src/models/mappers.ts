@@ -16,25 +16,25 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       constantId: {
         defaultValue: 1,
         isConstant: true,
         serializedName: "constantId",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const OdataFilter: coreClient.CompositeMapper = {
@@ -45,17 +45,17 @@ export const OdataFilter: coreClient.CompositeMapper = {
       id: {
         serializedName: "id",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const HeaderCustomNamedRequestIdHeaders: coreClient.CompositeMapper = {
@@ -66,39 +66,41 @@ export const HeaderCustomNamedRequestIdHeaders: coreClient.CompositeMapper = {
       fooRequestId: {
         serializedName: "foo-request-id",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
-export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
-    modelProperties: {
-      fooRequestId: {
-        serializedName: "foo-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+export const HeaderCustomNamedRequestIdParamGroupingHeaders: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "HeaderCustomNamedRequestIdParamGroupingHeaders",
+      modelProperties: {
+        fooRequestId: {
+          serializedName: "foo-request-id",
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };
 
-export const HeaderCustomNamedRequestIdHeadHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "HeaderCustomNamedRequestIdHeadHeaders",
-    modelProperties: {
-      fooRequestId: {
-        serializedName: "foo-request-id",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
+export const HeaderCustomNamedRequestIdHeadHeaders: coreClient.CompositeMapper =
+  {
+    type: {
+      name: "Composite",
+      className: "HeaderCustomNamedRequestIdHeadHeaders",
+      modelProperties: {
+        fooRequestId: {
+          serializedName: "foo-request-id",
+          type: {
+            name: "String",
+          },
+        },
+      },
+    },
+  };

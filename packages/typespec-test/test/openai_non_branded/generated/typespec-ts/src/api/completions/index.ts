@@ -20,7 +20,7 @@ import { CompletionsCreateOptions } from "../../models/options.js";
 export function _createSend(
   context: Client,
   body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  options: CompletionsCreateOptions = { requestOptions: {} },
 ): StreamableMethod<
   CompletionsCreate200Response | CompletionsCreateDefaultResponse
 > {
@@ -50,7 +50,7 @@ export function _createSend(
 }
 
 export async function _createDeserialize(
-  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse
+  result: CompletionsCreate200Response | CompletionsCreateDefaultResponse,
 ): Promise<CreateCompletionResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -88,7 +88,7 @@ export async function _createDeserialize(
 export async function create(
   context: Client,
   body: CreateCompletionRequest,
-  options: CompletionsCreateOptions = { requestOptions: {} }
+  options: CompletionsCreateOptions = { requestOptions: {} },
 ): Promise<CreateCompletionResponse> {
   const result = await _createSend(context, body, options);
   return _createDeserialize(result);

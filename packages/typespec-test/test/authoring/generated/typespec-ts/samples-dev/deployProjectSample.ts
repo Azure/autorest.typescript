@@ -24,7 +24,7 @@ async function deployProjectSample() {
     .path(
       "/authoring/analyze-text/projects/{projectName}/deployments/{deploymentName}",
       projectName,
-      deploymentName
+      deploymentName,
     )
     .put({ body: {} });
   const poller = await getLongRunningPoller(client, initialResponse);

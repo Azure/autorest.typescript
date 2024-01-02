@@ -28,7 +28,7 @@ async function getDDoSProtectionPlan() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ddosProtectionPlans.get(
     resourceGroupName,
-    ddosProtectionPlanName
+    ddosProtectionPlanName,
   );
   console.log(result);
 }

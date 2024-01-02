@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { SubscriptionIdApiVersionClient } from "../subscriptionIdApiVersionClient";
 import {
   GroupGetSampleResourceGroupOptionalParams,
-  GroupGetSampleResourceGroupResponse
+  GroupGetSampleResourceGroupResponse,
 } from "../models";
 
 /** Class containing Group operations. */
@@ -35,11 +35,11 @@ export class GroupImpl implements Group {
    */
   getSampleResourceGroup(
     resourceGroupName: string,
-    options?: GroupGetSampleResourceGroupOptionalParams
+    options?: GroupGetSampleResourceGroupOptionalParams,
   ): Promise<GroupGetSampleResourceGroupResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, options },
-      getSampleResourceGroupOperationSpec
+      getSampleResourceGroupOperationSpec,
     );
   }
 }
@@ -51,18 +51,18 @@ const getSampleResourceGroupOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.SampleResourceGroup
+      bodyMapper: Mappers.SampleResourceGroup,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
-    Parameters.resourceGroupName
+    Parameters.resourceGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

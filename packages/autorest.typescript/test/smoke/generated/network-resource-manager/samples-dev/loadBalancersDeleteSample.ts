@@ -28,7 +28,7 @@ async function deleteLoadBalancer() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.loadBalancers.beginDeleteAndWait(
     resourceGroupName,
-    loadBalancerName
+    loadBalancerName,
   );
   console.log(result);
 }

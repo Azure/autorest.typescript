@@ -32,21 +32,5 @@ export interface UserListResultsOutput {
   nextLink?: string;
 }
 
-/** First item. */
-export interface FirstItemOutput {
-  /** The id of the item. */
-  readonly id: number;
-}
-
-/** Second item. */
-export interface SecondItemOutput {
-  /** The name of the item. */
-  readonly name: string;
-}
-
 /** Paged collection of User items */
 export type PagedUserOutput = Paged<UserOutput>;
-/** Paged collection of FirstItem items */
-export type PagedFirstItemOutput = Paged<FirstItemOutput>;
-/** Paged collection of SecondItem items */
-export type PagedSecondItemOutput = Paged<SecondItemOutput>;

@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   AppServiceCertificateOrder as AppServiceCertificateOrderMapper,
@@ -88,7 +88,7 @@ import {
   DeletedAppRestoreRequest as DeletedAppRestoreRequestMapper,
   SnapshotRestoreRequest as SnapshotRestoreRequestMapper,
   SiteSourceControl as SiteSourceControlMapper,
-  VnetInfoResource as VnetInfoResourceMapper
+  VnetInfoResource as VnetInfoResourceMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -98,9 +98,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -110,10 +110,10 @@ export const $host: OperationURLParameter = {
     required: true,
     xmlName: "$host",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -123,9 +123,9 @@ export const subscriptionId: OperationURLParameter = {
     required: true,
     xmlName: "subscriptionId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -135,9 +135,9 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -147,14 +147,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const appServiceCertificateOrder: OperationParameter = {
   parameterPath: "appServiceCertificateOrder",
-  mapper: AppServiceCertificateOrderMapper
+  mapper: AppServiceCertificateOrderMapper,
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -163,15 +163,15 @@ export const resourceGroupName: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("^[-\\w\\._\\(\\)]+[^\\.]$"),
       MaxLength: 90,
-      MinLength: 1
+      MinLength: 1,
     },
     serializedName: "resourceGroupName",
     required: true,
     xmlName: "resourceGroupName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateOrderName: OperationURLParameter = {
@@ -181,19 +181,19 @@ export const certificateOrderName: OperationURLParameter = {
     required: true,
     xmlName: "certificateOrderName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateDistinguishedName: OperationParameter = {
   parameterPath: "certificateDistinguishedName",
-  mapper: AppServiceCertificateOrderMapper
+  mapper: AppServiceCertificateOrderMapper,
 };
 
 export const certificateDistinguishedName1: OperationParameter = {
   parameterPath: "certificateDistinguishedName",
-  mapper: AppServiceCertificateOrderPatchResourceMapper
+  mapper: AppServiceCertificateOrderPatchResourceMapper,
 };
 
 export const name: OperationURLParameter = {
@@ -203,39 +203,39 @@ export const name: OperationURLParameter = {
     required: true,
     xmlName: "name",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const keyVaultCertificate: OperationParameter = {
   parameterPath: "keyVaultCertificate",
-  mapper: AppServiceCertificateResourceMapper
+  mapper: AppServiceCertificateResourceMapper,
 };
 
 export const keyVaultCertificate1: OperationParameter = {
   parameterPath: "keyVaultCertificate",
-  mapper: AppServiceCertificatePatchResourceMapper
+  mapper: AppServiceCertificatePatchResourceMapper,
 };
 
 export const reissueCertificateOrderRequest: OperationParameter = {
   parameterPath: "reissueCertificateOrderRequest",
-  mapper: ReissueCertificateOrderRequestMapper
+  mapper: ReissueCertificateOrderRequestMapper,
 };
 
 export const renewCertificateOrderRequest: OperationParameter = {
   parameterPath: "renewCertificateOrderRequest",
-  mapper: RenewCertificateOrderRequestMapper
+  mapper: RenewCertificateOrderRequestMapper,
 };
 
 export const nameIdentifier: OperationParameter = {
   parameterPath: "nameIdentifier",
-  mapper: NameIdentifierMapper
+  mapper: NameIdentifierMapper,
 };
 
 export const siteSealRequest: OperationParameter = {
   parameterPath: "siteSealRequest",
-  mapper: SiteSealRequestMapper
+  mapper: SiteSealRequestMapper,
 };
 
 export const nextLink: OperationURLParameter = {
@@ -245,10 +245,10 @@ export const nextLink: OperationURLParameter = {
     required: true,
     xmlName: "nextLink",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const detectorName: OperationURLParameter = {
@@ -258,9 +258,9 @@ export const detectorName: OperationURLParameter = {
     required: true,
     xmlName: "detectorName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const startTime: OperationQueryParameter = {
@@ -269,9 +269,9 @@ export const startTime: OperationQueryParameter = {
     serializedName: "startTime",
     xmlName: "startTime",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const endTime: OperationQueryParameter = {
@@ -280,33 +280,33 @@ export const endTime: OperationQueryParameter = {
     serializedName: "endTime",
     xmlName: "endTime",
     type: {
-      name: "DateTime"
-    }
-  }
+      name: "DateTime",
+    },
+  },
 };
 
 export const timeGrain: OperationQueryParameter = {
   parameterPath: ["options", "timeGrain"],
   mapper: {
     constraints: {
-      Pattern: new RegExp("PT[1-9][0-9]+[SMH]")
+      Pattern: new RegExp("PT[1-9][0-9]+[SMH]"),
     },
     serializedName: "timeGrain",
     xmlName: "timeGrain",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const identifier: OperationParameter = {
   parameterPath: "identifier",
-  mapper: NameIdentifierMapper
+  mapper: NameIdentifierMapper,
 };
 
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: DomainRecommendationSearchParametersMapper
+  mapper: DomainRecommendationSearchParametersMapper,
 };
 
 export const domainName: OperationURLParameter = {
@@ -316,29 +316,29 @@ export const domainName: OperationURLParameter = {
     required: true,
     xmlName: "domainName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const domain: OperationParameter = {
   parameterPath: "domain",
-  mapper: DomainMapper
+  mapper: DomainMapper,
 };
 
 export const domainName1: OperationURLParameter = {
   parameterPath: "domainName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("[a-zA-Z0-9][a-zA-Z0-9\\.-]+")
+      Pattern: new RegExp("[a-zA-Z0-9][a-zA-Z0-9\\.-]+"),
     },
     serializedName: "domainName",
     required: true,
     xmlName: "domainName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const forceHardDeleteDomain: OperationQueryParameter = {
@@ -347,29 +347,29 @@ export const forceHardDeleteDomain: OperationQueryParameter = {
     serializedName: "forceHardDeleteDomain",
     xmlName: "forceHardDeleteDomain",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const domain1: OperationParameter = {
   parameterPath: "domain",
-  mapper: DomainPatchResourceMapper
+  mapper: DomainPatchResourceMapper,
 };
 
 export const domainOwnershipIdentifier: OperationParameter = {
   parameterPath: "domainOwnershipIdentifier",
-  mapper: DomainOwnershipIdentifierMapper
+  mapper: DomainOwnershipIdentifierMapper,
 };
 
 export const agreementOption: OperationParameter = {
   parameterPath: "agreementOption",
-  mapper: TopLevelDomainAgreementOptionMapper
+  mapper: TopLevelDomainAgreementOptionMapper,
 };
 
 export const hostingEnvironmentEnvelope: OperationParameter = {
   parameterPath: "hostingEnvironmentEnvelope",
-  mapper: AppServiceEnvironmentResourceMapper
+  mapper: AppServiceEnvironmentResourceMapper,
 };
 
 export const forceDelete: OperationQueryParameter = {
@@ -378,24 +378,24 @@ export const forceDelete: OperationQueryParameter = {
     serializedName: "forceDelete",
     xmlName: "forceDelete",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const hostingEnvironmentEnvelope1: OperationParameter = {
   parameterPath: "hostingEnvironmentEnvelope",
-  mapper: AppServiceEnvironmentPatchResourceMapper
+  mapper: AppServiceEnvironmentPatchResourceMapper,
 };
 
 export const vnetInfo: OperationParameter = {
   parameterPath: "vnetInfo",
-  mapper: VirtualNetworkProfileMapper
+  mapper: VirtualNetworkProfileMapper,
 };
 
 export const aseNetworkingConfiguration: OperationParameter = {
   parameterPath: "aseNetworkingConfiguration",
-  mapper: AseV3NetworkingConfigurationMapper
+  mapper: AseV3NetworkingConfigurationMapper,
 };
 
 export const diagnosticsName: OperationURLParameter = {
@@ -405,14 +405,14 @@ export const diagnosticsName: OperationURLParameter = {
     required: true,
     xmlName: "diagnosticsName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const multiRolePoolEnvelope: OperationParameter = {
   parameterPath: "multiRolePoolEnvelope",
-  mapper: WorkerPoolResourceMapper
+  mapper: WorkerPoolResourceMapper,
 };
 
 export const instance: OperationURLParameter = {
@@ -422,9 +422,9 @@ export const instance: OperationURLParameter = {
     required: true,
     xmlName: "instance",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const privateEndpointConnectionName: OperationURLParameter = {
@@ -434,14 +434,14 @@ export const privateEndpointConnectionName: OperationURLParameter = {
     required: true,
     xmlName: "privateEndpointConnectionName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const privateEndpointWrapper: OperationParameter = {
   parameterPath: "privateEndpointWrapper",
-  mapper: PrivateLinkConnectionApprovalRequestResourceMapper
+  mapper: PrivateLinkConnectionApprovalRequestResourceMapper,
 };
 
 export const propertiesToInclude: OperationQueryParameter = {
@@ -450,9 +450,9 @@ export const propertiesToInclude: OperationQueryParameter = {
     serializedName: "propertiesToInclude",
     xmlName: "propertiesToInclude",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const filter: OperationQueryParameter = {
@@ -461,10 +461,10 @@ export const filter: OperationQueryParameter = {
     serializedName: "$filter",
     xmlName: "$filter",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const workerPoolName: OperationURLParameter = {
@@ -474,14 +474,14 @@ export const workerPoolName: OperationURLParameter = {
     required: true,
     xmlName: "workerPoolName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const workerPoolEnvelope: OperationParameter = {
   parameterPath: "workerPoolEnvelope",
-  mapper: WorkerPoolResourceMapper
+  mapper: WorkerPoolResourceMapper,
 };
 
 export const detailed: OperationQueryParameter = {
@@ -490,19 +490,19 @@ export const detailed: OperationQueryParameter = {
     serializedName: "detailed",
     xmlName: "detailed",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const appServicePlan: OperationParameter = {
   parameterPath: "appServicePlan",
-  mapper: AppServicePlanMapper
+  mapper: AppServicePlanMapper,
 };
 
 export const appServicePlan1: OperationParameter = {
   parameterPath: "appServicePlan",
-  mapper: AppServicePlanPatchResourceMapper
+  mapper: AppServicePlanPatchResourceMapper,
 };
 
 export const namespaceName: OperationURLParameter = {
@@ -512,9 +512,9 @@ export const namespaceName: OperationURLParameter = {
     required: true,
     xmlName: "namespaceName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const relayName: OperationURLParameter = {
@@ -524,9 +524,9 @@ export const relayName: OperationURLParameter = {
     required: true,
     xmlName: "relayName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const softRestart: OperationQueryParameter = {
@@ -535,9 +535,9 @@ export const softRestart: OperationQueryParameter = {
     serializedName: "softRestart",
     xmlName: "softRestart",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const skipToken: OperationQueryParameter = {
@@ -546,9 +546,9 @@ export const skipToken: OperationQueryParameter = {
     serializedName: "$skipToken",
     xmlName: "$skipToken",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const top: OperationQueryParameter = {
@@ -557,9 +557,9 @@ export const top: OperationQueryParameter = {
     serializedName: "$top",
     xmlName: "$top",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const vnetName: OperationURLParameter = {
@@ -569,9 +569,9 @@ export const vnetName: OperationURLParameter = {
     required: true,
     xmlName: "vnetName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const gatewayName: OperationURLParameter = {
@@ -581,14 +581,14 @@ export const gatewayName: OperationURLParameter = {
     required: true,
     xmlName: "gatewayName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const connectionEnvelope: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: VnetGatewayMapper
+  mapper: VnetGatewayMapper,
 };
 
 export const routeName: OperationURLParameter = {
@@ -598,14 +598,14 @@ export const routeName: OperationURLParameter = {
     required: true,
     xmlName: "routeName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const route: OperationParameter = {
   parameterPath: "route",
-  mapper: VnetRouteMapper
+  mapper: VnetRouteMapper,
 };
 
 export const workerName: OperationURLParameter = {
@@ -615,19 +615,19 @@ export const workerName: OperationURLParameter = {
     required: true,
     xmlName: "workerName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const certificateEnvelope: OperationParameter = {
   parameterPath: "certificateEnvelope",
-  mapper: CertificateMapper
+  mapper: CertificateMapper,
 };
 
 export const certificateEnvelope1: OperationParameter = {
   parameterPath: "certificateEnvelope",
-  mapper: CertificatePatchResourceMapper
+  mapper: CertificatePatchResourceMapper,
 };
 
 export const location: OperationURLParameter = {
@@ -637,9 +637,9 @@ export const location: OperationURLParameter = {
     required: true,
     xmlName: "location",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const deletedSiteId: OperationURLParameter = {
@@ -649,9 +649,9 @@ export const deletedSiteId: OperationURLParameter = {
     required: true,
     xmlName: "deletedSiteId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const siteName: OperationURLParameter = {
@@ -661,9 +661,9 @@ export const siteName: OperationURLParameter = {
     required: true,
     xmlName: "siteName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const diagnosticCategory: OperationURLParameter = {
@@ -673,9 +673,9 @@ export const diagnosticCategory: OperationURLParameter = {
     required: true,
     xmlName: "diagnosticCategory",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const analysisName: OperationURLParameter = {
@@ -685,9 +685,9 @@ export const analysisName: OperationURLParameter = {
     required: true,
     xmlName: "analysisName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const slot: OperationURLParameter = {
@@ -697,9 +697,9 @@ export const slot: OperationURLParameter = {
     required: true,
     xmlName: "slot",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const operationId: OperationURLParameter = {
@@ -709,19 +709,19 @@ export const operationId: OperationURLParameter = {
     required: true,
     xmlName: "operationId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const kubeEnvironmentEnvelope: OperationParameter = {
   parameterPath: "kubeEnvironmentEnvelope",
-  mapper: KubeEnvironmentMapper
+  mapper: KubeEnvironmentMapper,
 };
 
 export const kubeEnvironmentEnvelope1: OperationParameter = {
   parameterPath: "kubeEnvironmentEnvelope",
-  mapper: KubeEnvironmentPatchResourceMapper
+  mapper: KubeEnvironmentPatchResourceMapper,
 };
 
 export const osTypeSelected: OperationQueryParameter = {
@@ -730,9 +730,9 @@ export const osTypeSelected: OperationQueryParameter = {
     serializedName: "osTypeSelected",
     xmlName: "osTypeSelected",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stackOsType: OperationQueryParameter = {
@@ -741,9 +741,9 @@ export const stackOsType: OperationQueryParameter = {
     serializedName: "stackOsType",
     xmlName: "stackOsType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stackOsType1: OperationQueryParameter = {
@@ -752,9 +752,9 @@ export const stackOsType1: OperationQueryParameter = {
     serializedName: "stackOsType",
     xmlName: "stackOsType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stackOsType2: OperationQueryParameter = {
@@ -763,9 +763,9 @@ export const stackOsType2: OperationQueryParameter = {
     serializedName: "stackOsType",
     xmlName: "stackOsType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const stackOsType3: OperationQueryParameter = {
@@ -774,9 +774,9 @@ export const stackOsType3: OperationQueryParameter = {
     serializedName: "stackOsType",
     xmlName: "stackOsType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const osTypeSelected1: OperationQueryParameter = {
@@ -785,9 +785,9 @@ export const osTypeSelected1: OperationQueryParameter = {
     serializedName: "osTypeSelected",
     xmlName: "osTypeSelected",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const featured: OperationQueryParameter = {
@@ -796,9 +796,9 @@ export const featured: OperationQueryParameter = {
     serializedName: "featured",
     xmlName: "featured",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const hostingEnvironmentName: OperationURLParameter = {
@@ -808,9 +808,9 @@ export const hostingEnvironmentName: OperationURLParameter = {
     required: true,
     xmlName: "hostingEnvironmentName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const expiredOnly: OperationQueryParameter = {
@@ -819,9 +819,9 @@ export const expiredOnly: OperationQueryParameter = {
     serializedName: "expiredOnly",
     xmlName: "expiredOnly",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const environmentName: OperationQueryParameter = {
@@ -831,9 +831,9 @@ export const environmentName: OperationQueryParameter = {
     required: true,
     xmlName: "environmentName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const updateSeen: OperationQueryParameter = {
@@ -842,9 +842,9 @@ export const updateSeen: OperationQueryParameter = {
     serializedName: "updateSeen",
     xmlName: "updateSeen",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const recommendationId: OperationQueryParameter = {
@@ -853,14 +853,14 @@ export const recommendationId: OperationQueryParameter = {
     serializedName: "recommendationId",
     xmlName: "recommendationId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const userDetails: OperationParameter = {
   parameterPath: "userDetails",
-  mapper: UserMapper
+  mapper: UserMapper,
 };
 
 export const sourceControlType: OperationURLParameter = {
@@ -870,14 +870,14 @@ export const sourceControlType: OperationURLParameter = {
     required: true,
     xmlName: "sourceControlType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const requestMessage: OperationParameter = {
   parameterPath: "requestMessage",
-  mapper: SourceControlMapper
+  mapper: SourceControlMapper,
 };
 
 export const billingLocation: OperationQueryParameter = {
@@ -886,9 +886,9 @@ export const billingLocation: OperationQueryParameter = {
     serializedName: "billingLocation",
     xmlName: "billingLocation",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const osType: OperationQueryParameter = {
@@ -897,24 +897,24 @@ export const osType: OperationQueryParameter = {
     serializedName: "osType",
     xmlName: "osType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const name1: OperationParameter = {
   parameterPath: "name",
-  mapper: ResourceNameAvailabilityRequestMapper
+  mapper: ResourceNameAvailabilityRequestMapper,
 };
 
 export const typeParam: OperationParameter = {
   parameterPath: "typeParam",
-  mapper: ResourceNameAvailabilityRequestMapper
+  mapper: ResourceNameAvailabilityRequestMapper,
 };
 
 export const isFqdn: OperationParameter = {
   parameterPath: ["options", "isFqdn"],
-  mapper: ResourceNameAvailabilityRequestMapper
+  mapper: ResourceNameAvailabilityRequestMapper,
 };
 
 export const sku: OperationQueryParameter = {
@@ -923,9 +923,9 @@ export const sku: OperationQueryParameter = {
     serializedName: "sku",
     xmlName: "sku",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const linuxWorkersEnabled: OperationQueryParameter = {
@@ -934,9 +934,9 @@ export const linuxWorkersEnabled: OperationQueryParameter = {
     serializedName: "linuxWorkersEnabled",
     xmlName: "linuxWorkersEnabled",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const xenonWorkersEnabled: OperationQueryParameter = {
@@ -945,9 +945,9 @@ export const xenonWorkersEnabled: OperationQueryParameter = {
     serializedName: "xenonWorkersEnabled",
     xmlName: "xenonWorkersEnabled",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const linuxDynamicWorkersEnabled: OperationQueryParameter = {
@@ -956,39 +956,39 @@ export const linuxDynamicWorkersEnabled: OperationQueryParameter = {
     serializedName: "linuxDynamicWorkersEnabled",
     xmlName: "linuxDynamicWorkersEnabled",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const parameters1: OperationParameter = {
   parameterPath: "parameters",
-  mapper: VnetParametersMapper
+  mapper: VnetParametersMapper,
 };
 
 export const moveResourceEnvelope: OperationParameter = {
   parameterPath: "moveResourceEnvelope",
-  mapper: CsmMoveResourceEnvelopeMapper
+  mapper: CsmMoveResourceEnvelopeMapper,
 };
 
 export const validateRequest: OperationParameter = {
   parameterPath: "validateRequest",
-  mapper: ValidateRequestMapper
+  mapper: ValidateRequestMapper,
 };
 
 export const staticSitesWorkflowPreviewRequest: OperationParameter = {
   parameterPath: "staticSitesWorkflowPreviewRequest",
-  mapper: StaticSitesWorkflowPreviewRequestMapper
+  mapper: StaticSitesWorkflowPreviewRequestMapper,
 };
 
 export const staticSiteEnvelope: OperationParameter = {
   parameterPath: "staticSiteEnvelope",
-  mapper: StaticSiteARMResourceMapper
+  mapper: StaticSiteARMResourceMapper,
 };
 
 export const staticSiteEnvelope1: OperationParameter = {
   parameterPath: "staticSiteEnvelope",
-  mapper: StaticSitePatchResourceMapper
+  mapper: StaticSitePatchResourceMapper,
 };
 
 export const authprovider: OperationURLParameter = {
@@ -998,9 +998,9 @@ export const authprovider: OperationURLParameter = {
     required: true,
     xmlName: "authprovider",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const userid: OperationURLParameter = {
@@ -1010,14 +1010,14 @@ export const userid: OperationURLParameter = {
     required: true,
     xmlName: "userid",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const staticSiteUserEnvelope: OperationParameter = {
   parameterPath: "staticSiteUserEnvelope",
-  mapper: StaticSiteUserARMResourceMapper
+  mapper: StaticSiteUserARMResourceMapper,
 };
 
 export const environmentName1: OperationURLParameter = {
@@ -1027,14 +1027,14 @@ export const environmentName1: OperationURLParameter = {
     required: true,
     xmlName: "environmentName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const appSettings: OperationParameter = {
   parameterPath: "appSettings",
-  mapper: StringDictionaryMapper
+  mapper: StringDictionaryMapper,
 };
 
 export const functionAppName: OperationURLParameter = {
@@ -1044,14 +1044,14 @@ export const functionAppName: OperationURLParameter = {
     required: true,
     xmlName: "functionAppName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const staticSiteUserProvidedFunctionEnvelope: OperationParameter = {
   parameterPath: "staticSiteUserProvidedFunctionEnvelope",
-  mapper: StaticSiteUserProvidedFunctionAppARMResourceMapper
+  mapper: StaticSiteUserProvidedFunctionAppARMResourceMapper,
 };
 
 export const isForced: OperationQueryParameter = {
@@ -1060,29 +1060,30 @@ export const isForced: OperationQueryParameter = {
     serializedName: "isForced",
     xmlName: "isForced",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const staticSiteZipDeploymentEnvelope: OperationParameter = {
   parameterPath: "staticSiteZipDeploymentEnvelope",
-  mapper: StaticSiteZipDeploymentARMResourceMapper
+  mapper: StaticSiteZipDeploymentARMResourceMapper,
 };
 
 export const staticSiteUserRolesInvitationEnvelope: OperationParameter = {
   parameterPath: "staticSiteUserRolesInvitationEnvelope",
-  mapper: StaticSiteUserInvitationRequestResourceMapper
+  mapper: StaticSiteUserInvitationRequestResourceMapper,
 };
 
-export const staticSiteCustomDomainRequestPropertiesEnvelope: OperationParameter = {
-  parameterPath: "staticSiteCustomDomainRequestPropertiesEnvelope",
-  mapper: StaticSiteCustomDomainRequestPropertiesARMResourceMapper
-};
+export const staticSiteCustomDomainRequestPropertiesEnvelope: OperationParameter =
+  {
+    parameterPath: "staticSiteCustomDomainRequestPropertiesEnvelope",
+    mapper: StaticSiteCustomDomainRequestPropertiesARMResourceMapper,
+  };
 
 export const resetPropertiesEnvelope: OperationParameter = {
   parameterPath: "resetPropertiesEnvelope",
-  mapper: StaticSiteResetPropertiesARMResourceMapper
+  mapper: StaticSiteResetPropertiesARMResourceMapper,
 };
 
 export const includeSlots: OperationQueryParameter = {
@@ -1091,14 +1092,14 @@ export const includeSlots: OperationQueryParameter = {
     serializedName: "includeSlots",
     xmlName: "includeSlots",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const siteEnvelope: OperationParameter = {
   parameterPath: "siteEnvelope",
-  mapper: SiteMapper
+  mapper: SiteMapper,
 };
 
 export const deleteMetrics: OperationQueryParameter = {
@@ -1107,9 +1108,9 @@ export const deleteMetrics: OperationQueryParameter = {
     serializedName: "deleteMetrics",
     xmlName: "deleteMetrics",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const deleteEmptyServerFarm: OperationQueryParameter = {
@@ -1118,14 +1119,14 @@ export const deleteEmptyServerFarm: OperationQueryParameter = {
     serializedName: "deleteEmptyServerFarm",
     xmlName: "deleteEmptyServerFarm",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const siteEnvelope1: OperationParameter = {
   parameterPath: "siteEnvelope",
-  mapper: SitePatchResourceMapper
+  mapper: SitePatchResourceMapper,
 };
 
 export const hostName: OperationQueryParameter = {
@@ -1134,19 +1135,19 @@ export const hostName: OperationQueryParameter = {
     serializedName: "hostName",
     xmlName: "hostName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const slotSwapEntity: OperationParameter = {
   parameterPath: "slotSwapEntity",
-  mapper: CsmSlotEntityMapper
+  mapper: CsmSlotEntityMapper,
 };
 
 export const request1: OperationParameter = {
   parameterPath: "request",
-  mapper: BackupRequestMapper
+  mapper: BackupRequestMapper,
 };
 
 export const backupId: OperationURLParameter = {
@@ -1156,34 +1157,34 @@ export const backupId: OperationURLParameter = {
     required: true,
     xmlName: "backupId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const request2: OperationParameter = {
   parameterPath: "request",
-  mapper: RestoreRequestMapper
+  mapper: RestoreRequestMapper,
 };
 
 export const csmPublishingAccessPoliciesEntity: OperationParameter = {
   parameterPath: "csmPublishingAccessPoliciesEntity",
-  mapper: CsmPublishingCredentialsPoliciesEntityMapper
+  mapper: CsmPublishingCredentialsPoliciesEntityMapper,
 };
 
 export const siteAuthSettings: OperationParameter = {
   parameterPath: "siteAuthSettings",
-  mapper: SiteAuthSettingsMapper
+  mapper: SiteAuthSettingsMapper,
 };
 
 export const siteAuthSettingsV2: OperationParameter = {
   parameterPath: "siteAuthSettingsV2",
-  mapper: SiteAuthSettingsV2Mapper
+  mapper: SiteAuthSettingsV2Mapper,
 };
 
 export const azureStorageAccounts: OperationParameter = {
   parameterPath: "azureStorageAccounts",
-  mapper: AzureStoragePropertyDictionaryResourceMapper
+  mapper: AzureStoragePropertyDictionaryResourceMapper,
 };
 
 export const appSettingKey: OperationURLParameter = {
@@ -1193,9 +1194,9 @@ export const appSettingKey: OperationURLParameter = {
     required: true,
     xmlName: "appSettingKey",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const connectionStringKey: OperationURLParameter = {
@@ -1205,39 +1206,39 @@ export const connectionStringKey: OperationURLParameter = {
     required: true,
     xmlName: "connectionStringKey",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const connectionStrings: OperationParameter = {
   parameterPath: "connectionStrings",
-  mapper: ConnectionStringDictionaryMapper
+  mapper: ConnectionStringDictionaryMapper,
 };
 
 export const siteLogsConfig: OperationParameter = {
   parameterPath: "siteLogsConfig",
-  mapper: SiteLogsConfigMapper
+  mapper: SiteLogsConfigMapper,
 };
 
 export const metadata: OperationParameter = {
   parameterPath: "metadata",
-  mapper: StringDictionaryMapper
+  mapper: StringDictionaryMapper,
 };
 
 export const pushSettings: OperationParameter = {
   parameterPath: "pushSettings",
-  mapper: PushSettingsMapper
+  mapper: PushSettingsMapper,
 };
 
 export const slotConfigNames: OperationParameter = {
   parameterPath: "slotConfigNames",
-  mapper: SlotConfigNamesResourceMapper
+  mapper: SlotConfigNamesResourceMapper,
 };
 
 export const siteConfig: OperationParameter = {
   parameterPath: "siteConfig",
-  mapper: SiteConfigResourceMapper
+  mapper: SiteConfigResourceMapper,
 };
 
 export const snapshotId: OperationURLParameter = {
@@ -1247,9 +1248,9 @@ export const snapshotId: OperationURLParameter = {
     required: true,
     xmlName: "snapshotId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept1: OperationParameter = {
@@ -1259,9 +1260,9 @@ export const accept1: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept2: OperationParameter = {
@@ -1271,9 +1272,9 @@ export const accept2: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const webJobName: OperationURLParameter = {
@@ -1283,9 +1284,9 @@ export const webJobName: OperationURLParameter = {
     required: true,
     xmlName: "webJobName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const id: OperationURLParameter = {
@@ -1295,14 +1296,14 @@ export const id: OperationURLParameter = {
     required: true,
     xmlName: "id",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const deployment: OperationParameter = {
   parameterPath: "deployment",
-  mapper: DeploymentMapper
+  mapper: DeploymentMapper,
 };
 
 export const domainOwnershipIdentifierName: OperationURLParameter = {
@@ -1312,19 +1313,19 @@ export const domainOwnershipIdentifierName: OperationURLParameter = {
     required: true,
     xmlName: "domainOwnershipIdentifierName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const domainOwnershipIdentifier1: OperationParameter = {
   parameterPath: "domainOwnershipIdentifier",
-  mapper: IdentifierMapper
+  mapper: IdentifierMapper,
 };
 
 export const mSDeploy: OperationParameter = {
   parameterPath: "mSDeploy",
-  mapper: MSDeployMapper
+  mapper: MSDeployMapper,
 };
 
 export const functionName: OperationURLParameter = {
@@ -1334,19 +1335,19 @@ export const functionName: OperationURLParameter = {
     required: true,
     xmlName: "functionName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const functionEnvelope: OperationParameter = {
   parameterPath: "functionEnvelope",
-  mapper: FunctionEnvelopeMapper
+  mapper: FunctionEnvelopeMapper,
 };
 
 export const key: OperationParameter = {
   parameterPath: "key",
-  mapper: KeyInfoMapper
+  mapper: KeyInfoMapper,
 };
 
 export const keyName: OperationURLParameter = {
@@ -1356,9 +1357,9 @@ export const keyName: OperationURLParameter = {
     required: true,
     xmlName: "keyName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const keyType: OperationURLParameter = {
@@ -1368,9 +1369,9 @@ export const keyType: OperationURLParameter = {
     required: true,
     xmlName: "keyType",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const hostName1: OperationURLParameter = {
@@ -1380,19 +1381,19 @@ export const hostName1: OperationURLParameter = {
     required: true,
     xmlName: "hostName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const hostNameBinding: OperationParameter = {
   parameterPath: "hostNameBinding",
-  mapper: HostNameBindingMapper
+  mapper: HostNameBindingMapper,
 };
 
 export const connectionEnvelope1: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: HybridConnectionMapper
+  mapper: HybridConnectionMapper,
 };
 
 export const entityName: OperationURLParameter = {
@@ -1402,14 +1403,14 @@ export const entityName: OperationURLParameter = {
     required: true,
     xmlName: "entityName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const connectionEnvelope2: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: RelayServiceConnectionEntityMapper
+  mapper: RelayServiceConnectionEntityMapper,
 };
 
 export const instanceId: OperationURLParameter = {
@@ -1419,9 +1420,9 @@ export const instanceId: OperationURLParameter = {
     required: true,
     xmlName: "instanceId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const processId: OperationURLParameter = {
@@ -1431,9 +1432,9 @@ export const processId: OperationURLParameter = {
     required: true,
     xmlName: "processId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const baseAddress: OperationURLParameter = {
@@ -1443,14 +1444,14 @@ export const baseAddress: OperationURLParameter = {
     required: true,
     xmlName: "baseAddress",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const migrationOptions: OperationParameter = {
   parameterPath: "migrationOptions",
-  mapper: StorageMigrationOptionsMapper
+  mapper: StorageMigrationOptionsMapper,
 };
 
 export const subscriptionName: OperationQueryParameter = {
@@ -1460,19 +1461,19 @@ export const subscriptionName: OperationQueryParameter = {
     required: true,
     xmlName: "subscriptionName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const migrationRequestEnvelope: OperationParameter = {
   parameterPath: "migrationRequestEnvelope",
-  mapper: MigrateMySqlRequestMapper
+  mapper: MigrateMySqlRequestMapper,
 };
 
 export const connectionEnvelope3: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: SwiftVirtualNetworkMapper
+  mapper: SwiftVirtualNetworkMapper,
 };
 
 export const view: OperationURLParameter = {
@@ -1482,9 +1483,9 @@ export const view: OperationURLParameter = {
     required: true,
     xmlName: "view",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const durationInSeconds: OperationQueryParameter = {
@@ -1493,9 +1494,9 @@ export const durationInSeconds: OperationQueryParameter = {
     serializedName: "durationInSeconds",
     xmlName: "durationInSeconds",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const maxFrameLength: OperationQueryParameter = {
@@ -1504,9 +1505,9 @@ export const maxFrameLength: OperationQueryParameter = {
     serializedName: "maxFrameLength",
     xmlName: "maxFrameLength",
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const sasUrl: OperationQueryParameter = {
@@ -1515,9 +1516,9 @@ export const sasUrl: OperationQueryParameter = {
     serializedName: "sasUrl",
     xmlName: "sasUrl",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const premierAddOnName: OperationURLParameter = {
@@ -1527,24 +1528,24 @@ export const premierAddOnName: OperationURLParameter = {
     required: true,
     xmlName: "premierAddOnName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const premierAddOn: OperationParameter = {
   parameterPath: "premierAddOn",
-  mapper: PremierAddOnMapper
+  mapper: PremierAddOnMapper,
 };
 
 export const premierAddOn1: OperationParameter = {
   parameterPath: "premierAddOn",
-  mapper: PremierAddOnPatchResourceMapper
+  mapper: PremierAddOnPatchResourceMapper,
 };
 
 export const access: OperationParameter = {
   parameterPath: "access",
-  mapper: PrivateAccessMapper
+  mapper: PrivateAccessMapper,
 };
 
 export const publicCertificateName: OperationURLParameter = {
@@ -1554,19 +1555,19 @@ export const publicCertificateName: OperationURLParameter = {
     required: true,
     xmlName: "publicCertificateName",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const publicCertificate: OperationParameter = {
   parameterPath: "publicCertificate",
-  mapper: PublicCertificateMapper
+  mapper: PublicCertificateMapper,
 };
 
 export const publishingProfileOptions: OperationParameter = {
   parameterPath: "publishingProfileOptions",
-  mapper: CsmPublishingProfileOptionsMapper
+  mapper: CsmPublishingProfileOptionsMapper,
 };
 
 export const accept3: OperationParameter = {
@@ -1576,9 +1577,9 @@ export const accept3: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const synchronous: OperationQueryParameter = {
@@ -1587,19 +1588,19 @@ export const synchronous: OperationQueryParameter = {
     serializedName: "synchronous",
     xmlName: "synchronous",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const restoreRequest: OperationParameter = {
   parameterPath: "restoreRequest",
-  mapper: DeletedAppRestoreRequestMapper
+  mapper: DeletedAppRestoreRequestMapper,
 };
 
 export const restoreRequest1: OperationParameter = {
   parameterPath: "restoreRequest",
-  mapper: SnapshotRestoreRequestMapper
+  mapper: SnapshotRestoreRequestMapper,
 };
 
 export const siteExtensionId: OperationURLParameter = {
@@ -1609,14 +1610,14 @@ export const siteExtensionId: OperationURLParameter = {
     required: true,
     xmlName: "siteExtensionId",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const siteSourceControl: OperationParameter = {
   parameterPath: "siteSourceControl",
-  mapper: SiteSourceControlMapper
+  mapper: SiteSourceControlMapper,
 };
 
 export const additionalFlags: OperationQueryParameter = {
@@ -1625,12 +1626,12 @@ export const additionalFlags: OperationQueryParameter = {
     serializedName: "additionalFlags",
     xmlName: "additionalFlags",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const connectionEnvelope4: OperationParameter = {
   parameterPath: "connectionEnvelope",
-  mapper: VnetInfoResourceMapper
+  mapper: VnetInfoResourceMapper,
 };

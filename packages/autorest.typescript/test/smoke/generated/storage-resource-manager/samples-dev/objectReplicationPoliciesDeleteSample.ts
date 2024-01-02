@@ -30,7 +30,7 @@ async function storageAccountDeleteObjectReplicationPolicies() {
   const result = await client.objectReplicationPoliciesOperations.delete(
     resourceGroupName,
     accountName,
-    objectReplicationPolicyId
+    objectReplicationPolicyId,
   );
   console.log(result);
 }

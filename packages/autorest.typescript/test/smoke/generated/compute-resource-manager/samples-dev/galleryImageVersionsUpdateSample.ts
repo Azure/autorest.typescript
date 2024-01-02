@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleryImageVersionUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -36,16 +36,15 @@ async function updateASimpleGalleryImageVersionManagedImageAsSource() {
         {
           name: "East US",
           regionalReplicaCount: 2,
-          storageAccountType: "Standard_ZRS"
-        }
-      ]
+          storageAccountType: "Standard_ZRS",
+        },
+      ],
     },
     storageProfile: {
       source: {
-        id:
-          "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/images/{imageName}"
-      }
-    }
+        id: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/images/{imageName}",
+      },
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -54,7 +53,7 @@ async function updateASimpleGalleryImageVersionManagedImageAsSource() {
     galleryName,
     galleryImageName,
     galleryImageVersionName,
-    galleryImageVersion
+    galleryImageVersion,
   );
   console.log(result);
 }
@@ -78,11 +77,11 @@ async function updateASimpleGalleryImageVersionWithoutSourceId() {
         {
           name: "East US",
           regionalReplicaCount: 2,
-          storageAccountType: "Standard_ZRS"
-        }
-      ]
+          storageAccountType: "Standard_ZRS",
+        },
+      ],
     },
-    storageProfile: {}
+    storageProfile: {},
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -91,7 +90,7 @@ async function updateASimpleGalleryImageVersionWithoutSourceId() {
     galleryName,
     galleryImageName,
     galleryImageVersionName,
-    galleryImageVersion
+    galleryImageVersion,
   );
   console.log(result);
 }

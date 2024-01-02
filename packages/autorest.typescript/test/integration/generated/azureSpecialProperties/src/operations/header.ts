@@ -18,7 +18,7 @@ import {
   HeaderCustomNamedRequestIdParamGroupingOptionalParams,
   HeaderCustomNamedRequestIdParamGroupingResponse,
   HeaderCustomNamedRequestIdHeadOptionalParams,
-  HeaderCustomNamedRequestIdHeadResponse
+  HeaderCustomNamedRequestIdHeadResponse,
 } from "../models";
 
 /** Class containing Header operations. */
@@ -40,11 +40,11 @@ export class HeaderImpl implements Header {
    */
   customNamedRequestId(
     fooClientRequestId: string,
-    options?: HeaderCustomNamedRequestIdOptionalParams
+    options?: HeaderCustomNamedRequestIdOptionalParams,
   ): Promise<HeaderCustomNamedRequestIdResponse> {
     return this.client.sendOperationRequest(
       { fooClientRequestId, options },
-      customNamedRequestIdOperationSpec
+      customNamedRequestIdOperationSpec,
     );
   }
 
@@ -56,11 +56,11 @@ export class HeaderImpl implements Header {
    */
   customNamedRequestIdParamGrouping(
     headerCustomNamedRequestIdParamGroupingParameters: HeaderCustomNamedRequestIdParamGroupingParameters,
-    options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams
+    options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams,
   ): Promise<HeaderCustomNamedRequestIdParamGroupingResponse> {
     return this.client.sendOperationRequest(
       { headerCustomNamedRequestIdParamGroupingParameters, options },
-      customNamedRequestIdParamGroupingOperationSpec
+      customNamedRequestIdParamGroupingOperationSpec,
     );
   }
 
@@ -71,11 +71,11 @@ export class HeaderImpl implements Header {
    */
   customNamedRequestIdHead(
     fooClientRequestId: string,
-    options?: HeaderCustomNamedRequestIdHeadOptionalParams
+    options?: HeaderCustomNamedRequestIdHeadOptionalParams,
   ): Promise<HeaderCustomNamedRequestIdHeadResponse> {
     return this.client.sendOperationRequest(
       { fooClientRequestId, options },
-      customNamedRequestIdHeadOperationSpec
+      customNamedRequestIdHeadOperationSpec,
     );
   }
 }
@@ -87,44 +87,45 @@ const customNamedRequestIdOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeaders,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
-  serializer
+  serializer,
 };
-const customNamedRequestIdParamGroupingOperationSpec: coreClient.OperationSpec = {
-  path: "/azurespecials/customNamedRequestIdParamGrouping",
-  httpMethod: "POST",
-  responses: {
-    200: {
-      headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders
+const customNamedRequestIdParamGroupingOperationSpec: coreClient.OperationSpec =
+  {
+    path: "/azurespecials/customNamedRequestIdParamGrouping",
+    httpMethod: "POST",
+    responses: {
+      200: {
+        headersMapper: Mappers.HeaderCustomNamedRequestIdParamGroupingHeaders,
+      },
+      default: {
+        bodyMapper: Mappers.ErrorModel,
+      },
     },
-    default: {
-      bodyMapper: Mappers.ErrorModel
-    }
-  },
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept, Parameters.fooClientRequestId1],
-  serializer
-};
+    urlParameters: [Parameters.$host],
+    headerParameters: [Parameters.accept, Parameters.fooClientRequestId1],
+    serializer,
+  };
 const customNamedRequestIdHeadOperationSpec: coreClient.OperationSpec = {
   path: "/azurespecials/customNamedRequestIdHead",
   httpMethod: "HEAD",
   responses: {
     200: {
-      headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders
+      headersMapper: Mappers.HeaderCustomNamedRequestIdHeadHeaders,
     },
     404: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
-  serializer
+  serializer,
 };

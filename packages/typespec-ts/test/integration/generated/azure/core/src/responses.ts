@@ -7,8 +7,6 @@ import {
   UserOutput,
   PagedUserOutput,
   UserListResultsOutput,
-  PagedFirstItemOutput,
-  PagedSecondItemOutput,
 } from "./outputModels";
 
 /** The request has succeeded. */
@@ -109,23 +107,6 @@ export interface ListWithPageDefaultResponse extends HttpResponse {
 }
 
 /** The request has succeeded. */
-export interface ListWithParameters200Response extends HttpResponse {
-  status: "200";
-  body: PagedUserOutput;
-}
-
-export interface ListWithParametersDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ListWithParametersDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ListWithParametersDefaultHeaders;
-}
-
-/** The request has succeeded. */
 export interface ListWithCustomPageModel200Response extends HttpResponse {
   status: "200";
   body: UserListResultsOutput;
@@ -173,38 +154,4 @@ export interface ExportOperationDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & ExportOperationDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface ListFirstItem200Response extends HttpResponse {
-  status: "200";
-  body: PagedFirstItemOutput;
-}
-
-export interface ListFirstItemDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ListFirstItemDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ListFirstItemDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface ListSecondItem200Response extends HttpResponse {
-  status: "200";
-  body: PagedSecondItemOutput;
-}
-
-export interface ListSecondItemDefaultHeaders {
-  /** String error code indicating what went wrong. */
-  "x-ms-error-code"?: string;
-}
-
-export interface ListSecondItemDefaultResponse extends HttpResponse {
-  status: string;
-  body: ErrorResponse;
-  headers: RawHttpHeaders & ListSecondItemDefaultHeaders;
 }

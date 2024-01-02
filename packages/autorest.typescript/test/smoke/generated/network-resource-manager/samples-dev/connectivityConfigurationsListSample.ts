@@ -30,7 +30,7 @@ async function connectivityConfigurationsList() {
   const resArray = new Array();
   for await (let item of client.connectivityConfigurations.list(
     resourceGroupName,
-    networkManagerName
+    networkManagerName,
   )) {
     resArray.push(item);
   }

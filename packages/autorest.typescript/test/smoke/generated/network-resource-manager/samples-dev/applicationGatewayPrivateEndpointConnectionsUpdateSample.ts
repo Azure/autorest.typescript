@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ApplicationGatewayPrivateEndpointConnection,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,22 +31,22 @@ async function updateApplicationGatewayPrivateEndpointConnection() {
   const parameters: ApplicationGatewayPrivateEndpointConnection = {
     name: "connection1",
     privateEndpoint: {
-      id:
-        "/subscriptions/subId2/resourceGroups/rg1/providers/Microsoft.Network/privateEndpoints/testPe"
+      id: "/subscriptions/subId2/resourceGroups/rg1/providers/Microsoft.Network/privateEndpoints/testPe",
     },
     privateLinkServiceConnectionState: {
       description: "approved it for some reason.",
-      status: "Approved"
-    }
+      status: "Approved",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.applicationGatewayPrivateEndpointConnections.beginUpdateAndWait(
-    resourceGroupName,
-    applicationGatewayName,
-    connectionName,
-    parameters
-  );
+  const result =
+    await client.applicationGatewayPrivateEndpointConnections.beginUpdateAndWait(
+      resourceGroupName,
+      applicationGatewayName,
+      connectionName,
+      parameters,
+    );
   console.log(result);
 }
 

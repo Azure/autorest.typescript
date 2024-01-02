@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualNetworkGatewayNatRule,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,21 +31,22 @@ async function virtualNetworkGatewayNatRulePut() {
   const natRuleParameters: VirtualNetworkGatewayNatRule = {
     typePropertiesType: "Static",
     externalMappings: [
-      { addressSpace: "192.168.21.0/24", portRange: "300-400" }
+      { addressSpace: "192.168.21.0/24", portRange: "300-400" },
     ],
     internalMappings: [{ addressSpace: "10.4.0.0/24", portRange: "200-300" }],
     ipConfigurationId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworkGateways/gateway1/ipConfigurations/default",
-    mode: "EgressSnat"
+    mode: "EgressSnat",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayNatRules.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayName,
-    natRuleName,
-    natRuleParameters
-  );
+  const result =
+    await client.virtualNetworkGatewayNatRules.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayName,
+      natRuleName,
+      natRuleParameters,
+    );
   console.log(result);
 }
 

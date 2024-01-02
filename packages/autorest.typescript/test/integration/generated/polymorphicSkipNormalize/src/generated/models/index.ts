@@ -585,7 +585,7 @@ export enum KnownMediaGraphParameterType {
   /** A 64-bit double-precision floating point type as parameter value. */
   Double = "Double",
   /** A boolean value that is either true or false. */
-  Bool = "Bool"
+  Bool = "Bool",
 }
 
 /**
@@ -604,7 +604,7 @@ export type MediaGraphParameterType = string;
 /** Known values of {@link MediaGraphOutputSelectorProperty} that the service accepts. */
 export enum KnownMediaGraphOutputSelectorProperty {
   /** The stream's MIME type or subtype. */
-  MediaType = "mediaType"
+  MediaType = "mediaType",
 }
 
 /**
@@ -621,7 +621,7 @@ export enum KnownMediaGraphOutputSelectorOperator {
   /** A media type is the same type or a subtype. */
   Is = "is",
   /** A media type is not the same type or a subtype. */
-  IsNot = "isNot"
+  IsNot = "isNot",
 }
 
 /**
@@ -643,7 +643,7 @@ export enum KnownMediaGraphInstanceState {
   /** The media graph instance is active and processing media. */
   Active = "Active",
   /** The media graph instance is transitioning into the inactive state. */
-  Deactivating = "Deactivating"
+  Deactivating = "Deactivating",
 }
 
 /**
@@ -663,7 +663,7 @@ export enum KnownMediaGraphRtspTransport {
   /** HTTP\/HTTPS transport. This should be used when HTTP tunneling is desired. */
   Http = "Http",
   /** TCP transport. This should be used when HTTP tunneling is NOT desired. */
-  Tcp = "Tcp"
+  Tcp = "Tcp",
 }
 
 /**
@@ -683,7 +683,7 @@ export enum KnownMediaGraphMotionDetectionSensitivity {
   /** Medium Sensitivity. */
   Medium = "Medium",
   /** High Sensitivity. */
-  High = "High"
+  High = "High",
 }
 
 /**
@@ -704,7 +704,7 @@ export enum KnownMediaGraphImageScaleMode {
   /** Center pad the input frame to match the given dimensions. */
   Pad = "Pad",
   /** Stretch input frame to match given dimensions. */
-  Stretch = "Stretch"
+  Stretch = "Stretch",
 }
 
 /**
@@ -723,7 +723,7 @@ export enum KnownMediaGraphGrpcExtensionDataTransferMode {
   /** Frames are transferred embedded into the gRPC messages. */
   Embedded = "Embedded",
   /** Frames are transferred through shared memory. */
-  SharedMemory = "SharedMemory"
+  SharedMemory = "SharedMemory",
 }
 
 /**
@@ -759,7 +759,7 @@ export enum KnownMediaGraphImageFormatRawPixelFormat {
   /** Packed ABGR 8:8:8:8, 32bpp, ABGRABGR. */
   Abgr = "Abgr",
   /** Packed BGRA 8:8:8:8, 32bpp, BGRABGRA. */
-  Bgra = "Bgra"
+  Bgra = "Bgra",
 }
 
 /**

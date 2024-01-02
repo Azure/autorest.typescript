@@ -36,7 +36,7 @@ async function executeSiteDetector() {
     siteName,
     detectorName,
     diagnosticCategory,
-    slot
+    slot,
   );
   console.log(result);
 }
@@ -63,7 +63,7 @@ async function executeSiteSlotDetector() {
     siteName,
     detectorName,
     diagnosticCategory,
-    slot
+    slot,
   );
   console.log(result);
 }

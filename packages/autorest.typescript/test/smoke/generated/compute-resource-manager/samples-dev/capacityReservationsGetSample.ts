@@ -30,7 +30,7 @@ async function getACapacityReservation() {
   const result = await client.capacityReservations.get(
     resourceGroupName,
     capacityReservationGroupName,
-    capacityReservationName
+    capacityReservationName,
   );
   console.log(result);
 }

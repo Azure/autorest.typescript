@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualRouterPeering,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function createVirtualRouterPeering() {
   const peeringName = "peering1";
   const parameters: VirtualRouterPeering = {
     peerAsn: 20000,
-    peerIp: "192.168.1.5"
+    peerIp: "192.168.1.5",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function createVirtualRouterPeering() {
     resourceGroupName,
     virtualRouterName,
     peeringName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

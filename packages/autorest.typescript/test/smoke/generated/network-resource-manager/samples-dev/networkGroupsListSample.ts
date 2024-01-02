@@ -30,7 +30,7 @@ async function networkGroupsList() {
   const resArray = new Array();
   for await (let item of client.networkGroups.list(
     resourceGroupName,
-    networkManagerName
+    networkManagerName,
   )) {
     resArray.push(item);
   }

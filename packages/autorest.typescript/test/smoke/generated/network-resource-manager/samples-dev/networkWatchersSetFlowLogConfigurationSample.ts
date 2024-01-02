@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FlowLogInformation,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,15 +32,16 @@ async function configureFlowLog() {
     storageId:
       "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Storage/storageAccounts/st1",
     targetResourceId:
-      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1"
+      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkWatchers.beginSetFlowLogConfigurationAndWait(
-    resourceGroupName,
-    networkWatcherName,
-    parameters
-  );
+  const result =
+    await client.networkWatchers.beginSetFlowLogConfigurationAndWait(
+      resourceGroupName,
+      networkWatcherName,
+      parameters,
+    );
   console.log(result);
 }
 

@@ -52,7 +52,7 @@ export class LoadTestAdministrationClient {
   constructor(
     endpoint: string,
     credential: TokenCredential,
-    options: LoadTestAdministrationClientOptions = {}
+    options: LoadTestAdministrationClientOptions = {},
   ) {
     this._client = createLoadTestAdministration(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
@@ -62,7 +62,7 @@ export class LoadTestAdministrationClient {
   createOrUpdateTest(
     testId: string,
     body: Test,
-    options: CreateOrUpdateTestOptions = { requestOptions: {} }
+    options: CreateOrUpdateTestOptions = { requestOptions: {} },
   ): Promise<Test> {
     return createOrUpdateTest(this._client, testId, body, options);
   }
@@ -71,7 +71,7 @@ export class LoadTestAdministrationClient {
   createOrUpdateAppComponents(
     testId: string,
     body: TestAppComponents,
-    options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
+    options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
   ): Promise<TestAppComponents> {
     return createOrUpdateAppComponents(this._client, testId, body, options);
   }
@@ -80,20 +80,20 @@ export class LoadTestAdministrationClient {
   createOrUpdateServerMetricsConfig(
     testId: string,
     body: TestServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
+    options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
   ): Promise<TestServerMetricConfig> {
     return createOrUpdateServerMetricsConfig(
       this._client,
       testId,
       body,
-      options
+      options,
     );
   }
 
   /** Get associated app component (collection of azure resources) for the given test. */
   getAppComponents(
     testId: string,
-    options: GetAppComponentsOptions = { requestOptions: {} }
+    options: GetAppComponentsOptions = { requestOptions: {} },
   ): Promise<TestAppComponents> {
     return getAppComponents(this._client, testId, options);
   }
@@ -101,7 +101,7 @@ export class LoadTestAdministrationClient {
   /** List server metrics configuration for the given test. */
   getServerMetricsConfig(
     testId: string,
-    options: GetServerMetricsConfigOptions = { requestOptions: {} }
+    options: GetServerMetricsConfigOptions = { requestOptions: {} },
   ): Promise<TestServerMetricConfig> {
     return getServerMetricsConfig(this._client, testId, options);
   }
@@ -109,7 +109,7 @@ export class LoadTestAdministrationClient {
   /** Get load test details by test name */
   getTest(
     testId: string,
-    options: GetTestOptions = { requestOptions: {} }
+    options: GetTestOptions = { requestOptions: {} },
   ): Promise<Test> {
     return getTest(this._client, testId, options);
   }
@@ -118,7 +118,7 @@ export class LoadTestAdministrationClient {
   getTestFile(
     testId: string,
     fileName: string,
-    options: GetTestFileOptions = { requestOptions: {} }
+    options: GetTestFileOptions = { requestOptions: {} },
   ): Promise<FileInfo> {
     return getTestFile(this._client, testId, fileName, options);
   }
@@ -126,7 +126,7 @@ export class LoadTestAdministrationClient {
   /** Get all test files. */
   listTestFiles(
     testId: string,
-    options: ListTestFilesOptions = { requestOptions: {} }
+    options: ListTestFilesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<FileInfo> {
     return listTestFiles(this._client, testId, options);
   }
@@ -136,7 +136,7 @@ export class LoadTestAdministrationClient {
    * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
    */
   listTests(
-    options: ListTestsOptions = { requestOptions: {} }
+    options: ListTestsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<Test> {
     return listTests(this._client, options);
   }
@@ -150,7 +150,7 @@ export class LoadTestAdministrationClient {
     testId: string,
     fileName: string,
     body: Uint8Array,
-    options: UploadTestFileOptions = { requestOptions: {} }
+    options: UploadTestFileOptions = { requestOptions: {} },
   ): Promise<FileInfo> {
     return uploadTestFile(this._client, testId, fileName, body, options);
   }
@@ -159,7 +159,7 @@ export class LoadTestAdministrationClient {
   deleteTestFile(
     testId: string,
     fileName: string,
-    options: DeleteTestFileOptions = { requestOptions: {} }
+    options: DeleteTestFileOptions = { requestOptions: {} },
   ): Promise<void> {
     return deleteTestFile(this._client, testId, fileName, options);
   }
@@ -167,7 +167,7 @@ export class LoadTestAdministrationClient {
   /** Delete a test by its name. */
   deleteTest(
     testId: string,
-    options: DeleteTestOptions = { requestOptions: {} }
+    options: DeleteTestOptions = { requestOptions: {} },
   ): Promise<void> {
     return deleteTest(this._client, testId, options);
   }

@@ -33,7 +33,7 @@ async function getAListOfTheDatabaseTransparentDataEncryptions() {
   for await (let item of client.managedDatabaseTransparentDataEncryption.listByDatabase(
     resourceGroupName,
     managedInstanceName,
-    databaseName
+    databaseName,
   )) {
     resArray.push(item);
   }

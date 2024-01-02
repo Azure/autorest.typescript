@@ -15,7 +15,7 @@ async function noDecoratorInPublicSample() {
   const client = createAccessClient();
   const result = await client
     .path(
-      "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic"
+      "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic",
     )
     .get({ queryParameters: { name: "{Your name}" } });
   console.log(result);

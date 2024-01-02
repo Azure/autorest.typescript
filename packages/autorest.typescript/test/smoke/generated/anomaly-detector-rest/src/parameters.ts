@@ -7,7 +7,7 @@ import {
   ChangePointDetectRequest,
   ModelInfo,
   DetectionRequest,
-  LastDetectionRequest
+  LastDetectionRequest,
 } from "./models";
 
 export interface DetectEntireSeriesBodyParam {
@@ -63,9 +63,10 @@ export interface CreateMultivariateModelMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type CreateMultivariateModelParameters = CreateMultivariateModelMediaTypesParam &
-  CreateMultivariateModelBodyParam &
-  RequestParameters;
+export type CreateMultivariateModelParameters =
+  CreateMultivariateModelMediaTypesParam &
+    CreateMultivariateModelBodyParam &
+    RequestParameters;
 
 export interface ListMultivariateModelQueryParamProperties {
   /** Skip indicates how many models will be skipped. */

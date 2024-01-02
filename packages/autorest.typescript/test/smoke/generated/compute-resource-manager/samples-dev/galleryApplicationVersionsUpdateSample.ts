@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleryApplicationVersionUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,22 +35,22 @@ async function updateASimpleGalleryApplicationVersion() {
       manageActions: {
         install:
           'powershell -command "Expand-Archive -Path package.zip -DestinationPath C:\\package"',
-        remove: "del C:\\package "
+        remove: "del C:\\package ",
       },
       replicaCount: 1,
       source: {
         mediaLink:
-          "https://mystorageaccount.blob.core.windows.net/mycontainer/package.zip?{sasKey}"
+          "https://mystorageaccount.blob.core.windows.net/mycontainer/package.zip?{sasKey}",
       },
       storageAccountType: "Standard_LRS",
       targetRegions: [
         {
           name: "West US",
           regionalReplicaCount: 1,
-          storageAccountType: "Standard_LRS"
-        }
-      ]
-    }
+          storageAccountType: "Standard_LRS",
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -59,7 +59,7 @@ async function updateASimpleGalleryApplicationVersion() {
     galleryName,
     galleryApplicationName,
     galleryApplicationVersionName,
-    galleryApplicationVersion
+    galleryApplicationVersion,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@ import {
   InheritanceGetValidOptionalParams,
   InheritanceGetValidResponse,
   Siamese,
-  InheritancePutValidOptionalParams
+  InheritancePutValidOptionalParams,
 } from "../models";
 
 /** Interface representing a Inheritance. */
@@ -20,7 +20,7 @@ export interface Inheritance {
    * @param options The options parameters.
    */
   getValid(
-    options?: InheritanceGetValidOptionalParams
+    options?: InheritanceGetValidOptionalParams,
   ): Promise<InheritanceGetValidResponse>;
   /**
    * Put complex types that extend others
@@ -31,6 +31,6 @@ export interface Inheritance {
    */
   putValid(
     complexBody: Siamese,
-    options?: InheritancePutValidOptionalParams
+    options?: InheritancePutValidOptionalParams,
   ): Promise<void>;
 }

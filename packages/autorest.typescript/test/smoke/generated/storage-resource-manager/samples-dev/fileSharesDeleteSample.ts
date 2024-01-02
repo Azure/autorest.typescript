@@ -30,7 +30,7 @@ async function deleteShares() {
   const result = await client.fileShares.delete(
     resourceGroupName,
     accountName,
-    shareName
+    shareName,
   );
   console.log(result);
 }

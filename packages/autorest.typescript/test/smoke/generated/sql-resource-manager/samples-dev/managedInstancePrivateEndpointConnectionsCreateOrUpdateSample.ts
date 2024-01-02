@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstancePrivateEndpointConnection,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,17 +32,18 @@ async function approveOrRejectAPrivateEndpointConnectionWithAGivenName() {
   const parameters: ManagedInstancePrivateEndpointConnection = {
     privateLinkServiceConnectionState: {
       description: "Approved by johndoe@contoso.com",
-      status: "Approved"
-    }
+      status: "Approved",
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedInstancePrivateEndpointConnections.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    managedInstanceName,
-    privateEndpointConnectionName,
-    parameters
-  );
+  const result =
+    await client.managedInstancePrivateEndpointConnections.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      managedInstanceName,
+      privateEndpointConnectionName,
+      parameters,
+    );
   console.log(result);
 }
 

@@ -6,7 +6,7 @@ import {
   ProductResultValueOutput,
   ProductResultOutput,
   OdataProductResultOutput,
-  ProductResultValueWithXMSClientNameOutput
+  ProductResultValueWithXMSClientNameOutput,
 } from "./outputModels";
 
 /** A paging operation that must return result of the default 'value' node. */

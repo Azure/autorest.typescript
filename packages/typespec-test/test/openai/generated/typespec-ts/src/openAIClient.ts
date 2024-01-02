@@ -16,7 +16,7 @@ import { OpenAIClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: TokenCredential | KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): OpenAIClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/openai`;
   options.apiVersion = options.apiVersion ?? "2023-08-01-preview";

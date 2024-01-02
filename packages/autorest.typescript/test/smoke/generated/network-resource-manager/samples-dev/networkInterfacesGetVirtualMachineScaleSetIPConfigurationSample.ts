@@ -29,13 +29,14 @@ async function getVirtualMachineScaleSetNetworkInterface() {
   const ipConfigurationName = "ip1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.networkInterfaces.getVirtualMachineScaleSetIpConfiguration(
-    resourceGroupName,
-    virtualMachineScaleSetName,
-    virtualmachineIndex,
-    networkInterfaceName,
-    ipConfigurationName
-  );
+  const result =
+    await client.networkInterfaces.getVirtualMachineScaleSetIpConfiguration(
+      resourceGroupName,
+      virtualMachineScaleSetName,
+      virtualmachineIndex,
+      networkInterfaceName,
+      ipConfigurationName,
+    );
   console.log(result);
 }
 

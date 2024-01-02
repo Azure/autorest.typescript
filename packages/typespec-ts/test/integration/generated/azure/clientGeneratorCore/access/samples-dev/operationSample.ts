@@ -15,7 +15,7 @@ async function operationSample() {
   const client = createAccessClient();
   const result = await client
     .path(
-      "/azure/client-generator-core/access/relativeModelInOperation/operation"
+      "/azure/client-generator-core/access/relativeModelInOperation/operation",
     )
     .get({ queryParameters: { name: "{Your name}" } });
   console.log(result);

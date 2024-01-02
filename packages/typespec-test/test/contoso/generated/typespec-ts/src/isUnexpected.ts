@@ -26,28 +26,28 @@ const responseMap: Record<string, string[]> = {
 };
 
 export function isUnexpected(
-  response: GetWidget200Response | GetWidgetDefaultResponse
+  response: GetWidget200Response | GetWidgetDefaultResponse,
 ): response is GetWidgetDefaultResponse;
 export function isUnexpected(
   response:
     | CreateOrUpdateWidget200Response
     | CreateOrUpdateWidget201Response
     | CreateOrUpdateWidgetLogicalResponse
-    | CreateOrUpdateWidgetDefaultResponse
+    | CreateOrUpdateWidgetDefaultResponse,
 ): response is CreateOrUpdateWidgetDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteWidget202Response
     | DeleteWidgetLogicalResponse
-    | DeleteWidgetDefaultResponse
+    | DeleteWidgetDefaultResponse,
 ): response is DeleteWidgetDefaultResponse;
 export function isUnexpected(
   response:
     | GetWidgetOperationStatus200Response
-    | GetWidgetOperationStatusDefaultResponse
+    | GetWidgetOperationStatusDefaultResponse,
 ): response is GetWidgetOperationStatusDefaultResponse;
 export function isUnexpected(
-  response: ListWidgets200Response | ListWidgetsDefaultResponse
+  response: ListWidgets200Response | ListWidgetsDefaultResponse,
 ): response is ListWidgetsDefaultResponse;
 export function isUnexpected(
   response:
@@ -63,7 +63,7 @@ export function isUnexpected(
     | GetWidgetOperationStatus200Response
     | GetWidgetOperationStatusDefaultResponse
     | ListWidgets200Response
-    | ListWidgetsDefaultResponse
+    | ListWidgetsDefaultResponse,
 ): response is
   | GetWidgetDefaultResponse
   | CreateOrUpdateWidgetDefaultResponse
@@ -118,7 +118,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

@@ -30,7 +30,7 @@ async function vpnConnectionDelete() {
   const result = await client.vpnConnections.beginDeleteAndWait(
     resourceGroupName,
     gatewayName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

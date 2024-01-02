@@ -28,7 +28,7 @@ async function getPrivateEndpoint() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateEndpoints.get(
     resourceGroupName,
-    privateEndpointName
+    privateEndpointName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getPrivateEndpointWithApplicationSecurityGroups() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateEndpoints.get(
     resourceGroupName,
-    privateEndpointName
+    privateEndpointName,
   );
   console.log(result);
 }
@@ -66,7 +66,7 @@ async function getPrivateEndpointWithManualApprovalConnection() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateEndpoints.get(
     resourceGroupName,
-    privateEndpointName
+    privateEndpointName,
   );
   console.log(result);
 }

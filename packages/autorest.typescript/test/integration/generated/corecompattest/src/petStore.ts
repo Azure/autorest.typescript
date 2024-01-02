@@ -36,7 +36,7 @@ import {
   GetUserByNameOptionalParams,
   GetUserByNameResponse,
   UpdateUserOptionalParams,
-  DeleteUserOptionalParams
+  DeleteUserOptionalParams,
 } from "./models";
 
 export class PetStore extends coreHttpCompat.ExtendedServiceClient {
@@ -49,7 +49,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: PetStoreOptionalParams
+    options?: PetStoreOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -61,7 +61,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
     }
     const defaults: PetStoreOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-petstore/1.0.0-preview1`;
@@ -77,10 +77,10 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "http://petstore.swagger.io/v2"
+        options.endpoint ?? options.baseUri ?? "http://petstore.swagger.io/v2",
     };
     super(optionsWithDefaults);
 
@@ -95,7 +95,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   addPetUsingByteArray(
     contentType: "application/json",
-    options?: AddPetUsingByteArray$binaryOptionalParams
+    options?: AddPetUsingByteArray$binaryOptionalParams,
   ): Promise<void>;
   /**
    * Fake endpoint to test byte array in body parameter for adding a new pet to the store
@@ -104,7 +104,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   addPetUsingByteArray(
     contentType: "application/xml",
-    options?: AddPetUsingByteArray$xmlOptionalParams
+    options?: AddPetUsingByteArray$xmlOptionalParams,
   ): Promise<void>;
   /**
    * Fake endpoint to test byte array in body parameter for adding a new pet to the store
@@ -128,7 +128,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
       options = args[1];
     } else {
       throw new TypeError(
-        `"contentType" must be a valid value but instead was "${args[0]}".`
+        `"contentType" must be a valid value but instead was "${args[0]}".`,
       );
     }
     operationArguments.options = options || {};
@@ -156,11 +156,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    * @param options The options parameters.
    */
   findPetsByStatus(
-    options?: FindPetsByStatusOptionalParams
+    options?: FindPetsByStatusOptionalParams,
   ): Promise<FindPetsByStatusResponse> {
     return this.sendOperationRequest(
       { options },
-      findPetsByStatusOperationSpec
+      findPetsByStatusOperationSpec,
     );
   }
 
@@ -169,7 +169,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    * @param options The options parameters.
    */
   findPetsByTags(
-    options?: FindPetsByTagsOptionalParams
+    options?: FindPetsByTagsOptionalParams,
   ): Promise<FindPetsByTagsResponse> {
     return this.sendOperationRequest({ options }, findPetsByTagsOperationSpec);
   }
@@ -181,11 +181,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   findPetsWithByteArray(
     petId: number,
-    options?: FindPetsWithByteArrayOptionalParams
+    options?: FindPetsWithByteArrayOptionalParams,
   ): Promise<FindPetsWithByteArrayResponse> {
     return this.sendOperationRequest(
       { petId, options },
-      findPetsWithByteArrayOperationSpec
+      findPetsWithByteArrayOperationSpec,
     );
   }
 
@@ -196,11 +196,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   getPetById(
     petId: number,
-    options?: GetPetByIdOptionalParams
+    options?: GetPetByIdOptionalParams,
   ): Promise<GetPetByIdResponse> {
     return this.sendOperationRequest(
       { petId, options },
-      getPetByIdOperationSpec
+      getPetByIdOperationSpec,
     );
   }
 
@@ -211,11 +211,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   updatePetWithForm(
     petId: string,
-    options?: UpdatePetWithFormOptionalParams
+    options?: UpdatePetWithFormOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { petId, options },
-      updatePetWithFormOperationSpec
+      updatePetWithFormOperationSpec,
     );
   }
 
@@ -227,7 +227,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
   deletePet(petId: number, options?: DeletePetOptionalParams): Promise<void> {
     return this.sendOperationRequest(
       { petId, options },
-      deletePetOperationSpec
+      deletePetOperationSpec,
     );
   }
 
@@ -239,7 +239,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
   uploadFile(petId: number, options?: UploadFileOptionalParams): Promise<void> {
     return this.sendOperationRequest(
       { petId, options },
-      uploadFileOperationSpec
+      uploadFileOperationSpec,
     );
   }
 
@@ -248,7 +248,7 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    * @param options The options parameters.
    */
   getInventory(
-    options?: GetInventoryOptionalParams
+    options?: GetInventoryOptionalParams,
   ): Promise<GetInventoryResponse> {
     return this.sendOperationRequest({ options }, getInventoryOperationSpec);
   }
@@ -268,11 +268,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   getOrderById(
     orderId: string,
-    options?: GetOrderByIdOptionalParams
+    options?: GetOrderByIdOptionalParams,
   ): Promise<GetOrderByIdResponse> {
     return this.sendOperationRequest(
       { orderId, options },
-      getOrderByIdOperationSpec
+      getOrderByIdOperationSpec,
     );
   }
 
@@ -284,11 +284,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   deleteOrder(
     orderId: string,
-    options?: DeleteOrderOptionalParams
+    options?: DeleteOrderOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { orderId, options },
-      deleteOrderOperationSpec
+      deleteOrderOperationSpec,
     );
   }
 
@@ -305,11 +305,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    * @param options The options parameters.
    */
   createUsersWithArrayInput(
-    options?: CreateUsersWithArrayInputOptionalParams
+    options?: CreateUsersWithArrayInputOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
-      createUsersWithArrayInputOperationSpec
+      createUsersWithArrayInputOperationSpec,
     );
   }
 
@@ -318,11 +318,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    * @param options The options parameters.
    */
   createUsersWithListInput(
-    options?: CreateUsersWithListInputOptionalParams
+    options?: CreateUsersWithListInputOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
-      createUsersWithListInputOperationSpec
+      createUsersWithListInputOperationSpec,
     );
   }
 
@@ -349,11 +349,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   getUserByName(
     username: string,
-    options?: GetUserByNameOptionalParams
+    options?: GetUserByNameOptionalParams,
   ): Promise<GetUserByNameResponse> {
     return this.sendOperationRequest(
       { username, options },
-      getUserByNameOperationSpec
+      getUserByNameOperationSpec,
     );
   }
 
@@ -364,11 +364,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   updateUser(
     username: string,
-    options?: UpdateUserOptionalParams
+    options?: UpdateUserOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { username, options },
-      updateUserOperationSpec
+      updateUserOperationSpec,
     );
   }
 
@@ -379,11 +379,11 @@ export class PetStore extends coreHttpCompat.ExtendedServiceClient {
    */
   deleteUser(
     username: string,
-    options?: DeleteUserOptionalParams
+    options?: DeleteUserOptionalParams,
   ): Promise<void> {
     return this.sendOperationRequest(
       { username, options },
-      deleteUserOperationSpec
+      deleteUserOperationSpec,
     );
   }
 }
@@ -402,7 +402,7 @@ const addPetUsingByteArray$binaryOperationSpec: coreClient.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "binary",
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const addPetUsingByteArray$xmlOperationSpec: coreClient.OperationSpec = {
   path: "/pet",
@@ -414,7 +414,7 @@ const addPetUsingByteArray$xmlOperationSpec: coreClient.OperationSpec = {
   isXML: true,
   contentType: "application/xml; charset=utf-8",
   mediaType: "xml",
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const addPetOperationSpec: coreClient.OperationSpec = {
   path: "/pet",
@@ -424,7 +424,7 @@ const addPetOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const updatePetOperationSpec: coreClient.OperationSpec = {
   path: "/pet",
@@ -434,7 +434,7 @@ const updatePetOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const findPetsByStatusOperationSpec: coreClient.OperationSpec = {
   path: "/pet/findByStatus",
@@ -444,19 +444,19 @@ const findPetsByStatusOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Pet" } }
+          element: { type: { name: "Composite", className: "Pet" } },
         },
         serializedName: "ArrayOfPet",
-        xmlElementName: "Pet"
-      }
+        xmlElementName: "Pet",
+      },
     },
-    400: {}
+    400: {},
   },
   queryParameters: [Parameters.status],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const findPetsByTagsOperationSpec: coreClient.OperationSpec = {
   path: "/pet/findByTags",
@@ -466,48 +466,51 @@ const findPetsByTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Sequence",
-          element: { type: { name: "Composite", className: "Pet" } }
+          element: { type: { name: "Composite", className: "Pet" } },
         },
         serializedName: "ArrayOfPet",
-        xmlElementName: "Pet"
-      }
+        xmlElementName: "Pet",
+      },
     },
-    400: {}
+    400: {},
   },
   queryParameters: [Parameters.tags],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const findPetsWithByteArrayOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Stream" }, serializedName: "parsedResponse" }
+      bodyMapper: {
+        type: { name: "Stream" },
+        serializedName: "parsedResponse",
+      },
     },
     400: {},
-    404: {}
+    404: {},
   },
   urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getPetByIdOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Pet
+      bodyMapper: Mappers.Pet,
     },
     400: {},
-    404: {}
+    404: {},
   },
   urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const updatePetWithFormOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
@@ -516,7 +519,7 @@ const updatePetWithFormOperationSpec: coreClient.OperationSpec = {
   formDataParameters: [Parameters.name, Parameters.status1],
   urlParameters: [Parameters.$host, Parameters.petId1],
   headerParameters: [Parameters.contentType3],
-  serializer
+  serializer,
 };
 const deletePetOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
@@ -524,7 +527,7 @@ const deletePetOperationSpec: coreClient.OperationSpec = {
   responses: { 400: {} },
   urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.apiKey],
-  serializer
+  serializer,
 };
 const uploadFileOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}/uploadImage",
@@ -533,7 +536,7 @@ const uploadFileOperationSpec: coreClient.OperationSpec = {
   formDataParameters: [Parameters.additionalMetadata, Parameters.file],
   urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.contentType4],
-  serializer
+  serializer,
 };
 const getInventoryOperationSpec: coreClient.OperationSpec = {
   path: "/store/inventory",
@@ -542,51 +545,51 @@ const getInventoryOperationSpec: coreClient.OperationSpec = {
     200: {
       bodyMapper: {
         type: { name: "Dictionary", value: { type: { name: "Number" } } },
-        serializedName: "DictionaryOfInteger"
-      }
-    }
+        serializedName: "DictionaryOfInteger",
+      },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const placeOrderOperationSpec: coreClient.OperationSpec = {
   path: "/store/order",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.Order
+      bodyMapper: Mappers.Order,
     },
-    400: {}
+    400: {},
   },
   requestBody: Parameters.body3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2, Parameters.accept],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getOrderByIdOperationSpec: coreClient.OperationSpec = {
   path: "/store/order/{orderId}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Order
+      bodyMapper: Mappers.Order,
     },
     400: {},
-    404: {}
+    404: {},
   },
   urlParameters: [Parameters.$host, Parameters.orderId],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const deleteOrderOperationSpec: coreClient.OperationSpec = {
   path: "/store/order/{orderId}",
   httpMethod: "DELETE",
   responses: { 400: {}, 404: {} },
   urlParameters: [Parameters.$host, Parameters.orderId],
-  serializer
+  serializer,
 };
 const createUserOperationSpec: coreClient.OperationSpec = {
   path: "/user",
@@ -596,7 +599,7 @@ const createUserOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createUsersWithArrayInputOperationSpec: coreClient.OperationSpec = {
   path: "/user/createWithArray",
@@ -606,7 +609,7 @@ const createUsersWithArrayInputOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const createUsersWithListInputOperationSpec: coreClient.OperationSpec = {
   path: "/user/createWithList",
@@ -616,44 +619,44 @@ const createUsersWithListInputOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const loginUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/login",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "String" }, serializedName: "String" }
+      bodyMapper: { type: { name: "String" }, serializedName: "String" },
     },
-    400: {}
+    400: {},
   },
   queryParameters: [Parameters.username, Parameters.password],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const logoutUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/logout",
   httpMethod: "GET",
   responses: { default: {} },
   urlParameters: [Parameters.$host],
-  serializer
+  serializer,
 };
 const getUserByNameOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.User
+      bodyMapper: Mappers.User,
     },
     400: {},
-    404: {}
+    404: {},
   },
   urlParameters: [Parameters.$host, Parameters.username1],
   headerParameters: [Parameters.accept],
   isXML: true,
-  serializer: xmlSerializer
+  serializer: xmlSerializer,
 };
 const updateUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
@@ -663,12 +666,12 @@ const updateUserOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.username1],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
   httpMethod: "DELETE",
   responses: { 400: {}, 404: {} },
   urlParameters: [Parameters.$host, Parameters.username1],
-  serializer
+  serializer,
 };

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,17 +29,17 @@ async function retrieveBootDiagnosticsDataOfAVirtualMachine() {
   const vmScaleSetName = "myvmScaleSet";
   const instanceId = "0";
   const sasUriExpirationTimeInMinutes = 60;
-  const options: VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams = {
-    sasUriExpirationTimeInMinutes
-  };
+  const options: VirtualMachineScaleSetVMsRetrieveBootDiagnosticsDataOptionalParams =
+    { sasUriExpirationTimeInMinutes };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
-  const result = await client.virtualMachineScaleSetVMs.retrieveBootDiagnosticsData(
-    resourceGroupName,
-    vmScaleSetName,
-    instanceId,
-    options
-  );
+  const result =
+    await client.virtualMachineScaleSetVMs.retrieveBootDiagnosticsData(
+      resourceGroupName,
+      vmScaleSetName,
+      instanceId,
+      options,
+    );
   console.log(result);
 }
 

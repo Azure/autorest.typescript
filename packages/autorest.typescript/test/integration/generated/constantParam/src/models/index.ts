@@ -138,7 +138,7 @@ export enum KnownWarningCodeValue {
   /** LongWordsInDocument */
   LongWordsInDocument = "LongWordsInDocument",
   /** DocumentTruncated */
-  DocumentTruncated = "DocumentTruncated"
+  DocumentTruncated = "DocumentTruncated",
 }
 
 /**
@@ -170,7 +170,7 @@ export enum KnownInnerErrorCodeValue {
   /** UnsupportedLanguageCode */
   UnsupportedLanguageCode = "UnsupportedLanguageCode",
   /** InvalidCountryHint */
-  InvalidCountryHint = "InvalidCountryHint"
+  InvalidCountryHint = "InvalidCountryHint",
 }
 
 /**

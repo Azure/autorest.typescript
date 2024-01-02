@@ -28,7 +28,7 @@ async function deleteVirtualNetworkTapResource() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.virtualNetworkTaps.beginDeleteAndWait(
     resourceGroupName,
-    tapName
+    tapName,
   );
   console.log(result);
 }

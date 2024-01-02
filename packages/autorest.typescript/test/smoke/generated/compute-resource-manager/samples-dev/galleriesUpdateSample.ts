@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GalleryUpdate,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function updateASimpleGallery() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "myResourceGroup";
   const galleryName = "myGalleryName";
   const gallery: GalleryUpdate = {
-    description: "This is the gallery description."
+    description: "This is the gallery description.",
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginUpdateAndWait(
     resourceGroupName,
     galleryName,
-    gallery
+    gallery,
   );
   console.log(result);
 }

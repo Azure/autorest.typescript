@@ -30,7 +30,7 @@ async function natRuleDelete() {
   const result = await client.natRules.beginDeleteAndWait(
     resourceGroupName,
     gatewayName,
-    natRuleName
+    natRuleName,
   );
   console.log(result);
 }
