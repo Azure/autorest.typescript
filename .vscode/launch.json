@@ -155,26 +155,6 @@
       "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
     },
     {
-      "name": "[TypeSpec] Debug Modular Unit Test",
-      "request": "launch",
-      "cwd": "${workspaceFolder}/packages/typespec-ts",
-      "runtimeArgs": [
-        "mocha",
-        "-r",
-        "ts-node/register",
-        "--experimental-specifier-resolution=node",
-        "--experimental-modules=true",
-        "--timeout",
-        "999999",
-        "--colors",
-        "./test/modularUnit/**/*.spec.ts"
-      ],
-      "runtimeExecutable": "npx",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node",
-      "outFiles": ["${workspaceFolder}/packages/*/dist/**/*.js"]
-    },
-    {
       "name": "[TypeSpec] Debug Integration Test",
       "request": "launch",
       "cwd": "${workspaceFolder}/packages/typespec-ts",
