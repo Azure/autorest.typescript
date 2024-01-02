@@ -1117,10 +1117,13 @@ function needsDeserialize(type?: Type) {
   );
 }
 
-export function hasLROOperation(codeModel: ModularCodeModel) {
+export function hasLROOperation(
+  codeModel: ModularCodeModel,
+  needRLC: boolean = false
+) {
   return (codeModel.clients ?? []).some(
     (c) =>
-      c.rlcHelperDetails.hasLongRunning ||
+      (needRLC ? c.rlcHelperDetails.hasLongRunning : false) ||
       (c.operationGroups ?? []).some((og) =>
         (og.operations ?? []).some(isLROOperation)
       )
@@ -1131,10 +1134,11 @@ export function isLROOperation(op: Operation): boolean {
   return op.discriminator === "lro" || op.discriminator === "lropaging";
 }
 
-export function hasPagingOperation(client: Client): boolean;
-export function hasPagingOperation(codeModel: ModularCodeModel): boolean;
+export function hasPagingOperation(client: Client, needRLC?: boolean): boolean;
+export function hasPagingOperation(codeModel: ModularCodeModel, needRLC?: boolean): boolean;
 export function hasPagingOperation(
-  clientOrCodeModel: Client | ModularCodeModel
+  clientOrCodeModel: Client | ModularCodeModel,
+  needRLC: boolean = false
 ): boolean {
   let clients: Client[] = [];
   if ((clientOrCodeModel as any)?.operationGroups) {
@@ -1144,7 +1148,7 @@ export function hasPagingOperation(
   }
   return clients.some(
     (c) =>
-      c.rlcHelperDetails.hasPaging ||
+      (needRLC ? c.rlcHelperDetails.hasPaging: false) ||
       (c.operationGroups ?? []).some((og) =>
         (og.operations ?? []).some(isPagingOperation)
       )
