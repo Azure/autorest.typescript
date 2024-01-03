@@ -12,7 +12,6 @@ export interface RestorePollerOptions<
   updateIntervalInMs?: number;
   /** Deserialization function for raw response body */
   processResponseBody?: (result: TResponse) => PromiseLike<TResult>;
-  resumeFrom?: string;
 }
 
 /**
@@ -23,6 +22,9 @@ export interface RestorePollerOptions<
 export function restorePoller<TResult = void>(
   client: StandardContext | StandardClient,
   serializedState: string,
+  _sourceOperation: (
+    ...args: any[]
+  ) => PromisePollerLike<OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>
 ): PromisePollerLike<OperationState<TResult>, TResult> {
   return getLongRunningPoller(

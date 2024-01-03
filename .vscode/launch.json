@@ -169,7 +169,7 @@
         "--timeout",
         "999999",
         "--colors",
-        "./test/integration/*.spec.ts"
+        "./test/modularIntegration/*.spec.ts"
       ],
       "runtimeExecutable": "npx",
       "skipFiles": ["<node_internals>/**"],

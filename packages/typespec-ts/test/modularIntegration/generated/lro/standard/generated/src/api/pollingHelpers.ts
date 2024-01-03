@@ -25,14 +25,17 @@ export interface GetLongRunningPollerOptions {
    */
   restoreFrom?: string;
 }
-export function getLongRunningPoller<TResponse extends HttpResponse>(
+export function getLongRunningPoller<
+  TResponse extends HttpResponse,
+  TResult = void
+>(
   client: Client,
   getInitialResponse: () => PromiseLike<TResponse>,
-  processResponseBody: (result: TResponse) => PromiseLike<unknown>,
+  processResponseBody: (result: TResponse) => PromiseLike<TResult>,
   options: GetLongRunningPollerOptions
-): PromisePollerLike<OperationState<unknown>, unknown> {
+): PromisePollerLike<OperationState<TResult>, TResult> {
   let initialResponse: TResponse;
-  const poller: LongRunningOperation<unknown> = {
+  const poller: LongRunningOperation<TResult> = {
     requestMethod: options.method,
     requestPath: options.url,
     sendInitialRequest: async () => {
