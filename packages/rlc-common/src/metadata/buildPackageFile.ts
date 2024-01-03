@@ -214,15 +214,16 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.devDependencies["@azure/eslint-plugin-azure-sdk"] = "^3.0.0";
     // azsdkjs repo use dev-tool to run vendored prettier
     const dtxPrettierCmd = "dev-tool run vendored ";
-    packageInfo.scripts["check-format"] = dtxPrettierCmd + packageInfo.scripts["check-format"];
-    packageInfo.scripts["format"] = dtxPrettierCmd + packageInfo.scripts["format"];
+    packageInfo.scripts["check-format"] =
+      dtxPrettierCmd + packageInfo.scripts["check-format"];
+    packageInfo.scripts["format"] =
+      dtxPrettierCmd + packageInfo.scripts["format"];
     delete packageInfo.devDependencies.prettier;
   } else {
     packageInfo.scripts["build"] =
       "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api";
-    packageInfo.scripts[
-      "minify"
-    ] = `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
+    packageInfo.scripts["minify"] =
+      `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`;
     packageInfo.devDependencies["@rollup/plugin-commonjs"] = "^24.0.0";
     packageInfo.devDependencies["@rollup/plugin-json"] = "^6.0.0";
     packageInfo.devDependencies["@rollup/plugin-multi-entry"] = "^6.0.0";
@@ -277,7 +278,8 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.scripts[
       "unit-test:node"
       // eslint-disable-next-line no-useless-escape
-    ] = `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
+    ] =
+      `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
       "karma start --single-run";
