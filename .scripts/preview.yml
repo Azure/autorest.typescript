@@ -1,10 +1,4 @@
 trigger: none
-schedules:
-- cron: "0 12 * * *"
-  displayName: Daily midnight build
-  branches:
-    include:
-    - main
 pr: none
 
 parameters:
@@ -24,7 +18,7 @@ resources:
     type: github
     endpoint: Azure
     name: Azure/azure-sdk-tools
-    ref: refs/heads/main
+    ref: refs/heads/users/pahallis/scheduled-branch-name
 
 pool:
   name: azsdk-pool-mms-win-2022-general
