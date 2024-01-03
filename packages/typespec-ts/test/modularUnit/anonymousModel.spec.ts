@@ -688,7 +688,7 @@ describe("anonymous model", () => {
 
   describe("in response", async () => {
     describe("happens at body parameter", async () => {
-      function verifyReturnTypeAsEmpty(
+      async function verifyReturnTypeAsEmpty(
         operationDetail: string,
         returnType: string
       ) {
@@ -739,7 +739,7 @@ describe("anonymous model", () => {
         );
         assert.equal(operationFiles?.length, 1);
         // Generate the operations.ts file with empty model
-        verifyReturnTypeAsEmpty(
+        await verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
           "Record<string, any>"
         );
@@ -764,7 +764,7 @@ describe("anonymous model", () => {
         assert.ok(operationFiles);
         assert.equal(operationFiles?.length, 1);
         // Model name referred in operations.ts
-        verifyReturnTypeAsEmpty(
+        await verifyReturnTypeAsEmpty(
           operationFiles?.[0]?.getFullText()!,
           "PublishResult"
         );
