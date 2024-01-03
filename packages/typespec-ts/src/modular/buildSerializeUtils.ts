@@ -89,7 +89,7 @@ export function buildSerializeUtils(model: ModularCodeModel) {
           getTypeUnionName(su, false, model.runtimeImports, serializeType),
           getTypeUnionName(su, true, model.runtimeImports, serializeType),
           su.discriminator,
-          su.isPolyBaseModel
+          su.isPolymorphicBaseModel
         );
       } else {
         deserializeUnionTypesFunction(
@@ -100,7 +100,7 @@ export function buildSerializeUtils(model: ModularCodeModel) {
           getTypeUnionName(su, true, model.runtimeImports, serializeType),
           getTypeUnionName(su, false, model.runtimeImports, serializeType),
           su.discriminator,
-          su.isPolyBaseModel
+          su.isPolymorphicBaseModel
         );
       }
     });
@@ -250,7 +250,7 @@ export function isPolymorphicUnion(t: Type): boolean {
   const ancestors = getAllAncestors(t);
   if (
     t.type === "model" &&
-    t.isPolyBaseModel &&
+    t.isPolymorphicBaseModel &&
     t.types
       ?.filter((p) => {
         return !ancestors.includes(p);
@@ -710,7 +710,7 @@ function deserializeUnionTypesFunction(
   typeUnionNamesOutput: string | undefined,
   typeUnionNames: string | undefined,
   discriminator?: string,
-  isPolyBaseModel?: boolean
+  isPolymorphicBaseModel?: boolean
 ) {
   const functionStatement: FunctionDeclarationStructure = {
     kind: StructureKind.Function,
@@ -734,7 +734,7 @@ function deserializeUnionTypesFunction(
       `case "${
         type.discriminatorValue
       }": return ${serializeType}${functionName}(obj${
-        isPolyBaseModel
+        isPolymorphicBaseModel
           ? " as " + (type.name ?? type.elementType?.name + "[]")
           : ""
       }); `

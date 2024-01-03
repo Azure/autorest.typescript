@@ -304,13 +304,16 @@ function processModelProperties(
     if (!hasDiscriminator) {
       newValue.properties.push({ ...discriminatorInfo });
     }
-    if (newValue.name && newValue.name !== "") {
+    // we don't need to add the discriminator info if it's an anonymous model
+    // because it's impossible to have a anonymous model as the polymorphic base in typespec
+    // the only possibility is the anonymous model is an alias for an union type which has already been taken care of in the combined types.
+    if (Boolean(newValue.name)) {
       discriminatorInfo?.aliases.push(`${newValue.name}`);
       newValue.alias = `${newValue.name}`;
       newValue.name = `${newValue.name}Union`;
       newValue.aliasType = discriminatorInfo?.aliases.join(" | ");
       newValue.types = discriminatorInfo?.discriminatedSubtypes;
-      newValue.isPolyBaseModel = true;
+      newValue.isPolymorphicBaseModel = true;
       newValue.discriminator = discriminatorInfo.restApiName;
     }
   }

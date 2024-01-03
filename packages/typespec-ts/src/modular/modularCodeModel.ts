@@ -106,7 +106,7 @@ export interface Type {
   aliasType?: string;
   discriminator?: string;
   discriminatorValue?: string;
-  isPolyBaseModel?: boolean;
+  isPolymorphicBaseModel?: boolean;
 }
 
 export interface Client {
