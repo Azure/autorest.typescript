@@ -275,10 +275,8 @@ function restLevelPackage(model: RLCModel) {
     packageInfo.scripts["build:test"] = "tsc -p . && rollup -c 2>&1";
     packageInfo.scripts["unit-test"] =
       "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts[
-      "unit-test:node"
+    packageInfo.scripts["unit-test:node"] =
       // eslint-disable-next-line no-useless-escape
-    ] =
       `cross-env TS_NODE_COMPILER_OPTIONS="{\\\"module\\\":\\\"commonjs\\\"}" mocha -r esm --require ts-node/register --timeout 1200000 --full-trace "test/{,!(browser)/**/}*.spec.ts"`;
     packageInfo.scripts["unit-test:browser"] = "karma start --single-run";
     packageInfo.scripts["integration-test:browser"] =
