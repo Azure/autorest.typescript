@@ -11,7 +11,7 @@ export { RepeatabilityContext } from "../rest/index.js";
 
 /** Illustrates OASIS repeatability headers */
 export function createRepeatability(
-  options: RepeatabilityClientOptions = {}
+  options: RepeatabilityClientOptions = {},
 ): RepeatabilityContext {
   const clientContext = getClient(options);
   return clientContext;

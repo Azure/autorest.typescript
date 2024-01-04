@@ -24,7 +24,7 @@ export function _smokeTestSend(
   context: Client,
   id: number,
   foo: string,
-  options: SmokeTestOptions = { requestOptions: {} }
+  options: SmokeTestOptions = { requestOptions: {} },
 ): StreamableMethod<SmokeTest200Response | SmokeTestDefaultResponse> {
   return context
     .path("/azure/core/traits/user/{id}", id)
@@ -52,7 +52,7 @@ export function _smokeTestSend(
 }
 
 export async function _smokeTestDeserialize(
-  result: SmokeTest200Response | SmokeTestDefaultResponse
+  result: SmokeTest200Response | SmokeTestDefaultResponse,
 ): Promise<User> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -69,7 +69,7 @@ export async function smokeTest(
   context: Client,
   id: number,
   foo: string,
-  options: SmokeTestOptions = { requestOptions: {} }
+  options: SmokeTestOptions = { requestOptions: {} },
 ): Promise<User> {
   const result = await _smokeTestSend(context, id, foo, options);
   return _smokeTestDeserialize(result);
@@ -79,7 +79,7 @@ export function _repeatableActionSend(
   context: Client,
   id: number,
   body: UserActionParam,
-  options: RepeatableActionOptions = { requestOptions: {} }
+  options: RepeatableActionOptions = { requestOptions: {} },
 ): StreamableMethod<
   RepeatableAction200Response | RepeatableActionDefaultResponse
 > {
@@ -103,7 +103,7 @@ export function _repeatableActionSend(
 }
 
 export async function _repeatableActionDeserialize(
-  result: RepeatableAction200Response | RepeatableActionDefaultResponse
+  result: RepeatableAction200Response | RepeatableActionDefaultResponse,
 ): Promise<UserActionResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -119,7 +119,7 @@ export async function repeatableAction(
   context: Client,
   id: number,
   body: UserActionParam,
-  options: RepeatableActionOptions = { requestOptions: {} }
+  options: RepeatableActionOptions = { requestOptions: {} },
 ): Promise<UserActionResponse> {
   const result = await _repeatableActionSend(context, id, body, options);
   return _repeatableActionDeserialize(result);

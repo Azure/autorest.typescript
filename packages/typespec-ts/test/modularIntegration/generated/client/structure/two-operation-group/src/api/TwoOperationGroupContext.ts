@@ -13,7 +13,7 @@ export { ServiceContext } from "../rest/index.js";
 export function createTwoOperationGroup(
   endpoint: string,
   client: ClientType,
-  options: TwoOperationGroupClientOptions = {}
+  options: TwoOperationGroupClientOptions = {},
 ): ServiceContext {
   const clientContext = getClient(endpoint, client, options);
   return clientContext;
