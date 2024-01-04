@@ -79,7 +79,7 @@ export function createOrReplace(
       url: "/azure/core/lro/standard/users/{name}",
       updateIntervalInMs: options?.updateIntervalInMs
     }
-  );
+  ) as PromisePollerLike<OperationState<User>, User>;
 }
 
 export function _deleteOperationSend(

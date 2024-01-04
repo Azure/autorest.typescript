@@ -33,13 +33,14 @@ export function getLongRunningPoller<
   getInitialResponse: () => PromiseLike<TResponse>,
   processResponseBody: (result: TResponse) => PromiseLike<TResult>,
   options: GetLongRunningPollerOptions
-): PromisePollerLike<OperationState<TResult>, TResult> {
+): PromisePollerLike<OperationState<unknown>, unknown> {
   let initialResponse: TResponse;
-  const poller: LongRunningOperation<TResult> = {
+  const poller: LongRunningOperation<unknown> = {
     requestMethod: options.method,
-    requestPath: options.url,
+    // requestPath: options.url,
     sendInitialRequest: async () => {
       initialResponse = (await getInitialResponse()) as TResponse;
+      console.log(`Initial request url ${initialResponse.request.url}`);
       return getLroResponse(initialResponse);
     },
     sendPollRequest: async (path) => {
@@ -47,11 +48,13 @@ export function getLongRunningPoller<
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
       // depending on the lro pattern that the service implements. If non is provided we default to the initial path.
-      if (!path || path === options.url) {
+      if (path === options.url) {
         path = initialResponse.request.url ?? options.url;
       }
+      console.log(`Initial request url ${initialResponse?.request?.url}`);
       const response = await client.pathUnchecked(path).get();
-      response.headers["x-ms-original-url"] = initialResponse?.request?.url;
+      response.headers["x-ms-original-url"] =
+        initialResponse?.request?.url ?? options.url;
       const lroResponse = getLroResponse(response as TResponse);
       return lroResponse;
     }

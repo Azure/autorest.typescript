@@ -1,7 +1,6 @@
 import { StandardClient } from "./generated/lro/standard/generated/src/index.js";
 import { assert } from "chai";
 import { restorePoller } from "./generated/lro/standard/generated/src/restorePollerHelpers.js";
-import { deleteOperation } from "./generated/azure/core/src/api/operations.js";
 
 describe.only("LROStandardClient Classical Client", () => {
   let client: StandardClient;
@@ -58,7 +57,38 @@ describe.only("LROStandardClient Classical Client", () => {
       }
     });
 
-    it("serialize and rehydration", async () => {});
+    it.only("serialize and rehydration", async () => {
+      const poller = client.createOrReplace("madge", {
+        role: "contributor"
+      } as any);
+      const restoredPoller = await poller.serialize();
+      //   {
+      //     "state":{
+      //        "status":"running",
+      //        "config":{
+      //           "metadata":{
+      //              "mode":"OperationLocation"
+      //           },
+      //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation1",
+      //           "resourceLocation":"/azure/core/lro/standard/users/{name}",
+      //           "initialUrl":"/azure/core/lro/standard/users/{name}",
+      //           "requestMethod":"PUT"
+      //        }
+      //     }
+      //  }
+      console.log(restoredPoller);
+      setTimeout(async () => {
+        const newPoller = restorePoller(
+          client,
+          restoredPoller,
+          client.createOrReplace
+        );
+        const result = await newPoller.pollUntilDone();
+        console.log(result);
+        assert.strictEqual(result.name, "madge");
+        assert.strictEqual(result.role, "contributor");
+      }, 1000);
+    });
 
     it("onProgress callback", async () => {});
 
@@ -98,16 +128,30 @@ describe.only("LROStandardClient Classical Client", () => {
     it.only("serialize and rehydration", async () => {
       const poller = client.deleteOperation("madge");
       const restoredPoller = await poller.serialize();
+      //   {
+      //     "state":{
+      //        "status":"running",
+      //        "config":{
+      //           "metadata":{
+      //              "mode":"OperationLocation"
+      //           },
+      //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation2",
+      //           "initialUrl":"/azure/core/lro/standard/users/{name}",
+      //           "requestMethod":"DELETE"
+      //        }
+      //     }
+      //  }
       console.log(restoredPoller);
       setTimeout(async () => {
         const newPoller = restorePoller(
           client,
           restoredPoller,
-          client.createOrReplace
+          client.deleteOperation
         );
         const result = await newPoller.pollUntilDone();
         console.log(result);
-      }, 10000);
+        assert.strictEqual(result, undefined);
+      }, 1000);
     });
   });
 
@@ -140,6 +184,43 @@ describe.only("LROStandardClient Classical Client", () => {
       } catch (err) {
         assert.fail(err as string);
       }
+    });
+
+    it.only("serialize and rehydration", async () => {
+      const poller = client.exportOperation("madge", "json");
+      const restoredPoller = await poller.serialize();
+      //   {
+      //     "state":{
+      //        "status":"running",
+      //        "config":{
+      //           "metadata":{
+      //              "mode":"OperationLocation"
+      //           },
+      //           "operationLocation":"http://localhost:3000/azure/core/lro/standard/users/madge/operations/operation3",
+      //           "initialUrl":"/azure/core/lro/standard/users/{name}",
+      //           "requestMethod":"GET"
+      //        }
+      //     }
+      //  }
+      // console.log(restoredPoller);
+      const newPoller = restorePoller(
+        client,
+        restoredPoller,
+        client.exportOperation
+      );
+      const result = await newPoller.pollUntilDone();
+      console.log(result);
+      setTimeout(async () => {
+        const newPoller = restorePoller(
+          client,
+          restoredPoller,
+          client.exportOperation
+        );
+        const result = await newPoller.pollUntilDone();
+        console.log(result);
+        assert.strictEqual(result.name, "madge");
+        assert.strictEqual(result.resourceUri, "/users/madge");
+      }, 1000);
     });
   });
 });
