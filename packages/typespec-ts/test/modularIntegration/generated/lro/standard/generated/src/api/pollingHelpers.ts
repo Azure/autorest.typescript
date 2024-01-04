@@ -11,6 +11,10 @@ import {
 } from "@azure/core-lro";
 import { Client, HttpResponse, createRestError } from "@azure-rest/core-client";
 
+function test(): string | Promise<string> {
+  return Promise.resolve("test");
+}
+
 export interface GetLongRunningPollerOptions {
   method: string;
   url: string;
@@ -31,16 +35,17 @@ export function getLongRunningPoller<
 >(
   client: Client,
   getInitialResponse: () => PromiseLike<TResponse>,
-  processResponseBody: (result: TResponse) => PromiseLike<TResult>,
+  processResponseBody: (result: TResponse) => TResult,
   options: GetLongRunningPollerOptions
-): PromisePollerLike<OperationState<unknown>, unknown> {
+): PromisePollerLike<OperationState<TResult>, TResult> {
   let initialResponse: TResponse;
-  const poller: LongRunningOperation<unknown> = {
+  const poller: LongRunningOperation<TResponse> = {
     requestMethod: options.method,
     // requestPath: options.url,
     sendInitialRequest: async () => {
       initialResponse = (await getInitialResponse()) as TResponse;
       console.log(`Initial request url ${initialResponse.request.url}`);
+      await test();
       return getLroResponse(initialResponse);
     },
     sendPollRequest: async (path) => {
@@ -63,11 +68,8 @@ export function getLongRunningPoller<
     intervalInMs: options?.updateIntervalInMs,
     resourceLocationConfig: options?.resourceLocationConfig,
     restoreFrom: options?.restoreFrom,
-    processResult: (result: unknown, state: OperationState<unknown>) => {
-      if (["succeeded", "failed", "canceled"].includes(state.status)) {
-        return processResponseBody(result as TResponse);
-      }
-      return result;
+    processResult: (result: unknown, _state: OperationState<unknown>) => {
+      return processResponseBody(result as TResponse);
     }
   });
 }
@@ -79,7 +81,7 @@ export function getLongRunningPoller<
  */
 function getLroResponse<TResponse extends HttpResponse>(
   response: TResponse
-): LroResponse {
+): LroResponse<TResponse> {
   if (Number.isNaN(response.status)) {
     createRestError(
       `Status code of the response is not a number. Value: ${response.status}`,
