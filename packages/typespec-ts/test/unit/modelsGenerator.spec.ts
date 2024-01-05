@@ -3130,7 +3130,7 @@ describe("Input/output model type", () => {
     });
   });
 
-  describe.only("should generate models for header parameters", () => {
+  describe("should generate models for header parameters", () => {
     it("union variants with string literals being used in contentType headers", async () => {
    
       const tspDefinition = `
