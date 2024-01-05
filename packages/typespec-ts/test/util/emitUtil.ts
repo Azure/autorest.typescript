@@ -130,14 +130,16 @@ export async function emitParameterFromTypeSpec(
   tspContent: string,
   needAzureCore: boolean = false,
   ignoreClientApiVersion: boolean = false,
-  needTCGC: boolean = false
+  needTCGC: boolean = false,
+  withRawContent: boolean = false,
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     true,
     needAzureCore,
     ignoreClientApiVersion,
-    needTCGC
+    needTCGC,
+    withRawContent
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const clients = getRLCClients(dpgContext);
