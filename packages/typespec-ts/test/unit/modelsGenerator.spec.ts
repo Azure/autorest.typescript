@@ -2220,6 +2220,50 @@ describe("Input/output model type", () => {
         export type StringExtensibleNamedUnionOutput = "b" | "c" | 1;`
       });
     });
+
+    it("union variants with string literals being used in headers", async () => {
+   
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("Content-Type") contentType: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModelsFromTypeSpec(tspDefinition, false, false, true);
+      assert.ok(schemaOutput);
+      const { inputModelFile, outputModelFile } = schemaOutput!;
+      assert.isUndefined(outputModelFile);
+      assert.ok(inputModelFile?.content);
+      assert.strictEqual(inputModelFile?.path, "models.ts");
+      assertEqualContent(
+        inputModelFile?.content!,
+        `
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );  
+    })
   });
 
   describe("'is' keyword generation", () => {
