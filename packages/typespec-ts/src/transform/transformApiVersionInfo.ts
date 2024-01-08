@@ -34,15 +34,12 @@ export function transformApiVersionInfo(
   const pathVersionDetail = extractPathApiVersion(urlInfo);
   const isCrossedVersion =
     pathVersionDetail?.isCrossedVersion || queryVersionDetail?.isCrossedVersion;
-  let defaultValue =
-    getEnrichedDefaultApiVersion(program, dpgContext) ??
-    pathVersionDetail?.defaultValue ??
-    queryVersionDetail?.defaultValue;
-
-  // Clear the default value if there exists cross version
-  if (isCrossedVersion) {
-    defaultValue = undefined;
-  }
+  const defaultValue =
+    (pathVersionDetail || queryVersionDetail) && !isCrossedVersion
+      ? getEnrichedDefaultApiVersion(program, dpgContext) ??
+        pathVersionDetail?.defaultValue ??
+        queryVersionDetail?.defaultValue
+      : undefined;
 
   return {
     definedPosition: extractDefinedPosition(

@@ -361,6 +361,11 @@ export function getClientFactoryBody(
         }
       });`;
   }
+
+  let apiVersionPolicyStatement = "";
+  if (model.apiVersionInfo?.definedPosition === "path") {
+    apiVersionPolicyStatement = "client.pipeline.removePolicy({name: 'ApiVersionPolicy'})";
+  }
   let returnStatement = `return client;`;
 
   if (includeShortcuts) {
@@ -386,6 +391,7 @@ export function getClientFactoryBody(
     userAgentStatement,
     overrideOptionsStatement,
     getClient,
+    apiVersionPolicyStatement,
     customHttpAuthStatement,
     returnStatement
   ];

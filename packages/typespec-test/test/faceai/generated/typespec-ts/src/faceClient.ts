@@ -4,29 +4,23 @@
 import { getClient, ClientOptions } from "@azure-rest/core-client";
 import { logger } from "./logger";
 import { KeyCredential } from "@azure/core-auth";
-import { AnomalyDetectorClient } from "./clientDefinitions";
-
-export interface AnomalyDetectorClientOptions extends ClientOptions {
-  apiVersion?: string;
-}
+import { FaceClient } from "./clientDefinitions";
 
 /**
- * Initialize a new instance of `AnomalyDetectorClient`
+ * Initialize a new instance of `FaceClient`
  * @param endpoint - Supported Cognitive Services endpoints (protocol and hostname, for example:
- * https://westus2.api.cognitive.microsoft.com).
+ * https://<resource-name>.cognitiveservices.azure.com).
  * @param credentials - uniquely identify client credential
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: AnomalyDetectorClientOptions = {}
-): AnomalyDetectorClient {
-  const apiVersion = options.apiVersion ?? "v1.1";
-  const baseUrl =
-    options.baseUrl ?? `${endpoint}/anomalydetector/${apiVersion}`;
+  options: ClientOptions = {}
+): FaceClient {
+  const baseUrl = options.baseUrl ?? `${endpoint}`;
 
-  const userAgentInfo = `azsdk-js-ai-anomaly-detector-rest/1.0.0-beta.1`;
+  const userAgentInfo = `azsdk-js-ai-face-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
       ? `${options.userAgentOptions.userAgentPrefix} ${userAgentInfo}`
@@ -45,13 +39,7 @@ export default function createClient(
     },
   };
 
-  const client = getClient(
-    baseUrl,
-    credentials,
-    options
-  ) as AnomalyDetectorClient;
-
-  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+  const client = getClient(baseUrl, credentials, options) as FaceClient;
 
   return client;
 }
