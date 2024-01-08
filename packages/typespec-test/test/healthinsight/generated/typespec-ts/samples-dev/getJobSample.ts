@@ -19,8 +19,8 @@ async function getJobSample() {
     endpoint,
     credential
   );
-  const jobId = "{Your jobId}";
-  const result = await client.path("/trialmatcher/jobs/{jobId}", jobId).get();
+  const id = "{Your id}";
+  const result = await client.path("/radiology-insights/jobs/{id}", id).get();
   console.log(result);
 }
 

@@ -3,12 +3,21 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse, ErrorResponse } from "@azure-rest/core-client";
-import { TrialMatcherResultOutput } from "./outputModels";
+import {
+  RadiologyInsightsResultOutput,
+  HealthInsightsOperationStatusOutput,
+} from "./outputModels";
+
+export interface GetJob200Headers {
+  /** The Retry-After header can indicate how long the client should wait before polling the operation status. */
+  "retry-after"?: number;
+}
 
 /** The request has succeeded. */
 export interface GetJob200Response extends HttpResponse {
   status: "200";
-  body: TrialMatcherResultOutput;
+  body: RadiologyInsightsResultOutput;
+  headers: RawHttpHeaders & GetJob200Headers;
 }
 
 export interface GetJobDefaultHeaders {
@@ -20,12 +29,6 @@ export interface GetJobDefaultResponse extends HttpResponse {
   status: string;
   body: ErrorResponse;
   headers: RawHttpHeaders & GetJobDefaultHeaders;
-}
-
-/** The request has succeeded. */
-export interface CreateJob200Response extends HttpResponse {
-  status: "200";
-  body: TrialMatcherResultOutput;
 }
 
 export interface CreateJob202Headers {
@@ -40,6 +43,7 @@ export interface CreateJob202Headers {
 /** The request has been accepted for processing, but processing has not yet completed. */
 export interface CreateJob202Response extends HttpResponse {
   status: "202";
+  body: HealthInsightsOperationStatusOutput;
   headers: RawHttpHeaders & CreateJob202Headers;
 }
 
@@ -57,5 +61,5 @@ export interface CreateJobDefaultResponse extends HttpResponse {
 /** The final response for long-running createJob operation */
 export interface CreateJobLogicalResponse extends HttpResponse {
   status: "200";
-  body: TrialMatcherResultOutput;
+  body: HealthInsightsOperationStatusOutput;
 }

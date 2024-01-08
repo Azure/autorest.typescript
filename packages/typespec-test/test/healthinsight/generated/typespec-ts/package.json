@@ -102,7 +102,7 @@
     "./dist-esm/test/public/utils/env.js": "./dist-esm/test/public/utils/env.browser.js"
   },
   "//sampleConfiguration": {
-    "productName": "Azure Health Insights",
+    "productName": "Azure AI Health Insights",
     "productSlugs": ["azure"],
     "disableDocsMs": true,
     "apiRefLink": "https://docs.microsoft.com/javascript/api/@azure-rest/health-insights-clinicalmatching?view=azure-node-preview"

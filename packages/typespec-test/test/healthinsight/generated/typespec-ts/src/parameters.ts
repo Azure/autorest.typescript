@@ -3,7 +3,7 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import { TrialMatcherData } from "./models";
+import { RadiologyInsightsData } from "./models";
 
 export type GetJobParameters = RequestParameters;
 
@@ -15,7 +15,7 @@ export interface CreateJobHeaders {
 }
 
 export interface CreateJobBodyParam {
-  body?: TrialMatcherData;
+  body?: RadiologyInsightsData;
 }
 
 export interface CreateJobHeaderParam {

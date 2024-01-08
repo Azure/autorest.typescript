@@ -5,33 +5,30 @@ import { GetJobParameters, CreateJobParameters } from "./parameters";
 import {
   GetJob200Response,
   GetJobDefaultResponse,
-  CreateJob200Response,
   CreateJob202Response,
   CreateJobDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetJob {
-  /** Gets the status and details of the Trial Matcher job. */
+  /** Gets the status and details of the Radiology Insights job. */
   get(
     options?: GetJobParameters
   ): StreamableMethod<GetJob200Response | GetJobDefaultResponse>;
 }
 
 export interface CreateJob {
-  /** Creates a Trial Matcher job with the given request body. */
+  /** Creates a Radiology Insights job with the given request body. */
   post(
     options?: CreateJobParameters
-  ): StreamableMethod<
-    CreateJob200Response | CreateJob202Response | CreateJobDefaultResponse
-  >;
+  ): StreamableMethod<CreateJob202Response | CreateJobDefaultResponse>;
 }
 
 export interface Routes {
-  /** Resource for '/trialmatcher/jobs/\{jobId\}' has methods for the following verbs: get */
-  (path: "/trialmatcher/jobs/{jobId}", jobId: string): GetJob;
-  /** Resource for '/trialmatcher/jobs' has methods for the following verbs: post */
-  (path: "/trialmatcher/jobs"): CreateJob;
+  /** Resource for '/radiology-insights/jobs/\{id\}' has methods for the following verbs: get */
+  (path: "/radiology-insights/jobs/{id}", id: string): GetJob;
+  /** Resource for '/radiology-insights/jobs' has methods for the following verbs: post */
+  (path: "/radiology-insights/jobs"): CreateJob;
 }
 
 export type HealthInsightsClinicalMatchingClient = Client & {
