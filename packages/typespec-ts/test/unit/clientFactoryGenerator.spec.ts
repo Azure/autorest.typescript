@@ -45,6 +45,8 @@ describe("Client Factory generation", () => {
         };
         
         const client = getClient(baseUrl, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
         return client;
     }
@@ -100,6 +102,8 @@ describe("Client Factory generation", () => {
             };
           
             const client = getClient(baseUrl, options) as testClient;
+
+            client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
           
             return client;
         }
@@ -171,6 +175,8 @@ describe("Client Factory generation", () => {
               };
             
               const client = getClient(baseUrl, options) as testClient;
+
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
               return client;
           }
@@ -238,6 +244,8 @@ describe("Client Factory generation", () => {
               };
             
               const client = getClient(baseUrl, options) as testClient;
+
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
               return client;
           }
@@ -309,6 +317,8 @@ describe("Client Factory generation", () => {
               };
             
               const client = getClient(baseUrl, options) as testClient;
+              
+              client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
             
               return client;
           }
@@ -355,6 +365,8 @@ describe("Client Factory generation", () => {
         };
         
         const client = getClient(baseUrl, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
         return client;
     }
@@ -443,6 +455,8 @@ describe("Client Factory generation", () => {
 
         const client = getClient(baseUrl, credentials, options) as testClient;
 
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
         return client;
       }
       `
@@ -499,6 +513,8 @@ describe("Client Factory generation", () => {
         };
         
         const client = getClient(baseUrl, credentials, options) as testClient;
+
+        client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
         
         return client;
     }
