@@ -18,7 +18,7 @@ export function createClient(
   options: ClientOptions = {}
 ): PurviewAccountClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2019-11-01-preview";
+
   const userAgentInfo = `azsdk-js-purview-administration-rest/1.0.0-beta.2`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -44,6 +44,8 @@ export function createClient(
     credentials,
     options
   ) as PurviewAccountClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

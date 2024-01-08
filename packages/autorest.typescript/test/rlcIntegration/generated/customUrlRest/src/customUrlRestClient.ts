@@ -32,6 +32,7 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as CustomUrlRestClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return {
     ...client,
     paths: {

@@ -40,6 +40,7 @@ export default function createClient(
     options
   ) as SecurityKeyRestClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return {
     ...client,
     ...{

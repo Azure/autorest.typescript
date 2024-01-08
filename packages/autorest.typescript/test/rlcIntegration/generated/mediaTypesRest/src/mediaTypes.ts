@@ -30,5 +30,6 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as MediaTypesClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
 }

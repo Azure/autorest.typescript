@@ -42,6 +42,7 @@ export default function createClient(
     options
   ) as SecurityAADRestClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return {
     ...client,
     ...{

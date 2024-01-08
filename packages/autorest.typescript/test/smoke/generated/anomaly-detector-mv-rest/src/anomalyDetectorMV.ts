@@ -50,5 +50,7 @@ export default function createClient(
     options
   ) as AnomalyDetectorMVClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return client;
 }
