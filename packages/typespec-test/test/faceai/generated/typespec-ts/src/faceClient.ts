@@ -41,5 +41,7 @@ export default function createClient(
 
   const client = getClient(baseUrl, credentials, options) as FaceClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return client;
 }

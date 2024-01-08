@@ -10,7 +10,8 @@ import {
   UrlInfo,
   extractPathApiVersion,
   extractDefinedPosition,
-  SchemaContext
+  SchemaContext,
+  ApiVersionPosition
 } from "@azure-tools/rlc-common";
 import { getHttpOperation } from "@typespec/http";
 import {
@@ -26,7 +27,7 @@ export function transformApiVersionInfo(
   urlInfo?: UrlInfo
 ): ApiVersionInfo | undefined {
   const program = dpgContext.program;
-  const queryVersionDetail = getOperationQueryApiVersion(
+  const queryVersionDetail = getOperationApiVersion(
     client,
     program,
     dpgContext
@@ -51,13 +52,14 @@ export function transformApiVersionInfo(
   };
 }
 
-function getOperationQueryApiVersion(
+function getOperationApiVersion(
   client: SdkClient,
   program: Program,
   dpgContext: SdkContext
 ): ApiVersionInfo | undefined {
   const operationGroups = listOperationGroups(dpgContext, client);
   const apiVersionTypes = new Set<string>();
+  const locations = new Set<ApiVersionPosition>();
   for (const operationGroup of operationGroups) {
     const operations = listOperationsInOperationGroup(
       dpgContext,
@@ -70,7 +72,9 @@ function getOperationQueryApiVersion(
         continue;
       }
       const params = route.parameters.parameters.filter(
-        (p) => p.type === "query" && isApiVersion(dpgContext, p)
+        (p) =>
+          (p.type === "query" || p.type === "path") &&
+          isApiVersion(dpgContext, p)
       );
       params.map((p) => {
         const type = getSchemaForType(
@@ -80,6 +84,10 @@ function getOperationQueryApiVersion(
           false,
           p.param
         );
+        if (p.type !== "header") {
+          locations.add(p.type);
+        }
+
         const typeString = JSON.stringify(trimUsage(type));
         apiVersionTypes.add(typeString);
       });
@@ -96,7 +104,8 @@ function getOperationQueryApiVersion(
       continue;
     }
     const params = route.parameters.parameters.filter(
-      (p) => p.type === "query" && isApiVersion(dpgContext, p)
+      (p) =>
+        (p.type === "query" || p.type === "path") && isApiVersion(dpgContext, p)
     );
     params.map((p) => {
       const type = getSchemaForType(
@@ -106,6 +115,9 @@ function getOperationQueryApiVersion(
         false,
         p.param
       );
+      if (p.type !== "header") {
+        locations.add(p.type);
+      }
       const typeString = JSON.stringify(trimUsage(type));
       apiVersionTypes.add(typeString);
     });
@@ -118,7 +130,8 @@ function getOperationQueryApiVersion(
     return;
   }
   const detail: ApiVersionInfo = {
-    definedPosition: "query",
+    definedPosition:
+      locations.size > 1 ? "duplicate" : locations.values().next().value,
     isCrossedVersion: apiVersionTypes.size > 1,
     defaultValue: undefined // We won't prompt the query versions into client one
   };
