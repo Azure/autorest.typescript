@@ -1197,6 +1197,30 @@ export function getTypeName(schema: Schema, usage?: SchemaContext[]): string {
   return getPriorityName(schema, usage) ?? schema.type ?? "any";
 }
 
+export function getSerializeTypeName(
+  schema: Schema,
+  usage?: SchemaContext[]
+): string {
+  const typeName = getTypeName(schema, usage);
+  const formattedName = typeName.replace("Date | string", "string");
+  const allTypes = formattedName.includes(" | ")
+    ? formattedName.split(" | ")
+    : formattedName.split("|");
+  const canSerialize = allTypes.every((type) => {
+    return (
+      ["string", "number", "boolean"].includes(type) ||
+      (type.startsWith('"') && type.endsWith('"')) ||
+      /^[0-9]*$/.test(type) ||
+      ["true", "false"].includes(type) ||
+      ["null"].includes(type)
+    );
+  });
+  if (canSerialize) {
+    return formattedName;
+  }
+  return "string";
+}
+
 export function getImportedModelName(
   schema: Schema,
   usage?: SchemaContext[]
@@ -1463,7 +1487,7 @@ export function getModelInlineSigniture(
   schema: ObjectSchema,
   options: { importedModels?: Set<string>; usage?: SchemaContext[] } = {}
 ) {
-  let schemaSigiture = `{`;
+  let schemaSignature = `{`;
   for (const propName in schema.properties) {
     const propType = schema.properties[propName]!;
     const propTypeName = getTypeName(propType, options.usage);
@@ -1480,9 +1504,9 @@ export function getModelInlineSigniture(
       }
     }
     const isOptional = propType.required ? "" : "?";
-    schemaSigiture += `${propName}${isOptional}: ${propTypeName};`;
+    schemaSignature += `${propName}${isOptional}: ${propTypeName};`;
   }
 
-  schemaSigiture += `}`;
-  return schemaSigiture;
+  schemaSignature += `}`;
+  return schemaSignature;
 }

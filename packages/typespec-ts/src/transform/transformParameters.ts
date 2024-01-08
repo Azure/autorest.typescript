@@ -24,7 +24,8 @@ import {
   getFormattedPropertyDoc,
   getBodyType,
   predictDefaultValue,
-  enrichBinaryTypeInBody
+  enrichBinaryTypeInBody,
+  getSerializeTypeName
 } from "../utils/modelUtils.js";
 
 import {
@@ -169,6 +170,8 @@ function getParameterMetadata(
       }`;
     }
   }
+  type =
+    paramType !== "query" ? getSerializeTypeName(schema, schemaContext) : type;
   if (schema.type === "object" && schema.enum) {
     importedModels.add(type);
   }
@@ -313,7 +316,9 @@ function getBodyDetail(
 ) {
   const contentTypes: string[] = headers
     .filter((h) => h.name === "contentType")
-    .map((h) => getTypeName(h.param, [SchemaContext.Input]));
+    .map((h) => {
+      return getTypeName(h.param, [SchemaContext.Input]);
+    });
   const hasBinaryContent = contentTypes.some((c) =>
     isBinaryPayload(dpgContext, bodyType, c)
   );

@@ -3372,7 +3372,7 @@ describe("Input/output model type", () => {
         `);
     })
 
-    it("fixed enums with string literals being used in regular headers", async () => {
+    it("fixed enums with number literals being used in regular headers", async () => {
       const tspDefinition = `
       import "@typespec/http";
       import "@typespec/rest";
