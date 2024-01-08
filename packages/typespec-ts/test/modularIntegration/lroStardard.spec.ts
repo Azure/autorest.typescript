@@ -57,7 +57,7 @@ describe.only("LROStandardClient Classical Client", () => {
       }
     });
 
-    it.only("serialize and rehydration", async () => {
+    it("serialize and rehydration", async () => {
       const poller = client.createOrReplace("madge", {
         role: "contributor"
       } as any);
@@ -186,7 +186,7 @@ describe.only("LROStandardClient Classical Client", () => {
       }
     });
 
-    it.only("serialize and rehydration", async () => {
+    it("serialize and rehydration", async () => {
       const poller = client.exportOperation("madge", "json");
       const restoredPoller = await poller.serialize();
       //   {

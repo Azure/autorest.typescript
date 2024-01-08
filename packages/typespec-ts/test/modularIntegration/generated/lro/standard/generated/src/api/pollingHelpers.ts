@@ -6,9 +6,9 @@ import {
   LroResourceLocationConfig,
   LroResponse,
   OperationState,
-  PromisePollerLike,
-  createHttpPromisePoller
-} from "@azure/core-lro";
+  PollerLike,
+  createHttpPoller
+} from "@azure/core-lro/next";
 import { Client, HttpResponse, createRestError } from "@azure-rest/core-client";
 
 function test(): string | Promise<string> {
@@ -35,9 +35,9 @@ export function getLongRunningPoller<
 >(
   client: Client,
   getInitialResponse: () => PromiseLike<TResponse>,
-  processResponseBody: (result: TResponse) => TResult,
+  processResponseBody: (result: TResponse) => PromiseLike<TResult>,
   options: GetLongRunningPollerOptions
-): PromisePollerLike<OperationState<TResult>, TResult> {
+): PollerLike<OperationState<TResult>, TResult> {
   let initialResponse: TResponse;
   const poller: LongRunningOperation<TResponse> = {
     requestMethod: options.method,
@@ -64,12 +64,12 @@ export function getLongRunningPoller<
       return lroResponse;
     }
   };
-  return createHttpPromisePoller(poller, {
+  return createHttpPoller(poller, {
     intervalInMs: options?.updateIntervalInMs,
     resourceLocationConfig: options?.resourceLocationConfig,
     restoreFrom: options?.restoreFrom,
     processResult: (result: unknown, _state: OperationState<unknown>) => {
-      return processResponseBody(result as TResponse);
+      return processResponseBody(result as TResponse) as TResult;
     }
   });
 }

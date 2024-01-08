@@ -26,7 +26,7 @@ import {
   DeleteOperationOptions,
   ExportOperationOptions
 } from "../models/options.js";
-import { OperationState, PromisePollerLike } from "@azure/core-lro";
+import { OperationState, PollerLike } from "@azure/core-lro/next";
 import { getLongRunningPoller } from "./pollingHelpers.js";
 
 export function _createOrReplaceSend(
@@ -69,7 +69,7 @@ export function createOrReplace(
   name: string,
   resource: User,
   options: CreateOrReplaceOptions = { requestOptions: {} }
-): PromisePollerLike<OperationState<User>, User> {
+): PollerLike<OperationState<User>, User> {
   return getLongRunningPoller(
     context,
     () => _createOrReplaceSend(context, name, resource, options),
@@ -79,7 +79,7 @@ export function createOrReplace(
       url: "/azure/core/lro/standard/users/{name}",
       updateIntervalInMs: options?.updateIntervalInMs
     }
-  ) as PromisePollerLike<OperationState<User>, User>;
+  ) as PollerLike<OperationState<User>, User>;
 }
 
 export function _deleteOperationSend(
@@ -114,7 +114,7 @@ export function deleteOperation(
   context: Client,
   name: string,
   options: DeleteOperationOptions = { requestOptions: {} }
-): PromisePollerLike<OperationState<void>, void> {
+): PollerLike<OperationState<void>, void> {
   return getLongRunningPoller(
     context,
     () => _deleteOperationSend(context, name, options),
@@ -124,7 +124,7 @@ export function deleteOperation(
       url: "/azure/core/lro/standard/users/{name}",
       updateIntervalInMs: options?.updateIntervalInMs
     }
-  ) as PromisePollerLike<OperationState<void>, void>;
+  ) as PollerLike<OperationState<void>, void>;
 }
 
 export function _exportOperationSend(
@@ -164,7 +164,7 @@ export function exportOperation(
   name: string,
   format: string,
   options: ExportOperationOptions = { requestOptions: {} }
-): PromisePollerLike<OperationState<ExportedUser>, ExportedUser> {
+): PollerLike<OperationState<ExportedUser>, ExportedUser> {
   return getLongRunningPoller(
     context,
     () => _exportOperationSend(context, name, format, options),
@@ -174,5 +174,5 @@ export function exportOperation(
       url: "/azure/core/lro/standard/users/{name}",
       updateIntervalInMs: options?.updateIntervalInMs
     }
-  ) as PromisePollerLike<OperationState<ExportedUser>, ExportedUser>;
+  ) as PollerLike<OperationState<ExportedUser>, ExportedUser>;
 }

@@ -1,6 +1,6 @@
 import { HttpResponse, OperationOptions } from "@azure-rest/core-client";
 import { StandardContext } from "./rest/clientDefinitions.js";
-import { OperationState, PromisePollerLike } from "@azure/core-lro";
+import { OperationState, PollerLike } from "@azure/core-lro/next";
 import { getLongRunningPoller } from "./api/pollingHelpers.js";
 import { StandardClient } from "./StandardClient.js";
 import {
@@ -33,11 +33,11 @@ const deserializeMap: Record<string, Function> = {
 export function restorePoller<TResponse extends HttpResponse, TResult = void>(
   client: StandardContext | StandardClient,
   serializedState: string,
-  sourceOperation: (
+  _sourceOperation: (
     ...args: any[]
-  ) => PromisePollerLike<OperationState<TResult>, TResult>,
+  ) => PollerLike<OperationState<TResult>, TResult>,
   options?: RestorePollerOptions<TResult>
-): PromisePollerLike<OperationState<TResult>, TResult> {
+): PollerLike<OperationState<TResult>, TResult> {
   const requestUrl = JSON.parse(serializedState).state.config.initialUrl;
   const requestMethod =
     JSON.parse(serializedState).state.config.requestMethod.toUpperCase();
@@ -62,7 +62,7 @@ export function restorePoller<TResponse extends HttpResponse, TResult = void>(
       updateIntervalInMs: options?.updateIntervalInMs,
       restoreFrom: serializedState
     }
-  ) as PromisePollerLike<OperationState<TResult>, TResult>;
+  ) as PollerLike<OperationState<TResult>, TResult>;
 }
 
 function getParametrizedPathSuccess(

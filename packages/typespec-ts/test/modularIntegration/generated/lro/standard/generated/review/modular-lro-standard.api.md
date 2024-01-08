@@ -6,9 +6,9 @@
 
 import { ClientOptions } from '@azure-rest/core-client';
 import { OperationOptions } from '@azure-rest/core-client';
-import { OperationState } from '@azure/core-lro';
+import { OperationState } from '@azure/core-lro/next';
 import { Pipeline } from '@azure/core-rest-pipeline';
-import { PromisePollerLike } from '@azure/core-lro';
+import { PollerLike } from '@azure/core-lro/next';
 
 // @public (undocumented)
 export interface CreateOrReplaceOptions extends OperationOptions {
@@ -34,9 +34,9 @@ export interface ExportOperationOptions extends OperationOptions {
 // @public (undocumented)
 export class StandardClient {
     constructor(options?: StandardClientOptions);
-    createOrReplace(name: string, resource: User, options?: CreateOrReplaceOptions): PromisePollerLike<OperationState<User>, User>;
-    deleteOperation(name: string, options?: DeleteOperationOptions): PromisePollerLike<OperationState<void>, void>;
-    exportOperation(name: string, format: string, options?: ExportOperationOptions): PromisePollerLike<OperationState<ExportedUser>, ExportedUser>;
+    createOrReplace(name: string, resource: User, options?: CreateOrReplaceOptions): PollerLike<OperationState<User>, User>;
+    deleteOperation(name: string, options?: DeleteOperationOptions): PollerLike<OperationState<void>, void>;
+    exportOperation(name: string, format: string, options?: ExportOperationOptions): PollerLike<OperationState<ExportedUser>, ExportedUser>;
     readonly pipeline: Pipeline;
 }
 
