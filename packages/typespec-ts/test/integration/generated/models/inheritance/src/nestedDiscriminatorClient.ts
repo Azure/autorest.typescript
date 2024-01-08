@@ -13,7 +13,6 @@ export default function createClient(
   options: ClientOptions = {}
 ): NestedDiscriminatorClient {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-model-inheritance-rest/1.0.0`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -31,5 +30,6 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as NestedDiscriminatorClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
 }

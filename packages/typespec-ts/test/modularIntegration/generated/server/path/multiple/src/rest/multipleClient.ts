@@ -39,5 +39,7 @@ export default function createClient(
 
   const client = getClient(baseUrl, options) as MultipleContext;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return client;
 }
