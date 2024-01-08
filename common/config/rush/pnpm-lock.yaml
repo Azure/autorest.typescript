@@ -6111,7 +6111,7 @@ packages:
   file:../../../azure-sdk-for-js/sdk/core/core-lro:
     resolution: {directory: ../../../azure-sdk-for-js/sdk/core/core-lro, type: directory}
     name: '@azure/core-lro'
-    version: 2.7.0
+    version: 2.8.0
     engines: {node: '>=18.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
