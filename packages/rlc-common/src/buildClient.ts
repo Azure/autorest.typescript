@@ -21,6 +21,34 @@ import {
 } from "./helpers/nameConstructors.js";
 import { getImportSpecifier } from "./helpers/importsUtil.js";
 
+function getIsKeyCredentialHelper(
+  model: RLCModel,
+  isMultipleCredential: boolean
+) {
+  if (!model.options) {
+    return;
+  }
+  const { customHttpAuthHeaderName, customHttpAuthSharedKeyPrefix } =
+    model.options;
+  const includeCustomHttpAuth =
+    customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix;
+  if (isMultipleCredential && includeCustomHttpAuth) {
+    return {
+      name: "isKeyCredential",
+      parameters: [
+        { name: "credentials", type: "TokenCredential | KeyCredential" }
+      ],
+      returnType: "credentials is KeyCredential",
+      statements: [
+        `return (
+        (credentials as KeyCredential).key !== undefined &&
+        typeof (credentials as KeyCredential).key === "string"
+      );`
+      ]
+    };
+  }
+}
+
 function getClientOptionsInterface(
   clientName: string,
   optionalUrlParameters?: PathParameter[]
@@ -139,7 +167,11 @@ export function buildClient(model: RLCModel): File | undefined {
     ],
     returnType: clientInterfaceName,
     isDefaultExport: false,
-    statements: getClientFactoryBody(model, clientInterfaceName)
+    statements: getClientFactoryBody(
+      model,
+      clientInterfaceName,
+      credentialTypes.length > 1
+    )
   };
 
   if (!multiClient || !batch || batch.length === 1) {
@@ -213,6 +245,13 @@ export function buildClient(model: RLCModel): File | undefined {
       )
     }
   ]);
+  const isKeyCredentialHelper = getIsKeyCredentialHelper(
+    model,
+    credentialTypes.length > 1
+  );
+  if (isKeyCredentialHelper) {
+    clientFile.addFunction(isKeyCredentialHelper);
+  }
   return { path: filePath, content: clientFile.getFullText() };
 }
 
@@ -228,7 +267,8 @@ function isSecurityInfoDefined(
 
 export function getClientFactoryBody(
   model: RLCModel,
-  clientTypeName: string
+  clientTypeName: string,
+  isMultipleCredential: boolean
 ): string | WriterFunction | (string | WriterFunction | StatementStructures)[] {
   if (!model.options || !model.options.packageDetails || !model.urlInfo) {
     return "";
@@ -352,7 +392,18 @@ export function getClientFactoryBody(
     model.options;
   let customHttpAuthStatement = "";
   if (customHttpAuthHeaderName && customHttpAuthSharedKeyPrefix) {
-    customHttpAuthStatement = `
+    if (isMultipleCredential) {
+      customHttpAuthStatement = `if (isKeyCredential(credentials)) {
+        client.pipeline.addPolicy({
+          name: "customKeyCredentialPolicy",
+          async sendRequest(request, next) {
+            request.headers.set("Authorization", "bearer " + credentials.key);
+            return next(request);
+          },
+        });
+      }`;
+    } else {
+      customHttpAuthStatement = `
       client.pipeline.addPolicy({
         name: "customKeyCredentialPolicy",
         async sendRequest(request, next) {
@@ -360,6 +411,7 @@ export function getClientFactoryBody(
           return next(request);
         }
       });`;
+    }
   }
   let returnStatement = `return client;`;
 
