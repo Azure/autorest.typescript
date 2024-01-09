@@ -15,7 +15,7 @@ import { ConfidentialLedgerClient } from "./clientDefinitions";
 export default function createClient(
   ledgerUri: string,
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): ConfidentialLedgerClient {
   const baseUrl = options.baseUrl ?? `${ledgerUri}`;
   options.apiVersion = options.apiVersion ?? "2022-05-13";
@@ -42,7 +42,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as ConfidentialLedgerClient;
 
   return client;

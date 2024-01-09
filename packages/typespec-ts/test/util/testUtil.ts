@@ -90,17 +90,17 @@ export function createDpgContextTestHelper(program: Program): SdkContext {
   } as SdkContext;
 }
 
-export function assertEqualContent(
+export async function assertEqualContent(
   actual: string,
   expected: string,
   ignoreWeirdLine: boolean = false
 ) {
   assert.strictEqual(
-    format(
+    await format(
       ignoreWeirdLine ? actual.replace(/\n/g, "") : actual,
       prettierTypeScriptOptions
     ),
-    format(
+    await format(
       ignoreWeirdLine ? expected.replace(/\n/g, "") : expected,
       prettierTypeScriptOptions
     )

@@ -27,31 +27,31 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface NoDecoratorInPublic {
   get(
-    options: NoDecoratorInPublicParameters
+    options: NoDecoratorInPublicParameters,
   ): StreamableMethod<NoDecoratorInPublic200Response>;
 }
 
 export interface PublicDecoratorInPublic {
   get(
-    options: PublicDecoratorInPublicParameters
+    options: PublicDecoratorInPublicParameters,
   ): StreamableMethod<PublicDecoratorInPublic200Response>;
 }
 
 export interface NoDecoratorInInternal {
   get(
-    options: NoDecoratorInInternalParameters
+    options: NoDecoratorInInternalParameters,
   ): StreamableMethod<NoDecoratorInInternal200Response>;
 }
 
 export interface InternalDecoratorInInternal {
   get(
-    options: InternalDecoratorInInternalParameters
+    options: InternalDecoratorInInternalParameters,
   ): StreamableMethod<InternalDecoratorInInternal200Response>;
 }
 
 export interface PublicDecoratorInInternal {
   get(
-    options: PublicDecoratorInInternalParameters
+    options: PublicDecoratorInInternalParameters,
   ): StreamableMethod<PublicDecoratorInInternal200Response>;
 }
 
@@ -92,46 +92,46 @@ export interface Discriminator {
    * ```
    */
   get(
-    options: DiscriminatorParameters
+    options: DiscriminatorParameters,
   ): StreamableMethod<Discriminator200Response>;
 }
 
 export interface Routes {
   /** Resource for '/azure/client-generator-core/access/publicOperation/noDecoratorInPublic' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic"
+    path: "/azure/client-generator-core/access/publicOperation/noDecoratorInPublic",
   ): NoDecoratorInPublic;
   /** Resource for '/azure/client-generator-core/access/publicOperation/publicDecoratorInPublic' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/publicOperation/publicDecoratorInPublic"
+    path: "/azure/client-generator-core/access/publicOperation/publicDecoratorInPublic",
   ): PublicDecoratorInPublic;
   /** Resource for '/azure/client-generator-core/access/internalOperation/noDecoratorInInternal' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal"
+    path: "/azure/client-generator-core/access/internalOperation/noDecoratorInInternal",
   ): NoDecoratorInInternal;
   /** Resource for '/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal"
+    path: "/azure/client-generator-core/access/internalOperation/internalDecoratorInInternal",
   ): InternalDecoratorInInternal;
   /** Resource for '/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal"
+    path: "/azure/client-generator-core/access/internalOperation/publicDecoratorInInternal",
   ): PublicDecoratorInInternal;
   /** Resource for '/azure/client-generator-core/access/sharedModelInOperation/public' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/sharedModelInOperation/public"
+    path: "/azure/client-generator-core/access/sharedModelInOperation/public",
   ): Public;
   /** Resource for '/azure/client-generator-core/access/sharedModelInOperation/internal' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/sharedModelInOperation/internal"
+    path: "/azure/client-generator-core/access/sharedModelInOperation/internal",
   ): Internal;
   /** Resource for '/azure/client-generator-core/access/relativeModelInOperation/operation' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/relativeModelInOperation/operation"
+    path: "/azure/client-generator-core/access/relativeModelInOperation/operation",
   ): Operation;
   /** Resource for '/azure/client-generator-core/access/relativeModelInOperation/discriminator' has methods for the following verbs: get */
   (
-    path: "/azure/client-generator-core/access/relativeModelInOperation/discriminator"
+    path: "/azure/client-generator-core/access/relativeModelInOperation/discriminator",
   ): Discriminator;
 }
 

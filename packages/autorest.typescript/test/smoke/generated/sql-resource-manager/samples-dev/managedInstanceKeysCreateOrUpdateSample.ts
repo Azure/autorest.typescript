@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstanceKey,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,8 +31,7 @@ async function createsOrUpdatesAManagedInstanceKey() {
   const keyName = "someVault_someKey_01234567890123456789012345678901";
   const parameters: ManagedInstanceKey = {
     serverKeyType: "AzureKeyVault",
-    uri:
-      "https://someVault.vault.azure.net/keys/someKey/01234567890123456789012345678901"
+    uri: "https://someVault.vault.azure.net/keys/someKey/01234567890123456789012345678901",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -40,7 +39,7 @@ async function createsOrUpdatesAManagedInstanceKey() {
     resourceGroupName,
     managedInstanceName,
     keyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

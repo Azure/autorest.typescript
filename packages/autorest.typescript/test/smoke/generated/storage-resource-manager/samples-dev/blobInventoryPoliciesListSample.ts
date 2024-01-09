@@ -29,7 +29,7 @@ async function storageAccountGetBlobInventoryPolicy() {
   const resArray = new Array();
   for await (let item of client.blobInventoryPolicies.list(
     resourceGroupName,
-    accountName
+    accountName,
   )) {
     resArray.push(item);
   }

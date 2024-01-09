@@ -33,7 +33,7 @@ async function obtainQueryProperties() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    queryId
+    queryId,
   );
   console.log(result);
 }

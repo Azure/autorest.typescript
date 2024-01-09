@@ -43,7 +43,7 @@ import {
   DatetimeGetLocalNegativeOffsetMinDateTimeOptionalParams,
   DatetimeGetLocalNegativeOffsetMinDateTimeResponse,
   DatetimeGetLocalNoOffsetMinDateTimeOptionalParams,
-  DatetimeGetLocalNoOffsetMinDateTimeResponse
+  DatetimeGetLocalNoOffsetMinDateTimeResponse,
 } from "../models";
 
 /** Interface representing a Datetime. */
@@ -53,28 +53,28 @@ export interface Datetime {
    * @param options The options parameters.
    */
   getNull(
-    options?: DatetimeGetNullOptionalParams
+    options?: DatetimeGetNullOptionalParams,
   ): Promise<DatetimeGetNullResponse>;
   /**
    * Get invalid datetime value
    * @param options The options parameters.
    */
   getInvalid(
-    options?: DatetimeGetInvalidOptionalParams
+    options?: DatetimeGetInvalidOptionalParams,
   ): Promise<DatetimeGetInvalidResponse>;
   /**
    * Get overflow datetime value
    * @param options The options parameters.
    */
   getOverflow(
-    options?: DatetimeGetOverflowOptionalParams
+    options?: DatetimeGetOverflowOptionalParams,
   ): Promise<DatetimeGetOverflowResponse>;
   /**
    * Get underflow datetime value
    * @param options The options parameters.
    */
   getUnderflow(
-    options?: DatetimeGetUnderflowOptionalParams
+    options?: DatetimeGetUnderflowOptionalParams,
   ): Promise<DatetimeGetUnderflowResponse>;
   /**
    * Put max datetime value 9999-12-31T23:59:59.999Z
@@ -83,7 +83,7 @@ export interface Datetime {
    */
   putUtcMaxDateTime(
     datetimeBody: Date,
-    options?: DatetimePutUtcMaxDateTimeOptionalParams
+    options?: DatetimePutUtcMaxDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * This is against the recommendation that asks for 3 digits, but allow to test what happens in that
@@ -93,21 +93,21 @@ export interface Datetime {
    */
   putUtcMaxDateTime7Digits(
     datetimeBody: Date,
-    options?: DatetimePutUtcMaxDateTime7DigitsOptionalParams
+    options?: DatetimePutUtcMaxDateTime7DigitsOptionalParams,
   ): Promise<void>;
   /**
    * Get max datetime value 9999-12-31t23:59:59.999z
    * @param options The options parameters.
    */
   getUtcLowercaseMaxDateTime(
-    options?: DatetimeGetUtcLowercaseMaxDateTimeOptionalParams
+    options?: DatetimeGetUtcLowercaseMaxDateTimeOptionalParams,
   ): Promise<DatetimeGetUtcLowercaseMaxDateTimeResponse>;
   /**
    * Get max datetime value 9999-12-31T23:59:59.999Z
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime(
-    options?: DatetimeGetUtcUppercaseMaxDateTimeOptionalParams
+    options?: DatetimeGetUtcUppercaseMaxDateTimeOptionalParams,
   ): Promise<DatetimeGetUtcUppercaseMaxDateTimeResponse>;
   /**
    * This is against the recommendation that asks for 3 digits, but allow to test what happens in that
@@ -115,7 +115,7 @@ export interface Datetime {
    * @param options The options parameters.
    */
   getUtcUppercaseMaxDateTime7Digits(
-    options?: DatetimeGetUtcUppercaseMaxDateTime7DigitsOptionalParams
+    options?: DatetimeGetUtcUppercaseMaxDateTime7DigitsOptionalParams,
   ): Promise<DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse>;
   /**
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00
@@ -124,21 +124,21 @@ export interface Datetime {
    */
   putLocalPositiveOffsetMaxDateTime(
     datetimeBody: Date,
-    options?: DatetimePutLocalPositiveOffsetMaxDateTimeOptionalParams
+    options?: DatetimePutLocalPositiveOffsetMaxDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00
    * @param options The options parameters.
    */
   getLocalPositiveOffsetLowercaseMaxDateTime(
-    options?: DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeOptionalParams
+    options?: DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse>;
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00
    * @param options The options parameters.
    */
   getLocalPositiveOffsetUppercaseMaxDateTime(
-    options?: DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeOptionalParams
+    options?: DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse>;
   /**
    * Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00
@@ -147,21 +147,21 @@ export interface Datetime {
    */
   putLocalNegativeOffsetMaxDateTime(
     datetimeBody: Date,
-    options?: DatetimePutLocalNegativeOffsetMaxDateTimeOptionalParams
+    options?: DatetimePutLocalNegativeOffsetMaxDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00
    * @param options The options parameters.
    */
   getLocalNegativeOffsetUppercaseMaxDateTime(
-    options?: DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeOptionalParams
+    options?: DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse>;
   /**
    * Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00
    * @param options The options parameters.
    */
   getLocalNegativeOffsetLowercaseMaxDateTime(
-    options?: DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeOptionalParams
+    options?: DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse>;
   /**
    * Put min datetime value 0001-01-01T00:00:00Z
@@ -170,14 +170,14 @@ export interface Datetime {
    */
   putUtcMinDateTime(
     datetimeBody: Date,
-    options?: DatetimePutUtcMinDateTimeOptionalParams
+    options?: DatetimePutUtcMinDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get min datetime value 0001-01-01T00:00:00Z
    * @param options The options parameters.
    */
   getUtcMinDateTime(
-    options?: DatetimeGetUtcMinDateTimeOptionalParams
+    options?: DatetimeGetUtcMinDateTimeOptionalParams,
   ): Promise<DatetimeGetUtcMinDateTimeResponse>;
   /**
    * Put min datetime value 0001-01-01T00:00:00+14:00
@@ -186,14 +186,14 @@ export interface Datetime {
    */
   putLocalPositiveOffsetMinDateTime(
     datetimeBody: Date,
-    options?: DatetimePutLocalPositiveOffsetMinDateTimeOptionalParams
+    options?: DatetimePutLocalPositiveOffsetMinDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get min datetime value 0001-01-01T00:00:00+14:00
    * @param options The options parameters.
    */
   getLocalPositiveOffsetMinDateTime(
-    options?: DatetimeGetLocalPositiveOffsetMinDateTimeOptionalParams
+    options?: DatetimeGetLocalPositiveOffsetMinDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalPositiveOffsetMinDateTimeResponse>;
   /**
    * Put min datetime value 0001-01-01T00:00:00-14:00
@@ -202,20 +202,20 @@ export interface Datetime {
    */
   putLocalNegativeOffsetMinDateTime(
     datetimeBody: Date,
-    options?: DatetimePutLocalNegativeOffsetMinDateTimeOptionalParams
+    options?: DatetimePutLocalNegativeOffsetMinDateTimeOptionalParams,
   ): Promise<void>;
   /**
    * Get min datetime value 0001-01-01T00:00:00-14:00
    * @param options The options parameters.
    */
   getLocalNegativeOffsetMinDateTime(
-    options?: DatetimeGetLocalNegativeOffsetMinDateTimeOptionalParams
+    options?: DatetimeGetLocalNegativeOffsetMinDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalNegativeOffsetMinDateTimeResponse>;
   /**
    * Get min datetime value 0001-01-01T00:00:00
    * @param options The options parameters.
    */
   getLocalNoOffsetMinDateTime(
-    options?: DatetimeGetLocalNoOffsetMinDateTimeOptionalParams
+    options?: DatetimeGetLocalNoOffsetMinDateTimeOptionalParams,
   ): Promise<DatetimeGetLocalNoOffsetMinDateTimeResponse>;
 }

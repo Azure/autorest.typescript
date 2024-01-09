@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StorageAccountRegenerateKeyParameters,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,14 +28,14 @@ async function storageAccountRegenerateKerbKey() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4167";
   const accountName = "sto3539";
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
-    keyName: "kerb1"
+    keyName: "kerb1",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.regenerateKey(
     resourceGroupName,
     accountName,
-    regenerateKey
+    regenerateKey,
   );
   console.log(result);
 }
@@ -51,14 +51,14 @@ async function storageAccountRegenerateKey() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "res4167";
   const accountName = "sto3539";
   const regenerateKey: StorageAccountRegenerateKeyParameters = {
-    keyName: "key2"
+    keyName: "key2",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.storageAccounts.regenerateKey(
     resourceGroupName,
     accountName,
-    regenerateKey
+    regenerateKey,
   );
   console.log(result);
 }

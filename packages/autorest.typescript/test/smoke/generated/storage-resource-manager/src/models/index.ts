@@ -2324,7 +2324,7 @@ export enum KnownSkuName {
   /** StandardGzrs */
   StandardGzrs = "Standard_GZRS",
   /** StandardRagzrs */
-  StandardRagzrs = "Standard_RAGZRS"
+  StandardRagzrs = "Standard_RAGZRS",
 }
 
 /**
@@ -2354,7 +2354,7 @@ export enum KnownKind {
   /** FileStorage */
   FileStorage = "FileStorage",
   /** BlockBlobStorage */
-  BlockBlobStorage = "BlockBlobStorage"
+  BlockBlobStorage = "BlockBlobStorage",
 }
 
 /**
@@ -2375,7 +2375,7 @@ export enum KnownReasonCode {
   /** QuotaId */
   QuotaId = "QuotaId",
   /** NotAvailableForSubscription */
-  NotAvailableForSubscription = "NotAvailableForSubscription"
+  NotAvailableForSubscription = "NotAvailableForSubscription",
 }
 
 /**
@@ -2391,7 +2391,7 @@ export type ReasonCode = string;
 /** Known values of {@link ExtendedLocationTypes} that the service accepts. */
 export enum KnownExtendedLocationTypes {
   /** EdgeZone */
-  EdgeZone = "EdgeZone"
+  EdgeZone = "EdgeZone",
 }
 
 /**
@@ -2412,7 +2412,7 @@ export enum KnownIdentityType {
   /** UserAssigned */
   UserAssigned = "UserAssigned",
   /** SystemAssignedUserAssigned */
-  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned"
+  SystemAssignedUserAssigned = "SystemAssigned,UserAssigned",
 }
 
 /**
@@ -2432,7 +2432,7 @@ export enum KnownPublicNetworkAccess {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -2448,7 +2448,7 @@ export type PublicNetworkAccess = string;
 /** Known values of {@link ExpirationAction} that the service accepts. */
 export enum KnownExpirationAction {
   /** Log */
-  Log = "Log"
+  Log = "Log",
 }
 
 /**
@@ -2465,7 +2465,7 @@ export enum KnownKeyType {
   /** Service */
   Service = "Service",
   /** Account */
-  Account = "Account"
+  Account = "Account",
 }
 
 /**
@@ -2483,7 +2483,7 @@ export enum KnownKeySource {
   /** MicrosoftStorage */
   MicrosoftStorage = "Microsoft.Storage",
   /** MicrosoftKeyvault */
-  MicrosoftKeyvault = "Microsoft.Keyvault"
+  MicrosoftKeyvault = "Microsoft.Keyvault",
 }
 
 /**
@@ -2505,7 +2505,7 @@ export enum KnownBypass {
   /** Metrics */
   Metrics = "Metrics",
   /** AzureServices */
-  AzureServices = "AzureServices"
+  AzureServices = "AzureServices",
 }
 
 /**
@@ -2531,7 +2531,7 @@ export enum KnownState {
   /** Failed */
   Failed = "Failed",
   /** NetworkSourceDeleted */
-  NetworkSourceDeleted = "NetworkSourceDeleted"
+  NetworkSourceDeleted = "NetworkSourceDeleted",
 }
 
 /**
@@ -2554,7 +2554,7 @@ export enum KnownDirectoryServiceOptions {
   /** Aadds */
   Aadds = "AADDS",
   /** AD */
-  AD = "AD"
+  AD = "AD",
 }
 
 /**
@@ -2577,7 +2577,7 @@ export enum KnownDefaultSharePermission {
   /** StorageFileDataSmbShareContributor */
   StorageFileDataSmbShareContributor = "StorageFileDataSmbShareContributor",
   /** StorageFileDataSmbShareElevatedContributor */
-  StorageFileDataSmbShareElevatedContributor = "StorageFileDataSmbShareElevatedContributor"
+  StorageFileDataSmbShareElevatedContributor = "StorageFileDataSmbShareElevatedContributor",
 }
 
 /**
@@ -2597,7 +2597,7 @@ export enum KnownLargeFileSharesState {
   /** Disabled */
   Disabled = "Disabled",
   /** Enabled */
-  Enabled = "Enabled"
+  Enabled = "Enabled",
 }
 
 /**
@@ -2615,7 +2615,7 @@ export enum KnownRoutingChoice {
   /** MicrosoftRouting */
   MicrosoftRouting = "MicrosoftRouting",
   /** InternetRouting */
-  InternetRouting = "InternetRouting"
+  InternetRouting = "InternetRouting",
 }
 
 /**
@@ -2635,7 +2635,7 @@ export enum KnownMinimumTlsVersion {
   /** TLS11 */
   TLS11 = "TLS1_1",
   /** TLS12 */
-  TLS12 = "TLS1_2"
+  TLS12 = "TLS1_2",
 }
 
 /**
@@ -2656,7 +2656,7 @@ export enum KnownAccountImmutabilityPolicyState {
   /** Locked */
   Locked = "Locked",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -2677,7 +2677,7 @@ export enum KnownGeoReplicationStatus {
   /** Bootstrap */
   Bootstrap = "Bootstrap",
   /** Unavailable */
-  Unavailable = "Unavailable"
+  Unavailable = "Unavailable",
 }
 
 /**
@@ -2698,7 +2698,7 @@ export enum KnownPrivateEndpointServiceConnectionStatus {
   /** Approved */
   Approved = "Approved",
   /** Rejected */
-  Rejected = "Rejected"
+  Rejected = "Rejected",
 }
 
 /**
@@ -2721,7 +2721,7 @@ export enum KnownPrivateEndpointConnectionProvisioningState {
   /** Deleting */
   Deleting = "Deleting",
   /** Failed */
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 /**
@@ -2743,7 +2743,7 @@ export enum KnownBlobRestoreProgressStatus {
   /** Complete */
   Complete = "Complete",
   /** Failed */
-  Failed = "Failed"
+  Failed = "Failed",
 }
 
 /**
@@ -2766,7 +2766,7 @@ export enum KnownServices {
   /** T */
   T = "t",
   /** F */
-  F = "f"
+  F = "f",
 }
 
 /**
@@ -2788,7 +2788,7 @@ export enum KnownSignedResourceTypes {
   /** C */
   C = "c",
   /** O */
-  O = "o"
+  O = "o",
 }
 
 /**
@@ -2819,7 +2819,7 @@ export enum KnownPermissions {
   /** U */
   U = "u",
   /** P */
-  P = "p"
+  P = "p",
 }
 
 /**
@@ -2847,7 +2847,7 @@ export enum KnownSignedResource {
   /** F */
   F = "f",
   /** S */
-  S = "s"
+  S = "s",
 }
 
 /**
@@ -2865,7 +2865,7 @@ export type SignedResource = string;
 /** Known values of {@link ManagementPolicyName} that the service accepts. */
 export enum KnownManagementPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -2880,7 +2880,7 @@ export type ManagementPolicyName = string;
 /** Known values of {@link RuleType} that the service accepts. */
 export enum KnownRuleType {
   /** Lifecycle */
-  Lifecycle = "Lifecycle"
+  Lifecycle = "Lifecycle",
 }
 
 /**
@@ -2895,7 +2895,7 @@ export type RuleType = string;
 /** Known values of {@link BlobInventoryPolicyName} that the service accepts. */
 export enum KnownBlobInventoryPolicyName {
   /** Default */
-  Default = "default"
+  Default = "default",
 }
 
 /**
@@ -2910,7 +2910,7 @@ export type BlobInventoryPolicyName = string;
 /** Known values of {@link InventoryRuleType} that the service accepts. */
 export enum KnownInventoryRuleType {
   /** Inventory */
-  Inventory = "Inventory"
+  Inventory = "Inventory",
 }
 
 /**
@@ -2927,7 +2927,7 @@ export enum KnownFormat {
   /** Csv */
   Csv = "Csv",
   /** Parquet */
-  Parquet = "Parquet"
+  Parquet = "Parquet",
 }
 
 /**
@@ -2945,7 +2945,7 @@ export enum KnownSchedule {
   /** Daily */
   Daily = "Daily",
   /** Weekly */
-  Weekly = "Weekly"
+  Weekly = "Weekly",
 }
 
 /**
@@ -2963,7 +2963,7 @@ export enum KnownObjectType {
   /** Blob */
   Blob = "Blob",
   /** Container */
-  Container = "Container"
+  Container = "Container",
 }
 
 /**
@@ -2985,7 +2985,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -3005,7 +3005,7 @@ export enum KnownEncryptionScopeSource {
   /** MicrosoftStorage */
   MicrosoftStorage = "Microsoft.Storage",
   /** MicrosoftKeyVault */
-  MicrosoftKeyVault = "Microsoft.KeyVault"
+  MicrosoftKeyVault = "Microsoft.KeyVault",
 }
 
 /**
@@ -3023,7 +3023,7 @@ export enum KnownEncryptionScopeState {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -3051,7 +3051,7 @@ export enum KnownCorsRuleAllowedMethodsItem {
   /** Options */
   Options = "OPTIONS",
   /** PUT */
-  PUT = "PUT"
+  PUT = "PUT",
 }
 
 /**
@@ -3072,7 +3072,7 @@ export type CorsRuleAllowedMethodsItem = string;
 /** Known values of {@link Name} that the service accepts. */
 export enum KnownName {
   /** AccessTimeTracking */
-  AccessTimeTracking = "AccessTimeTracking"
+  AccessTimeTracking = "AccessTimeTracking",
 }
 
 /**
@@ -3087,7 +3087,7 @@ export type Name = string;
 /** Known values of {@link ListContainersInclude} that the service accepts. */
 export enum KnownListContainersInclude {
   /** Deleted */
-  Deleted = "deleted"
+  Deleted = "deleted",
 }
 
 /**
@@ -3104,7 +3104,7 @@ export enum KnownLeaseStatus {
   /** Locked */
   Locked = "Locked",
   /** Unlocked */
-  Unlocked = "Unlocked"
+  Unlocked = "Unlocked",
 }
 
 /**
@@ -3128,7 +3128,7 @@ export enum KnownLeaseState {
   /** Breaking */
   Breaking = "Breaking",
   /** Broken */
-  Broken = "Broken"
+  Broken = "Broken",
 }
 
 /**
@@ -3149,7 +3149,7 @@ export enum KnownLeaseDuration {
   /** Infinite */
   Infinite = "Infinite",
   /** Fixed */
-  Fixed = "Fixed"
+  Fixed = "Fixed",
 }
 
 /**
@@ -3167,7 +3167,7 @@ export enum KnownImmutabilityPolicyState {
   /** Locked */
   Locked = "Locked",
   /** Unlocked */
-  Unlocked = "Unlocked"
+  Unlocked = "Unlocked",
 }
 
 /**
@@ -3187,7 +3187,7 @@ export enum KnownImmutabilityPolicyUpdateType {
   /** Lock */
   Lock = "lock",
   /** Extend */
-  Extend = "extend"
+  Extend = "extend",
 }
 
 /**
@@ -3206,7 +3206,7 @@ export enum KnownMigrationState {
   /** InProgress */
   InProgress = "InProgress",
   /** Completed */
-  Completed = "Completed"
+  Completed = "Completed",
 }
 
 /**
@@ -3230,7 +3230,7 @@ export enum KnownLeaseContainerRequestAction {
   /** Release */
   Release = "Release",
   /** Break */
-  Break = "Break"
+  Break = "Break",
 }
 
 /**
@@ -3251,7 +3251,7 @@ export enum KnownEnabledProtocols {
   /** SMB */
   SMB = "SMB",
   /** NFS */
-  NFS = "NFS"
+  NFS = "NFS",
 }
 
 /**
@@ -3271,7 +3271,7 @@ export enum KnownRootSquashType {
   /** RootSquash */
   RootSquash = "RootSquash",
   /** AllSquash */
-  AllSquash = "AllSquash"
+  AllSquash = "AllSquash",
 }
 
 /**
@@ -3294,7 +3294,7 @@ export enum KnownShareAccessTier {
   /** Cool */
   Cool = "Cool",
   /** Premium */
-  Premium = "Premium"
+  Premium = "Premium",
 }
 
 /**
@@ -3320,7 +3320,7 @@ export enum KnownLeaseShareAction {
   /** Release */
   Release = "Release",
   /** Break */
-  Break = "Break"
+  Break = "Break",
 }
 
 /**
@@ -3382,7 +3382,8 @@ export interface StorageAccountsCheckNameAvailabilityOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkNameAvailability operation. */
-export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult;
+export type StorageAccountsCheckNameAvailabilityResponse =
+  CheckNameAvailabilityResult;
 
 /** Optional parameters. */
 export interface StorageAccountsCreateOptionalParams
@@ -3429,7 +3430,8 @@ export interface StorageAccountsListByResourceGroupOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult;
+export type StorageAccountsListByResourceGroupResponse =
+  StorageAccountListResult;
 
 /** Optional parameters. */
 export interface StorageAccountsListKeysOptionalParams
@@ -3514,7 +3516,8 @@ export interface StorageAccountsListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type StorageAccountsListByResourceGroupNextResponse = StorageAccountListResult;
+export type StorageAccountsListByResourceGroupNextResponse =
+  StorageAccountListResult;
 
 /** Optional parameters. */
 export interface DeletedAccountsListOptionalParams
@@ -3592,7 +3595,8 @@ export interface PrivateEndpointConnectionsListOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult;
+export type PrivateEndpointConnectionsListResponse =
+  PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsGetOptionalParams
@@ -3617,7 +3621,8 @@ export interface PrivateLinkResourcesListByStorageAccountOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByStorageAccount operation. */
-export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResourceListResult;
+export type PrivateLinkResourcesListByStorageAccountResponse =
+  PrivateLinkResourceListResult;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesListOptionalParams
@@ -3638,7 +3643,8 @@ export interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy;
+export type ObjectReplicationPoliciesCreateOrUpdateResponse =
+  ObjectReplicationPolicy;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesDeleteOptionalParams
@@ -3763,8 +3769,8 @@ export interface BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams
 }
 
 /** Contains response data for the createOrUpdateImmutabilityPolicy operation. */
-export type BlobContainersCreateOrUpdateImmutabilityPolicyResponse = BlobContainersCreateOrUpdateImmutabilityPolicyHeaders &
-  ImmutabilityPolicy;
+export type BlobContainersCreateOrUpdateImmutabilityPolicyResponse =
+  BlobContainersCreateOrUpdateImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersGetImmutabilityPolicyOptionalParams
@@ -3774,24 +3780,24 @@ export interface BlobContainersGetImmutabilityPolicyOptionalParams
 }
 
 /** Contains response data for the getImmutabilityPolicy operation. */
-export type BlobContainersGetImmutabilityPolicyResponse = BlobContainersGetImmutabilityPolicyHeaders &
-  ImmutabilityPolicy;
+export type BlobContainersGetImmutabilityPolicyResponse =
+  BlobContainersGetImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersDeleteImmutabilityPolicyOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the deleteImmutabilityPolicy operation. */
-export type BlobContainersDeleteImmutabilityPolicyResponse = BlobContainersDeleteImmutabilityPolicyHeaders &
-  ImmutabilityPolicy;
+export type BlobContainersDeleteImmutabilityPolicyResponse =
+  BlobContainersDeleteImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersLockImmutabilityPolicyOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the lockImmutabilityPolicy operation. */
-export type BlobContainersLockImmutabilityPolicyResponse = BlobContainersLockImmutabilityPolicyHeaders &
-  ImmutabilityPolicy;
+export type BlobContainersLockImmutabilityPolicyResponse =
+  BlobContainersLockImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersExtendImmutabilityPolicyOptionalParams
@@ -3801,8 +3807,8 @@ export interface BlobContainersExtendImmutabilityPolicyOptionalParams
 }
 
 /** Contains response data for the extendImmutabilityPolicy operation. */
-export type BlobContainersExtendImmutabilityPolicyResponse = BlobContainersExtendImmutabilityPolicyHeaders &
-  ImmutabilityPolicy;
+export type BlobContainersExtendImmutabilityPolicyResponse =
+  BlobContainersExtendImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersLeaseOptionalParams

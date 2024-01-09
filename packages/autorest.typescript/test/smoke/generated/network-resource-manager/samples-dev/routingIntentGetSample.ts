@@ -30,7 +30,7 @@ async function routeTableGet() {
   const result = await client.routingIntentOperations.get(
     resourceGroupName,
     virtualHubName,
-    routingIntentName
+    routingIntentName,
   );
   console.log(result);
 }

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FirewallPolicyRuleCollectionGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -46,20 +46,21 @@ async function createFirewallPolicyNatRuleCollectionGroup() {
             sourceAddresses: ["2.2.2.2"],
             sourceIpGroups: [],
             translatedFqdn: "internalhttp.server.net",
-            translatedPort: "8080"
-          }
-        ]
-      }
-    ]
+            translatedPort: "8080",
+          },
+        ],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    firewallPolicyName,
-    ruleCollectionGroupName,
-    parameters
-  );
+  const result =
+    await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleCollectionGroupName,
+      parameters,
+    );
   console.log(result);
 }
 
@@ -89,20 +90,21 @@ async function createFirewallPolicyRuleCollectionGroup() {
             destinationPorts: ["*"],
             ipProtocols: ["TCP"],
             ruleType: "NetworkRule",
-            sourceAddresses: ["10.1.25.0/24"]
-          }
-        ]
-      }
-    ]
+            sourceAddresses: ["10.1.25.0/24"],
+          },
+        ],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    firewallPolicyName,
-    ruleCollectionGroupName,
-    parameters
-  );
+  const result =
+    await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleCollectionGroupName,
+      parameters,
+    );
   console.log(result);
 }
 
@@ -128,27 +130,28 @@ async function createFirewallPolicyRuleCollectionGroupWithIPGroups() {
           {
             name: "network-1",
             destinationIpGroups: [
-              "/subscriptions/subid/providers/Microsoft.Network/resourceGroup/rg1/ipGroups/ipGroups2"
+              "/subscriptions/subid/providers/Microsoft.Network/resourceGroup/rg1/ipGroups/ipGroups2",
             ],
             destinationPorts: ["*"],
             ipProtocols: ["TCP"],
             ruleType: "NetworkRule",
             sourceIpGroups: [
-              "/subscriptions/subid/providers/Microsoft.Network/resourceGroup/rg1/ipGroups/ipGroups1"
-            ]
-          }
-        ]
-      }
-    ]
+              "/subscriptions/subid/providers/Microsoft.Network/resourceGroup/rg1/ipGroups/ipGroups1",
+            ],
+          },
+        ],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    firewallPolicyName,
-    ruleCollectionGroupName,
-    parameters
-  );
+  const result =
+    await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleCollectionGroupName,
+      parameters,
+    );
   console.log(result);
 }
 
@@ -178,20 +181,21 @@ async function createFirewallPolicyRuleCollectionGroupWithWebCategories() {
             protocols: [{ port: 443, protocolType: "Https" }],
             ruleType: "ApplicationRule",
             sourceAddresses: ["216.58.216.164", "10.0.0.0/24"],
-            webCategories: ["Hacking"]
-          }
-        ]
-      }
-    ]
+            webCategories: ["Hacking"],
+          },
+        ],
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    firewallPolicyName,
-    ruleCollectionGroupName,
-    parameters
-  );
+  const result =
+    await client.firewallPolicyRuleCollectionGroups.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      firewallPolicyName,
+      ruleCollectionGroupName,
+      parameters,
+    );
   console.log(result);
 }
 

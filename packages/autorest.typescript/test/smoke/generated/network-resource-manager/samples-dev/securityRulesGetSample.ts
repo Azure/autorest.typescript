@@ -30,7 +30,7 @@ async function getNetworkSecurityRuleInNetworkSecurityGroup() {
   const result = await client.securityRules.get(
     resourceGroupName,
     networkSecurityGroupName,
-    securityRuleName
+    securityRuleName,
   );
   console.log(result);
 }

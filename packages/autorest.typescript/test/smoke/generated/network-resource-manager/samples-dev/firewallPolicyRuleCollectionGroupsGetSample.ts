@@ -30,7 +30,7 @@ async function getFirewallPolicyNatRuleCollectionGroup() {
   const result = await client.firewallPolicyRuleCollectionGroups.get(
     resourceGroupName,
     firewallPolicyName,
-    ruleCollectionGroupName
+    ruleCollectionGroupName,
   );
   console.log(result);
 }
@@ -51,7 +51,7 @@ async function getFirewallPolicyRuleCollectionGroup() {
   const result = await client.firewallPolicyRuleCollectionGroups.get(
     resourceGroupName,
     firewallPolicyName,
-    ruleCollectionGroupName
+    ruleCollectionGroupName,
   );
   console.log(result);
 }
@@ -72,7 +72,7 @@ async function getFirewallPolicyRuleCollectionGroupWithIPGroups() {
   const result = await client.firewallPolicyRuleCollectionGroups.get(
     resourceGroupName,
     firewallPolicyName,
-    ruleCollectionGroupName
+    ruleCollectionGroupName,
   );
   console.log(result);
 }
@@ -94,7 +94,7 @@ async function getFirewallPolicyRuleCollectionGroupWithWebCategories() {
   const result = await client.firewallPolicyRuleCollectionGroups.get(
     resourceGroupName,
     firewallPolicyName,
-    ruleCollectionGroupName
+    ruleCollectionGroupName,
   );
   console.log(result);
 }

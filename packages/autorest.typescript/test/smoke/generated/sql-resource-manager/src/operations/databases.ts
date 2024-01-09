@@ -16,7 +16,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -60,7 +60,7 @@ import {
   DatabasesExportResponse,
   DatabasesListByServerNextResponse,
   DatabasesListByElasticPoolNextResponse,
-  DatabasesListInaccessibleByServerNextResponse
+  DatabasesListInaccessibleByServerNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -90,14 +90,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: DatabasesListMetricsOptionalParams
+    options?: DatabasesListMetricsOptionalParams,
   ): PagedAsyncIterableIterator<Metric> {
     const iter = this.listMetricsPagingAll(
       resourceGroupName,
       serverName,
       databaseName,
       filter,
-      options
+      options,
     );
     return {
       next() {
@@ -116,9 +116,9 @@ export class DatabasesImpl implements Databases {
           databaseName,
           filter,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -128,7 +128,7 @@ export class DatabasesImpl implements Databases {
     databaseName: string,
     filter: string,
     options?: DatabasesListMetricsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<Metric[]> {
     let result: DatabasesListMetricsResponse;
     result = await this._listMetrics(
@@ -136,7 +136,7 @@ export class DatabasesImpl implements Databases {
       serverName,
       databaseName,
       filter,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -146,14 +146,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: DatabasesListMetricsOptionalParams
+    options?: DatabasesListMetricsOptionalParams,
   ): AsyncIterableIterator<Metric> {
     for await (const page of this.listMetricsPagingPage(
       resourceGroupName,
       serverName,
       databaseName,
       filter,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -171,13 +171,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
+    options?: DatabasesListMetricDefinitionsOptionalParams,
   ): PagedAsyncIterableIterator<MetricDefinition> {
     const iter = this.listMetricDefinitionsPagingAll(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return {
       next() {
@@ -195,9 +195,9 @@ export class DatabasesImpl implements Databases {
           serverName,
           databaseName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -206,14 +206,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesListMetricDefinitionsOptionalParams,
-    _settings?: PageSettings
+    _settings?: PageSettings,
   ): AsyncIterableIterator<MetricDefinition[]> {
     let result: DatabasesListMetricDefinitionsResponse;
     result = await this._listMetricDefinitions(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     yield result.value || [];
   }
@@ -222,13 +222,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
+    options?: DatabasesListMetricDefinitionsOptionalParams,
   ): AsyncIterableIterator<MetricDefinition> {
     for await (const page of this.listMetricDefinitionsPagingPage(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -244,12 +244,12 @@ export class DatabasesImpl implements Databases {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListByServerOptionalParams
+    options?: DatabasesListByServerOptionalParams,
   ): PagedAsyncIterableIterator<Database> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,
-      options
+      options,
     );
     return {
       next() {
@@ -266,9 +266,9 @@ export class DatabasesImpl implements Databases {
           resourceGroupName,
           serverName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -276,7 +276,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     options?: DatabasesListByServerOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Database[]> {
     let result: DatabasesListByServerResponse;
     let continuationToken = settings?.continuationToken;
@@ -292,7 +292,7 @@ export class DatabasesImpl implements Databases {
         resourceGroupName,
         serverName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -304,12 +304,12 @@ export class DatabasesImpl implements Databases {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListByServerOptionalParams
+    options?: DatabasesListByServerOptionalParams,
   ): AsyncIterableIterator<Database> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
       serverName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -327,13 +327,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
+    options?: DatabasesListByElasticPoolOptionalParams,
   ): PagedAsyncIterableIterator<Database> {
     const iter = this.listByElasticPoolPagingAll(
       resourceGroupName,
       serverName,
       elasticPoolName,
-      options
+      options,
     );
     return {
       next() {
@@ -351,9 +351,9 @@ export class DatabasesImpl implements Databases {
           serverName,
           elasticPoolName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -362,7 +362,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     elasticPoolName: string,
     options?: DatabasesListByElasticPoolOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Database[]> {
     let result: DatabasesListByElasticPoolResponse;
     let continuationToken = settings?.continuationToken;
@@ -371,7 +371,7 @@ export class DatabasesImpl implements Databases {
         resourceGroupName,
         serverName,
         elasticPoolName,
-        options
+        options,
       );
       let page = result.value || [];
       continuationToken = result.nextLink;
@@ -384,7 +384,7 @@ export class DatabasesImpl implements Databases {
         serverName,
         elasticPoolName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -397,13 +397,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
+    options?: DatabasesListByElasticPoolOptionalParams,
   ): AsyncIterableIterator<Database> {
     for await (const page of this.listByElasticPoolPagingPage(
       resourceGroupName,
       serverName,
       elasticPoolName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -419,12 +419,12 @@ export class DatabasesImpl implements Databases {
   public listInaccessibleByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
+    options?: DatabasesListInaccessibleByServerOptionalParams,
   ): PagedAsyncIterableIterator<Database> {
     const iter = this.listInaccessibleByServerPagingAll(
       resourceGroupName,
       serverName,
-      options
+      options,
     );
     return {
       next() {
@@ -441,9 +441,9 @@ export class DatabasesImpl implements Databases {
           resourceGroupName,
           serverName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -451,7 +451,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     options?: DatabasesListInaccessibleByServerOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<Database[]> {
     let result: DatabasesListInaccessibleByServerResponse;
     let continuationToken = settings?.continuationToken;
@@ -459,7 +459,7 @@ export class DatabasesImpl implements Databases {
       result = await this._listInaccessibleByServer(
         resourceGroupName,
         serverName,
-        options
+        options,
       );
       let page = result.value || [];
       continuationToken = result.nextLink;
@@ -471,7 +471,7 @@ export class DatabasesImpl implements Databases {
         resourceGroupName,
         serverName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -483,12 +483,12 @@ export class DatabasesImpl implements Databases {
   private async *listInaccessibleByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
+    options?: DatabasesListInaccessibleByServerOptionalParams,
   ): AsyncIterableIterator<Database> {
     for await (const page of this.listInaccessibleByServerPagingPage(
       resourceGroupName,
       serverName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -508,11 +508,11 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     filter: string,
-    options?: DatabasesListMetricsOptionalParams
+    options?: DatabasesListMetricsOptionalParams,
   ): Promise<DatabasesListMetricsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, filter, options },
-      listMetricsOperationSpec
+      listMetricsOperationSpec,
     );
   }
 
@@ -528,11 +528,11 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesListMetricDefinitionsOptionalParams
+    options?: DatabasesListMetricDefinitionsOptionalParams,
   ): Promise<DatabasesListMetricDefinitionsResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, options },
-      listMetricDefinitionsOperationSpec
+      listMetricDefinitionsOperationSpec,
     );
   }
 
@@ -546,11 +546,11 @@ export class DatabasesImpl implements Databases {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListByServerOptionalParams
+    options?: DatabasesListByServerOptionalParams,
   ): Promise<DatabasesListByServerResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, options },
-      listByServerOperationSpec
+      listByServerOperationSpec,
     );
   }
 
@@ -566,11 +566,11 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesGetOptionalParams
+    options?: DatabasesGetOptionalParams,
   ): Promise<DatabasesGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -588,7 +588,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: Database,
-    options?: DatabasesCreateOrUpdateOptionalParams
+    options?: DatabasesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabasesCreateOrUpdateResponse>,
@@ -597,21 +597,20 @@ export class DatabasesImpl implements Databases {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DatabasesCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -620,8 +619,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -629,8 +628,8 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -641,16 +640,16 @@ export class DatabasesImpl implements Databases {
         serverName,
         databaseName,
         parameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       DatabasesCreateOrUpdateResponse,
       OperationState<DatabasesCreateOrUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -670,14 +669,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: Database,
-    options?: DatabasesCreateOrUpdateOptionalParams
+    options?: DatabasesCreateOrUpdateOptionalParams,
   ): Promise<DatabasesCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -694,25 +693,24 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesDeleteOptionalParams
+    options?: DatabasesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -721,8 +719,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -730,19 +728,19 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -760,13 +758,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesDeleteOptionalParams
+    options?: DatabasesDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -785,7 +783,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: DatabaseUpdate,
-    options?: DatabasesUpdateOptionalParams
+    options?: DatabasesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabasesUpdateResponse>,
@@ -794,21 +792,20 @@ export class DatabasesImpl implements Databases {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DatabasesUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -817,8 +814,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -826,8 +823,8 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -838,16 +835,16 @@ export class DatabasesImpl implements Databases {
         serverName,
         databaseName,
         parameters,
-        options
+        options,
       },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       DatabasesUpdateResponse,
       OperationState<DatabasesUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -867,14 +864,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: DatabaseUpdate,
-    options?: DatabasesUpdateOptionalParams
+    options?: DatabasesUpdateOptionalParams,
   ): Promise<DatabasesUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -891,11 +888,11 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     elasticPoolName: string,
-    options?: DatabasesListByElasticPoolOptionalParams
+    options?: DatabasesListByElasticPoolOptionalParams,
   ): Promise<DatabasesListByElasticPoolResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, elasticPoolName, options },
-      listByElasticPoolOperationSpec
+      listByElasticPoolOperationSpec,
     );
   }
 
@@ -911,25 +908,24 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesFailoverOptionalParams
+    options?: DatabasesFailoverOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -938,8 +934,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -947,19 +943,19 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, options },
-      spec: failoverOperationSpec
+      spec: failoverOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -977,13 +973,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesFailoverOptionalParams
+    options?: DatabasesFailoverOptionalParams,
   ): Promise<void> {
     const poller = await this.beginFailover(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -998,11 +994,11 @@ export class DatabasesImpl implements Databases {
   private _listInaccessibleByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: DatabasesListInaccessibleByServerOptionalParams
+    options?: DatabasesListInaccessibleByServerOptionalParams,
   ): Promise<DatabasesListInaccessibleByServerResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, options },
-      listInaccessibleByServerOperationSpec
+      listInaccessibleByServerOperationSpec,
     );
   }
 
@@ -1018,7 +1014,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesPauseOptionalParams
+    options?: DatabasesPauseOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabasesPauseResponse>,
@@ -1027,21 +1023,20 @@ export class DatabasesImpl implements Databases {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DatabasesPauseResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1050,8 +1045,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1059,22 +1054,22 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, options },
-      spec: pauseOperationSpec
+      spec: pauseOperationSpec,
     });
     const poller = await createHttpPoller<
       DatabasesPauseResponse,
       OperationState<DatabasesPauseResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1092,13 +1087,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesPauseOptionalParams
+    options?: DatabasesPauseOptionalParams,
   ): Promise<DatabasesPauseResponse> {
     const poller = await this.beginPause(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1115,7 +1110,7 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesResumeOptionalParams
+    options?: DatabasesResumeOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabasesResumeResponse>,
@@ -1124,21 +1119,20 @@ export class DatabasesImpl implements Databases {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DatabasesResumeResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1147,8 +1141,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1156,22 +1150,22 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, options },
-      spec: resumeOperationSpec
+      spec: resumeOperationSpec,
     });
     const poller = await createHttpPoller<
       DatabasesResumeResponse,
       OperationState<DatabasesResumeResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1189,13 +1183,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesResumeOptionalParams
+    options?: DatabasesResumeOptionalParams,
   ): Promise<DatabasesResumeResponse> {
     const poller = await this.beginResume(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1212,25 +1206,24 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesUpgradeDataWarehouseOptionalParams
+    options?: DatabasesUpgradeDataWarehouseOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1239,8 +1232,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1248,19 +1241,19 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, databaseName, options },
-      spec: upgradeDataWarehouseOperationSpec
+      spec: upgradeDataWarehouseOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1278,13 +1271,13 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    options?: DatabasesUpgradeDataWarehouseOptionalParams
+    options?: DatabasesUpgradeDataWarehouseOptionalParams,
   ): Promise<void> {
     const poller = await this.beginUpgradeDataWarehouse(
       resourceGroupName,
       serverName,
       databaseName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1303,11 +1296,11 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ResourceMoveDefinition,
-    options?: DatabasesRenameOptionalParams
+    options?: DatabasesRenameOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, databaseName, parameters, options },
-      renameOperationSpec
+      renameOperationSpec,
     );
   }
 
@@ -1325,7 +1318,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ImportExistingDatabaseDefinition,
-    options?: DatabasesImportOptionalParams
+    options?: DatabasesImportOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabasesImportResponse>,
@@ -1334,21 +1327,20 @@ export class DatabasesImpl implements Databases {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DatabasesImportResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1357,8 +1349,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1366,8 +1358,8 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1378,16 +1370,16 @@ export class DatabasesImpl implements Databases {
         serverName,
         databaseName,
         parameters,
-        options
+        options,
       },
-      spec: importOperationSpec
+      spec: importOperationSpec,
     });
     const poller = await createHttpPoller<
       DatabasesImportResponse,
       OperationState<DatabasesImportResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1407,14 +1399,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ImportExistingDatabaseDefinition,
-    options?: DatabasesImportOptionalParams
+    options?: DatabasesImportOptionalParams,
   ): Promise<DatabasesImportResponse> {
     const poller = await this.beginImport(
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1433,7 +1425,7 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ExportDatabaseDefinition,
-    options?: DatabasesExportOptionalParams
+    options?: DatabasesExportOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<DatabasesExportResponse>,
@@ -1442,21 +1434,20 @@ export class DatabasesImpl implements Databases {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<DatabasesExportResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -1465,8 +1456,8 @@ export class DatabasesImpl implements Databases {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -1474,8 +1465,8 @@ export class DatabasesImpl implements Databases {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -1486,16 +1477,16 @@ export class DatabasesImpl implements Databases {
         serverName,
         databaseName,
         parameters,
-        options
+        options,
       },
-      spec: exportOperationSpec
+      spec: exportOperationSpec,
     });
     const poller = await createHttpPoller<
       DatabasesExportResponse,
       OperationState<DatabasesExportResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -1515,14 +1506,14 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     databaseName: string,
     parameters: ExportDatabaseDefinition,
-    options?: DatabasesExportOptionalParams
+    options?: DatabasesExportOptionalParams,
   ): Promise<DatabasesExportResponse> {
     const poller = await this.beginExport(
       resourceGroupName,
       serverName,
       databaseName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -1539,11 +1530,11 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: DatabasesListByServerNextOptionalParams
+    options?: DatabasesListByServerNextOptionalParams,
   ): Promise<DatabasesListByServerNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
+      listByServerNextOperationSpec,
     );
   }
 
@@ -1561,11 +1552,11 @@ export class DatabasesImpl implements Databases {
     serverName: string,
     elasticPoolName: string,
     nextLink: string,
-    options?: DatabasesListByElasticPoolNextOptionalParams
+    options?: DatabasesListByElasticPoolNextOptionalParams,
   ): Promise<DatabasesListByElasticPoolNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, elasticPoolName, nextLink, options },
-      listByElasticPoolNextOperationSpec
+      listByElasticPoolNextOperationSpec,
     );
   }
 
@@ -1582,11 +1573,11 @@ export class DatabasesImpl implements Databases {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: DatabasesListInaccessibleByServerNextOptionalParams
+    options?: DatabasesListInaccessibleByServerNextOptionalParams,
   ): Promise<DatabasesListInaccessibleByServerNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, nextLink, options },
-      listInaccessibleByServerNextOperationSpec
+      listInaccessibleByServerNextOperationSpec,
     );
   }
 }
@@ -1594,13 +1585,12 @@ export class DatabasesImpl implements Databases {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const listMetricsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metrics",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metrics",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.MetricListResult
-    }
+      bodyMapper: Mappers.MetricListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion, Parameters.filter],
   urlParameters: [
@@ -1608,19 +1598,18 @@ const listMetricsOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metricDefinitions",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/metricDefinitions",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.MetricDefinitionListResult
-    }
+      bodyMapper: Mappers.MetricDefinitionListResult,
+    },
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
@@ -1628,40 +1617,38 @@ const listMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseListResult
+      bodyMapper: Mappers.DatabaseListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.skipToken, Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName
+    Parameters.serverName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -1669,29 +1656,28 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     201: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     202: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     204: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion1],
@@ -1700,15 +1686,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
@@ -1717,28 +1702,27 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     201: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     202: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     204: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion1],
@@ -1747,21 +1731,20 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/databases",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/databases",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseListResult
+      bodyMapper: Mappers.DatabaseListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -1769,14 +1752,13 @@ const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.elasticPoolName
+    Parameters.elasticPoolName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const failoverOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/failover",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/failover",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1, Parameters.replicaType],
@@ -1785,48 +1767,46 @@ const failoverOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
-  serializer
+  serializer,
 };
 const listInaccessibleByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/inaccessibleDatabases",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/inaccessibleDatabases",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseListResult
+      bodyMapper: Mappers.DatabaseListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName
+    Parameters.serverName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const pauseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/pause",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/pause",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     201: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     202: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     204: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -1834,29 +1814,28 @@ const pauseOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const resumeOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/resume",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/resume",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     201: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     202: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
     204: {
-      bodyMapper: Mappers.Database
+      bodyMapper: Mappers.Database,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion1],
   urlParameters: [
@@ -1864,14 +1843,13 @@ const resumeOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const upgradeDataWarehouseOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/upgradeDataWarehouse",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/upgradeDataWarehouse",
   httpMethod: "POST",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion1],
@@ -1880,13 +1858,12 @@ const upgradeDataWarehouseOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
-  serializer
+  serializer,
 };
 const renameOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/move",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/move",
   httpMethod: "POST",
   responses: { 200: {}, default: {} },
   requestBody: Parameters.parameters5,
@@ -1896,30 +1873,29 @@ const renameOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const importOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/import",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/import",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
     201: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
     202: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
     204: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters6,
   queryParameters: [Parameters.apiVersion1],
@@ -1928,30 +1904,29 @@ const importOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const exportOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/export",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/export",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
     201: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
     202: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
     204: {
-      bodyMapper: Mappers.ImportExportOperationResult
+      bodyMapper: Mappers.ImportExportOperationResult,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters7,
   queryParameters: [Parameters.apiVersion1],
@@ -1960,39 +1935,39 @@ const exportOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.databaseName
+    Parameters.databaseName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseListResult
+      bodyMapper: Mappers.DatabaseListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByElasticPoolNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseListResult
+      bodyMapper: Mappers.DatabaseListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
@@ -2000,27 +1975,27 @@ const listByElasticPoolNextOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceGroupName,
     Parameters.serverName,
     Parameters.elasticPoolName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listInaccessibleByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseListResult
+      bodyMapper: Mappers.DatabaseListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

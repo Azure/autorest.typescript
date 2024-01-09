@@ -58,132 +58,132 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface StringModelGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: StringModelGetNonNullParameters
+    options?: StringModelGetNonNullParameters,
   ): StreamableMethod<StringModelGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: StringModelPatchNonNullParameters
+    options: StringModelPatchNonNullParameters,
   ): StreamableMethod<StringModelPatchNonNull204Response>;
 }
 
 export interface StringModelGetNull {
   /** Get models that will return the default object */
   get(
-    options?: StringModelGetNullParameters
+    options?: StringModelGetNullParameters,
   ): StreamableMethod<StringModelGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: StringModelPatchNullParameters
+    options: StringModelPatchNullParameters,
   ): StreamableMethod<StringModelPatchNull204Response>;
 }
 
 export interface BytesGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: BytesGetNonNullParameters
+    options?: BytesGetNonNullParameters,
   ): StreamableMethod<BytesGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: BytesPatchNonNullParameters
+    options: BytesPatchNonNullParameters,
   ): StreamableMethod<BytesPatchNonNull204Response>;
 }
 
 export interface BytesGetNull {
   /** Get models that will return the default object */
   get(
-    options?: BytesGetNullParameters
+    options?: BytesGetNullParameters,
   ): StreamableMethod<BytesGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: BytesPatchNullParameters
+    options: BytesPatchNullParameters,
   ): StreamableMethod<BytesPatchNull204Response>;
 }
 
 export interface DatetimeGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: DatetimeGetNonNullParameters
+    options?: DatetimeGetNonNullParameters,
   ): StreamableMethod<DatetimeGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: DatetimePatchNonNullParameters
+    options: DatetimePatchNonNullParameters,
   ): StreamableMethod<DatetimePatchNonNull204Response>;
 }
 
 export interface DatetimeGetNull {
   /** Get models that will return the default object */
   get(
-    options?: DatetimeGetNullParameters
+    options?: DatetimeGetNullParameters,
   ): StreamableMethod<DatetimeGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: DatetimePatchNullParameters
+    options: DatetimePatchNullParameters,
   ): StreamableMethod<DatetimePatchNull204Response>;
 }
 
 export interface DurationGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: DurationGetNonNullParameters
+    options?: DurationGetNonNullParameters,
   ): StreamableMethod<DurationGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: DurationPatchNonNullParameters
+    options: DurationPatchNonNullParameters,
   ): StreamableMethod<DurationPatchNonNull204Response>;
 }
 
 export interface DurationGetNull {
   /** Get models that will return the default object */
   get(
-    options?: DurationGetNullParameters
+    options?: DurationGetNullParameters,
   ): StreamableMethod<DurationGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: DurationPatchNullParameters
+    options: DurationPatchNullParameters,
   ): StreamableMethod<DurationPatchNull204Response>;
 }
 
 export interface CollectionsByteGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: CollectionsByteGetNonNullParameters
+    options?: CollectionsByteGetNonNullParameters,
   ): StreamableMethod<CollectionsByteGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: CollectionsBytePatchNonNullParameters
+    options: CollectionsBytePatchNonNullParameters,
   ): StreamableMethod<CollectionsBytePatchNonNull204Response>;
 }
 
 export interface CollectionsByteGetNull {
   /** Get models that will return the default object */
   get(
-    options?: CollectionsByteGetNullParameters
+    options?: CollectionsByteGetNullParameters,
   ): StreamableMethod<CollectionsByteGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: CollectionsBytePatchNullParameters
+    options: CollectionsBytePatchNullParameters,
   ): StreamableMethod<CollectionsBytePatchNull204Response>;
 }
 
 export interface CollectionsModelGetNonNull {
   /** Get models that will return all properties in the model */
   get(
-    options?: CollectionsModelGetNonNullParameters
+    options?: CollectionsModelGetNonNullParameters,
   ): StreamableMethod<CollectionsModelGetNonNull200Response>;
   /** Put a body with all properties present. */
   patch(
-    options: CollectionsModelPatchNonNullParameters
+    options: CollectionsModelPatchNonNullParameters,
   ): StreamableMethod<CollectionsModelPatchNonNull204Response>;
 }
 
 export interface CollectionsModelGetNull {
   /** Get models that will return the default object */
   get(
-    options?: CollectionsModelGetNullParameters
+    options?: CollectionsModelGetNullParameters,
   ): StreamableMethod<CollectionsModelGetNull200Response>;
   /** Put a body with default properties. */
   patch(
-    options: CollectionsModelPatchNullParameters
+    options: CollectionsModelPatchNullParameters,
   ): StreamableMethod<CollectionsModelPatchNull204Response>;
 }
 
@@ -206,19 +206,19 @@ export interface Routes {
   (path: "/type/property/nullable/duration/null"): DurationGetNull;
   /** Resource for '/type/property/nullable/collections/bytes/non-null' has methods for the following verbs: get, patch */
   (
-    path: "/type/property/nullable/collections/bytes/non-null"
+    path: "/type/property/nullable/collections/bytes/non-null",
   ): CollectionsByteGetNonNull;
   /** Resource for '/type/property/nullable/collections/bytes/null' has methods for the following verbs: get, patch */
   (
-    path: "/type/property/nullable/collections/bytes/null"
+    path: "/type/property/nullable/collections/bytes/null",
   ): CollectionsByteGetNull;
   /** Resource for '/type/property/nullable/collections/model/non-null' has methods for the following verbs: get, patch */
   (
-    path: "/type/property/nullable/collections/model/non-null"
+    path: "/type/property/nullable/collections/model/non-null",
   ): CollectionsModelGetNonNull;
   /** Resource for '/type/property/nullable/collections/model/null' has methods for the following verbs: get, patch */
   (
-    path: "/type/property/nullable/collections/model/null"
+    path: "/type/property/nullable/collections/model/null",
   ): CollectionsModelGetNull;
 }
 

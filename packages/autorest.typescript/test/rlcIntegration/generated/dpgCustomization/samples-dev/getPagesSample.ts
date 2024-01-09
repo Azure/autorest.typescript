@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createDpgCustomizationClient, {
-  paginate
+  paginate,
 } from "@msinternal/dpg-customization-rest";
 import * as dotenv from "dotenv";
 

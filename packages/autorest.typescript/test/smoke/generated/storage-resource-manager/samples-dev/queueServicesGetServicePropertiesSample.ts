@@ -28,7 +28,7 @@ async function queueServicesGet() {
   const client = new StorageManagementClient(credential, subscriptionId);
   const result = await client.queueServices.getServiceProperties(
     resourceGroupName,
-    accountName
+    accountName,
   );
   console.log(result);
 }

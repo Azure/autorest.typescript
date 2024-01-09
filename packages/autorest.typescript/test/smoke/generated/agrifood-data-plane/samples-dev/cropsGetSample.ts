@@ -18,7 +18,7 @@ async function cropsGet() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const cropId = "CORN123";
   const result = await client.path("/crops/{cropId}", cropId).get();

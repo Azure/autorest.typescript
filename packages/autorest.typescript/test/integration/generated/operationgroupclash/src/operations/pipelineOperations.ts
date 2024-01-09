@@ -5,7 +5,7 @@ import * as Parameters from "../models/parameters";
 import { OperationGroupClashClient } from "../operationGroupClashClient";
 import {
   PipelineApiV1ValueGetOptionalParams,
-  PipelineApiV1ValueGetResponse
+  PipelineApiV1ValueGetResponse,
 } from "../models";
 
 /** Class containing PipelineOperations operations. */
@@ -22,11 +22,11 @@ export class PipelineOperationsImpl implements PipelineOperations {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: PipelineApiV1ValueGetOptionalParams
+    options?: PipelineApiV1ValueGetOptionalParams,
   ): Promise<PipelineApiV1ValueGetResponse> {
     return this.client.sendOperationRequest(
       { options },
-      apiV1ValueGetOperationSpec
+      apiV1ValueGetOperationSpec,
     );
   }
 }
@@ -39,11 +39,11 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: {
-        type: { name: "Sequence", element: { type: { name: "String" } } }
-      }
-    }
+        type: { name: "Sequence", element: { type: { name: "String" } } },
+      },
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
-  serializer
+  serializer,
 };

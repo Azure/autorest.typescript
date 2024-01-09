@@ -31,7 +31,7 @@ async function getSecurityAdminConfigurations() {
   const result = await client.securityAdminConfigurations.get(
     resourceGroupName,
     networkManagerName,
-    configurationName
+    configurationName,
   );
   console.log(result);
 }

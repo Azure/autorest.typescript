@@ -11,7 +11,7 @@ import {
   WorkspacePatchResource,
   WorkspacesUpdateOptionalParams,
   WorkspacesUpdateResponse,
-  WorkspacesDeleteOptionalParams
+  WorkspacesDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -22,7 +22,7 @@ export interface Workspaces {
    * @param options The options parameters.
    */
   listBySubscription(
-    options?: WorkspacesListBySubscriptionOptionalParams
+    options?: WorkspacesListBySubscriptionOptionalParams,
   ): PagedAsyncIterableIterator<Workspace>;
   /**
    * Lists all the available workspaces under the specified resource group.
@@ -31,7 +31,7 @@ export interface Workspaces {
    */
   listByResourceGroup(
     resourceGroupName: string,
-    options?: WorkspacesListByResourceGroupOptionalParams
+    options?: WorkspacesListByResourceGroupOptionalParams,
   ): PagedAsyncIterableIterator<Workspace>;
   /**
    * Gets the properties of the specified workspace.
@@ -42,7 +42,7 @@ export interface Workspaces {
   get(
     resourceGroupName: string,
     workspaceName: string,
-    options?: WorkspacesGetOptionalParams
+    options?: WorkspacesGetOptionalParams,
   ): Promise<WorkspacesGetResponse>;
   /**
    * Creates or updates a workspace resource with the specified parameters.
@@ -55,7 +55,7 @@ export interface Workspaces {
     resourceGroupName: string,
     workspaceName: string,
     workspace: Workspace,
-    options?: WorkspacesCreateOrUpdateOptionalParams
+    options?: WorkspacesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<WorkspacesCreateOrUpdateResponse>,
@@ -73,7 +73,7 @@ export interface Workspaces {
     resourceGroupName: string,
     workspaceName: string,
     workspace: Workspace,
-    options?: WorkspacesCreateOrUpdateOptionalParams
+    options?: WorkspacesCreateOrUpdateOptionalParams,
   ): Promise<WorkspacesCreateOrUpdateResponse>;
   /**
    * Patch workspace details.
@@ -86,7 +86,7 @@ export interface Workspaces {
     resourceGroupName: string,
     workspaceName: string,
     workspacePatchResource: WorkspacePatchResource,
-    options?: WorkspacesUpdateOptionalParams
+    options?: WorkspacesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<WorkspacesUpdateResponse>,
@@ -104,7 +104,7 @@ export interface Workspaces {
     resourceGroupName: string,
     workspaceName: string,
     workspacePatchResource: WorkspacePatchResource,
-    options?: WorkspacesUpdateOptionalParams
+    options?: WorkspacesUpdateOptionalParams,
   ): Promise<WorkspacesUpdateResponse>;
   /**
    * Deletes a specified workspace.
@@ -115,7 +115,7 @@ export interface Workspaces {
   beginDelete(
     resourceGroupName: string,
     workspaceName: string,
-    options?: WorkspacesDeleteOptionalParams
+    options?: WorkspacesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes a specified workspace.
@@ -126,6 +126,6 @@ export interface Workspaces {
   beginDeleteAndWait(
     resourceGroupName: string,
     workspaceName: string,
-    options?: WorkspacesDeleteOptionalParams
+    options?: WorkspacesDeleteOptionalParams,
   ): Promise<void>;
 }

@@ -30,7 +30,7 @@ async function listBackups() {
   const resArray = new Array();
   for await (let item of client.webApps.listSiteBackups(
     resourceGroupName,
-    name
+    name,
   )) {
     resArray.push(item);
   }

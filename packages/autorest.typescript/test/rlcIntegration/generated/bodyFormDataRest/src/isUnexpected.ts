@@ -7,25 +7,25 @@ import {
   FormdataUploadFileViaBody200Response,
   FormdataUploadFileViaBodyDefaultResponse,
   FormdataUploadFiles200Response,
-  FormdataUploadFilesDefaultResponse
+  FormdataUploadFilesDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
   "POST /formdata/stream/uploadfile": ["200"],
   "PUT /formdata/stream/uploadfile": ["200"],
-  "POST /formdata/stream/uploadfiles": ["200"]
+  "POST /formdata/stream/uploadfiles": ["200"],
 };
 
 export function isUnexpected(
-  response: FormdataUploadFile200Response | FormdataUploadFileDefaultResponse
+  response: FormdataUploadFile200Response | FormdataUploadFileDefaultResponse,
 ): response is FormdataUploadFileDefaultResponse;
 export function isUnexpected(
   response:
     | FormdataUploadFileViaBody200Response
-    | FormdataUploadFileViaBodyDefaultResponse
+    | FormdataUploadFileViaBodyDefaultResponse,
 ): response is FormdataUploadFileViaBodyDefaultResponse;
 export function isUnexpected(
-  response: FormdataUploadFiles200Response | FormdataUploadFilesDefaultResponse
+  response: FormdataUploadFiles200Response | FormdataUploadFilesDefaultResponse,
 ): response is FormdataUploadFilesDefaultResponse;
 export function isUnexpected(
   response:
@@ -34,7 +34,7 @@ export function isUnexpected(
     | FormdataUploadFileViaBody200Response
     | FormdataUploadFileViaBodyDefaultResponse
     | FormdataUploadFiles200Response
-    | FormdataUploadFilesDefaultResponse
+    | FormdataUploadFilesDefaultResponse,
 ): response is
   | FormdataUploadFileDefaultResponse
   | FormdataUploadFileViaBodyDefaultResponse
@@ -87,7 +87,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

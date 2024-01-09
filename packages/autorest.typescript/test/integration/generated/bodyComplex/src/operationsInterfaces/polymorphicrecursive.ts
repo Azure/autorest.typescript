@@ -10,7 +10,7 @@ import {
   PolymorphicrecursiveGetValidOptionalParams,
   PolymorphicrecursiveGetValidResponse,
   FishUnion,
-  PolymorphicrecursivePutValidOptionalParams
+  PolymorphicrecursivePutValidOptionalParams,
 } from "../models";
 
 /** Interface representing a Polymorphicrecursive. */
@@ -20,7 +20,7 @@ export interface Polymorphicrecursive {
    * @param options The options parameters.
    */
   getValid(
-    options?: PolymorphicrecursiveGetValidOptionalParams
+    options?: PolymorphicrecursiveGetValidOptionalParams,
   ): Promise<PolymorphicrecursiveGetValidResponse>;
   /**
    * Put complex types that are polymorphic and have recursive references
@@ -81,6 +81,6 @@ export interface Polymorphicrecursive {
    */
   putValid(
     complexBody: FishUnion,
-    options?: PolymorphicrecursivePutValidOptionalParams
+    options?: PolymorphicrecursivePutValidOptionalParams,
   ): Promise<void>;
 }

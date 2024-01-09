@@ -2,7 +2,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import {
   OperationsImpl,
@@ -24,7 +24,7 @@ import {
   ManagedPrivateEndpointsImpl,
   PrivateEndPointConnectionsImpl,
   PrivateEndpointConnectionImpl,
-  PrivateLinkResourcesImpl
+  PrivateLinkResourcesImpl,
 } from "./operations";
 import {
   Operations,
@@ -46,7 +46,7 @@ import {
   ManagedPrivateEndpoints,
   PrivateEndPointConnections,
   PrivateEndpointConnection,
-  PrivateLinkResources
+  PrivateLinkResources,
 } from "./operationsInterfaces";
 import { DataFactoryClientOptionalParams } from "./models";
 
@@ -62,7 +62,7 @@ export class DataFactoryClient extends coreClient.ServiceClient {
    */
   constructor(
     subscriptionId: string,
-    options?: DataFactoryClientOptionalParams
+    options?: DataFactoryClientOptionalParams,
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
@@ -73,7 +73,7 @@ export class DataFactoryClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: DataFactoryClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-datafactory/1.0.0-preview1`;
@@ -86,10 +86,10 @@ export class DataFactoryClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://management.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://management.azure.com",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -102,9 +102,8 @@ export class DataFactoryClient extends coreClient.ServiceClient {
     this.factories = new FactoriesImpl(this);
     this.exposureControl = new ExposureControlImpl(this);
     this.integrationRuntimes = new IntegrationRuntimesImpl(this);
-    this.integrationRuntimeObjectMetadata = new IntegrationRuntimeObjectMetadataImpl(
-      this
-    );
+    this.integrationRuntimeObjectMetadata =
+      new IntegrationRuntimeObjectMetadataImpl(this);
     this.integrationRuntimeNodes = new IntegrationRuntimeNodesImpl(this);
     this.linkedServices = new LinkedServicesImpl(this);
     this.datasets = new DatasetsImpl(this);
@@ -132,7 +131,7 @@ export class DataFactoryClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -146,7 +145,7 @@ export class DataFactoryClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

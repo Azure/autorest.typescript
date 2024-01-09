@@ -33,7 +33,7 @@ async function getSyncAgentLinkedDatabases() {
   for await (let item of client.syncAgents.listLinkedDatabases(
     resourceGroupName,
     serverName,
-    syncAgentName
+    syncAgentName,
   )) {
     resArray.push(item);
   }

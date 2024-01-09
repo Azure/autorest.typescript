@@ -4,7 +4,7 @@
 import {
   FormdataUploadFileParameters,
   FormdataUploadFileViaBodyParameters,
-  FormdataUploadFilesParameters
+  FormdataUploadFilesParameters,
 } from "./parameters";
 import {
   FormdataUploadFile200Response,
@@ -12,20 +12,20 @@ import {
   FormdataUploadFileViaBody200Response,
   FormdataUploadFileViaBodyDefaultResponse,
   FormdataUploadFiles200Response,
-  FormdataUploadFilesDefaultResponse
+  FormdataUploadFilesDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface UploadFile {
   /** Upload file */
   post(
-    options: FormdataUploadFileParameters
+    options: FormdataUploadFileParameters,
   ): StreamableMethod<
     FormdataUploadFile200Response | FormdataUploadFileDefaultResponse
   >;
   /** Upload file */
   put(
-    options: FormdataUploadFileViaBodyParameters
+    options: FormdataUploadFileViaBodyParameters,
   ): StreamableMethod<
     | FormdataUploadFileViaBody200Response
     | FormdataUploadFileViaBodyDefaultResponse
@@ -35,7 +35,7 @@ export interface UploadFile {
 export interface UploadFiles {
   /** Upload multiple files */
   post(
-    options: FormdataUploadFilesParameters
+    options: FormdataUploadFilesParameters,
   ): StreamableMethod<
     FormdataUploadFiles200Response | FormdataUploadFilesDefaultResponse
   >;

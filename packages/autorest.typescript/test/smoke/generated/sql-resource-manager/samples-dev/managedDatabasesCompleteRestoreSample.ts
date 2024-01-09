@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   CompleteDatabaseRestoreDefinition,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function completesAManagedDatabaseExternalBackupRestore() {
   const managedInstanceName = "myManagedInstanceName";
   const databaseName = "myDatabase";
   const parameters: CompleteDatabaseRestoreDefinition = {
-    lastBackupName: "testdb1_log4"
+    lastBackupName: "testdb1_log4",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function completesAManagedDatabaseExternalBackupRestore() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

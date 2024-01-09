@@ -15,7 +15,7 @@ import {
   ResourceSetRulesGetResourceSetRuleParameters,
   ResourceSetRulesCreateOrUpdateResourceSetRuleParameters,
   ResourceSetRulesDeleteResourceSetRuleParameters,
-  ResourceSetRulesListResourceSetRulesParameters
+  ResourceSetRulesListResourceSetRulesParameters,
 } from "./parameters";
 import {
   AccountsGetAccountProperties200Response,
@@ -46,21 +46,21 @@ import {
   ResourceSetRulesDeleteResourceSetRule204Response,
   ResourceSetRulesDeleteResourceSetRuleDefaultResponse,
   ResourceSetRulesListResourceSetRules200Response,
-  ResourceSetRulesListResourceSetRulesDefaultResponse
+  ResourceSetRulesListResourceSetRulesDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface AccountsGetAccountProperties {
   /** Get an account */
   get(
-    options?: AccountsGetAccountPropertiesParameters
+    options?: AccountsGetAccountPropertiesParameters,
   ): StreamableMethod<
     | AccountsGetAccountProperties200Response
     | AccountsGetAccountPropertiesDefaultResponse
   >;
   /** Updates an account */
   patch(
-    options: AccountsUpdateAccountPropertiesParameters
+    options: AccountsUpdateAccountPropertiesParameters,
   ): StreamableMethod<
     | AccountsUpdateAccountProperties200Response
     | AccountsUpdateAccountPropertiesDefaultResponse
@@ -70,7 +70,7 @@ export interface AccountsGetAccountProperties {
 export interface AccountsGetAccessKeys {
   /** List the authorization keys associated with this account. */
   post(
-    options?: AccountsGetAccessKeysParameters
+    options?: AccountsGetAccessKeysParameters,
   ): StreamableMethod<
     AccountsGetAccessKeys200Response | AccountsGetAccessKeysDefaultResponse
   >;
@@ -79,7 +79,7 @@ export interface AccountsGetAccessKeys {
 export interface AccountsRegenerateAccessKey {
   /** Regenerate the authorization keys associated with this data catalog. */
   post(
-    options: AccountsRegenerateAccessKeyParameters
+    options: AccountsRegenerateAccessKeyParameters,
   ): StreamableMethod<
     | AccountsRegenerateAccessKey200Response
     | AccountsRegenerateAccessKeyDefaultResponse
@@ -89,21 +89,21 @@ export interface AccountsRegenerateAccessKey {
 export interface CollectionsGetCollection {
   /** Get a collection */
   get(
-    options?: CollectionsGetCollectionParameters
+    options?: CollectionsGetCollectionParameters,
   ): StreamableMethod<
     | CollectionsGetCollection200Response
     | CollectionsGetCollectionDefaultResponse
   >;
   /** Creates or updates a collection entity. */
   put(
-    options: CollectionsCreateOrUpdateCollectionParameters
+    options: CollectionsCreateOrUpdateCollectionParameters,
   ): StreamableMethod<
     | CollectionsCreateOrUpdateCollection200Response
     | CollectionsCreateOrUpdateCollectionDefaultResponse
   >;
   /** Deletes a Collection entity. */
   delete(
-    options?: CollectionsDeleteCollectionParameters
+    options?: CollectionsDeleteCollectionParameters,
   ): StreamableMethod<
     | CollectionsDeleteCollection204Response
     | CollectionsDeleteCollectionDefaultResponse
@@ -113,7 +113,7 @@ export interface CollectionsGetCollection {
 export interface CollectionsListCollections {
   /** List the collections in the account. */
   get(
-    options?: CollectionsListCollectionsParameters
+    options?: CollectionsListCollectionsParameters,
   ): StreamableMethod<
     | CollectionsListCollections200Response
     | CollectionsListCollectionsDefaultResponse
@@ -123,7 +123,7 @@ export interface CollectionsListCollections {
 export interface CollectionsListChildCollectionNames {
   /** Lists the child collections names in the collection. */
   get(
-    options?: CollectionsListChildCollectionNamesParameters
+    options?: CollectionsListChildCollectionNamesParameters,
   ): StreamableMethod<
     | CollectionsListChildCollectionNames200Response
     | CollectionsListChildCollectionNamesDefaultResponse
@@ -133,7 +133,7 @@ export interface CollectionsListChildCollectionNames {
 export interface CollectionsGetCollectionPath {
   /** Gets the parent name and parent friendly name chains that represent the collection path. */
   get(
-    options?: CollectionsGetCollectionPathParameters
+    options?: CollectionsGetCollectionPathParameters,
   ): StreamableMethod<
     | CollectionsGetCollectionPath200Response
     | CollectionsGetCollectionPathDefaultResponse
@@ -143,21 +143,21 @@ export interface CollectionsGetCollectionPath {
 export interface ResourceSetRulesGetResourceSetRule {
   /** Get a resource set config service model. */
   get(
-    options?: ResourceSetRulesGetResourceSetRuleParameters
+    options?: ResourceSetRulesGetResourceSetRuleParameters,
   ): StreamableMethod<
     | ResourceSetRulesGetResourceSetRule200Response
     | ResourceSetRulesGetResourceSetRuleDefaultResponse
   >;
   /** Creates or updates an resource set config. */
   put(
-    options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters
+    options: ResourceSetRulesCreateOrUpdateResourceSetRuleParameters,
   ): StreamableMethod<
     | ResourceSetRulesCreateOrUpdateResourceSetRule200Response
     | ResourceSetRulesCreateOrUpdateResourceSetRuleDefaultResponse
   >;
   /** Deletes a ResourceSetRuleConfig resource. */
   delete(
-    options?: ResourceSetRulesDeleteResourceSetRuleParameters
+    options?: ResourceSetRulesDeleteResourceSetRuleParameters,
   ): StreamableMethod<
     | ResourceSetRulesDeleteResourceSetRule200Response
     | ResourceSetRulesDeleteResourceSetRule204Response
@@ -168,7 +168,7 @@ export interface ResourceSetRulesGetResourceSetRule {
 export interface ResourceSetRulesListResourceSetRules {
   /** Get a resource set config service model. */
   get(
-    options?: ResourceSetRulesListResourceSetRulesParameters
+    options?: ResourceSetRulesListResourceSetRulesParameters,
   ): StreamableMethod<
     | ResourceSetRulesListResourceSetRules200Response
     | ResourceSetRulesListResourceSetRulesDefaultResponse
@@ -185,23 +185,23 @@ export interface Routes {
   /** Resource for '/collections/\{collectionName\}' has methods for the following verbs: get, put, delete */
   (
     path: "/collections/{collectionName}",
-    collectionName: string
+    collectionName: string,
   ): CollectionsGetCollection;
   /** Resource for '/collections' has methods for the following verbs: get */
   (path: "/collections"): CollectionsListCollections;
   /** Resource for '/collections/\{collectionName\}/getChildCollectionNames' has methods for the following verbs: get */
   (
     path: "/collections/{collectionName}/getChildCollectionNames",
-    collectionName: string
+    collectionName: string,
   ): CollectionsListChildCollectionNames;
   /** Resource for '/collections/\{collectionName\}/getCollectionPath' has methods for the following verbs: get */
   (
     path: "/collections/{collectionName}/getCollectionPath",
-    collectionName: string
+    collectionName: string,
   ): CollectionsGetCollectionPath;
   /** Resource for '/resourceSetRuleConfigs/defaultResourceSetRuleConfig' has methods for the following verbs: get, put, delete */
   (
-    path: "/resourceSetRuleConfigs/defaultResourceSetRuleConfig"
+    path: "/resourceSetRuleConfigs/defaultResourceSetRuleConfig",
   ): ResourceSetRulesGetResourceSetRule;
   /** Resource for '/resourceSetRuleConfigs' has methods for the following verbs: get */
   (path: "/resourceSetRuleConfigs"): ResourceSetRulesListResourceSetRules;

@@ -17,11 +17,11 @@ export const Pet: coreClient.CompositeMapper = {
         serializedName: "name",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorModel: coreClient.CompositeMapper = {
@@ -32,17 +32,17 @@ export const ErrorModel: coreClient.CompositeMapper = {
       status: {
         serializedName: "status",
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       message: {
         serializedName: "message",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Feline: coreClient.CompositeMapper = {
@@ -53,17 +53,17 @@ export const Feline: coreClient.CompositeMapper = {
       meows: {
         serializedName: "meows",
         type: {
-          name: "Boolean"
-        }
+          name: "Boolean",
+        },
       },
       hisses: {
         serializedName: "hisses",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const Horse: coreClient.CompositeMapper = {
@@ -75,11 +75,11 @@ export const Horse: coreClient.CompositeMapper = {
       isAShowHorse: {
         serializedName: "isAShowHorse",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const Cat: coreClient.CompositeMapper = {
@@ -92,11 +92,11 @@ export const Cat: coreClient.CompositeMapper = {
       likesMilk: {
         serializedName: "likesMilk",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };
 
 export const Kitten: coreClient.CompositeMapper = {
@@ -108,9 +108,9 @@ export const Kitten: coreClient.CompositeMapper = {
       eatsMiceYet: {
         serializedName: "eatsMiceYet",
         type: {
-          name: "Boolean"
-        }
-      }
-    }
-  }
+          name: "Boolean",
+        },
+      },
+    },
+  },
 };

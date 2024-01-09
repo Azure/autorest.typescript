@@ -45,7 +45,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface CreateOrUpdate {
   /** Creates or updates a User */
   patch(
-    options: CreateOrUpdateParameters
+    options: CreateOrUpdateParameters,
   ): StreamableMethod<
     | CreateOrUpdate200Response
     | CreateOrUpdate201Response
@@ -53,7 +53,7 @@ export interface CreateOrUpdate {
   >;
   /** Creates or replaces a User */
   put(
-    options: CreateOrReplaceParameters
+    options: CreateOrReplaceParameters,
   ): StreamableMethod<
     | CreateOrReplace200Response
     | CreateOrReplace201Response
@@ -61,11 +61,11 @@ export interface CreateOrUpdate {
   >;
   /** Gets a User */
   get(
-    options?: GetParameters
+    options?: GetParameters,
   ): StreamableMethod<Get200Response | GetDefaultResponse>;
   /** Deletes a User */
   delete(
-    options?: DeleteParameters
+    options?: DeleteParameters,
   ): StreamableMethod<
     DeleteOperation204Response | DeleteOperationDefaultResponse
   >;
@@ -74,21 +74,21 @@ export interface CreateOrUpdate {
 export interface List {
   /** Lists all Users */
   get(
-    options?: ListParameters
+    options?: ListParameters,
   ): StreamableMethod<List200Response | ListDefaultResponse>;
 }
 
 export interface ListWithPage {
   /** List with Azure.Core.Page<>. */
   get(
-    options?: ListWithPageParameters
+    options?: ListWithPageParameters,
   ): StreamableMethod<ListWithPage200Response | ListWithPageDefaultResponse>;
 }
 
 export interface ListWithParameters {
   /** List with extensible enum parameter Azure.Core.Page<>. */
   get(
-    options: ListWithParametersParameters
+    options: ListWithParametersParameters,
   ): StreamableMethod<
     ListWithParameters200Response | ListWithParametersDefaultResponse
   >;
@@ -97,7 +97,7 @@ export interface ListWithParameters {
 export interface ListWithCustomPageModel {
   /** List with custom page model. */
   get(
-    options?: ListWithCustomPageModelParameters
+    options?: ListWithCustomPageModelParameters,
   ): StreamableMethod<
     ListWithCustomPageModel200Response | ListWithCustomPageModelDefaultResponse
   >;
@@ -106,7 +106,7 @@ export interface ListWithCustomPageModel {
 export interface Export {
   /** Exports a User */
   post(
-    options: ExportParameters
+    options: ExportParameters,
   ): StreamableMethod<
     ExportOperation200Response | ExportOperationDefaultResponse
   >;
@@ -115,14 +115,14 @@ export interface Export {
 export interface ListFirstItem {
   /** Two operations with two different page item types should be successfully generated. Should generate model for FirstItem. */
   get(
-    options?: ListFirstItemParameters
+    options?: ListFirstItemParameters,
   ): StreamableMethod<ListFirstItem200Response | ListFirstItemDefaultResponse>;
 }
 
 export interface ListSecondItem {
   /** Two operations with two different page item types should be successfully generated. Should generate model for SecondItem. */
   get(
-    options?: ListSecondItemParameters
+    options?: ListSecondItemParameters,
   ): StreamableMethod<
     ListSecondItem200Response | ListSecondItemDefaultResponse
   >;

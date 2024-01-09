@@ -30,7 +30,7 @@ async function defaultSecurityRuleGet() {
   const result = await client.defaultSecurityRules.get(
     resourceGroupName,
     networkSecurityGroupName,
-    defaultSecurityRuleName
+    defaultSecurityRuleName,
   );
   console.log(result);
 }

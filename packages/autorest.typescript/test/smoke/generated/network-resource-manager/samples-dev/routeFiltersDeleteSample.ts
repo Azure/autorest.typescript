@@ -28,7 +28,7 @@ async function routeFilterDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeFilters.beginDeleteAndWait(
     resourceGroupName,
-    routeFilterName
+    routeFilterName,
   );
   console.log(result);
 }

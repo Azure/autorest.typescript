@@ -15,7 +15,7 @@ import { PurviewMetadataPoliciesClient } from "./clientDefinitions";
 export function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): PurviewMetadataPoliciesClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/policyStore`;
   options.apiVersion = options.apiVersion ?? "2021-07-01-preview";
@@ -27,20 +27,20 @@ export function createClient(
   options = {
     ...options,
     userAgentOptions: {
-      userAgentPrefix
+      userAgentPrefix,
     },
     loggingOptions: {
-      logger: options.loggingOptions?.logger ?? logger.info
+      logger: options.loggingOptions?.logger ?? logger.info,
     },
     credentials: {
-      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth"
-    }
+      apiKeyHeaderName: options.credentials?.apiKeyHeaderName ?? "CustomAuth",
+    },
   };
 
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as PurviewMetadataPoliciesClient;
 
   return client;

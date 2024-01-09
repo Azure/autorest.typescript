@@ -18,7 +18,7 @@ async function attachmentsDownload() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const attachmentId = "ATTACHMENT123";
@@ -26,7 +26,7 @@ async function attachmentsDownload() {
     .path(
       "/farmers/{farmerId}/attachments/{attachmentId}/file",
       farmerId,
-      attachmentId
+      attachmentId,
     )
     .get();
   console.log(result);

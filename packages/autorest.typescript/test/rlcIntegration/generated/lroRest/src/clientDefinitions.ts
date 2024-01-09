@@ -82,7 +82,7 @@ import {
   LROsCustomHeaderPutAsyncRetrySucceededParameters,
   LROsCustomHeaderPut201CreatingSucceeded200Parameters,
   LROsCustomHeaderPost202Retry200Parameters,
-  LROsCustomHeaderPostAsyncRetrySucceededParameters
+  LROsCustomHeaderPostAsyncRetrySucceededParameters,
 } from "./parameters";
 import {
   LROsPut200Succeeded200Response,
@@ -270,14 +270,14 @@ import {
   LROsCustomHeaderPost202Retry200202Response,
   LROsCustomHeaderPost202Retry200DefaultResponse,
   LROsCustomHeaderPostAsyncRetrySucceeded202Response,
-  LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
+  LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface LROsPut200Succeeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
   put(
-    options?: LROsPut200SucceededParameters
+    options?: LROsPut200SucceededParameters,
   ): StreamableMethod<
     | LROsPut200Succeeded200Response
     | LROsPut200Succeeded204Response
@@ -288,7 +288,7 @@ export interface LROsPut200Succeeded {
 export interface LROsPatch200SucceededIgnoreHeaders {
   /** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
   patch(
-    options?: LROsPatch200SucceededIgnoreHeadersParameters
+    options?: LROsPatch200SucceededIgnoreHeadersParameters,
   ): StreamableMethod<
     | LROsPatch200SucceededIgnoreHeaders200Response
     | LROsPatch200SucceededIgnoreHeadersDefaultResponse
@@ -298,7 +298,7 @@ export interface LROsPatch200SucceededIgnoreHeaders {
 export interface LROsPatch201RetryWithAsyncHeader {
   /** Long running patch request, service returns a 201 to the initial request with async header. */
   patch(
-    options?: LROsPatch201RetryWithAsyncHeaderParameters
+    options?: LROsPatch201RetryWithAsyncHeaderParameters,
   ): StreamableMethod<
     | LROsPatch201RetryWithAsyncHeader200Response
     | LROsPatch201RetryWithAsyncHeader201Response
@@ -309,7 +309,7 @@ export interface LROsPatch201RetryWithAsyncHeader {
 export interface LROsPatch202RetryWithAsyncAndLocationHeader {
   /** Long running patch request, service returns a 202 to the initial request with async and location header. */
   patch(
-    options?: LROsPatch202RetryWithAsyncAndLocationHeaderParameters
+    options?: LROsPatch202RetryWithAsyncAndLocationHeaderParameters,
   ): StreamableMethod<
     | LROsPatch202RetryWithAsyncAndLocationHeader200Response
     | LROsPatch202RetryWithAsyncAndLocationHeader202Response
@@ -320,7 +320,7 @@ export interface LROsPatch202RetryWithAsyncAndLocationHeader {
 export interface LROsPut201Succeeded {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
   put(
-    options?: LROsPut201SucceededParameters
+    options?: LROsPut201SucceededParameters,
   ): StreamableMethod<
     LROsPut201Succeeded201Response | LROsPut201SucceededDefaultResponse
   >;
@@ -329,7 +329,7 @@ export interface LROsPut201Succeeded {
 export interface LROsPost202List {
   /** Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }]. */
   post(
-    options?: LROsPost202ListParameters
+    options?: LROsPost202ListParameters,
   ): StreamableMethod<
     | LROsPost202List200Response
     | LROsPost202List202Response
@@ -340,7 +340,7 @@ export interface LROsPost202List {
 export interface LROsPut200SucceededNoState {
   /** Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’. */
   put(
-    options?: LROsPut200SucceededNoStateParameters
+    options?: LROsPut200SucceededNoStateParameters,
   ): StreamableMethod<
     | LROsPut200SucceededNoState200Response
     | LROsPut200SucceededNoStateDefaultResponse
@@ -350,7 +350,7 @@ export interface LROsPut200SucceededNoState {
 export interface LROsPut202Retry200 {
   /** Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState */
   put(
-    options?: LROsPut202Retry200Parameters
+    options?: LROsPut202Retry200Parameters,
   ): StreamableMethod<
     LROsPut202Retry200202Response | LROsPut202Retry200DefaultResponse
   >;
@@ -359,7 +359,7 @@ export interface LROsPut202Retry200 {
 export interface LROsPut201CreatingSucceeded200 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LROsPut201CreatingSucceeded200Parameters
+    options?: LROsPut201CreatingSucceeded200Parameters,
   ): StreamableMethod<
     | LROsPut201CreatingSucceeded200200Response
     | LROsPut201CreatingSucceeded200201Response
@@ -370,7 +370,7 @@ export interface LROsPut201CreatingSucceeded200 {
 export interface LROsPut200UpdatingSucceeded204 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LROsPut200UpdatingSucceeded204Parameters
+    options?: LROsPut200UpdatingSucceeded204Parameters,
   ): StreamableMethod<
     | LROsPut200UpdatingSucceeded204200Response
     | LROsPut200UpdatingSucceeded204DefaultResponse
@@ -380,7 +380,7 @@ export interface LROsPut200UpdatingSucceeded204 {
 export interface LROsPut201CreatingFailed200 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
   put(
-    options?: LROsPut201CreatingFailed200Parameters
+    options?: LROsPut201CreatingFailed200Parameters,
   ): StreamableMethod<
     | LROsPut201CreatingFailed200200Response
     | LROsPut201CreatingFailed200201Response
@@ -391,7 +391,7 @@ export interface LROsPut201CreatingFailed200 {
 export interface LROsPut200Acceptedcanceled200 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
   put(
-    options?: LROsPut200Acceptedcanceled200Parameters
+    options?: LROsPut200Acceptedcanceled200Parameters,
   ): StreamableMethod<
     | LROsPut200Acceptedcanceled200200Response
     | LROsPut200Acceptedcanceled200DefaultResponse
@@ -401,7 +401,7 @@ export interface LROsPut200Acceptedcanceled200 {
 export interface LROsPutNoHeaderInRetry {
   /** Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header. */
   put(
-    options?: LROsPutNoHeaderInRetryParameters
+    options?: LROsPutNoHeaderInRetryParameters,
   ): StreamableMethod<
     LROsPutNoHeaderInRetry202Response | LROsPutNoHeaderInRetryDefaultResponse
   >;
@@ -410,7 +410,7 @@ export interface LROsPutNoHeaderInRetry {
 export interface LROsPutAsyncRetrySucceeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsPutAsyncRetrySucceededParameters
+    options?: LROsPutAsyncRetrySucceededParameters,
   ): StreamableMethod<
     | LROsPutAsyncRetrySucceeded200Response
     | LROsPutAsyncRetrySucceededDefaultResponse
@@ -420,7 +420,7 @@ export interface LROsPutAsyncRetrySucceeded {
 export interface LROsPutAsyncNoRetrySucceeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsPutAsyncNoRetrySucceededParameters
+    options?: LROsPutAsyncNoRetrySucceededParameters,
   ): StreamableMethod<
     | LROsPutAsyncNoRetrySucceeded200Response
     | LROsPutAsyncNoRetrySucceededDefaultResponse
@@ -430,7 +430,7 @@ export interface LROsPutAsyncNoRetrySucceeded {
 export interface LROsPutAsyncRetryFailed {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsPutAsyncRetryFailedParameters
+    options?: LROsPutAsyncRetryFailedParameters,
   ): StreamableMethod<
     LROsPutAsyncRetryFailed200Response | LROsPutAsyncRetryFailedDefaultResponse
   >;
@@ -439,7 +439,7 @@ export interface LROsPutAsyncRetryFailed {
 export interface LROsPutAsyncNoRetrycanceled {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsPutAsyncNoRetrycanceledParameters
+    options?: LROsPutAsyncNoRetrycanceledParameters,
   ): StreamableMethod<
     | LROsPutAsyncNoRetrycanceled200Response
     | LROsPutAsyncNoRetrycanceledDefaultResponse
@@ -449,7 +449,7 @@ export interface LROsPutAsyncNoRetrycanceled {
 export interface LROsPutAsyncNoHeaderInRetry {
   /** Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
   put(
-    options?: LROsPutAsyncNoHeaderInRetryParameters
+    options?: LROsPutAsyncNoHeaderInRetryParameters,
   ): StreamableMethod<
     | LROsPutAsyncNoHeaderInRetry201Response
     | LROsPutAsyncNoHeaderInRetryDefaultResponse
@@ -459,7 +459,7 @@ export interface LROsPutAsyncNoHeaderInRetry {
 export interface LROsPutNonResource {
   /** Long running put request with non resource. */
   put(
-    options?: LROsPutNonResourceParameters
+    options?: LROsPutNonResourceParameters,
   ): StreamableMethod<
     LROsPutNonResource202Response | LROsPutNonResourceDefaultResponse
   >;
@@ -468,7 +468,7 @@ export interface LROsPutNonResource {
 export interface LROsPutAsyncNonResource {
   /** Long running put request with non resource. */
   put(
-    options?: LROsPutAsyncNonResourceParameters
+    options?: LROsPutAsyncNonResourceParameters,
   ): StreamableMethod<
     LROsPutAsyncNonResource202Response | LROsPutAsyncNonResourceDefaultResponse
   >;
@@ -477,7 +477,7 @@ export interface LROsPutAsyncNonResource {
 export interface LROsPutSubResource {
   /** Long running put request with sub resource. */
   put(
-    options?: LROsPutSubResourceParameters
+    options?: LROsPutSubResourceParameters,
   ): StreamableMethod<
     LROsPutSubResource202Response | LROsPutSubResourceDefaultResponse
   >;
@@ -486,7 +486,7 @@ export interface LROsPutSubResource {
 export interface LROsPutAsyncSubResource {
   /** Long running put request with sub resource. */
   put(
-    options?: LROsPutAsyncSubResourceParameters
+    options?: LROsPutAsyncSubResourceParameters,
   ): StreamableMethod<
     LROsPutAsyncSubResource202Response | LROsPutAsyncSubResourceDefaultResponse
   >;
@@ -495,7 +495,7 @@ export interface LROsPutAsyncSubResource {
 export interface LROsDeleteProvisioning202Accepted200Succeeded {
   /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LROsDeleteProvisioning202Accepted200SucceededParameters
+    options?: LROsDeleteProvisioning202Accepted200SucceededParameters,
   ): StreamableMethod<
     | LROsDeleteProvisioning202Accepted200Succeeded200Response
     | LROsDeleteProvisioning202Accepted200Succeeded202Response
@@ -506,7 +506,7 @@ export interface LROsDeleteProvisioning202Accepted200Succeeded {
 export interface LROsDeleteProvisioning202DeletingFailed200 {
   /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
   delete(
-    options?: LROsDeleteProvisioning202DeletingFailed200Parameters
+    options?: LROsDeleteProvisioning202DeletingFailed200Parameters,
   ): StreamableMethod<
     | LROsDeleteProvisioning202DeletingFailed200200Response
     | LROsDeleteProvisioning202DeletingFailed200202Response
@@ -517,7 +517,7 @@ export interface LROsDeleteProvisioning202DeletingFailed200 {
 export interface LROsDeleteProvisioning202Deletingcanceled200 {
   /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
   delete(
-    options?: LROsDeleteProvisioning202Deletingcanceled200Parameters
+    options?: LROsDeleteProvisioning202Deletingcanceled200Parameters,
   ): StreamableMethod<
     | LROsDeleteProvisioning202Deletingcanceled200200Response
     | LROsDeleteProvisioning202Deletingcanceled200202Response
@@ -528,7 +528,7 @@ export interface LROsDeleteProvisioning202Deletingcanceled200 {
 export interface LROsDelete204Succeeded {
   /** Long running delete succeeds and returns right away */
   delete(
-    options?: LROsDelete204SucceededParameters
+    options?: LROsDelete204SucceededParameters,
   ): StreamableMethod<
     LROsDelete204Succeeded204Response | LROsDelete204SucceededDefaultResponse
   >;
@@ -537,7 +537,7 @@ export interface LROsDelete204Succeeded {
 export interface LROsDelete202Retry200 {
   /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LROsDelete202Retry200Parameters
+    options?: LROsDelete202Retry200Parameters,
   ): StreamableMethod<
     | LROsDelete202Retry200200Response
     | LROsDelete202Retry200202Response
@@ -548,7 +548,7 @@ export interface LROsDelete202Retry200 {
 export interface LROsDelete202NoRetry204 {
   /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LROsDelete202NoRetry204Parameters
+    options?: LROsDelete202NoRetry204Parameters,
   ): StreamableMethod<
     | LROsDelete202NoRetry204200Response
     | LROsDelete202NoRetry204202Response
@@ -559,7 +559,7 @@ export interface LROsDelete202NoRetry204 {
 export interface LROsDeleteNoHeaderInRetry {
   /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
   delete(
-    options?: LROsDeleteNoHeaderInRetryParameters
+    options?: LROsDeleteNoHeaderInRetryParameters,
   ): StreamableMethod<
     | LROsDeleteNoHeaderInRetry202Response
     | LROsDeleteNoHeaderInRetry204Response
@@ -570,7 +570,7 @@ export interface LROsDeleteNoHeaderInRetry {
 export interface LROsDeleteAsyncNoHeaderInRetry {
   /** Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
   delete(
-    options?: LROsDeleteAsyncNoHeaderInRetryParameters
+    options?: LROsDeleteAsyncNoHeaderInRetryParameters,
   ): StreamableMethod<
     | LROsDeleteAsyncNoHeaderInRetry202Response
     | LROsDeleteAsyncNoHeaderInRetry204Response
@@ -581,7 +581,7 @@ export interface LROsDeleteAsyncNoHeaderInRetry {
 export interface LROsDeleteAsyncRetrySucceeded {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsDeleteAsyncRetrySucceededParameters
+    options?: LROsDeleteAsyncRetrySucceededParameters,
   ): StreamableMethod<
     | LROsDeleteAsyncRetrySucceeded202Response
     | LROsDeleteAsyncRetrySucceededDefaultResponse
@@ -591,7 +591,7 @@ export interface LROsDeleteAsyncRetrySucceeded {
 export interface LROsDeleteAsyncNoRetrySucceeded {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsDeleteAsyncNoRetrySucceededParameters
+    options?: LROsDeleteAsyncNoRetrySucceededParameters,
   ): StreamableMethod<
     | LROsDeleteAsyncNoRetrySucceeded202Response
     | LROsDeleteAsyncNoRetrySucceededDefaultResponse
@@ -601,7 +601,7 @@ export interface LROsDeleteAsyncNoRetrySucceeded {
 export interface LROsDeleteAsyncRetryFailed {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsDeleteAsyncRetryFailedParameters
+    options?: LROsDeleteAsyncRetryFailedParameters,
   ): StreamableMethod<
     | LROsDeleteAsyncRetryFailed202Response
     | LROsDeleteAsyncRetryFailedDefaultResponse
@@ -611,7 +611,7 @@ export interface LROsDeleteAsyncRetryFailed {
 export interface LROsDeleteAsyncRetrycanceled {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsDeleteAsyncRetrycanceledParameters
+    options?: LROsDeleteAsyncRetrycanceledParameters,
   ): StreamableMethod<
     | LROsDeleteAsyncRetrycanceled202Response
     | LROsDeleteAsyncRetrycanceledDefaultResponse
@@ -621,7 +621,7 @@ export interface LROsDeleteAsyncRetrycanceled {
 export interface LROsPost200WithPayload {
   /** Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success. */
   post(
-    options?: LROsPost200WithPayloadParameters
+    options?: LROsPost200WithPayloadParameters,
   ): StreamableMethod<
     | LROsPost200WithPayload200Response
     | LROsPost200WithPayload202Response
@@ -632,7 +632,7 @@ export interface LROsPost200WithPayload {
 export interface LROsPost202Retry200 {
   /** Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
   post(
-    options?: LROsPost202Retry200Parameters
+    options?: LROsPost202Retry200Parameters,
   ): StreamableMethod<
     LROsPost202Retry200202Response | LROsPost202Retry200DefaultResponse
   >;
@@ -641,7 +641,7 @@ export interface LROsPost202Retry200 {
 export interface LROsPost202NoRetry204 {
   /** Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success */
   post(
-    options?: LROsPost202NoRetry204Parameters
+    options?: LROsPost202NoRetry204Parameters,
   ): StreamableMethod<
     LROsPost202NoRetry204202Response | LROsPost202NoRetry204DefaultResponse
   >;
@@ -650,7 +650,7 @@ export interface LROsPost202NoRetry204 {
 export interface LROsPostDoubleHeadersFinalLocationGet {
   /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object */
   post(
-    options?: LROsPostDoubleHeadersFinalLocationGetParameters
+    options?: LROsPostDoubleHeadersFinalLocationGetParameters,
   ): StreamableMethod<
     | LROsPostDoubleHeadersFinalLocationGet202Response
     | LROsPostDoubleHeadersFinalLocationGetDefaultResponse
@@ -660,7 +660,7 @@ export interface LROsPostDoubleHeadersFinalLocationGet {
 export interface LROsPostDoubleHeadersFinalAzureHeaderGet {
   /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object */
   post(
-    options?: LROsPostDoubleHeadersFinalAzureHeaderGetParameters
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetParameters,
   ): StreamableMethod<
     | LROsPostDoubleHeadersFinalAzureHeaderGet202Response
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
@@ -670,7 +670,7 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGet {
 export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefault {
   /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior. */
   post(
-    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters,
   ): StreamableMethod<
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
     | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultDefaultResponse
@@ -680,7 +680,7 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefault {
 export interface LROsPostAsyncRetrySucceeded {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROsPostAsyncRetrySucceededParameters
+    options?: LROsPostAsyncRetrySucceededParameters,
   ): StreamableMethod<
     | LROsPostAsyncRetrySucceeded200Response
     | LROsPostAsyncRetrySucceeded202Response
@@ -691,7 +691,7 @@ export interface LROsPostAsyncRetrySucceeded {
 export interface LROsPostAsyncNoRetrySucceeded {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROsPostAsyncNoRetrySucceededParameters
+    options?: LROsPostAsyncNoRetrySucceededParameters,
   ): StreamableMethod<
     | LROsPostAsyncNoRetrySucceeded200Response
     | LROsPostAsyncNoRetrySucceeded202Response
@@ -702,7 +702,7 @@ export interface LROsPostAsyncNoRetrySucceeded {
 export interface LROsPostAsyncRetryFailed {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROsPostAsyncRetryFailedParameters
+    options?: LROsPostAsyncRetryFailedParameters,
   ): StreamableMethod<
     | LROsPostAsyncRetryFailed202Response
     | LROsPostAsyncRetryFailedDefaultResponse
@@ -712,7 +712,7 @@ export interface LROsPostAsyncRetryFailed {
 export interface LROsPostAsyncRetrycanceled {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROsPostAsyncRetrycanceledParameters
+    options?: LROsPostAsyncRetrycanceledParameters,
   ): StreamableMethod<
     | LROsPostAsyncRetrycanceled202Response
     | LROsPostAsyncRetrycanceledDefaultResponse
@@ -722,7 +722,7 @@ export interface LROsPostAsyncRetrycanceled {
 export interface LRORetrysPut201CreatingSucceeded200 {
   /** Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LRORetrysPut201CreatingSucceeded200Parameters
+    options?: LRORetrysPut201CreatingSucceeded200Parameters,
   ): StreamableMethod<
     | LRORetrysPut201CreatingSucceeded200200Response
     | LRORetrysPut201CreatingSucceeded200201Response
@@ -733,7 +733,7 @@ export interface LRORetrysPut201CreatingSucceeded200 {
 export interface LRORetrysPutAsyncRelativeRetrySucceeded {
   /** Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LRORetrysPutAsyncRelativeRetrySucceededParameters
+    options?: LRORetrysPutAsyncRelativeRetrySucceededParameters,
   ): StreamableMethod<
     | LRORetrysPutAsyncRelativeRetrySucceeded200Response
     | LRORetrysPutAsyncRelativeRetrySucceededDefaultResponse
@@ -743,7 +743,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceeded {
 export interface LRORetrysDeleteProvisioning202Accepted200Succeeded {
   /** Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LRORetrysDeleteProvisioning202Accepted200SucceededParameters
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededParameters,
   ): StreamableMethod<
     | LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
     | LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
@@ -754,7 +754,7 @@ export interface LRORetrysDeleteProvisioning202Accepted200Succeeded {
 export interface LRORetrysDelete202Retry200 {
   /** Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LRORetrysDelete202Retry200Parameters
+    options?: LRORetrysDelete202Retry200Parameters,
   ): StreamableMethod<
     | LRORetrysDelete202Retry200202Response
     | LRORetrysDelete202Retry200DefaultResponse
@@ -764,7 +764,7 @@ export interface LRORetrysDelete202Retry200 {
 export interface LRORetrysDeleteAsyncRelativeRetrySucceeded {
   /** Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LRORetrysDeleteAsyncRelativeRetrySucceededParameters
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededParameters,
   ): StreamableMethod<
     | LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
     | LRORetrysDeleteAsyncRelativeRetrySucceededDefaultResponse
@@ -774,7 +774,7 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceeded {
 export interface LRORetrysPost202Retry200 {
   /** Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
   post(
-    options?: LRORetrysPost202Retry200Parameters
+    options?: LRORetrysPost202Retry200Parameters,
   ): StreamableMethod<
     | LRORetrysPost202Retry200202Response
     | LRORetrysPost202Retry200DefaultResponse
@@ -784,7 +784,7 @@ export interface LRORetrysPost202Retry200 {
 export interface LRORetrysPostAsyncRelativeRetrySucceeded {
   /** Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LRORetrysPostAsyncRelativeRetrySucceededParameters
+    options?: LRORetrysPostAsyncRelativeRetrySucceededParameters,
   ): StreamableMethod<
     | LRORetrysPostAsyncRelativeRetrySucceeded202Response
     | LRORetrysPostAsyncRelativeRetrySucceededDefaultResponse
@@ -794,7 +794,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceeded {
 export interface LrosaDsPutNonRetry400 {
   /** Long running put request, service returns a 400 to the initial request */
   put(
-    options?: LrosaDsPutNonRetry400Parameters
+    options?: LrosaDsPutNonRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsPutNonRetry400200Response
     | LrosaDsPutNonRetry400201Response
@@ -805,7 +805,7 @@ export interface LrosaDsPutNonRetry400 {
 export interface LrosaDsPutNonRetry201Creating400 {
   /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
   put(
-    options?: LrosaDsPutNonRetry201Creating400Parameters
+    options?: LrosaDsPutNonRetry201Creating400Parameters,
   ): StreamableMethod<
     | LrosaDsPutNonRetry201Creating400200Response
     | LrosaDsPutNonRetry201Creating400201Response
@@ -816,7 +816,7 @@ export interface LrosaDsPutNonRetry201Creating400 {
 export interface LrosaDsPutNonRetry201Creating400InvalidJson {
   /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
   put(
-    options?: LrosaDsPutNonRetry201Creating400InvalidJsonParameters
+    options?: LrosaDsPutNonRetry201Creating400InvalidJsonParameters,
   ): StreamableMethod<
     | LrosaDsPutNonRetry201Creating400InvalidJson200Response
     | LrosaDsPutNonRetry201Creating400InvalidJson201Response
@@ -827,7 +827,7 @@ export interface LrosaDsPutNonRetry201Creating400InvalidJson {
 export interface LrosaDsPutAsyncRelativeRetry400 {
   /** Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsPutAsyncRelativeRetry400Parameters
+    options?: LrosaDsPutAsyncRelativeRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetry400200Response
     | LrosaDsPutAsyncRelativeRetry400DefaultResponse
@@ -837,7 +837,7 @@ export interface LrosaDsPutAsyncRelativeRetry400 {
 export interface LrosaDsDeleteNonRetry400 {
   /** Long running delete request, service returns a 400 with an error body */
   delete(
-    options?: LrosaDsDeleteNonRetry400Parameters
+    options?: LrosaDsDeleteNonRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsDeleteNonRetry400202Response
     | LrosaDsDeleteNonRetry400DefaultResponse
@@ -847,7 +847,7 @@ export interface LrosaDsDeleteNonRetry400 {
 export interface LrosaDsDelete202NonRetry400 {
   /** Long running delete request, service returns a 202 with a location header */
   delete(
-    options?: LrosaDsDelete202NonRetry400Parameters
+    options?: LrosaDsDelete202NonRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsDelete202NonRetry400202Response
     | LrosaDsDelete202NonRetry400DefaultResponse
@@ -857,7 +857,7 @@ export interface LrosaDsDelete202NonRetry400 {
 export interface LrosaDsDeleteAsyncRelativeRetry400 {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LrosaDsDeleteAsyncRelativeRetry400Parameters
+    options?: LrosaDsDeleteAsyncRelativeRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetry400202Response
     | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
@@ -867,7 +867,7 @@ export interface LrosaDsDeleteAsyncRelativeRetry400 {
 export interface LrosaDsPostNonRetry400 {
   /** Long running post request, service returns a 400 with no error body */
   post(
-    options?: LrosaDsPostNonRetry400Parameters
+    options?: LrosaDsPostNonRetry400Parameters,
   ): StreamableMethod<
     LrosaDsPostNonRetry400202Response | LrosaDsPostNonRetry400DefaultResponse
   >;
@@ -876,7 +876,7 @@ export interface LrosaDsPostNonRetry400 {
 export interface LrosaDsPost202NonRetry400 {
   /** Long running post request, service returns a 202 with a location header */
   post(
-    options?: LrosaDsPost202NonRetry400Parameters
+    options?: LrosaDsPost202NonRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsPost202NonRetry400202Response
     | LrosaDsPost202NonRetry400DefaultResponse
@@ -886,7 +886,7 @@ export interface LrosaDsPost202NonRetry400 {
 export interface LrosaDsPostAsyncRelativeRetry400 {
   /** Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LrosaDsPostAsyncRelativeRetry400Parameters
+    options?: LrosaDsPostAsyncRelativeRetry400Parameters,
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetry400202Response
     | LrosaDsPostAsyncRelativeRetry400DefaultResponse
@@ -896,7 +896,7 @@ export interface LrosaDsPostAsyncRelativeRetry400 {
 export interface LrosaDsPutError201NoProvisioningStatePayload {
   /** Long running put request, service returns a 201 to the initial request with no payload */
   put(
-    options?: LrosaDsPutError201NoProvisioningStatePayloadParameters
+    options?: LrosaDsPutError201NoProvisioningStatePayloadParameters,
   ): StreamableMethod<
     | LrosaDsPutError201NoProvisioningStatePayload200Response
     | LrosaDsPutError201NoProvisioningStatePayload201Response
@@ -907,7 +907,7 @@ export interface LrosaDsPutError201NoProvisioningStatePayload {
 export interface LrosaDsPutAsyncRelativeRetryNoStatus {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsPutAsyncRelativeRetryNoStatusParameters
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusParameters,
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryNoStatus200Response
     | LrosaDsPutAsyncRelativeRetryNoStatusDefaultResponse
@@ -917,7 +917,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatus {
 export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters,
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
     | LrosaDsPutAsyncRelativeRetryNoStatusPayloadDefaultResponse
@@ -927,7 +927,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload {
 export interface LrosaDsDelete204Succeeded {
   /** Long running delete request, service returns a 204 to the initial request, indicating success. */
   delete(
-    options?: LrosaDsDelete204SucceededParameters
+    options?: LrosaDsDelete204SucceededParameters,
   ): StreamableMethod<
     | LrosaDsDelete204Succeeded204Response
     | LrosaDsDelete204SucceededDefaultResponse
@@ -937,7 +937,7 @@ export interface LrosaDsDelete204Succeeded {
 export interface LrosaDsDeleteAsyncRelativeRetryNoStatus {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusParameters
+    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusParameters,
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
     | LrosaDsDeleteAsyncRelativeRetryNoStatusDefaultResponse
@@ -947,7 +947,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryNoStatus {
 export interface LrosaDsPost202NoLocation {
   /** Long running post request, service returns a 202 to the initial request, without a location header. */
   post(
-    options?: LrosaDsPost202NoLocationParameters
+    options?: LrosaDsPost202NoLocationParameters,
   ): StreamableMethod<
     | LrosaDsPost202NoLocation202Response
     | LrosaDsPost202NoLocationDefaultResponse
@@ -957,7 +957,7 @@ export interface LrosaDsPost202NoLocation {
 export interface LrosaDsPostAsyncRelativeRetryNoPayload {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LrosaDsPostAsyncRelativeRetryNoPayloadParameters
+    options?: LrosaDsPostAsyncRelativeRetryNoPayloadParameters,
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetryNoPayload202Response
     | LrosaDsPostAsyncRelativeRetryNoPayloadDefaultResponse
@@ -967,7 +967,7 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayload {
 export interface LrosaDsPut200InvalidJson {
   /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
   put(
-    options?: LrosaDsPut200InvalidJsonParameters
+    options?: LrosaDsPut200InvalidJsonParameters,
   ): StreamableMethod<
     | LrosaDsPut200InvalidJson200Response
     | LrosaDsPut200InvalidJson204Response
@@ -978,7 +978,7 @@ export interface LrosaDsPut200InvalidJson {
 export interface LrosaDsPutAsyncRelativeRetryInvalidHeader {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
   put(
-    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters
+    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters,
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
     | LrosaDsPutAsyncRelativeRetryInvalidHeaderDefaultResponse
@@ -988,7 +988,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidHeader {
 export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters
+    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters,
   ): StreamableMethod<
     | LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
     | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingDefaultResponse
@@ -998,7 +998,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling {
 export interface LrosaDsDelete202RetryInvalidHeader {
   /** Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers */
   delete(
-    options?: LrosaDsDelete202RetryInvalidHeaderParameters
+    options?: LrosaDsDelete202RetryInvalidHeaderParameters,
   ): StreamableMethod<
     | LrosaDsDelete202RetryInvalidHeader202Response
     | LrosaDsDelete202RetryInvalidHeaderDefaultResponse
@@ -1008,7 +1008,7 @@ export interface LrosaDsDelete202RetryInvalidHeader {
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader {
   /** Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid */
   delete(
-    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters,
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
     | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderDefaultResponse
@@ -1018,7 +1018,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader {
 export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters,
   ): StreamableMethod<
     | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
     | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingDefaultResponse
@@ -1028,7 +1028,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling {
 export interface LrosaDsPost202RetryInvalidHeader {
   /** Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers. */
   post(
-    options?: LrosaDsPost202RetryInvalidHeaderParameters
+    options?: LrosaDsPost202RetryInvalidHeaderParameters,
   ): StreamableMethod<
     | LrosaDsPost202RetryInvalidHeader202Response
     | LrosaDsPost202RetryInvalidHeaderDefaultResponse
@@ -1038,7 +1038,7 @@ export interface LrosaDsPost202RetryInvalidHeader {
 export interface LrosaDsPostAsyncRelativeRetryInvalidHeader {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
   post(
-    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters
+    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters,
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
     | LrosaDsPostAsyncRelativeRetryInvalidHeaderDefaultResponse
@@ -1048,7 +1048,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeader {
 export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters
+    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters,
   ): StreamableMethod<
     | LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
     | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingDefaultResponse
@@ -1058,7 +1058,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling {
 export interface LROsCustomHeaderPutAsyncRetrySucceeded {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsCustomHeaderPutAsyncRetrySucceededParameters
+    options?: LROsCustomHeaderPutAsyncRetrySucceededParameters,
   ): StreamableMethod<
     | LROsCustomHeaderPutAsyncRetrySucceeded200Response
     | LROsCustomHeaderPutAsyncRetrySucceededDefaultResponse
@@ -1068,7 +1068,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceeded {
 export interface LROsCustomHeaderPut201CreatingSucceeded200 {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LROsCustomHeaderPut201CreatingSucceeded200Parameters
+    options?: LROsCustomHeaderPut201CreatingSucceeded200Parameters,
   ): StreamableMethod<
     | LROsCustomHeaderPut201CreatingSucceeded200200Response
     | LROsCustomHeaderPut201CreatingSucceeded200201Response
@@ -1079,7 +1079,7 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200 {
 export interface LROsCustomHeaderPost202Retry200 {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
   post(
-    options?: LROsCustomHeaderPost202Retry200Parameters
+    options?: LROsCustomHeaderPost202Retry200Parameters,
   ): StreamableMethod<
     | LROsCustomHeaderPost202Retry200202Response
     | LROsCustomHeaderPost202Retry200DefaultResponse
@@ -1089,7 +1089,7 @@ export interface LROsCustomHeaderPost202Retry200 {
 export interface LROsCustomHeaderPostAsyncRetrySucceeded {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROsCustomHeaderPostAsyncRetrySucceededParameters
+    options?: LROsCustomHeaderPostAsyncRetrySucceededParameters,
   ): StreamableMethod<
     | LROsCustomHeaderPostAsyncRetrySucceeded202Response
     | LROsCustomHeaderPostAsyncRetrySucceededDefaultResponse
@@ -1101,15 +1101,15 @@ export interface Routes {
   (path: "/lro/put/200/succeeded"): LROsPut200Succeeded;
   /** Resource for '/lro/patch/200/succeeded/ignoreheaders' has methods for the following verbs: patch */
   (
-    path: "/lro/patch/200/succeeded/ignoreheaders"
+    path: "/lro/patch/200/succeeded/ignoreheaders",
   ): LROsPatch200SucceededIgnoreHeaders;
   /** Resource for '/lro/patch/201/retry/onlyAsyncHeader' has methods for the following verbs: patch */
   (
-    path: "/lro/patch/201/retry/onlyAsyncHeader"
+    path: "/lro/patch/201/retry/onlyAsyncHeader",
   ): LROsPatch201RetryWithAsyncHeader;
   /** Resource for '/lro/patch/202/retry/asyncAndLocationHeader' has methods for the following verbs: patch */
   (
-    path: "/lro/patch/202/retry/asyncAndLocationHeader"
+    path: "/lro/patch/202/retry/asyncAndLocationHeader",
   ): LROsPatch202RetryWithAsyncAndLocationHeader;
   /** Resource for '/lro/put/201/succeeded' has methods for the following verbs: put */
   (path: "/lro/put/201/succeeded"): LROsPut201Succeeded;
@@ -1149,15 +1149,15 @@ export interface Routes {
   (path: "/lro/putsubresourceasync/202/200"): LROsPutAsyncSubResource;
   /** Resource for '/lro/delete/provisioning/202/accepted/200/succeeded' has methods for the following verbs: delete */
   (
-    path: "/lro/delete/provisioning/202/accepted/200/succeeded"
+    path: "/lro/delete/provisioning/202/accepted/200/succeeded",
   ): LROsDeleteProvisioning202Accepted200Succeeded;
   /** Resource for '/lro/delete/provisioning/202/deleting/200/failed' has methods for the following verbs: delete */
   (
-    path: "/lro/delete/provisioning/202/deleting/200/failed"
+    path: "/lro/delete/provisioning/202/deleting/200/failed",
   ): LROsDeleteProvisioning202DeletingFailed200;
   /** Resource for '/lro/delete/provisioning/202/deleting/200/canceled' has methods for the following verbs: delete */
   (
-    path: "/lro/delete/provisioning/202/deleting/200/canceled"
+    path: "/lro/delete/provisioning/202/deleting/200/canceled",
   ): LROsDeleteProvisioning202Deletingcanceled200;
   /** Resource for '/lro/delete/204/succeeded' has methods for the following verbs: delete */
   (path: "/lro/delete/204/succeeded"): LROsDelete204Succeeded;
@@ -1185,15 +1185,15 @@ export interface Routes {
   (path: "/lro/post/202/noretry/204"): LROsPost202NoRetry204;
   /** Resource for '/lro/LROPostDoubleHeadersFinalLocationGet' has methods for the following verbs: post */
   (
-    path: "/lro/LROPostDoubleHeadersFinalLocationGet"
+    path: "/lro/LROPostDoubleHeadersFinalLocationGet",
   ): LROsPostDoubleHeadersFinalLocationGet;
   /** Resource for '/lro/LROPostDoubleHeadersFinalAzureHeaderGet' has methods for the following verbs: post */
   (
-    path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"
+    path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGet",
   ): LROsPostDoubleHeadersFinalAzureHeaderGet;
   /** Resource for '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault' has methods for the following verbs: post */
   (
-    path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
+    path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault",
   ): LROsPostDoubleHeadersFinalAzureHeaderGetDefault;
   /** Resource for '/lro/postasync/retry/succeeded' has methods for the following verbs: post */
   (path: "/lro/postasync/retry/succeeded"): LROsPostAsyncRetrySucceeded;
@@ -1205,51 +1205,51 @@ export interface Routes {
   (path: "/lro/postasync/retry/canceled"): LROsPostAsyncRetrycanceled;
   /** Resource for '/lro/retryerror/put/201/creating/succeeded/200' has methods for the following verbs: put */
   (
-    path: "/lro/retryerror/put/201/creating/succeeded/200"
+    path: "/lro/retryerror/put/201/creating/succeeded/200",
   ): LRORetrysPut201CreatingSucceeded200;
   /** Resource for '/lro/retryerror/putasync/retry/succeeded' has methods for the following verbs: put */
   (
-    path: "/lro/retryerror/putasync/retry/succeeded"
+    path: "/lro/retryerror/putasync/retry/succeeded",
   ): LRORetrysPutAsyncRelativeRetrySucceeded;
   /** Resource for '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded' has methods for the following verbs: delete */
   (
-    path: "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
+    path: "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded",
   ): LRORetrysDeleteProvisioning202Accepted200Succeeded;
   /** Resource for '/lro/retryerror/delete/202/retry/200' has methods for the following verbs: delete */
   (path: "/lro/retryerror/delete/202/retry/200"): LRORetrysDelete202Retry200;
   /** Resource for '/lro/retryerror/deleteasync/retry/succeeded' has methods for the following verbs: delete */
   (
-    path: "/lro/retryerror/deleteasync/retry/succeeded"
+    path: "/lro/retryerror/deleteasync/retry/succeeded",
   ): LRORetrysDeleteAsyncRelativeRetrySucceeded;
   /** Resource for '/lro/retryerror/post/202/retry/200' has methods for the following verbs: post */
   (path: "/lro/retryerror/post/202/retry/200"): LRORetrysPost202Retry200;
   /** Resource for '/lro/retryerror/postasync/retry/succeeded' has methods for the following verbs: post */
   (
-    path: "/lro/retryerror/postasync/retry/succeeded"
+    path: "/lro/retryerror/postasync/retry/succeeded",
   ): LRORetrysPostAsyncRelativeRetrySucceeded;
   /** Resource for '/lro/nonretryerror/put/400' has methods for the following verbs: put */
   (path: "/lro/nonretryerror/put/400"): LrosaDsPutNonRetry400;
   /** Resource for '/lro/nonretryerror/put/201/creating/400' has methods for the following verbs: put */
   (
-    path: "/lro/nonretryerror/put/201/creating/400"
+    path: "/lro/nonretryerror/put/201/creating/400",
   ): LrosaDsPutNonRetry201Creating400;
   /** Resource for '/lro/nonretryerror/put/201/creating/400/invalidjson' has methods for the following verbs: put */
   (
-    path: "/lro/nonretryerror/put/201/creating/400/invalidjson"
+    path: "/lro/nonretryerror/put/201/creating/400/invalidjson",
   ): LrosaDsPutNonRetry201Creating400InvalidJson;
   /** Resource for '/lro/nonretryerror/putasync/retry/400' has methods for the following verbs: put */
   (
-    path: "/lro/nonretryerror/putasync/retry/400"
+    path: "/lro/nonretryerror/putasync/retry/400",
   ): LrosaDsPutAsyncRelativeRetry400;
   /** Resource for '/lro/nonretryerror/delete/400' has methods for the following verbs: delete */
   (path: "/lro/nonretryerror/delete/400"): LrosaDsDeleteNonRetry400;
   /** Resource for '/lro/nonretryerror/delete/202/retry/400' has methods for the following verbs: delete */
   (
-    path: "/lro/nonretryerror/delete/202/retry/400"
+    path: "/lro/nonretryerror/delete/202/retry/400",
   ): LrosaDsDelete202NonRetry400;
   /** Resource for '/lro/nonretryerror/deleteasync/retry/400' has methods for the following verbs: delete */
   (
-    path: "/lro/nonretryerror/deleteasync/retry/400"
+    path: "/lro/nonretryerror/deleteasync/retry/400",
   ): LrosaDsDeleteAsyncRelativeRetry400;
   /** Resource for '/lro/nonretryerror/post/400' has methods for the following verbs: post */
   (path: "/lro/nonretryerror/post/400"): LrosaDsPostNonRetry400;
@@ -1257,81 +1257,81 @@ export interface Routes {
   (path: "/lro/nonretryerror/post/202/retry/400"): LrosaDsPost202NonRetry400;
   /** Resource for '/lro/nonretryerror/postasync/retry/400' has methods for the following verbs: post */
   (
-    path: "/lro/nonretryerror/postasync/retry/400"
+    path: "/lro/nonretryerror/postasync/retry/400",
   ): LrosaDsPostAsyncRelativeRetry400;
   /** Resource for '/lro/error/put/201/noprovisioningstatepayload' has methods for the following verbs: put */
   (
-    path: "/lro/error/put/201/noprovisioningstatepayload"
+    path: "/lro/error/put/201/noprovisioningstatepayload",
   ): LrosaDsPutError201NoProvisioningStatePayload;
   /** Resource for '/lro/error/putasync/retry/nostatus' has methods for the following verbs: put */
   (
-    path: "/lro/error/putasync/retry/nostatus"
+    path: "/lro/error/putasync/retry/nostatus",
   ): LrosaDsPutAsyncRelativeRetryNoStatus;
   /** Resource for '/lro/error/putasync/retry/nostatuspayload' has methods for the following verbs: put */
   (
-    path: "/lro/error/putasync/retry/nostatuspayload"
+    path: "/lro/error/putasync/retry/nostatuspayload",
   ): LrosaDsPutAsyncRelativeRetryNoStatusPayload;
   /** Resource for '/lro/error/delete/204/nolocation' has methods for the following verbs: delete */
   (path: "/lro/error/delete/204/nolocation"): LrosaDsDelete204Succeeded;
   /** Resource for '/lro/error/deleteasync/retry/nostatus' has methods for the following verbs: delete */
   (
-    path: "/lro/error/deleteasync/retry/nostatus"
+    path: "/lro/error/deleteasync/retry/nostatus",
   ): LrosaDsDeleteAsyncRelativeRetryNoStatus;
   /** Resource for '/lro/error/post/202/nolocation' has methods for the following verbs: post */
   (path: "/lro/error/post/202/nolocation"): LrosaDsPost202NoLocation;
   /** Resource for '/lro/error/postasync/retry/nopayload' has methods for the following verbs: post */
   (
-    path: "/lro/error/postasync/retry/nopayload"
+    path: "/lro/error/postasync/retry/nopayload",
   ): LrosaDsPostAsyncRelativeRetryNoPayload;
   /** Resource for '/lro/error/put/200/invalidjson' has methods for the following verbs: put */
   (path: "/lro/error/put/200/invalidjson"): LrosaDsPut200InvalidJson;
   /** Resource for '/lro/error/putasync/retry/invalidheader' has methods for the following verbs: put */
   (
-    path: "/lro/error/putasync/retry/invalidheader"
+    path: "/lro/error/putasync/retry/invalidheader",
   ): LrosaDsPutAsyncRelativeRetryInvalidHeader;
   /** Resource for '/lro/error/putasync/retry/invalidjsonpolling' has methods for the following verbs: put */
   (
-    path: "/lro/error/putasync/retry/invalidjsonpolling"
+    path: "/lro/error/putasync/retry/invalidjsonpolling",
   ): LrosaDsPutAsyncRelativeRetryInvalidJsonPolling;
   /** Resource for '/lro/error/delete/202/retry/invalidheader' has methods for the following verbs: delete */
   (
-    path: "/lro/error/delete/202/retry/invalidheader"
+    path: "/lro/error/delete/202/retry/invalidheader",
   ): LrosaDsDelete202RetryInvalidHeader;
   /** Resource for '/lro/error/deleteasync/retry/invalidheader' has methods for the following verbs: delete */
   (
-    path: "/lro/error/deleteasync/retry/invalidheader"
+    path: "/lro/error/deleteasync/retry/invalidheader",
   ): LrosaDsDeleteAsyncRelativeRetryInvalidHeader;
   /** Resource for '/lro/error/deleteasync/retry/invalidjsonpolling' has methods for the following verbs: delete */
   (
-    path: "/lro/error/deleteasync/retry/invalidjsonpolling"
+    path: "/lro/error/deleteasync/retry/invalidjsonpolling",
   ): LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling;
   /** Resource for '/lro/error/post/202/retry/invalidheader' has methods for the following verbs: post */
   (
-    path: "/lro/error/post/202/retry/invalidheader"
+    path: "/lro/error/post/202/retry/invalidheader",
   ): LrosaDsPost202RetryInvalidHeader;
   /** Resource for '/lro/error/postasync/retry/invalidheader' has methods for the following verbs: post */
   (
-    path: "/lro/error/postasync/retry/invalidheader"
+    path: "/lro/error/postasync/retry/invalidheader",
   ): LrosaDsPostAsyncRelativeRetryInvalidHeader;
   /** Resource for '/lro/error/postasync/retry/invalidjsonpolling' has methods for the following verbs: post */
   (
-    path: "/lro/error/postasync/retry/invalidjsonpolling"
+    path: "/lro/error/postasync/retry/invalidjsonpolling",
   ): LrosaDsPostAsyncRelativeRetryInvalidJsonPolling;
   /** Resource for '/lro/customheader/putasync/retry/succeeded' has methods for the following verbs: put */
   (
-    path: "/lro/customheader/putasync/retry/succeeded"
+    path: "/lro/customheader/putasync/retry/succeeded",
   ): LROsCustomHeaderPutAsyncRetrySucceeded;
   /** Resource for '/lro/customheader/put/201/creating/succeeded/200' has methods for the following verbs: put */
   (
-    path: "/lro/customheader/put/201/creating/succeeded/200"
+    path: "/lro/customheader/put/201/creating/succeeded/200",
   ): LROsCustomHeaderPut201CreatingSucceeded200;
   /** Resource for '/lro/customheader/post/202/retry/200' has methods for the following verbs: post */
   (
-    path: "/lro/customheader/post/202/retry/200"
+    path: "/lro/customheader/post/202/retry/200",
   ): LROsCustomHeaderPost202Retry200;
   /** Resource for '/lro/customheader/postasync/retry/succeeded' has methods for the following verbs: post */
   (
-    path: "/lro/customheader/postasync/retry/succeeded"
+    path: "/lro/customheader/postasync/retry/succeeded",
   ): LROsCustomHeaderPostAsyncRetrySucceeded;
 }
 

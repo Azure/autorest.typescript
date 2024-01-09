@@ -28,7 +28,7 @@ async function azureFirewallListLearnedPrefixes() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.azureFirewalls.beginListLearnedPrefixesAndWait(
     resourceGroupName,
-    azureFirewallName
+    azureFirewallName,
   );
   console.log(result);
 }

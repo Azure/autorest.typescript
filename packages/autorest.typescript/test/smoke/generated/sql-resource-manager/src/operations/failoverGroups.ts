@@ -16,7 +16,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -36,7 +36,7 @@ import {
   FailoverGroupsFailoverResponse,
   FailoverGroupsForceFailoverAllowDataLossOptionalParams,
   FailoverGroupsForceFailoverAllowDataLossResponse,
-  FailoverGroupsListByServerNextResponse
+  FailoverGroupsListByServerNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -62,12 +62,12 @@ export class FailoverGroupsImpl implements FailoverGroups {
   public listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: FailoverGroupsListByServerOptionalParams
+    options?: FailoverGroupsListByServerOptionalParams,
   ): PagedAsyncIterableIterator<FailoverGroup> {
     const iter = this.listByServerPagingAll(
       resourceGroupName,
       serverName,
-      options
+      options,
     );
     return {
       next() {
@@ -84,9 +84,9 @@ export class FailoverGroupsImpl implements FailoverGroups {
           resourceGroupName,
           serverName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -94,7 +94,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     options?: FailoverGroupsListByServerOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<FailoverGroup[]> {
     let result: FailoverGroupsListByServerResponse;
     let continuationToken = settings?.continuationToken;
@@ -110,7 +110,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
         resourceGroupName,
         serverName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -122,12 +122,12 @@ export class FailoverGroupsImpl implements FailoverGroups {
   private async *listByServerPagingAll(
     resourceGroupName: string,
     serverName: string,
-    options?: FailoverGroupsListByServerOptionalParams
+    options?: FailoverGroupsListByServerOptionalParams,
   ): AsyncIterableIterator<FailoverGroup> {
     for await (const page of this.listByServerPagingPage(
       resourceGroupName,
       serverName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -145,11 +145,11 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsGetOptionalParams
+    options?: FailoverGroupsGetOptionalParams,
   ): Promise<FailoverGroupsGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, failoverGroupName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -167,7 +167,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     parameters: FailoverGroup,
-    options?: FailoverGroupsCreateOrUpdateOptionalParams
+    options?: FailoverGroupsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<FailoverGroupsCreateOrUpdateResponse>,
@@ -176,21 +176,20 @@ export class FailoverGroupsImpl implements FailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<FailoverGroupsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -199,8 +198,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -208,8 +207,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -220,16 +219,16 @@ export class FailoverGroupsImpl implements FailoverGroups {
         serverName,
         failoverGroupName,
         parameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       FailoverGroupsCreateOrUpdateResponse,
       OperationState<FailoverGroupsCreateOrUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -249,14 +248,14 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     parameters: FailoverGroup,
-    options?: FailoverGroupsCreateOrUpdateOptionalParams
+    options?: FailoverGroupsCreateOrUpdateOptionalParams,
   ): Promise<FailoverGroupsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       serverName,
       failoverGroupName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -273,25 +272,24 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsDeleteOptionalParams
+    options?: FailoverGroupsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -300,8 +298,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -309,19 +307,19 @@ export class FailoverGroupsImpl implements FailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, failoverGroupName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -339,13 +337,13 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsDeleteOptionalParams
+    options?: FailoverGroupsDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       serverName,
       failoverGroupName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -364,7 +362,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     parameters: FailoverGroupUpdate,
-    options?: FailoverGroupsUpdateOptionalParams
+    options?: FailoverGroupsUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<FailoverGroupsUpdateResponse>,
@@ -373,21 +371,20 @@ export class FailoverGroupsImpl implements FailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<FailoverGroupsUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -396,8 +393,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -405,8 +402,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -417,16 +414,16 @@ export class FailoverGroupsImpl implements FailoverGroups {
         serverName,
         failoverGroupName,
         parameters,
-        options
+        options,
       },
-      spec: updateOperationSpec
+      spec: updateOperationSpec,
     });
     const poller = await createHttpPoller<
       FailoverGroupsUpdateResponse,
       OperationState<FailoverGroupsUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -446,14 +443,14 @@ export class FailoverGroupsImpl implements FailoverGroups {
     serverName: string,
     failoverGroupName: string,
     parameters: FailoverGroupUpdate,
-    options?: FailoverGroupsUpdateOptionalParams
+    options?: FailoverGroupsUpdateOptionalParams,
   ): Promise<FailoverGroupsUpdateResponse> {
     const poller = await this.beginUpdate(
       resourceGroupName,
       serverName,
       failoverGroupName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -468,11 +465,11 @@ export class FailoverGroupsImpl implements FailoverGroups {
   private _listByServer(
     resourceGroupName: string,
     serverName: string,
-    options?: FailoverGroupsListByServerOptionalParams
+    options?: FailoverGroupsListByServerOptionalParams,
   ): Promise<FailoverGroupsListByServerResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, options },
-      listByServerOperationSpec
+      listByServerOperationSpec,
     );
   }
 
@@ -488,7 +485,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsFailoverOptionalParams
+    options?: FailoverGroupsFailoverOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<FailoverGroupsFailoverResponse>,
@@ -497,21 +494,20 @@ export class FailoverGroupsImpl implements FailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<FailoverGroupsFailoverResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -520,8 +516,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -529,22 +525,22 @@ export class FailoverGroupsImpl implements FailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, failoverGroupName, options },
-      spec: failoverOperationSpec
+      spec: failoverOperationSpec,
     });
     const poller = await createHttpPoller<
       FailoverGroupsFailoverResponse,
       OperationState<FailoverGroupsFailoverResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -562,13 +558,13 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsFailoverOptionalParams
+    options?: FailoverGroupsFailoverOptionalParams,
   ): Promise<FailoverGroupsFailoverResponse> {
     const poller = await this.beginFailover(
       resourceGroupName,
       serverName,
       failoverGroupName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -585,7 +581,7 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams
+    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<FailoverGroupsForceFailoverAllowDataLossResponse>,
@@ -594,21 +590,20 @@ export class FailoverGroupsImpl implements FailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<FailoverGroupsForceFailoverAllowDataLossResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -617,8 +612,8 @@ export class FailoverGroupsImpl implements FailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -626,22 +621,22 @@ export class FailoverGroupsImpl implements FailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, serverName, failoverGroupName, options },
-      spec: forceFailoverAllowDataLossOperationSpec
+      spec: forceFailoverAllowDataLossOperationSpec,
     });
     const poller = await createHttpPoller<
       FailoverGroupsForceFailoverAllowDataLossResponse,
       OperationState<FailoverGroupsForceFailoverAllowDataLossResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -659,13 +654,13 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     failoverGroupName: string,
-    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams
+    options?: FailoverGroupsForceFailoverAllowDataLossOptionalParams,
   ): Promise<FailoverGroupsForceFailoverAllowDataLossResponse> {
     const poller = await this.beginForceFailoverAllowDataLoss(
       resourceGroupName,
       serverName,
       failoverGroupName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -682,11 +677,11 @@ export class FailoverGroupsImpl implements FailoverGroups {
     resourceGroupName: string,
     serverName: string,
     nextLink: string,
-    options?: FailoverGroupsListByServerNextOptionalParams
+    options?: FailoverGroupsListByServerNextOptionalParams,
   ): Promise<FailoverGroupsListByServerNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, serverName, nextLink, options },
-      listByServerNextOperationSpec
+      listByServerNextOperationSpec,
     );
   }
 }
@@ -694,14 +689,13 @@ export class FailoverGroupsImpl implements FailoverGroups {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
@@ -709,29 +703,28 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters23,
   queryParameters: [Parameters.apiVersion2],
@@ -740,15 +733,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
@@ -757,28 +749,27 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
-  serializer
+  serializer,
 };
 const updateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}",
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters24,
   queryParameters: [Parameters.apiVersion2],
@@ -787,50 +778,48 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const listByServerOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroupListResult
+      bodyMapper: Mappers.FailoverGroupListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.serverName
+    Parameters.serverName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const failoverOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}/failover",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}/failover",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
@@ -838,29 +827,28 @@ const failoverOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const forceFailoverAllowDataLossOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}/forceFailoverAllowDataLoss",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/failoverGroups/{failoverGroupName}/forceFailoverAllowDataLoss",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.FailoverGroup
+      bodyMapper: Mappers.FailoverGroup,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
@@ -868,27 +856,27 @@ const forceFailoverAllowDataLossOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.FailoverGroupListResult
+      bodyMapper: Mappers.FailoverGroupListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.serverName,
-    Parameters.nextLink
+    Parameters.nextLink,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

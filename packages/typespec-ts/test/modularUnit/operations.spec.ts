@@ -34,7 +34,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -134,7 +134,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
       import { TestingContext as Client } from "../rest/index.js";
@@ -178,7 +178,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -224,7 +224,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -270,7 +270,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -316,7 +316,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -371,7 +371,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -456,7 +456,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -543,7 +543,7 @@ describe("operations", () => {
       assert.ok(operationFiles);
 
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";
@@ -611,7 +611,7 @@ describe("operations", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `
         import { TestingContext as Client } from "../rest/index.js";

@@ -20,7 +20,7 @@ import {
 
 export function _renamedTwoSend(
   context: Client,
-  options: GroupRenamedTwoOptions = { requestOptions: {} }
+  options: GroupRenamedTwoOptions = { requestOptions: {} },
 ): StreamableMethod<Two204Response> {
   return context
     .path("/two")
@@ -28,7 +28,7 @@ export function _renamedTwoSend(
 }
 
 export async function _renamedTwoDeserialize(
-  result: Two204Response
+  result: Two204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -39,7 +39,7 @@ export async function _renamedTwoDeserialize(
 
 export async function renamedTwo(
   context: Client,
-  options: GroupRenamedTwoOptions = { requestOptions: {} }
+  options: GroupRenamedTwoOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedTwoSend(context, options);
   return _renamedTwoDeserialize(result);
@@ -47,7 +47,7 @@ export async function renamedTwo(
 
 export function _renamedFourSend(
   context: Client,
-  options: GroupRenamedFourOptions = { requestOptions: {} }
+  options: GroupRenamedFourOptions = { requestOptions: {} },
 ): StreamableMethod<Four204Response> {
   return context
     .path("/four")
@@ -55,7 +55,7 @@ export function _renamedFourSend(
 }
 
 export async function _renamedFourDeserialize(
-  result: Four204Response
+  result: Four204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -66,7 +66,7 @@ export async function _renamedFourDeserialize(
 
 export async function renamedFour(
   context: Client,
-  options: GroupRenamedFourOptions = { requestOptions: {} }
+  options: GroupRenamedFourOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedFourSend(context, options);
   return _renamedFourDeserialize(result);
@@ -74,7 +74,7 @@ export async function renamedFour(
 
 export function _renamedSixSend(
   context: Client,
-  options: GroupRenamedSixOptions = { requestOptions: {} }
+  options: GroupRenamedSixOptions = { requestOptions: {} },
 ): StreamableMethod<Six204Response> {
   return context
     .path("/six")
@@ -82,7 +82,7 @@ export function _renamedSixSend(
 }
 
 export async function _renamedSixDeserialize(
-  result: Six204Response
+  result: Six204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -93,7 +93,7 @@ export async function _renamedSixDeserialize(
 
 export async function renamedSix(
   context: Client,
-  options: GroupRenamedSixOptions = { requestOptions: {} }
+  options: GroupRenamedSixOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _renamedSixSend(context, options);
   return _renamedSixDeserialize(result);

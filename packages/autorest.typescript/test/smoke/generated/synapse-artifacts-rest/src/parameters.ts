@@ -22,7 +22,7 @@ import {
   RunFilterParameters,
   SparkJobDefinitionResource,
   SqlScriptResource,
-  TriggerResource
+  TriggerResource,
 } from "./models";
 
 export type KqlScriptsGetAllParameters = RequestParameters;
@@ -37,9 +37,10 @@ export interface KqlScriptCreateOrUpdateMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type KqlScriptCreateOrUpdateParameters = KqlScriptCreateOrUpdateMediaTypesParam &
-  KqlScriptCreateOrUpdateBodyParam &
-  RequestParameters;
+export type KqlScriptCreateOrUpdateParameters =
+  KqlScriptCreateOrUpdateMediaTypesParam &
+    KqlScriptCreateOrUpdateBodyParam &
+    RequestParameters;
 export type KqlScriptGetByNameParameters = RequestParameters;
 export type KqlScriptDeleteByNameParameters = RequestParameters;
 
@@ -86,7 +87,8 @@ export type MetastoreUpdateParameters = MetastoreUpdateMediaTypesParam &
   MetastoreUpdateBodyParam &
   RequestParameters;
 export type MetastoreDeleteParameters = RequestParameters;
-export type SparkConfigurationGetSparkConfigurationsByWorkspaceParameters = RequestParameters;
+export type SparkConfigurationGetSparkConfigurationsByWorkspaceParameters =
+  RequestParameters;
 
 export interface SparkConfigurationCreateOrUpdateSparkConfigurationHeaders {
   /** ETag of the sparkConfiguration entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update. */
@@ -108,10 +110,11 @@ export interface SparkConfigurationCreateOrUpdateSparkConfigurationMediaTypesPar
   contentType?: "application/json";
 }
 
-export type SparkConfigurationCreateOrUpdateSparkConfigurationParameters = SparkConfigurationCreateOrUpdateSparkConfigurationHeaderParam &
-  SparkConfigurationCreateOrUpdateSparkConfigurationMediaTypesParam &
-  SparkConfigurationCreateOrUpdateSparkConfigurationBodyParam &
-  RequestParameters;
+export type SparkConfigurationCreateOrUpdateSparkConfigurationParameters =
+  SparkConfigurationCreateOrUpdateSparkConfigurationHeaderParam &
+    SparkConfigurationCreateOrUpdateSparkConfigurationMediaTypesParam &
+    SparkConfigurationCreateOrUpdateSparkConfigurationBodyParam &
+    RequestParameters;
 
 export interface SparkConfigurationGetSparkConfigurationHeaders {
   /** ETag of the sparkConfiguration entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -123,9 +126,10 @@ export interface SparkConfigurationGetSparkConfigurationHeaderParam {
     SparkConfigurationGetSparkConfigurationHeaders;
 }
 
-export type SparkConfigurationGetSparkConfigurationParameters = SparkConfigurationGetSparkConfigurationHeaderParam &
+export type SparkConfigurationGetSparkConfigurationParameters =
+  SparkConfigurationGetSparkConfigurationHeaderParam & RequestParameters;
+export type SparkConfigurationDeleteSparkConfigurationParameters =
   RequestParameters;
-export type SparkConfigurationDeleteSparkConfigurationParameters = RequestParameters;
 
 export interface SparkConfigurationRenameSparkConfigurationBodyParam {
   /** proposed new name. */
@@ -137,9 +141,10 @@ export interface SparkConfigurationRenameSparkConfigurationMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type SparkConfigurationRenameSparkConfigurationParameters = SparkConfigurationRenameSparkConfigurationMediaTypesParam &
-  SparkConfigurationRenameSparkConfigurationBodyParam &
-  RequestParameters;
+export type SparkConfigurationRenameSparkConfigurationParameters =
+  SparkConfigurationRenameSparkConfigurationMediaTypesParam &
+    SparkConfigurationRenameSparkConfigurationBodyParam &
+    RequestParameters;
 export type BigDataPoolsListParameters = RequestParameters;
 export type BigDataPoolsGetParameters = RequestParameters;
 
@@ -162,10 +167,11 @@ export interface DataFlowCreateOrUpdateDataFlowMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DataFlowCreateOrUpdateDataFlowParameters = DataFlowCreateOrUpdateDataFlowHeaderParam &
-  DataFlowCreateOrUpdateDataFlowMediaTypesParam &
-  DataFlowCreateOrUpdateDataFlowBodyParam &
-  RequestParameters;
+export type DataFlowCreateOrUpdateDataFlowParameters =
+  DataFlowCreateOrUpdateDataFlowHeaderParam &
+    DataFlowCreateOrUpdateDataFlowMediaTypesParam &
+    DataFlowCreateOrUpdateDataFlowBodyParam &
+    RequestParameters;
 
 export interface DataFlowGetDataFlowHeaders {
   /** ETag of the data flow entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -190,9 +196,10 @@ export interface DataFlowRenameDataFlowMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DataFlowRenameDataFlowParameters = DataFlowRenameDataFlowMediaTypesParam &
-  DataFlowRenameDataFlowBodyParam &
-  RequestParameters;
+export type DataFlowRenameDataFlowParameters =
+  DataFlowRenameDataFlowMediaTypesParam &
+    DataFlowRenameDataFlowBodyParam &
+    RequestParameters;
 export type DataFlowGetDataFlowsByWorkspaceParameters = RequestParameters;
 
 export interface DataFlowDebugSessionCreateDataFlowDebugSessionBodyParam {
@@ -205,10 +212,12 @@ export interface DataFlowDebugSessionCreateDataFlowDebugSessionMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DataFlowDebugSessionCreateDataFlowDebugSessionParameters = DataFlowDebugSessionCreateDataFlowDebugSessionMediaTypesParam &
-  DataFlowDebugSessionCreateDataFlowDebugSessionBodyParam &
+export type DataFlowDebugSessionCreateDataFlowDebugSessionParameters =
+  DataFlowDebugSessionCreateDataFlowDebugSessionMediaTypesParam &
+    DataFlowDebugSessionCreateDataFlowDebugSessionBodyParam &
+    RequestParameters;
+export type DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters =
   RequestParameters;
-export type DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceParameters = RequestParameters;
 
 export interface DataFlowDebugSessionAddDataFlowBodyParam {
   /** Data flow debug session definition with debug content. */
@@ -220,9 +229,10 @@ export interface DataFlowDebugSessionAddDataFlowMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DataFlowDebugSessionAddDataFlowParameters = DataFlowDebugSessionAddDataFlowMediaTypesParam &
-  DataFlowDebugSessionAddDataFlowBodyParam &
-  RequestParameters;
+export type DataFlowDebugSessionAddDataFlowParameters =
+  DataFlowDebugSessionAddDataFlowMediaTypesParam &
+    DataFlowDebugSessionAddDataFlowBodyParam &
+    RequestParameters;
 
 export interface DataFlowDebugSessionDeleteDataFlowDebugSessionBodyParam {
   /** Data flow debug session definition for deletion */
@@ -234,9 +244,10 @@ export interface DataFlowDebugSessionDeleteDataFlowDebugSessionMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DataFlowDebugSessionDeleteDataFlowDebugSessionParameters = DataFlowDebugSessionDeleteDataFlowDebugSessionMediaTypesParam &
-  DataFlowDebugSessionDeleteDataFlowDebugSessionBodyParam &
-  RequestParameters;
+export type DataFlowDebugSessionDeleteDataFlowDebugSessionParameters =
+  DataFlowDebugSessionDeleteDataFlowDebugSessionMediaTypesParam &
+    DataFlowDebugSessionDeleteDataFlowDebugSessionBodyParam &
+    RequestParameters;
 
 export interface DataFlowDebugSessionExecuteCommandBodyParam {
   /** Data flow debug command definition. */
@@ -248,9 +259,10 @@ export interface DataFlowDebugSessionExecuteCommandMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DataFlowDebugSessionExecuteCommandParameters = DataFlowDebugSessionExecuteCommandMediaTypesParam &
-  DataFlowDebugSessionExecuteCommandBodyParam &
-  RequestParameters;
+export type DataFlowDebugSessionExecuteCommandParameters =
+  DataFlowDebugSessionExecuteCommandMediaTypesParam &
+    DataFlowDebugSessionExecuteCommandBodyParam &
+    RequestParameters;
 export type DatasetGetDatasetsByWorkspaceParameters = RequestParameters;
 
 export interface DatasetCreateOrUpdateDatasetHeaders {
@@ -272,10 +284,11 @@ export interface DatasetCreateOrUpdateDatasetMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DatasetCreateOrUpdateDatasetParameters = DatasetCreateOrUpdateDatasetHeaderParam &
-  DatasetCreateOrUpdateDatasetMediaTypesParam &
-  DatasetCreateOrUpdateDatasetBodyParam &
-  RequestParameters;
+export type DatasetCreateOrUpdateDatasetParameters =
+  DatasetCreateOrUpdateDatasetHeaderParam &
+    DatasetCreateOrUpdateDatasetMediaTypesParam &
+    DatasetCreateOrUpdateDatasetBodyParam &
+    RequestParameters;
 
 export interface DatasetGetDatasetHeaders {
   /** ETag of the dataset entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -300,9 +313,10 @@ export interface DatasetRenameDatasetMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type DatasetRenameDatasetParameters = DatasetRenameDatasetMediaTypesParam &
-  DatasetRenameDatasetBodyParam &
-  RequestParameters;
+export type DatasetRenameDatasetParameters =
+  DatasetRenameDatasetMediaTypesParam &
+    DatasetRenameDatasetBodyParam &
+    RequestParameters;
 
 export interface WorkspaceGitRepoManagementGetGitHubAccessTokenHeaders {
   /** Can provide a guid, which is helpful for debugging and to provide better customer support */
@@ -323,10 +337,11 @@ export interface WorkspaceGitRepoManagementGetGitHubAccessTokenMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type WorkspaceGitRepoManagementGetGitHubAccessTokenParameters = WorkspaceGitRepoManagementGetGitHubAccessTokenHeaderParam &
-  WorkspaceGitRepoManagementGetGitHubAccessTokenMediaTypesParam &
-  WorkspaceGitRepoManagementGetGitHubAccessTokenBodyParam &
-  RequestParameters;
+export type WorkspaceGitRepoManagementGetGitHubAccessTokenParameters =
+  WorkspaceGitRepoManagementGetGitHubAccessTokenHeaderParam &
+    WorkspaceGitRepoManagementGetGitHubAccessTokenMediaTypesParam &
+    WorkspaceGitRepoManagementGetGitHubAccessTokenBodyParam &
+    RequestParameters;
 export type IntegrationRuntimesListParameters = RequestParameters;
 export type IntegrationRuntimesGetParameters = RequestParameters;
 export type LibraryListParameters = RequestParameters;
@@ -376,7 +391,8 @@ export type LibraryAppendParameters = LibraryAppendQueryParam &
   LibraryAppendMediaTypesParam &
   LibraryAppendBodyParam &
   RequestParameters;
-export type LinkedServiceGetLinkedServicesByWorkspaceParameters = RequestParameters;
+export type LinkedServiceGetLinkedServicesByWorkspaceParameters =
+  RequestParameters;
 
 export interface LinkedServiceCreateOrUpdateLinkedServiceHeaders {
   /** ETag of the linkedService entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update. */
@@ -398,10 +414,11 @@ export interface LinkedServiceCreateOrUpdateLinkedServiceMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LinkedServiceCreateOrUpdateLinkedServiceParameters = LinkedServiceCreateOrUpdateLinkedServiceHeaderParam &
-  LinkedServiceCreateOrUpdateLinkedServiceMediaTypesParam &
-  LinkedServiceCreateOrUpdateLinkedServiceBodyParam &
-  RequestParameters;
+export type LinkedServiceCreateOrUpdateLinkedServiceParameters =
+  LinkedServiceCreateOrUpdateLinkedServiceHeaderParam &
+    LinkedServiceCreateOrUpdateLinkedServiceMediaTypesParam &
+    LinkedServiceCreateOrUpdateLinkedServiceBodyParam &
+    RequestParameters;
 
 export interface LinkedServiceGetLinkedServiceHeaders {
   /** ETag of the linked service entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -412,8 +429,8 @@ export interface LinkedServiceGetLinkedServiceHeaderParam {
   headers?: RawHttpHeadersInput & LinkedServiceGetLinkedServiceHeaders;
 }
 
-export type LinkedServiceGetLinkedServiceParameters = LinkedServiceGetLinkedServiceHeaderParam &
-  RequestParameters;
+export type LinkedServiceGetLinkedServiceParameters =
+  LinkedServiceGetLinkedServiceHeaderParam & RequestParameters;
 export type LinkedServiceDeleteLinkedServiceParameters = RequestParameters;
 
 export interface LinkedServiceRenameLinkedServiceBodyParam {
@@ -426,9 +443,10 @@ export interface LinkedServiceRenameLinkedServiceMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type LinkedServiceRenameLinkedServiceParameters = LinkedServiceRenameLinkedServiceMediaTypesParam &
-  LinkedServiceRenameLinkedServiceBodyParam &
-  RequestParameters;
+export type LinkedServiceRenameLinkedServiceParameters =
+  LinkedServiceRenameLinkedServiceMediaTypesParam &
+    LinkedServiceRenameLinkedServiceBodyParam &
+    RequestParameters;
 export type NotebookGetNotebooksByWorkspaceParameters = RequestParameters;
 export type NotebookGetNotebookSummaryByWorkSpaceParameters = RequestParameters;
 
@@ -451,10 +469,11 @@ export interface NotebookCreateOrUpdateNotebookMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type NotebookCreateOrUpdateNotebookParameters = NotebookCreateOrUpdateNotebookHeaderParam &
-  NotebookCreateOrUpdateNotebookMediaTypesParam &
-  NotebookCreateOrUpdateNotebookBodyParam &
-  RequestParameters;
+export type NotebookCreateOrUpdateNotebookParameters =
+  NotebookCreateOrUpdateNotebookHeaderParam &
+    NotebookCreateOrUpdateNotebookMediaTypesParam &
+    NotebookCreateOrUpdateNotebookBodyParam &
+    RequestParameters;
 
 export interface NotebookGetNotebookHeaders {
   /** ETag of the Notebook entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -479,9 +498,10 @@ export interface NotebookRenameNotebookMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type NotebookRenameNotebookParameters = NotebookRenameNotebookMediaTypesParam &
-  NotebookRenameNotebookBodyParam &
-  RequestParameters;
+export type NotebookRenameNotebookParameters =
+  NotebookRenameNotebookMediaTypesParam &
+    NotebookRenameNotebookBodyParam &
+    RequestParameters;
 export type NotebookOperationResultGetParameters = RequestParameters;
 export type PipelineGetPipelinesByWorkspaceParameters = RequestParameters;
 
@@ -504,10 +524,11 @@ export interface PipelineCreateOrUpdatePipelineMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type PipelineCreateOrUpdatePipelineParameters = PipelineCreateOrUpdatePipelineHeaderParam &
-  PipelineCreateOrUpdatePipelineMediaTypesParam &
-  PipelineCreateOrUpdatePipelineBodyParam &
-  RequestParameters;
+export type PipelineCreateOrUpdatePipelineParameters =
+  PipelineCreateOrUpdatePipelineHeaderParam &
+    PipelineCreateOrUpdatePipelineMediaTypesParam &
+    PipelineCreateOrUpdatePipelineBodyParam &
+    RequestParameters;
 
 export interface PipelineGetPipelineHeaders {
   /** ETag of the pipeline entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -532,9 +553,10 @@ export interface PipelineRenamePipelineMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type PipelineRenamePipelineParameters = PipelineRenamePipelineMediaTypesParam &
-  PipelineRenamePipelineBodyParam &
-  RequestParameters;
+export type PipelineRenamePipelineParameters =
+  PipelineRenamePipelineMediaTypesParam &
+    PipelineRenamePipelineBodyParam &
+    RequestParameters;
 
 export interface PipelineCreatePipelineRunBodyParam {
   /** Parameters of the pipeline run. These parameters will be used only if the runId is not specified. */
@@ -559,10 +581,11 @@ export interface PipelineCreatePipelineRunMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type PipelineCreatePipelineRunParameters = PipelineCreatePipelineRunQueryParam &
-  PipelineCreatePipelineRunMediaTypesParam &
-  PipelineCreatePipelineRunBodyParam &
-  RequestParameters;
+export type PipelineCreatePipelineRunParameters =
+  PipelineCreatePipelineRunQueryParam &
+    PipelineCreatePipelineRunMediaTypesParam &
+    PipelineCreatePipelineRunBodyParam &
+    RequestParameters;
 
 export interface PipelineRunQueryPipelineRunsByWorkspaceBodyParam {
   /** Parameters to filter the pipeline run. */
@@ -574,9 +597,10 @@ export interface PipelineRunQueryPipelineRunsByWorkspaceMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type PipelineRunQueryPipelineRunsByWorkspaceParameters = PipelineRunQueryPipelineRunsByWorkspaceMediaTypesParam &
-  PipelineRunQueryPipelineRunsByWorkspaceBodyParam &
-  RequestParameters;
+export type PipelineRunQueryPipelineRunsByWorkspaceParameters =
+  PipelineRunQueryPipelineRunsByWorkspaceMediaTypesParam &
+    PipelineRunQueryPipelineRunsByWorkspaceBodyParam &
+    RequestParameters;
 export type PipelineRunGetPipelineRunParameters = RequestParameters;
 
 export interface PipelineRunQueryActivityRunsBodyParam {
@@ -589,9 +613,10 @@ export interface PipelineRunQueryActivityRunsMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type PipelineRunQueryActivityRunsParameters = PipelineRunQueryActivityRunsMediaTypesParam &
-  PipelineRunQueryActivityRunsBodyParam &
-  RequestParameters;
+export type PipelineRunQueryActivityRunsParameters =
+  PipelineRunQueryActivityRunsMediaTypesParam &
+    PipelineRunQueryActivityRunsBodyParam &
+    RequestParameters;
 
 export interface PipelineRunCancelPipelineRunQueryParamProperties {
   /** If true, cancel all the Child pipelines that are triggered by the current pipeline. */
@@ -602,9 +627,10 @@ export interface PipelineRunCancelPipelineRunQueryParam {
   queryParameters?: PipelineRunCancelPipelineRunQueryParamProperties;
 }
 
-export type PipelineRunCancelPipelineRunParameters = PipelineRunCancelPipelineRunQueryParam &
+export type PipelineRunCancelPipelineRunParameters =
+  PipelineRunCancelPipelineRunQueryParam & RequestParameters;
+export type SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters =
   RequestParameters;
-export type SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceParameters = RequestParameters;
 
 export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinitionHeaders {
   /** ETag of the Spark Job Definition entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update. */
@@ -626,10 +652,11 @@ export interface SparkJobDefinitionCreateOrUpdateSparkJobDefinitionMediaTypesPar
   contentType?: "application/json";
 }
 
-export type SparkJobDefinitionCreateOrUpdateSparkJobDefinitionParameters = SparkJobDefinitionCreateOrUpdateSparkJobDefinitionHeaderParam &
-  SparkJobDefinitionCreateOrUpdateSparkJobDefinitionMediaTypesParam &
-  SparkJobDefinitionCreateOrUpdateSparkJobDefinitionBodyParam &
-  RequestParameters;
+export type SparkJobDefinitionCreateOrUpdateSparkJobDefinitionParameters =
+  SparkJobDefinitionCreateOrUpdateSparkJobDefinitionHeaderParam &
+    SparkJobDefinitionCreateOrUpdateSparkJobDefinitionMediaTypesParam &
+    SparkJobDefinitionCreateOrUpdateSparkJobDefinitionBodyParam &
+    RequestParameters;
 
 export interface SparkJobDefinitionGetSparkJobDefinitionHeaders {
   /** ETag of the Spark Job Definition entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -641,10 +668,12 @@ export interface SparkJobDefinitionGetSparkJobDefinitionHeaderParam {
     SparkJobDefinitionGetSparkJobDefinitionHeaders;
 }
 
-export type SparkJobDefinitionGetSparkJobDefinitionParameters = SparkJobDefinitionGetSparkJobDefinitionHeaderParam &
+export type SparkJobDefinitionGetSparkJobDefinitionParameters =
+  SparkJobDefinitionGetSparkJobDefinitionHeaderParam & RequestParameters;
+export type SparkJobDefinitionDeleteSparkJobDefinitionParameters =
   RequestParameters;
-export type SparkJobDefinitionDeleteSparkJobDefinitionParameters = RequestParameters;
-export type SparkJobDefinitionExecuteSparkJobDefinitionParameters = RequestParameters;
+export type SparkJobDefinitionExecuteSparkJobDefinitionParameters =
+  RequestParameters;
 
 export interface SparkJobDefinitionRenameSparkJobDefinitionBodyParam {
   /** proposed new name. */
@@ -656,9 +685,10 @@ export interface SparkJobDefinitionRenameSparkJobDefinitionMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type SparkJobDefinitionRenameSparkJobDefinitionParameters = SparkJobDefinitionRenameSparkJobDefinitionMediaTypesParam &
-  SparkJobDefinitionRenameSparkJobDefinitionBodyParam &
-  RequestParameters;
+export type SparkJobDefinitionRenameSparkJobDefinitionParameters =
+  SparkJobDefinitionRenameSparkJobDefinitionMediaTypesParam &
+    SparkJobDefinitionRenameSparkJobDefinitionBodyParam &
+    RequestParameters;
 
 export interface SparkJobDefinitionDebugSparkJobDefinitionBodyParam {
   /** Spark Job Definition resource definition. */
@@ -670,9 +700,10 @@ export interface SparkJobDefinitionDebugSparkJobDefinitionMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type SparkJobDefinitionDebugSparkJobDefinitionParameters = SparkJobDefinitionDebugSparkJobDefinitionMediaTypesParam &
-  SparkJobDefinitionDebugSparkJobDefinitionBodyParam &
-  RequestParameters;
+export type SparkJobDefinitionDebugSparkJobDefinitionParameters =
+  SparkJobDefinitionDebugSparkJobDefinitionMediaTypesParam &
+    SparkJobDefinitionDebugSparkJobDefinitionBodyParam &
+    RequestParameters;
 export type SqlPoolsListParameters = RequestParameters;
 export type SqlPoolsGetParameters = RequestParameters;
 export type SqlScriptGetSqlScriptsByWorkspaceParameters = RequestParameters;
@@ -696,10 +727,11 @@ export interface SqlScriptCreateOrUpdateSqlScriptMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type SqlScriptCreateOrUpdateSqlScriptParameters = SqlScriptCreateOrUpdateSqlScriptHeaderParam &
-  SqlScriptCreateOrUpdateSqlScriptMediaTypesParam &
-  SqlScriptCreateOrUpdateSqlScriptBodyParam &
-  RequestParameters;
+export type SqlScriptCreateOrUpdateSqlScriptParameters =
+  SqlScriptCreateOrUpdateSqlScriptHeaderParam &
+    SqlScriptCreateOrUpdateSqlScriptMediaTypesParam &
+    SqlScriptCreateOrUpdateSqlScriptBodyParam &
+    RequestParameters;
 
 export interface SqlScriptGetSqlScriptHeaders {
   /** ETag of the sql compute entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -724,9 +756,10 @@ export interface SqlScriptRenameSqlScriptMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type SqlScriptRenameSqlScriptParameters = SqlScriptRenameSqlScriptMediaTypesParam &
-  SqlScriptRenameSqlScriptBodyParam &
-  RequestParameters;
+export type SqlScriptRenameSqlScriptParameters =
+  SqlScriptRenameSqlScriptMediaTypesParam &
+    SqlScriptRenameSqlScriptBodyParam &
+    RequestParameters;
 export type TriggerGetTriggersByWorkspaceParameters = RequestParameters;
 
 export interface TriggerCreateOrUpdateTriggerHeaders {
@@ -748,10 +781,11 @@ export interface TriggerCreateOrUpdateTriggerMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type TriggerCreateOrUpdateTriggerParameters = TriggerCreateOrUpdateTriggerHeaderParam &
-  TriggerCreateOrUpdateTriggerMediaTypesParam &
-  TriggerCreateOrUpdateTriggerBodyParam &
-  RequestParameters;
+export type TriggerCreateOrUpdateTriggerParameters =
+  TriggerCreateOrUpdateTriggerHeaderParam &
+    TriggerCreateOrUpdateTriggerMediaTypesParam &
+    TriggerCreateOrUpdateTriggerBodyParam &
+    RequestParameters;
 
 export interface TriggerGetTriggerHeaders {
   /** ETag of the trigger entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned. */
@@ -783,7 +817,8 @@ export interface TriggerRunQueryTriggerRunsByWorkspaceMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type TriggerRunQueryTriggerRunsByWorkspaceParameters = TriggerRunQueryTriggerRunsByWorkspaceMediaTypesParam &
-  TriggerRunQueryTriggerRunsByWorkspaceBodyParam &
-  RequestParameters;
+export type TriggerRunQueryTriggerRunsByWorkspaceParameters =
+  TriggerRunQueryTriggerRunsByWorkspaceMediaTypesParam &
+    TriggerRunQueryTriggerRunsByWorkspaceBodyParam &
+    RequestParameters;
 export type WorkspaceGetParameters = RequestParameters;

@@ -25,7 +25,7 @@ import {
 export function _queryDefaultSend(
   context: Client,
   input: string,
-  options: QueryDefaultOptions = { requestOptions: {} }
+  options: QueryDefaultOptions = { requestOptions: {} },
 ): StreamableMethod<QueryDefault204Response> {
   return context
     .path("/encode/duration/query/default")
@@ -36,7 +36,7 @@ export function _queryDefaultSend(
 }
 
 export async function _queryDefaultDeserialize(
-  result: QueryDefault204Response
+  result: QueryDefault204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -48,7 +48,7 @@ export async function _queryDefaultDeserialize(
 export async function queryDefault(
   context: Client,
   input: string,
-  options: QueryDefaultOptions = { requestOptions: {} }
+  options: QueryDefaultOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryDefaultSend(context, input, options);
   return _queryDefaultDeserialize(result);
@@ -57,7 +57,7 @@ export async function queryDefault(
 export function _queryIso8601Send(
   context: Client,
   input: string,
-  options: QueryIso8601Options = { requestOptions: {} }
+  options: QueryIso8601Options = { requestOptions: {} },
 ): StreamableMethod<QueryIso8601204Response> {
   return context
     .path("/encode/duration/query/iso8601")
@@ -68,7 +68,7 @@ export function _queryIso8601Send(
 }
 
 export async function _queryIso8601Deserialize(
-  result: QueryIso8601204Response
+  result: QueryIso8601204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -80,7 +80,7 @@ export async function _queryIso8601Deserialize(
 export async function queryIso8601(
   context: Client,
   input: string,
-  options: QueryIso8601Options = { requestOptions: {} }
+  options: QueryIso8601Options = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryIso8601Send(context, input, options);
   return _queryIso8601Deserialize(result);
@@ -89,7 +89,7 @@ export async function queryIso8601(
 export function _queryInt32SecondsSend(
   context: Client,
   input: number,
-  options: QueryInt32SecondsOptions = { requestOptions: {} }
+  options: QueryInt32SecondsOptions = { requestOptions: {} },
 ): StreamableMethod<QueryInt32Seconds204Response> {
   return context
     .path("/encode/duration/query/int32-seconds")
@@ -100,7 +100,7 @@ export function _queryInt32SecondsSend(
 }
 
 export async function _queryInt32SecondsDeserialize(
-  result: QueryInt32Seconds204Response
+  result: QueryInt32Seconds204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -112,7 +112,7 @@ export async function _queryInt32SecondsDeserialize(
 export async function queryInt32Seconds(
   context: Client,
   input: number,
-  options: QueryInt32SecondsOptions = { requestOptions: {} }
+  options: QueryInt32SecondsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryInt32SecondsSend(context, input, options);
   return _queryInt32SecondsDeserialize(result);
@@ -121,7 +121,7 @@ export async function queryInt32Seconds(
 export function _queryFloatSecondsSend(
   context: Client,
   input: number,
-  options: QueryFloatSecondsOptions = { requestOptions: {} }
+  options: QueryFloatSecondsOptions = { requestOptions: {} },
 ): StreamableMethod<QueryFloatSeconds204Response> {
   return context
     .path("/encode/duration/query/float-seconds")
@@ -132,7 +132,7 @@ export function _queryFloatSecondsSend(
 }
 
 export async function _queryFloatSecondsDeserialize(
-  result: QueryFloatSeconds204Response
+  result: QueryFloatSeconds204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -144,7 +144,7 @@ export async function _queryFloatSecondsDeserialize(
 export async function queryFloatSeconds(
   context: Client,
   input: number,
-  options: QueryFloatSecondsOptions = { requestOptions: {} }
+  options: QueryFloatSecondsOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryFloatSecondsSend(context, input, options);
   return _queryFloatSecondsDeserialize(result);
@@ -153,7 +153,7 @@ export async function queryFloatSeconds(
 export function _queryInt32SecondsArraySend(
   context: Client,
   input: number[],
-  options: QueryInt32SecondsArrayOptions = { requestOptions: {} }
+  options: QueryInt32SecondsArrayOptions = { requestOptions: {} },
 ): StreamableMethod<QueryInt32SecondsArray204Response> {
   return context
     .path("/encode/duration/query/int32-seconds-array")
@@ -164,7 +164,7 @@ export function _queryInt32SecondsArraySend(
 }
 
 export async function _queryInt32SecondsArrayDeserialize(
-  result: QueryInt32SecondsArray204Response
+  result: QueryInt32SecondsArray204Response,
 ): Promise<void> {
   if (result.status !== "204") {
     throw createRestError(result);
@@ -176,7 +176,7 @@ export async function _queryInt32SecondsArrayDeserialize(
 export async function queryInt32SecondsArray(
   context: Client,
   input: number[],
-  options: QueryInt32SecondsArrayOptions = { requestOptions: {} }
+  options: QueryInt32SecondsArrayOptions = { requestOptions: {} },
 ): Promise<void> {
   const result = await _queryInt32SecondsArraySend(context, input, options);
   return _queryInt32SecondsArrayDeserialize(result);

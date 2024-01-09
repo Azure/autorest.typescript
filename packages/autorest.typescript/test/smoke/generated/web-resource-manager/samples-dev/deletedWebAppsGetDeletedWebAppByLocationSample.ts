@@ -29,7 +29,7 @@ async function getDeletedWebAppByLocation() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.deletedWebApps.getDeletedWebAppByLocation(
     location,
-    deletedSiteId
+    deletedSiteId,
   );
   console.log(result);
 }

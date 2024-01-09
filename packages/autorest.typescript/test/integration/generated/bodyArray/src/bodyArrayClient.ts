@@ -24,7 +24,7 @@ export class BodyArrayClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: BodyArrayClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-body-array/1.0.0-preview1`;
@@ -37,9 +37,9 @@ export class BodyArrayClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
 

@@ -12,7 +12,7 @@ import { UnionBodyClient } from "./clientDefinitions";
  */
 export default function createClient(
   endpoint: string,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): UnionBodyClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
 

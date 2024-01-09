@@ -29,7 +29,7 @@ import {
 
 export function _listSend(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} }
+  options: ModelsListOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsList200Response | ModelsListDefaultResponse> {
   return context
     .path("/models")
@@ -37,7 +37,7 @@ export function _listSend(
 }
 
 export async function _listDeserialize(
-  result: ModelsList200Response | ModelsListDefaultResponse
+  result: ModelsList200Response | ModelsListDefaultResponse,
 ): Promise<ListModelsResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -56,7 +56,7 @@ export async function _listDeserialize(
 
 export async function list(
   context: Client,
-  options: ModelsListOptions = { requestOptions: {} }
+  options: ModelsListOptions = { requestOptions: {} },
 ): Promise<ListModelsResponse> {
   const result = await _listSend(context, options);
   return _listDeserialize(result);
@@ -65,7 +65,7 @@ export async function list(
 export function _retrieveSend(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} }
+  options: ModelsRetrieveOptions = { requestOptions: {} },
 ): StreamableMethod<ModelsRetrieve200Response | ModelsRetrieveDefaultResponse> {
   return context
     .path("/models/{model}", model)
@@ -73,7 +73,7 @@ export function _retrieveSend(
 }
 
 export async function _retrieveDeserialize(
-  result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse
+  result: ModelsRetrieve200Response | ModelsRetrieveDefaultResponse,
 ): Promise<Model> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -90,7 +90,7 @@ export async function _retrieveDeserialize(
 export async function retrieve(
   context: Client,
   model: string,
-  options: ModelsRetrieveOptions = { requestOptions: {} }
+  options: ModelsRetrieveOptions = { requestOptions: {} },
 ): Promise<Model> {
   const result = await _retrieveSend(context, model, options);
   return _retrieveDeserialize(result);
@@ -99,7 +99,7 @@ export async function retrieve(
 export function _deleteOperationSend(
   context: Client,
   model: string,
-  options: ModelsDeleteOperationOptions = { requestOptions: {} }
+  options: ModelsDeleteOperationOptions = { requestOptions: {} },
 ): StreamableMethod<
   ModelsDeleteOperation200Response | ModelsDeleteOperationDefaultResponse
 > {
@@ -111,7 +111,7 @@ export function _deleteOperationSend(
 export async function _deleteOperationDeserialize(
   result:
     | ModelsDeleteOperation200Response
-    | ModelsDeleteOperationDefaultResponse
+    | ModelsDeleteOperationDefaultResponse,
 ): Promise<DeleteModelResponse> {
   if (isUnexpected(result)) {
     throw createRestError(result);
@@ -127,7 +127,7 @@ export async function _deleteOperationDeserialize(
 export async function deleteOperation(
   context: Client,
   model: string,
-  options: ModelsDeleteOperationOptions = { requestOptions: {} }
+  options: ModelsDeleteOperationOptions = { requestOptions: {} },
 ): Promise<DeleteModelResponse> {
   const result = await _deleteOperationSend(context, model, options);
   return _deleteOperationDeserialize(result);

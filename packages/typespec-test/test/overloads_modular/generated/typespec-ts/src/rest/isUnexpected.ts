@@ -13,13 +13,13 @@ export function isUnexpected(
   response:
     | GetAvatarAsPng204Response
     | GetAvatarAsJpeg204Response
-    | GetAvatarAsPngDefaultResponse
+    | GetAvatarAsPngDefaultResponse,
 ): response is GetAvatarAsPngDefaultResponse;
 export function isUnexpected(
   response:
     | GetAvatarAsPng204Response
     | GetAvatarAsJpeg204Response
-    | GetAvatarAsPngDefaultResponse
+    | GetAvatarAsPngDefaultResponse,
 ): response is GetAvatarAsPngDefaultResponse {
   const lroOriginal = response.headers["x-ms-original-url"];
   const url = new URL(lroOriginal ?? response.request.url);
@@ -69,7 +69,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

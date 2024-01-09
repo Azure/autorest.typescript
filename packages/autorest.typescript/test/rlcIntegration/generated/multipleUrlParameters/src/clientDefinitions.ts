@@ -10,7 +10,7 @@ import {
   EntityGetByGuidParameters,
   EntityPartialUpdateEntityAttributeByGuidParameters,
   EntityDeleteByGuidParameters,
-  EntityExportGuidParameters
+  EntityExportGuidParameters,
 } from "./parameters";
 import {
   EntityCreateOrUpdate200Response,
@@ -30,7 +30,7 @@ import {
   EntityDeleteByGuid200Response,
   EntityDeleteByGuidDefaultResponse,
   EntityExportGuid202Response,
-  EntityExportGuidDefaultResponse
+  EntityExportGuidDefaultResponse,
 } from "./responses";
 import { Client, StreamableMethod } from "@azure-rest/core-client";
 
@@ -42,13 +42,13 @@ export interface EntityOperations {
    * Map and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.
    */
   createOrUpdate(
-    options: EntityCreateOrUpdateParameters
+    options: EntityCreateOrUpdateParameters,
   ): StreamableMethod<
     EntityCreateOrUpdate200Response | EntityCreateOrUpdateDefaultResponse
   >;
   /** List entities in bulk identified by its GUIDs. */
   listByGuids(
-    options: EntityListByGuidsParameters
+    options: EntityListByGuidsParameters,
   ): StreamableMethod<
     EntityListByGuids200Response | EntityListByGuidsDefaultResponse
   >;
@@ -58,27 +58,27 @@ export interface EntityOperations {
    * Map and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.
    */
   createOrUpdateEntities(
-    options: EntityCreateOrUpdateEntitiesParameters
+    options: EntityCreateOrUpdateEntitiesParameters,
   ): StreamableMethod<
     | EntityCreateOrUpdateEntities200Response
     | EntityCreateOrUpdateEntitiesDefaultResponse
   >;
   /** Delete a list of entities in bulk identified by their GUIDs or unique attributes. */
   deleteByGuids(
-    options: EntityDeleteByGuidsParameters
+    options: EntityDeleteByGuidsParameters,
   ): StreamableMethod<
     EntityDeleteByGuids200Response | EntityDeleteByGuidsDefaultResponse
   >;
   /** Associate a classification to multiple entities in bulk. */
   addClassification(
-    options: EntityAddClassificationParameters
+    options: EntityAddClassificationParameters,
   ): StreamableMethod<
     EntityAddClassification204Response | EntityAddClassificationDefaultResponse
   >;
   /** Get complete definition of an entity given its GUID. */
   getByGuid(
     guid: string,
-    options: EntityGetByGuidParameters
+    options: EntityGetByGuidParameters,
   ): StreamableMethod<
     EntityGetByGuid200Response | EntityGetByGuidDefaultResponse
   >;
@@ -90,7 +90,7 @@ export interface EntityOperations {
    */
   partialUpdateEntityAttributeByGuid(
     guid: string,
-    options: EntityPartialUpdateEntityAttributeByGuidParameters
+    options: EntityPartialUpdateEntityAttributeByGuidParameters,
   ): StreamableMethod<
     | EntityPartialUpdateEntityAttributeByGuid200Response
     | EntityPartialUpdateEntityAttributeByGuidDefaultResponse
@@ -98,7 +98,7 @@ export interface EntityOperations {
   /** Delete an entity identified by its GUID. */
   deleteByGuid(
     guid: string,
-    options: EntityDeleteByGuidParameters
+    options: EntityDeleteByGuidParameters,
   ): StreamableMethod<
     EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse
   >;
@@ -110,7 +110,7 @@ export interface EntityOperations {
    */
   exportGuid(
     guid: string,
-    options: EntityExportGuidParameters
+    options: EntityExportGuidParameters,
   ): StreamableMethod<
     EntityExportGuid202Response | EntityExportGuidDefaultResponse
   >;
@@ -123,7 +123,7 @@ export interface CreateOrUpdate {
    * Map and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.
    */
   post(
-    options: EntityCreateOrUpdateParameters
+    options: EntityCreateOrUpdateParameters,
   ): StreamableMethod<
     EntityCreateOrUpdate200Response | EntityCreateOrUpdateDefaultResponse
   >;
@@ -132,7 +132,7 @@ export interface CreateOrUpdate {
 export interface ListByGuids {
   /** List entities in bulk identified by its GUIDs. */
   get(
-    options: EntityListByGuidsParameters
+    options: EntityListByGuidsParameters,
   ): StreamableMethod<
     EntityListByGuids200Response | EntityListByGuidsDefaultResponse
   >;
@@ -142,14 +142,14 @@ export interface ListByGuids {
    * Map and array of collections are not well supported. E.g., array<array<int>>, array<map<string, int>>.
    */
   post(
-    options: EntityCreateOrUpdateEntitiesParameters
+    options: EntityCreateOrUpdateEntitiesParameters,
   ): StreamableMethod<
     | EntityCreateOrUpdateEntities200Response
     | EntityCreateOrUpdateEntitiesDefaultResponse
   >;
   /** Delete a list of entities in bulk identified by their GUIDs or unique attributes. */
   delete(
-    options: EntityDeleteByGuidsParameters
+    options: EntityDeleteByGuidsParameters,
   ): StreamableMethod<
     EntityDeleteByGuids200Response | EntityDeleteByGuidsDefaultResponse
   >;
@@ -158,7 +158,7 @@ export interface ListByGuids {
 export interface AddClassification {
   /** Associate a classification to multiple entities in bulk. */
   post(
-    options: EntityAddClassificationParameters
+    options: EntityAddClassificationParameters,
   ): StreamableMethod<
     EntityAddClassification204Response | EntityAddClassificationDefaultResponse
   >;
@@ -167,7 +167,7 @@ export interface AddClassification {
 export interface GetByGuid {
   /** Get complete definition of an entity given its GUID. */
   get(
-    options: EntityGetByGuidParameters
+    options: EntityGetByGuidParameters,
   ): StreamableMethod<
     EntityGetByGuid200Response | EntityGetByGuidDefaultResponse
   >;
@@ -178,14 +178,14 @@ export interface GetByGuid {
    * Null updates are not possible.
    */
   put(
-    options: EntityPartialUpdateEntityAttributeByGuidParameters
+    options: EntityPartialUpdateEntityAttributeByGuidParameters,
   ): StreamableMethod<
     | EntityPartialUpdateEntityAttributeByGuid200Response
     | EntityPartialUpdateEntityAttributeByGuidDefaultResponse
   >;
   /** Delete an entity identified by its GUID. */
   delete(
-    options: EntityDeleteByGuidParameters
+    options: EntityDeleteByGuidParameters,
   ): StreamableMethod<
     EntityDeleteByGuid200Response | EntityDeleteByGuidDefaultResponse
   >;
@@ -199,7 +199,7 @@ export interface ExportGuid {
    * Null updates are not possible.
    */
   put(
-    options: EntityExportGuidParameters
+    options: EntityExportGuidParameters,
   ): StreamableMethod<
     EntityExportGuid202Response | EntityExportGuidDefaultResponse
   >;

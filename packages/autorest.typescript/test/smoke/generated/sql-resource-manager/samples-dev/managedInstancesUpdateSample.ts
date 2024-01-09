@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedInstanceUpdate,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function removeMaintenancePolicyFromManagedInstanceSelectDefaultMaintenanc
   const managedInstanceName = "testinstance";
   const parameters: ManagedInstanceUpdate = {
     maintenanceConfigurationId:
-      "/subscriptions/20d7082a-0fc7-4468-82bd-542694d5042b/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default"
+      "/subscriptions/20d7082a-0fc7-4468-82bd-542694d5042b/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -67,14 +67,14 @@ async function updateManagedInstanceWithAllProperties() {
     sku: { name: "GP_Gen4", capacity: 8, tier: "GeneralPurpose" },
     storageSizeInGB: 448,
     tags: { tagKey1: "TagValue1" },
-    vCores: 8
+    vCores: 8,
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
   const result = await client.managedInstances.beginUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -96,7 +96,7 @@ async function updateManagedInstanceWithMinimalProperties() {
   const result = await client.managedInstances.beginUpdateAndWait(
     resourceGroupName,
     managedInstanceName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

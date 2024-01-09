@@ -28,7 +28,7 @@ async function p2SVpnGatewayGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.p2SVpnGateways.get(
     resourceGroupName,
-    gatewayName
+    gatewayName,
   );
   console.log(result);
 }

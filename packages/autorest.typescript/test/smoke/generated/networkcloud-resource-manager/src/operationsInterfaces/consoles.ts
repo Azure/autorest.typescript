@@ -17,7 +17,7 @@ import {
   ConsolesCreateOrUpdateResponse,
   ConsolesDeleteOptionalParams,
   ConsolesUpdateOptionalParams,
-  ConsolesUpdateResponse
+  ConsolesUpdateResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -32,7 +32,7 @@ export interface Consoles {
   listByVirtualMachine(
     resourceGroupName: string,
     virtualMachineName: string,
-    options?: ConsolesListByVirtualMachineOptionalParams
+    options?: ConsolesListByVirtualMachineOptionalParams,
   ): PagedAsyncIterableIterator<Console>;
   /**
    * Get properties of the provided virtual machine console.
@@ -45,7 +45,7 @@ export interface Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesGetOptionalParams
+    options?: ConsolesGetOptionalParams,
   ): Promise<ConsolesGetResponse>;
   /**
    * Create a new virtual machine console or update the properties of the existing virtual machine
@@ -61,7 +61,7 @@ export interface Consoles {
     virtualMachineName: string,
     consoleName: string,
     consoleParameters: Console,
-    options?: ConsolesCreateOrUpdateOptionalParams
+    options?: ConsolesCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ConsolesCreateOrUpdateResponse>,
@@ -82,7 +82,7 @@ export interface Consoles {
     virtualMachineName: string,
     consoleName: string,
     consoleParameters: Console,
-    options?: ConsolesCreateOrUpdateOptionalParams
+    options?: ConsolesCreateOrUpdateOptionalParams,
   ): Promise<ConsolesCreateOrUpdateResponse>;
   /**
    * Delete the provided virtual machine console.
@@ -95,7 +95,7 @@ export interface Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesDeleteOptionalParams
+    options?: ConsolesDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Delete the provided virtual machine console.
@@ -108,7 +108,7 @@ export interface Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesDeleteOptionalParams
+    options?: ConsolesDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Patch the properties of the provided virtual machine console, or update the tags associated with the
@@ -122,7 +122,7 @@ export interface Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesUpdateOptionalParams
+    options?: ConsolesUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<ConsolesUpdateResponse>,
@@ -141,6 +141,6 @@ export interface Consoles {
     resourceGroupName: string,
     virtualMachineName: string,
     consoleName: string,
-    options?: ConsolesUpdateOptionalParams
+    options?: ConsolesUpdateOptionalParams,
   ): Promise<ConsolesUpdateResponse>;
 }

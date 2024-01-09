@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   DeletedShare,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function restoreShares() {
   const shareName = "share1249";
   const deletedShare: DeletedShare = {
     deletedShareName: "share1249",
-    deletedShareVersion: "1234567890"
+    deletedShareVersion: "1234567890",
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -38,7 +38,7 @@ async function restoreShares() {
     resourceGroupName,
     accountName,
     shareName,
-    deletedShare
+    deletedShare,
   );
   console.log(result);
 }

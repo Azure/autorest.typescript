@@ -30,7 +30,7 @@ async function vpnConnectionGet() {
   const result = await client.vpnConnections.get(
     resourceGroupName,
     gatewayName,
-    connectionName
+    connectionName,
   );
   console.log(result);
 }

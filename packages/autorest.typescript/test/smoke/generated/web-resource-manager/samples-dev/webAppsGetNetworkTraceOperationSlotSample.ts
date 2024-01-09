@@ -33,7 +33,7 @@ async function getTheCurrentStatusOfANetworkTraceOperationForASite() {
     resourceGroupName,
     name,
     operationId,
-    slot
+    slot,
   );
   console.log(result);
 }

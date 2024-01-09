@@ -29,7 +29,7 @@ async function virtualNetworkGatewaysListConnections() {
   const resArray = new Array();
   for await (let item of client.virtualNetworkGateways.listConnections(
     resourceGroupName,
-    virtualNetworkGatewayName
+    virtualNetworkGatewayName,
   )) {
     resArray.push(item);
   }

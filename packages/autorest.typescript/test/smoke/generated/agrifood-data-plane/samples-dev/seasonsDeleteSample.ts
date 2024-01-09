@@ -18,7 +18,7 @@ async function seasonsDelete() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const seasonId = "SEASON123";
   const result = await client.path("/seasons/{seasonId}", seasonId).delete();

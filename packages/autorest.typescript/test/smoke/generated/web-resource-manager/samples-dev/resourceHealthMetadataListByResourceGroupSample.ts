@@ -29,7 +29,7 @@ async function listResourceHealthMetadataForAResourceGroup() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const resArray = new Array();
   for await (let item of client.resourceHealthMetadataOperations.listByResourceGroup(
-    resourceGroupName
+    resourceGroupName,
   )) {
     resArray.push(item);
   }

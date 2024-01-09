@@ -16,7 +16,7 @@ import {
   InheritanceGetValidOptionalParams,
   InheritanceGetValidResponse,
   Siamese,
-  InheritancePutValidOptionalParams
+  InheritancePutValidOptionalParams,
 } from "../models";
 
 /** Class containing Inheritance operations. */
@@ -36,7 +36,7 @@ export class InheritanceImpl implements Inheritance {
    * @param options The options parameters.
    */
   async getValid(
-    options?: InheritanceGetValidOptionalParams
+    options?: InheritanceGetValidOptionalParams,
   ): Promise<InheritanceGetValidResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getValid",
@@ -44,9 +44,9 @@ export class InheritanceImpl implements Inheritance {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getValidOperationSpec
+          getValidOperationSpec,
         ) as Promise<InheritanceGetValidResponse>;
-      }
+      },
     );
   }
 
@@ -59,7 +59,7 @@ export class InheritanceImpl implements Inheritance {
    */
   async putValid(
     complexBody: Siamese,
-    options?: InheritancePutValidOptionalParams
+    options?: InheritancePutValidOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putValid",
@@ -67,9 +67,9 @@ export class InheritanceImpl implements Inheritance {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putValidOperationSpec
+          putValidOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 }
@@ -81,15 +81,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Siamese
+      bodyMapper: Mappers.Siamese,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/inheritance/valid",
@@ -97,12 +97,12 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody14,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

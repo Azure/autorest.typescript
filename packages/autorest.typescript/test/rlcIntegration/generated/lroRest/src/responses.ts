@@ -7,7 +7,7 @@ import {
   ProductOutput,
   CloudErrorOutput,
   SkuOutput,
-  SubProductOutput
+  SubProductOutput,
 } from "./outputModels";
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */

@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VaultsListOptionalParams,
-  KeyVaultManagementClient
+  KeyVaultManagementClient,
 } from "@msinternal/keyvault-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";

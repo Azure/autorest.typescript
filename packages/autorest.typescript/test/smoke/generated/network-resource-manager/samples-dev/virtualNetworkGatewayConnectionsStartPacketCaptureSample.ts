@@ -11,7 +11,7 @@
 import {
   VpnPacketCaptureStartParameters,
   VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,18 +30,18 @@ async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithFilter() {
   const virtualNetworkGatewayConnectionName = "vpngwcn1";
   const parameters: VpnPacketCaptureStartParameters = {
     filterData:
-      "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}"
+      "{'TracingFlags': 11,'MaxPacketBufferSize': 120,'MaxFileSize': 200,'Filters': [{'SourceSubnets': ['20.1.1.0/24'],'DestinationSubnets': ['10.1.1.0/24'],'SourcePort': [500],'DestinationPort': [4500],'Protocol': 6,'TcpFlags': 16,'CaptureSingleDirectionTrafficOnly': true}]}",
   };
-  const options: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams = {
-    parameters
-  };
+  const options: VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams =
+    { parameters };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayConnections.beginStartPacketCaptureAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName,
-    options
-  );
+  const result =
+    await client.virtualNetworkGatewayConnections.beginStartPacketCaptureAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+      options,
+    );
   console.log(result);
 }
 
@@ -57,10 +57,11 @@ async function startPacketCaptureOnVirtualNetworkGatewayConnectionWithoutFilter(
   const virtualNetworkGatewayConnectionName = "vpngwcn1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.virtualNetworkGatewayConnections.beginStartPacketCaptureAndWait(
-    resourceGroupName,
-    virtualNetworkGatewayConnectionName
-  );
+  const result =
+    await client.virtualNetworkGatewayConnections.beginStartPacketCaptureAndWait(
+      resourceGroupName,
+      virtualNetworkGatewayConnectionName,
+    );
   console.log(result);
 }
 

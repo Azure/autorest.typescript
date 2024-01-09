@@ -11,7 +11,7 @@ export { DurationContext } from "../rest/index.js";
 
 /** Test for encode decorator on duration. */
 export function createDuration(
-  options: DurationClientOptions = {}
+  options: DurationClientOptions = {},
 ): DurationContext {
   const clientContext = getClient(options);
   return clientContext;

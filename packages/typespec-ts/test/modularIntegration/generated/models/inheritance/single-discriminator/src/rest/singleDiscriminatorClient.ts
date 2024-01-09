@@ -10,7 +10,7 @@ import { SingleDiscriminatorContext } from "./clientDefinitions.js";
  * @param options - the parameter for all optional parameters
  */
 export default function createClient(
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): SingleDiscriminatorContext {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";

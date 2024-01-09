@@ -33,7 +33,7 @@ async function listAppDetectors() {
   for await (let item of client.diagnostics.listSiteDetectors(
     resourceGroupName,
     siteName,
-    diagnosticCategory
+    diagnosticCategory,
   )) {
     resArray.push(item);
   }
@@ -59,7 +59,7 @@ async function listAppSlotDetectors() {
   for await (let item of client.diagnostics.listSiteDetectors(
     resourceGroupName,
     siteName,
-    diagnosticCategory
+    diagnosticCategory,
   )) {
     resArray.push(item);
   }

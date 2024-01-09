@@ -33,7 +33,7 @@ async function getAKeyVersion() {
     resourceGroupName,
     vaultName,
     keyName,
-    keyVersion
+    keyVersion,
   );
   console.log(result);
 }

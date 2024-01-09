@@ -16,7 +16,7 @@ import {
   HttpRetryPost503OptionalParams,
   HttpRetryDelete503OptionalParams,
   HttpRetryPut504OptionalParams,
-  HttpRetryPatch504OptionalParams
+  HttpRetryPatch504OptionalParams,
 } from "../models";
 
 /** Interface representing a HttpRetry. */
@@ -46,7 +46,7 @@ export interface HttpRetry {
    * @param options The options parameters.
    */
   options502(
-    options?: HttpRetryOptions502OptionalParams
+    options?: HttpRetryOptions502OptionalParams,
   ): Promise<HttpRetryOptions502Response>;
   /**
    * Return 503 status code, then 200 after retry

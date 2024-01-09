@@ -23,7 +23,7 @@ import {
   BasicGetNullOptionalParams,
   BasicGetNullResponse,
   BasicGetNotProvidedOptionalParams,
-  BasicGetNotProvidedResponse
+  BasicGetNotProvidedResponse,
 } from "../models";
 
 /** Class containing Basic operations. */
@@ -43,7 +43,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getValid(
-    options?: BasicGetValidOptionalParams
+    options?: BasicGetValidOptionalParams,
   ): Promise<BasicGetValidResponse> {
     return this.client.sendOperationRequest({ options }, getValidOperationSpec);
   }
@@ -55,11 +55,11 @@ export class BasicImpl implements Basic {
    */
   putValid(
     complexBody: BasicDef,
-    options?: BasicPutValidOptionalParams
+    options?: BasicPutValidOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { complexBody, options },
-      putValidOperationSpec
+      putValidOperationSpec,
     );
   }
 
@@ -68,11 +68,11 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getInvalid(
-    options?: BasicGetInvalidOptionalParams
+    options?: BasicGetInvalidOptionalParams,
   ): Promise<BasicGetInvalidResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidOperationSpec
+      getInvalidOperationSpec,
     );
   }
 
@@ -81,7 +81,7 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getEmpty(
-    options?: BasicGetEmptyOptionalParams
+    options?: BasicGetEmptyOptionalParams,
   ): Promise<BasicGetEmptyResponse> {
     return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
   }
@@ -99,11 +99,11 @@ export class BasicImpl implements Basic {
    * @param options The options parameters.
    */
   getNotProvided(
-    options?: BasicGetNotProvidedOptionalParams
+    options?: BasicGetNotProvidedOptionalParams,
   ): Promise<BasicGetNotProvidedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNotProvidedOperationSpec
+      getNotProvidedOperationSpec,
     );
   }
 }
@@ -115,15 +115,15 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.BasicDef
+      bodyMapper: Mappers.BasicDef,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putValidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/basic/valid",
@@ -131,73 +131,73 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getInvalidOperationSpec: coreClient.OperationSpec = {
   path: "/complex/basic/invalid",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.BasicDef
+      bodyMapper: Mappers.BasicDef,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getEmptyOperationSpec: coreClient.OperationSpec = {
   path: "/complex/basic/empty",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.BasicDef
+      bodyMapper: Mappers.BasicDef,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNullOperationSpec: coreClient.OperationSpec = {
   path: "/complex/basic/null",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.BasicDef
+      bodyMapper: Mappers.BasicDef,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getNotProvidedOperationSpec: coreClient.OperationSpec = {
   path: "/complex/basic/notprovided",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.BasicDef
+      bodyMapper: Mappers.BasicDef,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

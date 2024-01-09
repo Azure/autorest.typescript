@@ -38,7 +38,7 @@ import {
   HttpRedirectsPost307OptionalParams,
   HttpRedirectsPost307Response,
   HttpRedirectsDelete307OptionalParams,
-  HttpRedirectsDelete307Response
+  HttpRedirectsDelete307Response,
 } from "../models";
 
 /** Interface representing a HttpRedirects. */
@@ -48,28 +48,28 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   head300(
-    options?: HttpRedirectsHead300OptionalParams
+    options?: HttpRedirectsHead300OptionalParams,
   ): Promise<HttpRedirectsHead300Response>;
   /**
    * Return 300 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   get300(
-    options?: HttpRedirectsGet300OptionalParams
+    options?: HttpRedirectsGet300OptionalParams,
   ): Promise<HttpRedirectsGet300Response>;
   /**
    * Return 301 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   head301(
-    options?: HttpRedirectsHead301OptionalParams
+    options?: HttpRedirectsHead301OptionalParams,
   ): Promise<HttpRedirectsHead301Response>;
   /**
    * Return 301 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   get301(
-    options?: HttpRedirectsGet301OptionalParams
+    options?: HttpRedirectsGet301OptionalParams,
   ): Promise<HttpRedirectsGet301Response>;
   /**
    * Put true Boolean value in request returns 301.  This request should not be automatically redirected,
@@ -77,21 +77,21 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   put301(
-    options?: HttpRedirectsPut301OptionalParams
+    options?: HttpRedirectsPut301OptionalParams,
   ): Promise<HttpRedirectsPut301Response>;
   /**
    * Return 302 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   head302(
-    options?: HttpRedirectsHead302OptionalParams
+    options?: HttpRedirectsHead302OptionalParams,
   ): Promise<HttpRedirectsHead302Response>;
   /**
    * Return 302 status code and redirect to /http/success/200
    * @param options The options parameters.
    */
   get302(
-    options?: HttpRedirectsGet302OptionalParams
+    options?: HttpRedirectsGet302OptionalParams,
   ): Promise<HttpRedirectsGet302Response>;
   /**
    * Patch true Boolean value in request returns 302.  This request should not be automatically
@@ -99,7 +99,7 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   patch302(
-    options?: HttpRedirectsPatch302OptionalParams
+    options?: HttpRedirectsPatch302OptionalParams,
   ): Promise<HttpRedirectsPatch302Response>;
   /**
    * Post true Boolean value in request returns 303.  This request should be automatically redirected
@@ -107,55 +107,55 @@ export interface HttpRedirects {
    * @param options The options parameters.
    */
   post303(
-    options?: HttpRedirectsPost303OptionalParams
+    options?: HttpRedirectsPost303OptionalParams,
   ): Promise<HttpRedirectsPost303Response>;
   /**
    * Redirect with 307, resulting in a 200 success
    * @param options The options parameters.
    */
   head307(
-    options?: HttpRedirectsHead307OptionalParams
+    options?: HttpRedirectsHead307OptionalParams,
   ): Promise<HttpRedirectsHead307Response>;
   /**
    * Redirect get with 307, resulting in a 200 success
    * @param options The options parameters.
    */
   get307(
-    options?: HttpRedirectsGet307OptionalParams
+    options?: HttpRedirectsGet307OptionalParams,
   ): Promise<HttpRedirectsGet307Response>;
   /**
    * options redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   options307(
-    options?: HttpRedirectsOptions307OptionalParams
+    options?: HttpRedirectsOptions307OptionalParams,
   ): Promise<HttpRedirectsOptions307Response>;
   /**
    * Put redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   put307(
-    options?: HttpRedirectsPut307OptionalParams
+    options?: HttpRedirectsPut307OptionalParams,
   ): Promise<HttpRedirectsPut307Response>;
   /**
    * Patch redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   patch307(
-    options?: HttpRedirectsPatch307OptionalParams
+    options?: HttpRedirectsPatch307OptionalParams,
   ): Promise<HttpRedirectsPatch307Response>;
   /**
    * Post redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   post307(
-    options?: HttpRedirectsPost307OptionalParams
+    options?: HttpRedirectsPost307OptionalParams,
   ): Promise<HttpRedirectsPost307Response>;
   /**
    * Delete redirected with 307, resulting in a 200 after redirect
    * @param options The options parameters.
    */
   delete307(
-    options?: HttpRedirectsDelete307OptionalParams
+    options?: HttpRedirectsDelete307OptionalParams,
   ): Promise<HttpRedirectsDelete307Response>;
 }

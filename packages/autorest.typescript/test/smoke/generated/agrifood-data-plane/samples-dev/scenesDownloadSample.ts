@@ -18,7 +18,7 @@ async function scenesDownload() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const result = await client
     .path("/scenes/downloadFiles")

@@ -16,9 +16,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const accept: OperationParameter = {
@@ -28,14 +28,14 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const provider: OperationParameter = {
   parameterPath: ["options", "provider"],
-  mapper: CertificateIssuerUpdateParametersMapper
+  mapper: CertificateIssuerUpdateParametersMapper,
 };
 
 export const $host: OperationURLParameter = {
@@ -44,10 +44,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const issuerName: OperationURLParameter = {
@@ -56,7 +56,7 @@ export const issuerName: OperationURLParameter = {
     serializedName: "issuer-name",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

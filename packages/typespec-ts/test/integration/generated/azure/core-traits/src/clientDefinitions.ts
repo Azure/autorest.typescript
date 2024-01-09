@@ -13,14 +13,14 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface SmokeTest {
   /** Get a resource, sending and receiving headers. */
   get(
-    options: SmokeTestParameters
+    options: SmokeTestParameters,
   ): StreamableMethod<SmokeTest200Response | SmokeTestDefaultResponse>;
 }
 
 export interface RepeatableAction {
   /** Test for repeatable requests */
   post(
-    options?: RepeatableActionParameters
+    options?: RepeatableActionParameters,
   ): StreamableMethod<
     RepeatableAction200Response | RepeatableActionDefaultResponse
   >;
@@ -32,7 +32,7 @@ export interface Routes {
   /** Resource for '/azure/core/traits/user/\{id\}:repeatableAction' has methods for the following verbs: post */
   (
     path: "/azure/core/traits/user/{id}:repeatableAction",
-    id: number
+    id: number,
   ): RepeatableAction;
 }
 

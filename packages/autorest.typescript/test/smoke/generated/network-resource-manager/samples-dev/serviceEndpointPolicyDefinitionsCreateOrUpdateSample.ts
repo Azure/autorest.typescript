@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ServiceEndpointPolicyDefinition,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -34,17 +34,18 @@ async function createServiceEndpointPolicyDefinition() {
     serviceResources: [
       "/subscriptions/subid1",
       "/subscriptions/subid1/resourceGroups/storageRg",
-      "/subscriptions/subid1/resourceGroups/storageRg/providers/Microsoft.Storage/storageAccounts/stAccount"
-    ]
+      "/subscriptions/subid1/resourceGroups/storageRg/providers/Microsoft.Storage/storageAccounts/stAccount",
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.serviceEndpointPolicyDefinitions.beginCreateOrUpdateAndWait(
-    resourceGroupName,
-    serviceEndpointPolicyName,
-    serviceEndpointPolicyDefinitionName,
-    serviceEndpointPolicyDefinitions
-  );
+  const result =
+    await client.serviceEndpointPolicyDefinitions.beginCreateOrUpdateAndWait(
+      resourceGroupName,
+      serviceEndpointPolicyName,
+      serviceEndpointPolicyDefinitionName,
+      serviceEndpointPolicyDefinitions,
+    );
   console.log(result);
 }
 

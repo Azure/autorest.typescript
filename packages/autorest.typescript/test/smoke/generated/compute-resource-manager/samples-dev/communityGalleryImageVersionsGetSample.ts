@@ -32,7 +32,7 @@ async function getAGallery() {
     location,
     publicGalleryName,
     galleryImageName,
-    galleryImageVersionName
+    galleryImageVersionName,
   );
   console.log(result);
 }

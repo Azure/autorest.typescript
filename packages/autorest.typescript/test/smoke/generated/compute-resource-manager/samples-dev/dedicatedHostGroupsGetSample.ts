@@ -28,7 +28,7 @@ async function createADedicatedHostGroup() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.dedicatedHostGroups.get(
     resourceGroupName,
-    hostGroupName
+    hostGroupName,
   );
   console.log(result);
 }

@@ -32,7 +32,7 @@ async function upgradesADataWarehouse() {
   const result = await client.databases.beginUpgradeDataWarehouseAndWait(
     resourceGroupName,
     serverName,
-    databaseName
+    databaseName,
   );
   console.log(result);
 }

@@ -16,7 +16,7 @@ import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SimplePollerLike,
   OperationState,
-  createHttpPoller
+  createHttpPoller,
 } from "@azure/core-lro";
 import { createLroSpec } from "../lroImpl";
 import {
@@ -33,7 +33,7 @@ import {
   InstanceFailoverGroupsFailoverResponse,
   InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams,
   InstanceFailoverGroupsForceFailoverAllowDataLossResponse,
-  InstanceFailoverGroupsListByLocationNextResponse
+  InstanceFailoverGroupsListByLocationNextResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -59,12 +59,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   public listByLocation(
     resourceGroupName: string,
     locationName: string,
-    options?: InstanceFailoverGroupsListByLocationOptionalParams
+    options?: InstanceFailoverGroupsListByLocationOptionalParams,
   ): PagedAsyncIterableIterator<InstanceFailoverGroup> {
     const iter = this.listByLocationPagingAll(
       resourceGroupName,
       locationName,
-      options
+      options,
     );
     return {
       next() {
@@ -81,9 +81,9 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
           resourceGroupName,
           locationName,
           options,
-          settings
+          settings,
         );
-      }
+      },
     };
   }
 
@@ -91,7 +91,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     options?: InstanceFailoverGroupsListByLocationOptionalParams,
-    settings?: PageSettings
+    settings?: PageSettings,
   ): AsyncIterableIterator<InstanceFailoverGroup[]> {
     let result: InstanceFailoverGroupsListByLocationResponse;
     let continuationToken = settings?.continuationToken;
@@ -99,7 +99,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
       result = await this._listByLocation(
         resourceGroupName,
         locationName,
-        options
+        options,
       );
       let page = result.value || [];
       continuationToken = result.nextLink;
@@ -111,7 +111,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         resourceGroupName,
         locationName,
         continuationToken,
-        options
+        options,
       );
       continuationToken = result.nextLink;
       let page = result.value || [];
@@ -123,12 +123,12 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   private async *listByLocationPagingAll(
     resourceGroupName: string,
     locationName: string,
-    options?: InstanceFailoverGroupsListByLocationOptionalParams
+    options?: InstanceFailoverGroupsListByLocationOptionalParams,
   ): AsyncIterableIterator<InstanceFailoverGroup> {
     for await (const page of this.listByLocationPagingPage(
       resourceGroupName,
       locationName,
-      options
+      options,
     )) {
       yield* page;
     }
@@ -146,11 +146,11 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsGetOptionalParams
+    options?: InstanceFailoverGroupsGetOptionalParams,
   ): Promise<InstanceFailoverGroupsGetResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, locationName, failoverGroupName, options },
-      getOperationSpec
+      getOperationSpec,
     );
   }
 
@@ -168,7 +168,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     parameters: InstanceFailoverGroup,
-    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
+    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<InstanceFailoverGroupsCreateOrUpdateResponse>,
@@ -177,21 +177,20 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<InstanceFailoverGroupsCreateOrUpdateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -200,8 +199,8 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -209,8 +208,8 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
@@ -221,16 +220,16 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         locationName,
         failoverGroupName,
         parameters,
-        options
+        options,
       },
-      spec: createOrUpdateOperationSpec
+      spec: createOrUpdateOperationSpec,
     });
     const poller = await createHttpPoller<
       InstanceFailoverGroupsCreateOrUpdateResponse,
       OperationState<InstanceFailoverGroupsCreateOrUpdateResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -250,14 +249,14 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     locationName: string,
     failoverGroupName: string,
     parameters: InstanceFailoverGroup,
-    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams
+    options?: InstanceFailoverGroupsCreateOrUpdateOptionalParams,
   ): Promise<InstanceFailoverGroupsCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       locationName,
       failoverGroupName,
       parameters,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -274,25 +273,24 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsDeleteOptionalParams
+    options?: InstanceFailoverGroupsDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<void> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -301,8 +299,8 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -310,19 +308,19 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, locationName, failoverGroupName, options },
-      spec: deleteOperationSpec
+      spec: deleteOperationSpec,
     });
     const poller = await createHttpPoller<void, OperationState<void>>(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -340,13 +338,13 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsDeleteOptionalParams
+    options?: InstanceFailoverGroupsDeleteOptionalParams,
   ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       locationName,
       failoverGroupName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -361,11 +359,11 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   private _listByLocation(
     resourceGroupName: string,
     locationName: string,
-    options?: InstanceFailoverGroupsListByLocationOptionalParams
+    options?: InstanceFailoverGroupsListByLocationOptionalParams,
   ): Promise<InstanceFailoverGroupsListByLocationResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, locationName, options },
-      listByLocationOperationSpec
+      listByLocationOperationSpec,
     );
   }
 
@@ -381,7 +379,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsFailoverOptionalParams
+    options?: InstanceFailoverGroupsFailoverOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<InstanceFailoverGroupsFailoverResponse>,
@@ -390,21 +388,20 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<InstanceFailoverGroupsFailoverResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -413,8 +410,8 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -422,22 +419,22 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, locationName, failoverGroupName, options },
-      spec: failoverOperationSpec
+      spec: failoverOperationSpec,
     });
     const poller = await createHttpPoller<
       InstanceFailoverGroupsFailoverResponse,
       OperationState<InstanceFailoverGroupsFailoverResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -455,13 +452,13 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsFailoverOptionalParams
+    options?: InstanceFailoverGroupsFailoverOptionalParams,
   ): Promise<InstanceFailoverGroupsFailoverResponse> {
     const poller = await this.beginFailover(
       resourceGroupName,
       locationName,
       failoverGroupName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -479,7 +476,7 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
+    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>,
@@ -488,21 +485,20 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ): Promise<InstanceFailoverGroupsForceFailoverAllowDataLossResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperationFn = async (
       args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      spec: coreClient.OperationSpec,
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
+      let currentRawResponse: coreClient.FullOperationResponse | undefined =
+        undefined;
       const providedCallback = args.options?.onResponse;
       const callback: coreClient.RawResponseCallback = (
         rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
+        flatResponse: unknown,
       ) => {
         currentRawResponse = rawResponse;
         providedCallback?.(rawResponse, flatResponse);
@@ -511,8 +507,8 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         ...args,
         options: {
           ...args.options,
-          onResponse: callback
-        }
+          onResponse: callback,
+        },
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
       return {
@@ -520,22 +516,22 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
         rawResponse: {
           statusCode: currentRawResponse!.status,
           body: currentRawResponse!.parsedBody,
-          headers: currentRawResponse!.headers.toJSON()
-        }
+          headers: currentRawResponse!.headers.toJSON(),
+        },
       };
     };
 
     const lro = createLroSpec({
       sendOperationFn,
       args: { resourceGroupName, locationName, failoverGroupName, options },
-      spec: forceFailoverAllowDataLossOperationSpec
+      spec: forceFailoverAllowDataLossOperationSpec,
     });
     const poller = await createHttpPoller<
       InstanceFailoverGroupsForceFailoverAllowDataLossResponse,
       OperationState<InstanceFailoverGroupsForceFailoverAllowDataLossResponse>
     >(lro, {
       restoreFrom: options?.resumeFrom,
-      intervalInMs: options?.updateIntervalInMs
+      intervalInMs: options?.updateIntervalInMs,
     });
     await poller.poll();
     return poller;
@@ -554,13 +550,13 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     failoverGroupName: string,
-    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams
+    options?: InstanceFailoverGroupsForceFailoverAllowDataLossOptionalParams,
   ): Promise<InstanceFailoverGroupsForceFailoverAllowDataLossResponse> {
     const poller = await this.beginForceFailoverAllowDataLoss(
       resourceGroupName,
       locationName,
       failoverGroupName,
-      options
+      options,
     );
     return poller.pollUntilDone();
   }
@@ -577,11 +573,11 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
     resourceGroupName: string,
     locationName: string,
     nextLink: string,
-    options?: InstanceFailoverGroupsListByLocationNextOptionalParams
+    options?: InstanceFailoverGroupsListByLocationNextOptionalParams,
   ): Promise<InstanceFailoverGroupsListByLocationNextResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, locationName, nextLink, options },
-      listByLocationNextOperationSpec
+      listByLocationNextOperationSpec,
     );
   }
 }
@@ -589,14 +585,13 @@ export class InstanceFailoverGroupsImpl implements InstanceFailoverGroups {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const getOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
@@ -604,29 +599,28 @@ const getOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.locationName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const createOrUpdateOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
   httpMethod: "PUT",
   responses: {
     200: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
-    default: {}
+    default: {},
   },
   requestBody: Parameters.parameters27,
   queryParameters: [Parameters.apiVersion2],
@@ -635,15 +629,14 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.locationName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const deleteOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 201: {}, 202: {}, 204: {}, default: {} },
   queryParameters: [Parameters.apiVersion2],
@@ -652,48 +645,46 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.locationName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
-  serializer
+  serializer,
 };
 const listByLocationOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstanceFailoverGroupListResult
+      bodyMapper: Mappers.InstanceFailoverGroupListResult,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
-    Parameters.locationName
+    Parameters.locationName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const failoverOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}/failover",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}/failover",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
@@ -701,29 +692,28 @@ const failoverOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.locationName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const forceFailoverAllowDataLossOperationSpec: coreClient.OperationSpec = {
-  path:
-    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}/forceFailoverAllowDataLoss",
+  path: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/instanceFailoverGroups/{failoverGroupName}/forceFailoverAllowDataLoss",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     201: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     202: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
     204: {
-      bodyMapper: Mappers.InstanceFailoverGroup
+      bodyMapper: Mappers.InstanceFailoverGroup,
     },
-    default: {}
+    default: {},
   },
   queryParameters: [Parameters.apiVersion2],
   urlParameters: [
@@ -731,27 +721,27 @@ const forceFailoverAllowDataLossOperationSpec: coreClient.OperationSpec = {
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.locationName,
-    Parameters.failoverGroupName
+    Parameters.failoverGroupName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const listByLocationNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.InstanceFailoverGroupListResult
+      bodyMapper: Mappers.InstanceFailoverGroupListResult,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [
     Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.nextLink,
-    Parameters.locationName
+    Parameters.locationName,
   ],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

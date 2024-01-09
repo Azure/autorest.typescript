@@ -240,7 +240,7 @@ import {
   TriggerRunQueryTriggerRunsByWorkspace200Response,
   TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse,
   WorkspaceGet200Response,
-  WorkspaceGetDefaultResponse
+  WorkspaceGetDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -315,7 +315,7 @@ const responseMap: Record<string, string[]> = {
   "POST /queryPipelineRuns": ["200"],
   "GET /pipelineruns/{runId}": ["200"],
   "POST /pipelines/{pipelineName}/pipelineruns/{runId}/queryActivityruns": [
-    "200"
+    "200",
   ],
   "POST /pipelineruns/{runId}/cancel": ["200"],
   "GET /sparkJobDefinitions": ["200"],
@@ -352,277 +352,277 @@ const responseMap: Record<string, string[]> = {
   "POST /triggers/{triggerName}/triggerRuns/{runId}/rerun": ["200"],
   "POST /triggers/{triggerName}/triggerRuns/{runId}/cancel": ["200"],
   "POST /queryTriggerRuns": ["200"],
-  "GET /workspace": ["200"]
+  "GET /workspace": ["200"],
 };
 
 export function isUnexpected(
-  response: KqlScriptsGetAll200Response | KqlScriptsGetAllDefaultResponse
+  response: KqlScriptsGetAll200Response | KqlScriptsGetAllDefaultResponse,
 ): response is KqlScriptsGetAllDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptCreateOrUpdate200Response
     | KqlScriptCreateOrUpdate202Response
-    | KqlScriptCreateOrUpdateDefaultResponse
+    | KqlScriptCreateOrUpdateDefaultResponse,
 ): response is KqlScriptCreateOrUpdateDefaultResponse;
 export function isUnexpected(
-  response: KqlScriptGetByName200Response | KqlScriptGetByNameDefaultResponse
+  response: KqlScriptGetByName200Response | KqlScriptGetByNameDefaultResponse,
 ): response is KqlScriptGetByNameDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptDeleteByName200Response
     | KqlScriptDeleteByName202Response
     | KqlScriptDeleteByName204Response
-    | KqlScriptDeleteByNameDefaultResponse
+    | KqlScriptDeleteByNameDefaultResponse,
 ): response is KqlScriptDeleteByNameDefaultResponse;
 export function isUnexpected(
   response:
     | KqlScriptRename200Response
     | KqlScriptRename202Response
-    | KqlScriptRenameDefaultResponse
+    | KqlScriptRenameDefaultResponse,
 ): response is KqlScriptRenameDefaultResponse;
 export function isUnexpected(
-  response: MetastoreRegister201Response | MetastoreRegisterDefaultResponse
+  response: MetastoreRegister201Response | MetastoreRegisterDefaultResponse,
 ): response is MetastoreRegisterDefaultResponse;
 export function isUnexpected(
   response:
     | MetastoreGetDatabaseOperations200Response
-    | MetastoreGetDatabaseOperationsDefaultResponse
+    | MetastoreGetDatabaseOperationsDefaultResponse,
 ): response is MetastoreGetDatabaseOperationsDefaultResponse;
 export function isUnexpected(
-  response: MetastoreUpdate201Response | MetastoreUpdateDefaultResponse
+  response: MetastoreUpdate201Response | MetastoreUpdateDefaultResponse,
 ): response is MetastoreUpdateDefaultResponse;
 export function isUnexpected(
-  response: MetastoreDelete204Response | MetastoreDeleteDefaultResponse
+  response: MetastoreDelete204Response | MetastoreDeleteDefaultResponse,
 ): response is MetastoreDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationGetSparkConfigurationsByWorkspace200Response
-    | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse
+    | SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse,
 ): response is SparkConfigurationGetSparkConfigurationsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationCreateOrUpdateSparkConfiguration200Response
     | SparkConfigurationCreateOrUpdateSparkConfiguration202Response
-    | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse
+    | SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse,
 ): response is SparkConfigurationCreateOrUpdateSparkConfigurationDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationGetSparkConfiguration200Response
     | SparkConfigurationGetSparkConfiguration304Response
-    | SparkConfigurationGetSparkConfigurationDefaultResponse
+    | SparkConfigurationGetSparkConfigurationDefaultResponse,
 ): response is SparkConfigurationGetSparkConfigurationDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationDeleteSparkConfiguration200Response
     | SparkConfigurationDeleteSparkConfiguration202Response
     | SparkConfigurationDeleteSparkConfiguration204Response
-    | SparkConfigurationDeleteSparkConfigurationDefaultResponse
+    | SparkConfigurationDeleteSparkConfigurationDefaultResponse,
 ): response is SparkConfigurationDeleteSparkConfigurationDefaultResponse;
 export function isUnexpected(
   response:
     | SparkConfigurationRenameSparkConfiguration200Response
     | SparkConfigurationRenameSparkConfiguration202Response
-    | SparkConfigurationRenameSparkConfigurationDefaultResponse
+    | SparkConfigurationRenameSparkConfigurationDefaultResponse,
 ): response is SparkConfigurationRenameSparkConfigurationDefaultResponse;
 export function isUnexpected(
-  response: BigDataPoolsList200Response | BigDataPoolsListDefaultResponse
+  response: BigDataPoolsList200Response | BigDataPoolsListDefaultResponse,
 ): response is BigDataPoolsListDefaultResponse;
 export function isUnexpected(
-  response: BigDataPoolsGet200Response | BigDataPoolsGetDefaultResponse
+  response: BigDataPoolsGet200Response | BigDataPoolsGetDefaultResponse,
 ): response is BigDataPoolsGetDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowCreateOrUpdateDataFlow200Response
     | DataFlowCreateOrUpdateDataFlow202Response
-    | DataFlowCreateOrUpdateDataFlowDefaultResponse
+    | DataFlowCreateOrUpdateDataFlowDefaultResponse,
 ): response is DataFlowCreateOrUpdateDataFlowDefaultResponse;
 export function isUnexpected(
-  response: DataFlowGetDataFlow200Response | DataFlowGetDataFlowDefaultResponse
+  response: DataFlowGetDataFlow200Response | DataFlowGetDataFlowDefaultResponse,
 ): response is DataFlowGetDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDeleteDataFlow200Response
     | DataFlowDeleteDataFlow202Response
     | DataFlowDeleteDataFlow204Response
-    | DataFlowDeleteDataFlowDefaultResponse
+    | DataFlowDeleteDataFlowDefaultResponse,
 ): response is DataFlowDeleteDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowRenameDataFlow200Response
     | DataFlowRenameDataFlow202Response
-    | DataFlowRenameDataFlowDefaultResponse
+    | DataFlowRenameDataFlowDefaultResponse,
 ): response is DataFlowRenameDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowGetDataFlowsByWorkspace200Response
-    | DataFlowGetDataFlowsByWorkspaceDefaultResponse
+    | DataFlowGetDataFlowsByWorkspaceDefaultResponse,
 ): response is DataFlowGetDataFlowsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionCreateDataFlowDebugSession200Response
     | DataFlowDebugSessionCreateDataFlowDebugSession202Response
-    | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse
+    | DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse,
 ): response is DataFlowDebugSessionCreateDataFlowDebugSessionDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspace200Response
-    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse
+    | DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse,
 ): response is DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionAddDataFlow200Response
-    | DataFlowDebugSessionAddDataFlowDefaultResponse
+    | DataFlowDebugSessionAddDataFlowDefaultResponse,
 ): response is DataFlowDebugSessionAddDataFlowDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionDeleteDataFlowDebugSession200Response
-    | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse
+    | DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse,
 ): response is DataFlowDebugSessionDeleteDataFlowDebugSessionDefaultResponse;
 export function isUnexpected(
   response:
     | DataFlowDebugSessionExecuteCommand200Response
     | DataFlowDebugSessionExecuteCommand202Response
-    | DataFlowDebugSessionExecuteCommandDefaultResponse
+    | DataFlowDebugSessionExecuteCommandDefaultResponse,
 ): response is DataFlowDebugSessionExecuteCommandDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetGetDatasetsByWorkspace200Response
-    | DatasetGetDatasetsByWorkspaceDefaultResponse
+    | DatasetGetDatasetsByWorkspaceDefaultResponse,
 ): response is DatasetGetDatasetsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetCreateOrUpdateDataset200Response
     | DatasetCreateOrUpdateDataset202Response
-    | DatasetCreateOrUpdateDatasetDefaultResponse
+    | DatasetCreateOrUpdateDatasetDefaultResponse,
 ): response is DatasetCreateOrUpdateDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetGetDataset200Response
     | DatasetGetDataset304Response
-    | DatasetGetDatasetDefaultResponse
+    | DatasetGetDatasetDefaultResponse,
 ): response is DatasetGetDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetDeleteDataset200Response
     | DatasetDeleteDataset202Response
     | DatasetDeleteDataset204Response
-    | DatasetDeleteDatasetDefaultResponse
+    | DatasetDeleteDatasetDefaultResponse,
 ): response is DatasetDeleteDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | DatasetRenameDataset200Response
     | DatasetRenameDataset202Response
-    | DatasetRenameDatasetDefaultResponse
+    | DatasetRenameDatasetDefaultResponse,
 ): response is DatasetRenameDatasetDefaultResponse;
 export function isUnexpected(
   response:
     | IntegrationRuntimesList200Response
-    | IntegrationRuntimesListDefaultResponse
+    | IntegrationRuntimesListDefaultResponse,
 ): response is IntegrationRuntimesListDefaultResponse;
 export function isUnexpected(
   response:
     | IntegrationRuntimesGet200Response
-    | IntegrationRuntimesGetDefaultResponse
+    | IntegrationRuntimesGetDefaultResponse,
 ): response is IntegrationRuntimesGetDefaultResponse;
 export function isUnexpected(
-  response: LibraryList200Response | LibraryListDefaultResponse
+  response: LibraryList200Response | LibraryListDefaultResponse,
 ): response is LibraryListDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryFlush200Response
     | LibraryFlush202Response
-    | LibraryFlushDefaultResponse
+    | LibraryFlushDefaultResponse,
 ): response is LibraryFlushDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryGetOperationResult200Response
     | LibraryGetOperationResult202Response
-    | LibraryGetOperationResultDefaultResponse
+    | LibraryGetOperationResultDefaultResponse,
 ): response is LibraryGetOperationResultDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryDelete200Response
     | LibraryDelete202Response
     | LibraryDelete409Response
-    | LibraryDeleteDefaultResponse
+    | LibraryDeleteDefaultResponse,
 ): response is LibraryDeleteDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryGet200Response
     | LibraryGet304Response
-    | LibraryGetDefaultResponse
+    | LibraryGetDefaultResponse,
 ): response is LibraryGetDefaultResponse;
 export function isUnexpected(
   response:
     | LibraryCreate200Response
     | LibraryCreate202Response
     | LibraryAppend201Response
-    | LibraryCreateDefaultResponse
+    | LibraryCreateDefaultResponse,
 ): response is LibraryCreateDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceGetLinkedServicesByWorkspace200Response
-    | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse
+    | LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse,
 ): response is LinkedServiceGetLinkedServicesByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceCreateOrUpdateLinkedService200Response
     | LinkedServiceCreateOrUpdateLinkedService202Response
-    | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse
+    | LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse,
 ): response is LinkedServiceCreateOrUpdateLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceGetLinkedService200Response
     | LinkedServiceGetLinkedService304Response
-    | LinkedServiceGetLinkedServiceDefaultResponse
+    | LinkedServiceGetLinkedServiceDefaultResponse,
 ): response is LinkedServiceGetLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceDeleteLinkedService200Response
     | LinkedServiceDeleteLinkedService202Response
     | LinkedServiceDeleteLinkedService204Response
-    | LinkedServiceDeleteLinkedServiceDefaultResponse
+    | LinkedServiceDeleteLinkedServiceDefaultResponse,
 ): response is LinkedServiceDeleteLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | LinkedServiceRenameLinkedService200Response
     | LinkedServiceRenameLinkedService202Response
-    | LinkedServiceRenameLinkedServiceDefaultResponse
+    | LinkedServiceRenameLinkedServiceDefaultResponse,
 ): response is LinkedServiceRenameLinkedServiceDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookGetNotebooksByWorkspace200Response
-    | NotebookGetNotebooksByWorkspaceDefaultResponse
+    | NotebookGetNotebooksByWorkspaceDefaultResponse,
 ): response is NotebookGetNotebooksByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookGetNotebookSummaryByWorkSpace200Response
-    | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse
+    | NotebookGetNotebookSummaryByWorkSpaceDefaultResponse,
 ): response is NotebookGetNotebookSummaryByWorkSpaceDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookCreateOrUpdateNotebook200Response
     | NotebookCreateOrUpdateNotebook202Response
-    | NotebookCreateOrUpdateNotebookDefaultResponse
+    | NotebookCreateOrUpdateNotebookDefaultResponse,
 ): response is NotebookCreateOrUpdateNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookGetNotebook200Response
     | NotebookGetNotebook304Response
-    | NotebookGetNotebookDefaultResponse
+    | NotebookGetNotebookDefaultResponse,
 ): response is NotebookGetNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookDeleteNotebook200Response
     | NotebookDeleteNotebook202Response
     | NotebookDeleteNotebook204Response
-    | NotebookDeleteNotebookDefaultResponse
+    | NotebookDeleteNotebookDefaultResponse,
 ): response is NotebookDeleteNotebookDefaultResponse;
 export function isUnexpected(
   response:
     | NotebookRenameNotebook200Response
     | NotebookRenameNotebook202Response
-    | NotebookRenameNotebookDefaultResponse
+    | NotebookRenameNotebookDefaultResponse,
 ): response is NotebookRenameNotebookDefaultResponse;
 export function isUnexpected(
   response:
@@ -630,205 +630,205 @@ export function isUnexpected(
     | NotebookOperationResultGet201Response
     | NotebookOperationResultGet202Response
     | NotebookOperationResultGet204Response
-    | NotebookOperationResultGetDefaultResponse
+    | NotebookOperationResultGetDefaultResponse,
 ): response is NotebookOperationResultGetDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineGetPipelinesByWorkspace200Response
-    | PipelineGetPipelinesByWorkspaceDefaultResponse
+    | PipelineGetPipelinesByWorkspaceDefaultResponse,
 ): response is PipelineGetPipelinesByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineCreateOrUpdatePipeline200Response
     | PipelineCreateOrUpdatePipeline202Response
-    | PipelineCreateOrUpdatePipelineDefaultResponse
+    | PipelineCreateOrUpdatePipelineDefaultResponse,
 ): response is PipelineCreateOrUpdatePipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineGetPipeline200Response
     | PipelineGetPipeline304Response
-    | PipelineGetPipelineDefaultResponse
+    | PipelineGetPipelineDefaultResponse,
 ): response is PipelineGetPipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineDeletePipeline200Response
     | PipelineDeletePipeline202Response
     | PipelineDeletePipeline204Response
-    | PipelineDeletePipelineDefaultResponse
+    | PipelineDeletePipelineDefaultResponse,
 ): response is PipelineDeletePipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRenamePipeline200Response
     | PipelineRenamePipeline202Response
-    | PipelineRenamePipelineDefaultResponse
+    | PipelineRenamePipelineDefaultResponse,
 ): response is PipelineRenamePipelineDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineCreatePipelineRun202Response
-    | PipelineCreatePipelineRunDefaultResponse
+    | PipelineCreatePipelineRunDefaultResponse,
 ): response is PipelineCreatePipelineRunDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunQueryPipelineRunsByWorkspace200Response
-    | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse
+    | PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse,
 ): response is PipelineRunQueryPipelineRunsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunGetPipelineRun200Response
-    | PipelineRunGetPipelineRunDefaultResponse
+    | PipelineRunGetPipelineRunDefaultResponse,
 ): response is PipelineRunGetPipelineRunDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunQueryActivityRuns200Response
-    | PipelineRunQueryActivityRunsDefaultResponse
+    | PipelineRunQueryActivityRunsDefaultResponse,
 ): response is PipelineRunQueryActivityRunsDefaultResponse;
 export function isUnexpected(
   response:
     | PipelineRunCancelPipelineRun200Response
-    | PipelineRunCancelPipelineRunDefaultResponse
+    | PipelineRunCancelPipelineRunDefaultResponse,
 ): response is PipelineRunCancelPipelineRunDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionGetSparkJobDefinitionsByWorkspace200Response
-    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse,
 ): response is SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition200Response
     | SparkJobDefinitionCreateOrUpdateSparkJobDefinition202Response
-    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse
+    | SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse,
 ): response is SparkJobDefinitionCreateOrUpdateSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionGetSparkJobDefinition200Response
     | SparkJobDefinitionGetSparkJobDefinition304Response
-    | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse
+    | SparkJobDefinitionGetSparkJobDefinitionDefaultResponse,
 ): response is SparkJobDefinitionGetSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionDeleteSparkJobDefinition200Response
     | SparkJobDefinitionDeleteSparkJobDefinition202Response
     | SparkJobDefinitionDeleteSparkJobDefinition204Response
-    | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse
+    | SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse,
 ): response is SparkJobDefinitionDeleteSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionExecuteSparkJobDefinition200Response
     | SparkJobDefinitionExecuteSparkJobDefinition202Response
-    | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse
+    | SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse,
 ): response is SparkJobDefinitionExecuteSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionRenameSparkJobDefinition200Response
     | SparkJobDefinitionRenameSparkJobDefinition202Response
-    | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse
+    | SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse,
 ): response is SparkJobDefinitionRenameSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
   response:
     | SparkJobDefinitionDebugSparkJobDefinition200Response
     | SparkJobDefinitionDebugSparkJobDefinition202Response
-    | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse
+    | SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse,
 ): response is SparkJobDefinitionDebugSparkJobDefinitionDefaultResponse;
 export function isUnexpected(
-  response: SqlPoolsList200Response | SqlPoolsListDefaultResponse
+  response: SqlPoolsList200Response | SqlPoolsListDefaultResponse,
 ): response is SqlPoolsListDefaultResponse;
 export function isUnexpected(
-  response: SqlPoolsGet200Response | SqlPoolsGetDefaultResponse
+  response: SqlPoolsGet200Response | SqlPoolsGetDefaultResponse,
 ): response is SqlPoolsGetDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptGetSqlScriptsByWorkspace200Response
-    | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse
+    | SqlScriptGetSqlScriptsByWorkspaceDefaultResponse,
 ): response is SqlScriptGetSqlScriptsByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptCreateOrUpdateSqlScript200Response
     | SqlScriptCreateOrUpdateSqlScript202Response
-    | SqlScriptCreateOrUpdateSqlScriptDefaultResponse
+    | SqlScriptCreateOrUpdateSqlScriptDefaultResponse,
 ): response is SqlScriptCreateOrUpdateSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptGetSqlScript200Response
     | SqlScriptGetSqlScript304Response
-    | SqlScriptGetSqlScriptDefaultResponse
+    | SqlScriptGetSqlScriptDefaultResponse,
 ): response is SqlScriptGetSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptDeleteSqlScript200Response
     | SqlScriptDeleteSqlScript202Response
     | SqlScriptDeleteSqlScript204Response
-    | SqlScriptDeleteSqlScriptDefaultResponse
+    | SqlScriptDeleteSqlScriptDefaultResponse,
 ): response is SqlScriptDeleteSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | SqlScriptRenameSqlScript200Response
     | SqlScriptRenameSqlScript202Response
-    | SqlScriptRenameSqlScriptDefaultResponse
+    | SqlScriptRenameSqlScriptDefaultResponse,
 ): response is SqlScriptRenameSqlScriptDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerGetTriggersByWorkspace200Response
-    | TriggerGetTriggersByWorkspaceDefaultResponse
+    | TriggerGetTriggersByWorkspaceDefaultResponse,
 ): response is TriggerGetTriggersByWorkspaceDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerCreateOrUpdateTrigger200Response
     | TriggerCreateOrUpdateTrigger202Response
-    | TriggerCreateOrUpdateTriggerDefaultResponse
+    | TriggerCreateOrUpdateTriggerDefaultResponse,
 ): response is TriggerCreateOrUpdateTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerGetTrigger200Response
     | TriggerGetTrigger304Response
-    | TriggerGetTriggerDefaultResponse
+    | TriggerGetTriggerDefaultResponse,
 ): response is TriggerGetTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerDeleteTrigger200Response
     | TriggerDeleteTrigger202Response
     | TriggerDeleteTrigger204Response
-    | TriggerDeleteTriggerDefaultResponse
+    | TriggerDeleteTriggerDefaultResponse,
 ): response is TriggerDeleteTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerSubscribeTriggerToEvents200Response
     | TriggerSubscribeTriggerToEvents202Response
-    | TriggerSubscribeTriggerToEventsDefaultResponse
+    | TriggerSubscribeTriggerToEventsDefaultResponse,
 ): response is TriggerSubscribeTriggerToEventsDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerGetEventSubscriptionStatus200Response
-    | TriggerGetEventSubscriptionStatusDefaultResponse
+    | TriggerGetEventSubscriptionStatusDefaultResponse,
 ): response is TriggerGetEventSubscriptionStatusDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerUnsubscribeTriggerFromEvents200Response
     | TriggerUnsubscribeTriggerFromEvents202Response
-    | TriggerUnsubscribeTriggerFromEventsDefaultResponse
+    | TriggerUnsubscribeTriggerFromEventsDefaultResponse,
 ): response is TriggerUnsubscribeTriggerFromEventsDefaultResponse;
 export function isUnexpected(
-  response: TriggerStartTrigger200Response | TriggerStartTriggerDefaultResponse
+  response: TriggerStartTrigger200Response | TriggerStartTriggerDefaultResponse,
 ): response is TriggerStartTriggerDefaultResponse;
 export function isUnexpected(
-  response: TriggerStopTrigger200Response | TriggerStopTriggerDefaultResponse
+  response: TriggerStopTrigger200Response | TriggerStopTriggerDefaultResponse,
 ): response is TriggerStopTriggerDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerRunRerunTriggerInstance200Response
-    | TriggerRunRerunTriggerInstanceDefaultResponse
+    | TriggerRunRerunTriggerInstanceDefaultResponse,
 ): response is TriggerRunRerunTriggerInstanceDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerRunCancelTriggerInstance200Response
-    | TriggerRunCancelTriggerInstanceDefaultResponse
+    | TriggerRunCancelTriggerInstanceDefaultResponse,
 ): response is TriggerRunCancelTriggerInstanceDefaultResponse;
 export function isUnexpected(
   response:
     | TriggerRunQueryTriggerRunsByWorkspace200Response
-    | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
+    | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse,
 ): response is TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse;
 export function isUnexpected(
-  response: WorkspaceGet200Response | WorkspaceGetDefaultResponse
+  response: WorkspaceGet200Response | WorkspaceGetDefaultResponse,
 ): response is WorkspaceGetDefaultResponse;
 export function isUnexpected(
   response:
@@ -1070,7 +1070,7 @@ export function isUnexpected(
     | TriggerRunQueryTriggerRunsByWorkspace200Response
     | TriggerRunQueryTriggerRunsByWorkspaceDefaultResponse
     | WorkspaceGet200Response
-    | WorkspaceGetDefaultResponse
+    | WorkspaceGetDefaultResponse,
 ): response is
   | KqlScriptsGetAllDefaultResponse
   | KqlScriptCreateOrUpdateDefaultResponse
@@ -1208,7 +1208,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

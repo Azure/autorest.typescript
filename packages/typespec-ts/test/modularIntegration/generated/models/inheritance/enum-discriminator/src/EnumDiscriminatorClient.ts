@@ -42,7 +42,7 @@ export class EnumDiscriminatorClient {
 
   /** Receive model with extensible enum discriminator type. */
   getExtensibleModel(
-    options: GetExtensibleModelOptions = { requestOptions: {} }
+    options: GetExtensibleModelOptions = { requestOptions: {} },
   ): Promise<Dog> {
     return getExtensibleModel(this._client, options);
   }
@@ -50,7 +50,7 @@ export class EnumDiscriminatorClient {
   /** Send model with extensible enum discriminator type. */
   putExtensibleModel(
     input: Dog,
-    options: PutExtensibleModelOptions = { requestOptions: {} }
+    options: PutExtensibleModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putExtensibleModel(this._client, input, options);
   }
@@ -59,7 +59,7 @@ export class EnumDiscriminatorClient {
   getExtensibleModelMissingDiscriminator(
     options: GetExtensibleModelMissingDiscriminatorOptions = {
       requestOptions: {},
-    }
+    },
   ): Promise<Dog> {
     return getExtensibleModelMissingDiscriminator(this._client, options);
   }
@@ -68,14 +68,14 @@ export class EnumDiscriminatorClient {
   getExtensibleModelWrongDiscriminator(
     options: GetExtensibleModelWrongDiscriminatorOptions = {
       requestOptions: {},
-    }
+    },
   ): Promise<Dog> {
     return getExtensibleModelWrongDiscriminator(this._client, options);
   }
 
   /** Receive model with fixed enum discriminator type. */
   getFixedModel(
-    options: GetFixedModelOptions = { requestOptions: {} }
+    options: GetFixedModelOptions = { requestOptions: {} },
   ): Promise<Snake> {
     return getFixedModel(this._client, options);
   }
@@ -83,21 +83,21 @@ export class EnumDiscriminatorClient {
   /** Send model with fixed enum discriminator type. */
   putFixedModel(
     input: Snake,
-    options: PutFixedModelOptions = { requestOptions: {} }
+    options: PutFixedModelOptions = { requestOptions: {} },
   ): Promise<void> {
     return putFixedModel(this._client, input, options);
   }
 
   /** Get a model omitting the discriminator. */
   getFixedModelMissingDiscriminator(
-    options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} }
+    options: GetFixedModelMissingDiscriminatorOptions = { requestOptions: {} },
   ): Promise<Snake> {
     return getFixedModelMissingDiscriminator(this._client, options);
   }
 
   /** Get a model containing discriminator value never defined. */
   getFixedModelWrongDiscriminator(
-    options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} }
+    options: GetFixedModelWrongDiscriminatorOptions = { requestOptions: {} },
   ): Promise<Snake> {
     return getFixedModelWrongDiscriminator(this._client, options);
   }

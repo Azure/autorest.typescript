@@ -18,7 +18,7 @@ export class IoTSpacesClient extends coreClient.ServiceClient {
    */
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: IoTSpacesClientOptionalParams
+    options?: IoTSpacesClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -30,7 +30,7 @@ export class IoTSpacesClient extends coreClient.ServiceClient {
     }
     const defaults: IoTSpacesClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-iotspaces/1.0.0-preview1`;
@@ -46,9 +46,9 @@ export class IoTSpacesClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? ""
+      endpoint: options.endpoint ?? options.baseUri ?? "",
     };
     super(optionsWithDefaults);
   }

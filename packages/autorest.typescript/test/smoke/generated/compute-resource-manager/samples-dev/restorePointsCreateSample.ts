@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RestorePoint,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -31,10 +31,9 @@ async function createARestorePoint() {
   const parameters: RestorePoint = {
     excludeDisks: [
       {
-        id:
-          "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/disk123"
-      }
-    ]
+        id: "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Compute/disks/disk123",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new ComputeManagementClient(credential, subscriptionId);
@@ -42,7 +41,7 @@ async function createARestorePoint() {
     resourceGroupName,
     restorePointCollectionName,
     restorePointName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

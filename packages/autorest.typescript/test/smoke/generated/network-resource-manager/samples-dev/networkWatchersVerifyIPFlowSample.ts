@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VerificationIPFlowParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,14 +35,14 @@ async function ipFlowVerify() {
     remotePort: "80",
     targetResourceId:
       "/subscriptions/subid/resourceGroups/rg2/providers/Microsoft.Compute/virtualMachines/vm1",
-    protocol: "TCP"
+    protocol: "TCP",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginVerifyIPFlowAndWait(
     resourceGroupName,
     networkWatcherName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

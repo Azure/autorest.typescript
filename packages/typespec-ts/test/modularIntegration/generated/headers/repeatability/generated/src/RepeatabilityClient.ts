@@ -27,13 +27,13 @@ export class RepeatabilityClient {
   immediateSuccess(
     repeatabilityRequestID: string,
     repeatabilityFirstSent: Date,
-    options: ImmediateSuccessOptions = { requestOptions: {} }
+    options: ImmediateSuccessOptions = { requestOptions: {} },
   ): Promise<void> {
     return immediateSuccess(
       this._client,
       repeatabilityRequestID,
       repeatabilityFirstSent,
-      options
+      options,
     );
   }
 }

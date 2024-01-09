@@ -49,91 +49,91 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface StringsOnlyGet {
   get(
-    options?: StringsOnlyGetParameters
+    options?: StringsOnlyGetParameters,
   ): StreamableMethod<StringsOnlyGet200Response>;
   post(
-    options?: StringsOnlySendParameters
+    options?: StringsOnlySendParameters,
   ): StreamableMethod<StringsOnlySend204Response>;
 }
 
 export interface StringExtensibleGet {
   get(
-    options?: StringExtensibleGetParameters
+    options?: StringExtensibleGetParameters,
   ): StreamableMethod<StringExtensibleGet200Response>;
   post(
-    options?: StringExtensibleSendParameters
+    options?: StringExtensibleSendParameters,
   ): StreamableMethod<StringExtensibleSend204Response>;
 }
 
 export interface StringExtensibleNamedGet {
   get(
-    options?: StringExtensibleNamedGetParameters
+    options?: StringExtensibleNamedGetParameters,
   ): StreamableMethod<StringExtensibleNamedGet200Response>;
   post(
-    options?: StringExtensibleNamedSendParameters
+    options?: StringExtensibleNamedSendParameters,
   ): StreamableMethod<StringExtensibleNamedSend204Response>;
 }
 
 export interface IntsOnlyGet {
   get(
-    options?: IntsOnlyGetParameters
+    options?: IntsOnlyGetParameters,
   ): StreamableMethod<IntsOnlyGet200Response>;
   post(
-    options?: IntsOnlySendParameters
+    options?: IntsOnlySendParameters,
   ): StreamableMethod<IntsOnlySend204Response>;
 }
 
 export interface FloatsOnlyGet {
   get(
-    options?: FloatsOnlyGetParameters
+    options?: FloatsOnlyGetParameters,
   ): StreamableMethod<FloatsOnlyGet200Response>;
   post(
-    options?: FloatsOnlySendParameters
+    options?: FloatsOnlySendParameters,
   ): StreamableMethod<FloatsOnlySend204Response>;
 }
 
 export interface ModelsOnlyGet {
   get(
-    options?: ModelsOnlyGetParameters
+    options?: ModelsOnlyGetParameters,
   ): StreamableMethod<ModelsOnlyGet200Response>;
   post(
-    options?: ModelsOnlySendParameters
+    options?: ModelsOnlySendParameters,
   ): StreamableMethod<ModelsOnlySend204Response>;
 }
 
 export interface EnumsOnlyGet {
   get(
-    options?: EnumsOnlyGetParameters
+    options?: EnumsOnlyGetParameters,
   ): StreamableMethod<EnumsOnlyGet200Response>;
   post(
-    options?: EnumsOnlySendParameters
+    options?: EnumsOnlySendParameters,
   ): StreamableMethod<EnumsOnlySend204Response>;
 }
 
 export interface StringAndArrayGet {
   get(
-    options?: StringAndArrayGetParameters
+    options?: StringAndArrayGetParameters,
   ): StreamableMethod<StringAndArrayGet200Response>;
   post(
-    options?: StringAndArraySendParameters
+    options?: StringAndArraySendParameters,
   ): StreamableMethod<StringAndArraySend204Response>;
 }
 
 export interface MixedLiteralsGet {
   get(
-    options?: MixedLiteralsGetParameters
+    options?: MixedLiteralsGetParameters,
   ): StreamableMethod<MixedLiteralsGet200Response>;
   post(
-    options?: MixedLiteralsSendParameters
+    options?: MixedLiteralsSendParameters,
   ): StreamableMethod<MixedLiteralsSend204Response>;
 }
 
 export interface MixedTypesGet {
   get(
-    options?: MixedTypesGetParameters
+    options?: MixedTypesGetParameters,
   ): StreamableMethod<MixedTypesGet200Response>;
   post(
-    options?: MixedTypesSendParameters
+    options?: MixedTypesSendParameters,
   ): StreamableMethod<MixedTypesSend204Response>;
 }
 

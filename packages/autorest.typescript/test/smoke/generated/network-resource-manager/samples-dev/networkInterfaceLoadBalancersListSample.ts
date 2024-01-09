@@ -29,7 +29,7 @@ async function networkInterfaceLoadBalancerList() {
   const resArray = new Array();
   for await (let item of client.networkInterfaceLoadBalancers.list(
     resourceGroupName,
-    networkInterfaceName
+    networkInterfaceName,
   )) {
     resArray.push(item);
   }
