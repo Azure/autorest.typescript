@@ -7,7 +7,6 @@ import { paginateContent } from "./static/paginateContent.js";
 
 export function buildPaginateHelper(model: RLCModel) {
   const pagingInfo = model.helperDetails;
-  const isBranded = model.options?.branded ?? true;
   // return directly if no paging info
   if (!pagingInfo || pagingInfo.hasPaging !== true || !pagingInfo.pageDetails) {
     return;
