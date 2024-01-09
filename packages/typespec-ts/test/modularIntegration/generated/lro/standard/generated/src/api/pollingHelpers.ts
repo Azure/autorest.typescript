@@ -11,10 +11,6 @@ import {
 } from "@azure/core-lro/next";
 import { Client, HttpResponse, createRestError } from "@azure-rest/core-client";
 
-function test(): string | Promise<string> {
-  return Promise.resolve("test");
-}
-
 export interface GetLongRunningPollerOptions {
   method: string;
   url: string;
@@ -41,14 +37,13 @@ export function getLongRunningPoller<
   let initialResponse: TResponse;
   const poller: LongRunningOperation<TResponse> = {
     requestMethod: options.method,
-    // requestPath: options.url,
+    requestPath: options.url,
     sendInitialRequest: async () => {
       initialResponse = (await getInitialResponse()) as TResponse;
       console.log(`Initial request url ${initialResponse.request.url}`);
-      await test();
       return getLroResponse(initialResponse);
     },
-    sendPollRequest: async (path) => {
+    sendPollRequest: async (path: string) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location

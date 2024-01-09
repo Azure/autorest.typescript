@@ -8,7 +8,7 @@ import {
   LroResponse,
   OperationState,
   SimplePollerLike,
-  createHttpPoller,
+  createHttpPoller
 } from "@azure/core-lro";
 import {
   CreateOrReplace200Response,
@@ -20,7 +20,7 @@ import {
   DeleteLogicalResponse,
   ExportOperation202Response,
   ExportOperationDefaultResponse,
-  ExportLogicalResponse,
+  ExportLogicalResponse
 } from "./responses.js";
 /**
  * Helper function that builds a Poller object to help polling a long running operation.
@@ -69,7 +69,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       // response we were provided.
       return getLroResponse(initialResponse);
     },
-    sendPollRequest: async (path) => {
+    sendPollRequest: async (path: string) => {
       // This is the callback that is going to be called to poll the service
       // to get the latest status. We use the client provided and the polling path
       // which is an opaque URL provided by caller, the service sends this in one of the following headers: operation-location, azure-asyncoperation or location
@@ -81,7 +81,7 @@ export async function getLongRunningPoller<TResult extends HttpResponse>(
       lroResponse.rawResponse.headers["x-ms-original-url"] =
         initialResponse.request.url;
       return lroResponse;
-    },
+    }
   };
 
   options.resolveOnUnsuccessful = options.resolveOnUnsuccessful ?? true;
@@ -107,7 +107,7 @@ function getLroResponse<TResult extends HttpResponse>(
     rawResponse: {
       ...response,
       statusCode: Number.parseInt(response.status),
-      body: response.body,
-    },
+      body: response.body
+    }
   };
 }

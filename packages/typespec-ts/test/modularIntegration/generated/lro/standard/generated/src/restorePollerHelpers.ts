@@ -30,7 +30,7 @@ const deserializeMap: Record<string, Function> = {
  * useful when you want to create pollers on a different host or a poller
  * needs to be constructed after the original one is not in scope.
  */
-export function restorePoller<TResponse extends HttpResponse, TResult = void>(
+export function restorePoller<TResponse extends HttpResponse, TResult>(
   client: StandardContext | StandardClient,
   serializedState: string,
   _sourceOperation: (

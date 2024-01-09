@@ -12,7 +12,7 @@ describe.only("LROStandardClient Classical Client", () => {
   });
 
   describe("createOrReplace", () => {
-    it("should await poller result directly", async () => {
+    it.only("should await poller result directly", async () => {
       try {
         const result = await client.createOrReplace("madge", {
           role: "contributor"
@@ -77,17 +77,15 @@ describe.only("LROStandardClient Classical Client", () => {
       //     }
       //  }
       console.log(restoredPoller);
-      setTimeout(async () => {
-        const newPoller = restorePoller(
-          client,
-          restoredPoller,
-          client.createOrReplace
-        );
-        const result = await newPoller.pollUntilDone();
-        console.log(result);
-        assert.strictEqual(result.name, "madge");
-        assert.strictEqual(result.role, "contributor");
-      }, 1000);
+      const newPoller = restorePoller(
+        client,
+        restoredPoller,
+        client.createOrReplace
+      );
+      const result = await newPoller.pollUntilDone();
+      console.log(result);
+      assert.strictEqual(result.name, "madge");
+      assert.strictEqual(result.role, "contributor");
     });
 
     it("onProgress callback", async () => {});
@@ -125,7 +123,7 @@ describe.only("LROStandardClient Classical Client", () => {
       }
     });
 
-    it.only("serialize and rehydration", async () => {
+    it("serialize and rehydration", async () => {
       const poller = client.deleteOperation("madge");
       const restoredPoller = await poller.serialize();
       //   {
@@ -142,16 +140,14 @@ describe.only("LROStandardClient Classical Client", () => {
       //     }
       //  }
       console.log(restoredPoller);
-      setTimeout(async () => {
-        const newPoller = restorePoller(
-          client,
-          restoredPoller,
-          client.deleteOperation
-        );
-        const result = await newPoller.pollUntilDone();
-        console.log(result);
-        assert.strictEqual(result, undefined);
-      }, 1000);
+      const newPoller = restorePoller(
+        client,
+        restoredPoller,
+        client.deleteOperation
+      );
+      const result = await newPoller.pollUntilDone();
+      console.log(result);
+      assert.strictEqual(result, undefined);
     });
   });
 
