@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   IpGroup,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,14 +30,14 @@ async function createOrUpdateIPGroups() {
   const parameters: IpGroup = {
     ipAddresses: ["13.64.39.16/32", "40.74.146.80/31", "40.74.147.32/28"],
     location: "West US",
-    tags: { key1: "value1" }
+    tags: { key1: "value1" },
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.ipGroups.beginCreateOrUpdateAndWait(
     resourceGroupName,
     ipGroupsName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

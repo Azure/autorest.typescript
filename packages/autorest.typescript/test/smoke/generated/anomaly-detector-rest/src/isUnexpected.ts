@@ -21,7 +21,7 @@ import {
   BatchDetectAnomaly202Response,
   BatchDetectAnomalyDefaultResponse,
   LastDetectAnomaly200Response,
-  LastDetectAnomalyDefaultResponse
+  LastDetectAnomalyDefaultResponse,
 } from "./responses";
 
 const responseMap: Record<string, string[]> = {
@@ -35,48 +35,48 @@ const responseMap: Record<string, string[]> = {
   "GET /multivariate/models/{modelId}": ["200"],
   "POST /multivariate/models/{modelId}:detect-batch": ["202"],
   "GET /multivariate/models/{modelId}:detect-batch": ["202"],
-  "POST /multivariate/models/{modelId}:detect-last": ["200"]
+  "POST /multivariate/models/{modelId}:detect-last": ["200"],
 };
 
 export function isUnexpected(
-  response: DetectEntireSeries200Response | DetectEntireSeriesDefaultResponse
+  response: DetectEntireSeries200Response | DetectEntireSeriesDefaultResponse,
 ): response is DetectEntireSeriesDefaultResponse;
 export function isUnexpected(
-  response: DetectLastPoint200Response | DetectLastPointDefaultResponse
+  response: DetectLastPoint200Response | DetectLastPointDefaultResponse,
 ): response is DetectLastPointDefaultResponse;
 export function isUnexpected(
-  response: DetectChangePoint200Response | DetectChangePointDefaultResponse
+  response: DetectChangePoint200Response | DetectChangePointDefaultResponse,
 ): response is DetectChangePointDefaultResponse;
 export function isUnexpected(
   response:
     | GetBatchDetectionResult200Response
-    | GetBatchDetectionResultDefaultResponse
+    | GetBatchDetectionResultDefaultResponse,
 ): response is GetBatchDetectionResultDefaultResponse;
 export function isUnexpected(
   response:
     | CreateMultivariateModel201Response
-    | CreateMultivariateModelDefaultResponse
+    | CreateMultivariateModelDefaultResponse,
 ): response is CreateMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
     | ListMultivariateModel200Response
-    | ListMultivariateModelDefaultResponse
+    | ListMultivariateModelDefaultResponse,
 ): response is ListMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
     | DeleteMultivariateModel204Response
-    | DeleteMultivariateModelDefaultResponse
+    | DeleteMultivariateModelDefaultResponse,
 ): response is DeleteMultivariateModelDefaultResponse;
 export function isUnexpected(
   response:
     | GetMultivariateModel200Response
-    | GetMultivariateModelDefaultResponse
+    | GetMultivariateModelDefaultResponse,
 ): response is GetMultivariateModelDefaultResponse;
 export function isUnexpected(
-  response: BatchDetectAnomaly202Response | BatchDetectAnomalyDefaultResponse
+  response: BatchDetectAnomaly202Response | BatchDetectAnomalyDefaultResponse,
 ): response is BatchDetectAnomalyDefaultResponse;
 export function isUnexpected(
-  response: LastDetectAnomaly200Response | LastDetectAnomalyDefaultResponse
+  response: LastDetectAnomaly200Response | LastDetectAnomalyDefaultResponse,
 ): response is LastDetectAnomalyDefaultResponse;
 export function isUnexpected(
   response:
@@ -99,7 +99,7 @@ export function isUnexpected(
     | BatchDetectAnomaly202Response
     | BatchDetectAnomalyDefaultResponse
     | LastDetectAnomaly200Response
-    | LastDetectAnomalyDefaultResponse
+    | LastDetectAnomalyDefaultResponse,
 ): response is
   | DetectEntireSeriesDefaultResponse
   | DetectLastPointDefaultResponse
@@ -159,7 +159,7 @@ function getParametrizedPathSuccess(method: string, path: string): string[] {
         // {guid} ==> $
         // {guid}:export ==> :export$
         const isMatched = new RegExp(
-          `${candidateParts[i]?.slice(start, end)}`
+          `${candidateParts[i]?.slice(start, end)}`,
         ).test(pathParts[j] || "");
 
         if (!isMatched) {

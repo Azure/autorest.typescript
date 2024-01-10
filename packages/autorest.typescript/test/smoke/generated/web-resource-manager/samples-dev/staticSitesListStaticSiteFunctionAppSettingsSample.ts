@@ -29,7 +29,7 @@ async function getFunctionAppSettingsOfAStaticSite() {
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.listStaticSiteFunctionAppSettings(
     resourceGroupName,
-    name
+    name,
   );
   console.log(result);
 }

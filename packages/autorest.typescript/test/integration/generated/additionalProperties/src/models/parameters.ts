@@ -13,7 +13,7 @@ import {
   PetAPObject as PetAPObjectMapper,
   PetAPString as PetAPStringMapper,
   PetAPInProperties as PetAPInPropertiesMapper,
-  PetAPInPropertiesWithAPString as PetAPInPropertiesWithAPStringMapper
+  PetAPInPropertiesWithAPString as PetAPInPropertiesWithAPStringMapper,
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
@@ -23,14 +23,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const createParameters: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: PetAPTrueMapper
+  mapper: PetAPTrueMapper,
 };
 
 export const accept: OperationParameter = {
@@ -40,9 +40,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -51,33 +51,33 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const createParameters1: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: CatAPTrueMapper
+  mapper: CatAPTrueMapper,
 };
 
 export const createParameters2: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: PetAPObjectMapper
+  mapper: PetAPObjectMapper,
 };
 
 export const createParameters3: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: PetAPStringMapper
+  mapper: PetAPStringMapper,
 };
 
 export const createParameters4: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: PetAPInPropertiesMapper
+  mapper: PetAPInPropertiesMapper,
 };
 
 export const createParameters5: OperationParameter = {
   parameterPath: "createParameters",
-  mapper: PetAPInPropertiesWithAPStringMapper
+  mapper: PetAPInPropertiesWithAPStringMapper,
 };

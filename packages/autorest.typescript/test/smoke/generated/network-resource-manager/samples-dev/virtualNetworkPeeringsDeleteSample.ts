@@ -30,7 +30,7 @@ async function deletePeering() {
   const result = await client.virtualNetworkPeerings.beginDeleteAndWait(
     resourceGroupName,
     virtualNetworkName,
-    virtualNetworkPeeringName
+    virtualNetworkPeeringName,
   );
   console.log(result);
 }

@@ -19,7 +19,7 @@ describe("Responses.ts", () => {
         op read(): LongRunningStatusLocation;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
     import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -50,7 +50,7 @@ describe("Responses.ts", () => {
         op read(): LongRunningStatusLocation;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
     import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -85,7 +85,7 @@ describe("Responses.ts", () => {
       op read(): Key | Error;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -112,7 +112,7 @@ describe("Responses.ts", () => {
       @post op read():  unknown[];
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -135,7 +135,7 @@ describe("Responses.ts", () => {
       @post op read(@body body: SimpleModel[]): Record<SimpleModel>;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -155,7 +155,7 @@ describe("Responses.ts", () => {
         op read(): Record<unknown>;
     `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
     import { HttpResponse } from "@azure-rest/core-client";
@@ -173,7 +173,7 @@ describe("Responses.ts", () => {
       @get op read(): {@header contentType: "image/png", @body body: bytes};
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -192,7 +192,7 @@ describe("Responses.ts", () => {
       @get op read(): {@header contentType: "text/plain", @body body: bytes};
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -217,7 +217,7 @@ describe("Responses.ts", () => {
         true
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -259,7 +259,7 @@ describe("Responses.ts", () => {
       const parameters = await emitResponsesFromTypeSpec(tsp, false);
       const models = await emitModelsFromTypeSpec(tsp, false);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         models?.outputModelFile?.content!,
         `
       export interface ErrorResponseOutput {
@@ -273,7 +273,7 @@ describe("Responses.ts", () => {
         code: string | null;
       } `
       );
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { HttpResponse } from "@azure-rest/core-client";
@@ -299,7 +299,7 @@ describe("Responses.ts", () => {
           | {@header contentType: "image/png", @body body: bytes, @header bar: string };
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { RawHttpHeaders } from "@azure/core-rest-pipeline";
@@ -329,7 +329,7 @@ describe("Responses.ts", () => {
       @get op read(): string[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -348,7 +348,7 @@ describe("Responses.ts", () => {
       @get op read(): int32[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -367,7 +367,7 @@ describe("Responses.ts", () => {
       @get op read(): int64[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -386,7 +386,7 @@ describe("Responses.ts", () => {
       @get op read(): float32[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -405,7 +405,7 @@ describe("Responses.ts", () => {
       @get op read(): boolean[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -424,7 +424,7 @@ describe("Responses.ts", () => {
       @get op read(): bytes[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -443,7 +443,7 @@ describe("Responses.ts", () => {
       @get op read(): plainDate[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -462,7 +462,7 @@ describe("Responses.ts", () => {
       @get op read(): utcDateTime[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -481,7 +481,7 @@ describe("Responses.ts", () => {
       @get op read(): duration[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -504,7 +504,7 @@ describe("Responses.ts", () => {
       @get op read(): SimpleModel[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";
@@ -528,7 +528,7 @@ describe("Responses.ts", () => {
       @get op read(): InnerModel[];
       `);
       assert.ok(responses);
-      assertEqualContent(
+      await assertEqualContent(
         responses!.content,
         `
       import { HttpResponse } from "@azure-rest/core-client";

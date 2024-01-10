@@ -15,9 +15,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -26,10 +26,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const contentType: OperationParameter = {
@@ -39,9 +39,9 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const intBody: OperationParameter = {
@@ -50,9 +50,9 @@ export const intBody: OperationParameter = {
     serializedName: "intBody",
     required: true,
     type: {
-      name: "Number"
-    }
-  }
+      name: "Number",
+    },
+  },
 };
 
 export const intBody1: OperationParameter = {
@@ -61,7 +61,7 @@ export const intBody1: OperationParameter = {
     serializedName: "intBody",
     required: true,
     type: {
-      name: "UnixTime"
-    }
-  }
+      name: "UnixTime",
+    },
+  },
 };

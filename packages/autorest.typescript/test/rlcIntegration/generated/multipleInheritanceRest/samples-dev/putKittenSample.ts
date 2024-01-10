@@ -21,9 +21,9 @@ async function putKittenSample() {
         meows: true,
         hisses: true,
         likesMilk: true,
-        eatsMiceYet: true
+        eatsMiceYet: true,
       },
-      contentType: "application/json"
+      contentType: "application/json",
     });
   console.log(result);
 }

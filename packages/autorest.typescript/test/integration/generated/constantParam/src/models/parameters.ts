@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import { LanguageBatchInput as LanguageBatchInputMapper } from "../models/mappers";
 
@@ -20,14 +20,14 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const input: OperationParameter = {
   parameterPath: "input",
-  mapper: LanguageBatchInputMapper
+  mapper: LanguageBatchInputMapper,
 };
 
 export const accept: OperationParameter = {
@@ -37,9 +37,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const endpoint: OperationURLParameter = {
@@ -48,10 +48,10 @@ export const endpoint: OperationURLParameter = {
     serializedName: "Endpoint",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const apiVersion: OperationURLParameter = {
@@ -61,10 +61,10 @@ export const apiVersion: OperationURLParameter = {
     isConstant: true,
     serializedName: "ApiVersion",
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const modelVersion: OperationQueryParameter = {
@@ -72,9 +72,9 @@ export const modelVersion: OperationQueryParameter = {
   mapper: {
     serializedName: "model-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const showStats: OperationQueryParameter = {
@@ -82,9 +82,9 @@ export const showStats: OperationQueryParameter = {
   mapper: {
     serializedName: "showStats",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };
 
 export const loggingOptOut: OperationQueryParameter = {
@@ -92,7 +92,7 @@ export const loggingOptOut: OperationQueryParameter = {
   mapper: {
     serializedName: "loggingOptOut",
     type: {
-      name: "Boolean"
-    }
-  }
+      name: "Boolean",
+    },
+  },
 };

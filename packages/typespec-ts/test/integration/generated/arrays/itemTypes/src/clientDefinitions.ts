@@ -49,91 +49,91 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface Int32ValueGet {
   get(
-    options?: Int32ValueGetParameters
+    options?: Int32ValueGetParameters,
   ): StreamableMethod<Int32ValueGet200Response>;
   put(
-    options: Int32ValuePutParameters
+    options: Int32ValuePutParameters,
   ): StreamableMethod<Int32ValuePut204Response>;
 }
 
 export interface Int64ValueGet {
   get(
-    options?: Int64ValueGetParameters
+    options?: Int64ValueGetParameters,
   ): StreamableMethod<Int64ValueGet200Response>;
   put(
-    options: Int64ValuePutParameters
+    options: Int64ValuePutParameters,
   ): StreamableMethod<Int64ValuePut204Response>;
 }
 
 export interface BooleanValueGet {
   get(
-    options?: BooleanValueGetParameters
+    options?: BooleanValueGetParameters,
   ): StreamableMethod<BooleanValueGet200Response>;
   put(
-    options: BooleanValuePutParameters
+    options: BooleanValuePutParameters,
   ): StreamableMethod<BooleanValuePut204Response>;
 }
 
 export interface StringValueGet {
   get(
-    options?: StringValueGetParameters
+    options?: StringValueGetParameters,
   ): StreamableMethod<StringValueGet200Response>;
   put(
-    options: StringValuePutParameters
+    options: StringValuePutParameters,
   ): StreamableMethod<StringValuePut204Response>;
 }
 
 export interface Float32ValueGet {
   get(
-    options?: Float32ValueGetParameters
+    options?: Float32ValueGetParameters,
   ): StreamableMethod<Float32ValueGet200Response>;
   put(
-    options: Float32ValuePutParameters
+    options: Float32ValuePutParameters,
   ): StreamableMethod<Float32ValuePut204Response>;
 }
 
 export interface DatetimeValueGet {
   get(
-    options?: DatetimeValueGetParameters
+    options?: DatetimeValueGetParameters,
   ): StreamableMethod<DatetimeValueGet200Response>;
   put(
-    options: DatetimeValuePutParameters
+    options: DatetimeValuePutParameters,
   ): StreamableMethod<DatetimeValuePut204Response>;
 }
 
 export interface DurationValueGet {
   get(
-    options?: DurationValueGetParameters
+    options?: DurationValueGetParameters,
   ): StreamableMethod<DurationValueGet200Response>;
   put(
-    options: DurationValuePutParameters
+    options: DurationValuePutParameters,
   ): StreamableMethod<DurationValuePut204Response>;
 }
 
 export interface UnknownValueGet {
   get(
-    options?: UnknownValueGetParameters
+    options?: UnknownValueGetParameters,
   ): StreamableMethod<UnknownValueGet200Response>;
   put(
-    options: UnknownValuePutParameters
+    options: UnknownValuePutParameters,
   ): StreamableMethod<UnknownValuePut204Response>;
 }
 
 export interface ModelValueGet {
   get(
-    options?: ModelValueGetParameters
+    options?: ModelValueGetParameters,
   ): StreamableMethod<ModelValueGet200Response>;
   put(
-    options: ModelValuePutParameters
+    options: ModelValuePutParameters,
   ): StreamableMethod<ModelValuePut204Response>;
 }
 
 export interface NullableFloatValueGet {
   get(
-    options?: NullableFloatValueGetParameters
+    options?: NullableFloatValueGetParameters,
   ): StreamableMethod<NullableFloatValueGet200Response>;
   put(
-    options: NullableFloatValuePutParameters
+    options: NullableFloatValuePutParameters,
   ): StreamableMethod<NullableFloatValuePut204Response>;
 }
 

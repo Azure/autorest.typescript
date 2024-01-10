@@ -11,7 +11,7 @@
 import {
   VirtualMachineReimageParameters,
   VirtualMachinesReimageOptionalParams,
-  ComputeManagementClient
+  ComputeManagementClient,
 } from "@msinternal/compute-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -35,7 +35,7 @@ async function reimageAVirtualMachine() {
   const result = await client.virtualMachines.beginReimageAndWait(
     resourceGroupName,
     vmName,
-    options
+    options,
   );
   console.log(result);
 }

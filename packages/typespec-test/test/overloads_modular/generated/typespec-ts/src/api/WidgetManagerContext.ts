@@ -13,7 +13,7 @@ export { WidgetManagerContext } from "../rest/index.js";
 export function createWidgetManager(
   endpoint: string,
   credential: KeyCredential | TokenCredential,
-  options: WidgetManagerClientOptions = {}
+  options: WidgetManagerClientOptions = {},
 ): WidgetManagerContext {
   const clientContext = getClient(endpoint, credential, options);
   return clientContext;

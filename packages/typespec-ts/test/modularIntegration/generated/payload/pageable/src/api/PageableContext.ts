@@ -11,7 +11,7 @@ export { PageableContext } from "../rest/index.js";
 
 /** Test describing pageable. */
 export function createPageable(
-  options: PageableClientOptions = {}
+  options: PageableClientOptions = {},
 ): PageableContext {
   const clientContext = getClient(options);
   return clientContext;

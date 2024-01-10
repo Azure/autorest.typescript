@@ -28,7 +28,7 @@ async function vpnSiteDelete() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.vpnSites.beginDeleteAndWait(
     resourceGroupName,
-    vpnSiteName
+    vpnSiteName,
   );
   console.log(result);
 }

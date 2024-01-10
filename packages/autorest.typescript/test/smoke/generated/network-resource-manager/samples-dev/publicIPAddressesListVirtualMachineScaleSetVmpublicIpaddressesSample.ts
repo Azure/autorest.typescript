@@ -35,7 +35,7 @@ async function listVmssvmPublicIP() {
     virtualMachineScaleSetName,
     virtualmachineIndex,
     networkInterfaceName,
-    ipConfigurationName
+    ipConfigurationName,
   )) {
     resArray.push(item);
   }

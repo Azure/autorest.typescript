@@ -16,13 +16,13 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface GetAvatarAsPng {
   /** A remote procedure call (RPC) operation. */
   post(
-    options: GetAvatarAsPngParameters
+    options: GetAvatarAsPngParameters,
   ): StreamableMethod<
     GetAvatarAsPng204Response | GetAvatarAsPngDefaultResponse
   >;
   /** A remote procedure call (RPC) operation. */
   post(
-    options: GetAvatarAsJpegParameters
+    options: GetAvatarAsJpegParameters,
   ): StreamableMethod<
     GetAvatarAsJpeg204Response | GetAvatarAsJpegDefaultResponse
   >;

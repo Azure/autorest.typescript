@@ -28,7 +28,7 @@ async function getARestorePointCollectionButNotTheRestorePointsContainedInTheRes
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePointCollections.get(
     resourceGroupName,
-    restorePointCollectionName
+    restorePointCollectionName,
   );
   console.log(result);
 }
@@ -47,7 +47,7 @@ async function getARestorePointCollectionIncludingTheRestorePointsContainedInThe
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.restorePointCollections.get(
     resourceGroupName,
-    restorePointCollectionName
+    restorePointCollectionName,
   );
   console.log(result);
 }

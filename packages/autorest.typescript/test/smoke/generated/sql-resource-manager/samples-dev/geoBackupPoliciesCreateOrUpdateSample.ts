@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   GeoBackupPolicy,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function updateGeoBackupPolicy() {
     serverName,
     databaseName,
     geoBackupPolicyName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

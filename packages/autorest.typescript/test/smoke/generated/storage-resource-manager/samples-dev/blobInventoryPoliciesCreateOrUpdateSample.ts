@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   BlobInventoryPolicy,
-  StorageManagementClient
+  StorageManagementClient,
 } from "@msinternal/storage-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -41,7 +41,7 @@ async function storageAccountSetBlobInventoryPolicy() {
               blobTypes: ["blockBlob", "appendBlob", "pageBlob"],
               includeBlobVersions: true,
               includeSnapshots: true,
-              prefixMatch: ["inventoryprefix1", "inventoryprefix2"]
+              prefixMatch: ["inventoryprefix1", "inventoryprefix2"],
             },
             objectType: "Blob",
             schedule: "Daily",
@@ -57,11 +57,11 @@ async function storageAccountSetBlobInventoryPolicy() {
               "Snapshot",
               "VersionId",
               "IsCurrentVersion",
-              "Metadata"
-            ]
+              "Metadata",
+            ],
           },
           destination: "container1",
-          enabled: true
+          enabled: true,
         },
         {
           name: "inventoryPolicyRule2",
@@ -78,14 +78,14 @@ async function storageAccountSetBlobInventoryPolicy() {
               "LeaseDuration",
               "PublicAccess",
               "HasImmutabilityPolicy",
-              "HasLegalHold"
-            ]
+              "HasLegalHold",
+            ],
           },
           destination: "container2",
-          enabled: true
-        }
-      ]
-    }
+          enabled: true,
+        },
+      ],
+    },
   };
   const credential = new DefaultAzureCredential();
   const client = new StorageManagementClient(credential, subscriptionId);
@@ -93,7 +93,7 @@ async function storageAccountSetBlobInventoryPolicy() {
     resourceGroupName,
     accountName,
     blobInventoryPolicyName,
-    properties
+    properties,
   );
   console.log(result);
 }

@@ -8,7 +8,7 @@ import {
   ErrorResponseOutput,
   ModelOutput,
   ModelListOutput,
-  LastDetectionResultOutput
+  LastDetectionResultOutput,
 } from "./outputModels";
 
 /** For asynchronous inference, get multivariate anomaly detection result based on resultId returned by the BatchDetectAnomaly api. */

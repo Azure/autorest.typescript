@@ -13,7 +13,7 @@ import {
   DeletedApplicationsListOptionalParams,
   DeletedApplicationsRestoreOptionalParams,
   DeletedApplicationsRestoreResponse,
-  DeletedApplicationsHardDeleteOptionalParams
+  DeletedApplicationsHardDeleteOptionalParams,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -24,7 +24,7 @@ export interface DeletedApplications {
    * @param options The options parameters.
    */
   list(
-    options?: DeletedApplicationsListOptionalParams
+    options?: DeletedApplicationsListOptionalParams,
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Gets a list of deleted applications in the directory.
@@ -33,7 +33,7 @@ export interface DeletedApplications {
    */
   listNext(
     nextLink: string,
-    options?: DeletedApplicationsListNextOptionalParams
+    options?: DeletedApplicationsListNextOptionalParams,
   ): PagedAsyncIterableIterator<Application>;
   /**
    * Restores the deleted application in the directory.
@@ -42,7 +42,7 @@ export interface DeletedApplications {
    */
   restore(
     objectId: string,
-    options?: DeletedApplicationsRestoreOptionalParams
+    options?: DeletedApplicationsRestoreOptionalParams,
   ): Promise<DeletedApplicationsRestoreResponse>;
   /**
    * Hard-delete an application.
@@ -51,6 +51,6 @@ export interface DeletedApplications {
    */
   hardDelete(
     applicationObjectId: string,
-    options?: DeletedApplicationsHardDeleteOptionalParams
+    options?: DeletedApplicationsHardDeleteOptionalParams,
   ): Promise<void>;
 }

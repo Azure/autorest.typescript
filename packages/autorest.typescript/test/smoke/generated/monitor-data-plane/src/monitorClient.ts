@@ -22,7 +22,7 @@ export class MonitorClient extends coreClient.ServiceClient {
    */
   constructor(
     credentials: coreAuth.TokenCredential,
-    options?: MonitorClientOptionalParams
+    options?: MonitorClientOptionalParams,
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");
@@ -34,7 +34,7 @@ export class MonitorClient extends coreClient.ServiceClient {
     }
     const defaults: MonitorClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8",
-      credential: credentials
+      credential: credentials,
     };
 
     const packageDetails = `azsdk-js-monitor-data-plane/1.0.0-beta.1`;
@@ -50,10 +50,10 @@ export class MonitorClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
       endpoint:
-        options.endpoint ?? options.baseUri ?? "https://monitoring.azure.com"
+        options.endpoint ?? options.baseUri ?? "https://monitoring.azure.com",
     };
     super(optionsWithDefaults);
 

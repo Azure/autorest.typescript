@@ -10,7 +10,7 @@ import * as coreClient from "@azure/core-client";
 import {
   PipelineRequest,
   PipelineResponse,
-  SendRequest
+  SendRequest,
 } from "@azure/core-rest-pipeline";
 import { GroupImpl } from "./operations";
 import { Group } from "./operationsInterfaces";
@@ -28,7 +28,7 @@ export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
    */
   constructor(
     subscriptionId: string,
-    options?: SubscriptionIdApiVersionClientOptionalParams
+    options?: SubscriptionIdApiVersionClientOptionalParams,
   ) {
     if (subscriptionId === undefined) {
       throw new Error("'subscriptionId' cannot be null");
@@ -39,7 +39,7 @@ export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
       options = {};
     }
     const defaults: SubscriptionIdApiVersionClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
     };
 
     const packageDetails = `azsdk-js-subscriptionid-apiversion/1.0.0-preview1`;
@@ -52,9 +52,9 @@ export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix
+        userAgentPrefix,
       },
-      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000"
+      endpoint: options.endpoint ?? options.baseUri ?? "http://localhost:3000",
     };
     super(optionsWithDefaults);
     // Parameter assignments
@@ -76,7 +76,7 @@ export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
       name: "CustomApiVersionPolicy",
       async sendRequest(
         request: PipelineRequest,
-        next: SendRequest
+        next: SendRequest,
       ): Promise<PipelineResponse> {
         const param = request.url.split("?");
         if (param.length > 1) {
@@ -90,7 +90,7 @@ export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
           request.url = param[0] + "?" + newParams.join("&");
         }
         return next(request);
-      }
+      },
     };
     this.pipeline.addPolicy(apiVersionPolicy);
   }

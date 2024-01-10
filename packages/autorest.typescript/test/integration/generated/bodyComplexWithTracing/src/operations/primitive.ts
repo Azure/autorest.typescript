@@ -56,7 +56,7 @@ import {
   PrimitiveGetByteOptionalParams,
   PrimitiveGetByteResponse,
   ByteWrapper,
-  PrimitivePutByteOptionalParams
+  PrimitivePutByteOptionalParams,
 } from "../models";
 
 /** Class containing Primitive operations. */
@@ -76,7 +76,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getInt(
-    options?: PrimitiveGetIntOptionalParams
+    options?: PrimitiveGetIntOptionalParams,
   ): Promise<PrimitiveGetIntResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getInt",
@@ -84,9 +84,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getIntOperationSpec
+          getIntOperationSpec,
         ) as Promise<PrimitiveGetIntResponse>;
-      }
+      },
     );
   }
 
@@ -97,7 +97,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putInt(
     complexBody: IntWrapper,
-    options?: PrimitivePutIntOptionalParams
+    options?: PrimitivePutIntOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putInt",
@@ -105,9 +105,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putIntOperationSpec
+          putIntOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -116,7 +116,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getLong(
-    options?: PrimitiveGetLongOptionalParams
+    options?: PrimitiveGetLongOptionalParams,
   ): Promise<PrimitiveGetLongResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getLong",
@@ -124,9 +124,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getLongOperationSpec
+          getLongOperationSpec,
         ) as Promise<PrimitiveGetLongResponse>;
-      }
+      },
     );
   }
 
@@ -137,7 +137,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putLong(
     complexBody: LongWrapper,
-    options?: PrimitivePutLongOptionalParams
+    options?: PrimitivePutLongOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putLong",
@@ -145,9 +145,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putLongOperationSpec
+          putLongOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -156,7 +156,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getFloat(
-    options?: PrimitiveGetFloatOptionalParams
+    options?: PrimitiveGetFloatOptionalParams,
   ): Promise<PrimitiveGetFloatResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getFloat",
@@ -164,9 +164,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getFloatOperationSpec
+          getFloatOperationSpec,
         ) as Promise<PrimitiveGetFloatResponse>;
-      }
+      },
     );
   }
 
@@ -177,7 +177,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putFloat(
     complexBody: FloatWrapper,
-    options?: PrimitivePutFloatOptionalParams
+    options?: PrimitivePutFloatOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putFloat",
@@ -185,9 +185,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putFloatOperationSpec
+          putFloatOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -196,7 +196,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDouble(
-    options?: PrimitiveGetDoubleOptionalParams
+    options?: PrimitiveGetDoubleOptionalParams,
   ): Promise<PrimitiveGetDoubleResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getDouble",
@@ -204,9 +204,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getDoubleOperationSpec
+          getDoubleOperationSpec,
         ) as Promise<PrimitiveGetDoubleResponse>;
-      }
+      },
     );
   }
 
@@ -218,7 +218,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDouble(
     complexBody: DoubleWrapper,
-    options?: PrimitivePutDoubleOptionalParams
+    options?: PrimitivePutDoubleOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putDouble",
@@ -226,9 +226,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putDoubleOperationSpec
+          putDoubleOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -237,7 +237,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getBool(
-    options?: PrimitiveGetBoolOptionalParams
+    options?: PrimitiveGetBoolOptionalParams,
   ): Promise<PrimitiveGetBoolResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getBool",
@@ -245,9 +245,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getBoolOperationSpec
+          getBoolOperationSpec,
         ) as Promise<PrimitiveGetBoolResponse>;
-      }
+      },
     );
   }
 
@@ -258,7 +258,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putBool(
     complexBody: BooleanWrapper,
-    options?: PrimitivePutBoolOptionalParams
+    options?: PrimitivePutBoolOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putBool",
@@ -266,9 +266,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putBoolOperationSpec
+          putBoolOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -277,7 +277,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getString(
-    options?: PrimitiveGetStringOptionalParams
+    options?: PrimitiveGetStringOptionalParams,
   ): Promise<PrimitiveGetStringResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getString",
@@ -285,9 +285,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getStringOperationSpec
+          getStringOperationSpec,
         ) as Promise<PrimitiveGetStringResponse>;
-      }
+      },
     );
   }
 
@@ -298,7 +298,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putString(
     complexBody: StringWrapper,
-    options?: PrimitivePutStringOptionalParams
+    options?: PrimitivePutStringOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putString",
@@ -306,9 +306,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putStringOperationSpec
+          putStringOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -317,7 +317,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDate(
-    options?: PrimitiveGetDateOptionalParams
+    options?: PrimitiveGetDateOptionalParams,
   ): Promise<PrimitiveGetDateResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getDate",
@@ -325,9 +325,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getDateOperationSpec
+          getDateOperationSpec,
         ) as Promise<PrimitiveGetDateResponse>;
-      }
+      },
     );
   }
 
@@ -338,7 +338,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDate(
     complexBody: DateWrapper,
-    options?: PrimitivePutDateOptionalParams
+    options?: PrimitivePutDateOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putDate",
@@ -346,9 +346,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putDateOperationSpec
+          putDateOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -357,7 +357,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDateTime(
-    options?: PrimitiveGetDateTimeOptionalParams
+    options?: PrimitiveGetDateTimeOptionalParams,
   ): Promise<PrimitiveGetDateTimeResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getDateTime",
@@ -365,9 +365,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getDateTimeOperationSpec
+          getDateTimeOperationSpec,
         ) as Promise<PrimitiveGetDateTimeResponse>;
-      }
+      },
     );
   }
 
@@ -378,7 +378,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDateTime(
     complexBody: DatetimeWrapper,
-    options?: PrimitivePutDateTimeOptionalParams
+    options?: PrimitivePutDateTimeOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putDateTime",
@@ -386,9 +386,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putDateTimeOperationSpec
+          putDateTimeOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -397,7 +397,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDateTimeRfc1123(
-    options?: PrimitiveGetDateTimeRfc1123OptionalParams
+    options?: PrimitiveGetDateTimeRfc1123OptionalParams,
   ): Promise<PrimitiveGetDateTimeRfc1123Response> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getDateTimeRfc1123",
@@ -405,9 +405,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getDateTimeRfc1123OperationSpec
+          getDateTimeRfc1123OperationSpec,
         ) as Promise<PrimitiveGetDateTimeRfc1123Response>;
-      }
+      },
     );
   }
 
@@ -418,7 +418,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDateTimeRfc1123(
     complexBody: Datetimerfc1123Wrapper,
-    options?: PrimitivePutDateTimeRfc1123OptionalParams
+    options?: PrimitivePutDateTimeRfc1123OptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putDateTimeRfc1123",
@@ -426,9 +426,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putDateTimeRfc1123OperationSpec
+          putDateTimeRfc1123OperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -437,7 +437,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getDuration(
-    options?: PrimitiveGetDurationOptionalParams
+    options?: PrimitiveGetDurationOptionalParams,
   ): Promise<PrimitiveGetDurationResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getDuration",
@@ -445,9 +445,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getDurationOperationSpec
+          getDurationOperationSpec,
         ) as Promise<PrimitiveGetDurationResponse>;
-      }
+      },
     );
   }
 
@@ -458,7 +458,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putDuration(
     complexBody: DurationWrapper,
-    options?: PrimitivePutDurationOptionalParams
+    options?: PrimitivePutDurationOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putDuration",
@@ -466,9 +466,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putDurationOperationSpec
+          putDurationOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 
@@ -477,7 +477,7 @@ export class PrimitiveImpl implements Primitive {
    * @param options The options parameters.
    */
   async getByte(
-    options?: PrimitiveGetByteOptionalParams
+    options?: PrimitiveGetByteOptionalParams,
   ): Promise<PrimitiveGetByteResponse> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.getByte",
@@ -485,9 +485,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { options },
-          getByteOperationSpec
+          getByteOperationSpec,
         ) as Promise<PrimitiveGetByteResponse>;
-      }
+      },
     );
   }
 
@@ -498,7 +498,7 @@ export class PrimitiveImpl implements Primitive {
    */
   async putByte(
     complexBody: ByteWrapper,
-    options?: PrimitivePutByteOptionalParams
+    options?: PrimitivePutByteOptionalParams,
   ): Promise<void> {
     return tracingClient.withSpan(
       "BodyComplexWithTracing.putByte",
@@ -506,9 +506,9 @@ export class PrimitiveImpl implements Primitive {
       async (options) => {
         return this.client.sendOperationRequest(
           { complexBody, options },
-          putByteOperationSpec
+          putByteOperationSpec,
         ) as Promise<void>;
-      }
+      },
     );
   }
 }
@@ -520,15 +520,15 @@ const getIntOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.IntWrapper
+      bodyMapper: Mappers.IntWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putIntOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/integer",
@@ -536,29 +536,29 @@ const putIntOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getLongOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/long",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.LongWrapper
+      bodyMapper: Mappers.LongWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putLongOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/long",
@@ -566,29 +566,29 @@ const putLongOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getFloatOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/float",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.FloatWrapper
+      bodyMapper: Mappers.FloatWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putFloatOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/float",
@@ -596,29 +596,29 @@ const putFloatOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/double",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DoubleWrapper
+      bodyMapper: Mappers.DoubleWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDoubleOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/double",
@@ -626,29 +626,29 @@ const putDoubleOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getBoolOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/bool",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.BooleanWrapper
+      bodyMapper: Mappers.BooleanWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putBoolOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/bool",
@@ -656,29 +656,29 @@ const putBoolOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getStringOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/string",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.StringWrapper
+      bodyMapper: Mappers.StringWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putStringOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/string",
@@ -686,29 +686,29 @@ const putStringOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody6,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/date",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DateWrapper
+      bodyMapper: Mappers.DateWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/date",
@@ -716,29 +716,29 @@ const putDateOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody7,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetime",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatetimeWrapper
+      bodyMapper: Mappers.DatetimeWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateTimeOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetime",
@@ -746,29 +746,29 @@ const putDateTimeOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody8,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDateTimeRfc1123OperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetimerfc1123",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.Datetimerfc1123Wrapper
+      bodyMapper: Mappers.Datetimerfc1123Wrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDateTimeRfc1123OperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/datetimerfc1123",
@@ -776,29 +776,29 @@ const putDateTimeRfc1123OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody9,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getDurationOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/duration",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DurationWrapper
+      bodyMapper: Mappers.DurationWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putDurationOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/duration",
@@ -806,29 +806,29 @@ const putDurationOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody10,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getByteOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/byte",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ByteWrapper
+      bodyMapper: Mappers.ByteWrapper,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putByteOperationSpec: coreClient.OperationSpec = {
   path: "/complex/primitive/byte",
@@ -836,12 +836,12 @@ const putByteOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.complexBody11,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

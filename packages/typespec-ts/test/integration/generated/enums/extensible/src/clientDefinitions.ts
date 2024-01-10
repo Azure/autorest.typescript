@@ -17,19 +17,19 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface GetKnownValue {
   get(
-    options?: GetKnownValueParameters
+    options?: GetKnownValueParameters,
   ): StreamableMethod<GetKnownValue200Response>;
   put(
-    options: PutKnownValueParameters
+    options: PutKnownValueParameters,
   ): StreamableMethod<PutKnownValue204Response>;
 }
 
 export interface GetUnknownValue {
   get(
-    options?: GetUnknownValueParameters
+    options?: GetUnknownValueParameters,
   ): StreamableMethod<GetUnknownValue200Response>;
   put(
-    options: PutUnknownValueParameters
+    options: PutUnknownValueParameters,
   ): StreamableMethod<PutUnknownValue204Response>;
 }
 

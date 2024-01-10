@@ -30,7 +30,7 @@ async function queueOperationGet() {
   const result = await client.queue.get(
     resourceGroupName,
     accountName,
-    queueName
+    queueName,
   );
   console.log(result);
 }

@@ -34,7 +34,7 @@ async function getDatabaseAdvisor() {
     resourceGroupName,
     serverName,
     databaseName,
-    advisorName
+    advisorName,
   );
   console.log(result);
 }

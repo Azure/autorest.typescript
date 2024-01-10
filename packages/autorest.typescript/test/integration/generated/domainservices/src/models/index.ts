@@ -467,7 +467,7 @@ export enum KnownLdaps {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -485,7 +485,7 @@ export enum KnownExternalAccess {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -503,7 +503,7 @@ export enum KnownNtlmV1 {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -521,7 +521,7 @@ export enum KnownTlsV1 {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -539,7 +539,7 @@ export enum KnownSyncNtlmPasswords {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -557,7 +557,7 @@ export enum KnownSyncKerberosPasswords {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -575,7 +575,7 @@ export enum KnownSyncOnPremPasswords {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -593,7 +593,7 @@ export enum KnownKerberosRc4Encryption {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -611,7 +611,7 @@ export enum KnownKerberosArmoring {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -629,7 +629,7 @@ export enum KnownFilteredSync {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -647,7 +647,7 @@ export enum KnownNotifyGlobalAdmins {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -665,7 +665,7 @@ export enum KnownNotifyDcAdmins {
   /** Enabled */
   Enabled = "Enabled",
   /** Disabled */
-  Disabled = "Disabled"
+  Disabled = "Disabled",
 }
 
 /**
@@ -691,7 +691,7 @@ export enum KnownStatus {
   /** Warning */
   Warning = "Warning",
   /** Skipped */
-  Skipped = "Skipped"
+  Skipped = "Skipped",
 }
 
 /**
@@ -717,7 +717,7 @@ export enum KnownCreatedByType {
   /** ManagedIdentity */
   ManagedIdentity = "ManagedIdentity",
   /** Key */
-  Key = "Key"
+  Key = "Key",
 }
 
 /**
@@ -812,7 +812,8 @@ export interface DomainServicesListByResourceGroupNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type DomainServicesListByResourceGroupNextResponse = DomainServiceListResult;
+export type DomainServicesListByResourceGroupNextResponse =
+  DomainServiceListResult;
 
 /** Optional parameters. */
 export interface OuContainerOperationsListOptionalParams

@@ -11,7 +11,7 @@ export interface FineTuningOperations {
 }
 
 export function getFineTuningOperations(
-  context: OpenAIContext
+  context: OpenAIContext,
 ): FineTuningOperations {
   return {
     jobs: getFineTuningJobsOperations(context),

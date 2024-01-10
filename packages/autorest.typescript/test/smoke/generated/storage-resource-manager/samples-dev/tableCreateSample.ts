@@ -30,7 +30,7 @@ async function tableOperationPut() {
   const result = await client.tableOperations.create(
     resourceGroupName,
     accountName,
-    tableName
+    tableName,
   );
   console.log(result);
 }

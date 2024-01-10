@@ -29,7 +29,7 @@ export class TraitsClient {
   smokeTest(
     id: number,
     foo: string,
-    options: SmokeTestOptions = { requestOptions: {} }
+    options: SmokeTestOptions = { requestOptions: {} },
   ): Promise<User> {
     return smokeTest(this._client, id, foo, options);
   }
@@ -38,7 +38,7 @@ export class TraitsClient {
   repeatableAction(
     id: number,
     body: UserActionParam,
-    options: RepeatableActionOptions = { requestOptions: {} }
+    options: RepeatableActionOptions = { requestOptions: {} },
   ): Promise<UserActionResponse> {
     return repeatableAction(this._client, id, body, options);
   }

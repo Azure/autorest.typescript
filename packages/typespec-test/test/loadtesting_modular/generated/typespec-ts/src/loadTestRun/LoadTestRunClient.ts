@@ -61,7 +61,7 @@ export class LoadTestRunClient {
   constructor(
     endpoint: string,
     credential: TokenCredential,
-    options: LoadTestRunClientOptions = {}
+    options: LoadTestRunClientOptions = {},
   ) {
     this._client = createLoadTestRun(endpoint, credential, options);
     this.pipeline = this._client.pipeline;
@@ -71,7 +71,7 @@ export class LoadTestRunClient {
   testRun(
     testRunId: string,
     resource: TestRun,
-    options: TestRunOptions = { requestOptions: {} }
+    options: TestRunOptions = { requestOptions: {} },
   ): Promise<TestRun> {
     return testRun(this._client, testRunId, resource, options);
   }
@@ -80,7 +80,7 @@ export class LoadTestRunClient {
   createOrUpdateAppComponents(
     testRunId: string,
     body: TestRunAppComponents,
-    options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} }
+    options: CreateOrUpdateAppComponentsOptions = { requestOptions: {} },
   ): Promise<TestRunAppComponents> {
     return createOrUpdateAppComponents(this._client, testRunId, body, options);
   }
@@ -89,20 +89,20 @@ export class LoadTestRunClient {
   createOrUpdateServerMetricsConfig(
     testRunId: string,
     body: TestRunServerMetricConfig,
-    options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} }
+    options: CreateOrUpdateServerMetricsConfigOptions = { requestOptions: {} },
   ): Promise<TestRunServerMetricConfig> {
     return createOrUpdateServerMetricsConfig(
       this._client,
       testRunId,
       body,
-      options
+      options,
     );
   }
 
   /** Delete a test run by its name. */
   deleteTestRun(
     testRunId: string,
-    options: DeleteTestRunOptions = { requestOptions: {} }
+    options: DeleteTestRunOptions = { requestOptions: {} },
   ): Promise<void> {
     return deleteTestRun(this._client, testRunId, options);
   }
@@ -113,7 +113,7 @@ export class LoadTestRunClient {
    */
   getAppComponents(
     testRunId: string,
-    options: GetAppComponentsOptions = { requestOptions: {} }
+    options: GetAppComponentsOptions = { requestOptions: {} },
   ): Promise<TestRunAppComponents> {
     return getAppComponents(this._client, testRunId, options);
   }
@@ -121,7 +121,7 @@ export class LoadTestRunClient {
   /** List server metrics configuration for the given test run. */
   getServerMetricsConfig(
     testRunId: string,
-    options: GetServerMetricsConfigOptions = { requestOptions: {} }
+    options: GetServerMetricsConfigOptions = { requestOptions: {} },
   ): Promise<TestRunServerMetricConfig> {
     return getServerMetricsConfig(this._client, testRunId, options);
   }
@@ -129,7 +129,7 @@ export class LoadTestRunClient {
   /** Get test run details by name. */
   getTestRun(
     testRunId: string,
-    options: GetTestRunOptions = { requestOptions: {} }
+    options: GetTestRunOptions = { requestOptions: {} },
   ): Promise<TestRun> {
     return getTestRun(this._client, testRunId, options);
   }
@@ -138,7 +138,7 @@ export class LoadTestRunClient {
   getTestRunFile(
     testRunId: string,
     fileName: string,
-    options: GetTestRunFileOptions = { requestOptions: {} }
+    options: GetTestRunFileOptions = { requestOptions: {} },
   ): Promise<FileInfo> {
     return getTestRunFile(this._client, testRunId, fileName, options);
   }
@@ -148,21 +148,21 @@ export class LoadTestRunClient {
     testRunId: string,
     name: string,
     metricNamespace: string,
-    options: ListMetricDimensionValuesOptions = { requestOptions: {} }
+    options: ListMetricDimensionValuesOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<DimensionValueList> {
     return listMetricDimensionValues(
       this._client,
       testRunId,
       name,
       metricNamespace,
-      options
+      options,
     );
   }
 
   /** List the metric definitions for a load test run. */
   listMetricDefinitions(
     testRunId: string,
-    options: ListMetricDefinitionsOptions = { requestOptions: {} }
+    options: ListMetricDefinitionsOptions = { requestOptions: {} },
   ): Promise<MetricDefinitionCollection> {
     return listMetricDefinitions(this._client, testRunId, options);
   }
@@ -170,7 +170,7 @@ export class LoadTestRunClient {
   /** List the metric namespaces for a load test run. */
   listMetricNamespaces(
     testRunId: string,
-    options: ListMetricNamespacesOptions = { requestOptions: {} }
+    options: ListMetricNamespacesOptions = { requestOptions: {} },
   ): Promise<MetricNamespaceCollection> {
     return listMetricNamespaces(this._client, testRunId, options);
   }
@@ -179,14 +179,14 @@ export class LoadTestRunClient {
   listMetrics(
     testRunId: string,
     body: MetricRequestPayload,
-    options: ListMetricsOptions = { requestOptions: {} }
+    options: ListMetricsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TimeSeriesElement> {
     return listMetrics(this._client, testRunId, body, options);
   }
 
   /** Get all test runs with given filters */
   listTestRuns(
-    options: ListTestRunsOptions = { requestOptions: {} }
+    options: ListTestRunsOptions = { requestOptions: {} },
   ): PagedAsyncIterableIterator<TestRun> {
     return listTestRuns(this._client, options);
   }
@@ -194,7 +194,7 @@ export class LoadTestRunClient {
   /** Stop test run by name. */
   stopTestRun(
     testRunId: string,
-    options: StopTestRunOptions = { requestOptions: {} }
+    options: StopTestRunOptions = { requestOptions: {} },
   ): Promise<TestRun> {
     return stopTestRun(this._client, testRunId, options);
   }

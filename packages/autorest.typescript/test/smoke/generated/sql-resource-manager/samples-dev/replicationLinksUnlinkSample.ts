@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   UnlinkParameters,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -38,7 +38,7 @@ async function deleteReplicationLink() {
     serverName,
     databaseName,
     linkId,
-    parameters
+    parameters,
   );
   console.log(result);
 }

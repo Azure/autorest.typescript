@@ -9,11 +9,11 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 import {
   Application as ApplicationMapper,
-  ApplicationDefinition as ApplicationDefinitionMapper
+  ApplicationDefinition as ApplicationDefinitionMapper,
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -23,9 +23,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -34,10 +34,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const resourceGroupName: OperationURLParameter = {
@@ -46,14 +46,14 @@ export const resourceGroupName: OperationURLParameter = {
     constraints: {
       Pattern: new RegExp("^[-\\w\\._\\(\\)]+$"),
       MaxLength: 90,
-      MinLength: 1
+      MinLength: 1,
     },
     serializedName: "resourceGroupName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const applicationName: OperationURLParameter = {
@@ -61,14 +61,14 @@ export const applicationName: OperationURLParameter = {
   mapper: {
     constraints: {
       MaxLength: 64,
-      MinLength: 3
+      MinLength: 3,
     },
     serializedName: "applicationName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const apiVersion: OperationQueryParameter = {
@@ -78,9 +78,9 @@ export const apiVersion: OperationQueryParameter = {
     isConstant: true,
     serializedName: "api-version",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const subscriptionId: OperationURLParameter = {
@@ -89,9 +89,9 @@ export const subscriptionId: OperationURLParameter = {
     serializedName: "subscriptionId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const contentType: OperationParameter = {
@@ -101,19 +101,19 @@ export const contentType: OperationParameter = {
     isConstant: true,
     serializedName: "Content-Type",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ApplicationMapper
+  mapper: ApplicationMapper,
 };
 
 export const parameters1: OperationParameter = {
   parameterPath: ["options", "parameters"],
-  mapper: ApplicationMapper
+  mapper: ApplicationMapper,
 };
 
 export const applicationId: OperationURLParameter = {
@@ -122,10 +122,10 @@ export const applicationId: OperationURLParameter = {
     serializedName: "applicationId",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const nextLink: OperationURLParameter = {
@@ -134,10 +134,10 @@ export const nextLink: OperationURLParameter = {
     serializedName: "nextLink",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const applicationDefinitionName: OperationURLParameter = {
@@ -145,19 +145,19 @@ export const applicationDefinitionName: OperationURLParameter = {
   mapper: {
     constraints: {
       MaxLength: 64,
-      MinLength: 3
+      MinLength: 3,
     },
     serializedName: "applicationDefinitionName",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const parameters2: OperationParameter = {
   parameterPath: "parameters",
-  mapper: ApplicationDefinitionMapper
+  mapper: ApplicationDefinitionMapper,
 };
 
 export const applicationDefinitionId: OperationURLParameter = {
@@ -166,8 +166,8 @@ export const applicationDefinitionId: OperationURLParameter = {
     serializedName: "applicationDefinitionId",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };

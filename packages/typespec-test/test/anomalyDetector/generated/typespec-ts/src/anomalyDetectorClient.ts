@@ -20,7 +20,7 @@ export interface AnomalyDetectorClientOptions extends ClientOptions {
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: AnomalyDetectorClientOptions = {}
+  options: AnomalyDetectorClientOptions = {},
 ): AnomalyDetectorClient {
   const apiVersion = options.apiVersion ?? "v1.1";
   const baseUrl =
@@ -48,7 +48,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as AnomalyDetectorClient;
 
   return client;

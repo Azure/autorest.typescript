@@ -24,7 +24,7 @@ import {
   LoadBalancersSwapPublicIpAddressesOptionalParams,
   QueryInboundNatRulePortMappingRequest,
   LoadBalancersListInboundNatRulePortMappingsOptionalParams,
-  LoadBalancersListInboundNatRulePortMappingsResponse
+  LoadBalancersListInboundNatRulePortMappingsResponse,
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -35,7 +35,7 @@ export interface LoadBalancers {
    * @param options The options parameters.
    */
   listAll(
-    options?: LoadBalancersListAllOptionalParams
+    options?: LoadBalancersListAllOptionalParams,
   ): PagedAsyncIterableIterator<LoadBalancer>;
   /**
    * Gets all the load balancers in a resource group.
@@ -44,7 +44,7 @@ export interface LoadBalancers {
    */
   list(
     resourceGroupName: string,
-    options?: LoadBalancersListOptionalParams
+    options?: LoadBalancersListOptionalParams,
   ): PagedAsyncIterableIterator<LoadBalancer>;
   /**
    * Deletes the specified load balancer.
@@ -55,7 +55,7 @@ export interface LoadBalancers {
   beginDelete(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: LoadBalancersDeleteOptionalParams
+    options?: LoadBalancersDeleteOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Deletes the specified load balancer.
@@ -66,7 +66,7 @@ export interface LoadBalancers {
   beginDeleteAndWait(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: LoadBalancersDeleteOptionalParams
+    options?: LoadBalancersDeleteOptionalParams,
   ): Promise<void>;
   /**
    * Gets the specified load balancer.
@@ -77,7 +77,7 @@ export interface LoadBalancers {
   get(
     resourceGroupName: string,
     loadBalancerName: string,
-    options?: LoadBalancersGetOptionalParams
+    options?: LoadBalancersGetOptionalParams,
   ): Promise<LoadBalancersGetResponse>;
   /**
    * Creates or updates a load balancer.
@@ -90,7 +90,7 @@ export interface LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,
-    options?: LoadBalancersCreateOrUpdateOptionalParams
+    options?: LoadBalancersCreateOrUpdateOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LoadBalancersCreateOrUpdateResponse>,
@@ -108,7 +108,7 @@ export interface LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: LoadBalancer,
-    options?: LoadBalancersCreateOrUpdateOptionalParams
+    options?: LoadBalancersCreateOrUpdateOptionalParams,
   ): Promise<LoadBalancersCreateOrUpdateResponse>;
   /**
    * Updates a load balancer tags.
@@ -121,7 +121,7 @@ export interface LoadBalancers {
     resourceGroupName: string,
     loadBalancerName: string,
     parameters: TagsObject,
-    options?: LoadBalancersUpdateTagsOptionalParams
+    options?: LoadBalancersUpdateTagsOptionalParams,
   ): Promise<LoadBalancersUpdateTagsResponse>;
   /**
    * Swaps VIPs between two load balancers.
@@ -132,7 +132,7 @@ export interface LoadBalancers {
   beginSwapPublicIpAddresses(
     location: string,
     parameters: LoadBalancerVipSwapRequest,
-    options?: LoadBalancersSwapPublicIpAddressesOptionalParams
+    options?: LoadBalancersSwapPublicIpAddressesOptionalParams,
   ): Promise<SimplePollerLike<OperationState<void>, void>>;
   /**
    * Swaps VIPs between two load balancers.
@@ -143,7 +143,7 @@ export interface LoadBalancers {
   beginSwapPublicIpAddressesAndWait(
     location: string,
     parameters: LoadBalancerVipSwapRequest,
-    options?: LoadBalancersSwapPublicIpAddressesOptionalParams
+    options?: LoadBalancersSwapPublicIpAddressesOptionalParams,
   ): Promise<void>;
   /**
    * List of inbound NAT rule port mappings.
@@ -158,7 +158,7 @@ export interface LoadBalancers {
     loadBalancerName: string,
     backendPoolName: string,
     parameters: QueryInboundNatRulePortMappingRequest,
-    options?: LoadBalancersListInboundNatRulePortMappingsOptionalParams
+    options?: LoadBalancersListInboundNatRulePortMappingsOptionalParams,
   ): Promise<
     SimplePollerLike<
       OperationState<LoadBalancersListInboundNatRulePortMappingsResponse>,
@@ -178,6 +178,6 @@ export interface LoadBalancers {
     loadBalancerName: string,
     backendPoolName: string,
     parameters: QueryInboundNatRulePortMappingRequest,
-    options?: LoadBalancersListInboundNatRulePortMappingsOptionalParams
+    options?: LoadBalancersListInboundNatRulePortMappingsOptionalParams,
   ): Promise<LoadBalancersListInboundNatRulePortMappingsResponse>;
 }

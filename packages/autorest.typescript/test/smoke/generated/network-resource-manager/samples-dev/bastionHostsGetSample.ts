@@ -28,7 +28,7 @@ async function getBastionHost() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.bastionHosts.get(
     resourceGroupName,
-    bastionHostName
+    bastionHostName,
   );
   console.log(result);
 }

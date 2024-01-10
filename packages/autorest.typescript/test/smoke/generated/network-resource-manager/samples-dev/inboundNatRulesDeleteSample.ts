@@ -30,7 +30,7 @@ async function inboundNatRuleDelete() {
   const result = await client.inboundNatRules.beginDeleteAndWait(
     resourceGroupName,
     loadBalancerName,
-    inboundNatRuleName
+    inboundNatRuleName,
   );
   console.log(result);
 }

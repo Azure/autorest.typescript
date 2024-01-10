@@ -21,13 +21,13 @@ export const LanguageBatchInput: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "LanguageInput"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "LanguageInput",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const LanguageInput: coreClient.CompositeMapper = {
@@ -39,24 +39,24 @@ export const LanguageInput: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       countryHint: {
         serializedName: "countryHint",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const LanguageResult: coreClient.CompositeMapper = {
@@ -72,10 +72,10 @@ export const LanguageResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentLanguage"
-            }
-          }
-        }
+              className: "DocumentLanguage",
+            },
+          },
+        },
       },
       errors: {
         serializedName: "errors",
@@ -85,27 +85,27 @@ export const LanguageResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DocumentError"
-            }
-          }
-        }
+              className: "DocumentError",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "RequestStatistics"
-        }
+          className: "RequestStatistics",
+        },
       },
       modelVersion: {
         serializedName: "modelVersion",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentLanguage: coreClient.CompositeMapper = {
@@ -117,15 +117,15 @@ export const DocumentLanguage: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       detectedLanguage: {
         serializedName: "detectedLanguage",
         type: {
           name: "Composite",
-          className: "DetectedLanguage"
-        }
+          className: "DetectedLanguage",
+        },
       },
       warnings: {
         serializedName: "warnings",
@@ -135,20 +135,20 @@ export const DocumentLanguage: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsWarning"
-            }
-          }
-        }
+              className: "TextAnalyticsWarning",
+            },
+          },
+        },
       },
       statistics: {
         serializedName: "statistics",
         type: {
           name: "Composite",
-          className: "DocumentStatistics"
-        }
-      }
-    }
-  }
+          className: "DocumentStatistics",
+        },
+      },
+    },
+  },
 };
 
 export const DetectedLanguage: coreClient.CompositeMapper = {
@@ -160,25 +160,25 @@ export const DetectedLanguage: coreClient.CompositeMapper = {
         serializedName: "name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       iso6391Name: {
         serializedName: "iso6391Name",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       confidenceScore: {
         serializedName: "confidenceScore",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const TextAnalyticsWarning: coreClient.CompositeMapper = {
@@ -190,24 +190,24 @@ export const TextAnalyticsWarning: coreClient.CompositeMapper = {
         serializedName: "code",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       targetRef: {
         serializedName: "targetRef",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentStatistics: coreClient.CompositeMapper = {
@@ -219,18 +219,18 @@ export const DocumentStatistics: coreClient.CompositeMapper = {
         serializedName: "charactersCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       transactionsCount: {
         serializedName: "transactionsCount",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const DocumentError: coreClient.CompositeMapper = {
@@ -242,18 +242,18 @@ export const DocumentError: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       error: {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "TextAnalyticsError"
-        }
-      }
-    }
-  }
+          className: "TextAnalyticsError",
+        },
+      },
+    },
+  },
 };
 
 export const TextAnalyticsError: coreClient.CompositeMapper = {
@@ -271,29 +271,29 @@ export const TextAnalyticsError: coreClient.CompositeMapper = {
             "InvalidArgument",
             "InternalServerError",
             "ServiceUnavailable",
-            "NotFound"
-          ]
-        }
+            "NotFound",
+          ],
+        },
       },
       message: {
         serializedName: "message",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       target: {
         serializedName: "target",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       innererror: {
         serializedName: "innererror",
         type: {
           name: "Composite",
-          className: "InnerError"
-        }
+          className: "InnerError",
+        },
       },
       details: {
         serializedName: "details",
@@ -302,13 +302,13 @@ export const TextAnalyticsError: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TextAnalyticsError"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "TextAnalyticsError",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const InnerError: coreClient.CompositeMapper = {
@@ -320,38 +320,38 @@ export const InnerError: coreClient.CompositeMapper = {
         serializedName: "code",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       message: {
         serializedName: "message",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       details: {
         serializedName: "details",
         type: {
           name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
+          value: { type: { name: "String" } },
+        },
       },
       target: {
         serializedName: "target",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       innererror: {
         serializedName: "innererror",
         type: {
           name: "Composite",
-          className: "InnerError"
-        }
-      }
-    }
-  }
+          className: "InnerError",
+        },
+      },
+    },
+  },
 };
 
 export const RequestStatistics: coreClient.CompositeMapper = {
@@ -363,32 +363,32 @@ export const RequestStatistics: coreClient.CompositeMapper = {
         serializedName: "documentsCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       validDocumentsCount: {
         serializedName: "validDocumentsCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       erroneousDocumentsCount: {
         serializedName: "erroneousDocumentsCount",
         required: true,
         type: {
-          name: "Number"
-        }
+          name: "Number",
+        },
       },
       transactionsCount: {
         serializedName: "transactionsCount",
         required: true,
         type: {
-          name: "Number"
-        }
-      }
-    }
-  }
+          name: "Number",
+        },
+      },
+    },
+  },
 };
 
 export const ErrorResponse: coreClient.CompositeMapper = {
@@ -400,11 +400,11 @@ export const ErrorResponse: coreClient.CompositeMapper = {
         serializedName: "error",
         type: {
           name: "Composite",
-          className: "TextAnalyticsError"
-        }
-      }
-    }
-  }
+          className: "TextAnalyticsError",
+        },
+      },
+    },
+  },
 };
 
 export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
@@ -420,13 +420,13 @@ export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "MultiLanguageInput"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "MultiLanguageInput",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const MultiLanguageInput: coreClient.CompositeMapper = {
@@ -438,22 +438,22 @@ export const MultiLanguageInput: coreClient.CompositeMapper = {
         serializedName: "id",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       text: {
         serializedName: "text",
         required: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       language: {
         serializedName: "language",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };

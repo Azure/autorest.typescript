@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   StaticSiteARMResource,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -33,19 +33,19 @@ async function createOrUpdateAStaticSite() {
     buildProperties: {
       apiLocation: "api",
       appArtifactLocation: "build",
-      appLocation: "app"
+      appLocation: "app",
     },
     location: "West US 2",
     repositoryToken: "repoToken123",
     repositoryUrl: "https://github.com/username/RepoName",
-    sku: { name: "Basic", tier: "Basic" }
+    sku: { name: "Basic", tier: "Basic" },
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);
   const result = await client.staticSites.beginCreateOrUpdateStaticSiteAndWait(
     resourceGroupName,
     name,
-    staticSiteEnvelope
+    staticSiteEnvelope,
   );
   console.log(result);
 }

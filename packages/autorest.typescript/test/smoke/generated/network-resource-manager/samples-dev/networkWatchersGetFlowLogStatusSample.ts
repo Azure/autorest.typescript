@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   FlowLogStatusParameters,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,14 +29,14 @@ async function getFlowLogStatus() {
   const networkWatcherName = "nw1";
   const parameters: FlowLogStatusParameters = {
     targetResourceId:
-      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1"
+      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkSecurityGroups/nsg1",
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.networkWatchers.beginGetFlowLogStatusAndWait(
     resourceGroupName,
     networkWatcherName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

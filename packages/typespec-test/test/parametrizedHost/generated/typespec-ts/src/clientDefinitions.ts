@@ -11,7 +11,7 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 export interface ListCollections {
   /** Collection ids are user-created collections of ledger entries */
   get(
-    options?: ListCollectionsParameters
+    options?: ListCollectionsParameters,
   ): StreamableMethod<
     ListCollections200Response | ListCollectionsDefaultResponse
   >;

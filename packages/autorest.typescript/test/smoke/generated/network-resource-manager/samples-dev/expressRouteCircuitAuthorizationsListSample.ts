@@ -29,7 +29,7 @@ async function listExpressRouteCircuitAuthorization() {
   const resArray = new Array();
   for await (let item of client.expressRouteCircuitAuthorizations.list(
     resourceGroupName,
-    circuitName
+    circuitName,
   )) {
     resArray.push(item);
   }

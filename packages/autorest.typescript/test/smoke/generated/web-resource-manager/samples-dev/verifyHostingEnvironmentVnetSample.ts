@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   VnetParameters,
-  WebSiteManagementClient
+  WebSiteManagementClient,
 } from "@msinternal/web-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -29,7 +29,7 @@ async function verifyHostingEnvironmentVnet() {
   const parameters: VnetParameters = {
     vnetName: "vNet123",
     vnetResourceGroup: "vNet123rg",
-    vnetSubnetName: "vNet123SubNet"
+    vnetSubnetName: "vNet123SubNet",
   };
   const credential = new DefaultAzureCredential();
   const client = new WebSiteManagementClient(credential, subscriptionId);

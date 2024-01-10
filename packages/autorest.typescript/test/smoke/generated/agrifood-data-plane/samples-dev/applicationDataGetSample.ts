@@ -18,7 +18,7 @@ async function applicationDataGet() {
   const credential = new AzureKeyCredential("{Your API key}");
   const client = createAzureAgriFoodPlatformDataPlaneServiceClient(
     endpoint,
-    credential
+    credential,
   );
   const farmerId = "FARMER123";
   const applicationDataId = "APPLICATION123";
@@ -26,7 +26,7 @@ async function applicationDataGet() {
     .path(
       "/farmers/{farmerId}/application-data/{applicationDataId}",
       farmerId,
-      applicationDataId
+      applicationDataId,
     )
     .get();
   console.log(result);

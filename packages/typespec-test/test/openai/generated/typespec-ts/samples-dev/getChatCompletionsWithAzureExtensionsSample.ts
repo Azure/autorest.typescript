@@ -20,7 +20,7 @@ async function getChatCompletionsWithAzureExtensionsSample() {
   const result = await client
     .path(
       "/deployments/{deploymentId}/extensions/chat/completions",
-      deploymentId
+      deploymentId,
     )
     .post({
       body: {

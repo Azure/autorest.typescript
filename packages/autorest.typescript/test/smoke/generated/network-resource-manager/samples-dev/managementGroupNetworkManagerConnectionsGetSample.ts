@@ -27,7 +27,7 @@ async function getManagementGroupNetworkManagerConnection() {
   const client = new NetworkManagementClient(credential);
   const result = await client.managementGroupNetworkManagerConnections.get(
     managementGroupId,
-    networkManagerConnectionName
+    networkManagerConnectionName,
   );
   console.log(result);
 }

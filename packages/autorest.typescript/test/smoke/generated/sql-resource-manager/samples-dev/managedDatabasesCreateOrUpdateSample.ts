@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   ManagedDatabase,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -37,7 +37,7 @@ async function createsANewManagedDatabaseByRestoringFromAnExternalBackup() {
     lastBackupName: "last_backup_name",
     location: "southeastasia",
     storageContainerSasToken: "sv=2015-12-11&sr=c&sp=rl&sig=1234",
-    storageContainerUri: "https://myaccountname.blob.core.windows.net/backups"
+    storageContainerUri: "https://myaccountname.blob.core.windows.net/backups",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -45,7 +45,7 @@ async function createsANewManagedDatabaseByRestoringFromAnExternalBackup() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -67,7 +67,7 @@ async function createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup() {
     createMode: "Recovery",
     location: "southeastasia",
     recoverableDatabaseId:
-      "/subscriptions/11111111-2222-3333-4444-555555555555/resourceGroups/Default-SQL-WestEurope/providers/Microsoft.Sql/managedInstances/testsvr/recoverableDatabases/testdb"
+      "/subscriptions/11111111-2222-3333-4444-555555555555/resourceGroups/Default-SQL-WestEurope/providers/Microsoft.Sql/managedInstances/testsvr/recoverableDatabases/testdb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -75,7 +75,7 @@ async function createsANewManagedDatabaseFromRestoringAGeoReplicatedBackup() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -98,7 +98,7 @@ async function createsANewManagedDatabaseFromRestoringALongTermRetentionBackup()
     createMode: "RestoreExternalBackup",
     location: "southeastasia",
     storageContainerSasToken: "sv=2015-12-11&sr=c&sp=rl&sig=1234",
-    storageContainerUri: "https://myaccountname.blob.core.windows.net/backups"
+    storageContainerUri: "https://myaccountname.blob.core.windows.net/backups",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -106,7 +106,7 @@ async function createsANewManagedDatabaseFromRestoringALongTermRetentionBackup()
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -129,7 +129,7 @@ async function createsANewManagedDatabaseUsingPointInTimeRestore() {
     location: "southeastasia",
     restorePointInTime: new Date("2017-07-14T05:35:31.503Z"),
     sourceDatabaseId:
-      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/managedInstances/testsvr/databases/testdb"
+      "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/Default-SQL-SouthEastAsia/providers/Microsoft.Sql/managedInstances/testsvr/databases/testdb",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -137,7 +137,7 @@ async function createsANewManagedDatabaseUsingPointInTimeRestore() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -157,7 +157,7 @@ async function createsANewManagedDatabaseWithMaximalProperties() {
   const databaseName = "managedDatabase";
   const parameters: ManagedDatabase = {
     location: "southeastasia",
-    tags: { tagKey1: "TagValue1" }
+    tags: { tagKey1: "TagValue1" },
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -165,7 +165,7 @@ async function createsANewManagedDatabaseWithMaximalProperties() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }
@@ -190,7 +190,7 @@ async function createsANewManagedDatabaseWithMinimalProperties() {
     resourceGroupName,
     managedInstanceName,
     databaseName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -11,7 +11,7 @@ export { NestedDiscriminatorContext } from "../rest/index.js";
 
 /** Illustrates multiple level inheritance with multiple discriminators. */
 export function createNestedDiscriminator(
-  options: NestedDiscriminatorClientOptions = {}
+  options: NestedDiscriminatorClientOptions = {},
 ): NestedDiscriminatorContext {
   const clientContext = getClient(options);
   return clientContext;

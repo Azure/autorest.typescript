@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   PrepareNetworkPoliciesRequest,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -28,16 +28,15 @@ async function prepareNetworkPolicies() {
   const resourceGroupName = process.env["RESOURCE_GROUP"] || "rg1";
   const virtualNetworkName = "test-vnet";
   const subnetName = "subnet1";
-  const prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest = {
-    serviceName: "Microsoft.Sql/managedInstances"
-  };
+  const prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest =
+    { serviceName: "Microsoft.Sql/managedInstances" };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.subnets.beginPrepareNetworkPoliciesAndWait(
     resourceGroupName,
     virtualNetworkName,
     subnetName,
-    prepareNetworkPoliciesRequestParameters
+    prepareNetworkPoliciesRequestParameters,
   );
   console.log(result);
 }

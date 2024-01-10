@@ -32,7 +32,7 @@ async function resetVpnLinkConnection() {
     resourceGroupName,
     gatewayName,
     connectionName,
-    linkConnectionName
+    linkConnectionName,
   );
   console.log(result);
 }

@@ -32,7 +32,7 @@ async function getResourceHealthMetadata() {
   const result = await client.resourceHealthMetadataOperations.getBySiteSlot(
     resourceGroupName,
     name,
-    slot
+    slot,
   );
   console.log(result);
 }

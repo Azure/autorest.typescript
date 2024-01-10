@@ -9,7 +9,7 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
+  OperationQueryParameter,
 } from "@azure/core-client";
 
 export const accept: OperationParameter = {
@@ -19,9 +19,9 @@ export const accept: OperationParameter = {
     isConstant: true,
     serializedName: "Accept",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const $host: OperationURLParameter = {
@@ -30,10 +30,10 @@ export const $host: OperationURLParameter = {
     serializedName: "$host",
     required: true,
     type: {
-      name: "String"
-    }
+      name: "String",
+    },
   },
-  skipEncoding: true
+  skipEncoding: true,
 };
 
 export const petId: OperationURLParameter = {
@@ -42,9 +42,9 @@ export const petId: OperationURLParameter = {
     serializedName: "petId",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const whatAction: OperationURLParameter = {
@@ -53,9 +53,9 @@ export const whatAction: OperationURLParameter = {
     serializedName: "whatAction",
     required: true,
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };
 
 export const models: OperationQueryParameter = {
@@ -63,7 +63,7 @@ export const models: OperationQueryParameter = {
   mapper: {
     serializedName: "models",
     type: {
-      name: "String"
-    }
-  }
+      name: "String",
+    },
+  },
 };

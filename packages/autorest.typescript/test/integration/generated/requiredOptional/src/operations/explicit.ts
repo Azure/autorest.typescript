@@ -41,7 +41,7 @@ import {
   ExplicitPostRequiredArrayPropertyOptionalParams,
   ExplicitPostOptionalArrayPropertyOptionalParams,
   ExplicitPostRequiredArrayHeaderOptionalParams,
-  ExplicitPostOptionalArrayHeaderOptionalParams
+  ExplicitPostOptionalArrayHeaderOptionalParams,
 } from "../models";
 
 /** Class containing Explicit operations. */
@@ -61,11 +61,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   putOptionalBinaryBody(
-    options?: ExplicitPutOptionalBinaryBodyOptionalParams
+    options?: ExplicitPutOptionalBinaryBodyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      putOptionalBinaryBodyOperationSpec
+      putOptionalBinaryBodyOperationSpec,
     );
   }
 
@@ -76,11 +76,11 @@ export class ExplicitImpl implements Explicit {
    */
   putRequiredBinaryBody(
     bodyParameter: coreRestPipeline.RequestBodyType,
-    options?: ExplicitPutRequiredBinaryBodyOptionalParams
+    options?: ExplicitPutRequiredBinaryBodyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      putRequiredBinaryBodyOperationSpec
+      putRequiredBinaryBodyOperationSpec,
     );
   }
 
@@ -92,11 +92,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredIntegerParameter(
     bodyParameter: number,
-    options?: ExplicitPostRequiredIntegerParameterOptionalParams
+    options?: ExplicitPostRequiredIntegerParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredIntegerParameterOperationSpec
+      postRequiredIntegerParameterOperationSpec,
     );
   }
 
@@ -105,11 +105,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalIntegerParameter(
-    options?: ExplicitPostOptionalIntegerParameterOptionalParams
+    options?: ExplicitPostOptionalIntegerParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalIntegerParameterOperationSpec
+      postOptionalIntegerParameterOperationSpec,
     );
   }
 
@@ -121,11 +121,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredIntegerProperty(
     bodyParameter: IntWrapper,
-    options?: ExplicitPostRequiredIntegerPropertyOptionalParams
+    options?: ExplicitPostRequiredIntegerPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredIntegerPropertyOperationSpec
+      postRequiredIntegerPropertyOperationSpec,
     );
   }
 
@@ -134,11 +134,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalIntegerProperty(
-    options?: ExplicitPostOptionalIntegerPropertyOptionalParams
+    options?: ExplicitPostOptionalIntegerPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalIntegerPropertyOperationSpec
+      postOptionalIntegerPropertyOperationSpec,
     );
   }
 
@@ -150,11 +150,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredIntegerHeader(
     headerParameter: number,
-    options?: ExplicitPostRequiredIntegerHeaderOptionalParams
+    options?: ExplicitPostRequiredIntegerHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { headerParameter, options },
-      postRequiredIntegerHeaderOperationSpec
+      postRequiredIntegerHeaderOperationSpec,
     );
   }
 
@@ -163,11 +163,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalIntegerHeader(
-    options?: ExplicitPostOptionalIntegerHeaderOptionalParams
+    options?: ExplicitPostOptionalIntegerHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalIntegerHeaderOperationSpec
+      postOptionalIntegerHeaderOperationSpec,
     );
   }
 
@@ -179,11 +179,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredStringParameter(
     bodyParameter: string,
-    options?: ExplicitPostRequiredStringParameterOptionalParams
+    options?: ExplicitPostRequiredStringParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredStringParameterOperationSpec
+      postRequiredStringParameterOperationSpec,
     );
   }
 
@@ -192,11 +192,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalStringParameter(
-    options?: ExplicitPostOptionalStringParameterOptionalParams
+    options?: ExplicitPostOptionalStringParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalStringParameterOperationSpec
+      postOptionalStringParameterOperationSpec,
     );
   }
 
@@ -208,11 +208,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredStringProperty(
     bodyParameter: StringWrapper,
-    options?: ExplicitPostRequiredStringPropertyOptionalParams
+    options?: ExplicitPostRequiredStringPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredStringPropertyOperationSpec
+      postRequiredStringPropertyOperationSpec,
     );
   }
 
@@ -221,11 +221,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalStringProperty(
-    options?: ExplicitPostOptionalStringPropertyOptionalParams
+    options?: ExplicitPostOptionalStringPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalStringPropertyOperationSpec
+      postOptionalStringPropertyOperationSpec,
     );
   }
 
@@ -237,11 +237,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredStringHeader(
     headerParameter: string,
-    options?: ExplicitPostRequiredStringHeaderOptionalParams
+    options?: ExplicitPostRequiredStringHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { headerParameter, options },
-      postRequiredStringHeaderOperationSpec
+      postRequiredStringHeaderOperationSpec,
     );
   }
 
@@ -250,11 +250,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalStringHeader(
-    options?: ExplicitPostOptionalStringHeaderOptionalParams
+    options?: ExplicitPostOptionalStringHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalStringHeaderOperationSpec
+      postOptionalStringHeaderOperationSpec,
     );
   }
 
@@ -266,11 +266,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredClassParameter(
     bodyParameter: Product,
-    options?: ExplicitPostRequiredClassParameterOptionalParams
+    options?: ExplicitPostRequiredClassParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredClassParameterOperationSpec
+      postRequiredClassParameterOperationSpec,
     );
   }
 
@@ -279,11 +279,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalClassParameter(
-    options?: ExplicitPostOptionalClassParameterOptionalParams
+    options?: ExplicitPostOptionalClassParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalClassParameterOperationSpec
+      postOptionalClassParameterOperationSpec,
     );
   }
 
@@ -295,11 +295,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredClassProperty(
     bodyParameter: ClassWrapper,
-    options?: ExplicitPostRequiredClassPropertyOptionalParams
+    options?: ExplicitPostRequiredClassPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredClassPropertyOperationSpec
+      postRequiredClassPropertyOperationSpec,
     );
   }
 
@@ -308,11 +308,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalClassProperty(
-    options?: ExplicitPostOptionalClassPropertyOptionalParams
+    options?: ExplicitPostOptionalClassPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalClassPropertyOperationSpec
+      postOptionalClassPropertyOperationSpec,
     );
   }
 
@@ -324,11 +324,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredArrayParameter(
     bodyParameter: string[],
-    options?: ExplicitPostRequiredArrayParameterOptionalParams
+    options?: ExplicitPostRequiredArrayParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredArrayParameterOperationSpec
+      postRequiredArrayParameterOperationSpec,
     );
   }
 
@@ -337,11 +337,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalArrayParameter(
-    options?: ExplicitPostOptionalArrayParameterOptionalParams
+    options?: ExplicitPostOptionalArrayParameterOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalArrayParameterOperationSpec
+      postOptionalArrayParameterOperationSpec,
     );
   }
 
@@ -353,11 +353,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredArrayProperty(
     bodyParameter: ArrayWrapper,
-    options?: ExplicitPostRequiredArrayPropertyOptionalParams
+    options?: ExplicitPostRequiredArrayPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { bodyParameter, options },
-      postRequiredArrayPropertyOperationSpec
+      postRequiredArrayPropertyOperationSpec,
     );
   }
 
@@ -366,11 +366,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalArrayProperty(
-    options?: ExplicitPostOptionalArrayPropertyOptionalParams
+    options?: ExplicitPostOptionalArrayPropertyOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalArrayPropertyOperationSpec
+      postOptionalArrayPropertyOperationSpec,
     );
   }
 
@@ -382,11 +382,11 @@ export class ExplicitImpl implements Explicit {
    */
   postRequiredArrayHeader(
     headerParameter: string[],
-    options?: ExplicitPostRequiredArrayHeaderOptionalParams
+    options?: ExplicitPostRequiredArrayHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { headerParameter, options },
-      postRequiredArrayHeaderOperationSpec
+      postRequiredArrayHeaderOperationSpec,
     );
   }
 
@@ -395,11 +395,11 @@ export class ExplicitImpl implements Explicit {
    * @param options The options parameters.
    */
   postOptionalArrayHeader(
-    options?: ExplicitPostOptionalArrayHeaderOptionalParams
+    options?: ExplicitPostOptionalArrayHeaderOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      postOptionalArrayHeaderOperationSpec
+      postOptionalArrayHeaderOperationSpec,
     );
   }
 }
@@ -412,14 +412,14 @@ const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter2,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const putRequiredBinaryBodyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/explicit/required/binary-body",
@@ -427,14 +427,14 @@ const putRequiredBinaryBodyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter3,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
-  serializer
+  serializer,
 };
 const postRequiredIntegerParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/integer/parameter",
@@ -442,14 +442,14 @@ const postRequiredIntegerParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter4,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalIntegerParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/integer/parameter",
@@ -457,14 +457,14 @@ const postOptionalIntegerParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredIntegerPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/integer/property",
@@ -472,14 +472,14 @@ const postRequiredIntegerPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter6,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalIntegerPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/integer/property",
@@ -487,14 +487,14 @@ const postOptionalIntegerPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter7,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredIntegerHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/integer/header",
@@ -502,12 +502,12 @@ const postRequiredIntegerHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerParameter],
-  serializer
+  serializer,
 };
 const postOptionalIntegerHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/integer/header",
@@ -515,12 +515,12 @@ const postOptionalIntegerHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerParameter1],
-  serializer
+  serializer,
 };
 const postRequiredStringParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/string/parameter",
@@ -528,14 +528,14 @@ const postRequiredStringParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter8,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalStringParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/string/parameter",
@@ -543,14 +543,14 @@ const postOptionalStringParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredStringPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/string/property",
@@ -558,14 +558,14 @@ const postRequiredStringPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter9,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalStringPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/string/property",
@@ -573,14 +573,14 @@ const postOptionalStringPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter10,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredStringHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/string/header",
@@ -588,12 +588,12 @@ const postRequiredStringHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerParameter2],
-  serializer
+  serializer,
 };
 const postOptionalStringHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/string/header",
@@ -601,12 +601,12 @@ const postOptionalStringHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.bodyParameter11],
-  serializer
+  serializer,
 };
 const postRequiredClassParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/class/parameter",
@@ -614,14 +614,14 @@ const postRequiredClassParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter12,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalClassParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/class/parameter",
@@ -629,14 +629,14 @@ const postOptionalClassParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter13,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredClassPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/class/property",
@@ -644,14 +644,14 @@ const postRequiredClassPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter14,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalClassPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/class/property",
@@ -659,14 +659,14 @@ const postOptionalClassPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter15,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredArrayParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/array/parameter",
@@ -674,14 +674,14 @@ const postRequiredArrayParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter16,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalArrayParameterOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/array/parameter",
@@ -689,14 +689,14 @@ const postOptionalArrayParameterOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter17,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredArrayPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/array/property",
@@ -704,14 +704,14 @@ const postRequiredArrayPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter18,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postOptionalArrayPropertyOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/array/property",
@@ -719,14 +719,14 @@ const postOptionalArrayPropertyOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.bodyParameter19,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const postRequiredArrayHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/requied/array/header",
@@ -734,12 +734,12 @@ const postRequiredArrayHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerParameter3],
-  serializer
+  serializer,
 };
 const postOptionalArrayHeaderOperationSpec: coreClient.OperationSpec = {
   path: "/reqopt/optional/array/header",
@@ -747,10 +747,10 @@ const postOptionalArrayHeaderOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerParameter4],
-  serializer
+  serializer,
 };

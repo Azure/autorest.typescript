@@ -16,7 +16,7 @@ import {
   PetGetPetByIdResponse,
   PetDoSomethingOptionalParams,
   PetDoSomethingResponse,
-  PetHasModelsParamOptionalParams
+  PetHasModelsParamOptionalParams,
 } from "../models";
 
 /** Class containing Pet operations. */
@@ -38,11 +38,11 @@ export class PetImpl implements Pet {
    */
   getPetById(
     petId: string,
-    options?: PetGetPetByIdOptionalParams
+    options?: PetGetPetByIdOptionalParams,
   ): Promise<PetGetPetByIdResponse> {
     return this.client.sendOperationRequest(
       { petId, options },
-      getPetByIdOperationSpec
+      getPetByIdOperationSpec,
     );
   }
 
@@ -53,11 +53,11 @@ export class PetImpl implements Pet {
    */
   doSomething(
     whatAction: string,
-    options?: PetDoSomethingOptionalParams
+    options?: PetDoSomethingOptionalParams,
   ): Promise<PetDoSomethingResponse> {
     return this.client.sendOperationRequest(
       { whatAction, options },
-      doSomethingOperationSpec
+      doSomethingOperationSpec,
     );
   }
 
@@ -69,7 +69,7 @@ export class PetImpl implements Pet {
   hasModelsParam(options?: PetHasModelsParamOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
       { options },
-      hasModelsParamOperationSpec
+      hasModelsParamOperationSpec,
     );
   }
 }
@@ -81,45 +81,45 @@ const getPetByIdOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.PetDef
+      bodyMapper: Mappers.PetDef,
     },
     202: {},
     400: {
       bodyMapper: { type: { name: "String" } },
-      isError: true
+      isError: true,
     },
     404: {
       bodyMapper: Mappers.NotFoundErrorBase,
-      isError: true
+      isError: true,
     },
     501: {
       bodyMapper: { type: { name: "Number" } },
-      isError: true
+      isError: true,
     },
-    default: {}
+    default: {},
   },
   urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const doSomethingOperationSpec: coreClient.OperationSpec = {
   path: "/errorStatusCodes/Pets/doSomething/{whatAction}",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.PetAction
+      bodyMapper: Mappers.PetAction,
     },
     500: {
       bodyMapper: Mappers.PetActionError,
-      isError: true
+      isError: true,
     },
     default: {
-      bodyMapper: Mappers.PetActionError
-    }
+      bodyMapper: Mappers.PetActionError,
+    },
   },
   urlParameters: [Parameters.$host, Parameters.whatAction],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const hasModelsParamOperationSpec: coreClient.OperationSpec = {
   path: "/errorStatusCodes/Pets/hasModelsParam",
@@ -128,14 +128,14 @@ const hasModelsParamOperationSpec: coreClient.OperationSpec = {
     200: {},
     500: {
       bodyMapper: Mappers.PetActionError,
-      isError: true
+      isError: true,
     },
     default: {
-      bodyMapper: Mappers.PetActionError
-    }
+      bodyMapper: Mappers.PetActionError,
+    },
   },
   queryParameters: [Parameters.models],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

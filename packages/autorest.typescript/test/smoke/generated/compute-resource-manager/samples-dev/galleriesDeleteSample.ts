@@ -28,7 +28,7 @@ async function deleteAGallery() {
   const client = new ComputeManagementClient(credential, subscriptionId);
   const result = await client.galleries.beginDeleteAndWait(
     resourceGroupName,
-    galleryName
+    galleryName,
   );
   console.log(result);
 }

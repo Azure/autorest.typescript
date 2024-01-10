@@ -16,7 +16,7 @@ describe("Parameters.ts", () => {
           `
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -39,7 +39,7 @@ describe("Parameters.ts", () => {
           true
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -69,7 +69,7 @@ describe("Parameters.ts", () => {
             `
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
           import { RequestParameters } from "@azure-rest/core-client";
@@ -98,7 +98,7 @@ describe("Parameters.ts", () => {
           `
         );
         assert.ok(parameters);
-        assertEqualContent(
+        await assertEqualContent(
           parameters?.content!,
           `
             import { RequestParameters } from "@azure-rest/core-client";
@@ -130,7 +130,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         ` import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
           import { RequestParameters } from "@azure-rest/core-client";
@@ -157,7 +157,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `import { RequestParameters } from "@azure-rest/core-client";
         
@@ -177,7 +177,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -211,7 +211,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -247,7 +247,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -287,7 +287,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
       import { RequestParameters } from "@azure-rest/core-client";
@@ -330,7 +330,7 @@ describe("Parameters.ts", () => {
         `
       );
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -361,7 +361,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: unknown[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -379,7 +379,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: string[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -398,7 +398,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: int32[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -417,7 +417,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: int64[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -436,7 +436,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: float32[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -455,7 +455,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: boolean[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -474,7 +474,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: bytes[]): void ;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -493,7 +493,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: plainDate[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -512,7 +512,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: utcDateTime[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -531,7 +531,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body:  duration[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -554,7 +554,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: SimpleModel[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -578,7 +578,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: InnerModel[]): void;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";
@@ -604,7 +604,7 @@ describe("Parameters.ts", () => {
       @post op read(@body body: Record<SimpleModel>): SimpleModel;
       `);
       assert.ok(parameters);
-      assertEqualContent(
+      await assertEqualContent(
         parameters?.content!,
         `
         import { RequestParameters } from "@azure-rest/core-client";

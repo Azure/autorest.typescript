@@ -30,12 +30,13 @@ async function getTheShortTermRetentionPolicyForTheDatabase() {
   const policyName = "default";
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
-  const result = await client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.get(
-    resourceGroupName,
-    managedInstanceName,
-    restorableDroppedDatabaseId,
-    policyName
-  );
+  const result =
+    await client.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies.get(
+      resourceGroupName,
+      managedInstanceName,
+      restorableDroppedDatabaseId,
+      policyName,
+    );
   console.log(result);
 }
 

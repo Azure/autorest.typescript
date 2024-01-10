@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   RouteMap,
-  NetworkManagementClient
+  NetworkManagementClient,
 } from "@msinternal/network-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -30,7 +30,7 @@ async function routeMapPut() {
   const routeMapName = "routeMap1";
   const routeMapParameters: RouteMap = {
     associatedInboundConnections: [
-      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/expressRouteGateways/exrGateway1/expressRouteConnections/exrConn1"
+      "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/expressRouteGateways/exrGateway1/expressRouteConnections/exrConn1",
     ],
     associatedOutboundConnections: [],
     rules: [
@@ -39,20 +39,20 @@ async function routeMapPut() {
         actions: [
           {
             type: "Add",
-            parameters: [{ asPath: ["22334"], community: [], routePrefix: [] }]
-          }
+            parameters: [{ asPath: ["22334"], community: [], routePrefix: [] }],
+          },
         ],
         matchCriteria: [
           {
             asPath: [],
             community: [],
             matchCondition: "Contains",
-            routePrefix: ["10.0.0.0/8"]
-          }
+            routePrefix: ["10.0.0.0/8"],
+          },
         ],
-        nextStepIfMatched: "Continue"
-      }
-    ]
+        nextStepIfMatched: "Continue",
+      },
+    ],
   };
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
@@ -60,7 +60,7 @@ async function routeMapPut() {
     resourceGroupName,
     virtualHubName,
     routeMapName,
-    routeMapParameters
+    routeMapParameters,
   );
   console.log(result);
 }

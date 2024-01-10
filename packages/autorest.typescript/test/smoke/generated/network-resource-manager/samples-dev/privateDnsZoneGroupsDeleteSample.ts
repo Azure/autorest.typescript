@@ -30,7 +30,7 @@ async function deletePrivateDnsZoneGroup() {
   const result = await client.privateDnsZoneGroups.beginDeleteAndWait(
     resourceGroupName,
     privateEndpointName,
-    privateDnsZoneGroupName
+    privateDnsZoneGroupName,
   );
   console.log(result);
 }

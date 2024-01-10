@@ -28,7 +28,7 @@ async function routeFilterGet() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.routeFilters.get(
     resourceGroupName,
-    routeFilterName
+    routeFilterName,
   );
   console.log(result);
 }

@@ -25,7 +25,7 @@ import {
   DateGetMaxDateResponse,
   DatePutMinDateOptionalParams,
   DateGetMinDateOptionalParams,
-  DateGetMinDateResponse
+  DateGetMinDateResponse,
 } from "../models";
 
 /** Class containing DateOperations operations. */
@@ -53,11 +53,11 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getInvalidDate(
-    options?: DateGetInvalidDateOptionalParams
+    options?: DateGetInvalidDateOptionalParams,
   ): Promise<DateGetInvalidDateResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getInvalidDateOperationSpec
+      getInvalidDateOperationSpec,
     );
   }
 
@@ -66,11 +66,11 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getOverflowDate(
-    options?: DateGetOverflowDateOptionalParams
+    options?: DateGetOverflowDateOptionalParams,
   ): Promise<DateGetOverflowDateResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getOverflowDateOperationSpec
+      getOverflowDateOperationSpec,
     );
   }
 
@@ -79,11 +79,11 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getUnderflowDate(
-    options?: DateGetUnderflowDateOptionalParams
+    options?: DateGetUnderflowDateOptionalParams,
   ): Promise<DateGetUnderflowDateResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getUnderflowDateOperationSpec
+      getUnderflowDateOperationSpec,
     );
   }
 
@@ -94,11 +94,11 @@ export class DateOperationsImpl implements DateOperations {
    */
   putMaxDate(
     dateBody: Date,
-    options?: DatePutMaxDateOptionalParams
+    options?: DatePutMaxDateOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { dateBody, options },
-      putMaxDateOperationSpec
+      putMaxDateOperationSpec,
     );
   }
 
@@ -107,11 +107,11 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getMaxDate(
-    options?: DateGetMaxDateOptionalParams
+    options?: DateGetMaxDateOptionalParams,
   ): Promise<DateGetMaxDateResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMaxDateOperationSpec
+      getMaxDateOperationSpec,
     );
   }
 
@@ -122,11 +122,11 @@ export class DateOperationsImpl implements DateOperations {
    */
   putMinDate(
     dateBody: Date,
-    options?: DatePutMinDateOptionalParams
+    options?: DatePutMinDateOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { dateBody, options },
-      putMinDateOperationSpec
+      putMinDateOperationSpec,
     );
   }
 
@@ -135,11 +135,11 @@ export class DateOperationsImpl implements DateOperations {
    * @param options The options parameters.
    */
   getMinDate(
-    options?: DateGetMinDateOptionalParams
+    options?: DateGetMinDateOptionalParams,
   ): Promise<DateGetMinDateResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getMinDateOperationSpec
+      getMinDateOperationSpec,
     );
   }
 }
@@ -151,60 +151,60 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" } }
+      bodyMapper: { type: { name: "Date" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getInvalidDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/invaliddate",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" } }
+      bodyMapper: { type: { name: "Date" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getOverflowDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/overflowdate",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" } }
+      bodyMapper: { type: { name: "Date" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const getUnderflowDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/underflowdate",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" } }
+      bodyMapper: { type: { name: "Date" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putMaxDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/max",
@@ -212,29 +212,29 @@ const putMaxDateOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.dateBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getMaxDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/max",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" } }
+      bodyMapper: { type: { name: "Date" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putMinDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/min",
@@ -242,27 +242,27 @@ const putMinDateOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.dateBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getMinDateOperationSpec: coreClient.OperationSpec = {
   path: "/date/min",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "Date" } }
+      bodyMapper: { type: { name: "Date" } },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };

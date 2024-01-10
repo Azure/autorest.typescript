@@ -17,25 +17,25 @@ import { Client, StreamableMethod } from "@azure-rest/core-client";
 
 export interface SetModel {
   post(
-    options?: OptionalExplicitSetModelParameters
+    options?: OptionalExplicitSetModelParameters,
   ): StreamableMethod<OptionalExplicitSetModel204Response>;
 }
 
 export interface Omit {
   post(
-    options?: OptionalExplicitOmitParameters
+    options?: OptionalExplicitOmitParameters,
   ): StreamableMethod<OptionalExplicitOmit204Response>;
 }
 
 export interface RequiredExplicit {
   post(
-    options: RequiredExplicitParameters
+    options: RequiredExplicitParameters,
   ): StreamableMethod<RequiredExplicit204Response>;
 }
 
 export interface RequiredImplicit {
   post(
-    options?: RequiredImplicitParameters
+    options?: RequiredImplicitParameters,
   ): StreamableMethod<RequiredImplicit204Response>;
 }
 

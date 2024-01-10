@@ -29,7 +29,7 @@ async function listVirtualNetworkTapConfigurations() {
   const resArray = new Array();
   for await (let item of client.networkInterfaceTapConfigurations.list(
     resourceGroupName,
-    networkInterfaceName
+    networkInterfaceName,
   )) {
     resArray.push(item);
   }

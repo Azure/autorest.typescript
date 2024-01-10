@@ -20,19 +20,19 @@ export const OperationListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Operation"
-            }
-          }
-        }
+              className: "Operation",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Operation: coreClient.CompositeMapper = {
@@ -43,18 +43,18 @@ export const Operation: coreClient.CompositeMapper = {
       name: {
         serializedName: "name",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       display: {
         serializedName: "display",
         type: {
           name: "Composite",
-          className: "OperationDisplay"
-        }
-      }
-    }
-  }
+          className: "OperationDisplay",
+        },
+      },
+    },
+  },
 };
 
 export const OperationDisplay: coreClient.CompositeMapper = {
@@ -65,29 +65,29 @@ export const OperationDisplay: coreClient.CompositeMapper = {
       provider: {
         serializedName: "provider",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       resource: {
         serializedName: "resource",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       operation: {
         serializedName: "operation",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       description: {
         serializedName: "description",
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const LocationListResult: coreClient.CompositeMapper = {
@@ -102,13 +102,13 @@ export const LocationListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Location"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "Location",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const Location: coreClient.CompositeMapper = {
@@ -120,46 +120,46 @@ export const Location: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       subscriptionId: {
         serializedName: "subscriptionId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       name: {
         serializedName: "name",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       displayName: {
         serializedName: "displayName",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       latitude: {
         serializedName: "latitude",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       longitude: {
         serializedName: "longitude",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const Subscription: coreClient.CompositeMapper = {
@@ -171,50 +171,56 @@ export const Subscription: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       subscriptionId: {
         serializedName: "subscriptionId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       displayName: {
         serializedName: "displayName",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       tenantId: {
         serializedName: "tenantId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       state: {
         serializedName: "state",
         readOnly: true,
         type: {
           name: "Enum",
-          allowedValues: ["Enabled", "Warned", "PastDue", "Disabled", "Deleted"]
-        }
+          allowedValues: [
+            "Enabled",
+            "Warned",
+            "PastDue",
+            "Disabled",
+            "Deleted",
+          ],
+        },
       },
       subscriptionPolicies: {
         serializedName: "subscriptionPolicies",
         type: {
           name: "Composite",
-          className: "SubscriptionPolicies"
-        }
+          className: "SubscriptionPolicies",
+        },
       },
       authorizationSource: {
         serializedName: "authorizationSource",
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       managedByTenants: {
         serializedName: "managedByTenants",
@@ -223,13 +229,13 @@ export const Subscription: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "ManagedByTenant"
-            }
-          }
-        }
-      }
-    }
-  }
+              className: "ManagedByTenant",
+            },
+          },
+        },
+      },
+    },
+  },
 };
 
 export const SubscriptionPolicies: coreClient.CompositeMapper = {
@@ -241,26 +247,26 @@ export const SubscriptionPolicies: coreClient.CompositeMapper = {
         serializedName: "locationPlacementId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       quotaId: {
         serializedName: "quotaId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       spendingLimit: {
         serializedName: "spendingLimit",
         readOnly: true,
         type: {
           name: "Enum",
-          allowedValues: ["On", "Off", "CurrentPeriodOff"]
-        }
-      }
-    }
-  }
+          allowedValues: ["On", "Off", "CurrentPeriodOff"],
+        },
+      },
+    },
+  },
 };
 
 export const ManagedByTenant: coreClient.CompositeMapper = {
@@ -272,11 +278,11 @@ export const ManagedByTenant: coreClient.CompositeMapper = {
         serializedName: "tenantId",
         readOnly: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const SubscriptionListResult: coreClient.CompositeMapper = {
@@ -291,20 +297,20 @@ export const SubscriptionListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "Subscription"
-            }
-          }
-        }
+              className: "Subscription",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const TenantListResult: coreClient.CompositeMapper = {
@@ -319,20 +325,20 @@ export const TenantListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "TenantIdDescription"
-            }
-          }
-        }
+              className: "TenantIdDescription",
+            },
+          },
+        },
       },
       nextLink: {
         serializedName: "nextLink",
         required: true,
         type: {
-          name: "String"
-        }
-      }
-    }
-  }
+          name: "String",
+        },
+      },
+    },
+  },
 };
 
 export const TenantIdDescription: coreClient.CompositeMapper = {
@@ -344,44 +350,44 @@ export const TenantIdDescription: coreClient.CompositeMapper = {
         serializedName: "id",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       tenantId: {
         serializedName: "tenantId",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       tenantCategory: {
         serializedName: "tenantCategory",
         readOnly: true,
         type: {
           name: "Enum",
-          allowedValues: ["Home", "ProjectedBy", "ManagedBy"]
-        }
+          allowedValues: ["Home", "ProjectedBy", "ManagedBy"],
+        },
       },
       country: {
         serializedName: "country",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       countryCode: {
         serializedName: "countryCode",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       displayName: {
         serializedName: "displayName",
         readOnly: true,
         type: {
-          name: "String"
-        }
+          name: "String",
+        },
       },
       domains: {
         serializedName: "domains",
@@ -390,11 +396,11 @@ export const TenantIdDescription: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "String"
-            }
-          }
-        }
-      }
-    }
-  }
+              name: "String",
+            },
+          },
+        },
+      },
+    },
+  },
 };

@@ -28,7 +28,7 @@ async function getPrivateLinkService() {
   const client = new NetworkManagementClient(credential, subscriptionId);
   const result = await client.privateLinkServices.get(
     resourceGroupName,
-    serviceName
+    serviceName,
   );
   console.log(result);
 }

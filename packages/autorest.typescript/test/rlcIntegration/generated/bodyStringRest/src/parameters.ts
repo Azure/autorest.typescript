@@ -82,9 +82,10 @@ export interface StringPutBase64UrlEncodedMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type StringPutBase64UrlEncodedParameters = StringPutBase64UrlEncodedMediaTypesParam &
-  StringPutBase64UrlEncodedBodyParam &
-  RequestParameters;
+export type StringPutBase64UrlEncodedParameters =
+  StringPutBase64UrlEncodedMediaTypesParam &
+    StringPutBase64UrlEncodedBodyParam &
+    RequestParameters;
 export type StringGetNullBase64UrlEncodedParameters = RequestParameters;
 export type EnumGetNotExpandableParameters = RequestParameters;
 
@@ -98,9 +99,10 @@ export interface EnumPutNotExpandableMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EnumPutNotExpandableParameters = EnumPutNotExpandableMediaTypesParam &
-  EnumPutNotExpandableBodyParam &
-  RequestParameters;
+export type EnumPutNotExpandableParameters =
+  EnumPutNotExpandableMediaTypesParam &
+    EnumPutNotExpandableBodyParam &
+    RequestParameters;
 export type EnumGetReferencedParameters = RequestParameters;
 
 export interface EnumPutReferencedBodyParam {
@@ -128,6 +130,7 @@ export interface EnumPutReferencedConstantMediaTypesParam {
   contentType?: "application/json";
 }
 
-export type EnumPutReferencedConstantParameters = EnumPutReferencedConstantMediaTypesParam &
-  EnumPutReferencedConstantBodyParam &
-  RequestParameters;
+export type EnumPutReferencedConstantParameters =
+  EnumPutReferencedConstantMediaTypesParam &
+    EnumPutReferencedConstantBodyParam &
+    RequestParameters;

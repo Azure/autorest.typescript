@@ -30,7 +30,7 @@ async function listExtensionsInVmssInstance() {
   const result = await client.virtualMachineScaleSetVMExtensions.list(
     resourceGroupName,
     vmScaleSetName,
-    instanceId
+    instanceId,
   );
   console.log(result);
 }

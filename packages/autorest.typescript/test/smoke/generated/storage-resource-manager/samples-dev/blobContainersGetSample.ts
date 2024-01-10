@@ -30,7 +30,7 @@ async function getBlobContainersGetWithAllowProtectedAppendWritesAll() {
   const result = await client.blobContainers.get(
     resourceGroupName,
     accountName,
-    containerName
+    containerName,
   );
   console.log(result);
 }
@@ -51,7 +51,7 @@ async function getContainers() {
   const result = await client.blobContainers.get(
     resourceGroupName,
     accountName,
-    containerName
+    containerName,
   );
   console.log(result);
 }

@@ -13,7 +13,7 @@ import { AuthOauth2Client } from "./clientDefinitions";
  */
 export default function createClient(
   credentials: TokenCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AuthOauth2Client {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
   options.apiVersion = options.apiVersion ?? "1.0.0";

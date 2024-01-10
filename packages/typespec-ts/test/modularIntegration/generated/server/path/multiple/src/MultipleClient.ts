@@ -27,14 +27,14 @@ export class MultipleClient {
   }
 
   noOperationParams(
-    options: NoOperationParamsOptions = { requestOptions: {} }
+    options: NoOperationParamsOptions = { requestOptions: {} },
   ): Promise<void> {
     return noOperationParams(this._client, options);
   }
 
   withOperationPathParam(
     keyword: string,
-    options: WithOperationPathParamOptions = { requestOptions: {} }
+    options: WithOperationPathParamOptions = { requestOptions: {} },
   ): Promise<void> {
     return withOperationPathParam(this._client, keyword, options);
   }

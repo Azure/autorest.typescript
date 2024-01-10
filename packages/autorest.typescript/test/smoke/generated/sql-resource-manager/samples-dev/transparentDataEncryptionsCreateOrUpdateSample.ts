@@ -10,7 +10,7 @@
 // Licensed under the MIT License.
 import {
   LogicalDatabaseTransparentDataEncryption,
-  SqlManagementClient
+  SqlManagementClient,
 } from "@msinternal/sql-resource-manager";
 import { DefaultAzureCredential } from "@azure/identity";
 import * as dotenv from "dotenv";
@@ -32,7 +32,7 @@ async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameter
   const databaseName = "testdb";
   const tdeName = "current";
   const parameters: LogicalDatabaseTransparentDataEncryption = {
-    state: "Enabled"
+    state: "Enabled",
   };
   const credential = new DefaultAzureCredential();
   const client = new SqlManagementClient(credential, subscriptionId);
@@ -41,7 +41,7 @@ async function updateADatabaseTransparentDataEncryptionStateWithMinimalParameter
     serverName,
     databaseName,
     tdeName,
-    parameters
+    parameters,
   );
   console.log(result);
 }

@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import createDpgCustomizationClient, {
-  getLongRunningPoller
+  getLongRunningPoller,
 } from "@msinternal/dpg-customization-rest";
 import * as dotenv from "dotenv";
 

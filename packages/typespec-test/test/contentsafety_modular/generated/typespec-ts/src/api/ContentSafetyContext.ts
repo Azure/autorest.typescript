@@ -14,7 +14,7 @@ export { ContentSafetyContext } from "../rest/index.js";
 export function createContentSafety(
   endpoint: string,
   credential: KeyCredential | TokenCredential,
-  options: ContentSafetyClientOptions = {}
+  options: ContentSafetyClientOptions = {},
 ): ContentSafetyContext {
   const clientContext = getClient(endpoint, credential, options);
   return clientContext;

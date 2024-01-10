@@ -17,7 +17,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -74,7 +74,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -132,7 +132,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -193,7 +193,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -250,7 +250,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -302,7 +302,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -356,7 +356,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {
@@ -411,7 +411,7 @@ describe("api operations in Modular", () => {
       );
       assert.ok(operationFiles);
       assert.equal(operationFiles?.length, 1);
-      assertEqualContent(
+      await assertEqualContent(
         operationFiles?.[0]?.getFullText()!,
         `import { TestingContext as Client } from "../rest/index.js";
          import {

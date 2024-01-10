@@ -26,10 +26,11 @@ async function getVirtualWanVpnServerConfigurations() {
   const virtualWANName = "wan1";
   const credential = new DefaultAzureCredential();
   const client = new NetworkManagementClient(credential, subscriptionId);
-  const result = await client.vpnServerConfigurationsAssociatedWithVirtualWan.beginListAndWait(
-    resourceGroupName,
-    virtualWANName
-  );
+  const result =
+    await client.vpnServerConfigurationsAssociatedWithVirtualWan.beginListAndWait(
+      resourceGroupName,
+      virtualWANName,
+    );
   console.log(result);
 }
 

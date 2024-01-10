@@ -22,7 +22,7 @@ import {
   EnumGetReferencedConstantOptionalParams,
   EnumGetReferencedConstantResponse,
   RefColorConstant,
-  EnumPutReferencedConstantOptionalParams
+  EnumPutReferencedConstantOptionalParams,
 } from "../models";
 
 /** Class containing Enum operations. */
@@ -42,11 +42,11 @@ export class EnumImpl implements Enum {
    * @param options The options parameters.
    */
   getNotExpandable(
-    options?: EnumGetNotExpandableOptionalParams
+    options?: EnumGetNotExpandableOptionalParams,
   ): Promise<EnumGetNotExpandableResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getNotExpandableOperationSpec
+      getNotExpandableOperationSpec,
     );
   }
 
@@ -57,11 +57,11 @@ export class EnumImpl implements Enum {
    */
   putNotExpandable(
     stringBody: Colors,
-    options?: EnumPutNotExpandableOptionalParams
+    options?: EnumPutNotExpandableOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { stringBody, options },
-      putNotExpandableOperationSpec
+      putNotExpandableOperationSpec,
     );
   }
 
@@ -70,11 +70,11 @@ export class EnumImpl implements Enum {
    * @param options The options parameters.
    */
   getReferenced(
-    options?: EnumGetReferencedOptionalParams
+    options?: EnumGetReferencedOptionalParams,
   ): Promise<EnumGetReferencedResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getReferencedOperationSpec
+      getReferencedOperationSpec,
     );
   }
 
@@ -85,11 +85,11 @@ export class EnumImpl implements Enum {
    */
   putReferenced(
     enumStringBody: Colors,
-    options?: EnumPutReferencedOptionalParams
+    options?: EnumPutReferencedOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { enumStringBody, options },
-      putReferencedOperationSpec
+      putReferencedOperationSpec,
     );
   }
 
@@ -98,11 +98,11 @@ export class EnumImpl implements Enum {
    * @param options The options parameters.
    */
   getReferencedConstant(
-    options?: EnumGetReferencedConstantOptionalParams
+    options?: EnumGetReferencedConstantOptionalParams,
   ): Promise<EnumGetReferencedConstantResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getReferencedConstantOperationSpec
+      getReferencedConstantOperationSpec,
     );
   }
 
@@ -113,11 +113,11 @@ export class EnumImpl implements Enum {
    */
   putReferencedConstant(
     enumStringBody: RefColorConstant,
-    options?: EnumPutReferencedConstantOptionalParams
+    options?: EnumPutReferencedConstantOptionalParams,
   ): Promise<void> {
     return this.client.sendOperationRequest(
       { enumStringBody, options },
-      putReferencedConstantOperationSpec
+      putReferencedConstantOperationSpec,
     );
   }
 }
@@ -132,17 +132,17 @@ const getNotExpandableOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Enum",
-          allowedValues: ["red color", "green-color", "blue_color"]
-        }
-      }
+          allowedValues: ["red color", "green-color", "blue_color"],
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putNotExpandableOperationSpec: coreClient.OperationSpec = {
   path: "/string/enum/notExpandable",
@@ -150,14 +150,14 @@ const putNotExpandableOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.stringBody5,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getReferencedOperationSpec: coreClient.OperationSpec = {
   path: "/string/enum/Referenced",
@@ -167,17 +167,17 @@ const getReferencedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: {
         type: {
           name: "Enum",
-          allowedValues: ["red color", "green-color", "blue_color"]
-        }
-      }
+          allowedValues: ["red color", "green-color", "blue_color"],
+        },
+      },
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putReferencedOperationSpec: coreClient.OperationSpec = {
   path: "/string/enum/Referenced",
@@ -185,29 +185,29 @@ const putReferencedOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.enumStringBody,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };
 const getReferencedConstantOperationSpec: coreClient.OperationSpec = {
   path: "/string/enum/ReferencedConstant",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.RefColorConstant
+      bodyMapper: Mappers.RefColorConstant,
     },
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
-  serializer
+  serializer,
 };
 const putReferencedConstantOperationSpec: coreClient.OperationSpec = {
   path: "/string/enum/ReferencedConstant",
@@ -215,12 +215,12 @@ const putReferencedConstantOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: Mappers.ErrorModel
-    }
+      bodyMapper: Mappers.ErrorModel,
+    },
   },
   requestBody: Parameters.enumStringBody1,
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
-  serializer
+  serializer,
 };

@@ -25,7 +25,7 @@ export enum KnownEnum0 {
   /** Foo2 */
   Foo2 = "foo2",
   /** Foo3 */
-  Foo3 = "foo3"
+  Foo3 = "foo3",
 }
 
 /**
@@ -46,7 +46,7 @@ export enum KnownEnum1 {
   /** Foo2 */
   Foo2 = "foo2",
   /** Foo3 */
-  Foo3 = "foo3"
+  Foo3 = "foo3",
 }
 
 /**

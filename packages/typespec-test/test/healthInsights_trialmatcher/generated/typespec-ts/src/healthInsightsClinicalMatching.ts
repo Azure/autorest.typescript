@@ -15,7 +15,7 @@ import { HealthInsightsClinicalMatchingClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): HealthInsightsClinicalMatchingClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/healthinsights`;
   options.apiVersion = options.apiVersion ?? "2023-03-01-preview";
@@ -41,7 +41,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as HealthInsightsClinicalMatchingClient;
 
   return client;
