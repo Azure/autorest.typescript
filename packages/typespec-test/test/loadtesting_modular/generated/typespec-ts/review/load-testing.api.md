@@ -83,7 +83,7 @@ export interface DimensionValue {
 // @public (undocumented)
 export interface DimensionValueList {
     // (undocumented)
-    readonly value: string[];
+    value: string[];
 }
 
 // @public
@@ -294,7 +294,7 @@ export interface LoadTestRunClientDimensionValue {
 // @public (undocumented)
 export interface LoadTestRunClientDimensionValueList {
     // (undocumented)
-    readonly value: string[];
+    value: string[];
 }
 
 // @public

@@ -33,7 +33,7 @@ export interface Salmon extends FishParent {
   partner?: Fish;
 }
 
-/** Base type for Fish */
+/** Alias for Fish */
 export type Fish = Shark | Salmon | FishParent;
-/** Base type for Shark */
+/** Alias for Shark */
 export type Shark = SawShark | GoblinShark | SharkParent;

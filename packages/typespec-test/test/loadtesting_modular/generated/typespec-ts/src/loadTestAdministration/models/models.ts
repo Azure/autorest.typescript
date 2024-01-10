@@ -512,5 +512,5 @@ export interface DimensionValue {
 export type Interval = string;
 
 export interface DimensionValueList {
-  readonly value: string[];
+  value: string[];
 }
