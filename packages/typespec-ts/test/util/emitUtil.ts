@@ -278,9 +278,10 @@ export async function getRLCClientsFromTypeSpec(tspContent: string) {
 
 export async function emitModularModelsFromTypeSpec(
   tspContent: string,
-  needOptions: boolean = false
+  needOptions: boolean = false,
+  withRawContent: boolean = false
 ) {
-  const context = await rlcEmitterFor(tspContent, true);
+  const context = await rlcEmitterFor(tspContent, true, false, false, false, withRawContent);
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<
     string,
@@ -324,12 +325,16 @@ export async function emitModularOperationsFromTypeSpec(
   tspContent: string,
   mustEmptyDiagnostic = true,
   needNamespaces: boolean = true,
-  needAzureCore: boolean = false
+  needAzureCore: boolean = false,
+  withRawContent: boolean = false
 ) {
   const context = await rlcEmitterFor(
     tspContent,
     needNamespaces,
-    needAzureCore
+    needAzureCore,
+    false,
+    false,
+    withRawContent
   );
   const dpgContext = createDpgContextTestHelper(context.program);
   const serviceNameToRlcModelsMap: Map<string, RLCModel> = new Map<

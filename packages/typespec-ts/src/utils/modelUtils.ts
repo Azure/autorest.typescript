@@ -998,6 +998,13 @@ function isUnionType(type: Type) {
   return type.kind === "Union";
 }
 
+export function isTransformedUnionType(schema: Schema): boolean {
+  if (schema.type === "object" && schema.enum) {
+    return true;
+  }
+  return false;
+}
+
 function getSchemaForStdScalar(
   program: Program,
   type: Scalar,
@@ -1202,7 +1209,10 @@ export function getSerializeTypeName(
   usage?: SchemaContext[]
 ): string {
   const typeName = getTypeName(schema, usage);
-  const formattedName = typeName.replace("Date | string", "string");
+  const formattedName = (schema.alias ?? typeName).replace(
+    "Date | string",
+    "string"
+  );
   const allTypes = formattedName.includes(" | ")
     ? formattedName.split(" | ")
     : formattedName.split("|");
@@ -1216,7 +1226,7 @@ export function getSerializeTypeName(
     );
   });
   if (canSerialize) {
-    return formattedName;
+    return schema.alias ? typeName : formattedName;
   }
   return "string";
 }

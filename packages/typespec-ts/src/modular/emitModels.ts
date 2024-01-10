@@ -53,7 +53,8 @@ function extractModels(codeModel: ModularCodeModel): Type[] {
 
 export function extractAliases(codeModel: ModularCodeModel): Type[] {
   const models = codeModel.types.filter(
-    (t) => t.type === "model" && t.alias && t.aliasType
+    (t) =>
+      (t.type === "model" || t.type === "combined") && t.alias && t.aliasType
   );
   return models;
 }
@@ -127,9 +128,9 @@ export function buildModels(
   // We are generating both models and enums here
   const coreClientTypes = new Set<string>();
   const models = extractModels(codeModel);
-
+  const aliases = extractAliases(codeModel);
   // Skip to generate models.ts if there is no any models
-  if (models.length === 0) {
+  if (models.length === 0 && aliases.length === 0) {
     return;
   }
   const srcPath = codeModel.modularOptions.sourceRoot;
@@ -172,7 +173,6 @@ export function buildModels(
     ]);
   }
 
-  const aliases = extractAliases(codeModel);
   aliases.forEach((alias) => {
     modelsFile.addTypeAlias(buildModelTypeAlias(alias));
   });
@@ -183,7 +183,7 @@ export function buildModelTypeAlias(model: Type) {
   return {
     name: model.name!,
     isExported: true,
-    docs: ["Base type for " + model.name],
+    docs: ["Alias for " + model.name],
     type: model.aliasType!
   };
 }

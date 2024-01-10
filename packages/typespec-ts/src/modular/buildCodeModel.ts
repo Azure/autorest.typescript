@@ -20,7 +20,6 @@ import {
   getEffectiveModelType,
   getDiscriminator,
   Operation,
-  isKey,
   Scalar,
   IntrinsicScalarName,
   isStringType,
@@ -77,7 +76,8 @@ import {
   OperationGroup,
   Response,
   Type as HrlcType,
-  Header
+  Header,
+  Property
 } from "./modularCodeModel.js";
 import {
   getBodyType,
@@ -108,6 +108,7 @@ import {
   getOperationNamespaceInterfaceName
 } from "../utils/namespaceUtils.js";
 import { reportDiagnostic } from "../lib.js";
+import { getType as getTypeName } from "./helpers/typeHelpers.js";
 
 interface HttpServerParameter {
   type: "endpointPath";
@@ -420,7 +421,7 @@ type BodyParameter = ParamBase & {
   type: Type;
   restApiName: string;
   location: "body";
-  defaultContentType: string;
+  // defaultContentType: string;
   isBinaryPayload: boolean;
 };
 
@@ -435,25 +436,17 @@ function emitBodyParameter(
   if (contentTypes.length === 0) {
     contentTypes = ["application/json"];
   }
-  if (contentTypes.length !== 1) {
-    throw Error("Currently only one kind of content-type!");
-  }
   const type = getType(context, getBodyType(context.program, httpOperation)!, {
     disableEffectiveModel: true
   });
 
-  const defaultContentType =
-    body.parameter?.default ?? contentTypes.includes("application/json")
-      ? "application/json"
-      : contentTypes[0]!;
   return {
     contentTypes,
     type,
     restApiName: body.parameter?.name ?? "body",
     location: "body",
     ...base,
-    defaultContentType,
-    isBinaryPayload: isBinaryPayload(context, body.type, defaultContentType)
+    isBinaryPayload: isBinaryPayload(context, body.type, contentTypes)
   };
 }
 
@@ -952,8 +945,7 @@ function emitProperty(
     optional: property.optional,
     description: getDocStr(context.program, property),
     addedOn: getAddedOnVersion(context.program, property),
-    readonly:
-      isReadOnly(context.program, property) || isKey(context.program, property),
+    readonly: isReadOnly(context.program, property),
     clientDefaultValue: clientDefaultValue,
     format: newProperty.format
   };
@@ -1325,14 +1317,34 @@ function emitUnion(context: SdkContext, type: Union): Record<string, any> {
   }
   if (sdkType.kind === "union") {
     const unionName = type.name;
+    const discriminatorPropertyName = getDiscriminator(
+      context.program,
+      type
+    )?.propertyName;
+    const variantTypes = sdkType.values.map((x) => {
+      const valueType = getType(context, x.__raw!);
+      if (valueType.properties && discriminatorPropertyName) {
+        valueType.discriminatorValue = valueType.properties.filter(
+          (p: Property) => p.clientName === discriminatorPropertyName
+        )[0].type.value;
+      }
+      return valueType;
+    });
     return {
       nullable: sdkType.nullable,
       name: unionName,
       description: `Type of ${unionName}`,
       internal: true,
       type: "combined",
-      types: sdkType.values.map((x) => getType(context, x.__raw!)),
-      xmlMetadata: {}
+      types: variantTypes,
+      xmlMetadata: {},
+      discriminator: discriminatorPropertyName,
+      alias:
+        unionName === "" || unionName === undefined ? undefined : unionName,
+      aliasType:
+        unionName === "" || unionName === undefined
+          ? undefined
+          : variantTypes.map((x) => getTypeName(x).name).join(" | ")
     };
   } else if (sdkType.kind === "enum") {
     return {

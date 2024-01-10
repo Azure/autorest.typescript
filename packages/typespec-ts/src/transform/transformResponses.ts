@@ -25,7 +25,8 @@ import {
   getImportedModelName,
   getTypeName,
   getSchemaForType,
-  getBinaryType
+  getBinaryType,
+  isTransformedUnionType
 } from "../utils/modelUtils.js";
 import {
   getOperationGroupName,
@@ -141,8 +142,10 @@ function transformHeaders(
       const typeSchema = getSchemaForType(dpgContext, value!.type, [
         SchemaContext.Output
       ]) as Schema;
-      const type = getTypeName(typeSchema);
-      if (typeSchema.type === "object" && typeSchema.enum) {
+      const type = getTypeName(typeSchema, [SchemaContext.Output]);
+      // If the header is a union type, we need to import the model
+      // as we generate union as type alias
+      if (isTransformedUnionType(typeSchema)) {
         importedModels.add(type);
       }
       const header: ResponseHeaderSchema = {

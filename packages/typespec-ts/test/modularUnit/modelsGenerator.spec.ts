@@ -91,13 +91,9 @@ describe("model property type", () => {
     }`;
     const tspType = "TranslationLanguageValues.English";
     const typeScriptType = `"English"`;
-    await verifyModularPropertyType(
-      tspType,
-      typeScriptType,
-      {
-        additionalTypeSpecDefinition: tspTypeDefinition
-      }
-    );
+    await verifyModularPropertyType(tspType, typeScriptType, {
+      additionalTypeSpecDefinition: tspTypeDefinition
+    });
   });
 });
 
@@ -1319,5 +1315,378 @@ describe("inheritance & polymorphism", () => {
       }
       `
     );
+  });
+
+  describe.only("should generate models for header parameters", () => {
+    it.only("union variants with string literals being used in contentType headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("Content-Type") contentType: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      assertEqualContent(
+        schemaOutput?.getFullText()!,
+        `
+        /** Alias for SchemaContentTypeValues */
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false,
+        true
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { DemoServiceContext as Client } from "../rest/index.js";
+        import {
+          StreamableMethod,
+          operationOptionsToRequestParameters,
+          createRestError,
+        } from "@azure-rest/core-client";
+        
+        export function _getSend(
+          context: Client,
+          contentType: SchemaContentTypeValues,
+          body: string,
+          options: GetOptions = { requestOptions: {} }
+        ): StreamableMethod<Get204Response> {
+            return context
+              .path("/")
+              .post({
+                ...operationOptionsToRequestParameters(options),
+                contentType: contentType ?? options.contentType,
+              });
+        }
+        
+        export async function _getDeserialize(result: Get204Response): Promise<void> {
+          if (result.status !== "204") {
+            throw createRestError(result);
+          }
+        
+          return;
+        }
+        
+        export async function get(
+          context: Client,
+          contentType: SchemaContentTypeValues,
+          body: string,
+          options: GetOptions = { requestOptions: {} }
+        ): Promise<void> {
+          const result = await _getSend(context, contentType, body, options);
+          return _getDeserialize(result);
+        }
+        `,
+        true
+      );
+    });
+
+    it("union variants with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      union SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      assertEqualContent(
+        schemaOutput?.getFullText()!,
+        `
+        export type SchemaContentTypeValues =
+          | "application/json; serialization=Avro"
+          | "application/json; serialization=json"
+          | "text/plain; charset=utf-8"
+          | "text/vnd.ms.protobuf";
+        `
+      );
+    });
+
+    it("extensible enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+    });
+
+    it("fixed enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header":
+            | "application/json; serialization=Avro"
+            | "application/json; serialization=json"
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
+
+    it("fixed enums with string literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum SchemaContentTypeValues {
+        avro: "application/json; serialization=Avro",
+        json: "application/json; serialization=json",
+        custom: "text/plain; charset=utf-8",
+        protobuf: "text/vnd.ms.protobuf",
+      }
+      
+      op get(
+        @header("test-header") testHeader: SchemaContentTypeValues,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.isUndefined(schemaOutput);
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header":
+            | "application/json; serialization=Avro"
+            | "application/json; serialization=json"
+            | "text/plain; charset=utf-8"
+            | "text/vnd.ms.protobuf";
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
+
+    it("fixed enums with number literals being used in regular headers", async () => {
+      const tspDefinition = `
+      import "@typespec/http";
+      import "@typespec/rest";
+      import "@azure-tools/typespec-azure-core";
+
+      @service({
+        title: "Widget Service",
+      })
+      namespace DemoService;
+      
+      using TypeSpec.Http;
+      using TypeSpec.Rest;
+      using Azure.Core;
+      
+      @fixed
+      enum EnumTest  {
+        one: 1,
+        two: 2,
+        three: 3,
+        four: 4,
+      }
+      
+      op get(
+        @header("test-header") testHeader: EnumTest,
+        @body body: string,
+      ): NoContentResponse;
+      `;
+      const schemaOutput = await emitModularModelsFromTypeSpec(
+        tspDefinition,
+        false,
+        true
+      );
+      assert.ok(schemaOutput);
+      assert.isUndefined(schemaOutput);
+      const paramOutput = await emitModularOperationsFromTypeSpec(
+        tspDefinition,
+        false,
+        false,
+        false
+      );
+      assert.ok(paramOutput);
+      assert.strictEqual(paramOutput?.length, 1);
+      assertEqualContent(
+        paramOutput?.[0]?.getFullText()!,
+        `
+        import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
+        import { RequestParameters } from "@azure-rest/core-client";
+        
+        export interface GetHeaders {
+          "test-header": 1 | 2 | 3 | 4;
+        }
+        
+        export interface GetBodyParam {
+          body: string;
+        }
+        
+        export interface GetHeaderParam {
+          headers: RawHttpHeadersInput & GetHeaders;
+        }
+        
+        export type GetParameters = GetHeaderParam & GetBodyParam & RequestParameters;
+        `
+      );
+    });
   });
 });

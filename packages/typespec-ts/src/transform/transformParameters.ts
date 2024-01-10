@@ -25,7 +25,8 @@ import {
   getBodyType,
   predictDefaultValue,
   enrichBinaryTypeInBody,
-  getSerializeTypeName
+  getSerializeTypeName,
+  isTransformedUnionType
 } from "../utils/modelUtils.js";
 
 import {
@@ -95,7 +96,7 @@ export function transformToParameterTypes(
     );
     // transform path param
     const pathParams = transformPathParameters();
-    // transform header param includeing content-type
+    // transform header param including content-type
     const headerParams = transformHeaderParameters(
       dpgContext,
       parameters,
@@ -172,7 +173,7 @@ function getParameterMetadata(
   }
   type =
     paramType !== "query" ? getSerializeTypeName(schema, schemaContext) : type;
-  if (schema.type === "object" && schema.enum) {
+  if (isTransformedUnionType(schema)) {
     importedModels.add(type);
   }
   return {
