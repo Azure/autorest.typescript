@@ -15,7 +15,7 @@ import { AzureHealthInsightsClient } from "./clientDefinitions";
 export default function createClient(
   endpoint: string,
   credentials: KeyCredential,
-  options: ClientOptions = {}
+  options: ClientOptions = {},
 ): AzureHealthInsightsClient {
   const baseUrl = options.baseUrl ?? `${endpoint}/health-insights`;
   options.apiVersion = options.apiVersion ?? "2023-09-01-preview";
@@ -41,7 +41,7 @@ export default function createClient(
   const client = getClient(
     baseUrl,
     credentials,
-    options
+    options,
   ) as AzureHealthInsightsClient;
 
   return client;
