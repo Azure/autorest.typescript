@@ -19,7 +19,7 @@ describe("UsageContext Classical Client", () => {
 
   it("should input", async () => {
     try {
-      const result = await client.input({requiredProp: EXPECTED_VALUE});
+      const result = await client.input({ requiredProp: EXPECTED_VALUE });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -38,7 +38,9 @@ describe("UsageContext Classical Client", () => {
 
   it("should inputAndOutput", async () => {
     try {
-      const result = await client.inputAndOutput({requiredProp: EXPECTED_VALUE});
+      const result = await client.inputAndOutput({
+        requiredProp: EXPECTED_VALUE
+      });
       assert.isNotNull(result);
       assert.strictEqual(result.requiredProp, EXPECTED_VALUE);
     } catch (err) {
@@ -58,7 +60,7 @@ describe("UsageContext API Operations", () => {
 
   it("should input", async () => {
     try {
-      const result = await input(context, {requiredProp: EXPECTED_VALUE});
+      const result = await input(context, { requiredProp: EXPECTED_VALUE });
       assert.isUndefined(result);
     } catch (err) {
       assert.fail(err as string);
@@ -67,7 +69,9 @@ describe("UsageContext API Operations", () => {
 
   it("should inputAndOutput", async () => {
     try {
-      const result = await inputAndOutput(context, { requiredProp: EXPECTED_VALUE});
+      const result = await inputAndOutput(context, {
+        requiredProp: EXPECTED_VALUE
+      });
       assert.isNotNull(result);
       assert.strictEqual(result.requiredProp, EXPECTED_VALUE);
     } catch (err) {
