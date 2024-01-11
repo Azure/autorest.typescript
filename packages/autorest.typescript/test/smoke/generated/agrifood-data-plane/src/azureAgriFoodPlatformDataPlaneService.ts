@@ -18,7 +18,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): AzureAgriFoodPlatformDataPlaneServiceClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2021-03-31-preview";
+
   const userAgentInfo = `azsdk-js-agrifood-data-plane-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -43,6 +43,8 @@ export default function createClient(
     credentials,
     options,
   ) as AzureAgriFoodPlatformDataPlaneServiceClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return client;
 }

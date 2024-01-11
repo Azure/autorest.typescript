@@ -55,5 +55,7 @@ export default function createClient(
     options,
   ) as ParametrizedHostClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return client;
 }

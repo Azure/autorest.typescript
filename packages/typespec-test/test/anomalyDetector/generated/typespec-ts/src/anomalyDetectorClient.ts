@@ -51,5 +51,7 @@ export default function createClient(
     options,
   ) as AnomalyDetectorClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return client;
 }

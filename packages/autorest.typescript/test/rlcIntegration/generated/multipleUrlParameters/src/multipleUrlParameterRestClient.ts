@@ -47,6 +47,8 @@ export default function createClient(
     options,
   ) as MultipleUrlParameterRestClient;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
+
   return {
     ...client,
     entity: {

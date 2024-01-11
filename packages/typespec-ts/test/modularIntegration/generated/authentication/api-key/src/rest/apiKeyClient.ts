@@ -16,7 +16,6 @@ export default function createClient(
   options: ClientOptions = {},
 ): ApiKeyContext {
   const baseUrl = options.baseUrl ?? `http://localhost:3000`;
-  options.apiVersion = options.apiVersion ?? "1.0.0";
   const userAgentInfo = `azsdk-js-azure-api-key-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -37,5 +36,6 @@ export default function createClient(
 
   const client = getClient(baseUrl, credentials, options) as ApiKeyContext;
 
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
   return client;
 }

@@ -18,7 +18,7 @@ export default function createClient(
   options: ClientOptions = {},
 ): SynapseArtifactsClient {
   const baseUrl = options.baseUrl ?? `${endpoint}`;
-  options.apiVersion = options.apiVersion ?? "2021-11-01-preview";
+
   const userAgentInfo = `azsdk-js-synapse-artifacts-rest/1.0.0-beta.1`;
   const userAgentPrefix =
     options.userAgentOptions && options.userAgentOptions.userAgentPrefix
@@ -44,6 +44,8 @@ export default function createClient(
     credentials,
     options,
   ) as SynapseArtifactsClient;
+
+  client.pipeline.removePolicy({ name: "ApiVersionPolicy" });
 
   return {
     ...client,
